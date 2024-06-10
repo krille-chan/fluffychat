@@ -86,7 +86,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                     // Mark the Facebook bridge as created
                     _facebookBridgeCreated = true;
 
-                    await widget.controller.createBridgeFacebook(context,
+                    await widget.controller.createBridgeMeta(context,
                         cookieManager, connectionState, widget.network);
                   },
                 );
@@ -97,15 +97,16 @@ class _WebViewConnectionState extends State<WebViewConnection> {
               if (!_instagramBridgeCreated &&
                   url != null &&
                   url.toString() == widget.network.urlRedirect!) {
+                // Close the WebView
+                await _closeWebView();
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
                     // Mark the Instagram bridge as created
                     _instagramBridgeCreated = true;
 
-                    // result = await widget.controller
-                    //     .createBridgeInstagram(context, cookieManager,
-                    //         connectionState, widget.network);
+                    await widget.controller.createBridgeMeta(context,
+                        cookieManager, connectionState, widget.network);
                   },
                 );
               }

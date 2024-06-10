@@ -526,7 +526,7 @@ class BotController extends State<AddBridge> {
   }
 
   // Function to login Facebook
-  Future<void> createBridgeFacebook(
+  Future<void> createBridgeMeta(
       BuildContext context,
       WebviewCookieManager cookieManager,
       ConnectionStateModel connectionState,
@@ -566,7 +566,6 @@ class BotController extends State<AddBridge> {
     // Variable for loop limit
     const int maxIterations = 5;
     int currentIteration = 0;
-    bool isSuccess = false;  // Variable to track the success of the operation
 
     while (currentIteration < maxIterations) {
       final GetRoomEventsResponse response = await client.getRoomEvents(
@@ -586,11 +585,10 @@ class BotController extends State<AddBridge> {
         if (pasteCookie.hasMatch(latestMessage)) {
           await roomBot?.sendTextEvent(formattedCookieString);
         } else if (alreadyConnected.hasMatch(latestMessage)) {
-          Logs().v("Already Connected to Facebook");
-          isSuccess = true;
+          Logs().v("Already Connected to ${network.name}");
           break;
         } else if (successMatch.hasMatch(latestMessage)) {
-          Logs().v("You're logged to Messenger");
+          Logs().v("You're logged to ${network.name}");
 
           Future.microtask(() {
             connectionState
@@ -615,7 +613,6 @@ class BotController extends State<AddBridge> {
             connectionState.reset();
           });
 
-          isSuccess = true;
           break; // Exit the loop once the "login" message has been sent and is success
         }
       }
@@ -624,17 +621,8 @@ class BotController extends State<AddBridge> {
       currentIteration++;
     }
 
-    if (!isSuccess) {
+    if (currentIteration == maxIterations) {
       Logs().v("Maximum iterations reached, setting result to 'error'");
-      Future.microtask(() {
-        connectionState.updateConnectionTitle(L10n.of(context)!.errTryAgain);
-        connectionState.updateLoading(false);
-      });
-      await Future.delayed(const Duration(seconds: 1)); // Wait sec
-      Future.microtask(() {
-        connectionState.reset();
-      });
-      showCatchErrorDialog(context, L10n.of(context)!.errTryAgain);
     }
   }
 
