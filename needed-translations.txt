@@ -839,9 +839,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "be": [
@@ -2279,9 +2288,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "bn": [
@@ -3181,9 +3199,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "bo": [
@@ -4083,9 +4110,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ca": [
@@ -4985,9 +5021,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "cs": [
@@ -5887,9 +5932,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "de": [
@@ -6736,9 +6790,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "el": [
@@ -7638,9 +7701,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "eo": [
@@ -8540,17 +8612,35 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "es": [
     "suggestToChat",
     "suggestToChatDesc",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "et": [
@@ -9393,9 +9483,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "eu": [
@@ -10238,9 +10337,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "fa": [
@@ -11140,9 +11248,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "fi": [
@@ -12042,9 +12159,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "fr": [
@@ -12944,9 +13070,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ga": [
@@ -13846,9 +13981,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "gl": [
@@ -14691,9 +14835,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "he": [
@@ -15593,9 +15746,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "hi": [
@@ -16495,9 +16657,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "hr": [
@@ -17384,9 +17555,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "hu": [
@@ -18286,9 +18466,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ia": [
@@ -19712,9 +19901,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "id": [
@@ -20614,9 +20812,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ie": [
@@ -21516,9 +21723,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "it": [
@@ -22403,9 +22619,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ja": [
@@ -23305,9 +23530,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ko": [
@@ -24207,9 +24441,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "lt": [
@@ -25109,9 +25352,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "lv": [
@@ -26011,9 +26263,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "nb": [
@@ -26913,9 +27174,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "nl": [
@@ -27815,9 +28085,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "pl": [
@@ -28717,9 +28996,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "pt": [
@@ -29619,9 +29907,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "pt_BR": [
@@ -30490,9 +30787,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "pt_PT": [
@@ -31392,9 +31698,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ro": [
@@ -32294,9 +32609,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ru": [
@@ -33139,9 +33463,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "sk": [
@@ -34041,9 +34374,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "sl": [
@@ -34943,9 +35285,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "sr": [
@@ -35845,9 +36196,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "sv": [
@@ -36712,9 +37072,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ta": [
@@ -37614,9 +37983,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "th": [
@@ -38516,9 +38894,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "tr": [
@@ -39403,9 +39790,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "uk": [
@@ -40248,9 +40644,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "vi": [
@@ -41150,9 +41555,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "zh": [
@@ -41995,9 +42409,18 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "zh_Hant": [
@@ -42897,8 +43320,17 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "autoIGCToolName",
+    "autoIGCToolDescription",
+    "runGrammarCorrection",
+    "grammarCorrectionFailed",
+    "grammarCorrectionComplete",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ]
 }

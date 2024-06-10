@@ -105,6 +105,12 @@ class ChatListController extends State<ChatList>
       selectedRoomIds.clear();
       activeSpaceId = spaceId;
       activeFilter = ActiveFilter.spaces;
+      // #Pangea
+      // don't show all spaces view if in column mode
+      if (spaceId == null && FluffyThemes.isColumnMode(context)) {
+        activeFilter = ActiveFilter.allChats;
+      }
+      // Pangea#
     });
   }
 
@@ -693,7 +699,7 @@ class ChatListController extends State<ChatList>
           title: L10n.of(context)!.areYouSure,
           okLabel: L10n.of(context)!.yes,
           cancelLabel: L10n.of(context)!.cancel,
-          message: onlyAdmin
+          message: onlyAdmin && selectedRoomIds.length == 1
               ? L10n.of(context)!.onlyAdminDescription
               : L10n.of(context)!.leaveRoomDescription,
         ) ==

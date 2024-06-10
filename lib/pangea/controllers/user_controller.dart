@@ -131,7 +131,7 @@ class UserController extends BaseController {
     final bool? immersionMode =
         migratedProfileInfo(MatrixProfile.immersionMode);
     final bool? definitions = migratedProfileInfo(MatrixProfile.definitions);
-    final bool? translations = migratedProfileInfo(MatrixProfile.translations);
+    // final bool? translations = migratedProfileInfo(MatrixProfile.translations);
     final bool? showItInstructions =
         migratedProfileInfo(MatrixProfile.showedItInstructions);
     final bool? showClickMessage =
@@ -147,7 +147,7 @@ class UserController extends BaseController {
       interactiveGrammar: interactiveGrammar,
       immersionMode: immersionMode,
       definitions: definitions,
-      translations: translations,
+      // translations: translations,
       showedItInstructions: showItInstructions,
       showedClickMessage: showClickMessage,
       showedBlurMeansTranslate: showBlurMeansTranslate,
@@ -228,10 +228,11 @@ class UserController extends BaseController {
     bool? interactiveGrammar,
     bool? immersionMode,
     bool? definitions,
-    bool? translations,
+    // bool? translations,
     bool? showedItInstructions,
     bool? showedClickMessage,
     bool? showedBlurMeansTranslate,
+    bool? showedTooltipInstructions,
     String? createdAt,
     String? targetLanguage,
     String? sourceLanguage,
@@ -280,12 +281,12 @@ class UserController extends BaseController {
         definitions,
       );
     }
-    if (translations != null) {
-      await _pangeaController.pStoreService.save(
-        MatrixProfile.translations.title,
-        translations,
-      );
-    }
+    // if (translations != null) {
+    //   await _pangeaController.pStoreService.save(
+    //     MatrixProfile.translations.title,
+    //     translations,
+    //   );
+    // }
     if (showedItInstructions != null) {
       await _pangeaController.pStoreService.save(
         MatrixProfile.showedItInstructions.title,
@@ -302,6 +303,12 @@ class UserController extends BaseController {
       await _pangeaController.pStoreService.save(
         MatrixProfile.showedBlurMeansTranslate.title,
         showedBlurMeansTranslate,
+      );
+    }
+    if (showedTooltipInstructions != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.showedTooltipInstructions.title,
+        showedTooltipInstructions,
       );
     }
     if (createdAt != null) {
