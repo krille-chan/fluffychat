@@ -56,6 +56,7 @@ enum MatrixProfile {
   autoPlayMessages,
   activatedFreeTrial,
   interactiveTranslator,
+  itAutoPlay,
   interactiveGrammar,
   immersionMode,
   definitions,
@@ -81,6 +82,8 @@ extension MatrixProfileExtension on MatrixProfile {
         return PLocalKey.activatedTrialKey;
       case MatrixProfile.interactiveTranslator:
         return ToolSetting.interactiveTranslator.toString();
+      case MatrixProfile.itAutoPlay:
+        return ToolSetting.itAutoPlay.toString();
       case MatrixProfile.interactiveGrammar:
         return ToolSetting.interactiveGrammar.toString();
       case MatrixProfile.immersionMode:

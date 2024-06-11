@@ -202,12 +202,20 @@ class OriginalText extends StatelessWidget {
           if (
             !controller.isEditingSourceText
             && controller.sourceText != null
-            && controller.completedITSteps.length
-              < controller.goldRouteTracker.continuances.length
           )
-            IconButton(
-              onPressed: () => controller.setIsEditingSourceText(true),
-              icon: const Icon(Icons.edit_outlined),
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 500),
+              opacity: controller.nextITStep != null
+                  ? 1.0
+                  : 0.0,
+              child: IconButton(
+                onPressed: () => {
+                  if (controller.nextITStep != null) {
+                    controller.setIsEditingSourceText(true),
+                  },
+                },
+                icon: const Icon(Icons.edit_outlined),
+              ),
             ),
         ],
       ),

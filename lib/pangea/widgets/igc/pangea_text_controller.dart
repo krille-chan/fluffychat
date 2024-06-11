@@ -82,9 +82,15 @@ class PangeaTextController extends TextEditingController {
                 debugPrint("onSentenceRewrite $tokenIndex $sentenceRewrite");
               }),
               onIgnore: () => choreographer.onIgnoreMatch(
-                cursorOffset: selection.baseOffset,
-              ),
+                  cursorOffset: selection.baseOffset,
+                ),
               onITStart: () {
+                if (choreographer.igc.turnOnAutoPlay) {
+                  choreographer.pangeaController.pStoreService.save(
+                    'ToolSetting.itAutoPlay',
+                    true,
+                  );
+                }
                 choreographer.onITStart(
                   choreographer.igc.igcTextData!.matches[matchIndex],
                 );
@@ -96,15 +102,24 @@ class PangeaTextController extends TextEditingController {
         : null;
 
     if (cardToShow != null) {
-      OverlayUtil.showPositionedCard(
-        context: context,
-        cardSize: matchIndex != -1 &&
-                choreographer.igc.igcTextData!.matches[matchIndex].isITStart
-            ? const Size(350, 220)
-            : const Size(350, 400),
-        cardToShow: cardToShow,
-        transformTargetId: choreographer.inputTransformTargetKey,
-      );
+      if (
+        choreographer.itAutoPlayEnabled &&
+        choreographer.igc.igcTextData!.matches[matchIndex].isITStart
+      ) {
+        choreographer.onITStart(
+          choreographer.igc.igcTextData!.matches[matchIndex],
+        );
+      } else {
+        OverlayUtil.showPositionedCard(
+          context: context,
+          cardSize: matchIndex != -1 &&
+                  choreographer.igc.igcTextData!.matches[matchIndex].isITStart
+              ? const Size(350, 260)
+              : const Size(350, 400),
+          cardToShow: cardToShow,
+          transformTargetId: choreographer.inputTransformTargetKey,
+        );
+      }
     }
   }
 

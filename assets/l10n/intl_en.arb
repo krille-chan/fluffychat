@@ -2514,6 +2514,16 @@
         "type": "text",
         "placeholders": {}
     },
+    "interactiveTranslatorAutoPlaySliderHeader": "Auto Play Interactive Translator",
+    "@interactiveTranslatorAutoPlaySliderHeader": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "interactiveTranslatorAutoPlayDesc": "Launches the interactive translator without asking.",
+    "@interactiveTranslatorAutoPlayDesc": {
+        "type": "text",
+        "placeholders": {}
+    },
     "notYetSet": "Not yet set",
     "@notYetSet": {
         "type": "text",

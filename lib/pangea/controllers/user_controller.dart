@@ -126,6 +126,7 @@ class UserController extends BaseController {
     final bool? trial = migratedProfileInfo(MatrixProfile.activatedFreeTrial);
     final bool? interactiveTranslator =
         migratedProfileInfo(MatrixProfile.interactiveTranslator);
+    final bool? itAutoPlay = migratedProfileInfo(MatrixProfile.itAutoPlay);
     final bool? interactiveGrammar =
         migratedProfileInfo(MatrixProfile.interactiveGrammar);
     final bool? immersionMode =
@@ -144,6 +145,7 @@ class UserController extends BaseController {
       autoPlayMessages: autoPlay,
       activatedFreeTrial: trial,
       interactiveTranslator: interactiveTranslator,
+      itAutoPlay: itAutoPlay,
       interactiveGrammar: interactiveGrammar,
       immersionMode: immersionMode,
       definitions: definitions,
@@ -225,6 +227,7 @@ class UserController extends BaseController {
     bool? autoPlayMessages,
     bool? activatedFreeTrial,
     bool? interactiveTranslator,
+    bool? itAutoPlay,
     bool? interactiveGrammar,
     bool? immersionMode,
     bool? definitions,
@@ -260,6 +263,12 @@ class UserController extends BaseController {
       await _pangeaController.pStoreService.save(
         MatrixProfile.interactiveTranslator.title,
         interactiveTranslator,
+      );
+    }
+    if (itAutoPlay != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.itAutoPlay.title,
+        itAutoPlay,
       );
     }
     if (interactiveGrammar != null) {

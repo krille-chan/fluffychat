@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/igc_text_data_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
@@ -28,6 +29,8 @@ class IgcController {
   Completer<IGCTextData> igcCompleter = Completer();
 
   IgcController(this.choreographer);
+
+  bool turnOnAutoPlay = false;
 
   Future<void> getIGCTextData({required bool tokensOnly}) async {
     try {
@@ -191,6 +194,15 @@ class IgcController {
     const int firstMatchIndex = 0;
     final PangeaMatch match = igcTextData!.matches[firstMatchIndex];
 
+    if (
+        match.isITStart &&
+        choreographer.itAutoPlayEnabled &&
+        igcTextData != null
+    ) {
+      choreographer.onITStart(igcTextData!.matches[firstMatchIndex]);
+      return;
+    }
+
     OverlayUtil.showPositionedCard(
       context: context,
       cardToShow: SpanCard(
@@ -203,6 +215,12 @@ class IgcController {
           ),
           onITStart: () {
             if (choreographer.itEnabled && igcTextData != null) {
+              if (turnOnAutoPlay) {
+                choreographer.pangeaController.pStoreService.save(
+                  ToolSetting.itAutoPlay.toString(),
+                  true,
+                );
+              }
               choreographer.onITStart(igcTextData!.matches[firstMatchIndex]);
             }
           },
@@ -210,7 +228,7 @@ class IgcController {
         ),
         roomId: choreographer.roomId,
       ),
-      cardSize: match.isITStart ? const Size(350, 220) : const Size(350, 400),
+      cardSize: match.isITStart ? const Size(350, 260) : const Size(350, 400),
       transformTargetId: choreographer.inputTransformTargetKey,
     );
   }

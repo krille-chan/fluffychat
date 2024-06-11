@@ -281,6 +281,13 @@ class WordMatchContent extends StatelessWidget {
                 ),
             ],
           ),
+          if (controller.widget.scm.pangeaMatch!.isITStart)
+            DontShowSwitchListTile(
+              value: controller.widget.scm.choreographer.igc.turnOnAutoPlay,
+              onChanged: ((value) {
+                controller.widget.scm.choreographer.igc.turnOnAutoPlay = value;
+              }),
+            ),
         ],
       );
     } on Exception catch (e) {
@@ -416,6 +423,43 @@ class StartITButton extends StatelessWidget {
           Future.delayed(Duration.zero, () => onITStart());
         },
       ),
+    );
+  }
+}
+
+class DontShowSwitchListTile extends StatefulWidget {
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  const DontShowSwitchListTile({
+    super.key,
+    required this.value,
+    required this.onChanged,
+  });
+
+  @override
+  DontShowSwitchListTileState createState() => DontShowSwitchListTileState();
+}
+
+class DontShowSwitchListTileState extends State<DontShowSwitchListTile> {
+  bool switchValue = false;
+
+  @override
+  void initState() {
+    super.initState();
+    switchValue = widget.value;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SwitchListTile.adaptive(
+      activeColor: AppConfig.activeToggleColor,
+      title: Text(L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader),
+      value: switchValue,
+      onChanged: (value) => {
+        widget.onChanged(value),
+        setState(() => switchValue = value),
+      },
     );
   }
 }
