@@ -35,9 +35,8 @@ class RegisterController extends State<Register> {
   kratos.FrontendApi? api;
   String? flowId;
   List<Widget> authWidgets = [];
-  // TODO use a map instead of a list. The key will be the node name
-  List<TextEditingController> textControllers = [];
-  List<kratos.UiNode> formNodes = [];
+  Map<String, TextEditingController> textControllers = {};
+  Map<String, kratos.UiNode> formNodes = {};
 
   // If the submit button has already been pressed
   bool hasSubmitted = false;
@@ -80,7 +79,7 @@ class RegisterController extends State<Register> {
   Future<void> processKratosNodes(
       BuiltList<kratos.UiNode> nodes, String actionUrl) async {
     final List<Widget> formWidgets = [];
-    final List<kratos.UiNode> allNodes = [];
+    final Map<String, kratos.UiNode> allNodes = {};
 
     for (final kratos.UiNode node in nodes) {
       final attributes =
@@ -88,8 +87,8 @@ class RegisterController extends State<Register> {
       final controller =
           TextEditingController(text: attributes.value?.toString() ?? "");
 
-      // TODO only create text controllers for text inputs
-      textControllers.add(controller);
+      // Adding the controller to the map
+      textControllers[attributes.name] = controller;
 
       Widget widget;
       if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.email) {
@@ -111,7 +110,7 @@ class RegisterController extends State<Register> {
       }
 
       formWidgets.add(widget);
-      allNodes.add(node);
+      allNodes[attributes.name] = node;
     }
 
     setState(() {
@@ -235,17 +234,16 @@ class RegisterController extends State<Register> {
         kratos.OryKratosClient(dio: dio);
 
     // Update node values with controller values
-    for (int i = 0; i < formNodes.length; i++) {
-      final kratos.UiNode node = formNodes[i];
+    formNodes.forEach((key, node) {
       if (node.attributes.oneOf.value is kratos.UiNodeInputAttributes) {
         final kratos.UiNodeInputAttributes attributes =
             node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
-        String value = textControllers[i].text;
+        String value = textControllers[attributes.name]?.text ?? "";
 
         // Trim the value here
         value = value.trim();
 
-        formData[attributes.name] = value; // Convert JsonObject to String
+        formData[attributes.name] = value;
 
         if (attributes.name == 'traits.email') {
           email = value;
@@ -253,16 +251,19 @@ class RegisterController extends State<Register> {
           code = value;
         }
       }
-    }
+    });
 
     // Validate email
-    if (email != null && !_validateEmail(email)) {
+    if (email != null && !_validateEmail(email!)) {
       setState(() => loading = false);
       return;
     }
 
-    if (email != null && email.isNotEmpty && code != null && code.isNotEmpty) {
-      await oryRegisterWithCode(email, code, kratosClient);
+    if (email != null &&
+        email!.isNotEmpty &&
+        code != null &&
+        code!.isNotEmpty) {
+      await oryRegisterWithCode(email!, code!, kratosClient);
     } else {
       try {
         final response = await dio.post(
@@ -318,16 +319,15 @@ class RegisterController extends State<Register> {
   Map<String, dynamic> _buildFormData() {
     final formData = <String, dynamic>{};
 
-    for (int i = 0; i < formNodes.length; i++) {
-      final kratos.UiNode node = formNodes[i];
+    formNodes.forEach((key, node) {
       if (node.attributes.oneOf.value is kratos.UiNodeInputAttributes) {
         final kratos.UiNodeInputAttributes attributes =
             node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
-        final value = textControllers[i].text;
+        final value = textControllers[attributes.name]?.text ?? "";
 
         formData[attributes.name] = value;
       }
-    }
+    });
 
     return formData;
   }
