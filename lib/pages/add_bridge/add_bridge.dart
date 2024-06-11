@@ -573,10 +573,13 @@ class BotController extends State<AddBridge> {
       );
 
       final List<MatrixEvent> latestMessages = response.chunk ?? [];
-      final String latestMessage =
-          latestMessages.first.content['body'].toString() ?? '';
+      final MatrixEvent latestEvent = latestMessages.first;
+      final String latestMessage = latestEvent.content['body'].toString() ?? '';
+      final String sender = latestEvent.senderId;
+      final String botUserId = '${network.chatBot}$hostname';
 
-      if (latestMessages.isNotEmpty) {
+
+      if (latestMessages.isNotEmpty && sender == botUserId) {
         if (kDebugMode) {
           print('latestMessage : $latestMessage');
         }
