@@ -77,7 +77,6 @@ class BotController extends State<AddBridge> {
     return json.encode(formattedCookies);
   }
 
-
   Future<void> handleRefresh() async {
     setState(() {
       // Reset loading values to their original state
@@ -155,7 +154,8 @@ class BotController extends State<AddBridge> {
   }
 
   // TODO: Faire en sorte de relancer si plusieurs ping envoyés d'affilé n'ont pas de reponse
-  Future<void> _processPingResponse(SocialNetwork socialNetwork, String directChat, Room roomBot, RegExpPingPatterns patterns) async {
+  Future<void> _processPingResponse(SocialNetwork socialNetwork,
+      String directChat, Room roomBot, RegExpPingPatterns patterns) async {
     const int maxIterations = 5;
     int currentIteration = 0;
 
@@ -169,7 +169,8 @@ class BotController extends State<AddBridge> {
       final List<MatrixEvent> latestMessages = response.chunk ?? [];
 
       if (latestMessages.isNotEmpty) {
-        final String latestMessage = latestMessages.first.content['body'].toString() ?? '';
+        final String latestMessage =
+            latestMessages.first.content['body'].toString() ?? '';
 
         if (_isOnline(patterns.onlineMatch, latestMessage)) {
           Logs().v("You're logged to ${socialNetwork.name}");
@@ -195,7 +196,8 @@ class BotController extends State<AddBridge> {
     }
 
     if (currentIteration == maxIterations) {
-      Logs().v("Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
+      Logs().v(
+          "Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
       _handleError(socialNetwork);
     } else if (!continueProcess) {
       Logs().v(('ping stopping'));
@@ -219,7 +221,8 @@ class BotController extends State<AddBridge> {
     await roomBot.sendTextEvent(eventToSend);
   }
 
-  void _updateNetworkStatus(SocialNetwork socialNetwork, bool isConnected, bool isError) {
+  void _updateNetworkStatus(
+      SocialNetwork socialNetwork, bool isConnected, bool isError) {
     setState(() {
       socialNetwork.connected = isConnected;
       socialNetwork.loading = false;
@@ -243,7 +246,8 @@ class BotController extends State<AddBridge> {
           .updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
     });
 
-    final Map<String, RegExp> patterns = _getLogoutNetworkPatterns(network.name);
+    final Map<String, RegExp> patterns =
+        _getLogoutNetworkPatterns(network.name);
     final String eventName = _getEventName(network.name);
 
     final String? directChat = await _getOrCreateDirectChat(botUserId);
@@ -311,12 +315,13 @@ class BotController extends State<AddBridge> {
     while (currentIteration < maxIterations) {
       try {
         final GetRoomEventsResponse response =
-        await client.getRoomEvents(directChat, Direction.b, limit: 1);
+            await client.getRoomEvents(directChat, Direction.b, limit: 1);
         final List<MatrixEvent> latestMessages = response.chunk ?? [];
 
         if (latestMessages.isNotEmpty) {
           final MatrixEvent latestEvent = latestMessages.first;
-          final String latestMessage = latestEvent.content['body'].toString() ?? '';
+          final String latestMessage =
+              latestEvent.content['body'].toString() ?? '';
           final String sender = latestEvent.senderId;
           final String botUserId = '${network.chatBot}$hostname';
 
@@ -525,11 +530,11 @@ class BotController extends State<AddBridge> {
 
   // Function to login Facebook
   Future<void> createBridgeMeta(
-      BuildContext context,
-      WebviewCookieManager cookieManager,
-      ConnectionStateModel connectionState,
-      SocialNetwork network,
-      ) async {
+    BuildContext context,
+    WebviewCookieManager cookieManager,
+    ConnectionStateModel connectionState,
+    SocialNetwork network,
+  ) async {
     final String botUserId = '${network.chatBot}$hostname';
 
     Future.microtask(() {
@@ -577,7 +582,6 @@ class BotController extends State<AddBridge> {
       final String latestMessage = latestEvent.content['body'].toString() ?? '';
       final String sender = latestEvent.senderId;
       final String botUserId = '${network.chatBot}$hostname';
-
 
       if (latestMessages.isNotEmpty && sender == botUserId) {
         if (kDebugMode) {
