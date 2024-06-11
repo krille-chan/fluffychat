@@ -3099,6 +3099,17 @@
     "type": "text",
     "placeholders": {}
   },
+  "interactiveTranslatorAutoPlaySliderHeader": "Traductora interactiva de reproducción automática",
+  "interactiveTranslatorAutoPlay": "Traductora interactiva de reproducción automática",
+  "@interactiveTranslatorAutoPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "interactiveTranslatorAutoPlayDesc": "Inicia el traductor interactivo sin preguntar.",
+  "@interactiveTranslatorAutoPlayDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
   "grammarAssistance": "Asistencia gramatical",
   "@grammarAssistance": {
     "type": "text",

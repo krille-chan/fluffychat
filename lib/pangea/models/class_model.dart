@@ -295,6 +295,7 @@ class PangeaRoomRules {
 
 enum ToolSetting {
   interactiveTranslator,
+  itAutoPlay,
   interactiveGrammar,
   immersionMode,
   definitions,
@@ -306,6 +307,8 @@ extension SettingCopy on ToolSetting {
     switch (this) {
       case ToolSetting.interactiveTranslator:
         return L10n.of(context)!.interactiveTranslatorSliderHeader;
+      case ToolSetting.itAutoPlay:
+        return L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader;
       case ToolSetting.interactiveGrammar:
         return L10n.of(context)!.interactiveGrammarSliderHeader;
       case ToolSetting.immersionMode:
@@ -324,6 +327,8 @@ extension SettingCopy on ToolSetting {
         return L10n.of(context)!.itToggleDescription;
       case ToolSetting.interactiveGrammar:
         return L10n.of(context)!.igcToggleDescription;
+      case ToolSetting.itAutoPlay:
+        return L10n.of(context)!.interactiveTranslatorAutoPlayDesc;
       case ToolSetting.immersionMode:
         return L10n.of(context)!.toggleImmersionModeDesc;
       case ToolSetting.definitions:
