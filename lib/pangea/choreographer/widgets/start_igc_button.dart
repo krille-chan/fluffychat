@@ -33,7 +33,7 @@ class StartIGCButtonState extends State<StartIGCButton>
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
     );
     choreoListener = widget.controller.choreographer.stateListener.stream
         .listen(updateSpinnerState);
@@ -54,14 +54,15 @@ class StartIGCButtonState extends State<StartIGCButton>
 
   @override
   Widget build(BuildContext context) {
-    if (widget.controller.choreographer.isAutoIGCEnabled) {
+    if (widget.controller.choreographer.isAutoIGCEnabled ||
+        widget.controller.choreographer.choreoMode == ChoreoMode.it) {
       return const SizedBox.shrink();
     }
 
     final Widget icon = Icon(
       Icons.autorenew_rounded,
       size: 46,
-      color: assistanceState.stateColor,
+      color: assistanceState.stateColor(context),
     );
 
     return SizedBox(
@@ -71,15 +72,23 @@ class StartIGCButtonState extends State<StartIGCButton>
         tooltip: assistanceState.tooltip(
           L10n.of(context)!,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         disabledElevation: 0,
         shape: const CircleBorder(),
         onPressed: () {
           if (assistanceState != AssistanceState.complete) {
-            widget.controller.choreographer.getLanguageHelp(
+            widget.controller.choreographer
+                .getLanguageHelp(
               false,
               true,
-            );
+            )
+                .then((_) {
+              if (widget.controller.choreographer.igc.igcTextData != null &&
+                  widget.controller.choreographer.igc.igcTextData!.matches
+                      .isNotEmpty) {
+                widget.controller.choreographer.igc.showFirstMatch(context);
+              }
+            });
           }
         },
         child: Stack(
@@ -95,9 +104,9 @@ class StartIGCButtonState extends State<StartIGCButton>
             Container(
               width: 26,
               height: 26,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
               ),
             ),
             Container(
@@ -105,13 +114,13 @@ class StartIGCButtonState extends State<StartIGCButton>
               height: 20,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: assistanceState.stateColor,
+                color: assistanceState.stateColor(context),
               ),
             ),
-            const Icon(
+            Icon(
               size: 16,
               Icons.check,
-              color: Colors.white,
+              color: Theme.of(context).scaffoldBackgroundColor,
             ),
           ],
         ),
@@ -121,12 +130,12 @@ class StartIGCButtonState extends State<StartIGCButton>
 }
 
 extension AssistanceStateExtension on AssistanceState {
-  Color get stateColor {
+  Color stateColor(context) {
     switch (this) {
       case AssistanceState.noMessage:
       case AssistanceState.notFetched:
       case AssistanceState.fetching:
-        return AppConfig.primaryColor;
+        return Theme.of(context).colorScheme.primary;
       case AssistanceState.fetched:
         return PangeaColors.igcError;
       case AssistanceState.complete:
