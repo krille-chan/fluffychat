@@ -27,7 +27,6 @@ class AddBridge extends StatefulWidget {
 }
 
 class BotController extends State<AddBridge> {
-  String? messageError;
   bool loading = true;
   bool continueProcess = true;
 
@@ -147,13 +146,13 @@ class BotController extends State<AddBridge> {
     try {
       await roomBot.sendTextEvent("ping");
       return true;
-    } catch (e) {
-      Logs().i('Error sending ping message: $e');
+    } on MatrixException catch (exception) {
+      final messageError = exception.errorMessage;
+      showCatchErrorDialog(context, messageError);
       return false;
     }
   }
 
-  // TODO: Faire en sorte de relancer si plusieurs ping envoyés d'affilé n'ont pas de reponse
   Future<void> _processPingResponse(SocialNetwork socialNetwork,
       String directChat, Room roomBot, RegExpPingPatterns patterns) async {
     const int maxIterations = 5;
@@ -188,7 +187,6 @@ class BotController extends State<AddBridge> {
           await _sendReconnectEvent(roomBot, socialNetwork.name);
           await Future.delayed(const Duration(seconds: 3)); // Wait sec
         } else {
-          await _sendPingMessage(roomBot);
           await Future.delayed(const Duration(seconds: 2)); // Wait sec
         }
       }
