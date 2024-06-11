@@ -535,100 +535,112 @@ class BotController extends State<AddBridge> {
   ) async {
     final String botUserId = '${network.chatBot}$hostname';
 
-    Future.microtask(() {
-      connectionState
-          .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
-    });
+    try {
+      Future.microtask(() {
+        connectionState
+            .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
+      });
 
-    final RegExp successMatch = LoginRegex.facebookSuccessMatch;
-    final RegExp alreadyConnected = LoginRegex.facebookAlreadyConnectedMatch;
-    final RegExp pasteCookie = LoginRegex.facebookPasteCookies;
+      final RegExp successMatch = LoginRegex.facebookSuccessMatch;
+      final RegExp alreadyConnected = LoginRegex.facebookAlreadyConnectedMatch;
+      final RegExp pasteCookie = LoginRegex.facebookPasteCookies;
 
-    // Add a direct chat with the Instagram bot (if you haven't already)
-    String? directChat = client.getDirectChatFromUserId(botUserId);
-    directChat ??= await client.startDirectChat(botUserId);
+      // Add a direct chat with the Instagram bot (if you haven't already)
+      String? directChat = client.getDirectChatFromUserId(botUserId);
+      directChat ??= await client.startDirectChat(botUserId);
 
-    final Room? roomBot = client.getRoomById(directChat);
+      final Room? roomBot = client.getRoomById(directChat);
 
-    await Future.delayed(const Duration(seconds: 1)); // Wait sec
+      await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
-    Future.microtask(() {
-      connectionState
-          .updateConnectionTitle(L10n.of(context)!.loadingVerification);
-    });
+      Future.microtask(() {
+        connectionState
+            .updateConnectionTitle(L10n.of(context)!.loadingVerification);
+      });
 
-    final gotCookies = await cookieManager.getCookies(network.urlRedirect);
-    final formattedCookieString = formatCookiesToJsonString(gotCookies);
+      final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+      final formattedCookieString = formatCookiesToJsonString(gotCookies);
 
-    // Send the "login" message to the bot
-    await roomBot?.sendTextEvent("login");
-    await Future.delayed(const Duration(seconds: 5)); // Wait sec
+      // Send the "login" message to the bot
+      await roomBot?.sendTextEvent("login");
+      await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
-    // Variable for loop limit
-    const int maxIterations = 5;
-    int currentIteration = 0;
+      // Variable for loop limit
+      const int maxIterations = 5;
+      int currentIteration = 0;
 
-    while (currentIteration < maxIterations) {
-      final GetRoomEventsResponse response = await client.getRoomEvents(
-        directChat,
-        Direction.b, // To get the latest messages
-        limit: 1, // Number of messages to obtain
-      );
+      while (currentIteration < maxIterations) {
+        final GetRoomEventsResponse response = await client.getRoomEvents(
+          directChat,
+          Direction.b, // To get the latest messages
+          limit: 1, // Number of messages to obtain
+        );
 
-      final List<MatrixEvent> latestMessages = response.chunk ?? [];
-      final MatrixEvent latestEvent = latestMessages.first;
-      final String latestMessage = latestEvent.content['body'].toString() ?? '';
-      final String sender = latestEvent.senderId;
-      final String botUserId = '${network.chatBot}$hostname';
+        final List<MatrixEvent> latestMessages = response.chunk ?? [];
+        final MatrixEvent latestEvent = latestMessages.first;
+        final String latestMessage =
+            latestEvent.content['body'].toString() ?? '';
+        final String sender = latestEvent.senderId;
+        final String botUserId = '${network.chatBot}$hostname';
 
-      if (latestMessages.isNotEmpty && sender == botUserId) {
-        if (kDebugMode) {
-          print('latestMessage : $latestMessage');
+        if (latestMessages.isNotEmpty && sender == botUserId) {
+          if (kDebugMode) {
+            print('latestMessage : $latestMessage');
+          }
+          if (pasteCookie.hasMatch(latestMessage)) {
+            await roomBot?.sendTextEvent(formattedCookieString);
+          } else if (alreadyConnected.hasMatch(latestMessage)) {
+            Logs().v("Already Connected to ${network.name}");
+            break;
+          } else if (successMatch.hasMatch(latestMessage)) {
+            Logs().v("You're logged to ${network.name}");
+
+            Future.microtask(() {
+              connectionState.updateConnectionTitle(
+                  L10n.of(context)!.loadingRetrieveRooms);
+            });
+
+            // I can't get the bridge to accept conversation requests.
+            // TODO: See how to exceed the rate limit without penalizing the user
+            // await Future.delayed(
+            //     const Duration(seconds: 10)); // Wait sec for rooms loading
+            // await handleNewRoomsSync(context, network);
+
+            setState(() => network.updateConnectionResult(true));
+
+            Future.microtask(() {
+              connectionState
+                  .updateConnectionTitle(L10n.of(context)!.connected);
+            });
+
+            Future.microtask(() {
+              connectionState.updateLoading(false);
+            });
+
+            await Future.delayed(const Duration(seconds: 1)); // Wait sec
+            Future.microtask(() {
+              connectionState.reset();
+            });
+
+            break; // Exit the loop once the "login" message has been sent and is success
+          }
         }
-        if (pasteCookie.hasMatch(latestMessage)) {
-          await roomBot?.sendTextEvent(formattedCookieString);
-        } else if (alreadyConnected.hasMatch(latestMessage)) {
-          Logs().v("Already Connected to ${network.name}");
-          break;
-        } else if (successMatch.hasMatch(latestMessage)) {
-          Logs().v("You're logged to ${network.name}");
 
-          Future.microtask(() {
-            connectionState
-                .updateConnectionTitle(L10n.of(context)!.loadingRetrieveRooms);
-          });
-
-          // I can't get the bridge to accept conversation requests.
-          // TODO: See how to exceed the rate limit without penalizing the user
-          // await Future.delayed(
-          //     const Duration(seconds: 10)); // Wait sec for rooms loading
-          // await handleNewRoomsSync(context, network);
-
-          setState(() => network.updateConnectionResult(true));
-
-          Future.microtask(() {
-            connectionState.updateConnectionTitle(L10n.of(context)!.connected);
-          });
-
-          Future.microtask(() {
-            connectionState.updateLoading(false);
-          });
-
-          await Future.delayed(const Duration(seconds: 1)); // Wait sec
-          Future.microtask(() {
-            connectionState.reset();
-          });
-
-          break; // Exit the loop once the "login" message has been sent and is success
-        }
+        await Future.delayed(const Duration(seconds: 3)); // Wait sec
+        currentIteration++;
       }
 
-      await Future.delayed(const Duration(seconds: 3)); // Wait sec
-      currentIteration++;
-    }
-
-    if (currentIteration == maxIterations) {
-      Logs().v("Maximum iterations reached, setting result to 'error'");
+      if (currentIteration == maxIterations) {
+        Logs().v("Maximum iterations reached, setting result to 'error'");
+        showCatchErrorDialog(
+            context, "Maximum iterations reached, setting result to 'error'");
+      }
+    } catch (e) {
+      final messageError = e.toString();
+      if (kDebugMode) {
+        print("error: $messageError");
+      }
+      showCatchErrorDialog(context, L10n.of(context)!.tryAgain);
     }
   }
 
