@@ -46,7 +46,9 @@ class OverlayMessage extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    var color = Theme.of(context).colorScheme.surfaceVariant;
+    var color = Theme.of(context).colorScheme.surfaceVariant.withAlpha(
+          Theme.of(context).brightness == Brightness.light ? 90 : 160,
+        );
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
         : Theme.of(context).colorScheme.onBackground;
@@ -97,7 +99,9 @@ class OverlayMessage extends StatelessWidget {
     }.contains(event.messageType);
 
     if (ownMessage) {
-      color = Theme.of(context).colorScheme.primary;
+      color = Theme.of(context).colorScheme.primary.withAlpha(
+            Theme.of(context).brightness == Brightness.light ? 30 : 160,
+          );
     }
 
     // #Pangea
