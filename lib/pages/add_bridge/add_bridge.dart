@@ -597,6 +597,9 @@ class BotController extends State<AddBridge> {
             connectionState
                 .updateConnectionTitle(L10n.of(context)!.loadingRetrieveRooms);
           });
+
+          // I can't get the bridge to accept conversation requests.
+          // TODO: See how to exceed the rate limit without penalizing the user
           // await Future.delayed(
           //     const Duration(seconds: 10)); // Wait sec for rooms loading
           // await handleNewRoomsSync(context, network);
