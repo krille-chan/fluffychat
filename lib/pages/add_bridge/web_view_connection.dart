@@ -34,6 +34,16 @@ class _WebViewConnectionState extends State<WebViewConnection> {
       false; // Variable to track if the Instagram bridge has been created
 
   @override
+  void initState() {
+    super.initState();
+    _clearCookies();
+  }
+
+  Future<void> _clearCookies() async {
+    await cookieManager.clearCookies();
+  }
+
+  @override
   void dispose() {
     if (_webViewController != null && mounted) {
       _webViewController!
