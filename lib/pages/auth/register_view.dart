@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tawkie/pages/register/register.dart';
 import 'package:tawkie/widgets/layouts/login_scaffold.dart';
 import 'package:tawkie/widgets/matrix.dart';
 
+import 'auth.dart';
+
 class RegisterView extends StatelessWidget {
-  final RegisterController controller;
+  final AuthController controller;
 
   const RegisterView(this.controller, {super.key});
 

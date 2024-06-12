@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:tawkie/pages/login/login.dart';
+
+import 'auth.dart';
 
 class WebLogin extends StatefulWidget {
-  final LoginController loginController;
+  final AuthController loginController;
   const WebLogin({super.key, required this.loginController});
 
   @override

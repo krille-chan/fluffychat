@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
@@ -13,19 +14,30 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:one_of/one_of.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart' as kratos;
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
-import 'package:tawkie/pages/register/privacy_polocy_text.dart';
-import 'package:tawkie/pages/register/register_view.dart';
+import 'package:tawkie/pages/auth/login_view.dart';
+import 'package:tawkie/pages/auth/privacy_polocy_text.dart';
+import 'package:tawkie/pages/auth/register_view.dart';
+import 'package:tawkie/pages/auth/web_login.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/show_error_dialog.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+import 'change_username_page.dart';
+
+enum AuthType { login, register }
+
+class Auth extends StatefulWidget {
+  final AuthType authType;
+
+  const Auth({required this.authType, super.key});
 
   @override
-  RegisterController createState() => RegisterController();
+  AuthController createState() => AuthController();
 }
 
-class RegisterController extends State<Register> {
+class AuthController extends State<Auth> {
   String? messageError;
   bool loading = true;
   String baseUrl = AppConfig.baseUrl;
@@ -47,8 +59,17 @@ class RegisterController extends State<Register> {
     BackButtonInterceptor.add(onBackButtonPress);
 
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
-
-    register();
+    if (widget.authType == AuthType.login) {
+      getLoginOry();
+      // Check if sessionToken exists and handle it
+      getSessionToken().then((sessionToken) {
+        if (sessionToken != null) {
+          checkUserQueueState(sessionToken);
+        }
+      });
+    } else {
+      getRegisterOry();
+    }
   }
 
   @override
@@ -66,7 +87,12 @@ class RegisterController extends State<Register> {
   // How to return to the previous list
   void popFormWidgets() {
     if (hasSubmitted) {
-      register();
+      setState(() => hasSubmitted = false);
+      if (widget.authType == AuthType.login) {
+        getLoginOry();
+      } else {
+        getRegisterOry();
+      }
     }
   }
 
@@ -76,22 +102,249 @@ class RegisterController extends State<Register> {
     }
   }
 
-  Future<void> refreshFormNodes() async {
-    setState(() {
-      loading = true;
-    });
-    try {
-      await register();
-    } catch (e) {
-      if (kDebugMode) {
-        print("Erreur lors du rafraîchissement des nœuds : $e");
-      }
-      setState(() {
-        messageError =
-            "Erreur lors du rafraîchissement des nœuds. Veuillez réessayer.";
-        loading = false;
-      });
+  Future<String?> getSessionToken() async {
+    return await _secureStorage.read(key: 'sessionToken');
+  }
+
+  bool _validateEmail(String email) {
+    // Define regex to validate email format
+    final RegExp emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+
+    // Check if the email matches the regex
+    if (!emailRegex.hasMatch(email)) {
+      setState(() => messageError = L10n.of(context)?.registerEmailError);
+      return false;
     }
+
+    // Reset email error if valid
+    setState(() => messageError = null);
+    return true;
+  }
+
+  void checkUserQueueState(String sessionToken) async {
+    try {
+      final Map<String, dynamic> queueStatus =
+          await getQueueStatus(sessionToken);
+      final String userState = queueStatus['userState'];
+
+      if (userState == 'CREATED') {
+        await redirectUserCreated(queueStatus, sessionToken);
+      } else if (userState == 'IN_QUEUE' || userState == 'ACCEPTED') {
+        redirectUserInQueueOrAccepted(queueStatus, sessionToken);
+      } else {
+        redirectUnexpectedUserState(userState);
+      }
+    } catch (e) {
+      // In the event of an error, do nothing, and let the user enter his identifiers normally.
+      if (kDebugMode) {
+        print("Error fetching queue status: $e");
+      }
+    }
+  }
+
+  Future<void> redirectUserCreated(
+      Map<String, dynamic> queueStatus, String sessionToken) async {
+    await loginWithSessionToken(sessionToken);
+  }
+
+  Future<void> loginWithSessionToken(String sessionToken) async {
+    setState(() => loading = true);
+
+    try {
+      // Retrieve JWT and server name
+      Logs().v('Getting JWT and server name');
+      final jwtAndServerName = await getMatrixLoginJwt(sessionToken);
+      final String matrixLoginJwt = jwtAndServerName['matrixLoginJwt'];
+      final String serverName = jwtAndServerName['serverName'];
+
+      Logs().v('Logging in with JWT into Matrix');
+      // Connect with JWT and server name
+      await matrixLogin(matrixLoginJwt, serverName);
+
+      // If all goes well, reset passwordError
+      //setState(() => passwordError = null);
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print("Exception when calling Kratos log: $e\n");
+      }
+      Logs().v("Error logging in with jwt : ${e.response?.data}");
+      // Explanation to the user
+      DioErrorHandler.fetchError(context, e);
+      // Set loading to false after handling the error
+      setState(() => loading = false);
+    } catch (exception) {
+      if (kDebugMode) {
+        print(exception);
+      }
+      setState(() => messageError = exception.toString());
+      return setState(() => loading = false);
+    }
+  }
+
+  Future<Map<String, dynamic>> getMatrixLoginJwt(String sessionToken) async {
+    final responseMatrix = await dio.get(
+      '${baseUrl}panel/api/mobile-matrix-auth/getMatrixToken',
+      options: Options(
+        headers: {
+          'X-Session-Token': sessionToken,
+        },
+      ),
+    );
+
+    final Map<String, dynamic> responseData = responseMatrix.data;
+
+    final String matrixLoginJwt = responseData['matrixLoginJwt'];
+    final String serverName = responseData['serverName'];
+
+    if (!matrixLoginJwt.startsWith('ey')) {
+      throw Exception('Server did not return a valid JWT');
+    }
+
+    if (serverName.isEmpty) {
+      throw Exception('Server did not return a valid server name');
+    }
+
+    return {'matrixLoginJwt': matrixLoginJwt, 'serverName': serverName};
+  }
+
+  Future<void> matrixLogin(String matrixLoginJwt, String serverName) async {
+    final matrix = Matrix.of(context);
+    final client = matrix.getLoginClient();
+
+    setState(() => loading = true);
+
+    try {
+      var homeserver = Uri.parse(serverName);
+      if (homeserver.scheme.isEmpty) {
+        homeserver = Uri.https(serverName, '');
+      }
+
+      final url = '$homeserver/_matrix/client/r0/login';
+      final headers = {'Content-Type': 'application/json'};
+      final data = {'type': 'org.matrix.login.jwt', 'token': matrixLoginJwt};
+
+      final response = await dio.post(
+        url,
+        options: Options(headers: headers),
+        data: jsonEncode(data),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = response.data;
+        final userId = responseData['user_id'];
+        final accessToken = responseData['access_token'];
+        final deviceId = responseData['device_id'];
+
+        // Initialize with recovered data
+        await client.init(
+          newToken: accessToken,
+          newUserID: userId,
+          newHomeserver: homeserver,
+          newDeviceID: deviceId,
+          newDeviceName: PlatformInfos.clientName,
+        );
+      } else {
+        Logs().v('Request failed with status: ${response.statusCode}');
+        // Improved error handling
+        DioErrorHandler.showGenericErrorDialog(
+          context,
+          L10n.of(context)!.errTryAgain,
+        );
+        setState(() => loading = false);
+      }
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print('DioException: $e\n');
+      }
+      Logs().v('DioException: ${e.response?.data}');
+      DioErrorHandler.fetchError(context, e);
+      setState(() => loading = false);
+    } on SocketException catch (e) {
+      if (kDebugMode) {
+        print('SocketException: $e\n');
+      }
+      Logs().v('SocketException: $e');
+      DioErrorHandler.showNetworkErrorDialog(context);
+      setState(() => loading = false);
+    } on MatrixException catch (exception) {
+      setState(() => messageError = exception.errorMessage);
+      setState(() => loading = false);
+    } catch (exception) {
+      if (kDebugMode) {
+        print('Exception: $exception\n');
+      }
+      DioErrorHandler.showGenericErrorDialog(
+        context,
+        L10n.of(context)!.errTryAgain,
+      );
+      setState(() => loading = false);
+    }
+
+    if (mounted) setState(() => loading = false);
+  }
+
+  void redirectUserInQueueOrAccepted(
+      Map<String, dynamic> queueStatus, String sessionToken) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChangeUsernamePage(
+          queueStatus: queueStatus,
+          dio: dio,
+          sessionToken: sessionToken,
+          onUserCreated: loginWithSessionToken,
+        ),
+      ),
+    );
+    if (kDebugMode) {
+      print('IN_QUEUE/ACCEPTED');
+    }
+  }
+
+  void redirectUnexpectedUserState(String userState) {
+    if (kDebugMode) {
+      print('User is in an unexpected state : $userState');
+    }
+    // Dialog box with error message
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(L10n.of(context)!.err_),
+          content: Text(L10n.of(context)!.errTryAgain),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(L10n.of(context)!.ok),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<Map<String, dynamic>> getQueueStatus(String sessionToken) async {
+    final responseQueueStatus = await dio.get(
+      '${baseUrl}panel/api/mobile-matrix-auth/getQueueStatus',
+      options: Options(
+        headers: {
+          'X-Session-Token': sessionToken,
+        },
+      ),
+    );
+
+    final Map<String, dynamic> responseDataQueueStatus =
+        responseQueueStatus.data;
+    final String userId = responseDataQueueStatus['userId'];
+
+    // Function to log user with Kratos id on Revenu Cat
+    final LogInResult result = await Purchases.logIn(userId);
+
+    return responseDataQueueStatus;
   }
 
   Future<void> processKratosNodes(
@@ -139,7 +392,7 @@ class RegisterController extends State<Register> {
   }
 
   Widget _buildHiddenWidget(kratos.UiNodeInputAttributes attributes) {
-    if (attributes.name == "traits.email") {
+    if (attributes.name == "traits.email" || attributes.name == "identifier") {
       return Padding(
         padding: const EdgeInsets.all(12.0),
         child: Text(
@@ -147,23 +400,6 @@ class RegisterController extends State<Register> {
       );
     }
     return Container();
-  }
-
-  bool _validateEmail(String email) {
-    // Define regex to validate email format
-    final RegExp emailRegex = RegExp(
-      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-    );
-
-    // Check if the email matches the regex
-    if (!emailRegex.hasMatch(email)) {
-      setState(() => messageError = L10n.of(context)?.registerEmailError);
-      return false;
-    }
-
-    // Reset email error if valid
-    setState(() => messageError = null);
-    return true;
   }
 
   Widget _buildEmailInputWidget(
@@ -265,10 +501,13 @@ class RegisterController extends State<Register> {
 
         formData[attributes.name] = value;
 
-        if (attributes.name == 'traits.email') {
+        if (attributes.name == 'traits.email' ||
+            attributes.name == "identifier") {
           email = value;
-        } else if (attributes.name == 'resend') {
+          print("email: $email");
+        } else if (attributes.name == 'code') {
           code = value;
+          print("code: $code");
         }
       }
     });
@@ -283,7 +522,7 @@ class RegisterController extends State<Register> {
         email!.isNotEmpty &&
         code != null &&
         code!.isNotEmpty) {
-      await oryRegisterWithCode(email!, code!, kratosClient);
+      await oryWithCode(email!, code!, kratosClient);
     } else {
       try {
         final response = await dio.post(
@@ -374,7 +613,7 @@ class RegisterController extends State<Register> {
 
       if (kDebugMode) {
         print(
-            'register._resendCode: status=${response.statusCode} data=${response.data}');
+            '_resendCode: status=${response.statusCode} data=${response.data}');
       }
     } on DioException catch (e) {
       if (kDebugMode) {
@@ -402,19 +641,49 @@ class RegisterController extends State<Register> {
     );
   }
 
+  Future<void> refreshFormNodes() async {
+    setState(() {
+      loading = true;
+    });
+    try {
+      if (widget.authType == AuthType.login) {
+        getLoginOry();
+      } else {
+        getRegisterOry();
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("Erreur lors du rafraîchissement des nœuds : $e");
+      }
+      setState(() {
+        messageError =
+            "Erreur lors du rafraîchissement des nœuds. Veuillez réessayer.";
+        loading = false;
+      });
+    }
+  }
+
+  Future<void> oryWithCode(
+      String email, String code, kratos.OryKratosClient kratosClient) async {
+    if (widget.authType == AuthType.register) {
+      await oryRegisterWithCode(email, code, kratosClient);
+    }
+    if (widget.authType == AuthType.login) {
+      await oryLoginWithCode(email, code, kratosClient);
+    }
+  }
+
   Future<void> oryRegisterWithCode(
       String email, String code, kratos.OryKratosClient kratosClient) async {
-    //Creation of an UpdateLoginFlowWithPasswordMethod object with identifiers
     final updateRegistrationFlowWithPasswordMethod =
         kratos.UpdateRegistrationFlowWithCodeMethod(
       (builder) => builder
         ..traits = JsonObject({'email': email})
         ..method = 'code'
         ..code = code
-        ..csrfToken = "", // Assuming csrfToken is not required for mobile
+        ..csrfToken = "",
     );
 
-    // Create an UpdateRegistrationFlowBody object and assign it the UpdateLoginFlowWithPasswordMethod object
     final updateRegisterFlowBody = kratos.UpdateRegistrationFlowBody(
       (builder) => builder
         ..oneOf =
@@ -424,22 +693,16 @@ class RegisterController extends State<Register> {
     final frontendApi = kratosClient.getFrontendApi();
 
     try {
-      // Send POST request to complete registration
       Logs().v('Completing registration flow');
       final registerResponse = await frontendApi.updateRegistrationFlow(
         flow: flowId!,
         updateRegistrationFlowBody: updateRegisterFlowBody,
       );
 
-      // Process registration response
       final sessionToken = registerResponse.data?.sessionToken;
-
-      // Store kratos session token
       await storeSessionToken(sessionToken);
 
       Logs().v('Registration successful');
-      // redirect to login page, which will handle the matrix login
-      // and onboarding
       context.go('/home/login');
 
       if (kDebugMode) {
@@ -450,11 +713,11 @@ class RegisterController extends State<Register> {
       return setState(() => loading = false);
     } on DioException catch (e) {
       if (kDebugMode) {
-        print("Exception when calling Kratos log: $e\n");
+        print("Exception when calling Kratos registration: $e\n");
+        print("Response data: ${e.response?.data}");
       }
-      Logs().v("Error Kratos login : ${e.response?.data}");
+      Logs().v("Error Kratos registration : ${e.response?.data}");
 
-      // Display Kratos error messages to the user
       if (e.response?.data != null) {
         final errorMessage = e.response!.data['ui']['messages'][0]['text'];
         setState(() => messageError = errorMessage);
@@ -473,7 +736,65 @@ class RegisterController extends State<Register> {
     }
   }
 
-  Future<void> register() async {
+  Future<void> oryLoginWithCode(
+      String email, String code, kratos.OryKratosClient kratosClient) async {
+    final updateLoginFlowWithCodeMethod = kratos.UpdateLoginFlowWithCodeMethod(
+      (builder) => builder
+        ..identifier = email
+        ..method = 'code'
+        ..code = code
+        ..csrfToken = "", // Assuming csrfToken is not required for mobile
+    );
+
+    final updateLoginFlowBody = kratos.UpdateLoginFlowBody(
+      (builder) => builder
+        ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithCodeMethod),
+    );
+
+    final frontendApi = kratosClient.getFrontendApi();
+
+    try {
+      final loginResponse = await frontendApi.updateLoginFlow(
+        flow: flowId!,
+        updateLoginFlowBody: updateLoginFlowBody,
+      );
+
+      if (kDebugMode) {
+        print('Successfully updated login flow with user credentials');
+      }
+
+      final sessionToken = loginResponse.data?.sessionToken;
+      await storeSessionToken(sessionToken);
+      return checkUserQueueState(sessionToken!);
+    } on MatrixException catch (exception) {
+      setState(() => messageError = exception.errorMessage);
+      return setState(() => loading = false);
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print("Exception when calling Kratos login: $e\n");
+        print("Response data: ${e.response?.data}");
+      }
+      Logs().v("Error Kratos login : ${e.response?.data}");
+
+      if (e.response?.data != null) {
+        final errorMessage = e.response!.data['ui']['messages'][0]['text'];
+        setState(() => messageError = errorMessage);
+      } else {
+        setState(
+          () => messageError = L10n.of(context)!.errTryAgain,
+        );
+      }
+      return setState(() => loading = false);
+    } catch (exception) {
+      if (kDebugMode) {
+        print(exception);
+      }
+      setState(() => messageError = L10n.of(context)!.errUsernameOrPassword);
+      return setState(() => loading = false);
+    }
+  }
+
+  void getRegisterOry() async {
     try {
       final kratos.OryKratosClient kratosClient =
           kratos.OryKratosClient(dio: dio);
@@ -543,6 +864,49 @@ class RegisterController extends State<Register> {
     setState(() => loading = false);
   }
 
+  void getLoginOry() async {
+    final kratos.OryKratosClient kratosClient =
+        kratos.OryKratosClient(dio: dio);
+
+    try {
+      // Initialize API connection flow
+      final frontendApi = kratosClient.getFrontendApi();
+      final response = await frontendApi.createNativeLoginFlow();
+
+      // Retrieve action URL from connection flow
+      final actionNodes = response.data?.ui.nodes;
+      final actionUrl = response.data?.ui.action;
+
+      if (actionNodes == null) {
+        throw Exception(
+            'URL d\'action non trouvée dans la réponse du flux de connexion');
+      }
+      await processKratosNodes(actionNodes, actionUrl!);
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print("Exception when calling Kratos log: $e");
+        print(e.response?.data);
+      }
+      if (e.error is SocketException) {
+        DioErrorHandler.showNetworkErrorDialog(context);
+      }
+    } catch (exception) {
+      if (kDebugMode) {
+        print(exception);
+      }
+      DioErrorHandler.showGenericErrorDialog(context, exception.toString());
+    }
+    return setState(() => loading = false);
+  }
+
   @override
-  Widget build(BuildContext context) => RegisterView(this);
+  Widget build(BuildContext context) {
+    if (PlatformInfos.isWeb) {
+      return WebLogin(loginController: this);
+    } else {
+      return widget.authType == AuthType.login
+          ? LoginView(this)
+          : RegisterView(this);
+    }
+  }
 }
