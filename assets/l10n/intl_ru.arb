@@ -2706,5 +2706,7 @@
   "gallery": "Галерея",
   "@gallery": {},
   "files": "Файлы",
-  "@files": {}
+  "@files": {},
+  "swipeRightToLeftToReply": "Для ответа проведите с права на лево",
+  "@swipeRightToLeftToReply": {}
 }
