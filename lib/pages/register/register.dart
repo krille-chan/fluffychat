@@ -380,7 +380,14 @@ class RegisterController extends State<Register> {
       if (kDebugMode) {
         print('Error resending code: ${e.response?.data}');
       }
-      // TODO handle non-Dio exceptions
+      DioErrorHandler.fetchError(context, e);
+    } catch (e) {
+      if (kDebugMode) {
+        print('Non-Dio Exception: $e');
+      }
+      // Handling non-Dio exceptions
+      DioErrorHandler.showGenericErrorDialog(
+          context, L10n.of(context)!.errTryAgain);
     } finally {
       setState(() {
         loading = false;
