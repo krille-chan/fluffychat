@@ -59,6 +59,7 @@ class ToolbarDisplayController {
   }
 
   void showToolbar(BuildContext context, {MessageMode? mode}) {
+    bool toolbarUp = true;
     if (highlighted) return;
     if (controller.selectMode) {
       controller.clearSelectedEvents();
@@ -76,6 +77,9 @@ class ToolbarDisplayController {
     if (targetRenderBox != null) {
       final Size transformTargetSize = (targetRenderBox as RenderBox).size;
       messageWidth = transformTargetSize.width;
+      final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
+      final double screenHeight = MediaQuery.of(context).size.height;
+      toolbarUp = targetOffset.dy >= screenHeight / 2;
     }
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -88,18 +92,31 @@ class ToolbarDisplayController {
               ? CrossAxisAlignment.end
               : CrossAxisAlignment.start,
           children: [
-            toolbar!,
+            toolbarUp
+                ? toolbar!
+                : OverlayMessage(
+                    pangeaMessageEvent.event,
+                    timeline: pangeaMessageEvent.timeline,
+                    immersionMode: immersionMode,
+                    ownMessage: pangeaMessageEvent.ownMessage,
+                    toolbarController: this,
+                    width: messageWidth,
+                    nextEvent: nextEvent,
+                    previousEvent: previousEvent,
+                  ),
             const SizedBox(height: 6),
-            OverlayMessage(
-              pangeaMessageEvent.event,
-              timeline: pangeaMessageEvent.timeline,
-              immersionMode: immersionMode,
-              ownMessage: pangeaMessageEvent.ownMessage,
-              toolbarController: this,
-              width: messageWidth,
-              nextEvent: nextEvent,
-              previousEvent: previousEvent,
-            ),
+            toolbarUp
+                ? OverlayMessage(
+                    pangeaMessageEvent.event,
+                    timeline: pangeaMessageEvent.timeline,
+                    immersionMode: immersionMode,
+                    ownMessage: pangeaMessageEvent.ownMessage,
+                    toolbarController: this,
+                    width: messageWidth,
+                    nextEvent: nextEvent,
+                    previousEvent: previousEvent,
+                  )
+                : toolbar!,
           ],
         );
       } catch (err) {
@@ -113,11 +130,19 @@ class ToolbarDisplayController {
         child: overlayEntry,
         transformTargetId: targetId,
         targetAnchor: pangeaMessageEvent.ownMessage
-            ? Alignment.bottomRight
-            : Alignment.bottomLeft,
+            ? toolbarUp
+                ? Alignment.bottomRight
+                : Alignment.topRight
+            : toolbarUp
+                ? Alignment.bottomLeft
+                : Alignment.topLeft,
         followerAnchor: pangeaMessageEvent.ownMessage
-            ? Alignment.bottomRight
-            : Alignment.bottomLeft,
+            ? toolbarUp
+                ? Alignment.bottomRight
+                : Alignment.topRight
+            : toolbarUp
+                ? Alignment.bottomLeft
+                : Alignment.topLeft,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
       );
 
