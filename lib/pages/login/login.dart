@@ -649,15 +649,39 @@ class LoginController extends State<Login> {
         );
       } else {
         Logs().v('Request failed with status: ${response.statusCode}');
-        // TODO improve error handling
-        setState(() => messageError = L10n.of(context)!.errTryAgain);
+        // Improved error handling
+        DioErrorHandler.showGenericErrorDialog(
+          context,
+          L10n.of(context)!.errTryAgain,
+        );
+        setState(() => loading = false);
       }
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print('DioException: $e\n');
+      }
+      Logs().v('DioException: ${e.response?.data}');
+      DioErrorHandler.fetchError(context, e);
+      setState(() => loading = false);
+    } on SocketException catch (e) {
+      if (kDebugMode) {
+        print('SocketException: $e\n');
+      }
+      Logs().v('SocketException: $e');
+      DioErrorHandler.showNetworkErrorDialog(context);
+      setState(() => loading = false);
     } on MatrixException catch (exception) {
       setState(() => messageError = exception.errorMessage);
-      return setState(() => loading = false);
+      setState(() => loading = false);
     } catch (exception) {
-      setState(() => messageError = exception.toString());
-      return setState(() => loading = false);
+      if (kDebugMode) {
+        print('Exception: $exception\n');
+      }
+      DioErrorHandler.showGenericErrorDialog(
+        context,
+        L10n.of(context)!.errTryAgain,
+      );
+      setState(() => loading = false);
     }
 
     if (mounted) setState(() => loading = false);
