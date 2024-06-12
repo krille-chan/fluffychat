@@ -516,12 +516,12 @@ class RegisterController extends State<Register> {
           setState(() => messageError = errorMessage);
         } else {
           setState(
-              () => messageError = "Error registering. Please contact support");
+              () => messageError = L10n.of(context)!.authErrorContactSupport);
         }
       } catch (exception) {
         Logs().v("Error Kratos loginhihi : $exception");
         setState(
-            () => messageError = "Error registering. Please contact support.");
+            () => messageError = L10n.of(context)!.authErrorContactSupport);
       }
       await refreshFormNodes(); // Refresh the form nodes on error
       return setState(() => loading = false);

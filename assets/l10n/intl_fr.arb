@@ -2487,6 +2487,7 @@
     "alreadyAccountRegister": "Vous avez déjà un compte ?",
     "authCodeSentTo": "Code envoyé à",
     "authResendCodeMessage": "Un nouveau code a été envoyé",
+    "authErrorContactSupport": "Erreur. Veuillez contacter le support",
     "privacyText": "En créant un compte, vous acceptez nos ",
     "privacyTextPrivacy": "politiques de confidentialité",
     "privacyTextAnd": " et ",
