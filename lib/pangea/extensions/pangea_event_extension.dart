@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:flutter/foundation.dart';
@@ -26,9 +28,12 @@ extension PangeaEvent on Event {
         return PangeaRepresentation.fromJson(json) as V;
       case PangeaEventTypes.choreoRecord:
         return ChoreoRecord.fromJson(json) as V;
-      case PangeaEventTypes.activityResponse:
-        return PangeaMessageTokens.fromJson(json) as V;
+      case PangeaEventTypes.pangeaActivityRes:
+        return PracticeActivityModel.fromJson(json) as V;
+      case PangeaEventTypes.activityRecord:
+        return PracticeActivityRecordModel.fromJson(json) as V;
       default:
+        debugger(when: kDebugMode);
         throw Exception("$type events do not have pangea content");
     }
   }

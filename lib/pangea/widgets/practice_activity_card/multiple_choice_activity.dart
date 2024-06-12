@@ -1,49 +1,39 @@
-// stateful widget that displays a card with a practice activity of type multiple choice
-
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity_card/message_practice_activity_content.dart';
 import 'package:flutter/material.dart';
 
-class MultipleChoiceActivity extends StatefulWidget {
-  final PracticeActivityModel practiceActivity;
+class MultipleChoiceActivity extends StatelessWidget {
+  final MessagePracticeActivityContentState card;
+  final Function(int) updateChoice;
+  final bool isActive;
 
   const MultipleChoiceActivity({
     super.key,
-    required this.practiceActivity,
+    required this.card,
+    required this.updateChoice,
+    required this.isActive,
   });
 
-  @override
-  MultipleChoiceActivityState createState() => MultipleChoiceActivityState();
-}
+  PracticeActivityEvent get practiceEvent => card.practiceEvent;
 
-//parameters for the stateful widget
-// practiceActivity: the practice activity to display
-// show the question text and choices
-// use the ChoiceArray widget to display the choices
-class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
-  int? selectedChoiceIndex;
+  int? get selectedChoiceIndex => card.selectedChoiceIndex;
 
-  late MultipleChoiceActivityCompletionRecord? completionRecord;
-
-  @override
-  initState() {
-    super.initState();
-    selectedChoiceIndex = null;
-    completionRecord = MultipleChoiceActivityCompletionRecord(
-      question: widget.practiceActivity.multipleChoice!.question,
-    );
-  }
+  bool get submitted => card.recordSubmittedThisSession;
 
   @override
   Widget build(BuildContext context) {
+    final PracticeActivityModel practiceActivity =
+        practiceEvent.practiceActivity;
+
     return Container(
       padding: const EdgeInsets.all(8),
       child: Column(
         children: [
           Text(
-            widget.practiceActivity.multipleChoice!.question,
+            practiceActivity.multipleChoice!.question,
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -53,26 +43,24 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           ChoicesArray(
             isLoading: false,
             uniqueKeyForLayerLink: (index) => "multiple_choice_$index",
-            onLongPress: null,
-            onPressed: (index) {
-              selectedChoiceIndex = index;
-              completionRecord!.selectedOptions
-                  .add(widget.practiceActivity.multipleChoice!.choices[index]);
-              setState(() {});
-            },
             originalSpan: "placeholder",
+            onPressed: updateChoice,
             selectedChoiceIndex: selectedChoiceIndex,
-            choices: widget.practiceActivity.multipleChoice!.choices
+            choices: practiceActivity.multipleChoice!.choices
                 .mapIndexed(
-                  (int index, String value) => Choice(
+                  (index, value) => Choice(
                     text: value,
-                    color: null,
-                    isGold:
-                        widget.practiceActivity.multipleChoice!.correctAnswer ==
-                            value,
+                    color: (selectedChoiceIndex == index ||
+                                practiceActivity.multipleChoice!
+                                    .isCorrect(index)) &&
+                            submitted
+                        ? practiceActivity.multipleChoice!.choiceColor(index)
+                        : null,
+                    isGold: practiceActivity.multipleChoice!.isCorrect(index),
                   ),
                 )
                 .toList(),
+            isActive: isActive,
           ),
         ],
       ),

@@ -1,15 +1,17 @@
-//stateful widget that displays a card with a practice activity
-
-import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity_card/multiple_choice_activity.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity_card/generate_practice_activity.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity_card/message_practice_activity_content.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class PracticeActivityCard extends StatefulWidget {
-  final PracticeActivityModel practiceActivity;
+  final PangeaMessageEvent pangeaMessageEvent;
 
   const PracticeActivityCard({
     super.key,
-    required this.practiceActivity,
+    required this.pangeaMessageEvent,
   });
 
   @override
@@ -17,22 +19,49 @@ class PracticeActivityCard extends StatefulWidget {
       MessagePracticeActivityCardState();
 }
 
-//parameters for the stateful widget
-// practiceActivity: the practice activity to display
-// use a switch statement based on the type of the practice activity to display the appropriate content
-// just use different widgets for the different types, don't define in this file
-// for multiple choice, use the MultipleChoiceActivity widget
-// for the rest, just return SizedBox.shrink() for now
 class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
+  PracticeActivityEvent? practiceEvent;
+
+  @override
+  void initState() {
+    super.initState();
+    loadInitialData();
+  }
+
+  void loadInitialData() {
+    final String? langCode = MatrixState.pangeaController.languageController
+        .activeL2Model(roomID: widget.pangeaMessageEvent.room.id)
+        ?.langCode;
+
+    if (langCode == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(L10n.of(context)!.noLanguagesSet)),
+      );
+      return;
+    }
+
+    practiceEvent =
+        widget.pangeaMessageEvent.practiceActivities(langCode).firstOrNull;
+    setState(() {});
+  }
+
+  void updatePracticeActivity(PracticeActivityEvent? newEvent) {
+    setState(() {
+      practiceEvent = newEvent;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    switch (widget.practiceActivity.activityType) {
-      case ActivityType.multipleChoice:
-        return MultipleChoiceActivity(
-          practiceActivity: widget.practiceActivity,
-        );
-      default:
-        return const SizedBox.shrink();
+    if (practiceEvent == null) {
+      return GeneratePracticeActivityButton(
+        pangeaMessageEvent: widget.pangeaMessageEvent,
+        onActivityGenerated: updatePracticeActivity,
+      );
     }
+    return PracticeActivityContent(
+      practiceEvent: practiceEvent!,
+      pangeaMessageEvent: widget.pangeaMessageEvent,
+    );
   }
 }

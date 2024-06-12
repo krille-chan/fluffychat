@@ -23,15 +23,16 @@ class ConstructIdentifier {
 
 enum ActivityType { multipleChoice, freeResponse, listening, speaking }
 
-class MessageInfo {
+class CandidateMessage {
   final String msgId;
   final String roomId;
   final String text;
 
-  MessageInfo({required this.msgId, required this.roomId, required this.text});
+  CandidateMessage(
+      {required this.msgId, required this.roomId, required this.text});
 
-  factory MessageInfo.fromJson(Map<String, dynamic> json) {
-    return MessageInfo(
+  factory CandidateMessage.fromJson(Map<String, dynamic> json) {
+    return CandidateMessage(
       msgId: json['msg_id'] as String,
       roomId: json['room_id'] as String,
       text: json['text'] as String,
@@ -47,31 +48,46 @@ class MessageInfo {
   }
 }
 
-class ActivityRequest {
-  final String mode;
+enum PracticeActivityMode { focus, srs }
+
+extension on PracticeActivityMode {
+  String get value {
+    switch (this) {
+      case PracticeActivityMode.focus:
+        return 'focus';
+      case PracticeActivityMode.srs:
+        return 'srs';
+    }
+  }
+}
+
+class PracticeActivityRequest {
+  final PracticeActivityMode? mode;
   final List<ConstructIdentifier>? targetConstructs;
-  final List<MessageInfo>? candidateMessages;
+  final List<CandidateMessage>? candidateMessages;
   final List<String>? userIds;
   final ActivityType? activityType;
-  final int numActivities;
+  final int? numActivities;
 
-  ActivityRequest({
-    required this.mode,
+  PracticeActivityRequest({
+    this.mode,
     this.targetConstructs,
     this.candidateMessages,
     this.userIds,
     this.activityType,
-    this.numActivities = 10,
+    this.numActivities,
   });
 
-  factory ActivityRequest.fromJson(Map<String, dynamic> json) {
-    return ActivityRequest(
-      mode: json['mode'] as String,
+  factory PracticeActivityRequest.fromJson(Map<String, dynamic> json) {
+    return PracticeActivityRequest(
+      mode: PracticeActivityMode.values.firstWhere(
+        (e) => e.value == json['mode'],
+      ),
       targetConstructs: (json['target_constructs'] as List?)
           ?.map((e) => ConstructIdentifier.fromJson(e as Map<String, dynamic>))
           .toList(),
       candidateMessages: (json['candidate_msgs'] as List)
-          .map((e) => MessageInfo.fromJson(e as Map<String, dynamic>))
+          .map((e) => CandidateMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
       userIds: (json['user_ids'] as List?)?.map((e) => e as String).toList(),
       activityType: ActivityType.values.firstWhere(
@@ -83,13 +99,37 @@ class ActivityRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'mode': mode,
+      'mode': mode?.value,
       'target_constructs': targetConstructs?.map((e) => e.toJson()).toList(),
       'candidate_msgs': candidateMessages?.map((e) => e.toJson()).toList(),
       'user_ids': userIds,
       'activity_type': activityType?.toString().split('.').last,
       'num_activities': numActivities,
     };
+  }
+
+  // override operator == and hashCode
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is PracticeActivityRequest &&
+        other.mode == mode &&
+        other.targetConstructs == targetConstructs &&
+        other.candidateMessages == candidateMessages &&
+        other.userIds == userIds &&
+        other.activityType == activityType &&
+        other.numActivities == numActivities;
+  }
+
+  @override
+  int get hashCode {
+    return mode.hashCode ^
+        targetConstructs.hashCode ^
+        candidateMessages.hashCode ^
+        userIds.hashCode ^
+        activityType.hashCode ^
+        numActivities.hashCode;
   }
 }
 

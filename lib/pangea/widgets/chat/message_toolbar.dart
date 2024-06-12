@@ -277,12 +277,8 @@ class MessageToolbarState extends State<MessageToolbar> {
   }
 
   void showPracticeActivity() {
-    toolbarContent = PracticeActivityCard(
-      practiceActivity: widget.pangeaMessageEvent
-          // @ggurdin - is this the best way to get the l2 language here?
-          .activities(widget.pangeaMessageEvent.messageDisplayLangCode)
-          .first,
-    );
+    toolbarContent =
+        PracticeActivityCard(pangeaMessageEvent: widget.pangeaMessageEvent);
   }
 
   void showImage() {}

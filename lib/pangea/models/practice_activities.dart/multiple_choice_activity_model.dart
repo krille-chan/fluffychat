@@ -1,3 +1,6 @@
+import 'package:fluffychat/config/app_config.dart';
+import 'package:flutter/material.dart';
+
 class MultipleChoice {
   final String question;
   final List<String> choices;
@@ -9,9 +12,14 @@ class MultipleChoice {
     required this.correctAnswer,
   });
 
+  bool isCorrect(int index) => index == correctAnswerIndex;
+
   bool get isValidQuestion => choices.contains(correctAnswer);
 
   int get correctAnswerIndex => choices.indexOf(correctAnswer);
+
+  Color choiceColor(int index) =>
+      index == correctAnswerIndex ? AppConfig.success : AppConfig.warning;
 
   factory MultipleChoice.fromJson(Map<String, dynamic> json) {
     return MultipleChoice(
@@ -26,37 +34,6 @@ class MultipleChoice {
       'question': question,
       'choices': choices,
       'correct_answer': correctAnswer,
-    };
-  }
-}
-
-// record the options that the user selected
-// note that this is not the same as the correct answer
-// the user might have selected multiple options before
-// finding the answer
-class MultipleChoiceActivityCompletionRecord {
-  final String question;
-  List<String> selectedOptions;
-
-  MultipleChoiceActivityCompletionRecord({
-    required this.question,
-    this.selectedOptions = const [],
-  });
-
-  factory MultipleChoiceActivityCompletionRecord.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    return MultipleChoiceActivityCompletionRecord(
-      question: json['question'] as String,
-      selectedOptions:
-          (json['selected_options'] as List).map((e) => e as String).toList(),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'question': question,
-      'selected_options': selectedOptions,
     };
   }
 }

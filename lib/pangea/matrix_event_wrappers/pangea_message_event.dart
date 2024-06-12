@@ -4,15 +4,12 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
-import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
@@ -576,12 +573,35 @@ class PangeaMessageEvent {
       _event.messageType != PangeaEventTypes.report &&
       _event.messageType == MessageTypes.Text;
 
+  // this is just showActivityIcon now but will include
+  // logic for showing
+  bool get showMessageButtons => showActivityIcon;
+
+  /// Returns a boolean value indicating whether to show an activity icon for this message event.
+  ///
+  /// The [showActivityIcon] getter checks if the [l2Code] is null, and if so, returns false.
+  /// Otherwise, it retrieves a list of [PracticeActivityEvent] objects using the [practiceActivities] function
+  /// with the [l2Code] as an argument.
+  /// If the list is empty, it returns false.
+  /// Otherwise, it checks if every activity in the list is complete using the [isComplete] property.
+  /// If any activity is not complete, it returns true, indicating that the activity icon should be shown.
+  /// Otherwise, it returns false.
+  bool get showActivityIcon {
+    if (l2Code == null) return false;
+    final List<PracticeActivityEvent> activities = practiceActivities(l2Code!);
+
+    if (activities.isEmpty) return false;
+
+    return !activities.every((activity) => activity.isComplete);
+  }
+
+  String? get l2Code => MatrixState.pangeaController.languageController
+      .activeL2Code(roomID: room.id);
+
   String get messageDisplayLangCode {
     final bool immersionMode = MatrixState
         .pangeaController.permissionsController
         .isToolEnabled(ToolSetting.immersionMode, room);
-    final String? l2Code = MatrixState.pangeaController.languageController
-        .activeL2Code(roomID: room.id);
     final String? originalLangCode =
         (originalWritten ?? originalSent)?.langCode;
 
@@ -608,47 +628,34 @@ class PangeaMessageEvent {
   List<PracticeActivityEvent> get _practiceActivityEvents => _latestEdit
       .aggregatedEvents(
         timeline,
-        PangeaEventTypes.activityResponse,
+        PangeaEventTypes.pangeaActivityRes,
       )
       .map(
         (e) => PracticeActivityEvent(
+          timeline: timeline,
           event: e,
         ),
       )
       .toList();
 
-  List<PracticeActivityModel> activities(String langCode) {
-    // final List<PracticeActivityEvent> practiceActivityEvents = _practiceActivityEvents;
+  bool get hasActivities {
+    try {
+      final String? l2code = MatrixState.pangeaController.languageController
+          .activeL2Code(roomID: room.id);
 
-    // final List<PracticeActivityModel> activities = _practiceActivityEvents
-    //     .map(
-    //       (e) => PracticeActivityModel.fromJson(
-    //         e.event.content,
-    //       ),
-    //     )
-    //     .where(
-    //       (element) => element.langCode == langCode,
-    //     )
-    //     .toList();
+      if (l2code == null) return false;
 
-    // return activities;
+      return practiceActivities(l2code).isNotEmpty;
+    } catch (e, s) {
+      ErrorHandler.logError(e: e, s: s);
+      return false;
+    }
+  }
 
-    // for now, return a hard-coded activity
-    final PracticeActivityModel activityModel = PracticeActivityModel(
-      tgtConstructs: [
-        ConstructIdentifier(lemma: "be", type: ConstructType.vocab.string),
-      ],
-      activityType: ActivityType.multipleChoice,
-      langCode: langCode,
-      msgId: _event.eventId,
-      multipleChoice: MultipleChoice(
-        question: "What is a synonym for 'happy'?",
-        choices: ["sad", "angry", "joyful", "tired"],
-        correctAnswer: "joyful",
-      ),
-    );
-
-    return [activityModel];
+  List<PracticeActivityEvent> practiceActivities(String langCode) {
+    return _practiceActivityEvents
+        .where((ev) => ev.practiceActivity.langCode == langCode)
+        .toList();
   }
 
   // List<SpanData> get activities =>
