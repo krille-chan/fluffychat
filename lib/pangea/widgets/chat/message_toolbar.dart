@@ -82,6 +82,17 @@ class ToolbarDisplayController {
       toolbarUp = targetOffset.dy >= screenHeight / 2;
     }
 
+    final Widget overlayMessage = OverlayMessage(
+      pangeaMessageEvent.event,
+      timeline: pangeaMessageEvent.timeline,
+      immersionMode: immersionMode,
+      ownMessage: pangeaMessageEvent.ownMessage,
+      toolbarController: this,
+      width: messageWidth,
+      nextEvent: nextEvent,
+      previousEvent: previousEvent,
+    );
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Widget overlayEntry;
       if (toolbar == null) return;
@@ -92,31 +103,9 @@ class ToolbarDisplayController {
               ? CrossAxisAlignment.end
               : CrossAxisAlignment.start,
           children: [
-            toolbarUp
-                ? toolbar!
-                : OverlayMessage(
-                    pangeaMessageEvent.event,
-                    timeline: pangeaMessageEvent.timeline,
-                    immersionMode: immersionMode,
-                    ownMessage: pangeaMessageEvent.ownMessage,
-                    toolbarController: this,
-                    width: messageWidth,
-                    nextEvent: nextEvent,
-                    previousEvent: previousEvent,
-                  ),
+            toolbarUp ? toolbar! : overlayMessage,
             const SizedBox(height: 6),
-            toolbarUp
-                ? OverlayMessage(
-                    pangeaMessageEvent.event,
-                    timeline: pangeaMessageEvent.timeline,
-                    immersionMode: immersionMode,
-                    ownMessage: pangeaMessageEvent.ownMessage,
-                    toolbarController: this,
-                    width: messageWidth,
-                    nextEvent: nextEvent,
-                    previousEvent: previousEvent,
-                  )
-                : toolbar!,
+            toolbarUp ? overlayMessage : toolbar!,
           ],
         );
       } catch (err) {
