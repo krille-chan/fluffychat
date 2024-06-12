@@ -76,6 +76,24 @@ class RegisterController extends State<Register> {
     }
   }
 
+  Future<void> refreshFormNodes() async {
+    setState(() {
+      loading = true;
+    });
+    try {
+      await register();
+    } catch (e) {
+      if (kDebugMode) {
+        print("Erreur lors du rafraîchissement des nœuds : $e");
+      }
+      setState(() {
+        messageError =
+            "Erreur lors du rafraîchissement des nœuds. Veuillez réessayer.";
+        loading = false;
+      });
+    }
+  }
+
   Future<void> processKratosNodes(
       BuiltList<kratos.UiNode> nodes, String actionUrl) async {
     final List<Widget> formWidgets = [];
@@ -238,7 +256,9 @@ class RegisterController extends State<Register> {
       if (node.attributes.oneOf.value is kratos.UiNodeInputAttributes) {
         final kratos.UiNodeInputAttributes attributes =
             node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
-        String value = textControllers[attributes.name]?.text ?? "";
+        String value = textControllers[attributes.name]?.text ??
+            attributes.value?.toString() ??
+            "";
 
         // Trim the value here
         value = value.trim();
@@ -280,6 +300,7 @@ class RegisterController extends State<Register> {
           print('Succès: ${response.data}');
         } else {
           print('Erreur: ${response.data}');
+          await refreshFormNodes(); // Refresh the form nodes on error
         }
       } on DioException catch (e) {
         if (kDebugMode) {
@@ -309,7 +330,7 @@ class RegisterController extends State<Register> {
               messageError = L10n.of(context)!.errTryAgain;
               loading = false;
             });
-            // TODO refresh ?
+            await refreshFormNodes(); // Refresh the form nodes on error
           }
         }
       }
@@ -502,6 +523,7 @@ class RegisterController extends State<Register> {
         setState(
             () => messageError = "Error registering. Please contact support.");
       }
+      await refreshFormNodes(); // Refresh the form nodes on error
       return setState(() => loading = false);
     } catch (exception) {
       if (kDebugMode) {
