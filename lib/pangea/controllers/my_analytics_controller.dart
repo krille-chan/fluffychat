@@ -36,7 +36,7 @@ class MyAnalyticsController extends BaseController {
     DateTime? lastUpdated = await _pangeaController.analytics
         .myAnalyticsLastUpdated(PangeaEventTypes.summaryAnalytics);
     final DateTime yesterday = DateTime.now().subtract(const Duration(days: 1));
-    if (lastUpdated?.isBefore(yesterday) ?? false) {
+    if (lastUpdated?.isBefore(yesterday) ?? true) {
       debugPrint("analytics out-of-date, updating");
       await updateAnalytics();
       lastUpdated = await _pangeaController.analytics
@@ -82,7 +82,7 @@ class MyAnalyticsController extends BaseController {
 
   // checks if event from sync update is a message that should have analytics
   bool eventHasAnalytics(Event event, DateTime? lastUpdated) {
-    return event.originServerTs.isAfter(lastUpdated ?? DateTime.now()) &&
+    return (lastUpdated == null || event.originServerTs.isAfter(lastUpdated)) &&
         event.type == EventTypes.Message &&
         event.messageType == MessageTypes.Text &&
         !(event.eventId.contains("web") &&
