@@ -272,18 +272,38 @@ class WordMatchContent extends StatelessWidget {
               if (!controller.widget.scm.pangeaMatch!.isITStart)
                 Expanded(
                   child: Opacity(
-                    opacity: controller.selectedChoiceIndex != null ? 1.0 : 0.5,
+                    opacity: controller.selectedChoice != null &&
+                            controller.selectedChoice!.type.name ==
+                                'bestCorrection'
+                        ? 1.0
+                        : 0.5,
                     child: TextButton(
-                      onPressed: controller.selectedChoiceIndex != null
+                      onPressed: controller.selectedChoice != null &&
+                              controller.selectedChoice!.type.name ==
+                                  'bestCorrection'
                           ? onReplaceSelected
                           : null,
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                          (controller.selectedChoice != null
+                          (controller.selectedChoice != null &&
+                                      controller.selectedChoice!.type.name ==
+                                          'bestCorrection'
                                   ? controller.selectedChoice!.color
                                   : AppConfig.primaryColor)
                               .withOpacity(0.2),
                         ),
+                        // Outline if Replace button enabled
+                        side: controller.selectedChoice != null &&
+                                controller.selectedChoice!.type.name ==
+                                    'bestCorrection'
+                            ? MaterialStateProperty.all(
+                                BorderSide(
+                                  color: controller.selectedChoice!.color,
+                                  style: BorderStyle.solid,
+                                  width: 2.0,
+                                ),
+                              )
+                            : null,
                       ),
                       child: Text(L10n.of(context)!.replace),
                     ),
