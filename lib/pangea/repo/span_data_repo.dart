@@ -72,6 +72,24 @@ class SpanDetailsRepoReqAndRes {
         enableIGC: json['enable_igc'] as bool,
         span: SpanData.fromJson(json['span']),
       );
+
+  /// Overrides the equality operator to compare two [SpanDetailsRepoReqAndRes] objects.
+  /// Returns true if the objects are identical or have the same property
+  /// values (based on the results of the toJson function), false otherwise.
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SpanDetailsRepoReqAndRes) return false;
+
+    return toJson().toString() == other.toJson().toString();
+  }
+
+  /// Overrides the hashCode getter to generate a hash code for the [SpanDetailsRepoReqAndRes] object.
+  /// Used as keys in response cache in igc_controller.
+  @override
+  int get hashCode {
+    return toJson().toString().hashCode;
+  }
 }
 
 final spanDataRepomockSpan = SpanData(
