@@ -1,17 +1,15 @@
-import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_model.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../enum/construct_type_enum.dart';
 
 class ConstructAnalyticsModel extends AnalyticsModel {
-  ConstructType type;
-  List<LemmaConstructsModel> uses;
+  List<OneConstructUse> uses;
 
   ConstructAnalyticsModel({
-    required this.type,
     this.uses = const [],
   });
 
@@ -19,24 +17,16 @@ class ConstructAnalyticsModel extends AnalyticsModel {
 
   factory ConstructAnalyticsModel.fromJson(Map<String, dynamic> json) {
     return ConstructAnalyticsModel(
-      type: ConstructTypeUtil.fromString(json['type']),
       uses: json[_usesKey]
-          .values
-          .map((lemmaUses) => LemmaConstructsModel.fromJson(lemmaUses))
-          .cast<LemmaConstructsModel>()
+          .map((use) => OneConstructUse.fromJson(use))
+          .cast<OneConstructUse>()
           .toList(),
     );
   }
 
   toJson() {
-    final Map<String, dynamic> usesMap = {};
-    for (final use in uses) {
-      usesMap[use.lemma] = use.toJson();
-    }
-
     return {
-      'type': type.string,
-      _usesKey: usesMap,
+      _usesKey: uses.map((use) => use.toJson()).toList(),
     };
   }
 
@@ -44,50 +34,31 @@ class ConstructAnalyticsModel extends AnalyticsModel {
     List<PangeaMessageEvent> recentMsgs,
   ) {
     final List<PangeaMessageEvent> filtered = List.from(recentMsgs);
-    final List<OneConstructUse> uses = filtered
-        .map(
-          (msg) => msg.originalSent?.choreo?.toGrammarConstructUse(
-            msg.eventId,
-            msg.room.id,
-            msg.originServerTs,
-          ),
-        )
-        .where((element) => element != null)
-        .cast<List<OneConstructUse>>()
-        .expand((element) => element)
-        .toList();
+    final List<OneConstructUse> uses = [];
+
+    for (final msg in filtered) {
+      if (msg.originalSent?.choreo == null) continue;
+      uses.addAll(
+        msg.originalSent!.choreo!.toGrammarConstructUse(
+          msg.eventId,
+          msg.room.id,
+          msg.originServerTs,
+        ),
+      );
+
+      final List<PangeaToken>? tokens = msg.originalSent?.tokens;
+      if (tokens == null) continue;
+      uses.addAll(
+        msg.originalSent!.choreo!.toVocabUse(
+          tokens,
+          msg.room.id,
+          msg.eventId,
+          msg.originServerTs,
+        ),
+      );
+    }
 
     return uses;
-  }
-}
-
-class LemmaConstructsModel {
-  String lemma;
-  List<OneConstructUse> uses;
-
-  LemmaConstructsModel({
-    required this.lemma,
-    this.uses = const [],
-  });
-
-  factory LemmaConstructsModel.fromJson(Map<String, dynamic> json) {
-    return LemmaConstructsModel(
-      lemma: json[ModelKey.lemma],
-      uses: (json['uses'] ?? [] as Iterable)
-          .map<OneConstructUse?>(
-            (use) => use != null ? OneConstructUse.fromJson(use) : null,
-          )
-          .where((element) => element != null)
-          .cast<OneConstructUse>()
-          .toList(),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      ModelKey.lemma: lemma,
-      'uses': uses.map((use) => use.toJson()).toList(),
-    };
   }
 }
 
@@ -206,7 +177,7 @@ class OneConstructUse {
     );
   }
 
-  Map<String, dynamic> toJson([bool condensed = true]) {
+  Map<String, dynamic> toJson([bool condensed = false]) {
     final Map<String, String?> data = {
       'useType': useType.string,
       'chatId': chatId,
@@ -234,24 +205,14 @@ class OneConstructUse {
   }
 }
 
-class AggregateConstructUses {
-  final List<LemmaConstructsModel> _lemmaUses;
+class ConstructUses {
+  final List<OneConstructUse> uses;
+  final ConstructType constructType;
+  final String lemma;
 
-  AggregateConstructUses({required List<LemmaConstructsModel> lemmaUses})
-      : _lemmaUses = lemmaUses;
-
-  String get lemma {
-    assert(
-      _lemmaUses.isNotEmpty &&
-          _lemmaUses.every(
-            (construct) => construct.lemma == _lemmaUses.first.lemma,
-          ),
-    );
-    return _lemmaUses.first.lemma;
-  }
-
-  List<OneConstructUse> get uses => _lemmaUses
-      .map((lemmaUse) => lemmaUse.uses)
-      .expand((element) => element)
-      .toList();
+  ConstructUses({
+    required this.uses,
+    required this.constructType,
+    required this.lemma,
+  });
 }

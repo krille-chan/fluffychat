@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
-import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -520,13 +519,11 @@ class AnalyticsController extends BaseController {
 
   List<ConstructAnalyticsEvent>? get constructs => _constructs;
 
-  Future<List<ConstructAnalyticsEvent>> allMyConstructs({
-    ConstructType? type,
-  }) async {
+  Future<List<ConstructAnalyticsEvent>> allMyConstructs() async {
     final List<Room> analyticsRooms =
         _pangeaController.matrixState.client.allMyAnalyticsRooms;
 
-    List<ConstructAnalyticsEvent> allConstructs = [];
+    final List<ConstructAnalyticsEvent> allConstructs = [];
     for (final Room analyticsRoom in analyticsRooms) {
       final List<ConstructAnalyticsEvent>? roomEvents =
           (await analyticsRoom.getAnalyticsEvents(
@@ -538,17 +535,12 @@ class AnalyticsController extends BaseController {
       allConstructs.addAll(roomEvents ?? []);
     }
 
-    allConstructs = type == null
-        ? allConstructs
-        : allConstructs.where((e) => e.content.type == type).toList();
-
     final List<String> adminSpaceRooms =
         await _pangeaController.matrixState.client.teacherRoomIds;
     for (final construct in allConstructs) {
-      final lemmaUses = construct.content.uses;
-      for (final lemmaUse in lemmaUses) {
-        lemmaUse.uses.removeWhere((u) => adminSpaceRooms.contains(u.chatId));
-      }
+      construct.content.uses.removeWhere(
+        (use) => adminSpaceRooms.contains(use.chatId),
+      );
     }
 
     return allConstructs
@@ -557,9 +549,8 @@ class AnalyticsController extends BaseController {
   }
 
   Future<List<ConstructAnalyticsEvent>> allSpaceMemberConstructs(
-    Room space, {
-    ConstructType? type,
-  }) async {
+    Room space,
+  ) async {
     await space.postLoad();
     await space.requestParticipants();
     final String? langCode = _pangeaController.languageController.activeL2Code(
@@ -595,19 +586,16 @@ class AnalyticsController extends BaseController {
     final List<String> spaceChildrenIds = space.allSpaceChildRoomIds;
     final List<ConstructAnalyticsEvent> allConstructs = [];
     for (final constructEvent in constructEvents) {
-      final lemmaUses = constructEvent.content.uses;
-      for (final lemmaUse in lemmaUses) {
-        lemmaUse.uses.removeWhere((u) => !spaceChildrenIds.contains(u.chatId));
-      }
+      constructEvent.content.uses.removeWhere(
+        (use) => !spaceChildrenIds.contains(use.chatId),
+      );
 
       if (constructEvent.content.uses.isNotEmpty) {
         allConstructs.add(constructEvent);
       }
     }
 
-    return type == null
-        ? allConstructs
-        : allConstructs.where((e) => e.content.type == type).toList();
+    return allConstructs;
   }
 
   List<ConstructAnalyticsEvent> filterStudentConstructs(
@@ -626,10 +614,7 @@ class AnalyticsController extends BaseController {
   ) {
     final List<ConstructAnalyticsEvent> filtered = [...unfilteredConstructs];
     for (final construct in filtered) {
-      final lemmaUses = construct.content.uses;
-      for (final lemmaUse in lemmaUses) {
-        lemmaUse.uses.removeWhere((u) => u.chatId != roomID);
-      }
+      construct.content.uses.removeWhere((u) => u.chatId != roomID);
     }
     return filtered;
   }
@@ -642,10 +627,9 @@ class AnalyticsController extends BaseController {
     final List<ConstructAnalyticsEvent> filtered =
         List<ConstructAnalyticsEvent>.from(unfilteredConstructs);
     for (final construct in filtered) {
-      final lemmaUses = construct.content.uses;
-      for (final lemmaUse in lemmaUses) {
-        lemmaUse.uses.removeWhere((u) => !directChatIds.contains(u.chatId));
-      }
+      construct.content.uses.removeWhere(
+        (use) => !directChatIds.contains(use.chatId),
+      );
     }
     return filtered;
   }
@@ -664,10 +648,9 @@ class AnalyticsController extends BaseController {
         List<ConstructAnalyticsEvent>.from(unfilteredConstructs);
 
     for (final construct in filtered) {
-      final lemmaUses = construct.content.uses;
-      for (final lemmaUse in lemmaUses) {
-        lemmaUse.uses.removeWhere((u) => !chatIds.contains(u.chatId));
-      }
+      construct.content.uses.removeWhere(
+        (use) => !chatIds.contains(use.chatId),
+      );
     }
 
     return filtered;
@@ -723,9 +706,7 @@ class AnalyticsController extends BaseController {
     AnalyticsSelected? selected,
   }) async {
     final List<ConstructAnalyticsEvent> unfilteredConstructs =
-        await allMyConstructs(
-      type: constructType,
-    );
+        await allMyConstructs();
 
     final Room? space = selected?.type == AnalyticsEntryType.space
         ? _pangeaController.matrixState.client.getRoomById(selected!.id)
@@ -748,7 +729,6 @@ class AnalyticsController extends BaseController {
     final List<ConstructAnalyticsEvent> unfilteredConstructs =
         await allSpaceMemberConstructs(
       space,
-      type: constructType,
     );
 
     return filterConstructs(
@@ -772,12 +752,9 @@ class AnalyticsController extends BaseController {
 
     for (int i = 0; i < unfilteredConstructs.length; i++) {
       final construct = unfilteredConstructs[i];
-      final lemmaUses = construct.content.uses;
-      for (final lemmaUse in lemmaUses) {
-        lemmaUse.uses.removeWhere(
-          (u) => u.timeStamp.isBefore(currentAnalyticsTimeSpan.cutOffDate),
-        );
-      }
+      construct.content.uses.removeWhere(
+        (use) => use.timeStamp.isBefore(currentAnalyticsTimeSpan.cutOffDate),
+      );
     }
 
     unfilteredConstructs.removeWhere((e) => e.content.uses.isEmpty);
@@ -917,31 +894,6 @@ class AnalyticsController extends BaseController {
 
     settingConstructs = false;
     return _constructs;
-  }
-
-  // used to aggregate ConstructEvents from
-  // multiple senders (students) with the same lemma
-  List<AggregateConstructUses> aggregateConstructData(
-    List<ConstructAnalyticsEvent> constructs,
-  ) {
-    final Map<String, List<LemmaConstructsModel>> lemmasToConstructs = {};
-    for (final construct in constructs) {
-      for (final lemmaUses in construct.content.uses) {
-        lemmasToConstructs[lemmaUses.lemma] ??= [];
-        lemmasToConstructs[lemmaUses.lemma]!.add(lemmaUses);
-      }
-    }
-
-    final List<AggregateConstructUses> aggregatedConstructs = [];
-    for (final lemmaToConstructs in lemmasToConstructs.entries) {
-      final List<LemmaConstructsModel> lemmaConstructs =
-          lemmaToConstructs.value;
-      final AggregateConstructUses aggregatedData = AggregateConstructUses(
-        lemmaUses: lemmaConstructs,
-      );
-      aggregatedConstructs.add(aggregatedData);
-    }
-    return aggregatedConstructs;
   }
 }
 

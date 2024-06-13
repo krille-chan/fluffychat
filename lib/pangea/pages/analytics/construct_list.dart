@@ -116,6 +116,7 @@ class ConstructListView extends StatefulWidget {
 }
 
 class ConstructListViewState extends State<ConstructListView> {
+  final ConstructType constructType = ConstructType.grammar;
   final Map<String, Timeline> _timelinesCache = {};
   final Map<String, PangeaMessageEvent> _msgEventCache = {};
   final List<PangeaMessageEvent> _msgEvents = [];
@@ -128,7 +129,7 @@ class ConstructListViewState extends State<ConstructListView> {
     refreshSubscription = widget.refreshStream.stream.listen((forceUpdate) {
       widget.pangeaController.analytics
           .setConstructs(
-            constructType: ConstructType.grammar,
+            constructType: constructType,
             removeIT: true,
             defaultSelected: widget.defaultSelected,
             selected: widget.selected,
@@ -218,21 +219,46 @@ class ConstructListViewState extends State<ConstructListView> {
     }
   }
 
-  List<AggregateConstructUses>? get constructs {
+  List<ConstructUses>? get constructs {
     if (widget.pangeaController.analytics.constructs == null) {
       return null;
     }
-    return widget.pangeaController.analytics
-        .aggregateConstructData(widget.pangeaController.analytics.constructs!)
-        .where((lemmaUses) => lemmaUses.uses.isNotEmpty)
-        .sorted((a, b) {
-      final int cmp = b.uses.length.compareTo(a.uses.length);
-      if (cmp != 0) return cmp;
+
+    final List<OneConstructUse> filtered =
+        List.from(widget.pangeaController.analytics.constructs!)
+            .map((event) => event.content.uses)
+            .expand((uses) => uses)
+            .cast<OneConstructUse>()
+            .where((use) => use.constructType == constructType)
+            .toList();
+
+    final Map<String, List<OneConstructUse>> lemmaToUses = {};
+    for (final use in filtered) {
+      if (use.lemma == null) continue;
+      lemmaToUses[use.lemma!] ??= [];
+      lemmaToUses[use.lemma!]!.add(use);
+    }
+
+    final constructUses = lemmaToUses.entries
+        .map(
+          (entry) => ConstructUses(
+            lemma: entry.key,
+            uses: entry.value,
+            constructType: constructType,
+          ),
+        )
+        .toList();
+
+    constructUses.sort((a, b) {
+      final comp = b.uses.length.compareTo(a.uses.length);
+      if (comp != 0) return comp;
       return a.lemma.compareTo(b.lemma);
-    }).toList();
+    });
+
+    return constructUses;
   }
 
-  AggregateConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
+  ConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
         (element) => element.lemma == widget.controller.currentLemma,
       );
 
@@ -456,21 +482,21 @@ class ConstructMessage extends StatelessWidget {
 class ConstructMessageBubble extends StatelessWidget {
   final String errorText;
   final String replacementText;
-  final int? start;
-  final int? end;
+  final int start;
+  final int end;
 
   const ConstructMessageBubble({
     super.key,
     required this.errorText,
     required this.replacementText,
-    this.start,
-    this.end,
+    required this.start,
+    required this.end,
   });
 
   @override
   Widget build(BuildContext context) {
     final defaultStyle = TextStyle(
-      color: Theme.of(context).colorScheme.onBackground,
+      color: Theme.of(context).colorScheme.onSurface,
       fontSize: AppConfig.messageFontSize * AppConfig.fontSizeFactor,
       height: 1.3,
     );
@@ -498,7 +524,7 @@ class ConstructMessageBubble extends StatelessWidget {
             vertical: 8,
           ),
           child: RichText(
-            text: (start == null || end == null)
+            text: (end == null)
                 ? TextSpan(
                     text: errorText,
                     style: defaultStyle,
@@ -510,7 +536,7 @@ class ConstructMessageBubble extends StatelessWidget {
                         style: defaultStyle,
                       ),
                       TextSpan(
-                        text: errorText.substring(start!, end),
+                        text: errorText.substring(start, end),
                         style: defaultStyle.merge(
                           TextStyle(
                             backgroundColor: Colors.red.withOpacity(0.25),
@@ -529,7 +555,7 @@ class ConstructMessageBubble extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: errorText.substring(end!),
+                        text: errorText.substring(end),
                         style: defaultStyle,
                       ),
                     ],
