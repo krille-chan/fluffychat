@@ -16,7 +16,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_snackbar.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
@@ -801,7 +800,10 @@ class ChatListController extends State<ChatList>
     final selectedSpace = await showConfirmationDialog<String>(
       context: context,
       title: L10n.of(context)!.addToSpace,
-      message: L10n.of(context)!.addToSpaceDescription,
+      // #Pangea
+      // message: L10n.of(context)!.addToSpaceDescription,
+      message: L10n.of(context)!.addSpaceToSpaceDescription,
+      // Pangea#
       fullyCapitalizedForMaterial: false,
       actions: Matrix.of(context)
           .client
@@ -820,8 +822,11 @@ class ChatListController extends State<ChatList>
           .map(
             (space) => AlertDialogAction(
               key: space.id,
-              label: space
-                  .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+              // #Pangea
+              // label: space
+              //     .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+              label: space.nameIncludingParents(context),
+              // Pangea#
             ),
           )
           .toList(),

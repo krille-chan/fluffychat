@@ -3959,5 +3959,6 @@
     "onlyAdminDescription": "Since there are no other admins, all other participants will also be removed.",
     "tooltipInstructionsTitle": "Not sure what that does?",
     "tooltipInstructionsMobileBody": "Press and hold items to view tooltips.",
-    "tooltipInstructionsBrowserBody": "Hover over items to view tooltips."
+    "tooltipInstructionsBrowserBody": "Hover over items to view tooltips.",
+    "addSpaceToSpaceDescription": "Select a space to add as a parent"
 }
