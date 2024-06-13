@@ -564,11 +564,17 @@ class BotController extends State<AddBridge> {
       final RegExp alreadyConnected = LoginRegex.facebookAlreadyConnectedMatch;
       final RegExp pasteCookie = LoginRegex.facebookPasteCookies;
 
-      // Add a direct chat with the Instagram bot (if you haven't already)
-      String? directChat = client.getDirectChatFromUserId(botUserId);
-      directChat ??= await client.startDirectChat(botUserId);
+      final String? directChat = await _getOrCreateDirectChat(botUserId);
+      if (directChat == null) {
+        _handleError(network);
+        return;
+      }
 
       final Room? roomBot = client.getRoomById(directChat);
+      if (roomBot == null) {
+        _handleError(network);
+        return;
+      }
 
       await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
@@ -581,7 +587,7 @@ class BotController extends State<AddBridge> {
       final formattedCookieString = formatCookiesToJsonString(gotCookies);
 
       // Send the "login" message to the bot
-      await roomBot?.sendTextEvent("login");
+      await roomBot.sendTextEvent("login");
       await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
       // Variable for loop limit
@@ -589,20 +595,12 @@ class BotController extends State<AddBridge> {
       int currentIteration = 0;
 
       while (currentIteration < maxIterations) {
-        final GetRoomEventsResponse response = await client.getRoomEvents(
-          directChat,
-          Direction.b, // To get the latest messages
-          limit: 1, // Number of messages to obtain
-        );
-
-        final List<MatrixEvent> latestMessages = response.chunk ?? [];
-        final MatrixEvent latestEvent = latestMessages.first;
-        final String latestMessage =
-            latestEvent.content['body'].toString() ?? '';
-        final String sender = latestEvent.senderId;
+        final Event? latestEvent = roomBot.lastEvent;
+        final String? latestMessage = roomBot.lastEvent?.text;
+        final String? sender = latestEvent?.senderId;
         final String botUserId = '${network.chatBot}$hostname';
 
-        if (latestMessages.isNotEmpty && sender == botUserId) {
+        if (latestMessage != null && sender == botUserId) {
           if (kDebugMode) {
             print('latestMessage : $latestMessage');
           }
