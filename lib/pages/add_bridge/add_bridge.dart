@@ -54,8 +54,18 @@ class BotController extends State<AddBridge> {
     hostname = extractHostName(fullUrl);
   }
 
+  Future<void> waitForMatrixSync() async {
+    await client.sync(
+      fullState: true,
+      setPresence: PresenceType.online,
+    );
+  }
+
   Future<String?> _getOrCreateDirectChat(String botUserId) async {
     try {
+      // Waiting for Matrix to synchronize
+      await waitForMatrixSync();
+
       String? directChat = client.getDirectChatFromUserId(botUserId);
       directChat ??= await client.startDirectChat(botUserId);
       return directChat;
@@ -125,16 +135,20 @@ class BotController extends State<AddBridge> {
     return isMatch;
   }
 
-  bool _isNotLogged(RegExp notLoggedMatch, String message, [RegExp? notLoggedAnymoreMatch]) {
+  bool _isNotLogged(RegExp notLoggedMatch, String message,
+      [RegExp? notLoggedAnymoreMatch]) {
     final isNotLoggedMatch = notLoggedMatch.hasMatch(message);
-    final isNotLoggedAnymoreMatch = notLoggedAnymoreMatch?.hasMatch(message) ?? false;
-    Logs().v('Checking not logged status: $message - Match: $isNotLoggedMatch, Not logged anymore match: $isNotLoggedAnymoreMatch');
+    final isNotLoggedAnymoreMatch =
+        notLoggedAnymoreMatch?.hasMatch(message) ?? false;
+    Logs().v(
+        'Checking not logged status: $message - Match: $isNotLoggedMatch, Not logged anymore match: $isNotLoggedAnymoreMatch');
     return isNotLoggedMatch || isNotLoggedAnymoreMatch;
   }
 
   bool _shouldReconnect(RegExp? mQTTNotMatch, String latestMessage) {
     final shouldReconnect = mQTTNotMatch?.hasMatch(latestMessage) ?? false;
-    Logs().v('Checking should reconnect: $latestMessage - Match: $shouldReconnect');
+    Logs().v(
+        'Checking should reconnect: $latestMessage - Match: $shouldReconnect');
     return shouldReconnect;
   }
 
@@ -147,8 +161,7 @@ class BotController extends State<AddBridge> {
       final Event? lastEvent = roomBot.lastEvent;
 
       if (lastEvent != null) {
-        final String latestMessage =
-            lastEvent.text;
+        final String latestMessage = lastEvent.text;
 
         if (_isOnline(patterns.onlineMatch, latestMessage)) {
           Logs().v("You're logged to ${socialNetwork.name}");
@@ -156,7 +169,8 @@ class BotController extends State<AddBridge> {
           return;
         }
 
-        if (_isNotLogged(patterns.notLoggedMatch, latestMessage, patterns.notLoggedAnymoreMatch)) {
+        if (_isNotLogged(patterns.notLoggedMatch, latestMessage,
+            patterns.notLoggedAnymoreMatch)) {
           Logs().v('Not connected to ${socialNetwork.name}');
           _updateNetworkStatus(socialNetwork, false, false);
           return;
