@@ -1,22 +1,25 @@
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
 
 class ConstructIdentifier {
   final String lemma;
-  final String type;
+  final ConstructType type;
 
   ConstructIdentifier({required this.lemma, required this.type});
 
   factory ConstructIdentifier.fromJson(Map<String, dynamic> json) {
     return ConstructIdentifier(
       lemma: json['lemma'] as String,
-      type: json['type'] as String,
+      type: ConstructType.values.firstWhere(
+        (e) => e.string == json['type'],
+      ),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'lemma': lemma,
-      'type': type,
+      'type': type.string,
     };
   }
 }
@@ -28,8 +31,11 @@ class CandidateMessage {
   final String roomId;
   final String text;
 
-  CandidateMessage(
-      {required this.msgId, required this.roomId, required this.text});
+  CandidateMessage({
+    required this.msgId,
+    required this.roomId,
+    required this.text,
+  });
 
   factory CandidateMessage.fromJson(Map<String, dynamic> json) {
     return CandidateMessage(

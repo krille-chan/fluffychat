@@ -87,7 +87,7 @@ class PracticeGenerationController {
   PracticeActivityModel dummyModel(PangeaMessageEvent event) =>
       PracticeActivityModel(
         tgtConstructs: [
-          ConstructIdentifier(lemma: "be", type: ConstructType.vocab.string),
+          ConstructIdentifier(lemma: "be", type: ConstructType.vocab),
         ],
         activityType: ActivityType.multipleChoice,
         langCode: event.messageDisplayLangCode,
