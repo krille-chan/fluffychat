@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
-import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
@@ -147,26 +146,13 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
       currentLemma = null;
       selected = isSelected(selectedParam.id) ? null : selectedParam;
     });
-
-    await pangeaController.analytics.setConstructs(
-      constructType: ConstructType.grammar,
-      defaultSelected: widget.defaultSelected,
-      selected: selected,
-      removeIT: true,
-    );
     await setChartData();
-
+    refreshStream.add(false);
     Future.delayed(Duration.zero, () => setState(() {}));
   }
 
   Future<void> toggleTimeSpan(BuildContext context, TimeSpan timeSpan) async {
     await pangeaController.analytics.setCurrentAnalyticsTimeSpan(timeSpan);
-    await pangeaController.analytics.setConstructs(
-      constructType: ConstructType.grammar,
-      defaultSelected: widget.defaultSelected,
-      selected: selected,
-      removeIT: true,
-    );
     await setChartData();
     refreshStream.add(false);
   }

@@ -1,6 +1,7 @@
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -16,11 +17,48 @@ class ConstructAnalyticsModel extends AnalyticsModel {
   static const _usesKey = "uses";
 
   factory ConstructAnalyticsModel.fromJson(Map<String, dynamic> json) {
+    final List<OneConstructUse> uses = [];
+    if (json[_usesKey] is List) {
+      // This is the new format
+      uses.addAll(
+        json[_usesKey]
+            .map((use) => OneConstructUse.fromJson(use))
+            .cast<OneConstructUse>()
+            .toList(),
+      );
+    } else {
+      // This is the old format. No data on production should be
+      // structured this way, but it's useful for testing.
+      try {
+        final useValues = (json[_usesKey] as Map<String, dynamic>).values;
+        for (final useValue in useValues) {
+          final lemma = useValue['lemma'];
+          final lemmaUses = useValue[_usesKey];
+          for (final useData in lemmaUses) {
+            final use = OneConstructUse(
+              useType: ConstructUseType.ga,
+              chatId: useData["chatId"],
+              timeStamp: DateTime.parse(useData["timeStamp"]),
+              lemma: lemma,
+              form: useData["form"],
+              msgId: useData["msgId"],
+              constructType: ConstructType.grammar,
+            );
+            uses.add(use);
+          }
+        }
+      } catch (err, s) {
+        debugPrint("Error parsing ConstructAnalyticsModel");
+        ErrorHandler.logError(
+          e: err,
+          s: s,
+          m: "Error parsing ConstructAnalyticsModel",
+        );
+        // debugger(when: kDebugMode);
+      }
+    }
     return ConstructAnalyticsModel(
-      uses: json[_usesKey]
-          .map((use) => OneConstructUse.fromJson(use))
-          .cast<OneConstructUse>()
-          .toList(),
+      uses: uses,
     );
   }
 

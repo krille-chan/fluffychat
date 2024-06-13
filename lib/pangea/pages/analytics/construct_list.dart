@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
@@ -40,28 +41,8 @@ class ConstructList extends StatefulWidget {
 }
 
 class ConstructListState extends State<ConstructList> {
-  bool initialized = false;
   String? langCode;
   String? error;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.pangeaController.analytics
-        .setConstructs(
-          constructType: widget.constructType,
-          removeIT: true,
-          defaultSelected: widget.defaultSelected,
-          selected: widget.selected,
-          forceUpdate: true,
-        )
-        .whenComplete(() => setState(() => initialized = true));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +53,6 @@ class ConstructListState extends State<ConstructList> {
         : Column(
             children: [
               ConstructListView(
-                init: initialized,
                 controller: widget.controller,
                 pangeaController: widget.pangeaController,
                 defaultSelected: widget.defaultSelected,
@@ -94,7 +74,6 @@ class ConstructListState extends State<ConstructList> {
 //    subtitle = total uses, equal to construct.content.uses.length
 // list has a fixed height of 400 and is scrollable
 class ConstructListView extends StatefulWidget {
-  final bool init;
   final BaseAnalyticsController controller;
   final PangeaController pangeaController;
   final AnalyticsSelected defaultSelected;
@@ -103,7 +82,6 @@ class ConstructListView extends StatefulWidget {
 
   const ConstructListView({
     super.key,
-    required this.init,
     required this.controller,
     required this.pangeaController,
     required this.defaultSelected,
@@ -120,22 +98,46 @@ class ConstructListViewState extends State<ConstructListView> {
   final Map<String, Timeline> _timelinesCache = {};
   final Map<String, PangeaMessageEvent> _msgEventCache = {};
   final List<PangeaMessageEvent> _msgEvents = [];
+  bool fetchingConstructs = true;
   bool fetchingUses = false;
   StreamSubscription? refreshSubscription;
 
   @override
   void initState() {
     super.initState();
+    widget.pangeaController.analytics
+        .getConstructs(
+          constructType: constructType,
+          removeIT: true,
+          defaultSelected: widget.defaultSelected,
+          selected: widget.selected,
+          forceUpdate: true,
+        )
+        .whenComplete(() => setState(() => fetchingConstructs = false))
+        .then((value) => setState(() => _constructs = value));
+
     refreshSubscription = widget.refreshStream.stream.listen((forceUpdate) {
-      widget.pangeaController.analytics
-          .setConstructs(
-            constructType: constructType,
-            removeIT: true,
-            defaultSelected: widget.defaultSelected,
-            selected: widget.selected,
-            forceUpdate: true,
-          )
-          .then((_) => setState(() {}));
+      debugPrint("updating constructs");
+      // postframe callback to let widget rebuild with the new selected parameter
+      // before sending selected to getConstructs function
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        widget.pangeaController.analytics
+            .getConstructs(
+              constructType: constructType,
+              removeIT: true,
+              defaultSelected: widget.defaultSelected,
+              selected: widget.selected,
+              forceUpdate: true,
+            )
+            .then(
+              (value) => setState(() {
+                _constructs = value;
+                debugPrint(
+                  "constructs is now: ${constructs?.map((event) => event.uses.map((use) => use.lemma)).toList()}",
+                );
+              }),
+            );
+      });
     });
   }
 
@@ -219,18 +221,19 @@ class ConstructListViewState extends State<ConstructListView> {
     }
   }
 
+  List<ConstructAnalyticsEvent>? _constructs;
+
   List<ConstructUses>? get constructs {
-    if (widget.pangeaController.analytics.constructs == null) {
+    if (_constructs == null) {
       return null;
     }
 
-    final List<OneConstructUse> filtered =
-        List.from(widget.pangeaController.analytics.constructs!)
-            .map((event) => event.content.uses)
-            .expand((uses) => uses)
-            .cast<OneConstructUse>()
-            .where((use) => use.constructType == constructType)
-            .toList();
+    final List<OneConstructUse> filtered = List.from(_constructs!)
+        .map((event) => event.content.uses)
+        .expand((uses) => uses)
+        .cast<OneConstructUse>()
+        .where((use) => use.constructType == constructType)
+        .toList();
 
     final Map<String, List<OneConstructUse>> lemmaToUses = {};
     for (final use in filtered) {
@@ -303,7 +306,7 @@ class ConstructListViewState extends State<ConstructListView> {
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.init || fetchingUses) {
+    if (fetchingConstructs || fetchingUses) {
       return const Expanded(
         child: Center(child: CircularProgressIndicator()),
       );
@@ -347,7 +350,10 @@ class ConstructMessagesDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.widget.controller.currentLemma == null) {
+    if (controller.widget.controller.currentLemma == null ||
+        controller.constructs == null ||
+        controller.lemmaIndex < 0 ||
+        controller.lemmaIndex >= controller.constructs!.length) {
       return const AlertDialog(content: CircularProgressIndicator.adaptive());
     }
 

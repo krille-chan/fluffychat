@@ -64,6 +64,7 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
 
   Future<void> getChatAndStudents() async {
     try {
+      await classRoom?.postLoad();
       await classRoom?.requestParticipants();
 
       if (classRoom != null) {

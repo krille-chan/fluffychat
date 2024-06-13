@@ -514,11 +514,6 @@ class AnalyticsController extends BaseController {
 
   //////////////////////////// CONSTRUCTS ////////////////////////////
 
-  List<ConstructAnalyticsEvent>? _constructs;
-  bool settingConstructs = false;
-
-  List<ConstructAnalyticsEvent>? get constructs => _constructs;
-
   Future<List<ConstructAnalyticsEvent>> allMyConstructs() async {
     final List<Room> analyticsRooms =
         _pangeaController.matrixState.client.allMyAnalyticsRooms;
@@ -782,15 +777,13 @@ class AnalyticsController extends BaseController {
     }
   }
 
-  Future<List<ConstructAnalyticsEvent>?> setConstructs({
+  Future<List<ConstructAnalyticsEvent>?> getConstructs({
     required ConstructType constructType,
     required AnalyticsSelected defaultSelected,
     AnalyticsSelected? selected,
     bool removeIT = true,
     bool forceUpdate = false,
   }) async {
-    if (settingConstructs) return _constructs;
-    settingConstructs = true;
     await _pangeaController.matrixState.client.roomsLoading;
 
     Room? space;
@@ -807,8 +800,7 @@ class AnalyticsController extends BaseController {
             "selected": selected,
           },
         );
-        settingConstructs = false;
-        return _constructs;
+        return [];
       }
       await space.postLoad();
       langCode = _pangeaController.languageController.activeL2Code(
@@ -821,8 +813,7 @@ class AnalyticsController extends BaseController {
             "space": space,
           },
         );
-        settingConstructs = false;
-        return _constructs;
+        return [];
       }
     }
 
@@ -852,8 +843,6 @@ class AnalyticsController extends BaseController {
       lastUpdated: lastUpdated,
     );
     if (local != null && !forceUpdate) {
-      _constructs = local;
-      settingConstructs = false;
       return local;
     }
 
@@ -881,19 +870,16 @@ class AnalyticsController extends BaseController {
       }
     }
 
-    _constructs = filteredConstructs;
-
     if (local == null) {
       cacheConstructs(
         constructType: constructType,
-        events: _constructs!,
+        events: filteredConstructs,
         defaultSelected: defaultSelected,
         selected: selected,
       );
     }
 
-    settingConstructs = false;
-    return _constructs;
+    return filteredConstructs;
   }
 }
 
