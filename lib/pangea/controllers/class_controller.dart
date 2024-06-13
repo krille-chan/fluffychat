@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../widgets/matrix.dart';
@@ -149,11 +150,15 @@ class ClassController extends BaseController {
       if (room == null) {
         return;
       }
-      if ((await room.leaveIfFull())) {
-        ClassCodeUtil.messageSnack(
-          context,
-          L10n.of(context)!.roomFull,
-        );
+      final joinResult = await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          if (await room.leaveIfFull()) {
+            throw L10n.of(context)!.roomFull;
+          }
+        },
+      );
+      if (joinResult.error != null) {
         return;
       }
 

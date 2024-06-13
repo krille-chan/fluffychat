@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_view.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
@@ -121,16 +119,6 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
               );
           await Matrix.of(context).client.joinRoom(selectedParam.id);
           await waitForRoom;
-          final room = Matrix.of(context).client.getRoomById(selectedParam.id);
-          if (room != null && (await room.leaveIfFull())) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                duration: const Duration(seconds: 10),
-                content: Text(L10n.of(context)!.roomFull),
-              ),
-            );
-            return;
-          }
         },
       );
     }
