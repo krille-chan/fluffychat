@@ -20,8 +20,6 @@ class RoomCapacityButton extends StatefulWidget {
 }
 
 class RoomCapacityButtonState extends State<RoomCapacityButton> {
-  Room? room;
-  ChatDetailsController? controller;
   int? capacity;
   String? nonAdmins;
 
@@ -30,10 +28,8 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
   @override
   void initState() {
     super.initState();
-    room = widget.room;
-    controller = widget.controller;
-    capacity = room?.capacity;
-    room?.numNonAdmins.then(
+    capacity = widget.room?.capacity;
+    widget.room?.numNonAdmins.then(
       (value) => setState(() {
         nonAdmins = value.toString();
         overCapacity();
@@ -41,8 +37,22 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
     );
   }
 
+  @override
+  void didUpdateWidget(RoomCapacityButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.room != widget.room) {
+      capacity = widget.room?.capacity;
+      widget.room?.numNonAdmins.then(
+        (value) => setState(() {
+          nonAdmins = value.toString();
+          overCapacity();
+        }),
+      );
+    }
+  }
+
   Future<void> overCapacity() async {
-    if ((room?.isRoomAdmin ?? false) &&
+    if ((widget.room?.isRoomAdmin ?? false) &&
         capacity != null &&
         nonAdmins != null &&
         int.parse(nonAdmins!) > capacity!) {
@@ -63,7 +73,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
       children: [
         ListTile(
           onTap: () =>
-              ((room?.isRoomAdmin ?? true) ? (setRoomCapacity()) : null),
+              ((widget.room?.isRoomAdmin ?? true) ? (setRoomCapacity()) : null),
           leading: CircleAvatar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             foregroundColor: iconColor,
@@ -128,8 +138,8 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
     final newCapacity = int.parse(input.first);
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => ((room != null)
-          ? (room!.updateRoomCapacity(
+      future: () => ((widget.room != null)
+          ? (widget.room!.updateRoomCapacity(
               capacity = newCapacity,
             ))
           : setCapacity(newCapacity)),
