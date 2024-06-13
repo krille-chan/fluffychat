@@ -1,6 +1,17 @@
 part of "pangea_room_extension.dart";
 
 extension RoomInformationRoomExtension on Room {
+  Future<int> get _numNonAdmins async {
+    return (await requestParticipants())
+        .where(
+          (e) =>
+              e.powerLevel < ClassDefaultValues.powerLevelOfAdmin &&
+              e.id != BotName.byEnvironment,
+        )
+        .toList()
+        .length;
+  }
+
   DateTime? get _creationTime =>
       getState(EventTypes.RoomCreate)?.originServerTs;
 
