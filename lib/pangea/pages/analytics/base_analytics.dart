@@ -9,6 +9,7 @@ import 'package:fluffychat/pangea/pages/analytics/base_analytics_view.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
 
 import '../../../widgets/matrix.dart';
 import '../../controllers/pangea_controller.dart';
@@ -47,6 +48,13 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   StreamController refreshStream = StreamController.broadcast();
 
   bool isSelected(String chatOrStudentId) => chatOrStudentId == selected?.id;
+
+  Room? get activeSpace {
+    if (widget.defaultSelected.type == AnalyticsEntryType.space) {
+      return Matrix.of(context).client.getRoomById(widget.defaultSelected.id);
+    }
+    return null;
+  }
 
   @override
   void initState() {

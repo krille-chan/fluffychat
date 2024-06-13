@@ -62,22 +62,39 @@ class BaseAnalyticsView extends StatelessWidget {
                 style: const TextStyle(decoration: TextDecoration.underline),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    if (controller.widget.selectedView == null) return;
-                    String route =
+                    final String route =
                         "/rooms/${controller.widget.defaultSelected.type.route}";
-                    if (controller.widget.defaultSelected.type ==
-                        AnalyticsEntryType.space) {
-                      route += "/${controller.widget.defaultSelected.id}";
-                    }
                     context.go(route);
                   },
               ),
+              if (controller.activeSpace != null)
+                const TextSpan(
+                  text: " > ",
+                ),
+              if (controller.activeSpace != null)
+                TextSpan(
+                  text: controller.activeSpace!.getLocalizedDisplayname(),
+                  style: const TextStyle(decoration: TextDecoration.underline),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      if (controller.widget.selectedView == null) return;
+                      String route =
+                          "/rooms/${controller.widget.defaultSelected.type.route}";
+                      if (controller.widget.defaultSelected.type ==
+                          AnalyticsEntryType.space) {
+                        route += "/${controller.widget.defaultSelected.id}";
+                      }
+                      context.go(route);
+                    },
+                ),
               if (controller.widget.selectedView != null)
                 const TextSpan(
                   text: " > ",
                 ),
               if (controller.widget.selectedView != null)
-                TextSpan(text: controller.widget.selectedView!.string(context)),
+                TextSpan(
+                  text: controller.widget.selectedView!.string(context),
+                ),
             ],
           ),
           overflow: TextOverflow.ellipsis,
