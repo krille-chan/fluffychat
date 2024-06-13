@@ -116,6 +116,7 @@ abstract class ClientManager {
         PangeaEventTypes.botOptions,
         EventTypes.RoomTopic,
         EventTypes.RoomAvatar,
+        PangeaEventTypes.capacity,
         // Pangea#
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,

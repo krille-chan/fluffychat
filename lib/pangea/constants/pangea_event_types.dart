@@ -20,6 +20,7 @@ class PangeaEventTypes {
 
   static const audio = "p.audio";
   static const botOptions = "pangea.bot_options";
+  static const capacity = "pangea.capacity";
 
   static const userAge = "pangea.user_age";
 

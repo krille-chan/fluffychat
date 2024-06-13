@@ -137,6 +137,7 @@ extension PangeaRoom on Room {
 
 // events
 
+  Future<bool> leaveIfFull() async => await _leaveIfFull();
   Future<void> archive() async => await _archive();
 
   Future<bool> archiveSpace(
@@ -200,6 +201,8 @@ extension PangeaRoom on Room {
 
 // room_information
 
+  Future<int> get numNonAdmins async => await _numNonAdmins;
+
   DateTime? get creationTime => _creationTime;
 
   String? get creatorId => _creatorId;
@@ -229,6 +232,11 @@ extension PangeaRoom on Room {
   bool get isAnalyticsRoom => _isAnalyticsRoom;
 
 // room_settings
+
+  Future<void> updateRoomCapacity(int newCapacity) =>
+      _updateRoomCapacity(newCapacity);
+
+  int? get capacity => _capacity;
 
   PangeaRoomRules? get pangeaRoomRules => _pangeaRoomRules;
 
