@@ -28,15 +28,16 @@ class ClassController extends BaseController {
     _pangeaController = pangeaController;
   }
 
-  setActiveSpaceIdInChatListController(String classId) {
+  setActiveSpaceIdInChatListController(String? classId) {
     setState(data: {"activeSpaceId": classId});
   }
 
   Future<void> fixClassPowerLevels() async {
     try {
       final List<Future<void>> classFixes = [];
-      for (final room in (await _pangeaController
-          .matrixState.client.classesAndExchangesImTeaching)) {
+      final teacherSpaces = await _pangeaController
+          .matrixState.client.classesAndExchangesImTeaching;
+      for (final room in teacherSpaces) {
         classFixes.add(room.setClassPowerLevels());
       }
       await Future.wait(classFixes);

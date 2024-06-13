@@ -1,6 +1,32 @@
 part of "pangea_room_extension.dart";
 
 extension UserPermissionsRoomExtension on Room {
+// If there are no other admins, and at least one non-admin, return true
+  Future<bool> _isOnlyAdmin() async {
+    if (!isRoomAdmin) {
+      return false;
+    }
+    final List<User> participants = await requestParticipants();
+
+    return ((participants
+                .where(
+                  (e) =>
+                      e.powerLevel == ClassDefaultValues.powerLevelOfAdmin &&
+                      e.id != BotName.byEnvironment,
+                )
+                .toList()
+                .length) ==
+            1) &&
+        (participants
+                .where(
+                  (e) =>
+                      e.powerLevel < ClassDefaultValues.powerLevelOfAdmin &&
+                      e.id != BotName.byEnvironment,
+                )
+                .toList())
+            .isNotEmpty;
+  }
+
   bool _isMadeByUser(String userId) =>
       getState(EventTypes.RoomCreate)?.senderId == userId;
 

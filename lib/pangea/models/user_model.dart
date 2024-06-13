@@ -59,15 +59,17 @@ enum MatrixProfile {
   interactiveGrammar,
   immersionMode,
   definitions,
-  translations,
+  // translations,
   showedItInstructions,
   showedClickMessage,
   showedBlurMeansTranslate,
+  showedTooltipInstructions,
   createdAt,
   targetLanguage,
   sourceLanguage,
   country,
   publicProfile,
+  autoIGC,
 }
 
 extension MatrixProfileExtension on MatrixProfile {
@@ -87,14 +89,18 @@ extension MatrixProfileExtension on MatrixProfile {
         return ToolSetting.immersionMode.toString();
       case MatrixProfile.definitions:
         return ToolSetting.definitions.toString();
-      case MatrixProfile.translations:
-        return ToolSetting.translations.toString();
+      // case MatrixProfile.translations:
+      //   return ToolSetting.translations.toString();
+      case MatrixProfile.autoIGC:
+        return ToolSetting.autoIGC.toString();
       case MatrixProfile.showedItInstructions:
         return InstructionsEnum.itInstructions.toString();
       case MatrixProfile.showedClickMessage:
         return InstructionsEnum.clickMessage.toString();
       case MatrixProfile.showedBlurMeansTranslate:
         return InstructionsEnum.blurMeansTranslate.toString();
+      case MatrixProfile.showedTooltipInstructions:
+        return InstructionsEnum.tooltipInstructions.toString();
       case MatrixProfile.createdAt:
         return ModelKey.userCreatedAt;
       case MatrixProfile.targetLanguage:

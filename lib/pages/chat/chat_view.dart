@@ -9,6 +9,7 @@ import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/has_error_button.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/language_permissions_warning_buttons.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/class_analytics/measure_able.dart';
 import 'package:fluffychat/utils/account_config.dart';
@@ -373,6 +374,29 @@ class ChatView extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
+                                              // #Pangea
+                                              if (controller.room.isRoomAdmin)
+                                                TextButton.icon(
+                                                  style: TextButton.styleFrom(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                      16,
+                                                    ),
+                                                    foregroundColor:
+                                                        Theme.of(context)
+                                                            .colorScheme
+                                                            .error,
+                                                  ),
+                                                  icon: const Icon(
+                                                    Icons.archive_outlined,
+                                                  ),
+                                                  onPressed:
+                                                      controller.archiveChat,
+                                                  label: Text(
+                                                    L10n.of(context)!.archive,
+                                                  ),
+                                                ),
+                                              // Pangea#
                                               TextButton.icon(
                                                 style: TextButton.styleFrom(
                                                   padding: const EdgeInsets.all(
@@ -384,7 +408,10 @@ class ChatView extends StatelessWidget {
                                                           .error,
                                                 ),
                                                 icon: const Icon(
-                                                  Icons.archive_outlined,
+                                                  // #Pangea
+                                                  // Icons.archive_outlined,
+                                                  Icons.arrow_forward,
+                                                  // Pangea#
                                                 ),
                                                 onPressed: controller.leaveChat,
                                                 label: Text(
@@ -429,8 +456,8 @@ class ChatView extends StatelessWidget {
                   // #Pangea
                   // if (controller.dragging)
                   //   Container(
-                  //     color: Theme.of(context)
-                  //         .scaffoldBackgroundColor
+                  // color: Theme.of(context)
+                  //     .scaffoldBackgroundColor
                   //         .withOpacity(0.9),
                   //     alignment: Alignment.center,
                   //     child: const Icon(
@@ -438,6 +465,11 @@ class ChatView extends StatelessWidget {
                   //       size: 100,
                   //     ),
                   //   ),
+                  Positioned(
+                    left: 20,
+                    bottom: 75,
+                    child: StartIGCButton(controller: controller),
+                  ),
                   // Pangea#
                 ],
               ),

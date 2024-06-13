@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:http/http.dart' as http;
 
@@ -48,7 +49,7 @@ class LanguageDetectionRequest {
 }
 
 class LanguageDetectionResponse {
-  List<Map<String, dynamic>> detections;
+  List<LanguageDetection> detections;
   String fullText;
 
   LanguageDetectionResponse({
@@ -58,7 +59,11 @@ class LanguageDetectionResponse {
 
   factory LanguageDetectionResponse.fromJson(Map<String, dynamic> json) {
     return LanguageDetectionResponse(
-      detections: List<Map<String, dynamic>>.from(json['detections']),
+      detections: List<LanguageDetection>.from(
+        json['detections'].map(
+          (e) => LanguageDetection.fromJson(e),
+        ),
+      ),
       fullText: json['full_text'],
     );
   }
@@ -68,6 +73,20 @@ class LanguageDetectionResponse {
       'detections': detections,
       'full_text': fullText,
     };
+  }
+
+  LanguageDetection? get _bestDetection {
+    detections.sort((a, b) => b.confidence.compareTo(a.confidence));
+    return detections.isNotEmpty ? detections.first : null;
+  }
+
+  final double _confidenceThreshold = 0.95;
+
+  LanguageDetection? bestDetection({double? threshold}) {
+    threshold ??= _confidenceThreshold;
+    return (_bestDetection?.confidence ?? 0) >= _confidenceThreshold
+        ? _bestDetection!
+        : null;
   }
 }
 
@@ -101,6 +120,19 @@ class LanguageDetectionController {
 
   void dispose() {
     _cacheClearTimer?.cancel();
+  }
+
+  Future<LanguageDetectionResponse> detectLanguage(
+    String fullText,
+    String? userL2,
+    String? userL1,
+  ) async {
+    final LanguageDetectionRequest params = LanguageDetectionRequest(
+      fullText: fullText,
+      userL1: userL1,
+      userL2: userL2,
+    );
+    return get(params);
   }
 
   Future<LanguageDetectionResponse> get(
