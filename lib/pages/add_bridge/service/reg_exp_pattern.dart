@@ -3,6 +3,7 @@ class PingPatterns {
   // Instagram
   static RegExp instagramOnlineMatch = RegExp(r".*You're logged into Meta");
   static RegExp instagramNotLoggedMatch = RegExp(r"You're not logged in");
+  static RegExp instagramNotLoggedAnymoreMatch = RegExp(r"You were logged in at some point, but are not anymore");
 
   // WhatsApp
   static RegExp whatsAppOnlineMatch = RegExp(r"connection to WhatsApp OK");
@@ -14,6 +15,7 @@ class PingPatterns {
   // Facebook Messenger
   static RegExp facebookOnlineMatch = RegExp(r".*You're logged into Meta");
   static RegExp facebookNotLoggedMatch = RegExp(r"You're not logged in");
+  static RegExp facebookNotLoggedAnymoreMatch = RegExp(r"You were logged in at some point, but are not anymore");
 }
 
 // For login response
@@ -66,7 +68,8 @@ class LogoutRegex {
 class RegExpPingPatterns {
   final RegExp onlineMatch;
   final RegExp notLoggedMatch;
+  final RegExp? notLoggedAnymoreMatch;
   final RegExp? mQTTNotMatch;
 
-  RegExpPingPatterns(this.onlineMatch, this.notLoggedMatch, [this.mQTTNotMatch]);
+  RegExpPingPatterns(this.onlineMatch, this.notLoggedMatch, [this.notLoggedAnymoreMatch, this.mQTTNotMatch]); // Modification de cette ligne
 }

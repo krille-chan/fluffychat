@@ -119,6 +119,70 @@ class BotController extends State<AddBridge> {
     await _processPingResponse(socialNetwork, directChat, roomBot, patterns);
   }
 
+  bool _isOnline(RegExp onlineMatch, String latestMessage) {
+    final isMatch = onlineMatch.hasMatch(latestMessage);
+    Logs().v('Checking online status: $latestMessage - Match: $isMatch');
+    return isMatch;
+  }
+
+  bool _isNotLogged(RegExp notLoggedMatch, String message, [RegExp? notLoggedAnymoreMatch]) {
+    final isNotLoggedMatch = notLoggedMatch.hasMatch(message);
+    final isNotLoggedAnymoreMatch = notLoggedAnymoreMatch?.hasMatch(message) ?? false;
+    Logs().v('Checking not logged status: $message - Match: $isNotLoggedMatch, Not logged anymore match: $isNotLoggedAnymoreMatch');
+    return isNotLoggedMatch || isNotLoggedAnymoreMatch;
+  }
+
+  bool _shouldReconnect(RegExp? mQTTNotMatch, String latestMessage) {
+    final shouldReconnect = mQTTNotMatch?.hasMatch(latestMessage) ?? false;
+    Logs().v('Checking should reconnect: $latestMessage - Match: $shouldReconnect');
+    return shouldReconnect;
+  }
+
+  Future<void> _processPingResponse(SocialNetwork socialNetwork,
+      String directChat, Room roomBot, RegExpPingPatterns patterns) async {
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    while (continueProcess && currentIteration < maxIterations) {
+      final Event? lastEvent = roomBot.lastEvent;
+
+      if (lastEvent != null) {
+        final String latestMessage =
+            lastEvent.text;
+
+        if (_isOnline(patterns.onlineMatch, latestMessage)) {
+          Logs().v("You're logged to ${socialNetwork.name}");
+          _updateNetworkStatus(socialNetwork, true, false);
+          return;
+        }
+
+        if (_isNotLogged(patterns.notLoggedMatch, latestMessage, patterns.notLoggedAnymoreMatch)) {
+          Logs().v('Not connected to ${socialNetwork.name}');
+          _updateNetworkStatus(socialNetwork, false, false);
+          return;
+        }
+
+        if (_shouldReconnect(patterns.mQTTNotMatch, latestMessage)) {
+          await _sendReconnectEvent(roomBot, socialNetwork.name);
+          await Future.delayed(const Duration(seconds: 3)); // Wait sec
+        } else {
+          await Future.delayed(const Duration(seconds: 2)); // Wait sec
+        }
+      } else {
+        Logs().v('No latest messages found.');
+      }
+      currentIteration++;
+    }
+
+    if (currentIteration == maxIterations) {
+      Logs().v(
+          "Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
+      _handleError(socialNetwork);
+    } else if (!continueProcess) {
+      Logs().v(('ping stopping'));
+    }
+  }
+
   RegExpPingPatterns _getPingPatterns(String networkName) {
     switch (networkName) {
       case "WhatsApp":
@@ -131,11 +195,13 @@ class BotController extends State<AddBridge> {
         return RegExpPingPatterns(
           PingPatterns.facebookOnlineMatch,
           PingPatterns.facebookNotLoggedMatch,
+          PingPatterns.facebookNotLoggedAnymoreMatch,
         );
       case "Instagram":
         return RegExpPingPatterns(
           PingPatterns.instagramOnlineMatch,
           PingPatterns.instagramNotLoggedMatch,
+          PingPatterns.instagramNotLoggedAnymoreMatch,
         );
       default:
         throw Exception("Unsupported social network: $networkName");
@@ -151,67 +217,6 @@ class BotController extends State<AddBridge> {
       showCatchErrorDialog(context, messageError);
       return false;
     }
-  }
-
-  Future<void> _processPingResponse(SocialNetwork socialNetwork,
-      String directChat, Room roomBot, RegExpPingPatterns patterns) async {
-    const int maxIterations = 5;
-    int currentIteration = 0;
-
-    while (continueProcess && currentIteration < maxIterations) {
-      final GetRoomEventsResponse response = await client.getRoomEvents(
-        directChat,
-        Direction.b, // To get the latest messages
-        limit: 1, // Number of messages to obtain
-      );
-
-      final List<MatrixEvent> latestMessages = response.chunk ?? [];
-
-      if (latestMessages.isNotEmpty) {
-        final String latestMessage =
-            latestMessages.first.content['body'].toString() ?? '';
-
-        if (_isOnline(patterns.onlineMatch, latestMessage)) {
-          Logs().v("You're logged to ${socialNetwork.name}");
-          _updateNetworkStatus(socialNetwork, true, false);
-          return;
-        }
-
-        if (_isNotLogged(patterns.notLoggedMatch, latestMessage)) {
-          Logs().v('Not connected to ${socialNetwork.name}');
-          _updateNetworkStatus(socialNetwork, false, false);
-          return;
-        }
-
-        if (_shouldReconnect(patterns.mQTTNotMatch, latestMessage)) {
-          await _sendReconnectEvent(roomBot, socialNetwork.name);
-          await Future.delayed(const Duration(seconds: 3)); // Wait sec
-        } else {
-          await Future.delayed(const Duration(seconds: 2)); // Wait sec
-        }
-      }
-      currentIteration++;
-    }
-
-    if (currentIteration == maxIterations) {
-      Logs().v(
-          "Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
-      _handleError(socialNetwork);
-    } else if (!continueProcess) {
-      Logs().v(('ping stopping'));
-    }
-  }
-
-  bool _isOnline(RegExp onlineMatch, String latestMessage) {
-    return onlineMatch.hasMatch(latestMessage);
-  }
-
-  bool _isNotLogged(RegExp notLoggedMatch, String latestMessage) {
-    return notLoggedMatch.hasMatch(latestMessage);
-  }
-
-  bool _shouldReconnect(RegExp? mQTTNotMatch, String latestMessage) {
-    return mQTTNotMatch?.hasMatch(latestMessage) ?? false;
   }
 
   Future<void> _sendReconnectEvent(Room roomBot, String networkName) async {
