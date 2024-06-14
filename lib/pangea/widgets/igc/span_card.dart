@@ -272,30 +272,20 @@ class WordMatchContent extends StatelessWidget {
               if (!controller.widget.scm.pangeaMatch!.isITStart)
                 Expanded(
                   child: Opacity(
-                    opacity: controller.selectedChoice != null &&
-                            controller.selectedChoice!.type.name ==
-                                'bestCorrection'
-                        ? 1.0
-                        : 0.5,
+                    opacity: controller.selectedChoice != null ? 1.0 : 0.5,
                     child: TextButton(
-                      onPressed: controller.selectedChoice != null &&
-                              controller.selectedChoice!.type.name ==
-                                  'bestCorrection'
+                      onPressed: controller.selectedChoice != null
                           ? onReplaceSelected
                           : null,
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                          (controller.selectedChoice != null &&
-                                      controller.selectedChoice!.type.name ==
-                                          'bestCorrection'
+                          (controller.selectedChoice != null
                                   ? controller.selectedChoice!.color
                                   : AppConfig.primaryColor)
                               .withOpacity(0.2),
                         ),
                         // Outline if Replace button enabled
-                        side: controller.selectedChoice != null &&
-                                controller.selectedChoice!.type.name ==
-                                    'bestCorrection'
+                        side: controller.selectedChoice != null
                             ? MaterialStateProperty.all(
                                 BorderSide(
                                   color: controller.selectedChoice!.color,
