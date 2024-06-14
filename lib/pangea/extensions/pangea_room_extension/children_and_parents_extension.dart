@@ -95,6 +95,24 @@ extension ChildrenAndParentsRoomExtension on Room {
       )
       .toList();
 
+  String _nameIncludingParents(BuildContext context) {
+    String nameSoFar = getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
+    Room currentRoom = this;
+    if (currentRoom.immediateClassParents.isEmpty) {
+      return nameSoFar;
+    }
+    currentRoom = currentRoom.immediateClassParents.first;
+    var nameToAdd =
+        currentRoom.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
+    nameToAdd =
+        nameToAdd.length <= 10 ? nameToAdd : "${nameToAdd.substring(0, 10)}...";
+    nameSoFar = '$nameToAdd > $nameSoFar';
+    if (currentRoom.immediateClassParents.isEmpty) {
+      return nameSoFar;
+    }
+    return "... > $nameSoFar";
+  }
+
   // gets all space children of a given space, down the
   // space tree.
   List<String> get _allSpaceChildRoomIds {
