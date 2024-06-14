@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -36,13 +35,18 @@ class SettingsNotificationsView extends StatelessWidget {
                   title: Text(
                     L10n.of(context)!.notificationsEnabledForThisAccount,
                   ),
-                  onChanged: (_) => showFutureLoadingDialog(
-                    context: context,
-                    future: () => Matrix.of(context)
-                        .client
-                        .setMuteAllPushNotifications(
-                          !Matrix.of(context).client.allPushNotificationsMuted,
-                        ),
+                  onChanged: controller.isLoading
+                      ? null
+                      : (_) => controller.onToggleMuteAllNotifications(),
+                ),
+                Divider(color: Theme.of(context).dividerColor),
+                ListTile(
+                  title: Text(
+                    L10n.of(context)!.notifyMeFor,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 for (final item in NotificationSettingsItem.items)
@@ -51,14 +55,14 @@ class SettingsNotificationsView extends StatelessWidget {
                         ? false
                         : controller.getNotificationSetting(item) ?? true,
                     title: Text(item.title(context)),
-                    onChanged: Matrix.of(context)
-                            .client
-                            .allPushNotificationsMuted
+                    onChanged: controller.isLoading
                         ? null
-                        : (bool enabled) =>
-                            controller.setNotificationSetting(item, enabled),
+                        : Matrix.of(context).client.allPushNotificationsMuted
+                            ? null
+                            : (bool enabled) => controller
+                                .setNotificationSetting(item, enabled),
                   ),
-                const Divider(),
+                Divider(color: Theme.of(context).dividerColor),
                 ListTile(
                   title: Text(
                     L10n.of(context)!.devices,
@@ -87,6 +91,14 @@ class SettingsNotificationsView extends StatelessWidget {
                       );
                     }
                     final pushers = snapshot.data ?? [];
+                    if (pushers.isEmpty) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: Text(L10n.of(context)!.noOtherDevicesFound),
+                        ),
+                      );
+                    }
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,

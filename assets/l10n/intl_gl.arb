@@ -2616,5 +2616,7 @@
       "appname": {},
       "unread": {}
     }
-  }
+  },
+  "noDatabaseEncryption": "Nesta plataforma non temos soporte para cifrar a base de datos",
+  "@noDatabaseEncryption": {}
 }

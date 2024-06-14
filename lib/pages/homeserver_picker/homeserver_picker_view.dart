@@ -259,12 +259,7 @@ class _LoginButton extends StatelessWidget {
         width: double.infinity,
         child: OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
-            side: BorderSide(
-              width: withBorder ? 1 : 0,
-              color: withBorder
-                  ? Theme.of(context).colorScheme.onBackground
-                  : Colors.transparent,
-            ),
+            side: BorderSide.none,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(99),
             ),

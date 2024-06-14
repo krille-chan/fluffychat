@@ -13,12 +13,14 @@ class ParticipantListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final membershipBatch = <Membership, String>{
-      Membership.join: '',
-      Membership.ban: L10n.of(context)!.banned,
-      Membership.invite: L10n.of(context)!.invited,
-      Membership.leave: L10n.of(context)!.leftTheChat,
+    final membershipBatch = switch (user.membership) {
+      Membership.ban => L10n.of(context)!.banned,
+      Membership.invite => L10n.of(context)!.invited,
+      Membership.join => null,
+      Membership.knock => L10n.of(context)!.knocking,
+      Membership.leave => L10n.of(context)!.leftTheChat,
     };
+
     final permissionBatch = user.powerLevel == 100
         ? L10n.of(context)!.admin
         : user.powerLevel >= 50
@@ -70,7 +72,7 @@ class ParticipantListItem extends StatelessWidget {
                   // Pangea#
                 ),
               ),
-            membershipBatch[user.membership]!.isEmpty
+            membershipBatch == null
                 ? const SizedBox.shrink()
                 : Container(
                     padding: const EdgeInsets.all(4),
@@ -79,8 +81,7 @@ class ParticipantListItem extends StatelessWidget {
                       color: Theme.of(context).secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child:
-                        Center(child: Text(membershipBatch[user.membership]!)),
+                    child: Center(child: Text(membershipBatch)),
                   ),
           ],
         ),
