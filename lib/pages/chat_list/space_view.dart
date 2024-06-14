@@ -572,21 +572,19 @@ class _SpaceViewState extends State<SpaceView> {
     final allSpaces = client.rooms.where((room) => room.isSpace);
     if (activeSpaceId == null) {
       final rootSpaces = allSpaces
-          // #Pangea
-          // .where(
-          //  (space) =>
-          //      !allSpaces.any(
-          //        (parentSpace) => parentSpace.spaceChildren
-          //            .any((child) => child.roomId == space.id),
-          //      ) &&
-          //      space
-          //          .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))
-          //          .toLowerCase()
-          //          .contains(
-          //            widget.controller.searchController.text.toLowerCase(),
-          //          ),
-          //)
-          // Pangea#
+          .where(
+            (space) =>
+                !allSpaces.any(
+                  (parentSpace) => parentSpace.spaceChildren
+                      .any((child) => child.roomId == space.id),
+                ) &&
+                space
+                    .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))
+                    .toLowerCase()
+                    .contains(
+                      widget.controller.searchController.text.toLowerCase(),
+                    ),
+          )
           .toList();
 
       return SafeArea(
