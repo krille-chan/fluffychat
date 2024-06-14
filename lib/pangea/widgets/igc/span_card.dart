@@ -162,6 +162,7 @@ class WordMatchContent extends StatelessWidget {
     try {
       return Column(
         children: [
+          // if (!controller.widget.scm.pangeaMatch!.isITStart)
           CardHeader(
             text: controller.error?.toString() ?? matchCopy.title,
             botExpression: controller.error == null
@@ -222,7 +223,7 @@ class WordMatchContent extends StatelessWidget {
                   opacity: 0.8,
                   child: TextButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                         AppConfig.primaryColor.withOpacity(0.1),
                       ),
                     ),
@@ -249,7 +250,7 @@ class WordMatchContent extends StatelessWidget {
                           ? onReplaceSelected
                           : null,
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                           (controller.selectedChoice != null
                                   ? controller.selectedChoice!.color
                                   : AppConfig.primaryColor)
@@ -272,7 +273,7 @@ class WordMatchContent extends StatelessWidget {
                       );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                         (AppConfig.primaryColor).withOpacity(0.1),
                       ),
                     ),

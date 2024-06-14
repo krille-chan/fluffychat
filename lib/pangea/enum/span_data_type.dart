@@ -1,5 +1,5 @@
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum SpanDataTypeEnum {
@@ -32,7 +32,10 @@ extension SpanDataTypeEnumExt on SpanDataTypeEnum {
       case SpanDataTypeEnum.correction:
         return L10n.of(context)!.correctionDefaultPrompt;
       case SpanDataTypeEnum.itStart:
-        return L10n.of(context)!.needsItMessage;
+        return L10n.of(context)!.needsItMessage(
+          MatrixState.pangeaController.languageController.userL2?.displayName ??
+              "target language",
+        );
     }
   }
 }

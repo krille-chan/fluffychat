@@ -2514,7 +2514,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "interactiveTranslatorAutoPlaySliderHeader": "Auto Play Interactive Translator",
+    "interactiveTranslatorAutoPlaySliderHeader": "Autoplay translation",
     "@interactiveTranslatorAutoPlaySliderHeader": {
         "type": "text",
         "placeholders": {}
@@ -2884,21 +2884,23 @@
         "type": "text",
         "placeholders": {}
     },
-    "helpMeTranslate": "Help me translate!",
+    "helpMeTranslate": "Yes!",
     "@helpMeTranslate": {
         "type": "text",
         "placeholders": {}
     },
-    "needsItShortMessage": "Try interactive translation!",
+    "needsItShortMessage": "Out of target",
     "needsIGCShortMessage": "Try interactive grammar assistance!",
     "@needsItShortMessage": {
         "type": "text",
         "placeholders": {}
     },
-    "needsItMessage": "This message has too many words in your base language.",
+    "needsItMessage": "Wait, that's not {targetLanguage}! Do you need help translating?",
     "@needsItMessage": {
         "type": "text",
-        "placeholders": {}
+        "placeholders": {
+            "targetLanguage": {}
+        }
     },
     "needsIgcMessage": "This message has a grammar error.",
     "tokenTranslationTitle": "A word is in your base language.",
