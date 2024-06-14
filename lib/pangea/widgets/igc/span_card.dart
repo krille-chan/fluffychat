@@ -251,7 +251,7 @@ class WordMatchContent extends StatelessWidget {
                   opacity: 0.8,
                   child: TextButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                         AppConfig.primaryColor.withOpacity(0.1),
                       ),
                     ),
@@ -278,12 +278,22 @@ class WordMatchContent extends StatelessWidget {
                           ? onReplaceSelected
                           : null,
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                           (controller.selectedChoice != null
                                   ? controller.selectedChoice!.color
                                   : AppConfig.primaryColor)
                               .withOpacity(0.2),
                         ),
+                        // Outline if Replace button enabled
+                        side: controller.selectedChoice != null
+                            ? WidgetStateProperty.all(
+                                BorderSide(
+                                  color: controller.selectedChoice!.color,
+                                  style: BorderStyle.solid,
+                                  width: 2.0,
+                                ),
+                              )
+                            : null,
                       ),
                       child: Text(L10n.of(context)!.replace),
                     ),
@@ -301,7 +311,7 @@ class WordMatchContent extends StatelessWidget {
                       );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                         (AppConfig.primaryColor).withOpacity(0.1),
                       ),
                     ),
