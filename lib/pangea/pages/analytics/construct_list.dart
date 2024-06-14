@@ -117,7 +117,6 @@ class ConstructListViewState extends State<ConstructListView> {
         .then((value) => setState(() => _constructs = value));
 
     refreshSubscription = widget.refreshStream.stream.listen((forceUpdate) {
-      debugPrint("updating constructs");
       // postframe callback to let widget rebuild with the new selected parameter
       // before sending selected to getConstructs function
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -132,9 +131,6 @@ class ConstructListViewState extends State<ConstructListView> {
             .then(
               (value) => setState(() {
                 _constructs = value;
-                debugPrint(
-                  "constructs is now: ${constructs?.map((event) => event.uses.map((use) => use.lemma)).toList()}",
-                );
               }),
             );
       });

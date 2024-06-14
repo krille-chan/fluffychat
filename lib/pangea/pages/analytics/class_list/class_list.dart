@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/enum/time_span.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
 import 'package:fluffychat/pangea/pages/analytics/class_list/class_list_view.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,24 @@ class AnalyticsClassList extends StatefulWidget {
 class AnalyticsClassListController extends State<AnalyticsClassList> {
   PangeaController pangeaController = MatrixState.pangeaController;
   List<ChartAnalyticsModel> models = [];
+  List<Room> spaces = [];
+
+  @override
+  void initState() {
+    super.initState();
+    Matrix.of(context).client.classesAndExchangesImTeaching.then((spaceList) {
+      spaceList = spaceList
+          .where(
+            (space) => !spaceList.any(
+              (parentSpace) => parentSpace.spaceChildren
+                  .any((child) => child.roomId == space.id),
+            ),
+          )
+          .toList();
+      spaces = spaceList;
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
