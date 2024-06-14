@@ -15,7 +15,6 @@ class ClassChatPowerLevels {
     final Map<String, dynamic> powerLevelOverride = {};
     powerLevelOverride['events'] = {
       EventTypes.spaceChild: 0,
-      PangeaEventTypes.studentAnalyticsSummary: 0,
     };
     powerLevelOverride['users'] = {};
 

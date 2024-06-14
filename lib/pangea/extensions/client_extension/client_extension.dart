@@ -11,8 +11,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
-import '../../utils/p_store.dart';
-
 part "classes_and_exchanges_extension.dart";
 part "client_analytics_extension.dart";
 part "general_info_extension.dart";
@@ -30,11 +28,6 @@ extension PangeaClient on Client {
 
   Future<void> updateAnalyticsRoomVisibility() async =>
       await _updateAnalyticsRoomVisibility();
-
-  Future<void> updateMyLearningAnalyticsForAllClassesImIn([
-    PLocalStore? storageService,
-  ]) async =>
-      await _updateMyLearningAnalyticsForAllClassesImIn(storageService);
 
   Future<void> addAnalyticsRoomsToAllSpaces() async =>
       await _addAnalyticsRoomsToAllSpaces();

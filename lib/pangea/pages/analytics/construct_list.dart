@@ -2,13 +2,12 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
-import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -25,6 +24,7 @@ class ConstructList extends StatefulWidget {
   final AnalyticsSelected? selected;
   final BaseAnalyticsController controller;
   final PangeaController pangeaController;
+  final StreamController refreshStream;
 
   const ConstructList({
     super.key,
@@ -32,6 +32,7 @@ class ConstructList extends StatefulWidget {
     required this.defaultSelected,
     required this.controller,
     required this.pangeaController,
+    required this.refreshStream,
     this.selected,
   });
 
@@ -40,28 +41,8 @@ class ConstructList extends StatefulWidget {
 }
 
 class ConstructListState extends State<ConstructList> {
-  bool initialized = false;
   String? langCode;
   String? error;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.pangeaController.analytics
-        .setConstructs(
-          constructType: widget.constructType,
-          removeIT: true,
-          defaultSelected: widget.defaultSelected,
-          selected: widget.selected,
-          forceUpdate: true,
-        )
-        .whenComplete(() => setState(() => initialized = true));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,11 +53,11 @@ class ConstructListState extends State<ConstructList> {
         : Column(
             children: [
               ConstructListView(
-                init: initialized,
                 controller: widget.controller,
                 pangeaController: widget.pangeaController,
                 defaultSelected: widget.defaultSelected,
                 selected: widget.selected,
+                refreshStream: widget.refreshStream,
               ),
             ],
           );
@@ -93,19 +74,18 @@ class ConstructListState extends State<ConstructList> {
 //    subtitle = total uses, equal to construct.content.uses.length
 // list has a fixed height of 400 and is scrollable
 class ConstructListView extends StatefulWidget {
-  // final List<ConstructEvent> constructs;
-  final bool init;
   final BaseAnalyticsController controller;
   final PangeaController pangeaController;
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? selected;
+  final StreamController refreshStream;
 
   const ConstructListView({
     super.key,
-    required this.init,
     required this.controller,
     required this.pangeaController,
     required this.defaultSelected,
+    required this.refreshStream,
     this.selected,
   });
 
@@ -114,58 +94,54 @@ class ConstructListView extends StatefulWidget {
 }
 
 class ConstructListViewState extends State<ConstructListView> {
+  final ConstructType constructType = ConstructType.grammar;
   final Map<String, Timeline> _timelinesCache = {};
   final Map<String, PangeaMessageEvent> _msgEventCache = {};
   final List<PangeaMessageEvent> _msgEvents = [];
+  bool fetchingConstructs = true;
   bool fetchingUses = false;
-
-  StreamSubscription<Event>? stateSub;
-  Timer? refreshTimer;
+  StreamSubscription? refreshSubscription;
 
   @override
   void initState() {
     super.initState();
-
-    stateSub = Matrix.of(context)
-        .client
-        .onRoomState
-        .stream
-        //could optimize here be determing if the vocab event is relevant for
-        //currently displayed data
-        .where((event) => event.type == PangeaEventTypes.vocab)
-        .listen(onStateUpdate);
-  }
-
-  Future<void> onStateUpdate(Event? newState) async {
-    debugPrint("onStateUpdate construct list");
-    if (refreshTimer?.isActive ?? false) return;
-    refreshTimer = Timer(
-      const Duration(seconds: 3),
-      () async {
-        await widget.pangeaController.analytics.setConstructs(
-          constructType: ConstructType.grammar,
+    widget.pangeaController.analytics
+        .getConstructs(
+          constructType: constructType,
           removeIT: true,
           defaultSelected: widget.defaultSelected,
           selected: widget.selected,
           forceUpdate: true,
-        );
-        await fetchUses();
-      },
-    );
+        )
+        .whenComplete(() => setState(() => fetchingConstructs = false))
+        .then((value) => setState(() => _constructs = value));
+
+    refreshSubscription = widget.refreshStream.stream.listen((forceUpdate) {
+      // postframe callback to let widget rebuild with the new selected parameter
+      // before sending selected to getConstructs function
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        widget.pangeaController.analytics
+            .getConstructs(
+              constructType: constructType,
+              removeIT: true,
+              defaultSelected: widget.defaultSelected,
+              selected: widget.selected,
+              forceUpdate: true,
+            )
+            .then(
+              (value) => setState(() {
+                _constructs = value;
+              }),
+            );
+      });
+    });
   }
 
   @override
   void dispose() {
+    refreshSubscription?.cancel();
     super.dispose();
-    refreshTimer?.cancel();
-    stateSub?.cancel();
   }
-
-  // @override
-  // void didUpdateWidget(ConstructListView oldWidget) {
-  //   super.didUpdateWidget(oldWidget);
-  //   fetchUses();
-  // }
 
   int get lemmaIndex =>
       constructs?.indexWhere(
@@ -241,18 +217,47 @@ class ConstructListViewState extends State<ConstructListView> {
     }
   }
 
-  List<AggregateConstructUses>? get constructs =>
-      widget.pangeaController.analytics.constructs != null
-          ? widget.pangeaController.myAnalytics
-              .aggregateConstructData(
-                widget.pangeaController.analytics.constructs!,
-              )
-              .sorted(
-                (a, b) => b.uses.length.compareTo(a.uses.length),
-              )
-          : null;
+  List<ConstructAnalyticsEvent>? _constructs;
 
-  AggregateConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
+  List<ConstructUses>? get constructs {
+    if (_constructs == null) {
+      return null;
+    }
+
+    final List<OneConstructUse> filtered = List.from(_constructs!)
+        .map((event) => event.content.uses)
+        .expand((uses) => uses)
+        .cast<OneConstructUse>()
+        .where((use) => use.constructType == constructType)
+        .toList();
+
+    final Map<String, List<OneConstructUse>> lemmaToUses = {};
+    for (final use in filtered) {
+      if (use.lemma == null) continue;
+      lemmaToUses[use.lemma!] ??= [];
+      lemmaToUses[use.lemma!]!.add(use);
+    }
+
+    final constructUses = lemmaToUses.entries
+        .map(
+          (entry) => ConstructUses(
+            lemma: entry.key,
+            uses: entry.value,
+            constructType: constructType,
+          ),
+        )
+        .toList();
+
+    constructUses.sort((a, b) {
+      final comp = b.uses.length.compareTo(a.uses.length);
+      if (comp != 0) return comp;
+      return a.lemma.compareTo(b.lemma);
+    });
+
+    return constructUses;
+  }
+
+  ConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
         (element) => element.lemma == widget.controller.currentLemma,
       );
 
@@ -297,13 +302,13 @@ class ConstructListViewState extends State<ConstructListView> {
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.init || fetchingUses) {
+    if (fetchingConstructs || fetchingUses) {
       return const Expanded(
         child: Center(child: CircularProgressIndicator()),
       );
     }
-    if ((constructs?.isEmpty ?? true) ||
-        (widget.controller.currentLemma != null && currentConstruct == null)) {
+
+    if (constructs?.isEmpty ?? true) {
       return Expanded(
         child: Center(child: Text(L10n.of(context)!.noDataFound)),
       );
@@ -341,7 +346,10 @@ class ConstructMessagesDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.widget.controller.currentLemma == null) {
+    if (controller.widget.controller.currentLemma == null ||
+        controller.constructs == null ||
+        controller.lemmaIndex < 0 ||
+        controller.lemmaIndex >= controller.constructs!.length) {
       return const AlertDialog(content: CircularProgressIndicator.adaptive());
     }
 
@@ -349,38 +357,40 @@ class ConstructMessagesDialog extends StatelessWidget {
 
     return AlertDialog(
       title: Center(child: Text(controller.widget.controller.currentLemma!)),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (controller.constructs![controller.lemmaIndex].uses.length >
-              controller._msgEvents.length)
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(L10n.of(context)!.roomDataMissing),
+      content: SizedBox(
+        height: 350,
+        width: 500,
+        child: Column(
+          children: [
+            if (controller.constructs![controller.lemmaIndex].uses.length >
+                controller._msgEvents.length)
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(L10n.of(context)!.roomDataMissing),
+                ),
+              ),
+            Expanded(
+              child: ListView(
+                children: [
+                  ...msgEventMatches.mapIndexed(
+                    (index, event) => Column(
+                      children: [
+                        ConstructMessage(
+                          msgEvent: event.msgEvent,
+                          lemma: controller.widget.controller.currentLemma!,
+                          errorMessage: event.lemmaMatch,
+                        ),
+                        if (index < msgEventMatches.length - 1)
+                          const Divider(height: 1),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                ...msgEventMatches.mapIndexed(
-                  (index, event) => Column(
-                    children: [
-                      ConstructMessage(
-                        msgEvent: event.msgEvent,
-                        lemma: controller.widget.controller.currentLemma!,
-                        errorMessage: event.lemmaMatch,
-                      ),
-                      if (index < msgEventMatches.length - 1)
-                        const Divider(height: 1),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
       actions: [
         TextButton(
@@ -474,21 +484,21 @@ class ConstructMessage extends StatelessWidget {
 class ConstructMessageBubble extends StatelessWidget {
   final String errorText;
   final String replacementText;
-  final int? start;
-  final int? end;
+  final int start;
+  final int end;
 
   const ConstructMessageBubble({
     super.key,
     required this.errorText,
     required this.replacementText,
-    this.start,
-    this.end,
+    required this.start,
+    required this.end,
   });
 
   @override
   Widget build(BuildContext context) {
     final defaultStyle = TextStyle(
-      color: Theme.of(context).colorScheme.onBackground,
+      color: Theme.of(context).colorScheme.onSurface,
       fontSize: AppConfig.messageFontSize * AppConfig.fontSizeFactor,
       height: 1.3,
     );
@@ -516,7 +526,7 @@ class ConstructMessageBubble extends StatelessWidget {
             vertical: 8,
           ),
           child: RichText(
-            text: (start == null || end == null)
+            text: (end == null)
                 ? TextSpan(
                     text: errorText,
                     style: defaultStyle,
@@ -528,7 +538,7 @@ class ConstructMessageBubble extends StatelessWidget {
                         style: defaultStyle,
                       ),
                       TextSpan(
-                        text: errorText.substring(start!, end),
+                        text: errorText.substring(start, end),
                         style: defaultStyle.merge(
                           TextStyle(
                             backgroundColor: Colors.red.withOpacity(0.25),
@@ -547,7 +557,7 @@ class ConstructMessageBubble extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: errorText.substring(end!),
+                        text: errorText.substring(end),
                         style: defaultStyle,
                       ),
                     ],
@@ -569,14 +579,7 @@ class ConstructMessageMetadata extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String roomName = msgEvent.event.room.name.isEmpty
-        ? Matrix.of(context)
-                .client
-                .getRoomById(msgEvent.event.room.id)
-                ?.getLocalizedDisplayname() ??
-            ""
-        : msgEvent.event.room.name;
-
+    final String roomName = msgEvent.event.room.getLocalizedDisplayname();
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 30, 0),
       child: Column(

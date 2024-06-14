@@ -138,17 +138,14 @@ class ChatListView extends StatelessWidget {
                   builder: (context) {
                     final allSpaces =
                         client.rooms.where((room) => room.isSpace);
-                    // #Pangea
-                    // final rootSpaces = allSpaces
-                    //     .where(
-                    //       (space) => !allSpaces.any(
-                    //         (parentSpace) => parentSpace.spaceChildren
-                    //             .any((child) => child.roomId == space.id),
-                    //       ),
-                    //     )
-                    //     .toList();
-                    final rootSpaces = allSpaces.toList();
-                    // Pangea#
+                    final rootSpaces = allSpaces
+                        .where(
+                          (space) => !allSpaces.any(
+                            (parentSpace) => parentSpace.spaceChildren
+                                .any((child) => child.roomId == space.id),
+                          ),
+                        )
+                        .toList();
                     final destinations = getNavigationDestinations(context);
 
                     return SizedBox(
@@ -228,9 +225,9 @@ class ChatListView extends StatelessWidget {
                                 NavigationDestinationLabelBehavior.alwaysHide,
                             height: 64,
                             shadowColor:
-                                Theme.of(context).colorScheme.onBackground,
+                                Theme.of(context).colorScheme.onSurface,
                             surfaceTintColor:
-                                Theme.of(context).colorScheme.background,
+                                Theme.of(context).colorScheme.surface,
                             selectedIndex: controller.selectedIndex,
                             onDestinationSelected:
                                 controller.onDestinationSelected,

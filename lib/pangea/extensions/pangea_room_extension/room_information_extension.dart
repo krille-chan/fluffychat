@@ -1,6 +1,17 @@
 part of "pangea_room_extension.dart";
 
 extension RoomInformationRoomExtension on Room {
+  Future<int> get _numNonAdmins async {
+    return (await requestParticipants())
+        .where(
+          (e) =>
+              e.powerLevel < ClassDefaultValues.powerLevelOfAdmin &&
+              e.id != BotName.byEnvironment,
+        )
+        .toList()
+        .length;
+  }
+
   DateTime? get _creationTime =>
       getState(EventTypes.RoomCreate)?.originServerTs;
 
@@ -34,11 +45,11 @@ extension RoomInformationRoomExtension on Room {
   bool get _isDirectChatWithoutMe =>
       isDirectChat && !getParticipants().any((e) => e.id == client.userID);
 
-  bool _isMadeForLang(String langCode) {
-    final creationContent = getState(EventTypes.RoomCreate)?.content;
-    return creationContent?.tryGet<String>(ModelKey.langCode) == langCode ||
-        creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
-  }
+  // bool _isMadeForLang(String langCode) {
+  //   final creationContent = getState(EventTypes.RoomCreate)?.content;
+  //   return creationContent?.tryGet<String>(ModelKey.langCode) == langCode ||
+  //       creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
+  // }
 
   Future<bool> get _isBotRoom async {
     final List<User> participants = await requestParticipants();
