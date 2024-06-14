@@ -111,3 +111,51 @@ index 1afc4606..894d1571 100644
      override fun provideFlutterEngine(context: Context): FlutterEngine? {
          return provideEngine(this)
      }
+diff --git a/android/build.gradle b/android/build.gradle
+index bd394967..2e9d54de 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -8,7 +8,7 @@ buildscript {
+     dependencies {
+         classpath 'com.android.tools.build:gradle:7.1.2'
+         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+-        //classpath 'com.google.gms:google-services:4.3.8'
++        classpath 'com.google.gms:google-services:4.3.8'
+     }
+ }
+ 
+diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
+index 8e67ae92..da4da5c3 100644
+--- a/lib/utils/background_push.dart
++++ b/lib/utils/background_push.dart
+@@ -39,7 +39,7 @@ import '../config/setting_keys.dart';
+ import '../widgets/matrix.dart';
+ import 'platform_infos.dart';
+ 
+-//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
++import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+ 
+ class NoTokenException implements Exception {
+   String get cause => 'Cannot get firebase token';
+@@ -64,7 +64,7 @@ class BackgroundPush {
+ 
+   final pendingTests = <String, Completer<void>>{};
+ 
+-  final dynamic firebase = null; //FcmSharedIsolate();
++  final dynamic firebase = FcmSharedIsolate();
+ 
+   DateTime? lastReceivedPush;
+ 
+diff --git a/pubspec.yaml b/pubspec.yaml
+index 193e6ed6..f70e48d4 100644
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+@@ -26,7 +26,7 @@ dependencies:
+   emoji_picker_flutter: ^2.1.1
+   emoji_proposal: ^0.0.1
+   emojis: ^0.9.9
+-  #fcm_shared_isolate: ^0.1.0
++  fcm_shared_isolate: ^0.1.0
+   file_picker: ^6.1.1
+   flutter:
+     sdk: flutter
