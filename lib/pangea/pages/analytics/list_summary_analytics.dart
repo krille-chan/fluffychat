@@ -1,10 +1,9 @@
 import 'dart:math';
 
+import 'package:fluffychat/pangea/models/analytics/chart_analytics_model.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/models/chart_analytics_model.dart';
 import '../../enum/use_type.dart';
 
 class ListSummaryAnalytics extends StatelessWidget {

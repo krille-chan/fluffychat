@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/enum/span_choice_type.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
@@ -80,15 +81,39 @@ class SpanDetailsRepoReqAndRes {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! SpanDetailsRepoReqAndRes) return false;
-
-    return toJson().toString() == other.toJson().toString();
+    if (other.userL1 != userL1) return false;
+    if (other.userL2 != userL2) return false;
+    if (other.enableIT != enableIT) return false;
+    if (other.enableIGC != enableIGC) return false;
+    if (other.span.choices
+            ?.firstWhere(
+              (choice) => choice.type == SpanChoiceType.bestCorrection,
+            )
+            .value !=
+        span.choices
+            ?.firstWhere(
+              (choice) => choice.type == SpanChoiceType.bestCorrection,
+            )
+            .value) return false;
+    return true;
   }
 
   /// Overrides the hashCode getter to generate a hash code for the [SpanDetailsRepoReqAndRes] object.
   /// Used as keys in response cache in igc_controller.
   @override
   int get hashCode {
-    return toJson().toString().hashCode;
+    return Object.hashAll([
+      userL1.hashCode,
+      userL2.hashCode,
+      enableIT.hashCode,
+      enableIGC.hashCode,
+      span.choices
+          ?.firstWhereOrNull(
+            (choice) => choice.type == SpanChoiceType.bestCorrection,
+          )
+          ?.value
+          .hashCode,
+    ]);
   }
 }
 
