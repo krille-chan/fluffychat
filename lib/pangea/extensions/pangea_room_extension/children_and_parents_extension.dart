@@ -149,16 +149,18 @@ extension ChildrenAndParentsRoomExtension on Room {
   String _nameIncludingParents(BuildContext context) {
     String nameSoFar = getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
     Room currentRoom = this;
-    var i = 0;
-    while (i < 2) {
-      if (currentRoom.immediateClassParents.isEmpty) {
-        return nameSoFar;
-      }
-      currentRoom = currentRoom.immediateClassParents.first;
-      nameSoFar =
-          '${currentRoom.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))} > $nameSoFar';
-      i++;
+    if (currentRoom.immediateClassParents.isEmpty) {
+      return nameSoFar;
     }
-    return nameSoFar;
+    currentRoom = currentRoom.immediateClassParents.first;
+    var nameToAdd =
+        currentRoom.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
+    nameToAdd =
+        nameToAdd.length <= 10 ? nameToAdd : "${nameToAdd.substring(0, 10)}...";
+    nameSoFar = '$nameToAdd > $nameSoFar';
+    if (currentRoom.immediateClassParents.isEmpty) {
+      return nameSoFar;
+    }
+    return "... > $nameSoFar";
   }
 }
