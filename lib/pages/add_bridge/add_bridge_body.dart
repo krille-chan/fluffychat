@@ -5,6 +5,8 @@ import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:tawkie/pages/add_bridge/social_network_item.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/platform_size.dart';
+import 'package:tawkie/widgets/matrix.dart';
+import 'Linkedin_connection_explain.dart';
 import 'add_bridge_header.dart';
 import 'model/social_network.dart';
 

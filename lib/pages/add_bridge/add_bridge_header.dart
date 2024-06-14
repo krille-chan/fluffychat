@@ -20,11 +20,19 @@ Widget buildHeaderBridgeText(BuildContext context) {
 
 Widget buildHeaderBridgeSubText(BuildContext context) {
   return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Text(
-      L10n.of(context)!.addSocialMessagingAccountsText,
-      textAlign: TextAlign.center,
-      style: const TextStyle(fontSize: 16.0),
-    ),
-  );
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Text(
+            L10n.of(context)!.addSocialMessagingAccountsText,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 16.0),
+          ),
+          Text(
+            L10n.of(context)!.addSocialDoubleFactorAdvice,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16.0, color: Colors.red[200]),
+          ),
+        ],
+      ));
 }

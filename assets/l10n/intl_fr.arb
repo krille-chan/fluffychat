@@ -2382,6 +2382,7 @@
     "connectChatNetworks": "Connectez vos réseaux de chat",
     "addSocialMessagingAccounts": "Ajoute tes comptes de messagerie",
     "addSocialMessagingAccountsText": "Connecte toutes tes conversations !",
+    "addSocialDoubleFactorAdvice": "Activer l'identification à double facteur sur les réseaux sociaux peut fournir une meilleure connexion.",
     "connected": "Connecté",
     "notConnected": "Non connecté",
     "connectYourSocialAccount": "Connecte-toi à ton compte",
@@ -2484,5 +2485,8 @@
     "subNotSubArgFour": "Remettre en non-lu",
     "noAccountRegister": "Pas encore de compte ? Inscris-toi !",
     "authCodeSentTo": "Code envoyé à",
-    "authResendCodeMessage": "Un nouveau code a été envoyé"
+    "authResendCodeMessage": "Un nouveau code a été envoyé",
+    "linkedinExplainTitle": "Instructions pour la connexion à Linkedin",
+    "linkedinExplainInstruction": "Instructions:",
+    "linkedinExplainOne": "Pour vous connecter à Linkedin, veuillez utiliser l'application mobile ou de bureau."
 }

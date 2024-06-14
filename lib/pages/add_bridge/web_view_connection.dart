@@ -68,6 +68,14 @@ class _WebViewConnectionState extends State<WebViewConnection> {
     final connectionState =
         Provider.of<ConnectionStateModel>(context, listen: false);
 
+    InAppWebViewSettings settings = InAppWebViewSettings();
+    if (widget.network.name == "Facebook Messenger") {
+      settings = InAppWebViewSettings(
+        userAgent:
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -76,10 +84,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
         centerTitle: true,
       ),
       body: InAppWebView(
-        initialSettings: InAppWebViewSettings(
-          userAgent:
-              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
-        ),
+        initialSettings: settings,
         initialUrlRequest: URLRequest(
           url: WebUri(widget.network.urlLogin!),
         ),
@@ -127,6 +132,32 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                         cookieManager, connectionState, widget.network);
                   },
                 );
+              }
+              break;
+
+            case "Linkedin":
+              if (url != null &&
+                  url.toString().contains(widget.network.urlRedirect!)) {
+                await showCustomLoadingDialog(
+                  context: context,
+                  future: () async {
+                    result = await widget.botBridgeConnection
+                        .createBridgeLinkedin(context, cookieManager,
+                        connectionState, widget.network);
+                  },
+                );
+              }
+              if (result == "success") {
+                // Close the current page
+                Navigator.pop(context);
+
+                // Close the current page
+                if (_webViewController != null) {
+                  _webViewController!.dispose();
+                }
+
+                // Call callback function with success result
+                widget.onConnectionResult(true);
               }
               break;
             // Other network
