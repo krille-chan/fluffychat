@@ -48,18 +48,18 @@ class ClassAnalyticsView extends StatelessWidget {
 
     return controller.classId != null
         ? BaseAnalyticsPage(
+            selectedView: controller.widget.selectedView,
             pageTitle: pageTitle,
             tabs: [tab1, tab2],
-            refreshData: controller.getChatAndStudentAnalytics,
             alwaysSelected: AnalyticsSelected(
               controller.classId!,
               AnalyticsEntryType.space,
-              controller.className(context),
+              controller.classRoom?.name ?? "",
             ),
             defaultSelected: AnalyticsSelected(
               controller.classId!,
               AnalyticsEntryType.space,
-              controller.className(context),
+              controller.classRoom?.name ?? "",
             ),
           )
         : const SizedBox();

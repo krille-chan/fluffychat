@@ -5,11 +5,7 @@ extension GeneralInfoClientExtension on Client {
     final List<String> adminRoomIds = [];
     for (final Room adminSpace in (await _classesAndExchangesImTeaching)) {
       adminRoomIds.add(adminSpace.id);
-      final children = adminSpace.childrenAndGrandChildren;
-      final List<String> adminSpaceRooms = children
-          .where((e) => e.roomId != null)
-          .map((e) => e.roomId!)
-          .toList();
+      final List<String> adminSpaceRooms = adminSpace.allSpaceChildRoomIds;
       adminRoomIds.addAll(adminSpaceRooms);
     }
     return adminRoomIds;
