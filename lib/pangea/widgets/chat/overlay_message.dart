@@ -47,8 +47,10 @@ class OverlayMessage extends StatelessWidget {
     }
 
     var color = Theme.of(context).colorScheme.surfaceVariant;
+    // #Pangea
     final isLight = Theme.of(context).brightness == Brightness.light;
     var lightness = isLight ? .05 : .85;
+    // Pangea#
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
         : Theme.of(context).colorScheme.onBackground;
