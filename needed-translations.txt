@@ -859,7 +859,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "be": [
@@ -2317,7 +2318,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "bn": [
@@ -3237,7 +3239,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "bo": [
@@ -4157,7 +4160,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ca": [
@@ -5077,7 +5081,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "cs": [
@@ -5997,7 +6002,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "de": [
@@ -6864,7 +6870,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "el": [
@@ -7784,7 +7791,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "eo": [
@@ -8704,7 +8712,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "es": [
@@ -8730,7 +8739,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "et": [
@@ -9593,7 +9603,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "eu": [
@@ -10456,7 +10467,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "fa": [
@@ -11376,7 +11388,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "fi": [
@@ -12296,7 +12309,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "fr": [
@@ -13216,7 +13230,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ga": [
@@ -14136,7 +14151,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "gl": [
@@ -14999,7 +15015,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "he": [
@@ -15919,7 +15936,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "hi": [
@@ -16839,7 +16857,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "hr": [
@@ -17746,7 +17765,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "hu": [
@@ -18666,7 +18686,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ia": [
@@ -20110,7 +20131,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "id": [
@@ -21030,7 +21052,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ie": [
@@ -21950,7 +21973,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "it": [
@@ -22855,7 +22879,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ja": [
@@ -23775,7 +23800,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ko": [
@@ -24695,7 +24721,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "lt": [
@@ -25615,7 +25642,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "lv": [
@@ -26535,7 +26563,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "nb": [
@@ -27455,7 +27484,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "nl": [
@@ -28375,7 +28405,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "pl": [
@@ -29295,7 +29326,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "pt": [
@@ -30215,7 +30247,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "pt_BR": [
@@ -31104,7 +31137,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "pt_PT": [
@@ -32024,7 +32058,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ro": [
@@ -32944,7 +32979,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ru": [
@@ -33807,7 +33843,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "sk": [
@@ -34727,7 +34764,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "sl": [
@@ -35647,7 +35685,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "sr": [
@@ -36567,7 +36606,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "sv": [
@@ -37452,7 +37492,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ta": [
@@ -38372,7 +38413,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "th": [
@@ -39292,7 +39334,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "tr": [
@@ -40197,7 +40240,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "uk": [
@@ -41060,7 +41104,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "vi": [
@@ -41980,7 +42025,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "zh": [
@@ -42843,7 +42889,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "zh_Hant": [
@@ -43763,6 +43810,7 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ]
 }
