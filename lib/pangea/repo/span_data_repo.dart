@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/enum/span_choice_type.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
@@ -84,13 +85,16 @@ class SpanDetailsRepoReqAndRes {
     if (other.userL2 != userL2) return false;
     if (other.enableIT != enableIT) return false;
     if (other.enableIGC != enableIGC) return false;
-    if (other.span.message != span.message) return false;
-    // if (other.span.shortMessage != span.shortMessage) return false;
-    if (other.span.offset != span.offset) return false;
-    if (other.span.length != span.length) return false;
-    if (other.span.fullText != span.fullText) return false;
-    // if (other.span.type != span.type) return false;
-    // if (other.span.context != span.context) return false;
+    if (other.span.choices
+            ?.firstWhere(
+              (choice) => choice.type == SpanChoiceType.bestCorrection,
+            )
+            .value !=
+        span.choices
+            ?.firstWhere(
+              (choice) => choice.type == SpanChoiceType.bestCorrection,
+            )
+            .value) return false;
     return true;
   }
 
@@ -103,13 +107,12 @@ class SpanDetailsRepoReqAndRes {
       userL2.hashCode,
       enableIT.hashCode,
       enableIGC.hashCode,
-      span.message.hashCode,
-      // span.shortMessage.hashCode,
-      span.offset.hashCode,
-      span.length.hashCode,
-      span.fullText.hashCode,
-      // span.type.hashCode,
-      // span.context.hashCode,
+      span.choices
+          ?.firstWhereOrNull(
+            (choice) => choice.type == SpanChoiceType.bestCorrection,
+          )
+          ?.value
+          .hashCode,
     ]);
   }
 }

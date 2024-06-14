@@ -55,6 +55,9 @@ class IgcController {
     try {
       if (choreographer.currentText.isEmpty) return clear();
 
+      // the error spans are going to be reloaded, so clear the cache
+      _clearCache();
+
       debugPrint('getIGCTextData called with ${choreographer.currentText}');
 
       debugPrint('getIGCTextData called with tokensOnly = $tokensOnly');
@@ -287,6 +290,7 @@ class IgcController {
 
   clear() {
     igcTextData = null;
+    _clearCache();
     // Not sure why this is here
     // MatrixState.pAnyState.closeOverlay();
   }
