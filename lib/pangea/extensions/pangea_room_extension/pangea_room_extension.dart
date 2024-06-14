@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,6 @@ extension PangeaRoom on Room {
   Future<void> inviteTeachersToAnalyticsRoom() async =>
       await _inviteTeachersToAnalyticsRoom();
 
-  // Invite teachers of 1 space to all users' analytics rooms
   Future<void> inviteSpaceTeachersToAnalyticsRooms() async =>
       await _inviteSpaceTeachersToAnalyticsRooms();
 
@@ -108,6 +108,9 @@ extension PangeaRoom on Room {
   List<Room> get immediateClassParents => _immediateClassParents;
 
   List<Room> get pangeaSpaceParents => _pangeaSpaceParents;
+
+  String nameIncludingParents(BuildContext context) =>
+      _nameIncludingParents(context);
 
   List<String> get allSpaceChildRoomIds => _allSpaceChildRoomIds;
 
