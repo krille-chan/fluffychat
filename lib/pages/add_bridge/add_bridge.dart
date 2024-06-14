@@ -15,6 +15,7 @@ import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
 
+import 'connection_bridge_dialog.dart';
 import 'delete_conversation_dialog.dart';
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
@@ -59,6 +60,11 @@ class BotController extends State<AddBridge> {
       fullState: true,
       setPresence: PresenceType.online,
     );
+  }
+
+  // To stop loops (when leaving the page)
+  void stopProcess() {
+    continueProcess = false;
   }
 
   Future<String?> _getOrCreateDirectChat(String botUserId) async {
@@ -471,7 +477,7 @@ class BotController extends State<AddBridge> {
         break;
       case "WhatsApp":
         // Replace this with your actual WhatsApp connection logic
-        // success = await connectToWhatsApp(context, network, controller);
+        await connectToWhatsApp(context, network, this);
         break;
       case "Facebook Messenger":
         Navigator.push(
@@ -605,7 +611,7 @@ class BotController extends State<AddBridge> {
             print('latestMessage : $latestMessage');
           }
           if (pasteCookie.hasMatch(latestMessage)) {
-            await roomBot?.sendTextEvent(formattedCookieString);
+            await roomBot.sendTextEvent(formattedCookieString);
           } else if (alreadyConnected.hasMatch(latestMessage)) {
             Logs().v("Already Connected to ${network.name}");
             break;
@@ -659,6 +665,160 @@ class BotController extends State<AddBridge> {
       }
       showCatchErrorDialog(context, L10n.of(context)!.tryAgain);
     }
+  }
+
+  SocialNetwork? getWhatsAppNetwork() {
+    return socialNetworks.firstWhere(
+          (network) => network.name == "WhatsApp",
+    );
+  }
+
+  // Function to create and connect the bridge with the WhatsApp bot
+  Future<WhatsAppResult> createBridgeWhatsApp(BuildContext context,
+      String phoneNumber, ConnectionStateModel connectionState) async {
+    final SocialNetwork? whatsAppNetwork = getWhatsAppNetwork();
+    if (whatsAppNetwork == null) {
+      throw Exception("WhatsApp network not found");
+    }
+
+    final String botUserId = '${whatsAppNetwork.chatBot}$hostname';
+
+    Future.microtask(() {
+      connectionState.updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
+    });
+
+    final RegExp successMatch = LoginRegex.whatsAppSuccessMatch;
+    final RegExp alreadySuccessMatch = LoginRegex.whatsAppAlreadySuccessMatch;
+    final RegExp meansCodeMatch = LoginRegex.whatsAppMeansCodeMatch;
+    final RegExp timeOutMatch = LoginRegex.whatsAppTimeoutMatch;
+
+    final String? directChat = await _getOrCreateDirectChat(botUserId);
+    if (directChat == null) {
+      return _handleErrorAndReturnResult(whatsAppNetwork);
+    }
+
+    final Room? roomBot = client.getRoomById(directChat!);
+    if (roomBot == null) {
+      return _handleErrorAndReturnResult(whatsAppNetwork);
+    }
+
+    await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
+    Future.microtask(() {
+      connectionState.updateConnectionTitle(L10n.of(context)!.loadingVerificationNumber);
+    });
+
+    await roomBot.sendTextEvent("login $phoneNumber");
+    await Future.delayed(const Duration(seconds: 5)); // Wait sec
+
+    return await _fetchWhatsAppLoginResult(roomBot, successMatch, alreadySuccessMatch, meansCodeMatch, timeOutMatch);
+  }
+
+// Help function to handle errors and return a default result
+  WhatsAppResult _handleErrorAndReturnResult(SocialNetwork network) {
+    _handleError(network);
+    return WhatsAppResult("error", "", "");
+  }
+
+// Help function to retrieve WhatsApp connection result
+  Future<WhatsAppResult> _fetchWhatsAppLoginResult(Room roomBot, RegExp successMatch, RegExp alreadySuccessMatch, RegExp meansCodeMatch, RegExp timeOutMatch) async {
+    while (true) {
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        roomBot.id,
+        Direction.b,
+        limit: 2, // Number of messages to obtain
+      );
+
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+
+      if (latestMessages.isNotEmpty) {
+        final String oldestMessage = latestMessages.last.content['body'].toString() ?? '';
+        final String latestMessage = latestMessages.first.content['body'].toString() ?? '';
+
+        if (successMatch.hasMatch(latestMessage) || alreadySuccessMatch.hasMatch(latestMessage)) {
+          Logs().v("You're logged to WhatsApp");
+          return WhatsAppResult("success", "", "");
+        } else if (meansCodeMatch.hasMatch(oldestMessage)) {
+          Logs().v("scanTheCode");
+
+          // Extract the message code
+          final RegExp regExp = RegExp(r"\*\*(.*?)\*\*");
+          final Match? match = regExp.firstMatch(oldestMessage);
+          final String? code = match?.group(1);
+
+          return WhatsAppResult("scanTheCode", code, latestMessage);
+        } else if (timeOutMatch.hasMatch(latestMessage)) {
+          Logs().v("Login timed out");
+          return WhatsAppResult("loginTimedOut", "", "");
+        }
+      }
+
+      await Future.delayed(const Duration(seconds: 2));
+    }
+  }
+
+// Function to retrieve WhatsApp replies
+  Future<String> fetchDataWhatsApp() async {
+    final SocialNetwork? whatsAppNetwork = getWhatsAppNetwork();
+    if (whatsAppNetwork == null) {
+      throw Exception("WhatsApp network not found");
+    }
+
+    final String botUserId = '${whatsAppNetwork.chatBot}$hostname';
+
+    final RegExp successMatch = LoginRegex.whatsAppSuccessMatch;
+    final RegExp timeOutMatch = LoginRegex.whatsAppTimeoutMatch;
+
+    // Start a direct chat with the WhatsApp bot if necessary
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
+
+    String result = "Not logged";
+
+    // Loop to get the last messages from the room as long as continueProcess is true
+    while (continueProcess) {
+      result = await _checkLatestMessages(directChat, successMatch, timeOutMatch, whatsAppNetwork);
+
+      if (result != "Not logged") {
+        break;
+      }
+
+      if (!continueProcess) {
+        result = "Stop Listening";
+        break;
+      }
+
+      await Future.delayed(const Duration(seconds: 2));
+    }
+
+    return result;
+  }
+
+// Help function for checking the latest room messages
+  Future<String> _checkLatestMessages(String directChat, RegExp successMatch, RegExp timeOutMatch, SocialNetwork whatsAppNetwork) async {
+    final GetRoomEventsResponse response = await client.getRoomEvents(
+      directChat,
+      Direction.b,
+      limit: 3,
+    );
+
+    final List<MatrixEvent> latestMessages = response.chunk ?? [];
+
+    // Check last three messages
+    for (int i = latestMessages.length - 1; i >= 0; i--) {
+      final String messageBody = latestMessages[i].content['body'].toString() ?? '';
+
+      if (successMatch.hasMatch(messageBody)) {
+        Logs().v("You're logged to WhatsApp");
+        setState(() => whatsAppNetwork.connected = true);
+        return "success";
+      } else if (timeOutMatch.hasMatch(messageBody)) {
+        Logs().v("Login timed out");
+        return "loginTimedOut";
+      }
+    }
+
+    return "Not logged";
   }
 
   @override

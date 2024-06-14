@@ -10,7 +10,7 @@ class PingPatterns {
   static RegExp whatsAppNotLoggedMatch =
       RegExp(r"You're not logged into WhatsApp");
   static RegExp whatsAppLoggedButNotConnectedMatch =
-      RegExp(r"but you don't have a WhatsApp connection.");
+      RegExp(r"but not logged in.");
 
   // Facebook Messenger
   static RegExp facebookOnlineMatch = RegExp(r".*You're logged into Meta");
