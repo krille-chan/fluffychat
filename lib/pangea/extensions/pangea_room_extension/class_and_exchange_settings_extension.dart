@@ -62,22 +62,11 @@ extension ClassAndExchangeSettingsRoomExtension on Room {
       }
       final Event? currentPower = getState(EventTypes.RoomPowerLevels);
       final Map<String, dynamic>? currentPowerContent =
-          currentPower?.content as Map<String, dynamic>?;
-      if (currentPowerContent == null) {
-        return;
-      }
-      if (!(currentPowerContent.containsKey("events"))) {
-        currentPowerContent["events"] = {};
-      }
-      final spaceChildPower =
-          currentPowerContent["events"][EventTypes.spaceChild];
-      final studentAnalyticsPower = currentPowerContent["events"]
-          [PangeaEventTypes.studentAnalyticsSummary];
+          currentPower?.content["events"] as Map<String, dynamic>?;
+      final spaceChildPower = currentPowerContent?[EventTypes.spaceChild];
 
-      if ((spaceChildPower == null || studentAnalyticsPower == null)) {
+      if (spaceChildPower == null && currentPowerContent != null) {
         currentPowerContent["events"][EventTypes.spaceChild] = 0;
-        currentPowerContent["events"]
-            [PangeaEventTypes.studentAnalyticsSummary] = 0;
 
         await client.setRoomStateWithKey(
           id,

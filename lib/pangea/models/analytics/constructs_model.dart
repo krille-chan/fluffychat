@@ -1,69 +1,105 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/models/analytics/analytics_model.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
-import '../enum/construct_type_enum.dart';
+import '../../enum/construct_type_enum.dart';
 
-class ConstructUses {
-  String lemma;
-  ConstructType type;
-
+class ConstructAnalyticsModel extends AnalyticsModel {
   List<OneConstructUse> uses;
 
-  //PTODO - how to incorporate semantic similarity score into this?
-
-  //PTODO - add variables for saving requests for
-  //  1) definitions
-  //  2) translations
-  //  3) examples??? (gpt suggested)
-
-  ConstructUses({
-    required this.lemma,
-    required this.type,
+  ConstructAnalyticsModel({
     this.uses = const [],
   });
 
-  factory ConstructUses.fromJson(Map<String, dynamic> json) {
-    // try {
-    debugger(
-      when:
-          kDebugMode && (json['uses'] == null || json[ModelKey.lemma] == null),
+  static const _usesKey = "uses";
+
+  factory ConstructAnalyticsModel.fromJson(Map<String, dynamic> json) {
+    final List<OneConstructUse> uses = [];
+    if (json[_usesKey] is List) {
+      // This is the new format
+      uses.addAll(
+        json[_usesKey]
+            .map((use) => OneConstructUse.fromJson(use))
+            .cast<OneConstructUse>()
+            .toList(),
+      );
+    } else {
+      // This is the old format. No data on production should be
+      // structured this way, but it's useful for testing.
+      try {
+        final useValues = (json[_usesKey] as Map<String, dynamic>).values;
+        for (final useValue in useValues) {
+          final lemma = useValue['lemma'];
+          final lemmaUses = useValue[_usesKey];
+          for (final useData in lemmaUses) {
+            final use = OneConstructUse(
+              useType: ConstructUseType.ga,
+              chatId: useData["chatId"],
+              timeStamp: DateTime.parse(useData["timeStamp"]),
+              lemma: lemma,
+              form: useData["form"],
+              msgId: useData["msgId"],
+              constructType: ConstructType.grammar,
+            );
+            uses.add(use);
+          }
+        }
+      } catch (err, s) {
+        debugPrint("Error parsing ConstructAnalyticsModel");
+        ErrorHandler.logError(
+          e: err,
+          s: s,
+          m: "Error parsing ConstructAnalyticsModel",
+        );
+        debugger(when: kDebugMode);
+      }
+    }
+    return ConstructAnalyticsModel(
+      uses: uses,
     );
-    return ConstructUses(
-      lemma: json[ModelKey.lemma],
-      uses: (json['uses'] as Iterable)
-          .map<OneConstructUse?>(
-            (use) => use != null ? OneConstructUse.fromJson(use) : null,
-          )
-          .where((element) => element != null)
-          .cast<OneConstructUse>()
-          .toList(),
-      type: ConstructTypeUtil.fromString(json['type']),
-    );
-    // } catch (err) {
-    //   debugger(when: kDebugMode);
-    //   rethrow;
-    // }
   }
 
   toJson() {
     return {
-      ModelKey.lemma: lemma,
-      'uses': uses.map((use) => use.toJson()).toList(),
-      'type': type.string,
+      _usesKey: uses.map((use) => use.toJson()).toList(),
     };
   }
 
-  void addUsesByUseType(List<OneConstructUse> uses) {
-    for (final use in uses) {
-      if (use.lemma != lemma) {
-        throw Exception('lemma mismatch');
-      }
-      uses.add(use);
+  static List<OneConstructUse> formatConstructsContent(
+    List<PangeaMessageEvent> recentMsgs,
+  ) {
+    final List<PangeaMessageEvent> filtered = List.from(recentMsgs);
+    final List<OneConstructUse> uses = [];
+
+    for (final msg in filtered) {
+      if (msg.originalSent?.choreo == null) continue;
+      uses.addAll(
+        msg.originalSent!.choreo!.toGrammarConstructUse(
+          msg.eventId,
+          msg.room.id,
+          msg.originServerTs,
+        ),
+      );
+
+      final List<PangeaToken>? tokens = msg.originalSent?.tokens;
+      if (tokens == null) continue;
+      uses.addAll(
+        msg.originalSent!.choreo!.toVocabUse(
+          tokens,
+          msg.room.id,
+          msg.eventId,
+          msg.originServerTs,
+        ),
+      );
     }
+
+    return uses;
   }
 }
 
@@ -153,6 +189,7 @@ class OneConstructUse {
   String chatId;
   String? msgId;
   DateTime timeStamp;
+  String? id;
 
   OneConstructUse({
     required this.useType,
@@ -162,6 +199,7 @@ class OneConstructUse {
     required this.form,
     required this.msgId,
     required this.constructType,
+    this.id,
   });
 
   factory OneConstructUse.fromJson(Map<String, dynamic> json) {
@@ -176,10 +214,11 @@ class OneConstructUse {
       constructType: json['constructType'] != null
           ? ConstructTypeUtil.fromString(json['constructType'])
           : null,
+      id: json['id'],
     );
   }
 
-  Map<String, dynamic> toJson([bool condensed = true]) {
+  Map<String, dynamic> toJson([bool condensed = false]) {
     final Map<String, String?> data = {
       'useType': useType.string,
       'chatId': chatId,
@@ -191,6 +230,7 @@ class OneConstructUse {
     if (!condensed && constructType != null) {
       data['constructType'] = constructType!.string;
     }
+    if (id != null) data['id'] = id;
 
     return data;
   }
@@ -204,4 +244,16 @@ class OneConstructUse {
     if (room == null || msgId == null) return null;
     return room.getEventById(msgId!);
   }
+}
+
+class ConstructUses {
+  final List<OneConstructUse> uses;
+  final ConstructType constructType;
+  final String lemma;
+
+  ConstructUses({
+    required this.uses,
+    required this.constructType,
+    required this.lemma,
+  });
 }

@@ -15,7 +15,7 @@ class StudentAnalyticsView extends StatelessWidget {
     final TabData chatTabData = TabData(
       type: AnalyticsEntryType.room,
       icon: Icons.chat_bubble_outline,
-      items: (controller.chats ?? [])
+      items: (controller.chats)
           .map(
             (c) => TabItem(
               avatar: c.avatar,
@@ -45,9 +45,9 @@ class StudentAnalyticsView extends StatelessWidget {
 
     return controller.userId != null
         ? BaseAnalyticsPage(
+            selectedView: controller.widget.selectedView,
             pageTitle: pageTitle,
             tabs: [chatTabData, classTabData],
-            refreshData: controller.getClassAndChatAnalytics,
             alwaysSelected: AnalyticsSelected(
               controller.userId!,
               AnalyticsEntryType.student,

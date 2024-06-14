@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum BarChartViewSelection {
@@ -28,6 +27,17 @@ extension BarChartViewSelectionExtension on BarChartViewSelection {
       //   return Icons.abc;
       case BarChartViewSelection.grammar:
         return Icons.spellcheck_outlined;
+    }
+  }
+
+  String get route {
+    switch (this) {
+      case BarChartViewSelection.messages:
+        return 'messages';
+      // case BarChartViewSelection.vocab:
+      //   return 'vocab';
+      case BarChartViewSelection.grammar:
+        return 'errors';
     }
   }
 }

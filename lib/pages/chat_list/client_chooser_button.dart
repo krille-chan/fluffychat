@@ -1,6 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
-import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/find_conversation_partner_dialog.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
@@ -69,7 +68,7 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       PopupMenuItem(
-        enabled: matrix.client.allMyAnalyticsRooms.isNotEmpty,
+        enabled: matrix.client.rooms.isNotEmpty,
         value: SettingsAction.myAnalytics,
         child: Row(
           children: [

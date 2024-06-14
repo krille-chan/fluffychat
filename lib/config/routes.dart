@@ -24,6 +24,7 @@ import 'package:fluffychat/pages/settings_notifications/settings_notifications.d
 import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
+import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
 import 'package:fluffychat/pangea/pages/exchange/add_exchange_to_class.dart';
@@ -171,6 +172,28 @@ abstract class AppRoutes {
                 const StudentAnalyticsPage(),
               ),
               redirect: loggedOutRedirect,
+              routes: [
+                GoRoute(
+                  path: 'messages',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    const StudentAnalyticsPage(
+                      selectedView: BarChartViewSelection.messages,
+                    ),
+                  ),
+                ),
+                GoRoute(
+                  path: 'errors',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    const StudentAnalyticsPage(
+                      selectedView: BarChartViewSelection.grammar,
+                    ),
+                  ),
+                ),
+              ],
             ),
             GoRoute(
               path: 'analytics',
@@ -189,6 +212,36 @@ abstract class AppRoutes {
                     state,
                     const ClassAnalyticsPage(),
                   ),
+                  routes: [
+                    GoRoute(
+                      path: 'messages',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ClassAnalyticsPage(
+                          // when going to sub-space from within a parent space's analytics, the
+                          // analytics list tiles do not properly update. Adding a unique key to this page is the best fix
+                          // I can find at the moment
+                          key: UniqueKey(),
+                          selectedView: BarChartViewSelection.messages,
+                        ),
+                      ),
+                    ),
+                    GoRoute(
+                      path: 'errors',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ClassAnalyticsPage(
+                          // when going to sub-space from within a parent space's analytics, the
+                          // analytics list tiles do not properly update. Adding a unique key to this page is the best fix
+                          // I can find at the moment
+                          key: UniqueKey(),
+                          selectedView: BarChartViewSelection.grammar,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

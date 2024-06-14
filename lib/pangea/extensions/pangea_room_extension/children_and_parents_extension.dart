@@ -20,57 +20,6 @@ extension ChildrenAndParentsRoomExtension on Room {
   List<String> get _joinedChildrenRoomIds =>
       joinedChildren.map((child) => child.id).toList();
 
-  List<SpaceChild> get _childrenAndGrandChildren {
-    if (!isSpace) return [];
-    final List<SpaceChild> kids = [];
-    for (final child in spaceChildren) {
-      kids.add(child);
-      if (child.roomId != null) {
-        final Room? childRoom = client.getRoomById(child.roomId!);
-        if (childRoom != null && childRoom.isSpace) {
-          kids.addAll(childRoom.spaceChildren);
-        }
-      }
-    }
-    return kids.where((element) => element.roomId != null).toList();
-  }
-
-  //this assumes that a user has been invited to all group chats in a space
-  //it is a janky workaround for determining whether a spacechild is a direct chat
-  //since the spaceChild object doesn't contain this info. this info is only accessible
-  //when the user has joined or been invited to the room. direct chats included in
-  //a space show up in spaceChildren but the user has not been invited to them.
-  List<String> get _childrenAndGrandChildrenDirectChatIds {
-    final List<String> nonDirectChatRoomIds = childrenAndGrandChildren
-        .where((child) => child.roomId != null)
-        .map((e) => client.getRoomById(e.roomId!))
-        .where((r) => r != null && !r.isDirectChat)
-        .map((e) => e!.id)
-        .toList();
-
-    return childrenAndGrandChildren
-        .where(
-          (child) =>
-              child.roomId != null &&
-              !nonDirectChatRoomIds.contains(child.roomId),
-        )
-        .map((e) => e.roomId)
-        .cast<String>()
-        .toList();
-
-    // return childrenAndGrandChildren
-    //     .where((element) => element.roomId != null)
-    //     .where(
-    //       (child) {
-    //         final room = client.getRoomById(child.roomId!);
-    //         return room == null || room.isDirectChat;
-    //       },
-    //     )
-    //     .map((e) => e.roomId)
-    //     .cast<String>()
-    //     .toList();
-  }
-
   Future<List<Room>> _getChildRooms() async {
     final List<Room> children = [];
     for (final child in spaceChildren) {
@@ -145,4 +94,19 @@ extension ChildrenAndParentsRoomExtension on Room {
         ),
       )
       .toList();
+
+  // gets all space children of a given space, down the
+  // space tree.
+  List<String> get _allSpaceChildRoomIds {
+    final List<String> childIds = [];
+    for (final child in spaceChildren) {
+      if (child.roomId == null) continue;
+      childIds.add(child.roomId!);
+      final Room? room = client.getRoomById(child.roomId!);
+      if (room != null && room.isSpace) {
+        childIds.addAll(room._allSpaceChildRoomIds);
+      }
+    }
+    return childIds;
+  }
 }
