@@ -25,6 +25,7 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
     BuildContext context,
     String key,
     int currentLevel, {
+    int? newLevel,
     String? category,
   }) async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
@@ -34,7 +35,7 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
       );
       return;
     }
-    final newLevel = await showPermissionChooser(
+    newLevel ??= await showPermissionChooser(
       context,
       currentLevel: currentLevel,
     );

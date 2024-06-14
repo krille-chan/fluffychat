@@ -3792,6 +3792,9 @@
   "passwordsDoNotMatch": "Passwords do not match",
   "passwordIsWrong": "Your entered password is wrong",
   "publicLink": "Public link",
+  "@publicLink": {},
+  "publicChatAddresses": "Public chat addresses",
+  "createNewAddress": "Create new address",
   "joinSpace": "Join space",
   "publicSpaces": "Public spaces",
   "addChatOrSubSpace": "Add chat or sub space",
@@ -3799,6 +3802,15 @@
   "decline": "Decline",
   "thisDevice": "This device:",
   "initAppError": "An error occured while init the app",
+  "@initAppError": {},
+  "userRole": "User role",
+  "minimumPowerLevel": "{level} is the minimum power level.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
   "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}. The error message is: {error}",
   "@databaseBuildErrorBody": {
     "type": "text",
