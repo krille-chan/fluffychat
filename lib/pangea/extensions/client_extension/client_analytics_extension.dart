@@ -96,23 +96,6 @@ extension AnalyticsClientExtension on Client {
     await Future.wait(makePublicFutures);
   }
 
-  Future<void> _updateMyLearningAnalyticsForAllClassesImIn([
-    PLocalStore? storageService,
-  ]) async {
-    try {
-      final List<Future<void>> updateFutures = [];
-      for (final classRoom in classesAndExchangesImIn) {
-        updateFutures
-            .add(classRoom.updateMyLearningAnalyticsForClass(storageService));
-      }
-      await Future.wait(updateFutures);
-    } catch (err, s) {
-      if (kDebugMode) rethrow;
-      // debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s);
-    }
-  }
-
   // Add all the users' analytics room to all the spaces the student studies in
   // So teachers can join them via space hierarchy
   // Will not always work, as there may be spaces where students don't have permission to add chats

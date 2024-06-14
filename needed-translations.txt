@@ -850,7 +850,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "be": [
@@ -2299,7 +2310,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "bn": [
@@ -3210,7 +3232,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "bo": [
@@ -4121,7 +4154,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "ca": [
@@ -5032,7 +5076,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "cs": [
@@ -5943,7 +5998,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "de": [
@@ -6801,7 +6867,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "el": [
@@ -7712,7 +7789,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "eo": [
@@ -8623,24 +8711,22 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "es": [
-    "suggestToChat",
-    "suggestToChatDesc",
-    "autoIGCToolName",
-    "autoIGCToolDescription",
-    "runGrammarCorrection",
-    "grammarCorrectionFailed",
-    "grammarCorrectionComplete",
-    "leaveRoomDescription",
-    "archiveSpaceDescription",
-    "leaveSpaceDescription",
-    "onlyAdminDescription",
-    "tooltipInstructionsTitle",
-    "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "addSpaceToSpaceDescription"
   ],
 
   "et": [
@@ -9494,7 +9580,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "eu": [
@@ -10348,7 +10445,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "fa": [
@@ -11259,7 +11367,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "fi": [
@@ -12170,7 +12289,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "fr": [
@@ -13081,7 +13211,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "ga": [
@@ -13992,7 +14133,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "gl": [
@@ -14846,7 +14998,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "he": [
@@ -15757,7 +15920,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "hi": [
@@ -16668,7 +16842,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "hr": [
@@ -17566,7 +17751,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "hu": [
@@ -18477,7 +18673,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "ia": [
@@ -19912,7 +20119,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "id": [
@@ -20823,7 +21041,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "ie": [
@@ -21734,7 +21963,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "it": [
@@ -22630,7 +22870,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "ja": [
@@ -23541,7 +23792,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "ko": [
@@ -24452,7 +24714,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "lt": [
@@ -25363,7 +25636,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "lv": [
@@ -26274,7 +26558,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "nb": [
@@ -27185,7 +27480,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "nl": [
@@ -28096,7 +28402,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "pl": [
@@ -29007,7 +29324,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "pt": [
@@ -29918,7 +30246,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "pt_BR": [
@@ -30798,7 +31137,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "pt_PT": [
@@ -31709,7 +32059,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "ro": [
@@ -32620,7 +32981,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "ru": [
@@ -33474,7 +33846,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "sk": [
@@ -34385,7 +34768,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "sl": [
@@ -35296,7 +35690,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "sr": [
@@ -36207,7 +36612,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "sv": [
@@ -37083,7 +37499,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "ta": [
@@ -37994,7 +38421,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "th": [
@@ -38905,7 +39343,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "tr": [
@@ -39801,7 +40250,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "uk": [
@@ -40655,7 +41115,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "vi": [
@@ -41566,7 +42037,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "zh": [
@@ -42420,7 +42902,18 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ],
 
   "zh_Hant": [
@@ -43331,6 +43824,17 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "addSpaceToSpaceDescription",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
+    "buildTranslation"
   ]
 }

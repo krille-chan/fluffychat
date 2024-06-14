@@ -1,5 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pages/chat/send_file_dialog.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +66,9 @@ void onChatTap(Room room, BuildContext context) async {
           room.id,
           join: true,
         );
+        if (await room.leaveIfFull()) {
+          throw L10n.of(context)!.roomFull;
+        }
         await room.join();
         await waitForRoom;
       },
