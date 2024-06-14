@@ -251,7 +251,7 @@ class WordMatchContent extends StatelessWidget {
                   opacity: 0.8,
                   child: TextButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                         AppConfig.primaryColor.withOpacity(0.1),
                       ),
                     ),
@@ -272,13 +272,13 @@ class WordMatchContent extends StatelessWidget {
               if (!controller.widget.scm.pangeaMatch!.isITStart)
                 Expanded(
                   child: Opacity(
-                    opacity: controller.selectedChoice != null ? 1.0 : 0.5,
+                    opacity: controller.selectedChoiceIndex != null ? 1.0 : 0.5,
                     child: TextButton(
-                      onPressed: controller.selectedChoice != null
+                      onPressed: controller.selectedChoiceIndex != null
                           ? onReplaceSelected
                           : null,
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                           (controller.selectedChoice != null
                                   ? controller.selectedChoice!.color
                                   : AppConfig.primaryColor)
@@ -286,7 +286,7 @@ class WordMatchContent extends StatelessWidget {
                         ),
                         // Outline if Replace button enabled
                         side: controller.selectedChoice != null
-                            ? MaterialStateProperty.all(
+                            ? WidgetStateProperty.all(
                                 BorderSide(
                                   color: controller.selectedChoice!.color,
                                   style: BorderStyle.solid,
@@ -311,7 +311,7 @@ class WordMatchContent extends StatelessWidget {
                       );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                         (AppConfig.primaryColor).withOpacity(0.1),
                       ),
                     ),
