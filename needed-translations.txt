@@ -839,6 +839,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -850,7 +859,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "be": [
@@ -2288,6 +2298,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -2299,7 +2318,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "bn": [
@@ -3199,6 +3219,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -3210,7 +3239,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "bo": [
@@ -4110,6 +4140,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -4121,7 +4160,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ca": [
@@ -5021,6 +5061,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -5032,7 +5081,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "cs": [
@@ -5932,6 +5982,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -5943,7 +6002,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "de": [
@@ -6790,6 +6850,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -6801,7 +6870,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "el": [
@@ -7701,6 +7771,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -7712,7 +7791,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "eo": [
@@ -8612,6 +8692,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -8623,12 +8712,22 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "es": [
     "suggestToChat",
     "suggestToChatDesc",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -8640,7 +8739,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "et": [
@@ -9483,6 +9583,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -9494,7 +9603,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "eu": [
@@ -10337,6 +10447,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -10348,7 +10467,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "fa": [
@@ -11248,6 +11368,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -11259,7 +11388,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "fi": [
@@ -12159,6 +12289,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -12170,7 +12309,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "fr": [
@@ -13070,6 +13210,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -13081,7 +13230,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ga": [
@@ -13981,6 +14131,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -13992,7 +14151,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "gl": [
@@ -14835,6 +14995,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -14846,7 +15015,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "he": [
@@ -15746,6 +15916,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -15757,7 +15936,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "hi": [
@@ -16657,6 +16837,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -16668,7 +16857,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "hr": [
@@ -17555,6 +17745,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -17566,7 +17765,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "hu": [
@@ -18466,6 +18666,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -18477,7 +18686,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ia": [
@@ -19901,6 +20111,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -19912,7 +20131,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "id": [
@@ -20812,6 +21032,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -20823,7 +21052,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ie": [
@@ -21723,6 +21953,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -21734,7 +21973,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "it": [
@@ -22619,6 +22859,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -22630,7 +22879,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ja": [
@@ -23530,6 +23780,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -23541,7 +23800,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ko": [
@@ -24441,6 +24701,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -24452,7 +24721,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "lt": [
@@ -25352,6 +25622,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -25363,7 +25642,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "lv": [
@@ -26263,6 +26543,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -26274,7 +26563,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "nb": [
@@ -27174,6 +27464,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -27185,7 +27484,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "nl": [
@@ -28085,6 +28385,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -28096,7 +28405,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "pl": [
@@ -28996,6 +29306,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -29007,7 +29326,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "pt": [
@@ -29907,6 +30227,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -29918,7 +30247,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "pt_BR": [
@@ -30787,6 +31117,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -30798,7 +31137,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "pt_PT": [
@@ -31698,6 +32038,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -31709,7 +32058,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ro": [
@@ -32609,6 +32959,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -32620,7 +32979,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ru": [
@@ -33463,6 +33823,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -33474,7 +33843,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "sk": [
@@ -34374,6 +34744,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -34385,7 +34764,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "sl": [
@@ -35285,6 +35665,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -35296,7 +35685,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "sr": [
@@ -36196,6 +36586,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -36207,7 +36606,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "sv": [
@@ -37072,6 +37472,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -37083,7 +37492,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "ta": [
@@ -37983,6 +38393,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -37994,7 +38413,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "th": [
@@ -38894,6 +39314,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -38905,7 +39334,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "tr": [
@@ -39790,6 +40220,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -39801,7 +40240,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "uk": [
@@ -40644,6 +41084,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -40655,7 +41104,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "vi": [
@@ -41555,6 +42005,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -41566,7 +42025,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "zh": [
@@ -42409,6 +42869,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -42420,7 +42889,8 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ],
 
   "zh_Hant": [
@@ -43320,6 +43790,15 @@
     "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute",
+    "roomCapacity",
+    "roomFull",
+    "topicNotSet",
+    "capacityNotSet",
+    "roomCapacityHasBeenChanged",
+    "roomExceedsCapacity",
+    "capacitySetTooLow",
+    "roomCapacityExplanation",
+    "enterNumber",
     "autoIGCToolName",
     "autoIGCToolDescription",
     "runGrammarCorrection",
@@ -43331,6 +43810,7 @@
     "onlyAdminDescription",
     "tooltipInstructionsTitle",
     "tooltipInstructionsMobileBody",
-    "tooltipInstructionsBrowserBody"
+    "tooltipInstructionsBrowserBody",
+    "buildTranslation"
   ]
 }

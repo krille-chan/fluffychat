@@ -1,18 +1,17 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:fluffychat/pangea/utils/logout.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/utils/logout.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
 import '../../widgets/matrix.dart';
 import 'settings_view.dart';
 
@@ -171,6 +170,10 @@ class SettingsController extends State<Settings> {
     // Pangea#
 
     super.initState();
+    // #Pangea
+    profileUpdated = true;
+    profileFuture = null;
+    // Pangea#
   }
 
   void checkBootstrap() async {

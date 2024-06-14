@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../../enum/time_span.dart';
@@ -16,6 +15,7 @@ class TimeSpanMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<TimeSpan>(
+      offset: const Offset(0, 100),
       icon: const Icon(Icons.calendar_month_outlined),
       tooltip: L10n.of(context)!.changeDateRange,
       initialValue: value,

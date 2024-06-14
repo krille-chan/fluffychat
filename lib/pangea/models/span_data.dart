@@ -4,9 +4,8 @@
 // SpanChoice of text in message from options
 // Call to server for additional/followup info
 
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 
 import '../enum/span_choice_type.dart';
 import '../enum/span_data_type.dart';
@@ -105,6 +104,7 @@ class SpanChoice {
     required this.type,
     this.feedback,
     this.selected = false,
+    this.timestamp,
   });
   factory SpanChoice.fromJson(Map<String, dynamic> json) {
     return SpanChoice(
@@ -117,6 +117,8 @@ class SpanChoice {
           : SpanChoiceType.bestCorrection,
       feedback: json['feedback'],
       selected: json['selected'] ?? false,
+      timestamp:
+          json['timestamp'] != null ? DateTime.parse(json['timestamp']) : null,
     );
   }
 
@@ -124,12 +126,14 @@ class SpanChoice {
   SpanChoiceType type;
   bool selected;
   String? feedback;
+  DateTime? timestamp;
 
   Map<String, dynamic> toJson() => {
         'value': value,
         'type': type.name,
         'selected': selected,
         'feedback': feedback,
+        'timestamp': timestamp?.toIso8601String(),
       };
 
   String feedbackToDisplay(BuildContext context) {

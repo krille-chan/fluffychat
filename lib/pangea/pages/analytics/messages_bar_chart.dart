@@ -10,7 +10,7 @@ import 'package:intl/intl.dart';
 
 import '../../enum/time_span.dart';
 import '../../enum/use_type.dart';
-import '../../models/chart_analytics_model.dart';
+import '../../models/analytics/chart_analytics_model.dart';
 import 'bar_chart_card.dart';
 import 'messages_legend_widget.dart';
 
@@ -58,10 +58,10 @@ class MessagesBarChartState extends State<MessagesBarChart> {
           getTitlesWidget: leftTitles,
         ),
       ),
-      topTitles: AxisTitles(
+      topTitles: const AxisTitles(
         sideTitles: SideTitles(showTitles: false),
       ),
-      rightTitles: AxisTitles(
+      rightTitles: const AxisTitles(
         sideTitles: SideTitles(showTitles: false),
       ),
     );

@@ -22,7 +22,6 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
-import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
@@ -68,7 +67,10 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final room = Matrix.of(context).client.getRoomById(roomId);
-    if (room == null) {
+    // #Pangea
+    if (room == null || room.membership == Membership.leave) {
+      // if (room == null) {
+      // Pangea#
       return Scaffold(
         appBar: AppBar(title: Text(L10n.of(context)!.oopsSomethingWentWrong)),
         body: Center(
@@ -654,34 +656,8 @@ class ChatController extends State<ChatPageWithRoom>
           );
           return;
         }
-
         // ensure that analytics room exists / is created for the active langCode
         await room.ensureAnalyticsRoomExists();
-        pangeaController.myAnalytics.handleMessage(
-          room,
-          RecentMessageRecord(
-            eventId: msgEventId,
-            chatId: room.id,
-            useType: useType ?? UseType.un,
-            time: DateTime.now(),
-          ),
-          isEdit: previousEdit != null,
-        );
-
-        if (choreo != null &&
-            tokensSent != null &&
-            originalSent?.langCode ==
-                pangeaController.languageController
-                    .activeL2Code(roomID: room.id)) {
-          pangeaController.myAnalytics.saveConstructsMixed(
-            [
-              // ...choreo.toVocabUse(tokensSent.tokens, room.id, msgEventId),
-              ...choreo.toGrammarConstructUse(msgEventId, room.id),
-            ],
-            originalSent!.langCode,
-            isEdit: previousEdit != null,
-          );
-        }
       },
       onError: (err, stack) => ErrorHandler.logError(e: err, s: stack),
     );
@@ -1327,9 +1303,18 @@ class ChatController extends State<ChatPageWithRoom>
     }
     // Pangea#
     if (!event.redacted) {
-      if (selectedEvents.contains(event)) {
+      // #Pangea
+      // If previous selectedEvent has same eventId, delete previous selectedEvent
+      final matches =
+          selectedEvents.where((e) => e.eventId == event.eventId).toList();
+      if (matches.isNotEmpty) {
+        // if (selectedEvents.contains(event)) {
+        // Pangea#
         setState(
-          () => selectedEvents.remove(event),
+          // #Pangea
+          () => selectedEvents.remove(matches.first),
+          // () => selectedEvents.remove(event),
+          // Pangea#
         );
       } else {
         setState(

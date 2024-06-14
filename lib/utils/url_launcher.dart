@@ -1,7 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart' show IterableExtension;
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -9,11 +14,6 @@ import 'package:matrix/matrix.dart';
 import 'package:punycode/punycode.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'platform_infos.dart';
 
 class UrlLauncher {
@@ -159,7 +159,10 @@ class UrlLauncher {
         room = matrix.client.getRoomById(roomId!);
       }
       servers.addAll(identityParts.via);
-      if (room != null) {
+      // #Pangea
+      if (room != null && room.membership != Membership.leave) {
+        // if (room != null) {
+        // Pangea#
         if (room.isSpace) {
           // TODO: Implement navigate to space
           context.go('/rooms/${room.id}');
@@ -202,7 +205,19 @@ class UrlLauncher {
               serverName: servers.isNotEmpty ? servers.toList() : null,
             ),
           );
-          if (response.error != null) return;
+          // #Pangea
+          // if (response.error != null) return;
+          if (response.error != null ||
+              (room != null && (await room.leaveIfFull()))) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                duration: const Duration(seconds: 10),
+                content: Text(L10n.of(context)!.roomFull),
+              ),
+            );
+            return;
+          }
+          // Pangea#
           // wait for two seconds so that it probably came down /sync
           await showFutureLoadingDialog(
             context: context,

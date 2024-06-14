@@ -38,7 +38,13 @@ extension ClassesAndExchangesClientExtension on Client {
       .toList();
 
   Future<List<Room>> get _classesAndExchangesImStudyingIn async {
-    for (final Room space in rooms.where((room) => room.isSpace)) {
+    final List<Room> joinedSpaces = rooms
+        .where(
+          (room) => room.isSpace && room.membership == Membership.join,
+        )
+        .toList();
+
+    for (final Room space in joinedSpaces) {
       if (space.getState(EventTypes.RoomPowerLevels) == null) {
         await space.postLoad();
       }

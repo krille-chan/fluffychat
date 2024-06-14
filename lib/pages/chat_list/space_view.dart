@@ -179,6 +179,12 @@ class _SpaceViewState extends State<SpaceView> {
             // Wait for room actually appears in sync
             await client.waitForRoomInSync(spaceChild.roomId, join: true);
           }
+          // #Pangea
+          final room = client.getRoomById(spaceChild.roomId);
+          if (room != null && (await room.leaveIfFull())) {
+            throw L10n.of(context)!.roomFull;
+          }
+          // Pangea#
         },
       );
       if (result.error != null) return;
@@ -197,6 +203,9 @@ class _SpaceViewState extends State<SpaceView> {
           );
           await room.join();
           await waitForRoom;
+          if (await room.leaveIfFull()) {
+            throw L10n.of(context)!.roomFull;
+          }
         },
       );
       if (joinResult.error != null) return;
@@ -271,9 +280,8 @@ class _SpaceViewState extends State<SpaceView> {
             icon: Icons.architecture_outlined,
             isDestructiveAction: true,
           ),
-
+        // if (room != null)
         if (room != null && room.membership != Membership.leave)
-          // if (room != null)
           // Pangea#
           SheetAction(
             key: SpaceChildContextAction.leave,
@@ -329,34 +337,14 @@ class _SpaceViewState extends State<SpaceView> {
       case SpaceChildContextAction.archive:
         widget.controller.cancelAction();
         // #Pangea
-        if (room == null) return;
-        // room.isSpace
-        // ? await showFutureLoadingDialog(
-        //         context: context,
-        //         future: () async {
-        //           await room.archiveSpace(
-        //             Matrix.of(context).client,
-        //           );
-        //           widget.controller.selectedRoomIds.clear();
-        //         },
-        //       )
-        //     : await widget.controller.archiveAction();
-        if (room.isSpace) {
-          await room.archiveSpace(
-            context,
-            Matrix.of(context).client,
-          );
-        } else {
-          widget.controller.toggleSelection(room.id);
-          await widget.controller.archiveAction();
-        }
+        if (room == null || room.membership == Membership.leave) return;
         // Pangea#
         _refresh();
         break;
       case SpaceChildContextAction.addToSpace:
         widget.controller.cancelAction();
         // #Pangea
-        if (room == null) return;
+        if (room == null || room.membership == Membership.leave) return;
         // Pangea#
         widget.controller.toggleSelection(room.id);
         await widget.controller.addToSpace();
@@ -584,21 +572,19 @@ class _SpaceViewState extends State<SpaceView> {
     final allSpaces = client.rooms.where((room) => room.isSpace);
     if (activeSpaceId == null) {
       final rootSpaces = allSpaces
-          // #Pangea
-          // .where(
-          //  (space) =>
-          //      !allSpaces.any(
-          //        (parentSpace) => parentSpace.spaceChildren
-          //            .any((child) => child.roomId == space.id),
-          //      ) &&
-          //      space
-          //          .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))
-          //          .toLowerCase()
-          //          .contains(
-          //            widget.controller.searchController.text.toLowerCase(),
-          //          ),
-          //)
-          // Pangea#
+          .where(
+            (space) =>
+                !allSpaces.any(
+                  (parentSpace) => parentSpace.spaceChildren
+                      .any((child) => child.roomId == space.id),
+                ) &&
+                space
+                    .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))
+                    .toLowerCase()
+                    .contains(
+                      widget.controller.searchController.text.toLowerCase(),
+                    ),
+          )
           .toList();
 
       return SafeArea(
@@ -614,7 +600,7 @@ class _SpaceViewState extends State<SpaceView> {
                     MatrixLocals(L10n.of(context)!),
                   );
                   return Material(
-                    color: Theme.of(context).colorScheme.background,
+                    color: Theme.of(context).colorScheme.surface,
                     child: ListTile(
                       leading: Avatar(
                         mxContent: rootSpace.avatar,
@@ -949,7 +935,7 @@ class _SpaceViewState extends State<SpaceView> {
                                     : L10n.of(context)!.enterRoom),
                             maxLines: 1,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                           trailing: isSpace

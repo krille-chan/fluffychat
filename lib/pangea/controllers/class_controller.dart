@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../widgets/matrix.dart';
@@ -133,8 +134,9 @@ class ClassController extends BaseController {
         ClassCodeUtil.messageSnack(context, L10n.of(context)!.alreadyInClass);
         return;
       }
+
       await _pangeaController.matrixState.client.joinRoom(classChunk.roomId);
-      setActiveSpaceIdInChatListController(classChunk.roomId);
+
       if (_pangeaController.matrixState.client.getRoomById(classChunk.roomId) ==
           null) {
         await _pangeaController.matrixState.client.waitForRoomInSync(
@@ -142,6 +144,26 @@ class ClassController extends BaseController {
           join: true,
         );
       }
+
+      // If the room is full, leave
+      final room =
+          _pangeaController.matrixState.client.getRoomById(classChunk.roomId);
+      if (room == null) {
+        return;
+      }
+      final joinResult = await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          if (await room.leaveIfFull()) {
+            throw L10n.of(context)!.roomFull;
+          }
+        },
+      );
+      if (joinResult.error != null) {
+        return;
+      }
+
+      setActiveSpaceIdInChatListController(classChunk.roomId);
 
       // add the user's analytics room to this joined space
       // so their teachers can join them via the space hierarchy

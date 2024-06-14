@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_des
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_details_toggle_add_students_tile.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_invitation_buttons.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_name_button.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/utils/lock_room.dart';
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
@@ -34,7 +35,10 @@ class ChatDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final room = Matrix.of(context).client.getRoomById(controller.roomId!);
-    if (room == null) {
+    // #Pangea
+    if (room == null || room.membership == Membership.leave) {
+      // if (room == null) {
+      // Pangea#
       return Scaffold(
         appBar: AppBar(
           title: Text(L10n.of(context)!.oopsSomethingWentWrong),
@@ -236,8 +240,9 @@ class ChatDetailsView extends StatelessWidget {
                           height: 1,
                           color: Theme.of(context).dividerColor,
                         ),
-                        // #Pangea
-                        if (room.canSendEvent('m.room.name'))
+                        // if (room.canSendEvent('m.room.name'))
+                        if (room.isRoomAdmin)
+                          // #Pangea
                           ClassNameButton(
                             room: room,
                             controller: controller,
@@ -247,6 +252,12 @@ class ChatDetailsView extends StatelessWidget {
                             room: room,
                             controller: controller,
                           ),
+                        // #Pangea
+                        RoomCapacityButton(
+                          room: room,
+                          controller: controller,
+                        ),
+                        // Pangea#
                         if ((room.isPangeaClass || room.isExchange) &&
                             room.isRoomAdmin)
                           ListTile(
@@ -435,7 +446,9 @@ class ChatDetailsView extends StatelessWidget {
                         //         : null,
                         //   ),
                         // if (!room.isDirectChat)
-                        if (!room.isDirectChat && !room.isSpace)
+                        if (!room.isDirectChat &&
+                            !room.isSpace &&
+                            room.isRoomAdmin)
                           // Pangea#
                           ListTile(
                             // #Pangea
@@ -510,7 +523,9 @@ class ChatDetailsView extends StatelessWidget {
                             room: room,
                           ),
                         const Divider(height: 1),
-                        if (!room.isPangeaClass && !room.isDirectChat)
+                        if (!room.isPangeaClass &&
+                            !room.isDirectChat &&
+                            room.isRoomAdmin)
                           AddToSpaceToggles(
                             roomId: room.id,
                             key: controller.addToSpaceKey,
