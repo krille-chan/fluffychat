@@ -124,6 +124,7 @@ dependencies:
   sentry_flutter: ^8.2.0
   shimmer: ^3.0.0
   syncfusion_flutter_xlsio: ^25.1.40
+  rive: 0.11.11
   # Pangea#
 
 dev_dependencies:

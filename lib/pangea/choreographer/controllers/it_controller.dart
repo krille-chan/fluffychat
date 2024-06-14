@@ -231,30 +231,6 @@ class ITController {
       _setSourceText();
       getTranslationData(false);
 
-      /*sourceText = newSourceText;
-      final String currentText = choreographer.currentText;
-
-      choreographer.startLoading();
-
-      final List<ITResponseModel> responses = await Future.wait([
-        _customInputTranslation(""),
-        _customInputTranslation(choreographer.currentText),
-      ]);
-      if (responses[0].goldContinuances != null &&
-          responses[0].goldContinuances!.isNotEmpty) {
-        goldRouteTracker = GoldRouteTracker(
-          responses[0].goldContinuances!,
-          sourceText!,
-        );
-      }
-      currentITStep = CurrentITStep(
-        sourceText: sourceText!,
-        currentText: currentText,
-        responseModel: responses[1],
-        storedGoldContinuances: goldRouteTracker.continuances,
-      );
-
-      _addPayloadId(responses[1]);*/
     } catch (err, stack) {
       debugger(when: kDebugMode);
       if (err is! http.Response) {
