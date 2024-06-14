@@ -69,6 +69,11 @@ class _WebViewConnectionState extends State<WebViewConnection> {
         Provider.of<ConnectionStateModel>(context, listen: false);
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          widget.network.name,
+        ),
+      ),
       body: InAppWebView(
         initialSettings: InAppWebViewSettings(
           userAgent:
