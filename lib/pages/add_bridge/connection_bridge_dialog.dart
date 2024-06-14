@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:tawkie/pages/add_bridge/qr_code_connect.dart';
-import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:provider/provider.dart';

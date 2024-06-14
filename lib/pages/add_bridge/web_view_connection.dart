@@ -73,6 +73,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
         title: Text(
           widget.network.name,
         ),
+        centerTitle: true,
       ),
       body: InAppWebView(
         initialSettings: InAppWebViewSettings(
