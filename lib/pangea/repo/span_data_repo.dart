@@ -80,15 +80,27 @@ class SpanDetailsRepoReqAndRes {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! SpanDetailsRepoReqAndRes) return false;
-
-    return toJson().toString() == other.toJson().toString();
+    if (other.userL1 != userL1) return false;
+    if (other.userL2 != userL2) return false;
+    if (other.enableIT != enableIT) return false;
+    if (other.enableIGC != enableIGC) return false;
+    if (other.span.message != span.message) return false;
+    // if (other.span.context != span.context) return false;
+    return true;
   }
 
   /// Overrides the hashCode getter to generate a hash code for the [SpanDetailsRepoReqAndRes] object.
   /// Used as keys in response cache in igc_controller.
   @override
   int get hashCode {
-    return toJson().toString().hashCode;
+    return Object.hashAll([
+      userL1.hashCode,
+      userL2.hashCode,
+      enableIT.hashCode,
+      enableIGC.hashCode,
+      span.message.hashCode,
+      // span.context.hashCode,
+    ]);
   }
 }
 
