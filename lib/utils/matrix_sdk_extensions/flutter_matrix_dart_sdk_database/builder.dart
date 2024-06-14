@@ -20,49 +20,48 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
     database = await _constructDatabase(client);
     await database.open();
     return database;
-    // #Pangea
-    // } catch (e) {
   } catch (e, s) {
+    // #Pangea
     ErrorHandler.logError(
       e: e,
       s: s,
       m: "Failed to open matrix sdk database. Openning fallback database.",
     );
     // Pangea#
+    Logs().wtf('Unable to construct database!', e, s);
     // Try to delete database so that it can created again on next init:
     database?.delete().catchError(
         // #Pangea
-        // (e, s) => Logs().w(
-        //   'Unable to delete database, after failed construction',
-        //   e,
-        //   s,
-        // ),
-        (e, s) {
-      Logs().w(
-        'Unable to delete database, after failed construction',
-        e,
-        s,
-      );
+        (err, s) {
       ErrorHandler.logError(
         e: e,
         s: s,
         m: "Failed to delete matrix database after failed construction.",
       );
     }
+        // (e, s) => Logs().wtf(
+        //   'Unable to delete database, after failed construction',
+        //   e,
+        //   s,
+        // ),
         // Pangea#
         );
 
-    // Send error notification:
-    // #Pangea
-    // final l10n = lookupL10n(PlatformDispatcher.instance.locale);
-    // ClientManager.sendInitNotification(
-    //   l10n.initAppError,
-    //   l10n.databaseBuildErrorBody(
-    //     AppConfig.newIssueUrl.toString(),
-    //     e.toString(),
-    //   ),
-    // );
-    // Pangea#
+    try {
+      // Send error notification:
+      // #Pangea
+      // final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+      // ClientManager.sendInitNotification(
+      //   l10n.initAppError,
+      //   l10n.databaseBuildErrorBody(
+      //     AppConfig.newIssueUrl.toString(),
+      //     e.toString(),
+      //   ),
+      // );
+      // Pangea#
+    } catch (e, s) {
+      Logs().e('Unable to send error notification', e, s);
+    }
 
     return FlutterHiveCollectionsDatabase.databaseBuilder(client);
   }
