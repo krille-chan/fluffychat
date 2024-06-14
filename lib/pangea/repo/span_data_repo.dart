@@ -85,6 +85,11 @@ class SpanDetailsRepoReqAndRes {
     if (other.enableIT != enableIT) return false;
     if (other.enableIGC != enableIGC) return false;
     if (other.span.message != span.message) return false;
+    // if (other.span.shortMessage != span.shortMessage) return false;
+    if (other.span.offset != span.offset) return false;
+    if (other.span.length != span.length) return false;
+    if (other.span.fullText != span.fullText) return false;
+    // if (other.span.type != span.type) return false;
     // if (other.span.context != span.context) return false;
     return true;
   }
@@ -99,6 +104,11 @@ class SpanDetailsRepoReqAndRes {
       enableIT.hashCode,
       enableIGC.hashCode,
       span.message.hashCode,
+      // span.shortMessage.hashCode,
+      span.offset.hashCode,
+      span.length.hashCode,
+      span.fullText.hashCode,
+      // span.type.hashCode,
       // span.context.hashCode,
     ]);
   }
