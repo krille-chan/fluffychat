@@ -721,7 +721,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} bjöd in dig till FluffyChat.\n1. Besök fluffychat.im och installera appen\n2. Registrera dig eller logga in\n3. Öppna inbjudningslänk:\n  {link}",
+  "inviteText": "{username} bjöd in dig till FluffyChat.\n1. Besök fluffychat.im och installera appen\n2. Registrera dig eller logga in\n3. Öppna inbjudningslänk:\n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -2510,5 +2510,98 @@
   "searchChatsRooms": "Sök efter #chattar, @användare…",
   "@searchChatsRooms": {},
   "databaseMigrationBody": "Var vänlig vänta. Detta kan ta en stund.",
-  "@databaseMigrationBody": {}
+  "@databaseMigrationBody": {},
+  "youInvitedToBy": "📩 Du har blivit inbjuden via länk till:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "sendTypingNotificationsDescription": "Andra deltagare i en diskussion kan se när du skriver.",
+  "@sendTypingNotificationsDescription": {},
+  "formattedMessagesDescription": "Visa formaterat meddelandeinnehåll som fet stil med markdown.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUser": "🔐 Verifiera användaren",
+  "@verifyOtherUser": {},
+  "formattedMessages": "Formaterade meddelanden",
+  "@formattedMessages": {},
+  "canceledKeyVerification": "{sender} avbröt nyckelverifieringen",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} fullbordade nyckelverifieringen",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "{sender} begärde nyckelverifiering",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "transparent": "Transparent",
+  "@transparent": {},
+  "startedKeyVerification": "{sender} påbörjade nyckelverifiering",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "presenceStyle": "Närvaro:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presencesToggle": "Visa statusmeddelanden från andra användare",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hidePresences": "Dölj statuslista?",
+  "@hidePresences": {},
+  "sendReadReceipts": "Skicka läskvitton",
+  "@sendReadReceipts": {},
+  "verifyOtherDevice": "🔐 Verifiera enhet",
+  "@verifyOtherDevice": {},
+  "acceptedKeyVerification": "{sender} accepterade nyckelverifieringen",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "incomingMessages": "Inkommande meddelanden",
+  "@incomingMessages": {},
+  "forwardMessageTo": "Vidarebefordra meddelandet till {roomName}?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "verifyOtherUserDescription": "Om du verifierar en användare så kan du vara säker på vem du verkligen skriver till. 💪\n\nNär du påbörjar en verifiering så ser du och den andra användaren en popup-ruta i appen. I den rutan ser du ett antal tecken som du jämför med vad den andra användaren ser.\n\nDet bästa sättet att göra detta är att träffas fysiskt, eller genom att starta ett videosamtal. 👭",
+  "@verifyOtherUserDescription": {},
+  "verifyOtherDeviceDescription": "När du verifierar en enhet så kan era enheter utväxla nycklar, vilket förbättrar säkerheten. 💪 När du påbörjar en verifiering så ser du en popup-ruta på båda enheterna. I den rutan ser du ett antal tecken som du jämför med det som visas på den andra enheten. Det är bäst att ha båda enheterna till hands innan du påbörjar verifieringen. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "isReadyForKeyVerification": "{sender} är redo för nyckelverifiering",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "sendReadReceiptsDescription": "Andra deltagare i en diskussion kan se när du läst ett meddelande.",
+  "@sendReadReceiptsDescription": {},
+  "stickers": "Klistermärken",
+  "@stickers": {},
+  "discover": "Upptäck",
+  "@discover": {}
 }

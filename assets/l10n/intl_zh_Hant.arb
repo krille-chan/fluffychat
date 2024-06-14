@@ -1,2421 +1,2429 @@
 {
-    "@@last_modified": "2021-08-14 12:41:09.708353",
-    "about": "關於",
-    "@about": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "accept": "接受",
-    "@accept": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "acceptedTheInvitation": "{username}已接受邀請",
-    "@acceptedTheInvitation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "account": "帳號",
-    "@account": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "activatedEndToEndEncryption": "{username}已啟用點對點加密",
-    "@activatedEndToEndEncryption": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "addEmail": "新增電子郵件",
-    "@addEmail": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "admin": "管理員",
-    "@admin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "alias": "別稱",
-    "@alias": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "all": "全部",
-    "@all": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "answeredTheCall": "已開始與{senderName}通話",
-    "@answeredTheCall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "anyoneCanJoin": "任何人可以加入",
-    "@anyoneCanJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "appLock": "密碼鎖定",
-    "@appLock": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "archive": "封存",
-    "@archive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "areGuestsAllowedToJoin": "是否允許訪客加入",
-    "@areGuestsAllowedToJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "areYouSure": "您確定嗎？",
-    "@areYouSure": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "areYouSureYouWantToLogout": "您確定要登出嗎？",
-    "@areYouSureYouWantToLogout": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "askSSSSSign": "請輸入您安全儲存的密碼短語或恢復金鑰，以向對方簽名。",
-    "@askSSSSSign": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "askVerificationRequest": "是否接受來自{username}的驗證申請？",
-    "@askVerificationRequest": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "badServerLoginTypesException": "目前伺服器支援的登入類型：\n{serverVersions}\n但本應用程式僅支援：\n{supportedVersions}",
-    "@badServerLoginTypesException": {
-        "type": "text",
-        "placeholders": {
-            "serverVersions": {},
-            "supportedVersions": {}
-        }
-    },
-    "badServerVersionsException": "目前伺服器支援的Spec版本：\n{serverVersions}\n但本應用程式僅支援{supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "text",
-        "placeholders": {
-            "serverVersions": {},
-            "supportedVersions": {}
-        }
-    },
-    "banFromChat": "已從聊天室中封禁",
-    "@banFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "banned": "已被封禁",
-    "@banned": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "bannedUser": "{username}封禁了{targetName}",
-    "@bannedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "blockDevice": "封鎖裝置",
-    "@blockDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "blocked": "已封鎖",
-    "@blocked": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "botMessages": "機器人訊息",
-    "@botMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "cancel": "取消",
-    "@cancel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeDeviceName": "變更裝置名稱",
-    "@changeDeviceName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changedTheChatAvatar": "{username}變更了對話頭貼",
-    "@changedTheChatAvatar": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheChatDescriptionTo": "{username}變更了對話介紹為：「{description}」",
-    "@changedTheChatDescriptionTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "description": {}
-        }
-    },
-    "changedTheChatNameTo": "{username}變更了暱稱為：「{chatname}」",
-    "@changedTheChatNameTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "chatname": {}
-        }
-    },
-    "changedTheChatPermissions": "{username}變更了對話權限",
-    "@changedTheChatPermissions": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheDisplaynameTo": "{username} 變更了顯示名稱為：「{displayname}」",
-    "@changedTheDisplaynameTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "displayname": {}
-        }
-    },
-    "changedTheGuestAccessRules": "{username}變更了訪客訪問規則",
-    "@changedTheGuestAccessRules": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheGuestAccessRulesTo": "{username}變更了訪客訪問規則為：{rules}",
-    "@changedTheGuestAccessRulesTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "rules": {}
-        }
-    },
-    "changedTheHistoryVisibility": "{username}變更了歷史記錄觀察狀態",
-    "@changedTheHistoryVisibility": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheHistoryVisibilityTo": "{username}變更了歷史紀錄觀察狀態到：{rules}",
-    "@changedTheHistoryVisibilityTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "rules": {}
-        }
-    },
-    "changedTheJoinRules": "{username}變更了加入的規則",
-    "@changedTheJoinRules": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheJoinRulesTo": "{username}變更了加入的規則為：{joinRules}",
-    "@changedTheJoinRulesTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "joinRules": {}
-        }
-    },
-    "changedTheProfileAvatar": "{username}變更了頭貼",
-    "@changedTheProfileAvatar": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheRoomAliases": "{username}變更了聊天室名",
-    "@changedTheRoomAliases": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheRoomInvitationLink": "{username}變更了邀請連結",
-    "@changedTheRoomInvitationLink": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changePassword": "變更密碼",
-    "@changePassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheHomeserver": "變更主機位址",
-    "@changeTheHomeserver": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheme": "變更主題",
-    "@changeTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheNameOfTheGroup": "變更了群組名稱",
-    "@changeTheNameOfTheGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "channelCorruptedDecryptError": "加密已被破壞",
-    "@channelCorruptedDecryptError": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chat": "聊天",
-    "@chat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatBackup": "備份聊天室",
-    "@chatBackup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "您的聊天記錄備份已被安全金鑰鑰加密。請您確保不會弄丟它。",
-    "@chatBackupDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatDetails": "對話詳細",
-    "@chatDetails": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chooseAStrongPassword": "輸入一個較強的密碼",
-    "@chooseAStrongPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "close": "關閉",
-    "@close": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "compareEmojiMatch": "對比並確認這些表情符合其他那些裝置：",
-    "@compareEmojiMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "compareNumbersMatch": "比較以下數字，確保它們和另一個裝置上的相同：",
-    "@compareNumbersMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "configureChat": "設定聊天室",
-    "@configureChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "confirm": "確認",
-    "@confirm": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "connect": "連接",
-    "@connect": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "contactHasBeenInvitedToTheGroup": "聯絡人已被邀請至群組",
-    "@contactHasBeenInvitedToTheGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "containsDisplayName": "包含顯示名稱",
-    "@containsDisplayName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "containsUserName": "包含使用者名稱",
-    "@containsUserName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "contentHasBeenReported": "此內容已被回報給伺服器管理員們",
-    "@contentHasBeenReported": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "copiedToClipboard": "已複製到剪貼簿",
-    "@copiedToClipboard": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "copy": "複製",
-    "@copy": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "copyToClipboard": "複製到剪貼簿",
-    "@copyToClipboard": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "couldNotDecryptMessage": "不能解密訊息：{error}",
-    "@couldNotDecryptMessage": {
-        "type": "text",
-        "placeholders": {
-            "error": {}
-        }
-    },
-    "countParticipants": "{count}個參與者",
-    "@countParticipants": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "create": "建立",
-    "@create": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "createdTheChat": "{username}建立了聊天室",
-    "@createdTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "currentlyActive": "目前活躍",
-    "@currentlyActive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "darkTheme": "夜間模式",
-    "@darkTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "dateAndTimeOfDay": "{date}, {timeOfDay}",
-    "@dateAndTimeOfDay": {
-        "type": "text",
-        "placeholders": {
-            "date": {},
-            "timeOfDay": {}
-        }
-    },
-    "dateWithoutYear": "{month}-{day}",
-    "@dateWithoutYear": {
-        "type": "text",
-        "placeholders": {
-            "month": {},
-            "day": {}
-        }
-    },
-    "dateWithYear": "{year}-{month}-{day}",
-    "@dateWithYear": {
-        "type": "text",
-        "placeholders": {
-            "year": {},
-            "month": {},
-            "day": {}
-        }
-    },
-    "deactivateAccountWarning": "這將停用您的帳號。這個決定是不能挽回的！您確定嗎？",
-    "@deactivateAccountWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "defaultPermissionLevel": "預設權限等級",
-    "@defaultPermissionLevel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "delete": "刪除",
-    "@delete": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "deleteAccount": "刪除帳號",
-    "@deleteAccount": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "deleteMessage": "刪除訊息",
-    "@deleteMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "device": "裝置",
-    "@device": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "deviceId": "裝置ID",
-    "@deviceId": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "devices": "裝置",
-    "@devices": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "directChats": "直接傳訊",
-    "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "displaynameHasBeenChanged": "顯示名稱已被變更",
-    "@displaynameHasBeenChanged": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "downloadFile": "下載文件",
-    "@downloadFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "edit": "編輯",
-    "@edit": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "editBlockedServers": "編輯被封鎖的伺服器",
-    "@editBlockedServers": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "editDisplayname": "編輯顯示名稱",
-    "@editDisplayname": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "editRoomAvatar": "編輯聊天室頭貼",
-    "@editRoomAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteExists": "表情已存在！",
-    "@emoteExists": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteInvalid": "無效的表情快捷鍵！",
-    "@emoteInvalid": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emotePacks": "聊天室的表情符號",
-    "@emotePacks": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteSettings": "表情設定",
-    "@emoteSettings": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteShortcode": "表情快捷鍵",
-    "@emoteShortcode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteWarnNeedToPick": "您需要選取一個表情快捷鍵和一張圖片！",
-    "@emoteWarnNeedToPick": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emptyChat": "空的聊天室",
-    "@emptyChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enableEmotesGlobally": "在全域啟用表情符號",
-    "@enableEmotesGlobally": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enableEncryption": "啟用加密",
-    "@enableEncryption": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enableEncryptionWarning": "您將不能再停用加密，確定嗎？",
-    "@enableEncryptionWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "encrypted": "加密的",
-    "@encrypted": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "encryption": "加密",
-    "@encryption": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "encryptionNotEnabled": "加密未啟用",
-    "@encryptionNotEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "endedTheCall": "{senderName}結束了通話",
-    "@endedTheCall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "enterAnEmailAddress": "輸入一個電子郵件位址",
-    "@enterAnEmailAddress": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enterYourHomeserver": "輸入伺服器位址",
-    "@enterYourHomeserver": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "everythingReady": "一切就緒！",
-    "@everythingReady": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "extremeOffensive": "極端令人反感",
-    "@extremeOffensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fileName": "檔案名稱",
-    "@fileName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fontSize": "字體大小",
-    "@fontSize": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "forward": "轉發",
-    "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fromJoining": "自加入起",
-    "@fromJoining": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fromTheInvitation": "自邀請起",
-    "@fromTheInvitation": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "group": "群組",
-    "@group": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "groupIsPublic": "群組是公開的",
-    "@groupIsPublic": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "groups": "群組",
-    "@groups": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "groupWith": "名稱為{displayname}的群組",
-    "@groupWith": {
-        "type": "text",
-        "placeholders": {
-            "displayname": {}
-        }
-    },
-    "guestsAreForbidden": "訪客已被禁止",
-    "@guestsAreForbidden": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "guestsCanJoin": "訪客可以加入",
-    "@guestsCanJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "hasWithdrawnTheInvitationFor": "{username}收回了對{targetName}的邀請",
-    "@hasWithdrawnTheInvitationFor": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "help": "幫助",
-    "@help": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "hideRedactedEvents": "隱藏編輯過的事件",
-    "@hideRedactedEvents": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "hideUnknownEvents": "隱藏未知事件",
-    "@hideUnknownEvents": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "howOffensiveIsThisContent": "這個內容有多令人反感？",
-    "@howOffensiveIsThisContent": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "identity": "身份",
-    "@identity": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ignore": "無視",
-    "@ignore": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ignoredUsers": "已無視的使用者",
-    "@ignoredUsers": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "iHaveClickedOnLink": "我已經點擊了網址",
-    "@iHaveClickedOnLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "incorrectPassphraseOrKey": "錯誤的密碼短語或恢復金鑰",
-    "@incorrectPassphraseOrKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inoffensive": "不令人反感",
-    "@inoffensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteContact": "邀請聯絡人",
-    "@inviteContact": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteContactToGroup": "邀請聯絡人到{groupName}",
-    "@inviteContactToGroup": {
-        "type": "text",
-        "placeholders": {
-            "groupName": {}
-        }
-    },
-    "invited": "已邀請",
-    "@invited": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "invitedUser": "{username}邀請了{targetName}",
-    "@invitedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "invitedUsersOnly": "只有被邀請的使用者",
-    "@invitedUsersOnly": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteForMe": "來自我的邀請",
-    "@inviteForMe": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteText": "{username}邀請您使用FluffyChat\n1. 安裝FluffyChat：https://fluffychat.im\n2. 登入或註冊\n3. 打開該邀請網址：{link}",
-    "@inviteText": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "link": {}
-        }
-    },
-    "isTyping": "正在輸入...…",
-    "@isTyping": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "joinedTheChat": "{username}加入了聊天室",
-    "@joinedTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "joinRoom": "加入聊天室",
-    "@joinRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "kicked": "{username}踢了{targetName}",
-    "@kicked": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "kickedAndBanned": "{username}踢了{targetName}並將其封禁",
-    "@kickedAndBanned": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "kickFromChat": "從聊天室踢出",
-    "@kickFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "lastActiveAgo": "最後活動時間：{localizedTimeShort}",
-    "@lastActiveAgo": {
-        "type": "text",
-        "placeholders": {
-            "localizedTimeShort": {}
-        }
-    },
-    "leave": "離開",
-    "@leave": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "leftTheChat": "離開了聊天室",
-    "@leftTheChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "license": "授權",
-    "@license": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "lightTheme": "日間模式",
-    "@lightTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "loadCountMoreParticipants": "載入{count}個更多的參與者",
-    "@loadCountMoreParticipants": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "loadingPleaseWait": "載入中… 請稍候。",
-    "@loadingPleaseWait": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "loadMore": "載入更多…",
-    "@loadMore": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "login": "登入",
-    "@login": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "logInTo": "登入{homeserver}",
-    "@logInTo": {
-        "type": "text",
-        "placeholders": {
-            "homeserver": {}
-        }
-    },
-    "logout": "登出",
-    "@logout": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "memberChanges": "變更成員",
-    "@memberChanges": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "mention": "提及",
-    "@mention": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "messages": "訊息",
-    "@messages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "moderator": "版主",
-    "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "muteChat": "將該聊天室靜音",
-    "@muteChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "needPantalaimonWarning": "請注意您需要Pantalaimon才能使用點對點加密功能。",
-    "@needPantalaimonWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "newChat": "新聊天室",
-    "@newChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "newMessageInFluffyChat": "來自 FluffyChat 的新訊息",
-    "@newMessageInFluffyChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "newVerificationRequest": "新的驗證請求！",
-    "@newVerificationRequest": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "next": "下一個",
-    "@next": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "no": "否",
-    "@no": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noConnectionToTheServer": "無法連接到伺服器",
-    "@noConnectionToTheServer": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noEmotesFound": "表情符號不存在。😕",
-    "@noEmotesFound": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noEncryptionForPublicRooms": "您只能在這個聊天室不再被允許公開訪問後，才能啟用加密。",
-    "@noEncryptionForPublicRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noGoogleServicesWarning": "看起來您手機上沒有Google服務框架。這對於保護您的隱私而言是個好決定！但為了收到FluffyChat的推播通知，我們推薦您使用 https://microg.org/ 或 https://unifiedpush.org/。",
-    "@noGoogleServicesWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "none": "無",
-    "@none": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noPasswordRecoveryDescription": "您尚未新增恢復密碼的方法。",
-    "@noPasswordRecoveryDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noPermission": "沒有權限",
-    "@noPermission": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noRoomsFound": "找不到聊天室…",
-    "@noRoomsFound": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "notifications": "通知",
-    "@notifications": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "notificationsEnabledForThisAccount": "已為此帳號啟用通知",
-    "@notificationsEnabledForThisAccount": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "numUsersTyping": "{count}個人正在輸入…",
-    "@numUsersTyping": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "offensive": "令人反感",
-    "@offensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "offline": "離線",
-    "@offline": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ok": "OK",
-    "@ok": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "online": "線上",
-    "@online": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "onlineKeyBackupEnabled": "線上金鑰備份已啟用",
-    "@onlineKeyBackupEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "oopsSomethingWentWrong": "哎呀！出了一點差錯…",
-    "@oopsSomethingWentWrong": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "openAppToReadMessages": "打開應用程式以讀取訊息",
-    "@openAppToReadMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "openCamera": "開啟相機",
-    "@openCamera": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "participant": "參與者",
-    "@participant": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passphraseOrKey": "密碼短語或恢復金鑰",
-    "@passphraseOrKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "password": "密碼",
-    "@password": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passwordForgotten": "忘記密碼",
-    "@passwordForgotten": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passwordHasBeenChanged": "密碼已被變更",
-    "@passwordHasBeenChanged": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passwordRecovery": "恢復密碼",
-    "@passwordRecovery": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pickImage": "選擇圖片",
-    "@pickImage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pin": "釘選",
-    "@pin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "play": "播放{fileName}",
-    "@play": {
-        "type": "text",
-        "placeholders": {
-            "fileName": {}
-        }
-    },
-    "pleaseChooseAPasscode": "請選擇一個密碼",
-    "@pleaseChooseAPasscode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseClickOnLink": "請點擊電子郵件中的網址，然後繼續。",
-    "@pleaseClickOnLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnter4Digits": "請輸入4位數字，或留空以停用密碼鎖定。",
-    "@pleaseEnter4Digits": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnterYourPassword": "請輸入您的密碼",
-    "@pleaseEnterYourPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnterYourUsername": "請輸入您的使用者名稱",
-    "@pleaseEnterYourUsername": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseFollowInstructionsOnWeb": "請按照網站上的說明進行操作，然後點擊下一步。",
-    "@pleaseFollowInstructionsOnWeb": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "privacy": "隱私",
-    "@privacy": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "publicRooms": "公開的聊天室",
-    "@publicRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pushRules": "推播規則",
-    "@pushRules": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reason": "原因",
-    "@reason": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "recording": "錄音中",
-    "@recording": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "redactedAnEvent": "{username}編輯了一個事件",
-    "@redactedAnEvent": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "redactMessage": "重新編輯訊息",
-    "@redactMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reject": "拒絕",
-    "@reject": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "rejectedTheInvitation": "{username}拒絕了邀請",
-    "@rejectedTheInvitation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "rejoin": "重新加入",
-    "@rejoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "remove": "移除",
-    "@remove": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "removeAllOtherDevices": "移除所有其他裝置",
-    "@removeAllOtherDevices": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "removedBy": "被{username}移除",
-    "@removedBy": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "removeDevice": "移除裝置",
-    "@removeDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unbanFromChat": "解禁聊天",
-    "@unbanFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "renderRichContent": "繪製圖文訊息內容",
-    "@renderRichContent": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "replaceRoomWithNewerVersion": "用較新的版本取代聊天室",
-    "@replaceRoomWithNewerVersion": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reply": "回覆",
-    "@reply": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reportMessage": "檢舉訊息",
-    "@reportMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "requestPermission": "請求權限",
-    "@requestPermission": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "roomHasBeenUpgraded": "聊天室已更新",
-    "@roomHasBeenUpgraded": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "search": "搜尋",
-    "@search": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "security": "安全",
-    "@security": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "seenByUser": "{username}已讀",
-    "@seenByUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "send": "傳送",
-    "@send": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendAMessage": "傳送訊息",
-    "@sendAMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendAudio": "傳送音訊",
-    "@sendAudio": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendFile": "傳送文件",
-    "@sendFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendImage": "傳送圖片",
-    "@sendImage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendMessages": "傳送訊息",
-    "@sendMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendOriginal": "傳送原始內容",
-    "@sendOriginal": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendVideo": "傳送影片",
-    "@sendVideo": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sentAFile": "{username}傳送了一個文件",
-    "@sentAFile": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentAnAudio": "{username}傳送了一個音訊",
-    "@sentAnAudio": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentAPicture": "{username}傳送了一張圖片",
-    "@sentAPicture": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentASticker": "{username} 傳送了貼圖",
-    "@sentASticker": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentAVideo": "{username} 傳送了影片",
-    "@sentAVideo": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentCallInformations": "{senderName} 傳送了通話資訊",
-    "@sentCallInformations": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "setCustomEmotes": "自訂表情符號",
-    "@setCustomEmotes": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setInvitationLink": "設定邀請連結",
-    "@setInvitationLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setPermissionsLevel": "設定權限級別",
-    "@setPermissionsLevel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setStatus": "設定狀態",
-    "@setStatus": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "settings": "設定",
-    "@settings": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "share": "分享",
-    "@share": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sharedTheLocation": "{username} 分享了位置",
-    "@sharedTheLocation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "showPassword": "顯示密碼",
-    "@showPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "skip": "跳過",
-    "@skip": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sourceCode": "原始碼",
-    "@sourceCode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "startedACall": "{senderName}開始了通話",
-    "@startedACall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "status": "狀態",
-    "@status": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "statusExampleMessage": "今天過得如何？",
-    "@statusExampleMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "submit": "送出",
-    "@submit": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "systemTheme": "自動",
-    "@systemTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "theyDontMatch": "它們不相符",
-    "@theyDontMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "theyMatch": "它們相符",
-    "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "text",
-        "placeholders": {}
-    },
-    "toggleFavorite": "切換收藏夾",
-    "@toggleFavorite": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "toggleMuted": "切換靜音",
-    "@toggleMuted": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "toggleUnread": "標記為已讀/未讀",
-    "@toggleUnread": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tooManyRequestsWarning": "太多請求了。請稍候再試！",
-    "@tooManyRequestsWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "transferFromAnotherDevice": "從其他裝置傳輸",
-    "@transferFromAnotherDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tryToSendAgain": "再次嘗試傳送",
-    "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unavailable": "無法取得",
-    "@unavailable": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unbannedUser": "{username}解除封禁了{targetName}",
-    "@unbannedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "unblockDevice": "解除鎖定裝置",
-    "@unblockDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unknownDevice": "未知裝置",
-    "@unknownDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unknownEncryptionAlgorithm": "未知的加密演算法",
-    "@unknownEncryptionAlgorithm": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unknownEvent": "未知事件「{type}」",
-    "@unknownEvent": {
-        "type": "text",
-        "placeholders": {
-            "type": {}
-        }
-    },
-    "unmuteChat": "取消靜音聊天室",
-    "@unmuteChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unpin": "取消釘選",
-    "@unpin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} 個未讀聊天室}}",
-    "@unreadChats": {
-        "type": "text",
-        "placeholders": {
-            "unreadCount": {}
-        }
-    },
-    "userAndOthersAreTyping": "{username}和其他{count}個人正在輸入…",
-    "@userAndOthersAreTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "count": {}
-        }
-    },
-    "userAndUserAreTyping": "{username}和{username2}正在輸入…",
-    "@userAndUserAreTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "username2": {}
-        }
-    },
-    "userIsTyping": "{username}正在輸入…",
-    "@userIsTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "userLeftTheChat": "{username}離開了聊天室",
-    "@userLeftTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "username": "使用者名稱",
-    "@username": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "userSentUnknownEvent": "{username}傳送了一個{type}事件",
-    "@userSentUnknownEvent": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "type": {}
-        }
-    },
-    "verified": "已驗證",
-    "@verified": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verify": "驗證",
-    "@verify": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verifyStart": "開始驗證",
-    "@verifyStart": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verifySuccess": "您成功驗證了！",
-    "@verifySuccess": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verifyTitle": "正在驗證其他帳號",
-    "@verifyTitle": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "videoCall": "視訊通話",
-    "@videoCall": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "visibilityOfTheChatHistory": "聊天記錄的可見性",
-    "@visibilityOfTheChatHistory": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "visibleForAllParticipants": "對所有參與者可見",
-    "@visibleForAllParticipants": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "visibleForEveryone": "對所有人可見",
-    "@visibleForEveryone": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "voiceMessage": "語音訊息",
-    "@voiceMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "waitingPartnerAcceptRequest": "正在等待夥伴接受請求…",
-    "@waitingPartnerAcceptRequest": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "waitingPartnerEmoji": "正在等待夥伴接受表情符號…",
-    "@waitingPartnerEmoji": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "waitingPartnerNumbers": "正在等待夥伴接受數字…",
-    "@waitingPartnerNumbers": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wallpaper": "桌布",
-    "@wallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "warning": "警告！",
-    "@warning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "weSentYouAnEmail": "我們向您傳送了一封電子郵件",
-    "@weSentYouAnEmail": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "whoCanPerformWhichAction": "誰可以執行這個動作",
-    "@whoCanPerformWhichAction": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "whoIsAllowedToJoinThisGroup": "誰可以加入這個群組",
-    "@whoIsAllowedToJoinThisGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "whyDoYouWantToReportThis": "您檢舉的原因是什麼？",
-    "@whyDoYouWantToReportThis": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wipeChatBackup": "要清除您的聊天記錄備份以建立新的安全金鑰嗎？",
-    "@wipeChatBackup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "withTheseAddressesRecoveryDescription": "有了這些位址，您就可以恢復密碼。",
-    "@withTheseAddressesRecoveryDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "writeAMessage": "輸入訊息…",
-    "@writeAMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "yes": "是",
-    "@yes": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "you": "您",
-    "@you": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youAreNoLongerParticipatingInThisChat": "您不再參與這個聊天室了",
-    "@youAreNoLongerParticipatingInThisChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youHaveBeenBannedFromThisChat": "您已經被這個聊天室封禁",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "yourPublicKey": "您的公鑰",
-    "@yourPublicKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "people": "人",
-    "@people": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chats": "聊天室",
-    "@chats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "allChats": "所有會話",
-    "@allChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_ban": "在此聊天室封禁該使用者",
-    "@commandHint_ban": {
-        "type": "text",
-        "description": "Usage hint for the command /ban"
-    },
-    "commandHint_clearcache": "清除快取",
-    "@commandHint_clearcache": {
-        "type": "text",
-        "description": "Usage hint for the command /clearcache"
-    },
-    "commandHint_create": "建立一個空的群聊\n使用 --no-encryption 選項來禁用加密",
-    "@commandHint_create": {
-        "type": "text",
-        "description": "Usage hint for the command /create"
-    },
-    "commandHint_discardsession": "丟棄工作階段",
-    "@commandHint_discardsession": {
-        "type": "text",
-        "description": "Usage hint for the command /discardsession"
-    },
-    "commandHint_dm": "啟動一對一聊天\n使用 --no-encryption 選項來禁用加密",
-    "@commandHint_dm": {
-        "type": "text",
-        "description": "Usage hint for the command /dm"
-    },
-    "commandHint_invite": "邀請該使用者加入此聊天室",
-    "@commandHint_invite": {
-        "type": "text",
-        "description": "Usage hint for the command /invite"
-    },
-    "commandHint_join": "加入此聊天室",
-    "@commandHint_join": {
-        "type": "text",
-        "description": "Usage hint for the command /join"
-    },
-    "commandHint_kick": "將這個使用者移出此聊天室",
-    "@commandHint_kick": {
-        "type": "text",
-        "description": "Usage hint for the command /kick"
-    },
-    "commandHint_leave": "退出此聊天室",
-    "@commandHint_leave": {
-        "type": "text",
-        "description": "Usage hint for the command /leave"
-    },
-    "commandHint_myroomnick": "設定您的聊天室暱稱",
-    "@commandHint_myroomnick": {
-        "type": "text",
-        "description": "Usage hint for the command /myroomnick"
-    },
-    "editRoomAliases": "編輯聊天室名",
-    "@editRoomAliases": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "roomVersion": "聊天室的版本",
-    "@roomVersion": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "addToSpace": "加入空間",
-    "@addToSpace": {},
-    "cantOpenUri": "無法打開URI {uri}",
-    "@cantOpenUri": {
-        "type": "text",
-        "placeholders": {
-            "uri": {}
-        }
-    },
-    "repeatPassword": "再次輸入密碼",
-    "@repeatPassword": {},
-    "yourChatBackupHasBeenSetUp": "您的聊天記錄備份已設定。",
-    "@yourChatBackupHasBeenSetUp": {},
-    "goToTheNewRoom": "前往新聊天室",
-    "@goToTheNewRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_myroomavatar": "設置您的聊天室頭貼（通過 mxc-uri）",
-    "@commandHint_myroomavatar": {
-        "type": "text",
-        "description": "Usage hint for the command /myroomavatar"
-    },
-    "commandHint_unban": "在此聊天室解封該使用者",
-    "@commandHint_unban": {
-        "type": "text",
-        "description": "Usage hint for the command /unban"
-    },
-    "autoplayImages": "自動播放動態貼圖和表情",
-    "@autoplayImages": {
-        "type": "text",
-        "placeholder": {}
-    },
-    "sendOnEnter": "按 Enter 鍵發送",
-    "@sendOnEnter": {},
-    "changeYourAvatar": "更改您的大頭貼",
-    "@changeYourAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatHasBeenAddedToThisSpace": "聊天室已添加到此空間",
-    "@chatHasBeenAddedToThisSpace": {},
-    "clearArchive": "清除存檔",
-    "@clearArchive": {},
-    "hugContent": "",
-    "@hugContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "jumpToLastReadMessage": "",
-    "@jumpToLastReadMessage": {},
-    "allRooms": "",
-    "@allRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "obtainingLocation": "",
-    "@obtainingLocation": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_cuddle": "",
-    "@commandHint_cuddle": {},
-    "widgetVideo": "",
-    "@widgetVideo": {},
-    "dismiss": "",
-    "@dismiss": {},
-    "reportErrorDescription": "",
-    "@reportErrorDescription": {},
-    "addAccount": "",
-    "@addAccount": {},
-    "removeYourAvatar": "",
-    "@removeYourAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unsupportedAndroidVersion": "",
-    "@unsupportedAndroidVersion": {},
-    "commandHint_html": "",
-    "@commandHint_html": {
-        "type": "text",
-        "description": "Usage hint for the command /html"
-    },
-    "widgetJitsi": "",
-    "@widgetJitsi": {},
-    "messageType": "",
-    "@messageType": {},
-    "indexedDbErrorLong": "",
-    "@indexedDbErrorLong": {},
-    "oneClientLoggedOut": "",
-    "@oneClientLoggedOut": {},
-    "startFirstChat": "",
-    "@startFirstChat": {},
-    "callingAccount": "",
-    "@callingAccount": {},
-    "setColorTheme": "",
-    "@setColorTheme": {},
-    "nextAccount": "",
-    "@nextAccount": {},
-    "singlesignon": "",
-    "@singlesignon": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "allSpaces": "",
-    "@allSpaces": {},
-    "supposedMxid": "",
-    "@supposedMxid": {
-        "type": "text",
-        "placeholders": {
-            "mxid": {}
-        }
-    },
-    "user": "",
-    "@user": {},
-    "youAcceptedTheInvitation": "",
-    "@youAcceptedTheInvitation": {},
-    "noMatrixServer": "",
-    "@noMatrixServer": {
-        "type": "text",
-        "placeholders": {
-            "server1": {},
-            "server2": {}
-        }
-    },
-    "youInvitedBy": "",
-    "@youInvitedBy": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "banUserDescription": "",
-    "@banUserDescription": {},
-    "widgetEtherpad": "",
-    "@widgetEtherpad": {},
-    "removeDevicesDescription": "",
-    "@removeDevicesDescription": {},
-    "separateChatTypes": "",
-    "@separateChatTypes": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tryAgain": "",
-    "@tryAgain": {},
-    "youKickedAndBanned": "",
-    "@youKickedAndBanned": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "unbanUserDescription": "",
-    "@unbanUserDescription": {},
-    "saveFile": "",
-    "@saveFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youRejectedTheInvitation": "",
-    "@youRejectedTheInvitation": {},
-    "otherCallingPermissions": "",
-    "@otherCallingPermissions": {},
-    "messagesStyle": "",
-    "@messagesStyle": {},
-    "link": "",
-    "@link": {},
-    "widgetUrlError": "",
-    "@widgetUrlError": {},
-    "emailOrUsername": "",
-    "@emailOrUsername": {},
-    "newSpaceDescription": "",
-    "@newSpaceDescription": {},
-    "chatDescription": "",
-    "@chatDescription": {},
-    "callingAccountDetails": "",
-    "@callingAccountDetails": {},
-    "enterSpace": "",
-    "@enterSpace": {},
-    "encryptThisChat": "",
-    "@encryptThisChat": {},
-    "previousAccount": "",
-    "@previousAccount": {},
-    "reopenChat": "",
-    "@reopenChat": {},
-    "pleaseEnterRecoveryKey": "",
-    "@pleaseEnterRecoveryKey": {},
-    "widgetNameError": "",
-    "@widgetNameError": {},
-    "addToBundle": "",
-    "@addToBundle": {},
-    "spaceIsPublic": "",
-    "@spaceIsPublic": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "addWidget": "",
-    "@addWidget": {},
-    "countFiles": "",
-    "@countFiles": {
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "noKeyForThisMessage": "",
-    "@noKeyForThisMessage": {},
-    "shareLocation": "",
-    "@shareLocation": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_markasgroup": "",
-    "@commandHint_markasgroup": {},
-    "errorObtainingLocation": "",
-    "@errorObtainingLocation": {
-        "type": "text",
-        "placeholders": {
-            "error": {}
-        }
-    },
-    "hydrateTor": "",
-    "@hydrateTor": {},
-    "pushNotificationsNotAvailable": "",
-    "@pushNotificationsNotAvailable": {},
-    "storeInAppleKeyChain": "",
-    "@storeInAppleKeyChain": {},
-    "hydrate": "",
-    "@hydrate": {},
-    "invalidServerName": "",
-    "@invalidServerName": {},
-    "chatPermissions": "",
-    "@chatPermissions": {},
-    "sender": "",
-    "@sender": {},
-    "storeInAndroidKeystore": "",
-    "@storeInAndroidKeystore": {},
-    "signInWithPassword": "",
-    "@signInWithPassword": {},
-    "makeAdminDescription": "",
-    "@makeAdminDescription": {},
-    "synchronizingPleaseWait": "",
-    "@synchronizingPleaseWait": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "saveKeyManuallyDescription": "",
-    "@saveKeyManuallyDescription": {},
-    "editBundlesForAccount": "",
-    "@editBundlesForAccount": {},
-    "whyIsThisMessageEncrypted": "",
-    "@whyIsThisMessageEncrypted": {},
-    "setChatDescription": "",
-    "@setChatDescription": {},
-    "spaceName": "",
-    "@spaceName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "importFromZipFile": "",
-    "@importFromZipFile": {},
-    "or": "",
-    "@or": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "dehydrateWarning": "",
-    "@dehydrateWarning": {},
-    "noOtherDevicesFound": "",
-    "@noOtherDevicesFound": {},
-    "redactedBy": "",
-    "@redactedBy": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "videoCallsBetaWarning": "",
-    "@videoCallsBetaWarning": {},
-    "signInWith": "",
-    "@signInWith": {
-        "type": "text",
-        "placeholders": {
-            "provider": {}
-        }
-    },
-    "fileIsTooBigForServer": "",
-    "@fileIsTooBigForServer": {},
-    "homeserver": "",
-    "@homeserver": {},
-    "callingPermissions": "",
-    "@callingPermissions": {},
-    "readUpToHere": "",
-    "@readUpToHere": {},
-    "start": "",
-    "@start": {},
-    "register": "",
-    "@register": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unlockOldMessages": "",
-    "@unlockOldMessages": {},
-    "numChats": "",
-    "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {}
-        }
-    },
-    "optionalRedactReason": "",
-    "@optionalRedactReason": {},
-    "dehydrate": "",
-    "@dehydrate": {},
-    "locationPermissionDeniedNotice": "",
-    "@locationPermissionDeniedNotice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendAsText": "",
-    "@sendAsText": {
-        "type": "text"
-    },
-    "archiveRoomDescription": "",
-    "@archiveRoomDescription": {},
-    "exportEmotePack": "",
-    "@exportEmotePack": {},
-    "sendSticker": "",
-    "@sendSticker": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "switchToAccount": "",
-    "@switchToAccount": {
-        "type": "number",
-        "placeholders": {
-            "number": {}
-        }
-    },
-    "commandInvalid": "",
-    "@commandInvalid": {
-        "type": "text"
-    },
-    "setAsCanonicalAlias": "",
-    "@setAsCanonicalAlias": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "locationDisabledNotice": "",
-    "@locationDisabledNotice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_plain": "",
-    "@commandHint_plain": {
-        "type": "text",
-        "description": "Usage hint for the command /plain"
-    },
-    "experimentalVideoCalls": "",
-    "@experimentalVideoCalls": {},
-    "pleaseEnterRecoveryKeyDescription": "",
-    "@pleaseEnterRecoveryKeyDescription": {},
-    "openInMaps": "",
-    "@openInMaps": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteContactToGroupQuestion": "",
-    "@inviteContactToGroupQuestion": {},
-    "redactedByBecause": "",
-    "@redactedByBecause": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "reason": {}
-        }
-    },
-    "youHaveWithdrawnTheInvitationFor": "",
-    "@youHaveWithdrawnTheInvitationFor": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "appearOnTopDetails": "",
-    "@appearOnTopDetails": {},
-    "enterRoom": "",
-    "@enterRoom": {},
-    "reportUser": "",
-    "@reportUser": {},
-    "commandHint_send": "",
-    "@commandHint_send": {
-        "type": "text",
-        "description": "Usage hint for the command /send"
-    },
-    "confirmEventUnpin": "",
-    "@confirmEventUnpin": {},
-    "youInvitedUser": "",
-    "@youInvitedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "fileHasBeenSavedAt": "",
-    "@fileHasBeenSavedAt": {
-        "type": "text",
-        "placeholders": {
-            "path": {}
-        }
-    },
-    "commandMissing": "",
-    "@commandMissing": {
-        "type": "text",
-        "placeholders": {
-            "command": {}
-        },
-        "description": "State that {command} is not a valid /command."
-    },
-    "redactMessageDescription": "",
-    "@redactMessageDescription": {},
-    "recoveryKey": "",
-    "@recoveryKey": {},
-    "invalidInput": "",
-    "@invalidInput": {},
-    "dehydrateTorLong": "",
-    "@dehydrateTorLong": {},
-    "doNotShowAgain": "",
-    "@doNotShowAgain": {},
-    "report": "",
-    "@report": {},
-    "unverified": "",
-    "@unverified": {},
-    "serverRequiresEmail": "",
-    "@serverRequiresEmail": {},
-    "hideUnimportantStateEvents": "",
-    "@hideUnimportantStateEvents": {},
-    "screenSharingTitle": "",
-    "@screenSharingTitle": {},
-    "widgetCustom": "",
-    "@widgetCustom": {},
-    "addToSpaceDescription": "",
-    "@addToSpaceDescription": {},
-    "googlyEyesContent": "",
-    "@googlyEyesContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "youBannedUser": "",
-    "@youBannedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "addChatDescription": "",
-    "@addChatDescription": {},
-    "hasKnocked": "",
-    "@hasKnocked": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "publish": "",
-    "@publish": {},
-    "openLinkInBrowser": "",
-    "@openLinkInBrowser": {},
-    "commandHint_react": "",
-    "@commandHint_react": {
-        "type": "text",
-        "description": "Usage hint for the command /react"
-    },
-    "commandHint_me": "",
-    "@commandHint_me": {
-        "type": "text",
-        "description": "Usage hint for the command /me"
-    },
-    "messageInfo": "",
-    "@messageInfo": {},
-    "disableEncryptionWarning": "",
-    "@disableEncryptionWarning": {},
-    "directChat": "",
-    "@directChat": {},
-    "wrongPinEntered": "",
-    "@wrongPinEntered": {
-        "type": "text",
-        "placeholders": {
-            "seconds": {}
-        }
-    },
-    "sendTypingNotifications": "",
-    "@sendTypingNotifications": {},
-    "inviteGroupChat": "",
-    "@inviteGroupChat": {},
-    "appearOnTop": "",
-    "@appearOnTop": {},
-    "invitePrivateChat": "",
-    "@invitePrivateChat": {},
-    "foregroundServiceRunning": "",
-    "@foregroundServiceRunning": {},
-    "voiceCall": "",
-    "@voiceCall": {},
-    "createNewSpace": "",
-    "@createNewSpace": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "importEmojis": "",
-    "@importEmojis": {},
-    "wasDirectChatDisplayName": "",
-    "@wasDirectChatDisplayName": {
-        "type": "text",
-        "placeholders": {
-            "oldDisplayName": {}
-        }
-    },
-    "noChatDescriptionYet": "",
-    "@noChatDescriptionYet": {},
-    "removeFromBundle": "",
-    "@removeFromBundle": {},
-    "confirmMatrixId": "",
-    "@confirmMatrixId": {},
-    "learnMore": "",
-    "@learnMore": {},
-    "notAnImage": "",
-    "@notAnImage": {},
-    "users": "",
-    "@users": {},
-    "openGallery": "",
-    "@openGallery": {},
-    "chatDescriptionHasBeenChanged": "",
-    "@chatDescriptionHasBeenChanged": {},
-    "newGroup": "",
-    "@newGroup": {},
-    "bundleName": "",
-    "@bundleName": {},
-    "dehydrateTor": "",
-    "@dehydrateTor": {},
-    "removeFromSpace": "",
-    "@removeFromSpace": {},
-    "commandHint_op": "",
-    "@commandHint_op": {
-        "type": "text",
-        "description": "Usage hint for the command /op"
-    },
-    "roomUpgradeDescription": "",
-    "@roomUpgradeDescription": {},
-    "scanQrCode": "",
-    "@scanQrCode": {},
-    "pleaseEnterANumber": "",
-    "@pleaseEnterANumber": {},
-    "youKicked": "",
-    "@youKicked": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "profileNotFound": "",
-    "@profileNotFound": {},
-    "jump": "",
-    "@jump": {},
-    "reactedWith": "",
-    "@reactedWith": {
-        "type": "text",
-        "placeholders": {
-            "sender": {},
-            "reaction": {}
-        }
-    },
-    "sorryThatsNotPossible": "",
-    "@sorryThatsNotPossible": {},
-    "videoWithSize": "",
-    "@videoWithSize": {
-        "type": "text",
-        "placeholders": {
-            "size": {}
-        }
-    },
-    "shareInviteLink": "",
-    "@shareInviteLink": {},
-    "commandHint_markasdm": "",
-    "@commandHint_markasdm": {},
-    "recoveryKeyLost": "",
-    "@recoveryKeyLost": {},
-    "cuddleContent": "",
-    "@cuddleContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "deviceKeys": "",
-    "@deviceKeys": {},
-    "emoteKeyboardNoRecents": "",
-    "@emoteKeyboardNoRecents": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setTheme": "",
-    "@setTheme": {},
-    "youJoinedTheChat": "",
-    "@youJoinedTheChat": {},
-    "openVideoCamera": "",
-    "@openVideoCamera": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "markAsRead": "",
-    "@markAsRead": {},
-    "widgetName": "",
-    "@widgetName": {},
-    "errorAddingWidget": "",
-    "@errorAddingWidget": {},
-    "commandHint_hug": "",
-    "@commandHint_hug": {},
-    "replace": "",
-    "@replace": {},
-    "oopsPushError": "",
-    "@oopsPushError": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youUnbannedUser": "",
-    "@youUnbannedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "newSpace": "",
-    "@newSpace": {},
-    "emojis": "",
-    "@emojis": {},
-    "pleaseEnterYourPin": "",
-    "@pleaseEnterYourPin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseChoose": "",
-    "@pleaseChoose": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_googly": "",
-    "@commandHint_googly": {},
-    "pleaseTryAgainLaterOrChooseDifferentServer": "",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-    "createGroup": "",
-    "@createGroup": {},
-    "hydrateTorLong": "",
-    "@hydrateTorLong": {},
-    "time": "",
-    "@time": {},
-    "custom": "",
-    "@custom": {},
-    "noBackupWarning": "",
-    "@noBackupWarning": {},
-    "storeInSecureStorageDescription": "",
-    "@storeInSecureStorageDescription": {},
-    "openChat": "",
-    "@openChat": {},
-    "kickUserDescription": "",
-    "@kickUserDescription": {},
-    "importNow": "",
-    "@importNow": {},
-    "pinMessage": "",
-    "@pinMessage": {},
-    "invite": "",
-    "@invite": {},
-    "enableMultiAccounts": "",
-    "@enableMultiAccounts": {},
-    "indexedDbErrorTitle": "",
-    "@indexedDbErrorTitle": {},
-    "unsupportedAndroidVersionLong": "",
-    "@unsupportedAndroidVersionLong": {},
-    "storeSecurlyOnThisDevice": "",
-    "@storeSecurlyOnThisDevice": {},
-    "screenSharingDetail": "",
-    "@screenSharingDetail": {},
-    "placeCall": "",
-    "@placeCall": {}
+  "@@last_modified": "2021-08-14 12:41:09.708353",
+  "about": "關於",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accept": "接受",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "👍{username}已接受邀請",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "account": "帳號",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "🔐{username}已啟用點對點加密",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "addEmail": "新增電子郵件",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "admin": "管理員",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "別稱",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "全部",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "已開始與{senderName}通話",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "任何人可以加入",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "密碼鎖定",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "封存",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "是否允許訪客加入",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "您確定嗎？",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "您確定要登出嗎？",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "請輸入您安全儲存的密碼短語或恢復金鑰，以向對方簽名。",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "是否接受來自{username}的驗證申請？",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "badServerLoginTypesException": "目前伺服器支援的登入類型：\n{serverVersions}\n但本應用程式僅支援：\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "目前伺服器支援的Spec版本：\n{serverVersions}\n但本應用程式僅支援{supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "banFromChat": "已從聊天室中封禁",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banned": "已被封禁",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username}封禁了{targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "blockDevice": "封鎖裝置",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "已封鎖",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "機器人訊息",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "取消",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "變更裝置名稱",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheChatAvatar": "{username}變更了對話頭貼",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheChatDescriptionTo": "{username}變更了對話介紹為：「{description}」",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "changedTheChatNameTo": "{username}變更了暱稱為：「{chatname}」",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "changedTheChatPermissions": "{username}變更了對話權限",
+  "@changedTheChatPermissions": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheDisplaynameTo": "{username} 變更了顯示名稱為：「{displayname}」",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "changedTheGuestAccessRules": "{username}變更了訪客訪問規則",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username}變更了訪客訪問規則為：{rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheHistoryVisibility": "{username}變更了歷史記錄觀察狀態",
+  "@changedTheHistoryVisibility": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username}變更了歷史紀錄觀察狀態到：{rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheJoinRules": "{username}變更了加入的規則",
+  "@changedTheJoinRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheJoinRulesTo": "{username}變更了加入的規則為：{joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "joinRules": {}
+    }
+  },
+  "changedTheProfileAvatar": "{username}變更了頭貼",
+  "@changedTheProfileAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomAliases": "{username}變更了聊天室名",
+  "@changedTheRoomAliases": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomInvitationLink": "{username}變更了邀請連結",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changePassword": "變更密碼",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheHomeserver": "變更主機位址",
+  "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheme": "變更主題",
+  "@changeTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheNameOfTheGroup": "變更了群組名稱",
+  "@changeTheNameOfTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "channelCorruptedDecryptError": "加密已被破壞",
+  "@channelCorruptedDecryptError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "聊天",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "備份聊天室",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "您的過往聊天記錄已被恢復金鑰加密。請您確保不會弄丟它。",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatDetails": "對話詳細",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "輸入一個較強的密碼",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "關閉",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareEmojiMatch": "對比並確認這些表情符合其他那些裝置：",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "比較以下數字，確保它們和另一個裝置上的相同：",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "設定聊天室",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "確認",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connect": "連接",
+  "@connect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contactHasBeenInvitedToTheGroup": "聯絡人已被邀請至群組",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "包含顯示名稱",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "包含使用者名稱",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "此內容已被回報給伺服器管理員們",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copiedToClipboard": "已複製到剪貼簿",
+  "@copiedToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "複製",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "複製到剪貼簿",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "不能解密訊息：{error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "countParticipants": "{count}個參與者",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "create": "建立",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createdTheChat": "{username}建立了聊天室",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "currentlyActive": "目前活躍",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "夜間模式",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "dateWithoutYear": "{month}-{day}",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateWithYear": "{year}-{month}-{day}",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "deactivateAccountWarning": "這將停用您的帳號。這個決定是不能挽回的！您確定嗎？",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "預設權限等級",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "刪除",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "刪除帳號",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteMessage": "刪除訊息",
+  "@deleteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "device": "裝置",
+  "@device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "裝置ID",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "devices": "裝置",
+  "@devices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "直接傳訊",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "顯示名稱已被變更",
+  "@displaynameHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadFile": "下載文件",
+  "@downloadFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "編輯",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "編輯被封鎖的伺服器",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editDisplayname": "編輯顯示名稱",
+  "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "編輯聊天室頭貼",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "表情已存在！",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "無效的表情快捷鍵！",
+  "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "聊天室的表情符號",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteSettings": "表情設定",
+  "@emoteSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteShortcode": "表情快捷鍵",
+  "@emoteShortcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "您需要選取一個表情快捷鍵和一張圖片！",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emptyChat": "空的聊天室",
+  "@emptyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "在全域啟用表情符號",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "啟用加密",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryptionWarning": "您將不能再停用加密，確定嗎？",
+  "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "加密的",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "加密",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionNotEnabled": "加密未啟用",
+  "@encryptionNotEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName}結束了通話",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "enterAnEmailAddress": "輸入一個電子郵件位址",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterYourHomeserver": "輸入伺服器位址",
+  "@enterYourHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "一切就緒！",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "極端令人反感",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileName": "檔案名稱",
+  "@fileName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "字體大小",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forward": "轉發",
+  "@forward": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromJoining": "自加入起",
+  "@fromJoining": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromTheInvitation": "自邀請起",
+  "@fromTheInvitation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "group": "群組",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupIsPublic": "群組是公開的",
+  "@groupIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "群組",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupWith": "名稱為{displayname}的群組",
+  "@groupWith": {
+    "type": "text",
+    "placeholders": {
+      "displayname": {}
+    }
+  },
+  "guestsAreForbidden": "訪客已被禁止",
+  "@guestsAreForbidden": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "guestsCanJoin": "訪客可以加入",
+  "@guestsCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "{username}收回了對{targetName}的邀請",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "help": "幫助",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "隱藏編輯過的事件",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "隱藏未知事件",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "這個內容有多令人反感？",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "id": "ID",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "identity": "身份",
+  "@identity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "無視",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "已無視的使用者",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "我已經點擊了網址",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "錯誤的密碼短語或恢復金鑰",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "不令人反感",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContact": "邀請聯絡人",
+  "@inviteContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContactToGroup": "邀請聯絡人到{groupName}",
+  "@inviteContactToGroup": {
+    "type": "text",
+    "placeholders": {
+      "groupName": {}
+    }
+  },
+  "invited": "已邀請",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "{username}邀請了{targetName}",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "invitedUsersOnly": "只有被邀請的使用者",
+  "@invitedUsersOnly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "來自我的邀請",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteText": "{username}邀請您使用FluffyChat\n1. 安裝FluffyChat：https://fluffychat.im\n2. 登入或註冊\n3. 打開該邀請網址：{link}",
+  "@inviteText": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "link": {}
+    }
+  },
+  "isTyping": "正在輸入...…",
+  "@isTyping": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinedTheChat": "{username}加入了聊天室",
+  "@joinedTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "joinRoom": "加入聊天室",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kicked": "{username}踢了{targetName}",
+  "@kicked": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickedAndBanned": "{username}踢了{targetName}並將其封禁",
+  "@kickedAndBanned": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickFromChat": "從聊天室踢出",
+  "@kickFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastActiveAgo": "最後活動時間：{localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "text",
+    "placeholders": {
+      "localizedTimeShort": {}
+    }
+  },
+  "leave": "離開",
+  "@leave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leftTheChat": "離開了聊天室",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "授權",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lightTheme": "日間模式",
+  "@lightTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadCountMoreParticipants": "載入{count}個更多的參與者",
+  "@loadCountMoreParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "loadingPleaseWait": "載入中… 請稍候。",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "載入更多…",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "登入",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logInTo": "登入{homeserver}",
+  "@logInTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "logout": "登出",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "變更成員",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "提及",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "訊息",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moderator": "版主",
+  "@moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "muteChat": "將該聊天室靜音",
+  "@muteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needPantalaimonWarning": "請注意您需要Pantalaimon才能使用點對點加密功能。",
+  "@needPantalaimonWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "新聊天室",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "來自 FluffyChat 的新訊息",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "新的驗證請求！",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "下一個",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "否",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "無法連接到伺服器",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEmotesFound": "表情符號不存在。😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "您只能在這個聊天室不再被允許公開訪問後，才能啟用加密。",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "看起來您手機上沒有Google服務框架。這對於保護您的隱私而言是個好決定！但為了收到FluffyChat的推播通知，我們推薦您使用 https://microg.org/ 或 https://unifiedpush.org/。",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "none": "無",
+  "@none": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "您尚未新增恢復密碼的方法。",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPermission": "沒有權限",
+  "@noPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noRoomsFound": "找不到聊天室…",
+  "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "通知",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "已為此帳號啟用通知",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numUsersTyping": "{count}個人正在輸入…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "offensive": "令人反感",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "離線",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "OK",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "線上",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "線上金鑰備份已啟用",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsSomethingWentWrong": "哎呀！出了一點差錯…",
+  "@oopsSomethingWentWrong": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppToReadMessages": "打開應用程式以讀取訊息",
+  "@openAppToReadMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openCamera": "開啟相機",
+  "@openCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "參與者",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "密碼短語或恢復金鑰",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "密碼",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "忘記密碼",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "密碼已被變更",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "恢復密碼",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickImage": "選擇圖片",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "釘選",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "play": "播放{fileName}",
+  "@play": {
+    "type": "text",
+    "placeholders": {
+      "fileName": {}
+    }
+  },
+  "pleaseChooseAPasscode": "請選擇一個密碼",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "請點擊電子郵件中的網址，然後繼續。",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "請輸入4位數字，或留空以停用密碼鎖定。",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPassword": "請輸入您的密碼",
+  "@pleaseEnterYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourUsername": "請輸入您的使用者名稱",
+  "@pleaseEnterYourUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "請按照網站上的說明進行操作，然後點擊下一步。",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "隱私",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicRooms": "公開的聊天室",
+  "@publicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "推播規則",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "原因",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recording": "錄音中",
+  "@recording": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactedAnEvent": "{username}編輯了一個事件",
+  "@redactedAnEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "redactMessage": "重新編輯訊息",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reject": "拒絕",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rejectedTheInvitation": "{username}拒絕了邀請",
+  "@rejectedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "rejoin": "重新加入",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "移除",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "移除所有其他裝置",
+  "@removeAllOtherDevices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removedBy": "被{username}移除",
+  "@removedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "removeDevice": "移除裝置",
+  "@removeDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbanFromChat": "解禁聊天",
+  "@unbanFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "renderRichContent": "繪製圖文訊息內容",
+  "@renderRichContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "用較新的版本取代聊天室",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reply": "回覆",
+  "@reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "檢舉訊息",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestPermission": "請求權限",
+  "@requestPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomHasBeenUpgraded": "聊天室已更新",
+  "@roomHasBeenUpgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "搜尋",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "安全",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seenByUser": "{username}已讀",
+  "@seenByUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "send": "傳送",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAMessage": "傳送訊息",
+  "@sendAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAudio": "傳送音訊",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFile": "傳送文件",
+  "@sendFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendImage": "傳送圖片",
+  "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "傳送訊息",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "傳送原始內容",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "傳送影片",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentAFile": "{username}傳送了一個文件",
+  "@sentAFile": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAnAudio": "{username}傳送了一個音訊",
+  "@sentAnAudio": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAPicture": "{username}傳送了一張圖片",
+  "@sentAPicture": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentASticker": "{username} 傳送了貼圖",
+  "@sentASticker": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAVideo": "{username} 傳送了影片",
+  "@sentAVideo": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentCallInformations": "{senderName} 傳送了通話資訊",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "setCustomEmotes": "自訂表情符號",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setInvitationLink": "設定邀請連結",
+  "@setInvitationLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "設定權限級別",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setStatus": "設定狀態",
+  "@setStatus": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "設定",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "分享",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharedTheLocation": "{username} 分享了位置",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "showPassword": "顯示密碼",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "跳過",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sourceCode": "原始碼",
+  "@sourceCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName}開始了通話",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "status": "狀態",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statusExampleMessage": "今天過得如何？",
+  "@statusExampleMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "submit": "送出",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "systemTheme": "自動",
+  "@systemTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyDontMatch": "它們不相符",
+  "@theyDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyMatch": "它們相符",
+  "@theyMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "FluffyChat",
+  "@title": {
+    "description": "Title for the application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "切換收藏夾",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "切換靜音",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "標記為已讀/未讀",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "太多請求了。請稍候再試！",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "從其他裝置傳輸",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tryToSendAgain": "再次嘗試傳送",
+  "@tryToSendAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "無法取得",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbannedUser": "{username}解除封禁了{targetName}",
+  "@unbannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "unblockDevice": "解除鎖定裝置",
+  "@unblockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownDevice": "未知裝置",
+  "@unknownDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEncryptionAlgorithm": "未知的加密演算法",
+  "@unknownEncryptionAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEvent": "未知事件「{type}」",
+  "@unknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "unmuteChat": "取消靜音聊天室",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "取消釘選",
+  "@unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} 個未讀聊天室}}",
+  "@unreadChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadCount": {}
+    }
+  },
+  "userAndOthersAreTyping": "{username}和其他{count}個人正在輸入…",
+  "@userAndOthersAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "userAndUserAreTyping": "{username}和{username2}正在輸入…",
+  "@userAndUserAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "userIsTyping": "{username}正在輸入…",
+  "@userIsTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "userLeftTheChat": "{username}離開了聊天室",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "使用者名稱",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userSentUnknownEvent": "{username}傳送了一個{type}事件",
+  "@userSentUnknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "type": {}
+    }
+  },
+  "verified": "已驗證",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "驗證",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "開始驗證",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifySuccess": "您成功驗證了！",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyTitle": "正在驗證其他帳號",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoCall": "視訊通話",
+  "@videoCall": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibilityOfTheChatHistory": "聊天記錄的可見性",
+  "@visibilityOfTheChatHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForAllParticipants": "對所有參與者可見",
+  "@visibleForAllParticipants": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForEveryone": "對所有人可見",
+  "@visibleForEveryone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voiceMessage": "語音訊息",
+  "@voiceMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "正在等待夥伴接受請求…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerEmoji": "正在等待夥伴接受表情符號…",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerNumbers": "正在等待夥伴接受數字…",
+  "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallpaper": "桌布",
+  "@wallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "警告！",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "我們向您傳送了一封電子郵件",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "誰可以執行這個動作",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoIsAllowedToJoinThisGroup": "誰可以加入這個群組",
+  "@whoIsAllowedToJoinThisGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "您檢舉的原因是什麼？",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "要清除您的聊天記錄備份以建立新的安全金鑰嗎？",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "有了這些位址，您就可以恢復密碼。",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "writeAMessage": "輸入訊息…",
+  "@writeAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "是",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "you": "您",
+  "@you": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youAreNoLongerParticipatingInThisChat": "您不再參與這個聊天室了",
+  "@youAreNoLongerParticipatingInThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveBeenBannedFromThisChat": "您已經被這個聊天室封禁",
+  "@youHaveBeenBannedFromThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourPublicKey": "您的公鑰",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "人",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "聊天室",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "所有會話",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_ban": "在此聊天室封禁該使用者",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_clearcache": "清除快取",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "建立一個空的群聊\n使用 --no-encryption 選項來禁用加密",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "丟棄工作階段",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "啟動一對一聊天\n使用 --no-encryption 選項來禁用加密",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_invite": "邀請該使用者加入此聊天室",
+  "@commandHint_invite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHint_join": "加入此聊天室",
+  "@commandHint_join": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_kick": "將這個使用者移出此聊天室",
+  "@commandHint_kick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_leave": "退出此聊天室",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHint_myroomnick": "設定您的聊天室暱稱",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "editRoomAliases": "編輯聊天室名",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "聊天室的版本",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "加入空間",
+  "@addToSpace": {},
+  "cantOpenUri": "無法打開URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "repeatPassword": "再次輸入密碼",
+  "@repeatPassword": {},
+  "yourChatBackupHasBeenSetUp": "您的聊天記錄備份已設定。",
+  "@yourChatBackupHasBeenSetUp": {},
+  "goToTheNewRoom": "前往新聊天室",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_myroomavatar": "設置您的聊天室頭貼（通過 mxc-uri）",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_unban": "在此聊天室解封該使用者",
+  "@commandHint_unban": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "autoplayImages": "自動播放動態貼圖和表情",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "sendOnEnter": "按 Enter 鍵發送",
+  "@sendOnEnter": {},
+  "changeYourAvatar": "更改您的大頭貼",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "聊天室已添加到此空間",
+  "@chatHasBeenAddedToThisSpace": {},
+  "clearArchive": "清除存檔",
+  "@clearArchive": {},
+  "hugContent": "{senderName}擁抱您",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "jumpToLastReadMessage": "",
+  "@jumpToLastReadMessage": {},
+  "allRooms": "",
+  "@allRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_cuddle": "發送一個摟抱表情",
+  "@commandHint_cuddle": {},
+  "widgetVideo": "",
+  "@widgetVideo": {},
+  "dismiss": "",
+  "@dismiss": {},
+  "reportErrorDescription": "",
+  "@reportErrorDescription": {},
+  "addAccount": "",
+  "@addAccount": {},
+  "removeYourAvatar": "",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unsupportedAndroidVersion": "",
+  "@unsupportedAndroidVersion": {},
+  "commandHint_html": "",
+  "@commandHint_html": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "widgetJitsi": "",
+  "@widgetJitsi": {},
+  "messageType": "",
+  "@messageType": {},
+  "indexedDbErrorLong": "",
+  "@indexedDbErrorLong": {},
+  "oneClientLoggedOut": "",
+  "@oneClientLoggedOut": {},
+  "startFirstChat": "",
+  "@startFirstChat": {},
+  "callingAccount": "",
+  "@callingAccount": {},
+  "setColorTheme": "",
+  "@setColorTheme": {},
+  "nextAccount": "",
+  "@nextAccount": {},
+  "singlesignon": "",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allSpaces": "",
+  "@allSpaces": {},
+  "supposedMxid": "此處應爲{mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "user": "",
+  "@user": {},
+  "youAcceptedTheInvitation": "",
+  "@youAcceptedTheInvitation": {},
+  "noMatrixServer": "",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "youInvitedBy": "",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "banUserDescription": "",
+  "@banUserDescription": {},
+  "widgetEtherpad": "",
+  "@widgetEtherpad": {},
+  "removeDevicesDescription": "",
+  "@removeDevicesDescription": {},
+  "separateChatTypes": "",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tryAgain": "",
+  "@tryAgain": {},
+  "youKickedAndBanned": "",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "unbanUserDescription": "",
+  "@unbanUserDescription": {},
+  "saveFile": "",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youRejectedTheInvitation": "",
+  "@youRejectedTheInvitation": {},
+  "otherCallingPermissions": "",
+  "@otherCallingPermissions": {},
+  "messagesStyle": "",
+  "@messagesStyle": {},
+  "link": "",
+  "@link": {},
+  "widgetUrlError": "",
+  "@widgetUrlError": {},
+  "emailOrUsername": "",
+  "@emailOrUsername": {},
+  "newSpaceDescription": "",
+  "@newSpaceDescription": {},
+  "chatDescription": "",
+  "@chatDescription": {},
+  "callingAccountDetails": "",
+  "@callingAccountDetails": {},
+  "enterSpace": "",
+  "@enterSpace": {},
+  "encryptThisChat": "",
+  "@encryptThisChat": {},
+  "previousAccount": "",
+  "@previousAccount": {},
+  "reopenChat": "",
+  "@reopenChat": {},
+  "pleaseEnterRecoveryKey": "",
+  "@pleaseEnterRecoveryKey": {},
+  "widgetNameError": "",
+  "@widgetNameError": {},
+  "addToBundle": "",
+  "@addToBundle": {},
+  "spaceIsPublic": "",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addWidget": "",
+  "@addWidget": {},
+  "countFiles": "",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "noKeyForThisMessage": "",
+  "@noKeyForThisMessage": {},
+  "shareLocation": "",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_markasgroup": "",
+  "@commandHint_markasgroup": {},
+  "errorObtainingLocation": "",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "hydrateTor": "",
+  "@hydrateTor": {},
+  "pushNotificationsNotAvailable": "",
+  "@pushNotificationsNotAvailable": {},
+  "storeInAppleKeyChain": "",
+  "@storeInAppleKeyChain": {},
+  "hydrate": "",
+  "@hydrate": {},
+  "invalidServerName": "伺服器名稱錯誤",
+  "@invalidServerName": {},
+  "chatPermissions": "",
+  "@chatPermissions": {},
+  "sender": "",
+  "@sender": {},
+  "storeInAndroidKeystore": "",
+  "@storeInAndroidKeystore": {},
+  "signInWithPassword": "",
+  "@signInWithPassword": {},
+  "makeAdminDescription": "",
+  "@makeAdminDescription": {},
+  "synchronizingPleaseWait": "",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveKeyManuallyDescription": "",
+  "@saveKeyManuallyDescription": {},
+  "editBundlesForAccount": "",
+  "@editBundlesForAccount": {},
+  "whyIsThisMessageEncrypted": "",
+  "@whyIsThisMessageEncrypted": {},
+  "setChatDescription": "",
+  "@setChatDescription": {},
+  "spaceName": "",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "importFromZipFile": "從 zip 檔案匯入",
+  "@importFromZipFile": {},
+  "or": "",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dehydrateWarning": "",
+  "@dehydrateWarning": {},
+  "noOtherDevicesFound": "",
+  "@noOtherDevicesFound": {},
+  "redactedBy": "",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "videoCallsBetaWarning": "",
+  "@videoCallsBetaWarning": {},
+  "signInWith": "",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "fileIsTooBigForServer": "",
+  "@fileIsTooBigForServer": {},
+  "homeserver": "伺服器",
+  "@homeserver": {},
+  "callingPermissions": "",
+  "@callingPermissions": {},
+  "readUpToHere": "",
+  "@readUpToHere": {},
+  "start": "",
+  "@start": {},
+  "register": "",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockOldMessages": "",
+  "@unlockOldMessages": {},
+  "numChats": "",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "optionalRedactReason": "",
+  "@optionalRedactReason": {},
+  "dehydrate": "",
+  "@dehydrate": {},
+  "locationPermissionDeniedNotice": "",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "archiveRoomDescription": "",
+  "@archiveRoomDescription": {},
+  "exportEmotePack": "將表情包匯出成 zip 檔案",
+  "@exportEmotePack": {},
+  "sendSticker": "",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "switchToAccount": "",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "commandInvalid": "命令無效",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "setAsCanonicalAlias": "",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_plain": "",
+  "@commandHint_plain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "experimentalVideoCalls": "",
+  "@experimentalVideoCalls": {},
+  "pleaseEnterRecoveryKeyDescription": "",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "openInMaps": "",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContactToGroupQuestion": "",
+  "@inviteContactToGroupQuestion": {},
+  "redactedByBecause": "",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "appearOnTopDetails": "",
+  "@appearOnTopDetails": {},
+  "enterRoom": "",
+  "@enterRoom": {},
+  "reportUser": "",
+  "@reportUser": {},
+  "commandHint_send": "",
+  "@commandHint_send": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "confirmEventUnpin": "",
+  "@confirmEventUnpin": {},
+  "youInvitedUser": "",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "fileHasBeenSavedAt": "",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "commandMissing": "{command}不是正確的命令。",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "redactMessageDescription": "",
+  "@redactMessageDescription": {},
+  "recoveryKey": "",
+  "@recoveryKey": {},
+  "invalidInput": "",
+  "@invalidInput": {},
+  "dehydrateTorLong": "",
+  "@dehydrateTorLong": {},
+  "doNotShowAgain": "",
+  "@doNotShowAgain": {},
+  "report": "",
+  "@report": {},
+  "unverified": "",
+  "@unverified": {},
+  "serverRequiresEmail": "",
+  "@serverRequiresEmail": {},
+  "hideUnimportantStateEvents": "",
+  "@hideUnimportantStateEvents": {},
+  "screenSharingTitle": "",
+  "@screenSharingTitle": {},
+  "widgetCustom": "",
+  "@widgetCustom": {},
+  "addToSpaceDescription": "",
+  "@addToSpaceDescription": {},
+  "googlyEyesContent": "{senderName}向您發送了瞪眼表情",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "youBannedUser": "",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "addChatDescription": "新增聊天說明...",
+  "@addChatDescription": {},
+  "hasKnocked": "",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "publish": "",
+  "@publish": {},
+  "openLinkInBrowser": "",
+  "@openLinkInBrowser": {},
+  "commandHint_react": "",
+  "@commandHint_react": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHint_me": "",
+  "@commandHint_me": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "messageInfo": "",
+  "@messageInfo": {},
+  "disableEncryptionWarning": "",
+  "@disableEncryptionWarning": {},
+  "directChat": "",
+  "@directChat": {},
+  "wrongPinEntered": "",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "sendTypingNotifications": "傳送「輸入中」通知",
+  "@sendTypingNotifications": {},
+  "inviteGroupChat": "",
+  "@inviteGroupChat": {},
+  "appearOnTop": "",
+  "@appearOnTop": {},
+  "invitePrivateChat": "",
+  "@invitePrivateChat": {},
+  "foregroundServiceRunning": "",
+  "@foregroundServiceRunning": {},
+  "voiceCall": "",
+  "@voiceCall": {},
+  "createNewSpace": "",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "importEmojis": "匯入表情包",
+  "@importEmojis": {},
+  "wasDirectChatDisplayName": "",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  },
+  "noChatDescriptionYet": "",
+  "@noChatDescriptionYet": {},
+  "removeFromBundle": "",
+  "@removeFromBundle": {},
+  "confirmMatrixId": "如需要刪除你的帳戶，請確認你的Matrix ID。",
+  "@confirmMatrixId": {},
+  "learnMore": "",
+  "@learnMore": {},
+  "notAnImage": "不是圖片檔案。",
+  "@notAnImage": {},
+  "users": "",
+  "@users": {},
+  "openGallery": "",
+  "@openGallery": {},
+  "chatDescriptionHasBeenChanged": "",
+  "@chatDescriptionHasBeenChanged": {},
+  "newGroup": "",
+  "@newGroup": {},
+  "bundleName": "",
+  "@bundleName": {},
+  "dehydrateTor": "",
+  "@dehydrateTor": {},
+  "removeFromSpace": "",
+  "@removeFromSpace": {},
+  "commandHint_op": "",
+  "@commandHint_op": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "roomUpgradeDescription": "",
+  "@roomUpgradeDescription": {},
+  "scanQrCode": "",
+  "@scanQrCode": {},
+  "pleaseEnterANumber": "",
+  "@pleaseEnterANumber": {},
+  "youKicked": "",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "profileNotFound": "",
+  "@profileNotFound": {},
+  "jump": "",
+  "@jump": {},
+  "reactedWith": "",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "sorryThatsNotPossible": "",
+  "@sorryThatsNotPossible": {},
+  "videoWithSize": "",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "shareInviteLink": "",
+  "@shareInviteLink": {},
+  "commandHint_markasdm": "",
+  "@commandHint_markasdm": {},
+  "recoveryKeyLost": "",
+  "@recoveryKeyLost": {},
+  "cuddleContent": "{senderName}摟抱您",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "deviceKeys": "",
+  "@deviceKeys": {},
+  "emoteKeyboardNoRecents": "",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTheme": "",
+  "@setTheme": {},
+  "youJoinedTheChat": "",
+  "@youJoinedTheChat": {},
+  "openVideoCamera": "",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "markAsRead": "",
+  "@markAsRead": {},
+  "widgetName": "",
+  "@widgetName": {},
+  "errorAddingWidget": "",
+  "@errorAddingWidget": {},
+  "commandHint_hug": "發送一個擁抱表情",
+  "@commandHint_hug": {},
+  "replace": "取代",
+  "@replace": {},
+  "oopsPushError": "",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youUnbannedUser": "",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "newSpace": "",
+  "@newSpace": {},
+  "emojis": "",
+  "@emojis": {},
+  "pleaseEnterYourPin": "",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_googly": "發送一些瞪眼表情",
+  "@commandHint_googly": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "createGroup": "",
+  "@createGroup": {},
+  "hydrateTorLong": "",
+  "@hydrateTorLong": {},
+  "time": "",
+  "@time": {},
+  "custom": "",
+  "@custom": {},
+  "noBackupWarning": "",
+  "@noBackupWarning": {},
+  "storeInSecureStorageDescription": "",
+  "@storeInSecureStorageDescription": {},
+  "openChat": "",
+  "@openChat": {},
+  "kickUserDescription": "",
+  "@kickUserDescription": {},
+  "importNow": "立即匯入",
+  "@importNow": {},
+  "pinMessage": "",
+  "@pinMessage": {},
+  "invite": "",
+  "@invite": {},
+  "enableMultiAccounts": "",
+  "@enableMultiAccounts": {},
+  "indexedDbErrorTitle": "",
+  "@indexedDbErrorTitle": {},
+  "unsupportedAndroidVersionLong": "",
+  "@unsupportedAndroidVersionLong": {},
+  "storeSecurlyOnThisDevice": "",
+  "@storeSecurlyOnThisDevice": {},
+  "screenSharingDetail": "",
+  "@screenSharingDetail": {},
+  "placeCall": "",
+  "@placeCall": {},
+  "blockListDescription": "你可以封鎖打擾你的使用者。你不會再收到任何從已封鎖使用者發來的訊息或聊天室邀請。",
+  "@blockListDescription": {},
+  "blockedUsers": "已封鎖的使用者",
+  "@blockedUsers": {},
+  "block": "封鎖",
+  "@block": {},
+  "discover": "探索",
+  "@discover": {}
 }
