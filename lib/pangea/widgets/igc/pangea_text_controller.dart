@@ -85,12 +85,6 @@ class PangeaTextController extends TextEditingController {
                   cursorOffset: selection.baseOffset,
                 ),
               onITStart: () {
-                if (choreographer.igc.turnOnAutoPlay) {
-                  choreographer.pangeaController.pStoreService.save(
-                    'ToolSetting.itAutoPlay',
-                    true,
-                  );
-                }
                 choreographer.onITStart(
                   choreographer.igc.igcTextData!.matches[matchIndex],
                 );

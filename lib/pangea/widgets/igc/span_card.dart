@@ -15,6 +15,7 @@ import '../../../widgets/matrix.dart';
 import '../../choreographer/widgets/choice_array.dart';
 import '../../controllers/pangea_controller.dart';
 import '../../enum/span_choice_type.dart';
+import '../../models/class_model.dart';
 import '../../models/span_card_model.dart';
 import '../common/bot_face_svg.dart';
 import 'card_header.dart';
@@ -48,6 +49,8 @@ class SpanCardState extends State<SpanCard> {
   Object? error;
   bool fetchingData = false;
   int? selectedChoiceIndex;
+
+  BotExpression currentExpression = BotExpression.nonGold;
 
   //on initState, get SpanDetails
   @override
@@ -121,7 +124,23 @@ class WordMatchContent extends StatelessWidget {
         .choices?[index]
         .selected = true;
 
-    controller.setState(() => ());
+    controller.setState(
+      () => (
+        controller.currentExpression =
+          controller
+            .widget
+            .scm
+            .choreographer
+            .igc
+            .igcTextData
+            !.matches[controller.widget.scm.matchIndex]
+            .match
+            .choices![index]
+            .isBestCorrection
+          ? BotExpression.gold
+          : BotExpression.nonGold
+      ),
+    );
     // if (controller.widget.scm.pangeaMatch.match.choices![index].type ==
     //     SpanChoiceType.distractor) {
     //   await controller.getSpanDetails();
@@ -166,7 +185,7 @@ class WordMatchContent extends StatelessWidget {
           CardHeader(
             text: controller.error?.toString() ?? matchCopy.title,
             botExpression: controller.error == null
-                ? BotExpression.right
+                ? controller.currentExpression
                 : BotExpression.addled,
           ),
           Expanded(
@@ -284,10 +303,7 @@ class WordMatchContent extends StatelessWidget {
           ),
           if (controller.widget.scm.pangeaMatch!.isITStart)
             DontShowSwitchListTile(
-              value: controller.widget.scm.choreographer.igc.turnOnAutoPlay,
-              onChanged: ((value) {
-                controller.widget.scm.choreographer.igc.turnOnAutoPlay = value;
-              }),
+              controller: pangeaController,
             ),
         ],
       );
@@ -429,13 +445,11 @@ class StartITButton extends StatelessWidget {
 }
 
 class DontShowSwitchListTile extends StatefulWidget {
-  final bool value;
-  final ValueChanged<bool> onChanged;
+  final PangeaController controller;
 
   const DontShowSwitchListTile({
     super.key,
-    required this.value,
-    required this.onChanged,
+    required this.controller,
   });
 
   @override
@@ -448,7 +462,6 @@ class DontShowSwitchListTileState extends State<DontShowSwitchListTile> {
   @override
   void initState() {
     super.initState();
-    switchValue = widget.value;
   }
 
   @override
@@ -458,7 +471,10 @@ class DontShowSwitchListTileState extends State<DontShowSwitchListTile> {
       title: Text(L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader),
       value: switchValue,
       onChanged: (value) => {
-        widget.onChanged(value),
+        widget.controller.pStoreService.save(
+          ToolSetting.itAutoPlay.toString(),
+          value,
+        ),
         setState(() => switchValue = value),
       },
     );

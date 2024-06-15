@@ -142,7 +142,7 @@ class UserController extends BaseController {
 
     await updateMatrixProfile(
       dateOfBirth: dob,
-      autoPlayMessages: autoPlay ?? false,
+      autoPlayMessages: autoPlay,
       activatedFreeTrial: trial,
       interactiveTranslator: interactiveTranslator,
       itAutoPlay: itAutoPlay,

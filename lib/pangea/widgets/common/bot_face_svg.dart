@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-enum BotExpression { surprised, right, addled, left, down, shocked }
+enum BotExpression { gold, nonGold, addled, idle, surprised }
 
 class BotFace extends StatefulWidget {
   final double width;
@@ -21,7 +21,7 @@ class BotFace extends StatefulWidget {
 
 class BotFaceState extends State<BotFace> {
   Artboard? _artboard;
-  SMINumber? _input;
+  StateMachineController? _controller;
 
   @override
   void initState() {
@@ -31,11 +31,11 @@ class BotFaceState extends State<BotFace> {
 
   double mapExpressionToInput(BotExpression expression) {
     switch (expression) {
-      case BotExpression.surprised:
+      case BotExpression.gold:
         return 1.0;
-      case BotExpression.right:
+      case BotExpression.nonGold:
         return 2.0;
-      case BotExpression.shocked:
+      case BotExpression.surprised:
         return 3.0;
       case BotExpression.addled:
         return 4.0;
@@ -48,14 +48,13 @@ class BotFaceState extends State<BotFace> {
     final riveFile = await RiveFile.asset('assets/pangea/bot_faces/pangea_bot.riv');
 
     final artboard = riveFile.mainArtboard;
-    final controller = StateMachineController
+    _controller = StateMachineController
         .fromArtboard(artboard, 'BotIconStateMachine');
 
-    if (controller != null) {
-      artboard.addController(controller);
-      _input = controller.findInput("Enter State") as SMINumber?;
-      controller.setInputValue(
-        890,  // this should be the id of the input
+    if (_controller != null) {
+      artboard.addController(_controller!);
+      _controller!.setInputValue(
+        _controller!.stateMachine.inputs[0].id,
         mapExpressionToInput(widget.expression),
       );
     }
@@ -78,6 +77,17 @@ class BotFaceState extends State<BotFace> {
         )
         : Container(),
     );
+  }
+
+  @override
+  void didUpdateWidget(BotFace oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.expression != widget.expression) {
+      _controller!.setInputValue(
+        _controller!.stateMachine.inputs[0].id,
+        mapExpressionToInput(widget.expression),
+      );
+    }
   }
 }
 

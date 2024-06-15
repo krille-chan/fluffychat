@@ -45,7 +45,7 @@ class ITBotButton extends StatelessWidget {
     );
 
     return IconButton(
-      icon: const BotFace(width: 40.0, expression: BotExpression.right),
+      icon: const BotFace(width: 40.0, expression: BotExpression.idle),
       onPressed: () => choreographer.pangeaController.instructions.show(
         context,
         InstructionsEnum.itInstructions,
