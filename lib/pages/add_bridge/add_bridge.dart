@@ -125,7 +125,7 @@ class BotController extends State<AddBridge> {
       return;
     }
 
-    if (!await _sendPingMessage(roomBot)) {
+    if (!await _sendPingMessage(roomBot, socialNetwork)) {
       _handleError(socialNetwork);
       return;
     }
@@ -223,14 +223,25 @@ class BotController extends State<AddBridge> {
           PingPatterns.instagramNotLoggedMatch,
           PingPatterns.instagramNotLoggedAnymoreMatch,
         );
+      case "Linkedin":
+        return RegExpPingPatterns(
+          PingPatterns.linkedinOnlineMatch,
+          PingPatterns.linkedinNotLoggedMatch,
+        );
       default:
         throw Exception("Unsupported social network: $networkName");
     }
   }
 
-  Future<bool> _sendPingMessage(Room roomBot) async {
+  Future<bool> _sendPingMessage(Room roomBot, SocialNetwork socialNetwork) async {
     try {
-      await roomBot.sendTextEvent("ping");
+      switch (socialNetwork.name) {
+        case "Linkedin":
+          await roomBot.sendTextEvent("whoami");
+          break;
+        default:
+          await roomBot.sendTextEvent("ping");
+      }
       return true;
     } on MatrixException catch (exception) {
       final messageError = exception.errorMessage;

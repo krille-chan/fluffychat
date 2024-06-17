@@ -65,5 +65,12 @@ class SocialNetworkManager{
       name: "WhatsApp",
       chatBot: "@whatsappbot:",
     ),
+    SocialNetwork(
+      logo: Logo(Logos.linkedin),
+      name: "Linkedin",
+      chatBot: "@linkedinbot:",
+      urlLogin: "https://www.linkedin.com/login/",
+      urlRedirect: "https://www.linkedin.com/feed/",
+    ),
   ];
 }

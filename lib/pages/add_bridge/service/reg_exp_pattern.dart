@@ -3,7 +3,8 @@ class PingPatterns {
   // Instagram
   static RegExp instagramOnlineMatch = RegExp(r".*You're logged into Meta");
   static RegExp instagramNotLoggedMatch = RegExp(r"You're not logged in");
-  static RegExp instagramNotLoggedAnymoreMatch = RegExp(r"You were logged in at some point, but are not anymore");
+  static RegExp instagramNotLoggedAnymoreMatch =
+      RegExp(r"You were logged in at some point, but are not anymore");
 
   // WhatsApp
   static RegExp whatsAppOnlineMatch = RegExp(r"connection to WhatsApp OK");
@@ -15,7 +16,12 @@ class PingPatterns {
   // Facebook Messenger
   static RegExp facebookOnlineMatch = RegExp(r".*You're logged into Meta");
   static RegExp facebookNotLoggedMatch = RegExp(r"You're not logged in");
-  static RegExp facebookNotLoggedAnymoreMatch = RegExp(r"You were logged in at some point, but are not anymore");
+  static RegExp facebookNotLoggedAnymoreMatch =
+      RegExp(r"You were logged in at some point, but are not anymore");
+
+  // Linkedin
+  static RegExp linkedinOnlineMatch = RegExp(r"You are logged in as");
+  static RegExp linkedinNotLoggedMatch = RegExp(r"You are not logged in");
 }
 
 // For login response
@@ -42,6 +48,13 @@ class LoginRegex {
       RegExp(r"You're already logged in");
   static final RegExp facebookPasteCookies =
       RegExp(r'^.*Paste your cookies here.*');
+
+  // Linkedin
+  static final RegExp linkedinSuccessMatch = RegExp(r"Successfully logged in");
+  static final RegExp linkedinAlreadySuccessMatch =
+      RegExp(r"You're already logged in");
+
+  static final RegExp linkedinNotLogged = RegExp(r"You are not logged in");
 }
 
 // For logout response
@@ -63,6 +76,11 @@ class LogoutRegex {
       RegExp(r"Disconnected and deleted session");
   static final RegExp facebookAlreadyLogoutMatch =
       RegExp(r"You weren't logged in, but deleted session anyway");
+
+  // Linkedin
+  static final RegExp linkedinSuccessMatch = RegExp(r"Successfully logged out");
+  static final RegExp linkedinAlreadyLogoutMatch =
+      RegExp(r"You are not logged in.");
 }
 
 class RegExpPingPatterns {
@@ -71,5 +89,7 @@ class RegExpPingPatterns {
   final RegExp? notLoggedAnymoreMatch;
   final RegExp? mQTTNotMatch;
 
-  RegExpPingPatterns(this.onlineMatch, this.notLoggedMatch, [this.notLoggedAnymoreMatch, this.mQTTNotMatch]); // Modification de cette ligne
+  RegExpPingPatterns(this.onlineMatch, this.notLoggedMatch,
+      [this.notLoggedAnymoreMatch,
+      this.mQTTNotMatch]); // Modification de cette ligne
 }
