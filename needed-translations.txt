@@ -769,10 +769,6 @@
     "clickToManageSubscription",
     "emptyInviteWarning",
     "errorGettingAudio",
-    "searchIn",
-    "searchMore",
-    "gallery",
-    "files",
     "signUp",
     "pleaseChooseAtLeastChars",
     "noEmailWarning",
@@ -860,9 +856,7 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation",
-    "restricted",
-    "knockRestricted"
+    "buildTranslation"
   ],
 
   "be": [
@@ -7982,10 +7976,6 @@
     "clickToManageSubscription",
     "emptyInviteWarning",
     "errorGettingAudio",
-    "searchIn",
-    "searchMore",
-    "gallery",
-    "files",
     "signUp",
     "pleaseChooseAtLeastChars",
     "noEmailWarning",
@@ -8073,9 +8063,7 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation",
-    "restricted",
-    "knockRestricted"
+    "buildTranslation"
   ],
 
   "el": [
@@ -11471,8 +11459,6 @@
     "clickToManageSubscription",
     "emptyInviteWarning",
     "errorGettingAudio",
-    "searchIn",
-    "searchMore",
     "gallery",
     "files",
     "signUp",
@@ -11562,9 +11548,7 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation",
-    "restricted",
-    "knockRestricted"
+    "buildTranslation"
   ],
 
   "eu": [
@@ -12337,10 +12321,6 @@
     "clickToManageSubscription",
     "emptyInviteWarning",
     "errorGettingAudio",
-    "searchIn",
-    "searchMore",
-    "gallery",
-    "files",
     "signUp",
     "pleaseChooseAtLeastChars",
     "noEmailWarning",
@@ -18609,10 +18589,6 @@
     "clickToManageSubscription",
     "emptyInviteWarning",
     "errorGettingAudio",
-    "searchIn",
-    "searchMore",
-    "gallery",
-    "files",
     "signUp",
     "pleaseChooseAtLeastChars",
     "noEmailWarning",
@@ -30909,10 +30885,6 @@
     "clickToManageSubscription",
     "emptyInviteWarning",
     "errorGettingAudio",
-    "searchIn",
-    "searchMore",
-    "gallery",
-    "files",
     "signUp",
     "pleaseChooseAtLeastChars",
     "noEmailWarning",
@@ -49822,10 +49794,6 @@
     "clickToManageSubscription",
     "emptyInviteWarning",
     "errorGettingAudio",
-    "searchIn",
-    "searchMore",
-    "gallery",
-    "files",
     "signUp",
     "pleaseChooseAtLeastChars",
     "noEmailWarning",
@@ -53004,10 +52972,6 @@
     "clickToManageSubscription",
     "emptyInviteWarning",
     "errorGettingAudio",
-    "searchIn",
-    "searchMore",
-    "gallery",
-    "files",
     "signUp",
     "pleaseChooseAtLeastChars",
     "noEmailWarning",

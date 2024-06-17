@@ -217,7 +217,6 @@ class ClientChooserButton extends StatelessWidget {
       //               name:
       //                   snapshot.data?.displayName ?? client.userID!.localpart,
       //               size: 32,
-      //               fontSize: 12,
       //             ),
       //             const SizedBox(width: 12),
       //             Expanded(
@@ -323,20 +322,19 @@ class ClientChooserButton extends StatelessWidget {
                   leading: const Icon(Icons.settings_outlined),
                   title: Text(L10n.of(context)!.mainMenu),
                 ),
+                // child: Material(
+                //   color: Colors.transparent,
+                //   borderRadius: BorderRadius.circular(99),
+                //   child: Avatar(
+                //     mxContent: snapshot.data?.avatarUrl,
+                //     name: snapshot.data?.displayName ??
+                //         matrix.client.userID!.localpart,
+                //     size: 32,
+                //   ),
+                // ),
+                // Pangea#
               ),
             ),
-            // child: Material(
-            //   color: Colors.transparent,
-            //   borderRadius: BorderRadius.circular(99),
-            //   child: Avatar(
-            //     mxContent: snapshot.data?.avatarUrl,
-            //     name: snapshot.data?.displayName ??
-            //         matrix.client.userID!.localpart,
-            //     size: 32,
-            //     fontSize: 12,
-            //   ),
-            // ),
-            // Pangea#
           ),
         ],
       ),

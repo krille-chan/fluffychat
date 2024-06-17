@@ -2689,5 +2689,18 @@
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
-  }
+  },
+  "searchIn": "Otsi vestlusest „{chat}“...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Otsi veel...",
+  "@searchMore": {},
+  "knockRestricted": "Koputa piiratud ligipääsuga jututoa uksele",
+  "@knockRestricted": {},
+  "restricted": "Piiratud",
+  "@restricted": {}
 }

@@ -2689,5 +2689,18 @@
       "appname": {},
       "unread": {}
     }
-  }
+  },
+  "searchIn": "{chat} içinde ara...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Daha fazla ara...",
+  "@searchMore": {},
+  "gallery": "Galeri",
+  "@gallery": {},
+  "files": "Dosyalar",
+  "@files": {}
 }
