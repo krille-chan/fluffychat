@@ -100,6 +100,10 @@ class _LockScreenState extends State<LockScreen> {
                   decoration: InputDecoration(
                     errorText: _errorText,
                     hintText: '****',
+                    suffix: IconButton(
+                      icon: const Icon(Icons.lock_open_outlined),
+                      onPressed: () => tryUnlock(_textEditingController.text),
+                    ),
                   ),
                 ),
                 if (_inputBlocked)
