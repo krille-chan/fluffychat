@@ -144,9 +144,13 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
   Widget getAddToSpaceToggleItem(int index) {
     final Room possibleParent = possibleParents[index];
-    final bool canAdd = !(!possibleParent.isRoomAdmin &&
-            widget.mode == AddToClassMode.exchange) &&
-        possibleParent.canAddAsParentOf(room);
+    final bool canAdd = (room?.isSpace ?? false)
+        // Room is space
+        ? possibleParent.isRoomAdmin &&
+            room!.isRoomAdmin &&
+            possibleParent.canAddAsParentOf(room)
+        // Room is null or chat
+        : possibleParent.canAddAsParentOf(room);
 
     return Opacity(
       opacity: canAdd ? 1 : 0.5,

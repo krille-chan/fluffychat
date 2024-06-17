@@ -3970,5 +3970,8 @@
   "capacitySetTooLow": "Room capacity cannot be set below the current number of non-admins.",
   "roomCapacityExplanation": "Room capacity limits the number of non-admins allowed in a room.",
   "enterNumber": "Please enter a whole number value.",
-  "buildTranslation": "Build your translation from the choices above"
+  "buildTranslation": "Build your translation from the choices above",
+  "nonexistentSelection": "Selection no longer exists.",
+  "cantAddSpaceChild": "You do not have permission to add a child to this space.",
+  "roomAddedToSpace": "Room(s) have been added to the selected space."
 }

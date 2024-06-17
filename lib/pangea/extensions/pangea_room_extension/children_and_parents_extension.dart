@@ -128,15 +128,13 @@ extension ChildrenAndParentsRoomExtension on Room {
     return childIds;
   }
 
-  // Checks if has permissions to add child to space
-  // And whether potential child space is ancestor of this
+  // Checks if has permissions to add child chat
+  // Or whether potential child space is ancestor of this
   bool _canAddAsParentOf(Room? child) {
     if (child == null || !child.isSpace) {
       return _canIAddSpaceChild(child);
     }
     if (id == child.id) return false;
-    return _isRoomAdmin &&
-        child._isRoomAdmin &&
-        !child._allSpaceChildRoomIds.contains(id);
+    return !child._allSpaceChildRoomIds.contains(id);
   }
 }

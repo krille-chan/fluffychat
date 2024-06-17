@@ -797,6 +797,10 @@ class ChatListController extends State<ChatList>
   // Pangea#
 
   Future<void> addToSpace() async {
+    // #Pangea
+    final firstSelectedRoom =
+        Matrix.of(context).client.getRoomById(selectedRoomIds.toList().first);
+    // Pangea#
     final selectedSpace = await showConfirmationDialog<String>(
       context: context,
       title: L10n.of(context)!.addToSpace,
@@ -825,6 +829,12 @@ class ChatListController extends State<ChatList>
               // label: space
               //     .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
               label: space.nameIncludingParents(context),
+              textStyle: TextStyle(
+                color: (firstSelectedRoom == null ||
+                        (firstSelectedRoom.isSpace && !space.isRoomAdmin))
+                    ? Theme.of(context).colorScheme.outline
+                    : Theme.of(context).colorScheme.surfaceTint,
+              ),
               // Pangea#
             ),
           )
@@ -836,12 +846,19 @@ class ChatListController extends State<ChatList>
       future: () async {
         final space = Matrix.of(context).client.getRoomById(selectedSpace)!;
         // #Pangea
+        if (firstSelectedRoom == null) {
+          throw L10n.of(context)!.nonexistentSelection;
+        }
+        if (firstSelectedRoom.isSpace && !space.isRoomAdmin) {
+          throw L10n.of(context)!.cantAddSpaceChild;
+        }
         await pangeaAddToSpace(
           space,
           selectedRoomIds.toList(),
           context,
           pangeaController,
         );
+
         // if (space.canSendDefaultStates) {
         //   for (final roomId in selectedRoomIds) {
         //     await space.setSpaceChild(roomId);
@@ -854,7 +871,10 @@ class ChatListController extends State<ChatList>
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
+          // #Pangea
+          // content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
+          content: Text(L10n.of(context)!.roomAddedToSpace),
+          // Pangea#
         ),
       );
     }
