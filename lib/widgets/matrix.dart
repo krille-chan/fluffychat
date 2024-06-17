@@ -72,7 +72,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   // Pangea#
   SharedPreferences get store => widget.store;
 
-  HomeserverSummary? loginHomeserverSummary;
   XFile? loginAvatar;
   String? loginUsername;
   bool? loginRegistrationSupported;

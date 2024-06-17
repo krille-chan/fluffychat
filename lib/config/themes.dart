@@ -91,6 +91,7 @@ abstract class FluffyThemes {
       ),
       textSelectionTheme: TextSelectionThemeData(
         selectionColor: colorScheme.onBackground.withAlpha(128),
+        selectionHandleColor: colorScheme.secondary,
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
