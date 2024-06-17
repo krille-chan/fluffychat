@@ -30,47 +30,58 @@ class LoginView extends StatelessWidget {
       body: Builder(
         builder: (context) {
           return AutofillGroup(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              children: <Widget>[
-                Image.asset('assets/banner_transparent.png'),
-                const SizedBox(height: 16),
-                !controller.loading
-                    ? Column(
-                        children: [
-                          if (controller.messageError != null)
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(
-                                controller.messageError!,
-                                style: const TextStyle(color: Colors.red),
-                              ),
-                            ),
-                          ...controller.authWidgets,
-                        ],
-                      )
-                    : const Center(
-                        child: CircularProgressIndicator(),
+              child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  children: <Widget>[
+                    Image.asset('assets/banner_transparent.png'),
+                    Text(
+                      L10n.of(context)!.loginTitle.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
-                const SizedBox(height: 16), // Register redirection
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextButton.icon(
-                    onPressed: controller.loading
-                        ? () {}
-                        : () => context.go('/home/register'),
-                    style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.error,
                     ),
-                    icon: const Icon(Icons.app_registration),
-                    label: Text(L10n.of(context)!.noAccountRegister),
-                  ),
+                    const SizedBox(height: 16),
+                    !controller.loading
+                        ? Column(
+                            children: [
+                              if (controller.messageError != null)
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Text(
+                                    controller.messageError!,
+                                    style: const TextStyle(color: Colors.red),
+                                  ),
+                                ),
+                              ...controller.authWidgets,
+                            ],
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                  ],
                 ),
-                const SizedBox(height: 16),
-              ],
-            ),
-          );
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: TextButton.icon(
+                  onPressed: controller.loading
+                      ? () {}
+                      : () => context.go('/home/register'),
+                  style: TextButton.styleFrom(
+                    foregroundColor: Theme.of(context).colorScheme.error,
+                  ),
+                  icon: const Icon(Icons.app_registration),
+                  label: Text(L10n.of(context)!.noAccountRegister),
+                ),
+              )
+            ],
+          ));
         },
       ),
     );

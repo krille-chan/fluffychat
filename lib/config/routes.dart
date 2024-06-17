@@ -89,7 +89,7 @@ abstract class AppRoutes {
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
         state,
-        const Login(),
+        const Register(),
       ),
       redirect: loggedInRedirect,
       routes: [

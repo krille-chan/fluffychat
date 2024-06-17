@@ -30,7 +30,11 @@ class NewGroupView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
+            Text(
+              L10n.of(context)!.createGroupLimitationWarning,
+            ),
+            const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(

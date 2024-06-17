@@ -6,7 +6,9 @@ import 'package:tawkie/utils/platform_size.dart';
 
 // Shows a button redirecting to the bridge bots social network chat connection page
 class AddChatNetwork extends StatelessWidget {
-  const AddChatNetwork({super.key});
+  final bool showText;
+
+  const AddChatNetwork(this.showText, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class AddChatNetwork extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            if (PlatformInfos.isMobile)
+            if (PlatformInfos.isMobile && showText)
               Text(
                 L10n.of(context)!.youDonTHaveConversation,
               ),

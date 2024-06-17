@@ -50,7 +50,7 @@ class LoginController extends State<Login> {
   @override
   void initState() {
     super.initState();
-    BackButtonInterceptor.add(myInterceptor);
+    BackButtonInterceptor.add(onBackButtonPress);
 
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
     getLoginOry();
@@ -64,13 +64,30 @@ class LoginController extends State<Login> {
 
   @override
   void dispose() {
-    BackButtonInterceptor.remove(myInterceptor);
+    BackButtonInterceptor.remove(onBackButtonPress);
     super.dispose();
   }
 
-  Future<bool> myInterceptor(
+  Future<bool> onBackButtonPress(
       bool stopDefaultButtonEvent, RouteInfo info) async {
     popFormWidgets();
+    return true;
+  }
+
+  bool _validateEmail(String email) {
+    // Define regex to validate email format
+    final RegExp emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+
+    // Check if the email matches the regex
+    if (!emailRegex.hasMatch(email)) {
+      setState(() => messageError = L10n.of(context)?.registerEmailError);
+      return false;
+    }
+
+    // Reset email error if valid
+    setState(() => messageError = null);
     return true;
   }
 
@@ -234,14 +251,22 @@ class LoginController extends State<Login> {
     } else {
       return Padding(
         padding: const EdgeInsets.all(12.0),
-        child: ElevatedButton(
-          onPressed: () {
-            _submitForm(actionUrl);
-          },
-          child: Text(
-            node.meta.label!.text,
-            style: TextStyle(color: Colors.green[500]),
-          ),
+        child: Column(
+          children: [
+            const SizedBox(height: 8),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: AppConfig.primaryColor,
+              ),
+              onPressed: () {
+                _submitForm(actionUrl);
+              },
+              child: Text(
+                node.meta.label!.text,
+              ),
+            ),
+          ],
         ),
       );
     }
@@ -398,7 +423,10 @@ class LoginController extends State<Login> {
       if (node.attributes.oneOf.value is kratos.UiNodeInputAttributes) {
         final kratos.UiNodeInputAttributes attributes =
             node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
-        final value = textControllers[i].text;
+        String value = textControllers[i].text;
+
+        // Trim the value here
+        value = value.trim();
 
         formData[attributes.name] = value; // Convert JsonObject to String
 
@@ -408,6 +436,12 @@ class LoginController extends State<Login> {
           code = value;
         }
       }
+    }
+
+    // Validate email
+    if (email != null && !_validateEmail(email)) {
+      setState(() => loading = false);
+      return;
     }
 
     if (email != null && email.isNotEmpty && code != null && code.isNotEmpty) {
@@ -540,12 +574,15 @@ class LoginController extends State<Login> {
       Logs().v("Error logging in with jwt : ${e.response?.data}");
       // Explanation to the user
       DioErrorHandler.fetchError(context, e);
-    } finally {
       // Set loading to false after handling the error
       setState(() => loading = false);
+    } catch (exception) {
+      if (kDebugMode) {
+        print(exception);
+      }
+      setState(() => messageError = exception.toString());
+      return setState(() => loading = false);
     }
-
-    setState(() => loading = false);
   }
 
   Future<Map<String, dynamic>> getMatrixLoginJwt(String sessionToken) async {
