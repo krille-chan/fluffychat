@@ -22,11 +22,13 @@ class SettingsNotificationsView extends StatelessWidget {
       ),
       body: MaxWidthBody(
         child: StreamBuilder(
-          stream: Matrix.of(context)
-              .client
-              .onAccountData
-              .stream
-              .where((event) => event.type == 'm.push_rules'),
+          stream: Matrix.of(context).client.onSync.stream.where(
+                (syncUpdate) =>
+                    syncUpdate.accountData?.any(
+                      (accountData) => accountData.type == 'm.push_rules',
+                    ) ??
+                    false,
+              ),
           builder: (BuildContext context, _) {
             return Column(
               children: [

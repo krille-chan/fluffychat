@@ -860,7 +860,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "be": [
@@ -2351,7 +2353,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "bn": [
@@ -3838,7 +3842,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "bo": [
@@ -5329,7 +5335,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "ca": [
@@ -6222,7 +6230,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "cs": [
@@ -7197,7 +7207,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "de": [
@@ -8061,7 +8073,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "el": [
@@ -9503,7 +9517,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "eo": [
@@ -10643,7 +10659,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "es": [
@@ -10678,7 +10696,9 @@
     "files",
     "addSpaceToSpaceDescription",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "et": [
@@ -11542,7 +11562,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "eu": [
@@ -12406,7 +12428,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "fa": [
@@ -13403,7 +13427,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "fi": [
@@ -14364,7 +14390,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "fil": [
@@ -15681,7 +15709,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "fr": [
@@ -16677,7 +16707,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "ga": [
@@ -17802,7 +17834,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "gl": [
@@ -18666,7 +18700,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "he": [
@@ -19910,7 +19946,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "hi": [
@@ -21394,7 +21432,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "hr": [
@@ -22331,7 +22371,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "hu": [
@@ -23205,7 +23247,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "ia": [
@@ -24682,7 +24726,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "id": [
@@ -25546,7 +25592,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "ie": [
@@ -26794,7 +26842,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "it": [
@@ -27709,7 +27759,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "ja": [
@@ -28735,7 +28787,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "ka": [
@@ -30080,7 +30134,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "ko": [
@@ -30944,7 +31000,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "lt": [
@@ -31970,7 +32028,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "lv": [
@@ -32836,7 +32896,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "nb": [
@@ -34026,7 +34088,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "nl": [
@@ -34980,7 +35044,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "pl": [
@@ -35943,7 +36009,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "pt": [
@@ -37412,7 +37480,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "pt_BR": [
@@ -38276,7 +38346,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "pt_PT": [
@@ -39467,7 +39539,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "ro": [
@@ -40465,7 +40539,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "ru": [
@@ -41329,7 +41405,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "sk": [
@@ -42586,7 +42664,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "sl": [
@@ -43973,7 +44053,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "sr": [
@@ -45134,7 +45216,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "sv": [
@@ -46029,7 +46113,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "ta": [
@@ -47517,7 +47603,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "th": [
@@ -48959,7 +49047,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "tr": [
@@ -49823,7 +49913,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "uk": [
@@ -50718,7 +50810,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "vi": [
@@ -52135,7 +52229,9 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ],
 
   "zh": [
@@ -52999,7 +53095,9 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "restricted",
+    "knockRestricted"
   ],
 
   "zh_Hant": [
@@ -54138,6 +54236,8 @@
     "enterNumber",
     "buildTranslation",
     "noDatabaseEncryption",
-    "thereAreCountUsersBlocked"
+    "thereAreCountUsersBlocked",
+    "restricted",
+    "knockRestricted"
   ]
 }

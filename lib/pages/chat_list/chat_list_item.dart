@@ -94,6 +94,11 @@ class ChatListItem extends StatelessWidget {
     if (filter != null && !displayname.toLowerCase().contains(filter)) {
       return const SizedBox.shrink();
     }
+
+    final needLastEventSender = lastEvent == null
+        ? false
+        : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,

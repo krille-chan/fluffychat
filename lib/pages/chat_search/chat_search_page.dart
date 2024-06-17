@@ -70,6 +70,16 @@ class ChatSearchController extends State<ChatSearchPage>
               result.$2,
             ),
           )
+          // Deduplication workaround for
+          // https://github.com/famedly/matrix-dart-sdk/issues/1831
+          .map(
+            (result) => (
+              <String, Event>{
+                for (final event in result.$1) event.eventId: event,
+              }.values.toList(),
+              result.$2,
+            ),
+          )
           .asBroadcastStream();
     });
   }
@@ -100,6 +110,16 @@ class ChatSearchController extends State<ChatSearchPage>
               result.$2,
             ),
           )
+          // Deduplication workaround for
+          // https://github.com/famedly/matrix-dart-sdk/issues/1831
+          .map(
+            (result) => (
+              <String, Event>{
+                for (final event in result.$1) event.eventId: event,
+              }.values.toList(),
+              result.$2,
+            ),
+          )
           .asBroadcastStream();
     });
   }
@@ -127,6 +147,16 @@ class ChatSearchController extends State<ChatSearchPage>
                 if (previousSearchResult != null) ...previousSearchResult,
                 ...result.$1,
               ],
+              result.$2,
+            ),
+          )
+          // Deduplication workaround for
+          // https://github.com/famedly/matrix-dart-sdk/issues/1831
+          .map(
+            (result) => (
+              <String, Event>{
+                for (final event in result.$1) event.eventId: event,
+              }.values.toList(),
               result.$2,
             ),
           )
