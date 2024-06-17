@@ -126,7 +126,6 @@ class ClientChooserButton extends StatelessWidget {
                     name:
                         snapshot.data?.displayName ?? client.userID!.localpart,
                     size: 32,
-                    fontSize: 12,
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -216,7 +215,6 @@ class ClientChooserButton extends StatelessWidget {
                 name: snapshot.data?.displayName ??
                     matrix.client.userID!.localpart,
                 size: 32,
-                fontSize: 12,
               ),
             ),
           ),

@@ -111,7 +111,6 @@ class ChatDetailsView extends StatelessWidget {
                                         mxContent: room.avatar,
                                         name: displayname,
                                         size: Avatar.defaultSize * 2.5,
-                                        fontSize: 18 * 2.5,
                                       ),
                                     ),
                                   ),
@@ -163,7 +162,7 @@ class ChatDetailsView extends StatelessWidget {
                                     style: TextButton.styleFrom(
                                       foregroundColor: Theme.of(context)
                                           .colorScheme
-                                          .onBackground,
+                                          .onSurface,
                                     ),
                                     label: Text(
                                       room.isDirectChat

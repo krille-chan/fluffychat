@@ -119,7 +119,9 @@ class UserBottomSheetView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Material(
-                      color: Theme.of(context).colorScheme.surfaceVariant,
+                      color:
+                          // ignore: deprecated_member_use
+                          Theme.of(context).colorScheme.surfaceVariant,
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
                       child: ListTile(
@@ -136,7 +138,7 @@ class UserBottomSheetView extends StatelessWidget {
                             TextButton.icon(
                               style: TextButton.styleFrom(
                                 backgroundColor:
-                                    Theme.of(context).colorScheme.background,
+                                    Theme.of(context).colorScheme.surface,
                                 foregroundColor:
                                     Theme.of(context).colorScheme.primary,
                               ),
@@ -185,7 +187,6 @@ class UserBottomSheetView extends StatelessWidget {
                           mxContent: avatarUrl,
                           name: displayname,
                           size: Avatar.defaultSize * 2.5,
-                          fontSize: 18 * 2.5,
                         ),
                       ),
                     ),
@@ -205,7 +206,7 @@ class UserBottomSheetView extends StatelessWidget {
                             ),
                             style: TextButton.styleFrom(
                               foregroundColor:
-                                  Theme.of(context).colorScheme.onBackground,
+                                  Theme.of(context).colorScheme.onSurface,
                             ),
                             label: Text(
                               displayname,

@@ -13,7 +13,6 @@ class Avatar extends StatelessWidget {
   final void Function()? onTap;
   static const double defaultSize = 44;
   final Client? client;
-  final double fontSize;
   final String? presenceUserId;
   final Color? presenceBackgroundColor;
 
@@ -23,7 +22,6 @@ class Avatar extends StatelessWidget {
     this.size = defaultSize,
     this.onTap,
     this.client,
-    this.fontSize = 18,
     this.presenceUserId,
     this.presenceBackgroundColor,
     super.key,
@@ -48,7 +46,7 @@ class Avatar extends StatelessWidget {
         fallbackLetters,
         style: TextStyle(
           color: noPic ? Colors.white : null,
-          fontSize: fontSize,
+          fontSize: (size / 2.5).roundToDouble(),
         ),
       ),
     );
@@ -99,7 +97,7 @@ class Avatar extends StatelessWidget {
                 height: 16,
                 decoration: BoxDecoration(
                   color: presenceBackgroundColor ??
-                      Theme.of(context).colorScheme.background,
+                      Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(32),
                 ),
                 alignment: Alignment.center,
@@ -111,7 +109,7 @@ class Avatar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       width: 1,
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.surface,
                     ),
                   ),
                 ),

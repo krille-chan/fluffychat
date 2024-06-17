@@ -62,8 +62,14 @@ class SettingsIgnoreListView extends StatelessWidget {
             ),
             Expanded(
               child: StreamBuilder<Object>(
-                stream: client.onAccountData.stream
-                    .where((a) => a.type == 'm.ignored_user_list'),
+                stream: client.onSync.stream.where(
+                  (syncUpdate) =>
+                      syncUpdate.accountData?.any(
+                        (accountData) =>
+                            accountData.type == 'm.ignored_user_list',
+                      ) ??
+                      false,
+                ),
                 builder: (context, snapshot) {
                   return ListView.builder(
                     itemCount: client.ignoredUsers.length,

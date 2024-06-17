@@ -37,7 +37,7 @@ class UnreadRoomsBadge extends StatelessWidget {
             badgeColor: Theme.of(context).colorScheme.primary,
             elevation: 4,
             borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.background,
+              color: Theme.of(context).colorScheme.surface,
               width: 2,
             ),
           ),

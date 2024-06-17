@@ -23,7 +23,8 @@ class LoginView extends StatelessWidget {
     final titleParts = title.split(homeserver);
 
     final textFieldFillColor = FluffyThemes.isColumnMode(context)
-        ? Theme.of(context).colorScheme.background
+        ? Theme.of(context).colorScheme.surface
+        // ignore: deprecated_member_use
         : Theme.of(context).colorScheme.surfaceVariant;
 
     return LoginScaffold(

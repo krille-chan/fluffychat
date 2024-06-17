@@ -32,7 +32,7 @@ class HomeserverPickerView extends StatelessWidget {
       appBar: AppBar(
         titleSpacing: 12,
         automaticallyImplyLeading: false,
-        surfaceTintColor: Theme.of(context).colorScheme.background,
+        surfaceTintColor: Theme.of(context).colorScheme.surface,
         title: HomeserverAppBar(controller: controller),
       ),
       body: Column(
@@ -207,9 +207,9 @@ class _LoginButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(99),
             ),
-            foregroundColor: Theme.of(context).colorScheme.onBackground,
+            foregroundColor: Theme.of(context).colorScheme.onSurface,
             backgroundColor: withBorder
-                ? Theme.of(context).colorScheme.background
+                ? Theme.of(context).colorScheme.surface
                 : Colors.transparent,
           ),
           onPressed: onPressed,
