@@ -94,11 +94,6 @@ class ChatListItem extends StatelessWidget {
     if (filter != null && !displayname.toLowerCase().contains(filter)) {
       return const SizedBox.shrink();
     }
-
-    final needLastEventSender = lastEvent == null
-        ? false
-        : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
-
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
@@ -239,21 +234,20 @@ class ChatListItem extends StatelessWidget {
                             maxLines: 1,
                             softWrap: false,
                           )
-                        : FutureBuilder(
-                            key: ValueKey(lastEvent?.eventId),
+                        : FutureBuilder<String>(
                             // #Pangea
-                            // future: needLastEventSender
-                            //     ? lastEvent.calcLocalizedBody(
-                            //         MatrixLocals(L10n.of(context)!),
-                            //         hideReply: true,
-                            //         hideEdit: true,
-                            //         plaintextBody: true,
-                            //         removeMarkdown: true,
-                            //         withSenderNamePrefix: !isDirectChat ||
-                            //             directChatMatrixId !=
-                            //                 room.lastEvent?.senderId,
-                            //       )
-                            //     : null,
+                            // future: room.lastEvent?.calcLocalizedBody(
+                            //       MatrixLocals(L10n.of(context)!),
+                            //       hideReply: true,
+                            //       hideEdit: true,
+                            //       plaintextBody: true,
+                            //       removeMarkdown: true,
+                            //       withSenderNamePrefix: !isDirectChat ||
+                            //           directChatMatrixId !=
+                            //               room.lastEvent?.senderId,
+                            //     ) ??
+                            //     Future.value(L10n.of(context)!.emptyChat),
+                            // Pangea#
                             future: room.lastEvent != null
                                 ? GetChatListItemSubtitle().getSubtitle(
                                     L10n.of(context)!,
@@ -261,37 +255,39 @@ class ChatListItem extends StatelessWidget {
                                     MatrixState.pangeaController,
                                   )
                                 : Future.value(L10n.of(context)!.emptyChat),
-                            // Pangea#
-                            initialData: lastEvent?.calcLocalizedBodyFallback(
-                              MatrixLocals(L10n.of(context)!),
-                              hideReply: true,
-                              hideEdit: true,
-                              plaintextBody: true,
-                              removeMarkdown: true,
-                              withSenderNamePrefix: !isDirectChat ||
-                                  directChatMatrixId !=
-                                      room.lastEvent?.senderId,
-                            ),
-                            builder: (context, snapshot) => Text(
-                              room.membership == Membership.invite
-                                  ? isDirectChat
-                                      ? L10n.of(context)!.invitePrivateChat
-                                      : L10n.of(context)!.inviteGroupChat
-                                  : snapshot.data ??
-                                      L10n.of(context)!.emptyChat,
-                              softWrap: false,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontWeight: unread || room.hasNewMessages
-                                    ? FontWeight.bold
-                                    : null,
-                                color: theme.colorScheme.onSurfaceVariant,
-                                decoration: room.lastEvent?.redacted == true
-                                    ? TextDecoration.lineThrough
-                                    : null,
-                              ),
-                            ),
+                            builder: (context, snapshot) {
+                              return Text(
+                                room.membership == Membership.invite
+                                    ? isDirectChat
+                                        ? L10n.of(context)!.invitePrivateChat
+                                        : L10n.of(context)!.inviteGroupChat
+                                    : snapshot.data ??
+                                        room.lastEvent
+                                            ?.calcLocalizedBodyFallback(
+                                          MatrixLocals(L10n.of(context)!),
+                                          hideReply: true,
+                                          hideEdit: true,
+                                          plaintextBody: true,
+                                          removeMarkdown: true,
+                                          withSenderNamePrefix: !isDirectChat ||
+                                              directChatMatrixId !=
+                                                  room.lastEvent?.senderId,
+                                        ) ??
+                                        L10n.of(context)!.emptyChat,
+                                softWrap: false,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: unread || room.hasNewMessages
+                                      ? FontWeight.bold
+                                      : null,
+                                  color: theme.colorScheme.onSurfaceVariant,
+                                  decoration: room.lastEvent?.redacted == true
+                                      ? TextDecoration.lineThrough
+                                      : null,
+                                ),
+                              );
+                            },
                           ),
                   ),
                   const SizedBox(width: 8),

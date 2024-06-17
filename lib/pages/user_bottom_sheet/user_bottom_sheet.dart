@@ -127,11 +127,12 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           textFields: [DialogTextField(hintText: L10n.of(context)!.reason)],
         );
         if (reason == null || reason.single.isEmpty) return;
+
         final result = await showFutureLoadingDialog(
           context: context,
           future: () => Matrix.of(widget.outerContext).client.reportContent(
-                user.roomId!,
-                user.eventId,
+                user.room.id,
+                user.id,
                 reason: reason.single,
                 score: score,
               ),

@@ -12,8 +12,11 @@ extension RoomInformationRoomExtension on Room {
         .length;
   }
 
-  DateTime? get _creationTime =>
-      getState(EventTypes.RoomCreate)?.originServerTs;
+  DateTime? get _creationTime {
+    final dynamic roomCreate = getState(EventTypes.RoomCreate);
+    if (roomCreate is! Event) return null;
+    return roomCreate.originServerTs;
+  }
 
   String? get _creatorId => getState(EventTypes.RoomCreate)?.senderId;
 

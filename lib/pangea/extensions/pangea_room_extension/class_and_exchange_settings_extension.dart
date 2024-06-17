@@ -60,7 +60,10 @@ extension ClassAndExchangeSettingsRoomExtension on Room {
       if (ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin) {
         return;
       }
-      final Event? currentPower = getState(EventTypes.RoomPowerLevels);
+      final dynamic currentPower = getState(EventTypes.RoomPowerLevels);
+      if (currentPower is! Event?) {
+        return;
+      }
       final Map<String, dynamic>? currentPowerContent =
           currentPower?.content["events"] as Map<String, dynamic>?;
       final spaceChildPower = currentPowerContent?[EventTypes.SpaceChild];
@@ -113,10 +116,21 @@ extension ClassAndExchangeSettingsRoomExtension on Room {
     }
   }
 
-  Event? get _languageSettingsStateEvent =>
-      getState(PangeaEventTypes.classSettings);
+  Event? get _languageSettingsStateEvent {
+    final dynamic classSettings = getState(PangeaEventTypes.classSettings);
+    if (classSettings is Event) {
+      return classSettings;
+    }
+    return null;
+  }
 
-  Event? get _pangeaRoomRulesStateEvent => getState(PangeaEventTypes.rules);
+  Event? get _pangeaRoomRulesStateEvent {
+    final dynamic roomRules = getState(PangeaEventTypes.rules);
+    if (roomRules is Event) {
+      return roomRules;
+    }
+    return null;
+  }
 
   ClassSettingsModel? get _firstLanguageSettings =>
       classSettings ??

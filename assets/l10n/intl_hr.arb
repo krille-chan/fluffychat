@@ -1058,10 +1058,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "@noGoogleServicesWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
   "none": "Ništa",
   "@none": {
     "type": "text",
@@ -2294,7 +2290,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "reportErrorDescription": "Dogodila se greška. Pokušaj ponovo kasnije. Ako želiš, grešku možeš prijaviti programerima.",
+  "reportErrorDescription": "😭 Joj! Dogodila se greška. Pokušaj ponovo kasnije. Ako želiš, grešku možeš prijaviti programerima.",
   "@reportErrorDescription": {},
   "signInWithPassword": "Prijavi se s lozinkom",
   "@signInWithPassword": {},
@@ -2392,7 +2388,7 @@
       "seconds": {}
     }
   },
-  "hasKnocked": "{user} je pokucao/la",
+  "hasKnocked": "🚪 {user} je pokucao/la",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2400,17 +2396,10 @@
   },
   "pleaseEnterANumber": "Upiši broj veći od 0",
   "@pleaseEnterANumber": {},
-  "@banUserDescription": {},
-  "@removeDevicesDescription": {},
-  "@unbanUserDescription": {},
   "pushNotificationsNotAvailable": "Automatsko slanje obavijesti nije dostupno",
   "@pushNotificationsNotAvailable": {},
-  "@makeAdminDescription": {},
-  "@archiveRoomDescription": {},
   "learnMore": "Saznaj više",
   "@learnMore": {},
-  "@roomUpgradeDescription": {},
-  "@kickUserDescription": {},
   "createGroupAndInviteUsers": "Stvori grupu i pozovi korisnike",
   "@createGroupAndInviteUsers": {},
   "startConversation": "Pokreni konverzaciju",
@@ -2419,7 +2408,7 @@
   "@blockedUsers": {},
   "groupCanBeFoundViaSearch": "Grupa se može pronaći putem pretrage",
   "@groupCanBeFoundViaSearch": {},
-  "block": "blokiraj",
+  "block": "Blokiraj",
   "@block": {},
   "yourGlobalUserIdIs": "Tvoj globalni korisnički ID je: ",
   "@yourGlobalUserIdIs": {},
@@ -2436,5 +2425,29 @@
   "searchChatsRooms": "Traži #chats, @users …",
   "@searchChatsRooms": {},
   "databaseMigrationBody": "Pričekaj. Ovo može potrajati.",
-  "@databaseMigrationBody": {}
+  "@databaseMigrationBody": {},
+  "transparent": "Prozirno",
+  "@transparent": {},
+  "formattedMessages": "Formatirane poruke",
+  "@formattedMessages": {},
+  "incomingMessages": "Dolazne poruke",
+  "@incomingMessages": {},
+  "passwordsDoNotMatch": "Lozinke se ne poklapaju",
+  "@passwordsDoNotMatch": {},
+  "accessAndVisibility": "Pristup i vidljivost",
+  "@accessAndVisibility": {},
+  "calls": "Pozivi",
+  "@calls": {},
+  "customEmojisAndStickers": "Prilagođeni emojiji i naljepnice",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Dodaj ili dijeli prilagođene emojije ili naljepnice koje se mogu koristiti u bilo kojem razgovoru.",
+  "@customEmojisAndStickersBody": {},
+  "accessAndVisibilityDescription": "Tko se smije pridružiti ovom razgovoru i kako se razgovor može otkriti.",
+  "@accessAndVisibilityDescription": {},
+  "stickers": "Naljepnice",
+  "@stickers": {},
+  "discover": "Otkrij",
+  "@discover": {},
+  "formattedMessagesDescription": "Prikaži formatirani sadržaj poruke poput podebljanog teksta koristeći markdown.",
+  "@formattedMessagesDescription": {}
 }
