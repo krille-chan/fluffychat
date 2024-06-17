@@ -33,7 +33,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
   bool _instagramBridgeCreated =
       false; // Variable to track if the Instagram bridge has been created
   bool _linkedinBridgeCreated =
-  false; // Variable to track if the Linkedin bridge has been created
+      false; // Variable to track if the Linkedin bridge has been created
 
   @override
   void initState() {
@@ -47,12 +47,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
 
   @override
   void dispose() {
-    if (_webViewController != null && mounted) {
-      _webViewController!
-          .loadUrl(urlRequest: URLRequest(url: WebUri('about:blank')));
-      _webViewController!.dispose();
-    }
-    _isDisposed = true; // Mark widget disposed
+    _isDisposed = true;
     super.dispose();
   }
 
@@ -60,7 +55,6 @@ class _WebViewConnectionState extends State<WebViewConnection> {
     if (_webViewController != null && mounted) {
       await _webViewController!
           .loadUrl(urlRequest: URLRequest(url: WebUri('about:blank')));
-      _webViewController!.dispose();
       _webViewController = null;
     }
   }
@@ -74,7 +68,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
     if (widget.network.name == "Facebook Messenger") {
       settings = InAppWebViewSettings(
         userAgent:
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
       );
     }
 
@@ -91,6 +85,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
           url: WebUri(widget.network.urlLogin!),
         ),
         onWebViewCreated: (InAppWebViewController controller) {
+          if (_isDisposed) return; // Prevent further operations if disposed
           _webViewController = controller;
         },
         onLoadStop: (InAppWebViewController controller, Uri? url) async {
@@ -149,9 +144,8 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                     // Mark the Instagram bridge as created
                     _linkedinBridgeCreated = true;
 
-                    await widget.controller
-                        .createBridgeLinkedin(context, cookieManager,
-                        connectionState, widget.network);
+                    await widget.controller.createBridgeLinkedin(context,
+                        cookieManager, connectionState, widget.network);
                   },
                 );
               }
