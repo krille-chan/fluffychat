@@ -70,12 +70,47 @@ class BotController extends State<AddBridge> {
     try {
       await waitForMatrixSync();
       String? directChat = client.getDirectChatFromUserId(botUserId);
-      directChat ??= await client.startDirectChat(botUserId);
+      bool isNewChat = false;
+
+      if (directChat == null) {
+        directChat = await client.startDirectChat(botUserId);
+        isNewChat = true;
+      }
+
+      if (isNewChat) {
+        final roomBot = client.getRoomById(directChat);
+        if (roomBot != null) {
+          await waitForBotFirstMessage(roomBot);
+        }
+      }
+
       return directChat;
     } catch (e) {
       Logs().i('Error getting or starting direct chat: $e');
       return null;
     }
+  }
+
+  Future<void> waitForBotFirstMessage(Room room) async {
+    const int maxWaitTime = 10; // Maximum wait time in seconds
+    int waitedTime = 0;
+
+    while (waitedTime < maxWaitTime) {
+      await Future.delayed(const Duration(seconds: 1));
+      final Event? lastEvent = room.lastEvent;
+
+      if (lastEvent != null && lastEvent.senderId != client.userID) {
+        // Received a message from the bot
+        // Wait an additional 2 seconds to ensure other messages are received
+        await Future.delayed(const Duration(seconds: 2));
+        return;
+      }
+
+      waitedTime++;
+    }
+
+    // If no message received from the bot within the max wait time
+    Logs().i('No message received from bot within the wait time');
   }
 
   String formatCookiesToJsonString(
