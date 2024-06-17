@@ -131,7 +131,16 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              _showPopupMenu(context);
+            },
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -187,6 +196,22 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           ],
         ),
       ),
+    );
+  }
+
+  // Method to show popup menu
+  void _showPopupMenu(BuildContext context) async {
+    await showMenu(
+      context: context,
+      position: RelativeRect.fromLTRB(100, 80, 0, 100),
+      items: [
+        PopupMenuItem(
+          value: 'see_bots',
+          child: Text('Voir les bots'),
+          onTap: () {},
+        ),
+      ],
+      elevation: 8.0,
     );
   }
 
