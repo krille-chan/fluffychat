@@ -234,20 +234,8 @@ class ChatListItem extends StatelessWidget {
                             maxLines: 1,
                             softWrap: false,
                           )
+                        // #Pangea
                         : FutureBuilder<String>(
-                            // #Pangea
-                            // future: room.lastEvent?.calcLocalizedBody(
-                            //       MatrixLocals(L10n.of(context)!),
-                            //       hideReply: true,
-                            //       hideEdit: true,
-                            //       plaintextBody: true,
-                            //       removeMarkdown: true,
-                            //       withSenderNamePrefix: !isDirectChat ||
-                            //           directChatMatrixId !=
-                            //               room.lastEvent?.senderId,
-                            //     ) ??
-                            //     Future.value(L10n.of(context)!.emptyChat),
-                            // Pangea#
                             future: room.lastEvent != null
                                 ? GetChatListItemSubtitle().getSubtitle(
                                     L10n.of(context)!,
@@ -256,12 +244,15 @@ class ChatListItem extends StatelessWidget {
                                   )
                                 : Future.value(L10n.of(context)!.emptyChat),
                             builder: (context, snapshot) {
+                              // Pangea#
                               return Text(
                                 room.membership == Membership.invite
                                     ? isDirectChat
                                         ? L10n.of(context)!.invitePrivateChat
                                         : L10n.of(context)!.inviteGroupChat
+                                    // #Pangea
                                     : snapshot.data ??
+                                        // Pangea#
                                         room.lastEvent
                                             ?.calcLocalizedBodyFallback(
                                           MatrixLocals(L10n.of(context)!),

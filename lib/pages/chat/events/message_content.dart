@@ -286,7 +286,6 @@ class MessageContent extends StatelessWidget {
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 10;
-            // #Pangea
             final messageTextStyle = TextStyle(
               color: textColor,
               fontSize: bigEmotes ? fontSize * 3 : fontSize,
@@ -305,87 +304,59 @@ class MessageContent extends StatelessWidget {
                 pangeaMessageEvent!.body,
               );
             }
-            // Pangea#
-            return FutureBuilder<String>(
-              future: event.calcLocalizedBody(
+
+            // return Linkify(
+            return SelectableLinkify(
+              onSelectionChanged: (selection, cause) {
+                if (cause == SelectionChangedCause.longPress &&
+                    toolbarController != null &&
+                    pangeaMessageEvent != null &&
+                    !(toolbarController!.highlighted) &&
+                    !selected) {
+                  toolbarController!.controller.onSelectMessage(
+                    pangeaMessageEvent!.event,
+                  );
+                  return;
+                }
+                toolbarController?.toolbar?.textSelection
+                    .onTextSelection(selection);
+              },
+              onTap: () => toolbarController?.showToolbar(context),
+              contextMenuBuilder: (context, state) =>
+                  (toolbarController?.highlighted ?? false)
+                      ? const SizedBox.shrink()
+                      : MessageContextMenu.contextMenuOverride(
+                          context: context,
+                          textSelection: state,
+                          onDefine: () => toolbarController?.showToolbar(
+                            context,
+                            mode: MessageMode.definition,
+                          ),
+                          onListen: () => toolbarController?.showToolbar(
+                            context,
+                            mode: MessageMode.textToSpeech,
+                          ),
+                        ),
+              enableInteractiveSelection:
+                  toolbarController?.highlighted ?? false,
+              // Pangea#
+              text: event.calcLocalizedBodyFallback(
                 MatrixLocals(L10n.of(context)!),
                 hideReply: true,
               ),
-              builder: (context, snapshot) {
-                // #Pangea
-                if (!snapshot.hasData) {
-                  return Text(
-                    // Pangea#
-                    event.calcLocalizedBodyFallback(
-                      MatrixLocals(L10n.of(context)!),
-                      hideReply: true,
-                    ),
-                    // #Pangea
-                    style: messageTextStyle,
-                  );
-                }
-                // return Linkify(
-                final String messageText = snapshot.data ??
-                    event.calcLocalizedBodyFallback(
-                      MatrixLocals(L10n.of(context)!),
-                      hideReply: true,
-                    );
-                return SelectableLinkify(
-                  onSelectionChanged: (selection, cause) {
-                    if (cause == SelectionChangedCause.longPress &&
-                        toolbarController != null &&
-                        pangeaMessageEvent != null &&
-                        !(toolbarController!.highlighted) &&
-                        !selected) {
-                      toolbarController!.controller.onSelectMessage(
-                        pangeaMessageEvent!.event,
-                      );
-                      return;
-                    }
-                    toolbarController?.toolbar?.textSelection
-                        .onTextSelection(selection);
-                  },
-                  onTap: () => toolbarController?.showToolbar(context),
-                  text: messageText,
-                  contextMenuBuilder: (context, state) =>
-                      (toolbarController?.highlighted ?? false)
-                          ? const SizedBox.shrink()
-                          : MessageContextMenu.contextMenuOverride(
-                              context: context,
-                              textSelection: state,
-                              onDefine: () => toolbarController?.showToolbar(
-                                context,
-                                mode: MessageMode.definition,
-                              ),
-                              onListen: () => toolbarController?.showToolbar(
-                                context,
-                                mode: MessageMode.textToSpeech,
-                              ),
-                            ),
-                  enableInteractiveSelection:
-                      toolbarController?.highlighted ?? false,
-                  // text: snapshot.data ??
-                  //     event.calcLocalizedBodyFallback(
-                  //       MatrixLocals(L10n.of(context)!),
-                  //       hideReply: true,
-                  //     ),
-                  // Pangea#
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                    decoration:
-                        event.redacted ? TextDecoration.lineThrough : null,
-                  ),
-                  options: const LinkifyOptions(humanize: false),
-                  linkStyle: TextStyle(
-                    color: textColor.withAlpha(150),
-                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                    decoration: TextDecoration.underline,
-                    decorationColor: textColor.withAlpha(150),
-                  ),
-                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                );
-              },
+              style: TextStyle(
+                color: textColor,
+                fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                decoration: event.redacted ? TextDecoration.lineThrough : null,
+              ),
+              options: const LinkifyOptions(humanize: false),
+              linkStyle: TextStyle(
+                color: textColor.withAlpha(150),
+                fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                decoration: TextDecoration.underline,
+                decorationColor: textColor.withAlpha(150),
+              ),
+              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             );
         }
       case EventTypes.CallInvite:

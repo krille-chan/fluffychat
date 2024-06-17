@@ -1,7 +1,6 @@
 import 'package:emojis/emoji.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -50,12 +49,12 @@ class InputBar extends StatelessWidget {
   List<Map<String, String?>> getSuggestions(String text) {
     // #Pangea
     final List<Map<String, String?>> ret = <Map<String, String?>>[];
+    // Pangea#
     if (controller!.selection.baseOffset !=
             controller!.selection.extentOffset ||
         controller!.selection.baseOffset < 0) {
       return []; // no entries if there is selected text
     }
-    // Pangea#
     final searchText =
         controller!.text.substring(0, controller!.selection.baseOffset);
     // #Pangea
@@ -479,8 +478,11 @@ class InputBar extends StatelessWidget {
                     mimeType: content.mimeType,
                     bytes: data,
                     name: content.uri.split('/').last,
-                  ).detectFileType;
-                  room.sendFileEvent(file, shrinkImageMaxDimension: 1600);
+                  );
+                  room.sendFileEvent(
+                    file,
+                    shrinkImageMaxDimension: 1600,
+                  );
                 },
               ),
               minLines: minLines,
@@ -488,6 +490,9 @@ class InputBar extends StatelessWidget {
               keyboardType: keyboardType!,
               textInputAction: textInputAction,
               autofocus: autofocus!,
+              inputFormatters: [
+                LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+              ],
               onSubmitted: (text) {
                 // fix for library for now
                 // it sets the types for the callback incorrectly
