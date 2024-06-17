@@ -2676,5 +2676,18 @@
   "noOneCanJoin": "Ezin da inor batu",
   "@noOneCanJoin": {},
   "noPublicLinkHasBeenCreatedYet": "Oraindik ez da esteka publikorik sortu",
-  "@noPublicLinkHasBeenCreatedYet": {}
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "userRole": "Erabiltzailearen rola",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} da gutxieneko botere maila.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "publicChatAddresses": "Txataren helbide publikoak",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Sortu helbide berria",
+  "@createNewAddress": {}
 }

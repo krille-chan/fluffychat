@@ -2675,5 +2675,18 @@
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
+  },
+  "publicChatAddresses": "Alamat obrolan umum",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Buat alamat baru",
+  "@createNewAddress": {},
+  "userRole": "Peran pengguna",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} adalah tingkat daya minimum.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
   }
 }
