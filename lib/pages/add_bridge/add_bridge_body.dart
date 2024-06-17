@@ -12,6 +12,7 @@ import 'package:tawkie/utils/platform_size.dart';
 import 'package:tawkie/widgets/matrix.dart';
 
 import 'add_bridge_header.dart';
+import 'bot_chat_list.dart';
 import 'connection_bridge_dialog.dart';
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
@@ -199,6 +200,20 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
     );
   }
 
+  String getHostName() {
+    final client = Matrix.of(context).client;
+    final userId = client.userID;
+    final userHostName = extractHostName(userId!.split(':')[1]);
+    return userHostName;
+  }
+
+  List<String> getBotIds() {
+    final hostName = getHostName();
+    return socialNetwork.map((sn) => sn.chatBot + hostName).toList();
+  }
+
+  List<String> get botIds => getBotIds();
+
   // Method to show popup menu
   void _showPopupMenu(BuildContext context) async {
     await showMenu(
@@ -208,7 +223,14 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         PopupMenuItem(
           value: 'see_bots',
           child: Text('Voir les bots'),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BotChatListPage(botUserIds: botIds),
+              ),
+            );
+          },
         ),
       ],
       elevation: 8.0,
