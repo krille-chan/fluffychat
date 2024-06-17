@@ -1,3 +1,37 @@
+## v1.20.0
+Design improvements and new advanced UI to manage rooms.
+
+- build: Fix google services patch (Krille)
+- build: Update matrix dart sdk (krille-chan)
+- build: Update to Flutter 3.19.6 (krille-chan)
+- chore: Let error reporter fill out bug report (krille-chan)
+- chore: More nicer event source display (krille-chan)
+- chore: Update user has knocked localization with emoji (krille-chan)
+- design: Adjust chat settings design (krille-chan)
+- design: Adjust settings design (krille-chan)
+- design: Fix color of invite button (krille-chan)
+- design: Follow up chat settings design (krille-chan)
+- design: Follow up settings design (krille-chan)
+- design: Improve user permission settings (krille-chan)
+- design: New chat access settings (krille-chan)
+- design: Redesign permissions settings with dropdownbuttons (krille-chan)
+- design: Remake UX of selecting messages and chats (krille-chan)
+- refactor: Download on android and iOS with file_picker (krille-chan)
+- Translated using Weblate (Arabic) (Rex_sa)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Chinese (Simplified)) (大王叫我来巡山)
+- Translated using Weblate (Dutch) (Anonymous)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Filipino) (searinminecraft)
+- Translated using Weblate (Finnish) (Anonymous)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (German) (Christian)
+- Translated using Weblate (Hungarian) (Máté Menyhárt)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Latvian) (Edgars Andersons)
+- Translated using Weblate (Portuguese (Brazil)) (lucasmz)
+- Translated using Weblate (Portuguese (Brazil)) (Rudah Ximenes Alvarenga)
+
 ## v1.19.2
 Bugfix release to mostly fix the new database encryption on Linux and update the translations.
 
