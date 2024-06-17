@@ -3811,6 +3811,16 @@
       "level": {}
     }
   },
+  "searchIn": "Search in {chat}...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Search more...",
+  "gallery": "Gallery",
+  "files": "Files",
   "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}. The error message is: {error}",
   "@databaseBuildErrorBody": {
     "type": "text",
