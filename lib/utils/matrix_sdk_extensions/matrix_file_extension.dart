@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter_file_dialog/flutter_file_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
@@ -15,10 +14,6 @@ import 'package:fluffychat/utils/size_string.dart';
 
 extension MatrixFileExtension on MatrixFile {
   void save(BuildContext context) async {
-    if (PlatformInfos.isIOS || PlatformInfos.isAndroid) {
-      _mobileDownload(context);
-    }
-
     if (PlatformInfos.isWeb) {
       _webDownload();
       return;
@@ -28,14 +23,17 @@ extension MatrixFileExtension on MatrixFile {
       dialogTitle: L10n.of(context)!.saveFile,
       fileName: name,
       type: filePickerFileType,
+      bytes: bytes,
     );
     if (downloadPath == null) return;
 
-    final result = await showFutureLoadingDialog(
-      context: context,
-      future: () => File(downloadPath).writeAsBytes(bytes),
-    );
-    if (result.error != null) return;
+    if (PlatformInfos.isDesktop) {
+      final result = await showFutureLoadingDialog(
+        context: context,
+        future: () => File(downloadPath).writeAsBytes(bytes),
+      );
+      if (result.error != null) return;
+    }
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -51,25 +49,6 @@ extension MatrixFileExtension on MatrixFile {
     if (this is MatrixAudioFile) return FileType.audio;
     if (this is MatrixVideoFile) return FileType.video;
     return FileType.any;
-  }
-
-  void _mobileDownload(BuildContext context) async {
-    final downloadPath = await FlutterFileDialog.saveFile(
-      params: SaveFileDialogParams(
-        fileName: name,
-        data: bytes,
-      ),
-    );
-    if (downloadPath != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            L10n.of(context)!.fileHasBeenSavedAt(downloadPath),
-          ),
-        ),
-      );
-    }
-    return;
   }
 
   void _webDownload() {
