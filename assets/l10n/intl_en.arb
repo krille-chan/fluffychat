@@ -185,7 +185,9 @@
   },
   "sendTypingNotifications": "Send typing notifications",
   "@sendTypingNotifications": {},
-  "sendOnEnter": "Always send on enter",
+  "swipeRightToLeftToReply": "Swipe right to left to reply",
+  "@swipeRightToLeftToReply": {},
+  "sendOnEnter": "Send on enter",
   "@sendOnEnter": {},
   "badServerVersionsException": "The homeserver supports the Spec versions:\n{serverVersions}\nBut this app supports only {supportedVersions}",
   "@badServerVersionsException": {

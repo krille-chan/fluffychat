@@ -28,14 +28,14 @@ class SettingsChatView extends StatelessWidget {
               //   storeKey: SettingKeys.renderHtml,
               //   defaultValue: AppConfig.renderHtml,
               // ),
+              // SettingsSwitchListTile.adaptive(
+              //   title: L10n.of(context)!.hideMemberChangesInPublicChats,
+              //   subtitle: L10n.of(context)!.hideMemberChangesInPublicChatsBody,
+              //   onChanged: (b) => AppConfig.hideUnimportantStateEvents = b,
+              //   storeKey: SettingKeys.hideUnimportantStateEvents,
+              //   defaultValue: AppConfig.hideUnimportantStateEvents,
+              // ),
               // Pangea#
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.hideMemberChangesInPublicChats,
-                subtitle: L10n.of(context)!.hideMemberChangesInPublicChatsBody,
-                onChanged: (b) => AppConfig.hideUnimportantStateEvents = b,
-                storeKey: SettingKeys.hideUnimportantStateEvents,
-                defaultValue: AppConfig.hideUnimportantStateEvents,
-              ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.hideRedactedMessages,
                 subtitle: L10n.of(context)!.hideRedactedMessagesBody,
@@ -49,7 +49,7 @@ class SettingsChatView extends StatelessWidget {
                 storeKey: SettingKeys.hideUnknownEvents,
                 defaultValue: AppConfig.hideUnknownEvents,
               ),
-              // Pangea#
+              // #Pangea
               // if (PlatformInfos.isMobile)
               //   SettingsSwitchListTile.adaptive(
               //     title: L10n.of(context)!.autoplayImages,
@@ -57,14 +57,20 @@ class SettingsChatView extends StatelessWidget {
               //     storeKey: SettingKeys.autoplayImages,
               //     defaultValue: AppConfig.autoplayImages,
               //   ),
-              // Pangea#
-              // #Pangea
               // SettingsSwitchListTile.adaptive(
               //   title: L10n.of(context)!.sendOnEnter,
               //   onChanged: (b) => AppConfig.sendOnEnter = b,
               //   storeKey: SettingKeys.sendOnEnter,
               //   defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
               // ),
+              // Pangea#
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.swipeRightToLeftToReply,
+                onChanged: (b) => AppConfig.swipeRightToLeftToReply = b,
+                storeKey: SettingKeys.swipeRightToLeftToReply,
+                defaultValue: AppConfig.swipeRightToLeftToReply,
+              ),
+              // #Pangea
               // Divider(
               //   height: 1,
               //   color: Theme.of(context).dividerColor,
