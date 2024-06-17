@@ -127,4 +127,14 @@ extension ChildrenAndParentsRoomExtension on Room {
     }
     return childIds;
   }
+
+  // Checks if can add chat as child
+  // Or whether potential child space is ancestor of this
+  bool _canAddAsParentOf(Room? child) {
+    if (child == null || !child.isSpace) {
+      return _canIAddSpaceChild(child);
+    }
+    if (id == child.id) return false;
+    return !child._allSpaceChildRoomIds.contains(id);
+  }
 }
