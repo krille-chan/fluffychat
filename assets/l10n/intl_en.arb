@@ -2611,6 +2611,7 @@
   "email": "Email",
   "loadingDemandToConnect": "Connection request in progress...",
   "loadingVerification": "Login verification...",
+  "loadingTakeFewSeconds": "It may take a few seconds",
   "loadingVerificationNumber": "Phone number verification...",
   "loadingSendCode": "Sending the code...",
   "loadingVerificationCode": "Code verification...",

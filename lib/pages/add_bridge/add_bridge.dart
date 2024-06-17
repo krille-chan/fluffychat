@@ -605,6 +605,11 @@ class BotController extends State<AddBridge> {
       await roomBot.sendTextEvent("login");
       await Future.delayed(const Duration(seconds: 5));
 
+      Future.microtask(() {
+        connectionState
+            .updateConnectionTitle(L10n.of(context)!.loadingTakeFewSeconds);
+      });
+
       const int maxIterations = 5;
       int currentIteration = 0;
 
@@ -865,6 +870,11 @@ class BotController extends State<AddBridge> {
     });
 
     await Future.delayed(const Duration(seconds: 1));
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingTakeFewSeconds);
+    });
 
     const int maxIterations = 5;
     int currentIteration = 0;

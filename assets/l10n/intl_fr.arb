@@ -2435,6 +2435,7 @@
     "loadingSendCode": "Envoi du code...",
     "loadingVerificationCode": "Vérification du code...",
     "loadingDisconnectionDemand": "Demande de déconnexion...",
+    "loadingTakeFewSeconds": "Cela peut prendre quelques secondes",
     "loadingDisconnectionSuccess": "Déconnexion réussie",
     "loadingDeleteRoom": "Suppression de la conversation...",
     "loadingDeleteRoomSuccess": "Conversation supprimée",
