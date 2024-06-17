@@ -32,6 +32,8 @@ class _WebViewConnectionState extends State<WebViewConnection> {
       false; // Variable to track if the Facebook bridge has been created
   bool _instagramBridgeCreated =
       false; // Variable to track if the Instagram bridge has been created
+  bool _linkedinBridgeCreated =
+  false; // Variable to track if the Linkedin bridge has been created
 
   @override
   void initState() {
@@ -136,28 +138,22 @@ class _WebViewConnectionState extends State<WebViewConnection> {
               break;
 
             case "Linkedin":
-              if (url != null &&
+              if (!_linkedinBridgeCreated &&
+                  url != null &&
                   url.toString().contains(widget.network.urlRedirect!)) {
+                // Close the WebView
+                await _closeWebView();
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
-                    result = await widget.botBridgeConnection
+                    // Mark the Instagram bridge as created
+                    _linkedinBridgeCreated = true;
+
+                    await widget.controller
                         .createBridgeLinkedin(context, cookieManager,
                         connectionState, widget.network);
                   },
                 );
-              }
-              if (result == "success") {
-                // Close the current page
-                Navigator.pop(context);
-
-                // Close the current page
-                if (_webViewController != null) {
-                  _webViewController!.dispose();
-                }
-
-                // Call callback function with success result
-                widget.onConnectionResult(true);
               }
               break;
             // Other network

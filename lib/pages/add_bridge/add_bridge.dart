@@ -81,15 +81,26 @@ class BotController extends State<AddBridge> {
     }
   }
 
-  String formatCookiesToJsonString(List<io.Cookie> cookies) {
+  String formatCookiesToJsonString(
+      List<io.Cookie> cookies, SocialNetwork network) {
     Map<String, String> formattedCookies = {};
 
-    for (var cookie in cookies) {
-      String decodedValue = Uri.decodeComponent(cookie.value);
-      formattedCookies[cookie.name] = decodedValue;
+    late String result;
+
+    if (network.name == "Linkedin") {
+      result = cookies
+          .map((cookie) => '${cookie.name}="${cookie.value}"')
+          .join('; ');
+    } else {
+      for (var cookie in cookies) {
+        String decodedValue = Uri.decodeComponent(cookie.value);
+        formattedCookies[cookie.name] = decodedValue;
+
+        result = json.encode(formattedCookies);
+      }
     }
 
-    return json.encode(formattedCookies);
+    return result;
   }
 
   Future<void> handleRefresh() async {
@@ -233,7 +244,8 @@ class BotController extends State<AddBridge> {
     }
   }
 
-  Future<bool> _sendPingMessage(Room roomBot, SocialNetwork socialNetwork) async {
+  Future<bool> _sendPingMessage(
+      Room roomBot, SocialNetwork socialNetwork) async {
     try {
       switch (socialNetwork.name) {
         case "Linkedin":
@@ -465,32 +477,13 @@ class BotController extends State<AddBridge> {
   Future<void> handleConnection(
       BuildContext context, SocialNetwork network) async {
     switch (network.name) {
-      case "Instagram":
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => WebViewConnection(
-              controller: this,
-              network: network,
-              onConnectionResult: (bool success) {
-                if (success) {
-                  network.updateConnectionResult(true);
-                  showCatchSuccessDialog(context,
-                      "${L10n.of(context)!.youAreConnectedTo} ${network.name}");
-                } else {
-                  showCatchErrorDialog(context,
-                      "${L10n.of(context)!.errToConnect} ${network.name}");
-                }
-              },
-            ),
-          ),
-        );
-        break;
       case "WhatsApp":
         // Replace this with your actual WhatsApp connection logic
         await connectToWhatsApp(context, network, this);
         break;
+      case "Instagram":
       case "Facebook Messenger":
+      case "Linkedin":
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -511,7 +504,6 @@ class BotController extends State<AddBridge> {
           ),
         );
         break;
-      // Add other cases here
     }
   }
 
@@ -601,7 +593,8 @@ class BotController extends State<AddBridge> {
       });
 
       final gotCookies = await cookieManager.getCookies(network.urlRedirect);
-      final formattedCookieString = formatCookiesToJsonString(gotCookies);
+      final formattedCookieString =
+          formatCookiesToJsonString(gotCookies, network);
 
       // Send the "login" message to the bot
       await roomBot.sendTextEvent("login");
@@ -680,7 +673,7 @@ class BotController extends State<AddBridge> {
 
   SocialNetwork? getWhatsAppNetwork() {
     return socialNetworks.firstWhere(
-          (network) => network.name == "WhatsApp",
+      (network) => network.name == "WhatsApp",
     );
   }
 
@@ -695,7 +688,8 @@ class BotController extends State<AddBridge> {
     final String botUserId = '${whatsAppNetwork.chatBot}$hostname';
 
     Future.microtask(() {
-      connectionState.updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
     });
 
     final RegExp successMatch = LoginRegex.whatsAppSuccessMatch;
@@ -716,13 +710,15 @@ class BotController extends State<AddBridge> {
     await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
     Future.microtask(() {
-      connectionState.updateConnectionTitle(L10n.of(context)!.loadingVerificationNumber);
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingVerificationNumber);
     });
 
     await roomBot.sendTextEvent("login $phoneNumber");
     await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
-    return await _fetchWhatsAppLoginResult(roomBot, successMatch, alreadySuccessMatch, meansCodeMatch, timeOutMatch);
+    return await _fetchWhatsAppLoginResult(roomBot, successMatch,
+        alreadySuccessMatch, meansCodeMatch, timeOutMatch);
   }
 
 // Help function to handle errors and return a default result
@@ -732,7 +728,12 @@ class BotController extends State<AddBridge> {
   }
 
 // Help function to retrieve WhatsApp connection result
-  Future<WhatsAppResult> _fetchWhatsAppLoginResult(Room roomBot, RegExp successMatch, RegExp alreadySuccessMatch, RegExp meansCodeMatch, RegExp timeOutMatch) async {
+  Future<WhatsAppResult> _fetchWhatsAppLoginResult(
+      Room roomBot,
+      RegExp successMatch,
+      RegExp alreadySuccessMatch,
+      RegExp meansCodeMatch,
+      RegExp timeOutMatch) async {
     while (true) {
       final GetRoomEventsResponse response = await client.getRoomEvents(
         roomBot.id,
@@ -743,10 +744,13 @@ class BotController extends State<AddBridge> {
       final List<MatrixEvent> latestMessages = response.chunk ?? [];
 
       if (latestMessages.isNotEmpty) {
-        final String oldestMessage = latestMessages.last.content['body'].toString() ?? '';
-        final String latestMessage = latestMessages.first.content['body'].toString() ?? '';
+        final String oldestMessage =
+            latestMessages.last.content['body'].toString() ?? '';
+        final String latestMessage =
+            latestMessages.first.content['body'].toString() ?? '';
 
-        if (successMatch.hasMatch(latestMessage) || alreadySuccessMatch.hasMatch(latestMessage)) {
+        if (successMatch.hasMatch(latestMessage) ||
+            alreadySuccessMatch.hasMatch(latestMessage)) {
           Logs().v("You're logged to WhatsApp");
           return WhatsAppResult("success", "", "");
         } else if (meansCodeMatch.hasMatch(oldestMessage)) {
@@ -788,7 +792,8 @@ class BotController extends State<AddBridge> {
 
     // Loop to get the last messages from the room as long as continueProcess is true
     while (continueProcess) {
-      result = await _checkLatestMessages(directChat, successMatch, timeOutMatch, whatsAppNetwork);
+      result = await _checkLatestMessages(
+          directChat, successMatch, timeOutMatch, whatsAppNetwork);
 
       if (result != "Not logged") {
         break;
@@ -806,7 +811,8 @@ class BotController extends State<AddBridge> {
   }
 
 // Help function for checking the latest room messages
-  Future<String> _checkLatestMessages(String directChat, RegExp successMatch, RegExp timeOutMatch, SocialNetwork whatsAppNetwork) async {
+  Future<String> _checkLatestMessages(String directChat, RegExp successMatch,
+      RegExp timeOutMatch, SocialNetwork whatsAppNetwork) async {
     final GetRoomEventsResponse response = await client.getRoomEvents(
       directChat,
       Direction.b,
@@ -817,7 +823,8 @@ class BotController extends State<AddBridge> {
 
     // Check last three messages
     for (int i = latestMessages.length - 1; i >= 0; i--) {
-      final String messageBody = latestMessages[i].content['body'].toString() ?? '';
+      final String messageBody =
+          latestMessages[i].content['body'].toString() ?? '';
 
       if (successMatch.hasMatch(messageBody)) {
         Logs().v("You're logged to WhatsApp");
@@ -830,6 +837,98 @@ class BotController extends State<AddBridge> {
     }
 
     return "Not logged";
+  }
+
+  // Function to create a LinkedIn connection bridge
+  Future<void> createBridgeLinkedin(
+      BuildContext context,
+      WebviewCookieManager cookieManager,
+      ConnectionStateModel connectionState,
+      SocialNetwork network) async {
+    final String botUserId = '${network.chatBot}$hostname';
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
+    });
+
+    final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+    final formattedCookieString =
+        formatCookiesToJsonString(gotCookies, network);
+
+    // Success phrases to spot
+    final RegExp successMatch = LoginRegex.linkedinSuccessMatch;
+    final RegExp alreadySuccessMatch = LoginRegex.linkedinAlreadySuccessMatch;
+
+    // Add a direct chat with the Instagram bot (if you haven't already)
+    final String? directChat = await _getOrCreateDirectChat(botUserId);
+    if (directChat == null) {
+      _handleError(network);
+      return;
+    }
+
+    final Room? roomBot = client.getRoomById(directChat);
+    if (roomBot == null) {
+      _handleError(network);
+      return;
+    }
+
+    // Send the "login" message to the bot
+    await roomBot.sendTextEvent("login $formattedCookieString");
+
+    await Future.delayed(const Duration(seconds: 3)); // Wait sec
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingVerification);
+    });
+
+    await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
+    // variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    // Get the latest messages from the room (limited to the specified number)
+    while (currentIteration < maxIterations) {
+      final Event? latestEvent = roomBot.lastEvent;
+      final String? latestMessage = roomBot.lastEvent?.text;
+      final String? sender = latestEvent?.senderId;
+      final String botUserId = '${network.chatBot}$hostname';
+
+      if (latestMessage != null && sender == botUserId) {
+        if (successMatch.hasMatch(latestMessage) ||
+            alreadySuccessMatch.hasMatch(latestMessage)) {
+          Logs().v("You're logged to Linkedin");
+
+          Future.microtask(() {
+            connectionState.updateConnectionTitle(L10n.of(context)!.connected);
+          });
+
+          Future.microtask(() {
+            connectionState.updateLoading(false);
+          });
+
+          setState(() => network.updateConnectionResult(true));
+
+          await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
+          break; // Exit the loop once the "login" message has been sent and is success
+        }
+      }
+      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+      currentIteration++;
+    }
+
+    if (currentIteration == maxIterations) {
+      Logs().v(
+          "Maximum iterations reached, setting result to 'error to ${network.name}'");
+      _handleError(network);
+    }
+
+    Future.microtask(() {
+      connectionState.reset();
+    });
   }
 
   @override
