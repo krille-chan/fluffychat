@@ -43,6 +43,19 @@ class LoginScaffold extends StatelessWidget {
       // #Pangea
       extendBodyBehindAppBar: true,
       // body: body,
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage('assets/login_wallpaper.png'),
+          ),
+        ),
+        alignment: Alignment.center,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 480),
+          child: body,
+        ),
+      ),
       // backgroundColor: isMobileMode
       //     ? null
       //     : Theme.of(context).colorScheme.surface.withOpacity(0.8),

@@ -32,7 +32,10 @@ class RecordingDialogState extends State<RecordingDialog> {
   final List<double> amplitudeTimeline = [];
 
   static const int bitRate = 64000;
-  static const int samplingRate = 44100;
+  // #Pangea
+  // static const int samplingRate = 44100;
+  static const int samplingRate = 22050;
+  // Pangea#
 
   Future<void> startRecording() async {
     try {

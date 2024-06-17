@@ -357,7 +357,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                           color: widget.color,
                           borderRadius: BorderRadius.circular(2),
                         ),
-                        width: 2,
+                        // #Pangea
+                        // width: 2,
+                        width: 1,
+                        // Pangea#
                         height: 32 * (waveform[i] / 1024),
                       ),
                     ),
@@ -376,27 +379,29 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
               ),
             ),
           ),
-          const SizedBox(width: 8),
-          Badge(
-            isLabelVisible: audioPlayer != null,
-            label: audioPlayer == null
-                ? null
-                : Text(
-                    '${audioPlayer.speed.toString()}x',
-                  ),
-            backgroundColor: Theme.of(context).colorScheme.secondary,
-            textColor: Theme.of(context).colorScheme.onSecondary,
-            child: InkWell(
-              splashColor: widget.color.withAlpha(128),
-              borderRadius: BorderRadius.circular(64),
-              onTap: audioPlayer == null ? null : _toggleSpeed,
-              child: Icon(
-                Icons.mic_none_outlined,
-                color: widget.color,
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
+          // #Pangea
+          // const SizedBox(width: 8),
+          // Badge(
+          //   isLabelVisible: audioPlayer != null,
+          //   label: audioPlayer == null
+          //       ? null
+          //       : Text(
+          //           '${audioPlayer.speed.toString()}x',
+          //         ),
+          //   backgroundColor: Theme.of(context).colorScheme.secondary,
+          //   textColor: Theme.of(context).colorScheme.onSecondary,
+          //   child: InkWell(
+          //     splashColor: widget.color.withAlpha(128),
+          //     borderRadius: BorderRadius.circular(64),
+          //     onTap: audioPlayer == null ? null : _toggleSpeed,
+          //     child: Icon(
+          //       Icons.mic_none_outlined,
+          //       color: widget.color,
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(width: 8),
+          // Pangea#
         ],
       ),
     );
