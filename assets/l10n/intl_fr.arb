@@ -2305,118 +2305,75 @@
     "@createGroup": {},
     "importNow": "Importer maintenant",
     "@importNow": {},
-    "reportErrorDescription": "",
-    "@reportErrorDescription": {},
-    "setColorTheme": "",
-    "@setColorTheme": {},
-    "banUserDescription": "",
-    "@banUserDescription": {},
-    "removeDevicesDescription": "",
-    "@removeDevicesDescription": {},
-    "tryAgain": "",
-    "@tryAgain": {},
-    "unbanUserDescription": "",
-    "@unbanUserDescription": {},
-    "messagesStyle": "",
-    "@messagesStyle": {},
-    "chatDescription": "",
-    "@chatDescription": {},
-    "pushNotificationsNotAvailable": "",
-    "@pushNotificationsNotAvailable": {},
-    "invalidServerName": "",
-    "@invalidServerName": {},
-    "signInWithPassword": "",
-    "@signInWithPassword": {},
-    "makeAdminDescription": "",
-    "@makeAdminDescription": {},
-    "setChatDescription": "",
-    "@setChatDescription": {},
-    "redactedBy": "",
-    "@redactedBy": {
+      "@reportErrorDescription": {},
+      "@setColorTheme": {},
+      "@banUserDescription": {},
+      "@removeDevicesDescription": {},
+      "@tryAgain": {},
+      "@unbanUserDescription": {},
+      "@messagesStyle": {},
+      "@chatDescription": {},
+      "@pushNotificationsNotAvailable": {},
+      "@invalidServerName": {},
+      "@signInWithPassword": {},
+      "@makeAdminDescription": {},
+      "@setChatDescription": {},
+      "@redactedBy": {
         "type": "text",
         "placeholders": {
             "username": {}
         }
     },
-    "signInWith": "",
-    "@signInWith": {
+      "@signInWith": {
         "type": "text",
         "placeholders": {
             "provider": {}
         }
     },
-    "optionalRedactReason": "",
-    "@optionalRedactReason": {},
-    "archiveRoomDescription": "",
-    "@archiveRoomDescription": {},
-    "exportEmotePack": "",
-    "@exportEmotePack": {},
-    "redactedByBecause": "",
-    "@redactedByBecause": {
+      "@optionalRedactReason": {},
+      "@archiveRoomDescription": {},
+      "@exportEmotePack": {},
+      "@redactedByBecause": {
         "type": "text",
         "placeholders": {
             "username": {},
             "reason": {}
         }
     },
-    "redactMessageDescription": "",
-    "@redactMessageDescription": {},
-    "invalidInput": "",
-    "@invalidInput": {},
-    "report": "",
-    "@report": {},
-    "addChatDescription": "",
-    "@addChatDescription": {},
-    "hasKnocked": "",
-    "@hasKnocked": {
+      "@redactMessageDescription": {},
+      "@invalidInput": {},
+      "@report": {},
+      "@addChatDescription": {},
+      "@hasKnocked": {
         "placeholders": {
             "user": {}
         }
     },
-    "directChat": "",
-    "@directChat": {},
-    "wrongPinEntered": "",
-    "@wrongPinEntered": {
+      "@directChat": {},
+      "@wrongPinEntered": {
         "type": "text",
         "placeholders": {
             "seconds": {}
         }
     },
-    "sendTypingNotifications": "",
-    "@sendTypingNotifications": {},
-    "inviteGroupChat": "",
-    "@inviteGroupChat": {},
-    "invitePrivateChat": "",
-    "@invitePrivateChat": {},
-    "noChatDescriptionYet": "",
-    "@noChatDescriptionYet": {},
-    "learnMore": "",
-    "@learnMore": {},
-    "roomUpgradeDescription": "",
-    "@roomUpgradeDescription": {},
-    "pleaseEnterANumber": "",
-    "@pleaseEnterANumber": {},
-    "profileNotFound": "",
-    "@profileNotFound": {},
-    "jump": "",
-    "@jump": {},
-    "shareInviteLink": "",
-    "@shareInviteLink": {},
-    "emoteKeyboardNoRecents": "",
-    "@emoteKeyboardNoRecents": {
+      "@sendTypingNotifications": {},
+      "@inviteGroupChat": {},
+      "@invitePrivateChat": {},
+      "@noChatDescriptionYet": {},
+      "@learnMore": {},
+      "@roomUpgradeDescription": {},
+      "@pleaseEnterANumber": {},
+      "@profileNotFound": {},
+      "@jump": {},
+      "@shareInviteLink": {},
+      "@emoteKeyboardNoRecents": {
         "type": "text",
         "placeholders": {}
     },
-    "setTheme": "",
-    "@setTheme": {},
-    "replace": "",
-    "@replace": {},
-    "pleaseTryAgainLaterOrChooseDifferentServer": "",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-    "kickUserDescription": "",
-    "@kickUserDescription": {},
-    "invite": "",
-    "@invite": {},
-    "openLinkInBrowser": "",
-    "@openLinkInBrowser": {}
+      "@setTheme": {},
+      "@replace": {},
+      "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+      "@kickUserDescription": {},
+      "@invite": {},
+      "@openLinkInBrowser": {}
 }

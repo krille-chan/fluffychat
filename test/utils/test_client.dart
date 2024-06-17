@@ -13,7 +13,8 @@ Future<Client> prepareTestClient({
   homeserver ??= Uri.parse('https://fakeserver.notexisting');
   final client = Client(
     'FluffyChat Widget Tests',
-    httpClient: FakeMatrixApi(),
+    httpClient: FakeMatrixApi()
+      ..api['GET']!['/.well-known/matrix/client'] = (req) => {},
     verificationMethods: {
       KeyVerificationMethod.numbers,
       KeyVerificationMethod.emoji,

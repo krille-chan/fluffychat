@@ -241,7 +241,7 @@ class InputBar extends StatelessWidget {
     //         crossAxisAlignment: CrossAxisAlignment.start,
     //         children: [
     //           Text(
-    //             '/$command',
+    //             commandExample(command),
     //             style: const TextStyle(fontFamily: 'monospace'),
     //           ),
     //           Text(

@@ -32,13 +32,12 @@ class ImageViewerView extends StatelessWidget {
             color: Colors.white,
             tooltip: L10n.of(context)!.share,
           ),
-          if (!PlatformInfos.isIOS)
-            IconButton(
-              icon: const Icon(Icons.download_outlined),
-              onPressed: () => controller.saveFileAction(context),
-              color: Colors.white,
-              tooltip: L10n.of(context)!.downloadFile,
-            ),
+          IconButton(
+            icon: const Icon(Icons.download_outlined),
+            onPressed: () => controller.saveFileAction(context),
+            color: Colors.white,
+            tooltip: L10n.of(context)!.downloadFile,
+          ),
           if (PlatformInfos.isMobile)
             // Use builder context to correctly position the share dialog on iPad
             Builder(
