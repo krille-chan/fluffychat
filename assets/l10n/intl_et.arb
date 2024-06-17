@@ -2702,5 +2702,9 @@
   "knockRestricted": "Koputa piiratud ligipääsuga jututoa uksele",
   "@knockRestricted": {},
   "restricted": "Piiratud",
-  "@restricted": {}
+  "@restricted": {},
+  "gallery": "Galerii",
+  "@gallery": {},
+  "files": "Failid",
+  "@files": {}
 }
