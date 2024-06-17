@@ -61,13 +61,13 @@ class Message extends StatelessWidget {
     this.highlightMarker = false,
     this.animateIn = false,
     this.resetAnimateIn,
+    this.avatarPresenceBackgroundColor,
     // #Pangea
     required this.selectedDisplayLang,
     required this.immersionMode,
     required this.definitions,
     required this.controller,
     // Pangea#
-    this.avatarPresenceBackgroundColor,
     super.key,
   });
 
@@ -315,6 +315,12 @@ class Message extends StatelessWidget {
                                 alignment: alignment,
                                 padding: const EdgeInsets.only(left: 8),
                                 child: GestureDetector(
+                                  // #Pangea
+                                  onTap: () =>
+                                      toolbarController?.showToolbar(context),
+                                  onDoubleTap: () =>
+                                      toolbarController?.showToolbar(context),
+                                  // Pangea#
                                   onLongPress: longPressSelect
                                       ? null
                                       : () {
@@ -432,8 +438,7 @@ class Message extends StatelessWidget {
                                                 // #Pangea
                                                 selected: selected,
                                                 pangeaMessageEvent:
-                                                    toolbarController
-                                                        ?.pangeaMessageEvent,
+                                                    pangeaMessageEvent,
                                                 immersionMode: immersionMode,
                                                 toolbarController:
                                                     toolbarController,
@@ -445,9 +450,8 @@ class Message extends StatelessWidget {
                                                       )
                                                       // #Pangea
                                                       ||
-                                                      (toolbarController
-                                                              ?.pangeaMessageEvent
-                                                              .showUseType ??
+                                                      (pangeaMessageEvent
+                                                              ?.showUseType ??
                                                           false)
                                                   // Pangea#
                                                   )
@@ -461,12 +465,10 @@ class Message extends StatelessWidget {
                                                         MainAxisSize.min,
                                                     children: [
                                                       // #Pangea
-                                                      if (toolbarController
-                                                              ?.pangeaMessageEvent
-                                                              .showUseType ??
+                                                      if (pangeaMessageEvent
+                                                              ?.showUseType ??
                                                           false) ...[
-                                                        toolbarController!
-                                                            .pangeaMessageEvent
+                                                        pangeaMessageEvent!
                                                             .useType
                                                             .iconView(
                                                           context,
@@ -474,7 +476,8 @@ class Message extends StatelessWidget {
                                                               .withAlpha(164),
                                                         ),
                                                         const SizedBox(
-                                                            width: 4),
+                                                          width: 4,
+                                                        ),
                                                       ],
                                                       if (event
                                                           .hasAggregatedEvents(

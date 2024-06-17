@@ -28,19 +28,16 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   bool error = false;
   String? _recordedPath;
-  // #Pangea
-  // final _audioRecorder = Record();
   final _audioRecorder = AudioRecorder();
-  // Pangea#
   final List<double> amplitudeTimeline = [];
 
   static const int bitRate = 64000;
-  static const int samplingRate = 22050;
+  static const int samplingRate = 44100;
 
   Future<void> startRecording() async {
     try {
       final tempDir = await getTemporaryDirectory();
-      _recordedPath =
+      final path = _recordedPath =
           '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
 
       final result = await _audioRecorder.hasPermission();
@@ -58,8 +55,13 @@ class RecordingDialogState extends State<RecordingDialog> {
           const RecordConfig(
             bitRate: bitRate,
             sampleRate: samplingRate,
-            encoder: AudioEncoder.wav,
             numChannels: 1,
+            autoGain: true,
+            echoCancel: true,
+            noiseSuppress: true,
+            // #Pangea
+            encoder: AudioEncoder.wav,
+            // Pangea#
           ),
         ),
         // #Pangea
