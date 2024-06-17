@@ -107,6 +107,7 @@ class BotController extends State<AddBridge> {
     setState(() {
       // Reset loading values to their original state
       for (final network in socialNetworks) {
+        continueProcess = true;
         network.loading = true;
         network.connected = false;
         network.error = false;
