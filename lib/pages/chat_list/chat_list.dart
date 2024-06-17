@@ -815,7 +815,6 @@ class ChatListController extends State<ChatList>
                 &&
                 selectedRoomIds
                     .map((id) => Matrix.of(context).client.getRoomById(id))
-                    // .where((e) => !(e?.isPangeaClass ?? true))
                     .every((e) => r.canAddAsParentOf(e)),
             //Pangea#
           )
