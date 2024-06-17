@@ -20,7 +20,7 @@ import '../../utils/error_handler.dart';
 import '../../utils/overlay.dart';
 
 class _SpanDetailsCacheItem {
-  SpanDetailsRepoReqAndRes data;
+  Future<SpanDetailsRepoReqAndRes> data;
 
   _SpanDetailsCacheItem({required this.data});
 }
@@ -149,11 +149,11 @@ class IgcController {
 
     /// Retrieves the [SpanDetailsRepoReqAndRes] response from the cache if it exists,
     /// otherwise makes an API call to get the response and stores it in the cache.
-    SpanDetailsRepoReqAndRes response;
+    Future<SpanDetailsRepoReqAndRes> response;
     if (_cache.containsKey(cacheKey)) {
       response = _cache[cacheKey]!.data;
     } else {
-      response = await SpanDataRepo.getSpanDetails(
+      response = SpanDataRepo.getSpanDetails(
         await choreographer.accessToken,
         request: SpanDetailsRepoReqAndRes(
           userL1: choreographer.l1LangCode!,
@@ -167,7 +167,7 @@ class IgcController {
     }
 
     try {
-      igcTextData!.matches[matchIndex].match = response.span;
+      igcTextData!.matches[matchIndex].match = (await response).span;
     } catch (err, s) {
       ErrorHandler.logError(e: err, s: s);
     }
