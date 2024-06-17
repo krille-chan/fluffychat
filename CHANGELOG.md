@@ -1,3 +1,16 @@
+## v1.21.1
+- build: Update Matrix Dart SDK (Krille)
+- build: Update to Flutter 3.22.2 (krille-chan)
+- feat: add option to configure reply swipe direction (MrSpoony)
+- fix: Add missing unlock button to lockscreen textfield (Krille)
+- fix: Auto unlock lock screen (krille-chan)
+- Translated using Weblate (Chinese (Simplified)) (大王叫我来巡山)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Estonian) (Rauno Ots)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (Turkish) (Oğuz Ersen)
+- Translated using Weblate (Vietnamese) (Karo)
+
 ## v1.21.0
 FluffyChat v1.21.0 introduces the new search feature which also includes a gallery and files list for each chat. Several performance improvements have been added under the hood, leading to a much nicer user experience.
 
