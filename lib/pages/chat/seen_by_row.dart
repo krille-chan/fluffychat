@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class SeenByRow extends StatelessWidget {
   final ChatController controller;
@@ -42,7 +41,6 @@ class SeenByRow extends StatelessWidget {
                 mxContent: user.avatarUrl,
                 name: user.calcDisplayname(),
                 size: 16,
-                fontSize: 9,
               ),
             ),
             if (seenByUsers.length > maxAvatars)
@@ -50,7 +48,7 @@ class SeenByRow extends StatelessWidget {
                 width: 16,
                 height: 16,
                 child: Material(
-                  color: Theme.of(context).colorScheme.background,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(32),
                   child: Center(
                     child: Text(

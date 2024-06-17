@@ -195,7 +195,6 @@ class ChatListView extends StatelessWidget {
                                 MatrixLocals(L10n.of(context)!),
                               ),
                               size: 32,
-                              fontSize: 12,
                               // #Pangea
                               littleIcon: room?.roomTypeIcon,
                               // Pangea#
@@ -225,6 +224,8 @@ class ChatListView extends StatelessWidget {
                                 NavigationDestinationLabelBehavior.alwaysShow,
                             shadowColor:
                                 Theme.of(context).colorScheme.onSurface,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.surface,
                             surfaceTintColor:
                                 Theme.of(context).colorScheme.surface,
                             selectedIndex: controller.selectedIndex,

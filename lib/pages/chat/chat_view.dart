@@ -128,7 +128,6 @@ class ChatView extends StatelessWidget {
         ),
       ];
     }
-
     // else if (!controller.room.isArchived) {
     //   return [
     //     if (Matrix.of(context).voipPlugin != null &&
@@ -213,7 +212,7 @@ class ChatView extends StatelessWidget {
                             // #Pangea
                             &&
                             !r.isAnalyticsRoom,
-                        // Pangea#,
+                        // Pangea#
                         badgePosition: BadgePosition.topEnd(end: 8, top: 4),
                         child: const Center(child: BackButton()),
                       ),
@@ -365,6 +364,7 @@ class ChatView extends StatelessWidget {
                                     clipBehavior: Clip.hardEdge,
                                     color: Theme.of(context)
                                         .colorScheme
+                                        // ignore: deprecated_member_use
                                         .surfaceVariant,
                                     borderRadius: const BorderRadius.all(
                                       Radius.circular(24),
@@ -457,8 +457,8 @@ class ChatView extends StatelessWidget {
                   // #Pangea
                   // if (controller.dragging)
                   //   Container(
-                  // color: Theme.of(context)
-                  //     .scaffoldBackgroundColor
+                  //     color: Theme.of(context)
+                  //         .scaffoldBackgroundColor
                   //         .withOpacity(0.9),
                   //     alignment: Alignment.center,
                   //     child: const Icon(
@@ -512,4 +512,4 @@ class ConditionalScroll extends StatelessWidget {
     return child;
   }
 }
-// #Pangea
+// Pangea#

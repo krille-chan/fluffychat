@@ -40,29 +40,16 @@ class LoginScaffold extends StatelessWidget {
         backgroundColor: Colors.transparent,
         // Pangea#
       ),
-      extendBodyBehindAppBar: true,
       // #Pangea
+      extendBodyBehindAppBar: true,
       // body: body,
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/login_wallpaper.png'),
-          ),
-        ),
-        alignment: Alignment.center,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 480),
-          child: body,
-        ),
-      ),
       // backgroundColor: isMobileMode
       //     ? null
-      //     : Theme.of(context).colorScheme.background.withOpacity(0.8),
+      //     : Theme.of(context).colorScheme.surface.withOpacity(0.8),
       // bottomNavigationBar: isMobileMode
       //     ? Material(
       //         elevation: 4,
-      //         shadowColor: Theme.of(context).colorScheme.onBackground,
+      //         shadowColor: Theme.of(context).colorScheme.onSurface,
       //         child: const _PrivacyButtons(
       //           mainAxisAlignment: MainAxisAlignment.center,
       //         ),

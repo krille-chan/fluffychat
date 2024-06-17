@@ -23,7 +23,7 @@ class SettingsPasswordView extends StatelessWidget {
         ],
       ),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onBackground,
+        iconColor: Theme.of(context).colorScheme.onSurface,
         child: MaxWidthBody(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
