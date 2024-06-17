@@ -255,7 +255,7 @@ class _SpaceViewState extends State<SpaceView> {
             room != null &&
             room.ownPowerLevel >= ClassDefaultValues.powerLevelOfAdmin &&
             // Pangea#
-            (activeSpace?.canChangeStateEvent(EventTypes.spaceChild) ?? false))
+            (activeSpace?.canChangeStateEvent(EventTypes.SpaceChild) ?? false))
           SheetAction(
             key: SpaceChildContextAction.removeFromSpace,
             label: L10n.of(context)!.removeFromSpace,
@@ -847,7 +847,7 @@ class _SpaceViewState extends State<SpaceView> {
                             ),
                             // #Pangea
                             // if (activeSpace?.canChangeStateEvent(
-                            //       EventTypes.spaceChild,
+                            //       EventTypes.SpaceChild,
                             //     ) ==
                             //     true)
                             //   Material(

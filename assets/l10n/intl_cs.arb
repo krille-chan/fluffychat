@@ -1,2422 +1,2436 @@
 {
-    "@@locale": "cs",
-    "@@last_modified": "2021-08-14 12:41:10.131133",
-    "about": "O aplikaci",
-    "@about": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "accept": "Přijmout",
-    "@accept": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "acceptedTheInvitation": "👍 {username} přijal/a pozvání",
-    "@acceptedTheInvitation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "account": "Účet",
-    "@account": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "activatedEndToEndEncryption": "🔐 {username} aktivoval/a koncové šifrování",
-    "@activatedEndToEndEncryption": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "addEmail": "Přidat e-mail",
-    "@addEmail": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "admin": "Správce",
-    "@admin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "alias": "alias",
-    "@alias": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "all": "Vše",
-    "@all": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "allChats": "Všechny chaty",
-    "@allChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "answeredTheCall": "{senderName} odpověděl na hovor",
-    "@answeredTheCall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "anyoneCanJoin": "Kdokoliv se může připojit",
-    "@anyoneCanJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "appLock": "Zámek aplikace",
-    "@appLock": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "archive": "Archivovat",
-    "@archive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "areGuestsAllowedToJoin": "Mohou se připojit hosté",
-    "@areGuestsAllowedToJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "areYouSure": "Jste si jistý?",
-    "@areYouSure": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "areYouSureYouWantToLogout": "Opravdu se chcete odhlásit?",
-    "@areYouSureYouWantToLogout": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "askSSSSSign": "Pro ověření této osoby zadejte prosím přístupovou frázi k „bezpečnému úložišti“ anebo „klíč pro obnovu“.",
-    "@askSSSSSign": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "askVerificationRequest": "Přijmout žádost o ověření od {username}?",
-    "@askVerificationRequest": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "autoplayImages": "Automaticky přehrajte animované nálepky a emoce",
-    "@autoplayImages": {
-        "type": "text",
-        "placeholder": {}
-    },
-    "badServerLoginTypesException": "Homeserver podporuje přihlášení typu:\n{serverVersions}\nAle tato aplikace podporuje pouze:\n{supportedVersions}",
-    "@badServerLoginTypesException": {
-        "type": "text",
-        "placeholders": {
-            "serverVersions": {},
-            "supportedVersions": {}
-        }
-    },
-    "badServerVersionsException": "Homeserver podporuje specifikaci verzí:\n{serverVersions}\nAle tato aplikace podporuje pouze verze {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "text",
-        "placeholders": {
-            "serverVersions": {},
-            "supportedVersions": {}
-        }
-    },
-    "banFromChat": "Zakázat chat",
-    "@banFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "banned": "Zakázán",
-    "@banned": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "bannedUser": "{username} zakázal {targetName}",
-    "@bannedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "blockDevice": "Blokovat zařízení",
-    "@blockDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "blocked": "Zakázán",
-    "@blocked": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "botMessages": "Zprávy od bota",
-    "@botMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "cancel": "Zrušit",
-    "@cancel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "cantOpenUri": "Nelze otevřít URI {uri}",
-    "@cantOpenUri": {
-        "type": "text",
-        "placeholders": {
-            "uri": {}
-        }
-    },
-    "changeDeviceName": "Změnit název zařízení",
-    "@changeDeviceName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changedTheChatAvatar": "{username} změnil avatar chatu",
-    "@changedTheChatAvatar": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} změnil popis chatu na: „{description}“",
-    "@changedTheChatDescriptionTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "description": {}
-        }
-    },
-    "changedTheChatNameTo": "{username} změnil jméno chatu na: „{chatname}“",
-    "@changedTheChatNameTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "chatname": {}
-        }
-    },
-    "changedTheChatPermissions": "{username} změnili nastavení oprávnění v chatu",
-    "@changedTheChatPermissions": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheDisplaynameTo": "{username} změnili svoji přezdívku na: {displayname}",
-    "@changedTheDisplaynameTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "displayname": {}
-        }
-    },
-    "changedTheGuestAccessRules": "{username} změnili přístupová práva pro hosty",
-    "@changedTheGuestAccessRules": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheGuestAccessRulesTo": "{username} změnili přístupová práva pro hosty na: {rules}",
-    "@changedTheGuestAccessRulesTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "rules": {}
-        }
-    },
-    "changedTheHistoryVisibility": "{username} změnili nastavení viditelnosti historie diskuze",
-    "@changedTheHistoryVisibility": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheHistoryVisibilityTo": "{username} změnili nastavení viditelnosti historie diskuze na: {rules}",
-    "@changedTheHistoryVisibilityTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "rules": {}
-        }
-    },
-    "changedTheJoinRules": "{username} změnili nastavení pravidel připojení",
-    "@changedTheJoinRules": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheJoinRulesTo": "{username} změnili nastavení pravidel připojení na: {joinRules}",
-    "@changedTheJoinRulesTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "joinRules": {}
-        }
-    },
-    "changedTheProfileAvatar": "{username} změnili svůj avatar",
-    "@changedTheProfileAvatar": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheRoomAliases": "{username} změnili nastavení aliasů místnosti",
-    "@changedTheRoomAliases": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheRoomInvitationLink": "{username} změnili odkaz k pozvání do místnosti",
-    "@changedTheRoomInvitationLink": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changePassword": "Změnit heslo",
-    "@changePassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheHomeserver": "Změnit domovský server",
-    "@changeTheHomeserver": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheme": "Změňte svůj styl",
-    "@changeTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheNameOfTheGroup": "Změnit název skupiny",
-    "@changeTheNameOfTheGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeYourAvatar": "Změňte svůj avatar",
-    "@changeYourAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "channelCorruptedDecryptError": "Šifrování bylo poškozeno",
-    "@channelCorruptedDecryptError": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chat": "Chat",
-    "@chat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatBackup": "Záloha chatu",
-    "@chatBackup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "Záloha chatu je zabezpečena bezpečnostním klíčem. Ujistěte se, prosím, že klíč neztratíte.",
-    "@chatBackupDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatDetails": "Bližší údaje o chatu",
-    "@chatDetails": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chats": "Chaty",
-    "@chats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chooseAStrongPassword": "Vyberte silné heslo",
-    "@chooseAStrongPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "clearArchive": "Vymazat archiv",
-    "@clearArchive": {},
-    "close": "Zavřít",
-    "@close": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_ban": "Zakázat danému uživateli přístup do této místnosti",
-    "@commandHint_ban": {
-        "type": "text",
-        "description": "Usage hint for the command /ban"
-    },
-    "commandHint_html": "Odeslat text ve formátu HTML",
-    "@commandHint_html": {
-        "type": "text",
-        "description": "Usage hint for the command /html"
-    },
-    "commandHint_invite": "Pozvěte daného uživatele do této místnosti",
-    "@commandHint_invite": {
-        "type": "text",
-        "description": "Usage hint for the command /invite"
-    },
-    "commandHint_join": "Připojte se k dané místnosti",
-    "@commandHint_join": {
-        "type": "text",
-        "description": "Usage hint for the command /join"
-    },
-    "commandHint_kick": "Odeberte daného uživatele z této místnosti",
-    "@commandHint_kick": {
-        "type": "text",
-        "description": "Usage hint for the command /kick"
-    },
-    "commandHint_leave": "Opusťte tuto místnost",
-    "@commandHint_leave": {
-        "type": "text",
-        "description": "Usage hint for the command /leave"
-    },
-    "commandHint_me": "Představ se",
-    "@commandHint_me": {
-        "type": "text",
-        "description": "Usage hint for the command /me"
-    },
-    "commandHint_myroomavatar": "Nastavte si obrázek pro tuto místnost (autor mxc-uri)",
-    "@commandHint_myroomavatar": {
-        "type": "text",
-        "description": "Usage hint for the command /myroomavatar"
-    },
-    "commandHint_myroomnick": "Nastavte si váš zobrazovaný název pro tuto místnost",
-    "@commandHint_myroomnick": {
-        "type": "text",
-        "description": "Usage hint for the command /myroomnick"
-    },
-    "commandHint_op": "Nastavit úroveň práv daného uživatele (výchozí: 50)",
-    "@commandHint_op": {
-        "type": "text",
-        "description": "Usage hint for the command /op"
-    },
-    "commandHint_plain": "Odeslat neformátovaný text",
-    "@commandHint_plain": {
-        "type": "text",
-        "description": "Usage hint for the command /plain"
-    },
-    "commandHint_react": "Odeslat odpověď jako reakci",
-    "@commandHint_react": {
-        "type": "text",
-        "description": "Usage hint for the command /react"
-    },
-    "commandHint_send": "Poslat zprávu",
-    "@commandHint_send": {
-        "type": "text",
-        "description": "Usage hint for the command /send"
-    },
-    "commandHint_unban": "Zrušte zákaz přístupu daného uživatele do této místnosti",
-    "@commandHint_unban": {
-        "type": "text",
-        "description": "Usage hint for the command /unban"
-    },
-    "commandInvalid": "Příkaz je neplatný",
-    "@commandInvalid": {
-        "type": "text"
-    },
-    "commandMissing": "{command} není příkaz.",
-    "@commandMissing": {
-        "type": "text",
-        "placeholders": {
-            "command": {}
-        },
-        "description": "State that {command} is not a valid /command."
-    },
-    "compareEmojiMatch": "Porovnejte a přesvědčete se, že následující emotikony se shodují na obou zařízeních:",
-    "@compareEmojiMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "compareNumbersMatch": "Porovnejte a přesvědčete se, že následující čísla se shodují na obou zařízeních:",
-    "@compareNumbersMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "configureChat": "Nastavení chatu",
-    "@configureChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "confirm": "Potvrdit",
-    "@confirm": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "connect": "Připojit",
-    "@connect": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "contactHasBeenInvitedToTheGroup": "Kontakt byl pozván do skupiny",
-    "@contactHasBeenInvitedToTheGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "containsDisplayName": "Obsahuje zobrazovaný název",
-    "@containsDisplayName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "containsUserName": "Obsahuje uživatelské jméno",
-    "@containsUserName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "contentHasBeenReported": "Obsah byl nahlášen správcům serveru",
-    "@contentHasBeenReported": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "copiedToClipboard": "Zkopírováno do schránky",
-    "@copiedToClipboard": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "copy": "Kopírovat",
-    "@copy": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "copyToClipboard": "Zkopírovat do schránky",
-    "@copyToClipboard": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "couldNotDecryptMessage": "Nebylo možné dešifrovat zprávu: {error}",
-    "@couldNotDecryptMessage": {
-        "type": "text",
-        "placeholders": {
-            "error": {}
-        }
-    },
-    "countParticipants": "{count} účastníků",
-    "@countParticipants": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "create": "Vytvořit",
-    "@create": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "createdTheChat": "💬 {username} založil/a chat",
-    "@createdTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "createNewSpace": "Nový prostor",
-    "@createNewSpace": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "currentlyActive": "Aktuálně aktivní",
-    "@currentlyActive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "darkTheme": "Tmavé",
-    "@darkTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "dateAndTimeOfDay": "{date}, {timeOfDay}",
-    "@dateAndTimeOfDay": {
-        "type": "text",
-        "placeholders": {
-            "date": {},
-            "timeOfDay": {}
-        }
-    },
-    "dateWithoutYear": "{day}.{month}",
-    "@dateWithoutYear": {
-        "type": "text",
-        "placeholders": {
-            "month": {},
-            "day": {}
-        }
-    },
-    "dateWithYear": "{day}. {month}. {year}",
-    "@dateWithYear": {
-        "type": "text",
-        "placeholders": {
-            "year": {},
-            "month": {},
-            "day": {}
-        }
-    },
-    "deactivateAccountWarning": "Tímto krokem se deaktivuje váš uživatelský účet. Akci nelze vrátit zpět! Jste si jistí?",
-    "@deactivateAccountWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "defaultPermissionLevel": "Výchozí úroveň oprávnění",
-    "@defaultPermissionLevel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "delete": "Smazat",
-    "@delete": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "deleteAccount": "Smazat účet",
-    "@deleteAccount": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "deleteMessage": "Smazat zprávu",
-    "@deleteMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "device": "Zařízení",
-    "@device": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "deviceId": "ID zařízení",
-    "@deviceId": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "devices": "Zařízení",
-    "@devices": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "directChats": "Přímé chatování",
-    "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "displaynameHasBeenChanged": "Přezdívka byla změněna",
-    "@displaynameHasBeenChanged": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "downloadFile": "Stáhnout soubor",
-    "@downloadFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "edit": "Upravit",
-    "@edit": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "editBlockedServers": "Upravit zakázané servery",
-    "@editBlockedServers": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "editDisplayname": "Změnit přezdívku",
-    "@editDisplayname": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "editRoomAliases": "Upravit aliasy místností",
-    "@editRoomAliases": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "editRoomAvatar": "Upravit avatara místnosti",
-    "@editRoomAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteExists": "Emotikona již existuje!",
-    "@emoteExists": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteInvalid": "Neplatný kód emotikony!",
-    "@emoteInvalid": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emotePacks": "Balíček emotikonů pro místnost",
-    "@emotePacks": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteSettings": "Nastavení emotikonů",
-    "@emoteSettings": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteShortcode": "Klávesová zkratka emotikonu",
-    "@emoteShortcode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteWarnNeedToPick": "Musíte si vybrat klávesovou zkratku emotikonu a obrázek!",
-    "@emoteWarnNeedToPick": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emptyChat": "Prázdný chat",
-    "@emptyChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enableEmotesGlobally": "Povolit balíček emotikon všude",
-    "@enableEmotesGlobally": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enableEncryption": "Povolit šifrování",
-    "@enableEncryption": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enableEncryptionWarning": "Šifrování již nebude možné vypnout. Jste si tím jisti?",
-    "@enableEncryptionWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "encrypted": "Šifrováno",
-    "@encrypted": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "encryption": "Šifrování",
-    "@encryption": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "encryptionNotEnabled": "Šifrování není aktivní",
-    "@encryptionNotEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "endedTheCall": "{senderName} ukončil hovor",
-    "@endedTheCall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "enterAnEmailAddress": "Zadejte e-mailovou adresu",
-    "@enterAnEmailAddress": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enterYourHomeserver": "Zadejte svůj domovský server",
-    "@enterYourHomeserver": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "errorObtainingLocation": "Chyba při získávání polohy: {error}",
-    "@errorObtainingLocation": {
-        "type": "text",
-        "placeholders": {
-            "error": {}
-        }
-    },
-    "everythingReady": "Vše připraveno!",
-    "@everythingReady": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "extremeOffensive": "Extrémně urážlivé",
-    "@extremeOffensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fileName": "Název souboru",
-    "@fileName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fontSize": "Velikost písma",
-    "@fontSize": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "forward": "Přeposlat",
-    "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fromJoining": "Od vstupu",
-    "@fromJoining": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fromTheInvitation": "Od pozvání",
-    "@fromTheInvitation": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "Přejít do nové místnost",
-    "@goToTheNewRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "group": "Skupina",
-    "@group": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "groupIsPublic": "Skupina je veřejná",
-    "@groupIsPublic": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "groups": "Skupiny",
-    "@groups": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "groupWith": "Skupina s {displayname}",
-    "@groupWith": {
-        "type": "text",
-        "placeholders": {
-            "displayname": {}
-        }
-    },
-    "guestsAreForbidden": "Hosté jsou zakázáni",
-    "@guestsAreForbidden": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "guestsCanJoin": "Hosté se mohou připojit",
-    "@guestsCanJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "hasWithdrawnTheInvitationFor": "{username} stáhl pozvánku pro {targetName}",
-    "@hasWithdrawnTheInvitationFor": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "help": "Pomoc",
-    "@help": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "hideRedactedEvents": "Skrýt redigované události",
-    "@hideRedactedEvents": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "hideUnknownEvents": "Skrýt neznámé události",
-    "@hideUnknownEvents": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "howOffensiveIsThisContent": "Jak urážlivý je tento obsah?",
-    "@howOffensiveIsThisContent": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "identity": "Identita",
-    "@identity": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ignore": "Ignorovat",
-    "@ignore": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ignoredUsers": "Ignorovaní uživatelé",
-    "@ignoredUsers": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "iHaveClickedOnLink": "Klikl jsem na odkaz",
-    "@iHaveClickedOnLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "incorrectPassphraseOrKey": "Nesprávné přístupové heslo anebo klíč pro obnovu",
-    "@incorrectPassphraseOrKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inoffensive": "Neškodný",
-    "@inoffensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteContact": "Pozvat kontakt",
-    "@inviteContact": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteContactToGroup": "Pozvat kontakt do {groupName}",
-    "@inviteContactToGroup": {
-        "type": "text",
-        "placeholders": {
-            "groupName": {}
-        }
-    },
-    "invited": "Pozvaný",
-    "@invited": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "invitedUser": "📩 {username} pozval/a {targetName}",
-    "@invitedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "invitedUsersOnly": "Pouze pozvaní uživatelé",
-    "@invitedUsersOnly": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteForMe": "Pozvěte mě",
-    "@inviteForMe": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteText": "{username} vás pozvali na FluffyChat.\n1. Navštivte fluffychat.im a nainstalujte si aplikaci.\n2. Zaregistrujte se anebo se přihlašte.\n3. Otevřete pozvánku: \n {link}",
-    "@inviteText": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "link": {}
-        }
-    },
-    "isTyping": "píše…",
-    "@isTyping": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "joinedTheChat": "👋 {username} se připojil/a k chatu",
-    "@joinedTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "joinRoom": "Připojte se k místnosti",
-    "@joinRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "kicked": "👞 {username} vyhodil/a {targetName}",
-    "@kicked": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "kickedAndBanned": "{username} vyhodili a zakázali {targetName}",
-    "@kickedAndBanned": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "kickFromChat": "Vyhodit z chatu",
-    "@kickFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "lastActiveAgo": "Naposledy aktivní: {localizedTimeShort}",
-    "@lastActiveAgo": {
-        "type": "text",
-        "placeholders": {
-            "localizedTimeShort": {}
-        }
-    },
-    "leave": "Opustit",
-    "@leave": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "leftTheChat": "Opustil chat",
-    "@leftTheChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "license": "Licence",
-    "@license": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "lightTheme": "Světlé",
-    "@lightTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "loadCountMoreParticipants": "Načíst dalších {count} účastníků",
-    "@loadCountMoreParticipants": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "loadingPleaseWait": "Načítání… Prosíme vyčkejte.",
-    "@loadingPleaseWait": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "loadMore": "Načíst další…",
-    "@loadMore": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "locationDisabledNotice": "Služby určování polohy jsou deaktivovány. Povolte jim, aby mohli sdílet vaši polohu.",
-    "@locationDisabledNotice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "locationPermissionDeniedNotice": "Oprávnění k poloze odepřeno. Udělte jim prosím možnost sdílet vaši polohu.",
-    "@locationPermissionDeniedNotice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "login": "Přihlásit se",
-    "@login": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "logInTo": "Přihlášení k {homeserver}",
-    "@logInTo": {
-        "type": "text",
-        "placeholders": {
-            "homeserver": {}
-        }
-    },
-    "logout": "Odhlásit",
-    "@logout": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "memberChanges": "Změny členů",
-    "@memberChanges": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "mention": "Zmínit se",
-    "@mention": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "messages": "Zprávy",
-    "@messages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "moderator": "Moderátor",
-    "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "muteChat": "Ztlumit chat",
-    "@muteChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "needPantalaimonWarning": "Prosím vezměte na vědomí, že pro použití koncového šifrování je prozatím potřeba použít Pantalaimon.",
-    "@needPantalaimonWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "newChat": "Nový chat",
-    "@newChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "newMessageInFluffyChat": "Nová zpráva ve FluffyChatu",
-    "@newMessageInFluffyChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "newVerificationRequest": "Nová žádost o ověření!",
-    "@newVerificationRequest": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "next": "Další",
-    "@next": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "no": "Ne",
-    "@no": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noConnectionToTheServer": "Žádné připojení k serveru",
-    "@noConnectionToTheServer": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noEmotesFound": "Nebyly nalezeny žádné emotikony. 😕",
-    "@noEmotesFound": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noEncryptionForPublicRooms": "Můžete aktivovat šifrování jakmile místnost přestane být veřejně dostupná.",
-    "@noEncryptionForPublicRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noGoogleServicesWarning": "Zdá se, že v telefonu nemáte žádné služby Google. To je dobré rozhodnutí pro vaše soukromí! Chcete-li dostávat push oznámení ve FluffyChat, doporučujeme použít: https://microg.org/ nebo https://unifiedpush.org/.",
-    "@noGoogleServicesWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noMatrixServer": "{server1} není matrixový server, použít místo toho server {server2}?",
-    "@noMatrixServer": {
-        "type": "text",
-        "placeholders": {
-            "server1": {},
-            "server2": {}
-        }
-    },
-    "none": "Žádný",
-    "@none": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noPasswordRecoveryDescription": "Dosud jste nepřidali způsob, jak obnovit své heslo.",
-    "@noPasswordRecoveryDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noPermission": "Chybí oprávnění",
-    "@noPermission": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noRoomsFound": "Nebyly nalezeny žádné místnosti…",
-    "@noRoomsFound": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "notifications": "Oznámení",
-    "@notifications": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "notificationsEnabledForThisAccount": "Oznámení povolena pro tento účet",
-    "@notificationsEnabledForThisAccount": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "numUsersTyping": "{count} uživatelé píší…",
-    "@numUsersTyping": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "obtainingLocation": "Získávání polohy…",
-    "@obtainingLocation": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "offensive": "Urážlivé",
-    "@offensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "offline": "Odpojeni",
-    "@offline": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ok": "Ok",
-    "@ok": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "online": "Připojeni",
-    "@online": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "onlineKeyBackupEnabled": "Online záloha kíčů je zapnuta",
-    "@onlineKeyBackupEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "oopsPushError": "Jejda! Při nastavování oznámení push došlo bohužel k chybě.",
-    "@oopsPushError": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "oopsSomethingWentWrong": "Jejda, něco se pokazilo…",
-    "@oopsSomethingWentWrong": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "openAppToReadMessages": "Otevřete aplikaci pro přečtení zpráv",
-    "@openAppToReadMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "openCamera": "Otevřít fotoaparát",
-    "@openCamera": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "openInMaps": "Otevřít v mapách",
-    "@openInMaps": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "or": "Nebo",
-    "@or": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "participant": "Účastník",
-    "@participant": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passphraseOrKey": "heslo nebo klíč pro obnovení",
-    "@passphraseOrKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "password": "Heslo",
-    "@password": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passwordForgotten": "Zapomenuté heslo",
-    "@passwordForgotten": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passwordHasBeenChanged": "Heslo bylo změněno",
-    "@passwordHasBeenChanged": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passwordRecovery": "Obnova hesla",
-    "@passwordRecovery": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "people": "Lidé",
-    "@people": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pickImage": "Zvolit obrázek",
-    "@pickImage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pin": "Připnout zprávu",
-    "@pin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "play": "Přehrát {fileName}",
-    "@play": {
-        "type": "text",
-        "placeholders": {
-            "fileName": {}
-        }
-    },
-    "pleaseChoose": "Prosím vyberte si",
-    "@pleaseChoose": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseChooseAPasscode": "Vyberte přístupový kód",
-    "@pleaseChooseAPasscode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseClickOnLink": "Klikněte na odkaz v e-mailu a pokračujte.",
-    "@pleaseClickOnLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnter4Digits": "Chcete-li deaktivovat zámek aplikace, zadejte 4 číslice nebo nechte prázdné.",
-    "@pleaseEnter4Digits": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnterYourPassword": "Zadejte prosím své heslo",
-    "@pleaseEnterYourPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnterYourPin": "Zadejte svůj PIN",
-    "@pleaseEnterYourPin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnterYourUsername": "Zadejte prosím své uživatelské jméno",
-    "@pleaseEnterYourUsername": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseFollowInstructionsOnWeb": "Postupujte podle pokynů na webu a klepněte na další.",
-    "@pleaseFollowInstructionsOnWeb": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "privacy": "Soukromí",
-    "@privacy": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "publicRooms": "Veřejné místnosti",
-    "@publicRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pushRules": "Pravidla push",
-    "@pushRules": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reason": "Důvod",
-    "@reason": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "recording": "Nahrávání",
-    "@recording": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "redactedAnEvent": "{username} opravili událost",
-    "@redactedAnEvent": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "redactMessage": "Redigovat zprávu",
-    "@redactMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "register": "Registrovat",
-    "@register": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reject": "Zamítnout",
-    "@reject": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "rejectedTheInvitation": "{username} odmítli pozvání",
-    "@rejectedTheInvitation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "rejoin": "Znovu se připojte",
-    "@rejoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "remove": "Odstranit",
-    "@remove": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "removeAllOtherDevices": "Odstranit všechna další zařízení",
-    "@removeAllOtherDevices": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "removedBy": "Odstraněno {username}",
-    "@removedBy": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "removeDevice": "Odstraňit zařízení",
-    "@removeDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unbanFromChat": "Zrušit zákaz chatu",
-    "@unbanFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "removeYourAvatar": "Odstraňte svého avatara",
-    "@removeYourAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "renderRichContent": "Zobrazit bohatě vykreslený obsah zpráv",
-    "@renderRichContent": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "replaceRoomWithNewerVersion": "Nahradit místnost novou verzí",
-    "@replaceRoomWithNewerVersion": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reply": "Odpovědět",
-    "@reply": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reportMessage": "Nahlásit zprávu",
-    "@reportMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "requestPermission": "Vyžádat oprávnění",
-    "@requestPermission": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "roomHasBeenUpgraded": "Místnost byla upgradována",
-    "@roomHasBeenUpgraded": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "roomVersion": "Verze místnosti",
-    "@roomVersion": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "saveFile": "Uložit soubor",
-    "@saveFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "search": "Hledat",
-    "@search": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "security": "Bezpečnostní",
-    "@security": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "seenByUser": "Viděno uživatelem {username}",
-    "@seenByUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "send": "Odeslat",
-    "@send": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendAMessage": "Odeslat zprávu",
-    "@sendAMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendAsText": "Odeslat jako text",
-    "@sendAsText": {
-        "type": "text"
-    },
-    "sendAudio": "Odeslat audio",
-    "@sendAudio": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendFile": "Odeslat soubor",
-    "@sendFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendImage": "Odeslat obrázek",
-    "@sendImage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendMessages": "Odeslat zprávy",
-    "@sendMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendOriginal": "Odeslat originál",
-    "@sendOriginal": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendSticker": "Odeslat nálepku",
-    "@sendSticker": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendVideo": "Odeslat video",
-    "@sendVideo": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sentAFile": "{username} poslali soubor",
-    "@sentAFile": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentAnAudio": "{username} poslali zvukovou nahrávku",
-    "@sentAnAudio": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentAPicture": "{username} poslali obrázek",
-    "@sentAPicture": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentASticker": "{username} poslali samolepku",
-    "@sentASticker": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentAVideo": "{username} poslali video",
-    "@sentAVideo": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentCallInformations": "{senderName} odeslal informace o hovoru",
-    "@sentCallInformations": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "setAsCanonicalAlias": "Nastavit jako hlavní alias",
-    "@setAsCanonicalAlias": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setCustomEmotes": "Nastavit vlastní emotikony",
-    "@setCustomEmotes": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setInvitationLink": "Nastavit zvací odkaz",
-    "@setInvitationLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setPermissionsLevel": "Nastavit úroveň oprávnění",
-    "@setPermissionsLevel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setStatus": "Nastavit stav",
-    "@setStatus": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "settings": "Nastavení",
-    "@settings": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "share": "Sdílet",
-    "@share": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sharedTheLocation": "{username} sdílel jejich polohu",
-    "@sharedTheLocation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "shareLocation": "Sdílet polohu",
-    "@shareLocation": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "showPassword": "Zobrazit heslo",
-    "@showPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "singlesignon": "Jedinečné přihlášení",
-    "@singlesignon": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "skip": "Přeskočit",
-    "@skip": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sourceCode": "Zdrojové kódy",
-    "@sourceCode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "spaceIsPublic": "Prostor je veřejný",
-    "@spaceIsPublic": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "spaceName": "Název prostoru",
-    "@spaceName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "startedACall": "{senderName} zahájil hovor",
-    "@startedACall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "status": "Stav",
-    "@status": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "statusExampleMessage": "Jak se dneska máš?",
-    "@statusExampleMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "submit": "Odeslat",
-    "@submit": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "synchronizingPleaseWait": "Synchronizace ... Čekejte prosím.",
-    "@synchronizingPleaseWait": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "systemTheme": "Téma systému",
-    "@systemTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "theyDontMatch": "Neshodují se",
-    "@theyDontMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "theyMatch": "Shodují se",
-    "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "text",
-        "placeholders": {}
-    },
-    "toggleFavorite": "Přepnout Oblíbené",
-    "@toggleFavorite": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "toggleMuted": "Přepnout ztlumené",
-    "@toggleMuted": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "toggleUnread": "Označit jako přečtené/nepřečtené",
-    "@toggleUnread": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tooManyRequestsWarning": "Příliš mnoho požadavků. Prosím zkuste to znovu později!",
-    "@tooManyRequestsWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "transferFromAnotherDevice": "Přenos z jiného zařízení",
-    "@transferFromAnotherDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tryToSendAgain": "Zkuste odeslat znovu",
-    "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unavailable": "Nedostupní",
-    "@unavailable": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unbannedUser": "{username} zrušili zákaz pro {targetName}",
-    "@unbannedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "unblockDevice": "Odblokovat zařízení",
-    "@unblockDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unknownDevice": "Neznámé zařízení",
-    "@unknownDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unknownEncryptionAlgorithm": "Neznámý šifrovací algoritmus",
-    "@unknownEncryptionAlgorithm": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unknownEvent": "Neznámá událost „{type}“",
-    "@unknownEvent": {
-        "type": "text",
-        "placeholders": {
-            "type": {}
-        }
-    },
-    "unmuteChat": "Zrušit ztlumení chatu",
-    "@unmuteChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unpin": "Odepnout zprávu",
-    "@unpin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, =1{1 nepřečtený chat} other{{unreadCount} nepřečtené chaty}}",
-    "@unreadChats": {
-        "type": "text",
-        "placeholders": {
-            "unreadCount": {}
-        }
-    },
-    "userAndOthersAreTyping": "{username} a {count} dalších píší…",
-    "@userAndOthersAreTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "count": {}
-        }
-    },
-    "userAndUserAreTyping": "{username} a {username2} píší…",
-    "@userAndUserAreTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "username2": {}
-        }
-    },
-    "userIsTyping": "{username} píše…",
-    "@userIsTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "userLeftTheChat": "{username} opustili chat",
-    "@userLeftTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "username": "Uživatelské jméno",
-    "@username": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "userSentUnknownEvent": "{username} poslali událost {type}",
-    "@userSentUnknownEvent": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "type": {}
-        }
-    },
-    "verified": "Ověřeno",
-    "@verified": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verify": "Ověřit",
-    "@verify": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verifyStart": "Zahájit ověření",
-    "@verifyStart": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verifySuccess": "Ověření proběhlo úspěšně!",
-    "@verifySuccess": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verifyTitle": "Ověřuji druhý účet",
-    "@verifyTitle": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "videoCall": "Video hovor",
-    "@videoCall": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "visibilityOfTheChatHistory": "Viditelnost historie chatu",
-    "@visibilityOfTheChatHistory": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "visibleForAllParticipants": "Viditelné pro všechny účastnící se",
-    "@visibleForAllParticipants": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "visibleForEveryone": "Viditelné pro všechny",
-    "@visibleForEveryone": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "voiceMessage": "Hlasová zpráva",
-    "@voiceMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "waitingPartnerAcceptRequest": "Čeká se na potvrzení žádosti partnerem…",
-    "@waitingPartnerAcceptRequest": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "waitingPartnerEmoji": "Čeká se na potvrzení emoji partnerem…",
-    "@waitingPartnerEmoji": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "waitingPartnerNumbers": "Čekání na partnera až přijme čísla…",
-    "@waitingPartnerNumbers": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wallpaper": "Pozadí:",
-    "@wallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "warning": "Varování!",
-    "@warning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "weSentYouAnEmail": "Zaslali jsme vám e-mail",
-    "@weSentYouAnEmail": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "whoCanPerformWhichAction": "Kdo může provést jakou akci",
-    "@whoCanPerformWhichAction": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "whoIsAllowedToJoinThisGroup": "Kdo se může připojit do této skupiny",
-    "@whoIsAllowedToJoinThisGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "whyDoYouWantToReportThis": "Proč to chcete nahlásit?",
-    "@whyDoYouWantToReportThis": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wipeChatBackup": "Chcete vymazat zálohu chatu a vytvořit nový bezpečnostní klíč?",
-    "@wipeChatBackup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "withTheseAddressesRecoveryDescription": "S těmito adresami můžete obnovit své heslo.",
-    "@withTheseAddressesRecoveryDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "writeAMessage": "Napište zprávu…",
-    "@writeAMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "yes": "Ano",
-    "@yes": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "you": "Vy",
-    "@you": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youAreNoLongerParticipatingInThisChat": "Tohoto chatu se nadále neúčastníte",
-    "@youAreNoLongerParticipatingInThisChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youHaveBeenBannedFromThisChat": "Byl vám zablokován přístup k tomuto chatu",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "yourPublicKey": "Váš veřejný klíč",
-    "@yourPublicKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatHasBeenAddedToThisSpace": "Do tohoto prostoru byl přidán chat",
-    "@chatHasBeenAddedToThisSpace": {},
-    "addToSpace": "Přidat do prostoru",
-    "@addToSpace": {},
-    "scanQrCode": "Naskenujte QR kód",
-    "@scanQrCode": {},
-    "sendOnEnter": "Odeslat při vstupu",
-    "@sendOnEnter": {},
-    "homeserver": "Domácí server",
-    "@homeserver": {},
-    "serverRequiresEmail": "Tento server potřebuje k registraci ověřit vaši e -mailovou adresu.",
-    "@serverRequiresEmail": {},
-    "addToBundle": "Přidat do balíčku",
-    "@addToBundle": {},
-    "addAccount": "Přidat účet",
-    "@addAccount": {},
-    "bundleName": "Název balíčku",
-    "@bundleName": {},
-    "link": "Odkaz",
-    "@link": {},
-    "yourChatBackupHasBeenSetUp": "Vaše záloha chatu byla nastavena.",
-    "@yourChatBackupHasBeenSetUp": {},
-    "editBundlesForAccount": "Upravit balíčky pro tento účet",
-    "@editBundlesForAccount": {},
-    "enableMultiAccounts": "(BETA) Na tomto zařízení povolte více účtů",
-    "@enableMultiAccounts": {},
-    "oneClientLoggedOut": "Jeden z vašich klientů byl odhlášen",
-    "@oneClientLoggedOut": {},
-    "removeFromBundle": "Odstranit z tohoto balíčku",
-    "@removeFromBundle": {},
-    "unverified": "Neověřeno",
-    "@unverified": {},
-    "messageInfo": "Informace o zprávě",
-    "@messageInfo": {},
-    "time": "Čas",
-    "@time": {},
-    "messageType": "Typ zprávy",
-    "@messageType": {},
-    "sender": "Odesílatel",
-    "@sender": {},
-    "repeatPassword": "Zopakujte heslo",
-    "@repeatPassword": {},
-    "openGallery": "Otevřít galerii",
-    "@openGallery": {},
-    "addToSpaceDescription": "Vyberte umístění, do kterého chcete tento chat přidat.",
-    "@addToSpaceDescription": {},
-    "start": "Start",
-    "@start": {},
-    "removeFromSpace": "Odstranit z tohoto místa",
-    "@removeFromSpace": {},
-    "commandHint_clearcache": "Vymazat mezipamět",
-    "@commandHint_clearcache": {
-        "type": "text",
-        "description": "Usage hint for the command /clearcache"
-    },
-    "commandHint_discardsession": "Zahodit relaci",
-    "@commandHint_discardsession": {
-        "type": "text",
-        "description": "Usage hint for the command /discardsession"
-    },
-    "commandHint_dm": "Zahajte přímý chat\nK deaktivaci šifrování použijte --no-encryption",
-    "@commandHint_dm": {
-        "type": "text",
-        "description": "Usage hint for the command /dm"
-    },
-    "commandHint_create": "Vytvořte prázdný skupinový chat\n K deaktivaci šifrování použijte --no-encryption",
-    "@commandHint_create": {
-        "type": "text",
-        "description": "Usage hint for the command /create"
-    },
-    "openVideoCamera": "Otevřete fotoaparát pro video",
-    "@openVideoCamera": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "publish": "Uveřejnit",
-    "@publish": {},
-    "videoWithSize": "Video ({size})",
-    "@videoWithSize": {
-        "type": "text",
-        "placeholders": {
-            "size": {}
-        }
-    },
-    "markAsRead": "Označit jako přečtené",
-    "@markAsRead": {},
-    "reportUser": "Nahlásit uživatele",
-    "@reportUser": {},
-    "openChat": "Otevřete chat",
-    "@openChat": {},
-    "dismiss": "Zavrhnout",
-    "@dismiss": {},
-    "reactedWith": "{sender} reagoval s {reaction}",
-    "@reactedWith": {
-        "type": "text",
-        "placeholders": {
-            "sender": {},
-            "reaction": {}
-        }
-    },
-    "emojis": "Emojis",
-    "@emojis": {},
-    "voiceCall": "Hlasový hovor",
-    "@voiceCall": {},
-    "unsupportedAndroidVersion": "Nepodporovaná verze Androidu",
-    "@unsupportedAndroidVersion": {},
-    "videoCallsBetaWarning": "Upozorňujeme, že videohovory jsou aktuálně ve verzi beta. Nemusí fungovat podle očekávání nebo fungovat vůbec na všech platformách.",
-    "@videoCallsBetaWarning": {},
-    "placeCall": "Zavolejte",
-    "@placeCall": {},
-    "emailOrUsername": "E-mail nebo uživatelské jméno",
-    "@emailOrUsername": {},
-    "experimentalVideoCalls": "Experimentální videohovory",
-    "@experimentalVideoCalls": {},
-    "unsupportedAndroidVersionLong": "Tato funkce vyžaduje novější verzi Android. Zkontrolujte prosím aktualizace nebo podporu Lineage OS.",
-    "@unsupportedAndroidVersionLong": {},
-    "pinMessage": "Připnout zprávu do místnosti",
-    "@pinMessage": {},
-    "confirmEventUnpin": "Opravdu chcete událost trvale odepnout?",
-    "@confirmEventUnpin": {},
-    "separateChatTypes": "Odděĺlit přímé chaty, skupiny a prostory",
-    "@separateChatTypes": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youKicked": "Vykopli jste uživatele {user}",
-    "@youKicked": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "switchToAccount": "Přepnout na účet {number}",
-    "@switchToAccount": {
-        "type": "number",
-        "placeholders": {
-            "number": {}
-        }
-    },
-    "previousAccount": "Předchozí účet",
-    "@previousAccount": {},
-    "widgetJitsi": "Jitsi Meet",
-    "@widgetJitsi": {},
-    "youAcceptedTheInvitation": "Přijal jsi pozvání",
-    "@youAcceptedTheInvitation": {},
-    "youJoinedTheChat": "Připojili jste se k chatu",
-    "@youJoinedTheChat": {},
-    "youInvitedBy": "Byli jste pozváni uživatelem {user}",
-    "@youInvitedBy": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "nextAccount": "Další účet",
-    "@nextAccount": {},
-    "addWidget": "Přidat widget",
-    "@addWidget": {},
-    "widgetVideo": "Video",
-    "@widgetVideo": {},
-    "widgetEtherpad": "Textová poznámka",
-    "@widgetEtherpad": {},
-    "widgetName": "Jméno",
-    "@widgetName": {},
-    "youBannedUser": "Zakázali jste uživatele {user}",
-    "@youBannedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "youInvitedUser": "Pozvali jste uživatele {user}",
-    "@youInvitedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "youKickedAndBanned": "Vykopli jste a zakázali jste uživatele {user}",
-    "@youKickedAndBanned": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "youUnbannedUser": "Zrušili jste zákaz uživateli {user}",
-    "@youUnbannedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "widgetCustom": "Vlastní",
-    "@widgetCustom": {},
-    "youRejectedTheInvitation": "Odmítli jste pozvání",
-    "@youRejectedTheInvitation": {},
-    "youHaveWithdrawnTheInvitationFor": "Stáhli jste pozvánku pro uživatele {user}",
-    "@youHaveWithdrawnTheInvitationFor": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "widgetUrlError": "Toto není platná adresa URL.",
-    "@widgetUrlError": {},
-    "widgetNameError": "Zadejte jméno pro zobrazení.",
-    "@widgetNameError": {},
-    "errorAddingWidget": "Chyba při přidávání widgetu.",
-    "@errorAddingWidget": {},
-    "disableEncryptionWarning": "Z bezpečnostních důvodů nemůžete vypnout šifrování v chatu, kde již bylo dříve zapnuto.",
-    "@disableEncryptionWarning": {},
-    "confirmMatrixId": "Prosím, potvrďte vaše Matrix ID, abyste mohli smazat váš účet.",
-    "@confirmMatrixId": {},
-    "commandHint_googly": "Poslat kroutící se očička",
-    "@commandHint_googly": {},
-    "commandHint_cuddle": "Poslat mazlení",
-    "@commandHint_cuddle": {},
-    "commandHint_hug": "Poslat obejmutí",
-    "@commandHint_hug": {},
-    "hugContent": "{senderName} vás objímá",
-    "@hugContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "googlyEyesContent": "{senderName} vám posílá kroutící se očička",
-    "@googlyEyesContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "cuddleContent": "{senderName} se s vámi mazlí",
-    "@cuddleContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "notAnImage": "Není obrázek.",
-    "@notAnImage": {},
-    "importNow": "Importovat nyní",
-    "@importNow": {},
-    "redactedByBecause": "Smazáno uživatelem {username} s důvodem: \"{reason}\"",
-    "@redactedByBecause": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "reason": {}
-        }
-    },
-    "storeInAndroidKeystore": "Uložit v Android KeyStore",
-    "@storeInAndroidKeystore": {},
-    "dehydrateTorLong": "Uživatelům TOR se doporučuje exportovat sezení před zavřením okna.",
-    "@dehydrateTorLong": {},
-    "numChats": "{number} konverzací",
-    "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {}
-        }
-    },
-    "dehydrate": "Exportovat sezení a promazat zařízení",
-    "@dehydrate": {},
-    "newGroup": "Nová skupina",
-    "@newGroup": {},
-    "hydrateTor": "TOR uživatelé: Import exportovaného sezení",
-    "@hydrateTor": {},
-    "doNotShowAgain": "Nezobrazovat znovu",
-    "@doNotShowAgain": {},
-    "commandHint_markasdm": "Označit jako místnost přímé konverzace s daným Matrix ID",
-    "@commandHint_markasdm": {},
-    "recoveryKey": "Klíč k obnovení",
-    "@recoveryKey": {},
-    "hydrateTorLong": "Exportovali jste vaše poslední sezení na TOR? Rychle jej importujte a pokračujte v konverzaci.",
-    "@hydrateTorLong": {},
-    "hydrate": "Obnovit ze záložního souboru",
-    "@hydrate": {},
-    "pleaseEnterRecoveryKey": "Prosím vložte váš klíč pro obnovení:",
-    "@pleaseEnterRecoveryKey": {},
-    "createGroup": "Vytvořit skupinu",
-    "@createGroup": {},
-    "shareInviteLink": "Sdílet pozvánku",
-    "@shareInviteLink": {},
-    "pleaseEnterRecoveryKeyDescription": "K odemknutí vašich starých zpráv prosím vložte váš klíč k obnovení vygenerovaný v předchozím sezení. Váš klíč k obnovení NENÍ vaše heslo.",
-    "@pleaseEnterRecoveryKeyDescription": {},
-    "setColorTheme": "Nastavit barvy:",
-    "@setColorTheme": {},
-    "importEmojis": "Importovat Emoji",
-    "@importEmojis": {},
-    "importFromZipFile": "Importovat ze .zip souboru",
-    "@importFromZipFile": {},
-    "exportEmotePack": "Exportovat Emoji jako .zip",
-    "@exportEmotePack": {},
-    "replace": "Nahradit",
-    "@replace": {},
-    "users": "Uživatelé",
-    "@users": {},
-    "storeInAppleKeyChain": "Uložit v Apple KeyChain",
-    "@storeInAppleKeyChain": {},
-    "jumpToLastReadMessage": "Skočit na naposledy přečtenou zprávu",
-    "@jumpToLastReadMessage": {},
-    "signInWithPassword": "Přihlásit se pomocí hesla",
-    "@signInWithPassword": {},
-    "redactedBy": "Smazáno uživatelem {username}",
-    "@redactedBy": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "inviteContactToGroupQuestion": "Chcete pozvat {contact} do konverzace \"{groupName}\"?",
-    "@inviteContactToGroupQuestion": {},
-    "dehydrateTor": "TOR uživatelé: Export sezení",
-    "@dehydrateTor": {},
-    "tryAgain": "Zkuste to znovu",
-    "@tryAgain": {},
-    "redactMessageDescription": "Tato zpráva bude smazána pro všechny účastníky konverzace. Tuto akci nelze vzít zpět.",
-    "@redactMessageDescription": {},
-    "optionalRedactReason": "(Nepovinné) Důvod smazání této zprávy…",
-    "@optionalRedactReason": {},
-    "messagesStyle": "Zprávy:",
-    "@messagesStyle": {},
-    "allSpaces": "Všechny prostory",
-    "@allSpaces": {},
-    "noOtherDevicesFound": "Žádná ostatní zařízení nebyla nalezena",
-    "@noOtherDevicesFound": {},
-    "addChatDescription": "Přidejte popis konverzace",
-    "@addChatDescription": {},
-    "chatDescription": "Popis konverzace",
-    "@chatDescription": {},
-    "chatDescriptionHasBeenChanged": "Popis konverzace byl změněn",
-    "@chatDescriptionHasBeenChanged": {},
-    "noChatDescriptionYet": "Zatím nebyl vytvořen žádný popis konverzace.",
-    "@noChatDescriptionYet": {},
-    "invalidServerName": "Neplatné jméno serveru",
-    "@invalidServerName": {},
-    "chatPermissions": "Oprávnění konverzace",
-    "@chatPermissions": {},
-    "directChat": "Přímá konverzace",
-    "@directChat": {},
-    "setChatDescription": "Nastavit popis konverzace",
-    "@setChatDescription": {},
-    "startFirstChat": "Začněte svou první konverzaci",
-    "@startFirstChat": {},
-    "callingPermissions": "Oprávnění volání",
-    "@callingPermissions": {},
-    "whyIsThisMessageEncrypted": "Proč nelze přečíst tuto zprávu?",
-    "@whyIsThisMessageEncrypted": {},
-    "wasDirectChatDisplayName": "Prázdná konverzace (dříve {oldDisplayName})",
-    "@wasDirectChatDisplayName": {
-        "type": "text",
-        "placeholders": {
-            "oldDisplayName": {}
-        }
-    },
-    "newSpaceDescription": "Prostory umožňují organizovat vaše konverzace a vytvářet soukromé nebo veřejné komunity",
-    "@newSpaceDescription": {},
-    "profileNotFound": "Uživatel nebyl na serveru nalezen. Možná je problém s připojením nebo uživatel neexistuje.",
-    "@profileNotFound": {},
-    "setTheme": "Nastavit vzhled:",
-    "@setTheme": {},
-    "sendTypingNotifications": "Posílat oznámení o psaní",
-    "@sendTypingNotifications": {},
-    "commandHint_markasgroup": "Označit jako skupinu",
-    "@commandHint_markasgroup": {},
-    "allRooms": "Všechny skupinové konverzace",
-    "@allRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "recoveryKeyLost": "Ztracený klíč k obnovení?",
-    "@recoveryKeyLost": {},
-    "unlockOldMessages": "Odemknout staré zprávy",
-    "@unlockOldMessages": {},
-    "foregroundServiceRunning": "Toto oznámení se zobrazuje když běží služba na pozadí.",
-    "@foregroundServiceRunning": {},
-    "screenSharingDetail": "Sdílíte svou obrazovku přes FluffyChat",
-    "@screenSharingDetail": {},
-    "callingAccountDetails": "Opravňuje FluffyChat používat Android systémovou aplikaci pro vytáčení.",
-    "@callingAccountDetails": {},
-    "appearOnTop": "Zobrazovat nahoře",
-    "@appearOnTop": {},
-    "otherCallingPermissions": "Mikrofon, kamera a ostatní oprávnění FluffyChat",
-    "@otherCallingPermissions": {},
-    "encryptThisChat": "Zašifrovat tuto konverzaci",
-    "@encryptThisChat": {},
-    "sorryThatsNotPossible": "Omlouváme se… to není možné",
-    "@sorryThatsNotPossible": {},
-    "deviceKeys": "Klíče zařízení:",
-    "@deviceKeys": {},
-    "reopenChat": "Znovu otevřít konverzaci",
-    "@reopenChat": {},
-    "fileIsTooBigForServer": "Server oznamuje že soubor je příliš velký na odeslání.",
-    "@fileIsTooBigForServer": {},
-    "jump": "Skočit",
-    "@jump": {},
-    "openLinkInBrowser": "Otevřít odkaz v prohlížeči",
-    "@openLinkInBrowser": {},
-    "pleaseTryAgainLaterOrChooseDifferentServer": "Prosím zkuste to znovu nebo si vyberte jiný server.",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-    "signInWith": "Přihlásit se pomocí {provider}",
-    "@signInWith": {
-        "type": "text",
-        "placeholders": {
-            "provider": {}
-        }
-    },
-    "supposedMxid": "Tady by mělo být {mxid}",
-    "@supposedMxid": {
-        "type": "text",
-        "placeholders": {
-            "mxid": {}
-        }
-    },
-    "newSpace": "Nový prostor",
-    "@newSpace": {},
-    "screenSharingTitle": "sdílení obrazovky",
-    "@screenSharingTitle": {},
-    "user": "Uživatel",
-    "@user": {},
-    "fileHasBeenSavedAt": "Soubor uložen do {path}",
-    "@fileHasBeenSavedAt": {
-        "type": "text",
-        "placeholders": {
-            "path": {}
-        }
-    },
-    "custom": "Vlastní",
-    "@custom": {},
-    "dehydrateWarning": "Tuto akci nelze vzít zpět. Ujistěte se že záložní soubor máte bezpečně uložen.",
-    "@dehydrateWarning": {},
-    "storeInSecureStorageDescription": "Klíč k obnovení uložte v zabezpečeném úložišti tohoto zařízení.",
-    "@storeInSecureStorageDescription": {},
-    "saveKeyManuallyDescription": "Uložte tento klíč manuálně pomocí systémového dialogu sdílení nebo zkopírováním do schránky.",
-    "@saveKeyManuallyDescription": {},
-    "storeSecurlyOnThisDevice": "Uložit bezpečně na tomto zařízení",
-    "@storeSecurlyOnThisDevice": {},
-    "countFiles": "{count} souborů",
-    "@countFiles": {
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "reportErrorDescription": "",
-    "@reportErrorDescription": {},
-    "banUserDescription": "",
-    "@banUserDescription": {},
-    "removeDevicesDescription": "",
-    "@removeDevicesDescription": {},
-    "unbanUserDescription": "",
-    "@unbanUserDescription": {},
-    "pushNotificationsNotAvailable": "",
-    "@pushNotificationsNotAvailable": {},
-    "makeAdminDescription": "",
-    "@makeAdminDescription": {},
-    "archiveRoomDescription": "",
-    "@archiveRoomDescription": {},
-    "invalidInput": "",
-    "@invalidInput": {},
-    "report": "",
-    "@report": {},
-    "hasKnocked": "",
-    "@hasKnocked": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "wrongPinEntered": "",
-    "@wrongPinEntered": {
-        "type": "text",
-        "placeholders": {
-            "seconds": {}
-        }
-    },
-    "inviteGroupChat": "",
-    "@inviteGroupChat": {},
-    "invitePrivateChat": "",
-    "@invitePrivateChat": {},
-    "learnMore": "",
-    "@learnMore": {},
-    "roomUpgradeDescription": "",
-    "@roomUpgradeDescription": {},
-    "pleaseEnterANumber": "",
-    "@pleaseEnterANumber": {},
-    "emoteKeyboardNoRecents": "",
-    "@emoteKeyboardNoRecents": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "kickUserDescription": "",
-    "@kickUserDescription": {},
-    "invite": "",
-    "@invite": {},
-    "indexedDbErrorLong": "",
-    "@indexedDbErrorLong": {},
-    "callingAccount": "",
-    "@callingAccount": {},
-    "enterSpace": "",
-    "@enterSpace": {},
-    "noKeyForThisMessage": "",
-    "@noKeyForThisMessage": {},
-    "readUpToHere": "",
-    "@readUpToHere": {},
-    "appearOnTopDetails": "",
-    "@appearOnTopDetails": {},
-    "enterRoom": "",
-    "@enterRoom": {},
-    "hideUnimportantStateEvents": "",
-    "@hideUnimportantStateEvents": {},
-    "noBackupWarning": "",
-    "@noBackupWarning": {},
-    "indexedDbErrorTitle": "",
-    "@indexedDbErrorTitle": {}
+  "@@locale": "cs",
+  "@@last_modified": "2021-08-14 12:41:10.131133",
+  "about": "O aplikaci",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accept": "Přijmout",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "👍 {username} přijal/a pozvání",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "account": "Účet",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "🔐 {username} aktivoval/a koncové šifrování",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "addEmail": "Přidat e-mail",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "admin": "Správce",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "alias",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Vše",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Všechny chaty",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} odpověděl na hovor",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "Kdokoliv se může připojit",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Zámek aplikace",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "Archivovat",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Mohou se připojit hosté",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Jste si jistý?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Opravdu se chcete odhlásit?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Pro ověření této osoby zadejte prosím přístupovou frázi k „bezpečnému úložišti“ anebo „klíč pro obnovu“.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Přijmout žádost o ověření od {username}?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "autoplayImages": "Automaticky přehrajte animované nálepky a emoce",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "badServerLoginTypesException": "Homeserver podporuje přihlášení typu:\n{serverVersions}\nAle tato aplikace podporuje pouze:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "Homeserver podporuje specifikaci verzí:\n{serverVersions}\nAle tato aplikace podporuje pouze verze {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "banFromChat": "Zakázat chat",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banned": "Zakázán",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} zakázal {targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "blockDevice": "Blokovat zařízení",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Zakázán",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Zprávy od bota",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Zrušit",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Nelze otevřít URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "changeDeviceName": "Změnit název zařízení",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheChatAvatar": "{username} změnil avatar chatu",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheChatDescriptionTo": "{username} změnil popis chatu na: „{description}“",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} změnil jméno chatu na: „{chatname}“",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "changedTheChatPermissions": "{username} změnili nastavení oprávnění v chatu",
+  "@changedTheChatPermissions": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheDisplaynameTo": "{username} změnili svoji přezdívku na: {displayname}",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "changedTheGuestAccessRules": "{username} změnili přístupová práva pro hosty",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} změnili přístupová práva pro hosty na: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheHistoryVisibility": "{username} změnili nastavení viditelnosti historie diskuze",
+  "@changedTheHistoryVisibility": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username} změnili nastavení viditelnosti historie diskuze na: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheJoinRules": "{username} změnili nastavení pravidel připojení",
+  "@changedTheJoinRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheJoinRulesTo": "{username} změnili nastavení pravidel připojení na: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "joinRules": {}
+    }
+  },
+  "changedTheProfileAvatar": "{username} změnili svůj avatar",
+  "@changedTheProfileAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomAliases": "{username} změnili nastavení aliasů místnosti",
+  "@changedTheRoomAliases": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomInvitationLink": "{username} změnili odkaz k pozvání do místnosti",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changePassword": "Změnit heslo",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheHomeserver": "Změnit domovský server",
+  "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheme": "Změňte svůj styl",
+  "@changeTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheNameOfTheGroup": "Změnit název skupiny",
+  "@changeTheNameOfTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Změňte svůj avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "channelCorruptedDecryptError": "Šifrování bylo poškozeno",
+  "@channelCorruptedDecryptError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "Chat",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Záloha chatu",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Záloha chatu je zabezpečena bezpečnostním klíčem. Ujistěte se, prosím, že klíč neztratíte.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatDetails": "Bližší údaje o chatu",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Chaty",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Vyberte silné heslo",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Vymazat archiv",
+  "@clearArchive": {},
+  "close": "Zavřít",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_ban": "Zakázat danému uživateli přístup do této místnosti",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_html": "Odeslat text ve formátu HTML",
+  "@commandHint_html": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHint_invite": "Pozvěte daného uživatele do této místnosti",
+  "@commandHint_invite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHint_join": "Připojte se k dané místnosti",
+  "@commandHint_join": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_kick": "Odeberte daného uživatele z této místnosti",
+  "@commandHint_kick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_leave": "Opusťte tuto místnost",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHint_me": "Představ se",
+  "@commandHint_me": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHint_myroomavatar": "Nastavte si obrázek pro tuto místnost (autor mxc-uri)",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_myroomnick": "Nastavte si váš zobrazovaný název pro tuto místnost",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHint_op": "Nastavit úroveň práv daného uživatele (výchozí: 50)",
+  "@commandHint_op": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHint_plain": "Odeslat neformátovaný text",
+  "@commandHint_plain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHint_react": "Odeslat odpověď jako reakci",
+  "@commandHint_react": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHint_send": "Poslat zprávu",
+  "@commandHint_send": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "commandHint_unban": "Zrušte zákaz přístupu daného uživatele do této místnosti",
+  "@commandHint_unban": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandInvalid": "Příkaz je neplatný",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandMissing": "{command} není příkaz.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "compareEmojiMatch": "Porovnejte a přesvědčete se, že následující emotikony se shodují na obou zařízeních:",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Porovnejte a přesvědčete se, že následující čísla se shodují na obou zařízeních:",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "Nastavení chatu",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Potvrdit",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connect": "Připojit",
+  "@connect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contactHasBeenInvitedToTheGroup": "Kontakt byl pozván do skupiny",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Obsahuje zobrazovaný název",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Obsahuje uživatelské jméno",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Obsah byl nahlášen správcům serveru",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copiedToClipboard": "Zkopírováno do schránky",
+  "@copiedToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "Kopírovat",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Zkopírovat do schránky",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Nebylo možné dešifrovat zprávu: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "countParticipants": "{count} účastníků",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "create": "Vytvořit",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createdTheChat": "💬 {username} založil/a chat",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "createNewSpace": "Nový prostor",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentlyActive": "Aktuálně aktivní",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "Tmavé",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "dateWithoutYear": "{day}.{month}",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateWithYear": "{day}. {month}. {year}",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "deactivateAccountWarning": "Tímto krokem se deaktivuje váš uživatelský účet. Akci nelze vrátit zpět! Jste si jistí?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Výchozí úroveň oprávnění",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Smazat",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Smazat účet",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteMessage": "Smazat zprávu",
+  "@deleteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "device": "Zařízení",
+  "@device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "ID zařízení",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "devices": "Zařízení",
+  "@devices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Přímé chatování",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "Přezdívka byla změněna",
+  "@displaynameHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadFile": "Stáhnout soubor",
+  "@downloadFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Upravit",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Upravit zakázané servery",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editDisplayname": "Změnit přezdívku",
+  "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Upravit aliasy místností",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Upravit avatara místnosti",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "Emotikona již existuje!",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "Neplatný kód emotikony!",
+  "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Balíček emotikonů pro místnost",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteSettings": "Nastavení emotikonů",
+  "@emoteSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteShortcode": "Klávesová zkratka emotikonu",
+  "@emoteShortcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "Musíte si vybrat klávesovou zkratku emotikonu a obrázek!",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emptyChat": "Prázdný chat",
+  "@emptyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Povolit balíček emotikon všude",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Povolit šifrování",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryptionWarning": "Šifrování již nebude možné vypnout. Jste si tím jisti?",
+  "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Šifrováno",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "Šifrování",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionNotEnabled": "Šifrování není aktivní",
+  "@encryptionNotEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} ukončil hovor",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "enterAnEmailAddress": "Zadejte e-mailovou adresu",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterYourHomeserver": "Zadejte svůj domovský server",
+  "@enterYourHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Chyba při získávání polohy: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "everythingReady": "Vše připraveno!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Extrémně urážlivé",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileName": "Název souboru",
+  "@fileName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Velikost písma",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forward": "Přeposlat",
+  "@forward": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromJoining": "Od vstupu",
+  "@fromJoining": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromTheInvitation": "Od pozvání",
+  "@fromTheInvitation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Přejít do nové místnost",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "group": "Skupina",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupIsPublic": "Skupina je veřejná",
+  "@groupIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Skupiny",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupWith": "Skupina s {displayname}",
+  "@groupWith": {
+    "type": "text",
+    "placeholders": {
+      "displayname": {}
+    }
+  },
+  "guestsAreForbidden": "Hosté jsou zakázáni",
+  "@guestsAreForbidden": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "guestsCanJoin": "Hosté se mohou připojit",
+  "@guestsCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "{username} stáhl pozvánku pro {targetName}",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "help": "Pomoc",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Skrýt redigované události",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Skrýt neznámé události",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Jak urážlivý je tento obsah?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "id": "ID",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "identity": "Identita",
+  "@identity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignorovat",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Ignorovaní uživatelé",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Klikl jsem na odkaz",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Nesprávné přístupové heslo anebo klíč pro obnovu",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Neškodný",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContact": "Pozvat kontakt",
+  "@inviteContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContactToGroup": "Pozvat kontakt do {groupName}",
+  "@inviteContactToGroup": {
+    "type": "text",
+    "placeholders": {
+      "groupName": {}
+    }
+  },
+  "invited": "Pozvaný",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "📩 {username} pozval/a {targetName}",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "invitedUsersOnly": "Pouze pozvaní uživatelé",
+  "@invitedUsersOnly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Pozvěte mě",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteText": "{username} vás pozvali na FluffyChat.\n1. Navštivte fluffychat.im a nainstalujte si aplikaci.\n2. Zaregistrujte se anebo se přihlašte.\n3. Otevřete pozvánku: \n {link}",
+  "@inviteText": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "link": {}
+    }
+  },
+  "isTyping": "píše…",
+  "@isTyping": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinedTheChat": "👋 {username} se připojil/a k chatu",
+  "@joinedTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "joinRoom": "Připojte se k místnosti",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kicked": "👞 {username} vyhodil/a {targetName}",
+  "@kicked": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickedAndBanned": "{username} vyhodili a zakázali {targetName}",
+  "@kickedAndBanned": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickFromChat": "Vyhodit z chatu",
+  "@kickFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastActiveAgo": "Naposledy aktivní: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "text",
+    "placeholders": {
+      "localizedTimeShort": {}
+    }
+  },
+  "leave": "Opustit",
+  "@leave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leftTheChat": "Opustil chat",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "Licence",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lightTheme": "Světlé",
+  "@lightTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadCountMoreParticipants": "Načíst dalších {count} účastníků",
+  "@loadCountMoreParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "loadingPleaseWait": "Načítání… Prosíme vyčkejte.",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "Načíst další…",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Služby určování polohy jsou deaktivovány. Povolte jim, aby mohli sdílet vaši polohu.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Oprávnění k poloze odepřeno. Udělte jim prosím možnost sdílet vaši polohu.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Přihlásit se",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logInTo": "Přihlášení k {homeserver}",
+  "@logInTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "logout": "Odhlásit",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Změny členů",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "Zmínit se",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Zprávy",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moderator": "Moderátor",
+  "@moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "muteChat": "Ztlumit chat",
+  "@muteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needPantalaimonWarning": "Prosím vezměte na vědomí, že pro použití koncového šifrování je prozatím potřeba použít Pantalaimon.",
+  "@needPantalaimonWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Nový chat",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "Nová zpráva ve FluffyChatu",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "Nová žádost o ověření!",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Další",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "Ne",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Žádné připojení k serveru",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEmotesFound": "Nebyly nalezeny žádné emotikony. 😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Můžete aktivovat šifrování jakmile místnost přestane být veřejně dostupná.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "Zdá se, že v telefonu nemáte žádné služby Google. To je dobré rozhodnutí pro vaše soukromí! Chcete-li dostávat push oznámení ve FluffyChat, doporučujeme použít: https://microg.org/ nebo https://unifiedpush.org/.",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} není matrixový server, použít místo toho server {server2}?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "none": "Žádný",
+  "@none": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Dosud jste nepřidali způsob, jak obnovit své heslo.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPermission": "Chybí oprávnění",
+  "@noPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noRoomsFound": "Nebyly nalezeny žádné místnosti…",
+  "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Oznámení",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Oznámení povolena pro tento účet",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numUsersTyping": "{count} uživatelé píší…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "obtainingLocation": "Získávání polohy…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Urážlivé",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Odpojeni",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "Ok",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Připojeni",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "Online záloha kíčů je zapnuta",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Jejda! Při nastavování oznámení push došlo bohužel k chybě.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsSomethingWentWrong": "Jejda, něco se pokazilo…",
+  "@oopsSomethingWentWrong": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppToReadMessages": "Otevřete aplikaci pro přečtení zpráv",
+  "@openAppToReadMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openCamera": "Otevřít fotoaparát",
+  "@openCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Otevřít v mapách",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Nebo",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Účastník",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "heslo nebo klíč pro obnovení",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Heslo",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Zapomenuté heslo",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Heslo bylo změněno",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Obnova hesla",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Lidé",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickImage": "Zvolit obrázek",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "Připnout zprávu",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "play": "Přehrát {fileName}",
+  "@play": {
+    "type": "text",
+    "placeholders": {
+      "fileName": {}
+    }
+  },
+  "pleaseChoose": "Prosím vyberte si",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Vyberte přístupový kód",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Klikněte na odkaz v e-mailu a pokračujte.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Chcete-li deaktivovat zámek aplikace, zadejte 4 číslice nebo nechte prázdné.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPassword": "Zadejte prosím své heslo",
+  "@pleaseEnterYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Zadejte svůj PIN",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourUsername": "Zadejte prosím své uživatelské jméno",
+  "@pleaseEnterYourUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Postupujte podle pokynů na webu a klepněte na další.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Soukromí",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicRooms": "Veřejné místnosti",
+  "@publicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Pravidla push",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Důvod",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recording": "Nahrávání",
+  "@recording": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactedAnEvent": "{username} opravili událost",
+  "@redactedAnEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "redactMessage": "Redigovat zprávu",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Registrovat",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reject": "Zamítnout",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rejectedTheInvitation": "{username} odmítli pozvání",
+  "@rejectedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "rejoin": "Znovu se připojte",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "Odstranit",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "Odstranit všechna další zařízení",
+  "@removeAllOtherDevices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removedBy": "Odstraněno {username}",
+  "@removedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "removeDevice": "Odstraňit zařízení",
+  "@removeDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbanFromChat": "Zrušit zákaz chatu",
+  "@unbanFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Odstraňte svého avatara",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "renderRichContent": "Zobrazit bohatě vykreslený obsah zpráv",
+  "@renderRichContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Nahradit místnost novou verzí",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reply": "Odpovědět",
+  "@reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Nahlásit zprávu",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestPermission": "Vyžádat oprávnění",
+  "@requestPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomHasBeenUpgraded": "Místnost byla upgradována",
+  "@roomHasBeenUpgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Verze místnosti",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Uložit soubor",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Hledat",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Bezpečnostní",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seenByUser": "Viděno uživatelem {username}",
+  "@seenByUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "send": "Odeslat",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAMessage": "Odeslat zprávu",
+  "@sendAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "Odeslat jako text",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "sendAudio": "Odeslat audio",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFile": "Odeslat soubor",
+  "@sendFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendImage": "Odeslat obrázek",
+  "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Odeslat zprávy",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "Odeslat originál",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Odeslat nálepku",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "Odeslat video",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentAFile": "{username} poslali soubor",
+  "@sentAFile": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAnAudio": "{username} poslali zvukovou nahrávku",
+  "@sentAnAudio": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAPicture": "{username} poslali obrázek",
+  "@sentAPicture": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentASticker": "{username} poslali samolepku",
+  "@sentASticker": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAVideo": "{username} poslali video",
+  "@sentAVideo": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentCallInformations": "{senderName} odeslal informace o hovoru",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "setAsCanonicalAlias": "Nastavit jako hlavní alias",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Nastavit vlastní emotikony",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setInvitationLink": "Nastavit zvací odkaz",
+  "@setInvitationLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Nastavit úroveň oprávnění",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setStatus": "Nastavit stav",
+  "@setStatus": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Nastavení",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "Sdílet",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharedTheLocation": "{username} sdílel jejich polohu",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "shareLocation": "Sdílet polohu",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Zobrazit heslo",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "singlesignon": "Jedinečné přihlášení",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Přeskočit",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sourceCode": "Zdrojové kódy",
+  "@sourceCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Prostor je veřejný",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Název prostoru",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} zahájil hovor",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "status": "Stav",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statusExampleMessage": "Jak se dneska máš?",
+  "@statusExampleMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "submit": "Odeslat",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWait": "Synchronizace ... Čekejte prosím.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "systemTheme": "Téma systému",
+  "@systemTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyDontMatch": "Neshodují se",
+  "@theyDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyMatch": "Shodují se",
+  "@theyMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "FluffyChat",
+  "@title": {
+    "description": "Title for the application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Přepnout Oblíbené",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Přepnout ztlumené",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "Označit jako přečtené/nepřečtené",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Příliš mnoho požadavků. Prosím zkuste to znovu později!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Přenos z jiného zařízení",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tryToSendAgain": "Zkuste odeslat znovu",
+  "@tryToSendAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Nedostupní",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbannedUser": "{username} zrušili zákaz pro {targetName}",
+  "@unbannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "unblockDevice": "Odblokovat zařízení",
+  "@unblockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownDevice": "Neznámé zařízení",
+  "@unknownDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEncryptionAlgorithm": "Neznámý šifrovací algoritmus",
+  "@unknownEncryptionAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEvent": "Neznámá událost „{type}“",
+  "@unknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "unmuteChat": "Zrušit ztlumení chatu",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "Odepnout zprávu",
+  "@unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unreadChats": "{unreadCount, plural, =1{1 nepřečtený chat} other{{unreadCount} nepřečtené chaty}}",
+  "@unreadChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadCount": {}
+    }
+  },
+  "userAndOthersAreTyping": "{username} a {count} dalších píší…",
+  "@userAndOthersAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "userAndUserAreTyping": "{username} a {username2} píší…",
+  "@userAndUserAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "userIsTyping": "{username} píše…",
+  "@userIsTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "userLeftTheChat": "{username} opustili chat",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "Uživatelské jméno",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userSentUnknownEvent": "{username} poslali událost {type}",
+  "@userSentUnknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "type": {}
+    }
+  },
+  "verified": "Ověřeno",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "Ověřit",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "Zahájit ověření",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifySuccess": "Ověření proběhlo úspěšně!",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyTitle": "Ověřuji druhý účet",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoCall": "Video hovor",
+  "@videoCall": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibilityOfTheChatHistory": "Viditelnost historie chatu",
+  "@visibilityOfTheChatHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForAllParticipants": "Viditelné pro všechny účastnící se",
+  "@visibleForAllParticipants": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForEveryone": "Viditelné pro všechny",
+  "@visibleForEveryone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voiceMessage": "Hlasová zpráva",
+  "@voiceMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Čeká se na potvrzení žádosti partnerem…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerEmoji": "Čeká se na potvrzení emoji partnerem…",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerNumbers": "Čekání na partnera až přijme čísla…",
+  "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallpaper": "Pozadí:",
+  "@wallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "Varování!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Zaslali jsme vám e-mail",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Kdo může provést jakou akci",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoIsAllowedToJoinThisGroup": "Kdo se může připojit do této skupiny",
+  "@whoIsAllowedToJoinThisGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Proč to chcete nahlásit?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Chcete vymazat zálohu chatu a vytvořit nový bezpečnostní klíč?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "S těmito adresami můžete obnovit své heslo.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "writeAMessage": "Napište zprávu…",
+  "@writeAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "Ano",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "you": "Vy",
+  "@you": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youAreNoLongerParticipatingInThisChat": "Tohoto chatu se nadále neúčastníte",
+  "@youAreNoLongerParticipatingInThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveBeenBannedFromThisChat": "Byl vám zablokován přístup k tomuto chatu",
+  "@youHaveBeenBannedFromThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourPublicKey": "Váš veřejný klíč",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Do tohoto prostoru byl přidán chat",
+  "@chatHasBeenAddedToThisSpace": {},
+  "addToSpace": "Přidat do prostoru",
+  "@addToSpace": {},
+  "scanQrCode": "Naskenujte QR kód",
+  "@scanQrCode": {},
+  "sendOnEnter": "Odeslat při vstupu",
+  "@sendOnEnter": {},
+  "homeserver": "Domácí server",
+  "@homeserver": {},
+  "serverRequiresEmail": "Tento server potřebuje k registraci ověřit vaši e -mailovou adresu.",
+  "@serverRequiresEmail": {},
+  "addToBundle": "Přidat do balíčku",
+  "@addToBundle": {},
+  "addAccount": "Přidat účet",
+  "@addAccount": {},
+  "bundleName": "Název balíčku",
+  "@bundleName": {},
+  "link": "Odkaz",
+  "@link": {},
+  "yourChatBackupHasBeenSetUp": "Vaše záloha chatu byla nastavena.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "editBundlesForAccount": "Upravit balíčky pro tento účet",
+  "@editBundlesForAccount": {},
+  "enableMultiAccounts": "(BETA) Na tomto zařízení povolte více účtů",
+  "@enableMultiAccounts": {},
+  "oneClientLoggedOut": "Jeden z vašich klientů byl odhlášen",
+  "@oneClientLoggedOut": {},
+  "removeFromBundle": "Odstranit z tohoto balíčku",
+  "@removeFromBundle": {},
+  "unverified": "Neověřeno",
+  "@unverified": {},
+  "messageInfo": "Informace o zprávě",
+  "@messageInfo": {},
+  "time": "Čas",
+  "@time": {},
+  "messageType": "Typ zprávy",
+  "@messageType": {},
+  "sender": "Odesílatel",
+  "@sender": {},
+  "repeatPassword": "Zopakujte heslo",
+  "@repeatPassword": {},
+  "openGallery": "Otevřít galerii",
+  "@openGallery": {},
+  "addToSpaceDescription": "Vyberte umístění, do kterého chcete tento chat přidat.",
+  "@addToSpaceDescription": {},
+  "start": "Start",
+  "@start": {},
+  "removeFromSpace": "Odstranit z tohoto místa",
+  "@removeFromSpace": {},
+  "commandHint_clearcache": "Vymazat mezipamět",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_discardsession": "Zahodit relaci",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Zahajte přímý chat\nK deaktivaci šifrování použijte --no-encryption",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_create": "Vytvořte prázdný skupinový chat\n K deaktivaci šifrování použijte --no-encryption",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "openVideoCamera": "Otevřete fotoaparát pro video",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publish": "Uveřejnit",
+  "@publish": {},
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "markAsRead": "Označit jako přečtené",
+  "@markAsRead": {},
+  "reportUser": "Nahlásit uživatele",
+  "@reportUser": {},
+  "openChat": "Otevřete chat",
+  "@openChat": {},
+  "dismiss": "Zavrhnout",
+  "@dismiss": {},
+  "reactedWith": "{sender} reagoval s {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "emojis": "Emojis",
+  "@emojis": {},
+  "voiceCall": "Hlasový hovor",
+  "@voiceCall": {},
+  "unsupportedAndroidVersion": "Nepodporovaná verze Androidu",
+  "@unsupportedAndroidVersion": {},
+  "videoCallsBetaWarning": "Upozorňujeme, že videohovory jsou aktuálně ve verzi beta. Nemusí fungovat podle očekávání nebo fungovat vůbec na všech platformách.",
+  "@videoCallsBetaWarning": {},
+  "placeCall": "Zavolejte",
+  "@placeCall": {},
+  "emailOrUsername": "E-mail nebo uživatelské jméno",
+  "@emailOrUsername": {},
+  "experimentalVideoCalls": "Experimentální videohovory",
+  "@experimentalVideoCalls": {},
+  "unsupportedAndroidVersionLong": "Tato funkce vyžaduje novější verzi Android. Zkontrolujte prosím aktualizace nebo podporu Lineage OS.",
+  "@unsupportedAndroidVersionLong": {},
+  "pinMessage": "Připnout zprávu do místnosti",
+  "@pinMessage": {},
+  "confirmEventUnpin": "Opravdu chcete událost trvale odepnout?",
+  "@confirmEventUnpin": {},
+  "separateChatTypes": "Odděĺlit přímé chaty, skupiny a prostory",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youKicked": "Vykopli jste uživatele {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "switchToAccount": "Přepnout na účet {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "previousAccount": "Předchozí účet",
+  "@previousAccount": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "youAcceptedTheInvitation": "Přijal jsi pozvání",
+  "@youAcceptedTheInvitation": {},
+  "youJoinedTheChat": "Připojili jste se k chatu",
+  "@youJoinedTheChat": {},
+  "youInvitedBy": "Byli jste pozváni uživatelem {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "nextAccount": "Další účet",
+  "@nextAccount": {},
+  "addWidget": "Přidat widget",
+  "@addWidget": {},
+  "widgetVideo": "Video",
+  "@widgetVideo": {},
+  "widgetEtherpad": "Textová poznámka",
+  "@widgetEtherpad": {},
+  "widgetName": "Jméno",
+  "@widgetName": {},
+  "youBannedUser": "Zakázali jste uživatele {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Pozvali jste uživatele {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "Vykopli jste a zakázali jste uživatele {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Zrušili jste zákaz uživateli {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "widgetCustom": "Vlastní",
+  "@widgetCustom": {},
+  "youRejectedTheInvitation": "Odmítli jste pozvání",
+  "@youRejectedTheInvitation": {},
+  "youHaveWithdrawnTheInvitationFor": "Stáhli jste pozvánku pro uživatele {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "widgetUrlError": "Toto není platná adresa URL.",
+  "@widgetUrlError": {},
+  "widgetNameError": "Zadejte jméno pro zobrazení.",
+  "@widgetNameError": {},
+  "errorAddingWidget": "Chyba při přidávání widgetu.",
+  "@errorAddingWidget": {},
+  "disableEncryptionWarning": "Z bezpečnostních důvodů nemůžete vypnout šifrování v chatu, kde již bylo dříve zapnuto.",
+  "@disableEncryptionWarning": {},
+  "confirmMatrixId": "Prosím, potvrďte vaše Matrix ID, abyste mohli smazat váš účet.",
+  "@confirmMatrixId": {},
+  "commandHint_googly": "Poslat kroutící se očička",
+  "@commandHint_googly": {},
+  "commandHint_cuddle": "Poslat mazlení",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "Poslat obejmutí",
+  "@commandHint_hug": {},
+  "hugContent": "{senderName} vás objímá",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "googlyEyesContent": "{senderName} vám posílá kroutící se očička",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "{senderName} se s vámi mazlí",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "notAnImage": "Není obrázek.",
+  "@notAnImage": {},
+  "importNow": "Importovat nyní",
+  "@importNow": {},
+  "redactedByBecause": "Smazáno uživatelem {username} s důvodem: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "storeInAndroidKeystore": "Uložit v Android KeyStore",
+  "@storeInAndroidKeystore": {},
+  "dehydrateTorLong": "Uživatelům TOR se doporučuje exportovat sezení před zavřením okna.",
+  "@dehydrateTorLong": {},
+  "numChats": "{number} konverzací",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "dehydrate": "Exportovat sezení a promazat zařízení",
+  "@dehydrate": {},
+  "newGroup": "Nová skupina",
+  "@newGroup": {},
+  "hydrateTor": "TOR uživatelé: Import exportovaného sezení",
+  "@hydrateTor": {},
+  "doNotShowAgain": "Nezobrazovat znovu",
+  "@doNotShowAgain": {},
+  "commandHint_markasdm": "Označit jako místnost přímé konverzace s daným Matrix ID",
+  "@commandHint_markasdm": {},
+  "recoveryKey": "Klíč k obnovení",
+  "@recoveryKey": {},
+  "hydrateTorLong": "Exportovali jste vaše poslední sezení na TOR? Rychle jej importujte a pokračujte v konverzaci.",
+  "@hydrateTorLong": {},
+  "hydrate": "Obnovit ze záložního souboru",
+  "@hydrate": {},
+  "pleaseEnterRecoveryKey": "Prosím vložte váš klíč pro obnovení:",
+  "@pleaseEnterRecoveryKey": {},
+  "createGroup": "Vytvořit skupinu",
+  "@createGroup": {},
+  "shareInviteLink": "Sdílet pozvánku",
+  "@shareInviteLink": {},
+  "pleaseEnterRecoveryKeyDescription": "K odemknutí vašich starých zpráv prosím vložte váš klíč k obnovení vygenerovaný v předchozím sezení. Váš klíč k obnovení NENÍ vaše heslo.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "setColorTheme": "Nastavit barvy:",
+  "@setColorTheme": {},
+  "importEmojis": "Importovat Emoji",
+  "@importEmojis": {},
+  "importFromZipFile": "Importovat ze .zip souboru",
+  "@importFromZipFile": {},
+  "exportEmotePack": "Exportovat Emoji jako .zip",
+  "@exportEmotePack": {},
+  "replace": "Nahradit",
+  "@replace": {},
+  "users": "Uživatelé",
+  "@users": {},
+  "storeInAppleKeyChain": "Uložit v Apple KeyChain",
+  "@storeInAppleKeyChain": {},
+  "jumpToLastReadMessage": "Skočit na naposledy přečtenou zprávu",
+  "@jumpToLastReadMessage": {},
+  "signInWithPassword": "Přihlásit se pomocí hesla",
+  "@signInWithPassword": {},
+  "redactedBy": "Smazáno uživatelem {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "inviteContactToGroupQuestion": "Chcete pozvat {contact} do konverzace \"{groupName}\"?",
+  "@inviteContactToGroupQuestion": {},
+  "dehydrateTor": "TOR uživatelé: Export sezení",
+  "@dehydrateTor": {},
+  "tryAgain": "Zkuste to znovu",
+  "@tryAgain": {},
+  "redactMessageDescription": "Tato zpráva bude smazána pro všechny účastníky konverzace. Tuto akci nelze vzít zpět.",
+  "@redactMessageDescription": {},
+  "optionalRedactReason": "(Nepovinné) Důvod smazání této zprávy…",
+  "@optionalRedactReason": {},
+  "messagesStyle": "Zprávy:",
+  "@messagesStyle": {},
+  "allSpaces": "Všechny prostory",
+  "@allSpaces": {},
+  "noOtherDevicesFound": "Žádná ostatní zařízení nebyla nalezena",
+  "@noOtherDevicesFound": {},
+  "addChatDescription": "Přidejte popis konverzace",
+  "@addChatDescription": {},
+  "chatDescription": "Popis konverzace",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "Popis konverzace byl změněn",
+  "@chatDescriptionHasBeenChanged": {},
+  "noChatDescriptionYet": "Zatím nebyl vytvořen žádný popis konverzace.",
+  "@noChatDescriptionYet": {},
+  "invalidServerName": "Neplatné jméno serveru",
+  "@invalidServerName": {},
+  "chatPermissions": "Oprávnění konverzace",
+  "@chatPermissions": {},
+  "directChat": "Přímá konverzace",
+  "@directChat": {},
+  "setChatDescription": "Nastavit popis konverzace",
+  "@setChatDescription": {},
+  "startFirstChat": "Začněte svou první konverzaci",
+  "@startFirstChat": {},
+  "callingPermissions": "Oprávnění volání",
+  "@callingPermissions": {},
+  "whyIsThisMessageEncrypted": "Proč nelze přečíst tuto zprávu?",
+  "@whyIsThisMessageEncrypted": {},
+  "wasDirectChatDisplayName": "Prázdná konverzace (dříve {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  },
+  "newSpaceDescription": "Prostory umožňují organizovat vaše konverzace a vytvářet soukromé nebo veřejné komunity",
+  "@newSpaceDescription": {},
+  "profileNotFound": "Uživatel nebyl na serveru nalezen. Možná je problém s připojením nebo uživatel neexistuje.",
+  "@profileNotFound": {},
+  "setTheme": "Nastavit vzhled:",
+  "@setTheme": {},
+  "sendTypingNotifications": "Posílat oznámení o psaní",
+  "@sendTypingNotifications": {},
+  "commandHint_markasgroup": "Označit jako skupinu",
+  "@commandHint_markasgroup": {},
+  "allRooms": "Všechny skupinové konverzace",
+  "@allRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recoveryKeyLost": "Ztracený klíč k obnovení?",
+  "@recoveryKeyLost": {},
+  "unlockOldMessages": "Odemknout staré zprávy",
+  "@unlockOldMessages": {},
+  "foregroundServiceRunning": "Toto oznámení se zobrazuje když běží služba na pozadí.",
+  "@foregroundServiceRunning": {},
+  "screenSharingDetail": "Sdílíte svou obrazovku přes FluffyChat",
+  "@screenSharingDetail": {},
+  "callingAccountDetails": "Opravňuje FluffyChat používat Android systémovou aplikaci pro vytáčení.",
+  "@callingAccountDetails": {},
+  "appearOnTop": "Zobrazovat nahoře",
+  "@appearOnTop": {},
+  "otherCallingPermissions": "Mikrofon, kamera a ostatní oprávnění FluffyChat",
+  "@otherCallingPermissions": {},
+  "encryptThisChat": "Zašifrovat tuto konverzaci",
+  "@encryptThisChat": {},
+  "sorryThatsNotPossible": "Omlouváme se… to není možné",
+  "@sorryThatsNotPossible": {},
+  "deviceKeys": "Klíče zařízení:",
+  "@deviceKeys": {},
+  "reopenChat": "Znovu otevřít konverzaci",
+  "@reopenChat": {},
+  "fileIsTooBigForServer": "Server oznamuje že soubor je příliš velký na odeslání.",
+  "@fileIsTooBigForServer": {},
+  "jump": "Skočit",
+  "@jump": {},
+  "openLinkInBrowser": "Otevřít odkaz v prohlížeči",
+  "@openLinkInBrowser": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Prosím zkuste to znovu nebo si vyberte jiný server.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "signInWith": "Přihlásit se pomocí {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "supposedMxid": "Tady by mělo být {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "newSpace": "Nový prostor",
+  "@newSpace": {},
+  "screenSharingTitle": "sdílení obrazovky",
+  "@screenSharingTitle": {},
+  "user": "Uživatel",
+  "@user": {},
+  "fileHasBeenSavedAt": "Soubor uložen do {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "custom": "Vlastní",
+  "@custom": {},
+  "dehydrateWarning": "Tuto akci nelze vzít zpět. Ujistěte se že záložní soubor máte bezpečně uložen.",
+  "@dehydrateWarning": {},
+  "storeInSecureStorageDescription": "Klíč k obnovení uložte v zabezpečeném úložišti tohoto zařízení.",
+  "@storeInSecureStorageDescription": {},
+  "saveKeyManuallyDescription": "Uložte tento klíč manuálně pomocí systémového dialogu sdílení nebo zkopírováním do schránky.",
+  "@saveKeyManuallyDescription": {},
+  "storeSecurlyOnThisDevice": "Uložit bezpečně na tomto zařízení",
+  "@storeSecurlyOnThisDevice": {},
+  "countFiles": "{count} souborů",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "reportErrorDescription": "",
+  "@reportErrorDescription": {},
+  "banUserDescription": "",
+  "@banUserDescription": {},
+  "removeDevicesDescription": "",
+  "@removeDevicesDescription": {},
+  "unbanUserDescription": "",
+  "@unbanUserDescription": {},
+  "pushNotificationsNotAvailable": "",
+  "@pushNotificationsNotAvailable": {},
+  "makeAdminDescription": "",
+  "@makeAdminDescription": {},
+  "archiveRoomDescription": "",
+  "@archiveRoomDescription": {},
+  "invalidInput": "",
+  "@invalidInput": {},
+  "report": "",
+  "@report": {},
+  "hasKnocked": "",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "wrongPinEntered": "",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "inviteGroupChat": "",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "",
+  "@invitePrivateChat": {},
+  "learnMore": "",
+  "@learnMore": {},
+  "roomUpgradeDescription": "",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "",
+  "@pleaseEnterANumber": {},
+  "emoteKeyboardNoRecents": "Naposledy použité emoce se zobrazí zde...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kickUserDescription": "",
+  "@kickUserDescription": {},
+  "invite": "",
+  "@invite": {},
+  "indexedDbErrorLong": "",
+  "@indexedDbErrorLong": {},
+  "callingAccount": "",
+  "@callingAccount": {},
+  "enterSpace": "",
+  "@enterSpace": {},
+  "noKeyForThisMessage": "",
+  "@noKeyForThisMessage": {},
+  "readUpToHere": "",
+  "@readUpToHere": {},
+  "appearOnTopDetails": "",
+  "@appearOnTopDetails": {},
+  "enterRoom": "",
+  "@enterRoom": {},
+  "hideUnimportantStateEvents": "",
+  "@hideUnimportantStateEvents": {},
+  "noBackupWarning": "",
+  "@noBackupWarning": {},
+  "indexedDbErrorTitle": "",
+  "@indexedDbErrorTitle": {},
+  "appLockDescription": "Zamknout aplikaci pomocí PIN kódu když není používána",
+  "@appLockDescription": {},
+  "globalChatId": "Globální ID chatu",
+  "@globalChatId": {},
+  "accessAndVisibility": "Přístup a viditelnost",
+  "@accessAndVisibility": {},
+  "calls": "Volání",
+  "@calls": {},
+  "customEmojisAndStickers": "Vlastní emoji a nálepky",
+  "@customEmojisAndStickers": {},
+  "accessAndVisibilityDescription": "Kdo se může připojit a najít tuto konverzaci.",
+  "@accessAndVisibilityDescription": {},
+  "customEmojisAndStickersBody": "Přidat nebo sdílet vlastní emoji nebo nálepky, které mohou být použité v konverzaci.",
+  "@customEmojisAndStickersBody": {}
 }

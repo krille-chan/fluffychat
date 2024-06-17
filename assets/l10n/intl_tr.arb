@@ -2293,7 +2293,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "reportErrorDescription": "Olamaz. Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin. İsterseniz hatayı geliştiricilere bildirebilirsiniz.",
+  "reportErrorDescription": "😭 Olamaz. Bir şeyler yanlış gitti. İsterseniz bu hatayı geliştiricilere bildirebilirsiniz.",
   "@reportErrorDescription": {},
   "report": "bildir",
   "@report": {},
@@ -2405,7 +2405,7 @@
   "@makeAdminDescription": {},
   "archiveRoomDescription": "Sohbet arşive taşınacak. Diğer kullanıcıları sohbeti terk ettiğinizi görebilecek.",
   "@archiveRoomDescription": {},
-  "hasKnocked": "{user} tıklattı",
+  "hasKnocked": "🚪 {user} tıklattı",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2442,7 +2442,7 @@
   "@startConversation": {},
   "blockedUsers": "Engellenen kullanıcılar",
   "@blockedUsers": {},
-  "block": "engelle",
+  "block": "Engelle",
   "@block": {},
   "commandHint_sendraw": "Ham JSON gönder",
   "@commandHint_sendraw": {},
@@ -2453,5 +2453,241 @@
   "databaseMigrationTitle": "Veri tabanı iyileştirildi",
   "@databaseMigrationTitle": {},
   "databaseMigrationBody": "Lütfen bekleyin. Bu biraz zaman alabilir.",
-  "@databaseMigrationBody": {}
+  "@databaseMigrationBody": {},
+  "youInvitedToBy": "📩 Bağlantı aracılığıyla davet edildiniz:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "pleaseEnterYourCurrentPassword": "Lütfen geçerli parolanızı girin",
+  "@pleaseEnterYourCurrentPassword": {},
+  "pleaseChooseAStrongPassword": "Lütfen güçlü bir parola seçin",
+  "@pleaseChooseAStrongPassword": {},
+  "addChatOrSubSpace": "Sohbet veya alt alan ekle",
+  "@addChatOrSubSpace": {},
+  "canceledKeyVerification": "{sender} anahtar doğrulamayı iptal etti",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "publicLink": "Herkese açık bağlantı",
+  "@publicLink": {},
+  "joinSpace": "Alana katıl",
+  "@joinSpace": {},
+  "newPassword": "Yeni parola",
+  "@newPassword": {},
+  "databaseBuildErrorBody": "SQlite veri tabanı oluşturulamadı. Uygulama şimdilik eski veri tabanını kullanmaya çalışıyor. Lütfen bu hatayı {url} adresinde geliştiricilere bildirin. Hata mesajı: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "sessionLostBody": "Oturumunuz kayboldu. Lütfen bu hatayı {url} adresinde geliştiricilere bildirin. Hata mesajı: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "subspace": "Alt alan",
+  "@subspace": {},
+  "thisDevice": "Bu aygıt:",
+  "@thisDevice": {},
+  "formattedMessagesDescription": "Markdown kullanarak kalın metin gibi zengin mesaj içeriğini görüntüle.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherDevice": "🔐 Diğer aygıtı doğrula",
+  "@verifyOtherDevice": {},
+  "presencesToggle": "Diğer kullanıcıların durum mesajlarını göster",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presenceStyle": "Bulunma:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForUsers": "@kullanıcıları ara...",
+  "@searchForUsers": {},
+  "commandHint_ignore": "Verilen matrix kimliğini görmezden gel",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Verilen matrix kimliğini görmezden gelmeyi iptal et",
+  "@commandHint_unignore": {},
+  "appLockDescription": "Kullanılmadığında PIN kodu ile uygulamayı kilitle",
+  "@appLockDescription": {},
+  "globalChatId": "Genel sohbet kimliği",
+  "@globalChatId": {},
+  "accessAndVisibility": "Erişim ve görünürlük",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Bu sohbete kimlerin katılmasına izin verilir ve sohbet nasıl keşfedilebilir.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Aramalar",
+  "@calls": {},
+  "customEmojisAndStickers": "Özel emojiler ve çıkartmalar",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Herhangi bir sohbette kullanılabilecek özel emojiler veya çıkartmalar ekleyin veya paylaşın.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "Düzenlenen mesajları gizle",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Birisi bir mesajı düzenlerse, bu mesaj artık sohbette görünmeyecektir.",
+  "@hideRedactedMessagesBody": {},
+  "hideMemberChangesInPublicChats": "Herkese açık sohbetlerde üye değişikliklerini gizle",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "Okunabilirliği artırmak için birisi herkese açık bir sohbete katıldığında veya sohbetten ayrıldığında sohbet zaman çizelgesinde gösterme.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "passwordRecoverySettings": "Parola kurtarma ayarları",
+  "@passwordRecoverySettings": {},
+  "userWouldLikeToChangeTheChat": "{user} sohbete katılmak istiyor.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Henüz herkese açık bir bağlantı oluşturulmadı",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "Tıklat",
+  "@knock": {},
+  "knocking": "Tıklat",
+  "@knocking": {},
+  "usersMustKnock": "Kullanıcılar tıklatmalı",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "Kimse katılamaz",
+  "@noOneCanJoin": {},
+  "nothingFound": "Hiçbir şey bulunamadı...",
+  "@nothingFound": {},
+  "sendReadReceiptsDescription": "Sohbetteki diğer katılımcılar bir mesajı okuduğunuzu görebilir.",
+  "@sendReadReceiptsDescription": {},
+  "verifyOtherDeviceDescription": "Başka bir aygıtı doğruladığınızda, bu aygıtlar anahtarları değiş tokuş ederek genel güvenliğinizi artırır. 💪 Bir doğrulama başlattığınızda, her iki aygıttaki uygulamada bir açılır pencere görünecektir. Orada birbirleriyle karşılaştırmanız gereken bir dizi emoji veya sayı göreceksiniz. Doğrulamaya başlamadan önce her iki aygıtın da elinizin altında olması en iyisidir. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "noDatabaseEncryption": "Veri tabanı şifrelemesi bu platformda desteklenmiyor",
+  "@noDatabaseEncryption": {},
+  "thereAreCountUsersBlocked": "Şu anda {count} engellenen kullanıcı var.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "publicSpaces": "Herkese açık alanlar",
+  "@publicSpaces": {},
+  "initAppError": "Uygulama başlatılırken bir hata oluştu",
+  "@initAppError": {},
+  "userRole": "Kullanıcı rolü",
+  "@userRole": {},
+  "hideInvalidOrUnknownMessageFormats": "Geçersiz veya bilinmeyen mesaj biçimlerini gizle",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hidePresences": "Durum listesi gizlensin mi?",
+  "@hidePresences": {},
+  "overview": "Genel görünüm",
+  "@overview": {},
+  "decline": "Reddet",
+  "@decline": {},
+  "notifyMeFor": "Beni bilgilendir",
+  "@notifyMeFor": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Sohbet {server} üzerinde aranarak keşfedilebilir",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "leaveEmptyToClearStatus": "Durumunuzu temizlemek için boş bırakın.",
+  "@leaveEmptyToClearStatus": {},
+  "select": "Seç",
+  "@select": {},
+  "minimumPowerLevel": "{level} en düşük güç seviyesidir.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "passwordsDoNotMatch": "Parolalar eşleşmiyor",
+  "@passwordsDoNotMatch": {},
+  "passwordIsWrong": "Girdiğiniz parola yanlış",
+  "@passwordIsWrong": {},
+  "publicChatAddresses": "Herkese açık sohbet adresleri",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Yeni adres oluştur",
+  "@createNewAddress": {},
+  "forwardMessageTo": "Mesajlar {roomName} kişisine iletilsin mi?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "acceptedKeyVerification": "{sender} anahtar doğrulamayı kabul etti",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "restoreSessionBody": "Uygulama şimdi oturumunuzu yedekten geri yüklemeye çalışıyor. Lütfen bu hatayı {url} adresinde geliştiricilere bildirin. Hata mesajı: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "sendReadReceipts": "Okundu bilgisi gönder",
+  "@sendReadReceipts": {},
+  "completedKeyVerification": "{sender} anahtar doğrulamayı tamamladı",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "sendTypingNotificationsDescription": "Sohbetteki diğer katılımcılar yeni bir mesaj yazdığınızı görebilir.",
+  "@sendTypingNotificationsDescription": {},
+  "isReadyForKeyVerification": "{sender} anahtar doğrulama için hazır",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "formattedMessages": "Biçimlendirilen mesajlar",
+  "@formattedMessages": {},
+  "requestedKeyVerification": "{sender} anahtar doğrulama istedi",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "verifyOtherUser": "🔐 Diğer kullanıcıyı doğrula",
+  "@verifyOtherUser": {},
+  "startedKeyVerification": "{sender} anahtar doğrulama başlattı",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "transparent": "Şeffaf",
+  "@transparent": {},
+  "discover": "Keşfet",
+  "@discover": {},
+  "incomingMessages": "Gelen mesajlar",
+  "@incomingMessages": {},
+  "verifyOtherUserDescription": "Başka bir kullanıcıyı doğrularsanız, gerçekten kime yazdığınızı bildiğinizden emin olabilirsiniz. 💪\n\nBir doğrulama başlattığınızda, siz ve diğer kullanıcı uygulamada bir açılır pencere görecektir. Orada birbirinizle karşılaştırmanız gereken bir dizi emoji veya sayı göreceksiniz.\n\nBunu yapmanın en iyi yolu buluşmak veya bir görüntülü arama başlatmaktır. 👭",
+  "@verifyOtherUserDescription": {},
+  "stickers": "Çıkartmalar",
+  "@stickers": {},
+  "unreadChatsInApp": "{appname}: {unread} okunmayan sohbet",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  }
 }

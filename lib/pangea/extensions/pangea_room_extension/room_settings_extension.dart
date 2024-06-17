@@ -104,7 +104,7 @@ extension RoomSettingsRoomExtension on Room {
   Future<bool> _isSuggestedInSpace(Room space) async {
     try {
       final Map<String, dynamic> resp =
-          await client.getRoomStateWithKey(space.id, EventTypes.spaceChild, id);
+          await client.getRoomStateWithKey(space.id, EventTypes.SpaceChild, id);
       return resp.containsKey('suggested') ? resp['suggested'] as bool : true;
     } catch (err) {
       ErrorHandler.logError(

@@ -63,10 +63,10 @@ extension ClassAndExchangeSettingsRoomExtension on Room {
       final Event? currentPower = getState(EventTypes.RoomPowerLevels);
       final Map<String, dynamic>? currentPowerContent =
           currentPower?.content["events"] as Map<String, dynamic>?;
-      final spaceChildPower = currentPowerContent?[EventTypes.spaceChild];
+      final spaceChildPower = currentPowerContent?[EventTypes.SpaceChild];
 
       if (spaceChildPower == null && currentPowerContent != null) {
-        currentPowerContent["events"][EventTypes.spaceChild] = 0;
+        currentPowerContent["events"][EventTypes.SpaceChild] = 0;
 
         await client.setRoomStateWithKey(
           id,

@@ -22,7 +22,7 @@ Future<void> lockChat(Room room, Client client) async {
   if (!powerLevelsContent.containsKey('events')) {
     powerLevelsContent['events'] = Map<String, dynamic>.from({});
   }
-  powerLevelsContent['events'][EventTypes.spaceChild] = 100;
+  powerLevelsContent['events'][EventTypes.SpaceChild] = 100;
 
   await room.client.setRoomStateWithKey(
     room.id,
@@ -41,7 +41,7 @@ Future<void> unlockChat(Room room, Client client) async {
   );
 
   powerLevelsContent['events_default'] = 0;
-  powerLevelsContent['events'][EventTypes.spaceChild] = 0;
+  powerLevelsContent['events'][EventTypes.SpaceChild] = 0;
 
   await room.client.setRoomStateWithKey(
     room.id,
