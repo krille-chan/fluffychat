@@ -2245,7 +2245,7 @@
   },
   "addChatDescription": "Chat leírás hozzáadása...",
   "@addChatDescription": {},
-  "hasKnocked": "{user} kopogott",
+  "hasKnocked": "🚪 {user} bekopogott",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2419,7 +2419,7 @@
   "@screenSharingDetail": {},
   "placeCall": "Tér hívás",
   "@placeCall": {},
-  "block": "blokkolás",
+  "block": "Blokkolás",
   "@block": {},
   "blockedUsers": "Blokkolt felhasználók",
   "@blockedUsers": {},
@@ -2664,5 +2664,47 @@
       "appname": {},
       "unread": {}
     }
-  }
+  },
+  "searchIn": "Keresés a csevegésben \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "files": "Fájlok",
+  "@files": {},
+  "commandHint_unignore": "Adott matrix ID figyelembe vétele",
+  "@commandHint_unignore": {},
+  "restricted": "Korlátozott",
+  "@restricted": {},
+  "knockRestricted": "Kopogás korlátozva",
+  "@knockRestricted": {},
+  "globalChatId": "Globális csevegő azonosító",
+  "@globalChatId": {},
+  "hideRedactedMessages": "Szerkesztett üzenetek elrejtése",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Ha valaki szerkeszti az üzenetét, ez az üzenet nem jelenik meg a csevegés során.",
+  "@hideRedactedMessagesBody": {},
+  "hideMemberChangesInPublicChats": "Tag változások elrejtése a publikus csevegésben",
+  "@hideMemberChangesInPublicChats": {},
+  "knocking": "Bekopogás",
+  "@knocking": {},
+  "usersMustKnock": "A felhasználóknak be kell kopogniuk",
+  "@usersMustKnock": {},
+  "knock": "Kopogás",
+  "@knock": {},
+  "minimumPowerLevel": "{level} a minimum szint.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "searchMore": "További keresés...",
+  "@searchMore": {},
+  "gallery": "Galéria",
+  "@gallery": {},
+  "commandHint_ignore": "Adott matrix ID figyelmen kívül hagyása",
+  "@commandHint_ignore": {}
 }

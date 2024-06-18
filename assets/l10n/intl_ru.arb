@@ -2689,5 +2689,24 @@
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
-  }
+  },
+  "restricted": "Запрещено",
+  "@restricted": {},
+  "knockRestricted": "Стук запрещен",
+  "@knockRestricted": {},
+  "searchIn": "Поиск в чате \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Найти еще...",
+  "@searchMore": {},
+  "gallery": "Галерея",
+  "@gallery": {},
+  "files": "Файлы",
+  "@files": {},
+  "swipeRightToLeftToReply": "Для ответа проведите с права на лево",
+  "@swipeRightToLeftToReply": {}
 }
