@@ -819,6 +819,8 @@ class ChatListController extends State<ChatList>
                 &&
                 selectedRoomIds
                     .map((id) => Matrix.of(context).client.getRoomById(id))
+                    // Only show non-recursion-causing spaces
+                    // Performs a few other checks as well
                     .every((e) => r.canAddAsParentOf(e)),
             //Pangea#
           )
@@ -829,6 +831,7 @@ class ChatListController extends State<ChatList>
               // label: space
               //     .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
               label: space.nameIncludingParents(context),
+              // If user is not admin of space, button is grayed out
               textStyle: TextStyle(
                 color: (firstSelectedRoom == null ||
                         (firstSelectedRoom.isSpace && !space.isRoomAdmin))
@@ -849,6 +852,7 @@ class ChatListController extends State<ChatList>
         if (firstSelectedRoom == null) {
           throw L10n.of(context)!.nonexistentSelection;
         }
+        // If user is not admin of the would-be parent space, does not allow
         if (firstSelectedRoom.isSpace && !space.isRoomAdmin) {
           throw L10n.of(context)!.cantAddSpaceChild;
         }
