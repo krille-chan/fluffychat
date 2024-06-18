@@ -214,6 +214,8 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
 
   List<String> get botIds => getBotIds();
 
+  // TODO Merge with the new controller and include it in it
+  // TODO Use the new controller's matrix sync before being redirected to this page
   // Method to show popup menu
   void _showPopupMenu(BuildContext context) async {
     await showMenu(
