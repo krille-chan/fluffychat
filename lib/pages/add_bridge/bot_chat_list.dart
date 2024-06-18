@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/pages/chat/chat.dart';
 import 'package:tawkie/pages/chat_list/chat_list_item.dart';
 import 'package:tawkie/widgets/matrix.dart';
 
@@ -39,27 +40,9 @@ class BotChatListPage extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ChatPage(room: room),
-      ),
-    );
-  }
-}
-
-// Dummy ChatPage class to navigate to when a chat is tapped
-class ChatPage extends StatelessWidget {
-  final Room room;
-
-  const ChatPage({super.key, required this.room});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(room.name ?? 'Chat'),
-      ),
-      body: Center(
-        child: Text('Chat with ${room.name}'),
-      ),
+          builder: (context) => ChatPage(
+                roomId: room.id,
+              )),
     );
   }
 }
