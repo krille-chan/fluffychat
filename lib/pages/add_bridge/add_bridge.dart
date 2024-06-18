@@ -69,15 +69,23 @@ class BotController extends State<AddBridge> {
   Future<String?> _getOrCreateDirectChat(String botUserId) async {
     try {
       await waitForMatrixSync();
-      String? directChat = client.getDirectChatFromUserId(botUserId);
-      bool isNewChat = false;
+      final client = Matrix.of(context).client;
+      String? directChat;
 
-      if (directChat == null) {
-        directChat = await client.startDirectChat(botUserId);
-        isNewChat = true;
+      // Check if a direct chat room already exists for this bot
+      try {
+        final room = client.rooms.firstWhere(
+          (room) => botUserId == room.directChatMatrixID,
+        );
+        directChat = room.id;
+      } catch (e) {
+        directChat = null;
       }
 
-      if (isNewChat) {
+      // If the room does not exist, a new direct chat room is created.
+      if (directChat == null) {
+        directChat = await client.startDirectChat(botUserId,
+            preset: CreateRoomPreset.publicChat);
         final roomBot = client.getRoomById(directChat);
         if (roomBot != null) {
           await waitForBotFirstMessage(roomBot);
@@ -92,7 +100,7 @@ class BotController extends State<AddBridge> {
   }
 
   Future<void> waitForBotFirstMessage(Room room) async {
-    const int maxWaitTime = 10; // Maximum wait time in seconds
+    const int maxWaitTime = 20;
     int waitedTime = 0;
 
     while (waitedTime < maxWaitTime) {
@@ -102,7 +110,7 @@ class BotController extends State<AddBridge> {
       if (lastEvent != null && lastEvent.senderId != client.userID) {
         // Received a message from the bot
         // Wait an additional 2 seconds to ensure other messages are received
-        await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: 5));
         return;
       }
 
@@ -111,6 +119,32 @@ class BotController extends State<AddBridge> {
 
     // If no message received from the bot within the max wait time
     Logs().i('No message received from bot within the wait time');
+  }
+
+  Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
+    final String botUserId = '${socialNetwork.chatBot}$hostname';
+    final RegExpPingPatterns patterns = _getPingPatterns(socialNetwork.name);
+    final String? directChat = await _getOrCreateDirectChat(botUserId);
+
+    if (directChat == null) {
+      _handleError(socialNetwork);
+      return;
+    }
+
+    final Room? roomBot = client.getRoomById(directChat);
+    if (roomBot == null) {
+      _handleError(socialNetwork);
+      return;
+    }
+
+    if (!await _sendPingMessage(roomBot, socialNetwork)) {
+      _handleError(socialNetwork);
+      return;
+    }
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    await _processPingResponse(socialNetwork, directChat, roomBot, patterns);
   }
 
   String formatCookiesToJsonString(
@@ -145,32 +179,6 @@ class BotController extends State<AddBridge> {
 
     await Future.wait(
         socialNetworks.map((network) => pingSocialNetwork(network)));
-  }
-
-  Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
-    final String botUserId = '${socialNetwork.chatBot}$hostname';
-    final RegExpPingPatterns patterns = _getPingPatterns(socialNetwork.name);
-    final String? directChat = await _getOrCreateDirectChat(botUserId);
-
-    if (directChat == null) {
-      _handleError(socialNetwork);
-      return;
-    }
-
-    final Room? roomBot = client.getRoomById(directChat);
-    if (roomBot == null) {
-      _handleError(socialNetwork);
-      return;
-    }
-
-    if (!await _sendPingMessage(roomBot, socialNetwork)) {
-      _handleError(socialNetwork);
-      return;
-    }
-
-    await Future.delayed(const Duration(seconds: 2));
-
-    await _processPingResponse(socialNetwork, directChat, roomBot, patterns);
   }
 
   bool _isOnline(RegExp onlineMatch, String latestMessage) {
