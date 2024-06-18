@@ -523,6 +523,9 @@ class ChatListController extends State<ChatList>
       // if (event["activeSpaceId"] != null && mounted) {
       if (mounted) {
         setActiveSpace(event["activeSpaceId"]);
+        if (event["activeSpaceId"] != null) {
+          context.go("/rooms/${event["activeSpaceId"]}/details");
+        }
       }
     });
 
