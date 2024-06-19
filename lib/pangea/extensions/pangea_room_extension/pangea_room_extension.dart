@@ -114,6 +114,8 @@ extension PangeaRoom on Room {
 
   List<String> get allSpaceChildRoomIds => _allSpaceChildRoomIds;
 
+  bool canAddAsParentOf(Room? child) => _canAddAsParentOf(child);
+
 // class_and_exchange_settings
 
   DateTime? get rulesUpdatedAt => _rulesUpdatedAt;
