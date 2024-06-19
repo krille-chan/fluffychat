@@ -1,20 +1,21 @@
 import 'dart:developer';
 
+import 'package:country_picker/country_picker.dart';
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'package:country_picker/country_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import '../../models/user_model.dart';
 
 class CountryPickerTile extends StatelessWidget {
+  final SettingsLearningController learningController;
   final PangeaController pangeaController = MatrixState.pangeaController;
 
-  CountryPickerTile({super.key});
+  CountryPickerTile(this.learningController, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +34,7 @@ class CountryPickerTile extends StatelessWidget {
             context: context,
             future: () async {
               try {
-                await pangeaController.userController.updateUserProfile(
-                  country: country.displayNameNoCountryCode,
-                );
+                learningController.changeCountry(country);
               } catch (err) {
                 debugger(when: kDebugMode);
               }
