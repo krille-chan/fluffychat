@@ -168,7 +168,7 @@ class ChatListController extends State<ChatList>
       activeFilter = getActiveFilterByDestination(i);
       // #Pangea
       if (activeFilter != ActiveFilter.spaces) {
-        setActiveSpace(null);
+        activeSpaceId = null;
       }
       // Pangea#
     });
