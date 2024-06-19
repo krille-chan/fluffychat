@@ -4059,5 +4059,8 @@
   "restricted": "Restricted",
   "@restricted": {},
   "knockRestricted": "Knock restricted",
-  "@knockRestricted": {}
+  "@knockRestricted": {},
+  "nonexistentSelection": "Selection no longer exists.",
+  "cantAddSpaceChild": "You do not have permission to add a child to this space.",
+  "roomAddedToSpace": "Room(s) have been added to the selected space."
 }

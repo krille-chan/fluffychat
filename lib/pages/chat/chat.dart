@@ -806,11 +806,18 @@ class ChatController extends State<ChatPageWithRoom>
       builder: (c) => const RecordingDialog(),
     );
     if (result == null) return;
-    final audioFile = File(result.path);
+    // #Pangea
+    // enable web recording
+    // final audioFile = File(result.path);
+    // final file = MatrixAudioFile(
+    //   bytes: audioFile.readAsBytesSync(),
+    //   name: audioFile.path,
+    // );
     final file = MatrixAudioFile(
-      bytes: audioFile.readAsBytesSync(),
-      name: audioFile.path,
+      bytes: result.bytes,
+      name: result.path,
     );
+    // Pangea#
     await room.sendFileEvent(
       file,
       inReplyTo: replyEvent,

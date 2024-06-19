@@ -857,7 +857,10 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "be": [
@@ -2351,7 +2354,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "bn": [
@@ -3841,7 +3847,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "bo": [
@@ -5335,7 +5344,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "ca": [
@@ -6231,7 +6243,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "cs": [
@@ -7209,7 +7224,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "de": [
@@ -8070,7 +8088,10 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "el": [
@@ -9515,7 +9536,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "eo": [
@@ -10658,7 +10682,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "es": [
@@ -10696,7 +10723,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "et": [
@@ -11557,7 +11587,10 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "eu": [
@@ -12420,7 +12453,10 @@
     "enterNumber",
     "buildTranslation",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "fa": [
@@ -13420,7 +13456,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "fi": [
@@ -14384,7 +14423,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "fil": [
@@ -15704,7 +15746,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "fr": [
@@ -16703,7 +16748,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "ga": [
@@ -17831,7 +17879,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "gl": [
@@ -18692,7 +18743,10 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "he": [
@@ -19939,7 +19993,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "hi": [
@@ -21426,7 +21483,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "hr": [
@@ -22366,7 +22426,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "hu": [
@@ -23243,7 +23306,10 @@
     "enterNumber",
     "buildTranslation",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "ia": [
@@ -24723,7 +24789,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "id": [
@@ -25590,7 +25659,10 @@
     "enterNumber",
     "buildTranslation",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "ie": [
@@ -26841,7 +26913,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "it": [
@@ -27759,7 +27834,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "ja": [
@@ -28788,7 +28866,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "ka": [
@@ -30136,7 +30217,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "ko": [
@@ -30999,7 +31083,10 @@
     "enterNumber",
     "buildTranslation",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "lt": [
@@ -32028,7 +32115,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "lv": [
@@ -32897,7 +32987,10 @@
     "enterNumber",
     "buildTranslation",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "nb": [
@@ -34090,7 +34183,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "nl": [
@@ -35047,7 +35143,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "pl": [
@@ -36013,7 +36112,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "pt": [
@@ -37485,7 +37587,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "pt_BR": [
@@ -38352,7 +38457,10 @@
     "enterNumber",
     "buildTranslation",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "pt_PT": [
@@ -39546,7 +39654,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "ro": [
@@ -40547,7 +40658,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "ru": [
@@ -41414,7 +41528,10 @@
     "enterNumber",
     "buildTranslation",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "sk": [
@@ -42674,7 +42791,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "sl": [
@@ -44064,7 +44184,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "sr": [
@@ -45228,7 +45351,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "sv": [
@@ -46126,7 +46252,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "ta": [
@@ -47617,7 +47746,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "th": [
@@ -49062,7 +49194,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "tr": [
@@ -49923,7 +50058,10 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "uk": [
@@ -50821,7 +50959,10 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "vi": [
@@ -52167,7 +52308,10 @@
     "buildTranslation",
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "zh": [
@@ -53028,7 +53172,10 @@
     "capacitySetTooLow",
     "roomCapacityExplanation",
     "enterNumber",
-    "buildTranslation"
+    "buildTranslation",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ],
 
   "zh_Hant": [
@@ -54170,6 +54317,9 @@
     "noDatabaseEncryption",
     "thereAreCountUsersBlocked",
     "restricted",
-    "knockRestricted"
+    "knockRestricted",
+    "nonexistentSelection",
+    "cantAddSpaceChild",
+    "roomAddedToSpace"
   ]
 }
