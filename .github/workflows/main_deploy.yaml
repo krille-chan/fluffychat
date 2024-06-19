@@ -35,6 +35,30 @@ jobs:
           name: web
           path: build/web
 
+  deploy_web:
+    runs-on: ubuntu-latest
+    needs: build_web
+    environment: staging
+    steps:
+      - name: Download web
+        uses: actions/download-artifact@v3
+        with:
+          name: web
+          path: build/web
+      - name: Update Website files
+        run: |
+          mv build/web public
+          touch public/.env
+          echo "$WEB_APP_ENV" >> public/.env
+          cp public/.env public/assets/.env
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          cname: app.staging.pangea.chat
+
   update_sentry:
     runs-on: ubuntu-latest
     needs: build_web
