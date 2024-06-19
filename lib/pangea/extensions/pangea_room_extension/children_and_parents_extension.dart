@@ -123,9 +123,9 @@ extension ChildrenAndParentsRoomExtension on Room {
 
   // Checks if has permissions to add child chat
   // Or whether potential child space is ancestor of this
-  bool _canAddAsParentOf(Room? child, {bool spaceMode = false}) {
+  bool _canAddAsParentOf(Room? child) {
     if (child == null || !child.isSpace) {
-      return _canIAddSpaceChild(child, spaceMode: spaceMode);
+      return _canIAddSpaceChild(child);
     }
     if (id == child.id) return false;
     return !child._allSpaceChildRoomIds.contains(id);

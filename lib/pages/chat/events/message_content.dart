@@ -286,6 +286,8 @@ class MessageContent extends StatelessWidget {
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 10;
+            // #Pangea
+            // return Linkify(
             final messageTextStyle = TextStyle(
               color: textColor,
               fontSize: bigEmotes ? fontSize * 3 : fontSize,
@@ -301,11 +303,10 @@ class MessageContent extends StatelessWidget {
               );
             } else if (pangeaMessageEvent != null) {
               toolbarController?.toolbar?.textSelection.setMessageText(
-                pangeaMessageEvent!.body,
+                (event.getDisplayEvent(pangeaMessageEvent!.timeline).body),
               );
             }
 
-            // return Linkify(
             return SelectableLinkify(
               onSelectionChanged: (selection, cause) {
                 if (cause == SelectionChangedCause.longPress &&

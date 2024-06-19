@@ -66,18 +66,16 @@ extension RoomInformationRoomExtension on Room {
       return (eventsDefaultPowerLevel ?? 0) >=
           ClassDefaultValues.powerLevelOfAdmin;
     }
-    int joinedRooms = 0;
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
       final Room? room = client.getRoomById(child.roomId!);
-      if (room?.isLocked == false) {
+      if (room == null || room.isAnalyticsRoom || room.isArchived) continue;
+      if (!room._isLocked) {
         return false;
       }
-      if (room != null) {
-        joinedRooms += 1;
-      }
     }
-    return joinedRooms > 0 ? true : false;
+    return (eventsDefaultPowerLevel ?? 0) >=
+        ClassDefaultValues.powerLevelOfAdmin;
   }
 
   bool _isAnalyticsRoomOfUser(String userId) =>

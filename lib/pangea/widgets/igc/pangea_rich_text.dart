@@ -70,12 +70,11 @@ class PangeaRichTextState extends State<PangeaRichText> {
 
   void setTextSpan() {
     if (_fetchingRepresentation == true) {
-      _setTextSpan(textSpan = widget.pangeaMessageEvent.body);
-      return;
-    }
-
-    if (repEvent != null) {
-      _setTextSpan(repEvent!.text);
+      _setTextSpan(
+        textSpan = widget.pangeaMessageEvent.event
+            .getDisplayEvent(widget.pangeaMessageEvent.timeline)
+            .body,
+      );
       return;
     }
 

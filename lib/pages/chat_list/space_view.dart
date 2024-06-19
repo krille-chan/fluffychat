@@ -338,6 +338,16 @@ class _SpaceViewState extends State<SpaceView> {
         widget.controller.cancelAction();
         // #Pangea
         if (room == null || room.membership == Membership.leave) return;
+        if (room.isSpace) {
+          await room.archiveSpace(
+            context,
+            Matrix.of(context).client,
+            onlyAdmin: false,
+          );
+        } else {
+          widget.controller.toggleSelection(room.id);
+          await widget.controller.archiveAction();
+        }
         // Pangea#
         _refresh();
         break;
