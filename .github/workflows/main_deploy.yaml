@@ -28,35 +28,12 @@ jobs:
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
         run: ./scripts/build-web.sh
+        
       - name: Upload files
         uses: actions/upload-artifact@v3
         with:
           name: web
           path: build/web
-
-  deploy_web:
-    runs-on: ubuntu-latest
-    needs: build_web
-    environment: staging
-    steps:
-      - name: Download web
-        uses: actions/download-artifact@v3
-        with:
-          name: web
-          path: build/web
-      - name: Update Website files
-        run: |
-          mv build/web public
-          touch public/.env
-          echo "$WEB_APP_ENV" >> public/.env
-          cp public/.env public/assets/.env
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
-          publish_dir: ./public
-          publish_branch: gh-pages
-          cname: app.staging.pangea.chat
 
   update_sentry:
     runs-on: ubuntu-latest
@@ -64,19 +41,19 @@ jobs:
     environment: staging
     env:
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      SENTRY_BASE_TOKEN: ${{ secrets.SENTRY_BASE_TOKEN }}
-      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-      CI_COMMIT_SHA: ${{ github.sha }}
+      SENTRY_RELEASE: ${{ github.sha }}
+      SENTRY_PROJECT: ${{ vars.SENTRY_PROJECT }}
+      SENTRY_ORG: ${{ vars.SENTRY_ORG }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
       - name: Download web
         uses: actions/download-artifact@v3
         with:
           name: web
           path: build/web
-      - name: Install sentry CLI
-        run: |
-          curl -sL https://sentry.io/get-cli/ | bash
       - name: Update sentry
-        run: ./scripts/upload-sentry.sh
+        run: flutter packages pub run sentry_dart_plugin
