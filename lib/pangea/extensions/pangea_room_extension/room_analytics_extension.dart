@@ -55,14 +55,6 @@ extension AnalyticsRoomExtension on Room {
     }
   }
 
-  // check if analytics room exists for a given language code
-  // and if not, create it
-  Future<void> _ensureAnalyticsRoomExists() async {
-    await postLoad();
-    if (firstLanguageSettings?.targetLanguage == null) return;
-    await client.getMyAnalyticsRoom(firstLanguageSettings!.targetLanguage);
-  }
-
   // add 1 analytics room to 1 space
   Future<void> _addAnalyticsRoomToSpace(Room analyticsRoom) async {
     if (!isSpace) {
@@ -107,7 +99,7 @@ extension AnalyticsRoomExtension on Room {
       return;
     }
 
-    for (final Room space in (await client.classesAndExchangesImStudyingIn)) {
+    for (final Room space in (await client.spacesImStudyingIn)) {
       if (space.spaceChildren.any((sc) => sc.roomId == id)) continue;
       await space.addAnalyticsRoomToSpace(this);
     }
@@ -183,7 +175,7 @@ extension AnalyticsRoomExtension on Room {
       return;
     }
 
-    for (final Room space in (await client.classesAndExchangesImStudyingIn)) {
+    for (final Room space in (await client.spacesImStudyingIn)) {
       await space.inviteSpaceTeachersToAnalyticsRoom(this);
     }
   }

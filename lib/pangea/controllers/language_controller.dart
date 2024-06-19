@@ -3,12 +3,9 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../widgets/user_settings/p_language_dialog.dart';
@@ -63,50 +60,51 @@ class LanguageController {
     return _userL2Code != null ? PangeaLanguage.byLangCode(_userL2Code!) : null;
   }
 
-  String? activeL1Code({String? roomID}) {
-    final String? activeL2 = activeL2Code(roomID: roomID);
-    if (roomID == null || activeL2 != _userL1Code) {
-      return _userL1Code;
-    }
-    final ClassSettingsModel? classContext = _pangeaController
-        .matrixState.client
-        .getRoomById(roomID)
-        ?.firstLanguageSettings;
-    final String? classL1 = classContext?.dominantLanguage;
-    if (classL1 == LanguageKeys.mixedLanguage ||
-        classL1 == LanguageKeys.multiLanguage ||
-        classL1 == null) {
-      if (_userL2Code != _userL1Code) {
-        return _userL2Code;
-      }
-      return LanguageKeys.unknownLanguage;
-    }
-    return classL1;
+  String? activeL1Code() {
+    return _userL1Code;
+    // final String? activeL2 = activeL2Code(roomID: roomID);
+    // if (roomID == null || activeL2 != _userL1Code) {
+    //   return _userL1Code;
+    // }
+    // final LanguageSettingsModel? classContext = _pangeaController
+    //     .matrixState.client
+    //     .getRoomById(roomID)
+    //     ?.firstLanguageSettings;
+    // final String? classL1 = classContext?.dominantLanguage;
+    // if (classL1 == LanguageKeys.mixedLanguage ||
+    //     classL1 == LanguageKeys.multiLanguage ||
+    //     classL1 == null) {
+    //   if (_userL2Code != _userL1Code) {
+    //     return _userL2Code;
+    //   }
+    //   return LanguageKeys.unknownLanguage;
+    // }
+    // return classL1;
   }
 
   /// Class languages override user languages within a class context
-  String? activeL2Code({String? roomID}) {
-    if (roomID == null) {
-      return _userL2Code;
-    }
-    final ClassSettingsModel? classContext = _pangeaController
-        .matrixState.client
-        .getRoomById(roomID)
-        ?.firstLanguageSettings;
-    return classContext?.targetLanguage ?? _userL2Code;
+  String? activeL2Code() {
+    return _userL2Code;
+    // if (roomID == null) {
+    //   return _userL2Code;
+    // }
+    // final LanguageSettingsModel? classContext = _pangeaController
+    //     .matrixState.client
+    //     .getRoomById(roomID)
+    //     ?.firstLanguageSettings;
+    // return classContext?.targetLanguage ?? _userL2Code;
   }
 
-  LanguageModel? activeL1Model({String? roomID}) {
-    final activeL1 = activeL1Code(roomID: roomID);
-    return activeL1 != null ? PangeaLanguage.byLangCode(activeL1) : null;
+  LanguageModel? activeL1Model() {
+    return userL1;
+    // final activeL1 = activeL1Code(roomID: roomID);
+    // return activeL1 != null ? PangeaLanguage.byLangCode(activeL1) : null;
   }
 
   LanguageModel? activeL2Model({String? roomID}) {
-    final activeL2 = activeL2Code(roomID: roomID);
-    final model = activeL2 != null ? PangeaLanguage.byLangCode(activeL2) : null;
-    return model;
+    return userL2;
+    // final activeL2 = activeL2Code(roomID: roomID);
+    // final model = activeL2 != null ? PangeaLanguage.byLangCode(activeL2) : null;
+    // return model;
   }
-
-  bool equalActiveL1AndActiveL2({Room? room}) =>
-      activeL1Code() == activeL2Code(roomID: room?.id);
 }

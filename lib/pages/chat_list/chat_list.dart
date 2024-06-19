@@ -183,10 +183,9 @@ class ChatListController extends State<ChatList>
   bool Function(Room) getRoomFilterByActiveFilter(ActiveFilter activeFilter) {
     switch (activeFilter) {
       case ActiveFilter.allChats:
-        return (room) =>
-            !room.isSpace // #Pangea
-            &&
-            !room.isAnalyticsRoom;
+        return (room) => !room.isSpace; // #Pangea
+      // &&
+      // !room.isAnalyticsRoom;
       // Pangea#;
       case ActiveFilter.groups:
         return (room) =>
@@ -818,7 +817,7 @@ class ChatListController extends State<ChatList>
                 &&
                 selectedRoomIds
                     .map((id) => Matrix.of(context).client.getRoomById(id))
-                    .where((e) => !(e?.isPangeaClass ?? true))
+                    .where((e) => !(e?.isSpace ?? false))
                     .every((e) => r.canIAddSpaceChild(e)),
             //Pangea#
           )

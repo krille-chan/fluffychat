@@ -4,11 +4,13 @@ import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/match_rule_ids.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
+import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -62,6 +64,33 @@ class AnalyticsController extends BaseController {
     );
   }
 
+  ///////// SPACE ANALYTICS LANGUAGES //////////
+  String get _analyticsSpaceLangKey => "ANALYTICS_SPACE_LANG_KEY";
+
+  LanguageModel get currentAnalyticsSpaceLang {
+    try {
+      final String? str = _pangeaController.pStoreService.read(
+        _analyticsSpaceLangKey,
+        local: true,
+      );
+      return str != null
+          ? PangeaLanguage.byLangCode(str)
+          : _pangeaController.languageController.userL2 ??
+              _pangeaController.pLanguageStore.targetOptions.first;
+    } catch (err) {
+      debugger(when: kDebugMode);
+      return _pangeaController.pLanguageStore.targetOptions.first;
+    }
+  }
+
+  Future<void> setCurrentAnalyticsSpaceLang(LanguageModel lang) async {
+    await _pangeaController.pStoreService.save(
+      _analyticsSpaceLangKey,
+      lang.langCode,
+      local: true,
+    );
+  }
+
   Future<DateTime?> myAnalyticsLastUpdated(String type) async {
     // given an analytics event type, get the last updated times
     // for each of the user's analytics rooms and return the most recent
@@ -96,7 +125,6 @@ class AnalyticsController extends BaseController {
   Future<DateTime?> spaceAnalyticsLastUpdated(
     String type,
     Room space,
-    String langCode,
   ) async {
     // check if any students have recently updated their analytics
     // if any have, then the cache needs to be updated
@@ -106,7 +134,7 @@ class AnalyticsController extends BaseController {
     final List<Future<DateTime?>> lastUpdatedFutures = [];
     for (final student in space.students) {
       final Room? analyticsRoom = _pangeaController.matrixState.client
-          .analyticsRoomLocal(langCode, student.id);
+          .analyticsRoomLocal(currentAnalyticsSpaceLang.langCode, student.id);
       if (analyticsRoom == null) continue;
       lastUpdatedFutures.add(
         analyticsRoom.analyticsLastUpdated(
@@ -168,9 +196,6 @@ class AnalyticsController extends BaseController {
   ) async {
     // gets all the summary analytics events for the students
     // in a space since the current timespace's cut off date
-    final langCode = _pangeaController.languageController.activeL2Code(
-      roomID: space.id,
-    );
 
     // ensure that all the space's events are loaded (mainly the for langCode)
     // and that the participants are loaded
@@ -181,7 +206,7 @@ class AnalyticsController extends BaseController {
     final List<SummaryAnalyticsEvent> analyticsEvents = [];
     for (final student in space.students) {
       final Room? analyticsRoom = _pangeaController.matrixState.client
-          .analyticsRoomLocal(langCode, student.id);
+          .analyticsRoomLocal(currentAnalyticsSpaceLang.langCode, student.id);
 
       if (analyticsRoom != null) {
         final List<AnalyticsEvent>? roomEvents =
@@ -225,7 +250,8 @@ class AnalyticsController extends BaseController {
           (e.defaultSelected.id == defaultSelected.id) &&
           (e.defaultSelected.type == defaultSelected.type) &&
           (e.selected?.id == selected?.id) &&
-          (e.selected?.type == selected?.type),
+          (e.selected?.type == selected?.type) &&
+          (e.langCode == currentAnalyticsSpaceLang.langCode),
     );
 
     if (index != -1) {
@@ -253,6 +279,7 @@ class AnalyticsController extends BaseController {
         chartAnalyticsModel: chartAnalyticsModel,
         defaultSelected: defaultSelected,
         selected: selected,
+        langCode: currentAnalyticsSpaceLang.langCode,
       ),
     );
   }
@@ -401,11 +428,11 @@ class AnalyticsController extends BaseController {
     bool forceUpdate = false,
   }) async {
     try {
+      debugPrint("getting analytics");
       await _pangeaController.matrixState.client.roomsLoading;
 
       // if the user is looking at space analytics, then fetch the space
       Room? space;
-      String? langCode;
       if (defaultSelected.type == AnalyticsEntryType.space) {
         space = _pangeaController.matrixState.client.getRoomById(
           defaultSelected.id,
@@ -423,23 +450,7 @@ class AnalyticsController extends BaseController {
             timeSpan: currentAnalyticsTimeSpan,
           );
         }
-
         await space.postLoad();
-        langCode = _pangeaController.languageController.activeL2Code(
-          roomID: space.id,
-        );
-        if (langCode == null) {
-          ErrorHandler.logError(
-            m: "langCode missing in getAnalytics",
-            data: {
-              "space": space,
-            },
-          );
-          return ChartAnalyticsModel(
-            msgs: [],
-            timeSpan: currentAnalyticsTimeSpan,
-          );
-        }
       }
 
       DateTime? lastUpdated;
@@ -456,7 +467,6 @@ class AnalyticsController extends BaseController {
         lastUpdated = await spaceAnalyticsLastUpdated(
           PangeaEventTypes.summaryAnalytics,
           space!,
-          langCode!,
         );
       }
 
@@ -467,8 +477,10 @@ class AnalyticsController extends BaseController {
         lastUpdated: lastUpdated,
       );
       if (local != null && !forceUpdate) {
+        debugPrint("returning local analytics");
         return local;
       }
+      debugPrint("fetching new analytics");
 
       // get all the relevant summary analytics events for the current timespan
       final List<SummaryAnalyticsEvent> summaryEvents =
@@ -548,24 +560,10 @@ class AnalyticsController extends BaseController {
   ) async {
     await space.postLoad();
     await space.requestParticipants();
-    final String? langCode = _pangeaController.languageController.activeL2Code(
-      roomID: space.id,
-    );
-
-    if (langCode == null) {
-      ErrorHandler.logError(
-        m: "langCode missing in allSpaceMemberConstructs",
-        data: {
-          "space": space,
-        },
-      );
-      return [];
-    }
-
     final List<ConstructAnalyticsEvent> constructEvents = [];
     for (final student in space.students) {
       final Room? analyticsRoom = _pangeaController.matrixState.client
-          .analyticsRoomLocal(langCode, student.id);
+          .analyticsRoomLocal(currentAnalyticsSpaceLang.langCode, student.id);
       if (analyticsRoom != null) {
         final List<ConstructAnalyticsEvent>? roomEvents =
             (await analyticsRoom.getAnalyticsEvents(
@@ -665,7 +663,8 @@ class AnalyticsController extends BaseController {
           e.defaultSelected.id == defaultSelected.id &&
           e.defaultSelected.type == defaultSelected.type &&
           e.selected?.id == selected?.id &&
-          e.selected?.type == selected?.type,
+          e.selected?.type == selected?.type &&
+          e.langCode == currentAnalyticsSpaceLang.langCode,
     );
 
     if (index > -1) {
@@ -691,6 +690,7 @@ class AnalyticsController extends BaseController {
       events: List.from(events),
       defaultSelected: defaultSelected,
       selected: selected,
+      langCode: currentAnalyticsSpaceLang.langCode,
     );
     _cachedConstructs.add(entry);
   }
@@ -784,10 +784,10 @@ class AnalyticsController extends BaseController {
     bool removeIT = true,
     bool forceUpdate = false,
   }) async {
+    debugPrint("getting constructs");
     await _pangeaController.matrixState.client.roomsLoading;
 
     Room? space;
-    String? langCode;
     if (defaultSelected.type == AnalyticsEntryType.space) {
       space = _pangeaController.matrixState.client.getRoomById(
         defaultSelected.id,
@@ -803,18 +803,6 @@ class AnalyticsController extends BaseController {
         return [];
       }
       await space.postLoad();
-      langCode = _pangeaController.languageController.activeL2Code(
-        roomID: space.id,
-      );
-      if (langCode == null) {
-        ErrorHandler.logError(
-          m: "langCode missing in setConstructs",
-          data: {
-            "space": space,
-          },
-        );
-        return [];
-      }
     }
 
     DateTime? lastUpdated;
@@ -831,7 +819,6 @@ class AnalyticsController extends BaseController {
       lastUpdated = await spaceAnalyticsLastUpdated(
         PangeaEventTypes.construct,
         space!,
-        langCode!,
       );
     }
 
@@ -843,8 +830,10 @@ class AnalyticsController extends BaseController {
       lastUpdated: lastUpdated,
     );
     if (local != null && !forceUpdate) {
+      debugPrint("returning local constructs");
       return local;
     }
+    debugPrint("fetching new constructs");
 
     final filteredConstructs = space == null
         ? await getMyConstructs(
@@ -884,6 +873,7 @@ class AnalyticsController extends BaseController {
 }
 
 abstract class CacheEntry {
+  final String langCode;
   final TimeSpan timeSpan;
   final AnalyticsSelected defaultSelected;
   AnalyticsSelected? selected;
@@ -892,6 +882,7 @@ abstract class CacheEntry {
   CacheEntry({
     required this.timeSpan,
     required this.defaultSelected,
+    required this.langCode,
     this.selected,
   }) {
     _createdAt = DateTime.now();
@@ -924,17 +915,19 @@ class ConstructCacheEntry extends CacheEntry {
     required this.type,
     required this.events,
     required super.timeSpan,
+    required super.langCode,
     required super.defaultSelected,
     super.selected,
   });
 }
 
 class AnalyticsCacheModel extends CacheEntry {
-  ChartAnalyticsModel chartAnalyticsModel;
+  final ChartAnalyticsModel chartAnalyticsModel;
 
   AnalyticsCacheModel({
     required this.chartAnalyticsModel,
     required super.timeSpan,
+    required super.langCode,
     required super.defaultSelected,
     super.selected,
   });

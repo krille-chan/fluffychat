@@ -6,11 +6,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../../enum/time_span.dart';
 import '../base_analytics.dart';
-import 'class_list.dart';
+import 'space_list.dart';
 
-class AnalyticsClassListView extends StatelessWidget {
-  final AnalyticsClassListController controller;
-  const AnalyticsClassListView(this.controller, {super.key});
+class AnalyticsSpaceListView extends StatelessWidget {
+  final AnalyticsSpaceListController controller;
+  const AnalyticsSpaceListView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class AnalyticsClassListView extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          L10n.of(context)!.classAnalytics,
+          L10n.of(context)!.spaceAnalytics,
           style: TextStyle(
             color: Theme.of(context).textTheme.bodyLarge!.color,
             fontSize: 18,

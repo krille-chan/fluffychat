@@ -10,21 +10,20 @@ import 'package:matrix/matrix.dart';
 
 import '../../../widgets/matrix.dart';
 import '../../utils/firebase_analytics.dart';
-import 'add_class_and_invite.dart';
 
 //PTODO - auto invite students when you add a space and delete the add_class_and_invite.dart file
 class AddToSpaceToggles extends StatefulWidget {
   final String? roomId;
   final bool startOpen;
   final String? activeSpaceId;
-  final AddToClassMode mode;
+  final bool spaceMode;
 
   const AddToSpaceToggles({
     super.key,
     this.roomId,
     this.startOpen = false,
     this.activeSpaceId,
-    required this.mode,
+    this.spaceMode = false,
   });
 
   @override
@@ -54,10 +53,7 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
         .client
         .rooms
         .where(
-          widget.mode == AddToClassMode.exchange
-              ? (Room r) => r.isPangeaClass && widget.roomId != r.id
-              : (Room r) =>
-                  (r.isPangeaClass || r.isExchange) && widget.roomId != r.id,
+          (Room r) => r.isSpace && widget.roomId != r.id,
         )
         .toList();
 
@@ -144,9 +140,10 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
   Widget getAddToSpaceToggleItem(int index) {
     final Room possibleParent = possibleParents[index];
-    final bool canAdd = !(!possibleParent.isRoomAdmin &&
-            widget.mode == AddToClassMode.exchange) &&
-        possibleParent.canIAddSpaceChild(room);
+    final bool canAdd = possibleParent.canAddAsParentOf(
+      room,
+      spaceMode: widget.spaceMode,
+    );
 
     return Opacity(
       opacity: canAdd ? 1 : 0.5,
@@ -185,24 +182,21 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
   @override
   Widget build(BuildContext context) {
-    final String title = widget.mode == AddToClassMode.exchange
-        ? L10n.of(context)!.addToClass
-        : L10n.of(context)!.addToClassOrExchange;
-    final String subtitle = widget.mode == AddToClassMode.exchange
-        ? L10n.of(context)!.addToClassDesc
-        : L10n.of(context)!.addToClassOrExchangeDesc;
-
     return Column(
       children: [
         ListTile(
           title: Text(
-            title,
+            L10n.of(context)!.addToSpace,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
             ),
           ),
-          subtitle: Text(subtitle),
+          subtitle: Text(
+            widget.spaceMode || (room?.isSpace ?? false)
+                ? L10n.of(context)!.addSpaceToSpaceDesc
+                : L10n.of(context)!.addChatToSpaceDesc,
+          ),
           leading: CircleAvatar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,

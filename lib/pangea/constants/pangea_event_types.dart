@@ -1,6 +1,5 @@
 class PangeaEventTypes {
-  static const classSettings = "pangea.class";
-  static const pangeaExchange = "p.exchange";
+  static const languageSettings = "pangea.class";
 
   static const transcript = "pangea.transcript";
 

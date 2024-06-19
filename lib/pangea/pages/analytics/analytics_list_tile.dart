@@ -87,73 +87,68 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
       color: widget.isSelected
           ? Theme.of(context).colorScheme.secondaryContainer
           : Colors.transparent,
-      child: Tooltip(
-        message: widget.selected.type == AnalyticsEntryType.room
-            ? L10n.of(context)!.joinToView
-            : L10n.of(context)!.studentAnalyticsNotAvailable,
-        child: ListTile(
-          leading: widget.selected.type == AnalyticsEntryType.privateChats
-              ? CircleAvatar(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  foregroundColor: Colors.white,
-                  radius: Avatar.defaultSize / 2,
-                  child: const Icon(Icons.forum),
-                )
-              : Avatar(
-                  mxContent: widget.avatar,
-                  name: widget.selected.displayName,
-                  littleIcon: room?.roomTypeIcon,
-                ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  widget.selected.displayName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: false,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).textTheme.bodyLarge!.color,
-                  ),
+      child: ListTile(
+        leading: widget.selected.type == AnalyticsEntryType.privateChats
+            ? CircleAvatar(
+                backgroundColor: Theme.of(context).primaryColor,
+                foregroundColor: Colors.white,
+                radius: Avatar.defaultSize / 2,
+                child: const Icon(Icons.forum),
+              )
+            : Avatar(
+                mxContent: widget.avatar,
+                name: widget.selected.displayName,
+                littleIcon: room?.roomTypeIcon,
+              ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Text(
+                widget.selected.displayName,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge!.color,
                 ),
               ),
-              Tooltip(
-                message: L10n.of(context)!.timeOfLastMessage,
-                child: Text(
-                  tileData?.lastMessageTime?.localizedTimeShort(context) ?? "",
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Theme.of(context).textTheme.bodyMedium!.color,
-                  ),
+            ),
+            Tooltip(
+              message: L10n.of(context)!.timeOfLastMessage,
+              child: Text(
+                tileData?.lastMessageTime?.localizedTimeShort(context) ?? "",
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Theme.of(context).textTheme.bodyMedium!.color,
                 ),
               ),
-            ],
-          ),
-          subtitle: ListSummaryAnalytics(
-            chartAnalytics: tileData,
-          ),
-          selected: widget.isSelected,
-          onTap: () {
-            if (widget.controller?.widget.selectedView == null) {
-              widget.onTap(widget.selected);
-              return;
-            }
-            if ((room?.isSpace ?? false) && widget.allowNavigateOnSelect) {
-              final String selectedView =
-                  widget.controller!.widget.selectedView!.route;
-              context.go('/rooms/analytics/${room!.id}/$selectedView');
-              return;
-            }
-            widget.onTap(widget.selected);
-          },
-          trailing: (room?.isSpace ?? false) &&
-                  widget.selected.type != AnalyticsEntryType.privateChats &&
-                  widget.allowNavigateOnSelect
-              ? const Icon(Icons.chevron_right)
-              : null,
+            ),
+          ],
         ),
+        subtitle: ListSummaryAnalytics(
+          chartAnalytics: tileData,
+        ),
+        selected: widget.isSelected,
+        onTap: () {
+          if (widget.controller?.widget.selectedView == null) {
+            widget.onTap(widget.selected);
+            return;
+          }
+          if ((room?.isSpace ?? false) && widget.allowNavigateOnSelect) {
+            final String selectedView =
+                widget.controller!.widget.selectedView!.route;
+            context.go('/rooms/analytics/${room!.id}/$selectedView');
+            return;
+          }
+          widget.onTap(widget.selected);
+        },
+        trailing: (room?.isSpace ?? false) &&
+                widget.selected.type != AnalyticsEntryType.privateChats &&
+                widget.allowNavigateOnSelect
+            ? const Icon(Icons.chevron_right)
+            : null,
       ),
     );
   }

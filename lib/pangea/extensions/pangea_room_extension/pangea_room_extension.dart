@@ -12,7 +12,7 @@ import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -36,11 +36,11 @@ import '../../models/representation_content_model.dart';
 import '../client_extension/client_extension.dart';
 
 part "children_and_parents_extension.dart";
-part "class_and_exchange_settings_extension.dart";
 part "events_extension.dart";
 part "room_analytics_extension.dart";
 part "room_information_extension.dart";
 part "room_settings_extension.dart";
+part "space_settings_extension.dart";
 part "user_permissions_extension.dart";
 
 extension PangeaRoom on Room {
@@ -48,9 +48,6 @@ extension PangeaRoom on Room {
 
   Future<void> joinAnalyticsRoomsInSpace() async =>
       await _joinAnalyticsRoomsInSpace();
-
-  Future<void> ensureAnalyticsRoomExists() async =>
-      await _ensureAnalyticsRoomExists();
 
   Future<void> addAnalyticsRoomToSpace(Room analyticsRoom) async =>
       await _addAnalyticsRoomToSpace(analyticsRoom);
@@ -105,8 +102,6 @@ extension PangeaRoom on Room {
   Room? firstParentWithState(String stateType) =>
       _firstParentWithState(stateType);
 
-  List<Room> get immediateClassParents => _immediateClassParents;
-
   List<Room> get pangeaSpaceParents => _pangeaSpaceParents;
 
   String nameIncludingParents(BuildContext context) =>
@@ -114,7 +109,10 @@ extension PangeaRoom on Room {
 
   List<String> get allSpaceChildRoomIds => _allSpaceChildRoomIds;
 
-// class_and_exchange_settings
+  bool canAddAsParentOf(Room? child, {spaceMode = false}) =>
+      _canAddAsParentOf(child, spaceMode: spaceMode);
+
+// space settings
 
   DateTime? get rulesUpdatedAt => _rulesUpdatedAt;
 
@@ -128,15 +126,7 @@ extension PangeaRoom on Room {
 
   Future<void> setClassPowerLevels() async => await _setClassPowerLevels();
 
-  DateTime? get classSettingsUpdatedAt => _classSettingsUpdatedAt;
-
-  ClassSettingsModel? get classSettings => _classSettings;
-
-  Event? get languageSettingsStateEvent => _languageSettingsStateEvent;
-
   Event? get pangeaRoomRulesStateEvent => _pangeaRoomRulesStateEvent;
-
-  ClassSettingsModel? get firstLanguageSettings => _firstLanguageSettings;
 
 // events
 
@@ -216,8 +206,6 @@ extension PangeaRoom on Room {
 
   bool isFirstOrSecondChild(String roomId) => _isFirstOrSecondChild(roomId);
 
-  bool get isExchange => _isExchange;
-
   bool get isDirectChatWithoutMe => _isDirectChatWithoutMe;
 
   // bool isMadeForLang(String langCode) => _isMadeForLang(langCode);
@@ -227,8 +215,6 @@ extension PangeaRoom on Room {
   Future<bool> get isBotDM async => await _isBotDM;
 
   bool get isLocked => _isLocked;
-
-  bool get isPangeaClass => _isPangeaClass;
 
   bool isAnalyticsRoomOfUser(String userId) => _isAnalyticsRoomOfUser(userId);
 
@@ -277,7 +263,8 @@ extension PangeaRoom on Room {
 
   bool get canDelete => _canDelete;
 
-  bool canIAddSpaceChild(Room? room) => _canIAddSpaceChild(room);
+  bool canIAddSpaceChild(Room? room, {bool spaceMode = false}) =>
+      _canIAddSpaceChild(room, spaceMode: spaceMode);
 
   bool get canIAddSpaceParents => _canIAddSpaceParents;
 

@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/utils/download_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -49,13 +47,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
 
   @override
   Widget build(BuildContext context) {
-    // #Pangea
-    final PangeaController pangeaController = MatrixState.pangeaController;
-    final ClassSettingsModel? classSettings = pangeaController
-        .matrixState.client
-        .getRoomById(widget.room.id)
-        ?.firstLanguageSettings;
-    // Pangea#
     notificationChangeSub ??= Matrix.of(context)
         .client
         .onSync
@@ -151,7 +142,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   context: context,
                   future: () => downloadChat(
                     widget.room,
-                    classSettings!,
                     DownloadType.txt,
                     Matrix.of(context).client,
                     context,
@@ -163,7 +153,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   context: context,
                   future: () => downloadChat(
                     widget.room,
-                    classSettings!,
                     DownloadType.csv,
                     Matrix.of(context).client,
                     context,
@@ -175,7 +164,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   context: context,
                   future: () => downloadChat(
                     widget.room,
-                    classSettings!,
                     DownloadType.xlsx,
                     Matrix.of(context).client,
                     context,
@@ -189,6 +177,17 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             }
           },
           itemBuilder: (BuildContext context) => [
+            if (widget.displayChatDetails)
+              PopupMenuItem<ChatPopupMenuActions>(
+                value: ChatPopupMenuActions.details,
+                child: Row(
+                  children: [
+                    const Icon(Icons.info_outline_rounded),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.chatDetails),
+                  ],
+                ),
+              ),
             // #Pangea
             PopupMenuItem<ChatPopupMenuActions>(
               value: ChatPopupMenuActions.learningSettings,
@@ -201,17 +200,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               ),
             ),
             // Pangea#
-            if (widget.displayChatDetails)
-              PopupMenuItem<ChatPopupMenuActions>(
-                value: ChatPopupMenuActions.details,
-                child: Row(
-                  children: [
-                    const Icon(Icons.info_outline_rounded),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context)!.chatDetails),
-                  ],
-                ),
-              ),
             if (widget.room.pushRuleState == PushRuleState.notify)
               PopupMenuItem<ChatPopupMenuActions>(
                 value: ChatPopupMenuActions.mute,
@@ -270,39 +258,36 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                     ],
                   ),
                 ),
-            if (classSettings != null)
-              PopupMenuItem<ChatPopupMenuActions>(
-                value: ChatPopupMenuActions.downloadTxt,
-                child: Row(
-                  children: [
-                    const Icon(Icons.download_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context)!.downloadTxtFile),
-                  ],
-                ),
+            PopupMenuItem<ChatPopupMenuActions>(
+              value: ChatPopupMenuActions.downloadTxt,
+              child: Row(
+                children: [
+                  const Icon(Icons.download_outlined),
+                  const SizedBox(width: 12),
+                  Text(L10n.of(context)!.downloadTxtFile),
+                ],
               ),
-            if (classSettings != null)
-              PopupMenuItem<ChatPopupMenuActions>(
-                value: ChatPopupMenuActions.downloadCsv,
-                child: Row(
-                  children: [
-                    const Icon(Icons.download_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context)!.downloadCSVFile),
-                  ],
-                ),
+            ),
+            PopupMenuItem<ChatPopupMenuActions>(
+              value: ChatPopupMenuActions.downloadCsv,
+              child: Row(
+                children: [
+                  const Icon(Icons.download_outlined),
+                  const SizedBox(width: 12),
+                  Text(L10n.of(context)!.downloadCSVFile),
+                ],
               ),
-            if (classSettings != null)
-              PopupMenuItem<ChatPopupMenuActions>(
-                value: ChatPopupMenuActions.downloadXlsx,
-                child: Row(
-                  children: [
-                    const Icon(Icons.download_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context)!.downloadXLSXFile),
-                  ],
-                ),
+            ),
+            PopupMenuItem<ChatPopupMenuActions>(
+              value: ChatPopupMenuActions.downloadXlsx,
+              child: Row(
+                children: [
+                  const Icon(Icons.download_outlined),
+                  const SizedBox(width: 12),
+                  Text(L10n.of(context)!.downloadXLSXFile),
+                ],
               ),
+            ),
             // Pangea#
           ],
         ),

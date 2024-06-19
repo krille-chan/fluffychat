@@ -56,7 +56,7 @@ void chatListHandleSpaceTap(
       title: L10n.of(context)!.youreInvited,
       message: space.isSpace
           ? L10n.of(context)!
-              .invitedToClassOrExchange(space.name, space.creatorId ?? "???")
+              .invitedToSpace(space.name, space.creatorId ?? "???")
           : L10n.of(context)!
               .invitedToChat(space.name, space.creatorId ?? "???"),
       okLabel: L10n.of(context)!.accept,

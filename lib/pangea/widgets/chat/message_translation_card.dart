@@ -107,12 +107,8 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   @override
   void initState() {
     super.initState();
-    l1Code = MatrixState.pangeaController.languageController.activeL1Code(
-      roomID: widget.messageEvent.room.id,
-    );
-    l2Code = MatrixState.pangeaController.languageController.activeL2Code(
-      roomID: widget.messageEvent.room.id,
-    );
+    l1Code = MatrixState.pangeaController.languageController.activeL1Code();
+    l2Code = MatrixState.pangeaController.languageController.activeL2Code();
     if (mounted) {
       setState(() {});
     }

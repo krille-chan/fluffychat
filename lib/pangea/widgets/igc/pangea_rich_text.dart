@@ -203,14 +203,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
       userL2LangCode != null && userL2LangCode != LanguageKeys.unknownLanguage;
 
   String? get userL2LangCode =>
-      pangeaController.languageController.activeL2Code(
-        roomID: widget.pangeaMessageEvent.room.id,
-      );
-
-  String? get userL1LangCode =>
-      pangeaController.languageController.activeL1Code(
-        roomID: widget.pangeaMessageEvent.room.id,
-      );
+      pangeaController.languageController.activeL2Code();
 
   Future<void> onIgnore() async {
     debugPrint("PTODO implement onIgnore");

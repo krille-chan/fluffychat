@@ -123,7 +123,7 @@ extension AnalyticsClientExtension on Client {
   // Allows teachers to join analytics rooms without being invited
   Future<void> _joinAnalyticsRoomsInAllSpaces() async {
     final List<Future> joinFutures = [];
-    for (final Room space in (await _classesAndExchangesImTeaching)) {
+    for (final Room space in (await _spacesImTeaching)) {
       joinFutures.add(space.joinAnalyticsRoomsInSpace());
     }
     await Future.wait(joinFutures);

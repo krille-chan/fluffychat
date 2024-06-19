@@ -207,8 +207,9 @@ class MyAnalyticsController extends BaseController {
     for (final Room chat in _studentChats) {
       // for each chat the student studies in, check if the langCode
       // matches the langCode of the analytics room
+      // TODO gabby - replace this
       final String? chatLangCode =
-          _pangeaController.languageController.activeL2Code(roomID: chat.id);
+          _pangeaController.languageController.activeL2Code();
       if (chatLangCode != langCode) continue;
 
       // get messages the logged in user has sent in all chats
@@ -251,11 +252,10 @@ class MyAnalyticsController extends BaseController {
     List<String> targetLangs = [];
     final String? userL2 = _pangeaController.languageController.activeL2Code();
     if (userL2 != null) targetLangs.add(userL2);
+    // TODO gabby - replace this
     final List<String?> spaceL2s = studentSpaces
         .map(
-          (space) => _pangeaController.languageController.activeL2Code(
-            roomID: space.id,
-          ),
+          (space) => _pangeaController.languageController.activeL2Code(),
         )
         .toList();
     targetLangs.addAll(spaceL2s.where((l2) => l2 != null).cast<String>());
@@ -296,8 +296,8 @@ class MyAnalyticsController extends BaseController {
   List<Room> _studentSpaces = [];
 
   Future<void> setStudentSpaces() async {
-    _studentSpaces = await _pangeaController
-        .matrixState.client.classesAndExchangesImStudyingIn;
+    _studentSpaces =
+        await _pangeaController.matrixState.client.spacesImStudyingIn;
   }
 
   List<Room> get studentSpaces {

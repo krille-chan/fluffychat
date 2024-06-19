@@ -1,17 +1,14 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
-import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
-import 'package:fluffychat/pangea/widgets/space/class_settings.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 
 import 'new_space.dart';
 
@@ -32,29 +29,8 @@ class NewSpaceView extends StatelessWidget {
       appBar: AppBar(
         // #Pangea
         centerTitle: true,
-        title: Text(
-          controller.newClassMode
-              ? L10n.of(context)!.createNewClass
-              : L10n.of(context)!.newExchange,
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.class_outlined),
-            selectedIcon: const Icon(Icons.class_),
-            color: controller.newClassMode ? activeColor : null,
-            isSelected: controller.newClassMode,
-            onPressed: () => context.go('/rooms/newspace'),
-          ),
-          IconButton(
-            icon: const Icon(Icons.connecting_airports),
-            selectedIcon: const Icon(Icons.connecting_airports),
-            color: !controller.newClassMode ? activeColor : null,
-            isSelected: !controller.newClassMode,
-            onPressed: () => context.go('/rooms/newspace/exchange'),
-          ),
-        ],
-        // title: Text(L10n.of(context)!.createNewSpace),
         // Pangea#
+        title: Text(L10n.of(context)!.createNewSpace),
       ),
       body: MaxWidthBody(
         child: Column(
@@ -135,22 +111,19 @@ class NewSpaceView extends StatelessWidget {
             RoomCapacityButton(
               key: controller.addCapacityKey,
             ),
-            if (controller.newClassMode)
-              ClassSettings(
-                key: controller.classSettingsKey,
-                roomId: null,
-                startOpen: true,
-                initialSettings:
-                    Matrix.of(context).client.lastUpdatedClassSettings,
-              ),
-            if (!controller.newClassMode)
-              AddToSpaceToggles(
-                key: controller.addToSpaceKey,
-                startOpen: true,
-                mode: !controller.newClassMode
-                    ? AddToClassMode.exchange
-                    : AddToClassMode.chat,
-              ),
+            // commenting out language settings in spaces for now
+            // LanguageSettings(
+            //   key: controller.languageSettingsKey,
+            //   roomId: null,
+            //   startOpen: true,
+            //   initialSettings:
+            //       Matrix.of(context).client.lastUpdatedLanguageSettings,
+            // ),
+            AddToSpaceToggles(
+              key: controller.addToSpaceKey,
+              startOpen: true,
+              spaceMode: true,
+            ),
             FutureBuilder<PangeaRoomRules?>(
               future: Matrix.of(context).client.lastUpdatedRoomRules,
               builder: (context, snapshot) {
@@ -194,12 +167,7 @@ class NewSpaceView extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text(
-                                // #Pangea
-                                // L10n.of(context)!.createNewSpace,
-                                controller.newClassMode
-                                    ? L10n.of(context)!.createClass
-                                    : L10n.of(context)!.createExchange,
-                                // Pangea#
+                                L10n.of(context)!.createNewSpace,
                               ),
                             ),
                             Icon(Icons.adaptive.arrow_forward_outlined),

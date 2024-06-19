@@ -40,11 +40,6 @@ extension RoomInformationRoomExtension on Room {
                 ));
   }
 
-  bool get _isExchange =>
-      isSpace &&
-      languageSettingsStateEvent == null &&
-      pangeaRoomRulesStateEvent != null;
-
   bool get _isDirectChatWithoutMe =>
       isDirectChat && !getParticipants().any((e) => e.id == client.userID);
 
@@ -84,8 +79,6 @@ extension RoomInformationRoomExtension on Room {
     }
     return joinedRooms > 0 ? true : false;
   }
-
-  bool get _isPangeaClass => isSpace && languageSettingsStateEvent != null;
 
   bool _isAnalyticsRoomOfUser(String userId) =>
       isAnalyticsRoom && isMadeByUser(userId);

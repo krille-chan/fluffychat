@@ -3,17 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../base_analytics.dart';
-import 'class_analytics.dart';
+import 'space_analytics.dart';
 
-class ClassAnalyticsView extends StatelessWidget {
-  final ClassAnalyticsV2Controller controller;
-  const ClassAnalyticsView(this.controller, {super.key});
+class SpaceAnalyticsView extends StatelessWidget {
+  final SpaceAnalyticsV2Controller controller;
+  const SpaceAnalyticsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final String pageTitle =
-    //     "${L10n.of(context)!.classAnalytics}: ${controller.className(context)}";
-    final String pageTitle = L10n.of(context)!.classAnalytics;
+    final String pageTitle = L10n.of(context)!.spaceAnalytics;
     final TabData tab1 = TabData(
       type: AnalyticsEntryType.room,
       icon: Icons.chat_bubble_outline,
@@ -46,20 +44,20 @@ class ClassAnalyticsView extends StatelessWidget {
           .toList(),
     );
 
-    return controller.classId != null
+    return controller.spaceId != null
         ? BaseAnalyticsPage(
             selectedView: controller.widget.selectedView,
             pageTitle: pageTitle,
             tabs: [tab1, tab2],
             alwaysSelected: AnalyticsSelected(
-              controller.classId!,
+              controller.spaceId!,
               AnalyticsEntryType.space,
-              controller.classRoom?.name ?? "",
+              controller.spaceRoom?.name ?? "",
             ),
             defaultSelected: AnalyticsSelected(
-              controller.classId!,
+              controller.spaceId!,
               AnalyticsEntryType.space,
-              controller.classRoom?.name ?? "",
+              controller.spaceRoom?.name ?? "",
             ),
           )
         : const SizedBox();

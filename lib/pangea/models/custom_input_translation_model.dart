@@ -8,7 +8,6 @@ class CustomInputRequestModel {
   String targetLangCode;
   String userId;
   String roomId;
-  String? classId;
 
   String? goldTranslation;
   List<Continuance>? goldContinuances;
@@ -20,7 +19,6 @@ class CustomInputRequestModel {
     required this.targetLangCode,
     required this.userId,
     required this.roomId,
-    required this.classId,
     required this.goldTranslation,
     required this.goldContinuances,
   });
@@ -32,7 +30,6 @@ class CustomInputRequestModel {
         targetLangCode: json[ModelKey.tgtLang],
         userId: json['user_id'],
         roomId: json['room_id'],
-        classId: json['class_id'],
         goldTranslation: json['gold_translation'],
         goldContinuances: json['gold_continuances'] != null
             ? List.from(json['gold_continuances'])
@@ -48,7 +45,6 @@ class CustomInputRequestModel {
         ModelKey.tgtLang: targetLangCode,
         'user_id': userId,
         'room_id': roomId,
-        'class_id': classId,
         'gold_translation': goldTranslation,
         'gold_continuances': goldContinuances != null
             ? List.from(goldContinuances!.map((e) => e.toJson()))
