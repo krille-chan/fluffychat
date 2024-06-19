@@ -9,7 +9,8 @@ class LocalSettings {
   }
 
   bool userLanguageToolSetting(ToolSetting setting) =>
-      _pangeaController.pStoreService.read(setting.toString()) ?? true;
+      _pangeaController.pStoreService.read(setting.toString())
+          ?? setting != ToolSetting.itAutoPlay;
 
   // bool get userEnableIT =>
   //     _pangeaController.pStoreService.read(ToolSetting.interactiveTranslator.toString()) ?? true;

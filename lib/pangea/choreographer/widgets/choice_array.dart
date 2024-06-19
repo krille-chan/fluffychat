@@ -5,12 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
 
 import '../../utils/bot_style.dart';
 import 'it_shimmer.dart';
 
-class ChoicesArray extends StatelessWidget {
+class ChoicesArray extends StatefulWidget {
   final bool isLoading;
   final List<Choice>? choices;
   final void Function(int) onPressed;
@@ -18,6 +17,7 @@ class ChoicesArray extends StatelessWidget {
   final int? selectedChoiceIndex;
   final String originalSpan;
   final String Function(int) uniqueKeyForLayerLink;
+
   const ChoicesArray({
     super.key,
     required this.isLoading,
@@ -30,22 +30,48 @@ class ChoicesArray extends StatelessWidget {
   });
 
   @override
+  ChoicesArrayState createState() => ChoicesArrayState();
+}
+
+class ChoicesArrayState extends State<ChoicesArray> {
+  bool interactionDisabled = false;
+
+  void disableInteraction() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        interactionDisabled = true;
+      });
+    });
+  }
+
+  void enableInteractions() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        interactionDisabled = false;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    return isLoading && (choices == null || choices!.length <= 1)
-        ? ItShimmer(originalSpan: originalSpan)
+    return widget.isLoading && (widget.choices == null || widget.choices!.length <= 1)
+        ? ItShimmer(originalSpan: widget.originalSpan)
         : Wrap(
             alignment: WrapAlignment.center,
-            children: choices
+            children: widget.choices
                     ?.asMap()
                     .entries
                     .map(
                       (entry) => ChoiceItem(
                         theme: theme,
-                        onLongPress: onLongPress,
-                        onPressed: onPressed,
+                        onLongPress: widget.onLongPress,
+                        onPressed: widget.onPressed,
                         entry: entry,
-                        isSelected: selectedChoiceIndex == entry.key,
+                        interactionDisabled: interactionDisabled,
+                        enableInteraction: enableInteractions,
+                        disableInteraction: disableInteraction,
+                        isSelected: widget.selectedChoiceIndex == entry.key,
                       ),
                     )
                     .toList() ??
@@ -74,6 +100,9 @@ class ChoiceItem extends StatelessWidget {
     required this.onPressed,
     required this.entry,
     required this.isSelected,
+    required this.interactionDisabled,
+    required this.enableInteraction,
+    required this.disableInteraction,
   });
 
   final MapEntry<int, Choice> entry;
@@ -81,6 +110,9 @@ class ChoiceItem extends StatelessWidget {
   final void Function(int p1)? onLongPress;
   final void Function(int p1) onPressed;
   final bool isSelected;
+  final bool interactionDisabled;
+  final VoidCallback enableInteraction;
+  final VoidCallback disableInteraction;
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +126,8 @@ class ChoiceItem extends StatelessWidget {
           key: ValueKey(entry.value.text),
           selected: entry.value.color != null,
           isGold: entry.value.isGold,
+          enableInteraction: enableInteraction,
+          disableInteraction: disableInteraction,
           child: Container(
             margin: const EdgeInsets.all(2),
             padding: EdgeInsets.zero,
@@ -128,8 +162,9 @@ class ChoiceItem extends StatelessWidget {
                 ),
               ),
               onLongPress:
-                  onLongPress != null ? () => onLongPress!(entry.key) : null,
-              onPressed: () => onPressed(entry.key),
+                  onLongPress != null && !interactionDisabled
+                      ? () => onLongPress!(entry.key) : null,
+              onPressed: interactionDisabled ? null : () => onPressed(entry.key),
               child: Text(
                 entry.value.text,
                 style: BotStyle.text(context),
@@ -149,11 +184,15 @@ class ChoiceAnimationWidget extends StatefulWidget {
   final Widget child;
   final bool selected;
   final bool isGold;
+  final VoidCallback enableInteraction;
+  final VoidCallback disableInteraction;
 
   const ChoiceAnimationWidget({
     super.key,
     required this.child,
     required this.selected,
+    required this.enableInteraction,
+    required this.disableInteraction,
     this.isGold = false,
   });
 
@@ -161,11 +200,13 @@ class ChoiceAnimationWidget extends StatefulWidget {
   ChoiceAnimationWidgetState createState() => ChoiceAnimationWidgetState();
 }
 
+enum AnimationState { ready, forward, reverse, finished }
+
 class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
-  bool animationPlayed = false;
+  AnimationState animationState = AnimationState.ready;
 
   @override
   void initState() {
@@ -193,17 +234,29 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
         ),
       ]).animate(_controller);
 
-    if (widget.selected && !animationPlayed) {
+    widget.enableInteraction();
+
+    if (widget.selected && animationState == AnimationState.ready) {
+      widget.disableInteraction();
       _controller.forward();
-      animationPlayed = true;
-      setState(() {});
+      setState(() {
+        animationState = AnimationState.forward;
+      });
     }
     _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
+      if (status == AnimationStatus.completed &&
+        animationState == AnimationState.forward) {
         _controller.reverse();
-      } else if (status == AnimationStatus.dismissed) {
-        _controller.stop();
-        _controller.reset();
+        setState(() {
+          animationState = AnimationState.reverse;
+        });
+      }
+      if (status == AnimationStatus.dismissed &&
+        animationState == AnimationState.reverse) {
+        widget.enableInteraction();
+        setState(() {
+          animationState = AnimationState.finished;
+        });
       }
     });
   }
@@ -211,10 +264,12 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
   @override
   void didUpdateWidget(ChoiceAnimationWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.selected && !animationPlayed) {
+    if (widget.selected && animationState == AnimationState.ready) {
+      widget.disableInteraction();
       _controller.forward();
-      animationPlayed = true;
-      setState(() {});
+      setState(() {
+        animationState = AnimationState.forward;
+      });
     }
   }
 

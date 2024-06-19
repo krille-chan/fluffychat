@@ -138,7 +138,7 @@ class WordMatchContent extends StatelessWidget {
             .choices![index]
             .isBestCorrection
           ? BotExpression.gold
-          : BotExpression.nonGold
+          : BotExpression.surprised
       ),
     );
     // if (controller.widget.scm.pangeaMatch.match.choices![index].type ==
