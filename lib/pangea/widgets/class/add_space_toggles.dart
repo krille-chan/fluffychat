@@ -41,6 +41,19 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
   @override
   void initState() {
+    initialize();
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(AddToSpaceToggles oldWidget) {
+    if (oldWidget.roomId != widget.roomId) {
+      initialize();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void initialize() {
     //if roomId is null, it means this widget is being used in the creation flow
     room = widget.roomId != null
         ? Matrix.of(context).client.getRoomById(widget.roomId!)
@@ -92,7 +105,6 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     });
 
     isOpen = widget.startOpen;
-    super.initState();
   }
 
   Future<void> _addSingleSpace(String roomToAddId, Room newParent) async {
@@ -140,13 +152,10 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
   Widget getAddToSpaceToggleItem(int index) {
     final Room possibleParent = possibleParents[index];
-    final bool canAdd = (room?.isSpace ?? false)
-        // Room is space
-        ? possibleParent.isRoomAdmin &&
-            room!.isRoomAdmin &&
-            possibleParent.canAddAsParentOf(room)
-        // Room is null or chat
-        : possibleParent.canAddAsParentOf(room);
+    final bool canAdd = possibleParent.canAddAsParentOf(
+      room,
+      spaceMode: widget.spaceMode,
+    );
 
     return Opacity(
       opacity: canAdd ? 1 : 0.5,

@@ -109,7 +109,9 @@ extension PangeaRoom on Room {
 
   List<String> get allSpaceChildRoomIds => _allSpaceChildRoomIds;
 
-  bool canAddAsParentOf(Room? child) => _canAddAsParentOf(child);
+  bool canAddAsParentOf(Room? child, {bool spaceMode = false}) {
+    return _canAddAsParentOf(child, spaceMode: spaceMode);
+  }
 
 // class_and_exchange_settings
 
@@ -262,8 +264,9 @@ extension PangeaRoom on Room {
 
   bool get canDelete => _canDelete;
 
-  bool canIAddSpaceChild(Room? room, {bool spaceMode = false}) =>
-      _canIAddSpaceChild(room, spaceMode: spaceMode);
+  bool canIAddSpaceChild(Room? room, {bool spaceMode = false}) {
+    return _canIAddSpaceChild(room, spaceMode: spaceMode);
+  }
 
   bool get canIAddSpaceParents => _canIAddSpaceParents;
 

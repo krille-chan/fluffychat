@@ -123,11 +123,19 @@ extension ChildrenAndParentsRoomExtension on Room {
 
   // Checks if has permissions to add child chat
   // Or whether potential child space is ancestor of this
-  bool _canAddAsParentOf(Room? child) {
-    if (child == null || !child.isSpace) {
-      return _canIAddSpaceChild(child);
-    }
-    if (id == child.id) return false;
-    return !child._allSpaceChildRoomIds.contains(id);
+  bool _canAddAsParentOf(Room? child, {bool spaceMode = false}) {
+    // don't add a room to itself
+    if (id == child?.id) return false;
+    spaceMode = child?.isSpace ?? spaceMode;
+
+    // get the bool for adding chats to spaces
+    final bool canAddChild = _canIAddSpaceChild(child, spaceMode: spaceMode);
+    if (!spaceMode) return canAddChild;
+
+    // if adding space to a space, check if the child is an ancestor
+    // to prevent cycles
+    final bool isCycle =
+        child != null ? child._allSpaceChildRoomIds.contains(id) : false;
+    return canAddChild && !isCycle;
   }
 }
