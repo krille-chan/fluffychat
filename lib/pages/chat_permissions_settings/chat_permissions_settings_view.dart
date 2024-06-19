@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/permission_list_tile.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 class ChatPermissionsSettingsView extends StatelessWidget {
   final ChatPermissionsSettingsController controller;
@@ -35,7 +33,10 @@ class ChatPermissionsSettingsView extends StatelessWidget {
               room.getState(EventTypes.RoomPowerLevels)?.content ?? {},
             );
             final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
-              ..removeWhere((k, v) => v is! int);
+              // #Pangea
+              // ..removeWhere((k, v) => v is! int);
+              ..removeWhere((k, v) => v is! int || k.equals("m.call.invite"));
+            // Pangea#
             final eventsPowerLevels = Map<String, int?>.from(
               powerLevelsContent.tryGetMap<String, int?>('events') ?? {},
             )..removeWhere((k, v) => v is! int);
