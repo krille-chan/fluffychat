@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
@@ -42,6 +43,9 @@ extension PangeaClient on Client {
       await _joinInvitedAnalyticsRooms();
 
   Future<void> migrateAnalyticsRooms() async => await _migrateAnalyticsRooms();
+
+  Future<Map<String, DateTime?>> allAnalyticsRoomsLastUpdated() async =>
+      await _allAnalyticsRoomsLastUpdated();
 
   // spaces
 

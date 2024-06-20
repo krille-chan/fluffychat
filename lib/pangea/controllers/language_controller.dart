@@ -101,7 +101,7 @@ class LanguageController {
     // return activeL1 != null ? PangeaLanguage.byLangCode(activeL1) : null;
   }
 
-  LanguageModel? activeL2Model({String? roomID}) {
+  LanguageModel? activeL2Model() {
     return userL2;
     // final activeL2 = activeL2Code(roomID: roomID);
     // final model = activeL2 != null ? PangeaLanguage.byLangCode(activeL2) : null;

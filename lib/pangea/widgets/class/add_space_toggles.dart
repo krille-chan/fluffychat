@@ -229,13 +229,21 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
               ? Column(
                   children: [
                     SwitchListTile.adaptive(
-                      title: Text(L10n.of(context)!.suggestToChat),
+                      title: Text(
+                        widget.spaceMode || (room?.isSpace ?? false)
+                            ? L10n.of(context)!.suggestToSpace
+                            : L10n.of(context)!.suggestToChat,
+                      ),
                       secondary: Icon(
                         isSuggested
                             ? Icons.visibility_outlined
                             : Icons.visibility_off_outlined,
                       ),
-                      subtitle: Text(L10n.of(context)!.suggestToChatDesc),
+                      subtitle: Text(
+                        widget.spaceMode || (room?.isSpace ?? false)
+                            ? L10n.of(context)!.suggestToSpaceDesc
+                            : L10n.of(context)!.suggestToChatDesc,
+                      ),
                       activeColor: AppConfig.activeToggleColor,
                       value: isSuggested,
                       onChanged: (bool add) => setSuggested(add),

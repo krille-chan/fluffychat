@@ -153,4 +153,17 @@ extension AnalyticsClientExtension on Client {
     await _joinInvitedAnalyticsRooms();
     await _joinAnalyticsRoomsInAllSpaces();
   }
+
+  Future<Map<String, DateTime?>> _allAnalyticsRoomsLastUpdated() async {
+    // get the last updated time for each analytics room
+    final Map<String, DateTime?> lastUpdatedMap = {};
+    for (final analyticsRoom in allMyAnalyticsRooms) {
+      final DateTime? lastUpdated = await analyticsRoom.analyticsLastUpdated(
+        PangeaEventTypes.summaryAnalytics,
+        userID!,
+      );
+      lastUpdatedMap[analyticsRoom.id] = lastUpdated;
+    }
+    return lastUpdatedMap;
+  }
 }

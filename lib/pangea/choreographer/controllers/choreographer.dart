@@ -441,9 +441,7 @@ class Choreographer {
   }
 
   LanguageModel? get l2Lang {
-    return pangeaController.languageController.activeL2Model(
-      roomID: roomId,
-    );
+    return pangeaController.languageController.activeL2Model();
   }
 
   String? get l2LangCode => l2Lang?.langCode;

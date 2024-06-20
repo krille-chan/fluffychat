@@ -852,7 +852,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "be": [
@@ -2341,7 +2343,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "bn": [
@@ -3826,7 +3830,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "bo": [
@@ -5315,7 +5321,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "ca": [
@@ -6206,7 +6214,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "cs": [
@@ -7179,7 +7189,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "de": [
@@ -8035,7 +8047,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "el": [
@@ -9475,7 +9489,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "eo": [
@@ -10613,11 +10629,15 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "es": [
-    "searchIn"
+    "searchIn",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "et": [
@@ -11473,7 +11493,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "eu": [
@@ -12331,7 +12353,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "fa": [
@@ -13326,7 +13350,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "fi": [
@@ -14285,7 +14311,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "fil": [
@@ -15600,7 +15628,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "fr": [
@@ -16594,7 +16624,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "ga": [
@@ -17717,7 +17749,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "gl": [
@@ -18573,7 +18607,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "he": [
@@ -19815,7 +19851,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "hi": [
@@ -21297,7 +21335,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "hr": [
@@ -22232,7 +22272,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "hu": [
@@ -23104,7 +23146,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "ia": [
@@ -24579,7 +24623,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "id": [
@@ -25441,7 +25487,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "ie": [
@@ -26687,7 +26735,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "it": [
@@ -27600,7 +27650,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "ja": [
@@ -28624,7 +28676,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "ka": [
@@ -29967,7 +30021,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "ko": [
@@ -30825,7 +30881,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "lt": [
@@ -31849,7 +31907,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "lv": [
@@ -32713,7 +32773,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "nb": [
@@ -33901,7 +33963,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "nl": [
@@ -34853,7 +34917,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "pl": [
@@ -35814,7 +35880,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "pt": [
@@ -37281,7 +37349,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "pt_BR": [
@@ -38143,7 +38213,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "pt_PT": [
@@ -39332,7 +39404,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "ro": [
@@ -40328,7 +40402,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "ru": [
@@ -41190,7 +41266,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "sk": [
@@ -42445,7 +42523,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "sl": [
@@ -43830,7 +43910,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "sr": [
@@ -44989,7 +45071,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "sv": [
@@ -45882,7 +45966,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "ta": [
@@ -47368,7 +47454,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "th": [
@@ -48808,7 +48896,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "tr": [
@@ -49664,7 +49754,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "uk": [
@@ -50557,7 +50649,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "vi": [
@@ -51898,7 +51992,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "zh": [
@@ -52754,7 +52850,9 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ],
 
   "zh_Hant": [
@@ -53891,6 +53989,8 @@
     "addChatToSpaceDesc",
     "addSpaceToSpaceDesc",
     "spaceAnalytics",
-    "changeAnalyticsLanguage"
+    "changeAnalyticsLanguage",
+    "suggestToSpace",
+    "suggestToSpaceDesc"
   ]
 }
