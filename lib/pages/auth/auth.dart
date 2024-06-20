@@ -17,7 +17,7 @@ import 'package:ory_kratos_client/ory_kratos_client.dart' as kratos;
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/auth/login_view.dart';
-import 'package:tawkie/pages/auth/privacy_polocy_text.dart';
+import 'package:tawkie/pages/auth/privacy_policy_text.dart';
 import 'package:tawkie/pages/auth/register_view.dart';
 import 'package:tawkie/pages/auth/web_login.dart';
 import 'package:tawkie/utils/platform_infos.dart';
