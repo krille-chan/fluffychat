@@ -148,6 +148,30 @@ class SpanChoice {
   bool get isBestCorrection => type == SpanChoiceType.bestCorrection;
 
   Color get color => type.color;
+
+  // override == operator and hashcode
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is SpanChoice &&
+        other.value == value &&
+        other.type.toString() == type.toString() &&
+        other.selected == selected &&
+        other.feedback == feedback &&
+        other.timestamp?.toIso8601String() == timestamp?.toIso8601String();
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([
+      value.hashCode,
+      type.toString().hashCode,
+      selected.hashCode,
+      feedback.hashCode,
+      timestamp?.toIso8601String().hashCode,
+    ]);
+  }
 }
 
 class Rule {
