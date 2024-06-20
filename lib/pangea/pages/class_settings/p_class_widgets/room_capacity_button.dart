@@ -72,8 +72,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
     return Column(
       children: [
         ListTile(
-          onTap: () =>
-              ((widget.room?.isRoomAdmin ?? true) ? (setRoomCapacity()) : null),
+          onTap: (widget.room?.isRoomAdmin ?? true) ? setRoomCapacity : null,
           leading: CircleAvatar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             foregroundColor: iconColor,
