@@ -39,6 +39,7 @@ class Auth extends StatefulWidget {
 
 class AuthController extends State<Auth> {
   String? messageError;
+  String? messageInfo;
   bool loading = true;
   String baseUrl = AppConfig.baseUrl;
   late final Dio dio;
@@ -80,6 +81,10 @@ class AuthController extends State<Auth> {
 
   Future<bool> onBackButtonPress(
       bool stopDefaultButtonEvent, RouteInfo info) async {
+    setState(() {
+      messageError = null;
+      messageInfo = null;
+    });
     popFormWidgets();
     return true;
   }
@@ -351,6 +356,7 @@ class AuthController extends State<Auth> {
       BuiltList<kratos.UiNode> nodes, String actionUrl) async {
     final List<Widget> formWidgets = [];
     final Map<String, kratos.UiNode> allNodes = {};
+    String errorMessage = "";
 
     for (final kratos.UiNode node in nodes) {
       final attributes =
@@ -380,6 +386,10 @@ class AuthController extends State<Auth> {
         }
       }
 
+      if (node.messages.isNotEmpty && node.messages[0].text.isNotEmpty) {
+        errorMessage = node.messages[0].text;
+      }
+
       formWidgets.add(widget);
       allNodes[attributes.name] = node;
     }
@@ -388,6 +398,7 @@ class AuthController extends State<Auth> {
       authWidgets = formWidgets;
       formNodes = allNodes;
       loading = false;
+      if (errorMessage.isNotEmpty) messageError = errorMessage;
     });
   }
 
@@ -544,6 +555,7 @@ class AuthController extends State<Auth> {
       } on DioException catch (e) {
         if (kDebugMode) {
           print('Erreur lors de la soumission du formulaire: $e');
+          print('Response data: ${e.response?.data}');
         }
         if (e.response != null) {
           try {
@@ -557,6 +569,16 @@ class AuthController extends State<Auth> {
             // new response to retrieve nodes and action URL
             final newNodes = loginFlow?.ui.nodes;
             final newActionUrl = loginFlow?.ui.action;
+            final newMessages = loginFlow?.ui.messages;
+
+            if (newMessages != null && newMessages.isNotEmpty) {
+              final message = newMessages[0];
+              if (message.type == kratos.UiTextTypeEnum.error) {
+                setState(() => messageError = message.text);
+              } else {
+                setState(() => messageInfo = message.text);
+              }
+            }
 
             if (newNodes != null && newActionUrl != null) {
               await processKratosNodes(newNodes, newActionUrl);
@@ -774,22 +796,27 @@ class AuthController extends State<Auth> {
         print("Exception when calling Kratos login: $e\n");
         print("Response data: ${e.response?.data}");
       }
-      Logs().v("Error Kratos login : ${e.response?.data}");
 
-      if (e.response?.data != null) {
-        final errorMessage = e.response!.data['ui']['messages'][0]['text'];
-        setState(() => messageError = errorMessage);
+      final response = e.response?.data;
+      print("Response data: $response");
+
+      if (response == null) {
+        setState(() => messageError = L10n.of(context)!.errTryAgain);
+      } else if (response["error"]?["reason"]?.isNotEmpty ?? false) {
+        setState(() => messageError = response["error"]["reason"]);
+      } else if (response["ui"]?["messages"]?[0]?["text"]?.isNotEmpty ??
+          false) {
+        setState(() => messageError = response["ui"]["messages"][0]["text"]);
       } else {
-        setState(
-          () => messageError = L10n.of(context)!.errTryAgain,
-        );
+        setState(() => messageError = L10n.of(context)!.errTryAgain);
       }
+
       return setState(() => loading = false);
     } catch (exception) {
       if (kDebugMode) {
         print(exception);
       }
-      setState(() => messageError = L10n.of(context)!.errUsernameOrPassword);
+      setState(() => messageError = exception.toString());
       return setState(() => loading = false);
     }
   }

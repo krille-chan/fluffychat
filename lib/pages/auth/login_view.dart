@@ -55,6 +55,16 @@ class LoginView extends StatelessWidget {
                                   child: Text(
                                     controller.messageError!,
                                     style: const TextStyle(color: Colors.red),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              if (controller.messageInfo != null)
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Text(
+                                    controller.messageInfo!,
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
                               ...controller.authWidgets,
