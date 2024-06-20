@@ -282,7 +282,7 @@ class ChatDetailsView extends StatelessWidget {
                         //     roomId: controller.roomId,
                         //     startOpen: false,
                         //   ),
-                        if (room.pangeaRoomRules != null && room.isRoomAdmin)
+                        if (room.pangeaRoomRules != null)
                           RoomRulesEditor(
                             roomId: controller.roomId,
                             startOpen: false,

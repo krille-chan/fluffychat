@@ -37,7 +37,9 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     if (widget.immersionMode) return l1Code;
     final String? originalWrittenCode =
         widget.messageEvent.originalWritten?.content.langCode;
-    return l1Code == originalWrittenCode ? l2Code : l1Code;
+    return (l1Code == originalWrittenCode || originalWrittenCode == null)
+        ? l2Code
+        : l1Code;
   }
 
   Future<void> fetchRepresentation(BuildContext context) async {
