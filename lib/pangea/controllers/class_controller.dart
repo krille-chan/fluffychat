@@ -195,7 +195,7 @@ class ClassController extends BaseController {
     final Room? room = _pangeaController.matrixState.client.getRoomById(roomId);
     if (room == null) return;
 
-    if (room.pangeaRoomRules == null) {
+    if (room.isSpace && room.isRoomAdmin && room.pangeaRoomRules == null) {
       try {
         await _pangeaController.matrixState.client.setRoomStateWithKey(
           roomId,
