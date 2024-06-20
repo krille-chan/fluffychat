@@ -87,8 +87,6 @@ class RoomRulesState extends State<RoomRulesEditor> {
 
   @override
   Widget build(BuildContext context) {
-    final darkGray = Theme.of(context).colorScheme.primary;
-    final lightGray = Theme.of(context).colorScheme.onPrimary;
     return Column(
       children: [
         // if (widget.showAdd)
@@ -149,7 +147,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 8.0),
               child: Opacity(
-                opacity: (room?.isRoomAdmin ?? false) ? 1 : 0.5,
+                opacity: (room?.isRoomAdmin ?? true) ? 1 : 0.5,
                 child: Column(
                   children: [
                     for (final setting in ToolSetting.values)
@@ -169,7 +167,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
                           Slider(
                             value: rules.getToolSettings(setting).toDouble(),
                             onChanged: (value) {
-                              if (room?.isRoomAdmin ?? false) {
+                              if (room?.isRoomAdmin ?? true) {
                                 updatePermission(() {
                                   rules.setLanguageToolSetting(
                                     setting,
@@ -196,7 +194,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
                       subtitle:
                           Text(L10n.of(context)!.oneToOneChatsWithinClassDesc),
                       value: rules.oneToOneChatClass,
-                      onChanged: (value) => (room?.isRoomAdmin ?? false)
+                      onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
                               () => rules.oneToOneChatClass = value,
                             )
@@ -207,7 +205,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
                       title: Text(L10n.of(context)!.createGroupChats),
                       subtitle: Text(L10n.of(context)!.createGroupChatsDesc),
                       value: rules.isCreateRooms,
-                      onChanged: (value) => (room?.isRoomAdmin ?? false)
+                      onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
                               () => rules.isCreateRooms = value,
                             )
@@ -218,7 +216,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
                       title: Text(L10n.of(context)!.shareVideo),
                       subtitle: Text(L10n.of(context)!.shareVideoDesc),
                       value: rules.isShareVideo,
-                      onChanged: (value) => (room?.isRoomAdmin ?? false)
+                      onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
                               () => rules.isShareVideo = value,
                             )
@@ -229,7 +227,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
                       title: Text(L10n.of(context)!.sharePhotos),
                       subtitle: Text(L10n.of(context)!.sharePhotosDesc),
                       value: rules.isSharePhoto,
-                      onChanged: (value) => (room?.isRoomAdmin ?? false)
+                      onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
                               () => rules.isSharePhoto = value,
                             )
@@ -240,7 +238,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
                       title: Text(L10n.of(context)!.shareFiles),
                       subtitle: Text(L10n.of(context)!.shareFilesDesc),
                       value: rules.isShareFiles,
-                      onChanged: (value) => (room?.isRoomAdmin ?? false)
+                      onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
                               () => rules.isShareFiles = value,
                             )
@@ -251,7 +249,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
                       title: Text(L10n.of(context)!.sendVoiceNotes),
                       subtitle: Text(L10n.of(context)!.sendVoiceNotesDesc),
                       value: rules.isVoiceNotes,
-                      onChanged: (value) => (room?.isRoomAdmin ?? false)
+                      onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
                               () => rules.isVoiceNotes = value,
                             )
@@ -262,7 +260,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
                       title: Text(L10n.of(context)!.shareLocation),
                       subtitle: Text(L10n.of(context)!.shareLocationDesc),
                       value: rules.isShareLocation,
-                      onChanged: (value) => (room?.isRoomAdmin ?? false)
+                      onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
                               () => rules.isShareLocation = value,
                             )
