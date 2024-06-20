@@ -607,8 +607,17 @@ class BotController extends State<AddBridge> {
       });
 
       final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+
+      if (kDebugMode) {
+        print("cookies: $gotCookies");
+      }
+
       final formattedCookieString =
           formatCookiesToJsonString(gotCookies, network);
+
+      if (kDebugMode) {
+        print("formattedCookie: $formattedCookieString");
+      }
 
       await roomBot.sendTextEvent("login");
       await Future.delayed(const Duration(seconds: 5));
@@ -853,8 +862,17 @@ class BotController extends State<AddBridge> {
     });
 
     final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+
+    if (kDebugMode) {
+      print("cookies: $gotCookies");
+    }
+
     final formattedCookieString =
         formatCookiesToJsonString(gotCookies, network);
+
+    if (kDebugMode) {
+      print("formatCookies: $formatCookiesToJsonString");
+    }
 
     final RegExp successMatch = LoginRegex.linkedinSuccessMatch;
     final RegExp alreadySuccessMatch = LoginRegex.linkedinAlreadySuccessMatch;
