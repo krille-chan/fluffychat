@@ -620,10 +620,11 @@ class BotController extends State<AddBridge> {
 
       const int maxIterations = 5;
       int currentIteration = 0;
+      String? latestMessage;
 
       while (currentIteration < maxIterations) {
         final Event? latestEvent = roomBot.lastEvent;
-        final String? latestMessage = roomBot.lastEvent?.text;
+        latestMessage = roomBot.lastEvent?.text;
         final String? sender = latestEvent?.senderId;
         final String botUserId = '${network.chatBot}$hostname';
 
@@ -675,9 +676,11 @@ class BotController extends State<AddBridge> {
       }
 
       if (currentIteration == maxIterations) {
-        Logs().v("Maximum iterations reached, setting result to 'error'");
-        showCatchErrorDialog(
-            context, "Maximum iterations reached, setting result to 'error'");
+        Logs().v(
+            "Maximum iterations reached, setting result to 'error to ${network.name}'");
+        showCatchErrorDialog(context,
+            "${L10n.of(context)!.errorConnectionText}.\nFaites nous part du message d'erreur rencontré: $latestMessage");
+        _handleError(network);
       }
     } catch (e) {
       final messageError = e.toString();
@@ -886,10 +889,11 @@ class BotController extends State<AddBridge> {
 
     const int maxIterations = 5;
     int currentIteration = 0;
+    String? latestMessage;
 
     while (currentIteration < maxIterations) {
       final Event? latestEvent = roomBot.lastEvent;
-      final String? latestMessage = roomBot.lastEvent?.text;
+      latestMessage = roomBot.lastEvent?.text;
       final String? sender = latestEvent?.senderId;
       final String botUserId = '${network.chatBot}$hostname';
 
@@ -920,6 +924,8 @@ class BotController extends State<AddBridge> {
     if (currentIteration == maxIterations) {
       Logs().v(
           "Maximum iterations reached, setting result to 'error to ${network.name}'");
+      showCatchErrorDialog(context,
+          "${L10n.of(context)!.errorConnectionText}.\nFaites nous part du message d'erreur rencontré: $latestMessage");
       _handleError(network);
     }
 
