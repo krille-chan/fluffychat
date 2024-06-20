@@ -94,7 +94,8 @@ class SpanCardState extends State<SpanCard> {
         fetchingData = true;
       });
 
-      await widget.scm.choreographer.igc.getSpanDetails(widget.scm.matchIndex);
+      await widget.scm.choreographer.igc.spanDataController
+          .getSpanDetails(widget.scm.matchIndex);
 
       if (mounted) {
         setState(() => fetchingData = false);

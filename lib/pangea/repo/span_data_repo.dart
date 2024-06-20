@@ -85,16 +85,13 @@ class SpanDetailsRepoReqAndRes {
     if (other.userL2 != userL2) return false;
     if (other.enableIT != enableIT) return false;
     if (other.enableIGC != enableIGC) return false;
-    if (other.span.choices
-            ?.firstWhere(
-              (choice) => choice.type == SpanChoiceType.bestCorrection,
-            )
-            .value !=
-        span.choices
-            ?.firstWhere(
-              (choice) => choice.type == SpanChoiceType.bestCorrection,
-            )
-            .value) return false;
+    if (const ListEquality().equals(
+          other.span.choices?.sorted((a, b) => b.value.compareTo(a.value)),
+          span.choices?.sorted((a, b) => b.value.compareTo(a.value)),
+        ) ==
+        false) {
+      return false;
+    }
     return true;
   }
 
@@ -107,12 +104,12 @@ class SpanDetailsRepoReqAndRes {
       userL2.hashCode,
       enableIT.hashCode,
       enableIGC.hashCode,
-      span.choices
-          ?.firstWhereOrNull(
-            (choice) => choice.type == SpanChoiceType.bestCorrection,
-          )
-          ?.value
-          .hashCode,
+      if (span.choices != null)
+        Object.hashAll(
+          span.choices!
+              .sorted((a, b) => b.value.compareTo(a.value))
+              .map((choice) => choice.hashCode),
+        ),
     ]);
   }
 }
