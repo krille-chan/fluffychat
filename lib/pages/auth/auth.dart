@@ -455,7 +455,7 @@ class AuthController extends State<Auth> {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            const PrivacyPolicyText(),
+            if (widget.authType == AuthType.register) const PrivacyPolicyText(),
             const SizedBox(height: 8),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
