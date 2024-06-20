@@ -78,7 +78,7 @@ Future<void> unlockSpace(Room space, Client client) async {
   for (final spaceChild in space.spaceChildren) {
     if (spaceChild.roomId == null) continue;
     final Room? child = client.getRoomById(spaceChild.roomId!);
-    if (child == null) continue;
+    if (child == null || child.isArchived || child.isAnalyticsRoom) continue;
     child.isSpace
         ? await unlockSpace(child, client)
         : await unlockChat(child, client);

@@ -63,7 +63,7 @@ class StartIGCButtonState extends State<StartIGCButton>
         (itEnabled || igcEnabled) && canSendStatus == CanSendStatus.subscribed;
 
     if (!grammarCorrectionEnabled ||
-        !widget.controller.choreographer.isAutoIGCEnabled ||
+        widget.controller.choreographer.isAutoIGCEnabled ||
         widget.controller.choreographer.choreoMode == ChoreoMode.it) {
       return const SizedBox.shrink();
     }
