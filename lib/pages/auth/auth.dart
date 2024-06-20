@@ -593,6 +593,10 @@ class AuthController extends State<Auth> {
             });
             await refreshFormNodes(); // Refresh the form nodes on error
           }
+        } else {
+          setState(() => loading = false);
+          DioErrorHandler.showGenericErrorDialog(
+              context, e.message ?? "Network error");
         }
       }
     }
@@ -922,8 +926,9 @@ class AuthController extends State<Auth> {
         print(exception);
       }
       DioErrorHandler.showGenericErrorDialog(context, exception.toString());
+    } finally {
+      setState(() => loading = false);
     }
-    return setState(() => loading = false);
   }
 
   @override
