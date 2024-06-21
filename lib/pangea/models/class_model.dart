@@ -120,6 +120,7 @@ class PangeaRoomRules {
   bool isInviteOnlyStudents;
   // 0 = forbidden, 1 = allow individual to choose, 2 = require
   int interactiveTranslator;
+  int itAutoPlay;
   int interactiveGrammar;
   int immersionMode;
   int definitions;
@@ -138,6 +139,7 @@ class PangeaRoomRules {
     this.isVoiceNotes = true,
     this.isInviteOnlyStudents = true,
     this.interactiveTranslator = ClassDefaultValues.languageToolPermissions,
+    this.itAutoPlay = ClassDefaultValues.languageToolPermissions,
     this.interactiveGrammar = ClassDefaultValues.languageToolPermissions,
     this.immersionMode = ClassDefaultValues.languageToolPermissions,
     this.definitions = ClassDefaultValues.languageToolPermissions,
@@ -189,6 +191,9 @@ class PangeaRoomRules {
       case ToolSetting.interactiveTranslator:
         interactiveTranslator = value;
         break;
+      case ToolSetting.itAutoPlay:
+        itAutoPlay = value;
+        break;
       case ToolSetting.interactiveGrammar:
         interactiveGrammar = value;
         break;
@@ -227,6 +232,8 @@ class PangeaRoomRules {
         isInviteOnlyStudents: json['is_invite_only_students'] ?? true,
         interactiveTranslator: json['interactive_translator'] ??
             ClassDefaultValues.languageToolPermissions,
+        itAutoPlay: json['it_auto_play'] ??
+            ClassDefaultValues.languageToolPermissions,
         interactiveGrammar: json['interactive_grammar'] ??
             ClassDefaultValues.languageToolPermissions,
         immersionMode: json['immersion_mode'] ??
@@ -252,6 +259,7 @@ class PangeaRoomRules {
     data['is_voice_notes'] = isVoiceNotes;
     data['is_invite_only_students'] = isInviteOnlyStudents;
     data['interactive_translator'] = interactiveTranslator;
+    data['it_auto_play'] = itAutoPlay;
     data['interactive_grammar'] = interactiveGrammar;
     data['immersion_mode'] = immersionMode;
     data['definitions'] = definitions;
@@ -263,6 +271,8 @@ class PangeaRoomRules {
     switch (setting) {
       case ToolSetting.interactiveTranslator:
         return interactiveTranslator;
+      case ToolSetting.itAutoPlay:
+        return itAutoPlay;
       case ToolSetting.interactiveGrammar:
         return interactiveGrammar;
       case ToolSetting.immersionMode:
