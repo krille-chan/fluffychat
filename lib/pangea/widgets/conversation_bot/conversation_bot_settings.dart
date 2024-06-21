@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
@@ -126,7 +125,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 16),
-                    child: SwitchListTile.adaptive(
+                    child: ListTile(
                       title: Text(
                         L10n.of(context)!.addConversationBot,
                         style: TextStyle(
@@ -135,7 +134,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                         ),
                       ),
                       subtitle: Text(L10n.of(context)!.addConversationBotDesc),
-                      secondary: CircleAvatar(
+                      leading: CircleAvatar(
                         backgroundColor:
                             Theme.of(context).scaffoldBackgroundColor,
                         foregroundColor:
@@ -145,14 +144,65 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                           expression: BotExpression.right,
                         ),
                       ),
-                      activeColor: AppConfig.activeToggleColor,
-                      value: addBot,
-                      onChanged: (bool add) {
-                        setState(() => addBot = add);
-                        add
-                            ? widget.room?.invite(BotName.byEnvironment)
-                            : widget.room?.kick(BotName.byEnvironment);
-                      },
+                      trailing: ElevatedButton(
+                        onPressed: () async {
+                          final bool? confirm = await showDialog<bool>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: addBot
+                                    ? Text(
+                                        L10n.of(context)!
+                                            .addConversationBotButtonTitleRemove,
+                                      )
+                                    : Text(
+                                        L10n.of(context)!
+                                            .addConversationBotDialogTitleInvite,
+                                      ),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(false);
+                                    },
+                                    child: Text(L10n.of(context)!.cancel),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(!addBot);
+                                    },
+                                    child: addBot
+                                        ? Text(
+                                            L10n.of(context)!
+                                                .addConversationBotDialogRemoveConfirmation,
+                                          )
+                                        : Text(
+                                            L10n.of(context)!
+                                                .addConversationBotDialogInviteConfirmation,
+                                          ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+
+                          if (confirm == true) {
+                            setState(() => addBot = true);
+                            widget.room?.invite(BotName.byEnvironment);
+                          } else {
+                            setState(() => addBot = false);
+                            widget.room?.kick(BotName.byEnvironment);
+                          }
+                        },
+                        child: addBot
+                            ? Text(
+                                L10n.of(context)!
+                                    .addConversationBotButtonRemove,
+                              )
+                            : Text(
+                                L10n.of(context)!
+                                    .addConversationBotButtonInvite,
+                              ),
+                      ),
                     ),
                   ),
                   if (addBot) ...[
