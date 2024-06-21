@@ -4648,7 +4648,7 @@
   "conversationBotDiscussionZone_discussionKeywordsHintText": "Lista de palabras clave separadas por comas para orientar el debate",
   "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel": "Enviar mensajes de debate según un calendario",
   "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Horas entre temas de debate",
-  "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Enviar aviso de discusión cuando el usuario reacciona ⏩ al mensaje del bot.",
+  "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Responde a la reacción de ⏩",
   "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel": "Reacción al envío del aviso de debate",
   "studentAnalyticsNotAvailable": "Datos de los estudiantes no disponibles actualmente",
   "roomDataMissing": "Es posible que falten algunos datos de las salas de las que no es miembro.",

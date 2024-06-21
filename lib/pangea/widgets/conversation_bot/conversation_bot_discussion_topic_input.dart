@@ -30,6 +30,9 @@ class ConversationBotDiscussionTopicInput extends StatelessWidget {
                 .conversationBotDiscussionZone_discussionTopicLabel,
           ),
           content: TextField(
+            minLines: 1,
+            maxLines: 10,
+            maxLength: 1000,
             controller: textFieldController,
             onChanged: (value) {
               discussionTopic = value;
