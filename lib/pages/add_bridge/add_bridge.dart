@@ -552,32 +552,6 @@ class BotController extends State<AddBridge> {
     }
   }
 
-  Future<void> handleNewRoomsSync(
-      BuildContext context, SocialNetwork network) async {
-    final List<Room> newRooms = client.rooms;
-
-    for (final Room newRoom in newRooms) {
-      acceptInvitation(newRoom, context);
-    }
-  }
-
-  Set<String> acceptedInvitations = {};
-
-  void acceptInvitation(Room room, BuildContext context) async {
-    try {
-      if (!acceptedInvitations.contains(room.id)) {
-        acceptedInvitations.add(room.id);
-        final waitForRoom = room.client.waitForRoomInSync(room.id, join: true);
-        await room.join();
-        await waitForRoom;
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print("error: $e");
-      }
-    }
-  }
-
   Future<void> createBridgeMeta(
       BuildContext context,
       WebviewCookieManager cookieManager,
@@ -661,12 +635,6 @@ class BotController extends State<AddBridge> {
               connectionState.updateConnectionTitle(
                   L10n.of(context)!.loadingRetrieveRooms);
             });
-
-            // I can't get the bridge to accept conversation requests.
-            // TODO: See how to exceed the rate limit without penalizing the user
-            // await Future.delayed(
-            //     const Duration(seconds: 10)); // Wait sec for rooms loading
-            // await handleNewRoomsSync(context, network);
 
             setState(() => network.updateConnectionResult(true));
 
