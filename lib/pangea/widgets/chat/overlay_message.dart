@@ -15,14 +15,12 @@ class OverlayMessage extends StatelessWidget {
   final Event? previousEvent;
   final bool selected;
   final Timeline timeline;
-  // #Pangea
   // final LanguageModel? selectedDisplayLang;
   final bool immersionMode;
   // final bool definitions;
   final bool ownMessage;
   final ToolbarDisplayController toolbarController;
   final double? width;
-  // Pangea#
 
   const OverlayMessage(
     this.event, {
@@ -30,12 +28,10 @@ class OverlayMessage extends StatelessWidget {
     this.previousEvent,
     this.selected = false,
     required this.timeline,
-    // #Pangea
     required this.immersionMode,
     required this.ownMessage,
     required this.toolbarController,
     this.width,
-    // Pangea#
     super.key,
   });
 
@@ -46,14 +42,12 @@ class OverlayMessage extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    var color = Theme.of(context).colorScheme.surfaceVariant;
-    // #Pangea
+    var color = Theme.of(context).colorScheme.surfaceContainerHighest;
     final isLight = Theme.of(context).brightness == Brightness.light;
     var lightness = isLight ? .05 : .85;
-    // Pangea#
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
-        : Theme.of(context).colorScheme.onBackground;
+        : Theme.of(context).colorScheme.onSurface;
 
     const hardCorner = Radius.circular(4);
 
@@ -118,13 +112,11 @@ class OverlayMessage extends StatelessWidget {
           : (color.blue * lightness).round(),
     );
 
-    // #Pangea
     final pangeaMessageEvent = PangeaMessageEvent(
       event: event,
       timeline: timeline,
       ownMessage: ownMessage,
     );
-    // Pangea#
 
     return Material(
       color: noBubble ? Colors.transparent : color,
@@ -152,7 +144,7 @@ class OverlayMessage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MessageContent(
-              event,
+              event.getDisplayEvent(timeline),
               textColor: textColor,
               borderRadius: borderRadius,
               selected: selected,
@@ -162,13 +154,10 @@ class OverlayMessage extends StatelessWidget {
               isOverlay: true,
             ),
             if (event.hasAggregatedEvents(
-                      timeline,
-                      RelationshipTypes.edit,
-                    ) // #Pangea
-                    ||
-                    (pangeaMessageEvent.showUseType)
-                // Pangea#
-                )
+                  timeline,
+                  RelationshipTypes.edit,
+                ) ||
+                (pangeaMessageEvent.showUseType))
               Padding(
                 padding: const EdgeInsets.only(
                   top: 4.0,
@@ -176,7 +165,6 @@ class OverlayMessage extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // #Pangea
                     if (pangeaMessageEvent.showUseType) ...[
                       pangeaMessageEvent.useType.iconView(
                         context,
@@ -188,14 +176,13 @@ class OverlayMessage extends StatelessWidget {
                       timeline,
                       RelationshipTypes.edit,
                     )) ...[
-                      // Pangea#
                       Icon(
                         Icons.edit_outlined,
                         color: textColor.withAlpha(164),
                         size: 14,
                       ),
                       Text(
-                        ' - ${event.originServerTs.localizedTimeShort(context)}',
+                        ' - ${event.getDisplayEvent(timeline).originServerTs.localizedTimeShort(context)}',
                         style: TextStyle(
                           color: textColor.withAlpha(164),
                           fontSize: 12,

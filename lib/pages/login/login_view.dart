@@ -39,14 +39,11 @@ class LoginView extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () => Navigator.of(context).pop(),
                   style: ButtonStyle(
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Theme.of(context)
-                          .colorScheme
-                          .background
-                          .withOpacity(0.75),
+                    padding: WidgetStateProperty.all(EdgeInsets.zero),
+                    backgroundColor: WidgetStateProperty.all<Color>(
+                      Theme.of(context).colorScheme.surface.withOpacity(0.75),
                     ),
-                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                    shape: WidgetStateProperty.all<OutlinedBorder>(
                       const CircleBorder(),
                     ),
                   ),
@@ -112,7 +109,7 @@ class LoginView extends StatelessWidget {
                       // fillColor: textFieldFillColor,
                       fillColor: Theme.of(context)
                           .colorScheme
-                          .background
+                          .surface
                           .withOpacity(0.75),
                       // Pangea#
                     ),
@@ -168,7 +165,7 @@ class LoginView extends StatelessWidget {
                       // #Pangea
                       fillColor: Theme.of(context)
                           .colorScheme
-                          .background
+                          .surface
                           .withOpacity(0.75),
                       // Pangea#
                     ),

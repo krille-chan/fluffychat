@@ -48,7 +48,7 @@ extension MembershipUpdate on SyncUpdate {
       final List<MatrixEvent>? timelineEvents = update.value.timeline?.events;
       final bool isUpdate = timelineEvents != null &&
           spaceId == activeSpaceId &&
-          timelineEvents.any((event) => event.type == EventTypes.spaceChild);
+          timelineEvents.any((event) => event.type == EventTypes.SpaceChild);
       if (isUpdate) return true;
     }
     return false;

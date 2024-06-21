@@ -90,7 +90,7 @@ extension UserPermissionsRoomExtension on Room {
     if (room != null && !room._isRoomAdmin) {
       return false;
     }
-    if (!pangeaCanSendEvent(EventTypes.spaceChild) && !_isRoomAdmin) {
+    if (!pangeaCanSendEvent(EventTypes.SpaceChild) && !_isRoomAdmin) {
       return false;
     }
     if (room == null) {
@@ -114,7 +114,7 @@ extension UserPermissionsRoomExtension on Room {
   }
 
   bool get _canIAddSpaceParents =>
-      _isRoomAdmin || pangeaCanSendEvent(EventTypes.spaceParent);
+      _isRoomAdmin || pangeaCanSendEvent(EventTypes.SpaceParent);
 
   //overriding the default canSendEvent to check power levels
   bool _pangeaCanSendEvent(String eventType) {

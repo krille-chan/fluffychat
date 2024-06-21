@@ -7,7 +7,6 @@ import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -62,13 +61,13 @@ class Message extends StatelessWidget {
     this.highlightMarker = false,
     this.animateIn = false,
     this.resetAnimateIn,
+    this.avatarPresenceBackgroundColor,
     // #Pangea
     required this.selectedDisplayLang,
     required this.immersionMode,
     required this.definitions,
     required this.controller,
     // Pangea#
-    this.avatarPresenceBackgroundColor,
     super.key,
   });
 
@@ -108,6 +107,7 @@ class Message extends StatelessWidget {
     final client = Matrix.of(context).client;
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
+    // ignore: deprecated_member_use
     var color = Theme.of(context).colorScheme.surfaceVariant;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
@@ -132,7 +132,7 @@ class Message extends StatelessWidget {
 
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
-        : Theme.of(context).colorScheme.onBackground;
+        : Theme.of(context).colorScheme.onSurface;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
@@ -190,268 +190,334 @@ class Message extends StatelessWidget {
             setState(resetAnimateIn);
           });
         }
-        return AnimatedSlide(
-          offset: Offset(0, animateIn ? 1 : 0),
+        return AnimatedSize(
           duration: FluffyThemes.animationDuration,
           curve: FluffyThemes.animationCurve,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: rowMainAxisAlignment,
-            children: [
-              if (longPressSelect)
-                SizedBox(
-                  height: 32,
-                  width: Avatar.defaultSize,
-                  child: Checkbox.adaptive(
-                    value: selected,
-                    shape: const CircleBorder(),
-                    onChanged: (_) => onSelect(event),
-                  ),
-                )
-              else if (nextEventSameSender || ownMessage)
-                SizedBox(
-                  width: Avatar.defaultSize,
-                  child: Center(
-                    child: SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: event.status == EventStatus.error
-                          ? const Icon(Icons.error, color: Colors.red)
-                          : event.fileSendingStatus != null
-                              ? const CircularProgressIndicator.adaptive(
-                                  strokeWidth: 1,
-                                )
-                              : null,
-                    ),
-                  ),
-                )
-              else
-                FutureBuilder<User?>(
-                  future: event.fetchSenderUser(),
-                  builder: (context, snapshot) {
-                    final user =
-                        snapshot.data ?? event.senderFromMemoryOrFallback;
-                    return Avatar(
-                      mxContent: user.avatarUrl,
-                      name: user.calcDisplayname(),
-                      presenceUserId: user.stateKey,
-                      presenceBackgroundColor: avatarPresenceBackgroundColor,
-                      onTap: () => onAvatarTab(event),
-                    );
-                  },
-                ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
+          clipBehavior: Clip.none,
+          alignment: ownMessage ? Alignment.bottomRight : Alignment.bottomLeft,
+          child: animateIn
+              ? const SizedBox(height: 0, width: double.infinity)
+              : Stack(
                   children: [
-                    if (!nextEventSameSender)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, bottom: 4),
-                        child: ownMessage || event.room.isDirectChat
-                            ? const SizedBox(height: 12)
-                            : FutureBuilder<User?>(
-                                future: event.fetchSenderUser(),
-                                builder: (context, snapshot) {
-                                  final displayname =
-                                      snapshot.data?.calcDisplayname() ??
-                                          event.senderFromMemoryOrFallback
-                                              .calcDisplayname();
-                                  return Text(
-                                    displayname,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: (Theme.of(context).brightness ==
-                                              Brightness.light
-                                          ? displayname.color
-                                          : displayname.lightColorText),
-                                    ),
-                                  );
-                                },
-                              ),
-                      ),
-                    Container(
-                      alignment: alignment,
-                      padding: const EdgeInsets.only(left: 8),
-                      child: GestureDetector(
-                        // #Pangea
-                        onTap: () => toolbarController?.showToolbar(context),
-                        onDoubleTap: () =>
-                            toolbarController?.showToolbar(context),
-                        // Pangea#
-                        onLongPress: longPressSelect
-                            ? null
-                            : () {
-                                HapticFeedback.heavyImpact();
-                                onSelect(event);
-                              },
-                        child: AnimatedOpacity(
-                          opacity: animateIn
-                              ? 0
-                              : event.redacted ||
-                                      event.messageType ==
-                                          MessageTypes.BadEncrypted ||
-                                      event.status.isSending
-                                  ? 0.5
-                                  : 1,
-                          duration: FluffyThemes.animationDuration,
-                          curve: FluffyThemes.animationCurve,
-                          child: Material(
-                            color: noBubble ? Colors.transparent : color,
-                            clipBehavior: Clip.antiAlias,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: borderRadius,
-                            ),
-                            // #Pangea
-                            child: CompositedTransformTarget(
-                              link: MatrixState.pAnyState
-                                  .layerLinkAndKey(event.eventId)
-                                  .link,
-                              child: Container(
-                                key: MatrixState.pAnyState
-                                    .layerLinkAndKey(event.eventId)
-                                    .key,
-                                // Pangea#
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                    AppConfig.borderRadius,
-                                  ),
-                                ),
-                                padding: noBubble || noPadding
-                                    ? EdgeInsets.zero
-                                    : const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                        vertical: 8,
-                                      ),
-                                constraints: const BoxConstraints(
-                                  maxWidth: FluffyThemes.columnWidth * 1.5,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    if (event.relationshipType ==
-                                        RelationshipTypes.reply)
-                                      FutureBuilder<Event?>(
-                                        future: event.getReplyEvent(timeline),
-                                        builder:
-                                            (BuildContext context, snapshot) {
-                                          final replyEvent = snapshot.hasData
-                                              ? snapshot.data!
-                                              : Event(
-                                                  eventId: event
-                                                      .relationshipEventId!,
-                                                  content: {
-                                                    'msgtype': 'm.text',
-                                                    'body': '...',
-                                                  },
-                                                  senderId: event.senderId,
-                                                  type: 'm.room.message',
-                                                  room: event.room,
-                                                  status: EventStatus.sent,
-                                                  originServerTs:
-                                                      DateTime.now(),
-                                                );
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 4.0,
-                                            ),
-                                            child: InkWell(
-                                              borderRadius:
-                                                  ReplyContent.borderRadius,
-                                              onTap: () => scrollToEventId(
-                                                replyEvent.eventId,
-                                              ),
-                                              child: AbsorbPointer(
-                                                child: ReplyContent(
-                                                  replyEvent,
-                                                  ownMessage: ownMessage,
-                                                  timeline: timeline,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    MessageContent(
-                                      displayEvent,
-                                      textColor: textColor,
-                                      onInfoTab: onInfoTab,
-                                      borderRadius: borderRadius,
-                                      // #Pangea
-                                      selected: selected,
-                                      pangeaMessageEvent:
-                                          toolbarController?.pangeaMessageEvent,
-                                      immersionMode: immersionMode,
-                                      toolbarController: toolbarController,
-                                      // Pangea#
-                                    ),
-                                    if (event.hasAggregatedEvents(
-                                              timeline,
-                                              RelationshipTypes.edit,
-                                            ) // #Pangea
-                                            ||
-                                            (toolbarController
-                                                    ?.pangeaMessageEvent
-                                                    .showUseType ??
-                                                false)
-                                        // Pangea#
-                                        )
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 4.0,
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            // #Pangea
-                                            if (toolbarController
-                                                    ?.pangeaMessageEvent
-                                                    .showUseType ??
-                                                false) ...[
-                                              toolbarController!
-                                                  .pangeaMessageEvent.useType
-                                                  .iconView(
-                                                context,
-                                                textColor.withAlpha(164),
-                                              ),
-                                              const SizedBox(width: 4),
-                                            ],
-                                            if (event.hasAggregatedEvents(
-                                              timeline,
-                                              RelationshipTypes.edit,
-                                            )) ...[
-                                              // Pangea#
-                                              Icon(
-                                                Icons.edit_outlined,
-                                                color: textColor.withAlpha(164),
-                                                size: 14,
-                                              ),
-                                              Text(
-                                                ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
-                                                style: TextStyle(
-                                                  color:
-                                                      textColor.withAlpha(164),
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ],
-                                          ],
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                    Positioned(
+                      top: 0,
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: InkWell(
+                        onTap: () => onSelect(event),
+                        onLongPress: () => onSelect(event),
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius / 2),
+                        child: Material(
+                          borderRadius:
+                              BorderRadius.circular(AppConfig.borderRadius / 2),
+                          color: selected
+                              ? Theme.of(context)
+                                  .colorScheme
+                                  .secondaryContainer
+                                  .withAlpha(100)
+                              : highlightMarker
+                                  ? Theme.of(context)
+                                      .colorScheme
+                                      .tertiaryContainer
+                                      .withAlpha(100)
+                                  : Colors.transparent,
                         ),
                       ),
                     ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: rowMainAxisAlignment,
+                      children: [
+                        if (longPressSelect)
+                          SizedBox(
+                            height: 32,
+                            width: Avatar.defaultSize,
+                            child: Checkbox.adaptive(
+                              value: selected,
+                              shape: const CircleBorder(),
+                              onChanged: (_) => onSelect(event),
+                            ),
+                          )
+                        else if (nextEventSameSender || ownMessage)
+                          SizedBox(
+                            width: Avatar.defaultSize,
+                            child: Center(
+                              child: SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: event.status == EventStatus.error
+                                    ? const Icon(Icons.error, color: Colors.red)
+                                    : event.fileSendingStatus != null
+                                        ? const CircularProgressIndicator
+                                            .adaptive(
+                                            strokeWidth: 1,
+                                          )
+                                        : null,
+                              ),
+                            ),
+                          )
+                        else
+                          FutureBuilder<User?>(
+                            future: event.fetchSenderUser(),
+                            builder: (context, snapshot) {
+                              final user = snapshot.data ??
+                                  event.senderFromMemoryOrFallback;
+                              return Avatar(
+                                mxContent: user.avatarUrl,
+                                name: user.calcDisplayname(),
+                                presenceUserId: user.stateKey,
+                                presenceBackgroundColor:
+                                    avatarPresenceBackgroundColor,
+                                onTap: () => onAvatarTab(event),
+                              );
+                            },
+                          ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (!nextEventSameSender)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 8.0,
+                                    bottom: 4,
+                                  ),
+                                  child: ownMessage || event.room.isDirectChat
+                                      ? const SizedBox(height: 12)
+                                      : FutureBuilder<User?>(
+                                          future: event.fetchSenderUser(),
+                                          builder: (context, snapshot) {
+                                            final displayname = snapshot.data
+                                                    ?.calcDisplayname() ??
+                                                event.senderFromMemoryOrFallback
+                                                    .calcDisplayname();
+                                            return Text(
+                                              displayname,
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                color: (Theme.of(context)
+                                                            .brightness ==
+                                                        Brightness.light
+                                                    ? displayname.color
+                                                    : displayname
+                                                        .lightColorText),
+                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            );
+                                          },
+                                        ),
+                                ),
+                              Container(
+                                alignment: alignment,
+                                padding: const EdgeInsets.only(left: 8),
+                                child: GestureDetector(
+                                  // #Pangea
+                                  onTap: () =>
+                                      toolbarController?.showToolbar(context),
+                                  onDoubleTap: () =>
+                                      toolbarController?.showToolbar(context),
+                                  // Pangea#
+                                  onLongPress: longPressSelect
+                                      ? null
+                                      : () {
+                                          HapticFeedback.heavyImpact();
+                                          onSelect(event);
+                                        },
+                                  child: AnimatedOpacity(
+                                    opacity: animateIn
+                                        ? 0
+                                        : event.redacted ||
+                                                event.messageType ==
+                                                    MessageTypes.BadEncrypted ||
+                                                event.status.isSending
+                                            ? 0.5
+                                            : 1,
+                                    duration: FluffyThemes.animationDuration,
+                                    curve: FluffyThemes.animationCurve,
+                                    child: Material(
+                                      color:
+                                          noBubble ? Colors.transparent : color,
+                                      clipBehavior: Clip.antiAlias,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: borderRadius,
+                                      ),
+                                      // #Pangea
+                                      child: CompositedTransformTarget(
+                                        link: MatrixState.pAnyState
+                                            .layerLinkAndKey(event.eventId)
+                                            .link,
+                                        child: Container(
+                                          key: MatrixState.pAnyState
+                                              .layerLinkAndKey(event.eventId)
+                                              .key,
+                                          // Pangea#
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              AppConfig.borderRadius,
+                                            ),
+                                          ),
+                                          padding: noBubble || noPadding
+                                              ? EdgeInsets.zero
+                                              : const EdgeInsets.symmetric(
+                                                  horizontal: 16,
+                                                  vertical: 8,
+                                                ),
+                                          constraints: const BoxConstraints(
+                                            maxWidth:
+                                                FluffyThemes.columnWidth * 1.5,
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              if (event.relationshipType ==
+                                                  RelationshipTypes.reply)
+                                                FutureBuilder<Event?>(
+                                                  future: event
+                                                      .getReplyEvent(timeline),
+                                                  builder: (
+                                                    BuildContext context,
+                                                    snapshot,
+                                                  ) {
+                                                    final replyEvent = snapshot
+                                                            .hasData
+                                                        ? snapshot.data!
+                                                        : Event(
+                                                            eventId: event
+                                                                .relationshipEventId!,
+                                                            content: {
+                                                              'msgtype':
+                                                                  'm.text',
+                                                              'body': '...',
+                                                            },
+                                                            senderId:
+                                                                event.senderId,
+                                                            type:
+                                                                'm.room.message',
+                                                            room: event.room,
+                                                            status: EventStatus
+                                                                .sent,
+                                                            originServerTs:
+                                                                DateTime.now(),
+                                                          );
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                        bottom: 4.0,
+                                                      ),
+                                                      child: InkWell(
+                                                        borderRadius:
+                                                            ReplyContent
+                                                                .borderRadius,
+                                                        onTap: () =>
+                                                            scrollToEventId(
+                                                          replyEvent.eventId,
+                                                        ),
+                                                        child: AbsorbPointer(
+                                                          child: ReplyContent(
+                                                            replyEvent,
+                                                            ownMessage:
+                                                                ownMessage,
+                                                            timeline: timeline,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              MessageContent(
+                                                displayEvent,
+                                                textColor: textColor,
+                                                onInfoTab: onInfoTab,
+                                                borderRadius: borderRadius,
+                                                // #Pangea
+                                                selected: selected,
+                                                pangeaMessageEvent:
+                                                    pangeaMessageEvent,
+                                                immersionMode: immersionMode,
+                                                toolbarController:
+                                                    toolbarController,
+                                                // Pangea#
+                                              ),
+                                              if (event.hasAggregatedEvents(
+                                                        timeline,
+                                                        RelationshipTypes.edit,
+                                                      )
+                                                      // #Pangea
+                                                      ||
+                                                      (pangeaMessageEvent
+                                                              ?.showUseType ??
+                                                          false)
+                                                  // Pangea#
+                                                  )
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                    top: 4.0,
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      // #Pangea
+                                                      if (pangeaMessageEvent
+                                                              ?.showUseType ??
+                                                          false) ...[
+                                                        pangeaMessageEvent!
+                                                            .useType
+                                                            .iconView(
+                                                          context,
+                                                          textColor
+                                                              .withAlpha(164),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                      ],
+                                                      if (event
+                                                          .hasAggregatedEvents(
+                                                        timeline,
+                                                        RelationshipTypes.edit,
+                                                      )) ...[
+                                                        // Pangea#
+                                                        Icon(
+                                                          Icons.edit_outlined,
+                                                          color: textColor
+                                                              .withAlpha(164),
+                                                          size: 14,
+                                                        ),
+                                                        Text(
+                                                          ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                                                          style: TextStyle(
+                                                            color: textColor
+                                                                .withAlpha(164),
+                                                            fontSize: 12,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ],
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ),
-            ],
-          ),
         );
       },
     );
@@ -472,11 +538,8 @@ class Message extends StatelessWidget {
               child: Center(
                 child: Material(
                   color: displayTime
-                      ? Theme.of(context).colorScheme.background
-                      : Theme.of(context)
-                          .colorScheme
-                          .background
-                          .withOpacity(0.33),
+                      ? Theme.of(context).colorScheme.surface
+                      : Theme.of(context).colorScheme.surface.withOpacity(0.33),
                   borderRadius:
                       BorderRadius.circular(AppConfig.borderRadius / 2),
                   clipBehavior: Clip.antiAlias,
@@ -544,13 +607,7 @@ class Message extends StatelessWidget {
       container = row;
     }
 
-    return Container(
-      alignment: Alignment.center,
-      color: selected
-          ? Theme.of(context).colorScheme.secondaryContainer.withAlpha(100)
-          : highlightMarker
-              ? Theme.of(context).colorScheme.tertiaryContainer.withAlpha(100)
-              : Colors.transparent,
+    return Center(
       child: Swipeable(
         key: ValueKey(event.eventId),
         background: const Padding(
@@ -559,91 +616,21 @@ class Message extends StatelessWidget {
             child: Icon(Icons.check_outlined),
           ),
         ),
-        direction: SwipeDirection.endToStart,
+        direction: AppConfig.swipeRightToLeftToReply
+            ? SwipeDirection.endToStart
+            : SwipeDirection.startToEnd,
         onSwipe: (_) => onSwipe(),
-        child: HoverBuilder(
-          builder: (context, hovered) => Stack(
-            children: [
-              Container(
-                constraints: const BoxConstraints(
-                  maxWidth: FluffyThemes.columnWidth * 2.5,
-                ),
-                padding: EdgeInsets.only(
-                  left: 8.0,
-                  right: 8.0,
-                  top: nextEventSameSender ? 1.0 : 4.0,
-                  bottom: previousEventSameSender ? 1.0 : 4.0,
-                ),
-                child: container,
-              ),
-              // #Pangea
-              // Positioned(
-              //   left: ownMessage ? null : 48,
-              //   right: ownMessage ? 4 : null,
-              //   top: displayTime ? 38 : 0,
-              //   child: AnimatedScale(
-              //     duration: Duration(
-              //       milliseconds:
-              //           (FluffyThemes.animationDuration.inMilliseconds / 2)
-              //               .floor(),
-              //     ),
-              //     curve: FluffyThemes.animationCurve,
-              //     scale: !longPressSelect && hovered ? 1 : 0,
-              //     alignment: Alignment.center,
-              //     child: Material(
-              //       color: Theme.of(context)
-              //           .colorScheme
-              //           .secondaryContainer
-              //           .withOpacity(0.9),
-              //       elevation:
-              //           Theme.of(context).appBarTheme.scrolledUnderElevation ??
-              //               4,
-              //       borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-              //       shadowColor: Theme.of(context).appBarTheme.shadowColor,
-              //       child: Row(
-              //         mainAxisSize: MainAxisSize.min,
-              //         children: [
-              //           if (event.room.canSendDefaultMessages)
-              //             SizedBox(
-              //               width: 32,
-              //               height: 32,
-              //               child: IconButton(
-              //                 icon: Icon(
-              //                   Icons.reply_outlined,
-              //                   size: 16,
-              //                   color: Theme.of(context)
-              //                       .colorScheme
-              //                       .onTertiaryContainer,
-              //                 ),
-              //                 tooltip: L10n.of(context)!.reply,
-              //                 onPressed: event.room.canSendDefaultMessages
-              //                     ? () => onSwipe()
-              //                     : null,
-              //               ),
-              //             ),
-              //           SizedBox(
-              //             width: 32,
-              //             height: 32,
-              //             child: IconButton(
-              //               icon: Icon(
-              //                 Icons.more_vert,
-              //                 size: 16,
-              //                 color: Theme.of(context)
-              //                     .colorScheme
-              //                     .onTertiaryContainer,
-              //               ),
-              //               tooltip: L10n.of(context)!.select,
-              //               onPressed: () => onSelect(event),
-              //             ),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // Pangea#
-            ],
+        child: Container(
+          constraints: const BoxConstraints(
+            maxWidth: FluffyThemes.columnWidth * 2.5,
           ),
+          padding: EdgeInsets.only(
+            left: 8.0,
+            right: 8.0,
+            top: nextEventSameSender ? 1.0 : 4.0,
+            bottom: previousEventSameSender ? 1.0 : 4.0,
+          ),
+          child: container,
         ),
       ),
     );

@@ -1,4 +1,3 @@
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -14,7 +13,7 @@ class ClassChatPowerLevels {
     final Client client = Matrix.of(context).client;
     final Map<String, dynamic> powerLevelOverride = {};
     powerLevelOverride['events'] = {
-      EventTypes.spaceChild: 0,
+      EventTypes.SpaceChild: 0,
     };
     powerLevelOverride['users'] = {};
 

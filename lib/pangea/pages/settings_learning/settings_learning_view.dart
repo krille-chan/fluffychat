@@ -32,7 +32,7 @@ class SettingsLearningView extends StatelessWidget {
           child: Column(
             children: [
               LanguageTile(controller),
-              CountryPickerTile(),
+              CountryPickerTile(controller),
               const SizedBox(height: 8),
               const Divider(height: 1),
               const SizedBox(height: 8),

@@ -2351,7 +2351,7 @@
   "@report": {},
   "addChatDescription": "Inserir descrição da conversa...",
   "@addChatDescription": {},
-  "hasKnocked": "{user} bateu na porta",
+  "hasKnocked": "🚪 {user} bateu na porta",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2484,5 +2484,209 @@
   "searchChatsRooms": "Buscar por #conversas, @usuários...",
   "@searchChatsRooms": {},
   "databaseMigrationBody": "Por favor, espere. Isto pode demorar um pouco.",
-  "@databaseMigrationBody": {}
+  "@databaseMigrationBody": {},
+  "youInvitedToBy": "Você foi convidado através do link para:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "forwardMessageTo": "Encaminhar mensagem para {roomName}?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "formattedMessagesDescription": "Mostrar mensagens ricas com conteúdos tipo negrito usando markdown.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUser": "🔐 Verificar outro usuário",
+  "@verifyOtherUser": {},
+  "verifyOtherDevice": "🔐 Verificar outro aparelho",
+  "@verifyOtherDevice": {},
+  "acceptedKeyVerification": "{sender} aceitou sua chave de verificação",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "startedKeyVerification": "{sender} iniciou a chave de verificação",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "transparent": "Transparente",
+  "@transparent": {},
+  "databaseBuildErrorBody": "Não foi possível construir o banco de dados SQLite. O aplicativo tentará utilizar o banco de dados legado por enquanto. Por favor, reporte este erro aos desenvolvedores em {url}. A mensagem de erro é: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "initAppError": "Ocorreu um erro enquanto o aplicativo era iniciado",
+  "@initAppError": {},
+  "restoreSessionBody": "O aplicativo tentará agora restaurar sua sessão a partir do backup. Por favor, reporte este ao desenvolvedor em {url}. A mensagem de erro é: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "sendReadReceipts": "Enviar recibos de leitura",
+  "@sendReadReceipts": {},
+  "sendTypingNotificationsDescription": "Outros participantes neste chat podem ver quando você está digitando uma nova mensagem.",
+  "@sendTypingNotificationsDescription": {},
+  "formattedMessages": "Mensagens formatadas",
+  "@formattedMessages": {},
+  "presenceStyle": "Presença:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presencesToggle": "Mostrar o status das mensagens de outros usuários",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_ignore": "Ignorar o seguinte ID Matrix",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Designorar o seguinte ID Matrix",
+  "@commandHint_unignore": {},
+  "hidePresences": "Esconder lista de status?",
+  "@hidePresences": {},
+  "sessionLostBody": "Sua sessão foi desconectada. Por favor, reporte este ao desenvolvedor em {url}. A mensagem de erro é: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "sendReadReceiptsDescription": "Outros participantes neste chat podem ver quando você tiver lido uma mensagem.",
+  "@sendReadReceiptsDescription": {},
+  "verifyOtherUserDescription": "Se você verificar outro usuário, você terá certeza que você conhece com quem está conversando. 💪\n\nQuando iniciar uma verificação, você e o outro usuário receberão um popup no aplicativo. Então vocês receberão uma série de emojis ou números para comparar um com o outro.\n\nA melhor maneira de fazer este procedimento é encontrar pessoalmente ou através de um vídeochamada. 👭",
+  "@verifyOtherUserDescription": {},
+  "requestedKeyVerification": "{sender} enviou uma chave de verificação",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "verifyOtherDeviceDescription": "Quando você verifica outro aparelho, estes aparelhos poderão trocar chaves, aumentando sua segurança. 💪\n\nQuando iniciar a verificação, um popup aparecerá no aplicativo em ambos os aparelhos. Então você verá uma série de emojis ou números que você terá que comparar um com o outro.\n\nÉ melhor fazer esse procedimento com ambos os aparelhos em mãos antes de começar a verificação. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "canceledKeyVerification": "{sender} cancelou sua chave de verificação",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} está pronto para a chave de verificação",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} completou a chave de verificação",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "stickers": "Stickers",
+  "@stickers": {},
+  "discover": "Descubra",
+  "@discover": {},
+  "incomingMessages": "Mensagens recebidas",
+  "@incomingMessages": {},
+  "unreadChatsInApp": "{appname}: {unread} mensagens não lidas",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "appLockDescription": "Bloquear o app com um código PIN quando não estiver usando",
+  "@appLockDescription": {},
+  "accessAndVisibilityDescription": "Quem é permitido entrar nesse chat e como pode ser descoberto.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Chamadas",
+  "@calls": {},
+  "customEmojisAndStickers": "Emojis e stickers customizados",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Adicionar ou compartilhar emojis ou stickers customizados que podem ser usados em qualquer chat.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "Esconder mensagens excluídas",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Se alguém excluir uma mensagem, esta mensagem não será mais visível no chat.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Esconder formatos de mensagem inválidos ou desconhecidos",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hideMemberChangesInPublicChats": "Esconder mudanças de membro em chats públicos",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "Não mostre se alguém entrou ou saiu no chat para melhorar a legibilidade.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "overview": "Visão geral",
+  "@overview": {},
+  "notifyMeFor": "Notificar me para",
+  "@notifyMeFor": {},
+  "usersMustKnock": "Usuários devem bater na porta",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "Ninguém pode entrar",
+  "@noOneCanJoin": {},
+  "knocking": "Batendo na porta",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "O chat pode ser descoberto pela pesquisa em {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "publicChatAddresses": "Endereços de chat públicos",
+  "@publicChatAddresses": {},
+  "thereAreCountUsersBlocked": "Nesse momento, há {count} usuários bloqueados.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "globalChatId": "ID de chat global",
+  "@globalChatId": {},
+  "accessAndVisibility": "Acesso e visibilidade",
+  "@accessAndVisibility": {},
+  "passwordRecoverySettings": "Configurações de recuperação de senha",
+  "@passwordRecoverySettings": {},
+  "userWouldLikeToChangeTheChat": "{user} gostaria de entrar no chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Nenhum link público foi criado ainda",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "userRole": "Cargo do usuário",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} é o nível mínimo de poder.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "noDatabaseEncryption": "A criptografia do banco de dados não é suportada nesta plataforma",
+  "@noDatabaseEncryption": {},
+  "createNewAddress": "Criar um novo endereço",
+  "@createNewAddress": {},
+  "knock": "Bater na porta",
+  "@knock": {}
 }
