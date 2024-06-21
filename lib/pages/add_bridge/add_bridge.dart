@@ -20,6 +20,14 @@ import 'delete_conversation_dialog.dart';
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
+enum ConnectionResult {
+  success,
+  loginTimedOut,
+  notLogged,
+  error,
+  stopListening,
+}
+
 class AddBridge extends StatefulWidget {
   const AddBridge({super.key});
 
@@ -791,6 +799,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  // Checks and processes the last message received for WhatsApp
   Future<String> fetchDataWhatsApp() async {
     final SocialNetwork? whatsAppNetwork = getWhatsAppNetwork();
     if (whatsAppNetwork == null) {
@@ -805,29 +814,42 @@ class BotController extends State<AddBridge> {
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
-    String result = "Not logged";
+    ConnectionResult result = ConnectionResult.notLogged;
 
     while (continueProcess) {
       result = await _checkLatestMessages(
           directChat, successMatch, timeOutMatch, whatsAppNetwork);
 
-      if (result != "Not logged") {
+      if (result != ConnectionResult.notLogged) {
         break;
       }
 
       if (!continueProcess) {
-        result = "Stop Listening";
+        result = ConnectionResult.stopListening;
         break;
       }
 
       await Future.delayed(const Duration(seconds: 2));
     }
 
-    return result;
+    switch (result) {
+      case ConnectionResult.success:
+        return "success";
+      case ConnectionResult.loginTimedOut:
+        return "loginTimedOut";
+      case ConnectionResult.stopListening:
+        return "Stop Listening";
+      default:
+        return "Not logged";
+    }
   }
 
-  Future<String> _checkLatestMessages(String directChat, RegExp successMatch,
-      RegExp timeOutMatch, SocialNetwork whatsAppNetwork) async {
+  // Check last received message
+  Future<ConnectionResult> _checkLatestMessages(
+      String directChat,
+      RegExp successMatch,
+      RegExp timeOutMatch,
+      SocialNetwork whatsAppNetwork) async {
     final GetRoomEventsResponse response =
         await client.getRoomEvents(directChat, Direction.b, limit: 3);
     final List<MatrixEvent> latestMessages = response.chunk ?? [];
@@ -839,14 +861,14 @@ class BotController extends State<AddBridge> {
       if (successMatch.hasMatch(messageBody)) {
         Logs().v("You're logged to WhatsApp");
         setState(() => whatsAppNetwork.connected = true);
-        return "success";
+        return ConnectionResult.success;
       } else if (timeOutMatch.hasMatch(messageBody)) {
         Logs().v("Login timed out");
-        return "loginTimedOut";
+        return ConnectionResult.loginTimedOut;
       }
     }
 
-    return "Not logged";
+    return ConnectionResult.notLogged;
   }
 
   Future<void> createBridgeLinkedin(
