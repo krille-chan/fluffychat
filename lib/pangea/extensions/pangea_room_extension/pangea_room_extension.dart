@@ -152,8 +152,12 @@ extension PangeaRoom on Room {
   }) async =>
       await _archiveSpace(context, client, onlyAdmin: onlyAdmin);
 
+  Future<void> archiveSubspace() async => await _archiveSubspace();
+
   Future<bool> leaveSpace(BuildContext context, Client client) async =>
       await _leaveSpace(context, client);
+
+  Future<void> leaveSubspace() async => await _leaveSubspace();
 
   Future<Event?> sendPangeaEvent({
     required Map<String, dynamic> content,
