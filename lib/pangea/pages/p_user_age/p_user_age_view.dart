@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -18,11 +19,15 @@ class PUserAgeView extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(top: 10),
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(15),
             child: Text(
               L10n.of(context)!.yourBirthdayPlease,
               textAlign: TextAlign.justify,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(
@@ -41,23 +46,25 @@ class PUserAgeView extends StatelessWidget {
                 ListTile(
                   title: Text(
                     L10n.of(context)!.certifyAge(13),
-                    style: const TextStyle(color: Colors.white, fontSize: 14),
+                    style: const TextStyle(color: Colors.black, fontSize: 14),
                   ),
                   leading: Radio<int>(
                     value: 13,
                     groupValue: controller.selectedAge,
                     onChanged: controller.setSelectedAge,
+                    activeColor: AppConfig.primaryColor,
                   ),
                 ),
                 ListTile(
                   title: Text(
                     L10n.of(context)!.certifyAge(18),
-                    style: const TextStyle(color: Colors.white, fontSize: 14),
+                    style: const TextStyle(color: Colors.black, fontSize: 14),
                   ),
                   leading: Radio<int>(
                     value: 18,
                     groupValue: controller.selectedAge,
                     onChanged: controller.setSelectedAge,
+                    activeColor: AppConfig.primaryColor,
                   ),
                 ),
               ],
