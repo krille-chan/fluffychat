@@ -3,9 +3,9 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
+import 'package:fluffychat/pangea/controllers/span_data_controller.dart';
 import 'package:fluffychat/pangea/models/igc_text_data_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/models/span_data.dart';
 import 'package:fluffychat/pangea/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
 import 'package:flutter/foundation.dart';
@@ -14,41 +14,19 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../models/language_detection_model.dart';
 import '../../models/span_card_model.dart';
-import '../../repo/span_data_repo.dart';
 import '../../repo/tokens_repo.dart';
 import '../../utils/error_handler.dart';
 import '../../utils/overlay.dart';
-
-class _SpanDetailsCacheItem {
-  SpanDetailsRepoReqAndRes data;
-
-  _SpanDetailsCacheItem({required this.data});
-}
 
 class IgcController {
   Choreographer choreographer;
   IGCTextData? igcTextData;
   Object? igcError;
-
   Completer<IGCTextData> igcCompleter = Completer();
-  final Map<int, _SpanDetailsCacheItem> _cache = {};
-  Timer? _cacheClearTimer;
+  late SpanDataController spanDataController;
 
   IgcController(this.choreographer) {
-    _initializeCacheClearing();
-  }
-
-  void _initializeCacheClearing() {
-    const duration = Duration(minutes: 2);
-    _cacheClearTimer = Timer.periodic(duration, (Timer t) => _clearCache());
-  }
-
-  void _clearCache() {
-    _cache.clear();
-  }
-
-  void dispose() {
-    _cacheClearTimer?.cancel();
+    spanDataController = SpanDataController(choreographer);
   }
 
   Future<void> getIGCTextData({required bool tokensOnly}) async {
@@ -56,10 +34,8 @@ class IgcController {
       if (choreographer.currentText.isEmpty) return clear();
 
       // the error spans are going to be reloaded, so clear the cache
-      _clearCache();
-
+      spanDataController.clearCache();
       debugPrint('getIGCTextData called with ${choreographer.currentText}');
-
       debugPrint('getIGCTextData called with tokensOnly = $tokensOnly');
 
       final IGCRequestBody reqBody = IGCRequestBody(
@@ -110,7 +86,7 @@ class IgcController {
       // This will make the loading of span details faster for the user
       if (igcTextData?.matches.isNotEmpty ?? false) {
         for (int i = 0; i < igcTextData!.matches.length; i++) {
-          getSpanDetails(i);
+          spanDataController.getSpanDetails(i);
         }
       }
 
@@ -123,56 +99,6 @@ class IgcController {
       ErrorHandler.logError(e: err, s: stack);
       clear();
     }
-  }
-
-  Future<void> getSpanDetails(int matchIndex) async {
-    if (igcTextData == null ||
-        igcTextData!.matches.isEmpty ||
-        matchIndex < 0 ||
-        matchIndex >= igcTextData!.matches.length) {
-      debugger(when: kDebugMode);
-      return;
-    }
-
-    /// Retrieves the span data from the `igcTextData` matches at the specified `matchIndex`.
-    /// Creates a `SpanDetailsRepoReqAndRes` object with the retrieved span data and other parameters.
-    /// Generates a cache key based on the created `SpanDetailsRepoReqAndRes` object.
-    final SpanData span = igcTextData!.matches[matchIndex].match;
-    final req = SpanDetailsRepoReqAndRes(
-      userL1: choreographer.l1LangCode!,
-      userL2: choreographer.l2LangCode!,
-      enableIGC: choreographer.igcEnabled,
-      enableIT: choreographer.itEnabled,
-      span: span,
-    );
-    final int cacheKey = req.hashCode;
-
-    /// Retrieves the [SpanDetailsRepoReqAndRes] response from the cache if it exists,
-    /// otherwise makes an API call to get the response and stores it in the cache.
-    SpanDetailsRepoReqAndRes response;
-    if (_cache.containsKey(cacheKey)) {
-      response = _cache[cacheKey]!.data;
-    } else {
-      response = await SpanDataRepo.getSpanDetails(
-        await choreographer.accessToken,
-        request: SpanDetailsRepoReqAndRes(
-          userL1: choreographer.l1LangCode!,
-          userL2: choreographer.l2LangCode!,
-          enableIGC: choreographer.igcEnabled,
-          enableIT: choreographer.itEnabled,
-          span: span,
-        ),
-      );
-      _cache[cacheKey] = _SpanDetailsCacheItem(data: response);
-    }
-
-    try {
-      igcTextData!.matches[matchIndex].match = response.span;
-    } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
-    }
-
-    choreographer.setState();
   }
 
   Future<void> justGetTokensAndAddThemToIGCTextData() async {
@@ -290,7 +216,7 @@ class IgcController {
 
   clear() {
     igcTextData = null;
-    _clearCache();
+    spanDataController.clearCache();
     // Not sure why this is here
     // MatrixState.pAnyState.closeOverlay();
   }
