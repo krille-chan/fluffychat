@@ -664,7 +664,7 @@ class BotController extends State<AddBridge> {
         Logs().v(
             "Maximum iterations reached, setting result to 'error to ${network.name}'");
         showCatchErrorDialog(context,
-            "${L10n.of(context)!.errorConnectionText}.\nFaites nous part du message d'erreur rencontré: $latestMessage");
+            "${L10n.of(context)!.errorConnectionText}.\n${L10n.of(context)!.errorSendUsProblem} $latestMessage");
         _handleError(network);
       }
     } catch (e) {
