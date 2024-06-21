@@ -4020,7 +4020,7 @@
   "conversationBotDiscussionZone_discussionKeywordsHintText": "Comma separated list of keywords to guide the discussion",
   "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel": "Send discussion prompt on a schedule",
   "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Hours between discussion prompts",
-  "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Send discussion prompt when user reacts ⏩ to bot message",
+  "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Responds on ⏩ reaction",
   "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel": "Reaction to send discussion prompt",
   "studentAnalyticsNotAvailable": "Student data not currently available",
   "roomDataMissing": "Some data may be missing from rooms in which you are not a member.",
