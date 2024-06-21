@@ -16,41 +16,62 @@ class BotOptionsModel {
   String? custom;
   String? discussionTopic;
   String? discussionKeywords;
-  bool? discussionTriggerScheduleEnabled;
-  int? discussionTriggerScheduleHourInterval;
-  bool? discussionTriggerReactionEnabled;
-  String? discussionTriggerReactionKey;
+  bool discussionTriggerReactionEnabled;
+  String discussionTriggerReactionKey;
+  String? customSystemPrompt;
+  bool customTriggerReactionEnabled;
+  String customTriggerReactionKey;
 
   BotOptionsModel({
+    ////////////////////////////////////////////////////////////////////////////
+    // General Bot Options
+    ////////////////////////////////////////////////////////////////////////////
     this.languageLevel,
     this.topic = "General Conversation",
     this.keywords = const [],
     this.safetyModeration = true,
     this.mode = "discussion",
-    this.custom = "",
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Discussion Mode Options
+    ////////////////////////////////////////////////////////////////////////////
     this.discussionTopic,
     this.discussionKeywords,
-    this.discussionTriggerScheduleEnabled,
-    this.discussionTriggerScheduleHourInterval,
     this.discussionTriggerReactionEnabled = true,
-    this.discussionTriggerReactionKey,
+    this.discussionTriggerReactionKey = "⏩",
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Custom Mode Options
+    ////////////////////////////////////////////////////////////////////////////
+    this.customSystemPrompt,
+    this.customTriggerReactionEnabled = true,
+    this.customTriggerReactionKey = "⏩",
   });
 
   factory BotOptionsModel.fromJson(json) {
     return BotOptionsModel(
+      //////////////////////////////////////////////////////////////////////////
+      // General Bot Options
+      //////////////////////////////////////////////////////////////////////////
       languageLevel: json[ModelKey.languageLevel],
       safetyModeration: json[ModelKey.safetyModeration] ?? true,
       mode: json[ModelKey.mode] ?? "discussion",
-      custom: json[ModelKey.custom],
+
+      //////////////////////////////////////////////////////////////////////////
+      // Discussion Mode Options
+      //////////////////////////////////////////////////////////////////////////
       discussionTopic: json[ModelKey.discussionTopic],
       discussionKeywords: json[ModelKey.discussionKeywords],
-      discussionTriggerScheduleEnabled:
-          json[ModelKey.discussionTriggerScheduleEnabled],
-      discussionTriggerScheduleHourInterval:
-          json[ModelKey.discussionTriggerScheduleHourInterval],
       discussionTriggerReactionEnabled:
           json[ModelKey.discussionTriggerReactionEnabled],
       discussionTriggerReactionKey: json[ModelKey.discussionTriggerReactionKey],
+
+      //////////////////////////////////////////////////////////////////////////
+      // Custom Mode Options
+      //////////////////////////////////////////////////////////////////////////
+      customSystemPrompt: json[ModelKey.customSystemPrompt],
+      customTriggerReactionEnabled: json[ModelKey.customTriggerReactionEnabled],
+      customTriggerReactionKey: json[ModelKey.customTriggerReactionKey],
     );
   }
 
@@ -64,14 +85,14 @@ class BotOptionsModel {
       data[ModelKey.custom] = custom;
       data[ModelKey.discussionTopic] = discussionTopic;
       data[ModelKey.discussionKeywords] = discussionKeywords;
-      data[ModelKey.discussionTriggerScheduleEnabled] =
-          discussionTriggerScheduleEnabled;
-      data[ModelKey.discussionTriggerScheduleHourInterval] =
-          discussionTriggerScheduleHourInterval;
       data[ModelKey.discussionTriggerReactionEnabled] =
           discussionTriggerReactionEnabled;
       data[ModelKey.discussionTriggerReactionKey] =
           discussionTriggerReactionKey;
+      data[ModelKey.customSystemPrompt] = customSystemPrompt;
+      data[ModelKey.customTriggerReactionEnabled] =
+          customTriggerReactionEnabled;
+      data[ModelKey.customTriggerReactionKey] = customTriggerReactionKey;
       return data;
     } catch (e, s) {
       debugger(when: kDebugMode);
@@ -101,17 +122,20 @@ class BotOptionsModel {
       case ModelKey.discussionKeywords:
         discussionKeywords = value;
         break;
-      case ModelKey.discussionTriggerScheduleEnabled:
-        discussionTriggerScheduleEnabled = value;
-        break;
-      case ModelKey.discussionTriggerScheduleHourInterval:
-        discussionTriggerScheduleHourInterval = value;
-        break;
       case ModelKey.discussionTriggerReactionEnabled:
         discussionTriggerReactionEnabled = value;
         break;
       case ModelKey.discussionTriggerReactionKey:
         discussionTriggerReactionKey = value;
+        break;
+      case ModelKey.customSystemPrompt:
+        customSystemPrompt = value;
+        break;
+      case ModelKey.customTriggerReactionEnabled:
+        customTriggerReactionEnabled = value;
+        break;
+      case ModelKey.customTriggerReactionKey:
+        customTriggerReactionKey = value;
         break;
       default:
         throw Exception('Invalid key for bot options - $key');
