@@ -60,11 +60,15 @@ extension EventsRoomExtension on Room {
       future: () async {
         final List<Room> children = await getChildRooms();
         for (final Room child in children) {
-          if (!child.isAnalyticsRoom) {
+          if (!child.isAnalyticsRoom && !child.isArchived) {
             if (child.membership != Membership.join) {
               child.join;
             }
-            await child.archive();
+            if (child.isSpace) {
+              await child.archiveSubspace();
+            } else {
+              await child.archive();
+            }
           }
         }
         await _archive();
@@ -75,6 +79,23 @@ extension EventsRoomExtension on Room {
       null,
     );
     return success.error == null;
+  }
+
+  Future<void> _archiveSubspace() async {
+    final List<Room> children = await getChildRooms();
+    for (final Room child in children) {
+      if (!child.isAnalyticsRoom && !child.isArchived) {
+        if (child.membership != Membership.join) {
+          child.join;
+        }
+        if (child.isSpace) {
+          await child.archiveSubspace();
+        } else {
+          await child.archive();
+        }
+      }
+    }
+    await _archive();
   }
 
   Future<bool> _leaveSpace(BuildContext context, Client client) async {
@@ -94,12 +115,18 @@ extension EventsRoomExtension on Room {
         try {
           final List<Room> children = await getChildRooms();
           for (final Room child in children) {
-            if (!child.isSpace &&
-                child.membership == Membership.join &&
-                child.isUnread) {
-              await child.markUnread(false);
+            if (!child.isAnalyticsRoom && !child.isArchived) {
+              if (!child.isSpace &&
+                  child.membership == Membership.join &&
+                  child.isUnread) {
+                await child.markUnread(false);
+              }
+              if (child.isSpace) {
+                await child.leaveSubspace();
+              } else {
+                await child.leave();
+              }
             }
-            await child.leave();
           }
           await leave();
         } catch (err, stack) {
@@ -114,6 +141,25 @@ extension EventsRoomExtension on Room {
       null,
     );
     return success.error == null;
+  }
+
+  Future<void> _leaveSubspace() async {
+    final List<Room> children = await getChildRooms();
+    for (final Room child in children) {
+      if (!child.isAnalyticsRoom && !child.isArchived) {
+        if (!child.isSpace &&
+            child.membership == Membership.join &&
+            child.isUnread) {
+          await child.markUnread(false);
+        }
+        if (child.isSpace) {
+          await child.leaveSubspace();
+        } else {
+          await child.leave();
+        }
+      }
+    }
+    await leave();
   }
 
   Future<Event?> _sendPangeaEvent({
