@@ -1,7 +1,5 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -23,60 +21,90 @@ class SettingsChatView extends StatelessWidget {
           child: Column(
             children: [
               // #Pangea
-              // ListTile(
-              //   title: Text(L10n.of(context)!.emoteSettings),
-              //   onTap: () => context.go('/rooms/settings/chat/emotes'),
-              //   trailing: const Icon(Icons.chevron_right_outlined),
-              //   leading: const Icon(Icons.emoji_emotions_outlined),
-              // ),
-              // const Divider(),
               // SettingsSwitchListTile.adaptive(
-              //   title: L10n.of(context)!.renderRichContent,
+              //   title: L10n.of(context)!.formattedMessages,
+              //   subtitle: L10n.of(context)!.formattedMessagesDescription,
               //   onChanged: (b) => AppConfig.renderHtml = b,
               //   storeKey: SettingKeys.renderHtml,
               //   defaultValue: AppConfig.renderHtml,
               // ),
-              // Pangea#
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.hideRedactedEvents,
-                onChanged: (b) => AppConfig.hideRedactedEvents = b,
-                storeKey: SettingKeys.hideRedactedEvents,
-                defaultValue: AppConfig.hideRedactedEvents,
-              ),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.hideUnknownEvents,
-                onChanged: (b) => AppConfig.hideUnknownEvents = b,
-                storeKey: SettingKeys.hideUnknownEvents,
-                defaultValue: AppConfig.hideUnknownEvents,
-              ),
-              // #Pangea
               // SettingsSwitchListTile.adaptive(
-              //   title: L10n.of(context)!.hideUnimportantStateEvents,
+              //   title: L10n.of(context)!.hideMemberChangesInPublicChats,
+              //   subtitle: L10n.of(context)!.hideMemberChangesInPublicChatsBody,
               //   onChanged: (b) => AppConfig.hideUnimportantStateEvents = b,
               //   storeKey: SettingKeys.hideUnimportantStateEvents,
               //   defaultValue: AppConfig.hideUnimportantStateEvents,
               // ),
               // Pangea#
-              if (PlatformInfos.isMobile)
-                SettingsSwitchListTile.adaptive(
-                  title: L10n.of(context)!.autoplayImages,
-                  onChanged: (b) => AppConfig.autoplayImages = b,
-                  storeKey: SettingKeys.autoplayImages,
-                  defaultValue: AppConfig.autoplayImages,
-                ),
-              const Divider(),
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.hideRedactedMessages,
+                subtitle: L10n.of(context)!.hideRedactedMessagesBody,
+                onChanged: (b) => AppConfig.hideRedactedEvents = b,
+                storeKey: SettingKeys.hideRedactedEvents,
+                defaultValue: AppConfig.hideRedactedEvents,
+              ),
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.hideInvalidOrUnknownMessageFormats,
+                onChanged: (b) => AppConfig.hideUnknownEvents = b,
+                storeKey: SettingKeys.hideUnknownEvents,
+                defaultValue: AppConfig.hideUnknownEvents,
+              ),
               // #Pangea
-              // SettingsSwitchListTile.adaptive(
-              //   title: L10n.of(context)!.sendTypingNotifications,
-              //   onChanged: (b) => AppConfig.sendTypingNotifications = b,
-              //   storeKey: SettingKeys.sendTypingNotifications,
-              //   defaultValue: AppConfig.sendTypingNotifications,
-              // ),
+              // if (PlatformInfos.isMobile)
+              //   SettingsSwitchListTile.adaptive(
+              //     title: L10n.of(context)!.autoplayImages,
+              //     onChanged: (b) => AppConfig.autoplayImages = b,
+              //     storeKey: SettingKeys.autoplayImages,
+              //     defaultValue: AppConfig.autoplayImages,
+              //   ),
               // SettingsSwitchListTile.adaptive(
               //   title: L10n.of(context)!.sendOnEnter,
               //   onChanged: (b) => AppConfig.sendOnEnter = b,
               //   storeKey: SettingKeys.sendOnEnter,
               //   defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
+              // ),
+              // Pangea#
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.swipeRightToLeftToReply,
+                onChanged: (b) => AppConfig.swipeRightToLeftToReply = b,
+                storeKey: SettingKeys.swipeRightToLeftToReply,
+                defaultValue: AppConfig.swipeRightToLeftToReply,
+              ),
+              // #Pangea
+              // Divider(
+              //   height: 1,
+              //   color: Theme.of(context).dividerColor,
+              // ),
+              // ListTile(
+              //   title: Text(
+              //     L10n.of(context)!.customEmojisAndStickers,
+              //     style: TextStyle(
+              //       color: Theme.of(context).colorScheme.secondary,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
+              // ListTile(
+              //   title: Text(L10n.of(context)!.customEmojisAndStickers),
+              //   subtitle: Text(L10n.of(context)!.customEmojisAndStickersBody),
+              //   onTap: () => context.go('/rooms/settings/chat/emotes'),
+              //   trailing: const Padding(
+              //     padding: EdgeInsets.all(16.0),
+              //     child: Icon(Icons.chevron_right_outlined),
+              //   ),
+              // ),
+              // Divider(
+              //   height: 1,
+              //   color: Theme.of(context).dividerColor,
+              // ),
+              // ListTile(
+              //   title: Text(
+              //     L10n.of(context)!.calls,
+              //     style: TextStyle(
+              //       color: Theme.of(context).colorScheme.secondary,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
               // ),
               // SettingsSwitchListTile.adaptive(
               //   title: L10n.of(context)!.experimentalVideoCalls,
@@ -88,23 +116,17 @@ class SettingsChatView extends StatelessWidget {
               //   storeKey: SettingKeys.experimentalVoip,
               //   defaultValue: AppConfig.experimentalVoip,
               // ),
+              // if (PlatformInfos.isMobile)
+              //   ListTile(
+              //     title: Text(L10n.of(context)!.callingPermissions),
+              //     onTap: () =>
+              //         CallKeepManager().checkoutPhoneAccountSetting(context),
+              //     trailing: const Padding(
+              //       padding: EdgeInsets.all(16.0),
+              //       child: Icon(Icons.call),
+              //     ),
+              //   ),
               // Pangea#
-              if (PlatformInfos.isMobile)
-                ListTile(
-                  title: Text(L10n.of(context)!.callingPermissions),
-                  onTap: () =>
-                      CallKeepManager().checkoutPhoneAccountSetting(context),
-                  trailing: const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Icon(Icons.call),
-                  ),
-                ),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.separateChatTypes,
-                onChanged: (b) => AppConfig.separateChatTypes = b,
-                storeKey: SettingKeys.separateChatTypes,
-                defaultValue: AppConfig.separateChatTypes,
-              ),
             ],
           ),
         ),

@@ -67,7 +67,7 @@ class _NaviRailItemState extends State<NaviRailItem> {
                 borderRadius: borderRadius,
                 color: widget.isSelected
                     ? Theme.of(context).colorScheme.primaryContainer
-                    : Theme.of(context).colorScheme.background,
+                    : Theme.of(context).colorScheme.surface,
                 child: Tooltip(
                   message: widget.toolTip,
                   child: InkWell(

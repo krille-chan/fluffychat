@@ -20,49 +20,54 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
     database = await _constructDatabase(client);
     await database.open();
     return database;
-    // #Pangea
-    // } catch (e) {
   } catch (e, s) {
+    // #Pangea
     ErrorHandler.logError(
       e: e,
       s: s,
       m: "Failed to open matrix sdk database. Openning fallback database.",
     );
     // Pangea#
+    Logs().wtf('Unable to construct database!', e, s);
     // Try to delete database so that it can created again on next init:
     database?.delete().catchError(
         // #Pangea
-        // (e, s) => Logs().w(
-        //   'Unable to delete database, after failed construction',
-        //   e,
-        //   s,
-        // ),
-        (e, s) {
-      Logs().w(
-        'Unable to delete database, after failed construction',
-        e,
-        s,
-      );
+        (err, s) {
       ErrorHandler.logError(
         e: e,
         s: s,
         m: "Failed to delete matrix database after failed construction.",
       );
     }
+        // (e, s) => Logs().wtf(
+        //   'Unable to delete database, after failed construction',
+        //   e,
+        //   s,
+        // ),
         // Pangea#
         );
 
-    // Send error notification:
-    // #Pangea
-    // final l10n = lookupL10n(PlatformDispatcher.instance.locale);
-    // ClientManager.sendInitNotification(
-    //   l10n.initAppError,
-    //   l10n.databaseBuildErrorBody(
-    //     AppConfig.newIssueUrl.toString(),
-    //     e.toString(),
-    //   ),
-    // );
-    // Pangea#
+    // Delete database file:
+    if (database == null && !kIsWeb) {
+      final dbFile = File(await _getDatabasePath(client.clientName));
+      if (await dbFile.exists()) await dbFile.delete();
+    }
+
+    try {
+      // Send error notification:
+      // #Pangea
+      // final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+      // ClientManager.sendInitNotification(
+      //   l10n.initAppError,
+      //   l10n.databaseBuildErrorBody(
+      //     AppConfig.newIssueUrl.toString(),
+      //     e.toString(),
+      //   ),
+      // );
+      // Pangea#
+    } catch (e, s) {
+      Logs().e('Unable to send error notification', e, s);
+    }
 
     return FlutterHiveCollectionsDatabase.databaseBuilder(client);
   }
@@ -76,11 +81,16 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
 
   final cipher = await getDatabaseCipher();
 
-  final fileStoragePath = PlatformInfos.isIOS || PlatformInfos.isMacOS
-      ? await getLibraryDirectory()
-      : await getApplicationSupportDirectory();
+  Directory? fileStorageLocation;
+  try {
+    fileStorageLocation = await getTemporaryDirectory();
+  } on MissingPlatformDirectoryException catch (_) {
+    Logs().w(
+      'No temporary directory for file cache available on this platform.',
+    );
+  }
 
-  final path = join(fileStoragePath.path, '${client.clientName}.sqlite');
+  final path = await _getDatabasePath(client.clientName);
 
   // fix dlopen for old Android
   await applyWorkaroundToOpenSqlCipherOnOldAndroidVersions();
@@ -96,21 +106,23 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
 
   // in case we got a cipher, we use the encryption helper
   // to manage SQLite encryption
-  final helper = SQfLiteEncryptionHelper(
-    factory: factory,
-    path: path,
-    cipher: cipher,
-  );
+  final helper = cipher == null
+      ? null
+      : SQfLiteEncryptionHelper(
+          factory: factory,
+          path: path,
+          cipher: cipher,
+        );
 
   // check whether the DB is already encrypted and otherwise do so
-  await helper.ensureDatabaseFileEncrypted();
+  await helper?.ensureDatabaseFileEncrypted();
 
   final database = await factory.openDatabase(
     path,
     options: OpenDatabaseOptions(
       version: 1,
       // most important : apply encryption when opening the DB
-      onConfigure: helper.applyPragmaKey,
+      onConfigure: helper?.applyPragmaKey,
     ),
   );
 
@@ -118,9 +130,17 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
     client.clientName,
     database: database,
     maxFileSize: 1024 * 1024 * 10,
-    fileStoragePath: fileStoragePath,
+    fileStorageLocation: fileStorageLocation?.uri,
     deleteFilesAfterDuration: const Duration(days: 30),
   );
+}
+
+Future<String> _getDatabasePath(String clientName) async {
+  final databaseDirectory = PlatformInfos.isIOS || PlatformInfos.isMacOS
+      ? await getLibraryDirectory()
+      : await getApplicationSupportDirectory();
+
+  return join(databaseDirectory.path, '$clientName.sqlite');
 }
 
 Future<void> _migrateLegacyLocation(

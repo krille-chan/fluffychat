@@ -20,7 +20,9 @@ class GetChatListItemSubtitle {
         (key) => event.content.tryGet(key) != null,
       ) ||
       event.type.startsWith("p.") ||
-      event.type.startsWith("pangea.");
+      event.type.startsWith("pangea.") ||
+      event.type == EventTypes.SpaceChild ||
+      event.type == EventTypes.SpaceParent;
 
   Future<String> getSubtitle(
     L10n l10n,

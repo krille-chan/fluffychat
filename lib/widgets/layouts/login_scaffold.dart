@@ -40,8 +40,8 @@ class LoginScaffold extends StatelessWidget {
         backgroundColor: Colors.transparent,
         // Pangea#
       ),
-      extendBodyBehindAppBar: true,
       // #Pangea
+      extendBodyBehindAppBar: true,
       // body: body,
       body: Container(
         decoration: const BoxDecoration(
@@ -58,11 +58,11 @@ class LoginScaffold extends StatelessWidget {
       ),
       // backgroundColor: isMobileMode
       //     ? null
-      //     : Theme.of(context).colorScheme.background.withOpacity(0.8),
+      //     : Theme.of(context).colorScheme.surface.withOpacity(0.8),
       // bottomNavigationBar: isMobileMode
       //     ? Material(
       //         elevation: 4,
-      //         shadowColor: Theme.of(context).colorScheme.onBackground,
+      //         shadowColor: Theme.of(context).colorScheme.onSurface,
       //         child: const _PrivacyButtons(
       //           mainAxisAlignment: MainAxisAlignment.center,
       //         ),

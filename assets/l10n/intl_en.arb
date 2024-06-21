@@ -136,6 +136,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "appLockDescription": "Lock the app when not using with a pin code",
+  "@appLockDescription": {},
   "archive": "Archive",
   "@archive": {
     "type": "text",
@@ -183,7 +185,9 @@
   },
   "sendTypingNotifications": "Send typing notifications",
   "@sendTypingNotifications": {},
-  "sendOnEnter": "Always send on enter",
+  "swipeRightToLeftToReply": "Swipe right to left to reply",
+  "@swipeRightToLeftToReply": {},
+  "sendOnEnter": "Send on enter",
   "@sendOnEnter": {},
   "badServerVersionsException": "The homeserver supports the Spec versions:\n{serverVersions}\nBut this app supports only {supportedVersions}",
   "@badServerVersionsException": {
@@ -773,6 +777,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "globalChatId": "Global chat ID",
+  "@globalChatId": {},
+  "accessAndVisibility": "Access and visibility",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Who is allowed to join this chat and how the chat can be discovered.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Calls",
+  "@calls": {},
+  "customEmojisAndStickers": "Custom emojis and stickers",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Add or share custom emojis or stickers which can be used in any chat.",
+  "@customEmojisAndStickersBody": {},
   "emoteShortcode": "Emote shortcode",
   "@emoteShortcode": {
     "type": "text",
@@ -958,11 +974,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideUnknownEvents": "Hide unknown events",
-  "@hideUnknownEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
+  "hideRedactedMessages": "Hide redacted messages",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "If someone redacts a message, this message won't be visible in the chat anymore.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Hide invalid or unknown message formats",
+  "@hideInvalidOrUnknownMessageFormats": {},
   "howOffensiveIsThisContent": "How offensive is this content?",
   "@howOffensiveIsThisContent": {
     "type": "text",
@@ -1426,6 +1443,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "hideMemberChangesInPublicChats": "Hide member changes in public chats",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "Do not show in the chat timeline if someone joins or leaves a public chat to improve readability.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "overview": "Overview",
+  "@overview": {},
+  "notifyMeFor": "Notify me for",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Password recovery settings",
+  "@passwordRecoverySettings": {},
   "passwordRecovery": "Password recovery",
   "@passwordRecovery": {
     "type": "text",
@@ -2306,12 +2333,26 @@
       "user": {}
     }
   },
-  "hasKnocked": "{user} has knocked",
+  "hasKnocked": "🚪 {user} has knocked",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
     }
   },
+  "usersMustKnock": "Users must knock",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "No one can join",
+  "@noOneCanJoin": {},
+  "userWouldLikeToChangeTheChat": "{user} would like to join the chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "No public link has been created yet",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "Knock",
+  "@knock": {},
   "users": "Users",
   "@users": {},
   "unlockOldMessages": "Unlock old messages",
@@ -3725,6 +3766,15 @@
       "query": {}
     }
   },
+  "knocking": "Knocking",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Chat can be discovered via the search on {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
   "searchChatsRooms": "Search for #chats, @users...",
   "createClass": "Create class",
   "createExchange": "Create exchange",
@@ -3760,6 +3810,11 @@
   "passwordsDoNotMatch": "Passwords do not match",
   "passwordIsWrong": "Your entered password is wrong",
   "publicLink": "Public link",
+  "@publicLink": {},
+  "publicChatAddresses": "Public chat addresses",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Create new address",
+  "@createNewAddress": {},
   "joinSpace": "Join space",
   "publicSpaces": "Public spaces",
   "addChatOrSubSpace": "Add chat or sub space",
@@ -3767,6 +3822,29 @@
   "decline": "Decline",
   "thisDevice": "This device:",
   "initAppError": "An error occured while init the app",
+  "@initAppError": {},
+  "userRole": "User role",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} is the minimum power level.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "searchIn": "Search in chat \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Search more...",
+  "@searchMore": {},
+  "gallery": "Gallery",
+  "@gallery": {},
+  "files": "Files",
+  "@files": {},
   "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}. The error message is: {error}",
   "@databaseBuildErrorBody": {
     "type": "text",
@@ -3971,6 +4049,17 @@
   "roomCapacityExplanation": "Room capacity limits the number of non-admins allowed in a room.",
   "enterNumber": "Please enter a whole number value.",
   "buildTranslation": "Build your translation from the choices above",
+  "noDatabaseEncryption": "Database encryption is not supported on this platform",
+  "@noDatabaseEncryption": {},
+  "thereAreCountUsersBlocked": "Right now there are {count} users blocked.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "restricted": "Restricted",
+  "@restricted": {},
+  "knockRestricted": "Knock restricted",
+  "@knockRestricted": {},
   "nonexistentSelection": "Selection no longer exists.",
   "cantAddSpaceChild": "You do not have permission to add a child to this space.",
   "roomAddedToSpace": "Room(s) have been added to the selected space."

@@ -62,10 +62,11 @@ abstract class AppConfig {
     host: 'github.com',
     path: '/krille-chan/fluffychat/issues/new',
   );
+  // #Pangea
+  // static bool renderHtml = true;
   static const bool enableSentry = true;
   static const String sentryDns =
       'https://8591d0d863b646feb4f3dda7e5dcab38@o256755.ingest.sentry.io/5243143';
-  // #Pangea
   static bool renderHtml = false;
   // static bool renderHtml = true;
   // Pangea#
@@ -75,11 +76,12 @@ abstract class AppConfig {
   static bool separateChatTypes = false;
   static bool autoplayImages = true;
   static bool sendTypingNotifications = true;
+  static bool sendPublicReadReceipts = true;
+  static bool swipeRightToLeftToReply = true;
   //#Pangea
   static bool sendOnEnter = true;
   // static bool sendOnEnter = false;
   //Pangea#
-  static bool sendPublicReadReceipts = true;
   static bool showPresences = true;
   static bool experimentalVoip = false;
   static const bool hideTypingUsernames = false;
@@ -115,7 +117,6 @@ abstract class AppConfig {
     host: 'servers.joinmatrix.org',
     path: 'servers.json',
   );
-
   // #Pangea
   static String googlePlayMangementUrl =
       "https://play.google.com/store/account/subscriptions";

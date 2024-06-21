@@ -25,7 +25,7 @@ class PaywallCard extends StatelessWidget {
           botExpression: BotExpression.addled,
         ),
         Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(17),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,7 +54,7 @@ class PaywallCard extends StatelessWidget {
                     MatrixState.pAnyState.closeOverlay();
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
+                    backgroundColor: WidgetStateProperty.all<Color>(
                       (AppConfig.primaryColor).withOpacity(0.1),
                     ),
                   ),
@@ -70,7 +70,7 @@ class PaywallCard extends StatelessWidget {
                 width: double.infinity,
                 child: TextButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
+                    backgroundColor: WidgetStateProperty.all<Color>(
                       AppConfig.primaryColor.withOpacity(0.1),
                     ),
                   ),

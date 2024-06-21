@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/constants/colors.dart';
+import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -54,7 +55,15 @@ class StartIGCButtonState extends State<StartIGCButton>
 
   @override
   Widget build(BuildContext context) {
-    if (widget.controller.choreographer.isAutoIGCEnabled ||
+    final bool itEnabled = widget.controller.choreographer.itEnabled;
+    final bool igcEnabled = widget.controller.choreographer.igcEnabled;
+    final CanSendStatus canSendStatus =
+        widget.controller.pangeaController.subscriptionController.canSendStatus;
+    final bool grammarCorrectionEnabled =
+        (itEnabled || igcEnabled) && canSendStatus == CanSendStatus.subscribed;
+
+    if (!grammarCorrectionEnabled ||
+        widget.controller.choreographer.isAutoIGCEnabled ||
         widget.controller.choreographer.choreoMode == ChoreoMode.it) {
       return const SizedBox.shrink();
     }

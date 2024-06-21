@@ -11,7 +11,7 @@ bool canAddToSpace(Room space, PangeaController pangeaController) {
       space.getState(EventTypes.RoomPowerLevels)?.content ?? {};
   final pl = powerLevelsMap
           .tryGetMap<String, dynamic>('events')
-          ?.tryGet<int>(EventTypes.spaceChild) ??
+          ?.tryGet<int>(EventTypes.SpaceChild) ??
       powerLevelsMap.tryGet<int>('events_default') ??
       50;
   return space.ownPowerLevel >= pl && pangeaPermission;

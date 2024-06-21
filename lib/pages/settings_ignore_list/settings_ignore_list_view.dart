@@ -37,13 +37,13 @@ class SettingsIgnoreListView extends StatelessWidget {
                     textInputAction: TextInputAction.done,
                     onSubmitted: (_) => controller.ignoreUser(context),
                     decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      hintText: 'bad_guy:domain.abc',
-                      prefixText: '@',
+                      errorText: controller.errorText,
+                      hintText: '@bad_guy:domain.abc',
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
                       labelText: L10n.of(context)!.blockUsername,
                       suffixIcon: IconButton(
                         tooltip: L10n.of(context)!.block,
-                        icon: const Icon(Icons.done_outlined),
+                        icon: const Icon(Icons.send_outlined),
                         onPressed: () => controller.ignoreUser(context),
                       ),
                     ),
@@ -56,11 +56,19 @@ class SettingsIgnoreListView extends StatelessWidget {
                 ],
               ),
             ),
-            const Divider(height: 1),
+            Divider(
+              color: Theme.of(context).dividerColor,
+            ),
             Expanded(
               child: StreamBuilder<Object>(
-                stream: client.onAccountData.stream
-                    .where((a) => a.type == 'm.ignored_user_list'),
+                stream: client.onSync.stream.where(
+                  (syncUpdate) =>
+                      syncUpdate.accountData?.any(
+                        (accountData) =>
+                            accountData.type == 'm.ignored_user_list',
+                      ) ??
+                      false,
+                ),
                 builder: (context, snapshot) {
                   return ListView.builder(
                     itemCount: client.ignoredUsers.length,
@@ -75,9 +83,11 @@ class SettingsIgnoreListView extends StatelessWidget {
                         title: Text(
                           s.data?.displayName ?? client.ignoredUsers[i],
                         ),
+                        subtitle:
+                            Text(s.data?.userId ?? client.ignoredUsers[i]),
                         trailing: IconButton(
                           tooltip: L10n.of(context)!.delete,
-                          icon: const Icon(Icons.delete_forever_outlined),
+                          icon: const Icon(Icons.delete_outlined),
                           onPressed: () => showFutureLoadingDialog(
                             context: context,
                             future: () =>
