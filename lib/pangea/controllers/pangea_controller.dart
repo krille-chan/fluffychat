@@ -123,9 +123,6 @@ class PangeaController {
       homeserver = Uri.https(homeServer, '');
     }
 
-    matrixState.loginHomeserverSummary =
-        await matrixState.getLoginClient().checkHomeserver(homeserver);
-
     try {
       await matrixState.getLoginClient().register();
       matrixState.loginRegistrationSupported = true;

@@ -2204,219 +2204,146 @@
     },
     "signInWithPassword": "パスワードでログイン",
     "@signInWithPassword": {},
-    "hugContent": "",
-    "@hugContent": {
+      "@hugContent": {
         "type": "text",
         "placeholders": {
             "senderName": {}
         }
     },
-    "jumpToLastReadMessage": "",
-    "@jumpToLastReadMessage": {},
-    "allRooms": "",
-    "@allRooms": {
+      "@jumpToLastReadMessage": {},
+      "@allRooms": {
         "type": "text",
         "placeholders": {}
     },
-    "commandHint_cuddle": "",
-    "@commandHint_cuddle": {},
-    "dismiss": "",
-    "@dismiss": {},
-    "reportErrorDescription": "",
-    "@reportErrorDescription": {},
-    "indexedDbErrorLong": "",
-    "@indexedDbErrorLong": {},
-    "setColorTheme": "",
-    "@setColorTheme": {},
-    "supposedMxid": "",
-    "@supposedMxid": {
+      "@commandHint_cuddle": {},
+      "@dismiss": {},
+      "@reportErrorDescription": {},
+      "@indexedDbErrorLong": {},
+      "@setColorTheme": {},
+      "@supposedMxid": {
         "type": "text",
         "placeholders": {
             "mxid": {}
         }
     },
-    "banUserDescription": "",
-    "@banUserDescription": {},
-    "widgetEtherpad": "",
-    "@widgetEtherpad": {},
-    "removeDevicesDescription": "",
-    "@removeDevicesDescription": {},
-    "separateChatTypes": "",
-    "@separateChatTypes": {
+      "@banUserDescription": {},
+      "@widgetEtherpad": {},
+      "@removeDevicesDescription": {},
+      "@separateChatTypes": {
         "type": "text",
         "placeholders": {}
     },
-    "tryAgain": "",
-    "@tryAgain": {},
-    "unbanUserDescription": "",
-    "@unbanUserDescription": {},
-    "messagesStyle": "",
-    "@messagesStyle": {},
-    "newSpaceDescription": "",
-    "@newSpaceDescription": {},
-    "chatDescription": "",
-    "@chatDescription": {},
-    "callingAccountDetails": "",
-    "@callingAccountDetails": {},
-    "noKeyForThisMessage": "",
-    "@noKeyForThisMessage": {},
-    "pushNotificationsNotAvailable": "",
-    "@pushNotificationsNotAvailable": {},
-    "invalidServerName": "",
-    "@invalidServerName": {},
-    "chatPermissions": "",
-    "@chatPermissions": {},
-    "makeAdminDescription": "",
-    "@makeAdminDescription": {},
-    "saveKeyManuallyDescription": "",
-    "@saveKeyManuallyDescription": {},
-    "setChatDescription": "",
-    "@setChatDescription": {},
-    "importFromZipFile": "",
-    "@importFromZipFile": {},
-    "redactedBy": "",
-    "@redactedBy": {
+      "@tryAgain": {},
+      "@unbanUserDescription": {},
+      "@messagesStyle": {},
+      "@newSpaceDescription": {},
+      "@chatDescription": {},
+      "@callingAccountDetails": {},
+      "@noKeyForThisMessage": {},
+      "@pushNotificationsNotAvailable": {},
+      "@invalidServerName": {},
+      "@chatPermissions": {},
+      "@makeAdminDescription": {},
+      "@saveKeyManuallyDescription": {},
+      "@setChatDescription": {},
+      "@importFromZipFile": {},
+      "@redactedBy": {
         "type": "text",
         "placeholders": {
             "username": {}
         }
     },
-    "fileIsTooBigForServer": "",
-    "@fileIsTooBigForServer": {},
-    "readUpToHere": "",
-    "@readUpToHere": {},
-    "optionalRedactReason": "",
-    "@optionalRedactReason": {},
-    "archiveRoomDescription": "",
-    "@archiveRoomDescription": {},
-    "exportEmotePack": "",
-    "@exportEmotePack": {},
-    "openInMaps": "",
-    "@openInMaps": {
+      "@fileIsTooBigForServer": {},
+      "@readUpToHere": {},
+      "@optionalRedactReason": {},
+      "@archiveRoomDescription": {},
+      "@exportEmotePack": {},
+      "@openInMaps": {
         "type": "text",
         "placeholders": {}
     },
-    "inviteContactToGroupQuestion": "",
-    "@inviteContactToGroupQuestion": {},
-    "redactedByBecause": "",
-    "@redactedByBecause": {
+      "@inviteContactToGroupQuestion": {},
+      "@redactedByBecause": {
         "type": "text",
         "placeholders": {
             "username": {},
             "reason": {}
         }
     },
-    "fileHasBeenSavedAt": "",
-    "@fileHasBeenSavedAt": {
+      "@fileHasBeenSavedAt": {
         "type": "text",
         "placeholders": {
             "path": {}
         }
     },
-    "redactMessageDescription": "",
-    "@redactMessageDescription": {},
-    "invalidInput": "",
-    "@invalidInput": {},
-    "report": "",
-    "@report": {},
-    "googlyEyesContent": "",
-    "@googlyEyesContent": {
+      "@redactMessageDescription": {},
+      "@invalidInput": {},
+      "@report": {},
+      "@googlyEyesContent": {
         "type": "text",
         "placeholders": {
             "senderName": {}
         }
     },
-    "addChatDescription": "",
-    "@addChatDescription": {},
-    "hasKnocked": "",
-    "@hasKnocked": {
+      "@addChatDescription": {},
+      "@hasKnocked": {
         "placeholders": {
             "user": {}
         }
     },
-    "openLinkInBrowser": "",
-    "@openLinkInBrowser": {},
-    "commandHint_me": "",
-    "@commandHint_me": {
+      "@openLinkInBrowser": {},
+      "@commandHint_me": {
         "type": "text",
         "description": "Usage hint for the command /me"
     },
-    "directChat": "",
-    "@directChat": {},
-    "wrongPinEntered": "",
-    "@wrongPinEntered": {
+      "@directChat": {},
+      "@wrongPinEntered": {
         "type": "text",
         "placeholders": {
             "seconds": {}
         }
     },
-    "sendTypingNotifications": "",
-    "@sendTypingNotifications": {},
-    "inviteGroupChat": "",
-    "@inviteGroupChat": {},
-    "appearOnTop": "",
-    "@appearOnTop": {},
-    "invitePrivateChat": "",
-    "@invitePrivateChat": {},
-    "commandHint_kick": "",
-    "@commandHint_kick": {
+      "@sendTypingNotifications": {},
+      "@inviteGroupChat": {},
+      "@appearOnTop": {},
+      "@invitePrivateChat": {},
+      "@commandHint_kick": {
         "type": "text",
         "description": "Usage hint for the command /kick"
     },
-    "commandHint_unban": "",
-    "@commandHint_unban": {
+      "@commandHint_unban": {
         "type": "text",
         "description": "Usage hint for the command /unban"
     },
-    "importEmojis": "",
-    "@importEmojis": {},
-    "noChatDescriptionYet": "",
-    "@noChatDescriptionYet": {},
-    "learnMore": "",
-    "@learnMore": {},
-    "notAnImage": "",
-    "@notAnImage": {},
-    "chatDescriptionHasBeenChanged": "",
-    "@chatDescriptionHasBeenChanged": {},
-    "commandHint_op": "",
-    "@commandHint_op": {
+      "@importEmojis": {},
+      "@noChatDescriptionYet": {},
+      "@learnMore": {},
+      "@notAnImage": {},
+      "@chatDescriptionHasBeenChanged": {},
+      "@commandHint_op": {
         "type": "text",
         "description": "Usage hint for the command /op"
     },
-    "roomUpgradeDescription": "",
-    "@roomUpgradeDescription": {},
-    "pleaseEnterANumber": "",
-    "@pleaseEnterANumber": {},
-    "profileNotFound": "",
-    "@profileNotFound": {},
-    "jump": "",
-    "@jump": {},
-    "shareInviteLink": "",
-    "@shareInviteLink": {},
-    "cuddleContent": "",
-    "@cuddleContent": {
+      "@roomUpgradeDescription": {},
+      "@pleaseEnterANumber": {},
+      "@profileNotFound": {},
+      "@jump": {},
+      "@shareInviteLink": {},
+      "@cuddleContent": {
         "type": "text",
         "placeholders": {
             "senderName": {}
         }
     },
-    "emoteKeyboardNoRecents": "",
-    "@emoteKeyboardNoRecents": {
+      "@emoteKeyboardNoRecents": {
         "type": "text",
         "placeholders": {}
     },
-    "setTheme": "",
-    "@setTheme": {},
-    "replace": "",
-    "@replace": {},
-    "pleaseTryAgainLaterOrChooseDifferentServer": "",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-    "createGroup": "",
-    "@createGroup": {},
-    "kickUserDescription": "",
-    "@kickUserDescription": {},
-    "importNow": "",
-    "@importNow": {},
-    "invite": "",
-    "@invite": {}
+      "@setTheme": {},
+      "@replace": {},
+      "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+      "@createGroup": {},
+      "@kickUserDescription": {},
+      "@importNow": {},
+      "@invite": {}
 }

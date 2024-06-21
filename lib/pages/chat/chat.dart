@@ -37,7 +37,6 @@ import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -57,10 +56,12 @@ import 'send_location_dialog.dart';
 class ChatPage extends StatelessWidget {
   final String roomId;
   final String? shareText;
+  final String? eventId;
 
   const ChatPage({
     super.key,
     required this.roomId,
+    this.eventId,
     this.shareText,
   });
 
@@ -84,9 +85,10 @@ class ChatPage extends StatelessWidget {
     }
 
     return ChatPageWithRoom(
-      key: Key('chat_page_$roomId'),
+      key: Key('chat_page_${roomId}_$eventId'),
       room: room,
       shareText: shareText,
+      eventId: eventId,
     );
   }
 }
@@ -94,11 +96,13 @@ class ChatPage extends StatelessWidget {
 class ChatPageWithRoom extends StatefulWidget {
   final Room room;
   final String? shareText;
+  final String? eventId;
 
   const ChatPageWithRoom({
     super.key,
     required this.room,
     this.shareText,
+    this.eventId,
   });
 
   @override
@@ -298,12 +302,14 @@ class ChatController extends State<ChatPageWithRoom>
   void initState() {
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
+
     _loadDraft();
     super.initState();
     _displayChatDetailsColumn = ValueNotifier(
       Matrix.of(context).store.getBool(SettingKeys.displayChatDetailsColumn) ??
           false,
     );
+
     sendingClient = Matrix.of(context).client;
     WidgetsBinding.instance.addObserver(this);
     // #Pangea
@@ -354,15 +360,19 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void _tryLoadTimeline() async {
+    final initialEventId = widget.eventId;
     loadTimelineFuture = _getTimeline();
     try {
       await loadTimelineFuture;
+      if (initialEventId != null) scrollToEventId(initialEventId);
+
       final fullyRead = room.fullyRead;
       if (fullyRead.isEmpty) {
         setReadMarker();
         return;
       }
-      if (timeline!.events.any((event) => event.eventId == fullyRead)) {
+      if (timeline?.events.any((event) => event.eventId == fullyRead) ??
+          false) {
         Logs().v('Scroll up to visible event', fullyRead);
         setReadMarker();
         return;
@@ -457,18 +467,6 @@ class ChatController extends State<ChatPageWithRoom>
     }
     timeline!.requestKeys(onlineKeyBackupOnly: false);
     if (room.markedUnread) room.markUnread(false);
-
-    // when the scroll controller is attached we want to scroll to an event id, if specified
-    // and update the scroll controller...which will trigger a request history, if the
-    // "load more" button is visible on the screen
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (mounted) {
-        final event = GoRouterState.of(context).uri.queryParameters['event'];
-        if (event != null) {
-          scrollToEventId(event);
-        }
-      }
-    });
 
     return;
   }
@@ -800,7 +798,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     // #Pangea
-    // if (await Record().hasPermission() == false) return;
+    // if (await AudioRecorder().hasPermission() == false) return;
     // Pangea#
     final result = await showDialog<RecordingResult>(
       context: context,
@@ -981,7 +979,7 @@ class ChatController extends State<ChatPageWithRoom>
         );
       }
       for (final event in selectedEvents) {
-        await event.remove();
+        await event.cancelSend();
       }
       setState(selectedEvents.clear);
     } catch (e, s) {
@@ -1031,7 +1029,7 @@ class ChatController extends State<ChatPageWithRoom>
               );
             }
           } else {
-            await event.remove();
+            await event.cancelSend();
           }
         },
       );
@@ -1512,25 +1510,12 @@ class ChatController extends State<ChatPageWithRoom>
     );
     if (callType == null) return;
 
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () =>
-          Matrix.of(context).voipPlugin!.voip.requestTurnServerCredentials(),
-    );
-    if (success.result != null) {
-      final voipPlugin = Matrix.of(context).voipPlugin;
-      try {
-        await voipPlugin!.voip.inviteToCall(room.id, callType);
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toLocalizedString(context))),
-        );
-      }
-    } else {
-      await showOkAlertDialog(
-        context: context,
-        title: L10n.of(context)!.unavailable,
-        okLabel: L10n.of(context)!.next,
+    final voipPlugin = Matrix.of(context).voipPlugin;
+    try {
+      await voipPlugin!.voip.inviteToCall(room, callType);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toLocalizedString(context))),
       );
     }
   }

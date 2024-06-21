@@ -79,7 +79,7 @@ class NewSpaceController extends State<NewSpace> {
         stateKey: '',
         content: {
           'events': {
-            EventTypes.spaceChild: 0,
+            EventTypes.SpaceChild: 0,
           },
           'users_default': 0,
           'users': {
@@ -220,7 +220,6 @@ class NewSpaceController extends State<NewSpace> {
         );
         MatrixState.pangeaController.classController
             .setActiveSpaceIdInChatListController(spaceId);
-        context.go("/rooms/$spaceId/details");
         return;
       }
 
@@ -249,7 +248,6 @@ class NewSpaceController extends State<NewSpace> {
       // context.pop<String>(spaceId);
       MatrixState.pangeaController.classController
           .setActiveSpaceIdInChatListController(spaceId);
-      context.go("/rooms/$spaceId/details");
       // Pangea#
     } catch (e) {
       setState(() {

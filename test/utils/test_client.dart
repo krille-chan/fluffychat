@@ -2,7 +2,6 @@
 
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
-import 'package:matrix_api_lite/fake_matrix_api.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
 
@@ -14,7 +13,8 @@ Future<Client> prepareTestClient({
   homeserver ??= Uri.parse('https://fakeserver.notexisting');
   final client = Client(
     'FluffyChat Widget Tests',
-    httpClient: FakeMatrixApi(),
+    httpClient: FakeMatrixApi()
+      ..api['GET']!['/.well-known/matrix/client'] = (req) => {},
     verificationMethods: {
       KeyVerificationMethod.numbers,
       KeyVerificationMethod.emoji,

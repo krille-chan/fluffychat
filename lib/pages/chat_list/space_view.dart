@@ -239,7 +239,9 @@ class _SpaceViewState extends State<SpaceView> {
           room?.getLocalizedDisplayname(
             MatrixLocals(L10n.of(context)!),
           ),
-      message: spaceChild?.topic ?? room?.topic,
+      // #Pangea
+      // message: spaceChild?.topic ?? room?.topic,
+      // Pangea#
       actions: [
         // #Pangea
         // if (room == null)
@@ -255,7 +257,7 @@ class _SpaceViewState extends State<SpaceView> {
             room != null &&
             room.ownPowerLevel >= ClassDefaultValues.powerLevelOfAdmin &&
             // Pangea#
-            (activeSpace?.canChangeStateEvent(EventTypes.spaceChild) ?? false))
+            (activeSpace?.canChangeStateEvent(EventTypes.SpaceChild) ?? false))
           SheetAction(
             key: SpaceChildContextAction.removeFromSpace,
             label: L10n.of(context)!.removeFromSpace,
@@ -338,6 +340,16 @@ class _SpaceViewState extends State<SpaceView> {
         widget.controller.cancelAction();
         // #Pangea
         if (room == null || room.membership == Membership.leave) return;
+        if (room.isSpace) {
+          await room.archiveSpace(
+            context,
+            Matrix.of(context).client,
+            onlyAdmin: false,
+          );
+        } else {
+          widget.controller.toggleSelection(room.id);
+          await widget.controller.archiveAction();
+        }
         // Pangea#
         _refresh();
         break;
@@ -824,7 +836,6 @@ class _SpaceViewState extends State<SpaceView> {
                                   size: 24,
                                   mxContent: spaceChild.avatarUrl,
                                   name: spaceChild.name,
-                                  fontSize: 9,
                                 ),
                               ),
                               color: Theme.of(context)
@@ -847,7 +858,7 @@ class _SpaceViewState extends State<SpaceView> {
                             ),
                             // #Pangea
                             // if (activeSpace?.canChangeStateEvent(
-                            //       EventTypes.spaceChild,
+                            //       EventTypes.SpaceChild,
                             //     ) ==
                             //     true)
                             //   Material(

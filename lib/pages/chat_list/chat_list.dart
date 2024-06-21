@@ -166,6 +166,11 @@ class ChatListController extends State<ChatList>
       // Pangea#
       selectedRoomIds.clear();
       activeFilter = getActiveFilterByDestination(i);
+      // #Pangea
+      if (activeFilter != ActiveFilter.spaces) {
+        activeSpaceId = null;
+      }
+      // Pangea#
     });
     // #Pangea
     final bool clickedAllSpaces = (!AppConfig.separateChatTypes && i == 1) ||
@@ -523,6 +528,9 @@ class ChatListController extends State<ChatList>
       // if (event["activeSpaceId"] != null && mounted) {
       if (mounted) {
         setActiveSpace(event["activeSpaceId"]);
+        if (event["activeSpaceId"] != null) {
+          context.go("/rooms/${event["activeSpaceId"]}/details");
+        }
       }
     });
 

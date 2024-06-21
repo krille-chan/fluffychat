@@ -10,7 +10,6 @@ class Avatar extends StatelessWidget {
   final void Function()? onTap;
   static const double defaultSize = 44;
   final Client? client;
-  final double fontSize;
   final String? presenceUserId;
   final Color? presenceBackgroundColor;
   //#Pangea
@@ -23,7 +22,6 @@ class Avatar extends StatelessWidget {
     this.size = defaultSize,
     this.onTap,
     this.client,
-    this.fontSize = 18,
     this.presenceUserId,
     this.presenceBackgroundColor,
     //#Pangea
@@ -51,16 +49,14 @@ class Avatar extends StatelessWidget {
         fallbackLetters,
         style: TextStyle(
           color: noPic ? Colors.white : null,
-          fontSize: fontSize,
+          fontSize: (size / 2.5).roundToDouble(),
         ),
       ),
     );
     final borderRadius = BorderRadius.circular(size / 2);
-    // #Pangea
-    // final presenceUserId = this.presenceUserId;
-    // final color =
-    //     noPic ? name?.lightColorAvatar : Theme.of(context).secondaryHeaderColor;
-    // Pangea#
+    final presenceUserId = this.presenceUserId;
+    final color =
+        noPic ? name?.lightColorAvatar : Theme.of(context).secondaryHeaderColor;
     final container = Stack(
       children: [
         ClipRRect(
@@ -68,9 +64,7 @@ class Avatar extends StatelessWidget {
           child: Container(
             width: size,
             height: size,
-            color: noPic
-                ? name?.lightColorAvatar
-                : Theme.of(context).secondaryHeaderColor,
+            color: color,
             child: noPic
                 ? textWidget
                 : MxcImage(
@@ -105,6 +99,7 @@ class Avatar extends StatelessWidget {
               ),
             ),
           ),
+        // #Pangea
         // PresenceBuilder(
         //   client: client,
         //   userId: presenceUserId,
@@ -120,23 +115,27 @@ class Avatar extends StatelessWidget {
         //             ? Colors.orange
         //             : Colors.grey;
         //     return Positioned(
-        //       bottom: -4,
-        //       right: -4,
+        //       bottom: -3,
+        //       right: -3,
         //       child: Container(
         //         width: 16,
         //         height: 16,
         //         decoration: BoxDecoration(
         //           color: presenceBackgroundColor ??
-        //               Theme.of(context).colorScheme.background,
+        //               Theme.of(context).colorScheme.surface,
         //           borderRadius: BorderRadius.circular(32),
         //         ),
         //         alignment: Alignment.center,
         //         child: Container(
-        //           width: 8,
-        //           height: 8,
+        //           width: 10,
+        //           height: 10,
         //           decoration: BoxDecoration(
         //             color: dotColor,
         //             borderRadius: BorderRadius.circular(16),
+        //             border: Border.all(
+        //               width: 1,
+        //               color: Theme.of(context).colorScheme.surface,
+        //             ),
         //           ),
         //         ),
         //       ),

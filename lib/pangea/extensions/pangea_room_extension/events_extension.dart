@@ -60,9 +60,14 @@ extension EventsRoomExtension on Room {
       future: () async {
         final List<Room> children = await getChildRooms();
         for (final Room child in children) {
-          await child.archive();
+          if (!child.isAnalyticsRoom) {
+            if (child.membership != Membership.join) {
+              child.join;
+            }
+            await child.archive();
+          }
         }
-        await archive();
+        await _archive();
       },
     );
     MatrixState.pangeaController.classController

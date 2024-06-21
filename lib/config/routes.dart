@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat_access_settings/chat_access_settings_controller.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_members/chat_members.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
+import 'package:fluffychat/pages/chat_search/chat_search_page.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
@@ -261,6 +263,7 @@ abstract class AppRoutes {
                     state,
                     ChatPage(
                       roomId: state.pathParameters['roomid']!,
+                      eventId: state.uri.queryParameters['event'],
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -510,10 +513,22 @@ abstract class AppRoutes {
                 ChatPage(
                   roomId: state.pathParameters['roomid']!,
                   shareText: state.uri.queryParameters['body'],
+                  eventId: state.uri.queryParameters['event'],
                 ),
               ),
               redirect: loggedOutRedirect,
               routes: [
+                GoRoute(
+                  path: 'search',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    ChatSearchPage(
+                      roomId: state.pathParameters['roomid']!,
+                    ),
+                  ),
+                  redirect: loggedOutRedirect,
+                ),
                 // #Pangea
                 // GoRoute(
                 //   path: 'encryption',
@@ -546,6 +561,17 @@ abstract class AppRoutes {
                     ),
                   ),
                   routes: [
+                    GoRoute(
+                      path: 'access',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ChatAccessSettings(
+                          roomId: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
                     GoRoute(
                       path: 'members',
                       pageBuilder: (context, state) => defaultPageBuilder(
@@ -621,13 +647,10 @@ abstract class AppRoutes {
     Widget child,
   ) =>
       FluffyThemes.isColumnMode(context)
-          ? CustomTransitionPage(
+          ? NoTransitionPage(
               key: state.pageKey,
               restorationId: state.pageKey.value,
               child: child,
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) =>
-                      FadeTransition(opacity: animation, child: child),
             )
           : MaterialPage(
               key: state.pageKey,

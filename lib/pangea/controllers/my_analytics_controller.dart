@@ -148,7 +148,28 @@ class MyAnalyticsController extends BaseController {
     }
   }
 
+  Completer<void>? _updateCompleter;
   Future<void> updateAnalytics() async {
+    if (!(_updateCompleter?.isCompleted ?? true)) {
+      await _updateCompleter!.future;
+      return;
+    }
+    _updateCompleter = Completer<void>();
+    try {
+      await _updateAnalytics();
+    } catch (err, s) {
+      ErrorHandler.logError(
+        e: err,
+        m: "Failed to update analytics",
+        s: s,
+      );
+    } finally {
+      _updateCompleter?.complete();
+      _updateCompleter = null;
+    }
+  }
+
+  Future<void> _updateAnalytics() async {
     // top level analytics sending function. Send analytics
     // for each type of analytics event
     // to each of the applicable analytics rooms
@@ -237,7 +258,11 @@ class MyAnalyticsController extends BaseController {
     }
 
     // send the analytics data to the analytics room
-    if (analyticsContent.isEmpty) return;
+    // if there is no data to send, don't send an event,
+    // unless no events have been sent yet. In that case, send an event
+    // with no data to indicate that the the system checked for data
+    // and found none, so the system doesn't repeatedly check for data
+    if (analyticsContent.isEmpty && lastUpdated != null) return;
     await AnalyticsEvent.sendEvent(
       analyticsRoom,
       type,
