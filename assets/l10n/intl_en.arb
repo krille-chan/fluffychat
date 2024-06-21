@@ -4,22 +4,12 @@
   "repeatPassword": "Repeat password",
   "@repeatPassword": {},
   "notAnImage": "Not an image file.",
-  "@notAnImage": {},
   "remove": "Remove",
-  "@remove": {
-    "type": "text",
-    "placeholders": {}
-  },
   "importNow": "Import now",
-  "@importNow": {},
   "importEmojis": "Import Emojis",
-  "@importEmojis": {},
   "importFromZipFile": "Import from .zip file",
-  "@importFromZipFile": {},
   "exportEmotePack": "Export Emote pack as .zip",
-  "@exportEmotePack": {},
   "replace": "Replace",
-  "@replace": {},
   "about": "About",
   "@about": {
     "type": "text",
@@ -64,7 +54,6 @@
     }
   },
   "addChatDescription": "Add a chat description...",
-  "@addChatDescription": {},
   "addToSpace": "Add to space",
   "@addToSpace": {},
   "admin": "Admin",
@@ -88,11 +77,8 @@
     "placeholders": {}
   },
   "commandHint_googly": "Send some googly eyes",
-  "@commandHint_googly": {},
   "commandHint_cuddle": "Send a cuddle",
-  "@commandHint_cuddle": {},
   "commandHint_hug": "Send a hug",
-  "@commandHint_hug": {},
   "googlyEyesContent": "{senderName} sends you googly eyes",
   "@googlyEyesContent": {
     "type": "text",
@@ -127,11 +113,11 @@
     "placeholders": {}
   },
   "appLock": "App lock",
+  "appLockDescription": "Lock the app when not using with a pin code",
   "@appLock": {
     "type": "text",
     "placeholders": {}
   },
-  "appLockDescription": "Lock the app when not using with a pin code",
   "archive": "Archive",
   "@archive": {
     "type": "text",
@@ -607,7 +593,6 @@
     }
   },
   "createGroup": "Create group",
-  "@createGroup": {},
   "createNewSpace": "New space",
   "@createNewSpace": {
     "type": "text",
@@ -719,7 +704,6 @@
     "placeholders": {}
   },
   "chatPermissions": "Chat permissions",
-  "@chatPermissions": {},
   "editDisplayname": "Edit displayname",
   "editDisplaynameMessage": "Note: Only Tawkie users can see it.",
   "@editDisplayname": {
@@ -767,6 +751,63 @@
   "calls": "Calls",
   "customEmojisAndStickers": "Custom emojis and stickers",
   "customEmojisAndStickersBody": "Add or share custom emojis or stickers which can be used in any chat.",
+  "hideRedactedMessages": "Hide redacted messages",
+  "hideRedactedMessagesBody": "If someone redacts a message, this message won't be visible in the chat anymore.",
+  "hideInvalidOrUnknownMessageFormats": "Hide invalid or unknown message formats",
+  "hideMemberChangesInPublicChats": "Hide member changes in public chats",
+  "hideMemberChangesInPublicChatsBody": "Do not show in the chat timeline if someone joins or leaves a public chat to improve readability.",
+  "overview": "Overview",
+  "notifyMeFor": "Notify me for",
+  "passwordRecoverySettings": "Password recovery settings",
+  "usersMustKnock": "Users must knock",
+  "noOneCanJoin": "No one can join",
+  "userWouldLikeToChangeTheChat": "{user} would like to join the chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "No public link has been created yet",
+  "knock": "Knock",
+  "knocking": "Knocking",
+  "chatCanBeDiscoveredViaSearchOnServer": "Chat can be discovered via the search on {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "@publicLink": {},
+  "publicChatAddresses": "Public chat addresses",
+  "createNewAddress": "Create new address",
+  "@initAppError": {},
+  "userRole": "User role",
+  "minimumPowerLevel": "{level} is the minimum power level.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "searchIn": "Search in {chat}...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Search more...",
+  "gallery": "Gallery",
+  "files": "Files",
+  "@verifyOtherDeviceDescription": {},
+  "noDatabaseEncryption": "Database encryption is not supported on this platform",
+  "thereAreCountUsersBlocked": "Right now there are {count} users blocked.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "restricted": "Restricted",
+  "knockRestricted": "Knock restricted",
   "emoteShortcode": "Emote shortcode",
   "@emoteShortcode": {
     "type": "text",
@@ -889,9 +930,7 @@
     "placeholders": {}
   },
   "chatDescription": "Chat description",
-  "@chatDescription": {},
   "chatDescriptionHasBeenChanged": "Chat description changed",
-  "@chatDescriptionHasBeenChanged": {},
   "groupIsPublic": "Group is public",
   "@groupIsPublic": {
     "type": "text",
@@ -937,9 +976,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedMessages": "Hide redacted messages",
-  "hideRedactedMessagesBody": "If someone redacts a message, this message won't be visible in the chat anymore.",
-  "hideInvalidOrUnknownMessageFormats": "Hide invalid or unknown message formats",
+  "hideUnknownEvents": "Hide unknown events",
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
@@ -959,14 +996,10 @@
     "type": "text",
     "placeholders": {}
   },
-  "block": "Block",
-  "@block": {},
+  "block": "block",
   "blockedUsers": "Blocked users",
-  "@blockedUsers": {},
   "blockListDescription": "You can block users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal block list.",
-  "@blockListDescription": {},
   "blockUsername": "Ignore username",
-  "@blockUsername": {},
   "iHaveClickedOnLink": "I have clicked on the link",
   "@iHaveClickedOnLink": {
     "type": "text",
@@ -988,29 +1021,23 @@
     "placeholders": {}
   },
   "inviteContactToGroupQuestion": "Do you want to invite {contact} to the chat \"{groupName}\"?",
-  "@inviteContactToGroupQuestion": {},
-  "inviteContactToGroup": "Invite contact to {groupName}",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
       "groupName": {}
     }
   },
+  "inviteContactToGroup": "Invite contact to {groupName}",
   "noChatDescriptionYet": "No chat description created yet.",
-  "@noChatDescriptionYet": {},
   "tryAgain": "Try again",
-  "@tryAgain": {},
   "invalidServerName": "Invalid server name",
-  "@invalidServerName": {},
   "invited": "Invited",
   "@invited": {
     "type": "text",
     "placeholders": {}
   },
   "redactMessageDescription": "The message will be redacted for all participants in this conversation. This cannot be undone.",
-  "@redactMessageDescription": {},
   "optionalRedactReason": "(Optional) Reason for redacting this message...",
-  "@optionalRedactReason": {},
   "invitedUser": "📩 {username} invited {targetName}",
   "@invitedUser": {
     "type": "text",
@@ -1029,13 +1056,11 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} invited you to FluffyChat.\n1. Visit fluffychat.im and install the app \n2. Sign up or sign in \n3. Open the invite link: \n {link}",
   "inviteTextTawkie": "{username} invited you to chat on Tawkie! \nCentralise all your messages today. \nhttps://tawkie.fr",
   "@inviteText": {
     "type": "text",
     "placeholders": {
-      "username": {},
-      "link": {}
+      "username": {}
     }
   },
   "isTyping": "is typing…",
@@ -1172,12 +1197,11 @@
     "placeholders": {}
   },
   "messages": "Messages",
+  "messagesStyle": "Messages:",
   "@messages": {
     "type": "text",
     "placeholders": {}
   },
-  "messagesStyle": "Messages:",
-  "@messagesStyle": {},
   "moderator": "Moderator",
   "@moderator": {
     "type": "text",
@@ -1198,7 +1222,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "💬 New message in FluffyChat",
+  "newMessageInFluffyChat": "💬 New message in Tawkie",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1247,7 +1271,6 @@
     }
   },
   "shareInviteLink": "Share invite link",
-  "@shareInviteLink": {},
   "scanQrCode": "Scan QR code",
   "@scanQrCode": {},
   "none": "None",
@@ -1395,11 +1418,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideMemberChangesInPublicChats": "Hide member changes in public chats",
-  "hideMemberChangesInPublicChatsBody": "Do not show in the chat timeline if someone joins or leaves a public chat to improve readability.",
-  "overview": "Overview",
-  "notifyMeFor": "Notify me for",
-  "passwordRecoverySettings": "Password recovery settings",
   "passwordRecovery": "Password recovery",
   "@passwordRecovery": {
     "type": "text",
@@ -1502,7 +1520,6 @@
     }
   },
   "directChat": "Direct chat",
-  "@directChat": {},
   "redactedByBecause": "Redacted by {username} because: \"{reason}\"",
   "@redactedByBecause": {
     "type": "text",
@@ -1542,6 +1559,10 @@
   },
   "rejoin": "Rejoin",
   "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "@remove": {
     "type": "text",
     "placeholders": {}
   },
@@ -1735,7 +1756,6 @@
     "placeholders": {}
   },
   "setChatDescription": "Set chat description",
-  "@setChatDescription": {},
   "setInvitationLink": "Set invitation link",
   "@setInvitationLink": {
     "type": "text",
@@ -1821,7 +1841,6 @@
     }
   },
   "startFirstChat": "Start your first chat",
-  "@startFirstChat": {},
   "status": "Status",
   "@status": {
     "type": "text",
@@ -2275,22 +2294,12 @@
       "user": {}
     }
   },
-  "hasKnocked": "🚪 {user} has knocked",
+  "hasKnocked": "{user} has knocked",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
     }
   },
-  "usersMustKnock": "Users must knock",
-  "noOneCanJoin": "No one can join",
-  "userWouldLikeToChangeTheChat": "{user} would like to join the chat.",
-  "@userWouldLikeToChangeTheChat": {
-    "placeholders": {
-      "user": {}
-    }
-  },
-  "noPublicLinkHasBeenCreatedYet": "No public link has been created yet",
-  "knock": "Knock",
   "users": "Users",
   "@users": {},
   "unlockOldMessages": "Unlock old messages",
@@ -2325,13 +2334,13 @@
   "@callingPermissions": {},
   "callingAccount": "Calling account",
   "@callingAccount": {},
-  "callingAccountDetails": "Allows FluffyChat to use the native android dialer app.",
+  "callingAccountDetails": "Allows Tawkie to use the native android dialer app.",
   "@callingAccountDetails": {},
   "appearOnTop": "Appear on top",
   "@appearOnTop": {},
-  "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Fluffychat setup as a calling account)",
+  "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Tawkie setup as a calling account)",
   "@appearOnTopDetails": {},
-  "otherCallingPermissions": "Microphone, camera and other FluffyChat permissions",
+  "otherCallingPermissions": "Microphone, camera and other Tawkie permissions",
   "@otherCallingPermissions": {},
   "whyIsThisMessageEncrypted": "Why is this message unreadable?",
   "@whyIsThisMessageEncrypted": {},
@@ -2355,11 +2364,8 @@
     }
   },
   "hideUnimportantStateEvents": "Hide unimportant state events",
-  "@hideUnimportantStateEvents": {},
   "hidePresences": "Hide Status List?",
-  "@hidePresences": {},
   "doNotShowAgain": "Do not show again",
-  "@doNotShowAgain": {},
   "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
   "@wasDirectChatDisplayName": {
     "type": "text",
@@ -2368,23 +2374,14 @@
     }
   },
   "newSpaceDescription": "Spaces allows you to consolidate your chats and build private or public communities.",
-  "@newSpaceDescription": {},
   "encryptThisChat": "Encrypt this chat",
-  "@encryptThisChat": {},
   "disableEncryptionWarning": "For security reasons you can not disable encryption in a chat, where it has been enabled before.",
-  "@disableEncryptionWarning": {},
   "sorryThatsNotPossible": "Sorry... that is not possible",
-  "@sorryThatsNotPossible": {},
   "deviceKeys": "Device keys:",
-  "@deviceKeys": {},
   "reopenChat": "Reopen chat",
-  "@reopenChat": {},
   "noBackupWarning": "Warning! Without enabling chat backup, you will lose access to your encrypted messages. It is highly recommended to enable the chat backup first before logging out.",
-  "@noBackupWarning": {},
   "noOtherDevicesFound": "No other devices found",
-  "@noOtherDevicesFound": {},
   "fileIsTooBigForServer": "The server reports that the file is too large to be sent.",
-  "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "File has been saved at {path}",
   "@fileHasBeenSavedAt": {
     "type": "text",
@@ -2393,21 +2390,13 @@
     }
   },
   "jumpToLastReadMessage": "Jump to last read message",
-  "@jumpToLastReadMessage": {},
   "readUpToHere": "Read up to here",
-  "@readUpToHere": {},
   "jump": "Jump",
-  "@jump": {},
   "openLinkInBrowser": "Open link in browser",
-  "@openLinkInBrowser": {},
   "reportErrorDescription": "😭 Oh no. Something went wrong. If you want, you can report this bug to the developers.",
-  "@reportErrorDescription": {},
   "report": "report",
-  "@report": {},
   "signInWithPassword": "Sign in with password",
-  "@signInWithPassword": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Please try again later or choose a different server.",
-  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "signInWith": "Sign in with {provider}",
   "@signInWith": {
     "type": "text",
@@ -2416,19 +2405,12 @@
     }
   },
   "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
-  "@profileNotFound": {},
   "setTheme": "Set theme:",
-  "@setTheme": {},
   "setColorTheme": "Set color theme:",
-  "@setColorTheme": {},
   "invite": "Invite",
-  "@invite": {},
   "inviteGroupChat": "📨 Invite group chat",
-  "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Invite private chat",
-  "@invitePrivateChat": {},
   "invalidInput": "Invalid input!",
-  "@invalidInput": {},
   "wrongPinEntered": "Wrong pin entered! Try again in {seconds} seconds...",
   "@wrongPinEntered": {
     "type": "text",
@@ -2437,27 +2419,16 @@
     }
   },
   "pleaseEnterANumber": "Please enter a number greater than 0",
-  "@pleaseEnterANumber": {},
   "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
-  "@archiveRoomDescription": {},
   "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
-  "@roomUpgradeDescription": {},
   "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
-  "@removeDevicesDescription": {},
   "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
-  "@banUserDescription": {},
   "unbanUserDescription": "The user will be able to enter the chat again if they try.",
-  "@unbanUserDescription": {},
   "kickUserDescription": "The user is kicked out of the chat but not banned. In public chats, the user can rejoin at any time.",
-  "@kickUserDescription": {},
   "makeAdminDescription": "Once you make this user admin, you may not be able to undo this as they will then have the same permissions as you.",
-  "@makeAdminDescription": {},
   "pushNotificationsNotAvailable": "Push notifications not available",
-  "@pushNotificationsNotAvailable": {},
   "learnMore": "Learn more",
-  "@learnMore": {},
   "yourGlobalUserIdIs": "Your global user-ID is: ",
-  "@yourGlobalUserIdIs": {},
   "noUsersFoundWithQuery": "Unfortunately no user could be found with \"{query}\". Please check whether you made a typo.",
   "@noUsersFoundWithQuery": {
     "type": "text",
@@ -2465,86 +2436,32 @@
       "query": {}
     }
   },
-  "knocking": "Knocking",
-  "chatCanBeDiscoveredViaSearchOnServer": "Chat can be discovered via the search on {server}",
-  "@chatCanBeDiscoveredViaSearchOnServer": {
-    "type": "text",
-    "placeholders": {
-      "server": {}
-    }
-  },
   "searchChatsRooms": "Search for #chats, @users...",
-  "@searchChatsRooms": {},
   "nothingFound": "Nothing found...",
-  "@nothingFound": {},
   "groupName": "Group name",
-  "@groupName": {},
   "createGroupAndInviteUsers": "Create a group and invite users",
-  "@createGroupAndInviteUsers": {},
   "groupCanBeFoundViaSearch": "Group can be found via search",
-  "@groupCanBeFoundViaSearch": {},
   "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
-  "@wrongRecoveryKey": {},
   "startConversation": "Start conversation",
-  "@startConversation": {},
   "commandHint_sendraw": "Send raw json",
-  "@commandHint_sendraw": {},
   "databaseMigrationTitle": "Database is optimized",
-  "@databaseMigrationTitle": {},
   "databaseMigrationBody": "Please wait. This may take a moment.",
-  "@databaseMigrationBody": {},
   "leaveEmptyToClearStatus": "Leave empty to clear your status.",
-  "@leaveEmptyToClearStatus": {},
   "select": "Select",
-  "@select": {},
   "searchForUsers": "Search for @users...",
-  "@searchForUsers": {},
   "pleaseEnterYourCurrentPassword": "Please enter your current password",
-  "@pleaseEnterYourCurrentPassword": {},
   "newPassword": "New password",
-  "@newPassword": {},
   "pleaseChooseAStrongPassword": "Please choose a strong password",
-  "@pleaseChooseAStrongPassword": {},
   "passwordsDoNotMatch": "Passwords do not match",
-  "@passwordsDoNotMatch": {},
   "passwordIsWrong": "Your entered password is wrong",
-  "@passwordIsWrong": {},
   "publicLink": "Public link",
-  "@publicLink": {},
-  "publicChatAddresses": "Public chat addresses",
-  "createNewAddress": "Create new address",
   "joinSpace": "Join space",
-  "@joinSpace": {},
   "publicSpaces": "Public spaces",
-  "@publicSpaces": {},
   "addChatOrSubSpace": "Add chat or sub space",
-  "@addChatOrSubSpace": {},
   "subspace": "Subspace",
-  "@subspace": {},
   "decline": "Decline",
-  "@decline": {},
   "thisDevice": "This device:",
-  "@thisDevice": {},
   "initAppError": "An error occured while init the app",
-  "@initAppError": {},
-  "userRole": "User role",
-  "minimumPowerLevel": "{level} is the minimum power level.",
-  "@minimumPowerLevel": {
-    "type": "text",
-    "placeholders": {
-      "level": {}
-    }
-  },
-  "searchIn": "Search in {chat}...",
-  "@searchIn": {
-    "type": "text",
-    "placeholders": {
-      "chat": {}
-    }
-  },
-  "searchMore": "Search more...",
-  "gallery": "Gallery",
-  "files": "Files",
   "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}. The error message is: {error}",
   "@databaseBuildErrorBody": {
     "type": "text",
@@ -2577,23 +2494,14 @@
     }
   },
   "sendReadReceipts": "Send read receipts",
-  "@sendReadReceipts": {},
   "sendTypingNotificationsDescription": "Other participants in a chat can see when you are typing a new message.",
-  "@sendTypingNotificationsDescription": {},
   "sendReadReceiptsDescription": "Other participants in a chat can see when you have read a message.",
-  "@sendReadReceiptsDescription": {},
   "formattedMessages": "Formatted messages",
-  "@formattedMessages": {},
   "formattedMessagesDescription": "Display rich message content like bold text using markdown.",
-  "@formattedMessagesDescription": {},
   "verifyOtherUser": "🔐 Verify other user",
-  "@verifyOtherUser": {},
   "verifyOtherUserDescription": "If you verify another user, you can be sure that you know who you are really writing to. 💪\n\nWhen you start a verification, you and the other user will see a popup in the app. There you will then see a series of emojis or numbers that you have to compare with each other.\n\nThe best way to do this is to meet up or start a video call. 👭",
-  "@verifyOtherUserDescription": {},
   "verifyOtherDevice": "🔐 Verify other device",
-  "@verifyOtherDevice": {},
   "verifyOtherDeviceDescription": "When you verify another device, those devices can exchange keys, increasing your overall security. 💪 When you start a verification, a popup will appear in the app on both devices. There you will then see a series of emojis or numbers that you have to compare with each other. It's best to have both devices handy before you start the verification. 🤳",
-  "@verifyOtherDeviceDescription": {},
   "acceptedKeyVerification": "{sender} accepted key verification",
   "@acceptedKeyVerification": {
     "type": "text",
@@ -2637,17 +2545,11 @@
     }
   },
   "transparent": "Transparent",
-  "@transparent": {},
   "incomingMessages": "Incoming messages",
-  "@incomingMessages": {},
   "stickers": "Stickers",
-  "@stickers": {},
   "discover": "Discover",
-  "@discover": {},
   "commandHint_ignore": "Ignore the given matrix ID",
-  "@commandHint_ignore": {},
   "commandHint_unignore": "Unignore the given matrix ID",
-  "@commandHint_unignore": {},
   "unreadChatsInApp": "{appname}: {unread} unread chats",
   "@unreadChatsInApp": {
     "type": "text",
@@ -2656,19 +2558,12 @@
       "unread": {}
     }
   },
-  "noDatabaseEncryption": "Database encryption is not supported on this platform",
-  "thereAreCountUsersBlocked": "Right now there are {count} users blocked.",
-  "@thereAreCountUsersBlocked": {
-    "type": "text",
-    "count": {}
-  },
-  "restricted": "Restricted",
-  "knockRestricted": "Knock restricted",
   "youDonTHaveConversation": "You don't have any conversation yet.",
   "connectChatNetworks": "Connect your chat networks",
   "addChatNetwork": "Add chat network",
   "addSocialMessagingAccounts": "Add your social messaging accounts",
   "addSocialMessagingAccountsText": "Connect all of your conversations!",
+  "addSocialDoubleFactorAdvice": "Enabling two-factor identification on social networks can provide a better connection.",
   "connected": "Connected",
   "notConnected": "Not connected",
   "connectYourSocialAccount": "Login to your account",
@@ -2716,6 +2611,7 @@
   "email": "Email",
   "loadingDemandToConnect": "Connection request in progress...",
   "loadingVerification": "Login verification...",
+  "loadingTakeFewSeconds": "It may take a few seconds",
   "loadingVerificationNumber": "Phone number verification...",
   "loadingSendCode": "Sending the code...",
   "loadingVerificationCode": "Code verification...",
@@ -2723,6 +2619,7 @@
   "loadingDisconnectionSuccess": "Successful logout",
   "loadingDeleteRoom": "Delete the conversation...",
   "loadingDeleteRoomSuccess": "Conversation deleted",
+  "loadingRetrieveRooms": "Retrieving conversations",
   "refreshList": "Refresh list",
   "loginTitle": "Login to your Tawkie account",
   "registerTitle": "Create your Tawkie account",
@@ -2777,6 +2674,9 @@
   "alreadyAccountRegister": "Already have an account?",
   "authCodeSentTo": "Code sent to",
   "authResendCodeMessage": "A new code has been sent",
+  "linkedinExplainTitle": "Linkedin Connection Instructions",
+  "linkedinExplainInstruction": "Linkedin Connection Instructions:",
+  "linkedinExplainOne": "To connect to Linkedin, please use the mobile or desktop application.",
   "privacyText": "By creating an account, you agree to our ",
   "privacyTextPrivacy": "privacy policy",
   "privacyTextAnd": " and ",

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:provider/provider.dart';
-import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
+import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -14,7 +14,7 @@ import 'model/social_network.dart';
 Future<bool> showBottomSheetBridge(
   BuildContext context,
   SocialNetwork network,
-  BotBridgeConnection botConnection,
+  BotController controller,
 ) async {
   final Completer<bool> completer = Completer<bool>();
 
@@ -43,8 +43,8 @@ Future<bool> showBottomSheetBridge(
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
-                    result = await botConnection.disconnectFromNetwork(
-                        context, network, connectionStateModel);
+                     result = await controller.disconnectFromNetwork(
+                         context, network, connectionStateModel);
                   },
                 );
 

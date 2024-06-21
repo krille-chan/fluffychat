@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/archive/archive.dart';
 import 'package:tawkie/pages/chat/chat.dart';
@@ -313,7 +314,7 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        const AddBridgeBody(),
+                        const AddBridge(),
                       ),
                       redirect: loggedOutRedirect,
                     ),
