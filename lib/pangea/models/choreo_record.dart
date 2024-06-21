@@ -247,22 +247,27 @@ class ChoreoRecord {
       choreoSteps.isNotEmpty ? choreoSteps.last.text : "";
 }
 
-/// new step are saved
+/// A new ChoreoRecordStep is saved in the following cases:
 /// 1) before every system-provided text is accepted, if final text is different
 /// from last step
 /// 2) on the acceptance of system-provided text
 /// 3) on message send, if final text is different from last step
+/// 4) on the acceptance of an it step
+/// 5) on the start of it
 ///
-/// user edit
-/// "hey ther"
+/// Example 1:
+/// the user types "hey ther"
+/// IGC suggests "there"
 /// user accepts "there" correction
-/// "hey there"
-/// step made for user edits and step made for system suggestion
-/// user goes through IT, chooses "hola"
-/// "hola"
-/// step saved
-/// adds "amigo"
-/// step saved
+/// text is now "hey there"
+/// A step is made for the original input 'hey there' and a step is made for system suggestion
+///
+/// Example 2:
+/// user write "hi friend"
+/// a step is made for the original input 'hi friend'
+/// the user selects IT and a step is made
+/// the user chooses "hola" and a step is saved
+/// adds "amigo" and a step saved
 class ChoreoRecordStep {
   /// text after changes have been made
   String text;

@@ -239,7 +239,9 @@ class _SpaceViewState extends State<SpaceView> {
           room?.getLocalizedDisplayname(
             MatrixLocals(L10n.of(context)!),
           ),
-      message: spaceChild?.topic ?? room?.topic,
+      // #Pangea
+      // message: spaceChild?.topic ?? room?.topic,
+      // Pangea#
       actions: [
         // #Pangea
         // if (room == null)

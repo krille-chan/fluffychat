@@ -121,13 +121,6 @@ class PangeaRichTextState extends State<PangeaRichText> {
         InstructionsEnum.blurMeansTranslate,
         widget.pangeaMessageEvent.eventId,
       );
-    } else {
-      pangeaController.instructions.show(
-        context,
-        InstructionsEnum.clickMessage,
-        widget.pangeaMessageEvent.eventId,
-        true,
-      );
     }
 
     //TODO - take out of build function of every message

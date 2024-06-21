@@ -32,7 +32,7 @@ class BotOptionsModel {
     this.discussionKeywords,
     this.discussionTriggerScheduleEnabled,
     this.discussionTriggerScheduleHourInterval,
-    this.discussionTriggerReactionEnabled,
+    this.discussionTriggerReactionEnabled = true,
     this.discussionTriggerReactionKey,
   });
 

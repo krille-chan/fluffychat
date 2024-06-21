@@ -133,7 +133,8 @@ extension AnalyticsClientExtension on Client {
   // Checks for invites to any student analytics rooms
   // Handles case of analytics rooms that can't be added to some space(s)
   Future<void> _joinInvitedAnalyticsRooms() async {
-    for (final Room room in rooms) {
+    final List<Room> allRooms = List.from(rooms);
+    for (final Room room in allRooms) {
       if (room.membership == Membership.invite && room.isAnalyticsRoom) {
         try {
           await room.join();
