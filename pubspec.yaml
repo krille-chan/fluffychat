@@ -39,17 +39,17 @@ dependencies:
   flutter_local_notifications: ^17.0.0
   flutter_localizations:
     sdk: flutter
-  flutter_map: ^6.1.0
+  flutter_map: ^7.0.1
   flutter_math_fork: ^0.7.2
   flutter_olm: 1.3.2 # Keep in sync with scripts/prepare-web.sh ! 1.4.0 does currently not build on Android
-  flutter_openssl_crypto: ^0.3.0
+  flutter_openssl_crypto: ^0.5.0
   flutter_ringtone_player: ^4.0.0+2
   flutter_secure_storage: ^9.0.0
   flutter_shortcuts:
     git: https://github.com/krille-chan/flutter_shortcuts.git
   flutter_typeahead: ^5.2.0
   flutter_web_auth_2: ^3.1.1
-  flutter_webrtc: ^0.10.3
+  flutter_webrtc: ^0.11.1
   future_loading_dialog: ^0.3.0
   geolocator: ^7.6.2
   go_router: ^14.0.1
@@ -66,7 +66,7 @@ dependencies:
   linkify: ^5.0.0
   matrix: ^0.29.12
   native_imaging: ^0.1.1
-  package_info_plus: ^6.0.0
+  package_info_plus: ^8.0.0
   pasteboard: ^0.2.0
   path: ^1.9.0
   path_provider: ^2.1.2
@@ -95,7 +95,7 @@ dependencies:
   webrtc_interface: ^1.0.13
 
 dev_dependencies:
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
   flutter_native_splash: ^2.0.3+1
   flutter_test:
     sdk: flutter
