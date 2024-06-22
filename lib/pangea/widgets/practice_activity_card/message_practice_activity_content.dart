@@ -1,9 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_acitivity_record_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity_card/multiple_choice_activity.dart';
@@ -64,7 +64,7 @@ class MessagePracticeActivityContentState
 
   Widget get activityWidget {
     switch (widget.practiceEvent.practiceActivity.activityType) {
-      case ActivityType.multipleChoice:
+      case ActivityTypeEnum.multipleChoice:
         return MultipleChoiceActivity(
           card: this,
           updateChoice: updateChoice,

@@ -1,5 +1,10 @@
+import 'dart:developer';
+
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
 
 class ConstructIdentifier {
   final String lemma;
@@ -8,12 +13,18 @@ class ConstructIdentifier {
   ConstructIdentifier({required this.lemma, required this.type});
 
   factory ConstructIdentifier.fromJson(Map<String, dynamic> json) {
-    return ConstructIdentifier(
-      lemma: json['lemma'] as String,
-      type: ConstructType.values.firstWhere(
-        (e) => e.string == json['type'],
-      ),
-    );
+    try {
+      return ConstructIdentifier(
+        lemma: json['lemma'] as String,
+        type: ConstructType.values.firstWhere(
+          (e) => e.string == json['type'],
+        ),
+      );
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: e, s: s, data: json);
+      rethrow;
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -23,8 +34,6 @@ class ConstructIdentifier {
     };
   }
 }
-
-enum ActivityType { multipleChoice, freeResponse, listening, speaking }
 
 class CandidateMessage {
   final String msgId;
@@ -72,7 +81,7 @@ class PracticeActivityRequest {
   final List<ConstructIdentifier>? targetConstructs;
   final List<CandidateMessage>? candidateMessages;
   final List<String>? userIds;
-  final ActivityType? activityType;
+  final ActivityTypeEnum? activityType;
   final int? numActivities;
 
   PracticeActivityRequest({
@@ -96,7 +105,7 @@ class PracticeActivityRequest {
           .map((e) => CandidateMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
       userIds: (json['user_ids'] as List?)?.map((e) => e as String).toList(),
-      activityType: ActivityType.values.firstWhere(
+      activityType: ActivityTypeEnum.values.firstWhere(
         (e) => e.toString().split('.').last == json['activity_type'],
       ),
       numActivities: json['num_activities'] as int,
@@ -210,7 +219,7 @@ class PracticeActivityModel {
   final List<ConstructIdentifier> tgtConstructs;
   final String langCode;
   final String msgId;
-  final ActivityType activityType;
+  final ActivityTypeEnum activityType;
   final MultipleChoice? multipleChoice;
   final Listening? listening;
   final Speaking? speaking;
@@ -234,8 +243,8 @@ class PracticeActivityModel {
           .toList(),
       langCode: json['lang_code'] as String,
       msgId: json['msg_id'] as String,
-      activityType: ActivityType.values.firstWhere(
-        (e) => e.toString().split('.').last == json['activity_type'],
+      activityType: ActivityTypeEnum.values.firstWhere(
+        (e) => e.string == json['activity_type'],
       ),
       multipleChoice: json['multiple_choice'] != null
           ? MultipleChoice.fromJson(
@@ -249,7 +258,9 @@ class PracticeActivityModel {
           ? Speaking.fromJson(json['speaking'] as Map<String, dynamic>)
           : null,
       freeResponse: json['free_response'] != null
-          ? FreeResponse.fromJson(json['free_response'] as Map<String, dynamic>)
+          ? FreeResponse.fromJson(
+              json['free_response'] as Map<String, dynamic>,
+            )
           : null,
     );
   }

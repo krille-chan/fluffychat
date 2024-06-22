@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
@@ -15,6 +16,7 @@ import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -653,9 +655,15 @@ class PangeaMessageEvent {
   }
 
   List<PracticeActivityEvent> practiceActivities(String langCode) {
-    return _practiceActivityEvents
-        .where((ev) => ev.practiceActivity.langCode == langCode)
-        .toList();
+    try {
+      return _practiceActivityEvents
+          .where((ev) => ev.practiceActivity.langCode == langCode)
+          .toList();
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: e, s: s, data: event.toJson());
+      return [];
+    }
   }
 
   // List<SpanData> get activities =>

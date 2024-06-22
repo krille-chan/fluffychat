@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 class MultipleChoice {
   final String question;
   final List<String> choices;
-  final String correctAnswer;
+  final String answer;
 
   MultipleChoice({
     required this.question,
     required this.choices,
-    required this.correctAnswer,
+    required this.answer,
   });
 
   bool isCorrect(int index) => index == correctAnswerIndex;
 
-  bool get isValidQuestion => choices.contains(correctAnswer);
+  bool get isValidQuestion => choices.contains(answer);
 
-  int get correctAnswerIndex => choices.indexOf(correctAnswer);
+  int get correctAnswerIndex => choices.indexOf(answer);
 
   Color choiceColor(int index) =>
       index == correctAnswerIndex ? AppConfig.success : AppConfig.warning;
@@ -25,7 +25,7 @@ class MultipleChoice {
     return MultipleChoice(
       question: json['question'] as String,
       choices: (json['choices'] as List).map((e) => e as String).toList(),
-      correctAnswer: json['correct_answer'] as String,
+      answer: json['answer'] as String,
     );
   }
 
@@ -33,7 +33,7 @@ class MultipleChoice {
     return {
       'question': question,
       'choices': choices,
-      'correct_answer': correctAnswer,
+      'answer': answer,
     };
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
@@ -89,13 +90,13 @@ class PracticeGenerationController {
         tgtConstructs: [
           ConstructIdentifier(lemma: "be", type: ConstructType.vocab),
         ],
-        activityType: ActivityType.multipleChoice,
+        activityType: ActivityTypeEnum.multipleChoice,
         langCode: event.messageDisplayLangCode,
         msgId: event.eventId,
         multipleChoice: MultipleChoice(
           question: "What is a synonym for 'happy'?",
           choices: ["sad", "angry", "joyful", "tired"],
-          correctAnswer: "joyful",
+          answer: "joyful",
         ),
       );
 }
