@@ -189,6 +189,12 @@ class MessageToolbarState extends State<MessageToolbar> {
       return;
     }
 
+    // if there is an uncompleted activity, then show that
+    // we don't want the user to user the tools to get the answer :P
+    if (widget.pangeaMessageEvent.hasUncompletedActivity) {
+      newMode = MessageMode.practiceActivity;
+    }
+
     if (mounted) {
       setState(() {
         currentMode = newMode;

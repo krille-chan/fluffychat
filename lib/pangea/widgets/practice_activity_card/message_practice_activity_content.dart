@@ -47,6 +47,7 @@ class MessagePracticeActivityContentState
       );
     } else {
       recordModel = recordEvent!.record;
+      selectedChoiceIndex = recordModel!.latestResponseIndex;
       recordSubmittedPreviousSession = true;
       recordSubmittedThisSession = true;
     }

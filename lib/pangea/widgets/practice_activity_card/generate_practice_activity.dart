@@ -15,6 +15,7 @@ class GeneratePracticeActivityButton extends StatelessWidget {
     required this.onActivityGenerated,
   });
 
+  //TODO - probably disable the generation of activities for specific messages
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

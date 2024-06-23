@@ -577,18 +577,18 @@ class PangeaMessageEvent {
 
   // this is just showActivityIcon now but will include
   // logic for showing
-  bool get showMessageButtons => showActivityIcon;
+  bool get showMessageButtons => hasUncompletedActivity;
 
   /// Returns a boolean value indicating whether to show an activity icon for this message event.
   ///
-  /// The [showActivityIcon] getter checks if the [l2Code] is null, and if so, returns false.
+  /// The [hasUncompletedActivity] getter checks if the [l2Code] is null, and if so, returns false.
   /// Otherwise, it retrieves a list of [PracticeActivityEvent] objects using the [practiceActivities] function
   /// with the [l2Code] as an argument.
   /// If the list is empty, it returns false.
   /// Otherwise, it checks if every activity in the list is complete using the [isComplete] property.
   /// If any activity is not complete, it returns true, indicating that the activity icon should be shown.
   /// Otherwise, it returns false.
-  bool get showActivityIcon {
+  bool get hasUncompletedActivity {
     if (l2Code == null) return false;
     final List<PracticeActivityEvent> activities = practiceActivities(l2Code!);
 
