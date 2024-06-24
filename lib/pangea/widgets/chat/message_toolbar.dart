@@ -135,8 +135,8 @@ class ToolbarDisplayController {
         backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
       );
 
-      if (MatrixState.pAnyState.overlay != null) {
-        overlayId = MatrixState.pAnyState.overlay.hashCode.toString();
+      if (MatrixState.pAnyState.entries.isNotEmpty) {
+        overlayId = MatrixState.pAnyState.entries.last.hashCode.toString();
       }
 
       if (mode != null) {
@@ -150,8 +150,11 @@ class ToolbarDisplayController {
 
   bool get highlighted {
     if (overlayId == null) return false;
-    if (MatrixState.pAnyState.overlay == null) overlayId = null;
-    return MatrixState.pAnyState.overlay.hashCode.toString() == overlayId;
+    if (MatrixState.pAnyState.entries.isEmpty) {
+      overlayId = null;
+      return false;
+    }
+    return MatrixState.pAnyState.entries.last.hashCode.toString() == overlayId;
   }
 }
 
