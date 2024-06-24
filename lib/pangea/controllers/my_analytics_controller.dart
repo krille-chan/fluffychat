@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
@@ -256,9 +257,12 @@ class MyAnalyticsController extends BaseController {
 
       // sort those messages by their langCode
       // langCode is hopefully based on the original sent rep, but if that
-      // is null, it will be based on the user's current l2
+      // is null or unk, it will be based on the user's current l2
       for (final msg in recentMsgs) {
-        final String msgLangCode = msg.originalSent?.langCode ?? userL2;
+        final String msgLangCode = (msg.originalSent?.langCode != null &&
+                msg.originalSent?.langCode != LanguageKeys.unknownLanguage)
+            ? msg.originalSent!.langCode
+            : userL2;
         langCodeToMsgs[msgLangCode] ??= [];
         langCodeToMsgs[msgLangCode]!.add(msg);
       }
