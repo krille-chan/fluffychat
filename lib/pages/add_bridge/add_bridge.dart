@@ -57,12 +57,14 @@ class BotController extends State<AddBridge> {
     super.dispose();
   }
 
+  /// Initialize Matrix client and extract hostname
   void matrixInit() {
     client = Matrix.of(context).client;
     final String fullUrl = client.homeserver!.host;
     hostname = extractHostName(fullUrl);
   }
 
+  /// Wait for Matrix synchronization
   Future<void> waitForMatrixSync() async {
     await client.sync(
       fullState: true,
@@ -70,10 +72,12 @@ class BotController extends State<AddBridge> {
     );
   }
 
+  /// Stop the ongoing process
   void stopProcess() {
     continueProcess = false;
   }
 
+  /// Get or create a direct chat with the bot
   Future<String?> _getOrCreateDirectChat(String botUserId) async {
     try {
       await waitForMatrixSync();
@@ -107,6 +111,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Wait for the first message from the bot (when the conversation created)
   Future<void> waitForBotFirstMessage(Room room) async {
     const int maxWaitTime = 20;
     int waitedTime = 0;
@@ -129,6 +134,7 @@ class BotController extends State<AddBridge> {
     Logs().i('No message received from bot within the wait time');
   }
 
+  /// Ping a social network to check connection status
   Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
     final String botUserId = '${socialNetwork.chatBot}$hostname';
     final RegExpPingPatterns patterns = _getPingPatterns(socialNetwork.name);
@@ -155,6 +161,7 @@ class BotController extends State<AddBridge> {
     await _processPingResponse(socialNetwork, directChat, roomBot, patterns);
   }
 
+  /// Format cookies into a JSON string
   String formatCookiesToJsonString(
       List<io.Cookie> cookies, SocialNetwork network) {
     Map<String, String> formattedCookies = {};
@@ -175,6 +182,7 @@ class BotController extends State<AddBridge> {
     return result;
   }
 
+  /// Handle refresh action for social networks
   Future<void> handleRefresh() async {
     setState(() {
       for (final network in socialNetworks) {
@@ -189,12 +197,14 @@ class BotController extends State<AddBridge> {
         socialNetworks.map((network) => pingSocialNetwork(network)));
   }
 
+  /// Check if the latest message indicates online status
   bool _isOnline(RegExp onlineMatch, String latestMessage) {
     final isMatch = onlineMatch.hasMatch(latestMessage);
     Logs().v('Checking online status: $latestMessage - Match: $isMatch');
     return isMatch;
   }
 
+  /// Check if the latest message indicates not logged in status
   bool _isNotLogged(RegExp notLoggedMatch, String message,
       [RegExp? notLoggedAnymoreMatch]) {
     final isNotLoggedMatch = notLoggedMatch.hasMatch(message);
@@ -205,6 +215,7 @@ class BotController extends State<AddBridge> {
     return isNotLoggedMatch || isNotLoggedAnymoreMatch;
   }
 
+  /// Check if a reconnect event should be sent
   bool _shouldReconnect(RegExp? mQTTNotMatch, String latestMessage) {
     final shouldReconnect = mQTTNotMatch?.hasMatch(latestMessage) ?? false;
     Logs().v(
@@ -212,6 +223,7 @@ class BotController extends State<AddBridge> {
     return shouldReconnect;
   }
 
+  /// Process the ping response from a social network
   Future<void> _processPingResponse(SocialNetwork socialNetwork,
       String directChat, Room roomBot, RegExpPingPatterns patterns) async {
     const int maxIterations = 5;
@@ -257,6 +269,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Get the regular expressions for a specific social network
   RegExpPingPatterns _getPingPatterns(String networkName) {
     switch (networkName) {
       case "WhatsApp":
@@ -287,6 +300,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Send a ping message to the bot
   Future<bool> _sendPingMessage(
       Room roomBot, SocialNetwork socialNetwork) async {
     try {
@@ -305,11 +319,13 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Send a reconnect event to the bot
   Future<void> _sendReconnectEvent(Room roomBot, String networkName) async {
     String eventToSend = networkName == "WhatsApp" ? "reconnect" : "connect";
     await roomBot.sendTextEvent(eventToSend);
   }
 
+  /// Update the status of a social network
   void _updateNetworkStatus(
       SocialNetwork socialNetwork, bool isConnected, bool isError) {
     setState(() {
@@ -319,12 +335,14 @@ class BotController extends State<AddBridge> {
     });
   }
 
+  /// Handle errors for a social network
   void _handleError(SocialNetwork socialNetwork) {
     setState(() {
       socialNetwork.setError(true);
     });
   }
 
+  /// Disconnect from a social network
   Future<String> disconnectFromNetwork(BuildContext context,
       SocialNetwork network, ConnectionStateModel connectionState) async {
     final String botUserId = '${network.chatBot}$hostname';
@@ -348,6 +366,7 @@ class BotController extends State<AddBridge> {
         context, network, connectionState, directChat, patterns);
   }
 
+  /// Get the logout patterns for a specific social network
   Map<String, RegExp> _getLogoutNetworkPatterns(String networkName) {
     switch (networkName) {
       case 'Instagram':
@@ -375,6 +394,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Get the event name for logout based on the social network
   String _getEventName(String networkName) {
     switch (networkName) {
       case 'Instagram':
@@ -385,6 +405,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Send a logout event to the bot
   Future<bool> _sendLogoutEvent(Room roomBot, String eventName) async {
     try {
       await roomBot.sendTextEvent(eventName);
@@ -396,6 +417,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Wait for the disconnection process to complete
   Future<String> _waitForDisconnection(
       BuildContext context,
       SocialNetwork network,
@@ -450,16 +472,19 @@ class BotController extends State<AddBridge> {
     return 'error';
   }
 
+  /// Check if the message indicates the user is still connected
   bool _isStillConnected(String message, Map<String, RegExp> patterns) {
     return !patterns['success']!.hasMatch(message) &&
         !patterns['alreadyLogout']!.hasMatch(message);
   }
 
+  /// Check if the message indicates the user is disconnected
   bool _isDisconnected(String message, Map<String, RegExp> patterns) {
     return patterns['success']!.hasMatch(message) ||
         patterns['alreadyLogout']!.hasMatch(message);
   }
 
+  /// Delete a conversation with the bot
   Future<void> deleteConversation(BuildContext context, String chatBot,
       ConnectionStateModel connectionState) async {
     final String botUserId = "$chatBot$hostname";
@@ -493,6 +518,7 @@ class BotController extends State<AddBridge> {
     });
   }
 
+  /// Handle social network action based on its current status
   void handleSocialNetworkAction(SocialNetwork network) async {
     if (network.loading == false) {
       if (network.connected != true && network.error == false) {
@@ -511,6 +537,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Handle connection to a social network
   Future<void> handleConnection(
       BuildContext context, SocialNetwork network) async {
     switch (network.name) {
@@ -543,6 +570,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Handle disconnection from a social network
   Future<void> handleDisconnection(
       BuildContext context, SocialNetwork network) async {
     final bool success = await showBottomSheetBridge(context, network, this);
@@ -552,6 +580,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Create a bridge for Messenger & Instagram using cookies
   Future<void> createBridgeMeta(
       BuildContext context,
       WebviewCookieManager cookieManager,
@@ -676,10 +705,12 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  /// Get the WhatsApp network instance from the list
   SocialNetwork? getWhatsAppNetwork() {
     return socialNetworks.firstWhere((network) => network.name == "WhatsApp");
   }
 
+  /// Create a bridge for WhatsApp
   Future<WhatsAppResult> createBridgeWhatsApp(BuildContext context,
       String phoneNumber, ConnectionStateModel connectionState) async {
     final SocialNetwork? whatsAppNetwork = getWhatsAppNetwork();
@@ -723,11 +754,13 @@ class BotController extends State<AddBridge> {
         alreadySuccessMatch, meansCodeMatch, timeOutMatch);
   }
 
+  /// Handle error and return result for WhatsApp
   WhatsAppResult _handleErrorAndReturnResult(SocialNetwork network) {
     _handleError(network);
     return WhatsAppResult("error", "", "");
   }
 
+  /// Fetch the login result for WhatsApp
   Future<WhatsAppResult> _fetchWhatsAppLoginResult(
       Room roomBot,
       RegExp successMatch,
@@ -767,7 +800,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
-  // Checks and processes the last message received for WhatsApp
+  /// Checks and processes the last message received for WhatsApp
   Future<String> fetchDataWhatsApp() async {
     final SocialNetwork? whatsAppNetwork = getWhatsAppNetwork();
     if (whatsAppNetwork == null) {
@@ -812,7 +845,7 @@ class BotController extends State<AddBridge> {
     }
   }
 
-  // Check last received message
+  /// Check last received message
   Future<ConnectionResult> _checkLatestMessages(
       String directChat,
       RegExp successMatch,
@@ -839,6 +872,7 @@ class BotController extends State<AddBridge> {
     return ConnectionResult.notLogged;
   }
 
+  /// Create a bridge for LinkedIn using cookies
   Future<void> createBridgeLinkedin(
       BuildContext context,
       WebviewCookieManager cookieManager,
