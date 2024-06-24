@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -54,7 +57,7 @@ class ConstructAnalyticsModel extends AnalyticsModel {
           s: s,
           m: "Error parsing ConstructAnalyticsModel",
         );
-        // debugger(when: kDebugMode);
+        debugger(when: kDebugMode);
       }
     }
     return ConstructAnalyticsModel(
