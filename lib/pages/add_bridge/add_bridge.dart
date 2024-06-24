@@ -520,14 +520,14 @@ class BotController extends State<AddBridge> {
 
   /// Handle social network action based on its current status
   void handleSocialNetworkAction(SocialNetwork network) async {
-    if (network.loading == false) {
-      if (network.connected != true && network.error == false) {
+    if (!network.loading) {
+      if (!network.connected && !network.error) {
         await handleConnection(context, network);
-      } else if (network.connected == true && network.error == false) {
+      } else if (network.connected && !network.error) {
         await handleDisconnection(context, network);
       }
 
-      if (network.error && network.connected == false) {
+      if (network.error && !network.connected) {
         setState(() {
           network.loading = true;
         });

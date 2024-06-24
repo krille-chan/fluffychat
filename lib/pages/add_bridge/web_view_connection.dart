@@ -153,7 +153,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
             // Other network
           }
 
-          if (widget.network.connected == true && !_isDisposed) {
+          if (widget.network.connected && !_isDisposed) {
             // Close the current page
             await _closeWebView();
 
