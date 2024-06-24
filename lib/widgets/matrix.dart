@@ -33,6 +33,7 @@ import 'package:tawkie/utils/uia_request_manager.dart';
 import 'package:tawkie/utils/voip_plugin.dart';
 import 'package:tawkie/widgets/fluffy_chat_app.dart';
 import 'local_notifications_extension.dart';
+import 'matrix_client.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -346,9 +347,13 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onNotification.remove(name);
   }
 
-  void initMatrix() {
+  void initMatrix() async {
     for (final c in widget.clients) {
       _registerSubs(c.clientName);
+      // Initialize and synchronize each Matrix client
+      final matrixClient = MatrixClient(c);
+      await matrixClient.start();  // Wait until the client is fully initialized and synchronized
+      await matrixClient.ensureInitializationComplete();  // Make sure initialization is complete
     }
 
     if (kIsWeb) {
@@ -366,9 +371,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             title: L10n.of(context)!.pushNotificationsNotAvailable,
             message: errorMsg,
             fullyCapitalizedForMaterial: false,
-            okLabel: link == null
-                ? L10n.of(context)!.ok
-                : L10n.of(context)!.learnMore,
+            okLabel: link == null ? L10n.of(context)!.ok : L10n.of(context)!.learnMore,
             cancelLabel: L10n.of(context)!.doNotShowAgain,
           );
           if (result == OkCancelResult.ok && link != null) {
