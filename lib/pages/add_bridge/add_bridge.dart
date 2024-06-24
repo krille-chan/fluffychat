@@ -522,7 +522,7 @@ class BotController extends State<AddBridge> {
   void handleSocialNetworkAction(SocialNetwork network) async {
     if (!network.loading) {
       if (!network.connected && !network.error) {
-        await handleConnection(context, network);
+        await processSocialNetworkAuthentication(context, network);
       } else if (network.connected && !network.error) {
         await handleDisconnection(context, network);
       }
@@ -538,7 +538,7 @@ class BotController extends State<AddBridge> {
   }
 
   /// Handle connection to a social network
-  Future<void> handleConnection(
+  Future<void> processSocialNetworkAuthentication(
       BuildContext context, SocialNetwork network) async {
     switch (network.name) {
       case "WhatsApp":
