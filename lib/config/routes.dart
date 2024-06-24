@@ -219,11 +219,7 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        SpaceAnalyticsPage(
-                          // when going to sub-space from within a parent space's analytics, the
-                          // analytics list tiles do not properly update. Adding a unique key to this page is the best fix
-                          // I can find at the moment
-                          key: UniqueKey(),
+                        const SpaceAnalyticsPage(
                           selectedView: BarChartViewSelection.messages,
                         ),
                       ),
@@ -233,11 +229,7 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        SpaceAnalyticsPage(
-                          // when going to sub-space from within a parent space's analytics, the
-                          // analytics list tiles do not properly update. Adding a unique key to this page is the best fix
-                          // I can find at the moment
-                          key: UniqueKey(),
+                        const SpaceAnalyticsPage(
                           selectedView: BarChartViewSelection.grammar,
                         ),
                       ),

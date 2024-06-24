@@ -34,12 +34,11 @@ class ClassController extends BaseController {
 
   Future<void> fixClassPowerLevels() async {
     try {
-      final List<Future<void>> classFixes = [];
       final teacherSpaces =
           await _pangeaController.matrixState.client.spacesImTeaching;
-      for (final room in teacherSpaces) {
-        classFixes.add(room.setClassPowerLevels());
-      }
+      final List<Future<void>> classFixes = List<Room>.from(teacherSpaces)
+          .map((adminSpace) => adminSpace.setClassPowerLevels())
+          .toList();
       await Future.wait(classFixes);
     } catch (err, stack) {
       debugger(when: kDebugMode);
