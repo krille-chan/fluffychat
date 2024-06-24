@@ -349,10 +349,10 @@ packages:
     dependency: "direct main"
     description:
       name: emoji_picker_flutter
-      sha256: "839200a2bd1af9a65d71133a5a246dbf5b24f7e4f6f4c5390130c2e0ed5f85af"
+      sha256: "7c6681783e06710608df27be0e38aa4ba73ca1ccac370bb0e7a1320723ae4bca"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.1.1"
   emoji_proposal:
     dependency: "direct main"
     description:
@@ -975,6 +975,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  globbing:
+    dependency: transitive
+    description:
+      name: globbing
+      sha256: "4f89cfaf6fa74c9c1740a96259da06bd45411ede56744e28017cc534a12b6e2d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   go_router:
     dependency: "direct main"
     description:
@@ -1167,6 +1175,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.8+1"
+  injector:
+    dependency: transitive
+    description:
+      name: injector
+      sha256: ed389bed5b48a699d5b9561c985023d0d5cc88dd5ff2237aadcce5a5ab433e4e
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   integration_test:
     dependency: "direct dev"
     description: flutter
@@ -1749,6 +1765,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  properties:
+    dependency: transitive
+    description:
+      name: properties
+      sha256: "333f427dd4ed07bdbe8c75b9ff864a1e70b5d7a8426a2e8bdd457b65ae5ac598"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   provider:
     dependency: "direct main"
     description:
@@ -1949,6 +1973,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.2.0"
+  sentry_dart_plugin:
+    dependency: "direct dev"
+    description:
+      name: sentry_dart_plugin
+      sha256: e81fa3e0ffabd04fdcfbfecd6468d4a342f02ab33edca09708c61bcd2be42b7d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.7.1"
   sentry_flutter:
     dependency: "direct main"
     description:
@@ -2234,6 +2266,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0+1"
+  system_info2:
+    dependency: transitive
+    description:
+      name: system_info2
+      sha256: "65206bbef475217008b5827374767550a5420ce70a04d2d7e94d1d2253f3efc9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   tar:
     dependency: transitive
     description:
@@ -2692,4 +2732,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.3.0 <4.0.0"
-  flutter: ">=3.19.3"
+  flutter: ">=3.19.0"
