@@ -2493,6 +2493,7 @@
     "linkedinExplainTitle": "Instructions pour la connexion à Linkedin",
     "linkedinExplainInstruction": "Instructions:",
     "linkedinExplainOne": "Pour vous connecter à Linkedin, veuillez utiliser l'application mobile ou de bureau.",
+    "authErrorContactSupport": "Erreur. Veuillez contacter le support",
     "privacyText": "En créant un compte, vous acceptez nos ",
     "privacyTextPrivacy": "politiques de confidentialité",
     "privacyTextAnd": " et ",

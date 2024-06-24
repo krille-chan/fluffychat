@@ -2677,6 +2677,7 @@
   "linkedinExplainTitle": "Linkedin Connection Instructions",
   "linkedinExplainInstruction": "Linkedin Connection Instructions:",
   "linkedinExplainOne": "To connect to Linkedin, please use the mobile or desktop application.",
+  "authErrorContactSupport": "Error. Please contact support",
   "privacyText": "By creating an account, you agree to our ",
   "privacyTextPrivacy": "privacy policy",
   "privacyTextAnd": " and ",

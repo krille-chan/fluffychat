@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tawkie/pages/auth/auth.dart';
 import 'package:tawkie/widgets/layouts/login_scaffold.dart';
 import 'package:tawkie/widgets/matrix.dart';
 
-import 'login.dart';
-
 class LoginView extends StatelessWidget {
-  final LoginController controller;
+  final AuthController controller;
 
   const LoginView(this.controller, {super.key});
 
@@ -56,6 +55,16 @@ class LoginView extends StatelessWidget {
                                   child: Text(
                                     controller.messageError!,
                                     style: const TextStyle(color: Colors.red),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              if (controller.messageInfo != null)
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Text(
+                                    controller.messageInfo!,
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
                               ...controller.authWidgets,
