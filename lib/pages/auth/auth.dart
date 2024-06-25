@@ -346,8 +346,11 @@ class AuthController extends State<Auth> {
         responseQueueStatus.data;
     final String userId = responseDataQueueStatus['userId'];
 
-    // Function to log user with Kratos id on Revenu Cat
-    final LogInResult result = await Purchases.logIn(userId);
+    // RevenueCat only works on mobile
+    if (PlatformInfos.isMobile) {
+      // Identify the user with its Kratos uuid on RevenueCat
+      final LogInResult result = await Purchases.logIn(userId);
+    }
 
     return responseDataQueueStatus;
   }
