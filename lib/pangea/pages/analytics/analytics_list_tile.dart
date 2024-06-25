@@ -26,8 +26,6 @@ class AnalyticsListTile extends StatefulWidget {
     required this.onTap,
     required this.pangeaController,
     this.controller,
-    // this.isEnabled = true,
-    // this.showSpaceAnalytics = true,
     this.refreshStream,
   });
 
@@ -40,8 +38,6 @@ class AnalyticsListTile extends StatefulWidget {
 
   final bool allowNavigateOnSelect;
   final bool isSelected;
-  // final bool isEnabled;
-  // final bool showSpaceAnalytics;
 
   final PangeaController pangeaController;
   final BaseAnalyticsController? controller;
@@ -62,6 +58,14 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
     refreshSubscription = widget.refreshStream?.stream.listen((forceUpdate) {
       setTileData(forceUpdate: forceUpdate);
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant AnalyticsListTile oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.selected != widget.selected) {
+      setTileData();
+    }
   }
 
   @override

@@ -160,9 +160,19 @@ class AnalyticsController extends BaseController {
   // private chat analytics to determine which children are already visible
   // in the chat list
   final Map<String, List<String>> _lastFetchedHierarchies = {};
+
   void setLatestHierarchy(String spaceId, GetSpaceHierarchyResponse resp) {
     final List<String> roomIds = resp.rooms.map((room) => room.roomId).toList();
     _lastFetchedHierarchies[spaceId] = roomIds;
+  }
+
+  Future<List<String>> getLatestSpaceHierarchy(String spaceId) async {
+    if (!_lastFetchedHierarchies.containsKey(spaceId)) {
+      final resp =
+          await _pangeaController.matrixState.client.getSpaceHierarchy(spaceId);
+      setLatestHierarchy(spaceId, resp);
+    }
+    return _lastFetchedHierarchies[spaceId] ?? [];
   }
 
   //////////////////////////// MESSAGE SUMMARY ANALYTICS ////////////////////////////
@@ -294,16 +304,16 @@ class AnalyticsController extends BaseController {
     return filtered;
   }
 
-  List<SummaryAnalyticsEvent> filterRoomAnalytics(
+  Future<List<SummaryAnalyticsEvent>> filterRoomAnalytics(
     List<SummaryAnalyticsEvent> unfiltered,
     String? roomID,
-  ) {
+  ) async {
     List<SummaryAnalyticsEvent> filtered = [...unfiltered];
     Room? room;
     if (roomID != null) {
       room = _pangeaController.matrixState.client.getRoomById(roomID);
       if (room?.isSpace == true) {
-        return filterSpaceAnalytics(unfiltered, roomID);
+        return await filterSpaceAnalytics(unfiltered, roomID);
       }
     }
 
@@ -322,16 +332,10 @@ class AnalyticsController extends BaseController {
 
   Future<List<SummaryAnalyticsEvent>> filterPrivateChatAnalytics(
     List<SummaryAnalyticsEvent> unfiltered,
-    Room? space,
+    Room space,
   ) async {
-    if (space != null && !_lastFetchedHierarchies.containsKey(space.id)) {
-      final resp = await _pangeaController.matrixState.client
-          .getSpaceHierarchy(space.id);
-      setLatestHierarchy(space.id, resp);
-    }
-
-    final List<String> privateChatIds = space?.allSpaceChildRoomIds ?? [];
-    final List<String> lastFetched = _lastFetchedHierarchies[space!.id] ?? [];
+    final List<String> privateChatIds = space.allSpaceChildRoomIds;
+    final List<String> lastFetched = await getLatestSpaceHierarchy(space.id);
     for (final id in lastFetched) {
       privateChatIds.removeWhere((e) => e == id);
     }
@@ -351,19 +355,11 @@ class AnalyticsController extends BaseController {
     return filtered;
   }
 
-  List<SummaryAnalyticsEvent> filterSpaceAnalytics(
+  Future<List<SummaryAnalyticsEvent>> filterSpaceAnalytics(
     List<SummaryAnalyticsEvent> unfiltered,
     String spaceId,
-  ) {
-    final selectedSpace =
-        _pangeaController.matrixState.client.getRoomById(spaceId);
-    final List<String> chatIds = selectedSpace?.spaceChildren
-            .map((e) => e.roomId)
-            .where((e) => e != null)
-            .cast<String>()
-            .toList() ??
-        [];
-
+  ) async {
+    final List<String> chatIds = await getLatestSpaceHierarchy(spaceId);
     List<SummaryAnalyticsEvent> filtered =
         List<SummaryAnalyticsEvent>.from(unfiltered);
 
@@ -411,12 +407,15 @@ class AnalyticsController extends BaseController {
         if (defaultSelected.type == AnalyticsEntryType.student) {
           throw "private chat filtering not available for my analytics";
         }
+        if (space == null) {
+          throw "space is null in filterAnalytics with selected type privateChats";
+        }
         return await filterPrivateChatAnalytics(
           unfilteredAnalytics,
           space,
         );
       case AnalyticsEntryType.space:
-        return filterSpaceAnalytics(unfilteredAnalytics, selected!.id);
+        return await filterSpaceAnalytics(unfilteredAnalytics, selected!.id);
       default:
         throw Exception("invalid filter type - ${selected?.type}");
     }
@@ -428,7 +427,6 @@ class AnalyticsController extends BaseController {
     bool forceUpdate = false,
   }) async {
     try {
-      debugPrint("getting analytics");
       await _pangeaController.matrixState.client.roomsLoading;
 
       // if the user is looking at space analytics, then fetch the space
@@ -612,31 +610,30 @@ class AnalyticsController extends BaseController {
     return filtered;
   }
 
-  List<ConstructAnalyticsEvent> filterPrivateChatConstructs(
+  Future<List<ConstructAnalyticsEvent>> filterPrivateChatConstructs(
     List<ConstructAnalyticsEvent> unfilteredConstructs,
-    Room parentSpace,
-  ) {
-    final List<String> directChatIds = [];
+    Room space,
+  ) async {
+    final List<String> privateChatIds = space.allSpaceChildRoomIds;
+    final List<String> lastFetched = await getLatestSpaceHierarchy(space.id);
+    for (final id in lastFetched) {
+      privateChatIds.removeWhere((e) => e == id);
+    }
     final List<ConstructAnalyticsEvent> filtered =
         List<ConstructAnalyticsEvent>.from(unfilteredConstructs);
     for (final construct in filtered) {
       construct.content.uses.removeWhere(
-        (use) => !directChatIds.contains(use.chatId),
+        (use) => !privateChatIds.contains(use.chatId),
       );
     }
     return filtered;
   }
 
-  List<ConstructAnalyticsEvent> filterSpaceConstructs(
+  Future<List<ConstructAnalyticsEvent>> filterSpaceConstructs(
     List<ConstructAnalyticsEvent> unfilteredConstructs,
     Room space,
-  ) {
-    final List<String> chatIds = space.spaceChildren
-        .map((e) => e.roomId)
-        .where((e) => e != null)
-        .cast<String>()
-        .toList();
-
+  ) async {
+    final List<String> chatIds = await getLatestSpaceHierarchy(space.id);
     final List<ConstructAnalyticsEvent> filtered =
         List<ConstructAnalyticsEvent>.from(unfilteredConstructs);
 
@@ -769,9 +766,9 @@ class AnalyticsController extends BaseController {
       case AnalyticsEntryType.privateChats:
         return defaultSelected.type == AnalyticsEntryType.student
             ? throw "private chat filtering not available for my analytics"
-            : filterPrivateChatConstructs(unfilteredConstructs, space!);
+            : await filterPrivateChatConstructs(unfilteredConstructs, space!);
       case AnalyticsEntryType.space:
-        return filterSpaceConstructs(unfilteredConstructs, space!);
+        return await filterSpaceConstructs(unfilteredConstructs, space!);
       default:
         throw Exception("invalid filter type - ${selected?.type}");
     }

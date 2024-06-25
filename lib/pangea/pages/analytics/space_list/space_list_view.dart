@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/pages/analytics/analytics_language_button.dart';
 import 'package:fluffychat/pangea/pages/analytics/analytics_list_tile.dart';
 import 'package:fluffychat/pangea/pages/analytics/time_span_menu_button.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,16 @@ class AnalyticsSpaceListView extends StatelessWidget {
           TimeSpanMenuButton(
             value:
                 controller.pangeaController.analytics.currentAnalyticsTimeSpan,
-            onChange: (TimeSpan value) =>
-                controller.toggleTimeSpan(context, value),
+            onChange: (TimeSpan value) => controller.toggleTimeSpan(
+              context,
+              value,
+            ),
+          ),
+          AnalyticsLanguageButton(
+            value:
+                controller.pangeaController.analytics.currentAnalyticsSpaceLang,
+            onChange: (lang) => controller.toggleSpaceLang(lang),
+            languages: controller.pangeaController.pLanguageStore.targetOptions,
           ),
         ],
       ),
@@ -49,7 +58,7 @@ class AnalyticsSpaceListView extends StatelessWidget {
                 defaultSelected: AnalyticsSelected(
                   controller.spaces[i].id,
                   AnalyticsEntryType.space,
-                  "",
+                  controller.spaces[i].name,
                 ),
                 avatar: controller.spaces[i].avatar,
                 selected: AnalyticsSelected(
@@ -65,6 +74,7 @@ class AnalyticsSpaceListView extends StatelessWidget {
                 allowNavigateOnSelect: true,
                 isSelected: false,
                 pangeaController: controller.pangeaController,
+                refreshStream: controller.refreshStream,
               ),
             ),
           ),
