@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io' as io;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +10,7 @@ import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:tawkie/pages/add_bridge/show_bottom_sheet.dart';
 import 'package:tawkie/pages/add_bridge/success_message.dart';
 import 'package:tawkie/pages/add_bridge/web_view_connection.dart';
+import 'package:tawkie/utils/bridge_utils.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
@@ -143,7 +142,7 @@ class BotController extends State<AddBridge> {
   /// Ping a social network to check connection status
   Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
     final String botUserId = '${socialNetwork.chatBot}$hostname';
-    final RegExpPingPatterns patterns = _getPingPatterns(socialNetwork.name);
+    final RegExpPingPatterns patterns = getPingPatterns(socialNetwork.name);
     final String? directChat = await _getOrCreateDirectChat(botUserId);
 
     if (directChat == null) {
@@ -194,27 +193,6 @@ class BotController extends State<AddBridge> {
     }
   }
 
-  /// Format cookies into a JSON string
-  String formatCookiesToJsonString(
-      List<io.Cookie> cookies, SocialNetwork network) {
-    Map<String, String> formattedCookies = {};
-    String result;
-
-    if (network.name == "Linkedin") {
-      result = cookies
-          .map((cookie) => '${cookie.name}="${cookie.value}"')
-          .join('; ');
-    } else {
-      for (var cookie in cookies) {
-        String decodedValue = Uri.decodeComponent(cookie.value);
-        formattedCookies[cookie.name] = decodedValue;
-      }
-      result = json.encode(formattedCookies);
-    }
-
-    return result;
-  }
-
   /// Handle refresh action for social networks
   Future<void> handleRefresh() async {
     setState(() {
@@ -228,32 +206,6 @@ class BotController extends State<AddBridge> {
 
     await Future.wait(
         socialNetworks.map((network) => pingSocialNetwork(network)));
-  }
-
-  /// Check if the latest message indicates online status
-  bool _isOnline(RegExp onlineMatch, String latestMessage) {
-    final isMatch = onlineMatch.hasMatch(latestMessage);
-    Logs().v('Checking online status: $latestMessage - Match: $isMatch');
-    return isMatch;
-  }
-
-  /// Check if the latest message indicates not logged in status
-  bool _isNotLogged(RegExp notLoggedMatch, String message,
-      [RegExp? notLoggedAnymoreMatch]) {
-    final isNotLoggedMatch = notLoggedMatch.hasMatch(message);
-    final isNotLoggedAnymoreMatch =
-        notLoggedAnymoreMatch?.hasMatch(message) ?? false;
-    Logs().v(
-        'Checking not logged status: $message - Match: $isNotLoggedMatch, Not logged anymore match: $isNotLoggedAnymoreMatch');
-    return isNotLoggedMatch || isNotLoggedAnymoreMatch;
-  }
-
-  /// Check if a reconnect event should be sent
-  bool _shouldReconnect(RegExp? mQTTNotMatch, String latestMessage) {
-    final shouldReconnect = mQTTNotMatch?.hasMatch(latestMessage) ?? false;
-    Logs().v(
-        'Checking should reconnect: $latestMessage - Match: $shouldReconnect');
-    return shouldReconnect;
   }
 
   /// Process the ping response from a social network
@@ -289,52 +241,21 @@ class BotController extends State<AddBridge> {
     if (kDebugMode) {
       print("lastest message: $lastEvent");
     }
-    if (_isOnline(patterns.onlineMatch, lastEvent!)) {
+    if (isOnline(patterns.onlineMatch, lastEvent!)) {
       Logs().v("You're logged to ${socialNetwork.name}");
       _updateNetworkStatus(socialNetwork, true, false);
       if (!completer.isCompleted) {
         completer.complete();
       }
-    } else if (_isNotLogged(
+    } else if (isNotLogged(
         patterns.notLoggedMatch, lastEvent, patterns.notLoggedAnymoreMatch)) {
       Logs().v('Not connected to ${socialNetwork.name}');
       _updateNetworkStatus(socialNetwork, false, false);
       if (!completer.isCompleted) {
         completer.complete();
       }
-    } else if (_shouldReconnect(patterns.mQTTNotMatch, lastEvent)) {
+    } else if (shouldReconnect(patterns.mQTTNotMatch, lastEvent)) {
       roomBot.sendTextEvent("reconnect");
-    }
-  }
-
-  /// Get the regular expressions for a specific social network
-  RegExpPingPatterns _getPingPatterns(String networkName) {
-    switch (networkName) {
-      case "WhatsApp":
-        return RegExpPingPatterns(
-          PingPatterns.whatsAppOnlineMatch,
-          PingPatterns.whatsAppNotLoggedMatch,
-          PingPatterns.whatsAppLoggedButNotConnectedMatch,
-        );
-      case "Facebook Messenger":
-        return RegExpPingPatterns(
-          PingPatterns.facebookOnlineMatch,
-          PingPatterns.facebookNotLoggedMatch,
-          PingPatterns.facebookNotLoggedAnymoreMatch,
-        );
-      case "Instagram":
-        return RegExpPingPatterns(
-          PingPatterns.instagramOnlineMatch,
-          PingPatterns.instagramNotLoggedMatch,
-          PingPatterns.instagramNotLoggedAnymoreMatch,
-        );
-      case "Linkedin":
-        return RegExpPingPatterns(
-          PingPatterns.linkedinOnlineMatch,
-          PingPatterns.linkedinNotLoggedMatch,
-        );
-      default:
-        throw Exception("Unsupported social network: $networkName");
     }
   }
 
@@ -384,8 +305,7 @@ class BotController extends State<AddBridge> {
           .updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
     });
 
-    final Map<String, RegExp> patterns =
-        _getLogoutNetworkPatterns(network.name);
+    final Map<String, RegExp> patterns = getLogoutNetworkPatterns(network.name);
     final String eventName = _getEventName(network.name);
 
     final String? directChat = await _getOrCreateDirectChat(botUserId);
@@ -396,34 +316,6 @@ class BotController extends State<AddBridge> {
 
     return await _waitForDisconnection(
         context, network, connectionState, directChat, patterns);
-  }
-
-  /// Get the logout patterns for a specific social network
-  Map<String, RegExp> _getLogoutNetworkPatterns(String networkName) {
-    switch (networkName) {
-      case 'Instagram':
-        return {
-          'success': LogoutRegex.instagramSuccessMatch,
-          'alreadyLogout': LogoutRegex.instagramAlreadyLogoutMatch
-        };
-      case 'WhatsApp':
-        return {
-          'success': LogoutRegex.whatsappSuccessMatch,
-          'alreadyLogout': LogoutRegex.whatsappAlreadyLogoutMatch
-        };
-      case 'Facebook Messenger':
-        return {
-          'success': LogoutRegex.facebookSuccessMatch,
-          'alreadyLogout': LogoutRegex.facebookAlreadyLogoutMatch
-        };
-      case 'Linkedin':
-        return {
-          'success': LogoutRegex.linkedinSuccessMatch,
-          'alreadyLogout': LogoutRegex.linkedinAlreadyLogoutMatch
-        };
-      default:
-        throw ArgumentError('Unsupported network: $networkName');
-    }
   }
 
   /// Get the event name for logout based on the social network
@@ -473,13 +365,13 @@ class BotController extends State<AddBridge> {
           final String botUserId = '${network.chatBot}$hostname';
 
           if (sender == botUserId) {
-            if (_isStillConnected(latestMessage, patterns)) {
+            if (isStillConnected(latestMessage, patterns)) {
               Logs().v("You're still connected to ${network.name}");
               setState(() => network.updateConnectionResult(true));
               return 'Connected';
             }
 
-            if (_isDisconnected(latestMessage, patterns)) {
+            if (isDisconnected(latestMessage, patterns)) {
               Logs().v("You're disconnected from ${network.name}");
               connectionState.updateConnectionTitle(
                   L10n.of(context)!.loadingDisconnectionSuccess);
@@ -502,18 +394,6 @@ class BotController extends State<AddBridge> {
 
     connectionState.reset();
     return 'error';
-  }
-
-  /// Check if the message indicates the user is still connected
-  bool _isStillConnected(String message, Map<String, RegExp> patterns) {
-    return !patterns['success']!.hasMatch(message) &&
-        !patterns['alreadyLogout']!.hasMatch(message);
-  }
-
-  /// Check if the message indicates the user is disconnected
-  bool _isDisconnected(String message, Map<String, RegExp> patterns) {
-    return patterns['success']!.hasMatch(message) ||
-        patterns['alreadyLogout']!.hasMatch(message);
   }
 
   /// Delete a conversation with the bot
