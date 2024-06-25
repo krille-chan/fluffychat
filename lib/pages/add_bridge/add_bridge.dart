@@ -620,58 +620,51 @@ class BotController extends State<AddBridge> {
       SocialNetwork network) async {
     final String botUserId = '${network.chatBot}$hostname';
 
-    try {
-      Future.microtask(() {
-        connectionState
-            .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
-      });
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
+    });
 
-      final RegExp successMatch = LoginRegex.facebookSuccessMatch;
-      final RegExp alreadyConnected = LoginRegex.facebookAlreadyConnectedMatch;
-      final RegExp pasteCookie = LoginRegex.facebookPasteCookies;
+    final gotCookies = await cookieManager.getCookies(network.urlRedirect);
 
-      final String? directChat = await _getOrCreateDirectChat(botUserId);
-      if (directChat == null) {
-        _handleError(network);
-        return;
+    if (kDebugMode) {
+      print("cookies: $gotCookies");
+    }
+
+    final formattedCookieString =
+        formatCookiesToJsonString(gotCookies, network);
+
+    if (kDebugMode) {
+      print("formattedCookie: $formattedCookieString");
+    }
+
+    final RegExp successMatch = LoginRegex.facebookSuccessMatch;
+    final RegExp alreadyConnected = LoginRegex.facebookAlreadyConnectedMatch;
+    final RegExp pasteCookie = LoginRegex.facebookPasteCookies;
+
+    final String? directChat = await _getOrCreateDirectChat(botUserId);
+    if (directChat == null) {
+      _handleError(network);
+      return;
+    }
+
+    final Room? roomBot = client.getRoomById(directChat);
+    if (roomBot == null) {
+      _handleError(network);
+      return;
+    }
+
+    final completer = Completer<String>();
+    final timer = Timer(const Duration(seconds: 20), () {
+      if (!completer.isCompleted) {
+        completer.completeError("Timeout reached");
       }
+    });
 
-      final Room? roomBot = client.getRoomById(directChat);
-      if (roomBot == null) {
-        _handleError(network);
-        return;
-      }
-
-      await Future.delayed(const Duration(seconds: 1));
-
-      Future.microtask(() {
-        connectionState
-            .updateConnectionTitle(L10n.of(context)!.loadingVerification);
-      });
-
-      final gotCookies = await cookieManager.getCookies(network.urlRedirect);
-
-      if (kDebugMode) {
-        print("cookies: $gotCookies");
-      }
-
-      final formattedCookieString =
-          formatCookiesToJsonString(gotCookies, network);
-
-      if (kDebugMode) {
-        print("formattedCookie: $formattedCookieString");
-      }
-
-      final completer = Completer<String>();
-      final timer = Timer(const Duration(seconds: 10), () {
-        if (!completer.isCompleted) {
-          completer.completeError("Timeout reached");
-        }
-      });
-
-      String? lastMessage;
-      StreamSubscription? subscription;
-      subscription = client.onSync.stream.listen((syncUpdate) {
+    String? lastMessage;
+    StreamSubscription? subscription;
+    subscription = client.onEvent.stream.listen((eventUpdate) {
+      if (eventUpdate.content['sender'].contains(network.chatBot)) {
         lastMessage = _onNewMessage(
           roomBot,
           botUserId,
@@ -683,36 +676,32 @@ class BotController extends State<AddBridge> {
           network,
           completer,
         );
-      });
+      }
+    });
 
-      await roomBot.sendTextEvent("login");
-      await Future.delayed(const Duration(seconds: 5));
+    try {
+      await roomBot.sendTextEvent("login $formattedCookieString");
 
       Future.microtask(() {
         connectionState
-            .updateConnectionTitle(L10n.of(context)!.loadingTakeFewSeconds);
+            .updateConnectionTitle(L10n.of(context)!.loadingVerification);
       });
 
-      try {
-        await completer.future;
-      } catch (e) {
-        final errorMessage = e.toString();
-        Logs().v(
-            "Maximum iterations reached, setting result to 'error to ${network.name}'");
-        showCatchErrorDialog(context,
-            "${L10n.of(context)!.errorConnectionText}.\n${L10n.of(context)!.errorSendUsProblem} $errorMessage\nLast message: $lastMessage");
-        _handleError(network);
-      } finally {
-        timer.cancel();
-        await subscription
-            .cancel(); // Cancel the subscription to avoid memory leaks
-      }
+      final result = await completer.future;
+      Logs().v("Result: $result");
     } catch (e) {
-      final messageError = e.toString();
-      if (kDebugMode) {
-        print("error: $messageError");
-      }
-      showCatchErrorDialog(context, L10n.of(context)!.tryAgain);
+      Logs().v(
+          "Maximum iterations reached, setting result to 'error to ${network.name}'");
+      showCatchErrorDialog(context,
+          "${L10n.of(context)!.errorConnectionText}.\nFaites nous part du message d'erreur rencontré: $e\nLast message: $lastMessage");
+      _handleError(network);
+    } finally {
+      timer.cancel();
+      await subscription
+          .cancel(); // Cancel the subscription to avoid memory leaks
+      Future.microtask(() {
+        connectionState.reset();
+      });
     }
   }
 
@@ -728,7 +717,6 @@ class BotController extends State<AddBridge> {
       Completer<void> completer) {
     final lastEvent = roomBot.lastEvent;
     final lastMessage = lastEvent?.text;
-    final senderId = lastEvent?.senderId;
     if (lastEvent != null && lastEvent.senderId == botUserId) {
       if (pasteCookie.hasMatch(lastMessage!)) {
         roomBot.sendTextEvent(formattedCookieString);
@@ -964,13 +952,6 @@ class BotController extends State<AddBridge> {
       return;
     }
 
-    await roomBot.sendTextEvent("login $formattedCookieString");
-
-    Future.microtask(() {
-      connectionState
-          .updateConnectionTitle(L10n.of(context)!.loadingVerification);
-    });
-
     final completer = Completer<String>();
     final timer = Timer(const Duration(seconds: 20), () {
       if (!completer.isCompleted) {
@@ -980,19 +961,28 @@ class BotController extends State<AddBridge> {
 
     String? lastMessage;
     StreamSubscription? subscription;
-    subscription = client.onSync.stream.listen((syncUpdate) {
-      lastMessage = _onLinkedInMessage(
-        roomBot,
-        botUserId,
-        successMatch,
-        alreadySuccessMatch,
-        connectionState,
-        network,
-        completer,
-      );
+    subscription = client.onEvent.stream.listen((eventUpdate) {
+      if (eventUpdate.content['sender'].contains(network.chatBot)) {
+        lastMessage = _onLinkedInMessage(
+          roomBot,
+          botUserId,
+          successMatch,
+          alreadySuccessMatch,
+          connectionState,
+          network,
+          completer,
+        );
+      }
     });
 
     try {
+      await roomBot.sendTextEvent("login $formattedCookieString");
+
+      Future.microtask(() {
+        connectionState
+            .updateConnectionTitle(L10n.of(context)!.loadingVerification);
+      });
+
       final result = await completer.future;
       Logs().v("Result: $result");
     } catch (e) {
