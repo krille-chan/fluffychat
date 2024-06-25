@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/enum/span_choice_type.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
@@ -72,6 +73,45 @@ class SpanDetailsRepoReqAndRes {
         enableIGC: json['enable_igc'] as bool,
         span: SpanData.fromJson(json['span']),
       );
+
+  /// Overrides the equality operator to compare two [SpanDetailsRepoReqAndRes] objects.
+  /// Returns true if the objects are identical or have the same property
+  /// values (based on the results of the toJson function), false otherwise.
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SpanDetailsRepoReqAndRes) return false;
+    if (other.userL1 != userL1) return false;
+    if (other.userL2 != userL2) return false;
+    if (other.enableIT != enableIT) return false;
+    if (other.enableIGC != enableIGC) return false;
+    if (const ListEquality().equals(
+          other.span.choices?.sorted((a, b) => b.value.compareTo(a.value)),
+          span.choices?.sorted((a, b) => b.value.compareTo(a.value)),
+        ) ==
+        false) {
+      return false;
+    }
+    return true;
+  }
+
+  /// Overrides the hashCode getter to generate a hash code for the [SpanDetailsRepoReqAndRes] object.
+  /// Used as keys in response cache in igc_controller.
+  @override
+  int get hashCode {
+    return Object.hashAll([
+      userL1.hashCode,
+      userL2.hashCode,
+      enableIT.hashCode,
+      enableIGC.hashCode,
+      if (span.choices != null)
+        Object.hashAll(
+          span.choices!
+              .sorted((a, b) => b.value.compareTo(a.value))
+              .map((choice) => choice.hashCode),
+        ),
+    ]);
+  }
 }
 
 final spanDataRepomockSpan = SpanData(

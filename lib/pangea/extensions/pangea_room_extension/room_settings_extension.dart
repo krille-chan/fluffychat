@@ -1,6 +1,19 @@
 part of "pangea_room_extension.dart";
 
 extension RoomSettingsRoomExtension on Room {
+  Future<void> _updateRoomCapacity(int newCapacity) =>
+      client.setRoomStateWithKey(
+        id,
+        PangeaEventTypes.capacity,
+        '',
+        {'capacity': newCapacity},
+      );
+
+  int? get _capacity {
+    final t = getState(PangeaEventTypes.capacity)?.content['capacity'];
+    return t is int ? t : null;
+  }
+
   PangeaRoomRules? get _pangeaRoomRules {
     try {
       final Map<String, dynamic>? content = pangeaRoomRulesStateEvent?.content;
@@ -27,8 +40,7 @@ extension RoomSettingsRoomExtension on Room {
 
   IconData? get _roomTypeIcon {
     if (membership == Membership.invite) return Icons.add;
-    if (isPangeaClass) return Icons.school;
-    if (isExchange) return Icons.connecting_airports;
+    if (isSpace) return Icons.school;
     if (isAnalyticsRoom) return Icons.analytics;
     if (isDirectChat) return Icons.forum;
     return Icons.group;
@@ -55,10 +67,43 @@ extension RoomSettingsRoomExtension on Room {
     );
   }
 
-  Future<bool> _suggestedInSpace(Room space) async {
+  Future<bool> _isSuggested() async {
+    final List<Room> spaceParents = client.rooms
+        .where(
+          (room) =>
+              room.isSpace &&
+              room.spaceChildren.any(
+                (sc) => sc.roomId == id,
+              ),
+        )
+        .toList();
+
+    for (final parent in spaceParents) {
+      final suggested = await _isSuggestedInSpace(parent);
+      if (!suggested) return false;
+    }
+    return true;
+  }
+
+  Future<void> _setSuggested(bool suggested) async {
+    final List<Room> spaceParents = client.rooms
+        .where(
+          (room) =>
+              room.isSpace &&
+              room.spaceChildren.any(
+                (sc) => sc.roomId == id,
+              ),
+        )
+        .toList();
+    for (final parent in spaceParents) {
+      await _setSuggestedInSpace(suggested, parent);
+    }
+  }
+
+  Future<bool> _isSuggestedInSpace(Room space) async {
     try {
       final Map<String, dynamic> resp =
-          await client.getRoomStateWithKey(space.id, EventTypes.spaceChild, id);
+          await client.getRoomStateWithKey(space.id, EventTypes.SpaceChild, id);
       return resp.containsKey('suggested') ? resp['suggested'] as bool : true;
     } catch (err) {
       ErrorHandler.logError(

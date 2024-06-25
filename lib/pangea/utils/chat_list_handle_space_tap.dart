@@ -33,6 +33,9 @@ void chatListHandleSpaceTap(
       context: context,
       future: () async {
         await space.join();
+        if (await space.leaveIfFull()) {
+          throw L10n.of(context)!.roomFull;
+        }
         await space.postLoad();
         setActiveSpaceAndCloseChat();
       },
@@ -53,7 +56,7 @@ void chatListHandleSpaceTap(
       title: L10n.of(context)!.youreInvited,
       message: space.isSpace
           ? L10n.of(context)!
-              .invitedToClassOrExchange(space.name, space.creatorId ?? "???")
+              .invitedToSpace(space.name, space.creatorId ?? "???")
           : L10n.of(context)!
               .invitedToChat(space.name, space.creatorId ?? "???"),
       okLabel: L10n.of(context)!.accept,
@@ -65,6 +68,9 @@ void chatListHandleSpaceTap(
         context: context,
         future: () async {
           await space.join();
+          if (await space.leaveIfFull()) {
+            throw L10n.of(context)!.roomFull;
+          }
           if (space.isSpace) {
             await space.joinAnalyticsRoomsInSpace();
           }

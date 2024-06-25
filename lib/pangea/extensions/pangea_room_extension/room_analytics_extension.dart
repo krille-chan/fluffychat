@@ -55,14 +55,6 @@ extension AnalyticsRoomExtension on Room {
     }
   }
 
-  // check if analytics room exists for a given language code
-  // and if not, create it
-  Future<void> _ensureAnalyticsRoomExists() async {
-    await postLoad();
-    if (firstLanguageSettings?.targetLanguage == null) return;
-    await client.getMyAnalyticsRoom(firstLanguageSettings!.targetLanguage);
-  }
-
   // add 1 analytics room to 1 space
   Future<void> _addAnalyticsRoomToSpace(Room analyticsRoom) async {
     if (!isSpace) {
@@ -107,7 +99,7 @@ extension AnalyticsRoomExtension on Room {
       return;
     }
 
-    for (final Room space in (await client.classesAndExchangesImStudyingIn)) {
+    for (final Room space in (await client.spacesImStudyingIn)) {
       if (space.spaceChildren.any((sc) => sc.roomId == id)) continue;
       await space.addAnalyticsRoomToSpace(this);
     }
@@ -120,185 +112,6 @@ extension AnalyticsRoomExtension on Room {
     final List<Room> allMyAnalyticsRooms = client.allMyAnalyticsRooms;
     for (final Room analyticsRoom in allMyAnalyticsRooms) {
       await addAnalyticsRoomToSpace(analyticsRoom);
-    }
-  }
-
-  StudentAnalyticsEvent? _getStudentAnalyticsLocal(String studentId) {
-    if (!isSpace) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        m: "calling getStudentAnalyticsLocal on non-space room",
-        s: StackTrace.current,
-      );
-      return null;
-    }
-
-    final Event? matrixEvent = getState(
-      PangeaEventTypes.studentAnalyticsSummary,
-      studentId,
-    );
-
-    return matrixEvent != null
-        ? StudentAnalyticsEvent(event: matrixEvent)
-        : null;
-  }
-
-  Future<StudentAnalyticsEvent?> _getStudentAnalytics(
-    String studentId, {
-    bool forcedUpdate = false,
-  }) async {
-    try {
-      if (!isSpace) {
-        debugger(when: kDebugMode);
-        throw Exception("calling getStudentAnalyticsLocal on non-space room");
-      }
-      StudentAnalyticsEvent? localEvent = _getStudentAnalyticsLocal(studentId);
-
-      if (localEvent == null) {
-        await postLoad();
-        localEvent = _getStudentAnalyticsLocal(studentId);
-      }
-
-      if (studentId == client.userID && localEvent == null) {
-        final Event? matrixEvent = await _createStudentAnalyticsEvent();
-        if (matrixEvent != null) {
-          localEvent = StudentAnalyticsEvent(event: matrixEvent);
-        }
-      }
-
-      return localEvent;
-    } catch (err) {
-      debugger(when: kDebugMode);
-      rethrow;
-    }
-  }
-
-  /// if [studentIds] is null, returns all students
-  Future<List<StudentAnalyticsEvent?>> _getClassAnalytics([
-    List<String>? studentIds,
-  ]) async {
-    await postLoad();
-    await requestParticipants();
-    final List<Future<StudentAnalyticsEvent?>> sassFutures = [];
-    final List<String> filteredIds = students
-        .where(
-          (element) => studentIds == null || studentIds.contains(element.id),
-        )
-        .map((e) => e.id)
-        .toList();
-    for (final id in filteredIds) {
-      sassFutures.add(
-        getStudentAnalytics(
-          id,
-        ),
-      );
-    }
-    return Future.wait(sassFutures);
-  }
-
-  ///   if [isSpace]
-  ///     for all child chats, call _getChatAnalyticsGlobal and merge results
-  ///   else
-  ///     get analytics from pangea chat server
-  ///     do any needed conversion work
-  ///   save RoomAnalytics object to PangeaEventTypes.analyticsSummary event
-  Future<Event?> _createStudentAnalyticsEvent() async {
-    try {
-      await postLoad();
-      if (!pangeaCanSendEvent(PangeaEventTypes.studentAnalyticsSummary)) {
-        ErrorHandler.logError(
-          m: "null powerLevels in createStudentAnalytics",
-          s: StackTrace.current,
-        );
-        return null;
-      }
-      if (client.userID == null) {
-        debugger(when: kDebugMode);
-        throw Exception("null userId in createStudentAnalytics");
-      }
-
-      final String eventId = await client.setRoomStateWithKey(
-        id,
-        PangeaEventTypes.studentAnalyticsSummary,
-        client.userID!,
-        StudentAnalyticsSummary(
-          // studentId: client.userID!,
-          lastUpdated: DateTime.now(),
-          messages: [],
-        ).toJson(),
-      );
-      final Event? event = await getEventById(eventId);
-
-      if (event == null) {
-        debugger(when: kDebugMode);
-        throw Exception(
-          "null event after creation with eventId $eventId in createStudentAnalytics",
-        );
-      }
-      return event;
-    } catch (err, stack) {
-      ErrorHandler.logError(e: err, s: stack, data: powerLevels);
-      return null;
-    }
-  }
-
-  ///   for each chat in class
-  ///     get timeline back to january 15
-  ///     get messages
-  ///     discard timeline
-  ///   save messages to StudentAnalyticsSummary
-  Future<void> _updateMyLearningAnalyticsForClass([
-    PLocalStore? storageService,
-  ]) async {
-    try {
-      final String migratedAnalyticsKey =
-          "MIGRATED_ANALYTICS_KEY${id.localpart}";
-
-      if (storageService?.read(
-            migratedAnalyticsKey,
-            local: true,
-          ) ??
-          false) return;
-
-      if (!isPangeaClass && !isExchange) {
-        throw Exception(
-          "In updateMyLearningAnalyticsForClass with room that is not not a class",
-        );
-      }
-
-      if (client.userID == null) {
-        debugger(when: kDebugMode);
-        return;
-      }
-
-      final StudentAnalyticsEvent? myAnalEvent =
-          await getStudentAnalytics(client.userID!);
-
-      if (myAnalEvent == null) {
-        debugPrint("null analytcs event for $id");
-        if (pangeaCanSendEvent(PangeaEventTypes.studentAnalyticsSummary)) {
-          // debugger(when: kDebugMode);
-        }
-        return;
-      }
-
-      final updateMessages = await _messageListForAllChildChats;
-      updateMessages.removeWhere(
-        (element) => myAnalEvent.content.messages.any(
-          (e) => e.eventId == element.eventId,
-        ),
-      );
-      myAnalEvent.bulkUpdate(updateMessages);
-
-      await storageService?.save(
-        migratedAnalyticsKey,
-        true,
-        local: true,
-      );
-    } catch (err, s) {
-      if (kDebugMode) rethrow;
-      // debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s);
     }
   }
 
@@ -362,7 +175,7 @@ extension AnalyticsRoomExtension on Room {
       return;
     }
 
-    for (final Room space in (await client.classesAndExchangesImStudyingIn)) {
+    for (final Room space in (await client.spacesImStudyingIn)) {
       await space.inviteSpaceTeachersToAnalyticsRoom(this);
     }
   }
@@ -372,5 +185,68 @@ extension AnalyticsRoomExtension on Room {
     for (final Room analyticsRoom in client.allMyAnalyticsRooms) {
       await inviteSpaceTeachersToAnalyticsRoom(analyticsRoom);
     }
+  }
+
+  Future<AnalyticsEvent?> _getLastAnalyticsEvent(
+    String type,
+    String userId,
+  ) async {
+    final List<Event> events = await getEventsBySender(
+      type: type,
+      sender: userId,
+      count: 1,
+    );
+    if (events.isEmpty) return null;
+    final Event event = events.first;
+    AnalyticsEvent? analyticsEvent;
+    switch (type) {
+      case PangeaEventTypes.summaryAnalytics:
+        analyticsEvent = SummaryAnalyticsEvent(event: event);
+      case PangeaEventTypes.construct:
+        analyticsEvent = ConstructAnalyticsEvent(event: event);
+    }
+    return analyticsEvent;
+  }
+
+  Future<DateTime?> _analyticsLastUpdated(String type, String userId) async {
+    final lastEvent = await _getLastAnalyticsEvent(type, userId);
+    return lastEvent?.event.originServerTs;
+  }
+
+  Future<List<AnalyticsEvent>?> _getAnalyticsEvents({
+    required String type,
+    required String userId,
+    DateTime? since,
+  }) async {
+    final List<Event> events = await getEventsBySender(
+      type: type,
+      sender: userId,
+      since: since,
+    );
+    final List<AnalyticsEvent> analyticsEvents = [];
+    for (final Event event in events) {
+      switch (type) {
+        case PangeaEventTypes.summaryAnalytics:
+          analyticsEvents.add(SummaryAnalyticsEvent(event: event));
+          break;
+        case PangeaEventTypes.construct:
+          analyticsEvents.add(ConstructAnalyticsEvent(event: event));
+          break;
+      }
+    }
+
+    return analyticsEvents;
+  }
+
+  String? get _madeForLang {
+    final creationContent = getState(EventTypes.RoomCreate)?.content;
+    return creationContent?.tryGet<String>(ModelKey.langCode) ??
+        creationContent?.tryGet<String>(ModelKey.oldLangCode);
+  }
+
+  bool _isMadeForLang(String langCode) {
+    final creationContent = getState(EventTypes.RoomCreate)?.content;
+    return creationContent?.tryGet<String>(ModelKey.langCode) == langCode ||
+        creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
   }
 }

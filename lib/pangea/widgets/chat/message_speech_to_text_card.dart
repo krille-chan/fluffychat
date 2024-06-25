@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/common/icon_number_widget.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
@@ -34,13 +35,9 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
   STTToken? selectedToken;
 
   String? get l1Code =>
-      MatrixState.pangeaController.languageController.activeL1Code(
-        roomID: widget.messageEvent.room.id,
-      );
+      MatrixState.pangeaController.languageController.activeL1Code();
   String? get l2Code =>
-      MatrixState.pangeaController.languageController.activeL2Code(
-        roomID: widget.messageEvent.room.id,
-      );
+      MatrixState.pangeaController.languageController.activeL2Code();
 
   // look for transcription in message event
   // if not found, call API to transcribe audio
@@ -175,12 +172,24 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
               number:
                   "${selectedToken?.confidence ?? speechToTextResponse!.transcript.confidence}%",
               toolTip: L10n.of(context)!.accuracy,
+              onPressed: () => MatrixState.pangeaController.instructions.show(
+                context,
+                InstructionsEnum.tooltipInstructions,
+                widget.messageEvent.eventId,
+                true,
+              ),
             ),
             IconNumberWidget(
               icon: Icons.speed,
               number:
                   wordsPerMinuteString != null ? "$wordsPerMinuteString" : "??",
               toolTip: L10n.of(context)!.wordsPerMinute,
+              onPressed: () => MatrixState.pangeaController.instructions.show(
+                context,
+                InstructionsEnum.tooltipInstructions,
+                widget.messageEvent.eventId,
+                true,
+              ),
             ),
           ],
         ),

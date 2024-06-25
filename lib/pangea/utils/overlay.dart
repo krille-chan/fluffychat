@@ -76,10 +76,14 @@ class OverlayUtil {
     try {
       final LayerLinkAndKey layerLinkAndKey =
           MatrixState.pAnyState.layerLinkAndKey(transformTargetId);
+      if (layerLinkAndKey.key.currentContext == null) {
+        debugPrint("layerLinkAndKey.key.currentContext is null");
+        return;
+      }
 
       final Offset cardOffset = _calculateCardOffset(
         cardSize: cardSize,
-        transformTargetKey: layerLinkAndKey.key,
+        transformTargetContext: layerLinkAndKey.key.currentContext!,
       );
 
       final Widget child = Material(
@@ -112,16 +116,16 @@ class OverlayUtil {
   /// identified by [transformTargetKey]
   static Offset _calculateCardOffset({
     required Size cardSize,
-    required LabeledGlobalKey transformTargetKey,
+    required BuildContext transformTargetContext,
     final double minPadding = 10.0,
   }) {
     // debugger(when: kDebugMode);
     //Note: assumes overlay in chatview
     final OverlayConstraints constraints =
-        ChatViewConstraints(transformTargetKey.currentContext!);
+        ChatViewConstraints(transformTargetContext);
 
     final RenderObject? targetRenderBox =
-        transformTargetKey.currentContext!.findRenderObject();
+        transformTargetContext.findRenderObject();
     if (targetRenderBox == null) return Offset.zero;
     final Offset transformTargetOffset =
         (targetRenderBox as RenderBox).localToGlobal(Offset.zero);

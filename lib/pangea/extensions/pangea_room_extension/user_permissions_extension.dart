@@ -1,6 +1,32 @@
 part of "pangea_room_extension.dart";
 
 extension UserPermissionsRoomExtension on Room {
+// If there are no other admins, and at least one non-admin, return true
+  Future<bool> _isOnlyAdmin() async {
+    if (!isRoomAdmin) {
+      return false;
+    }
+    final List<User> participants = await requestParticipants();
+
+    return ((participants
+                .where(
+                  (e) =>
+                      e.powerLevel == ClassDefaultValues.powerLevelOfAdmin &&
+                      e.id != BotName.byEnvironment,
+                )
+                .toList()
+                .length) ==
+            1) &&
+        (participants
+                .where(
+                  (e) =>
+                      e.powerLevel < ClassDefaultValues.powerLevelOfAdmin &&
+                      e.id != BotName.byEnvironment,
+                )
+                .toList())
+            .isNotEmpty;
+  }
+
   bool _isMadeByUser(String userId) =>
       getState(EventTypes.RoomCreate)?.senderId == userId;
 
@@ -52,43 +78,34 @@ extension UserPermissionsRoomExtension on Room {
 
   bool get _canDelete => isSpaceAdmin;
 
-  bool _canIAddSpaceChild(Room? room) {
+  bool _canIAddSpaceChild(Room? room, {bool spaceMode = false}) {
     if (!isSpace) {
       ErrorHandler.logError(
-        m: "should not call canIAddSpaceChildren on non-space room",
+        m: "should not call canIAddSpaceChildren on non-space room. Room id: $id",
         data: toJson(),
         s: StackTrace.current,
       );
       return false;
     }
-    if (room != null && !room._isRoomAdmin) {
-      return false;
-    }
-    if (!pangeaCanSendEvent(EventTypes.spaceChild) && !_isRoomAdmin) {
-      return false;
-    }
-    if (room == null) {
-      return isRoomAdmin || (pangeaRoomRules?.isCreateRooms ?? false);
-    }
-    if (room.isExchange) {
-      return isRoomAdmin;
-    }
-    if (!room.isSpace) {
-      return pangeaRoomRules?.isCreateRooms ?? false;
-    }
-    if (room.isPangeaClass) {
-      ErrorHandler.logError(
-        m: "should not call canIAddSpaceChild with class",
-        data: room.toJson(),
-        s: StackTrace.current,
-      );
-      return false;
-    }
-    return false;
+
+    final isSpaceAdmin = isRoomAdmin;
+    final isChildRoomAdmin = room?.isRoomAdmin ?? true;
+
+    // if user is not admin of child room, return false
+    if (!isChildRoomAdmin) return false;
+
+    // if the child room is a space, or will be a space,
+    // then the user must be an admin of the parent space
+    if (room?.isSpace ?? spaceMode) return isSpaceAdmin;
+
+    // otherwise, the user can add the child room to the parent
+    // if they're the admin of the parent or if the parent creation
+    // of group chats
+    return isSpaceAdmin || (pangeaRoomRules?.isCreateRooms ?? false);
   }
 
   bool get _canIAddSpaceParents =>
-      _isRoomAdmin || pangeaCanSendEvent(EventTypes.spaceParent);
+      _isRoomAdmin || pangeaCanSendEvent(EventTypes.SpaceParent);
 
   //overriding the default canSendEvent to check power levels
   bool _pangeaCanSendEvent(String eventType) {

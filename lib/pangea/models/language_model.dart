@@ -79,8 +79,8 @@ class LanguageModel {
 
   static LanguageModel multiLingual([BuildContext? context]) => LanguageModel(
         displayName: context != null
-            ? L10n.of(context)!.multiLingualClass
-            : "Multilingual Class",
+            ? L10n.of(context)!.multiLingualSpace
+            : "Multilingual Space",
         l2: false,
         l1: false,
         langCode: LanguageKeys.multiLanguage,

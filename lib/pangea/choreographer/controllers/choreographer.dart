@@ -6,14 +6,13 @@ import 'package:fluffychat/pangea/choreographer/controllers/alternative_translat
 import 'package:fluffychat/pangea/choreographer/controllers/igc_controller.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/message_options.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/enum/edit_type.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/it_step.dart';
+import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -51,7 +50,7 @@ class Choreographer {
   // last checked by IGC or translation
   String? _lastChecked;
   ChoreoMode choreoMode = ChoreoMode.igc;
-  final StreamController stateListener = StreamController();
+  final StreamController stateListener = StreamController.broadcast();
   StreamSubscription? trialStream;
 
   Choreographer(this.pangeaController, this.chatController) {
@@ -93,7 +92,7 @@ class Choreographer {
     }
   }
 
-  void _sendWithIGC(BuildContext context) {
+  Future<void> _sendWithIGC(BuildContext context) async {
     if (igc.canSendMessage) {
       final PangeaRepresentation? originalWritten =
           choreoRecord.includedIT && itController.sourceText != null
@@ -105,7 +104,6 @@ class Choreographer {
                 )
               : null;
 
-      // PTODO - just put this in original message event
       final PangeaRepresentation originalSent = PangeaRepresentation(
         langCode: langCodeOfCurrentText ?? LanguageKeys.unknownLanguage,
         text: currentText,
@@ -114,6 +112,22 @@ class Choreographer {
       );
       final ChoreoRecord? applicableChoreo =
           isITandIGCEnabled && igc.igcTextData != null ? choreoRecord : null;
+
+      // if the message has not been processed to determine its language
+      // then run it through the language detection endpoint. If the detection
+      // confidence is high enough, use that language code as the message's language
+      // to save that pangea representation
+      if (applicableChoreo == null) {
+        final resp = await pangeaController.languageDetection.detectLanguage(
+          currentText,
+          pangeaController.languageController.userL2?.langCode,
+          pangeaController.languageController.userL1?.langCode,
+        );
+        final LanguageDetection? bestDetection = resp.bestDetection();
+        if (bestDetection != null) {
+          originalSent.langCode = bestDetection.langCode;
+        }
+      }
 
       final UseType useType = useTypeCalculator(applicableChoreo);
       debugPrint("use type in choreographer $useType");
@@ -205,14 +219,18 @@ class Choreographer {
     textController.editType = EditType.keyboard;
   }
 
-  Future<void> getLanguageHelp([bool tokensOnly = false]) async {
+  Future<void> getLanguageHelp([
+    bool tokensOnly = false,
+    bool manual = false,
+  ]) async {
     try {
       if (errorService.isError) return;
       final CanSendStatus canSendStatus =
           pangeaController.subscriptionController.canSendStatus;
 
       if (canSendStatus != CanSendStatus.subscribed ||
-          (!igcEnabled && !itEnabled)) {
+          (!igcEnabled && !itEnabled) ||
+          (!isAutoIGCEnabled && !manual && choreoMode != ChoreoMode.it)) {
         return;
       }
 
@@ -423,25 +441,15 @@ class Choreographer {
   }
 
   LanguageModel? get l2Lang {
-    return pangeaController.languageController.activeL2Model(
-      roomID: roomId,
-    );
+    return pangeaController.languageController.activeL2Model();
   }
 
   String? get l2LangCode => l2Lang?.langCode;
 
   LanguageModel? get l1Lang =>
-      pangeaController.languageController.activeL1Model(
-        roomID: roomId,
-      );
-  String? get l1LangCode => l1Lang?.langCode;
+      pangeaController.languageController.activeL1Model();
 
-  String? get classId => roomId != null
-      ? pangeaController.matrixState.client
-          .getRoomById(roomId)
-          ?.firstParentWithState(PangeaEventTypes.classSettings)
-          ?.id
-      : null;
+  String? get l1LangCode => l1Lang?.langCode;
 
   String? get userId => pangeaController.userController.userId;
 
@@ -525,14 +533,50 @@ class Choreographer {
         chatController.room,
       );
 
-  bool get translationEnabled =>
-      pangeaController.permissionsController.isToolEnabled(
-        ToolSetting.translations,
-        chatController.room,
-      );
+  // bool get translationEnabled =>
+  //     pangeaController.permissionsController.isToolEnabled(
+  //       ToolSetting.translations,
+  //       chatController.room,
+  //     );
 
   bool get isITandIGCEnabled =>
       pangeaController.permissionsController.isWritingAssistanceEnabled(
         chatController.room,
       );
+
+  bool get isAutoIGCEnabled =>
+      pangeaController.permissionsController.isToolEnabled(
+        ToolSetting.autoIGC,
+        chatController.room,
+      );
+
+  AssistanceState get assistanceState {
+    if (currentText.isEmpty && itController.sourceText == null) {
+      return AssistanceState.noMessage;
+    }
+
+    if (igc.igcTextData?.matches.isNotEmpty ?? false) {
+      return AssistanceState.fetched;
+    }
+
+    if (isFetching) {
+      return AssistanceState.fetching;
+    }
+
+    if (igc.igcTextData == null) {
+      return AssistanceState.notFetched;
+    }
+
+    return AssistanceState.complete;
+  }
+}
+
+// assistance state is, user has not typed a message, user has typed a message and IGC has not run,
+// IGC is running, IGC has run and there are remaining steps (either IT or IGC), or all steps are done
+enum AssistanceState {
+  noMessage,
+  notFetched,
+  fetching,
+  fetched,
+  complete,
 }

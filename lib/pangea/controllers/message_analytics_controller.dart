@@ -1,34 +1,41 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/match_rule_ids.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/time_span.dart';
-import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
+import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
+import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
+import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../constants/class_default_values.dart';
 import '../extensions/client_extension/client_extension.dart';
 import '../extensions/pangea_room_extension/pangea_room_extension.dart';
-import '../matrix_event_wrappers/construct_analytics_event.dart';
-import '../models/chart_analytics_model.dart';
-import '../models/student_analytics_event.dart';
+import '../models/analytics/chart_analytics_model.dart';
 import 'base_controller.dart';
 import 'pangea_controller.dart';
 
+// controls the fetching of analytics data
 class AnalyticsController extends BaseController {
   late PangeaController _pangeaController;
 
-  final List<CacheModel> _cachedModels = [];
+  final List<AnalyticsCacheModel> _cachedAnalyticsModels = [];
   final List<ConstructCacheEntry> _cachedConstructs = [];
 
   AnalyticsController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
   }
 
+  ///////// TIME SPANS //////////
   String get _analyticsTimeSpanKey => "ANALYTICS_TIME_SPAN_KEY";
 
   TimeSpan get currentAnalyticsTimeSpan {
@@ -57,232 +64,488 @@ class AnalyticsController extends BaseController {
     );
   }
 
-  Future<List<ChartAnalyticsModel?>> allClassAnalytics() async {
-    final List<Future<ChartAnalyticsModel?>> classAnalyticFutures = [];
-    for (final classRoom in (await _pangeaController
-        .matrixState.client.classesAndExchangesImTeaching)) {
-      classAnalyticFutures.add(
-        getAnalytics(classRoom: classRoom),
+  ///////// SPACE ANALYTICS LANGUAGES //////////
+  String get _analyticsSpaceLangKey => "ANALYTICS_SPACE_LANG_KEY";
+
+  LanguageModel get currentAnalyticsSpaceLang {
+    try {
+      final String? str = _pangeaController.pStoreService.read(
+        _analyticsSpaceLangKey,
+        local: true,
+      );
+      return str != null
+          ? PangeaLanguage.byLangCode(str)
+          : _pangeaController.languageController.userL2 ??
+              _pangeaController.pLanguageStore.targetOptions.first;
+    } catch (err) {
+      debugger(when: kDebugMode);
+      return _pangeaController.pLanguageStore.targetOptions.first;
+    }
+  }
+
+  Future<void> setCurrentAnalyticsSpaceLang(LanguageModel lang) async {
+    await _pangeaController.pStoreService.save(
+      _analyticsSpaceLangKey,
+      lang.langCode,
+      local: true,
+    );
+  }
+
+  Future<DateTime?> myAnalyticsLastUpdated(String type) async {
+    // given an analytics event type, get the last updated times
+    // for each of the user's analytics rooms and return the most recent
+    // Most Recent instead of the oldest because, for instance:
+    //     My last Spanish event was sent 3 days ago.
+    //     My last English event was sent 1 day ago.
+    //     When I go to check if the cached data is out of date, the cached item was set 2 days ago.
+    //     I know there’s new data available because the English update data (the most recent) is after the cache’s creation time.
+    //     So, I should update the cache.
+    final List<Room> analyticsRooms = _pangeaController
+        .matrixState.client.allMyAnalyticsRooms
+        .where((room) => room.isAnalyticsRoom)
+        .toList();
+
+    final List<DateTime> lastUpdates = [];
+    for (final Room analyticsRoom in analyticsRooms) {
+      final DateTime? lastUpdated = await analyticsRoom.analyticsLastUpdated(
+        type,
+        _pangeaController.matrixState.client.userID!,
+      );
+      if (lastUpdated != null) {
+        lastUpdates.add(lastUpdated);
+      }
+    }
+
+    if (lastUpdates.isEmpty) return null;
+    return lastUpdates.reduce(
+      (check, mostRecent) => check.isAfter(mostRecent) ? check : mostRecent,
+    );
+  }
+
+  Future<DateTime?> spaceAnalyticsLastUpdated(
+    String type,
+    Room space,
+  ) async {
+    // check if any students have recently updated their analytics
+    // if any have, then the cache needs to be updated
+    // TODO - figure out how to do this on a per-student basis
+    await space.requestParticipants();
+
+    final List<Future<DateTime?>> lastUpdatedFutures = [];
+    for (final student in space.students) {
+      final Room? analyticsRoom = _pangeaController.matrixState.client
+          .analyticsRoomLocal(currentAnalyticsSpaceLang.langCode, student.id);
+      if (analyticsRoom == null) continue;
+      lastUpdatedFutures.add(
+        analyticsRoom.analyticsLastUpdated(
+          type,
+          student.id,
+        ),
       );
     }
 
-    return Future.wait(classAnalyticFutures);
+    final List<DateTime?> lastUpdatedWithNulls =
+        await Future.wait(lastUpdatedFutures);
+    final List<DateTime> lastUpdates =
+        lastUpdatedWithNulls.where((e) => e != null).cast<DateTime>().toList();
+    if (lastUpdates.isNotEmpty) {
+      return lastUpdates.reduce(
+        (check, mostRecent) => check.isAfter(mostRecent) ? check : mostRecent,
+      );
+    }
+    return null;
+  }
+
+  // Map of space ids to the last fetched hierarchy. Used when filtering
+  // private chat analytics to determine which children are already visible
+  // in the chat list
+  final Map<String, List<String>> _lastFetchedHierarchies = {};
+
+  void setLatestHierarchy(String spaceId, GetSpaceHierarchyResponse resp) {
+    final List<String> roomIds = resp.rooms.map((room) => room.roomId).toList();
+    _lastFetchedHierarchies[spaceId] = roomIds;
+  }
+
+  Future<List<String>> getLatestSpaceHierarchy(String spaceId) async {
+    if (!_lastFetchedHierarchies.containsKey(spaceId)) {
+      final resp =
+          await _pangeaController.matrixState.client.getSpaceHierarchy(spaceId);
+      setLatestHierarchy(spaceId, resp);
+    }
+    return _lastFetchedHierarchies[spaceId] ?? [];
+  }
+
+  //////////////////////////// MESSAGE SUMMARY ANALYTICS ////////////////////////////
+
+  Future<List<SummaryAnalyticsEvent>> mySummaryAnalytics() async {
+    // gets all the summary analytics events for the user
+    // since the current timespace's cut off date
+    final analyticsRooms =
+        _pangeaController.matrixState.client.allMyAnalyticsRooms;
+
+    final List<SummaryAnalyticsEvent> allEvents = [];
+
+    // TODO switch to using list of futures
+    for (final Room analyticsRoom in analyticsRooms) {
+      final List<AnalyticsEvent>? roomEvents =
+          await analyticsRoom.getAnalyticsEvents(
+        type: PangeaEventTypes.summaryAnalytics,
+        since: currentAnalyticsTimeSpan.cutOffDate,
+        userId: _pangeaController.matrixState.client.userID!,
+      );
+
+      allEvents.addAll(
+        roomEvents?.cast<SummaryAnalyticsEvent>() ?? [],
+      );
+    }
+    return allEvents;
+  }
+
+  Future<List<SummaryAnalyticsEvent>> spaceMemberAnalytics(
+    Room space,
+  ) async {
+    // gets all the summary analytics events for the students
+    // in a space since the current timespace's cut off date
+
+    // ensure that all the space's events are loaded (mainly the for langCode)
+    // and that the participants are loaded
+    await space.postLoad();
+    await space.requestParticipants();
+
+    // TODO switch to using list of futures
+    final List<SummaryAnalyticsEvent> analyticsEvents = [];
+    for (final student in space.students) {
+      final Room? analyticsRoom = _pangeaController.matrixState.client
+          .analyticsRoomLocal(currentAnalyticsSpaceLang.langCode, student.id);
+
+      if (analyticsRoom != null) {
+        final List<AnalyticsEvent>? roomEvents =
+            await analyticsRoom.getAnalyticsEvents(
+          type: PangeaEventTypes.summaryAnalytics,
+          since: currentAnalyticsTimeSpan.cutOffDate,
+          userId: student.id,
+        );
+        analyticsEvents.addAll(
+          roomEvents?.cast<SummaryAnalyticsEvent>() ?? [],
+        );
+      }
+    }
+
+    final List<String> spaceChildrenIds = space.allSpaceChildRoomIds;
+
+    // filter out the analyics events that don't belong to the space's children
+    final List<SummaryAnalyticsEvent> allAnalyticsEvents = [];
+    for (final analyticsEvent in analyticsEvents) {
+      analyticsEvent.content.messages.removeWhere(
+        (msg) => !spaceChildrenIds.contains(msg.chatId),
+      );
+      allAnalyticsEvents.add(analyticsEvent);
+    }
+
+    return allAnalyticsEvents;
   }
 
   ChartAnalyticsModel? getAnalyticsLocal({
     TimeSpan? timeSpan,
-    String? classId,
-    String? studentId,
-    String? chatId,
+    required AnalyticsSelected defaultSelected,
+    AnalyticsSelected? selected,
     bool forceUpdate = false,
     bool updateExpired = false,
+    DateTime? lastUpdated,
   }) {
     timeSpan ??= currentAnalyticsTimeSpan;
-    final int index = _cachedModels.indexWhere(
+    final int index = _cachedAnalyticsModels.indexWhere(
       (e) =>
           (e.timeSpan == timeSpan) &&
-          (e.classId == classId) &&
-          (e.studentId == studentId) &&
-          (e.chatId == chatId),
+          (e.defaultSelected.id == defaultSelected.id) &&
+          (e.defaultSelected.type == defaultSelected.type) &&
+          (e.selected?.id == selected?.id) &&
+          (e.selected?.type == selected?.type) &&
+          (e.langCode == currentAnalyticsSpaceLang.langCode),
     );
 
     if (index != -1) {
-      if ((updateExpired && _cachedModels[index].isExpired) || forceUpdate) {
-        _cachedModels.removeAt(index);
+      if ((updateExpired && _cachedAnalyticsModels[index].isExpired) ||
+          forceUpdate ||
+          _cachedAnalyticsModels[index].needsUpdate(lastUpdated)) {
+        _cachedAnalyticsModels.removeAt(index);
       } else {
-        return _cachedModels[index].chartAnalyticsModel;
+        return _cachedAnalyticsModels[index].chartAnalyticsModel;
       }
     }
 
     return null;
   }
 
-  Future<ChartAnalyticsModel> getAnalytics({
+  void cacheAnalytics({
+    required ChartAnalyticsModel chartAnalyticsModel,
+    required AnalyticsSelected defaultSelected,
+    AnalyticsSelected? selected,
     TimeSpan? timeSpan,
-    Room? classRoom,
-    String? studentId,
-    String? chatId,
-    bool forceUpdate = false,
-  }) async {
-    timeSpan ??= currentAnalyticsTimeSpan;
-    try {
-      final cachedModel = getAnalyticsLocal(
-        classId: classRoom?.id,
-        studentId: studentId,
-        chatId: chatId,
-        updateExpired: true,
-        forceUpdate: forceUpdate,
-      );
-      if (cachedModel != null) return cachedModel;
-      // debugger(when: classRoom?.displayname.contains('clizass') ?? false);
-      late List<StudentAnalyticsEvent?> studentAnalyticsSummaryEvents;
-      if (classRoom == null) {
-        if (studentId == null) {
-          debugger(when: kDebugMode);
-          ErrorHandler.logError(
-            m: "studentId should have been defined",
-            s: StackTrace.current,
-          );
-        } else {
-          studentAnalyticsSummaryEvents =
-              await _pangeaController.myAnalytics.allMyAnalyticsEvents();
-        }
-      } else {
-        if (studentId != null) {
-          studentAnalyticsSummaryEvents = [
-            await classRoom.getStudentAnalytics(studentId),
-          ];
-        } else {
-          studentAnalyticsSummaryEvents = await classRoom.getClassAnalytics();
-        }
-        if (studentId != null && chatId != null) {
-          debugger(when: kDebugMode);
-          ErrorHandler.logError(
-            m: "studentId and chatId should have both been defined",
-            s: StackTrace.current,
-          );
-          studentAnalyticsSummaryEvents = [];
-        }
-      }
-
-      final List<RecentMessageRecord> msgs = [];
-      for (final event in studentAnalyticsSummaryEvents) {
-        if (event != null) {
-          msgs.addAll(event.content.messages);
-        } else {
-          debugPrint("studentAnalyticsSummaryEvent is null");
-        }
-      }
-
-      final newModel = ChartAnalyticsModel(
-        timeSpan: timeSpan,
-        msgs: msgs,
-        chatId: chatId,
-      );
-
-      _cachedModels.add(
-        CacheModel(
-          timeSpan: timeSpan,
-          classId: classRoom?.id,
-          studentId: studentId,
-          chatId: chatId,
-          chartAnalyticsModel: newModel,
-        ),
-      );
-
-      return newModel;
-    } catch (err, s) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s);
-      return ChartAnalyticsModel(msgs: [], timeSpan: timeSpan, chatId: chatId);
-    }
-  }
-
-  Future<ChartAnalyticsModel> getAnalyticsForPrivateChats({
-    TimeSpan? timeSpan,
-    required Room? classRoom,
-    bool forceUpdate = false,
-  }) async {
-    timeSpan ??= currentAnalyticsTimeSpan;
-
-    try {
-      if (classRoom == null) {
-        return ChartAnalyticsModel(msgs: [], timeSpan: timeSpan);
-      }
-
-      final cachedModel = getAnalyticsLocal(
-        classId: classRoom.id,
-        studentId: null,
-        chatId: AnalyticsEntryType.privateChats.toString(),
-        updateExpired: true,
-        forceUpdate: forceUpdate,
-      );
-      if (cachedModel != null) return cachedModel;
-      final List<StudentAnalyticsEvent?> studentAnalyticsSummaryEvents =
-          await classRoom.getClassAnalytics();
-      final List<String> directChatIds =
-          classRoom.childrenAndGrandChildrenDirectChatIds;
-
-      final List<RecentMessageRecord> msgs = [];
-      for (final event in studentAnalyticsSummaryEvents) {
-        if (event != null) {
-          msgs.addAll(
-            event.content.messages
-                .where((m) => directChatIds.contains(m.chatId)),
-          );
-        } else {
-          debugPrint("studentAnalyticsSummaryEvent is null");
-        }
-      }
-      final newModel = ChartAnalyticsModel(
-        timeSpan: timeSpan,
-        msgs: msgs,
-        chatId: null,
-      );
-
-      _cachedModels.add(
-        CacheModel(
-          timeSpan: timeSpan,
-          classId: classRoom.id,
-          studentId: null,
-          chatId: AnalyticsEntryType.privateChats.toString(),
-          chartAnalyticsModel: newModel,
-        ),
-      );
-
-      return newModel;
-    } catch (err, s) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s);
-      return ChartAnalyticsModel(msgs: [], timeSpan: timeSpan);
-    }
-  }
-
-  List<ConstructEvent>? _constructs;
-  bool settingConstructs = false;
-
-  List<ConstructEvent>? get constructs => _constructs;
-
-  String? getLangCode({
-    Room? space,
-    String? roomID,
   }) {
-    final String? targetRoomID = space?.id ?? roomID;
-    final String? roomLangCode =
-        _pangeaController.languageController.activeL2Code(roomID: targetRoomID);
-    final String? userLangCode =
-        _pangeaController.languageController.userL2?.langCode;
-
-    return roomLangCode ?? userLangCode;
+    _cachedAnalyticsModels.add(
+      AnalyticsCacheModel(
+        timeSpan: timeSpan ?? currentAnalyticsTimeSpan,
+        chartAnalyticsModel: chartAnalyticsModel,
+        defaultSelected: defaultSelected,
+        selected: selected,
+        langCode: currentAnalyticsSpaceLang.langCode,
+      ),
+    );
   }
 
-  Future<Room> myAnalyticsRoom(String langCode) =>
-      _pangeaController.matrixState.client.getMyAnalyticsRoom(langCode);
+  List<SummaryAnalyticsEvent> filterStudentAnalytics(
+    List<SummaryAnalyticsEvent> unfiltered,
+    String? studentId,
+  ) {
+    final List<SummaryAnalyticsEvent> filtered =
+        List<SummaryAnalyticsEvent>.from(unfiltered);
+    filtered.removeWhere((e) => e.event.senderId != studentId);
+    return filtered;
+  }
 
-  Room? studentAnalyticsRoom(String studentId, String langCode) =>
-      _pangeaController.matrixState.client.analyticsRoomLocal(
-        langCode,
-        studentId,
+  Future<List<SummaryAnalyticsEvent>> filterRoomAnalytics(
+    List<SummaryAnalyticsEvent> unfiltered,
+    String? roomID,
+  ) async {
+    List<SummaryAnalyticsEvent> filtered = [...unfiltered];
+    Room? room;
+    if (roomID != null) {
+      room = _pangeaController.matrixState.client.getRoomById(roomID);
+      if (room?.isSpace == true) {
+        return await filterSpaceAnalytics(unfiltered, roomID);
+      }
+    }
+
+    filtered = filtered
+        .where(
+          (e) => (e.content).messages.any((u) => u.chatId == roomID),
+        )
+        .toList();
+    filtered.forEachIndexed(
+      (i, _) => (filtered[i].content).messages.removeWhere(
+            (u) => u.chatId != roomID,
+          ),
+    );
+    return filtered;
+  }
+
+  Future<List<SummaryAnalyticsEvent>> filterPrivateChatAnalytics(
+    List<SummaryAnalyticsEvent> unfiltered,
+    Room space,
+  ) async {
+    final List<String> privateChatIds = space.allSpaceChildRoomIds;
+    final List<String> lastFetched = await getLatestSpaceHierarchy(space.id);
+    for (final id in lastFetched) {
+      privateChatIds.removeWhere((e) => e == id);
+    }
+
+    List<SummaryAnalyticsEvent> filtered =
+        List<SummaryAnalyticsEvent>.from(unfiltered);
+    filtered = filtered.where((e) {
+      return (e.content).messages.any(
+            (u) => privateChatIds.contains(u.chatId),
+          );
+    }).toList();
+    filtered.forEachIndexed(
+      (i, _) => (filtered[i].content).messages.removeWhere(
+            (u) => !privateChatIds.contains(u.chatId),
+          ),
+    );
+    return filtered;
+  }
+
+  Future<List<SummaryAnalyticsEvent>> filterSpaceAnalytics(
+    List<SummaryAnalyticsEvent> unfiltered,
+    String spaceId,
+  ) async {
+    final List<String> chatIds = await getLatestSpaceHierarchy(spaceId);
+    List<SummaryAnalyticsEvent> filtered =
+        List<SummaryAnalyticsEvent>.from(unfiltered);
+
+    filtered = filtered
+        .where(
+          (e) => e.content.messages.any((u) => chatIds.contains(u.chatId)),
+        )
+        .toList();
+
+    filtered.forEachIndexed(
+      (i, _) => (filtered[i].content).messages.removeWhere(
+            (u) => !chatIds.contains(u.chatId),
+          ),
+    );
+    return filtered;
+  }
+
+  Future<List<SummaryAnalyticsEvent>> filterAnalytics({
+    required List<SummaryAnalyticsEvent> unfilteredAnalytics,
+    required AnalyticsSelected defaultSelected,
+    Room? space,
+    AnalyticsSelected? selected,
+  }) async {
+    for (int i = 0; i < unfilteredAnalytics.length; i++) {
+      unfilteredAnalytics[i].content.messages.removeWhere(
+            (record) => record.time.isBefore(
+              currentAnalyticsTimeSpan.cutOffDate,
+            ),
+          );
+    }
+
+    switch (selected?.type) {
+      case null:
+        return unfilteredAnalytics;
+      case AnalyticsEntryType.student:
+        if (defaultSelected.type != AnalyticsEntryType.space) {
+          throw Exception(
+            "student filtering not available for default filter ${defaultSelected.type}",
+          );
+        }
+        return filterStudentAnalytics(unfilteredAnalytics, selected?.id);
+      case AnalyticsEntryType.room:
+        return filterRoomAnalytics(unfilteredAnalytics, selected?.id);
+      case AnalyticsEntryType.privateChats:
+        if (defaultSelected.type == AnalyticsEntryType.student) {
+          throw "private chat filtering not available for my analytics";
+        }
+        if (space == null) {
+          throw "space is null in filterAnalytics with selected type privateChats";
+        }
+        return await filterPrivateChatAnalytics(
+          unfilteredAnalytics,
+          space,
+        );
+      case AnalyticsEntryType.space:
+        return await filterSpaceAnalytics(unfilteredAnalytics, selected!.id);
+      default:
+        throw Exception("invalid filter type - ${selected?.type}");
+    }
+  }
+
+  Future<ChartAnalyticsModel> getAnalytics({
+    required AnalyticsSelected defaultSelected,
+    AnalyticsSelected? selected,
+    bool forceUpdate = false,
+  }) async {
+    try {
+      await _pangeaController.matrixState.client.roomsLoading;
+
+      // if the user is looking at space analytics, then fetch the space
+      Room? space;
+      if (defaultSelected.type == AnalyticsEntryType.space) {
+        space = _pangeaController.matrixState.client.getRoomById(
+          defaultSelected.id,
+        );
+        if (space == null) {
+          ErrorHandler.logError(
+            m: "space not found in getAnalytics",
+            data: {
+              "defaultSelected": defaultSelected,
+              "selected": selected,
+            },
+          );
+          return ChartAnalyticsModel(
+            msgs: [],
+            timeSpan: currentAnalyticsTimeSpan,
+          );
+        }
+        await space.postLoad();
+      }
+
+      DateTime? lastUpdated;
+      if (defaultSelected.type != AnalyticsEntryType.space) {
+        // if default selected view is my analytics, check for the last
+        // time the logged in user updated their analytics events
+        // this gets passed to getAnalyticsLocal to determine if the cached
+        // entry is out-of-date
+        lastUpdated = await myAnalyticsLastUpdated(
+          PangeaEventTypes.summaryAnalytics,
+        );
+      } else {
+        // else, get the last time a student in the space updated their analytics
+        lastUpdated = await spaceAnalyticsLastUpdated(
+          PangeaEventTypes.summaryAnalytics,
+          space!,
+        );
+      }
+
+      final ChartAnalyticsModel? local = getAnalyticsLocal(
+        defaultSelected: defaultSelected,
+        selected: selected,
+        forceUpdate: forceUpdate,
+        lastUpdated: lastUpdated,
+      );
+      if (local != null && !forceUpdate) {
+        debugPrint("returning local analytics");
+        return local;
+      }
+      debugPrint("fetching new analytics");
+
+      // get all the relevant summary analytics events for the current timespan
+      final List<SummaryAnalyticsEvent> summaryEvents =
+          defaultSelected.type == AnalyticsEntryType.space
+              ? await spaceMemberAnalytics(space!)
+              : await mySummaryAnalytics();
+
+      // filter out the analytics events based on filters the user has chosen
+      final List<SummaryAnalyticsEvent> filteredAnalytics =
+          await filterAnalytics(
+        unfilteredAnalytics: summaryEvents,
+        defaultSelected: defaultSelected,
+        space: space,
+        selected: selected,
       );
 
-  Future<List<ConstructEvent>> allMyConstructs(
-    String langCode, {
-    ConstructType? type,
-  }) async {
-    final Room analyticsRoom = await myAnalyticsRoom(langCode);
+      // then create and return the model to be displayed
+      final ChartAnalyticsModel newModel = ChartAnalyticsModel(
+        timeSpan: currentAnalyticsTimeSpan,
+        msgs: filteredAnalytics
+            .map((event) => event.content.messages)
+            .expand((msgs) => msgs)
+            .toList(),
+      );
+
+      cacheAnalytics(
+        chartAnalyticsModel: newModel,
+        defaultSelected: defaultSelected,
+        selected: selected,
+        timeSpan: currentAnalyticsTimeSpan,
+      );
+
+      return newModel;
+    } catch (err, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: err, s: s);
+      return ChartAnalyticsModel(
+        msgs: [],
+        timeSpan: currentAnalyticsTimeSpan,
+      );
+    }
+  }
+
+  //////////////////////////// CONSTRUCTS ////////////////////////////
+
+  Future<List<ConstructAnalyticsEvent>> allMyConstructs() async {
+    final List<Room> analyticsRooms =
+        _pangeaController.matrixState.client.allMyAnalyticsRooms;
+
+    final List<ConstructAnalyticsEvent> allConstructs = [];
+    for (final Room analyticsRoom in analyticsRooms) {
+      final List<ConstructAnalyticsEvent>? roomEvents =
+          (await analyticsRoom.getAnalyticsEvents(
+        type: PangeaEventTypes.construct,
+        since: currentAnalyticsTimeSpan.cutOffDate,
+        userId: _pangeaController.matrixState.client.userID!,
+      ))
+              ?.cast<ConstructAnalyticsEvent>();
+      allConstructs.addAll(roomEvents ?? []);
+    }
+
     final List<String> adminSpaceRooms =
         await _pangeaController.matrixState.client.teacherRoomIds;
-
-    final allConstructs = type == null
-        ? await analyticsRoom.allConstructEvents
-        : (await analyticsRoom.allConstructEvents)
-            .where((e) => e.content.type == type)
-            .toList();
-
-    for (int i = 0; i < allConstructs.length; i++) {
-      final construct = allConstructs[i];
-      final uses = construct.content.uses;
-      uses.removeWhere((u) => adminSpaceRooms.contains(u.chatId));
+    for (final construct in allConstructs) {
+      construct.content.uses.removeWhere(
+        (use) => adminSpaceRooms.contains(use.chatId),
+      );
     }
 
     return allConstructs
@@ -290,160 +553,152 @@ class AnalyticsController extends BaseController {
         .toList();
   }
 
-  Future<List<ConstructEvent>> allSpaceMemberConstructs(
+  Future<List<ConstructAnalyticsEvent>> allSpaceMemberConstructs(
     Room space,
-    String langCode, {
-    ConstructType? type,
-  }) async {
-    final List<Future<List<ConstructEvent>>> constructEventFutures = [];
+  ) async {
     await space.postLoad();
     await space.requestParticipants();
+    final List<ConstructAnalyticsEvent> constructEvents = [];
     for (final student in space.students) {
-      final Room? room = _pangeaController.matrixState.client
-          .analyticsRoomLocal(langCode, student.id);
-      if (room != null) constructEventFutures.add(room.allConstructEvents);
+      final Room? analyticsRoom = _pangeaController.matrixState.client
+          .analyticsRoomLocal(currentAnalyticsSpaceLang.langCode, student.id);
+      if (analyticsRoom != null) {
+        final List<ConstructAnalyticsEvent>? roomEvents =
+            (await analyticsRoom.getAnalyticsEvents(
+          type: PangeaEventTypes.construct,
+          since: currentAnalyticsTimeSpan.cutOffDate,
+          userId: student.id,
+        ))
+                ?.cast<ConstructAnalyticsEvent>();
+        constructEvents.addAll(roomEvents ?? []);
+      }
     }
 
-    final List<List<ConstructEvent>> constructLists =
-        await Future.wait(constructEventFutures);
+    final List<String> spaceChildrenIds = space.allSpaceChildRoomIds;
+    final List<ConstructAnalyticsEvent> allConstructs = [];
+    for (final constructEvent in constructEvents) {
+      constructEvent.content.uses.removeWhere(
+        (use) => !spaceChildrenIds.contains(use.chatId),
+      );
 
-    final List<String> spaceChildrenIds = space.spaceChildren
-        .map((e) => e.roomId)
-        .where((e) => e != null)
-        .cast<String>()
-        .toList();
-
-    final List<ConstructEvent> allConstructs = [];
-    for (final constructList in constructLists) {
-      for (int i = 0; i < constructList.length; i++) {
-        final construct = constructList[i];
-        final uses = construct.content.uses;
-        uses.removeWhere((u) => !spaceChildrenIds.contains(u.chatId));
+      if (constructEvent.content.uses.isNotEmpty) {
+        allConstructs.add(constructEvent);
       }
-      allConstructs.addAll(
-        constructList.where((e) => e.content.uses.isNotEmpty),
+    }
+
+    return allConstructs;
+  }
+
+  List<ConstructAnalyticsEvent> filterStudentConstructs(
+    List<ConstructAnalyticsEvent> unfilteredConstructs,
+    String? studentId,
+  ) {
+    final List<ConstructAnalyticsEvent> filtered =
+        List<ConstructAnalyticsEvent>.from(unfilteredConstructs);
+    filtered.removeWhere((element) => element.event.senderId != studentId);
+    return filtered;
+  }
+
+  List<ConstructAnalyticsEvent> filterRoomConstructs(
+    List<ConstructAnalyticsEvent> unfilteredConstructs,
+    String? roomID,
+  ) {
+    final List<ConstructAnalyticsEvent> filtered = [...unfilteredConstructs];
+    for (final construct in filtered) {
+      construct.content.uses.removeWhere((u) => u.chatId != roomID);
+    }
+    return filtered;
+  }
+
+  Future<List<ConstructAnalyticsEvent>> filterPrivateChatConstructs(
+    List<ConstructAnalyticsEvent> unfilteredConstructs,
+    Room space,
+  ) async {
+    final List<String> privateChatIds = space.allSpaceChildRoomIds;
+    final List<String> lastFetched = await getLatestSpaceHierarchy(space.id);
+    for (final id in lastFetched) {
+      privateChatIds.removeWhere((e) => e == id);
+    }
+    final List<ConstructAnalyticsEvent> filtered =
+        List<ConstructAnalyticsEvent>.from(unfilteredConstructs);
+    for (final construct in filtered) {
+      construct.content.uses.removeWhere(
+        (use) => !privateChatIds.contains(use.chatId),
+      );
+    }
+    return filtered;
+  }
+
+  Future<List<ConstructAnalyticsEvent>> filterSpaceConstructs(
+    List<ConstructAnalyticsEvent> unfilteredConstructs,
+    Room space,
+  ) async {
+    final List<String> chatIds = await getLatestSpaceHierarchy(space.id);
+    final List<ConstructAnalyticsEvent> filtered =
+        List<ConstructAnalyticsEvent>.from(unfilteredConstructs);
+
+    for (final construct in filtered) {
+      construct.content.uses.removeWhere(
+        (use) => !chatIds.contains(use.chatId),
       );
     }
 
-    return type == null
-        ? allConstructs
-        : allConstructs.where((e) => e.content.type == type).toList();
-  }
-
-  List<ConstructEvent> filterStudentConstructs(
-    List<ConstructEvent> unfilteredConstructs,
-    String? studentId,
-  ) {
-    final List<ConstructEvent> filtered =
-        List<ConstructEvent>.from(unfilteredConstructs);
-    filtered.removeWhere((e) => e.event.senderId != studentId);
     return filtered;
   }
 
-  List<ConstructEvent> filterRoomConstructs(
-    List<ConstructEvent> unfilteredConstructs,
-    String? roomID,
-  ) {
-    List<ConstructEvent> filtered = [...unfilteredConstructs];
-    filtered = unfilteredConstructs
-        .where((e) => e.content.uses.any((u) => u.chatId == roomID))
-        .toList();
-    filtered.forEachIndexed(
-      (i, _) => filtered[i].content.uses.removeWhere((u) => u.chatId != roomID),
-    );
-    return filtered;
-  }
-
-  List<ConstructEvent> filterPrivateChatConstructs(
-    List<ConstructEvent> unfilteredConstructs,
-    Room parentSpace,
-  ) {
-    final List<String> directChatIds =
-        parentSpace.childrenAndGrandChildrenDirectChatIds;
-    List<ConstructEvent> filtered =
-        List<ConstructEvent>.from(unfilteredConstructs);
-    filtered = filtered.where((e) {
-      return e.content.uses.any((u) => directChatIds.contains(u.chatId));
-    }).toList();
-    filtered.forEachIndexed(
-      (i, _) => filtered[i].content.uses.removeWhere(
-            (u) => !directChatIds.contains(u.chatId),
-          ),
-    );
-    return filtered;
-  }
-
-  List<ConstructEvent> filterSpaceConstructs(
-    List<ConstructEvent> unfilteredConstructs,
-    Room space,
-  ) {
-    final List<String> chatIds = space.spaceChildren
-        .map((e) => e.roomId)
-        .where((e) => e != null)
-        .cast<String>()
-        .toList();
-
-    List<ConstructEvent> filtered =
-        List<ConstructEvent>.from(unfilteredConstructs);
-    filtered = filtered
-        .where((e) => e.content.uses.any((u) => chatIds.contains(u.chatId)))
-        .toList();
-
-    filtered.forEachIndexed(
-      (i, _) => filtered[i].content.uses.removeWhere(
-            (u) => !chatIds.contains(u.chatId),
-          ),
-    );
-    return filtered;
-  }
-
-  List<ConstructEvent>? getConstructsLocal({
+  List<ConstructAnalyticsEvent>? getConstructsLocal({
     required TimeSpan timeSpan,
     required ConstructType constructType,
     required AnalyticsSelected defaultSelected,
     AnalyticsSelected? selected,
+    DateTime? lastUpdated,
   }) {
-    final cachedEntry = _cachedConstructs
-        .firstWhereOrNull(
-          (e) =>
-              e.timeSpan == timeSpan &&
-              e.type == constructType &&
-              e.defaultSelected.id == defaultSelected.id &&
-              e.defaultSelected.type == defaultSelected.type &&
-              e.selected?.id == selected?.id &&
-              e.selected?.type == selected?.type,
-        )
-        ?.events;
-    return cachedEntry;
+    final index = _cachedConstructs.indexWhere(
+      (e) =>
+          e.timeSpan == timeSpan &&
+          e.type == constructType &&
+          e.defaultSelected.id == defaultSelected.id &&
+          e.defaultSelected.type == defaultSelected.type &&
+          e.selected?.id == selected?.id &&
+          e.selected?.type == selected?.type &&
+          e.langCode == currentAnalyticsSpaceLang.langCode,
+    );
+
+    if (index > -1) {
+      if (_cachedConstructs[index].needsUpdate(lastUpdated)) {
+        _cachedConstructs.removeAt(index);
+        return null;
+      }
+      return _cachedConstructs[index].events;
+    }
+
+    return null;
   }
 
   void cacheConstructs({
     required ConstructType constructType,
-    required List<ConstructEvent> events,
+    required List<ConstructAnalyticsEvent> events,
     required AnalyticsSelected defaultSelected,
     AnalyticsSelected? selected,
   }) {
-    _cachedConstructs.add(
-      ConstructCacheEntry(
-        timeSpan: currentAnalyticsTimeSpan,
-        type: constructType,
-        events: events,
-        defaultSelected: defaultSelected,
-        selected: selected,
-      ),
+    final entry = ConstructCacheEntry(
+      timeSpan: currentAnalyticsTimeSpan,
+      type: constructType,
+      events: List.from(events),
+      defaultSelected: defaultSelected,
+      selected: selected,
+      langCode: currentAnalyticsSpaceLang.langCode,
     );
+    _cachedConstructs.add(entry);
   }
 
-  Future<List<ConstructEvent>> getMyConstructs({
+  Future<List<ConstructAnalyticsEvent>> getMyConstructs({
     required AnalyticsSelected defaultSelected,
     required ConstructType constructType,
-    required String langCode,
     AnalyticsSelected? selected,
   }) async {
-    final List<ConstructEvent> unfilteredConstructs = await allMyConstructs(
-      langCode,
-      type: constructType,
-    );
+    final List<ConstructAnalyticsEvent> unfilteredConstructs =
+        await allMyConstructs();
 
     final Room? space = selected?.type == AnalyticsEntryType.space
         ? _pangeaController.matrixState.client.getRoomById(selected!.id)
@@ -451,39 +706,33 @@ class AnalyticsController extends BaseController {
 
     return filterConstructs(
       unfilteredConstructs: unfilteredConstructs,
-      langCode: langCode,
       space: space,
       defaultSelected: defaultSelected,
       selected: selected,
     );
   }
 
-  Future<List<ConstructEvent>> getSpaceConstructs({
+  Future<List<ConstructAnalyticsEvent>> getSpaceConstructs({
     required ConstructType constructType,
     required Room space,
     required AnalyticsSelected defaultSelected,
-    required String langCode,
     AnalyticsSelected? selected,
   }) async {
-    final List<ConstructEvent> unfilteredConstructs =
+    final List<ConstructAnalyticsEvent> unfilteredConstructs =
         await allSpaceMemberConstructs(
       space,
-      langCode,
-      type: constructType,
     );
 
     return filterConstructs(
       unfilteredConstructs: unfilteredConstructs,
-      langCode: langCode,
       space: space,
       defaultSelected: defaultSelected,
       selected: selected,
     );
   }
 
-  Future<List<ConstructEvent>> filterConstructs({
-    required List<ConstructEvent> unfilteredConstructs,
-    required String langCode,
+  Future<List<ConstructAnalyticsEvent>> filterConstructs({
+    required List<ConstructAnalyticsEvent> unfilteredConstructs,
     required AnalyticsSelected defaultSelected,
     Room? space,
     AnalyticsSelected? selected,
@@ -495,9 +744,8 @@ class AnalyticsController extends BaseController {
 
     for (int i = 0; i < unfilteredConstructs.length; i++) {
       final construct = unfilteredConstructs[i];
-      final uses = construct.content.uses;
-      uses.removeWhere(
-        (u) => u.timeStamp.isBefore(currentAnalyticsTimeSpan.cutOffDate),
+      construct.content.uses.removeWhere(
+        (use) => use.timeStamp.isBefore(currentAnalyticsTimeSpan.cutOffDate),
       );
     }
 
@@ -512,142 +760,127 @@ class AnalyticsController extends BaseController {
             "student filtering not available for default filter ${defaultSelected.type}",
           );
         }
-        final Room? analyticsRoom =
-            studentAnalyticsRoom(selected!.id, langCode);
-        if (analyticsRoom == null) {
-          throw Exception("analyticsRoom missing in filterConstructs");
-        }
-        return filterStudentConstructs(unfilteredConstructs, selected.id);
+        return filterStudentConstructs(unfilteredConstructs, selected!.id);
       case AnalyticsEntryType.room:
         return filterRoomConstructs(unfilteredConstructs, selected?.id);
       case AnalyticsEntryType.privateChats:
         return defaultSelected.type == AnalyticsEntryType.student
             ? throw "private chat filtering not available for my analytics"
-            : filterPrivateChatConstructs(unfilteredConstructs, space!);
+            : await filterPrivateChatConstructs(unfilteredConstructs, space!);
       case AnalyticsEntryType.space:
-        return filterSpaceConstructs(unfilteredConstructs, space!);
+        return await filterSpaceConstructs(unfilteredConstructs, space!);
       default:
         throw Exception("invalid filter type - ${selected?.type}");
     }
   }
 
-  Future<List<ConstructEvent>?> setConstructs({
+  Future<List<ConstructAnalyticsEvent>?> getConstructs({
     required ConstructType constructType,
     required AnalyticsSelected defaultSelected,
     AnalyticsSelected? selected,
-    bool removeIT = false,
+    bool removeIT = true,
     bool forceUpdate = false,
   }) async {
-    final List<ConstructEvent>? local = getConstructsLocal(
-      timeSpan: currentAnalyticsTimeSpan,
-      constructType: constructType,
-      defaultSelected: defaultSelected,
-      selected: selected,
-    );
-    if (local != null && !forceUpdate) {
-      _constructs = local;
-      return _constructs;
-    }
-
-    if (settingConstructs) return _constructs;
-    settingConstructs = true;
+    debugPrint("getting constructs");
     await _pangeaController.matrixState.client.roomsLoading;
+
     Room? space;
     if (defaultSelected.type == AnalyticsEntryType.space) {
       space = _pangeaController.matrixState.client.getRoomById(
         defaultSelected.id,
       );
+      if (space == null) {
+        ErrorHandler.logError(
+          m: "space not found in setConstructs",
+          data: {
+            "defaultSelected": defaultSelected,
+            "selected": selected,
+          },
+        );
+        return [];
+      }
+      await space.postLoad();
     }
 
-    final String? roomID = space?.id ?? selected?.id;
-    final String? langCode = getLangCode(
-      space: space,
-      roomID: roomID,
-    );
-
-    if (langCode == null) {
-      ErrorHandler.logError(
-        m: "langCode missing in getConstructs",
-        data: {
-          "constructType": constructType,
-          "AnalyticsEntryType": defaultSelected.type,
-          "AnalyticsEntryId": defaultSelected.id,
-          "space": space,
-        },
+    DateTime? lastUpdated;
+    if (defaultSelected.type != AnalyticsEntryType.space) {
+      // if default selected view is my analytics, check for the last
+      // time the logged in user updated their analytics events
+      // this gets passed to getAnalyticsLocal to determine if the cached
+      // entry is out-of-date
+      lastUpdated = await myAnalyticsLastUpdated(
+        PangeaEventTypes.construct,
       );
-      throw "langCode missing in getConstructs";
+    } else {
+      // else, get the last time a student in the space updated their analytics
+      lastUpdated = await spaceAnalyticsLastUpdated(
+        PangeaEventTypes.construct,
+        space!,
+      );
     }
+
+    final List<ConstructAnalyticsEvent>? local = getConstructsLocal(
+      timeSpan: currentAnalyticsTimeSpan,
+      constructType: constructType,
+      defaultSelected: defaultSelected,
+      selected: selected,
+      lastUpdated: lastUpdated,
+    );
+    if (local != null && !forceUpdate) {
+      debugPrint("returning local constructs");
+      return local;
+    }
+    debugPrint("fetching new constructs");
 
     final filteredConstructs = space == null
         ? await getMyConstructs(
             constructType: constructType,
-            langCode: langCode,
             defaultSelected: defaultSelected,
             selected: selected,
           )
         : await getSpaceConstructs(
             constructType: constructType,
             space: space,
-            langCode: langCode,
             defaultSelected: defaultSelected,
             selected: selected,
           );
 
-    _constructs = removeIT
-        ? filteredConstructs
-            .where(
-              (element) =>
-                  element.content.lemma != "Try interactive translation" &&
-                  element.content.lemma != "itStart" &&
-                  element.content.lemma != MatchRuleIds.interactiveTranslation,
-            )
-            .toList()
-        : filteredConstructs;
+    if (removeIT) {
+      for (final construct in filteredConstructs) {
+        construct.content.uses.removeWhere(
+          (element) =>
+              element.lemma == "Try interactive translation" ||
+              element.lemma == "itStart" ||
+              element.lemma == MatchRuleIds.interactiveTranslation,
+        );
+      }
+    }
 
     if (local == null) {
       cacheConstructs(
         constructType: constructType,
-        events: _constructs!,
+        events: filteredConstructs,
         defaultSelected: defaultSelected,
         selected: selected,
       );
     }
 
-    settingConstructs = false;
-    return _constructs;
+    return filteredConstructs;
   }
 }
 
-class ConstructCacheEntry {
+abstract class CacheEntry {
+  final String langCode;
   final TimeSpan timeSpan;
-  final ConstructType type;
-  final List<ConstructEvent> events;
   final AnalyticsSelected defaultSelected;
   AnalyticsSelected? selected;
+  late final DateTime _createdAt;
 
-  ConstructCacheEntry({
+  CacheEntry({
     required this.timeSpan,
-    required this.type,
-    required this.events,
     required this.defaultSelected,
+    required this.langCode,
     this.selected,
-  });
-}
-
-class CacheModel {
-  TimeSpan timeSpan;
-  ChartAnalyticsModel chartAnalyticsModel;
-  String? classId;
-  String? chatId;
-  String? studentId;
-  late DateTime _createdAt;
-
-  CacheModel({
-    required this.timeSpan,
-    required this.classId,
-    required this.chartAnalyticsModel,
-    required this.chatId,
-    required this.studentId,
   }) {
     _createdAt = DateTime.now();
   }
@@ -655,11 +888,49 @@ class CacheModel {
   bool get isExpired =>
       DateTime.now().difference(_createdAt).inMinutes >
       ClassDefaultValues.minutesDelayToMakeNewChartAnalytics;
+
+  bool needsUpdate(DateTime? lastEventUpdated) {
+    // cache entry is invalid if it's older than the last event update
+    // if lastEventUpdated is null, that would indicate that no events
+    // of this type have been sent to the room. In this case, there
+    // shouldn't be any cached data.
+    if (lastEventUpdated == null) {
+      Sentry.addBreadcrumb(
+        Breadcrumb(message: "lastEventUpdated is null in needsUpdate"),
+      );
+      return false;
+    }
+    return _createdAt.isBefore(lastEventUpdated);
+  }
 }
 
-// class ListTotals {
-//   String listName;
-//   ConstructUses vocabUse;
+class ConstructCacheEntry extends CacheEntry {
+  final ConstructType type;
+  final List<ConstructAnalyticsEvent> events;
 
-//   ListTotals({required this.listName, required this.vocabUse});
-// }
+  ConstructCacheEntry({
+    required this.type,
+    required this.events,
+    required super.timeSpan,
+    required super.langCode,
+    required super.defaultSelected,
+    super.selected,
+  });
+}
+
+class AnalyticsCacheModel extends CacheEntry {
+  final ChartAnalyticsModel chartAnalyticsModel;
+
+  AnalyticsCacheModel({
+    required this.chartAnalyticsModel,
+    required super.timeSpan,
+    required super.langCode,
+    required super.defaultSelected,
+    super.selected,
+  });
+
+  @override
+  bool get isExpired =>
+      DateTime.now().difference(_createdAt).inMinutes >
+      ClassDefaultValues.minutesDelayToMakeNewChartAnalytics;
+}

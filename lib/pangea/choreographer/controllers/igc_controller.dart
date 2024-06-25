@@ -3,9 +3,9 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
+import 'package:fluffychat/pangea/controllers/span_data_controller.dart';
 import 'package:fluffychat/pangea/models/igc_text_data_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/models/span_data.dart';
 import 'package:fluffychat/pangea/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
 import 'package:flutter/foundation.dart';
@@ -14,7 +14,6 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../models/language_detection_model.dart';
 import '../../models/span_card_model.dart';
-import '../../repo/span_data_repo.dart';
 import '../../repo/tokens_repo.dart';
 import '../../utils/error_handler.dart';
 import '../../utils/overlay.dart';
@@ -23,17 +22,20 @@ class IgcController {
   Choreographer choreographer;
   IGCTextData? igcTextData;
   Object? igcError;
-
   Completer<IGCTextData> igcCompleter = Completer();
+  late SpanDataController spanDataController;
 
-  IgcController(this.choreographer);
+  IgcController(this.choreographer) {
+    spanDataController = SpanDataController(choreographer);
+  }
 
   Future<void> getIGCTextData({required bool tokensOnly}) async {
     try {
       if (choreographer.currentText.isEmpty) return clear();
 
+      // the error spans are going to be reloaded, so clear the cache
+      spanDataController.clearCache();
       debugPrint('getIGCTextData called with ${choreographer.currentText}');
-
       debugPrint('getIGCTextData called with tokensOnly = $tokensOnly');
 
       final IGCRequestBody reqBody = IGCRequestBody(
@@ -80,6 +82,14 @@ class IgcController {
 
       igcTextData = igcTextDataResponse;
 
+      // After fetching igc data, pre-call span details for each match optimistically.
+      // This will make the loading of span details faster for the user
+      if (igcTextData?.matches.isNotEmpty ?? false) {
+        for (int i = 0; i < igcTextData!.matches.length; i++) {
+          spanDataController.getSpanDetails(i);
+        }
+      }
+
       debugPrint("igc text ${igcTextData.toString()}");
     } catch (err, stack) {
       debugger(when: kDebugMode);
@@ -89,36 +99,6 @@ class IgcController {
       ErrorHandler.logError(e: err, s: stack);
       clear();
     }
-  }
-
-  Future<void> getSpanDetails(int matchIndex) async {
-    if (igcTextData == null ||
-        igcTextData!.matches.isEmpty ||
-        matchIndex < 0 ||
-        matchIndex >= igcTextData!.matches.length) {
-      debugger(when: kDebugMode);
-      return;
-    }
-    final SpanData span = igcTextData!.matches[matchIndex].match;
-
-    final SpanDetailsRepoReqAndRes response = await SpanDataRepo.getSpanDetails(
-      await choreographer.accessToken,
-      request: SpanDetailsRepoReqAndRes(
-        userL1: choreographer.l1LangCode!,
-        userL2: choreographer.l2LangCode!,
-        enableIGC: choreographer.igcEnabled,
-        enableIT: choreographer.itEnabled,
-        span: span,
-      ),
-    );
-
-    try {
-      igcTextData!.matches[matchIndex].match = response.span;
-    } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
-    }
-
-    choreographer.setState();
   }
 
   Future<void> justGetTokensAndAddThemToIGCTextData() async {
@@ -236,6 +216,7 @@ class IgcController {
 
   clear() {
     igcTextData = null;
+    spanDataController.clearCache();
     // Not sure why this is here
     // MatrixState.pAnyState.closeOverlay();
   }

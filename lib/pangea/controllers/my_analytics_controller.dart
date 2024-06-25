@@ -1,159 +1,353 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/local.key.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/construct_analytics_event.dart';
-import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
+import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
+import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
 import '../extensions/client_extension/client_extension.dart';
 import '../extensions/pangea_room_extension/pangea_room_extension.dart';
-import '../models/constructs_analytics_model.dart';
-import '../models/student_analytics_event.dart';
 
-class MyAnalyticsController {
+// controls the sending of analytics events
+class MyAnalyticsController extends BaseController {
   late PangeaController _pangeaController;
+  Timer? _updateTimer;
+  final int _maxMessagesCached = 10;
+  final int _minutesBeforeUpdate = 5;
 
   MyAnalyticsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
   }
 
-  String? get _userId => _pangeaController.matrixState.client.userID;
+  // adds the listener that handles when to run automatic updates
+  // to analytics - either after a certain number of messages sent/
+  // received or after a certain amount of time without an update
+  Future<void> addEventsListener() async {
+    final Client client = _pangeaController.matrixState.client;
 
-  //PTODO - locally cache and update periodically
-  Future<void> handleMessage(
-    Room room,
-    RecentMessageRecord messageRecord, {
-    bool isEdit = false,
-  }) async {
-    try {
-      debugPrint("in handle message with type ${messageRecord.useType}");
-      if (_userId == null) {
-        debugger(when: kDebugMode);
-        ErrorHandler.logError(
-          m: "null userId in updateAnalytics",
-          s: StackTrace.current,
-        );
-        return;
-      }
+    // if analytics haven't been updated in the last day, update them
+    DateTime? lastUpdated = await _pangeaController.analytics
+        .myAnalyticsLastUpdated(PangeaEventTypes.summaryAnalytics);
+    final DateTime yesterday = DateTime.now().subtract(const Duration(days: 1));
+    if (lastUpdated?.isBefore(yesterday) ?? true) {
+      debugPrint("analytics out-of-date, updating");
+      await updateAnalytics();
+      lastUpdated = await _pangeaController.analytics
+          .myAnalyticsLastUpdated(PangeaEventTypes.summaryAnalytics);
+    }
 
-      await _pangeaController.classController.addDirectChatsToClasses(room);
-      //expanding this to all parents of the room
-      // final List<Room> spaces = room.immediateClassParents;
-      final List<Room> spaces = room.pangeaSpaceParents;
-      // janky but probably stays until we have a class analytics bot added by
-      // default to all chats
+    client.onSync.stream
+        .where((SyncUpdate update) => update.rooms?.join != null)
+        .listen((update) {
+      updateAnalyticsTimer(update, lastUpdated);
+    });
+  }
 
-      final List<StudentAnalyticsEvent?> events = await analyticsEvents(spaces);
+  // given an update from sync stream, check if the update contains
+  // messages for which analytics will be saved. If so, reset the timer
+  // and add the event ID to the cache of un-added event IDs
+  void updateAnalyticsTimer(SyncUpdate update, DateTime? lastUpdated) {
+    for (final entry in update.rooms!.join!.entries) {
+      final Room room =
+          _pangeaController.matrixState.client.getRoomById(entry.key)!;
 
+      // get the new events in this sync that are messages
+      final List<Event>? events = entry.value.timeline?.events
+          ?.map((event) => Event.fromMatrixEvent(event, room))
+          .where((event) => eventHasAnalytics(event, lastUpdated))
+          .toList();
+
+      // add their event IDs to the cache of un-added event IDs
+      if (events == null || events.isEmpty) continue;
       for (final event in events) {
-        if (event != null) {
-          event.handleNewMessage(messageRecord, isEdit: isEdit);
-        }
+        addMessageSinceUpdate(event.eventId);
       }
-    } catch (err) {
-      debugger(when: kDebugMode);
+
+      // cancel the last timer that was set on message event and
+      // reset it to fire after _minutesBeforeUpdate minutes
+      _updateTimer?.cancel();
+      _updateTimer = Timer(Duration(minutes: _minutesBeforeUpdate), () {
+        debugPrint("timer fired, updating analytics");
+        updateAnalytics();
+      });
     }
   }
 
-  Future<List<StudentAnalyticsEvent?>> analyticsEvents(
-    List<Room> spaces,
-  ) async {
-    final List<Future<StudentAnalyticsEvent?>> events = [];
-    if (_userId != null) {
-      for (final space in spaces) {
-        events.add(space.getStudentAnalytics(_userId!));
-      }
-    }
-    return Future.wait(events);
+  // checks if event from sync update is a message that should have analytics
+  bool eventHasAnalytics(Event event, DateTime? lastUpdated) {
+    return (lastUpdated == null || event.originServerTs.isAfter(lastUpdated)) &&
+        event.type == EventTypes.Message &&
+        event.messageType == MessageTypes.Text &&
+        !(event.eventId.contains("web") &&
+            !(event.eventId.contains("android")) &&
+            !(event.eventId.contains("iOS")));
   }
 
-  Future<List<StudentAnalyticsEvent?>> allMyAnalyticsEvents() async =>
-      analyticsEvents(
-        await _pangeaController
-            .matrixState.client.classesAndExchangesImStudyingIn,
+  // adds an event ID to the cache of un-added event IDs
+  // if the event IDs isn't already added
+  void addMessageSinceUpdate(String eventId) {
+    final List<String> currentCache = messagesSinceUpdate;
+    if (!currentCache.contains(eventId)) {
+      currentCache.add(eventId);
+      _pangeaController.pStoreService.save(
+        PLocalKey.messagesSinceUpdate,
+        currentCache,
+        local: true,
       );
+    }
 
-  Future<void> saveConstructsMixed(
-    List<OneConstructUse> allUses,
-    String langCode, {
-    bool isEdit = false,
-  }) async {
+    // if the cached has reached if max-length, update analytics
+    if (messagesSinceUpdate.length > _maxMessagesCached) {
+      debugPrint("reached max messages, updating");
+      updateAnalytics();
+    }
+  }
+
+  // called before updating analytics
+  void clearMessagesSinceUpdate() {
+    _pangeaController.pStoreService.save(
+      PLocalKey.messagesSinceUpdate,
+      [],
+      local: true,
+    );
+  }
+
+  // a local cache of eventIds for messages sent since the last update
+  // it's possible for this cache to be invalid or deleted
+  // It's a proxy measure for messages sent since last update
+  List<String> get messagesSinceUpdate {
+    final dynamic locallySaved = _pangeaController.pStoreService.read(
+      PLocalKey.messagesSinceUpdate,
+      local: true,
+    );
+    if (locallySaved == null) {
+      _pangeaController.pStoreService.save(
+        PLocalKey.messagesSinceUpdate,
+        [],
+        local: true,
+      );
+      return [];
+    }
+
     try {
-      final Map<String, List<OneConstructUse>> aggregatedVocabUse = {};
-      for (final use in allUses) {
-        if (use.lemma == null) continue;
-        aggregatedVocabUse[use.lemma!] ??= [];
-        aggregatedVocabUse[use.lemma]!.add(use);
-      }
+      return locallySaved as List<String>;
+    } catch (err) {
+      _pangeaController.pStoreService.save(
+        PLocalKey.messagesSinceUpdate,
+        [],
+        local: true,
+      );
+      return [];
+    }
+  }
+
+  Completer<void>? _updateCompleter;
+  Future<void> updateAnalytics() async {
+    if (!(_updateCompleter?.isCompleted ?? true)) {
+      await _updateCompleter!.future;
+      return;
+    }
+    _updateCompleter = Completer<void>();
+    try {
+      await _updateAnalytics();
+    } catch (err, s) {
+      ErrorHandler.logError(
+        e: err,
+        m: "Failed to update analytics",
+        s: s,
+      );
+    } finally {
+      _updateCompleter?.complete();
+      _updateCompleter = null;
+    }
+  }
+
+  Future<void> _updateAnalytics() async {
+    // if the user's l2 is not sent, don't send analytics
+    final String? userL2 = _pangeaController.languageController.activeL2Code();
+    if (userL2 == null) {
+      return;
+    }
+
+    // top level analytics sending function. Send analytics
+    // for each type of analytics event
+    // to each of the applicable analytics rooms
+    clearMessagesSinceUpdate();
+
+    // fetch a list of all the chats that the user is studying
+    // and a list of all the spaces in which the user is studying
+    await setStudentChats();
+    await setStudentSpaces();
+
+    // get the last updated time for each analytics room
+    // and the least recent update, which will be used to determine
+    // how far to go back in the chat history to get messages
+    final Map<String, DateTime?> lastUpdatedMap = await _pangeaController
+        .matrixState.client
+        .allAnalyticsRoomsLastUpdated();
+    final List<DateTime> lastUpdates = lastUpdatedMap.values
+        .where((lastUpdate) => lastUpdate != null)
+        .cast<DateTime>()
+        .toList();
+    lastUpdates.sort((a, b) => a.compareTo(b));
+    final DateTime? leastRecentUpdate =
+        lastUpdates.isNotEmpty ? lastUpdates.first : null;
+
+    // for each chat the user is studying in, get all the messages
+    // since the least recent update analytics update, and sort them
+    // by their langCodes
+    final Map<String, List<PangeaMessageEvent>> langCodeToMsgs =
+        await getLangCodesToMsgs(
+      userL2,
+      leastRecentUpdate,
+    );
+
+    final List<String> langCodes = langCodeToMsgs.keys.toList();
+    for (final String langCode in langCodes) {
+      // for each of the langs that the user has sent message in, get
+      // the corresponding analytics room (or create it)
       final Room analyticsRoom = await _pangeaController.matrixState.client
           .getMyAnalyticsRoom(langCode);
 
-      final List<Future<void>> saveFutures = [];
-      for (final uses in aggregatedVocabUse.entries) {
-        debugPrint("saving of type ${uses.value.first.constructType}");
-        saveFutures.add(
-          analyticsRoom.saveConstructUsesSameLemma(
-            uses.key,
-            uses.value.first.constructType ?? ConstructType.grammar,
-            uses.value,
-            isEdit: isEdit,
-          ),
+      // if there is no analytics room for this langCode, then user hadn't sent
+      // message in this language at the time of the last analytics update
+      // so fallback to the least recent update time
+      final DateTime? lastUpdated =
+          lastUpdatedMap[analyticsRoom.id] ?? leastRecentUpdate;
+
+      // get the corresponding list of recent messages for this langCode
+      final List<PangeaMessageEvent> recentMsgs =
+          langCodeToMsgs[langCode] ?? [];
+
+      // finally, send the analytics events to the analytics room
+      await sendAnalyticsEvents(
+        analyticsRoom,
+        recentMsgs,
+        lastUpdated,
+      );
+    }
+  }
+
+  Future<Map<String, List<PangeaMessageEvent>>> getLangCodesToMsgs(
+    String userL2,
+    DateTime? since,
+  ) async {
+    // get a map of langCodes to messages for each chat the user is studying in
+    final Map<String, List<PangeaMessageEvent>> langCodeToMsgs = {};
+    for (final Room chat in _studentChats) {
+      List<PangeaMessageEvent>? recentMsgs;
+      try {
+        recentMsgs = await chat.myMessageEventsInChat(
+          since: since,
         );
+      } catch (err) {
+        debugPrint("failed to fetch messages for chat ${chat.id}");
+        continue;
       }
 
-      await Future.wait(saveFutures);
-    } catch (err, s) {
-      debugger(when: kDebugMode);
-      if (!kDebugMode) rethrow;
-      ErrorHandler.logError(e: err, s: s);
+      // sort those messages by their langCode
+      // langCode is hopefully based on the original sent rep, but if that
+      // is null or unk, it will be based on the user's current l2
+      for (final msg in recentMsgs) {
+        final String msgLangCode = (msg.originalSent?.langCode != null &&
+                msg.originalSent?.langCode != LanguageKeys.unknownLanguage)
+            ? msg.originalSent!.langCode
+            : userL2;
+        langCodeToMsgs[msgLangCode] ??= [];
+        langCodeToMsgs[msgLangCode]!.add(msg);
+      }
     }
+    return langCodeToMsgs;
   }
 
-  // used to aggregate ConstructEvents, from multiple senders (students) with the same lemma
-  List<AggregateConstructUses> aggregateConstructData(
-    List<ConstructEvent> constructs,
-  ) {
-    final Map<String, List<ConstructEvent>> lemmasToConstructs = {};
-    for (final construct in constructs) {
-      lemmasToConstructs[construct.content.lemma] ??= [];
-      lemmasToConstructs[construct.content.lemma]!.add(construct);
-    }
-
-    final List<AggregateConstructUses> aggregatedConstructs = [];
-    for (final lemmaToConstructs in lemmasToConstructs.entries) {
-      final List<ConstructEvent> lemmaConstructs = lemmaToConstructs.value;
-      final AggregateConstructUses aggregatedData = AggregateConstructUses(
-        constructs: lemmaConstructs,
+  Future<void> sendAnalyticsEvents(
+    Room analyticsRoom,
+    List<PangeaMessageEvent> recentMsgs,
+    DateTime? lastUpdated,
+  ) async {
+    // remove messages that were sent before the last update
+    if (recentMsgs.isEmpty) return;
+    if (lastUpdated != null) {
+      recentMsgs.removeWhere(
+        (msg) => msg.event.originServerTs.isBefore(lastUpdated),
       );
-      aggregatedConstructs.add(aggregatedData);
     }
-    return aggregatedConstructs;
+
+    // format the analytics data
+    final List<RecentMessageRecord> summaryContent =
+        SummaryAnalyticsModel.formatSummaryContent(recentMsgs);
+    final List<OneConstructUse> constructContent =
+        ConstructAnalyticsModel.formatConstructsContent(recentMsgs);
+
+    // if there's new content to be sent, or if lastUpdated hasn't been
+    // set yet for this room, send the analytics events
+    if (summaryContent.isNotEmpty || lastUpdated == null) {
+      await SummaryAnalyticsEvent.sendSummaryAnalyticsEvent(
+        analyticsRoom,
+        summaryContent,
+      );
+    }
+
+    if (constructContent.isNotEmpty) {
+      await ConstructAnalyticsEvent.sendConstructsEvent(
+        analyticsRoom,
+        constructContent,
+      );
+    }
   }
-}
 
-class AggregateConstructUses {
-  final List<ConstructEvent> _constructs;
+  List<Room> _studentChats = [];
 
-  AggregateConstructUses({required List<ConstructEvent> constructs})
-      : _constructs = constructs;
-
-  String get lemma {
-    assert(
-      _constructs.isNotEmpty &&
-          _constructs.every(
-            (construct) =>
-                construct.content.lemma == _constructs.first.content.lemma,
-          ),
-    );
-    return _constructs.first.content.lemma;
+  Future<void> setStudentChats() async {
+    final List<String> teacherRoomIds =
+        await _pangeaController.matrixState.client.teacherRoomIds;
+    _studentChats = _pangeaController.matrixState.client.rooms
+        .where(
+          (r) =>
+              !r.isSpace &&
+              !r.isAnalyticsRoom &&
+              !teacherRoomIds.contains(r.id),
+        )
+        .toList();
+    setState(data: _studentChats);
   }
 
-  List<OneConstructUse> get uses => _constructs
-      .map((construct) => construct.content.uses)
-      .expand((element) => element)
-      .toList();
+  List<Room> get studentChats {
+    try {
+      if (_studentChats.isNotEmpty) return _studentChats;
+      setStudentChats();
+      return _studentChats;
+    } catch (err) {
+      debugger(when: kDebugMode);
+      return [];
+    }
+  }
+
+  List<Room> _studentSpaces = [];
+
+  Future<void> setStudentSpaces() async {
+    _studentSpaces =
+        await _pangeaController.matrixState.client.spacesImStudyingIn;
+  }
+
+  List<Room> get studentSpaces {
+    try {
+      if (_studentSpaces.isNotEmpty) return _studentSpaces;
+      setStudentSpaces();
+      return _studentSpaces;
+    } catch (err) {
+      debugger(when: kDebugMode);
+      return [];
+    }
+  }
 }

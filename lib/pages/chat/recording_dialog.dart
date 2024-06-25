@@ -1,11 +1,14 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/update_version_dialog.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
@@ -28,20 +31,26 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   bool error = false;
   String? _recordedPath;
-  // #Pangea
-  // final _audioRecorder = Record();
   final _audioRecorder = AudioRecorder();
-  // Pangea#
   final List<double> amplitudeTimeline = [];
 
   static const int bitRate = 64000;
+  // #Pangea
+  // static const int samplingRate = 44100;
   static const int samplingRate = 22050;
+  // Pangea#
 
   Future<void> startRecording() async {
     try {
-      final tempDir = await getTemporaryDirectory();
+      // #Pangea
+      // enable recording on web
+      // final tempDir = await getTemporaryDirectory();
+      // final path = _recordedPath =
+      //     '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
+      final tempDirPath = kIsWeb ? "." : (await getTemporaryDirectory()).path;
       _recordedPath =
-          '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
+          '$tempDirPath/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
+      // Pangea#
 
       final result = await _audioRecorder.hasPermission();
       if (result != true) {
@@ -58,8 +67,13 @@ class RecordingDialogState extends State<RecordingDialog> {
           const RecordConfig(
             bitRate: bitRate,
             sampleRate: samplingRate,
-            encoder: AudioEncoder.wav,
             numChannels: 1,
+            autoGain: true,
+            echoCancel: true,
+            noiseSuppress: true,
+            // #Pangea
+            encoder: AudioEncoder.wav,
+            // Pangea#
           ),
         ),
         // #Pangea
@@ -105,9 +119,25 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   void _stopAndSend() async {
     _recorderSubscription?.cancel();
-    await _audioRecorder.stop();
+    // #Pangea
+    // await _audioRecorder.stop();
+    final outputPath = await _audioRecorder.stop();
+    // Pangea#
     final path = _recordedPath;
     if (path == null) throw ('Recording failed!');
+
+    // #Pangea
+    Uint8List bytes;
+    if (kIsWeb) {
+      if (outputPath == null) throw ('Recording failed!');
+      final response = await http.get(Uri.parse(outputPath));
+      bytes = response.bodyBytes;
+    } else {
+      final audioFile = File(path);
+      bytes = audioFile.readAsBytesSync();
+    }
+    // Pangea#
+
     const waveCount = AudioPlayerWidget.wavesCount;
     final step = amplitudeTimeline.length < waveCount
         ? 1
@@ -121,6 +151,9 @@ class RecordingDialogState extends State<RecordingDialog> {
         path: path,
         duration: _duration.inMilliseconds,
         waveform: waveform,
+        // #Pangea
+        bytes: bytes,
+        // Pangea#
       ),
     );
   }
@@ -231,11 +264,17 @@ class RecordingResult {
   final String path;
   final int duration;
   final List<int> waveform;
+  // #Pangea
+  final Uint8List bytes;
+  // Pangea#
 
   const RecordingResult({
     required this.path,
     required this.duration,
     required this.waveform,
+    // #Pangea
+    required this.bytes,
+    // Pangea#
   });
 
   factory RecordingResult.fromJson(Map<String, dynamic> json) =>
@@ -243,11 +282,17 @@ class RecordingResult {
         path: json['path'],
         duration: json['duration'],
         waveform: List<int>.from(json['waveform']),
+        // #Pangea
+        bytes: Uint8List.fromList(json['bytes']),
+        // Pangea#
       );
 
   Map<String, dynamic> toJson() => {
         'path': path,
         'duration': duration,
         'waveform': waveform,
+        // #Pangea
+        'bytes': bytes,
+        // Pangea#
       };
 }

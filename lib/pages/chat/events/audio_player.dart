@@ -241,6 +241,9 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     if (audioPlayer == null) return;
     switch (audioPlayer.speed) {
       case 1.0:
+        await audioPlayer.setSpeed(1.25);
+        break;
+      case 1.25:
         await audioPlayer.setSpeed(1.5);
         break;
       case 1.5:
@@ -295,7 +298,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final statusText = this.statusText ??= _durationString ?? '00:00';
     final audioPlayer = this.audioPlayer;
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -330,80 +333,75 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                   ),
           ),
           const SizedBox(width: 8),
-          Expanded(
-            child: Row(
-              children: [
-                for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
-                  Expanded(
-                    child: GestureDetector(
-                      onTapDown: (_) => audioPlayer?.seek(
-                        Duration(
-                          milliseconds:
-                              (maxPosition / AudioPlayerWidget.wavesCount)
-                                      .round() *
-                                  i,
-                        ),
-                      ),
-                      child: Container(
-                        height: 32,
-                        alignment: Alignment.center,
-                        child: Opacity(
-                          opacity: currentPosition > i ? 1 : 0.5,
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 1),
-                            decoration: BoxDecoration(
-                              color: widget.color,
-                              borderRadius: BorderRadius.circular(64),
-                            ),
-                            height: 32 * (waveform[i] / 1024),
-                          ),
-                        ),
-                      ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
+                GestureDetector(
+                  onTapDown: (_) => audioPlayer?.seek(
+                    Duration(
+                      milliseconds:
+                          (maxPosition / AudioPlayerWidget.wavesCount).round() *
+                              i,
                     ),
                   ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          Container(
-            alignment: Alignment.centerRight,
-            width: 42,
-            child: Text(
-              statusText,
-              style: TextStyle(
-                color: widget.color,
-              ),
-            ),
-          ),
-          const SizedBox(width: 4),
-          Stack(
-            children: [
-              SizedBox(
-                width: buttonSize,
-                height: buttonSize,
-                child: InkWell(
-                  splashColor: widget.color.withAlpha(128),
-                  borderRadius: BorderRadius.circular(64),
-                  onTap: audioPlayer == null ? null : _toggleSpeed,
-                  child: Icon(Icons.mic_none_outlined, color: widget.color),
-                ),
-              ),
-              if (audioPlayer != null)
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Text(
-                    '${audioPlayer.speed.toString()}x',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 9.0,
-                      color: widget.color,
+                  child: Container(
+                    height: 32,
+                    color: widget.color.withAlpha(0),
+                    alignment: Alignment.center,
+                    child: Opacity(
+                      opacity: currentPosition > i ? 1 : 0.5,
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 1),
+                        decoration: BoxDecoration(
+                          color: widget.color,
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                        // #Pangea
+                        // width: 2,
+                        width: 1,
+                        // Pangea#
+                        height: 32 * (waveform[i] / 1024),
+                      ),
                     ),
                   ),
                 ),
             ],
           ),
+          const SizedBox(width: 8),
+          SizedBox(
+            width: 36,
+            child: Text(
+              statusText,
+              style: TextStyle(
+                color: widget.color,
+                fontSize: 12,
+              ),
+            ),
+          ),
+          // #Pangea
+          // const SizedBox(width: 8),
+          // Badge(
+          //   isLabelVisible: audioPlayer != null,
+          //   label: audioPlayer == null
+          //       ? null
+          //       : Text(
+          //           '${audioPlayer.speed.toString()}x',
+          //         ),
+          //   backgroundColor: Theme.of(context).colorScheme.secondary,
+          //   textColor: Theme.of(context).colorScheme.onSecondary,
+          //   child: InkWell(
+          //     splashColor: widget.color.withAlpha(128),
+          //     borderRadius: BorderRadius.circular(64),
+          //     onTap: audioPlayer == null ? null : _toggleSpeed,
+          //     child: Icon(
+          //       Icons.mic_none_outlined,
+          //       color: widget.color,
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(width: 8),
+          // Pangea#
         ],
       ),
     );

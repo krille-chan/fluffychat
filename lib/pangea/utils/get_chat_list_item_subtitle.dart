@@ -1,8 +1,9 @@
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -10,6 +11,19 @@ import 'package:matrix/matrix.dart';
 import '../../utils/matrix_sdk_extensions/matrix_locals.dart';
 
 class GetChatListItemSubtitle {
+  final List<String> hideContentKeys = [
+    ModelKey.transcription,
+  ];
+
+  bool moveBackInTimeline(Event event) =>
+      hideContentKeys.any(
+        (key) => event.content.tryGet(key) != null,
+      ) ||
+      event.type.startsWith("p.") ||
+      event.type.startsWith("pangea.") ||
+      event.type == EventTypes.SpaceChild ||
+      event.type == EventTypes.SpaceParent;
+
   Future<String> getSubtitle(
     L10n l10n,
     Event? event,
@@ -22,23 +36,14 @@ class GetChatListItemSubtitle {
         eventContextId = null;
       }
 
-      final Timeline timeline =
-          await event.room.getTimeline(eventContextId: eventContextId);
+      final Timeline timeline = await event.room.getTimeline(
+        eventContextId: eventContextId,
+      );
 
-      if (event.content.tryGet(ModelKey.transcription) != null) {
-        int index = timeline.events.indexWhere(
-          (e) => e.eventId == event!.eventId,
-        );
-
-        while (index < timeline.events.length &&
-            (timeline.events[index].content.tryGet(ModelKey.transcription) !=
-                    null ||
-                timeline.events[index].type != EventTypes.Message)) {
-          index++;
-        }
-
-        if (timeline.events.length > index + 1) {
-          event = timeline.events[index];
+      if (moveBackInTimeline(event)) {
+        event = timeline.events.firstWhereOrNull((e) => !moveBackInTimeline(e));
+        if (event == null) {
+          return l10n.emptyChat;
         }
       }
 
@@ -64,9 +69,7 @@ class GetChatListItemSubtitle {
         timeline: timeline,
         ownMessage: false,
       );
-      final l2Code = pangeaController.languageController
-          .activeL2Code(roomID: event.roomId);
-
+      final l2Code = pangeaController.languageController.activeL2Code();
       if (l2Code == null || l2Code == LanguageKeys.unknownLanguage) {
         return event.body;
       }

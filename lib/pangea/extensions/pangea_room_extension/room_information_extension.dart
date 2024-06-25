@@ -1,8 +1,22 @@
 part of "pangea_room_extension.dart";
 
 extension RoomInformationRoomExtension on Room {
-  DateTime? get _creationTime =>
-      getState(EventTypes.RoomCreate)?.originServerTs;
+  Future<int> get _numNonAdmins async {
+    return (await requestParticipants())
+        .where(
+          (e) =>
+              e.powerLevel < ClassDefaultValues.powerLevelOfAdmin &&
+              e.id != BotName.byEnvironment,
+        )
+        .toList()
+        .length;
+  }
+
+  DateTime? get _creationTime {
+    final dynamic roomCreate = getState(EventTypes.RoomCreate);
+    if (roomCreate is! Event) return null;
+    return roomCreate.originServerTs;
+  }
 
   String? get _creatorId => getState(EventTypes.RoomCreate)?.senderId;
 
@@ -26,19 +40,14 @@ extension RoomInformationRoomExtension on Room {
                 ));
   }
 
-  bool get _isExchange =>
-      isSpace &&
-      languageSettingsStateEvent == null &&
-      pangeaRoomRulesStateEvent != null;
-
   bool get _isDirectChatWithoutMe =>
       isDirectChat && !getParticipants().any((e) => e.id == client.userID);
 
-  bool _isMadeForLang(String langCode) {
-    final creationContent = getState(EventTypes.RoomCreate)?.content;
-    return creationContent?.tryGet<String>(ModelKey.langCode) == langCode ||
-        creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
-  }
+  // bool _isMadeForLang(String langCode) {
+  //   final creationContent = getState(EventTypes.RoomCreate)?.content;
+  //   return creationContent?.tryGet<String>(ModelKey.langCode) == langCode ||
+  //       creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
+  // }
 
   Future<bool> get _isBotRoom async {
     final List<User> participants = await requestParticipants();
@@ -57,21 +66,17 @@ extension RoomInformationRoomExtension on Room {
       return (eventsDefaultPowerLevel ?? 0) >=
           ClassDefaultValues.powerLevelOfAdmin;
     }
-    int joinedRooms = 0;
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
       final Room? room = client.getRoomById(child.roomId!);
-      if (room?.isLocked == false) {
+      if (room == null || room.isAnalyticsRoom || room.isArchived) continue;
+      if (!room._isLocked) {
         return false;
       }
-      if (room != null) {
-        joinedRooms += 1;
-      }
     }
-    return joinedRooms > 0 ? true : false;
+    return (eventsDefaultPowerLevel ?? 0) >=
+        ClassDefaultValues.powerLevelOfAdmin;
   }
-
-  bool get _isPangeaClass => isSpace && languageSettingsStateEvent != null;
 
   bool _isAnalyticsRoomOfUser(String userId) =>
       isAnalyticsRoom && isMadeByUser(userId);

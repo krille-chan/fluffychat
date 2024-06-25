@@ -2752,28 +2752,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "openToExchanges": "¿Abierto a intercambios?",
-  "@openToExchanges": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "oneToOneChatsWithinExchanges": "Chats Privados dentro de Intercambios",
-  "@oneToOneChatsWithinExchanges": {
-    "type": "text",
-    "placeholders": {}
-  },
   "createGroupChats": "Crear Chats Grupales",
   "@createGroupChats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "createGroupChatsInExchanges": "Crear Chats Grupales en Intercambios",
-  "@createGroupChatsInExchanges": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "createGroupChatsInExchangesDesc": "Active esta opción para permitir que los estudiantes creen chats grupales dentro de los intercambios.",
-  "@createGroupChatsInExchangesDesc": {
     "type": "text",
     "placeholders": {}
   },
@@ -2917,18 +2897,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "findLanguageExchange": "Encuentre una clase de intercambio",
-  "@findLanguageExchange": {
-    "type": "text",
-    "placeholders": {}
-  },
   "requestToEnroll": "Solicitar inscripción",
   "@requestToEnroll": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "requestAnExchange": "Solicitar un intercambio",
-  "@requestAnExchange": {
     "type": "text",
     "placeholders": {}
   },
@@ -2982,11 +2952,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "classSettings": "Ajustes de clase",
-  "@classSettings": {
-    "type": "text",
-    "placeholders": {}
-  },
   "suggestToClass": "Sugiera el chat a",
   "@suggestToClass": {
     "type": "text",
@@ -3032,8 +2997,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "classAnalyticsDesc": "Información detallada sobre la participación de los estudiantes y el uso del idioma",
-  "@classAnalyticsDesc": {
+  "spaceAnalyticsDesc": "Información detallada sobre la participación de los estudiantes y el uso del idioma",
+  "@spaceAnalyticsDesc": {
     "type": "text",
     "placeholders": {}
   },
@@ -3281,7 +3246,7 @@
   "generateVocabulary": "Generar vocabulario basado en el título y la descripción",
   "generatePrompts": "Generar preguntas basado en el título y la descripción",
   "toggleImmersionMode": "Modo de inmersión",
-  "toggleImmersionModeDesc": "Cuando está habilitado, todos los mensajes se muestran en su idioma de destino y puede hacer clic en el mensaje para acceder a definiciones y traducciones.",
+  "toggleImmersionModeDesc": "Cuando está habilitado, todos los mensajes se muestran en su idioma de destino. Esta configuración es más útil en intercambios de idiomas.",
   "subscribe": "Subscríbase",
   "getAccess": "Activar herramientas",
   "subscriptionDesc": "¡Enviar y recibir mensajes es gratis! Suscríbase para aceder a la traducción interactiva, la revisión gramatical y el análisis de aprendizaje.",
@@ -3698,7 +3663,7 @@
   "@optionalRedactReason": {},
   "dehydrate": "Exportar sesión y borrar dispositivo",
   "@dehydrate": {},
-  "archiveRoomDescription": "",
+  "archiveRoomDescription": "El chat se moverá al archivo para ti y para otros usuarios que no sean administradores",
   "@archiveRoomDescription": {},
   "pleaseEnterRecoveryKeyDescription": "Para desbloquear sus mensajes antiguos, ingrese su clave de recuperación que se generó en una sesión anterior. Su clave de recuperación NO es su contraseña.",
   "@pleaseEnterRecoveryKeyDescription": {},
@@ -3815,7 +3780,6 @@
   "sentMessage": "Mensaje enviado",
   "useType": "Tipo de Uso",
   "notAvailable": "No disponible",
-  "classExchanges": "Intercambios",
   "kickAllStudents": "Patear a todos los estudiantes",
   "kickAllStudentsConfirmation": "¿Estás seguro de que quieres echar a todos los estudiantes?",
   "inviteAllStudents": "Invitar a todos los estudiantes",
@@ -4296,7 +4260,6 @@
   "copyClassLink": "Copiar enlace de invitación",
   "copyClassLinkDesc": "Al hacer clic en este enlace, los usuarios accederán a la aplicación, se abrirán una cuenta y se unirán automáticamente a este espacio.",
   "copyClassCode": "Copiar código de invitación",
-  "classSettingsDesc": "Editar idiomas de clase y nivel",
   "createGroupChatsDesc": "Active esta opción para permitir a los estudiantes crear chats de grupo dentro del espacio de clase/intercambio.",
   "joinWithClassCode": "Únete a una clase o a un intercambio",
   "joinWithClassCodeDesc": "Conéctese a una clase o espacio de intercambio con el código de invitación de 6 dígitos proporcionado por el administrador del espacio.",
@@ -4304,8 +4267,6 @@
   "unableToFindClass": "No podemos encontrar la clase o el intercambio. Por favor, vuelva a comprobar la información con el administrador del espacio. Si sigue teniendo problemas, póngase en contacto con support@pangea.chat.",
   "welcomeToYourNewClass": "Bienvenido 🙂",
   "welcomeToClass": "Bienvenido! 🙂\n- ¡Prueba a unirte a un chat!\n- ¡Diviértete chateando!",
-  "welcomeToPangea18Plus": "Bienvenido al chat de Pangea 🙂 .\n¿Qué es lo siguiente?\n¡Crea una clase o únete a ella!\n¡O busca un compañero de conversación!",
-  "welcomeToPangeaMinor": "Bienvenido al chat de Pangea 🙂 .\n¿Qué es lo siguiente?\n¡Únete a una clase!\nPide a tu profesor un código de invitación.",
   "unableToFindClassCode": "No se puede encontrar el código.",
   "errorDisableITClassDesc": "La ayuda a la traducción está desactivada para el espacio en el que se encuentra este chat.",
   "errorDisableIGCClassDesc": "La asistencia gramatical está desactivada para el espacio en el que se encuentra este chat.",
@@ -4317,26 +4278,14 @@
   "pleaseLoginFirst": "Inicie sesión o regístrese primero y, a continuación, se le añadirá a su clase/espacio de intercambio.",
   "welcomeBack": "¡Bienvenido de nuevo! Si formó parte del piloto 2023-2024, póngase en contacto con nosotros para obtener su suscripción especial de piloto. Si es usted un profesor que ha adquirido (o cuya institución ha adquirido) licencias para su clase, póngase en contacto con nosotros para obtener su suscripción de profesor.",
   "createNewClass": "Nuevo espacio para clases",
-  "newExchange": "Nuevo espacio de intercambio",
   "inviteStudentsFromOtherClasses": "Invitar a estudiantes de otros espacios",
-  "allExchanges": "Todos los intercambios",
   "creatingSpacePleaseWait": "Creando espacio. Por favor, espere...",
   "pay": "Pagar",
   "copyClassCodeDesc": "Los estudiantes que ya están en la aplicación pueden 'Unirse a una clase o a un intercambio' a través del menú principal.",
   "inviteUsersFromPangea": "Añadir profesores",
   "addToClass": "Añadir intercambio a la clase",
-  "addToClassOrExchange": "Añadir chat a la clase o al intercambio",
-  "classAnalytics": "Análisis de clase",
   "myLearning": "Mis análisis",
   "addToClassDesc": "Añadir un intercambio a una clase hará que el intercambio aparezca dentro de la clase para los estudiantes y les dará acceso a todos los chats dentro del intercambio.",
-  "addToClassOrExchangeDesc": "Añadir un chat a una clase o intercambio hará que el chat aparezca dentro de la clase o intercambio para los estudiantes y les dará acceso.",
-  "invitedToClassOrExchange": "{user} te ha invitado a unirte a ¡{classOrExchange}! ¿Deseas aceptar?",
-  "@invitedToClassOrExchange": {
-    "placeholders": {
-      "classOrExchange": {},
-      "user": {}
-    }
-  },
   "decline": "Disminución",
   "declinedInvitation": "Invitación rechazada",
   "acceptedInvitation": "Invitación aceptada",
@@ -4369,14 +4318,11 @@
   },
   "emptyChatNameWarning": "Introduzca un nombre para este chat",
   "emptyClassNameWarning": "Introduzca un nombre para esta clase",
-  "emptyExchangeNameWarning": "Introduzca un nombre para este intercambio",
   "blurMeansTranslateTitle": "¿Por qué está borroso el mensaje?",
-  "blurMeansTranslateBody": "Mientras el Modo Inmersión esté activado, los mensajes que se envíen en su idioma base aparecerán borrosos mientras Pangea Bot los traduce a su idioma de destino. El modo inmersión puede activarse en los ajustes individuales y de clase.",
   "monthlySubscription": "Mensualmente",
   "yearlySubscription": "Anualmente",
   "defaultSubscription": "Suscripción al chat de Pangea",
   "freeTrial": "Prueba gratuita",
-  "languageLevelWarning": "Seleccione un nivel de idioma de clase",
   "lockedChatWarning": "🔒 Este chat ha sido bloqueado",
   "lockSpace": "Espacio de bloqueo",
   "lockChat": "Chat de bloqueo",
@@ -4393,7 +4339,6 @@
   "itStartDefaultPrompt": "¿Quiere ayuda para traducir?",
   "suggestTo": "Sugerir a {spaceName}",
   "suggestChatDesc": "Los chats sugeridos aparecerán en la lista de chats de {spaceName}.",
-  "suggestExchangeDesc": "Los intercambios sugeridos aparecerán en la lista de chat de {spaceName}.",
   "acceptSelection": "Aceptar corrección",
   "acceptSelectionAnyway": "Use esto de todos modos",
   "makingActivity": "Actividad de fabricación",
@@ -4460,7 +4405,6 @@
   "groupCanBeFoundViaSearch": "El grupo se puede encontrar a través de la búsqueda",
   "inNoSpaces": "No es miembro de ninguna clase o bolsa",
   "createClass": "Crear clase",
-  "createExchange": "Crear intercambio",
   "viewArchive": "Ver archivo",
   "trialExpiration": "Su prueba gratuita caduca el {expiration}.",
   "@trialExpiration": {
@@ -4648,8 +4592,113 @@
   "conversationBotDiscussionZone_discussionKeywordsHintText": "Lista de palabras clave separadas por comas para orientar el debate",
   "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel": "Enviar mensajes de debate según un calendario",
   "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Horas entre temas de debate",
-  "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Enviar aviso de discusión cuando el usuario reacciona ⏩ al mensaje del bot.",
+  "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Responde a la reacción de ⏩",
   "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel": "Reacción al envío del aviso de debate",
   "studentAnalyticsNotAvailable": "Datos de los estudiantes no disponibles actualmente",
-  "roomDataMissing": "Es posible que falten algunos datos de las salas de las que no es miembro."
+  "roomDataMissing": "Es posible que falten algunos datos de las salas de las que no es miembro.",
+  "suggestToChat": "Sugerir este chat",
+  "suggestToChatDesc": "Los chats sugeridos aparecerán en las listas de chats",
+  "roomCapacity": "Capacidad de la sala",
+  "roomFull": "Esta sala ya está al límite de su capacidad.",
+  "topicNotSet": "El tema no se ha fijado.",
+  "capacityNotSet": "Esta sala no tiene límite de capacidad.",
+  "roomCapacityHasBeenChanged": "Capacidad de la sala modificada",
+  "roomExceedsCapacity": "La sala supera su capacidad. Considere la posibilidad de retirar a los alumnos de la sala o de aumentar la capacidad.",
+  "capacitySetTooLow": "La capacidad de la sala no puede fijarse por debajo del número actual de no administradores.",
+  "roomCapacityExplanation": "La capacidad de la sala limita el número de personas que pueden entrar en ella.",
+  "enterNumber": "Introduzca un valor numérico entero.",
+  "autoIGCToolName": "Ejecutar automáticamente la asistencia lingüística",
+  "autoIGCToolDescription": "Ejecutar automáticamente la asistencia lingüística después de escribir mensajes",
+  "runGrammarCorrection": "Corregir la gramática",
+  "grammarCorrectionFailed": "Cuestiones a tratar",
+  "grammarCorrectionComplete": "Corrección gramatical completa",
+  "leaveRoomDescription": "El chat se moverá al archivo. Los demás usuarios podrán ver que has abandonado el chat.",
+  "archiveSpaceDescription": "Todos los chats de este espacio se moverán al archivo para ti y otros usuarios que no sean administradores.",
+  "leaveSpaceDescription": "Todos los chats dentro de este espacio se moverán al archivo. Los demás usuarios podrán ver que has abandonado el espacio.",
+  "onlyAdminDescription": "Como no hay más administradores, todos los demás participantes también serán eliminados.",
+  "tooltipInstructionsTitle": "¿No sabes para qué sirve?",
+  "tooltipInstructionsMobileBody": "Mantenga pulsados los elementos para ver la información sobre herramientas.",
+  "tooltipInstructionsBrowserBody": "Pase el ratón sobre los elementos para ver información sobre herramientas.",
+  "buildTranslation": "Construye tu traducción a partir de las opciones anteriores",
+  "appLockDescription": "Bloquea la aplicación cuando no la uses con un código pin",
+  "swipeRightToLeftToReply": "Desliza el dedo de derecha a izquierda para responder",
+  "globalChatId": "ID global del chat",
+  "accessAndVisibility": "Acceso y visibilidad",
+  "accessAndVisibilityDescription": "Quién puede participar en este chat y cómo se puede descubrir el chat.",
+  "calls": "Llamadas",
+  "customEmojisAndStickers": "Emojis y pegatinas personalizados",
+  "customEmojisAndStickersBody": "Añade o comparte emojis o stickers personalizados que podrás utilizar en cualquier chat.",
+  "hideRedactedMessages": "Ocultar mensajes redactados",
+  "hideRedactedMessagesBody": "Si alguien borra un mensaje, éste ya no será visible en el chat.",
+  "hideInvalidOrUnknownMessageFormats": "Ocultar formatos de mensaje no válidos o desconocidos",
+  "hideMemberChangesInPublicChats": "Ocultar los cambios de los miembros en los chats públicos",
+  "hideMemberChangesInPublicChatsBody": "No mostrar en la línea de tiempo del chat si alguien se une o abandona un chat público para mejorar la legibilidad.",
+  "overview": "Visión general",
+  "notifyMeFor": "Notificarme para",
+  "passwordRecoverySettings": "Configuración de recuperación de contraseña",
+  "usersMustKnock": "Los usuarios deben golpear",
+  "userWouldLikeToChangeTheChat": "{user} desea unirse al chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Aún no se ha creado ningún enlace público",
+  "knock": "Knock",
+  "multiLingualSpace": "Espacio multilingüe",
+  "languageSettings": "Ajustes de idioma",
+  "languageSettingsDesc": "Editar idiomas espaciales y nivel de competencia.",
+  "selectSpaceDominantLanguage": "¿Cuál es la lengua más común de los miembros del espacio?",
+  "selectSpaceTargetLanguage": "¿Cuál es la lengua de destino más común del espacio?",
+  "whatIsYourSpaceLanguageLevel": "¿Cuál es el nivel lingüístico medio del espacio?",
+  "welcomeToPangea18Plus": "Bienvenido al chat de Pangea 🙂 .\n¿Qué es lo siguiente?\n¡Crea o únete a un espacio!\n¡O busca un compañero de conversación!",
+  "welcomeToPangeaMinor": "Bienvenido al chat de Pangea 🙂 .\n¿Qué es lo siguiente?\n¡Únete a un espacio!\nPide a tu profesor un código de invitación.",
+  "addToSpaceDesc": "Añadir un chat a un espacio hará que el chat aparezca dentro del espacio para los estudiantes y les dará acceso.",
+  "invitedToSpace": "{user} te ha invitado a unirte a un espacio: ¡{space}! ¿Deseas aceptar?",
+  "@invitedToSpace": {
+    "placeholders": {
+      "space": {},
+      "user": {}
+    }
+  },
+  "emptySpaceNameWarning": "Introduzca un nombre para este espacio",
+  "blurMeansTranslateBody": "Mientras el Modo Inmersión esté activado, los mensajes que se envíen en tu idioma base aparecerán borrosos mientras Pangea Bot los traduce a tu idioma de destino. El Modo Inmersión puede activarse en los ajustes individuales y espaciales.",
+  "languageLevelWarning": "Seleccione un nivel de lengua espacial",
+  "knocking": "Golpeando",
+  "chatCanBeDiscoveredViaSearchOnServer": "El chat puede descubrirse mediante la búsqueda en {server}.",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "publicChatAddresses": "Direcciones de chat públicas",
+  "createNewAddress": "Crear una nueva dirección",
+  "userRole": "Función del usuario",
+  "minimumPowerLevel": "{level} es el nivel mínimo de potencia.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "searchMore": "Buscar más...",
+  "gallery": "Galería",
+  "files": "Archivos",
+  "addSpaceToSpaceDescription": "Seleccione un espacio para añadir como padre",
+  "noDatabaseEncryption": "La encriptación de la base de datos no es compatible con esta plataforma",
+  "thereAreCountUsersBlocked": "Ahora mismo hay {count} usuarios bloqueados.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "restricted": "Restringido",
+  "knockRestricted": "Golpe restringido",
+  "nonexistentSelection": "La selección ya no existe.",
+  "cantAddSpaceChild": "No tiene permiso para añadir un niño a este espacio.",
+  "roomAddedToSpace": "Se han añadido habitaciones al espacio seleccionado.",
+  "addChatToSpaceDesc": "Añadir un chat a un espacio hará que el chat aparezca dentro del espacio para los estudiantes y les dará acceso.",
+  "addSpaceToSpaceDesc": "Añadir un espacio a otro espacio hará que el espacio hijo aparezca dentro del espacio padre para los estudiantes y les dará acceso.",
+  "spaceAnalytics": "Analítica espacial",
+  "changeAnalyticsLanguage": "Cambiar el lenguaje analítico"
 }

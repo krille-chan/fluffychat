@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
 import 'settings_notifications_view.dart';
 
@@ -89,16 +90,52 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
     }
   }
 
-  void setNotificationSetting(NotificationSettingsItem item, bool enabled) {
-    showFutureLoadingDialog(
-      context: context,
-      future: () => Matrix.of(context).client.setPushRuleEnabled(
+  bool isLoading = false;
+
+  void setNotificationSetting(
+    NotificationSettingsItem item,
+    bool enabled,
+  ) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      await Matrix.of(context).client.setPushRuleEnabled(
             'global',
             item.type,
             item.key,
             enabled,
-          ),
-    );
+          );
+    } catch (e, s) {
+      Logs().w('Unable to change notification settings', e, s);
+      scaffoldMessenger
+          .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  void onToggleMuteAllNotifications() async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      await Matrix.of(context).client.setMuteAllPushNotifications(
+            !Matrix.of(context).client.allPushNotificationsMuted,
+          );
+    } catch (e, s) {
+      Logs().w('Unable to change notification settings', e, s);
+      scaffoldMessenger
+          .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   void onPusherTap(Pusher pusher) async {

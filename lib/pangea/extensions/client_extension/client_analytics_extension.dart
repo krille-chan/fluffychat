@@ -96,23 +96,6 @@ extension AnalyticsClientExtension on Client {
     await Future.wait(makePublicFutures);
   }
 
-  Future<void> _updateMyLearningAnalyticsForAllClassesImIn([
-    PLocalStore? storageService,
-  ]) async {
-    try {
-      final List<Future<void>> updateFutures = [];
-      for (final classRoom in classesAndExchangesImIn) {
-        updateFutures
-            .add(classRoom.updateMyLearningAnalyticsForClass(storageService));
-      }
-      await Future.wait(updateFutures);
-    } catch (err, s) {
-      if (kDebugMode) rethrow;
-      // debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s);
-    }
-  }
-
   // Add all the users' analytics room to all the spaces the student studies in
   // So teachers can join them via space hierarchy
   // Will not always work, as there may be spaces where students don't have permission to add chats
@@ -140,7 +123,7 @@ extension AnalyticsClientExtension on Client {
   // Allows teachers to join analytics rooms without being invited
   Future<void> _joinAnalyticsRoomsInAllSpaces() async {
     final List<Future> joinFutures = [];
-    for (final Room space in (await _classesAndExchangesImTeaching)) {
+    for (final Room space in (await _spacesImTeaching)) {
       joinFutures.add(space.joinAnalyticsRoomsInSpace());
     }
     await Future.wait(joinFutures);
@@ -150,7 +133,8 @@ extension AnalyticsClientExtension on Client {
   // Checks for invites to any student analytics rooms
   // Handles case of analytics rooms that can't be added to some space(s)
   Future<void> _joinInvitedAnalyticsRooms() async {
-    for (final Room room in rooms) {
+    final List<Room> allRooms = List.from(rooms);
+    for (final Room room in allRooms) {
       if (room.membership == Membership.invite && room.isAnalyticsRoom) {
         try {
           await room.join();
@@ -169,5 +153,18 @@ extension AnalyticsClientExtension on Client {
     await _inviteAllTeachersToAllAnalyticsRooms();
     await _joinInvitedAnalyticsRooms();
     await _joinAnalyticsRoomsInAllSpaces();
+  }
+
+  Future<Map<String, DateTime?>> _allAnalyticsRoomsLastUpdated() async {
+    // get the last updated time for each analytics room
+    final Map<String, DateTime?> lastUpdatedMap = {};
+    for (final analyticsRoom in allMyAnalyticsRooms) {
+      final DateTime? lastUpdated = await analyticsRoom.analyticsLastUpdated(
+        PangeaEventTypes.summaryAnalytics,
+        userID!,
+      );
+      lastUpdatedMap[analyticsRoom.id] = lastUpdated;
+    }
+    return lastUpdatedMap;
   }
 }

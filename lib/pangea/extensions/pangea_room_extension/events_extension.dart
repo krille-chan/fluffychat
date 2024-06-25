@@ -1,13 +1,173 @@
 part of "pangea_room_extension.dart";
 
 extension EventsRoomExtension on Room {
+  Future<bool> _leaveIfFull() async {
+    await postLoad();
+    if (!isRoomAdmin &&
+        (_capacity != null) &&
+        (await _numNonAdmins) > (_capacity!)) {
+      if (!isSpace) {
+        markUnread(false);
+      }
+      await leave();
+      return true;
+    }
+    return false;
+  }
+
+  Future<void> _archive() async {
+    final students = (await requestParticipants())
+        .where(
+          (e) =>
+              e.id != client.userID &&
+              e.powerLevel < ClassDefaultValues.powerLevelOfAdmin &&
+              e.id != BotName.byEnvironment,
+        )
+        .toList();
+    try {
+      for (final student in students) {
+        await kick(student.id);
+      }
+      if (!isSpace && membership == Membership.join && isUnread) {
+        await markUnread(false);
+      }
+      await leave();
+    } catch (err, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: err, s: s, data: toJson());
+    }
+  }
+
+  Future<bool> _archiveSpace(
+    BuildContext context,
+    Client client, {
+    bool onlyAdmin = false,
+  }) async {
+    final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
+          context: context,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
+          message: onlyAdmin
+              ? L10n.of(context)!.onlyAdminDescription
+              : L10n.of(context)!.archiveSpaceDescription,
+        ) ==
+        OkCancelResult.ok;
+    if (!confirmed) return false;
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        final List<Room> children = await getChildRooms();
+        for (final Room child in children) {
+          if (!child.isAnalyticsRoom && !child.isArchived) {
+            if (child.membership != Membership.join) {
+              child.join;
+            }
+            if (child.isSpace) {
+              await child.archiveSubspace();
+            } else {
+              await child.archive();
+            }
+          }
+        }
+        await _archive();
+      },
+    );
+    MatrixState.pangeaController.classController
+        .setActiveSpaceIdInChatListController(
+      null,
+    );
+    return success.error == null;
+  }
+
+  Future<void> _archiveSubspace() async {
+    final List<Room> children = await getChildRooms();
+    for (final Room child in children) {
+      if (!child.isAnalyticsRoom && !child.isArchived) {
+        if (child.membership != Membership.join) {
+          child.join;
+        }
+        if (child.isSpace) {
+          await child.archiveSubspace();
+        } else {
+          await child.archive();
+        }
+      }
+    }
+    await _archive();
+  }
+
+  Future<bool> _leaveSpace(BuildContext context, Client client) async {
+    final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
+          context: context,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
+          message: L10n.of(context)!.leaveSpaceDescription,
+        ) ==
+        OkCancelResult.ok;
+    if (!confirmed) return false;
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        try {
+          final List<Room> children = await getChildRooms();
+          for (final Room child in children) {
+            if (!child.isAnalyticsRoom && !child.isArchived) {
+              if (!child.isSpace &&
+                  child.membership == Membership.join &&
+                  child.isUnread) {
+                await child.markUnread(false);
+              }
+              if (child.isSpace) {
+                await child.leaveSubspace();
+              } else {
+                await child.leave();
+              }
+            }
+          }
+          await leave();
+        } catch (err, stack) {
+          debugger(when: kDebugMode);
+          ErrorHandler.logError(e: err, s: stack, data: powerLevels);
+          rethrow;
+        }
+      },
+    );
+    MatrixState.pangeaController.classController
+        .setActiveSpaceIdInChatListController(
+      null,
+    );
+    return success.error == null;
+  }
+
+  Future<void> _leaveSubspace() async {
+    final List<Room> children = await getChildRooms();
+    for (final Room child in children) {
+      if (!child.isAnalyticsRoom && !child.isArchived) {
+        if (!child.isSpace &&
+            child.membership == Membership.join &&
+            child.isUnread) {
+          await child.markUnread(false);
+        }
+        if (child.isSpace) {
+          await child.leaveSubspace();
+        } else {
+          await child.leave();
+        }
+      }
+    }
+    await leave();
+  }
+
   Future<Event?> _sendPangeaEvent({
     required Map<String, dynamic> content,
     required String parentEventId,
     required String type,
   }) async {
     try {
-      debugPrint("creating $type child for $parentEventId");
       Sentry.addBreadcrumb(Breadcrumb.fromJson(content));
       if (parentEventId.contains("web")) {
         debugger(when: kDebugMode);
@@ -202,122 +362,153 @@ extension EventsRoomExtension on Room {
     }
   }
 
-  ConstructEvent? _vocabEventLocal(String lemma) {
-    if (!isAnalyticsRoom) throw Exception("not an analytics room");
+  // ConstructEvent? _vocabEventLocal(String lemma) {
+  //   if (!isAnalyticsRoom) throw Exception("not an analytics room");
 
-    final Event? matrixEvent = getState(PangeaEventTypes.vocab, lemma);
+  //   final Event? matrixEvent = getState(PangeaEventTypes.vocab, lemma);
 
-    return matrixEvent != null ? ConstructEvent(event: matrixEvent) : null;
-  }
+  //   return matrixEvent != null ? ConstructEvent(event: matrixEvent) : null;
+  // }
 
-  Future<ConstructEvent> _vocabEvent(
-    String lemma,
-    ConstructType type, [
-    bool makeIfNull = false,
-  ]) async {
-    try {
-      if (!isAnalyticsRoom) throw Exception("not an analytics room");
+  // Future<ConstructEvent> _vocabEvent(
+  //   String lemma,
+  //   ConstructType type, [
+  //   bool makeIfNull = false,
+  // ]) async {
+  //   try {
+  //     if (!isAnalyticsRoom) throw Exception("not an analytics room");
 
-      ConstructEvent? localEvent = _vocabEventLocal(lemma);
+  //     ConstructEvent? localEvent = _vocabEventLocal(lemma);
 
-      if (localEvent != null) return localEvent;
+  //     if (localEvent != null) return localEvent;
 
-      await postLoad();
-      localEvent = _vocabEventLocal(lemma);
+  //     await postLoad();
+  //     localEvent = _vocabEventLocal(lemma);
 
-      if (localEvent == null && isRoomOwner && makeIfNull) {
-        final Event matrixEvent = await _createVocabEvent(lemma, type);
-        localEvent = ConstructEvent(event: matrixEvent);
-      }
+  //     if (localEvent == null && isRoomOwner && makeIfNull) {
+  //       final Event matrixEvent = await _createVocabEvent(lemma, type);
+  //       localEvent = ConstructEvent(event: matrixEvent);
+  //     }
 
-      return localEvent!;
-    } catch (err) {
-      debugger(when: kDebugMode);
-      rethrow;
-    }
-  }
+  //     return localEvent!;
+  //   } catch (err) {
+  //     debugger(when: kDebugMode);
+  //     rethrow;
+  //   }
+  // }
 
-  Future<List<OneConstructUse>> _removeEditedLemmas(
-    List<OneConstructUse> lemmaUses,
-  ) async {
-    final List<String> removeUses = [];
-    for (final use in lemmaUses) {
-      if (use.msgId == null) continue;
-      final List<String> removeIds = await client.getEditHistory(
-        use.chatId,
-        use.msgId!,
-      );
-      removeUses.addAll(removeIds);
-    }
-    lemmaUses.removeWhere((use) => removeUses.contains(use.msgId));
-    final allEvents = await allConstructEvents;
-    for (final constructEvent in allEvents) {
-      await constructEvent.removeEdittedUses(removeUses, client);
-    }
-    return lemmaUses;
-  }
+  // Future<Event> _createVocabEvent(String lemma, ConstructType type) async {
+  //   try {
+  //     if (!isRoomOwner) {
+  //       throw Exception(
+  //         "Tried to create vocab event in room where user is not owner",
+  //       );
+  //     }
+  //     final String eventId = await client.setRoomStateWithKey(
+  //       id,
+  //       PangeaEventTypes.vocab,
+  //       lemma,
+  //       ConstructUses(lemma: lemma, type: type).toJson(),
+  //     );
+  //     final Event? event = await getEventById(eventId);
 
-  Future<void> _saveConstructUsesSameLemma(
-    String lemma,
-    ConstructType type,
-    List<OneConstructUse> lemmaUses, {
-    bool isEdit = false,
+  //     if (event == null) {
+  //       debugger(when: kDebugMode);
+  //       throw Exception(
+  //         "null event after creation with eventId $eventId in _createVocabEvent",
+  //       );
+  //     }
+  //     return event;
+  //   } catch (err, stack) {
+  //     debugger(when: kDebugMode);
+  //     ErrorHandler.logError(e: err, s: stack, data: powerLevels);
+  //     rethrow;
+  //   }
+  // }
+
+  Future<List<PangeaMessageEvent>> myMessageEventsInChat({
+    DateTime? since,
   }) async {
-    final ConstructEvent? localEvent = _vocabEventLocal(lemma);
-
-    if (isEdit) {
-      lemmaUses = await removeEditedLemmas(lemmaUses);
-    }
-
-    if (localEvent == null) {
-      await client.setRoomStateWithKey(
-        id,
-        PangeaEventTypes.vocab,
-        lemma,
-        ConstructUses(lemma: lemma, type: type, uses: lemmaUses).toJson(),
+    final List<Event> msgEvents = await getEventsBySender(
+      type: EventTypes.Message,
+      sender: client.userID!,
+      since: since,
+    );
+    final Timeline timeline = await getTimeline();
+    return msgEvents
+        .where((event) => (event.content['msgtype'] == MessageTypes.Text))
+        .map((event) {
+      return PangeaMessageEvent(
+        event: event,
+        timeline: timeline,
+        ownMessage: true,
       );
-    } else {
-      localEvent.addAll(lemmaUses);
-      await updateStateEvent(localEvent.event);
-    }
+    }).toList();
   }
 
-  Future<List<ConstructEvent>> get _allConstructEvents async {
-    await postLoad();
-    return states[PangeaEventTypes.vocab]
-            ?.values
-            .map((Event event) => ConstructEvent(event: event))
-            .toList()
-            .cast<ConstructEvent>() ??
-        [];
-  }
-
-  Future<Event> _createVocabEvent(String lemma, ConstructType type) async {
+  // fetch event of a certain type by a certain sender
+  // since a certain time or up to a certain amount
+  Future<List<Event>> getEventsBySender({
+    required String type,
+    required String sender,
+    DateTime? since,
+    int? count,
+  }) async {
     try {
-      if (!isRoomOwner) {
-        throw Exception(
-          "Tried to create vocab event in room where user is not owner",
-        );
-      }
-      final String eventId = await client.setRoomStateWithKey(
-        id,
-        PangeaEventTypes.vocab,
-        lemma,
-        ConstructUses(lemma: lemma, type: type).toJson(),
-      );
-      final Event? event = await getEventById(eventId);
+      int numberOfSearches = 0;
+      final Timeline timeline = await getTimeline();
 
-      if (event == null) {
-        debugger(when: kDebugMode);
-        throw Exception(
-          "null event after creation with eventId $eventId in _createVocabEvent",
+      List<Event> relevantEvents() => timeline.events
+          .where((event) => event.senderId == sender && event.type == type)
+          .toList();
+
+      bool reachedEnd() {
+        if (since != null) {
+          return relevantEvents().any(
+            (event) => event.originServerTs.isBefore(since),
+          );
+        }
+        if (count != null) {
+          return relevantEvents().length >= count;
+        }
+        return false;
+      }
+
+      while (timeline.canRequestHistory &&
+          !reachedEnd() &&
+          numberOfSearches < 10) {
+        await timeline.requestHistory(historyCount: 100);
+        numberOfSearches += 1;
+        if (reachedEnd()) {
+          break;
+        }
+      }
+
+      final List<Event> fetchedEvents = timeline.events
+          .where((event) => event.senderId == sender && event.type == type)
+          .toList();
+
+      if (since != null) {
+        fetchedEvents.removeWhere(
+          (event) => event.originServerTs.isBefore(since),
         );
       }
-      return event;
-    } catch (err, stack) {
+
+      final List<Event> events = [];
+      for (Event event in fetchedEvents) {
+        if (event.relationshipType == RelationshipTypes.edit) continue;
+        if (event.hasAggregatedEvents(timeline, RelationshipTypes.edit)) {
+          event = event.getDisplayEvent(timeline);
+        }
+        events.add(event);
+      }
+
+      return events;
+    } catch (err, s) {
+      if (kDebugMode) rethrow;
       debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: stack, data: powerLevels);
-      rethrow;
+      ErrorHandler.logError(e: err, s: s);
+      return [];
     }
   }
 }

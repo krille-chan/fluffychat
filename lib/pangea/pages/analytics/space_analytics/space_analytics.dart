@@ -1,0 +1,121 @@
+import 'dart:async';
+import 'dart:developer';
+
+import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
+import 'package:fluffychat/pangea/widgets/common/p_circular_loader.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
+import '../../../../widgets/matrix.dart';
+import '../../../utils/sync_status_util_v2.dart';
+import 'space_analytics_view.dart';
+
+class SpaceAnalyticsPage extends StatefulWidget {
+  final BarChartViewSelection? selectedView;
+  const SpaceAnalyticsPage({super.key, this.selectedView});
+
+  @override
+  State<SpaceAnalyticsPage> createState() => SpaceAnalyticsV2Controller();
+}
+
+class SpaceAnalyticsV2Controller extends State<SpaceAnalyticsPage> {
+  bool _initialized = false;
+  // StreamSubscription<Event>? stateSub;
+  // Timer? refreshTimer;
+
+  List<SpaceRoomsChunk> chats = [];
+  List<User> students = [];
+  String? get spaceId => GoRouterState.of(context).pathParameters['spaceid'];
+  Room? _spaceRoom;
+
+  Room? get spaceRoom {
+    if (_spaceRoom == null || _spaceRoom!.id != spaceId) {
+      debugPrint("updating _spaceRoom");
+      _spaceRoom = spaceId != null
+          ? Matrix.of(context).client.getRoomById(spaceId!)
+          : null;
+      if (_spaceRoom == null) {
+        context.go('/rooms/analytics');
+        return null;
+      }
+      getChatAndStudents();
+    }
+    return _spaceRoom;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    debugPrint("init space analytics");
+    Future.delayed(Duration.zero, () async {
+      if (spaceRoom == null || (!(spaceRoom?.isSpace ?? false))) {
+        context.go('/rooms');
+      }
+      getChatAndStudents();
+    });
+  }
+
+  Future<void> getChatAndStudents() async {
+    try {
+      await spaceRoom?.postLoad();
+      await spaceRoom?.requestParticipants();
+
+      if (spaceRoom != null) {
+        final response = await Matrix.of(context).client.getSpaceHierarchy(
+              spaceRoom!.id,
+            );
+
+        // set the latest fetched full hierarchy in message analytics controller
+        // we want to avoid calling this endpoint again and again, so whenever the
+        // data is made available, set it in the controller
+        MatrixState.pangeaController.analytics
+            .setLatestHierarchy(_spaceRoom!.id, response);
+
+        students = spaceRoom!.students;
+        chats = response.rooms
+            .where(
+              (room) =>
+                  room.roomId != spaceRoom!.id &&
+                  room.roomType != PangeaRoomTypes.analytics,
+            )
+            .toList();
+        chats.sort((a, b) => a.roomType == 'm.space' ? -1 : 1);
+      }
+
+      setState(() {
+        _initialized = true;
+      });
+    } catch (err, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: err, s: s);
+    }
+  }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   refreshTimer?.cancel();
+  //   stateSub?.cancel();
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_initialized) return const PCircular();
+    return PLoadingStatusV2(
+      // if we everr want it rebuild the whole thing each time (and run initState again)
+      // but this is computationally expensive!
+      // key: UniqueKey(),
+      shimmerChild: const ListPlaceholder(),
+      // onFinish: () {
+      //   getChatAndStudentAnalytics(context);
+      // },
+      child: SpaceAnalyticsView(this),
+    );
+  }
+}

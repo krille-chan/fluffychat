@@ -111,12 +111,12 @@ abstract class ClientManager {
         // To make room emotes work
         'im.ponies.room_emotes',
         // #Pangea
-        PangeaEventTypes.classSettings,
+        PangeaEventTypes.languageSettings,
         PangeaEventTypes.rules,
-        PangeaEventTypes.vocab,
         PangeaEventTypes.botOptions,
         EventTypes.RoomTopic,
         EventTypes.RoomAvatar,
+        PangeaEventTypes.capacity,
         // Pangea#
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
@@ -130,6 +130,7 @@ abstract class ClientManager {
       },
       nativeImplementations: nativeImplementations,
       customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
+      defaultNetworkRequestTimeout: const Duration(minutes: 30),
       enableDehydratedDevices: true,
     );
   }

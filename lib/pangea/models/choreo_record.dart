@@ -1,10 +1,11 @@
 import 'dart:convert';
 
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+
 import '../constants/choreo_constants.dart';
 import '../enum/construct_type_enum.dart';
-import 'constructs_analytics_model.dart';
 import 'it_step.dart';
 import 'lemma.dart';
 
@@ -126,6 +127,7 @@ class ChoreoRecord {
     List<PangeaToken> tokens,
     String chatId,
     String msgId,
+    DateTime timestamp,
   ) {
     final List<OneConstructUse> uses = [];
     final DateTime now = DateTime.now();
@@ -140,7 +142,7 @@ class ChoreoRecord {
             OneConstructUse(
               useType: type,
               chatId: chatId,
-              timeStamp: now,
+              timeStamp: timestamp,
               lemma: lemma.text,
               form: lemma.form,
               msgId: msgId,
@@ -210,9 +212,12 @@ class ChoreoRecord {
     return uses;
   }
 
-  List<OneConstructUse> toGrammarConstructUse(String msgId, String chatId) {
+  List<OneConstructUse> toGrammarConstructUse(
+    String msgId,
+    String chatId,
+    DateTime timestamp,
+  ) {
     final List<OneConstructUse> uses = [];
-    final DateTime now = DateTime.now();
     for (final step in choreoSteps) {
       if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted) {
         final String name = step.acceptedOrIgnoredMatch!.match.rule?.id ??
@@ -222,11 +227,12 @@ class ChoreoRecord {
           OneConstructUse(
             useType: ConstructUseType.ga,
             chatId: chatId,
-            timeStamp: now,
+            timeStamp: timestamp,
             lemma: name,
             form: name,
             msgId: msgId,
             constructType: ConstructType.grammar,
+            id: "${msgId}_${step.acceptedOrIgnoredMatch!.match.offset}_${step.acceptedOrIgnoredMatch!.match.length}",
           ),
         );
       }
@@ -241,22 +247,27 @@ class ChoreoRecord {
       choreoSteps.isNotEmpty ? choreoSteps.last.text : "";
 }
 
-/// new step are saved
+/// A new ChoreoRecordStep is saved in the following cases:
 /// 1) before every system-provided text is accepted, if final text is different
 /// from last step
 /// 2) on the acceptance of system-provided text
 /// 3) on message send, if final text is different from last step
+/// 4) on the acceptance of an it step
+/// 5) on the start of it
 ///
-/// user edit
-/// "hey ther"
+/// Example 1:
+/// the user types "hey ther"
+/// IGC suggests "there"
 /// user accepts "there" correction
-/// "hey there"
-/// step made for user edits and step made for system suggestion
-/// user goes through IT, chooses "hola"
-/// "hola"
-/// step saved
-/// adds "amigo"
-/// step saved
+/// text is now "hey there"
+/// A step is made for the original input 'hey there' and a step is made for system suggestion
+///
+/// Example 2:
+/// user write "hi friend"
+/// a step is made for the original input 'hi friend'
+/// the user selects IT and a step is made
+/// the user chooses "hola" and a step is saved
+/// adds "amigo" and a step saved
 class ChoreoRecordStep {
   /// text after changes have been made
   String text;

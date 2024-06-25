@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/time_span.dart';
+import 'package:fluffychat/pangea/pages/analytics/analytics_language_button.dart';
 import 'package:fluffychat/pangea/pages/analytics/analytics_list_tile.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
 import 'package:fluffychat/pangea/pages/analytics/construct_list.dart';
@@ -12,6 +13,7 @@ import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 
 class BaseAnalyticsView extends StatelessWidget {
   const BaseAnalyticsView({
@@ -22,17 +24,14 @@ class BaseAnalyticsView extends StatelessWidget {
   final BaseAnalyticsController controller;
 
   Widget chartView(BuildContext context) {
-    if (controller.selectedView == null) {
+    if (controller.widget.selectedView == null) {
       return const SizedBox();
     }
 
-    switch (controller.selectedView!) {
+    switch (controller.widget.selectedView!) {
       case BarChartViewSelection.messages:
         return MessagesBarChart(
-          chartAnalytics: controller.chartData(
-            context,
-            controller.selected,
-          ),
+          chartAnalytics: controller.chartData,
         );
       case BarChartViewSelection.grammar:
         return ConstructList(
@@ -41,6 +40,7 @@ class BaseAnalyticsView extends StatelessWidget {
           selected: controller.selected,
           controller: controller,
           pangeaController: controller.pangeaController,
+          refreshStream: controller.refreshStream,
         );
     }
   }
@@ -62,55 +62,77 @@ class BaseAnalyticsView extends StatelessWidget {
                 text: controller.widget.pageTitle,
                 style: const TextStyle(decoration: TextDecoration.underline),
                 recognizer: TapGestureRecognizer()
-                  ..onTap = () => controller.selectedView != null
-                      ? controller.setSelectedView(null)
-                      : null,
+                  ..onTap = () {
+                    final String route =
+                        "/rooms/${controller.widget.defaultSelected.type.route}";
+                    context.go(route);
+                  },
               ),
-              if (controller.selectedView != null)
+              if (controller.activeSpace != null)
                 const TextSpan(
                   text: " > ",
                 ),
-              if (controller.selectedView != null)
+              if (controller.activeSpace != null)
                 TextSpan(
+                  text: controller.activeSpace!.getLocalizedDisplayname(),
                   style: const TextStyle(decoration: TextDecoration.underline),
-                  text: controller.selectedView!.string(context),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => controller.currentLemma != null
-                        ? controller.setCurrentLemma(null)
-                        : null,
+                    ..onTap = () {
+                      if (controller.widget.selectedView == null) return;
+                      String route =
+                          "/rooms/${controller.widget.defaultSelected.type.route}";
+                      if (controller.widget.defaultSelected.type ==
+                          AnalyticsEntryType.space) {
+                        route += "/${controller.widget.defaultSelected.id}";
+                      }
+                      context.go(route);
+                    },
                 ),
-              if (controller.currentLemma != null)
+              if (controller.widget.selectedView != null)
                 const TextSpan(
                   text: " > ",
                 ),
-              if (controller.currentLemma != null)
+              if (controller.widget.selectedView != null)
                 TextSpan(
-                  text: controller.currentLemma,
-                  style: const TextStyle(decoration: TextDecoration.underline),
-                  recognizer: TapGestureRecognizer()..onTap = () {},
+                  text: controller.widget.selectedView!.string(context),
                 ),
             ],
           ),
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: controller.navigate,
-        ),
-        actions: [
-          TimeSpanMenuButton(
-            value: controller.currentTimeSpan,
-            onChange: (TimeSpan value) =>
-                controller.toggleTimeSpan(context, value),
-          ),
-        ],
       ),
       body: MaxWidthBody(
         withScrolling: false,
-        child: controller.selectedView != null
+        child: controller.widget.selectedView != null
             ? Column(
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      if (controller.widget.defaultSelected.type ==
+                          AnalyticsEntryType.student)
+                        IconButton(
+                          icon: const Icon(Icons.refresh),
+                          onPressed: controller.onRefresh,
+                          tooltip: L10n.of(context)!.refresh,
+                        ),
+                      TimeSpanMenuButton(
+                        value: controller.currentTimeSpan,
+                        onChange: (TimeSpan value) =>
+                            controller.toggleTimeSpan(context, value),
+                      ),
+                      if (controller.widget.defaultSelected.type ==
+                          AnalyticsEntryType.space)
+                        AnalyticsLanguageButton(
+                          value: controller.pangeaController.analytics
+                              .currentAnalyticsSpaceLang,
+                          onChange: (lang) => controller.toggleSpaceLang(lang),
+                          languages: controller
+                              .pangeaController.pLanguageStore.targetOptions,
+                        ),
+                    ],
+                  ),
                   Expanded(
                     flex: 1,
                     child: chartView(context),
@@ -153,29 +175,18 @@ class BaseAnalyticsView extends StatelessWidget {
                                       children: [
                                         ...controller.widget.tabs[0].items.map(
                                           (item) => AnalyticsListTile(
+                                            refreshStream:
+                                                controller.refreshStream,
                                             avatar: item.avatar,
-                                            model: controller.chartData(
-                                              context,
-                                              AnalyticsSelected(
-                                                item.id,
-                                                controller.widget.tabs[0].type,
-                                                "",
-                                              ),
+                                            defaultSelected: controller
+                                                .widget.defaultSelected,
+                                            selected: AnalyticsSelected(
+                                              item.id,
+                                              controller.widget.tabs[0].type,
+                                              item.displayName,
                                             ),
-                                            displayName: item.displayName,
-                                            id: item.id,
-                                            type:
-                                                controller.widget.tabs[0].type,
-                                            selected:
+                                            isSelected:
                                                 controller.isSelected(item.id),
-                                            enabled: controller.enableSelection(
-                                              AnalyticsSelected(
-                                                item.id,
-                                                controller.widget.tabs[0].type,
-                                                "",
-                                              ),
-                                            ),
-                                            showSpaceAnalytics: false,
                                             onTap: (_) =>
                                                 controller.toggleSelection(
                                               AnalyticsSelected(
@@ -188,35 +199,35 @@ class BaseAnalyticsView extends StatelessWidget {
                                                 .widget
                                                 .tabs[0]
                                                 .allowNavigateOnSelect,
+                                            pangeaController:
+                                                controller.pangeaController,
+                                            controller: controller,
                                           ),
                                         ),
                                         if (controller
                                                 .widget.defaultSelected.type ==
                                             AnalyticsEntryType.space)
                                           AnalyticsListTile(
+                                            refreshStream:
+                                                controller.refreshStream,
+                                            defaultSelected: controller
+                                                .widget.defaultSelected,
                                             avatar: null,
-                                            model: controller.chartData(
-                                              context,
-                                              AnalyticsSelected(
-                                                controller
-                                                    .widget.defaultSelected.id,
-                                                AnalyticsEntryType.privateChats,
-                                                L10n.of(context)!
-                                                    .allPrivateChats,
-                                              ),
+                                            selected: AnalyticsSelected(
+                                              controller
+                                                  .widget.defaultSelected.id,
+                                              AnalyticsEntryType.privateChats,
+                                              L10n.of(context)!.allPrivateChats,
                                             ),
-                                            displayName: L10n.of(context)!
-                                                .allPrivateChats,
-                                            id: controller
-                                                .widget.defaultSelected.id,
-                                            type:
-                                                AnalyticsEntryType.privateChats,
                                             allowNavigateOnSelect: false,
-                                            selected: controller.isSelected(
+                                            isSelected: controller.isSelected(
                                               controller
                                                   .widget.defaultSelected.id,
                                             ),
                                             onTap: controller.toggleSelection,
+                                            pangeaController:
+                                                controller.pangeaController,
+                                            controller: controller,
                                           ),
                                       ],
                                     ),
@@ -226,36 +237,26 @@ class BaseAnalyticsView extends StatelessWidget {
                                       children: controller.widget.tabs[1].items
                                           .map(
                                             (item) => AnalyticsListTile(
+                                              refreshStream:
+                                                  controller.refreshStream,
                                               avatar: item.avatar,
-                                              model: controller.chartData(
-                                                context,
-                                                AnalyticsSelected(
-                                                  item.id,
-                                                  controller
-                                                      .widget.tabs[1].type,
-                                                  "",
-                                                ),
+                                              defaultSelected: controller
+                                                  .widget.defaultSelected,
+                                              selected: AnalyticsSelected(
+                                                item.id,
+                                                controller.widget.tabs[1].type,
+                                                item.displayName,
                                               ),
-                                              displayName: item.displayName,
-                                              id: item.id,
-                                              type: controller
-                                                  .widget.tabs[1].type,
-                                              selected: controller
+                                              isSelected: controller
                                                   .isSelected(item.id),
                                               onTap: controller.toggleSelection,
                                               allowNavigateOnSelect: controller
                                                   .widget
                                                   .tabs[1]
                                                   .allowNavigateOnSelect,
-                                              enabled:
-                                                  controller.enableSelection(
-                                                AnalyticsSelected(
-                                                  item.id,
-                                                  controller
-                                                      .widget.tabs[1].type,
-                                                  "",
-                                                ),
-                                              ),
+                                              pangeaController:
+                                                  controller.pangeaController,
+                                              controller: controller,
                                             ),
                                           )
                                           .toList(),
@@ -275,7 +276,7 @@ class BaseAnalyticsView extends StatelessWidget {
                 children: [
                   const Divider(height: 1),
                   ListTile(
-                    title: const Text("Error Analytics"),
+                    title: Text(L10n.of(context)!.grammarAnalytics),
                     leading: CircleAvatar(
                       backgroundColor:
                           Theme.of(context).scaffoldBackgroundColor,
@@ -284,13 +285,20 @@ class BaseAnalyticsView extends StatelessWidget {
                       child: Icon(BarChartViewSelection.grammar.icon),
                     ),
                     trailing: const Icon(Icons.chevron_right),
-                    onTap: () => controller.setSelectedView(
-                      BarChartViewSelection.grammar,
-                    ),
+                    onTap: () {
+                      String route =
+                          "/rooms/${controller.widget.defaultSelected.type.route}";
+                      if (controller.widget.defaultSelected.type ==
+                          AnalyticsEntryType.space) {
+                        route += "/${controller.widget.defaultSelected.id}";
+                      }
+                      route += "/${BarChartViewSelection.grammar.route}";
+                      context.go(route);
+                    },
                   ),
                   const Divider(height: 1),
                   ListTile(
-                    title: const Text("Message Analytics"),
+                    title: Text(L10n.of(context)!.messageAnalytics),
                     leading: CircleAvatar(
                       backgroundColor:
                           Theme.of(context).scaffoldBackgroundColor,
@@ -299,9 +307,16 @@ class BaseAnalyticsView extends StatelessWidget {
                       child: Icon(BarChartViewSelection.messages.icon),
                     ),
                     trailing: const Icon(Icons.chevron_right),
-                    onTap: () => controller.setSelectedView(
-                      BarChartViewSelection.messages,
-                    ),
+                    onTap: () {
+                      String route =
+                          "/rooms/${controller.widget.defaultSelected.type.route}";
+                      if (controller.widget.defaultSelected.type ==
+                          AnalyticsEntryType.space) {
+                        route += "/${controller.widget.defaultSelected.id}";
+                      }
+                      route += "/${BarChartViewSelection.messages.route}";
+                      context.go(route);
+                    },
                   ),
                   const Divider(height: 1),
                 ],

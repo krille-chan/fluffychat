@@ -130,9 +130,6 @@ class PangeaController {
       homeserver = Uri.https(homeServer, '');
     }
 
-    matrixState.loginHomeserverSummary =
-        await matrixState.getLoginClient().checkHomeserver(homeserver);
-
     try {
       await matrixState.getLoginClient().register();
       matrixState.loginRegistrationSupported = true;
@@ -255,27 +252,9 @@ class PangeaController {
       if (!userIds.contains(BotName.byEnvironment)) {
         try {
           await space.invite(BotName.byEnvironment);
-          await space.postLoad();
-          await space.setPower(
-            BotName.byEnvironment,
-            ClassDefaultValues.powerLevelOfAdmin,
-          );
         } catch (err) {
           ErrorHandler.logError(
             e: "Failed to invite pangea bot to space ${space.id}",
-          );
-        }
-      } else if (space.getPowerLevelByUserId(BotName.byEnvironment) <
-          ClassDefaultValues.powerLevelOfAdmin) {
-        try {
-          await space.postLoad();
-          await space.setPower(
-            BotName.byEnvironment,
-            ClassDefaultValues.powerLevelOfAdmin,
-          );
-        } catch (err) {
-          ErrorHandler.logError(
-            e: "Failed to reset power level for pangea bot in space ${space.id}",
           );
         }
       }

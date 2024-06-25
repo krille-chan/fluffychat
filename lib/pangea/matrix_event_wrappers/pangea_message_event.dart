@@ -9,9 +9,9 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_e
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
@@ -81,29 +81,6 @@ class PangeaMessageEvent {
     _latestEditCache = null;
     _representations = null;
     return _latestEdit;
-  }
-
-  bool showRichText(
-    bool selected, {
-    bool highlighted = false,
-    bool isOverlay = false,
-  }) {
-    if (!_isValidPangeaMessageEvent) {
-      return false;
-    }
-
-    if ([EventStatus.error, EventStatus.sending].contains(_event.status)) {
-      return false;
-    }
-
-    if (isOverlay) return true;
-
-    // if ownMessage, don't show rich text if not selected or highlighted
-    // and don't show is the message is not an overlay
-    if (ownMessage && ((!selected && !highlighted) || !isOverlay)) {
-      return false;
-    }
-    return true;
   }
 
   Future<PangeaAudioFile> getMatrixAudioFile(
@@ -597,13 +574,14 @@ class PangeaMessageEvent {
     return !activities.every((activity) => activity.isComplete);
   }
 
-  String? get l2Code => MatrixState.pangeaController.languageController
-      .activeL2Code(roomID: room.id);
+  String? get l2Code =>
+      MatrixState.pangeaController.languageController.activeL2Code();
 
   String get messageDisplayLangCode {
     final bool immersionMode = MatrixState
         .pangeaController.permissionsController
         .isToolEnabled(ToolSetting.immersionMode, room);
+
     final String? originalLangCode =
         (originalWritten ?? originalSent)?.langCode;
 
@@ -654,8 +632,10 @@ class PangeaMessageEvent {
     }
   }
 
-  List<PracticeActivityEvent> practiceActivities(String langCode,
-      {bool debug = false}) {
+  List<PracticeActivityEvent> practiceActivities(
+    String langCode, {
+    bool debug = false,
+  }) {
     try {
       debugger(when: debug);
       final List<PracticeActivityEvent> activities = [];
