@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:tawkie/pages/add_bridge/add_bridge.dart';
-import 'package:tawkie/pages/add_bridge/qr_code_connect.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:provider/provider.dart';
+import 'package:tawkie/pages/add_bridge/add_bridge.dart';
+import 'package:tawkie/pages/add_bridge/qr_code_connect.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 
 import '../../widgets/future_loading_dialog_custom.dart';
@@ -72,9 +72,6 @@ Future<void> connectToWhatsApp(
 
           if (success == true) {
             Navigator.of(context).pop();
-            completer.complete(
-              true,
-            ); // returns True if the connection is successful
           }
 
           //showQRCodeConnectPage(context, result!.qrCode!, result!.code!, botConnection,);
