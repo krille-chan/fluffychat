@@ -1,6 +1,6 @@
 part of "pangea_room_extension.dart";
 
-extension ClassAndExchangeSettingsRoomExtension on Room {
+extension SpaceRoomExtension on Room {
   DateTime? get _rulesUpdatedAt {
     if (!isSpace) return null;
     return pangeaRoomRulesStateEvent?.originServerTs ?? creationTime;
@@ -9,7 +9,7 @@ extension ClassAndExchangeSettingsRoomExtension on Room {
   String get _classCode {
     if (!isSpace) {
       for (final Room potentialClassRoom in pangeaSpaceParents) {
-        if (potentialClassRoom.isPangeaClass) {
+        if (potentialClassRoom.isSpace) {
           return potentialClassRoom.classCode;
         }
       }
@@ -84,46 +84,6 @@ extension ClassAndExchangeSettingsRoomExtension on Room {
     }
   }
 
-  DateTime? get _classSettingsUpdatedAt {
-    if (!isSpace) return null;
-    return languageSettingsStateEvent?.originServerTs ?? creationTime;
-  }
-
-  /// the pangeaClass event is listed an importantStateEvent so, if event exists,
-  /// it's already local. If it's an old class and doesn't, then the class_controller
-  /// should automatically migrate during this same session, when the space is first loaded
-  ClassSettingsModel? get _classSettings {
-    try {
-      if (!isSpace) {
-        return null;
-      }
-      final Map<String, dynamic>? content = languageSettingsStateEvent?.content;
-      if (content != null) {
-        final ClassSettingsModel classSettings =
-            ClassSettingsModel.fromJson(content);
-        return classSettings;
-      }
-      return null;
-    } catch (err, s) {
-      Sentry.addBreadcrumb(
-        Breadcrumb(
-          message: "Error in classSettings",
-          data: {"room": toJson()},
-        ),
-      );
-      ErrorHandler.logError(e: err, s: s);
-      return null;
-    }
-  }
-
-  Event? get _languageSettingsStateEvent {
-    final dynamic classSettings = getState(PangeaEventTypes.classSettings);
-    if (classSettings is Event) {
-      return classSettings;
-    }
-    return null;
-  }
-
   Event? get _pangeaRoomRulesStateEvent {
     final dynamic roomRules = getState(PangeaEventTypes.rules);
     if (roomRules is Event) {
@@ -132,7 +92,48 @@ extension ClassAndExchangeSettingsRoomExtension on Room {
     return null;
   }
 
-  ClassSettingsModel? get _firstLanguageSettings =>
-      classSettings ??
-      firstParentWithState(PangeaEventTypes.classSettings)?.classSettings;
+  // DateTime? get _languageSettingsUpdatedAt {
+  //   if (!isSpace) return null;
+  //   return languageSettingsStateEvent?.originServerTs ?? creationTime;
+  // }
+
+  /// the pangeaClass event is listed an importantStateEvent so, if event exists,
+  /// it's already local. If it's an old class and doesn't, then the class_controller
+  /// should automatically migrate during this same session, when the space is first loaded
+  // LanguageSettingsModel? get _languageSettings {
+  //   try {
+  //     if (!isSpace) {
+  //       return null;
+  //     }
+  //     final Map<String, dynamic>? content = languageSettingsStateEvent?.content;
+  //     if (content != null) {
+  //       final LanguageSettingsModel languageSettings =
+  //           LanguageSettingsModel.fromJson(content);
+  //       return languageSettings;
+  //     }
+  //     return null;
+  //   } catch (err, s) {
+  //     Sentry.addBreadcrumb(
+  //       Breadcrumb(
+  //         message: "Error in languageSettings",
+  //         data: {"room": toJson()},
+  //       ),
+  //     );
+  //     ErrorHandler.logError(e: err, s: s);
+  //     return null;
+  //   }
+  // }
+
+  // Event? get _languageSettingsStateEvent {
+  //   final dynamic languageSettings =
+  //       getState(PangeaEventTypes.languageSettings);
+  //   if (languageSettings is Event) {
+  //     return languageSettings;
+  //   }
+  //   return null;
+  // }
+
+  // LanguageSettingsModel? get _firstLanguageSettings =>
+  //     languageSettings ??
+  //     firstParentWithState(PangeaEventTypes.languageSettings)?.languageSettings;
 }

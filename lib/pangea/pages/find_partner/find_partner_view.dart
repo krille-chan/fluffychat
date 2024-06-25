@@ -1,4 +1,5 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
@@ -272,9 +273,16 @@ class UserProfileEntry extends StatelessWidget {
               ),
               title: Row(
                 children: [
-                  Text(
-                    //PTODO - get matrix u and show displayName
-                    matrixProfile?.displayName ?? pangeaProfile.pangeaUserId,
+                  Flexible(
+                    child: Text(
+                      //PTODO - get matrix u and show displayName
+                      matrixProfile?.displayName ??
+                          pangeaProfile.pangeaUserId.replaceAll(
+                            ":${AppConfig.defaultHomeserver.replaceAll("matrix.", "")}",
+                            "",
+                          ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   const SizedBox(width: 20),
                   RichText(

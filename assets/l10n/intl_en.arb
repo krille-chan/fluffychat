@@ -410,7 +410,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "classes": "Classes",
   "chooseAStrongPassword": "Choose a strong password",
   "@chooseAStrongPassword": {
     "type": "text",
@@ -616,13 +615,8 @@
     }
   },
   "createGroup": "Create group",
-  "createNewSpace": "Create an exchange space",
   "createNewGroup": "Create a new chat",
   "@createNewGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@createNewSpace": {
     "type": "text",
     "placeholders": {}
   },
@@ -2401,7 +2395,7 @@
   "@noKeyForThisMessage": {},
   "newGroup": "New chat",
   "@newGroup": {},
-  "newSpace": "New class",
+  "newSpace": "New space",
   "@newSpace": {},
   "enterSpace": "Enter space",
   "@enterSpace": {},
@@ -2540,7 +2534,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "interactiveTranslatorNotAllowedDesc": "Translation assistance is disabled in space group chats for all participants. This restriction does not apply to Class/Exchange Admin or direct chats.",
+  "interactiveTranslatorNotAllowedDesc": "Translation assistance is disabled in space group chats for all participants. This restriction does not apply to space admins or direct chats.",
   "@interactiveTranslatorNotAllowedDesc": {
     "type": "text",
     "placeholders": {}
@@ -2550,7 +2544,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "interactiveTranslatorRequiredDesc": "Students cannot turn off translation assistance. They can choose not to accept the translation suggestions. This restriction does not apply to Class/Exchange or direct chats.",
+  "interactiveTranslatorRequiredDesc": "Students cannot turn off translation assistance. They can choose not to accept the translation suggestions. This restriction does not apply to spaces or direct chats.",
   "@interactiveTranslatorRequiredDesc": {
     "type": "text",
     "placeholders": {}
@@ -2560,12 +2554,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "multiLingualClass": "Multilingual Class",
-  "classAnalytics": "Class Analytics",
-  "@classAnalytics": {
-    "type": "text",
-    "placeholders": {}
-  },
+  "multiLingualSpace": "Multilingual Space",
   "allClasses": "All Classes",
   "@allClasses": {
     "type": "text",
@@ -2601,18 +2590,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "requestAnExchange": "Request an Exchange",
-  "@requestAnExchange": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "findLanguageExchange": "Find a class exchange partner",
-  "@findLanguageExchange": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "classAnalyticsDesc": "Detailed information on student engagement and language use",
-  "@classAnalyticsDesc": {
+  "spaceAnalyticsDesc": "Detailed information on student engagement and language use",
+  "@spaceAnalyticsDesc": {
     "type": "text",
     "placeholders": {}
   },
@@ -2629,28 +2608,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "classSettings": "Class Settings",
-  "@classSettings": {
+  "languageSettings": "Language Settings",
+  "@languageSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "classSettingsDesc": "Edit class languages and proficiency level.",
-  "@classSettingsDesc": {
+  "languageSettingsDesc": "Edit space languages and proficiency level.",
+  "@languageSettingsDesc": {
     "type": "text",
     "placeholders": {}
   },
-  "selectClassRoomDominantLanguage": "What is the base language of your class?",
-  "@selectClassRoomDominantLanguage": {
+  "selectSpaceDominantLanguage": "What's the most common language of space members?",
+  "@selectSpaceDominantLanguage": {
     "type": "text",
     "placeholders": {}
   },
-  "selectTargetLanguage": "What language are you teaching?",
-  "@selectTargetLanguage": {
+  "selectSpaceTargetLanguage": "What is the most common target language of the space?",
+  "@selectSpaceTargetLanguage": {
     "type": "text",
     "placeholders": {}
   },
-  "whatIsYourClassLanguageLevel": "What is the average language level of your class?",
-  "@whatIsYourClassLanguageLevel": {
+  "whatIsYourSpaceLanguageLevel": "What is the average language level of the space?",
+  "@whatIsYourSpaceLanguageLevel": {
     "type": "text",
     "placeholders": {}
   },
@@ -2679,7 +2658,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createGroupChatsDesc": "Toggle this on to allow students to create group chats within the class/exchange space.",
+  "createGroupChatsDesc": "Toggle this on to allow students to create group chats within the space.",
   "@createGroupChatsDesc": {
     "type": "text",
     "placeholders": {}
@@ -2794,12 +2773,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinWithClassCode": "Join class or exchange",
+  "joinWithClassCode": "Join space",
   "@joinWithClassCode": {
     "type": "text",
     "placeholders": {}
   },
-  "joinWithClassCodeDesc": "Connect to a class or exchange space with the 6-digit invite code provided by the space administrator.",
+  "joinWithClassCodeDesc": "Connect to a space with the 6-digit invite code provided by the space administrator.",
   "@joinWithClassCodeDesc": {
     "type": "text",
     "placeholders": {}
@@ -2809,7 +2788,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unableToFindClass": "We are unable to find the class or exchange. Please double-check the information with the space administrator. If you are still experiencing an issue, please contact support@pangea.chat.",
+  "unableToFindClass": "We are unable to find the space. Please double-check the information with the space administrator. If you are still experiencing an issue, please contact support@pangea.chat.",
   "@unableToFindClass": {
     "type": "text",
     "placeholders": {}
@@ -2869,12 +2848,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeToPangea18Plus": "Welcome to Pangea Chat! 🙂\nWhat's next?\nCreate or join a class!\nOr search for a conversation partner!",
+  "welcomeToPangea18Plus": "Welcome to Pangea Chat! 🙂\nWhat's next?\nCreate or join a space!\nOr search for a conversation partner!",
   "@welcomeToPangea18Plus": {
     "type": "text",
     "placeholders": {}
   },
-  "welcomeToPangeaMinor": "Welcome to Pangea Chat! 🙂\nWhat's next?\nJoin a class!\nAsk your teacher for an invite code.",
+  "welcomeToPangeaMinor": "Welcome to Pangea Chat! 🙂\nWhat's next?\nJoin a space!\nAsk your teacher for an invite code.",
   "@welcomeToPangeaMinor": {
     "type": "text",
     "placeholders": {}
@@ -3174,7 +3153,7 @@
   "igcToggleDescription": "This language learning tool will identify common spelling, grammar and punctuation errors in your message and suggest corrections. Though rare, the AI can make correction errors.",
   "sendOnEnterDescription": "Turn this off to be able to add line spaces in messages. When the toggle is off on the browser app, you can press Shift + Enter to start a new line. When the toggle is off on mobile apps, just Enter will start a new line.",
   "alreadyInClass": "You are already in this space.",
-  "pleaseLoginFirst": "Please login or sign up first and then you will be added to your class/exchange space.",
+  "pleaseLoginFirst": "Please login or sign up first and then you will be added to your space.",
   "originalMessage": "Original Message",
   "sentMessage": "Sent Message",
   "useType": "Use Type",
@@ -3185,16 +3164,13 @@
   "definitionsToolDescription": "When enabled, words underlined in blue can be clicked for definitions. Click messages to access definitions.",
   "translationsToolDescrption": "When enabled, click a message and the translation icon to see a message in your base language.",
   "welcomeBack": "Welcome back! If you were part of the 2023-2024 pilot, please contact us for your special pilot subscription. If you are a teacher who has (or whose institution has) purchased licenses for your class, contact us for your teacher subscription.",
-  "classExchanges": "Exchanges",
   "createNewClass": "New class space",
-  "newExchange": "New exchange space",
   "kickAllStudents": "Kick All Students",
   "kickAllStudentsConfirmation": "Are you sure you want to kick all students?",
   "inviteAllStudents": "Invite All Students",
   "inviteAllStudentsConfirmation": "Are you sure you want to invite all students?",
   "inviteStudentsFromOtherClasses": "Invite students from other spaces",
   "inviteUsersFromPangea": "Add teachers",
-  "allExchanges": "All Exchanges",
   "redeemPromoCode": "Redeem Promo Code",
   "enterPromoCode": "Enter Promo Code",
   "downloadTxtFile": "Download Text File",
@@ -3652,22 +3628,24 @@
   "pay": "Pay",
   "allPrivateChats": "Direct chats",
   "unknownPrivateChat": "Unknown private chat",
-  "copyClassCodeDesc": "Students who are already in the app can 'Join class or exchange' via the main menu.",
-  "addToClass": "Add exchange to class",
-  "addToClassDesc": "Adding an exchange to a class will make the exchange appear within the class for students and give them access to all chats within the exchange.",
-  "addToClassOrExchange": "Add chat to class or exchange",
-  "addToClassOrExchangeDesc": "Adding a chat to a class or exchange will make the chat appear within the class or exchange for students and give them access.",
-  "invitedToClassOrExchange": "{user} has invited you to join a space: {classOrExchange}! Do you wish to accept?",
-  "@invitedToClassOrExchange": {
+  "copyClassCodeDesc": "Students who are already in the app can 'Join space' via the main menu.",
+  "addToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
+  "@addToSpaceDesc": {
     "placeholders": {
-      "classOrExchange": {},
+      "roomtype": {}
+    }
+  },
+  "invitedToSpace": "{user} has invited you to join a space: {space}! Do you wish to accept?",
+  "@invitedToSpace": {
+    "placeholders": {
+      "space": {},
       "user": {}
     }
   },
   "declinedInvitation": "Declined invitation",
   "acceptedInvitation": "Accepted invitation",
   "youreInvited": "📩 You're invited!",
-  "studentPermissionsDesc": "Set permissions for this space. They will only apply to the class/exchange space. They will override individual user settings.",
+  "studentPermissionsDesc": "Set permissions for this space. They will only apply to the space. They will override individual user settings.",
   "noEligibleSpaces": "There are no eligible spaces to add this to.",
   "youAddedToSpace": "You added {child} to {space}",
   "@youAddedToSpace": {
@@ -3705,9 +3683,9 @@
   },
   "emptyChatNameWarning": "Please enter a name for this chat",
   "emptyClassNameWarning": "Please enter a name for this class",
-  "emptyExchangeNameWarning": "Please enter a name for this exchange",
+  "emptySpaceNameWarning": "Please enter a name for this space",
   "blurMeansTranslateTitle": "Why is the message blurred?",
-  "blurMeansTranslateBody": "While Immersion Mode is on, messages that are sent in your base language will be blurred while Pangea Bot translates them to your target language. Immersion Mode can be toggled in individual and class settings.",
+  "blurMeansTranslateBody": "While Immersion Mode is on, messages that are sent in your base language will be blurred while Pangea Bot translates them to your target language. Immersion Mode can be toggled in individual and space settings.",
   "someErrorTitle": "Hm, something's not right",
   "someErrorBody": "It could be an error or something in your base language.",
   "bestCorrectionFeedback": "That's correct!",
@@ -3717,7 +3695,7 @@
   "practiceDefaultPrompt": "What is the best answer?",
   "correctionDefaultPrompt": "What is the best replacement?",
   "itStartDefaultPrompt": "Do you want help translating?",
-  "languageLevelWarning": "Please select a class language level",
+  "languageLevelWarning": "Please select a space language level",
   "lockedChatWarning": "🔒 This chat has been locked",
   "lockSpace": "Lock Space",
   "lockChat": "Lock Chat",
@@ -3730,7 +3708,6 @@
   "why": "Why?",
   "definition": "Definition",
   "exampleSentence": "Example Sentence",
-  "addToClassTitle": "Add Exchange to Class",
   "reportToTeacher": "Who do you want to report this message to?",
   "reportMessageTitle": "{reportingUserId} has reported a message from {reportedUserId} in the chat {roomName}",
   "@reportMessageTitle": {
@@ -3777,7 +3754,6 @@
   },
   "searchChatsRooms": "Search for #chats, @users...",
   "createClass": "Create class",
-  "createExchange": "Create exchange",
   "viewArchive": "View Archive",
   "trialExpiration": "Your free trial expires on {expiration}",
   "@trialExpiration": {
@@ -3787,10 +3763,10 @@
   },
   "freeTrialDesc": "New users recieve a one week free trial of Pangea Chat",
   "activateTrial": "Activate Free Trial",
-  "inNoSpaces": "You are not a member of any classes or exchanges",
+  "inNoSpaces": "You are not a member of any spaces",
   "successfullySubscribed": "You have successfully subscribed!",
   "clickToManageSubscription": "Click here to manage your subscription.",
-  "emptyInviteWarning": "Add this chat to a class or exchange to invite other users.",
+  "emptyInviteWarning": "Add this chat to a space to invite other users.",
   "errorGettingAudio": "Error getting audio. Please refresh and try again.",
   "nothingFound": "Nothing found...",
   "groupName": "Group name",
@@ -4072,5 +4048,16 @@
   "@knockRestricted": {},
   "nonexistentSelection": "Selection no longer exists.",
   "cantAddSpaceChild": "You do not have permission to add a child to this space.",
-  "roomAddedToSpace": "Room(s) have been added to the selected space."
+  "roomAddedToSpace": "Room(s) have been added to the selected space.",
+  "createNewSpace": "New space",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addChatToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
+  "addSpaceToSpaceDesc": "Adding a space to another space will make the child space appear within the parent space for students and give them access.",
+  "spaceAnalytics": "Space Analytics",
+  "changeAnalyticsLanguage": "Change Analytics Language",
+  "suggestToSpace": "Suggest this space",
+  "suggestToSpaceDesc": "Suggested spaces will appear in the chat lists for their parent spaces"
 }

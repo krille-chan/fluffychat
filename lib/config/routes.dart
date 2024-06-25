@@ -29,7 +29,6 @@ import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
-import 'package:fluffychat/pangea/pages/exchange/add_exchange_to_class.dart';
 import 'package:fluffychat/pangea/pages/find_partner/find_partner.dart';
 import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
@@ -43,8 +42,8 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../pangea/pages/analytics/class_analytics/class_analytics.dart';
-import '../pangea/pages/analytics/class_list/class_list.dart';
+import '../pangea/pages/analytics/space_analytics/space_analytics.dart';
+import '../pangea/pages/analytics/space_list/space_list.dart';
 
 abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
@@ -202,17 +201,17 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const AnalyticsClassList(),
+                const AnalyticsSpaceList(),
               ),
               redirect: loggedOutRedirect,
               routes: [
                 GoRoute(
-                  path: ':classid',
+                  path: ':spaceid',
                   redirect: loggedOutRedirect,
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    const ClassAnalyticsPage(),
+                    const SpaceAnalyticsPage(),
                   ),
                   routes: [
                     GoRoute(
@@ -220,11 +219,7 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        ClassAnalyticsPage(
-                          // when going to sub-space from within a parent space's analytics, the
-                          // analytics list tiles do not properly update. Adding a unique key to this page is the best fix
-                          // I can find at the moment
-                          key: UniqueKey(),
+                        const SpaceAnalyticsPage(
                           selectedView: BarChartViewSelection.messages,
                         ),
                       ),
@@ -234,11 +229,7 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        ClassAnalyticsPage(
-                          // when going to sub-space from within a parent space's analytics, the
-                          // analytics list tiles do not properly update. Adding a unique key to this page is the best fix
-                          // I can find at the moment
-                          key: UniqueKey(),
+                        const SpaceAnalyticsPage(
                           selectedView: BarChartViewSelection.grammar,
                         ),
                       ),
@@ -319,24 +310,6 @@ abstract class AppRoutes {
               redirect: loggedOutRedirect,
             ),
             // #Pangea
-            GoRoute(
-              path: 'newspace/:newexchange',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const NewSpace(),
-              ),
-              redirect: loggedOutRedirect,
-            ),
-            GoRoute(
-              path: 'join_exchange/:exchangeid',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const AddExchangeToClass(),
-              ),
-              redirect: loggedOutRedirect,
-            ),
             GoRoute(
               path: 'partner',
               pageBuilder: (context, state) => defaultPageBuilder(

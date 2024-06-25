@@ -7,9 +7,9 @@ import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
@@ -553,8 +553,8 @@ class PangeaMessageEvent {
     final bool immersionMode = MatrixState
         .pangeaController.permissionsController
         .isToolEnabled(ToolSetting.immersionMode, room);
-    final String? l2Code = MatrixState.pangeaController.languageController
-        .activeL2Code(roomID: room.id);
+    final String? l2Code =
+        MatrixState.pangeaController.languageController.activeL2Code();
     final String? originalLangCode =
         (originalWritten ?? originalSent)?.langCode;
 

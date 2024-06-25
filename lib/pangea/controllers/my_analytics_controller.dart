@@ -1,13 +1,16 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
-import 'package:fluffychat/pangea/models/analytics/analytics_model.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
+import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
+import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
@@ -170,6 +173,12 @@ class MyAnalyticsController extends BaseController {
   }
 
   Future<void> _updateAnalytics() async {
+    // if the user's l2 is not sent, don't send analytics
+    final String? userL2 = _pangeaController.languageController.activeL2Code();
+    if (userL2 == null) {
+      return;
+    }
+
     // top level analytics sending function. Send analytics
     // for each type of analytics event
     // to each of the applicable analytics rooms
@@ -180,115 +189,121 @@ class MyAnalyticsController extends BaseController {
     await setStudentChats();
     await setStudentSpaces();
 
-    // get all the analytics rooms that the user has
-    // and create any missing analytics rooms (if the user is studying
-    // in a class but doesn't have an analytics room for that class's L2)
-    final List<Room> analyticsRooms =
-        _pangeaController.matrixState.client.allMyAnalyticsRooms;
-    analyticsRooms.addAll(await createMissingAnalyticsRooms());
+    // get the last updated time for each analytics room
+    // and the least recent update, which will be used to determine
+    // how far to go back in the chat history to get messages
+    final Map<String, DateTime?> lastUpdatedMap = await _pangeaController
+        .matrixState.client
+        .allAnalyticsRoomsLastUpdated();
+    final List<DateTime> lastUpdates = lastUpdatedMap.values
+        .where((lastUpdate) => lastUpdate != null)
+        .cast<DateTime>()
+        .toList();
+    lastUpdates.sort((a, b) => a.compareTo(b));
+    final DateTime? leastRecentUpdate =
+        lastUpdates.isNotEmpty ? lastUpdates.first : null;
 
-    // finally, send an analytics event for each analytics room and
-    // each type of analytics event
-    for (final Room analyticsRoom in analyticsRooms) {
-      for (final String type in AnalyticsEvent.analyticsEventTypes) {
-        await sendAnalyticsEvent(analyticsRoom, type);
-      }
+    // for each chat the user is studying in, get all the messages
+    // since the least recent update analytics update, and sort them
+    // by their langCodes
+    final Map<String, List<PangeaMessageEvent>> langCodeToMsgs =
+        await getLangCodesToMsgs(
+      userL2,
+      leastRecentUpdate,
+    );
+
+    final List<String> langCodes = langCodeToMsgs.keys.toList();
+    for (final String langCode in langCodes) {
+      // for each of the langs that the user has sent message in, get
+      // the corresponding analytics room (or create it)
+      final Room analyticsRoom = await _pangeaController.matrixState.client
+          .getMyAnalyticsRoom(langCode);
+
+      // if there is no analytics room for this langCode, then user hadn't sent
+      // message in this language at the time of the last analytics update
+      // so fallback to the least recent update time
+      final DateTime? lastUpdated =
+          lastUpdatedMap[analyticsRoom.id] ?? leastRecentUpdate;
+
+      // get the corresponding list of recent messages for this langCode
+      final List<PangeaMessageEvent> recentMsgs =
+          langCodeToMsgs[langCode] ?? [];
+
+      // finally, send the analytics events to the analytics room
+      await sendAnalyticsEvents(
+        analyticsRoom,
+        recentMsgs,
+        lastUpdated,
+      );
     }
   }
 
-  Future<void> sendAnalyticsEvent(
-    Room analyticsRoom,
-    String type,
+  Future<Map<String, List<PangeaMessageEvent>>> getLangCodesToMsgs(
+    String userL2,
+    DateTime? since,
   ) async {
-    // given an analytics room for a language and a type of analytics event
-    // gathers all the relevant data and sends it to the analytics room
-
-    // get the language code for the analytics room
-    final String? langCode = analyticsRoom.madeForLang;
-    if (langCode == null) {
-      ErrorHandler.logError(
-        e: "no lang code found for analytics room: ${analyticsRoom.id}",
-        s: StackTrace.current,
-      );
-      return;
-    }
-
-    // get the last time an analytics event of this type was sent to this room
-    final DateTime? lastUpdated = await analyticsRoom.analyticsLastUpdated(
-      type,
-      _pangeaController.matrixState.client.userID!,
-    );
-
-    // each type of analytics event has a format for storing per-message data
-    // for SummaryAnalytics events, this is RecentMessageRecord
-    // for Construct events, this is OneConstructUse
-    // analyticsContent is a list of these formatted data
-    final List<dynamic> analyticsContent = [];
-
+    // get a map of langCodes to messages for each chat the user is studying in
+    final Map<String, List<PangeaMessageEvent>> langCodeToMsgs = {};
     for (final Room chat in _studentChats) {
-      // for each chat the student studies in, check if the langCode
-      // matches the langCode of the analytics room
-      final String? chatLangCode =
-          _pangeaController.languageController.activeL2Code(roomID: chat.id);
-      if (chatLangCode != langCode) continue;
-
-      // get messages the logged in user has sent in all chats
-      // since the last analytics event was sent
       List<PangeaMessageEvent>? recentMsgs;
       try {
         recentMsgs = await chat.myMessageEventsInChat(
-          since: lastUpdated,
+          since: since,
         );
       } catch (err) {
         debugPrint("failed to fetch messages for chat ${chat.id}");
         continue;
       }
 
-      if (lastUpdated != null) {
-        recentMsgs.removeWhere(
-          (msg) => msg.event.originServerTs.isBefore(lastUpdated),
-        );
+      // sort those messages by their langCode
+      // langCode is hopefully based on the original sent rep, but if that
+      // is null or unk, it will be based on the user's current l2
+      for (final msg in recentMsgs) {
+        final String msgLangCode = (msg.originalSent?.langCode != null &&
+                msg.originalSent?.langCode != LanguageKeys.unknownLanguage)
+            ? msg.originalSent!.langCode
+            : userL2;
+        langCodeToMsgs[msgLangCode] ??= [];
+        langCodeToMsgs[msgLangCode]!.add(msg);
       }
+    }
+    return langCodeToMsgs;
+  }
 
-      // then format that data into analytics data and add the formatted
-      // data to the list of analyticsContent
-      analyticsContent.addAll(
-        AnalyticsModel.formatAnalyticsContent(recentMsgs, type),
+  Future<void> sendAnalyticsEvents(
+    Room analyticsRoom,
+    List<PangeaMessageEvent> recentMsgs,
+    DateTime? lastUpdated,
+  ) async {
+    // remove messages that were sent before the last update
+    if (recentMsgs.isEmpty) return;
+    if (lastUpdated != null) {
+      recentMsgs.removeWhere(
+        (msg) => msg.event.originServerTs.isBefore(lastUpdated),
       );
     }
 
-    // send the analytics data to the analytics room
-    // if there is no data to send, don't send an event,
-    // unless no events have been sent yet. In that case, send an event
-    // with no data to indicate that the the system checked for data
-    // and found none, so the system doesn't repeatedly check for data
-    if (analyticsContent.isEmpty && lastUpdated != null) return;
-    await AnalyticsEvent.sendEvent(
-      analyticsRoom,
-      type,
-      analyticsContent,
-    );
-  }
+    // format the analytics data
+    final List<RecentMessageRecord> summaryContent =
+        SummaryAnalyticsModel.formatSummaryContent(recentMsgs);
+    final List<OneConstructUse> constructContent =
+        ConstructAnalyticsModel.formatConstructsContent(recentMsgs);
 
-  // on the off chance that the user is in a class but doesn't have an analytics
-  // room for the target language of that class, create the analytics room(s)
-  Future<List<Room>> createMissingAnalyticsRooms() async {
-    List<String> targetLangs = [];
-    final String? userL2 = _pangeaController.languageController.activeL2Code();
-    if (userL2 != null) targetLangs.add(userL2);
-    final List<String?> spaceL2s = studentSpaces
-        .map(
-          (space) => _pangeaController.languageController.activeL2Code(
-            roomID: space.id,
-          ),
-        )
-        .toList();
-    targetLangs.addAll(spaceL2s.where((l2) => l2 != null).cast<String>());
-    targetLangs = targetLangs.toSet().toList();
-    for (final String langCode in targetLangs) {
-      await _pangeaController.matrixState.client.getMyAnalyticsRoom(langCode);
+    // if there's new content to be sent, or if lastUpdated hasn't been
+    // set yet for this room, send the analytics events
+    if (summaryContent.isNotEmpty || lastUpdated == null) {
+      await SummaryAnalyticsEvent.sendSummaryAnalyticsEvent(
+        analyticsRoom,
+        summaryContent,
+      );
     }
-    return _pangeaController.matrixState.client.allMyAnalyticsRooms;
+
+    if (constructContent.isNotEmpty) {
+      await ConstructAnalyticsEvent.sendConstructsEvent(
+        analyticsRoom,
+        constructContent,
+      );
+    }
   }
 
   List<Room> _studentChats = [];
@@ -321,8 +336,8 @@ class MyAnalyticsController extends BaseController {
   List<Room> _studentSpaces = [];
 
   Future<void> setStudentSpaces() async {
-    _studentSpaces = await _pangeaController
-        .matrixState.client.classesAndExchangesImStudyingIn;
+    _studentSpaces =
+        await _pangeaController.matrixState.client.spacesImStudyingIn;
   }
 
   List<Room> get studentSpaces {
