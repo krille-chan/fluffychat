@@ -13,14 +13,13 @@ class BotOptionsModel {
   List<String> keywords;
   bool safetyModeration;
   String mode;
-  String? custom;
   String? discussionTopic;
   String? discussionKeywords;
-  bool discussionTriggerReactionEnabled;
-  String discussionTriggerReactionKey;
+  bool? discussionTriggerReactionEnabled;
+  String? discussionTriggerReactionKey;
   String? customSystemPrompt;
-  bool customTriggerReactionEnabled;
-  String customTriggerReactionKey;
+  bool? customTriggerReactionEnabled;
+  String? customTriggerReactionKey;
 
   BotOptionsModel({
     ////////////////////////////////////////////////////////////////////////////
@@ -63,15 +62,17 @@ class BotOptionsModel {
       discussionTopic: json[ModelKey.discussionTopic],
       discussionKeywords: json[ModelKey.discussionKeywords],
       discussionTriggerReactionEnabled:
-          json[ModelKey.discussionTriggerReactionEnabled],
-      discussionTriggerReactionKey: json[ModelKey.discussionTriggerReactionKey],
+          json[ModelKey.discussionTriggerReactionEnabled] ?? true,
+      discussionTriggerReactionKey:
+          json[ModelKey.discussionTriggerReactionKey] ?? "⏩",
 
       //////////////////////////////////////////////////////////////////////////
       // Custom Mode Options
       //////////////////////////////////////////////////////////////////////////
       customSystemPrompt: json[ModelKey.customSystemPrompt],
-      customTriggerReactionEnabled: json[ModelKey.customTriggerReactionEnabled],
-      customTriggerReactionKey: json[ModelKey.customTriggerReactionKey],
+      customTriggerReactionEnabled:
+          json[ModelKey.customTriggerReactionEnabled] ?? true,
+      customTriggerReactionKey: json[ModelKey.customTriggerReactionKey] ?? "⏩",
     );
   }
 
@@ -82,17 +83,16 @@ class BotOptionsModel {
       data[ModelKey.languageLevel] = languageLevel;
       data[ModelKey.safetyModeration] = safetyModeration;
       data[ModelKey.mode] = mode;
-      data[ModelKey.custom] = custom;
       data[ModelKey.discussionTopic] = discussionTopic;
       data[ModelKey.discussionKeywords] = discussionKeywords;
       data[ModelKey.discussionTriggerReactionEnabled] =
-          discussionTriggerReactionEnabled;
+          discussionTriggerReactionEnabled ?? true;
       data[ModelKey.discussionTriggerReactionKey] =
-          discussionTriggerReactionKey;
+          discussionTriggerReactionKey ?? "⏩";
       data[ModelKey.customSystemPrompt] = customSystemPrompt;
       data[ModelKey.customTriggerReactionEnabled] =
-          customTriggerReactionEnabled;
-      data[ModelKey.customTriggerReactionKey] = customTriggerReactionKey;
+          customTriggerReactionEnabled ?? true;
+      data[ModelKey.customTriggerReactionKey] = customTriggerReactionKey ?? "⏩";
       return data;
     } catch (e, s) {
       debugger(when: kDebugMode);
@@ -112,9 +112,6 @@ class BotOptionsModel {
         break;
       case ModelKey.mode:
         mode = value;
-        break;
-      case ModelKey.custom:
-        custom = value;
         break;
       case ModelKey.discussionTopic:
         discussionTopic = value;

@@ -47,7 +47,9 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
   void initState() {
     super.initState();
     isOpen = widget.startOpen;
-    botOptions = widget.room?.botOptions ?? BotOptionsModel();
+    botOptions = widget.room?.botOptions != null
+        ? BotOptionsModel.fromJson(widget.room?.botOptions?.toJson())
+        : BotOptionsModel();
     widget.room?.isBotRoom.then((bool isBotRoom) {
       setState(() {
         addBot = isBotRoom;

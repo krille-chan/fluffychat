@@ -99,7 +99,6 @@ class ModelKey {
   static const String languageLevel = "difficulty";
   static const String safetyModeration = "safety_moderation";
   static const String mode = "mode";
-  static const String custom = "custom";
   static const String discussionTopic = "discussion_topic";
   static const String discussionKeywords = "discussion_keywords";
   static const String discussionTriggerReactionEnabled =

@@ -16,6 +16,7 @@ class ConversationBotCustomZone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(initialBotOptions.toJson());
     return Column(
       children: [
         const SizedBox(height: 12),
@@ -59,9 +60,9 @@ class ConversationBotCustomZone extends StatelessWidget {
                 .conversationBotCustomZone_customTriggerReactionEnabledLabel,
           ),
           enabled: false,
-          value: initialBotOptions.customTriggerReactionEnabled,
+          value: initialBotOptions.customTriggerReactionEnabled ?? true,
           onChanged: (value) {
-            initialBotOptions.customTriggerReactionEnabled = value ?? false;
+            initialBotOptions.customTriggerReactionEnabled = value ?? true;
             initialBotOptions.customTriggerReactionKey =
                 "⏩"; // hard code this for now
             onChanged.call(initialBotOptions);
