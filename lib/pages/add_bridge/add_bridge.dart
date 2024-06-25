@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as io;
 
@@ -226,46 +227,59 @@ class BotController extends State<AddBridge> {
   /// Process the ping response from a social network
   Future<void> _processPingResponse(SocialNetwork socialNetwork,
       String directChat, Room roomBot, RegExpPingPatterns patterns) async {
-    const int maxIterations = 5;
-    int currentIteration = 0;
-
-    while (continueProcess && currentIteration < maxIterations) {
-      final Event? lastEvent = roomBot.lastEvent;
-
-      if (lastEvent != null) {
-        final String latestMessage = lastEvent.text;
-
-        if (_isOnline(patterns.onlineMatch, latestMessage)) {
-          Logs().v("You're logged to ${socialNetwork.name}");
-          _updateNetworkStatus(socialNetwork, true, false);
-          return;
-        }
-
-        if (_isNotLogged(patterns.notLoggedMatch, latestMessage,
-            patterns.notLoggedAnymoreMatch)) {
-          Logs().v('Not connected to ${socialNetwork.name}');
-          _updateNetworkStatus(socialNetwork, false, false);
-          return;
-        }
-
-        if (_shouldReconnect(patterns.mQTTNotMatch, latestMessage)) {
-          await _sendReconnectEvent(roomBot, socialNetwork.name);
-          await Future.delayed(const Duration(seconds: 3));
-        } else {
-          await Future.delayed(const Duration(seconds: 2));
-        }
-      } else {
-        Logs().v('No latest messages found.');
+    final Completer<void> completer = Completer<void>();
+    final timer = Timer(const Duration(seconds: 20), () {
+      if (!completer.isCompleted) {
+        completer.completeError("Timeout reached");
       }
-      currentIteration++;
-    }
+    });
 
-    if (currentIteration == maxIterations) {
+    // Listen to the sync stream
+    final subscription = client.onSync.stream.listen((syncUpdate) {
+      _onNewPingMessage(
+        roomBot,
+        socialNetwork,
+        patterns,
+        completer,
+      );
+    });
+
+    try {
+      await completer.future;
+    } catch (e) {
       Logs().v(
           "Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
       _handleError(socialNetwork);
-    } else if (!continueProcess) {
-      Logs().v(('ping stopping'));
+    } finally {
+      subscription.cancel();
+      timer.cancel();
+    }
+  }
+
+  void _onNewPingMessage(
+    Room roomBot,
+    SocialNetwork socialNetwork,
+    RegExpPingPatterns patterns,
+    Completer<void> completer,
+  ) {
+    print("social network: $socialNetwork");
+    final lastEvent = roomBot.lastEvent?.text;
+    print("lastest message: $lastEvent");
+    if (_isOnline(patterns.onlineMatch, lastEvent!)) {
+      Logs().v("You're logged to ${socialNetwork.name}");
+      _updateNetworkStatus(socialNetwork, true, false);
+      if (!completer.isCompleted) {
+        completer.complete();
+      }
+    } else if (_isNotLogged(
+        patterns.notLoggedMatch, lastEvent, patterns.notLoggedAnymoreMatch)) {
+      Logs().v('Not connected to ${socialNetwork.name}');
+      _updateNetworkStatus(socialNetwork, false, false);
+      if (!completer.isCompleted) {
+        completer.complete();
+      }
+    } else if (_shouldReconnect(patterns.mQTTNotMatch, lastEvent)) {
+      roomBot.sendTextEvent("reconnect");
     }
   }
 
@@ -630,6 +644,29 @@ class BotController extends State<AddBridge> {
         print("formattedCookie: $formattedCookieString");
       }
 
+      final completer = Completer<String>();
+      final timer = Timer(const Duration(seconds: 10), () {
+        if (!completer.isCompleted) {
+          completer.completeError("Timeout reached");
+        }
+      });
+
+      String? lastMessage;
+      StreamSubscription? subscription;
+      subscription = client.onSync.stream.listen((syncUpdate) {
+        lastMessage = _onNewMessage(
+          roomBot,
+          botUserId,
+          formattedCookieString,
+          pasteCookie,
+          successMatch,
+          alreadyConnected,
+          connectionState,
+          network,
+          completer,
+        );
+      });
+
       await roomBot.sendTextEvent("login");
       await Future.delayed(const Duration(seconds: 5));
 
@@ -638,63 +675,19 @@ class BotController extends State<AddBridge> {
             .updateConnectionTitle(L10n.of(context)!.loadingTakeFewSeconds);
       });
 
-      const int maxIterations = 5;
-      int currentIteration = 0;
-      String? latestMessage;
-
-      while (currentIteration < maxIterations) {
-        final Event? latestEvent = roomBot.lastEvent;
-        latestMessage = roomBot.lastEvent?.text;
-        final String? sender = latestEvent?.senderId;
-        final String botUserId = '${network.chatBot}$hostname';
-
-        if (latestMessage != null && sender == botUserId) {
-          if (kDebugMode) {
-            print('latestMessage : $latestMessage');
-          }
-          if (pasteCookie.hasMatch(latestMessage)) {
-            await roomBot.sendTextEvent(formattedCookieString);
-          } else if (alreadyConnected.hasMatch(latestMessage)) {
-            Logs().v("Already Connected to ${network.name}");
-            break;
-          } else if (successMatch.hasMatch(latestMessage)) {
-            Logs().v("You're logged to ${network.name}");
-
-            Future.microtask(() {
-              connectionState.updateConnectionTitle(
-                  L10n.of(context)!.loadingRetrieveRooms);
-            });
-
-            setState(() => network.updateConnectionResult(true));
-
-            Future.microtask(() {
-              connectionState
-                  .updateConnectionTitle(L10n.of(context)!.connected);
-            });
-
-            Future.microtask(() {
-              connectionState.updateLoading(false);
-            });
-
-            await Future.delayed(const Duration(seconds: 1));
-            Future.microtask(() {
-              connectionState.reset();
-            });
-
-            break;
-          }
-        }
-
-        await Future.delayed(const Duration(seconds: 3));
-        currentIteration++;
-      }
-
-      if (currentIteration == maxIterations) {
+      try {
+        await completer.future;
+      } catch (e) {
+        final errorMessage = e.toString();
         Logs().v(
             "Maximum iterations reached, setting result to 'error to ${network.name}'");
         showCatchErrorDialog(context,
-            "${L10n.of(context)!.errorConnectionText}.\n${L10n.of(context)!.errorSendUsProblem} $latestMessage");
+            "${L10n.of(context)!.errorConnectionText}.\n${L10n.of(context)!.errorSendUsProblem} $errorMessage\nLast message: $lastMessage");
         _handleError(network);
+      } finally {
+        timer.cancel();
+        await subscription
+            .cancel(); // Cancel the subscription to avoid memory leaks
       }
     } catch (e) {
       final messageError = e.toString();
@@ -703,6 +696,45 @@ class BotController extends State<AddBridge> {
       }
       showCatchErrorDialog(context, L10n.of(context)!.tryAgain);
     }
+  }
+
+  String? _onNewMessage(
+      Room roomBot,
+      String botUserId,
+      String formattedCookieString,
+      RegExp pasteCookie,
+      RegExp successMatch,
+      RegExp alreadyConnected,
+      ConnectionStateModel connectionState,
+      SocialNetwork network,
+      Completer<void> completer) {
+    final lastEvent = roomBot.lastEvent;
+    final lastMessage = lastEvent?.text;
+    final senderId = lastEvent?.senderId;
+    if (lastEvent != null && lastEvent.senderId == botUserId) {
+      if (pasteCookie.hasMatch(lastMessage!)) {
+        roomBot.sendTextEvent(formattedCookieString);
+      } else if (alreadyConnected.hasMatch(lastMessage)) {
+        Logs().v("Already Connected to ${network.name}");
+        setState(() => network.updateConnectionResult(true));
+        connectionState.updateConnectionTitle(L10n.of(context)!.connected);
+        connectionState.updateLoading(false);
+        connectionState.reset();
+        if (!completer.isCompleted) {
+          completer.complete(lastMessage);
+        }
+      } else if (successMatch.hasMatch(lastMessage)) {
+        Logs().v("You're logged to ${network.name}");
+        setState(() => network.updateConnectionResult(true));
+        connectionState.updateConnectionTitle(L10n.of(context)!.connected);
+        connectionState.updateLoading(false);
+        connectionState.reset();
+        if (!completer.isCompleted) {
+          completer.complete(lastMessage);
+        }
+      }
+    }
+    return lastMessage;
   }
 
   /// Get the WhatsApp network instance from the list
