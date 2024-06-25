@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -14,11 +15,13 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 class PracticeActivityContent extends StatefulWidget {
   final PracticeActivityEvent practiceEvent;
   final PangeaMessageEvent pangeaMessageEvent;
+  final MessagePracticeActivityCardState controller;
 
   const PracticeActivityContent({
     super.key,
     required this.practiceEvent,
     required this.pangeaMessageEvent,
+    required this.controller,
   });
 
   @override
@@ -93,7 +96,7 @@ class MessagePracticeActivityContentState
         },
       );
       return null;
-    });
+    }).then((_) => widget.controller.showNextActivity());
 
     setState(() {
       recordSubmittedThisSession = true;
