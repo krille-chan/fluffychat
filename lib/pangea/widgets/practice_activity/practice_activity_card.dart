@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
@@ -53,17 +52,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
   void loadInitialData() {
     if (langCode == null) return;
-    debugPrint(
-      "total events: ${widget.pangeaMessageEvent.practiceActivities(langCode!).length}",
-    );
-    debugPrint(
-      "incomplete practice events: ${widget.pangeaMessageEvent.practiceActivities(langCode!).where((element) => !element.isComplete).length}",
-    );
     updatePracticeActivity();
-    // practiceEvent = widget.pangeaMessageEvent
-    //     .practiceActivities(langCode)
-    //     .firstWhereOrNull((activity) => !activity.isComplete);
-
     if (practiceEvent == null) {
       debugger(when: kDebugMode);
     }
@@ -71,15 +60,22 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
   void updatePracticeActivity() {
     if (langCode == null) return;
-    setState(() {
-      practiceEvent = widget.pangeaMessageEvent
-          .practiceActivities(langCode!)
-          .firstWhereOrNull(
-            (activity) =>
-                activity.event.eventId != practiceEvent?.event.eventId &&
-                !activity.isComplete,
-          );
-    });
+    final List<PracticeActivityEvent> activities =
+        widget.pangeaMessageEvent.practiceActivities(langCode!);
+    final List<PracticeActivityEvent> incompleteActivities =
+        activities.where((element) => !element.isComplete).toList();
+    debugPrint("total events: ${activities.length}");
+    debugPrint("incomplete practice events: ${incompleteActivities.length}");
+
+    // if an incomplete activity is found, show that
+    if (incompleteActivities.isNotEmpty) {
+      practiceEvent = incompleteActivities.first;
+    }
+    // if no incomplete activity is found, show the last activity
+    else if (activities.isNotEmpty) {
+      practiceEvent = activities.last;
+    }
+    setState(() {});
   }
 
   void showNextActivity() {

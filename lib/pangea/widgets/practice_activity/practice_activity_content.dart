@@ -41,6 +41,19 @@ class MessagePracticeActivityContentState
   @override
   void initState() {
     super.initState();
+    initalizeActivity();
+  }
+
+  @override
+  void didUpdateWidget(covariant PracticeActivityContent oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.practiceEvent.event.eventId !=
+        widget.practiceEvent.event.eventId) {
+      initalizeActivity();
+    }
+  }
+
+  void initalizeActivity() {
     final PracticeActivityRecordEvent? recordEvent =
         widget.practiceEvent.userRecords.firstOrNull;
     if (recordEvent?.record == null) {
@@ -54,6 +67,7 @@ class MessagePracticeActivityContentState
       recordSubmittedPreviousSession = true;
       recordSubmittedThisSession = true;
     }
+    setState(() {});
   }
 
   void updateChoice(int index) {
