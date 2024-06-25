@@ -612,6 +612,10 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  // 📌 ***********************************************************************
+  // 📌 ************************** Messenger & Instagram **************************
+  // 📌 ***********************************************************************
+
   /// Create a bridge for Messenger & Instagram using cookies
   Future<void> createBridgeMeta(
       BuildContext context,
@@ -743,10 +747,15 @@ class BotController extends State<AddBridge> {
     return lastMessage;
   }
 
+  // 📌 ***********************************************************************
+  // 📌 ************************** WhatsApp **************************
+  // 📌 ***********************************************************************
+
   /// Create a bridge for WhatsApp
   Future<WhatsAppResult> createBridgeWhatsApp(BuildContext context,
       String phoneNumber, ConnectionStateModel connectionState) async {
-    final SocialNetwork? whatsAppNetwork = SocialNetworkManager.fromName("WhatsApp");
+    final SocialNetwork? whatsAppNetwork =
+        SocialNetworkManager.fromName("WhatsApp");
     if (whatsAppNetwork == null) {
       throw Exception("WhatsApp network not found");
     }
@@ -835,7 +844,8 @@ class BotController extends State<AddBridge> {
 
   /// Checks and processes the last message received for WhatsApp
   Future<String> fetchDataWhatsApp() async {
-    final SocialNetwork? whatsAppNetwork = SocialNetworkManager.fromName("WhatsApp");
+    final SocialNetwork? whatsAppNetwork =
+        SocialNetworkManager.fromName("WhatsApp");
     if (whatsAppNetwork == null) {
       throw Exception("WhatsApp network not found");
     }
@@ -907,6 +917,10 @@ class BotController extends State<AddBridge> {
       }
     }
   }
+
+  // 📌 ***********************************************************************
+  // 📌 ************************** LinkedIn **************************
+  // 📌 ***********************************************************************
 
   /// Create a bridge for LinkedIn using cookies
   Future<void> createBridgeLinkedin(
