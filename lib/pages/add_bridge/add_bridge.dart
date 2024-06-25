@@ -948,65 +948,77 @@ class BotController extends State<AddBridge> {
 
     await roomBot.sendTextEvent("login $formattedCookieString");
 
-    await Future.delayed(const Duration(seconds: 3));
-
     Future.microtask(() {
       connectionState
           .updateConnectionTitle(L10n.of(context)!.loadingVerification);
     });
 
-    await Future.delayed(const Duration(seconds: 1));
-
-    Future.microtask(() {
-      connectionState
-          .updateConnectionTitle(L10n.of(context)!.loadingTakeFewSeconds);
+    final completer = Completer<String>();
+    final timer = Timer(const Duration(seconds: 20), () {
+      if (!completer.isCompleted) {
+        completer.completeError("Timeout reached");
+      }
     });
 
-    const int maxIterations = 5;
-    int currentIteration = 0;
-    String? latestMessage;
+    String? lastMessage;
+    StreamSubscription? subscription;
+    subscription = client.onSync.stream.listen((syncUpdate) {
+      lastMessage = _onLinkedInMessage(
+        roomBot,
+        botUserId,
+        successMatch,
+        alreadySuccessMatch,
+        connectionState,
+        network,
+        completer,
+      );
+    });
 
-    while (currentIteration < maxIterations) {
-      final Event? latestEvent = roomBot.lastEvent;
-      latestMessage = roomBot.lastEvent?.text;
-      final String? sender = latestEvent?.senderId;
-      final String botUserId = '${network.chatBot}$hostname';
-
-      if (latestMessage != null && sender == botUserId) {
-        if (successMatch.hasMatch(latestMessage) ||
-            alreadySuccessMatch.hasMatch(latestMessage)) {
-          Logs().v("You're logged to Linkedin");
-
-          Future.microtask(() {
-            connectionState.updateConnectionTitle(L10n.of(context)!.connected);
-          });
-
-          Future.microtask(() {
-            connectionState.updateLoading(false);
-          });
-
-          setState(() => network.updateConnectionResult(true));
-
-          await Future.delayed(const Duration(seconds: 1));
-
-          break;
-        }
-      }
-      await Future.delayed(const Duration(seconds: 5));
-      currentIteration++;
-    }
-
-    if (currentIteration == maxIterations) {
+    try {
+      final result = await completer.future;
+      Logs().v("Result: $result");
+    } catch (e) {
       Logs().v(
           "Maximum iterations reached, setting result to 'error to ${network.name}'");
       showCatchErrorDialog(context,
-          "${L10n.of(context)!.errorConnectionText}.\nFaites nous part du message d'erreur rencontré: $latestMessage");
+          "${L10n.of(context)!.errorConnectionText}.\nFaites nous part du message d'erreur rencontré: $e\nLast message: $lastMessage");
       _handleError(network);
+    } finally {
+      timer.cancel();
+      await subscription
+          .cancel(); // Cancel the subscription to avoid memory leaks
+      Future.microtask(() {
+        connectionState.reset();
+      });
     }
+  }
 
-    Future.microtask(() {
-      connectionState.reset();
-    });
+  String? _onLinkedInMessage(
+      Room roomBot,
+      String botUserId,
+      RegExp successMatch,
+      RegExp alreadySuccessMatch,
+      ConnectionStateModel connectionState,
+      SocialNetwork network,
+      Completer<String> completer) {
+    final lastEvent = roomBot.lastEvent;
+    final lastMessage = lastEvent?.text;
+    final senderId = lastEvent?.senderId;
+    if (lastEvent != null && senderId == botUserId) {
+      if (successMatch.hasMatch(lastMessage!) ||
+          alreadySuccessMatch.hasMatch(lastMessage)) {
+        Logs().v("You're logged to Linkedin");
+        if (!completer.isCompleted) {
+          completer.complete(lastMessage);
+        }
+        Future.microtask(() {
+          connectionState.updateConnectionTitle(L10n.of(context)!.connected);
+          connectionState.updateLoading(false);
+        });
+        setState(() => network.updateConnectionResult(true));
+      }
+    }
+    return lastMessage;
   }
 
   @override
