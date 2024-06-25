@@ -30,17 +30,19 @@ class ClassDescriptionButton extends StatelessWidget {
             constraints: const BoxConstraints(
               maxHeight: 190,
             ),
-            child: SingleChildScrollView(
-              // child: NestedScrollView( ???
-              controller: ScrollController(),
-              child: Text(
-                room.topic.isEmpty
-                    ? (room.isRoomAdmin
-                        ? (room.isSpace
-                            ? L10n.of(context)!.classDescriptionDesc
-                            : L10n.of(context)!.chatTopicDesc)
-                        : L10n.of(context)!.topicNotSet)
-                    : room.topic,
+            child: Scrollbar(
+              child: SingleChildScrollView(
+                primary: false,
+                controller: ScrollController(),
+                child: Text(
+                  room.topic.isEmpty
+                      ? (room.isRoomAdmin
+                          ? (room.isSpace
+                              ? L10n.of(context)!.classDescriptionDesc
+                              : L10n.of(context)!.chatTopicDesc)
+                          : L10n.of(context)!.topicNotSet)
+                      : room.topic,
+                ),
               ),
             ),
           ),
