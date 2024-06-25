@@ -856,15 +856,17 @@ class BotController extends State<AddBridge> {
     final Completer<String> completer = Completer<String>();
 
     StreamSubscription? subscription;
-    subscription = client.onSync.stream.listen((syncUpdate) {
-      _onWhatsAppMessage(
-        directChat!,
-        botUserId,
-        successMatch,
-        timeOutMatch,
-        whatsAppNetwork,
-        completer,
-      );
+    subscription = client.onEvent.stream.listen((eventUpdate) {
+      if (eventUpdate.content['sender'].contains(whatsAppNetwork.chatBot)) {
+        _onWhatsAppMessage(
+          directChat!,
+          botUserId,
+          successMatch,
+          timeOutMatch,
+          whatsAppNetwork,
+          completer,
+        );
+      }
     });
 
     try {
