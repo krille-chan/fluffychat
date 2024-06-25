@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ import '../constants/language_keys.dart';
 import '../constants/pangea_event_types.dart';
 import 'language_model.dart';
 
-class ClassSettingsModel {
+class LanguageSettingsModel {
   String? city;
   String? country;
   String? schoolName;
@@ -20,7 +19,7 @@ class ClassSettingsModel {
   String dominantLanguage;
   String targetLanguage;
 
-  ClassSettingsModel({
+  LanguageSettingsModel({
     this.dominantLanguage = ClassDefaultValues.defaultDominantLanguage,
     this.targetLanguage = ClassDefaultValues.defaultTargetLanguage,
     this.languageLevel,
@@ -29,17 +28,8 @@ class ClassSettingsModel {
     this.schoolName,
   });
 
-  static ClassSettingsModel get newClass => ClassSettingsModel(
-        city: null,
-        country: null,
-        dominantLanguage: ClassDefaultValues.defaultDominantLanguage,
-        languageLevel: null,
-        schoolName: null,
-        targetLanguage: ClassDefaultValues.defaultTargetLanguage,
-      );
-
-  factory ClassSettingsModel.fromJson(Map<String, dynamic> json) {
-    return ClassSettingsModel(
+  factory LanguageSettingsModel.fromJson(Map<String, dynamic> json) {
+    return LanguageSettingsModel(
       city: json['city'],
       country: json['country'],
       dominantLanguage: LanguageModel.codeFromNameOrCode(
@@ -72,35 +62,9 @@ class ClassSettingsModel {
     }
   }
 
-  //TODO: define enum with all possible values
-  updateEditableClassField(String key, dynamic value) {
-    switch (key) {
-      case ModelKey.clientClassCity:
-        city = value;
-        break;
-      case ModelKey.clientClassCountry:
-        country = value;
-        break;
-      case ModelKey.clientClassDominantLanguage:
-        dominantLanguage = value;
-        break;
-      case ModelKey.clientClassTargetLanguage:
-        targetLanguage = value;
-        break;
-      case ModelKey.clientLanguageLevel:
-        languageLevel = value;
-        break;
-      case ModelKey.clientSchool:
-        schoolName = value;
-        break;
-      default:
-        throw Exception('Invalid key for setting permissions - $key');
-    }
-  }
-
   StateEvent get toStateEvent => StateEvent(
         content: toJson(),
-        type: PangeaEventTypes.classSettings,
+        type: PangeaEventTypes.languageSettings,
       );
 }
 

@@ -1,8 +1,8 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
-import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/find_conversation_partner_dialog.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
+import 'package:fluffychat/pangea/utils/space_code.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -58,12 +58,12 @@ class ClientChooserButton extends StatelessWidget {
               room.isSpace &&
               room.ownPowerLevel >= ClassDefaultValues.powerLevelOfAdmin,
         ),
-        value: SettingsAction.classAnalytics,
+        value: SettingsAction.spaceAnalytics,
         child: Row(
           children: [
             const Icon(Icons.analytics_outlined),
             const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.classAnalytics)),
+            Expanded(child: Text(L10n.of(context)!.spaceAnalytics)),
           ],
         ),
       ),
@@ -84,7 +84,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.school),
             const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.createNewClass)),
+            Expanded(child: Text(L10n.of(context)!.createNewSpace)),
           ],
         ),
       ),
@@ -98,16 +98,6 @@ class ClientChooserButton extends StatelessWidget {
       //     ],
       //   ),
       // ),
-      PopupMenuItem(
-        value: SettingsAction.newExchange,
-        child: Row(
-          children: [
-            const Icon(Icons.connecting_airports),
-            const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.newExchange)),
-          ],
-        ),
-      ),
       if (controller.pangeaController.permissionsController.isUser18())
         PopupMenuItem(
           value: SettingsAction.findAConversationPartner,
@@ -397,11 +387,8 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.newClass:
           context.go('/rooms/newspace');
           break;
-        case SettingsAction.newExchange:
-          context.go('/rooms/newspace/exchange');
-          break;
         case SettingsAction.joinWithClassCode:
-          ClassCodeUtil.joinWithClassCodeDialog(
+          SpaceCodeUtil.joinWithSpaceCodeDialog(
             context,
             controller.pangeaController,
           );
@@ -412,7 +399,7 @@ class ClientChooserButton extends StatelessWidget {
             controller.pangeaController,
           );
           break;
-        case SettingsAction.classAnalytics:
+        case SettingsAction.spaceAnalytics:
           context.go('/rooms/analytics');
           break;
         case SettingsAction.myAnalytics:
@@ -507,11 +494,10 @@ enum SettingsAction {
   // #Pangea
   learning,
   joinWithClassCode,
-  classAnalytics,
+  spaceAnalytics,
   myAnalytics,
   findAConversationPartner,
   logout,
   newClass,
-  newExchange
   // Pangea#
 }

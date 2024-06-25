@@ -111,7 +111,7 @@ abstract class ClientManager {
         // To make room emotes work
         'im.ponies.room_emotes',
         // #Pangea
-        PangeaEventTypes.classSettings,
+        PangeaEventTypes.languageSettings,
         PangeaEventTypes.rules,
         PangeaEventTypes.botOptions,
         EventTypes.RoomTopic,

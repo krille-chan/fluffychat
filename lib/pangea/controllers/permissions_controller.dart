@@ -3,7 +3,7 @@ import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/p_extension.dart';
 import 'package:matrix/matrix.dart';
@@ -117,27 +117,4 @@ class PermissionsController extends BaseController {
     return isToolEnabled(ToolSetting.interactiveTranslator, room) &&
         isToolEnabled(ToolSetting.interactiveGrammar, room);
   }
-
-  // bool get showChatListStartChatFloatingActionButton {
-  //   //for now, I'm turning off chat button when not in the context of a clas
-  //   //it will still be possible to private chat outside of a class
-  //   //need to investigate if private chats can be put in a space. i suppose they can
-  //   //if so, do we want that?
-  //   try {
-  //     if (_pangeaController.classController.activeClass == null) return false;
-
-  //     // final isExchange =
-  //     //     (_pangeaController.classController.activeClass?.isExchange ?? false);
-  //     const isExchange = false;
-  //     final regular = (canUserPrivateChat() || canUserGroupChat());
-  //     final inExchange =
-  //         (canUserPrivateChatExchanges() || canUserGroupChatExchanges());
-  //     final theAnswer = isExchange ? inExchange : regular;
-  //     // debugger(when: kDebugMode && !theAnswer);
-  //     return theAnswer;
-  //   } catch (e, s) {
-  //     ErrorHandler.logError(e: e, s: s);
-  //     return false;
-  //   }
-  // }
 }

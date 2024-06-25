@@ -265,7 +265,6 @@ class ITController {
         targetLangCode: targetLangCode,
         userId: choreographer.userId!,
         roomId: choreographer.roomId!,
-        classId: choreographer.classId,
         goldTranslation: goldRouteTracker.fullTranslation,
         goldContinuances: goldRouteTracker.continuances,
       ),
@@ -283,7 +282,6 @@ class ITController {
           translationId: translationId,
           targetLangCode: targetLangCode,
           sourceLangCode: sourceLangCode,
-          classId: choreographer.classId,
         ),
       );
 
