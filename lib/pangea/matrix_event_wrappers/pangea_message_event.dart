@@ -654,11 +654,17 @@ class PangeaMessageEvent {
     }
   }
 
-  List<PracticeActivityEvent> practiceActivities(String langCode) {
+  List<PracticeActivityEvent> practiceActivities(String langCode,
+      {bool debug = false}) {
     try {
-      return _practiceActivityEvents
-          .where((ev) => ev.practiceActivity.langCode == langCode)
-          .toList();
+      debugger(when: debug);
+      final List<PracticeActivityEvent> activities = [];
+      for (final event in _practiceActivityEvents) {
+        if (event.practiceActivity.langCode == langCode) {
+          activities.add(event);
+        }
+      }
+      return activities;
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: s, data: event.toJson());

@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity_card/generate_practice_activity.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity_card/message_practice_activity_content.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/generate_practice_activity.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_content.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -37,11 +40,16 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(L10n.of(context)!.noLanguagesSet)),
       );
+      debugger(when: kDebugMode);
       return;
     }
 
     practiceEvent =
         widget.pangeaMessageEvent.practiceActivities(langCode).firstOrNull;
+
+    if (practiceEvent == null) {
+      debugger(when: kDebugMode);
+    }
     setState(() {});
   }
 

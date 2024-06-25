@@ -6,7 +6,7 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/practice_acitivity_recor
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity_card/multiple_choice_activity.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';

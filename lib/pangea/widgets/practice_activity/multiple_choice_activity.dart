@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity_card/message_practice_activity_content.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_content.dart';
 import 'package:flutter/material.dart';
 
 class MultipleChoiceActivity extends StatelessWidget {
