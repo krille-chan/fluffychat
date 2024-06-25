@@ -124,26 +124,35 @@ class NewSpaceView extends StatelessWidget {
               startOpen: true,
               spaceMode: true,
             ),
-            FutureBuilder<PangeaRoomRules?>(
-              future: Matrix.of(context).client.lastUpdatedRoomRules,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return RoomRulesEditor(
-                    key: controller.rulesEditorKey,
-                    roomId: null,
-                    startOpen: false,
-                    initialRules: snapshot.data,
-                  );
-                } else {
-                  return const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Center(
-                      child: CircularProgressIndicator.adaptive(strokeWidth: 2),
-                    ),
-                  );
-                }
-              },
-            ),
+            if (controller.rulesEditorKey.currentState != null)
+              RoomRulesEditor(
+                key: controller.rulesEditorKey,
+                roomId: null,
+                startOpen: false,
+                initialRules: controller.rulesEditorKey.currentState!.rules,
+              ),
+            if (controller.rulesEditorKey.currentState == null)
+              FutureBuilder<PangeaRoomRules?>(
+                future: Matrix.of(context).client.lastUpdatedRoomRules,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return RoomRulesEditor(
+                      key: controller.rulesEditorKey,
+                      roomId: null,
+                      startOpen: false,
+                      initialRules: snapshot.data,
+                    );
+                  } else {
+                    return const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Center(
+                        child:
+                            CircularProgressIndicator.adaptive(strokeWidth: 2),
+                      ),
+                    );
+                  }
+                },
+              ),
             // SwitchListTile.adaptive(
             //   title: Text(L10n.of(context)!.spaceIsPublic),
             //   value: controller.publicGroup,
