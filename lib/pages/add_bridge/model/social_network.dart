@@ -73,4 +73,10 @@ class SocialNetworkManager{
       urlRedirect: "https://www.linkedin.com/feed/",
     ),
   ];
+
+  static SocialNetwork? fromName(String name) {
+    return socialNetworks.firstWhere(
+          (network) => network.name == name,
+    );
+  }
 }

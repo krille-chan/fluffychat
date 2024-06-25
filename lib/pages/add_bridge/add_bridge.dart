@@ -743,15 +743,10 @@ class BotController extends State<AddBridge> {
     return lastMessage;
   }
 
-  /// Get the WhatsApp network instance from the list
-  SocialNetwork? getWhatsAppNetwork() {
-    return socialNetworks.firstWhere((network) => network.name == "WhatsApp");
-  }
-
   /// Create a bridge for WhatsApp
   Future<WhatsAppResult> createBridgeWhatsApp(BuildContext context,
       String phoneNumber, ConnectionStateModel connectionState) async {
-    final SocialNetwork? whatsAppNetwork = getWhatsAppNetwork();
+    final SocialNetwork? whatsAppNetwork = SocialNetworkManager.fromName("WhatsApp");
     if (whatsAppNetwork == null) {
       throw Exception("WhatsApp network not found");
     }
@@ -840,7 +835,7 @@ class BotController extends State<AddBridge> {
 
   /// Checks and processes the last message received for WhatsApp
   Future<String> fetchDataWhatsApp() async {
-    final SocialNetwork? whatsAppNetwork = getWhatsAppNetwork();
+    final SocialNetwork? whatsAppNetwork = SocialNetworkManager.fromName("WhatsApp");
     if (whatsAppNetwork == null) {
       throw Exception("WhatsApp network not found");
     }
