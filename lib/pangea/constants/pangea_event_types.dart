@@ -25,4 +25,8 @@ class PangeaEventTypes {
 
   static const String report = 'm.report';
   static const textToSpeechRule = "p.rule.text_to_speech";
+
+  static const pangeaActivityRes = "pangea.activity_res";
+  static const acitivtyRequest = "pangea.activity_req";
+  static const activityRecord = "pangea.activity_completion";
 }

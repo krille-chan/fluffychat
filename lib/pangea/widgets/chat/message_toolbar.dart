@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -202,6 +203,12 @@ class MessageToolbarState extends State<MessageToolbar> {
       return;
     }
 
+    // if there is an uncompleted activity, then show that
+    // we don't want the user to user the tools to get the answer :P
+    if (widget.pangeaMessageEvent.hasUncompletedActivity) {
+      newMode = MessageMode.practiceActivity;
+    }
+
     if (mounted) {
       setState(() {
         currentMode = newMode;
@@ -228,6 +235,9 @@ class MessageToolbarState extends State<MessageToolbar> {
           break;
         case MessageMode.definition:
           showDefinition();
+          break;
+        case MessageMode.practiceActivity:
+          showPracticeActivity();
           break;
         default:
           ErrorHandler.logError(
@@ -283,6 +293,13 @@ class MessageToolbarState extends State<MessageToolbar> {
       fullTextLang: widget.pangeaMessageEvent.messageDisplayLangCode,
       hasInfo: true,
       room: widget.room,
+    );
+  }
+
+  void showPracticeActivity() {
+    toolbarContent = PracticeActivityCard(
+      pangeaMessageEvent: widget.pangeaMessageEvent,
+      controller: this,
     );
   }
 
@@ -403,9 +420,11 @@ class MessageToolbarState extends State<MessageToolbar> {
                       message: mode.tooltip(context),
                       child: IconButton(
                         icon: Icon(mode.icon),
-                        color: currentMode == mode
-                            ? Theme.of(context).colorScheme.primary
-                            : null,
+                        color: mode.iconColor(
+                          widget.pangeaMessageEvent,
+                          currentMode,
+                          context,
+                        ),
                         onPressed: () => updateMode(mode),
                       ),
                     );

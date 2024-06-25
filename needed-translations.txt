@@ -860,7 +860,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "be": [
@@ -2357,7 +2360,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "bn": [
@@ -3850,7 +3856,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "bo": [
@@ -5347,7 +5356,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ca": [
@@ -6246,7 +6258,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "cs": [
@@ -7227,7 +7242,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "de": [
@@ -8091,7 +8109,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "el": [
@@ -9539,7 +9560,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "eo": [
@@ -10685,7 +10709,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "es": [
@@ -10697,7 +10724,10 @@
     "addConversationBotButtonRemove",
     "addConversationBotDialogRemoveConfirmation",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "et": [
@@ -11561,7 +11591,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "eu": [
@@ -12427,7 +12460,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "fa": [
@@ -13430,7 +13466,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "fi": [
@@ -14397,7 +14436,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "fil": [
@@ -15720,7 +15762,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "fr": [
@@ -16722,7 +16767,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ga": [
@@ -17853,7 +17901,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "gl": [
@@ -18717,7 +18768,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "he": [
@@ -19967,7 +20021,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "hi": [
@@ -21457,7 +21514,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "hr": [
@@ -22400,7 +22460,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "hu": [
@@ -23280,7 +23343,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ia": [
@@ -24763,7 +24829,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "id": [
@@ -25633,7 +25702,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ie": [
@@ -26887,7 +26959,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "it": [
@@ -27808,7 +27883,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ja": [
@@ -28840,7 +28918,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ka": [
@@ -30191,7 +30272,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ko": [
@@ -31057,7 +31141,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "lt": [
@@ -32089,7 +32176,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "lv": [
@@ -32961,7 +33051,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "nb": [
@@ -34157,7 +34250,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "nl": [
@@ -35117,7 +35213,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "pl": [
@@ -36086,7 +36185,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "pt": [
@@ -37561,7 +37663,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "pt_BR": [
@@ -38431,7 +38536,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "pt_PT": [
@@ -39628,7 +39736,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ro": [
@@ -40632,7 +40743,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ru": [
@@ -41502,7 +41616,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "sk": [
@@ -42765,7 +42882,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "sl": [
@@ -44158,7 +44278,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "sr": [
@@ -45325,7 +45448,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "sv": [
@@ -46226,7 +46352,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ta": [
@@ -47720,7 +47849,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "th": [
@@ -49168,7 +49300,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "tr": [
@@ -50032,7 +50167,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "uk": [
@@ -50933,7 +51071,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "vi": [
@@ -52282,7 +52423,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "zh": [
@@ -53146,7 +53290,10 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "zh_Hant": [
@@ -54291,6 +54438,9 @@
     "spaceAnalytics",
     "changeAnalyticsLanguage",
     "suggestToSpace",
-    "suggestToSpaceDesc"
+    "suggestToSpaceDesc",
+    "practice",
+    "noLanguagesSet",
+    "noActivitiesFound"
   ]
 }

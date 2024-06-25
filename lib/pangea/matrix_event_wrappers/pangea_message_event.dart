@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
@@ -6,6 +7,7 @@ import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
@@ -14,6 +16,7 @@ import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -549,12 +552,36 @@ class PangeaMessageEvent {
       _event.messageType != PangeaEventTypes.report &&
       _event.messageType == MessageTypes.Text;
 
+  // this is just showActivityIcon now but will include
+  // logic for showing
+  bool get showMessageButtons => hasUncompletedActivity;
+
+  /// Returns a boolean value indicating whether to show an activity icon for this message event.
+  ///
+  /// The [hasUncompletedActivity] getter checks if the [l2Code] is null, and if so, returns false.
+  /// Otherwise, it retrieves a list of [PracticeActivityEvent] objects using the [practiceActivities] function
+  /// with the [l2Code] as an argument.
+  /// If the list is empty, it returns false.
+  /// Otherwise, it checks if every activity in the list is complete using the [isComplete] property.
+  /// If any activity is not complete, it returns true, indicating that the activity icon should be shown.
+  /// Otherwise, it returns false.
+  bool get hasUncompletedActivity {
+    if (l2Code == null) return false;
+    final List<PracticeActivityEvent> activities = practiceActivities(l2Code!);
+
+    if (activities.isEmpty) return false;
+
+    return !activities.every((activity) => activity.isComplete);
+  }
+
+  String? get l2Code =>
+      MatrixState.pangeaController.languageController.activeL2Code();
+
   String get messageDisplayLangCode {
     final bool immersionMode = MatrixState
         .pangeaController.permissionsController
         .isToolEnabled(ToolSetting.immersionMode, room);
-    final String? l2Code =
-        MatrixState.pangeaController.languageController.activeL2Code();
+
     final String? originalLangCode =
         (originalWritten ?? originalSent)?.langCode;
 
@@ -576,6 +603,53 @@ class PangeaMessageEvent {
         .cast<PangeaMatch>()
         .toList();
     return steps;
+  }
+
+  List<PracticeActivityEvent> get _practiceActivityEvents => _latestEdit
+      .aggregatedEvents(
+        timeline,
+        PangeaEventTypes.pangeaActivityRes,
+      )
+      .map(
+        (e) => PracticeActivityEvent(
+          timeline: timeline,
+          event: e,
+        ),
+      )
+      .toList();
+
+  bool get hasActivities {
+    try {
+      final String? l2code =
+          MatrixState.pangeaController.languageController.activeL2Code();
+
+      if (l2code == null) return false;
+
+      return practiceActivities(l2code).isNotEmpty;
+    } catch (e, s) {
+      ErrorHandler.logError(e: e, s: s);
+      return false;
+    }
+  }
+
+  List<PracticeActivityEvent> practiceActivities(
+    String langCode, {
+    bool debug = false,
+  }) {
+    try {
+      debugger(when: debug);
+      final List<PracticeActivityEvent> activities = [];
+      for (final event in _practiceActivityEvents) {
+        if (event.practiceActivity.langCode == langCode) {
+          activities.add(event);
+        }
+      }
+      return activities;
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: e, s: s, data: event.toJson());
+      return [];
+    }
   }
 
   // List<SpanData> get activities =>
