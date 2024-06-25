@@ -63,7 +63,13 @@ class MessagePracticeActivityContentState
       );
     } else {
       recordModel = recordEvent!.record;
-      selectedChoiceIndex = recordModel!.latestResponseIndex;
+
+      //Note that only MultipleChoice activities will have this so we probably should move this logic to the MultipleChoiceActivity widget
+      selectedChoiceIndex = recordModel?.latestResponse != null
+          ? widget.practiceEvent.practiceActivity.multipleChoice
+              ?.choiceIndex(recordModel!.latestResponse!)
+          : null;
+
       recordSubmittedPreviousSession = true;
       recordSubmittedThisSession = true;
     }

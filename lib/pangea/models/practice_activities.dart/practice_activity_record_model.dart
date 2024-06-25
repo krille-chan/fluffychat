@@ -40,12 +40,12 @@ class PracticeActivityRecordModel {
 
   /// get the latest response index according to the response timeStamp
   /// sort the responses by timestamp and get the index of the last response
-  int? get latestResponseIndex {
+  String? get latestResponse {
     if (responses.isEmpty) {
       return null;
     }
     responses.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-    return responses.length - 1;
+    return responses[responses.length - 1].text;
   }
 
   void addResponse({

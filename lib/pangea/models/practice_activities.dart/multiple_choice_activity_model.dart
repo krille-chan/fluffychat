@@ -18,6 +18,8 @@ class MultipleChoice {
 
   int get correctAnswerIndex => choices.indexOf(answer);
 
+  int choiceIndex(String choice) => choices.indexOf(choice);
+
   Color choiceColor(int index) =>
       index == correctAnswerIndex ? AppConfig.success : AppConfig.warning;
 

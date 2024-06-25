@@ -50,6 +50,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     return langCode;
   }
 
+<<<<<<< Updated upstream
   void loadInitialData() {
     if (langCode == null) return;
     updatePracticeActivity();
@@ -75,6 +76,11 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     else if (activities.isNotEmpty) {
       practiceEvent = activities.last;
     }
+=======
+    practiceEvent =
+        widget.pangeaMessageEvent.practiceActivities(langCode).firstOrNull;
+
+>>>>>>> Stashed changes
     setState(() {});
   }
 
