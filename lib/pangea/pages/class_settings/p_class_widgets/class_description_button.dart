@@ -26,14 +26,23 @@ class ClassDescriptionButton extends StatelessWidget {
             foregroundColor: iconColor,
             child: const Icon(Icons.topic_outlined),
           ),
-          subtitle: Text(
-            room.topic.isEmpty
-                ? (room.isRoomAdmin
-                    ? (room.isSpace
-                        ? L10n.of(context)!.classDescriptionDesc
-                        : L10n.of(context)!.chatTopicDesc)
-                    : L10n.of(context)!.topicNotSet)
-                : room.topic,
+          subtitle: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxHeight: 190,
+            ),
+            child: SingleChildScrollView(
+              // child: NestedScrollView( ???
+              controller: ScrollController(),
+              child: Text(
+                room.topic.isEmpty
+                    ? (room.isRoomAdmin
+                        ? (room.isSpace
+                            ? L10n.of(context)!.classDescriptionDesc
+                            : L10n.of(context)!.chatTopicDesc)
+                        : L10n.of(context)!.topicNotSet)
+                    : room.topic,
+              ),
+            ),
           ),
           title: Text(
             room.isSpace
