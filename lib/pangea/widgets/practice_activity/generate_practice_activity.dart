@@ -21,7 +21,7 @@ class GeneratePracticeActivityButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () async {
         final String? l2Code = MatrixState.pangeaController.languageController
-            .activeL1Model(roomID: pangeaMessageEvent.room.id)
+            .activeL1Model()
             ?.langCode;
 
         if (l2Code == null) {

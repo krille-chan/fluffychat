@@ -620,8 +620,8 @@ class PangeaMessageEvent {
 
   bool get hasActivities {
     try {
-      final String? l2code = MatrixState.pangeaController.languageController
-          .activeL2Code(roomID: room.id);
+      final String? l2code =
+          MatrixState.pangeaController.languageController.activeL2Code();
 
       if (l2code == null) return false;
 

@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity/generate_practice_activity.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_content.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -33,7 +32,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
   void loadInitialData() {
     final String? langCode = MatrixState.pangeaController.languageController
-        .activeL2Model(roomID: widget.pangeaMessageEvent.room.id)
+        .activeL2Model()
         ?.langCode;
 
     if (langCode == null) {
@@ -62,10 +61,11 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   @override
   Widget build(BuildContext context) {
     if (practiceEvent == null) {
-      return GeneratePracticeActivityButton(
-        pangeaMessageEvent: widget.pangeaMessageEvent,
-        onActivityGenerated: updatePracticeActivity,
-      );
+      return const Text('No practice activities found for this message');
+      // return GeneratePracticeActivityButton(
+      //   pangeaMessageEvent: widget.pangeaMessageEvent,
+      //   onActivityGenerated: updatePracticeActivity,
+      // );
     }
     return PracticeActivityContent(
       practiceEvent: practiceEvent!,

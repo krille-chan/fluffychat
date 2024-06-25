@@ -4055,5 +4055,7 @@
   "spaceAnalytics": "Space Analytics",
   "changeAnalyticsLanguage": "Change Analytics Language",
   "suggestToSpace": "Suggest this space",
-  "suggestToSpaceDesc": "Suggested spaces will appear in the chat lists for their parent spaces"
+  "suggestToSpaceDesc": "Suggested spaces will appear in the chat lists for their parent spaces",
+  "practice": "Practice",
+  "noLanguagesSet": "No languages set"
 }
