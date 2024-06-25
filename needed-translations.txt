@@ -10726,9 +10726,6 @@
 
   "es": [
     "searchIn",
-    "searchMore",
-    "gallery",
-    "files",
     "conversationBotCustomZone_title",
     "conversationBotCustomZone_customSystemPromptLabel",
     "conversationBotCustomZone_customSystemPromptPlaceholder",
