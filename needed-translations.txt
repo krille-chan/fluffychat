@@ -862,7 +862,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "be": [
@@ -2361,7 +2362,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "bn": [
@@ -3856,7 +3858,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "bo": [
@@ -5355,7 +5358,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ca": [
@@ -6256,7 +6260,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "cs": [
@@ -7239,7 +7244,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "de": [
@@ -8105,7 +8111,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "el": [
@@ -9555,7 +9562,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "eo": [
@@ -10703,7 +10711,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "es": [
@@ -10717,7 +10726,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "et": [
@@ -11583,7 +11593,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "eu": [
@@ -12451,7 +12462,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "fa": [
@@ -13456,7 +13468,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "fi": [
@@ -14425,7 +14438,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "fil": [
@@ -15750,7 +15764,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "fr": [
@@ -16754,7 +16769,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ga": [
@@ -17887,7 +17903,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "gl": [
@@ -18753,7 +18770,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "he": [
@@ -20005,7 +20023,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "hi": [
@@ -21497,7 +21516,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "hr": [
@@ -22442,7 +22462,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "hu": [
@@ -23324,7 +23345,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ia": [
@@ -24809,7 +24831,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "id": [
@@ -25681,7 +25704,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ie": [
@@ -26937,7 +26961,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "it": [
@@ -27860,7 +27885,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ja": [
@@ -28894,7 +28920,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ka": [
@@ -30247,7 +30274,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ko": [
@@ -31115,7 +31143,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "lt": [
@@ -32149,7 +32178,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "lv": [
@@ -33023,7 +33053,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "nb": [
@@ -34221,7 +34252,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "nl": [
@@ -35183,7 +35215,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "pl": [
@@ -36154,7 +36187,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "pt": [
@@ -37631,7 +37665,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "pt_BR": [
@@ -38503,7 +38538,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "pt_PT": [
@@ -39702,7 +39738,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ro": [
@@ -40708,7 +40745,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ru": [
@@ -41580,7 +41618,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "sk": [
@@ -42845,7 +42884,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "sl": [
@@ -44240,7 +44280,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "sr": [
@@ -45409,7 +45450,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "sv": [
@@ -46312,7 +46354,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "ta": [
@@ -47808,7 +47851,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "th": [
@@ -49258,7 +49302,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "tr": [
@@ -50124,7 +50169,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "uk": [
@@ -51027,7 +51073,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "vi": [
@@ -52378,7 +52425,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "zh": [
@@ -53244,7 +53292,8 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ],
 
   "zh_Hant": [
@@ -54391,6 +54440,7 @@
     "suggestToSpace",
     "suggestToSpaceDesc",
     "practice",
-    "noLanguagesSet"
+    "noLanguagesSet",
+    "noActivitiesFound"
   ]
 }

@@ -4057,5 +4057,6 @@
   "suggestToSpace": "Suggest this space",
   "suggestToSpaceDesc": "Suggested spaces will appear in the chat lists for their parent spaces",
   "practice": "Practice",
-  "noLanguagesSet": "No languages set"
+  "noLanguagesSet": "No languages set",
+  "noActivitiesFound": "No practice activities found for this message"
 }

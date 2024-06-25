@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
+import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_content.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -61,7 +62,10 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   @override
   Widget build(BuildContext context) {
     if (practiceEvent == null) {
-      return const Text('No practice activities found for this message');
+      return Text(
+        L10n.of(context)!.noActivitiesFound,
+        style: BotStyle.text(context),
+      );
       // return GeneratePracticeActivityButton(
       //   pangeaMessageEvent: widget.pangeaMessageEvent,
       //   onActivityGenerated: updatePracticeActivity,

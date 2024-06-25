@@ -418,9 +418,11 @@ class MessageToolbarState extends State<MessageToolbar> {
                       message: mode.tooltip(context),
                       child: IconButton(
                         icon: Icon(mode.icon),
-                        color: currentMode == mode
-                            ? Theme.of(context).colorScheme.primary
-                            : null,
+                        color: mode.iconColor(
+                          widget.pangeaMessageEvent,
+                          currentMode,
+                          context,
+                        ),
                         onPressed: () => updateMode(mode),
                       ),
                     );
