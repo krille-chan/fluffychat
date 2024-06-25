@@ -587,7 +587,8 @@ class Message extends StatelessWidget {
                           ? MainAxisAlignment.end
                           : MainAxisAlignment.start,
                       children: [
-                        MessageButtons(toolbarController: toolbarController),
+                        if (pangeaMessageEvent?.showMessageButtons ?? false)
+                          MessageButtons(toolbarController: toolbarController),
                         MessageReactions(event, timeline),
                       ],
                     ),
