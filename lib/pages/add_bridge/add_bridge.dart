@@ -45,6 +45,9 @@ class BotController extends State<AddBridge> {
 
   List<SocialNetwork> socialNetworks = SocialNetworkManager.socialNetworks;
 
+  // Map to store StreamSubscriptions for each social network
+  final Map<String, StreamSubscription> _pingSubscriptions = {};
+
   @override
   void initState() {
     super.initState();
@@ -54,6 +57,8 @@ class BotController extends State<AddBridge> {
 
   @override
   void dispose() {
+    // Cancel all listeners when the widget is destroyed
+    _pingSubscriptions.forEach((key, subscription) => subscription.cancel());
     continueProcess = false;
     super.dispose();
   }
@@ -152,14 +157,41 @@ class BotController extends State<AddBridge> {
       return;
     }
 
-    if (!await _sendPingMessage(roomBot, socialNetwork)) {
+    // Reset existing listeners
+    _pingSubscriptions[socialNetwork.name]?.cancel();
+
+    // Initialize listener before sending ping
+    final Completer<void> completer = Completer<void>();
+    final subscription = client.onEvent.stream.listen((eventUpdate) {
+      if (eventUpdate.content['sender'].contains(socialNetwork.chatBot)) {
+        _onNewPingMessage(
+          roomBot,
+          socialNetwork,
+          patterns,
+          completer,
+        );
+      }
+    });
+
+    // Storing the listener in the map
+    _pingSubscriptions[socialNetwork.name] = subscription;
+
+    try {
+      if (!await _sendPingMessage(roomBot, socialNetwork)) {
+        _handleError(socialNetwork);
+        return;
+      }
+
+      await Future.delayed(const Duration(seconds: 2));
+
+      // Wait for the ping response
+      await _processPingResponse(socialNetwork, completer);
+    } catch (e) {
+      Logs().v("Error processing ping response: ${e.toString()}");
       _handleError(socialNetwork);
-      return;
+    } finally {
+      subscription.cancel();
     }
-
-    await Future.delayed(const Duration(seconds: 2));
-
-    await _processPingResponse(socialNetwork, directChat, roomBot, patterns);
   }
 
   /// Format cookies into a JSON string
@@ -225,33 +257,21 @@ class BotController extends State<AddBridge> {
   }
 
   /// Process the ping response from a social network
-  Future<void> _processPingResponse(SocialNetwork socialNetwork,
-      String directChat, Room roomBot, RegExpPingPatterns patterns) async {
-    final Completer<void> completer = Completer<void>();
-    final timer = Timer(const Duration(seconds: 20), () {
+  Future<void> _processPingResponse(
+      SocialNetwork socialNetwork, Completer<void> completer) async {
+    final timer = Timer(const Duration(seconds: 30), () {
       if (!completer.isCompleted) {
         completer.completeError("Timeout reached");
       }
-    });
-
-    // Listen to the sync stream
-    final subscription = client.onSync.stream.listen((syncUpdate) {
-      _onNewPingMessage(
-        roomBot,
-        socialNetwork,
-        patterns,
-        completer,
-      );
     });
 
     try {
       await completer.future;
     } catch (e) {
       Logs().v(
-          "Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
+          "Timeout reached, setting result to 'error to ${socialNetwork.name}'");
       _handleError(socialNetwork);
     } finally {
-      subscription.cancel();
       timer.cancel();
     }
   }
@@ -262,9 +282,13 @@ class BotController extends State<AddBridge> {
     RegExpPingPatterns patterns,
     Completer<void> completer,
   ) {
-    print("social network: $socialNetwork");
+    if (kDebugMode) {
+      print("social network: $socialNetwork");
+    }
     final lastEvent = roomBot.lastEvent?.text;
-    print("lastest message: $lastEvent");
+    if (kDebugMode) {
+      print("lastest message: $lastEvent");
+    }
     if (_isOnline(patterns.onlineMatch, lastEvent!)) {
       Logs().v("You're logged to ${socialNetwork.name}");
       _updateNetworkStatus(socialNetwork, true, false);
@@ -331,12 +355,6 @@ class BotController extends State<AddBridge> {
       showCatchErrorDialog(context, messageError);
       return false;
     }
-  }
-
-  /// Send a reconnect event to the bot
-  Future<void> _sendReconnectEvent(Room roomBot, String networkName) async {
-    String eventToSend = networkName == "WhatsApp" ? "reconnect" : "connect";
-    await roomBot.sendTextEvent(eventToSend);
   }
 
   /// Update the status of a social network
