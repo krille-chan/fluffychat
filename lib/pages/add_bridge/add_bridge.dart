@@ -847,61 +847,62 @@ class BotController extends State<AddBridge> {
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
-    ConnectionResult result = ConnectionResult.notLogged;
+    final Completer<String> completer = Completer<String>();
 
-    while (continueProcess) {
-      result = await _checkLatestMessages(
-          directChat, successMatch, timeOutMatch, whatsAppNetwork);
+    StreamSubscription? subscription;
+    subscription = client.onSync.stream.listen((syncUpdate) {
+      _onWhatsAppMessage(
+        directChat!,
+        botUserId,
+        successMatch,
+        timeOutMatch,
+        whatsAppNetwork,
+        completer,
+      );
+    });
 
-      if (result != ConnectionResult.notLogged) {
-        break;
-      }
-
-      if (!continueProcess) {
-        result = ConnectionResult.stopListening;
-        break;
-      }
-
-      await Future.delayed(const Duration(seconds: 2));
-    }
-
-    switch (result) {
-      case ConnectionResult.success:
-        return "success";
-      case ConnectionResult.loginTimedOut:
-        return "loginTimedOut";
-      case ConnectionResult.stopListening:
-        return "Stop Listening";
-      default:
-        return "Not logged";
+    try {
+      final result = await completer.future;
+      return result;
+    } finally {
+      await subscription
+          .cancel(); // Cancel the subscription to avoid memory leaks
     }
   }
 
-  /// Check last received message
-  Future<ConnectionResult> _checkLatestMessages(
+  /// Check last received message for WhatsApp
+  void _onWhatsAppMessage(
       String directChat,
+      String botUserId,
       RegExp successMatch,
       RegExp timeOutMatch,
-      SocialNetwork whatsAppNetwork) async {
-    final GetRoomEventsResponse response =
-        await client.getRoomEvents(directChat, Direction.b, limit: 3);
-    final List<MatrixEvent> latestMessages = response.chunk ?? [];
-
-    for (int i = latestMessages.length - 1; i >= 0; i--) {
-      final String messageBody =
-          latestMessages[i].content['body'].toString() ?? '';
-
-      if (successMatch.hasMatch(messageBody)) {
-        Logs().v("You're logged to WhatsApp");
-        setState(() => whatsAppNetwork.connected = true);
-        return ConnectionResult.success;
-      } else if (timeOutMatch.hasMatch(messageBody)) {
-        Logs().v("Login timed out");
-        return ConnectionResult.loginTimedOut;
+      SocialNetwork whatsAppNetwork,
+      Completer<String> completer) {
+    final Room? roomBot = client.getRoomById(directChat);
+    if (roomBot == null) {
+      if (!completer.isCompleted) {
+        completer.complete("error");
       }
+      return;
     }
 
-    return ConnectionResult.notLogged;
+    final lastEvent = roomBot.lastEvent;
+    final lastMessage = lastEvent?.text;
+    final senderId = lastEvent?.senderId;
+    if (lastEvent != null && senderId == botUserId) {
+      if (successMatch.hasMatch(lastMessage!)) {
+        Logs().v("You're logged to WhatsApp");
+        setState(() => whatsAppNetwork.connected = true);
+        if (!completer.isCompleted) {
+          completer.complete("success");
+        }
+      } else if (timeOutMatch.hasMatch(lastMessage)) {
+        Logs().v("Login timed out");
+        if (!completer.isCompleted) {
+          completer.complete("loginTimedOut");
+        }
+      }
+    }
   }
 
   /// Create a bridge for LinkedIn using cookies
