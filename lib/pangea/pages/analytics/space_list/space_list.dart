@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/space_list/space_list_view.dart';
 import 'package:flutter/material.dart';
@@ -22,25 +23,46 @@ class AnalyticsSpaceList extends StatefulWidget {
 class AnalyticsSpaceListController extends State<AnalyticsSpaceList> {
   PangeaController pangeaController = MatrixState.pangeaController;
   List<Room> spaces = [];
+  List<LanguageModel> targetLanguages = [];
 
   @override
   void initState() {
     super.initState();
-    Matrix.of(context).client.spacesImTeaching.then((spaceList) {
-      spaceList = spaceList
-          .where(
-            (space) => !spaceList.any(
-              (parentSpace) => parentSpace.spaceChildren
-                  .any((child) => child.roomId == space.id),
-            ),
-          )
-          .toList();
-      spaces = spaceList;
-      setState(() {});
-    });
+
+    setSpaceList().then((_) => setTargetLanguages());
   }
 
   StreamController refreshStream = StreamController.broadcast();
+
+  Future<void> setSpaceList() async {
+    final spaceList = await Matrix.of(context).client.spacesImTeaching;
+    spaces = spaceList
+        .where(
+          (space) => !spaceList.any(
+            (parentSpace) => parentSpace.spaceChildren
+                .any((child) => child.roomId == space.id),
+          ),
+        )
+        .toList();
+    setState(() {});
+  }
+
+  Future<void> setTargetLanguages() async {
+    if (spaces.isEmpty) return;
+    final Map<LanguageModel, int> langCounts = {};
+    for (final Room space in spaces) {
+      final List<LanguageModel> targetLangs = await space.targetLanguages();
+      for (final LanguageModel lang in targetLangs) {
+        langCounts[lang] ??= 0;
+        langCounts[lang] = langCounts[lang]! + 1;
+      }
+    }
+    targetLanguages = langCounts.entries.map((entry) => entry.key).toList()
+      ..sort(
+        (a, b) => langCounts[b]!.compareTo(langCounts[a]!),
+      );
+    setState(() {});
+  }
 
   void toggleTimeSpan(BuildContext context, TimeSpan timeSpan) {
     pangeaController.analytics.setCurrentAnalyticsTimeSpan(timeSpan);
