@@ -59,6 +59,7 @@ class SpaceAnalyticsView extends StatelessWidget {
               AnalyticsEntryType.space,
               controller.spaceRoom?.name ?? "",
             ),
+            targetLanguages: controller.targetLanguages,
           )
         : const SizedBox();
   }

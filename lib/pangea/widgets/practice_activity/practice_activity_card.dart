@@ -62,19 +62,22 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     if (langCode == null) return;
     final List<PracticeActivityEvent> activities =
         widget.pangeaMessageEvent.practiceActivities(langCode!);
+    if (activities.isEmpty) return;
     final List<PracticeActivityEvent> incompleteActivities =
         activities.where((element) => !element.isComplete).toList();
     debugPrint("total events: ${activities.length}");
     debugPrint("incomplete practice events: ${incompleteActivities.length}");
 
-    // if an incomplete activity is found, show that
-    if (incompleteActivities.isNotEmpty) {
-      practiceEvent = incompleteActivities.first;
-    }
-    // if no incomplete activity is found, show the last activity
-    else if (activities.isNotEmpty) {
-      practiceEvent = activities.last;
-    }
+    // TODO update to show next activity
+    practiceEvent = activities.first;
+    // // if an incomplete activity is found, show that
+    // if (incompleteActivities.isNotEmpty) {
+    //   practiceEvent = incompleteActivities.first;
+    // }
+    // // if no incomplete activity is found, show the last activity
+    // else if (activities.isNotEmpty) {
+    //   practiceEvent = activities.last;
+    // }
     setState(() {});
   }
 
