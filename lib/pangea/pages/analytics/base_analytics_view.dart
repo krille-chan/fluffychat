@@ -108,7 +108,10 @@ class BaseAnalyticsView extends StatelessWidget {
             ? Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: controller.widget.defaultSelected.type ==
+                            AnalyticsEntryType.space
+                        ? MainAxisAlignment.spaceEvenly
+                        : MainAxisAlignment.start,
                     children: [
                       if (controller.widget.defaultSelected.type ==
                           AnalyticsEntryType.student)
@@ -159,13 +162,15 @@ class BaseAnalyticsView extends StatelessWidget {
                           ),
                           Expanded(
                             child: SingleChildScrollView(
-                              child: SizedBox(
-                                height: max(
-                                      controller.widget.tabs[0].items.length +
-                                          1,
-                                      controller.widget.tabs[1].items.length,
-                                    ) *
-                                    72,
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxHeight: max(
+                                        controller.widget.tabs[0].items.length +
+                                            1,
+                                        controller.widget.tabs[1].items.length,
+                                      ) *
+                                      73,
+                                ),
                                 child: TabBarView(
                                   physics: const NeverScrollableScrollPhysics(),
                                   children: [
