@@ -31,13 +31,13 @@ class ClassSettingsModel {
   });
 
   static ClassSettingsModel get newClass => ClassSettingsModel(
-        city: null,
-        country: null,
-        dominantLanguage: ClassDefaultValues.defaultDominantLanguage,
-        languageLevel: null,
-        schoolName: null,
-        targetLanguage: ClassDefaultValues.defaultTargetLanguage,
-      );
+    city: null,
+    country: null,
+    dominantLanguage: ClassDefaultValues.defaultDominantLanguage,
+    languageLevel: null,
+    schoolName: null,
+    targetLanguage: ClassDefaultValues.defaultTargetLanguage,
+  );
 
   factory ClassSettingsModel.fromJson(Map<String, dynamic> json) {
     return ClassSettingsModel(
@@ -100,9 +100,9 @@ class ClassSettingsModel {
   }
 
   StateEvent get toStateEvent => StateEvent(
-        content: toJson(),
-        type: PangeaEventTypes.classSettings,
-      );
+    content: toJson(),
+    type: PangeaEventTypes.classSettings,
+  );
 }
 
 class PangeaRoomRules {
@@ -120,7 +120,6 @@ class PangeaRoomRules {
   bool isInviteOnlyStudents;
   // 0 = forbidden, 1 = allow individual to choose, 2 = require
   int interactiveTranslator;
-  int itAutoPlay;
   int interactiveGrammar;
   int immersionMode;
   int definitions;
@@ -139,7 +138,6 @@ class PangeaRoomRules {
     this.isVoiceNotes = true,
     this.isInviteOnlyStudents = true,
     this.interactiveTranslator = ClassDefaultValues.languageToolPermissions,
-    this.itAutoPlay = ClassDefaultValues.languageToolPermissions,
     this.interactiveGrammar = ClassDefaultValues.languageToolPermissions,
     this.immersionMode = ClassDefaultValues.languageToolPermissions,
     this.definitions = ClassDefaultValues.languageToolPermissions,
@@ -191,9 +189,6 @@ class PangeaRoomRules {
       case ToolSetting.interactiveTranslator:
         interactiveTranslator = value;
         break;
-      case ToolSetting.itAutoPlay:
-        itAutoPlay = value;
-        break;
       case ToolSetting.interactiveGrammar:
         interactiveGrammar = value;
         break;
@@ -212,9 +207,9 @@ class PangeaRoomRules {
   }
 
   StateEvent get toStateEvent => StateEvent(
-        content: toJson(),
-        type: PangeaEventTypes.rules,
-      );
+    content: toJson(),
+    type: PangeaEventTypes.rules,
+  );
 
   factory PangeaRoomRules.fromJson(Map<String, dynamic> json) =>
       PangeaRoomRules(
@@ -232,16 +227,14 @@ class PangeaRoomRules {
         isInviteOnlyStudents: json['is_invite_only_students'] ?? true,
         interactiveTranslator: json['interactive_translator'] ??
             ClassDefaultValues.languageToolPermissions,
-        itAutoPlay: json['it_auto_play'] ??
-            ClassDefaultValues.languageToolPermissions,
         interactiveGrammar: json['interactive_grammar'] ??
             ClassDefaultValues.languageToolPermissions,
         immersionMode: json['immersion_mode'] ??
             ClassDefaultValues.languageToolPermissions,
         definitions:
-            json['definitions'] ?? ClassDefaultValues.languageToolPermissions,
+        json['definitions'] ?? ClassDefaultValues.languageToolPermissions,
         translations:
-            json['translations'] ?? ClassDefaultValues.languageToolPermissions,
+        json['translations'] ?? ClassDefaultValues.languageToolPermissions,
       );
 
   Map<String, dynamic> toJson() {
@@ -259,7 +252,6 @@ class PangeaRoomRules {
     data['is_voice_notes'] = isVoiceNotes;
     data['is_invite_only_students'] = isInviteOnlyStudents;
     data['interactive_translator'] = interactiveTranslator;
-    data['it_auto_play'] = itAutoPlay;
     data['interactive_grammar'] = interactiveGrammar;
     data['immersion_mode'] = immersionMode;
     data['definitions'] = definitions;
@@ -271,8 +263,6 @@ class PangeaRoomRules {
     switch (setting) {
       case ToolSetting.interactiveTranslator:
         return interactiveTranslator;
-      case ToolSetting.itAutoPlay:
-        return itAutoPlay;
       case ToolSetting.interactiveGrammar:
         return interactiveGrammar;
       case ToolSetting.immersionMode:
@@ -287,9 +277,9 @@ class PangeaRoomRules {
   }
 
   String languageToolPermissionsText(
-    BuildContext context,
-    ToolSetting setting,
-  ) {
+      BuildContext context,
+      ToolSetting setting,
+      ) {
     switch (getToolSettings(setting)) {
       case 0:
         return L10n.of(context)!.interactiveTranslatorNotAllowed;
@@ -305,7 +295,6 @@ class PangeaRoomRules {
 
 enum ToolSetting {
   interactiveTranslator,
-  itAutoPlay,
   interactiveGrammar,
   immersionMode,
   definitions,
@@ -317,8 +306,6 @@ extension SettingCopy on ToolSetting {
     switch (this) {
       case ToolSetting.interactiveTranslator:
         return L10n.of(context)!.interactiveTranslatorSliderHeader;
-      case ToolSetting.itAutoPlay:
-        return L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader;
       case ToolSetting.interactiveGrammar:
         return L10n.of(context)!.interactiveGrammarSliderHeader;
       case ToolSetting.immersionMode:
@@ -337,8 +324,6 @@ extension SettingCopy on ToolSetting {
         return L10n.of(context)!.itToggleDescription;
       case ToolSetting.interactiveGrammar:
         return L10n.of(context)!.igcToggleDescription;
-      case ToolSetting.itAutoPlay:
-        return L10n.of(context)!.interactiveTranslatorAutoPlayDesc;
       case ToolSetting.immersionMode:
         return L10n.of(context)!.toggleImmersionModeDesc;
       case ToolSetting.definitions:

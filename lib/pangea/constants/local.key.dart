@@ -11,4 +11,5 @@ class PLocalKey {
   static const String dismissedPaywall = 'dismissedPaywall';
   static const String paywallBackoff = 'paywallBackoff';
   static const String autoPlayMessages = 'autoPlayMessages';
+  static const String itAutoPlay = 'itAutoPlay';
 }

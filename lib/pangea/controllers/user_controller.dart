@@ -123,10 +123,10 @@ class UserController extends BaseController {
         : null;
 
     final bool? autoPlay = migratedProfileInfo(MatrixProfile.autoPlayMessages);
+    final bool? itAutoPlay = migratedProfileInfo(MatrixProfile.itAutoPlay);
     final bool? trial = migratedProfileInfo(MatrixProfile.activatedFreeTrial);
     final bool? interactiveTranslator =
         migratedProfileInfo(MatrixProfile.interactiveTranslator);
-    final bool? itAutoPlay = migratedProfileInfo(MatrixProfile.itAutoPlay);
     final bool? interactiveGrammar =
         migratedProfileInfo(MatrixProfile.interactiveGrammar);
     final bool? immersionMode =
@@ -143,9 +143,9 @@ class UserController extends BaseController {
     await updateMatrixProfile(
       dateOfBirth: dob,
       autoPlayMessages: autoPlay,
+      itAutoPlay: itAutoPlay,
       activatedFreeTrial: trial,
       interactiveTranslator: interactiveTranslator,
-      itAutoPlay: itAutoPlay,
       interactiveGrammar: interactiveGrammar,
       immersionMode: immersionMode,
       definitions: definitions,
@@ -225,9 +225,9 @@ class UserController extends BaseController {
   Future<void> updateMatrixProfile({
     String? dateOfBirth,
     bool? autoPlayMessages,
+    bool? itAutoPlay,
     bool? activatedFreeTrial,
     bool? interactiveTranslator,
-    bool? itAutoPlay,
     bool? interactiveGrammar,
     bool? immersionMode,
     bool? definitions,
@@ -253,6 +253,12 @@ class UserController extends BaseController {
         autoPlayMessages,
       );
     }
+    if (itAutoPlay != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.itAutoPlay.title,
+        itAutoPlay,
+      );
+    }
     if (activatedFreeTrial != null) {
       await _pangeaController.pStoreService.save(
         MatrixProfile.activatedFreeTrial.title,
@@ -263,12 +269,6 @@ class UserController extends BaseController {
       await _pangeaController.pStoreService.save(
         MatrixProfile.interactiveTranslator.title,
         interactiveTranslator,
-      );
-    }
-    if (itAutoPlay != null) {
-      await _pangeaController.pStoreService.save(
-        MatrixProfile.itAutoPlay.title,
-        itAutoPlay,
       );
     }
     if (interactiveGrammar != null) {
