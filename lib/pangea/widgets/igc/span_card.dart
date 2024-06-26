@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
@@ -15,7 +16,6 @@ import '../../../widgets/matrix.dart';
 import '../../choreographer/widgets/choice_array.dart';
 import '../../controllers/pangea_controller.dart';
 import '../../enum/span_choice_type.dart';
-import '../../models/class_model.dart';
 import '../../models/span_card_model.dart';
 import '../common/bot_face_svg.dart';
 import 'card_header.dart';
@@ -472,7 +472,7 @@ class DontShowSwitchListTileState extends State<DontShowSwitchListTile> {
       value: switchValue,
       onChanged: (value) => {
         widget.controller.pStoreService.save(
-          ToolSetting.itAutoPlay.toString(),
+          PLocalKey.itAutoPlay.toString(),
           value,
         ),
         setState(() => switchValue = value),
