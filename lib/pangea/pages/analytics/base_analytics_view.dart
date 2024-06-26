@@ -128,8 +128,7 @@ class BaseAnalyticsView extends StatelessWidget {
                           value: controller.pangeaController.analytics
                               .currentAnalyticsSpaceLang,
                           onChange: (lang) => controller.toggleSpaceLang(lang),
-                          languages: controller
-                              .pangeaController.pLanguageStore.targetOptions,
+                          languages: controller.widget.targetLanguages,
                         ),
                     ],
                   ),
