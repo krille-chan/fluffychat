@@ -2,26 +2,24 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_content.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity.dart';
 import 'package:flutter/material.dart';
 
-class MultipleChoiceActivity extends StatelessWidget {
-  final MessagePracticeActivityContentState card;
+class MultipleChoiceActivityView extends StatelessWidget {
+  final PracticeActivityContentState controller;
   final Function(int) updateChoice;
   final bool isActive;
 
-  const MultipleChoiceActivity({
+  const MultipleChoiceActivityView({
     super.key,
-    required this.card,
+    required this.controller,
     required this.updateChoice,
     required this.isActive,
   });
 
-  PracticeActivityEvent get practiceEvent => card.practiceEvent;
+  PracticeActivityEvent get practiceEvent => controller.practiceEvent;
 
-  int? get selectedChoiceIndex => card.selectedChoiceIndex;
-
-  bool get submitted => card.recordSubmittedThisSession;
+  int? get selectedChoiceIndex => controller.selectedChoiceIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +48,7 @@ class MultipleChoiceActivity extends StatelessWidget {
                 .mapIndexed(
                   (index, value) => Choice(
                     text: value,
-                    color: (selectedChoiceIndex == index ||
-                                practiceActivity.multipleChoice!
-                                    .isCorrect(index)) &&
-                            submitted
+                    color: selectedChoiceIndex == index
                         ? practiceActivity.multipleChoice!.choiceColor(index)
                         : null,
                     isGold: practiceActivity.multipleChoice!.isCorrect(index),

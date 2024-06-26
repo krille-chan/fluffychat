@@ -569,15 +569,7 @@ class PangeaMessageEvent {
     if (l2Code == null) return false;
     final List<PracticeActivityEvent> activities = practiceActivities(l2Code!);
     if (activities.isEmpty) return false;
-
-    // for now, only show the button if the event has no completed activities
-    // TODO - revert this after adding logic to show next activity
-    for (final activity in activities) {
-      if (activity.isComplete) return false;
-    }
-    return true;
-    // if (activities.isEmpty) return false;
-    // return !activities.every((activity) => activity.isComplete);
+    return activities.any((activity) => !(activity.isComplete));
   }
 
   String? get l2Code =>
