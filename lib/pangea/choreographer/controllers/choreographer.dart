@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/choreographer/controllers/message_options.dart
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
+import 'package:fluffychat/pangea/enum/assistance_state_enum.dart';
 import 'package:fluffychat/pangea/enum/edit_type.dart';
 import 'package:fluffychat/pangea/models/it_step.dart';
 import 'package:fluffychat/pangea/models/language_detection_model.dart';
@@ -569,14 +570,4 @@ class Choreographer {
 
     return AssistanceState.complete;
   }
-}
-
-// assistance state is, user has not typed a message, user has typed a message and IGC has not run,
-// IGC is running, IGC has run and there are remaining steps (either IT or IGC), or all steps are done
-enum AssistanceState {
-  noMessage,
-  notFetched,
-  fetching,
-  fetched,
-  complete,
 }
