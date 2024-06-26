@@ -232,7 +232,9 @@ class ChatListItem extends StatelessWidget {
                             softWrap: false,
                           )
                         : FutureBuilder(
-                            key: ValueKey(lastEvent?.eventId),
+                            key: ValueKey(
+                              '${lastEvent?.eventId}_${lastEvent?.type}',
+                            ),
                             future: needLastEventSender
                                 ? lastEvent.calcLocalizedBody(
                                     MatrixLocals(L10n.of(context)!),
