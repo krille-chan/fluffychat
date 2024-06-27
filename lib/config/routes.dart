@@ -2,14 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
 import 'package:go_router/go_router.dart';
-
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge.dart';
-import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/archive/archive.dart';
 import 'package:tawkie/pages/auth/auth.dart';
+import 'package:tawkie/pages/beta/beta.dart';
 import 'package:tawkie/pages/chat/chat.dart';
 import 'package:tawkie/pages/chat_access_settings/chat_access_settings_controller.dart';
 import 'package:tawkie/pages/chat_details/chat_details.dart';
@@ -49,7 +47,8 @@ abstract class AppRoutes {
     final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
     final sessionToken = await _secureStorage.read(key: 'sessionToken');
 
-    final bool isLoggedKratos = sessionToken is String && sessionToken.isNotEmpty;
+    final bool isLoggedKratos =
+        sessionToken is String && sessionToken.isNotEmpty;
     final bool isLoggedMatrix = Matrix.of(context).client.isLogged();
     final bool preAuth = state.fullPath!.startsWith('/home');
 
@@ -305,6 +304,15 @@ abstract class AppRoutes {
                           redirect: loggedOutRedirect,
                         ),
                       ],
+                    ),
+                    GoRoute(
+                      path: 'joinBeta',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        const BetaJoinPage(),
+                      ),
+                      redirect: loggedOutRedirect,
                     ),
                     // Route to social networking page via chat bot
                     // The entire path is: /rooms/settings/addbridgebot
