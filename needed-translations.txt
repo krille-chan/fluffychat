@@ -866,7 +866,10 @@
     "buildTranslation",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "be": [
@@ -2369,7 +2372,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "bn": [
@@ -3868,7 +3874,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "bo": [
@@ -5371,7 +5380,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "ca": [
@@ -6276,7 +6288,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "cs": [
@@ -7263,7 +7278,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "de": [
@@ -8133,7 +8151,10 @@
     "buildTranslation",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "el": [
@@ -9587,7 +9608,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "eo": [
@@ -10739,7 +10763,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "es": [
@@ -10786,7 +10813,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "et": [
@@ -11656,7 +11686,10 @@
     "buildTranslation",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "eu": [
@@ -12528,7 +12561,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "fa": [
@@ -13537,7 +13573,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "fi": [
@@ -14510,7 +14549,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "fil": [
@@ -15839,7 +15881,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "fr": [
@@ -16847,7 +16892,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "ga": [
@@ -17984,7 +18032,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "gl": [
@@ -18854,7 +18905,10 @@
     "buildTranslation",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "he": [
@@ -20110,7 +20164,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "hi": [
@@ -21606,7 +21663,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "hr": [
@@ -22555,7 +22615,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "hu": [
@@ -23441,7 +23504,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "ia": [
@@ -24930,7 +24996,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "id": [
@@ -25806,7 +25875,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "ie": [
@@ -27066,7 +27138,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "it": [
@@ -27993,7 +28068,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "ja": [
@@ -29031,7 +29109,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "ka": [
@@ -30388,7 +30469,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "ko": [
@@ -31260,7 +31344,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "lt": [
@@ -32298,7 +32385,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "lv": [
@@ -33176,7 +33266,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "nb": [
@@ -34378,7 +34471,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "nl": [
@@ -35344,7 +35440,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "pl": [
@@ -36319,7 +36418,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "pt": [
@@ -37800,7 +37902,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "pt_BR": [
@@ -38676,7 +38781,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "pt_PT": [
@@ -39879,7 +39987,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "ro": [
@@ -40889,7 +41000,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "ru": [
@@ -41765,7 +41879,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "sk": [
@@ -43034,7 +43151,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "sl": [
@@ -44433,7 +44553,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "sr": [
@@ -45606,7 +45729,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "sv": [
@@ -46513,7 +46639,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "ta": [
@@ -48013,7 +48142,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "th": [
@@ -49467,7 +49599,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "tr": [
@@ -50337,7 +50472,10 @@
     "buildTranslation",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "uk": [
@@ -51244,7 +51382,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "vi": [
@@ -52599,7 +52740,10 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "zh": [
@@ -53469,7 +53613,10 @@
     "buildTranslation",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ],
 
   "zh_Hant": [
@@ -54620,6 +54767,9 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace"
+    "roomAddedToSpace",
+    "versionNotFound",
+    "fetchingVersion",
+    "versionFetchError"
   ]
 }

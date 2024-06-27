@@ -4675,5 +4675,9 @@
   "tooltipInstructionsTitle": "¿No sabes para qué sirve?",
   "tooltipInstructionsMobileBody": "Mantenga pulsados los elementos para ver la información sobre herramientas.",
   "tooltipInstructionsBrowserBody": "Pase el ratón sobre los elementos para ver información sobre herramientas.",
-  "buildTranslation": "Construye tu traducción a partir de las opciones anteriores"
+  "buildTranslation": "Construye tu traducción a partir de las opciones anteriores",
+  "versionNotFound": "Versión no encontrada",
+  "fetchingVersion": "Obteniendo versión...",
+  "versionFetchError": "Error al obtener la versión",
+  "connectedToStaging": "Conectado al entorno de pruebas"
 }

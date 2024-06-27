@@ -254,7 +254,6 @@ class SettingsView extends StatelessWidget {
             //   onTap: () => PlatformInfos.showDialog(context),
             //   trailing: const Icon(Icons.chevron_right_outlined),
             // ),
-            
           ListTile(
             leading: const Icon(Icons.shield_outlined),
             title: Text(L10n.of(context)!.termsAndConditions),
@@ -268,27 +267,27 @@ class SettingsView extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.done) {
                 return ListTile(
                   leading: Icon(Icons.info_outline),
-                  title: Text(snapshot.data ?? 'Version Not Found'),
+                  title: Text(snapshot.data ?? L10n.of(context)!.versionNotFound),
                 );
               } else if (snapshot.hasError) {
                 return ListTile(
                   leading: Icon(Icons.error_outline),
-                  title: Text('Failed to fetch version'),
+                  title: Text(L10n.of(context)!.versionFetchError),
                 );
               } else {
                 return ListTile(
                   leading: CircularProgressIndicator(),
-                  title: Text('Fetching version...'),
+                  title: Text(L10n.of(context)!.fetchingVersion),
                 );
               }
             },
           ),
           // Conditional ListTile based on the environment (staging or not)
           if (Environment.isStaging)
-            ListTile(
-              leading: const Icon(Icons.bug_report_outlined),
-              title: Text(L10n.of(context)!.connectedToStaging),
-            ),
+          ListTile(
+            leading: const Icon(Icons.bug_report_outlined),
+            title: Text(L10n.of(context)!.connectedToStaging),
+          ),
             // Pangea#
           ],
         ),

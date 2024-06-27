@@ -4068,5 +4068,10 @@
   "@knockRestricted": {},
   "nonexistentSelection": "Selection no longer exists.",
   "cantAddSpaceChild": "You do not have permission to add a child to this space.",
-  "roomAddedToSpace": "Room(s) have been added to the selected space."
+  "roomAddedToSpace": "Room(s) have been added to the selected space.",
+  "versionNotFound": "Version Not Found",
+  "fetchingVersion": "Fetching version...",
+  "versionFetchError": "Error fetching version",
+  "connectedToStaging": "Connected to Staging"
+
 }
