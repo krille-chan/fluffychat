@@ -62,6 +62,7 @@ class AnalyticsController extends BaseController {
       timeSpan.toString(),
       local: true,
     );
+    setState();
   }
 
   ///////// SPACE ANALYTICS LANGUAGES //////////
@@ -89,6 +90,7 @@ class AnalyticsController extends BaseController {
       lang.langCode,
       local: true,
     );
+    setState();
   }
 
   Future<DateTime?> myAnalyticsLastUpdated(String type) async {

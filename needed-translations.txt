@@ -863,7 +863,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "be": [
@@ -2363,7 +2364,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "bn": [
@@ -3859,7 +3861,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "bo": [
@@ -5359,7 +5362,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "ca": [
@@ -6261,7 +6265,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "cs": [
@@ -7245,7 +7250,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "de": [
@@ -8112,7 +8118,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "el": [
@@ -9563,7 +9570,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "eo": [
@@ -10712,7 +10720,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "es": [
@@ -10727,7 +10736,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "et": [
@@ -11594,7 +11604,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "eu": [
@@ -12463,7 +12474,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "fa": [
@@ -13469,7 +13481,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "fi": [
@@ -14439,7 +14452,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "fil": [
@@ -15765,7 +15779,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "fr": [
@@ -16770,7 +16785,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "ga": [
@@ -17904,7 +17920,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "gl": [
@@ -18771,7 +18788,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "he": [
@@ -20024,7 +20042,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "hi": [
@@ -21517,7 +21536,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "hr": [
@@ -22463,7 +22483,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "hu": [
@@ -23346,7 +23367,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "ia": [
@@ -24832,7 +24854,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "id": [
@@ -25705,7 +25728,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "ie": [
@@ -26962,7 +26986,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "it": [
@@ -27886,7 +27911,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "ja": [
@@ -28921,7 +28947,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "ka": [
@@ -30275,7 +30302,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "ko": [
@@ -31144,7 +31172,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "lt": [
@@ -32179,7 +32208,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "lv": [
@@ -33054,7 +33084,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "nb": [
@@ -34253,7 +34284,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "nl": [
@@ -35216,7 +35248,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "pl": [
@@ -36188,7 +36221,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "pt": [
@@ -37666,7 +37700,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "pt_BR": [
@@ -38539,7 +38574,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "pt_PT": [
@@ -39739,7 +39775,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "ro": [
@@ -40746,7 +40783,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "ru": [
@@ -41619,7 +41657,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "sk": [
@@ -42885,7 +42924,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "sl": [
@@ -44281,7 +44321,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "sr": [
@@ -45451,7 +45492,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "sv": [
@@ -46355,7 +46397,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "ta": [
@@ -47852,7 +47895,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "th": [
@@ -49303,7 +49347,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "tr": [
@@ -50170,7 +50215,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "uk": [
@@ -51074,7 +51120,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "vi": [
@@ -52426,7 +52473,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "zh": [
@@ -53293,7 +53341,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "zh_Hant": [
@@ -54441,6 +54490,7 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ]
 }

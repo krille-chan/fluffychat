@@ -22,6 +22,7 @@ class AnalyticsSpaceList extends StatefulWidget {
 class AnalyticsSpaceListController extends State<AnalyticsSpaceList> {
   PangeaController pangeaController = MatrixState.pangeaController;
   List<Room> spaces = [];
+  StreamSubscription? stateSub;
 
   @override
   void initState() {
@@ -38,6 +39,17 @@ class AnalyticsSpaceListController extends State<AnalyticsSpaceList> {
       spaces = spaceList;
       setState(() {});
     });
+
+    // reload dropdowns when their values change in analytics page
+    stateSub = pangeaController.analytics.stateStream.listen(
+      (_) => setState(() {}),
+    );
+  }
+
+  @override
+  void dispose() {
+    stateSub?.cancel();
+    super.dispose();
   }
 
   StreamController refreshStream = StreamController.broadcast();
