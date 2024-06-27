@@ -25,9 +25,12 @@ class OverlayUtil {
     Color? backgroundColor,
     Alignment? targetAnchor,
     Alignment? followerAnchor,
+    bool closePrevOverlay = true,
   }) {
     try {
-      MatrixState.pAnyState.closeOverlay();
+      if (closePrevOverlay) {
+        MatrixState.pAnyState.closeOverlay();
+      }
       final LayerLinkAndKey layerLinkAndKey =
           MatrixState.pAnyState.layerLinkAndKey(transformTargetId);
 
@@ -58,7 +61,8 @@ class OverlayUtil {
         ),
       );
 
-      MatrixState.pAnyState.openOverlay(entry, context);
+      MatrixState.pAnyState
+          .openOverlay(entry, context, closePrevOverlay: closePrevOverlay);
     } catch (err, stack) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: err, s: stack);
@@ -72,6 +76,7 @@ class OverlayUtil {
     required String transformTargetId,
     backDropToDismiss = true,
     Color? borderColor,
+    bool closePrevOverlay = true,
   }) {
     try {
       final LayerLinkAndKey layerLinkAndKey =
@@ -105,6 +110,7 @@ class OverlayUtil {
         offset: cardOffset,
         backDropToDismiss: backDropToDismiss,
         borderColor: borderColor,
+        closePrevOverlay: closePrevOverlay,
       );
     } catch (err, stack) {
       debugger(when: kDebugMode);
@@ -180,7 +186,7 @@ class OverlayUtil {
     return Offset(dx, dy);
   }
 
-  static bool get isOverlayOpen => MatrixState.pAnyState.overlay != null;
+  static bool get isOverlayOpen => MatrixState.pAnyState.entries.isNotEmpty;
 }
 
 class TransparentBackdrop extends StatelessWidget {

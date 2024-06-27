@@ -11,10 +11,8 @@ import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_nam
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/utils/lock_room.dart';
-import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
-import 'package:fluffychat/pangea/widgets/space/class_settings.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -105,7 +103,7 @@ class ChatDetailsView extends StatelessWidget {
           ),
           body: MaxWidthBody(
             // #Pangea
-            // chat description title has its own scrollbar so we disable the parent one
+            // Chat description title has its own scrollbar so we disable the parent one
             // otherwise they scroll with each other
             child: ScrollConfiguration(
               behavior:
@@ -265,11 +263,10 @@ class ChatDetailsView extends StatelessWidget {
                             controller: controller,
                           ),
                           // Pangea#
-                          if ((room.isPangeaClass || room.isExchange) &&
-                              room.isRoomAdmin)
+                          if (room.isSpace && room.isRoomAdmin)
                             ListTile(
                               title: Text(
-                                L10n.of(context)!.classAnalytics,
+                                L10n.of(context)!.spaceAnalytics,
                                 style: TextStyle(
                                   color:
                                       Theme.of(context).colorScheme.secondary,
@@ -288,11 +285,12 @@ class ChatDetailsView extends StatelessWidget {
                                 '/rooms/analytics/${room.id}',
                               ),
                             ),
-                          if (room.classSettings != null && room.isRoomAdmin)
-                            ClassSettings(
-                              roomId: controller.roomId,
-                              startOpen: false,
-                            ),
+                          // commenting out language settings in spaces for now
+                          // if (room.languageSettings != null && room.isRoomAdmin)
+                          //   LanguageSettings(
+                          //     roomId: controller.roomId,
+                          //     startOpen: false,
+                          //   ),
                           if (room.pangeaRoomRules != null)
                             RoomRulesEditor(
                               roomId: controller.roomId,
@@ -474,16 +472,11 @@ class ChatDetailsView extends StatelessWidget {
                               room: room,
                             ),
                           const Divider(height: 1),
-                          if (!room.isPangeaClass &&
-                              !room.isDirectChat &&
-                              room.isRoomAdmin)
+                          if (!room.isDirectChat && room.isRoomAdmin)
                             AddToSpaceToggles(
                               roomId: room.id,
                               key: controller.addToSpaceKey,
                               startOpen: false,
-                              mode: room.isExchange
-                                  ? AddToClassMode.exchange
-                                  : AddToClassMode.chat,
                             ),
                           const Divider(height: 1),
                           if (!room.isDirectChat)

@@ -1,5 +1,5 @@
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 
 class LocalSettings {
   late PangeaController _pangeaController;

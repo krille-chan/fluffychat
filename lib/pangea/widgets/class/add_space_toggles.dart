@@ -10,21 +10,20 @@ import 'package:matrix/matrix.dart';
 
 import '../../../widgets/matrix.dart';
 import '../../utils/firebase_analytics.dart';
-import 'add_class_and_invite.dart';
 
 //PTODO - auto invite students when you add a space and delete the add_class_and_invite.dart file
 class AddToSpaceToggles extends StatefulWidget {
   final String? roomId;
   final bool startOpen;
   final String? activeSpaceId;
-  final AddToClassMode mode;
+  final bool spaceMode;
 
   const AddToSpaceToggles({
     super.key,
     this.roomId,
     this.startOpen = false,
     this.activeSpaceId,
-    required this.mode,
+    this.spaceMode = false,
   });
 
   @override
@@ -42,6 +41,19 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
   @override
   void initState() {
+    initialize();
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(AddToSpaceToggles oldWidget) {
+    if (oldWidget.roomId != widget.roomId) {
+      initialize();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void initialize() {
     //if roomId is null, it means this widget is being used in the creation flow
     room = widget.roomId != null
         ? Matrix.of(context).client.getRoomById(widget.roomId!)
@@ -54,10 +66,7 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
         .client
         .rooms
         .where(
-          widget.mode == AddToClassMode.exchange
-              ? (Room r) => r.isPangeaClass && widget.roomId != r.id
-              : (Room r) =>
-                  (r.isPangeaClass || r.isExchange) && widget.roomId != r.id,
+          (Room r) => r.isSpace && widget.roomId != r.id,
         )
         .toList();
 
@@ -96,7 +105,6 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     });
 
     isOpen = widget.startOpen;
-    super.initState();
   }
 
   Future<void> _addSingleSpace(String roomToAddId, Room newParent) async {
@@ -144,13 +152,10 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
   Widget getAddToSpaceToggleItem(int index) {
     final Room possibleParent = possibleParents[index];
-    final bool canAdd = (room?.isSpace ?? false)
-        // Room is space
-        ? possibleParent.isRoomAdmin &&
-            room!.isRoomAdmin &&
-            possibleParent.canAddAsParentOf(room)
-        // Room is null or chat
-        : possibleParent.canAddAsParentOf(room);
+    final bool canAdd = possibleParent.canAddAsParentOf(
+      room,
+      spaceMode: widget.spaceMode,
+    );
 
     return Opacity(
       opacity: canAdd ? 1 : 0.5,
@@ -189,24 +194,21 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
   @override
   Widget build(BuildContext context) {
-    final String title = widget.mode == AddToClassMode.exchange
-        ? L10n.of(context)!.addToClass
-        : L10n.of(context)!.addToClassOrExchange;
-    final String subtitle = widget.mode == AddToClassMode.exchange
-        ? L10n.of(context)!.addToClassDesc
-        : L10n.of(context)!.addToClassOrExchangeDesc;
-
     return Column(
       children: [
         ListTile(
           title: Text(
-            title,
+            L10n.of(context)!.addToSpace,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
             ),
           ),
-          subtitle: Text(subtitle),
+          subtitle: Text(
+            widget.spaceMode || (room?.isSpace ?? false)
+                ? L10n.of(context)!.addSpaceToSpaceDesc
+                : L10n.of(context)!.addChatToSpaceDesc,
+          ),
           leading: CircleAvatar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
@@ -227,13 +229,21 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
               ? Column(
                   children: [
                     SwitchListTile.adaptive(
-                      title: Text(L10n.of(context)!.suggestToChat),
+                      title: Text(
+                        widget.spaceMode || (room?.isSpace ?? false)
+                            ? L10n.of(context)!.suggestToSpace
+                            : L10n.of(context)!.suggestToChat,
+                      ),
                       secondary: Icon(
                         isSuggested
                             ? Icons.visibility_outlined
                             : Icons.visibility_off_outlined,
                       ),
-                      subtitle: Text(L10n.of(context)!.suggestToChatDesc),
+                      subtitle: Text(
+                        widget.spaceMode || (room?.isSpace ?? false)
+                            ? L10n.of(context)!.suggestToSpaceDesc
+                            : L10n.of(context)!.suggestToChatDesc,
+                      ),
                       activeColor: AppConfig.activeToggleColor,
                       value: isSuggested,
                       onChanged: (bool add) => setSuggested(add),

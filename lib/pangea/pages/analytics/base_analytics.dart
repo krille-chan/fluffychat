@@ -4,6 +4,7 @@ import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
+import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_view.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,9 @@ class BaseAnalyticsPage extends StatefulWidget {
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? alwaysSelected;
   final StudentAnalyticsController? myAnalyticsController;
+  final List<LanguageModel> targetLanguages;
 
-  const BaseAnalyticsPage({
+  BaseAnalyticsPage({
     super.key,
     required this.pageTitle,
     required this.tabs,
@@ -33,7 +35,10 @@ class BaseAnalyticsPage extends StatefulWidget {
     required this.defaultSelected,
     this.selectedView,
     this.myAnalyticsController,
-  });
+    targetLanguages,
+  }) : targetLanguages = (targetLanguages?.isNotEmpty ?? false)
+            ? targetLanguages
+            : MatrixState.pangeaController.pLanguageStore.targetOptions;
 
   @override
   State<BaseAnalyticsPage> createState() => BaseAnalyticsController();
@@ -153,6 +158,12 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
 
   Future<void> toggleTimeSpan(BuildContext context, TimeSpan timeSpan) async {
     await pangeaController.analytics.setCurrentAnalyticsTimeSpan(timeSpan);
+    await setChartData();
+    refreshStream.add(false);
+  }
+
+  Future<void> toggleSpaceLang(LanguageModel lang) async {
+    await pangeaController.analytics.setCurrentAnalyticsSpaceLang(lang);
     await setChartData();
     refreshStream.add(false);
   }

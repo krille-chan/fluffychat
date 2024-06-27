@@ -1,7 +1,6 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
-import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -100,7 +99,6 @@ class NewGroupView extends StatelessWidget {
               key: controller.addToSpaceKey,
               startOpen: true,
               activeSpaceId: controller.activeSpaceId,
-              mode: AddToClassMode.chat,
             ),
             // const SizedBox(height: 16),
             // SwitchListTile.adaptive(

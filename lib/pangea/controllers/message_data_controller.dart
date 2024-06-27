@@ -176,14 +176,20 @@ class MessageDataController extends BaseController {
     required String target,
     required Room room,
   }) async {
+    if (_pangeaController.languageController.userL2 == null ||
+        _pangeaController.languageController.userL1 == null) {
+      ErrorHandler.logError(
+        e: "userL1 or userL2 is null in _getPangeaRepresentation",
+        s: StackTrace.current,
+      );
+      return null;
+    }
     final req = FullTextTranslationRequestModel(
       text: text,
       tgtLang: target,
       srcLang: source,
-      userL2:
-          _pangeaController.languageController.activeL2Code(roomID: room.id)!,
-      userL1:
-          _pangeaController.languageController.activeL1Code(roomID: room.id)!,
+      userL2: _pangeaController.languageController.userL2!.langCode,
+      userL1: _pangeaController.languageController.userL1!.langCode,
     );
 
     try {

@@ -78,39 +78,30 @@ extension UserPermissionsRoomExtension on Room {
 
   bool get _canDelete => isSpaceAdmin;
 
-  bool _canIAddSpaceChild(Room? room) {
+  bool _canIAddSpaceChild(Room? room, {bool spaceMode = false}) {
     if (!isSpace) {
       ErrorHandler.logError(
-        m: "should not call canIAddSpaceChildren on non-space room",
+        m: "should not call canIAddSpaceChildren on non-space room. Room id: $id",
         data: toJson(),
         s: StackTrace.current,
       );
       return false;
     }
-    if (room != null && !room._isRoomAdmin) {
-      return false;
-    }
-    if (!pangeaCanSendEvent(EventTypes.SpaceChild) && !_isRoomAdmin) {
-      return false;
-    }
-    if (room == null) {
-      return isRoomAdmin || (pangeaRoomRules?.isCreateRooms ?? false);
-    }
-    if (room.isExchange) {
-      return isRoomAdmin;
-    }
-    if (!room.isSpace) {
-      return pangeaRoomRules?.isCreateRooms ?? false;
-    }
-    if (room.isPangeaClass) {
-      ErrorHandler.logError(
-        m: "should not call canIAddSpaceChild with class",
-        data: room.toJson(),
-        s: StackTrace.current,
-      );
-      return false;
-    }
-    return false;
+
+    final isSpaceAdmin = isRoomAdmin;
+    final isChildRoomAdmin = room?.isRoomAdmin ?? true;
+
+    // if user is not admin of child room, return false
+    if (!isChildRoomAdmin) return false;
+
+    // if the child room is a space, or will be a space,
+    // then the user must be an admin of the parent space
+    if (room?.isSpace ?? spaceMode) return isSpaceAdmin;
+
+    // otherwise, the user can add the child room to the parent
+    // if they're the admin of the parent or if the parent creation
+    // of group chats
+    return isSpaceAdmin || (pangeaRoomRules?.isCreateRooms ?? false);
   }
 
   bool get _canIAddSpaceParents =>

@@ -60,7 +60,7 @@ extension ChildrenAndParentsRoomExtension on Room {
   //resolve somehow if multiple rooms have the state?
   //check logic
   Room? _firstParentWithState(String stateType) {
-    if (![PangeaEventTypes.classSettings, PangeaEventTypes.rules]
+    if (![PangeaEventTypes.languageSettings, PangeaEventTypes.rules]
         .contains(stateType)) {
       return null;
     }
@@ -77,13 +77,6 @@ extension ChildrenAndParentsRoomExtension on Room {
     return null;
   }
 
-  /// find any parents and return the rooms
-  List<Room> get _immediateClassParents => pangeaSpaceParents
-      .where(
-        (element) => element.isPangeaClass,
-      )
-      .toList();
-
   List<Room> get _pangeaSpaceParents => client.rooms
       .where(
         (r) => r.isSpace,
@@ -98,16 +91,16 @@ extension ChildrenAndParentsRoomExtension on Room {
   String _nameIncludingParents(BuildContext context) {
     String nameSoFar = getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
     Room currentRoom = this;
-    if (currentRoom.immediateClassParents.isEmpty) {
+    if (currentRoom.pangeaSpaceParents.isEmpty) {
       return nameSoFar;
     }
-    currentRoom = currentRoom.immediateClassParents.first;
+    currentRoom = currentRoom.pangeaSpaceParents.first;
     var nameToAdd =
         currentRoom.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
     nameToAdd =
         nameToAdd.length <= 10 ? nameToAdd : "${nameToAdd.substring(0, 10)}...";
     nameSoFar = '$nameToAdd > $nameSoFar';
-    if (currentRoom.immediateClassParents.isEmpty) {
+    if (currentRoom.pangeaSpaceParents.isEmpty) {
       return nameSoFar;
     }
     return "... > $nameSoFar";
@@ -130,11 +123,19 @@ extension ChildrenAndParentsRoomExtension on Room {
 
   // Checks if has permissions to add child chat
   // Or whether potential child space is ancestor of this
-  bool _canAddAsParentOf(Room? child) {
-    if (child == null || !child.isSpace) {
-      return _canIAddSpaceChild(child);
-    }
-    if (id == child.id) return false;
-    return !child._allSpaceChildRoomIds.contains(id);
+  bool _canAddAsParentOf(Room? child, {bool spaceMode = false}) {
+    // don't add a room to itself
+    if (id == child?.id) return false;
+    spaceMode = child?.isSpace ?? spaceMode;
+
+    // get the bool for adding chats to spaces
+    final bool canAddChild = _canIAddSpaceChild(child, spaceMode: spaceMode);
+    if (!spaceMode) return canAddChild;
+
+    // if adding space to a space, check if the child is an ancestor
+    // to prevent cycles
+    final bool isCycle =
+        child != null ? child._allSpaceChildRoomIds.contains(id) : false;
+    return canAddChild && !isCycle;
   }
 }

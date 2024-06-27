@@ -20,8 +20,8 @@ import 'package:fluffychat/pangea/enum/use_type.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
@@ -317,10 +317,10 @@ class ChatController extends State<ChatPageWithRoom>
     Future.delayed(const Duration(seconds: 1), () async {
       if (!mounted) return;
       debugPrint(
-        "chat.dart l1 ${pangeaController.languageController.activeL1Code(roomID: roomId)}",
+        "chat.dart l1 ${pangeaController.languageController.userL1?.langCode}",
       );
       debugPrint(
-        "chat.dart l2 ${pangeaController.languageController.activeL2Code(roomID: roomId)}",
+        "chat.dart l2 ${pangeaController.languageController.userL2?.langCode}",
       );
       if (mounted) {
         pangeaController.languageController.showDialogOnEmptyLanguage(
@@ -654,8 +654,6 @@ class ChatController extends State<ChatPageWithRoom>
           );
           return;
         }
-        // ensure that analytics room exists / is created for the active langCode
-        await room.ensureAnalyticsRoomExists();
       },
       onError: (err, stack) => ErrorHandler.logError(e: err, s: stack),
     );

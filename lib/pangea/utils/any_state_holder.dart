@@ -4,7 +4,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 class PangeaAnyState {
   final Map<String, LayerLinkAndKey> _layerLinkAndKeys = {};
-  OverlayEntry? overlay;
+  List<OverlayEntry> entries = [];
 
   dispose() {
     closeOverlay();
@@ -32,26 +32,32 @@ class PangeaAnyState {
     _layerLinkAndKeys.remove(transformTargetId);
   }
 
-  void openOverlay(OverlayEntry entry, BuildContext context) {
-    closeOverlay();
-    overlay = entry;
-    Overlay.of(context).insert(overlay!);
+  void openOverlay(
+    OverlayEntry entry,
+    BuildContext context, {
+    bool closePrevOverlay = true,
+  }) {
+    if (closePrevOverlay) {
+      closeOverlay();
+    }
+    entries.add(entry);
+    Overlay.of(context).insert(entry);
   }
 
   void closeOverlay() {
-    if (overlay != null) {
+    if (entries.isNotEmpty) {
       try {
-        overlay?.remove();
+        entries.last.remove();
       } catch (err, s) {
         ErrorHandler.logError(
           e: err,
           s: s,
           data: {
-            "overlay": overlay,
+            "overlay": entries.last,
           },
         );
       }
-      overlay = null;
+      entries.removeLast();
     }
   }
 
