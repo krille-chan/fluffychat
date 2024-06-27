@@ -59,6 +59,7 @@ class StudentAnalyticsView extends StatelessWidget {
               AnalyticsEntryType.student,
               L10n.of(context)!.allChatsAndClasses,
             ),
+            targetLanguages: controller.targetLanguages,
           )
         : const SizedBox();
   }

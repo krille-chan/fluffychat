@@ -163,7 +163,7 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   }
 
   Future<void> toggleSpaceLang(LanguageModel lang) async {
-    await pangeaController.analytics.setCurrentAnalyticsSpaceLang(lang);
+    await pangeaController.analytics.setCurrentAnalyticsLang(lang);
     await setChartData();
     refreshStream.add(false);
   }
