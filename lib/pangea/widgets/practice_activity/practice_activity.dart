@@ -1,6 +1,6 @@
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity_view.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:flutter/material.dart';
 
