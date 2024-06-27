@@ -1,30 +1,46 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:io' show Platform;
 
 class BetaJoinPage extends StatelessWidget {
   // URLs
-  final String testflightAppUrl = 'https://apps.apple.com/us/app/testflight/id899247664';
+  final String testflightAppUrl =
+      'https://apps.apple.com/us/app/testflight/id899247664';
   final String appleBetaUrl = 'https://testflight.apple.com/join/daXe0NfW';
-  final String playStoreUrl = 'https://play.google.com/store/apps/details?id=fr.tawkie.app';
-  final String androidBetaUrl = 'https://play.google.com/apps/testing/fr.tawkie.app';
+  final String playStoreUrl =
+      'https://play.google.com/store/apps/details?id=fr.tawkie.app';
+  final String androidBetaUrl =
+      'https://play.google.com/apps/testing/fr.tawkie.app';
 
   const BetaJoinPage({super.key});
 
   void joinBeta() async {
     if (Platform.isIOS) {
-      if (await canLaunch(appleBetaUrl)) {
-        await launch(appleBetaUrl);
+      final String appStoreUrl =
+          'itms-apps://itunes.apple.com/app/id899247664'; // Direct link to the TestFlight app
+      if (await canLaunchUrl(Uri.parse(appStoreUrl))) {
+        await launchUrl(Uri.parse(appStoreUrl));
+      } else if (await canLaunchUrl(Uri.parse(appleBetaUrl))) {
+        await launchUrl(Uri.parse(appleBetaUrl));
       } else {
         throw 'Could not launch $appleBetaUrl';
       }
     } else if (Platform.isAndroid) {
-      if (await canLaunch(playStoreUrl)) {
-        await launch(playStoreUrl);
+      final String playStoreUrl =
+          'market://details?id=fr.tawkie.app'; // Direct link to the Play Store app
+      if (await canLaunchUrl(Uri.parse(playStoreUrl))) {
+        await launchUrl(Uri.parse(playStoreUrl));
+      } else if (await canLaunchUrl(Uri.parse(androidBetaUrl))) {
+        await launchUrl(Uri.parse(androidBetaUrl));
       } else {
-        throw 'Could not launch $playStoreUrl';
+        throw 'Could not launch $androidBetaUrl';
       }
     }
+  }
+
+  void joinGroup() {
+    print("Rejoindre le groupe Beta");
   }
 
   @override
@@ -45,78 +61,73 @@ class BetaJoinPage extends StatelessWidget {
               'Participer à la Beta permet d\'avoir accès aux mises à jour de l\'application en avance et tester en premier.ère les nouvelles fonctionnalités !\n',
               style: TextStyle(fontSize: 16),
             ),
-            Text(
-              'Sous iOS :',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              '- Installer Apple Testflight',
-              style: TextStyle(fontSize: 16),
-            ),
-            InkWell(
-              child: Text(
-                'Apple Testflight',
-                style: TextStyle(fontSize: 16, color: Colors.blue),
+            if (Platform.isIOS) ...[
+              Text(
+                'Sous iOS :',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              onTap: () async {
-                if (await canLaunch(testflightAppUrl)) {
-                  await launch(testflightAppUrl);
-                } else {
-                  throw 'Could not launch $testflightAppUrl';
-                }
-              },
-            ),
-            Text(
-              '- Rejoindre la Beta',
-              style: TextStyle(fontSize: 16),
-            ),
-            InkWell(
-              child: Text(
-                'Beta iOS',
-                style: TextStyle(fontSize: 16, color: Colors.blue),
+              Text(
+                '- Installer Apple Testflight',
+                style: TextStyle(fontSize: 16),
               ),
-              onTap: () async {
-                if (await canLaunch(appleBetaUrl)) {
-                  await launch(appleBetaUrl);
-                } else {
-                  throw 'Could not launch $appleBetaUrl';
-                }
-              },
-            ),
-            Text(
-              '- Rejoindre le groupe Tawkie de la Beta : #beta:alpha.tawkie.fr\n',
-              style: TextStyle(fontSize: 16),
-            ),
-            Text(
-              'Sous Android :',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              '- Rejoindre la Beta depuis le Play Store ou en ligne',
-              style: TextStyle(fontSize: 16),
-            ),
-            InkWell(
-              child: Text(
-                'Beta Android',
-                style: TextStyle(fontSize: 16, color: Colors.blue),
+              ElevatedButton(
+                onPressed: () => joinBeta(),
+                child: Text('Télécharger Apple Testflight'),
               ),
-              onTap: () async {
-                if (await canLaunch(androidBetaUrl)) {
-                  await launch(androidBetaUrl);
-                } else {
-                  throw 'Could not launch $androidBetaUrl';
-                }
-              },
-            ),
-            Text(
-              '- Rejoindre le groupe Tawkie de la Beta : #beta:alpha.tawkie.fr\n',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 20),
+              Divider(thickness: 1),
+              Text(
+                '- Rejoindre la Beta',
+                style: TextStyle(fontSize: 16),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  if (await canLaunchUrl(Uri.parse(appleBetaUrl))) {
+                    await launchUrl(Uri.parse(appleBetaUrl));
+                  } else {
+                    throw 'Could not launch $appleBetaUrl';
+                  }
+                },
+                child: Text('Télécharger la Beta iOS'),
+              ),
+              Divider(thickness: 1),
+              Text(
+                '- Rejoindre le groupe Tawkie de la Beta : #beta:alpha.tawkie.fr\n',
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
+            if (Platform.isAndroid) ...[
+              Text(
+                'Sous Android :',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '- Rejoindre la Beta depuis le Play Store ou en ligne',
+                style: TextStyle(fontSize: 16),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final String playStoreUrl =
+                      'market://details?id=fr.tawkie.app';
+                  if (await canLaunchUrl(Uri.parse(playStoreUrl))) {
+                    await launchUrl(Uri.parse(playStoreUrl));
+                  } else if (await canLaunchUrl(Uri.parse(androidBetaUrl))) {
+                    await launchUrl(Uri.parse(androidBetaUrl));
+                  } else {
+                    throw 'Could not launch $androidBetaUrl';
+                  }
+                },
+                child: Text('Télécharger la Beta Android'),
+              ),
+              Divider(thickness: 1),
+              Text(
+                '- Rejoindre le groupe Tawkie de la Beta : #beta:alpha.tawkie.fr\n',
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
             ElevatedButton.icon(
-              onPressed: joinBeta,
+              onPressed: joinGroup,
               icon: Icon(Icons.new_releases),
-              label: Text('Rejoindre la Bêta'),
+              label: Text('Rejoindre le groupe Beta'),
             ),
           ],
         ),
