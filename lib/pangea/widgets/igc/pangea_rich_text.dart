@@ -57,13 +57,22 @@ class PangeaRichTextState extends State<PangeaRichText> {
   }
 
   void _setTextSpan(String newTextSpan) {
-    widget.toolbarController?.toolbar?.textSelection.setMessageText(
-      newTextSpan,
-    );
-    if (mounted) {
-      setState(() {
-        textSpan = newTextSpan;
-      });
+    try {
+      widget.toolbarController?.toolbar?.textSelection.setMessageText(
+        newTextSpan,
+      );
+      if (mounted) {
+        setState(() {
+          textSpan = newTextSpan;
+        });
+      }
+    } catch (err, stack) {
+      ErrorHandler.logError(
+        e: PangeaWarningError(
+          err.toString(),
+        ),
+        s: stack,
+      );
     }
   }
 
