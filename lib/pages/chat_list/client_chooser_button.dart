@@ -1,15 +1,14 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 import 'package:tawkie/utils/fluffy_share.dart';
-
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/matrix.dart';
+
 import 'chat_list.dart';
 
 class ClientChooserButton extends StatelessWidget {
@@ -77,6 +76,16 @@ class ClientChooserButton extends StatelessWidget {
             const Icon(Icons.archive_outlined),
             const SizedBox(width: 18),
             Text(L10n.of(context)!.archive),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.joinBeta,
+        child: Row(
+          children: [
+            const Icon(Icons.new_releases),
+            const SizedBox(width: 18),
+            Text("Rejoindre la bêta"),
           ],
         ),
       ),
@@ -288,6 +297,9 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.archive:
           context.go('/rooms/archive');
           break;
+        case SettingsAction.joinBeta:
+          context.go('/rooms/settings/joinBeta');
+          break;
         // Redirect to bot social network connection page
         case SettingsAction.addBridgeBot:
           context.go('/rooms/settings/addbridgebot');
@@ -377,4 +389,5 @@ enum SettingsAction {
   invite,
   settings,
   archive,
+  joinBeta,
 }
