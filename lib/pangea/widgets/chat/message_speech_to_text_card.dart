@@ -35,13 +35,9 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
   STTToken? selectedToken;
 
   String? get l1Code =>
-      MatrixState.pangeaController.languageController.activeL1Code(
-        roomID: widget.messageEvent.room.id,
-      );
+      MatrixState.pangeaController.languageController.activeL1Code();
   String? get l2Code =>
-      MatrixState.pangeaController.languageController.activeL2Code(
-        roomID: widget.messageEvent.room.id,
-      );
+      MatrixState.pangeaController.languageController.activeL2Code();
 
   // look for transcription in message event
   // if not found, call API to transcribe audio

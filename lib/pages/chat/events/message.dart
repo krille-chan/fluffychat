@@ -3,6 +3,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/use_type.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_buttons.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
@@ -524,7 +525,14 @@ class Message extends StatelessWidget {
     Widget container;
     final showReceiptsRow =
         event.hasAggregatedEvents(timeline, RelationshipTypes.reaction);
-    if (showReceiptsRow || displayTime || selected || displayReadMarker) {
+    // #Pangea
+    // if (showReceiptsRow || displayTime || selected || displayReadMarker) {
+    if (showReceiptsRow ||
+        displayTime ||
+        selected ||
+        displayReadMarker ||
+        (pangeaMessageEvent?.showMessageButtons ?? false)) {
+      // Pangea#
       container = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
@@ -561,7 +569,11 @@ class Message extends StatelessWidget {
           AnimatedSize(
             duration: FluffyThemes.animationDuration,
             curve: FluffyThemes.animationCurve,
-            child: !showReceiptsRow
+            // #Pangea
+            child: !showReceiptsRow &&
+                    !(pangeaMessageEvent?.showMessageButtons ?? false)
+                // child: !showReceiptsRow
+                // Pangea#
                 ? const SizedBox.shrink()
                 : Padding(
                     padding: EdgeInsets.only(
@@ -569,7 +581,19 @@ class Message extends StatelessWidget {
                       left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
                       right: ownMessage ? 0 : 12.0,
                     ),
-                    child: MessageReactions(event, timeline),
+                    // #Pangea
+                    child: Row(
+                      mainAxisAlignment: ownMessage
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                      children: [
+                        if (pangeaMessageEvent?.showMessageButtons ?? false)
+                          MessageButtons(toolbarController: toolbarController),
+                        MessageReactions(event, timeline),
+                      ],
+                    ),
+                    // child: MessageReactions(event, timeline),
+                    // Pangea#
                   ),
           ),
           if (displayReadMarker)

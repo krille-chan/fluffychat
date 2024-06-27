@@ -6,15 +6,14 @@ import 'package:fluffychat/pangea/choreographer/controllers/alternative_translat
 import 'package:fluffychat/pangea/choreographer/controllers/igc_controller.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/message_options.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
+import 'package:fluffychat/pangea/enum/assistance_state_enum.dart';
 import 'package:fluffychat/pangea/enum/edit_type.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/it_step.dart';
 import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -443,25 +442,15 @@ class Choreographer {
   }
 
   LanguageModel? get l2Lang {
-    return pangeaController.languageController.activeL2Model(
-      roomID: roomId,
-    );
+    return pangeaController.languageController.activeL2Model();
   }
 
   String? get l2LangCode => l2Lang?.langCode;
 
   LanguageModel? get l1Lang =>
-      pangeaController.languageController.activeL1Model(
-        roomID: roomId,
-      );
-  String? get l1LangCode => l1Lang?.langCode;
+      pangeaController.languageController.activeL1Model();
 
-  String? get classId => roomId != null
-      ? pangeaController.matrixState.client
-          .getRoomById(roomId)
-          ?.firstParentWithState(PangeaEventTypes.classSettings)
-          ?.id
-      : null;
+  String? get l1LangCode => l1Lang?.langCode;
 
   String? get userId => pangeaController.userController.userId;
 
@@ -581,14 +570,4 @@ class Choreographer {
 
     return AssistanceState.complete;
   }
-}
-
-// assistance state is, user has not typed a message, user has typed a message and IGC has not run,
-// IGC is running, IGC has run and there are remaining steps (either IT or IGC), or all steps are done
-enum AssistanceState {
-  noMessage,
-  notFetched,
-  fetching,
-  fetched,
-  complete,
 }

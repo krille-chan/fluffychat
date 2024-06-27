@@ -123,7 +123,7 @@ extension AnalyticsClientExtension on Client {
   // Allows teachers to join analytics rooms without being invited
   Future<void> _joinAnalyticsRoomsInAllSpaces() async {
     final List<Future> joinFutures = [];
-    for (final Room space in (await _classesAndExchangesImTeaching)) {
+    for (final Room space in (await _spacesImTeaching)) {
       joinFutures.add(space.joinAnalyticsRoomsInSpace());
     }
     await Future.wait(joinFutures);
@@ -153,5 +153,18 @@ extension AnalyticsClientExtension on Client {
     await _inviteAllTeachersToAllAnalyticsRooms();
     await _joinInvitedAnalyticsRooms();
     await _joinAnalyticsRoomsInAllSpaces();
+  }
+
+  Future<Map<String, DateTime?>> _allAnalyticsRoomsLastUpdated() async {
+    // get the last updated time for each analytics room
+    final Map<String, DateTime?> lastUpdatedMap = {};
+    for (final analyticsRoom in allMyAnalyticsRooms) {
+      final DateTime? lastUpdated = await analyticsRoom.analyticsLastUpdated(
+        PangeaEventTypes.summaryAnalytics,
+        userID!,
+      );
+      lastUpdatedMap[analyticsRoom.id] = lastUpdated;
+    }
+    return lastUpdatedMap;
   }
 }

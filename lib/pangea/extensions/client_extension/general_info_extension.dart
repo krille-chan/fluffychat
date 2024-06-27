@@ -3,7 +3,7 @@ part of "client_extension.dart";
 extension GeneralInfoClientExtension on Client {
   Future<List<String>> get _teacherRoomIds async {
     final List<String> adminRoomIds = [];
-    for (final Room adminSpace in (await _classesAndExchangesImTeaching)) {
+    for (final Room adminSpace in (await _spacesImTeaching)) {
       adminRoomIds.add(adminSpace.id);
       final List<String> adminSpaceRooms = adminSpace.allSpaceChildRoomIds;
       adminRoomIds.addAll(adminSpaceRooms);
@@ -13,7 +13,7 @@ extension GeneralInfoClientExtension on Client {
 
   Future<List<User>> get _myTeachers async {
     final List<User> teachers = [];
-    for (final classRoom in classesAndExchangesImIn) {
+    for (final classRoom in spacesImIn) {
       for (final teacher in await classRoom.teachers) {
         // If person requesting list of teachers is a teacher in another classroom, don't add them to the list
         if (!teachers.any((e) => e.id == teacher.id) && userID != teacher.id) {

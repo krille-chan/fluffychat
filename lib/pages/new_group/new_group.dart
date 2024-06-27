@@ -174,7 +174,7 @@ class NewGroupController extends State<NewGroup> {
   void initState() {
     Future.delayed(Duration.zero, () {
       chatTopic.langCode =
-          pangeaController.languageController.activeL2Code(roomID: null) ??
+          pangeaController.languageController.userL2?.langCode ??
               pangeaController.pLanguageStore.targetOptions.first.langCode;
       setState(() {});
     });

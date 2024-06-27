@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -23,7 +25,7 @@ class ChoreoEvent {
       _content ??= event.getPangeaContent<ChoreoRecord>();
       return _content;
     } catch (err, s) {
-      if (kDebugMode) rethrow;
+      debugger(when: kDebugMode);
       ErrorHandler.logError(e: err, s: s);
       return null;
     }

@@ -31,7 +31,7 @@
 
 # Special thanks
 
-* Pangea Chat is a fork of [FluffyChat](https://fluffychat.im), is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of FluffyChat is to create an easy to use instant messenger which is open source and accessible for everyone. You can [support the primary maker of FluffyChat directly here.](https://ko-fi.com/C1C86VN53)
+* Pangea Chat is a fork of [FluffyChat](https://fluffychat.im) which is a [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). You can [support the primary maker of FluffyChat directly here.](https://ko-fi.com/C1C86VN53)
 
 * <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer and has made the fluffychat logo and the banner. Big thanks for her great designs.
 

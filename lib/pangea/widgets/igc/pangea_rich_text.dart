@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
@@ -190,19 +189,6 @@ class PangeaRichTextState extends State<PangeaRichText> {
           )
         : richText;
   }
-
-  bool get areLanguagesSet =>
-      userL2LangCode != null && userL2LangCode != LanguageKeys.unknownLanguage;
-
-  String? get userL2LangCode =>
-      pangeaController.languageController.activeL2Code(
-        roomID: widget.pangeaMessageEvent.room.id,
-      );
-
-  String? get userL1LangCode =>
-      pangeaController.languageController.activeL1Code(
-        roomID: widget.pangeaMessageEvent.room.id,
-      );
 
   Future<void> onIgnore() async {
     debugPrint("PTODO implement onIgnore");

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/time_span.dart';
+import 'package:fluffychat/pangea/pages/analytics/analytics_language_button.dart';
 import 'package:fluffychat/pangea/pages/analytics/analytics_list_tile.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
 import 'package:fluffychat/pangea/pages/analytics/construct_list.dart';
@@ -121,6 +122,14 @@ class BaseAnalyticsView extends StatelessWidget {
                         onChange: (TimeSpan value) =>
                             controller.toggleTimeSpan(context, value),
                       ),
+                      if (controller.widget.defaultSelected.type ==
+                          AnalyticsEntryType.space)
+                        AnalyticsLanguageButton(
+                          value: controller.pangeaController.analytics
+                              .currentAnalyticsSpaceLang,
+                          onChange: (lang) => controller.toggleSpaceLang(lang),
+                          languages: controller.widget.targetLanguages,
+                        ),
                     ],
                   ),
                   Expanded(
