@@ -17,6 +17,7 @@ class ClassDescriptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconColor = Theme.of(context).textTheme.bodyLarge!.color;
+    final ScrollController scrollController = ScrollController();
     return Column(
       children: [
         ListTile(
@@ -31,9 +32,11 @@ class ClassDescriptionButton extends StatelessWidget {
               maxHeight: 190,
             ),
             child: Scrollbar(
+              controller: scrollController,
+              interactive: true,
               child: SingleChildScrollView(
+                controller: scrollController,
                 primary: false,
-                controller: ScrollController(),
                 child: Text(
                   room.topic.isEmpty
                       ? (room.isRoomAdmin
