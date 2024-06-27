@@ -25,8 +25,9 @@ class BaseAnalyticsPage extends StatefulWidget {
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? alwaysSelected;
   final StudentAnalyticsController? myAnalyticsController;
+  final List<LanguageModel> targetLanguages;
 
-  const BaseAnalyticsPage({
+  BaseAnalyticsPage({
     super.key,
     required this.pageTitle,
     required this.tabs,
@@ -34,7 +35,10 @@ class BaseAnalyticsPage extends StatefulWidget {
     required this.defaultSelected,
     this.selectedView,
     this.myAnalyticsController,
-  });
+    targetLanguages,
+  }) : targetLanguages = (targetLanguages?.isNotEmpty ?? false)
+            ? targetLanguages
+            : MatrixState.pangeaController.pLanguageStore.targetOptions;
 
   @override
   State<BaseAnalyticsPage> createState() => BaseAnalyticsController();
