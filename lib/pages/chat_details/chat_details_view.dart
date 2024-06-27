@@ -105,6 +105,8 @@ class ChatDetailsView extends StatelessWidget {
           ),
           body: MaxWidthBody(
             // #Pangea
+            // chat description title has its own scrollbar so we disable the parent one
+            // otherwise they scroll with each other
             child: ScrollConfiguration(
               behavior:
                   ScrollConfiguration.of(context).copyWith(scrollbars: false),
@@ -420,7 +422,8 @@ class ChatDetailsView extends StatelessWidget {
                               // trailing: const Icon(Icons.chevron_right_outlined),
                               // Pangea#
                               onTap: () => context.push(
-                                  '/rooms/${room.id}/details/permissions'),
+                                '/rooms/${room.id}/details/permissions',
+                              ),
                             ),
                           Divider(
                             height: 1,
