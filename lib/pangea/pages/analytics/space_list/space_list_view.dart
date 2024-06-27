@@ -47,8 +47,8 @@ class AnalyticsSpaceListView extends StatelessWidget {
                 ),
               ),
               AnalyticsLanguageButton(
-                value: controller
-                    .pangeaController.analytics.currentAnalyticsSpaceLang,
+                value:
+                    controller.pangeaController.analytics.currentAnalyticsLang,
                 onChange: (lang) => controller.toggleSpaceLang(lang),
                 languages:
                     controller.pangeaController.pLanguageStore.targetOptions,

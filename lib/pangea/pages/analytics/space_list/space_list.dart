@@ -61,7 +61,7 @@ class AnalyticsSpaceListController extends State<AnalyticsSpaceList> {
   }
 
   Future<void> toggleSpaceLang(LanguageModel lang) async {
-    await pangeaController.analytics.setCurrentAnalyticsSpaceLang(lang);
+    await pangeaController.analytics.setCurrentAnalyticsLang(lang);
     refreshStream.add(false);
     setState(() {});
   }

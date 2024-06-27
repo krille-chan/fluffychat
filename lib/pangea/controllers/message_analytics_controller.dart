@@ -68,7 +68,7 @@ class AnalyticsController extends BaseController {
   ///////// SPACE ANALYTICS LANGUAGES //////////
   String get _analyticsSpaceLangKey => "ANALYTICS_SPACE_LANG_KEY";
 
-  LanguageModel get currentAnalyticsSpaceLang {
+  LanguageModel get currentAnalyticsLang {
     try {
       final String? str = _pangeaController.pStoreService.read(
         _analyticsSpaceLangKey,
@@ -84,7 +84,7 @@ class AnalyticsController extends BaseController {
     }
   }
 
-  Future<void> setCurrentAnalyticsSpaceLang(LanguageModel lang) async {
+  Future<void> setCurrentAnalyticsLang(LanguageModel lang) async {
     await _pangeaController.pStoreService.save(
       _analyticsSpaceLangKey,
       lang.langCode,
@@ -93,33 +93,34 @@ class AnalyticsController extends BaseController {
     setState();
   }
 
+  /// given an analytics event type and the current analytics language,
+  /// get the last time the user updated their analytics
   Future<DateTime?> myAnalyticsLastUpdated(String type) async {
-    // given an analytics event type, get the last updated times
-    // for each of the user's analytics rooms and return the most recent
-    // Most Recent instead of the oldest because, for instance:
-    //     My last Spanish event was sent 3 days ago.
-    //     My last English event was sent 1 day ago.
-    //     When I go to check if the cached data is out of date, the cached item was set 2 days ago.
-    //     I know there’s new data available because the English update data (the most recent) is after the cache’s creation time.
-    //     So, I should update the cache.
     final List<Room> analyticsRooms = _pangeaController
         .matrixState.client.allMyAnalyticsRooms
         .where((room) => room.isAnalyticsRoom)
         .toList();
 
-    final List<DateTime> lastUpdates = [];
+    final Map<String, DateTime> langCodeLastUpdates = {};
     for (final Room analyticsRoom in analyticsRooms) {
+      final String? roomLang = analyticsRoom.madeForLang;
+      if (roomLang == null) continue;
       final DateTime? lastUpdated = await analyticsRoom.analyticsLastUpdated(
         type,
         _pangeaController.matrixState.client.userID!,
       );
       if (lastUpdated != null) {
-        lastUpdates.add(lastUpdated);
+        langCodeLastUpdates[roomLang] = lastUpdated;
       }
     }
 
-    if (lastUpdates.isEmpty) return null;
-    return lastUpdates.reduce(
+    if (langCodeLastUpdates.isEmpty) return null;
+    final String? l2Code =
+        _pangeaController.languageController.userL2?.langCode;
+    if (l2Code != null && langCodeLastUpdates.containsKey(l2Code)) {
+      return langCodeLastUpdates[l2Code];
+    }
+    return langCodeLastUpdates.values.reduce(
       (check, mostRecent) => check.isAfter(mostRecent) ? check : mostRecent,
     );
   }
@@ -136,7 +137,7 @@ class AnalyticsController extends BaseController {
     final List<Future<DateTime?>> lastUpdatedFutures = [];
     for (final student in space.students) {
       final Room? analyticsRoom = _pangeaController.matrixState.client
-          .analyticsRoomLocal(currentAnalyticsSpaceLang.langCode, student.id);
+          .analyticsRoomLocal(currentAnalyticsLang.langCode, student.id);
       if (analyticsRoom == null) continue;
       lastUpdatedFutures.add(
         analyticsRoom.analyticsLastUpdated(
@@ -179,28 +180,20 @@ class AnalyticsController extends BaseController {
 
   //////////////////////////// MESSAGE SUMMARY ANALYTICS ////////////////////////////
 
+  /// get all the summary analytics events for the current user
+  /// in the current language's analytics room
   Future<List<SummaryAnalyticsEvent>> mySummaryAnalytics() async {
-    // gets all the summary analytics events for the user
-    // since the current timespace's cut off date
-    final analyticsRooms =
-        _pangeaController.matrixState.client.allMyAnalyticsRooms;
+    final Room? analyticsRoom = _pangeaController.matrixState.client
+        .analyticsRoomLocal(currentAnalyticsLang.langCode);
+    if (analyticsRoom == null) return [];
 
-    final List<SummaryAnalyticsEvent> allEvents = [];
-
-    // TODO switch to using list of futures
-    for (final Room analyticsRoom in analyticsRooms) {
-      final List<AnalyticsEvent>? roomEvents =
-          await analyticsRoom.getAnalyticsEvents(
-        type: PangeaEventTypes.summaryAnalytics,
-        since: currentAnalyticsTimeSpan.cutOffDate,
-        userId: _pangeaController.matrixState.client.userID!,
-      );
-
-      allEvents.addAll(
-        roomEvents?.cast<SummaryAnalyticsEvent>() ?? [],
-      );
-    }
-    return allEvents;
+    final List<AnalyticsEvent>? roomEvents =
+        await analyticsRoom.getAnalyticsEvents(
+      type: PangeaEventTypes.summaryAnalytics,
+      since: currentAnalyticsTimeSpan.cutOffDate,
+      userId: _pangeaController.matrixState.client.userID!,
+    );
+    return roomEvents?.cast<SummaryAnalyticsEvent>() ?? [];
   }
 
   Future<List<SummaryAnalyticsEvent>> spaceMemberAnalytics(
@@ -218,7 +211,7 @@ class AnalyticsController extends BaseController {
     final List<SummaryAnalyticsEvent> analyticsEvents = [];
     for (final student in space.students) {
       final Room? analyticsRoom = _pangeaController.matrixState.client
-          .analyticsRoomLocal(currentAnalyticsSpaceLang.langCode, student.id);
+          .analyticsRoomLocal(currentAnalyticsLang.langCode, student.id);
 
       if (analyticsRoom != null) {
         final List<AnalyticsEvent>? roomEvents =
@@ -263,7 +256,7 @@ class AnalyticsController extends BaseController {
           (e.defaultSelected.type == defaultSelected.type) &&
           (e.selected?.id == selected?.id) &&
           (e.selected?.type == selected?.type) &&
-          (e.langCode == currentAnalyticsSpaceLang.langCode),
+          (e.langCode == currentAnalyticsLang.langCode),
     );
 
     if (index != -1) {
@@ -291,7 +284,7 @@ class AnalyticsController extends BaseController {
         chartAnalyticsModel: chartAnalyticsModel,
         defaultSelected: defaultSelected,
         selected: selected,
-        langCode: currentAnalyticsSpaceLang.langCode,
+        langCode: currentAnalyticsLang.langCode,
       ),
     );
   }
@@ -527,20 +520,18 @@ class AnalyticsController extends BaseController {
   //////////////////////////// CONSTRUCTS ////////////////////////////
 
   Future<List<ConstructAnalyticsEvent>> allMyConstructs() async {
-    final List<Room> analyticsRooms =
-        _pangeaController.matrixState.client.allMyAnalyticsRooms;
+    final Room? analyticsRoom = _pangeaController.matrixState.client
+        .analyticsRoomLocal(currentAnalyticsLang.langCode);
+    if (analyticsRoom == null) return [];
 
-    final List<ConstructAnalyticsEvent> allConstructs = [];
-    for (final Room analyticsRoom in analyticsRooms) {
-      final List<ConstructAnalyticsEvent>? roomEvents =
-          (await analyticsRoom.getAnalyticsEvents(
-        type: PangeaEventTypes.construct,
-        since: currentAnalyticsTimeSpan.cutOffDate,
-        userId: _pangeaController.matrixState.client.userID!,
-      ))
-              ?.cast<ConstructAnalyticsEvent>();
-      allConstructs.addAll(roomEvents ?? []);
-    }
+    final List<ConstructAnalyticsEvent>? roomEvents =
+        (await analyticsRoom.getAnalyticsEvents(
+      type: PangeaEventTypes.construct,
+      since: currentAnalyticsTimeSpan.cutOffDate,
+      userId: _pangeaController.matrixState.client.userID!,
+    ))
+            ?.cast<ConstructAnalyticsEvent>();
+    final List<ConstructAnalyticsEvent> allConstructs = roomEvents ?? [];
 
     final List<String> adminSpaceRooms =
         await _pangeaController.matrixState.client.teacherRoomIds;
@@ -563,7 +554,7 @@ class AnalyticsController extends BaseController {
     final List<ConstructAnalyticsEvent> constructEvents = [];
     for (final student in space.students) {
       final Room? analyticsRoom = _pangeaController.matrixState.client
-          .analyticsRoomLocal(currentAnalyticsSpaceLang.langCode, student.id);
+          .analyticsRoomLocal(currentAnalyticsLang.langCode, student.id);
       if (analyticsRoom != null) {
         final List<ConstructAnalyticsEvent>? roomEvents =
             (await analyticsRoom.getAnalyticsEvents(
@@ -663,7 +654,7 @@ class AnalyticsController extends BaseController {
           e.defaultSelected.type == defaultSelected.type &&
           e.selected?.id == selected?.id &&
           e.selected?.type == selected?.type &&
-          e.langCode == currentAnalyticsSpaceLang.langCode,
+          e.langCode == currentAnalyticsLang.langCode,
     );
 
     if (index > -1) {
@@ -689,7 +680,7 @@ class AnalyticsController extends BaseController {
       events: List.from(events),
       defaultSelected: defaultSelected,
       selected: selected,
-      langCode: currentAnalyticsSpaceLang.langCode,
+      langCode: currentAnalyticsLang.langCode,
     );
     _cachedConstructs.add(entry);
   }
