@@ -104,208 +104,220 @@ class BaseAnalyticsView extends StatelessWidget {
       ),
       body: MaxWidthBody(
         withScrolling: false,
-        child: Column(
-          children: [
-            if (controller.widget.selectedView != null)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: controller.widget.selectedView != null
+            ? Column(
                 children: [
-                  TimeSpanMenuButton(
-                    value: controller.currentTimeSpan,
-                    onChange: (TimeSpan value) =>
-                        controller.toggleTimeSpan(context, value),
-                  ),
-                  AnalyticsLanguageButton(
-                    value: controller
-                        .pangeaController.analytics.currentAnalyticsLang,
-                    onChange: (lang) => controller.toggleSpaceLang(lang),
-                    languages: controller
-                        .pangeaController.pLanguageStore.targetOptions,
-                  ),
-                ],
-              ),
-            if (controller.widget.selectedView != null)
-              Expanded(
-                flex: 1,
-                child: chartView(context),
-              ),
-            if (controller.widget.selectedView != null)
-              Expanded(
-                flex: 1,
-                child: DefaultTabController(
-                  length: 2,
-                  child: Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      TabBar(
-                        tabs: [
-                          ...controller.widget.tabs.map(
-                            (tab) => Tab(
-                              icon: Icon(
-                                tab.icon,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
+                      // if (controller.widget.defaultSelected.type ==
+                      //     AnalyticsEntryType.student)
+                      //   IconButton(
+                      //     icon: const Icon(Icons.refresh),
+                      //     onPressed: controller.onRefresh,
+                      //     tooltip: L10n.of(context)!.refresh,
+                      //   ),
+                      TimeSpanMenuButton(
+                        value: controller.currentTimeSpan,
+                        onChange: (TimeSpan value) =>
+                            controller.toggleTimeSpan(context, value),
+                      ),
+                      AnalyticsLanguageButton(
+                        value: controller
+                            .pangeaController.analytics.currentAnalyticsLang,
+                        onChange: (lang) => controller.toggleSpaceLang(lang),
+                        languages: controller.widget.targetLanguages,
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: chartView(context),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: DefaultTabController(
+                      length: 2,
+                      child: Column(
+                        children: [
+                          TabBar(
+                            tabs: [
+                              ...controller.widget.tabs.map(
+                                (tab) => Tab(
+                                  icon: Icon(
+                                    tab.icon,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Expanded(
+                            child: SingleChildScrollView(
+                              child: SizedBox(
+                                height: max(
+                                      controller.widget.tabs[0].items.length +
+                                          1,
+                                      controller.widget.tabs[1].items.length,
+                                    ) *
+                                    72,
+                                child: TabBarView(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        ...controller.widget.tabs[0].items.map(
+                                          (item) => AnalyticsListTile(
+                                            refreshStream:
+                                                controller.refreshStream,
+                                            avatar: item.avatar,
+                                            defaultSelected: controller
+                                                .widget.defaultSelected,
+                                            selected: AnalyticsSelected(
+                                              item.id,
+                                              controller.widget.tabs[0].type,
+                                              item.displayName,
+                                            ),
+                                            isSelected:
+                                                controller.isSelected(item.id),
+                                            onTap: (_) =>
+                                                controller.toggleSelection(
+                                              AnalyticsSelected(
+                                                item.id,
+                                                controller.widget.tabs[0].type,
+                                                item.displayName,
+                                              ),
+                                            ),
+                                            allowNavigateOnSelect: controller
+                                                .widget
+                                                .tabs[0]
+                                                .allowNavigateOnSelect,
+                                            pangeaController:
+                                                controller.pangeaController,
+                                            controller: controller,
+                                          ),
+                                        ),
+                                        if (controller
+                                                .widget.defaultSelected.type ==
+                                            AnalyticsEntryType.space)
+                                          AnalyticsListTile(
+                                            refreshStream:
+                                                controller.refreshStream,
+                                            defaultSelected: controller
+                                                .widget.defaultSelected,
+                                            avatar: null,
+                                            selected: AnalyticsSelected(
+                                              controller
+                                                  .widget.defaultSelected.id,
+                                              AnalyticsEntryType.privateChats,
+                                              L10n.of(context)!.allPrivateChats,
+                                            ),
+                                            allowNavigateOnSelect: false,
+                                            isSelected: controller.isSelected(
+                                              controller
+                                                  .widget.defaultSelected.id,
+                                            ),
+                                            onTap: controller.toggleSelection,
+                                            pangeaController:
+                                                controller.pangeaController,
+                                            controller: controller,
+                                          ),
+                                      ],
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: controller.widget.tabs[1].items
+                                          .map(
+                                            (item) => AnalyticsListTile(
+                                              refreshStream:
+                                                  controller.refreshStream,
+                                              avatar: item.avatar,
+                                              defaultSelected: controller
+                                                  .widget.defaultSelected,
+                                              selected: AnalyticsSelected(
+                                                item.id,
+                                                controller.widget.tabs[1].type,
+                                                item.displayName,
+                                              ),
+                                              isSelected: controller
+                                                  .isSelected(item.id),
+                                              onTap: controller.toggleSelection,
+                                              allowNavigateOnSelect: controller
+                                                  .widget
+                                                  .tabs[1]
+                                                  .allowNavigateOnSelect,
+                                              pangeaController:
+                                                  controller.pangeaController,
+                                              controller: controller,
+                                            ),
+                                          )
+                                          .toList(),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              maxHeight: max(
-                                    controller.widget.tabs[0].items.length + 1,
-                                    controller.widget.tabs[1].items.length,
-                                  ) *
-                                  73,
-                            ),
-                            child: TabBarView(
-                              physics: const NeverScrollableScrollPhysics(),
-                              children: [
-                                Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    ...controller.widget.tabs[0].items.map(
-                                      (item) => AnalyticsListTile(
-                                        refreshStream: controller.refreshStream,
-                                        avatar: item.avatar,
-                                        defaultSelected:
-                                            controller.widget.defaultSelected,
-                                        selected: AnalyticsSelected(
-                                          item.id,
-                                          controller.widget.tabs[0].type,
-                                          item.displayName,
-                                        ),
-                                        isSelected:
-                                            controller.isSelected(item.id),
-                                        onTap: (_) =>
-                                            controller.toggleSelection(
-                                          AnalyticsSelected(
-                                            item.id,
-                                            controller.widget.tabs[0].type,
-                                            item.displayName,
-                                          ),
-                                        ),
-                                        allowNavigateOnSelect: controller.widget
-                                            .tabs[0].allowNavigateOnSelect,
-                                        pangeaController:
-                                            controller.pangeaController,
-                                        controller: controller,
-                                      ),
-                                    ),
-                                    if (controller
-                                            .widget.defaultSelected.type ==
-                                        AnalyticsEntryType.space)
-                                      AnalyticsListTile(
-                                        refreshStream: controller.refreshStream,
-                                        defaultSelected:
-                                            controller.widget.defaultSelected,
-                                        avatar: null,
-                                        selected: AnalyticsSelected(
-                                          controller.widget.defaultSelected.id,
-                                          AnalyticsEntryType.privateChats,
-                                          L10n.of(context)!.allPrivateChats,
-                                        ),
-                                        allowNavigateOnSelect: false,
-                                        isSelected: controller.isSelected(
-                                          controller.widget.defaultSelected.id,
-                                        ),
-                                        onTap: controller.toggleSelection,
-                                        pangeaController:
-                                            controller.pangeaController,
-                                        controller: controller,
-                                      ),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: controller.widget.tabs[1].items
-                                      .map(
-                                        (item) => AnalyticsListTile(
-                                          refreshStream:
-                                              controller.refreshStream,
-                                          avatar: item.avatar,
-                                          defaultSelected:
-                                              controller.widget.defaultSelected,
-                                          selected: AnalyticsSelected(
-                                            item.id,
-                                            controller.widget.tabs[1].type,
-                                            item.displayName,
-                                          ),
-                                          isSelected:
-                                              controller.isSelected(item.id),
-                                          onTap: controller.toggleSelection,
-                                          allowNavigateOnSelect: controller
-                                              .widget
-                                              .tabs[1]
-                                              .allowNavigateOnSelect,
-                                          pangeaController:
-                                              controller.pangeaController,
-                                          controller: controller,
-                                        ),
-                                      )
-                                      .toList(),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
+              )
+            : Column(
+                children: [
+                  const Divider(height: 1),
+                  ListTile(
+                    title: Text(L10n.of(context)!.grammarAnalytics),
+                    leading: CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).scaffoldBackgroundColor,
+                      foregroundColor:
+                          Theme.of(context).textTheme.bodyLarge!.color,
+                      child: Icon(BarChartViewSelection.grammar.icon),
+                    ),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () {
+                      String route =
+                          "/rooms/${controller.widget.defaultSelected.type.route}";
+                      if (controller.widget.defaultSelected.type ==
+                          AnalyticsEntryType.space) {
+                        route += "/${controller.widget.defaultSelected.id}";
+                      }
+                      route += "/${BarChartViewSelection.grammar.route}";
+                      context.go(route);
+                    },
+                  ),
+                  const Divider(height: 1),
+                  ListTile(
+                    title: Text(L10n.of(context)!.messageAnalytics),
+                    leading: CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).scaffoldBackgroundColor,
+                      foregroundColor:
+                          Theme.of(context).textTheme.bodyLarge!.color,
+                      child: Icon(BarChartViewSelection.messages.icon),
+                    ),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () {
+                      String route =
+                          "/rooms/${controller.widget.defaultSelected.type.route}";
+                      if (controller.widget.defaultSelected.type ==
+                          AnalyticsEntryType.space) {
+                        route += "/${controller.widget.defaultSelected.id}";
+                      }
+                      route += "/${BarChartViewSelection.messages.route}";
+                      context.go(route);
+                    },
+                  ),
+                  const Divider(height: 1),
+                ],
               ),
-            if (controller.widget.selectedView == null)
-              const Divider(height: 1),
-            if (controller.widget.selectedView == null)
-              ListTile(
-                title: Text(L10n.of(context)!.grammarAnalytics),
-                leading: CircleAvatar(
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
-                  child: Icon(BarChartViewSelection.grammar.icon),
-                ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {
-                  String route =
-                      "/rooms/${controller.widget.defaultSelected.type.route}";
-                  if (controller.widget.defaultSelected.type ==
-                      AnalyticsEntryType.space) {
-                    route += "/${controller.widget.defaultSelected.id}";
-                  }
-                  route += "/${BarChartViewSelection.grammar.route}";
-                  context.go(route);
-                },
-              ),
-            if (controller.widget.selectedView == null)
-              const Divider(height: 1),
-            if (controller.widget.selectedView == null)
-              ListTile(
-                title: Text(L10n.of(context)!.messageAnalytics),
-                leading: CircleAvatar(
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
-                  child: Icon(BarChartViewSelection.messages.icon),
-                ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {
-                  String route =
-                      "/rooms/${controller.widget.defaultSelected.type.route}";
-                  if (controller.widget.defaultSelected.type ==
-                      AnalyticsEntryType.space) {
-                    route += "/${controller.widget.defaultSelected.id}";
-                  }
-                  route += "/${BarChartViewSelection.messages.route}";
-                  context.go(route);
-                },
-              ),
-            if (controller.widget.selectedView == null)
-              const Divider(height: 1),
-          ],
-        ),
       ),
     );
   }

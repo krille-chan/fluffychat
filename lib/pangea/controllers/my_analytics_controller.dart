@@ -25,20 +25,23 @@ class MyAnalyticsController extends BaseController {
   final int _maxMessagesCached = 10;
   final int _minutesBeforeUpdate = 5;
 
+  /// the time since the last update that will trigger an automatic update
+  final Duration _timeSinceUpdate = const Duration(days: 1);
+
   MyAnalyticsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
   }
 
-  // adds the listener that handles when to run automatic updates
-  // to analytics - either after a certain number of messages sent/
-  // received or after a certain amount of time without an update
+  /// adds the listener that handles when to run automatic updates
+  /// to analytics - either after a certain number of messages sent/
+  /// received or after a certain amount of time [_timeSinceUpdate] without an update
   Future<void> addEventsListener() async {
     final Client client = _pangeaController.matrixState.client;
 
     // if analytics haven't been updated in the last day, update them
     DateTime? lastUpdated = await _pangeaController.analytics
         .myAnalyticsLastUpdated(PangeaEventTypes.summaryAnalytics);
-    final DateTime yesterday = DateTime.now().subtract(const Duration(days: 1));
+    final DateTime yesterday = DateTime.now().subtract(_timeSinceUpdate);
     if (lastUpdated?.isBefore(yesterday) ?? true) {
       debugPrint("analytics out-of-date, updating");
       await updateAnalytics();
@@ -53,9 +56,9 @@ class MyAnalyticsController extends BaseController {
     });
   }
 
-  // given an update from sync stream, check if the update contains
-  // messages for which analytics will be saved. If so, reset the timer
-  // and add the event ID to the cache of un-added event IDs
+  /// given an update from sync stream, check if the update contains
+  /// messages for which analytics will be saved. If so, reset the timer
+  /// and add the event ID to the cache of un-added event IDs
   void updateAnalyticsTimer(SyncUpdate update, DateTime? lastUpdated) {
     for (final entry in update.rooms!.join!.entries) {
       final Room room =
@@ -160,6 +163,7 @@ class MyAnalyticsController extends BaseController {
     _updateCompleter = Completer<void>();
     try {
       await _updateAnalytics();
+      clearMessagesSinceUpdate();
     } catch (err, s) {
       ErrorHandler.logError(
         e: err,
@@ -172,17 +176,15 @@ class MyAnalyticsController extends BaseController {
     }
   }
 
+  // top level analytics sending function. Send analytics
+  // for each type of analytics event
+  // to each of the applicable analytics rooms
   Future<void> _updateAnalytics() async {
     // if the user's l2 is not sent, don't send analytics
     final String? userL2 = _pangeaController.languageController.activeL2Code();
     if (userL2 == null) {
       return;
     }
-
-    // top level analytics sending function. Send analytics
-    // for each type of analytics event
-    // to each of the applicable analytics rooms
-    clearMessagesSinceUpdate();
 
     // fetch a list of all the chats that the user is studying
     // and a list of all the spaces in which the user is studying
@@ -199,9 +201,21 @@ class MyAnalyticsController extends BaseController {
         .where((lastUpdate) => lastUpdate != null)
         .cast<DateTime>()
         .toList();
-    lastUpdates.sort((a, b) => a.compareTo(b));
-    final DateTime? leastRecentUpdate =
-        lastUpdates.isNotEmpty ? lastUpdates.first : null;
+
+    /// Get the last time that analytics to for current target language
+    /// were updated. This my present a problem is the user has analytics
+    /// rooms for multiple languages, and a non-target language was updated
+    /// less recently than the target language. In this case, some data may
+    /// be missing, but a case like that seems relatively rare, and could
+    /// result in unnecessaily going too far back in the chat history
+    DateTime? l2AnalyticsLastUpdated = lastUpdatedMap[userL2];
+    if (l2AnalyticsLastUpdated == null) {
+      /// if the target language has never been updated, use the least
+      /// recent update time
+      lastUpdates.sort((a, b) => a.compareTo(b));
+      l2AnalyticsLastUpdated =
+          lastUpdates.isNotEmpty ? lastUpdates.first : null;
+    }
 
     // for each chat the user is studying in, get all the messages
     // since the least recent update analytics update, and sort them
@@ -209,7 +223,7 @@ class MyAnalyticsController extends BaseController {
     final Map<String, List<PangeaMessageEvent>> langCodeToMsgs =
         await getLangCodesToMsgs(
       userL2,
-      leastRecentUpdate,
+      l2AnalyticsLastUpdated,
     );
 
     final List<String> langCodes = langCodeToMsgs.keys.toList();
@@ -223,7 +237,7 @@ class MyAnalyticsController extends BaseController {
       // message in this language at the time of the last analytics update
       // so fallback to the least recent update time
       final DateTime? lastUpdated =
-          lastUpdatedMap[analyticsRoom.id] ?? leastRecentUpdate;
+          lastUpdatedMap[analyticsRoom.id] ?? l2AnalyticsLastUpdated;
 
       // get the corresponding list of recent messages for this langCode
       final List<PangeaMessageEvent> recentMsgs =

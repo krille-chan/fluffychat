@@ -27,7 +27,7 @@ class PangeaLanguage {
 
   static Future<void> initialize() async {
     try {
-      _langList = await _getCahedFlags();
+      _langList = await _getCachedFlags();
       if (await _shouldFetch || _langList.isEmpty) {
         _langList = await LanguageRepo.fetchLanguages();
 
@@ -77,7 +77,7 @@ class PangeaLanguage {
     await MyShared.saveJson(PrefKey.flags, flagMap);
   }
 
-  static Future<List<LanguageModel>> _getCahedFlags() async {
+  static Future<List<LanguageModel>> _getCachedFlags() async {
     final Map<dynamic, dynamic>? flagsMap =
         await MyShared.readJson(PrefKey.flags);
     if (flagsMap == null) {
