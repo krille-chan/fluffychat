@@ -56,70 +56,55 @@ class PangeaRichTextState extends State<PangeaRichText> {
     setTextSpan();
   }
 
-  void _setTextSpan(String newTextSpan) {
-    try {
-      widget.toolbarController?.toolbar?.textSelection.setMessageText(
-        newTextSpan,
-      );
-      if (mounted) {
-        setState(() {
-          textSpan = newTextSpan;
+void _setTextSpan(String newTextSpan) {
+  try {
+    if (!mounted) return; // Early exit if the widget is no longer in the tree
+
+    widget.toolbarController?.toolbar?.textSelection.setMessageText(
+      newTextSpan,
+    );
+    setState(() {
+      textSpan = newTextSpan;
+    });
+  } catch (error, stackTrace) {
+    ErrorHandler.logError(e: error, s: stackTrace, m: "Error setting text span in PangeaRichText");
+  }
+}
+
+void setTextSpan() {
+  if (_fetchingRepresentation) {
+    _setTextSpan(widget.pangeaMessageEvent.event.getDisplayEvent(widget.pangeaMessageEvent.timeline).body);
+    return;
+  }
+
+  if (widget.pangeaMessageEvent.eventId.contains("webdebug")) {
+    debugger(when: kDebugMode);
+  }
+
+  repEvent = widget.pangeaMessageEvent
+      .representationByLanguage(widget.pangeaMessageEvent.messageDisplayLangCode)
+      ?.content;
+
+  if (repEvent == null) {
+    setState(() => _fetchingRepresentation = true);
+    widget.pangeaMessageEvent
+        .representationByLanguageGlobal(langCode: widget.pangeaMessageEvent.messageDisplayLangCode)
+        .onError((error, stackTrace) => ErrorHandler.logError(e: error, s: stackTrace, m: "Error fetching representation"))
+        .then((event) {
+          if (!mounted) return;
+          repEvent = event;
+          _setTextSpan(repEvent?.text ?? widget.pangeaMessageEvent.body);
+        }).whenComplete(() {
+          if (mounted) {
+            setState(() => _fetchingRepresentation = false);
+          }
         });
-      }
-    } catch (err, stack) {
-      ErrorHandler.logError(
-        e: PangeaWarningError(
-          err.toString(),
-        ),
-        s: stack,
-      );
-    }
+
+    _setTextSpan(widget.pangeaMessageEvent.body);
+  } else {
+    _setTextSpan(repEvent!.text);
   }
-
-  void setTextSpan() {
-    if (_fetchingRepresentation == true) {
-      _setTextSpan(
-        textSpan = widget.pangeaMessageEvent.event
-            .getDisplayEvent(widget.pangeaMessageEvent.timeline)
-            .body,
-      );
-      return;
-    }
-
-    if (widget.pangeaMessageEvent.eventId.contains("webdebug")) {
-      debugger(when: kDebugMode);
-    }
-
-    repEvent = widget.pangeaMessageEvent
-        .representationByLanguage(
-          widget.pangeaMessageEvent.messageDisplayLangCode,
-        )
-        ?.content;
-
-    if (repEvent == null) {
-      setState(() => _fetchingRepresentation = true);
-      widget.pangeaMessageEvent
-          .representationByLanguageGlobal(
-            langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
-          )
-          .onError(
-            (error, stackTrace) =>
-                ErrorHandler.logError(e: error, s: stackTrace),
-          )
-          .then((event) {
-        repEvent = event;
-        _setTextSpan(repEvent?.text ?? widget.pangeaMessageEvent.body);
-      }).whenComplete(() {
-        if (mounted) {
-          setState(() => _fetchingRepresentation = false);
-        }
-      });
-
-      _setTextSpan(widget.pangeaMessageEvent.body);
-    } else {
-      _setTextSpan(repEvent!.text);
-    }
-  }
+}
 
   @override
   Widget build(BuildContext context) {
