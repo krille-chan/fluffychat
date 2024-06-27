@@ -1,5 +1,4 @@
 import 'dart:io' show Platform;
-
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -71,7 +70,13 @@ class BetaJoinPage extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               ElevatedButton(
-                onPressed: () => joinBeta(),
+                onPressed: () async {
+                  if (await canLaunchUrl(Uri.parse(testflightAppUrl))) {
+                    await launchUrl(Uri.parse(testflightAppUrl));
+                  } else {
+                    throw 'Could not launch $testflightAppUrl';
+                  }
+                },
                 child: Text('Télécharger Apple Testflight'),
               ),
               Divider(thickness: 1),
