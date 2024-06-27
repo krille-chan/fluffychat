@@ -108,29 +108,26 @@ class BaseAnalyticsView extends StatelessWidget {
             ? Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      if (controller.widget.defaultSelected.type ==
-                          AnalyticsEntryType.student)
-                        IconButton(
-                          icon: const Icon(Icons.refresh),
-                          onPressed: controller.onRefresh,
-                          tooltip: L10n.of(context)!.refresh,
-                        ),
+                      // if (controller.widget.defaultSelected.type ==
+                      //     AnalyticsEntryType.student)
+                      //   IconButton(
+                      //     icon: const Icon(Icons.refresh),
+                      //     onPressed: controller.onRefresh,
+                      //     tooltip: L10n.of(context)!.refresh,
+                      //   ),
                       TimeSpanMenuButton(
                         value: controller.currentTimeSpan,
                         onChange: (TimeSpan value) =>
                             controller.toggleTimeSpan(context, value),
                       ),
-                      if (controller.widget.defaultSelected.type ==
-                          AnalyticsEntryType.space)
-                        AnalyticsLanguageButton(
-                          value: controller.pangeaController.analytics
-                              .currentAnalyticsSpaceLang,
-                          onChange: (lang) => controller.toggleSpaceLang(lang),
-                          languages: controller
-                              .pangeaController.pLanguageStore.targetOptions,
-                        ),
+                      AnalyticsLanguageButton(
+                        value: controller
+                            .pangeaController.analytics.currentAnalyticsLang,
+                        onChange: (lang) => controller.toggleSpaceLang(lang),
+                        languages: controller.widget.targetLanguages,
+                      ),
                     ],
                   ),
                   Expanded(

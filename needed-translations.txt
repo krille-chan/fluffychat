@@ -864,7 +864,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "be": [
@@ -2365,7 +2366,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "bn": [
@@ -3862,7 +3864,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "bo": [
@@ -5363,7 +5366,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "ca": [
@@ -6266,7 +6270,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "cs": [
@@ -7251,7 +7256,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "de": [
@@ -8119,7 +8125,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "el": [
@@ -9571,7 +9578,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "eo": [
@@ -10721,7 +10729,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "es": [
@@ -10737,7 +10746,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "et": [
@@ -11605,7 +11615,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "eu": [
@@ -12475,7 +12486,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "fa": [
@@ -13482,7 +13494,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "fi": [
@@ -14453,7 +14466,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "fil": [
@@ -15780,7 +15794,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "fr": [
@@ -16786,7 +16801,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "ga": [
@@ -17921,7 +17937,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "gl": [
@@ -18789,7 +18806,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "he": [
@@ -20043,7 +20061,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "hi": [
@@ -21537,7 +21556,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "hr": [
@@ -22484,7 +22504,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "hu": [
@@ -23368,7 +23389,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "ia": [
@@ -24855,7 +24877,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "id": [
@@ -25729,7 +25752,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "ie": [
@@ -26987,7 +27011,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "it": [
@@ -27912,7 +27937,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "ja": [
@@ -28948,7 +28974,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "ka": [
@@ -30303,7 +30330,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "ko": [
@@ -31173,7 +31201,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "lt": [
@@ -32209,7 +32238,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "lv": [
@@ -33085,7 +33115,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "nb": [
@@ -34285,7 +34316,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "nl": [
@@ -35249,7 +35281,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "pl": [
@@ -36222,7 +36255,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "pt": [
@@ -37701,7 +37735,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "pt_BR": [
@@ -38575,7 +38610,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "pt_PT": [
@@ -39776,7 +39812,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "ro": [
@@ -40784,7 +40821,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "ru": [
@@ -41658,7 +41696,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "sk": [
@@ -42925,7 +42964,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "sl": [
@@ -44322,7 +44362,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "sr": [
@@ -45493,7 +45534,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "sv": [
@@ -46398,7 +46440,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "ta": [
@@ -47896,7 +47939,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "th": [
@@ -49348,7 +49392,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "tr": [
@@ -50216,7 +50261,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "uk": [
@@ -51121,7 +51167,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "vi": [
@@ -52474,7 +52521,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "zh": [
@@ -53342,7 +53390,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ],
 
   "zh_Hant": [
@@ -54491,6 +54540,7 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "previous"
+    "previous",
+    "languageButtonLabel"
   ]
 }

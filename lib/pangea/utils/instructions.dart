@@ -94,6 +94,7 @@ class InstructionsController {
         ),
         cardSize: const Size(300.0, 300.0),
         transformTargetId: transformTargetKey,
+        closePrevOverlay: false,
       ),
     );
   }
