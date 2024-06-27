@@ -46,7 +46,7 @@ class ChatEventList extends StatelessWidget {
     // card, attach it on top of the first shown message
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (events.isEmpty) return;
-      controller.pangeaController.instructions.show(
+      controller.pangeaController.instructions.showInstructionsPopup(
         context,
         InstructionsEnum.clickMessage,
         events[0].eventId,

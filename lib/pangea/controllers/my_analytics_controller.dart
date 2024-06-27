@@ -305,6 +305,7 @@ class MyAnalyticsController extends BaseController {
 
     // if there's new content to be sent, or if lastUpdated hasn't been
     // set yet for this room, send the analytics events
+
     if (summaryContent.isNotEmpty || lastUpdated == null) {
       await SummaryAnalyticsEvent.sendSummaryAnalyticsEvent(
         analyticsRoom,

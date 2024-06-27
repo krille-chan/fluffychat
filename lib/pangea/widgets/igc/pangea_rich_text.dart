@@ -115,7 +115,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
   @override
   Widget build(BuildContext context) {
     if (blur > 0) {
-      pangeaController.instructions.show(
+      pangeaController.instructions.showInstructionsPopup(
         context,
         InstructionsEnum.blurMeansTranslate,
         widget.pangeaMessageEvent.eventId,

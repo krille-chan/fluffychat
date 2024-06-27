@@ -172,7 +172,8 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
               number:
                   "${selectedToken?.confidence ?? speechToTextResponse!.transcript.confidence}%",
               toolTip: L10n.of(context)!.accuracy,
-              onPressed: () => MatrixState.pangeaController.instructions.show(
+              onPressed: () => MatrixState.pangeaController.instructions
+                  .showInstructionsPopup(
                 context,
                 InstructionsEnum.tooltipInstructions,
                 widget.messageEvent.eventId,
@@ -184,7 +185,8 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
               number:
                   wordsPerMinuteString != null ? "$wordsPerMinuteString" : "??",
               toolTip: L10n.of(context)!.wordsPerMinute,
-              onPressed: () => MatrixState.pangeaController.instructions.show(
+              onPressed: () => MatrixState.pangeaController.instructions
+                  .showInstructionsPopup(
                 context,
                 InstructionsEnum.tooltipInstructions,
                 widget.messageEvent.eventId,

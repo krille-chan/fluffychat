@@ -14,17 +14,26 @@ import 'overlay.dart';
 class InstructionsController {
   late PangeaController _pangeaController;
 
+  /// Instruction popup was closed by the user
   final Map<InstructionsEnum, bool> _instructionsClosed = {};
+
+  /// Instructions that were shown in that session
   final Map<InstructionsEnum, bool> _instructionsShown = {};
+
+  /// Returns true if the instructions were turned off by the user via the toggle switch
+  bool? toggledOff(InstructionsEnum key) =>
+      _pangeaController.pStoreService.read(key.toString());
+
+  /// We have these three methods to make sure that the instructions are not shown too much
 
   InstructionsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
   }
 
+  /// Returns true if the instructions were turned off by the user
+  /// via the toggle switch
   bool wereInstructionsTurnedOff(InstructionsEnum key) =>
-      _pangeaController.pStoreService.read(key.toString()) ??
-      _instructionsClosed[key] ??
-      false;
+      toggledOff(key) ?? _instructionsClosed[key] ?? false;
 
   Future<void> updateEnableInstructions(
     InstructionsEnum key,
@@ -35,7 +44,30 @@ class InstructionsController {
         value,
       );
 
-  Future<void> show(
+  // return a text widget with constainer that expands to fill a parent container
+  // and displays instructions text defined in the enum extension
+  Future<Widget> getInlineTooltip(
+    BuildContext context,
+    InstructionsEnum key,
+  ) async {
+    if (wereInstructionsTurnedOff(key)) {
+      return const SizedBox();
+    }
+    if (L10n.of(context) == null) {
+      ErrorHandler.logError(
+        m: "null context in ITBotButton.showCard",
+        s: StackTrace.current,
+      );
+      return const SizedBox();
+    }
+    if (_instructionsShown[key] ?? false) {
+      return const SizedBox();
+    }
+
+    return key.inlineTooltip(context);
+  }
+
+  Future<void> showInstructionsPopup(
     BuildContext context,
     InstructionsEnum key,
     String transformTargetKey, [
@@ -133,6 +165,22 @@ extension Copy on InstructionsEnum {
         return PlatformInfos.isMobile
             ? L10n.of(context)!.tooltipInstructionsMobileBody
             : L10n.of(context)!.tooltipInstructionsBrowserBody;
+    }
+  }
+
+  Widget inlineTooltip(BuildContext context) {
+    switch (this) {
+      case InstructionsEnum.itInstructions:
+        return Padding(
+          padding: const EdgeInsets.all(6.0),
+          child: Text(
+            body(context),
+            style: BotStyle.text(context),
+          ),
+        );
+      default:
+        print('inlineTooltip not implemented for $this');
+        return const SizedBox();
     }
   }
 }
