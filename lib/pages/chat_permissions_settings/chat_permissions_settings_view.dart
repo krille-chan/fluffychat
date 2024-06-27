@@ -35,11 +35,26 @@ class ChatPermissionsSettingsView extends StatelessWidget {
             final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
               // #Pangea
               // ..removeWhere((k, v) => v is! int);
-              ..removeWhere((k, v) => v is! int || k.equals("m.call.invite"));
+              ..removeWhere(
+                (k, v) =>
+                    v is! int ||
+                    k.equals("m.call.invite") ||
+                    k.equals("historical") ||
+                    k.equals("state_default"),
+              );
             // Pangea#
             final eventsPowerLevels = Map<String, int?>.from(
               powerLevelsContent.tryGetMap<String, int?>('events') ?? {},
-            )..removeWhere((k, v) => v is! int);
+              // #Pangea
+            )..removeWhere(
+                (k, v) =>
+                    v is! int ||
+                    k.equals("m.space.child") ||
+                    k.equals("pangea.usranalytics") ||
+                    k.equals(EventTypes.RoomPowerLevels),
+              );
+            // )..removeWhere((k, v) => v is! int);
+            // Pangea#
             return Column(
               children: [
                 Column(
@@ -57,51 +72,59 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         ),
                         canEdit: room.canChangePowerLevel,
                       ),
-                    Divider(color: Theme.of(context).dividerColor),
-                    ListTile(
-                      title: Text(
-                        L10n.of(context)!.notifications,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Builder(
-                      builder: (context) {
-                        const key = 'rooms';
-                        final value = powerLevelsContent
-                                .containsKey('notifications')
-                            ? powerLevelsContent
-                                    .tryGetMap<String, Object?>('notifications')
-                                    ?.tryGet<int>('rooms') ??
-                                0
-                            : 0;
-                        return PermissionsListTile(
-                          permissionKey: key,
-                          permission: value,
-                          category: 'notifications',
-                          canEdit: room.canChangePowerLevel,
-                          onChanged: (level) => controller.editPowerLevel(
-                            context,
-                            key,
-                            value,
-                            newLevel: level,
-                            category: 'notifications',
+                    // #Pangea
+                    // Why would teacher need to stop students from seeing notifications?
+                    // Divider(color: Theme.of(context).dividerColor),
+                    // ListTile(
+                    //   title: Text(
+                    //     L10n.of(context)!.notifications,
+                    //     style: TextStyle(
+                    //       color: Theme.of(context).colorScheme.primary,
+                    //       fontWeight: FontWeight.bold,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Builder(
+                    //   builder: (context) {
+                    //     const key = 'rooms';
+                    //     final value = powerLevelsContent
+                    //             .containsKey('notifications')
+                    //         ? powerLevelsContent
+                    //                 .tryGetMap<String, Object?>('notifications')
+                    //                 ?.tryGet<int>('rooms') ??
+                    //             0
+                    //         : 0;
+                    //     return PermissionsListTile(
+                    //       permissionKey: key,
+                    //       permission: value,
+                    //       category: 'notifications',
+                    //       canEdit: room.canChangePowerLevel,
+                    //       onChanged: (level) => controller.editPowerLevel(
+                    //         context,
+                    //         key,
+                    //         value,
+                    //         newLevel: level,
+                    //         category: 'notifications',
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
+                    // Only show if there are actually items in this category
+                    if (eventsPowerLevels.isNotEmpty)
+                      // Pangea#
+                      Divider(color: Theme.of(context).dividerColor),
+                    // #Pangea
+                    if (eventsPowerLevels.isNotEmpty)
+                      // Pangea#
+                      ListTile(
+                        title: Text(
+                          L10n.of(context)!.configureChat,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.bold,
                           ),
-                        );
-                      },
-                    ),
-                    Divider(color: Theme.of(context).dividerColor),
-                    ListTile(
-                      title: Text(
-                        L10n.of(context)!.configureChat,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
                     for (final entry in eventsPowerLevels.entries)
                       PermissionsListTile(
                         permissionKey: entry.key,
