@@ -566,10 +566,8 @@ class PangeaMessageEvent {
   /// If any activity is not complete, it returns true, indicating that the activity icon should be shown.
   /// Otherwise, it returns false.
   bool get hasUncompletedActivity {
-    if (l2Code == null) return false;
-    final List<PracticeActivityEvent> activities = practiceActivities(l2Code!);
-    if (activities.isEmpty) return false;
-    return activities.any((activity) => !(activity.isComplete));
+    if (practiceActivities.isEmpty) return false;
+    return practiceActivities.any((activity) => !(activity.isComplete));
   }
 
   String? get l2Code =>
@@ -603,34 +601,36 @@ class PangeaMessageEvent {
     return steps;
   }
 
-  List<PracticeActivityEvent> get _practiceActivityEvents => _latestEdit
-      .aggregatedEvents(
-        timeline,
-        PangeaEventTypes.pangeaActivityRes,
-      )
-      .map(
-        (e) => PracticeActivityEvent(
-          timeline: timeline,
-          event: e,
-        ),
-      )
-      .toList();
+  /// Returns a list of all [PracticeActivityEvent] objects
+  /// associated with this message event.
+  List<PracticeActivityEvent> get _practiceActivityEvents {
+    return _latestEdit
+        .aggregatedEvents(
+          timeline,
+          PangeaEventTypes.pangeaActivity,
+        )
+        .map(
+          (e) => PracticeActivityEvent(
+            timeline: timeline,
+            event: e,
+          ),
+        )
+        .toList();
+  }
 
+  /// Returns a boolean value indicating whether there are any
+  /// activities associated with this message event for the user's active l2
   bool get hasActivities {
     try {
-      final String? l2code =
-          MatrixState.pangeaController.languageController.activeL2Code();
-
-      if (l2code == null) return false;
-
-      return practiceActivities(l2code).isNotEmpty;
+      return practiceActivities.isNotEmpty;
     } catch (e, s) {
       ErrorHandler.logError(e: e, s: s);
       return false;
     }
   }
 
-  List<PracticeActivityEvent> practiceActivities(
+  /// Returns a list of [PracticeActivityEvent] objects for the given [langCode].
+  List<PracticeActivityEvent> practiceActivitiesByLangCode(
     String langCode, {
     bool debug = false,
   }) {
@@ -648,6 +648,14 @@ class PangeaMessageEvent {
       ErrorHandler.logError(e: e, s: s, data: event.toJson());
       return [];
     }
+  }
+
+  /// Returns a list of [PracticeActivityEvent] for the user's active l2.
+  List<PracticeActivityEvent> get practiceActivities {
+    final String? l2code =
+        MatrixState.pangeaController.languageController.activeL2Code();
+    if (l2code == null) return [];
+    return practiceActivitiesByLangCode(l2code);
   }
 
   // List<SpanData> get activities =>
