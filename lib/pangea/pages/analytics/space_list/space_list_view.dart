@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/pages/analytics/analytics_language_button.dart';
 import 'package:fluffychat/pangea/pages/analytics/analytics_list_tile.dart';
 import 'package:fluffychat/pangea/pages/analytics/time_span_menu_button.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../enum/time_span.dart';
 import '../base_analytics.dart';
 import 'space_list.dart';
 
@@ -32,27 +32,29 @@ class AnalyticsSpaceListView extends StatelessWidget {
           icon: const Icon(Icons.close_outlined),
           onPressed: () => context.pop(),
         ),
-        actions: [
-          TimeSpanMenuButton(
-            value:
-                controller.pangeaController.analytics.currentAnalyticsTimeSpan,
-            onChange: (TimeSpan value) => controller.toggleTimeSpan(
-              context,
-              value,
-            ),
-          ),
-          AnalyticsLanguageButton(
-            value:
-                controller.pangeaController.analytics.currentAnalyticsSpaceLang,
-            onChange: (lang) => controller.toggleSpaceLang(lang),
-            languages: controller.targetLanguages.isEmpty
-                ? controller.pangeaController.pLanguageStore.targetOptions
-                : controller.targetLanguages,
-          ),
-        ],
       ),
       body: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TimeSpanMenuButton(
+                value: controller
+                    .pangeaController.analytics.currentAnalyticsTimeSpan,
+                onChange: (TimeSpan value) => controller.toggleTimeSpan(
+                  context,
+                  value,
+                ),
+              ),
+              AnalyticsLanguageButton(
+                value:
+                    controller.pangeaController.analytics.currentAnalyticsLang,
+                onChange: (lang) => controller.toggleSpaceLang(lang),
+                languages:
+                    controller.pangeaController.pLanguageStore.targetOptions,
+              ),
+            ],
+          ),
           Flexible(
             child: ListView.builder(
               itemCount: controller.spaces.length,
