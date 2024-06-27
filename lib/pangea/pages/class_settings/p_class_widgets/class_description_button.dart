@@ -17,6 +17,7 @@ class ClassDescriptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconColor = Theme.of(context).textTheme.bodyLarge!.color;
+    final ScrollController scrollController = ScrollController();
     return Column(
       children: [
         ListTile(
@@ -26,14 +27,27 @@ class ClassDescriptionButton extends StatelessWidget {
             foregroundColor: iconColor,
             child: const Icon(Icons.topic_outlined),
           ),
-          subtitle: Text(
-            room.topic.isEmpty
-                ? (room.isRoomAdmin
-                    ? (room.isSpace
-                        ? L10n.of(context)!.classDescriptionDesc
-                        : L10n.of(context)!.chatTopicDesc)
-                    : L10n.of(context)!.topicNotSet)
-                : room.topic,
+          subtitle: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxHeight: 190,
+            ),
+            child: Scrollbar(
+              controller: scrollController,
+              interactive: true,
+              child: SingleChildScrollView(
+                controller: scrollController,
+                primary: false,
+                child: Text(
+                  room.topic.isEmpty
+                      ? (room.isRoomAdmin
+                          ? (room.isSpace
+                              ? L10n.of(context)!.classDescriptionDesc
+                              : L10n.of(context)!.chatTopicDesc)
+                          : L10n.of(context)!.topicNotSet)
+                      : room.topic,
+                ),
+              ),
+            ),
           ),
           title: Text(
             room.isSpace
