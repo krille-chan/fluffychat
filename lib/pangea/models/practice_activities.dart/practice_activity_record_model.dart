@@ -7,14 +7,14 @@ import 'dart:typed_data';
 
 class PracticeActivityRecordModel {
   final String? question;
-  late List<ActivityResponse> responses;
+  late List<ActivityRecordResponse> responses;
 
   PracticeActivityRecordModel({
     required this.question,
-    List<ActivityResponse>? responses,
+    List<ActivityRecordResponse>? responses,
   }) {
     if (responses == null) {
-      this.responses = List<ActivityResponse>.empty(growable: true);
+      this.responses = List<ActivityRecordResponse>.empty(growable: true);
     } else {
       this.responses = responses;
     }
@@ -26,7 +26,9 @@ class PracticeActivityRecordModel {
     return PracticeActivityRecordModel(
       question: json['question'] as String,
       responses: (json['responses'] as List)
-          .map((e) => ActivityResponse.fromJson(e as Map<String, dynamic>))
+          .map(
+            (e) => ActivityRecordResponse.fromJson(e as Map<String, dynamic>),
+          )
           .toList(),
     );
   }
@@ -55,7 +57,7 @@ class PracticeActivityRecordModel {
   }) {
     try {
       responses.add(
-        ActivityResponse(
+        ActivityRecordResponse(
           text: text,
           audioBytes: audioBytes,
           imageBytes: imageBytes,
@@ -84,7 +86,7 @@ class PracticeActivityRecordModel {
   int get hashCode => question.hashCode ^ responses.hashCode;
 }
 
-class ActivityResponse {
+class ActivityRecordResponse {
   // the user's response
   // has nullable string, nullable audio bytes, nullable image bytes, and timestamp
   final String? text;
@@ -92,15 +94,15 @@ class ActivityResponse {
   final Uint8List? imageBytes;
   final DateTime timestamp;
 
-  ActivityResponse({
+  ActivityRecordResponse({
     this.text,
     this.audioBytes,
     this.imageBytes,
     required this.timestamp,
   });
 
-  factory ActivityResponse.fromJson(Map<String, dynamic> json) {
-    return ActivityResponse(
+  factory ActivityRecordResponse.fromJson(Map<String, dynamic> json) {
+    return ActivityRecordResponse(
       text: json['text'] as String?,
       audioBytes: json['audio'] as Uint8List?,
       imageBytes: json['image'] as Uint8List?,
@@ -121,7 +123,7 @@ class ActivityResponse {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ActivityResponse &&
+    return other is ActivityRecordResponse &&
         other.text == text &&
         other.audioBytes == audioBytes &&
         other.imageBytes == imageBytes &&

@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/language_constants.dart';
@@ -29,49 +28,35 @@ class StudentAnalyticsPage extends StatefulWidget {
 class StudentAnalyticsController extends State<StudentAnalyticsPage> {
   final PangeaController _pangeaController = MatrixState.pangeaController;
   AnalyticsSelected? selected;
-  StreamSubscription? stateSub;
 
   @override
   void initState() {
     super.initState();
-
-    final listFutures = [
-      _pangeaController.myAnalytics.setStudentChats(),
-      _pangeaController.myAnalytics.setStudentSpaces(),
-    ];
-    Future.wait(listFutures).then((_) => setState(() {}));
-
-    stateSub = _pangeaController.myAnalytics.stateStream.listen((_) {
-      setState(() {});
-    });
   }
 
   @override
   void dispose() {
-    stateSub?.cancel();
     super.dispose();
   }
 
+  List<Room> _chats = [];
   List<Room> get chats {
-    if (_pangeaController.myAnalytics.studentChats.isEmpty) {
-      _pangeaController.myAnalytics.setStudentChats().then((_) {
-        if (_pangeaController.myAnalytics.studentChats.isNotEmpty) {
-          setState(() {});
-        }
+    if (_chats.isEmpty) {
+      _pangeaController.matrixState.client.chatsImAStudentIn.then((result) {
+        setState(() => _chats = result);
       });
     }
-    return _pangeaController.myAnalytics.studentChats;
+    return _chats;
   }
 
+  List<Room> _spaces = [];
   List<Room> get spaces {
-    if (_pangeaController.myAnalytics.studentSpaces.isEmpty) {
-      _pangeaController.myAnalytics.setStudentSpaces().then((_) {
-        if (_pangeaController.myAnalytics.studentSpaces.isNotEmpty) {
-          setState(() {});
-        }
+    if (_spaces.isEmpty) {
+      _pangeaController.matrixState.client.spaceImAStudentIn.then((result) {
+        setState(() => _spaces = result);
       });
     }
-    return _pangeaController.myAnalytics.studentSpaces;
+    return _spaces;
   }
 
   String? get userId {

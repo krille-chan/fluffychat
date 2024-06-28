@@ -429,21 +429,27 @@ extension EventsRoomExtension on Room {
   Future<List<PangeaMessageEvent>> myMessageEventsInChat({
     DateTime? since,
   }) async {
-    final List<Event> msgEvents = await getEventsBySender(
-      type: EventTypes.Message,
-      sender: client.userID!,
-      since: since,
-    );
-    final Timeline timeline = await getTimeline();
-    return msgEvents
-        .where((event) => (event.content['msgtype'] == MessageTypes.Text))
-        .map((event) {
-      return PangeaMessageEvent(
-        event: event,
-        timeline: timeline,
-        ownMessage: true,
+    try {
+      final List<Event> msgEvents = await getEventsBySender(
+        type: EventTypes.Message,
+        sender: client.userID!,
+        since: since,
       );
-    }).toList();
+      final Timeline timeline = await getTimeline();
+      return msgEvents
+          .where((event) => (event.content['msgtype'] == MessageTypes.Text))
+          .map((event) {
+        return PangeaMessageEvent(
+          event: event,
+          timeline: timeline,
+          ownMessage: true,
+        );
+      }).toList();
+    } catch (err, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: err, s: s);
+      return [];
+    }
   }
 
   // fetch event of a certain type by a certain sender

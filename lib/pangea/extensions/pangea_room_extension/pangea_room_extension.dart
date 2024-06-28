@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';

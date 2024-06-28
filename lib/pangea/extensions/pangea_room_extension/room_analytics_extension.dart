@@ -99,7 +99,7 @@ extension AnalyticsRoomExtension on Room {
       return;
     }
 
-    for (final Room space in (await client.spacesImStudyingIn)) {
+    for (final Room space in (await client.spaceImAStudentIn)) {
       if (space.spaceChildren.any((sc) => sc.roomId == id)) continue;
       await space.addAnalyticsRoomToSpace(this);
     }
@@ -175,7 +175,7 @@ extension AnalyticsRoomExtension on Room {
       return;
     }
 
-    for (final Room space in (await client.spacesImStudyingIn)) {
+    for (final Room space in (await client.spaceImAStudentIn)) {
       await space.inviteSpaceTeachersToAnalyticsRoom(this);
     }
   }
@@ -248,5 +248,35 @@ extension AnalyticsRoomExtension on Room {
     final creationContent = getState(EventTypes.RoomCreate)?.content;
     return creationContent?.tryGet<String>(ModelKey.langCode) == langCode ||
         creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
+  }
+
+  Future<String?> sendSummaryAnalyticsEvent(
+    List<RecentMessageRecord> records,
+  ) async {
+    if (records.isEmpty) return null;
+
+    final SummaryAnalyticsModel analyticsModel = SummaryAnalyticsModel(
+      messages: records,
+    );
+    final String? eventId = await sendEvent(
+      analyticsModel.toJson(),
+      type: PangeaEventTypes.summaryAnalytics,
+    );
+    return eventId;
+  }
+
+  Future<String?> sendConstructsEvent(
+    List<OneConstructUse> uses,
+  ) async {
+    if (uses.isEmpty) return null;
+    final ConstructAnalyticsModel constructsModel = ConstructAnalyticsModel(
+      uses: uses,
+    );
+
+    final String? eventId = await sendEvent(
+      constructsModel.toJson(),
+      type: PangeaEventTypes.construct,
+    );
+    return eventId;
   }
 }
