@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
@@ -48,6 +49,8 @@ class SpanCardState extends State<SpanCard> {
   Object? error;
   bool fetchingData = false;
   int? selectedChoiceIndex;
+
+  BotExpression currentExpression = BotExpression.nonGold;
 
   //on initState, get SpanDetails
   @override
@@ -150,7 +153,23 @@ class WordMatchContent extends StatelessWidget {
         .choices?[index]
         .selected = true;
 
-    controller.setState(() => ());
+    controller.setState(
+      () => (
+        controller.currentExpression =
+          controller
+            .widget
+            .scm
+            .choreographer
+            .igc
+            .igcTextData
+            !.matches[controller.widget.scm.matchIndex]
+            .match
+            .choices![index]
+            .isBestCorrection
+          ? BotExpression.gold
+          : BotExpression.surprised
+      ),
+    );
     // if (controller.widget.scm.pangeaMatch.match.choices![index].type ==
     //     SpanChoiceType.distractor) {
     //   await controller.getSpanDetails();
@@ -192,10 +211,11 @@ class WordMatchContent extends StatelessWidget {
     try {
       return Column(
         children: [
+          // if (!controller.widget.scm.pangeaMatch!.isITStart)
           CardHeader(
             text: controller.error?.toString() ?? matchCopy.title,
             botExpression: controller.error == null
-                ? BotExpression.right
+                ? controller.currentExpression
                 : BotExpression.addled,
           ),
           Expanded(
@@ -321,6 +341,10 @@ class WordMatchContent extends StatelessWidget {
                 ),
             ],
           ),
+          if (controller.widget.scm.pangeaMatch!.isITStart)
+            DontShowSwitchListTile(
+              controller: pangeaController,
+            ),
         ],
       );
     } on Exception catch (e) {
@@ -456,6 +480,43 @@ class StartITButton extends StatelessWidget {
           Future.delayed(Duration.zero, () => onITStart());
         },
       ),
+    );
+  }
+}
+
+class DontShowSwitchListTile extends StatefulWidget {
+  final PangeaController controller;
+
+  const DontShowSwitchListTile({
+    super.key,
+    required this.controller,
+  });
+
+  @override
+  DontShowSwitchListTileState createState() => DontShowSwitchListTileState();
+}
+
+class DontShowSwitchListTileState extends State<DontShowSwitchListTile> {
+  bool switchValue = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SwitchListTile.adaptive(
+      activeColor: AppConfig.activeToggleColor,
+      title: Text(L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader),
+      value: switchValue,
+      onChanged: (value) => {
+        widget.controller.pStoreService.save(
+          PLocalKey.itAutoPlay.toString(),
+          value,
+        ),
+        setState(() => switchValue = value),
+      },
     );
   }
 }

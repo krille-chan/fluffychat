@@ -71,6 +71,16 @@ class PangeaTextController extends TextEditingController {
         choreographer.igc.igcTextData!.getTopMatchIndexForOffset(
       selection.baseOffset,
     );
+
+    // if autoplay on and it start then just start it
+    if (matchIndex != -1 &&
+        choreographer.itAutoPlayEnabled &&
+        choreographer.igc.igcTextData!.matches[matchIndex].isITStart) {
+      return choreographer.onITStart(
+        choreographer.igc.igcTextData!.matches[matchIndex],
+      );
+    }
+
     final Widget? cardToShow = matchIndex != -1
         ? SpanCard(
             scm: SpanCardModel(
@@ -100,7 +110,7 @@ class PangeaTextController extends TextEditingController {
         context: context,
         cardSize: matchIndex != -1 &&
                 choreographer.igc.igcTextData!.matches[matchIndex].isITStart
-            ? const Size(350, 220)
+            ? const Size(350, 260)
             : const Size(350, 400),
         cardToShow: cardToShow,
         transformTargetId: choreographer.inputTransformTargetKey,

@@ -271,7 +271,7 @@ class GenerateVocabButtonState extends State<GenerateVocabButton> {
         ElevatedButton.icon(
           icon: const BotFace(
             width: 50.0,
-            expression: BotExpression.right,
+            expression: BotExpression.idle,
           ),
           label: Text(L10n.of(context)!.generateVocabulary),
           onPressed: () async {
@@ -464,9 +464,9 @@ class PromptsFieldState extends State<PromptsField> {
 
         // button to call API
         ElevatedButton.icon(
-          icon: const BotFace(
+          icon: BotFace(
             width: 50.0,
-            expression: BotExpression.right,
+            expression: BotExpression.idle,
           ),
           label: Text(L10n.of(context)!.generatePrompts),
           onPressed: () async {

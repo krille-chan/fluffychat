@@ -21,6 +21,7 @@ class ITController {
   Choreographer choreographer;
 
   bool _isOpen = false;
+  bool _willOpen = false;
   bool _isEditingSourceText = false;
   bool showChoiceFeedback = false;
 
@@ -36,6 +37,7 @@ class ITController {
 
   void clear() {
     _isOpen = false;
+    _willOpen = false;
     showChoiceFeedback = false;
     _isEditingSourceText = false;
 
@@ -54,6 +56,7 @@ class ITController {
   }
 
   Future<void> initializeIT(ITStartData itStartData) async {
+    _willOpen = true;
     Future.delayed(const Duration(microseconds: 100), () {
       _isOpen = true;
     });
@@ -61,11 +64,9 @@ class ITController {
   }
 
   void closeIT() {
-    //if they close it before choosing anything, just put their text back
+    //if they close it before completing, just put their text back
     //PTODO - explore using last itStep
-    if (choreographer.currentText.isEmpty) {
-      choreographer.textController.text = sourceText ?? "";
-    }
+    choreographer.textController.text = sourceText ?? "";
     clear();
   }
 
@@ -217,31 +218,19 @@ class ITController {
 
   Future<void> onEditSourceTextSubmit(String newSourceText) async {
     try {
-      sourceText = newSourceText;
+
+      _isOpen = true;
       _isEditingSourceText = false;
-      final String currentText = choreographer.currentText;
+      _itStartData = ITStartData(newSourceText, choreographer.l1LangCode);
+      completedITSteps = [];
+      currentITStep = null;
+      nextITStep = null;
+      goldRouteTracker = GoldRouteTracker.defaultTracker;
+      payLoadIds = [];
 
-      choreographer.startLoading();
+      _setSourceText();
+      getTranslationData(false);
 
-      final List<ITResponseModel> responses = await Future.wait([
-        _customInputTranslation(""),
-        _customInputTranslation(choreographer.currentText),
-      ]);
-      if (responses[0].goldContinuances != null &&
-          responses[0].goldContinuances!.isNotEmpty) {
-        goldRouteTracker = GoldRouteTracker(
-          responses[0].goldContinuances!,
-          sourceText!,
-        );
-      }
-      currentITStep = CurrentITStep(
-        sourceText: sourceText!,
-        currentText: currentText,
-        responseModel: responses[1],
-        storedGoldContinuances: goldRouteTracker.continuances,
-      );
-
-      _addPayloadId(responses[1]);
     } catch (err, stack) {
       debugger(when: kDebugMode);
       if (err is! http.Response) {
@@ -252,6 +241,7 @@ class ITController {
       );
     } finally {
       choreographer.stopLoading();
+      choreographer.textController.text = "";
     }
   }
 
@@ -333,6 +323,8 @@ class ITController {
   bool get isTranslationDone => currentITStep != null && currentITStep!.isFinal;
 
   bool get isOpen => _isOpen;
+
+  bool get willOpen => _willOpen;
 
   String get targetLangCode => choreographer.l2LangCode!;
 
