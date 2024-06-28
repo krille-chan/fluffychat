@@ -1,5 +1,10 @@
-import 'dart:io' show Platform;
+import 'dart:io' show HttpException, Platform;
+
 import 'package:flutter/material.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
+import 'package:tawkie/pages/chat_list/utils/on_chat_tap.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BetaJoinPage extends StatelessWidget {
@@ -38,8 +43,65 @@ class BetaJoinPage extends StatelessWidget {
     }
   }
 
-  void joinGroup() {
-    print("Rejoindre le groupe Beta");
+  // Function to join the beta room
+  Future<void> joinGroup(BuildContext context) async {
+    try {
+      const roomAlias = '#beta:alpha.tawkie.fr';
+      final client = Matrix.of(context).client;
+
+      // Get room ID by alias
+      final roomIdResponse = await client.getRoomIdByAlias(roomAlias);
+      final roomId = roomIdResponse.roomId;
+
+      print('Room ID Response: $roomIdResponse');
+      print('Room ID: $roomId');
+
+      if (roomId == null) {
+        throw Exception('Room ID not found for alias: $roomAlias');
+      }
+
+      // Check if the room is already joined
+      final room = client.getRoomById(roomId);
+      if (room != null && room.membership == Membership.join) {
+        // Room already joined, navigate to chat
+        onChatTap(room, context);
+        return;
+      }
+
+      // Join the room
+      final result = await showFutureLoadingDialog<String>(
+        context: context,
+        future: () async {
+          // Join the room and wait for it to appear in the sync
+          final roomId = await client.joinRoom(roomAlias);
+          await client.waitForRoomInSync(roomId);
+          return roomId;
+        },
+      );
+
+      // Navigate to chat or perform other actions
+      final joinedRoom = client.getRoomById(result.result.toString());
+      if (joinedRoom != null) {
+        onChatTap(joinedRoom, context);
+      } else {
+        throw Exception('Room not found after joining: $result');
+      }
+    } on MatrixException catch (e) {
+      print('Matrix Exception: ${e.error}');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Matrix Error: ${e.error}')),
+      );
+    } on HttpException catch (e) {
+      print('HTTP Error: ${e.message}');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('HTTP Error: ${e.message}')),
+      );
+    } catch (e) {
+      print('General Error: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
   }
 
   @override
@@ -130,7 +192,7 @@ class BetaJoinPage extends StatelessWidget {
               ),
             ],
             ElevatedButton.icon(
-              onPressed: joinGroup,
+              onPressed: () => joinGroup(context),
               icon: Icon(Icons.new_releases),
               label: Text('Rejoindre le groupe Beta'),
             ),
