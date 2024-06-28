@@ -2,14 +2,20 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
+import 'package:fluffychat/pangea/models/lemma.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
@@ -658,14 +664,145 @@ class PangeaMessageEvent {
     }
   }
 
-  // List<SpanData> get activities =>
-  //each match is turned into an activity that other students can access
-  //they're not told the answer but have to find it themselves
-  //the message has a blank piece which they fill in themselves
+  List<OneConstructUse> get allConstructUses =>
+      [...grammarConstructUses, ..._vocabUses];
 
-  // replication of logic from message_content.dart
-  // bool get isHtml =>
-  //     AppConfig.renderHtml && !_event.redacted && _event.isRichMessage;
+  /// [tokens] is the final list of tokens that were sent
+  /// if no ga or ta,
+  ///   make wa use for each and return
+  /// else
+  ///   for each saveable vocab in the final message
+  ///     if vocab is contained in an accepted replacement, make ga use
+  ///     if vocab is contained in ta choice,
+  ///       if selected as choice, corIt
+  ///       if written as customInput, corIt? (account for score in this)
+  ///   for each it step
+  ///     for each continuance
+  ///       if not within the final message, save ignIT/incIT
+  List<OneConstructUse> get _vocabUses {
+    final List<OneConstructUse> uses = [];
+
+    if (event.roomId == null) return uses;
+
+    List<OneConstructUse> lemmasToVocabUses(
+      List<Lemma> lemmas,
+      ConstructUseTypeEnum type,
+    ) {
+      final List<OneConstructUse> uses = [];
+      for (final lemma in lemmas) {
+        if (lemma.saveVocab) {
+          uses.add(
+            OneConstructUse(
+              useType: type,
+              chatId: event.roomId!,
+              timeStamp: event.originServerTs,
+              lemma: lemma.text,
+              form: lemma.form,
+              msgId: event.eventId,
+              constructType: ConstructTypeEnum.vocab,
+            ),
+          );
+        }
+      }
+      return uses;
+    }
+
+    List<OneConstructUse> getVocabUseForToken(PangeaToken token) {
+      if (originalSent?.choreo == null) {
+        final bool inUserL2 = originalSent?.langCode == l2Code;
+        return lemmasToVocabUses(
+          token.lemmas,
+          inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk,
+        );
+      }
+
+      for (final step in originalSent!.choreo!.choreoSteps) {
+        /// if 1) accepted match 2) token is in the replacement and 3) replacement
+        /// is in the overall step text, then token was a ga
+        if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted &&
+            (step.acceptedOrIgnoredMatch!.match.choices?.any(
+                  (r) =>
+                      r.value.contains(token.text.content) &&
+                      step.text.contains(r.value),
+                ) ??
+                false)) {
+          return lemmasToVocabUses(token.lemmas, ConstructUseTypeEnum.ga);
+        }
+        if (step.itStep != null) {
+          final bool pickedThroughIT = step.itStep!.chosenContinuance?.text
+                  .contains(token.text.content) ??
+              false;
+          if (pickedThroughIT) {
+            return lemmasToVocabUses(token.lemmas, ConstructUseTypeEnum.corIt);
+            //PTODO - check if added via custom input in IT flow
+          }
+        }
+      }
+      return lemmasToVocabUses(token.lemmas, ConstructUseTypeEnum.wa);
+    }
+
+    /// for each token, record whether selected in ga, ta, or wa
+    if (originalSent?.tokens != null) {
+      for (final token in originalSent!.tokens!) {
+        uses.addAll(getVocabUseForToken(token));
+      }
+    }
+
+    if (originalSent?.choreo == null) return uses;
+
+    for (final itStep in originalSent!.choreo!.itSteps) {
+      for (final continuance in itStep.continuances) {
+        // this seems to always be false for continuances right now
+
+        if (originalSent!.choreo!.finalMessage.contains(continuance.text)) {
+          continue;
+        }
+        if (continuance.wasClicked) {
+          //PTODO - account for end of flow score
+          if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
+            uses.addAll(
+              lemmasToVocabUses(continuance.lemmas, ConstructUseTypeEnum.incIt),
+            );
+          }
+        } else {
+          if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
+            uses.addAll(
+              lemmasToVocabUses(continuance.lemmas, ConstructUseTypeEnum.ignIt),
+            );
+          }
+        }
+      }
+    }
+
+    return uses;
+  }
+
+  List<OneConstructUse> get grammarConstructUses {
+    final List<OneConstructUse> uses = [];
+
+    if (originalSent?.choreo == null || event.roomId == null) return uses;
+
+    for (final step in originalSent!.choreo!.choreoSteps) {
+      if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted) {
+        final String name = step.acceptedOrIgnoredMatch!.match.rule?.id ??
+            step.acceptedOrIgnoredMatch!.match.shortMessage ??
+            step.acceptedOrIgnoredMatch!.match.type.typeName.name;
+        uses.add(
+          OneConstructUse(
+            useType: ConstructUseTypeEnum.ga,
+            chatId: event.roomId!,
+            timeStamp: event.originServerTs,
+            lemma: name,
+            form: name,
+            msgId: event.eventId,
+            constructType: ConstructTypeEnum.grammar,
+            id: "${event.eventId}_${step.acceptedOrIgnoredMatch!.match.offset}_${step.acceptedOrIgnoredMatch!.match.length}",
+          ),
+        );
+      }
+    }
+    return uses;
+  }
 }
 
 class URLFinder {

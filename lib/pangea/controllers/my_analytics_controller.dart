@@ -1,17 +1,13 @@
 import 'dart:async';
 import 'dart:developer';
 
-<<<<<<< Updated upstream
-import 'package:fluffychat/pangea/constants/language_constants.dart';
-=======
->>>>>>> Stashed changes
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_record_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
@@ -196,9 +192,8 @@ class MyAnalyticsController {
 
   String? get userL2 => _pangeaController.languageController.activeL2Code();
 
-  // top level analytics sending function. Send analytics
-  // for each type of analytics event
-  // to each of the applicable analytics rooms
+  /// top level analytics sending function. Gather recent messages and activity records,
+  /// convert them into the correct formats, and send them to the analytics room
   Future<void> _updateAnalytics() async {
     // if missing important info, don't send analytics
     if (userL2 == null || _client.userID == null) {
@@ -206,151 +201,108 @@ class MyAnalyticsController {
       return;
     }
 
-    // get the last updated time for each analytics room
-    // and the least recent update, which will be used to determine
-    // how far to go back in the chat history to get messages
-    final Map<String, DateTime?> lastUpdatedMap = await _pangeaController
-        .matrixState.client
-        .allAnalyticsRoomsLastUpdated();
-    final List<DateTime> lastUpdates = lastUpdatedMap.values
-        .where((lastUpdate) => lastUpdate != null)
-        .cast<DateTime>()
-        .toList();
-
-    /// Get the last time that analytics to for current target language
-    /// were updated. This my present a problem is the user has analytics
-    /// rooms for multiple languages, and a non-target language was updated
-    /// less recently than the target language. In this case, some data may
-    /// be missing, but a case like that seems relatively rare, and could
-    /// result in unnecessaily going too far back in the chat history
-    DateTime? l2AnalyticsLastUpdated = lastUpdatedMap[userL2];
-    if (l2AnalyticsLastUpdated == null) {
-      /// if the target language has never been updated, use the least
-      /// recent update time
-      lastUpdates.sort((a, b) => a.compareTo(b));
-      l2AnalyticsLastUpdated =
-          lastUpdates.isNotEmpty ? lastUpdates.first : null;
-    }
-
-    final List<Room> chats = await _client.chatsImAStudentIn;
-
-    final List<PangeaMessageEvent> recentMsgs =
-        await _getMessagesWithUnsavedAnalytics(
-      l2AnalyticsLastUpdated,
-      chats,
-    );
-
-    final List<ActivityRecordResponse> recentActivities =
-        await getRecentActivities(userL2!, l2AnalyticsLastUpdated, chats);
-
-    // FOR DISCUSSION:
-    // we want to make sure we save something for every message send
-    // however, we're currently saving analytics for messages not in the userL2
-    // based on bad language detection results. maybe it would be better to
-    // save the analytics for these messages in the userL2 analytics room, but
-    // with useType of unknown
-
+    // analytics room for the user and current target language
     final Room analyticsRoom = await _client.getMyAnalyticsRoom(userL2!);
 
-    // if there is no analytics room for this langCode, then user hadn't sent
-    // message in this language at the time of the last analytics update
-    // so fallback to the least recent update time
-    final DateTime? lastUpdated =
-        lastUpdatedMap[analyticsRoom.id] ?? l2AnalyticsLastUpdated;
-
-    // final String msgLangCode = (msg.originalSent?.langCode != null &&
-    //         msg.originalSent?.langCode != LanguageKeys.unknownLanguage)
-    //     ? msg.originalSent!.langCode
-    //     : userL2;
-
-    // finally, send the analytics events to the analytics room
-    await _sendAnalyticsEvents(
-      analyticsRoom,
-      recentMsgs,
-      lastUpdated,
-      recentActivities,
+    // get the last time analytics were updated for this room
+    final DateTime? l2AnalyticsLastUpdated =
+        await analyticsRoom.analyticsLastUpdated(
+      PangeaEventTypes.summaryAnalytics,
+      _client.userID!,
     );
-  }
 
-  Future<List<ActivityRecordResponse>> getRecentActivities(
-    String userL2,
-    DateTime? lastUpdated,
-    List<Room> chats,
-  ) async {
+    // all chats in which user is a student
+    final List<Room> chats = await _client.chatsImAStudentIn;
+
+    // get the recent message events and activity records for each chat
+    final List<Future<List<Event>>> recentMsgFutures = [];
     final List<Future<List<Event>>> recentActivityFutures = [];
     for (final Room chat in chats) {
+      chat.getEventsBySender(
+        type: EventTypes.Message,
+        sender: _client.userID!,
+        since: l2AnalyticsLastUpdated,
+      );
       recentActivityFutures.add(
         chat.getEventsBySender(
           type: PangeaEventTypes.activityRecord,
           sender: _client.userID!,
-          since: lastUpdated,
+          since: l2AnalyticsLastUpdated,
         ),
       );
     }
-    final List<List<Event>> recentActivityLists =
-        await Future.wait(recentActivityFutures);
+    final List<List<Event>> recentMsgs =
+        (await Future.wait(recentMsgFutures)).toList();
+    final List<PracticeActivityRecordEvent> recentActivityReconds =
+        (await Future.wait(recentActivityFutures))
+            .expand((e) => e)
+            .map((event) => PracticeActivityRecordEvent(event: event))
+            .toList();
 
-    return recentActivityLists
-        .expand((e) => e)
-        .map((e) => ActivityRecordResponse.fromJson(e.content))
-        .toList();
-  }
+    // get the timelines for each chat
+    final List<Future<Timeline>> timelineFutures = [];
+    for (final chat in chats) {
+      timelineFutures.add(chat.getTimeline());
+    }
+    final List<Timeline> timelines = await Future.wait(timelineFutures);
+    final Map<String, Timeline> timelineMap =
+        Map.fromIterables(chats.map((e) => e.id), timelines);
 
-  /// Returns the new messages that have not yet been saved to analytics.
-  /// The keys in the map correspond to different categories or groups of messages,
-  /// while the values are lists of [PangeaMessageEvent] objects belonging to each category.
-  Future<List<PangeaMessageEvent>> _getMessagesWithUnsavedAnalytics(
-    DateTime? since,
-    List<Room> chats,
-  ) async {
-    // get the recent messages for each chat
-    final List<Future<List<PangeaMessageEvent>>> futures = [];
-    for (final Room chat in chats) {
-      futures.add(
-        chat.myMessageEventsInChat(
-          since: since,
-        ),
+    //convert into PangeaMessageEvents
+    final List<List<PangeaMessageEvent>> recentPangeaMessageEvents = [];
+    for (final (index, eventList) in recentMsgs.indexed) {
+      recentPangeaMessageEvents.add(
+        eventList
+            .map(
+              (event) => PangeaMessageEvent(
+                event: event,
+                timeline: timelines[index],
+                ownMessage: true,
+              ),
+            )
+            .toList(),
       );
     }
-    final List<List<PangeaMessageEvent>> recentMsgLists =
-        await Future.wait(futures);
 
-    // flatten the list of lists of messages
-    return recentMsgLists.expand((e) => e).toList();
-  }
+    final List<PangeaMessageEvent> allRecentMessages =
+        recentPangeaMessageEvents.expand((e) => e).toList();
 
-  Future<void> _sendAnalyticsEvents(
-    Room analyticsRoom,
-    List<PangeaMessageEvent> recentMsgs,
-    DateTime? lastUpdated,
-    List<ActivityRecordResponse> recentActivities,
-  ) async {
+    final List<RecentMessageRecord> summaryContent =
+        SummaryAnalyticsModel.formatSummaryContent(allRecentMessages);
+    // if there's new content to be sent, or if lastUpdated hasn't been
+    // set yet for this room, send the analytics events
+    if (summaryContent.isNotEmpty || l2AnalyticsLastUpdated == null) {
+      await analyticsRoom.sendSummaryAnalyticsEvent(
+        summaryContent,
+      );
+    }
+
+    // get constructs for messages
     final List<OneConstructUse> constructContent = [];
+    for (final PangeaMessageEvent message in allRecentMessages) {
+      constructContent.addAll(message.allConstructUses);
+    }
 
-    if (recentMsgs.isNotEmpty) {
-      // remove messages that were sent before the last update
-
-      // format the analytics data
-      final List<RecentMessageRecord> summaryContent =
-          SummaryAnalyticsModel.formatSummaryContent(recentMsgs);
-      // if there's new content to be sent, or if lastUpdated hasn't been
-      // set yet for this room, send the analytics events
-      if (summaryContent.isNotEmpty || lastUpdated == null) {
-        await analyticsRoom.sendSummaryAnalyticsEvent(
-          summaryContent,
+    // get constructs for practice activities
+    final List<Future<List<OneConstructUse>>> constructFutures = [];
+    for (final PracticeActivityRecordEvent activity in recentActivityReconds) {
+      final Timeline? timeline = timelineMap[activity.event.roomId!];
+      if (timeline == null) {
+        debugger(when: kDebugMode);
+        ErrorHandler.logError(
+          m: "PracticeActivityRecordEvent has null timeline",
+          data: activity.event.toJson(),
         );
+        continue;
       }
-
-      constructContent
-          .addAll(ConstructAnalyticsModel.formatConstructsContent(recentMsgs));
+      constructFutures.add(activity.uses(timeline));
     }
+    final List<List<OneConstructUse>> constructLists =
+        await Future.wait(constructFutures);
 
-    if (recentActivities.isNotEmpty) {
-      // TODO - Concert recentActivities into list of constructUse objects.
-      // First, We need to get related practiceActivityEvent from timeline in order to get its related constructs. Alternatively we
-      // could search for completed practice activities and see which have been completed by the user.
-      // It's not clear which is the best approach at the moment and we should consider both.
-    }
+    constructContent.addAll(constructLists.expand((e) => e));
+
+    debugger(when: kDebugMode);
 
     await analyticsRoom.sendConstructsEvent(
       constructContent,

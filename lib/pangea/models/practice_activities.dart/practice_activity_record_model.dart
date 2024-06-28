@@ -5,6 +5,8 @@
 import 'dart:developer';
 import 'dart:typed_data';
 
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+
 class PracticeActivityRecordModel {
   final String? question;
   late List<ActivityRecordResponse> responses;
@@ -42,18 +44,25 @@ class PracticeActivityRecordModel {
 
   /// get the latest response index according to the response timeStamp
   /// sort the responses by timestamp and get the index of the last response
-  String? get latestResponse {
+  ActivityRecordResponse? get latestResponse {
     if (responses.isEmpty) {
       return null;
     }
     responses.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-    return responses[responses.length - 1].text;
+    return responses[responses.length - 1];
   }
+
+  ConstructUseTypeEnum get useType => latestResponse?.score != null
+      ? (latestResponse!.score > 0
+          ? ConstructUseTypeEnum.corPA
+          : ConstructUseTypeEnum.incPA)
+      : ConstructUseTypeEnum.unk;
 
   void addResponse({
     String? text,
     Uint8List? audioBytes,
     Uint8List? imageBytes,
+    required double score,
   }) {
     try {
       responses.add(
@@ -62,6 +71,7 @@ class PracticeActivityRecordModel {
           audioBytes: audioBytes,
           imageBytes: imageBytes,
           timestamp: DateTime.now(),
+          score: score,
         ),
       );
     } catch (e) {
@@ -93,11 +103,13 @@ class ActivityRecordResponse {
   final Uint8List? audioBytes;
   final Uint8List? imageBytes;
   final DateTime timestamp;
+  final double score;
 
   ActivityRecordResponse({
     this.text,
     this.audioBytes,
     this.imageBytes,
+    required this.score,
     required this.timestamp,
   });
 
@@ -107,6 +119,10 @@ class ActivityRecordResponse {
       audioBytes: json['audio'] as Uint8List?,
       imageBytes: json['image'] as Uint8List?,
       timestamp: DateTime.parse(json['timestamp'] as String),
+      // this has a default of 1 to make this backwards compatible
+      // score was added later and is not present in all records
+      // currently saved to Matrix
+      score: json['score'] ?? 1.0,
     );
   }
 
@@ -116,6 +132,7 @@ class ActivityRecordResponse {
       'audio': audioBytes,
       'image': imageBytes,
       'timestamp': timestamp.toIso8601String(),
+      'score': score,
     };
   }
 

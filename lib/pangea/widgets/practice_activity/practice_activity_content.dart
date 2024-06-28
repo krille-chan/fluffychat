@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/practice_acitivity_record_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_record_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_ca
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PracticeActivityContent extends StatefulWidget {
   final PracticeActivityEvent practiceEvent;
@@ -65,9 +66,9 @@ class MessagePracticeActivityContentState
       recordModel = recordEvent!.record;
 
       //Note that only MultipleChoice activities will have this so we probably should move this logic to the MultipleChoiceActivity widget
-      selectedChoiceIndex = recordModel?.latestResponse != null
+      selectedChoiceIndex = recordModel?.latestResponse?.text != null
           ? widget.practiceEvent.practiceActivity.multipleChoice
-              ?.choiceIndex(recordModel!.latestResponse!)
+              ?.choiceIndex(recordModel!.latestResponse!.text!)
           : null;
 
       recordSubmittedPreviousSession = true;
@@ -80,6 +81,10 @@ class MessagePracticeActivityContentState
     setState(() {
       selectedChoiceIndex = index;
       recordModel!.addResponse(
+        score: widget.practiceEvent.practiceActivity.multipleChoice!
+                .isCorrect(index)
+            ? 1
+            : 0,
         text: widget
             .practiceEvent.practiceActivity.multipleChoice!.choices[index],
       );
