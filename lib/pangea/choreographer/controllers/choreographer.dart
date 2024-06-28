@@ -15,6 +15,7 @@ import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
+import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
@@ -521,6 +522,10 @@ class Choreographer {
         ToolSetting.interactiveTranslator,
         chatController.room,
       );
+
+  bool get itAutoPlayEnabled => pangeaController.pStoreService.read(
+        MatrixProfile.itAutoPlay.title,
+      ) ?? false;
 
   bool get definitionsEnabled =>
       pangeaController.permissionsController.isToolEnabled(

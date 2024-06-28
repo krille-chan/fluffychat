@@ -2894,21 +2894,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "helpMeTranslate": "Help me translate!",
+  "helpMeTranslate": "Yes!",
   "@helpMeTranslate": {
     "type": "text",
     "placeholders": {}
   },
-  "needsItShortMessage": "Try interactive translation!",
+  "needsItShortMessage": "Out of target",
   "needsIGCShortMessage": "Try interactive grammar assistance!",
   "@needsItShortMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "needsItMessage": "This message has too many words in your base language.",
+  "needsItMessage": "Wait, that's not {targetLanguage}! Do you need help translating?",
   "@needsItMessage": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": {
+      "targetLanguage": {}
+    }
   },
   "needsIgcMessage": "This message has a grammar error.",
   "tokenTranslationTitle": "A word is in your base language.",
@@ -4069,5 +4071,15 @@
     "placeholders": {
       "currentLanguage": {}
     }
+  },
+  "interactiveTranslatorAutoPlaySliderHeader": "Autoplay translation",
+  "@interactiveTranslatorAutoPlaySliderHeader": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "interactiveTranslatorAutoPlayDesc": "Launches the interactive translator without asking.",
+  "@interactiveTranslatorAutoPlayDesc": {
+    "type": "text",
+    "placeholders": {}
   }
 }

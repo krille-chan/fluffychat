@@ -868,7 +868,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "be": [
@@ -2373,7 +2375,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "bn": [
@@ -3874,7 +3878,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "bo": [
@@ -5379,7 +5385,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ca": [
@@ -6286,7 +6294,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "cs": [
@@ -7275,7 +7285,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "de": [
@@ -8147,7 +8159,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "el": [
@@ -9603,7 +9617,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "eo": [
@@ -10757,7 +10773,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "es": [
@@ -11649,7 +11667,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "eu": [
@@ -12523,7 +12543,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "fa": [
@@ -13534,7 +13556,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "fi": [
@@ -14509,7 +14533,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "fil": [
@@ -15840,7 +15866,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "fr": [
@@ -16850,7 +16878,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ga": [
@@ -17989,7 +18019,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "gl": [
@@ -18861,7 +18893,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "he": [
@@ -20119,7 +20153,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "hi": [
@@ -21617,7 +21653,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "hr": [
@@ -22568,7 +22606,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "hu": [
@@ -23456,7 +23496,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ia": [
@@ -24947,7 +24989,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "id": [
@@ -25825,7 +25869,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ie": [
@@ -27087,7 +27133,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "it": [
@@ -28016,7 +28064,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ja": [
@@ -29056,7 +29106,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ka": [
@@ -30415,7 +30467,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ko": [
@@ -31289,7 +31343,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "lt": [
@@ -32329,7 +32385,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "lv": [
@@ -33209,7 +33267,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "nb": [
@@ -34413,7 +34473,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "nl": [
@@ -35381,7 +35443,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "pl": [
@@ -36358,7 +36422,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "pt": [
@@ -37841,7 +37907,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "pt_BR": [
@@ -38719,7 +38787,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "pt_PT": [
@@ -39924,7 +39994,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ro": [
@@ -40936,7 +41008,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ru": [
@@ -41814,7 +41888,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "sk": [
@@ -43085,7 +43161,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "sl": [
@@ -44486,7 +44564,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "sr": [
@@ -45661,7 +45741,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "sv": [
@@ -46570,7 +46652,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ta": [
@@ -48072,7 +48156,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "th": [
@@ -49528,7 +49614,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "tr": [
@@ -50400,7 +50488,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "uk": [
@@ -51309,7 +51399,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "vi": [
@@ -52666,7 +52758,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "zh": [
@@ -53538,7 +53632,9 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "zh_Hant": [
@@ -54691,6 +54787,8 @@
     "practice",
     "noLanguagesSet",
     "noActivitiesFound",
-    "languageButtonLabel"
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ]
 }

@@ -139,7 +139,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                             Theme.of(context).textTheme.bodyLarge!.color,
                         child: const BotFace(
                           width: 30.0,
-                          expression: BotExpression.right,
+                          expression: BotExpression.idle,
                         ),
                       ),
                       trailing: ElevatedButton(

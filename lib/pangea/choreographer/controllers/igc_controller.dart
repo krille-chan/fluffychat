@@ -170,6 +170,15 @@ class IgcController {
     const int firstMatchIndex = 0;
     final PangeaMatch match = igcTextData!.matches[firstMatchIndex];
 
+    if (
+        match.isITStart &&
+        choreographer.itAutoPlayEnabled &&
+        igcTextData != null
+    ) {
+      choreographer.onITStart(igcTextData!.matches[firstMatchIndex]);
+      return;
+    }
+
     OverlayUtil.showPositionedCard(
       context: context,
       cardToShow: SpanCard(
@@ -189,7 +198,7 @@ class IgcController {
         ),
         roomId: choreographer.roomId,
       ),
-      cardSize: match.isITStart ? const Size(350, 220) : const Size(350, 400),
+      cardSize: match.isITStart ? const Size(350, 260) : const Size(350, 400),
       transformTargetId: choreographer.inputTransformTargetKey,
     );
   }

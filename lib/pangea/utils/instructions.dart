@@ -74,7 +74,7 @@ class InstructionsController {
           children: [
             CardHeader(
               text: key.title(context),
-              botExpression: BotExpression.surprised,
+              botExpression: BotExpression.idle,
               onClose: () => {_instructionsClosed[key] = true},
             ),
             const SizedBox(height: 10.0),
