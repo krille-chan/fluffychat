@@ -52,6 +52,11 @@ class InstructionsController {
     String transformTargetKey, [
     bool showToggle = true,
   ]) async {
+    if (_instructionsShown[key] ?? false) {
+      return;
+    }
+    _instructionsShown[key] = true;
+
     if (wereInstructionsTurnedOff(key)) {
       return;
     }
@@ -62,17 +67,12 @@ class InstructionsController {
       );
       return;
     }
-    if (_instructionsShown[key] ?? false) {
-      return;
-    }
 
     final bool userLangsSet =
         await _pangeaController.userController.areUserLanguagesSet;
     if (!userLangsSet) {
       return;
     }
-
-    _instructionsShown[key] = true;
 
     final botStyle = BotStyle.text(context);
     Future.delayed(
@@ -85,7 +85,7 @@ class InstructionsController {
           children: [
             CardHeader(
               text: key.title(context),
-              botExpression: BotExpression.surprised,
+              botExpression: BotExpression.idle,
               onClose: () => {_instructionsClosed[key] = true},
             ),
             const SizedBox(height: 10.0),

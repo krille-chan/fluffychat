@@ -2894,21 +2894,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "helpMeTranslate": "Help me translate!",
+  "helpMeTranslate": "Yes!",
   "@helpMeTranslate": {
     "type": "text",
     "placeholders": {}
   },
-  "needsItShortMessage": "Try interactive translation!",
+  "needsItShortMessage": "Out of target",
   "needsIGCShortMessage": "Try interactive grammar assistance!",
   "@needsItShortMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "needsItMessage": "This message has too many words in your base language.",
+  "needsItMessage": "Wait, that's not {targetLanguage}! Do you need help translating?",
   "@needsItMessage": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": {
+      "targetLanguage": {}
+    }
   },
   "needsIgcMessage": "This message has a grammar error.",
   "tokenTranslationTitle": "A word is in your base language.",
@@ -3998,6 +4000,10 @@
   "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Hours between discussion prompts",
   "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Responds on ⏩ reaction",
   "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel": "Reaction to send discussion prompt",
+  "conversationBotCustomZone_title": "Custom Settings",
+  "conversationBotCustomZone_customSystemPromptLabel": "System prompt",
+  "conversationBotCustomZone_customSystemPromptPlaceholder": "Set custom system prompt",
+  "conversationBotCustomZone_customTriggerReactionEnabledLabel": "Responds on ⏩ reaction",
   "addConversationBotDialogTitleInvite": "Confirm inviting conversation bot",
   "addConversationBotButtonInvite": "Invite",
   "addConversationBotDialogInviteConfirmation": "Invite",
@@ -4060,5 +4066,22 @@
   "noLanguagesSet": "No languages set",
   "noActivitiesFound": "No practice activities found for this message",
   "hintTitle": "Hint:",
-  "speechToTextBody": "See how well you did by looking at your Accuracy and Words Per Minute scores"
+  "speechToTextBody": "See how well you did by looking at your Accuracy and Words Per Minute scores",
+  "languageButtonLabel": "Language: {currentLanguage}",
+  "@languageButtonLabel": {
+    "type": "text",
+    "placeholders": {
+      "currentLanguage": {}
+    }
+  },
+  "interactiveTranslatorAutoPlaySliderHeader": "Autoplay translation",
+  "@interactiveTranslatorAutoPlaySliderHeader": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "interactiveTranslatorAutoPlayDesc": "Launches the interactive translator without asking.",
+  "@interactiveTranslatorAutoPlayDesc": {
+    "type": "text",
+    "placeholders": {}
+  }
 }

@@ -23,13 +23,24 @@ class AnalyticsSpaceList extends StatefulWidget {
 class AnalyticsSpaceListController extends State<AnalyticsSpaceList> {
   PangeaController pangeaController = MatrixState.pangeaController;
   List<Room> spaces = [];
+  StreamSubscription? stateSub;
   List<LanguageModel> targetLanguages = [];
 
   @override
   void initState() {
     super.initState();
-
     setSpaceList().then((_) => setTargetLanguages());
+
+    // reload dropdowns when their values change in analytics page
+    stateSub = pangeaController.analytics.stateStream.listen(
+      (_) => setState(() {}),
+    );
+  }
+
+  @override
+  void dispose() {
+    stateSub?.cancel();
+    super.dispose();
   }
 
   StreamController refreshStream = StreamController.broadcast();
@@ -71,7 +82,7 @@ class AnalyticsSpaceListController extends State<AnalyticsSpaceList> {
   }
 
   Future<void> toggleSpaceLang(LanguageModel lang) async {
-    await pangeaController.analytics.setCurrentAnalyticsSpaceLang(lang);
+    await pangeaController.analytics.setCurrentAnalyticsLang(lang);
     refreshStream.add(false);
     setState(() {});
   }

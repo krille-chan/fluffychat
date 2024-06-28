@@ -54,6 +54,7 @@ class PUserModel {
 enum MatrixProfile {
   dateOfBirth,
   autoPlayMessages,
+  itAutoPlay,
   activatedFreeTrial,
   interactiveTranslator,
   interactiveGrammar,
@@ -79,6 +80,8 @@ extension MatrixProfileExtension on MatrixProfile {
         return ModelKey.userDateOfBirth;
       case MatrixProfile.autoPlayMessages:
         return PLocalKey.autoPlayMessages;
+      case MatrixProfile.itAutoPlay:
+        return PLocalKey.itAutoPlay;
       case MatrixProfile.activatedFreeTrial:
         return PLocalKey.activatedTrialKey;
       case MatrixProfile.interactiveTranslator:

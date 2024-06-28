@@ -819,6 +819,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -863,7 +867,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "be": [
@@ -2314,6 +2321,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -2363,7 +2374,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "bn": [
@@ -3810,6 +3824,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -3859,7 +3877,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "bo": [
@@ -5310,6 +5331,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -5359,7 +5384,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ca": [
@@ -6213,6 +6241,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -6261,7 +6293,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "cs": [
@@ -7197,6 +7232,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -7245,7 +7284,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "de": [
@@ -8068,6 +8110,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -8112,7 +8158,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "el": [
@@ -9514,6 +9563,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -9563,7 +9616,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "eo": [
@@ -10664,6 +10720,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -10712,11 +10772,18 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "es": [
     "searchIn",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -10727,7 +10794,8 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel"
   ],
 
   "et": [
@@ -11550,6 +11618,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -11594,7 +11666,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "eu": [
@@ -12417,6 +12492,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -12463,7 +12542,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "fa": [
@@ -13421,6 +13503,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -13469,7 +13555,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "fi": [
@@ -14391,6 +14480,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -14439,7 +14532,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "fil": [
@@ -15717,6 +15813,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -15765,7 +15865,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "fr": [
@@ -16722,6 +16825,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -16770,7 +16877,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ga": [
@@ -17856,6 +17966,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -17904,7 +18018,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "gl": [
@@ -18727,6 +18844,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -18771,7 +18892,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "he": [
@@ -19976,6 +20100,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -20024,7 +20152,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "hi": [
@@ -21468,6 +21599,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -21517,7 +21652,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "hr": [
@@ -22415,6 +22553,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -22463,7 +22605,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "hu": [
@@ -23300,6 +23445,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -23346,7 +23495,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ia": [
@@ -24783,6 +24935,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -24832,7 +24988,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "id": [
@@ -25659,6 +25818,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -25705,7 +25868,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ie": [
@@ -26914,6 +27080,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -26962,7 +27132,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "it": [
@@ -27838,6 +28011,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -27886,7 +28063,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ja": [
@@ -28873,6 +29053,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -28921,7 +29105,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ka": [
@@ -30227,6 +30414,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -30275,7 +30466,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ko": [
@@ -31098,6 +31292,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -31144,7 +31342,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "lt": [
@@ -32131,6 +32332,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -32179,7 +32384,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "lv": [
@@ -33008,6 +33216,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -33054,7 +33266,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "nb": [
@@ -34204,6 +34419,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -34253,7 +34472,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "nl": [
@@ -35168,6 +35390,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -35216,7 +35442,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "pl": [
@@ -36140,6 +36369,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -36188,7 +36421,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "pt": [
@@ -37617,6 +37853,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -37666,7 +37906,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "pt_BR": [
@@ -38493,6 +38736,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -38539,7 +38786,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "pt_PT": [
@@ -39691,6 +39941,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -39739,7 +39993,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ro": [
@@ -40698,6 +40955,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -40746,7 +41007,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ru": [
@@ -41573,6 +41837,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -41619,7 +41887,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "sk": [
@@ -42836,6 +43107,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -42885,7 +43160,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "sl": [
@@ -44233,6 +44511,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -44281,7 +44563,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "sr": [
@@ -45402,6 +45687,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -45451,7 +45740,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "sv": [
@@ -46307,6 +46599,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -46355,7 +46651,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "ta": [
@@ -47803,6 +48102,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -47852,7 +48155,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "th": [
@@ -49254,6 +49560,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -49303,7 +49613,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "tr": [
@@ -50126,6 +50439,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -50170,7 +50487,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "uk": [
@@ -51026,6 +51346,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -51074,7 +51398,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "vi": [
@@ -52378,6 +52705,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -52426,7 +52757,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "zh": [
@@ -53249,6 +53583,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -53293,7 +53631,10 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ],
 
   "zh_Hant": [
@@ -54392,6 +54733,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "conversationBotCustomZone_title",
+    "conversationBotCustomZone_customSystemPromptLabel",
+    "conversationBotCustomZone_customSystemPromptPlaceholder",
+    "conversationBotCustomZone_customTriggerReactionEnabledLabel",
     "addConversationBotDialogTitleInvite",
     "addConversationBotButtonInvite",
     "addConversationBotDialogInviteConfirmation",
@@ -54441,6 +54786,9 @@
     "suggestToSpaceDesc",
     "practice",
     "noLanguagesSet",
-    "noActivitiesFound"
+    "noActivitiesFound",
+    "languageButtonLabel",
+    "interactiveTranslatorAutoPlaySliderHeader",
+    "interactiveTranslatorAutoPlayDesc"
   ]
 }

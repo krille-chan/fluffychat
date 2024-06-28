@@ -1,7 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -73,6 +78,24 @@ class StudentAnalyticsController extends State<StudentAnalyticsPage> {
     final id = _pangeaController.matrixState.client.userID;
     debugger(when: kDebugMode && id == null);
     return id;
+  }
+
+  List<LanguageModel> get targetLanguages {
+    final LanguageModel? l2 =
+        _pangeaController.languageController.activeL2Model();
+    final List<LanguageModel> analyticsRoomLangs =
+        _pangeaController.matrixState.client.allMyAnalyticsRooms
+            .map((analyticsRoom) => analyticsRoom.madeForLang)
+            .where((langCode) => langCode != null)
+            .map((langCode) => PangeaLanguage.byLangCode(langCode!))
+            .where(
+              (langModel) => langModel.langCode != LanguageKeys.unknownLanguage,
+            )
+            .toList();
+    if (l2 != null) {
+      analyticsRoomLangs.add(l2);
+    }
+    return analyticsRoomLangs.toSet().toList();
   }
 
   @override
