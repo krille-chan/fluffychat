@@ -24,7 +24,7 @@ class MyAnalyticsController {
 
   /// the max number of messages that will be cached before
   /// an automatic update is triggered
-  final int _maxMessagesCached = 10;
+  final int _maxMessagesCached = 1;
 
   /// the number of minutes before an automatic update is triggered
   final int _minutesBeforeUpdate = 5;
@@ -212,16 +212,22 @@ class MyAnalyticsController {
     );
 
     // all chats in which user is a student
-    final List<Room> chats = await _client.chatsImAStudentIn;
+    final List<Room> chats = _client.rooms
+        .where((room) => !room.isSpace && !room.isAnalyticsRoom)
+        .toList();
+
+    final DateTime now = DateTime.now();
 
     // get the recent message events and activity records for each chat
     final List<Future<List<Event>>> recentMsgFutures = [];
     final List<Future<List<Event>>> recentActivityFutures = [];
     for (final Room chat in chats) {
-      chat.getEventsBySender(
-        type: EventTypes.Message,
-        sender: _client.userID!,
-        since: l2AnalyticsLastUpdated,
+      recentMsgFutures.add(
+        chat.getEventsBySender(
+          type: EventTypes.Message,
+          sender: _client.userID!,
+          since: l2AnalyticsLastUpdated,
+        ),
       );
       recentActivityFutures.add(
         chat.getEventsBySender(
@@ -302,6 +308,7 @@ class MyAnalyticsController {
 
     constructContent.addAll(constructLists.expand((e) => e));
 
+    //TODO - confirm that this is the correct construct content
     debugger(when: kDebugMode);
 
     await analyticsRoom.sendConstructsEvent(

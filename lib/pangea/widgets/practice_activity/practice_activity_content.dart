@@ -1,27 +1,19 @@
-import 'package:collection/collection.dart';
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_record_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_record_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:get_storage/get_storage.dart';
 
-class PracticeActivityContent extends StatefulWidget {
+/// Practice activity content
+class PracticeActivity extends StatefulWidget {
   final PracticeActivityEvent practiceEvent;
-  final PangeaMessageEvent pangeaMessageEvent;
   final MessagePracticeActivityCardState controller;
 
-  const PracticeActivityContent({
+  const PracticeActivity({
     super.key,
     required this.practiceEvent,
-    required this.pangeaMessageEvent,
     required this.controller,
   });
 
@@ -30,8 +22,7 @@ class PracticeActivityContent extends StatefulWidget {
       MessagePracticeActivityContentState();
 }
 
-class MessagePracticeActivityContentState
-    extends State<PracticeActivityContent> {
+class MessagePracticeActivityContentState extends State<PracticeActivity> {
   int? selectedChoiceIndex;
   PracticeActivityRecordModel? recordModel;
   bool recordSubmittedThisSession = false;
@@ -46,7 +37,7 @@ class MessagePracticeActivityContentState
   }
 
   @override
-  void didUpdateWidget(covariant PracticeActivityContent oldWidget) {
+  void didUpdateWidget(covariant PracticeActivity oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.practiceEvent.event.eventId !=
         widget.practiceEvent.event.eventId) {
@@ -56,7 +47,7 @@ class MessagePracticeActivityContentState
 
   void initalizeActivity() {
     final PracticeActivityRecordEvent? recordEvent =
-        widget.practiceEvent.userRecords.firstOrNull;
+        widget.practiceEvent.userRecord;
     if (recordEvent?.record == null) {
       recordModel = PracticeActivityRecordModel(
         question:
@@ -95,75 +86,20 @@ class MessagePracticeActivityContentState
     switch (widget.practiceEvent.practiceActivity.activityType) {
       case ActivityTypeEnum.multipleChoice:
         return MultipleChoiceActivity(
-          card: this,
-          updateChoice: updateChoice,
-          isActive:
-              !recordSubmittedPreviousSession && !recordSubmittedThisSession,
+          controller: widget.controller,
+          currentActivity: widget.practiceEvent,
         );
       default:
         return const SizedBox.shrink();
     }
   }
 
-  void sendRecord() {
-    MatrixState.pangeaController.activityRecordController
-        .send(
-      recordModel!,
-      widget.practiceEvent,
-    )
-        .catchError((error) {
-      ErrorHandler.logError(
-        e: error,
-        s: StackTrace.current,
-        data: {
-          'recordModel': recordModel?.toJson(),
-          'practiceEvent': widget.practiceEvent.event.toJson(),
-        },
-      );
-      return null;
-    }).then((_) => widget.controller.showNextActivity());
-
-    setState(() {
-      recordSubmittedThisSession = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    debugPrint(
-      "MessagePracticeActivityContentState.build with selectedChoiceIndex: $selectedChoiceIndex",
-    );
     return Column(
       children: [
         activityWidget,
         const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Opacity(
-              opacity: selectedChoiceIndex != null &&
-                      !recordSubmittedThisSession &&
-                      !recordSubmittedPreviousSession
-                  ? 1.0
-                  : 0.5,
-              child: TextButton(
-                onPressed: () {
-                  if (recordSubmittedThisSession ||
-                      recordSubmittedPreviousSession) {
-                    return;
-                  }
-                  selectedChoiceIndex != null ? sendRecord() : null;
-                },
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all<Color>(
-                    AppConfig.primaryColor,
-                  ),
-                ),
-                child: Text(L10n.of(context)!.submit),
-              ),
-            ),
-          ],
-        ),
       ],
     );
   }

@@ -82,9 +82,9 @@ class ConversationBotDiscussionZone extends StatelessWidget {
                 .conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel,
           ),
           enabled: false,
-          value: initialBotOptions.discussionTriggerReactionEnabled ?? false,
+          value: initialBotOptions.discussionTriggerReactionEnabled ?? true,
           onChanged: (value) {
-            initialBotOptions.discussionTriggerReactionEnabled = value ?? false;
+            initialBotOptions.discussionTriggerReactionEnabled = value ?? true;
             initialBotOptions.discussionTriggerReactionKey =
                 "⏩"; // hard code this for now
             onChanged.call(initialBotOptions);

@@ -1,7 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -55,9 +54,6 @@ class ChatInputRow extends StatelessWidget {
 
     return Column(
       children: [
-        ITBar(
-          choreographer: controller.choreographer,
-        ),
         Row(
           // crossAxisAlignment: CrossAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,

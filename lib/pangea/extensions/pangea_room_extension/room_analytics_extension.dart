@@ -194,7 +194,7 @@ extension AnalyticsRoomExtension on Room {
     final List<Event> events = await getEventsBySender(
       type: type,
       sender: userId,
-      count: 1,
+      count: 10,
     );
     if (events.isEmpty) return null;
     final Event event = events.first;

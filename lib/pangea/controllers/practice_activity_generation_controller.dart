@@ -51,7 +51,7 @@ class PracticeGenerationController {
     final Event? activityEvent = await pangeaMessageEvent.room.sendPangeaEvent(
       content: model.toJson(),
       parentEventId: pangeaMessageEvent.eventId,
-      type: PangeaEventTypes.pangeaActivityRes,
+      type: PangeaEventTypes.pangeaActivity,
     );
 
     if (activityEvent == null) {

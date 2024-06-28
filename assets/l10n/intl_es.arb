@@ -3064,6 +3064,17 @@
     "type": "text",
     "placeholders": {}
   },
+  "interactiveTranslatorAutoPlaySliderHeader": "Traducción de reproducción automática",
+  "interactiveTranslatorAutoPlay": "Traductora interactiva de reproducción automática",
+  "@interactiveTranslatorAutoPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "interactiveTranslatorAutoPlayDesc": "Inicia el traductor interactivo sin preguntar.",
+  "@interactiveTranslatorAutoPlayDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
   "grammarAssistance": "Asistencia gramatical",
   "@grammarAssistance": {
     "type": "text",
@@ -3126,10 +3137,16 @@
   "translationSeemsFinished": "La traducción parece estar terminada.",
   "needsItShortMessage": "¡Pruebe la traducción interactiva!",
   "needsIGCShortMessage": "¡Pruebe el corrector gramatical interactivo!",
-  "needsItMessage": "Este mensaje tiene demasiadas palabras en su idioma base.",
+  "needsItMessage": "Espera, ¡ese no es {targetLanguage}! ¿Necesitas ayuda para traducir?",
+  "@needsItMessage": {
+    "type": "text",
+    "placeholders": {
+      "targetLanguage": {}
+    }
+  },
   "needsIgcMessage": "Este mensaje tiene un error gramatical.",
   "tokenTranslationTitle": "Una palabra está en su idioma base.",
-  "helpMeTranslate": "¡Ayúdeme a traducir!",
+  "helpMeTranslate": "¡Sí!",
   "setToPublicSettingsTitle": "¿Quiere encontrar un compañero de conversación?",
   "setToPublicSettingsDesc": "Antes de que pueda buscar un compañero de conversación, debe configurar la visibilidad de su perfil como pública.",
   "publicProfileTitle": "Perfil público",
