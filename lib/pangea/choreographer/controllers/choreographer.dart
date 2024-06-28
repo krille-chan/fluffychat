@@ -5,13 +5,12 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/alternative_translator.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/igc_controller.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/message_options.dart';
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/enum/assistance_state_enum.dart';
 import 'package:fluffychat/pangea/enum/edit_type.dart';
 import 'package:fluffychat/pangea/models/it_step.dart';
-import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
@@ -94,63 +93,67 @@ class Choreographer {
   }
 
   Future<void> _sendWithIGC(BuildContext context) async {
-    if (igc.canSendMessage) {
-      final PangeaRepresentation? originalWritten =
-          choreoRecord.includedIT && itController.sourceText != null
-              ? PangeaRepresentation(
-                  langCode: l1LangCode ?? LanguageKeys.unknownLanguage,
-                  text: itController.sourceText!,
-                  originalWritten: true,
-                  originalSent: false,
-                )
-              : null;
+    if (!igc.canSendMessage) {
+      igc.showFirstMatch(context);
+      return;
+    }
 
-      final PangeaRepresentation originalSent = PangeaRepresentation(
-        langCode: langCodeOfCurrentText ?? LanguageKeys.unknownLanguage,
-        text: currentText,
-        originalSent: true,
-        originalWritten: originalWritten == null,
-      );
-      final ChoreoRecord? applicableChoreo =
-          isITandIGCEnabled && igc.igcTextData != null ? choreoRecord : null;
+    final PangeaRepresentation? originalWritten =
+        choreoRecord.includedIT && itController.sourceText != null
+            ? PangeaRepresentation(
+                langCode: l1LangCode ?? LanguageKeys.unknownLanguage,
+                text: itController.sourceText!,
+                originalWritten: true,
+                originalSent: false,
+              )
+            : null;
+    //TODO - confirm that IT is indeed making sure the message is in the user's L1
 
-      // if the message has not been processed to determine its language
-      // then run it through the language detection endpoint. If the detection
-      // confidence is high enough, use that language code as the message's language
-      // to save that pangea representation
-      if (applicableChoreo == null) {
-        final resp = await pangeaController.languageDetection.detectLanguage(
+    // if the message has not been processed to determine its language
+    // then run it through the language detection endpoint. If the detection
+    // confidence is high enough, use that language code as the message's language
+    // to save that pangea representation
+    // TODO - move this to somewhere such that the message can be cleared from the input field
+    // before the language detection is complete. Otherwise, user is going to be waiting
+    // in cases of slow internet or slow language detection
+    final String originalSentLangCode = langCodeOfCurrentText ??
+        (await pangeaController.languageDetection.detectLanguage(
           currentText,
           pangeaController.languageController.userL2?.langCode,
           pangeaController.languageController.userL1?.langCode,
-        );
-        final LanguageDetection? bestDetection = resp.bestDetection();
-        if (bestDetection != null) {
-          originalSent.langCode = bestDetection.langCode;
-        }
-      }
+        ))
+            .bestDetection()
+            .langCode;
 
-      final UseType useType = useTypeCalculator(applicableChoreo);
-      debugPrint("use type in choreographer $useType");
+    final PangeaRepresentation originalSent = PangeaRepresentation(
+      langCode: originalSentLangCode,
+      text: currentText,
+      originalSent: true,
+      originalWritten: originalWritten == null,
+    );
 
-      chatController.send(
-        // PTODO - turn this back on in conjunction with saving tokens
-        // we need to save those tokens as well, in order for exchanges to work
-        // properly. in an exchange, the other user will want
-        // originalWritten: originalWritten,
-        originalSent: originalSent,
-        tokensSent: igc.igcTextData?.tokens != null
-            ? PangeaMessageTokens(tokens: igc.igcTextData!.tokens)
-            : null,
-        //TODO - save originalwritten tokens
-        choreo: applicableChoreo,
-        useType: useType,
-      );
+    // TODO - why does both it and igc need to be enabled for choreo to be applicable?
+    final ChoreoRecord? applicableChoreo =
+        isITandIGCEnabled && igc.igcTextData != null ? choreoRecord : null;
 
-      clear();
-    } else {
-      igc.showFirstMatch(context);
-    }
+    final UseType useType = useTypeCalculator(applicableChoreo);
+    debugPrint("use type in choreographer $useType");
+
+    chatController.send(
+      // PTODO - turn this back on in conjunction with saving tokens
+      // we need to save those tokens as well, in order for exchanges to work
+      // properly. in an exchange, the other user will want
+      // originalWritten: originalWritten,
+      originalSent: originalSent,
+      tokensSent: igc.igcTextData?.tokens != null
+          ? PangeaMessageTokens(tokens: igc.igcTextData!.tokens)
+          : null,
+      //TODO - save originalwritten tokens
+      choreo: applicableChoreo,
+      useType: useType,
+    );
+
+    clear();
   }
 
   _resetDebounceTimer() {
@@ -481,10 +484,17 @@ class Choreographer {
 
   bool get editTypeIsKeyboard => EditType.keyboard == _textController.editType;
 
+  /// If there is applicable igcTextData, return the detected langCode
+  /// Otherwise, if the IT controller is open, return the user's L2 langCode
+  /// This second piece assumes that IT is being used to translate into the user's L2
+  /// and could be spotty. It's a bit of a hack, and should be tested more.
   String? get langCodeOfCurrentText {
     if (igc.detectedLangCode != null) return igc.detectedLangCode!;
 
-    if (itController.isOpen) return l2LangCode!;
+    // TODO - this is a bit of a hack, and should be tested more
+    // we should also check that user has not done customInput
+    if (itController.completedITSteps.isNotEmpty && itController.allCorrect)
+      return l2LangCode!;
 
     return null;
   }

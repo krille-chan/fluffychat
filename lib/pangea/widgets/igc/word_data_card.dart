@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';

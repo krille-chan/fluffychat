@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 

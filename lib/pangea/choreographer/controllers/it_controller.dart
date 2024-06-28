@@ -340,9 +340,6 @@ class ITController {
 
   bool get isLoading => choreographer.isFetching;
 
-  bool get correctChoicesSelected =>
-      completedITSteps.every((ITStep step) => step.isCorrect);
-
   String latestChoiceFeedback(BuildContext context) =>
       completedITSteps.isNotEmpty
           ? completedITSteps.last.choiceFeedback(context)

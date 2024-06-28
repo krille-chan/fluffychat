@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:fluffychat/pangea/config/environment.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
@@ -75,19 +76,16 @@ class LanguageDetectionResponse {
     };
   }
 
-  LanguageDetection? get _bestDetection {
+  LanguageDetection get _bestDetection {
     detections.sort((a, b) => b.confidence.compareTo(a.confidence));
-    return detections.isNotEmpty ? detections.first : null;
+    return detections.firstOrNull ?? unknownLanguageDetection;
   }
 
-  final double _confidenceThreshold = 0.95;
-
-  LanguageDetection? bestDetection({double? threshold}) {
-    threshold ??= _confidenceThreshold;
-    return (_bestDetection?.confidence ?? 0) >= _confidenceThreshold
-        ? _bestDetection!
-        : null;
-  }
+  LanguageDetection bestDetection({double? threshold}) =>
+      _bestDetection.confidence >=
+              (threshold ?? languageDetectionConfidenceThreshold)
+          ? _bestDetection
+          : unknownLanguageDetection;
 }
 
 class _LanguageDetectionCacheItem {

@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';

@@ -3,7 +3,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
