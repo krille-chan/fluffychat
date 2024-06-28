@@ -305,7 +305,6 @@ class MessageToolbarState extends State<MessageToolbar> {
   void showPracticeActivity() {
     toolbarContent = PracticeActivityCard(
       pangeaMessageEvent: widget.pangeaMessageEvent,
-      controller: this,
     );
   }
 

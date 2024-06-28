@@ -4065,6 +4065,7 @@
   "practice": "Practice",
   "noLanguagesSet": "No languages set",
   "noActivitiesFound": "No practice activities found for this message",
+  "previous": "Previous",
   "languageButtonLabel": "Language: {currentLanguage}",
   "@languageButtonLabel": {
     "type": "text",
