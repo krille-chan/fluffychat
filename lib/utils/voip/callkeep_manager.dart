@@ -8,8 +8,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:fluffychat/utils/voip_plugin.dart';
-
 class CallKeeper {
   CallKeeper(this.callKeepManager, this.call) {
     call.onCallStateChanged.stream.listen(_handleCallState);
@@ -40,31 +38,14 @@ class CallKeeper {
       case CallState.kEnded:
         callKeepManager.hangup(call.callId);
         break;
-      /* TODO:
-      case CallState.kMuted:
-        callKeepManager.setMutedCall(uuid, true);
-        break;
-      case CallState.kHeld:
-        callKeepManager.setOnHold(uuid, true);
-        break;
-      */
+
       case CallState.kFledgling:
-        // TODO: Handle this case.
-        break;
       case CallState.kInviteSent:
-        // TODO: Handle this case.
-        break;
       case CallState.kWaitLocalMedia:
-        // TODO: Handle this case.
-        break;
       case CallState.kCreateOffer:
-        // TODO: Handle this case.
-        break;
       case CallState.kCreateAnswer:
-        // TODO: Handle this case.
-        break;
       case CallState.kRinging:
-        // TODO: Handle this case.
+      case CallState.kEnding:
         break;
     }
   }
@@ -84,7 +65,6 @@ class CallKeepManager {
   static final CallKeepManager _instance = CallKeepManager._internal();
 
   late FlutterCallkeep _callKeep;
-  VoipPlugin? _voipPlugin;
 
   String get appName => 'FluffyChat';
 
@@ -130,7 +110,7 @@ class CallKeepManager {
     });
     call.onCallEventChanged.stream.listen(
       (event) {
-        if (event == CallEvent.kLocalHoldUnhold) {
+        if (event == CallStateChange.kLocalHoldUnhold) {
           Logs().i(
             'Call hold event: local ${call.localHold}, remote ${call.remoteOnHold}',
           );
@@ -170,10 +150,7 @@ class CallKeepManager {
   Future<void> initialize() async {
     _callKeep.on(CallKeepPerformAnswerCallAction(), answerCall);
     _callKeep.on(CallKeepDidPerformDTMFAction(), didPerformDTMFAction);
-    _callKeep.on(
-      CallKeepDidReceiveStartCallAction(),
-      didReceiveStartCallAction,
-    );
+
     _callKeep.on(CallKeepDidToggleHoldAction(), didToggleHoldCallAction);
     _callKeep.on(
       CallKeepDidPerformSetMutedCallAction(),
@@ -313,32 +290,13 @@ class CallKeepManager {
 
   Future<void> endCall(CallKeepPerformEndCallAction event) async {
     final keeper = calls[event.callUUID];
-    keeper?.call.hangup();
+    keeper?.call.hangup(reason: CallErrorCode.userHangup);
     removeCall(event.callUUID);
   }
 
   Future<void> didPerformDTMFAction(CallKeepDidPerformDTMFAction event) async {
     final keeper = calls[event.callUUID]!;
     keeper.call.sendDTMF(event.digits!);
-  }
-
-  Future<void> didReceiveStartCallAction(
-    CallKeepDidReceiveStartCallAction event,
-  ) async {
-    if (event.handle == null) {
-      // @TODO: sometime we receive `didReceiveStartCallAction` with handle` undefined`
-      return;
-    }
-    final callUUID = event.callUUID!;
-    if (event.callUUID == null) {
-      final call =
-          await _voipPlugin!.voip.inviteToCall(event.handle!, CallType.kVideo);
-      addCall(callUUID, CallKeeper(this, call));
-    }
-    await _callKeep.startCall(callUUID, event.handle!, event.handle!);
-    Timer(const Duration(seconds: 1), () {
-      _callKeep.setCurrentCallActive(callUUID);
-    });
   }
 
   Future<void> didPerformSetMutedCallAction(

@@ -9,7 +9,8 @@ import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/has_error_button.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/language_permissions_warning_buttons.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/class_analytics/measure_able.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
@@ -20,6 +21,7 @@ import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../pangea/choreographer/widgets/it_bar.dart';
@@ -43,11 +45,15 @@ class ChatView extends StatelessWidget {
             tooltip: L10n.of(context)!.edit,
             onPressed: controller.editSelectedEventAction,
           ),
-        IconButton(
-          icon: const Icon(Icons.copy_outlined),
-          tooltip: L10n.of(context)!.copy,
-          onPressed: controller.copyEventsAction,
-        ),
+        // #Pangea
+        if (controller.selectedEvents.length == 1 &&
+            controller.selectedEvents.single.messageType == MessageTypes.Text)
+          // Pangea#
+          IconButton(
+            icon: const Icon(Icons.copy_outlined),
+            tooltip: L10n.of(context)!.copy,
+            onPressed: controller.copyEventsAction,
+          ),
         if (controller.canSaveSelectedEvent)
           // Use builder context to correctly position the share dialog on iPad
           Builder(
@@ -117,11 +123,12 @@ class ChatView extends StatelessWidget {
       // #Pangea
     } else {
       return [
-        ChatSettingsPopupMenu(controller.room,
-            (!controller.room.isDirectChat && !controller.room.isArchived)),
+        ChatSettingsPopupMenu(
+          controller.room,
+          (!controller.room.isDirectChat && !controller.room.isArchived),
+        ),
       ];
     }
-
     // else if (!controller.room.isArchived) {
     //   return [
     //     if (Matrix.of(context).voipPlugin != null &&
@@ -146,6 +153,11 @@ class ChatView extends StatelessWidget {
         context: context,
         future: () => controller.room.join(),
       );
+      // #Pangea
+      controller.room.leaveIfFull().then(
+            (full) => full ? context.go('/rooms') : null,
+          );
+      // Pangea#
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
@@ -163,7 +175,8 @@ class ChatView extends StatelessWidget {
         }
       },
       child: StreamBuilder(
-        stream: controller.room.onUpdate.stream
+        stream: controller.room.client.onRoomState.stream
+            .where((update) => update.roomId == controller.room.id)
             .rateLimit(const Duration(seconds: 1)),
         builder: (context, snapshot) => FutureBuilder(
           future: controller.loadTimelineFuture,
@@ -200,7 +213,7 @@ class ChatView extends StatelessWidget {
                             // #Pangea
                             &&
                             !r.isAnalyticsRoom,
-                        // Pangea#,
+                        // Pangea#
                         badgePosition: BadgePosition.topEnd(end: 8, top: 4),
                         child: const Center(child: BackButton()),
                       ),
@@ -352,6 +365,7 @@ class ChatView extends StatelessWidget {
                                     clipBehavior: Clip.hardEdge,
                                     color: Theme.of(context)
                                         .colorScheme
+                                        // ignore: deprecated_member_use
                                         .surfaceVariant,
                                     borderRadius: const BorderRadius.all(
                                       Radius.circular(24),
@@ -362,6 +376,29 @@ class ChatView extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
+                                              // #Pangea
+                                              if (controller.room.isRoomAdmin)
+                                                TextButton.icon(
+                                                  style: TextButton.styleFrom(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                      16,
+                                                    ),
+                                                    foregroundColor:
+                                                        Theme.of(context)
+                                                            .colorScheme
+                                                            .error,
+                                                  ),
+                                                  icon: const Icon(
+                                                    Icons.archive_outlined,
+                                                  ),
+                                                  onPressed:
+                                                      controller.archiveChat,
+                                                  label: Text(
+                                                    L10n.of(context)!.archive,
+                                                  ),
+                                                ),
+                                              // Pangea#
                                               TextButton.icon(
                                                 style: TextButton.styleFrom(
                                                   padding: const EdgeInsets.all(
@@ -373,7 +410,10 @@ class ChatView extends StatelessWidget {
                                                           .error,
                                                 ),
                                                 icon: const Icon(
-                                                  Icons.archive_outlined,
+                                                  // #Pangea
+                                                  // Icons.archive_outlined,
+                                                  Icons.arrow_forward,
+                                                  // Pangea#
                                                 ),
                                                 onPressed: controller.leaveChat,
                                                 label: Text(
@@ -430,6 +470,11 @@ class ChatView extends StatelessWidget {
                   //       size: 100,
                   //     ),
                   //   ),
+                  Positioned(
+                    left: 20,
+                    bottom: 75,
+                    child: StartIGCButton(controller: controller),
+                  ),
                   // Pangea#
                 ],
               ),
@@ -471,4 +516,4 @@ class ConditionalScroll extends StatelessWidget {
     return child;
   }
 }
-// #Pangea
+// Pangea#

@@ -1,3 +1,4 @@
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -93,6 +94,7 @@ class InstructionsController {
         ),
         cardSize: const Size(300.0, 300.0),
         transformTargetId: transformTargetKey,
+        closePrevOverlay: false,
       ),
     );
   }
@@ -102,6 +104,7 @@ enum InstructionsEnum {
   itInstructions,
   clickMessage,
   blurMeansTranslate,
+  tooltipInstructions,
 }
 
 extension Copy on InstructionsEnum {
@@ -113,6 +116,8 @@ extension Copy on InstructionsEnum {
         return L10n.of(context)!.clickMessageTitle;
       case InstructionsEnum.blurMeansTranslate:
         return L10n.of(context)!.blurMeansTranslateTitle;
+      case InstructionsEnum.tooltipInstructions:
+        return L10n.of(context)!.tooltipInstructionsTitle;
     }
   }
 
@@ -124,6 +129,10 @@ extension Copy on InstructionsEnum {
         return L10n.of(context)!.clickMessageBody;
       case InstructionsEnum.blurMeansTranslate:
         return L10n.of(context)!.blurMeansTranslateBody;
+      case InstructionsEnum.tooltipInstructions:
+        return PlatformInfos.isMobile
+            ? L10n.of(context)!.tooltipInstructionsMobileBody
+            : L10n.of(context)!.tooltipInstructionsBrowserBody;
     }
   }
 }

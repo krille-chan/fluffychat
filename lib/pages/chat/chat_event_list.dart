@@ -4,7 +4,8 @@ import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/pangea/widgets/chat/locked_chat_message.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
@@ -39,6 +40,20 @@ class ChatEventList extends StatelessWidget {
 
     final hasWallpaper =
         controller.room.client.applicationAccountConfig.wallpaperUrl != null;
+
+    // #Pangea
+    // after the chat event list mounts, if the user hasn't yet seen this instruction
+    // card, attach it on top of the first shown message
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (events.isEmpty) return;
+      controller.pangeaController.instructions.show(
+        context,
+        InstructionsEnum.clickMessage,
+        events[0].eventId,
+        true,
+      );
+    });
+    // Pangea#
 
     return SelectionArea(
       child: ListView.custom(
@@ -81,7 +96,7 @@ class ChatEventList extends StatelessWidget {
 
             // #Pangea
             if (i == 1) {
-              return (controller.room.locked) && !controller.room.isRoomAdmin
+              return (controller.room.isLocked) && !controller.room.isRoomAdmin
                   ? const LockedChatMessage()
                   : const SizedBox.shrink();
             }
@@ -114,13 +129,12 @@ class ChatEventList extends StatelessWidget {
               }
               return const SizedBox.shrink();
             }
-            i--;
-
-            // The message at this index:
             // #Pangea
-            // final event = events[i];
-            final event = events[i - 1];
+            // i--;
+            i = i - 2;
             // Pangea#
+
+            final event = events[i];
             final animateIn = animateInEventIndex != null &&
                 controller.timeline!.events.length > animateInEventIndex &&
                 event == controller.timeline!.events[animateInEventIndex];

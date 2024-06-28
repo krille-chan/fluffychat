@@ -1,7 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -33,6 +33,9 @@ void chatListHandleSpaceTap(
       context: context,
       future: () async {
         await space.join();
+        if (await space.leaveIfFull()) {
+          throw L10n.of(context)!.roomFull;
+        }
         await space.postLoad();
         setActiveSpaceAndCloseChat();
       },
@@ -53,7 +56,7 @@ void chatListHandleSpaceTap(
       title: L10n.of(context)!.youreInvited,
       message: space.isSpace
           ? L10n.of(context)!
-              .invitedToClassOrExchange(space.name, space.creatorId ?? "???")
+              .invitedToSpace(space.name, space.creatorId ?? "???")
           : L10n.of(context)!
               .invitedToChat(space.name, space.creatorId ?? "???"),
       okLabel: L10n.of(context)!.accept,
@@ -65,6 +68,9 @@ void chatListHandleSpaceTap(
         context: context,
         future: () async {
           await space.join();
+          if (await space.leaveIfFull()) {
+            throw L10n.of(context)!.roomFull;
+          }
           if (space.isSpace) {
             await space.joinAnalyticsRoomsInSpace();
           }
@@ -75,11 +81,6 @@ void chatListHandleSpaceTap(
               duration: const Duration(seconds: 3),
             ),
           );
-          if (space.isExchange) {
-            context.go(
-              '/rooms/join_exchange/${controller.activeSpaceId}',
-            );
-          }
         },
       );
     } else {

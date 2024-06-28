@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:math';
 
@@ -12,13 +13,15 @@ import 'package:fluffychat/pangea/controllers/local_settings.dart';
 import 'package:fluffychat/pangea/controllers/message_data_controller.dart';
 import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/permissions_controller.dart';
+import 'package:fluffychat/pangea/controllers/practice_activity_generation_controller.dart';
+import 'package:fluffychat/pangea/controllers/practice_activity_record_controller.dart';
 import 'package:fluffychat/pangea/controllers/speech_to_text_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/controllers/user_controller.dart';
 import 'package:fluffychat/pangea/controllers/word_net_controller.dart';
-import 'package:fluffychat/pangea/extensions/client_extension.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -53,6 +56,8 @@ class PangeaController {
   late TextToSpeechController textToSpeech;
   late SpeechToTextController speechToText;
   late LanguageDetectionController languageDetection;
+  late PracticeActivityRecordController activityRecordController;
+  late PracticeGenerationController practiceGenerationController;
 
   ///store Services
   late PLocalStore pStoreService;
@@ -101,6 +106,8 @@ class PangeaController {
     textToSpeech = TextToSpeechController(this);
     speechToText = SpeechToTextController(this);
     languageDetection = LanguageDetectionController(this);
+    activityRecordController = PracticeActivityRecordController(this);
+    practiceGenerationController = PracticeGenerationController();
     PAuthGaurd.pController = this;
   }
 
@@ -122,9 +129,6 @@ class PangeaController {
     if (homeserver.scheme.isEmpty) {
       homeserver = Uri.https(homeServer, '');
     }
-
-    matrixState.loginHomeserverSummary =
-        await matrixState.getLoginClient().checkHomeserver(homeserver);
 
     try {
       await matrixState.getLoginClient().register();
@@ -248,27 +252,9 @@ class PangeaController {
       if (!userIds.contains(BotName.byEnvironment)) {
         try {
           await space.invite(BotName.byEnvironment);
-          await space.postLoad();
-          await space.setPower(
-            BotName.byEnvironment,
-            ClassDefaultValues.powerLevelOfAdmin,
-          );
         } catch (err) {
           ErrorHandler.logError(
             e: "Failed to invite pangea bot to space ${space.id}",
-          );
-        }
-      } else if (space.getPowerLevelByUserId(BotName.byEnvironment) <
-          ClassDefaultValues.powerLevelOfAdmin) {
-        try {
-          await space.postLoad();
-          await space.setPower(
-            BotName.byEnvironment,
-            ClassDefaultValues.powerLevelOfAdmin,
-          );
-        } catch (err) {
-          ErrorHandler.logError(
-            e: "Failed to reset power level for pangea bot in space ${space.id}",
           );
         }
       }

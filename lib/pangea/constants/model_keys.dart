@@ -27,11 +27,8 @@ class ModelKey {
 
   static const String clientIsPublic = "isPublic";
   static const String clientIsOpenEnrollment = 'isOpenEnrollment';
-  static const String clientIsOpenExchange = 'isOpenExchange';
   static const String clientIsOneToOneChatClass = 'oneToOneChatClass';
-  static const String clientIsOneToOneChatExchange = 'oneToOneChatExchange';
   static const String clientIsCreateRooms = 'isCreateRooms';
-  static const String clientIsCreateRoomsExchange = 'isCreateRoomsExchange';
   static const String clientIsShareVideo = 'isShareVideo';
   static const String clientIsSharePhoto = 'isSharePhoto';
   static const String clientIsShareFiles = 'isShareFiles';
@@ -39,7 +36,6 @@ class ModelKey {
   static const String clientIsCreateStories = 'isCreateStories';
   static const String clientIsVoiceNotes = 'isVoiceNotes';
   static const String clientIsInviteOnlyStudents = 'isInviteOnlyStudents';
-  static const String clientIsInviteOnlyExchanges = 'isInviteOnlyExchanges';
 
   static const String userL1 = "user_l1";
   static const String userL2 = "user_l2";
@@ -54,6 +50,7 @@ class ModelKey {
   static const String offset = "offset";
   static const String length = "length";
   static const String langCode = 'lang_code';
+  static const String confidence = 'confidence';
   // some old analytics rooms have langCode instead of lang_code in the room creation content
   static const String oldLangCode = 'langCode';
   static const String wordLang = "word_lang";
@@ -98,15 +95,17 @@ class ModelKey {
   static const String languageLevel = "difficulty";
   static const String safetyModeration = "safety_moderation";
   static const String mode = "mode";
-  static const String custom = "custom";
   static const String discussionTopic = "discussion_topic";
   static const String discussionKeywords = "discussion_keywords";
-  static const String discussionTriggerScheduleEnabled =
-      "discussion_trigger_schedule_enabled";
-  static const String discussionTriggerScheduleHourInterval =
-      "discussion_trigger_schedule_hour_interval";
   static const String discussionTriggerReactionEnabled =
       "discussion_trigger_reaction_enabled";
   static const String discussionTriggerReactionKey =
       "discussion_trigger_reaction_key";
+  static const String customSystemPrompt = "custom_system_prompt";
+  static const String customTriggerReactionEnabled =
+      "custom_trigger_reaction_enabled";
+  static const String customTriggerReactionKey = "custom_trigger_reaction_key";
+
+  static const String prevEventId = "prev_event_id";
+  static const String prevLastUpdated = "prev_last_updated";
 }

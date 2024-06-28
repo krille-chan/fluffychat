@@ -19,11 +19,7 @@ class BotStyle {
             AppConfig.fontSizeFactor *
             (big == true ? 1.2 : 1),
         fontStyle: italics ? FontStyle.italic : null,
-        color: setColor
-            ? Theme.of(context).brightness == Brightness.dark
-                ? AppConfig.primaryColorLight
-                : AppConfig.primaryColor
-            : null,
+        color: setColor ? Theme.of(context).colorScheme.primary : null,
         inherit: true,
       );
 

@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../../utils/bot_style.dart';
@@ -18,6 +17,9 @@ class ChoicesArray extends StatefulWidget {
   final String originalSpan;
   final String Function(int) uniqueKeyForLayerLink;
 
+  /// some uses of this widget want to disable the choices
+  final bool isActive;
+
   const ChoicesArray({
     super.key,
     required this.isLoading,
@@ -26,6 +28,7 @@ class ChoicesArray extends StatefulWidget {
     required this.originalSpan,
     required this.uniqueKeyForLayerLink,
     required this.selectedChoiceIndex,
+    this.isActive = true,
     this.onLongPress,
   });
 
@@ -55,7 +58,8 @@ class ChoicesArrayState extends State<ChoicesArray> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    return widget.isLoading && (widget.choices == null || widget.choices!.length <= 1)
+    return widget.isLoading &&
+            (widget.choices == null || widget.choices!.length <= 1)
         ? ItShimmer(originalSpan: widget.originalSpan)
         : Wrap(
             alignment: WrapAlignment.center,
@@ -65,8 +69,9 @@ class ChoicesArrayState extends State<ChoicesArray> {
                     .map(
                       (entry) => ChoiceItem(
                         theme: theme,
-                        onLongPress: widget.onLongPress,
-                        onPressed: widget.onPressed,
+                        onLongPress:
+                            widget.isActive ? widget.onLongPress : null,
+                        onPressed: widget.isActive ? widget.onPressed : (_) {},
                         entry: entry,
                         interactionDisabled: interactionDisabled,
                         enableInteraction: enableInteractions,
@@ -143,28 +148,29 @@ class ChoiceItem extends StatelessWidget {
                 : null,
             child: TextButton(
               style: ButtonStyle(
-                padding: MaterialStateProperty.all(
+                padding: WidgetStateProperty.all(
                   const EdgeInsets.symmetric(horizontal: 7),
                 ),
                 //if index is selected, then give the background a slight primary color
-                backgroundColor: MaterialStateProperty.all<Color>(
+                backgroundColor: WidgetStateProperty.all<Color>(
                   entry.value.color != null
                       ? entry.value.color!.withOpacity(0.2)
                       : theme.colorScheme.primary.withOpacity(0.1),
                 ),
-                textStyle: MaterialStateProperty.all(
+                textStyle: WidgetStateProperty.all(
                   BotStyle.text(context),
                 ),
-                shape: MaterialStateProperty.all(
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
-              onLongPress:
-                  onLongPress != null && !interactionDisabled
-                      ? () => onLongPress!(entry.key) : null,
-              onPressed: interactionDisabled ? null : () => onPressed(entry.key),
+              onLongPress: onLongPress != null && !interactionDisabled
+                  ? () => onLongPress!(entry.key)
+                  : null,
+              onPressed:
+                  interactionDisabled ? null : () => onPressed(entry.key),
               child: Text(
                 entry.value.text,
                 style: BotStyle.text(context),
@@ -218,21 +224,21 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
     );
 
     _animation = widget.isGold
-      ? Tween<double>(begin: 1.0, end: 1.2).animate(_controller)
-      : TweenSequence<double>([
-        TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0, end: -8 * pi / 180),
-          weight: 1.0,
-        ),
-        TweenSequenceItem<double>(
-          tween: Tween<double>(begin: -8 * pi / 180, end: 16 * pi / 180),
-          weight: 2.0,
-        ),
-        TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 16 * pi / 180, end: 0),
-          weight: 1.0,
-        ),
-      ]).animate(_controller);
+        ? Tween<double>(begin: 1.0, end: 1.2).animate(_controller)
+        : TweenSequence<double>([
+            TweenSequenceItem<double>(
+              tween: Tween<double>(begin: 0, end: -8 * pi / 180),
+              weight: 1.0,
+            ),
+            TweenSequenceItem<double>(
+              tween: Tween<double>(begin: -8 * pi / 180, end: 16 * pi / 180),
+              weight: 2.0,
+            ),
+            TweenSequenceItem<double>(
+              tween: Tween<double>(begin: 16 * pi / 180, end: 0),
+              weight: 1.0,
+            ),
+          ]).animate(_controller);
 
     widget.enableInteraction();
 
@@ -245,14 +251,14 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
     }
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed &&
-        animationState == AnimationState.forward) {
+          animationState == AnimationState.forward) {
         _controller.reverse();
         setState(() {
           animationState = AnimationState.reverse;
         });
       }
       if (status == AnimationStatus.dismissed &&
-        animationState == AnimationState.reverse) {
+          animationState == AnimationState.reverse) {
         widget.enableInteraction();
         setState(() {
           animationState = AnimationState.finished;
@@ -276,28 +282,28 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
   @override
   Widget build(BuildContext context) {
     return widget.isGold
-    ? AnimatedBuilder(
-      key: UniqueKey(),
-      animation: _animation,
-      builder: (context, child) {
-        return Transform.scale(
-          scale: _animation.value,
-          child: child,
-        );
-      },
-      child: widget.child,
-    )
-    : AnimatedBuilder(
-      key: UniqueKey(),
-      animation: _animation,
-      builder: (context, child) {
-        return Transform.rotate(
-          angle: _animation.value,
-          child: child,
-        );
-      },
-      child: widget.child,
-    );
+        ? AnimatedBuilder(
+            key: UniqueKey(),
+            animation: _animation,
+            builder: (context, child) {
+              return Transform.scale(
+                scale: _animation.value,
+                child: child,
+              );
+            },
+            child: widget.child,
+          )
+        : AnimatedBuilder(
+            key: UniqueKey(),
+            animation: _animation,
+            builder: (context, child) {
+              return Transform.rotate(
+                angle: _animation.value,
+                child: child,
+              );
+            },
+            child: widget.child,
+          );
   }
 
   @override

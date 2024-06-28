@@ -90,7 +90,6 @@ class ProfileBottomSheet extends StatelessWidget {
                       mxContent: profile?.avatarUrl,
                       name: profile?.displayName ?? userId,
                       size: Avatar.defaultSize * 3,
-                      fontSize: 36,
                     ),
                   ),
                 ),

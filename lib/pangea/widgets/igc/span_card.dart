@@ -58,16 +58,34 @@ class SpanCardState extends State<SpanCard> {
     // debugger(when: kDebugMode);
     super.initState();
     getSpanDetails();
+    fetchSelected();
   }
 
   //get selected choice
   SpanChoice? get selectedChoice {
     if (selectedChoiceIndex == null ||
         widget.scm.pangeaMatch?.match.choices == null ||
-        widget.scm.pangeaMatch!.match.choices!.length >= selectedChoiceIndex!) {
+        widget.scm.pangeaMatch!.match.choices!.length <= selectedChoiceIndex!) {
       return null;
     }
     return widget.scm.pangeaMatch?.match.choices?[selectedChoiceIndex!];
+  }
+
+  void fetchSelected() {
+    if (widget.scm.pangeaMatch?.match.choices == null) {
+      return;
+    }
+    if (selectedChoiceIndex == null) {
+      DateTime? mostRecent;
+      for (int i = 0; i < widget.scm.pangeaMatch!.match.choices!.length; i++) {
+        final choice = widget.scm.pangeaMatch?.match.choices![i];
+        if (choice!.timestamp != null &&
+            (mostRecent == null || choice.timestamp!.isAfter(mostRecent))) {
+          mostRecent = choice.timestamp;
+          selectedChoiceIndex = i;
+        }
+      }
+    }
   }
 
   Future<void> getSpanDetails() async {
@@ -79,7 +97,8 @@ class SpanCardState extends State<SpanCard> {
         fetchingData = true;
       });
 
-      await widget.scm.choreographer.igc.getSpanDetails(widget.scm.matchIndex);
+      await widget.scm.choreographer.igc.spanDataController
+          .getSpanDetails(widget.scm.matchIndex);
 
       if (mounted) {
         setState(() => fetchingData = false);
@@ -113,6 +132,16 @@ class WordMatchContent extends StatelessWidget {
 
   Future<void> onChoiceSelect(int index) async {
     controller.selectedChoiceIndex = index;
+    controller
+        .widget
+        .scm
+        .choreographer
+        .igc
+        .igcTextData
+        ?.matches[controller.widget.scm.matchIndex]
+        .match
+        .choices?[index]
+        .timestamp = DateTime.now();
     controller
         .widget
         .scm
@@ -171,6 +200,7 @@ class WordMatchContent extends StatelessWidget {
         offset: controller.widget.scm.pangeaMatch?.match.offset,
       );
     }
+
     final MatchCopy matchCopy = MatchCopy(
       context,
       controller.widget.scm.pangeaMatch!,
@@ -275,6 +305,16 @@ class WordMatchContent extends StatelessWidget {
                                   : AppConfig.primaryColor)
                               .withOpacity(0.2),
                         ),
+                        // Outline if Replace button enabled
+                        side: controller.selectedChoice != null
+                            ? WidgetStateProperty.all(
+                                BorderSide(
+                                  color: controller.selectedChoice!.color,
+                                  style: BorderStyle.solid,
+                                  width: 2.0,
+                                ),
+                              )
+                            : null,
                       ),
                       child: Text(L10n.of(context)!.replace),
                     ),

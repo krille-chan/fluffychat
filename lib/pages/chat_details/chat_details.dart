@@ -3,21 +3,18 @@ import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_description_button.dart';
 import 'package:fluffychat/pangea/utils/set_class_name.dart';
-import 'package:fluffychat/pangea/utils/set_class_topic.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:matrix/matrix.dart' as matrix;
 import 'package:matrix/matrix.dart';
 
 enum AliasActions { copy, delete, setCanonical }
@@ -83,122 +80,6 @@ class ChatDetailsController extends State<ChatDetails> {
   // }
   // Pangea#
 
-  void editAliases() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!);
-
-    final aliasesResult = await showFutureLoadingDialog(
-      context: context,
-      future: () => room!.client.getLocalAliases(room.id),
-    );
-
-    final aliases = aliasesResult.result;
-
-    if (aliases == null) return;
-    final adminMode = room!.canSendEvent(EventTypes.RoomCanonicalAlias);
-    if (aliases.isEmpty && (room.canonicalAlias.isNotEmpty)) {
-      aliases.add(room.canonicalAlias);
-    }
-    if (aliases.isEmpty && adminMode) {
-      return setAliasAction();
-    }
-    final select = await showConfirmationDialog(
-      // #Pangea
-      useRootNavigator: false,
-      // Pangea#
-      context: context,
-      title: L10n.of(context)!.editRoomAliases,
-      actions: [
-        if (adminMode)
-          AlertDialogAction(label: L10n.of(context)!.create, key: 'new'),
-        ...aliases.map((alias) => AlertDialogAction(key: alias, label: alias)),
-      ],
-    );
-    if (select == null) return;
-    if (select == 'new') {
-      return setAliasAction();
-    }
-    final option = await showConfirmationDialog<AliasActions>(
-      context: context,
-      title: select,
-      actions: [
-        AlertDialogAction(
-          label: L10n.of(context)!.copyToClipboard,
-          key: AliasActions.copy,
-          isDefaultAction: true,
-        ),
-        if (adminMode) ...{
-          AlertDialogAction(
-            label: L10n.of(context)!.setAsCanonicalAlias,
-            key: AliasActions.setCanonical,
-            isDestructiveAction: true,
-          ),
-          AlertDialogAction(
-            label: L10n.of(context)!.delete,
-            key: AliasActions.delete,
-            isDestructiveAction: true,
-          ),
-        },
-      ],
-    );
-    if (option == null) return;
-    switch (option) {
-      case AliasActions.copy:
-        await Clipboard.setData(ClipboardData(text: select));
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.copiedToClipboard)),
-        );
-        break;
-      case AliasActions.delete:
-        await showFutureLoadingDialog(
-          context: context,
-          future: () => room.client.deleteRoomAlias(select),
-        );
-        break;
-      case AliasActions.setCanonical:
-        await showFutureLoadingDialog(
-          context: context,
-          future: () => room.client.setRoomStateWithKey(
-            room.id,
-            EventTypes.RoomCanonicalAlias,
-            '',
-            {
-              'alias': select,
-            },
-          ),
-        );
-        break;
-    }
-  }
-
-  void setAliasAction() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!)!;
-    final domain = room.client.userID!.domain;
-
-    final input = await showTextInputDialog(
-      // #Pangea
-      useRootNavigator: false,
-      // Pangea#
-      context: context,
-      title: L10n.of(context)!.setInvitationLink,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
-      textFields: [
-        DialogTextField(
-          prefixText: '#',
-          suffixText: domain,
-          hintText: L10n.of(context)!.alias,
-          initialText: room.canonicalAlias.localpart,
-        ),
-      ],
-    );
-    if (input == null) return;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () =>
-          room.client.setRoomAlias('#${input.single}:${domain!}', room.id),
-    );
-  }
-
   void setTopicAction() async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     // #Pangea
@@ -230,91 +111,6 @@ class ChatDetailsController extends State<ChatDetails> {
     //   );
     // }
     // Pangea#
-  }
-
-  void setGuestAccess() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!)!;
-    final currentGuestAccess = room.guestAccess;
-    final newGuestAccess = await showConfirmationDialog<GuestAccess>(
-      context: context,
-      title: L10n.of(context)!.areGuestsAllowedToJoin,
-      actions: GuestAccess.values
-          .map(
-            (guestAccess) => AlertDialogAction(
-              key: guestAccess,
-              label: guestAccess
-                  .getLocalizedString(MatrixLocals(L10n.of(context)!)),
-              isDefaultAction: guestAccess == currentGuestAccess,
-            ),
-          )
-          .toList(),
-    );
-    if (newGuestAccess == null || newGuestAccess == currentGuestAccess) return;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => room.setGuestAccess(newGuestAccess),
-    );
-  }
-
-  void setHistoryVisibility() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!)!;
-    final currentHistoryVisibility = room.historyVisibility;
-    final newHistoryVisibility =
-        await showConfirmationDialog<HistoryVisibility>(
-      context: context,
-      title: L10n.of(context)!.visibilityOfTheChatHistory,
-      actions: HistoryVisibility.values
-          .map(
-            (visibility) => AlertDialogAction(
-              key: visibility,
-              label: visibility
-                  .getLocalizedString(MatrixLocals(L10n.of(context)!)),
-              isDefaultAction: visibility == currentHistoryVisibility,
-            ),
-          )
-          .toList(),
-    );
-    if (newHistoryVisibility == null ||
-        newHistoryVisibility == currentHistoryVisibility) return;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => room.setHistoryVisibility(newHistoryVisibility),
-    );
-  }
-
-  void setJoinRules() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!)!;
-    final currentJoinRule = room.joinRules;
-    final newJoinRule = await showConfirmationDialog<JoinRules>(
-      context: context,
-      title: L10n.of(context)!.whoIsAllowedToJoinThisGroup,
-      actions: JoinRules.values
-          .map(
-            (joinRule) => AlertDialogAction(
-              key: joinRule,
-              label:
-                  joinRule.getLocalizedString(MatrixLocals(L10n.of(context)!)),
-              isDefaultAction: joinRule == currentJoinRule,
-            ),
-          )
-          .toList(),
-    );
-    if (newJoinRule == null || newJoinRule == currentJoinRule) return;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        await room.setJoinRules(newJoinRule);
-        room.client.setRoomVisibilityOnDirectory(
-          roomId!,
-          visibility: {
-            JoinRules.public,
-            JoinRules.knock,
-          }.contains(newJoinRule)
-              ? matrix.Visibility.public
-              : matrix.Visibility.private,
-        );
-      },
-    );
   }
 
   void goToEmoteSettings() async {

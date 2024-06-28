@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/repo/tokens_repo.dart';
@@ -176,14 +176,20 @@ class MessageDataController extends BaseController {
     required String target,
     required Room room,
   }) async {
+    if (_pangeaController.languageController.userL2 == null ||
+        _pangeaController.languageController.userL1 == null) {
+      ErrorHandler.logError(
+        e: "userL1 or userL2 is null in _getPangeaRepresentation",
+        s: StackTrace.current,
+      );
+      return null;
+    }
     final req = FullTextTranslationRequestModel(
       text: text,
       tgtLang: target,
       srcLang: source,
-      userL2:
-          _pangeaController.languageController.activeL2Code(roomID: room.id)!,
-      userL1:
-          _pangeaController.languageController.activeL1Code(roomID: room.id)!,
+      userL2: _pangeaController.languageController.userL2!.langCode,
+      userL1: _pangeaController.languageController.userL1!.langCode,
     );
 
     try {

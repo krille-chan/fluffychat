@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -59,6 +60,7 @@ class ToolbarDisplayController {
   }
 
   void showToolbar(BuildContext context, {MessageMode? mode}) {
+    bool toolbarUp = true;
     if (highlighted) return;
     if (controller.selectMode) {
       controller.clearSelectedEvents();
@@ -76,7 +78,21 @@ class ToolbarDisplayController {
     if (targetRenderBox != null) {
       final Size transformTargetSize = (targetRenderBox as RenderBox).size;
       messageWidth = transformTargetSize.width;
+      final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
+      final double screenHeight = MediaQuery.of(context).size.height;
+      toolbarUp = targetOffset.dy >= screenHeight / 2;
     }
+
+    final Widget overlayMessage = OverlayMessage(
+      pangeaMessageEvent.event,
+      timeline: pangeaMessageEvent.timeline,
+      immersionMode: immersionMode,
+      ownMessage: pangeaMessageEvent.ownMessage,
+      toolbarController: this,
+      width: messageWidth,
+      nextEvent: nextEvent,
+      previousEvent: previousEvent,
+    );
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Widget overlayEntry;
@@ -88,18 +104,9 @@ class ToolbarDisplayController {
               ? CrossAxisAlignment.end
               : CrossAxisAlignment.start,
           children: [
-            toolbar!,
+            toolbarUp ? toolbar! : overlayMessage,
             const SizedBox(height: 6),
-            OverlayMessage(
-              pangeaMessageEvent.event,
-              timeline: pangeaMessageEvent.timeline,
-              immersionMode: immersionMode,
-              ownMessage: pangeaMessageEvent.ownMessage,
-              toolbarController: this,
-              width: messageWidth,
-              nextEvent: nextEvent,
-              previousEvent: previousEvent,
-            ),
+            toolbarUp ? overlayMessage : toolbar!,
           ],
         );
       } catch (err) {
@@ -113,16 +120,24 @@ class ToolbarDisplayController {
         child: overlayEntry,
         transformTargetId: targetId,
         targetAnchor: pangeaMessageEvent.ownMessage
-            ? Alignment.bottomRight
-            : Alignment.bottomLeft,
+            ? toolbarUp
+                ? Alignment.bottomRight
+                : Alignment.topRight
+            : toolbarUp
+                ? Alignment.bottomLeft
+                : Alignment.topLeft,
         followerAnchor: pangeaMessageEvent.ownMessage
-            ? Alignment.bottomRight
-            : Alignment.bottomLeft,
+            ? toolbarUp
+                ? Alignment.bottomRight
+                : Alignment.topRight
+            : toolbarUp
+                ? Alignment.bottomLeft
+                : Alignment.topLeft,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
       );
 
-      if (MatrixState.pAnyState.overlay != null) {
-        overlayId = MatrixState.pAnyState.overlay.hashCode.toString();
+      if (MatrixState.pAnyState.entries.isNotEmpty) {
+        overlayId = MatrixState.pAnyState.entries.last.hashCode.toString();
       }
 
       if (mode != null) {
@@ -136,8 +151,11 @@ class ToolbarDisplayController {
 
   bool get highlighted {
     if (overlayId == null) return false;
-    if (MatrixState.pAnyState.overlay == null) overlayId = null;
-    return MatrixState.pAnyState.overlay.hashCode.toString() == overlayId;
+    if (MatrixState.pAnyState.entries.isEmpty) {
+      overlayId = null;
+      return false;
+    }
+    return MatrixState.pAnyState.entries.last.hashCode.toString() == overlayId;
   }
 }
 
@@ -188,6 +206,12 @@ class MessageToolbarState extends State<MessageToolbar> {
       return;
     }
 
+    // if there is an uncompleted activity, then show that
+    // we don't want the user to user the tools to get the answer :P
+    if (widget.pangeaMessageEvent.hasUncompletedActivity) {
+      newMode = MessageMode.practiceActivity;
+    }
+
     if (mounted) {
       setState(() {
         currentMode = newMode;
@@ -214,6 +238,9 @@ class MessageToolbarState extends State<MessageToolbar> {
           break;
         case MessageMode.definition:
           showDefinition();
+          break;
+        case MessageMode.practiceActivity:
+          showPracticeActivity();
           break;
         default:
           ErrorHandler.logError(
@@ -269,6 +296,13 @@ class MessageToolbarState extends State<MessageToolbar> {
       fullTextLang: widget.pangeaMessageEvent.messageDisplayLangCode,
       hasInfo: true,
       room: widget.room,
+    );
+  }
+
+  void showPracticeActivity() {
+    toolbarContent = PracticeActivityCard(
+      pangeaMessageEvent: widget.pangeaMessageEvent,
+      controller: this,
     );
   }
 
@@ -389,9 +423,11 @@ class MessageToolbarState extends State<MessageToolbar> {
                       message: mode.tooltip(context),
                       child: IconButton(
                         icon: Icon(mode.icon),
-                        color: currentMode == mode
-                            ? Theme.of(context).colorScheme.primary
-                            : null,
+                        color: mode.iconColor(
+                          widget.pangeaMessageEvent,
+                          currentMode,
+                          context,
+                        ),
                         onPressed: () => updateMode(mode),
                       ),
                     );

@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat_access_settings/chat_access_settings_controller.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_members/chat_members.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
+import 'package:fluffychat/pages/chat_search/chat_search_page.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
@@ -24,9 +26,9 @@ import 'package:fluffychat/pages/settings_notifications/settings_notifications.d
 import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
+import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
-import 'package:fluffychat/pangea/pages/exchange/add_exchange_to_class.dart';
 import 'package:fluffychat/pangea/pages/find_partner/find_partner.dart';
 import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
@@ -40,8 +42,8 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../pangea/pages/analytics/class_analytics/class_analytics.dart';
-import '../pangea/pages/analytics/class_list/class_list.dart';
+import '../pangea/pages/analytics/space_analytics/space_analytics.dart';
+import '../pangea/pages/analytics/space_list/space_list.dart';
 
 abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
@@ -171,24 +173,68 @@ abstract class AppRoutes {
                 const StudentAnalyticsPage(),
               ),
               redirect: loggedOutRedirect,
+              routes: [
+                GoRoute(
+                  path: 'messages',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    const StudentAnalyticsPage(
+                      selectedView: BarChartViewSelection.messages,
+                    ),
+                  ),
+                ),
+                GoRoute(
+                  path: 'errors',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    const StudentAnalyticsPage(
+                      selectedView: BarChartViewSelection.grammar,
+                    ),
+                  ),
+                ),
+              ],
             ),
             GoRoute(
               path: 'analytics',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const AnalyticsClassList(),
+                const AnalyticsSpaceList(),
               ),
               redirect: loggedOutRedirect,
               routes: [
                 GoRoute(
-                  path: ':classid',
+                  path: ':spaceid',
                   redirect: loggedOutRedirect,
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    const ClassAnalyticsPage(),
+                    const SpaceAnalyticsPage(),
                   ),
+                  routes: [
+                    GoRoute(
+                      path: 'messages',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        const SpaceAnalyticsPage(
+                          selectedView: BarChartViewSelection.messages,
+                        ),
+                      ),
+                    ),
+                    GoRoute(
+                      path: 'errors',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        const SpaceAnalyticsPage(
+                          selectedView: BarChartViewSelection.grammar,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -208,6 +254,7 @@ abstract class AppRoutes {
                     state,
                     ChatPage(
                       roomId: state.pathParameters['roomid']!,
+                      eventId: state.uri.queryParameters['event'],
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -263,24 +310,6 @@ abstract class AppRoutes {
               redirect: loggedOutRedirect,
             ),
             // #Pangea
-            GoRoute(
-              path: 'newspace/:newexchange',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const NewSpace(),
-              ),
-              redirect: loggedOutRedirect,
-            ),
-            GoRoute(
-              path: 'join_exchange/:exchangeid',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const AddExchangeToClass(),
-              ),
-              redirect: loggedOutRedirect,
-            ),
             GoRoute(
               path: 'partner',
               pageBuilder: (context, state) => defaultPageBuilder(
@@ -457,10 +486,22 @@ abstract class AppRoutes {
                 ChatPage(
                   roomId: state.pathParameters['roomid']!,
                   shareText: state.uri.queryParameters['body'],
+                  eventId: state.uri.queryParameters['event'],
                 ),
               ),
               redirect: loggedOutRedirect,
               routes: [
+                GoRoute(
+                  path: 'search',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    ChatSearchPage(
+                      roomId: state.pathParameters['roomid']!,
+                    ),
+                  ),
+                  redirect: loggedOutRedirect,
+                ),
                 // #Pangea
                 // GoRoute(
                 //   path: 'encryption',
@@ -493,6 +534,17 @@ abstract class AppRoutes {
                     ),
                   ),
                   routes: [
+                    GoRoute(
+                      path: 'access',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ChatAccessSettings(
+                          roomId: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
                     GoRoute(
                       path: 'members',
                       pageBuilder: (context, state) => defaultPageBuilder(
@@ -568,13 +620,10 @@ abstract class AppRoutes {
     Widget child,
   ) =>
       FluffyThemes.isColumnMode(context)
-          ? CustomTransitionPage(
+          ? NoTransitionPage(
               key: state.pageKey,
               restorationId: state.pageKey.value,
               child: child,
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) =>
-                      FadeTransition(opacity: animation, child: child),
             )
           : MaterialPage(
               key: state.pageKey,

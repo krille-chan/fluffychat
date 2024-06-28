@@ -21,11 +21,11 @@ extension IsStateExtension on Event {
       (isState || !AppConfig.hideAllStateEvents) &&
       // #Pangea
       content.tryGet(ModelKey.transcription) == null &&
-      // Pangea#
       // hide unimportant state events
       (!AppConfig.hideUnimportantStateEvents ||
           !isState ||
           importantStateEvents.contains(type)) &&
+      // Pangea#
       // hide simple join/leave member events in public rooms
       (!AppConfig.hideUnimportantStateEvents ||
           type != EventTypes.RoomMember ||
@@ -33,6 +33,13 @@ extension IsStateExtension on Event {
           content.tryGet<String>('membership') == 'ban' ||
           stateKey != senderId);
 
+  bool get isState => !{
+        EventTypes.Message,
+        EventTypes.Sticker,
+        EventTypes.Encrypted,
+      }.contains(type);
+
+  // #Pangea
   static const Set<String> importantStateEvents = {
     EventTypes.Encryption,
     EventTypes.RoomCreate,
@@ -40,10 +47,5 @@ extension IsStateExtension on Event {
     EventTypes.RoomTombstone,
     EventTypes.CallInvite,
   };
-
-  bool get isState => !{
-        EventTypes.Message,
-        EventTypes.Sticker,
-        EventTypes.Encrypted,
-      }.contains(type);
+  // Pangea#
 }

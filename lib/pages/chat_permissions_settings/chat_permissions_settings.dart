@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -26,6 +25,7 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
     BuildContext context,
     String key,
     int currentLevel, {
+    int? newLevel,
     String? category,
   }) async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
@@ -35,7 +35,7 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
       );
       return;
     }
-    final newLevel = await showPermissionChooser(
+    newLevel ??= await showPermissionChooser(
       context,
       currentLevel: currentLevel,
     );
@@ -70,44 +70,6 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
                     ?.any((s) => s.type == EventTypes.RoomPowerLevels) ??
                 false),
       );
-
-  void updateRoomAction(Capabilities capabilities) async {
-    final room = Matrix.of(context).client.getRoomById(roomId!)!;
-    final roomVersion = room
-            .getState(EventTypes.RoomCreate)!
-            .content['room_version'] as String? ??
-        '1';
-    final newVersion = await showConfirmationDialog<String>(
-      context: context,
-      title: L10n.of(context)!.replaceRoomWithNewerVersion,
-      actions: capabilities.mRoomVersions!.available.entries
-          .where((r) => r.key != roomVersion)
-          .map(
-            (version) => AlertDialogAction(
-              key: version.key,
-              label:
-                  '${version.key} (${version.value.toString().split('.').last})',
-            ),
-          )
-          .toList(),
-    );
-    if (newVersion == null ||
-        OkCancelResult.cancel ==
-            await showOkCancelAlertDialog(
-              useRootNavigator: false,
-              context: context,
-              okLabel: L10n.of(context)!.yes,
-              cancelLabel: L10n.of(context)!.cancel,
-              title: L10n.of(context)!.areYouSure,
-              message: L10n.of(context)!.roomUpgradeDescription,
-            )) {
-      return;
-    }
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => room.client.upgradeRoom(roomId!, newVersion),
-    ).then((_) => context.pop());
-  }
 
   @override
   Widget build(BuildContext context) => ChatPermissionsSettingsView(this);

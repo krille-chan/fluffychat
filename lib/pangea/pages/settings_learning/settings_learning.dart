@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:country_picker/country_picker.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning_view.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
@@ -34,6 +35,13 @@ class SettingsLearningController extends State<SettingsLearning> {
 
   Future<void> changeLanguage() async {
     await pLanguageDialog(context, () {});
+    setState(() {});
+  }
+
+  Future<void> changeCountry(Country country) async {
+    await pangeaController.userController.updateUserProfile(
+      country: country.displayNameNoCountryCode,
+    );
     setState(() {});
   }
 

@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
 import '../enum/vocab_proficiency_enum.dart';
 
 class VocabHeadwords {
@@ -175,6 +175,11 @@ class VocabTotals {
           break;
         case ConstructUseType.corIGC:
           corIt++;
+          break;
+        case ConstructUseType.incIGC:
+          incIt++;
+          break;
+        case ConstructUseType.unk:
           break;
       }
     }

@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/material.dart';
@@ -10,21 +10,20 @@ import 'package:matrix/matrix.dart';
 
 import '../../../widgets/matrix.dart';
 import '../../utils/firebase_analytics.dart';
-import 'add_class_and_invite.dart';
 
 //PTODO - auto invite students when you add a space and delete the add_class_and_invite.dart file
 class AddToSpaceToggles extends StatefulWidget {
   final String? roomId;
   final bool startOpen;
   final String? activeSpaceId;
-  final AddToClassMode mode;
+  final bool spaceMode;
 
   const AddToSpaceToggles({
     super.key,
     this.roomId,
     this.startOpen = false,
     this.activeSpaceId,
-    required this.mode,
+    this.spaceMode = false,
   });
 
   @override
@@ -33,27 +32,41 @@ class AddToSpaceToggles extends StatefulWidget {
 
 class AddToSpaceState extends State<AddToSpaceToggles> {
   late Room? room;
-  late List<SuggestionStatus> parents;
+  late List<Room> parents;
   late List<Room> possibleParents;
   late bool isOpen;
+  late bool isSuggested;
 
   AddToSpaceState({Key? key});
 
   @override
   void initState() {
+    initialize();
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(AddToSpaceToggles oldWidget) {
+    if (oldWidget.roomId != widget.roomId) {
+      initialize();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void initialize() {
     //if roomId is null, it means this widget is being used in the creation flow
     room = widget.roomId != null
         ? Matrix.of(context).client.getRoomById(widget.roomId!)
         : null;
 
+    isSuggested = true;
+    room?.isSuggested().then((value) => isSuggested = value);
+
     possibleParents = Matrix.of(context)
         .client
         .rooms
         .where(
-          widget.mode == AddToClassMode.exchange
-              ? (Room r) => r.isPangeaClass && widget.roomId != r.id
-              : (Room r) =>
-                  (r.isPangeaClass || r.isExchange) && widget.roomId != r.id,
+          (Room r) => r.isSpace && widget.roomId != r.id,
         )
         .toList();
 
@@ -63,8 +76,6 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
               (r) =>
                   r.spaceChildren.any((room) => room.roomId == widget.roomId),
             )
-            .map((r) => SuggestionStatus(false, r))
-            .cast<SuggestionStatus>()
             .toList()
         : [];
 
@@ -72,7 +83,7 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
       final activeSpace =
           Matrix.of(context).client.getRoomById(widget.activeSpaceId!);
       if (activeSpace != null && activeSpace.canIAddSpaceChild(null)) {
-        parents.add(SuggestionStatus(true, activeSpace));
+        parents.add(activeSpace);
       } else {
         ErrorHandler.logError(
           e: Exception('activeSpaceId ${widget.activeSpaceId} not found'),
@@ -84,10 +95,9 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     //if possibleParent in parents, put first
     //use sort but use any instead of contains because contains uses == and we want to compare by id
     possibleParents.sort((a, b) {
-      if (parents.any((suggestionStatus) => suggestionStatus.room.id == a.id)) {
+      if (parents.any((parent) => parent.id == a.id)) {
         return -1;
-      } else if (parents
-          .any((suggestionStatus) => suggestionStatus.room.id == b.id)) {
+      } else if (parents.any((parent) => parent.id == b.id)) {
         return 1;
       } else {
         return a.name.compareTo(b.name);
@@ -95,35 +105,20 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     });
 
     isOpen = widget.startOpen;
-    initSuggestedParents();
-    super.initState();
-  }
-
-  Future<void> initSuggestedParents() async {
-    if (room != null) {
-      for (var i = 0; i < parents.length; i++) {
-        final parent = parents[i];
-        final bool suggested =
-            await room?.suggestedInSpace(parent.room) ?? false;
-        parents[i].suggested = suggested;
-      }
-      setState(() {});
-    }
   }
 
   Future<void> _addSingleSpace(String roomToAddId, Room newParent) async {
     GoogleAnalytics.addParent(roomToAddId, newParent.classCode);
     await newParent.setSpaceChild(
       roomToAddId,
-      suggested: isSuggestedInSpace(newParent),
+      suggested: isSuggested,
     );
-    await setSuggested(true, newParent);
   }
 
   Future<void> addSpaces(String roomToAddId) async {
     final List<Future<void>> addFutures = [];
-    for (final SuggestionStatus newParent in parents) {
-      addFutures.add(_addSingleSpace(roomToAddId, newParent.room));
+    for (final Room parent in parents) {
+      addFutures.add(_addSingleSpace(roomToAddId, parent));
     }
     await addFutures.wait;
   }
@@ -148,39 +143,19 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
     setState(
       () => add
-          ? parents.add(SuggestionStatus(true, possibleParent))
+          ? parents.add(possibleParent)
           : parents.removeWhere(
-              (suggestionStatus) =>
-                  suggestionStatus.room.id == possibleParent.id,
+              (parent) => parent.id == possibleParent.id,
             ),
     );
   }
 
-  Future<void> setSuggested(bool suggest, Room possibleParent) async {
-    if (room != null) {
-      await showFutureLoadingDialog(
-        context: context,
-        future: () => room!.setSuggestedInSpace(suggest, possibleParent),
-      );
-    }
-
-    for (final SuggestionStatus suggestionStatus in parents) {
-      if (suggestionStatus.room.id == possibleParent.id) {
-        suggestionStatus.suggested = suggest;
-      }
-    }
-
-    setState(() {});
-  }
-
-  bool isSuggestedInSpace(Room parent) =>
-      parents.firstWhereOrNull((r) => r.room.id == parent.id)?.suggested ??
-      false;
-
   Widget getAddToSpaceToggleItem(int index) {
     final Room possibleParent = possibleParents[index];
-    final String possibleParentName = possibleParent.getLocalizedDisplayname();
-    final bool canAdd = possibleParent.canIAddSpaceChild(room);
+    final bool canAdd = possibleParent.canAddAsParentOf(
+      room,
+      spaceMode: widget.spaceMode,
+    );
 
     return Opacity(
       opacity: canAdd ? 1 : 0.5,
@@ -189,7 +164,7 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
           SwitchListTile.adaptive(
             title: possibleParent.nameAndRoomTypeIcon(),
             activeColor: AppConfig.activeToggleColor,
-            value: parents.any((r) => r.room.id == possibleParent.id),
+            value: parents.any((r) => r.id == possibleParent.id),
             onChanged: (bool add) => canAdd
                 ? handleAdd(add, possibleParent)
                 : ScaffoldMessenger.of(context).showSnackBar(
@@ -197,53 +172,6 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
                       content: Text(L10n.of(context)!.noPermission),
                     ),
                   ),
-          ),
-          AnimatedSize(
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
-            child: parents.any((r) => r.room.id == possibleParent.id)
-                ? SwitchListTile.adaptive(
-                    title: Row(
-                      children: [
-                        const SizedBox(width: 32),
-                        Expanded(
-                          child: Text(
-                            L10n.of(context)!.suggestTo(possibleParentName),
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                    subtitle: Row(
-                      children: [
-                        const SizedBox(width: 32),
-                        Expanded(
-                          child: Text(
-                            widget.mode == AddToClassMode.chat
-                                ? L10n.of(context)!
-                                    .suggestChatDesc(possibleParentName)
-                                : L10n.of(context)!.suggestExchangeDesc(
-                                    possibleParentName,
-                                  ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                    activeColor: AppConfig.activeToggleColor,
-                    value: isSuggestedInSpace(possibleParent),
-                    onChanged: (bool suggest) => canAdd
-                        ? setSuggested(suggest, possibleParent)
-                        : ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(L10n.of(context)!.noPermission),
-                            ),
-                          ),
-                  )
-                : Container(),
           ),
           Divider(
             height: 0.5,
@@ -254,26 +182,33 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     );
   }
 
+  Future<void> setSuggested(bool suggested) async {
+    setState(() => isSuggested = suggested);
+    if (room != null) {
+      await showFutureLoadingDialog(
+        context: context,
+        future: () async => await room?.setSuggested(suggested),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final String title = widget.mode == AddToClassMode.exchange
-        ? L10n.of(context)!.addToClass
-        : L10n.of(context)!.addToClassOrExchange;
-    final String subtitle = widget.mode == AddToClassMode.exchange
-        ? L10n.of(context)!.addToClassDesc
-        : L10n.of(context)!.addToClassOrExchangeDesc;
-
     return Column(
       children: [
         ListTile(
           title: Text(
-            title,
+            L10n.of(context)!.addToSpace,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
             ),
           ),
-          subtitle: Text(subtitle),
+          subtitle: Text(
+            widget.spaceMode || (room?.isSpace ?? false)
+                ? L10n.of(context)!.addSpaceToSpaceDesc
+                : L10n.of(context)!.addChatToSpaceDesc,
+          ),
           leading: CircleAvatar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
@@ -292,9 +227,36 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
           const Divider(height: 1),
           possibleParents.isNotEmpty
               ? Column(
-                  children: possibleParents
-                      .mapIndexed((index, _) => getAddToSpaceToggleItem(index))
-                      .toList(),
+                  children: [
+                    SwitchListTile.adaptive(
+                      title: Text(
+                        widget.spaceMode || (room?.isSpace ?? false)
+                            ? L10n.of(context)!.suggestToSpace
+                            : L10n.of(context)!.suggestToChat,
+                      ),
+                      secondary: Icon(
+                        isSuggested
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined,
+                      ),
+                      subtitle: Text(
+                        widget.spaceMode || (room?.isSpace ?? false)
+                            ? L10n.of(context)!.suggestToSpaceDesc
+                            : L10n.of(context)!.suggestToChatDesc,
+                      ),
+                      activeColor: AppConfig.activeToggleColor,
+                      value: isSuggested,
+                      onChanged: (bool add) => setSuggested(add),
+                    ),
+                    Divider(
+                      height: 0.5,
+                      color:
+                          Theme.of(context).colorScheme.secondary.withAlpha(25),
+                    ),
+                    ...possibleParents.mapIndexed(
+                      (index, _) => getAddToSpaceToggleItem(index),
+                    ),
+                  ],
                 )
               : Center(
                   child: Padding(
@@ -311,11 +273,4 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
       ],
     );
   }
-}
-
-class SuggestionStatus {
-  bool suggested;
-  final Room room;
-
-  SuggestionStatus(this.suggested, this.room);
 }

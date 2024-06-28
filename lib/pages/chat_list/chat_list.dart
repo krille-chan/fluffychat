@@ -2,21 +2,19 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/extensions/client_extension.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/add_to_space.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_snackbar.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
@@ -105,6 +103,12 @@ class ChatListController extends State<ChatList>
       selectedRoomIds.clear();
       activeSpaceId = spaceId;
       activeFilter = ActiveFilter.spaces;
+      // #Pangea
+      // don't show all spaces view if in column mode
+      if (spaceId == null && FluffyThemes.isColumnMode(context)) {
+        activeFilter = ActiveFilter.allChats;
+      }
+      // Pangea#
     });
   }
 
@@ -161,6 +165,11 @@ class ChatListController extends State<ChatList>
       // Pangea#
       selectedRoomIds.clear();
       activeFilter = getActiveFilterByDestination(i);
+      // #Pangea
+      if (activeFilter != ActiveFilter.spaces) {
+        activeSpaceId = null;
+      }
+      // Pangea#
     });
     // #Pangea
     final bool clickedAllSpaces = (!AppConfig.separateChatTypes && i == 1) ||
@@ -203,32 +212,12 @@ class ChatListController extends State<ChatList>
   }
 
   List<Room> get filteredRooms => Matrix.of(context)
-          .client
-          .rooms
-          .where(
-            getRoomFilterByActiveFilter(activeFilter),
-          )
-          // #Pangea
-          .sorted((roomA, roomB) {
-        // put rooms with unread messages at the top of the list
-        if (roomA.membership == Membership.invite &&
-            roomB.membership != Membership.invite) {
-          return -1;
-        }
-        if (roomA.membership != Membership.invite &&
-            roomB.membership == Membership.invite) {
-          return 1;
-        }
-
-        final bool aUnread = roomA.notificationCount > 0 || roomA.markedUnread;
-        final bool bUnread = roomB.notificationCount > 0 || roomB.markedUnread;
-        if (aUnread && !bUnread) return -1;
-        if (!aUnread && bUnread) return 1;
-
-        return 0;
-      })
-          // Pangea#
-          .toList();
+      .client
+      .rooms
+      .where(
+        getRoomFilterByActiveFilter(activeFilter),
+      )
+      .toList();
 
   bool isSearchMode = false;
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;
@@ -515,8 +504,12 @@ class ChatListController extends State<ChatList>
 
     //#Pangea
     classStream = pangeaController.classController.stateStream.listen((event) {
-      if (event["activeSpaceId"] != null && mounted) {
+      // if (event["activeSpaceId"] != null && mounted) {
+      if (mounted) {
         setActiveSpace(event["activeSpaceId"]);
+        if (event["activeSpaceId"] != null) {
+          context.go("/rooms/${event["activeSpaceId"]}/details");
+        }
       }
     });
 
@@ -679,6 +672,38 @@ class ChatListController extends State<ChatList>
     // Pangea#
   }
 
+  // #Pangea
+  Future<void> leaveAction() async {
+    final bool onlyAdmin = await Matrix.of(context)
+            .client
+            .getRoomById(selectedRoomIds.first)
+            ?.isOnlyAdmin() ??
+        false;
+    final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
+          context: context,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
+          message: onlyAdmin && selectedRoomIds.length == 1
+              ? L10n.of(context)!.onlyAdminDescription
+              : L10n.of(context)!.leaveRoomDescription,
+        ) ==
+        OkCancelResult.ok;
+    if (!confirmed) return;
+    final bool leftActiveRoom =
+        selectedRoomIds.contains(Matrix.of(context).activeRoomId);
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => _leaveSelectedRooms(onlyAdmin),
+    );
+    setState(() {});
+    if (leftActiveRoom) {
+      context.go('/rooms');
+    }
+  }
+  // Pangea#
+
   void dismissStatusList() async {
     final result = await showOkCancelAlertDialog(
       title: L10n.of(context)!.hidePresences,
@@ -729,22 +754,47 @@ class ChatListController extends State<ChatList>
       final roomId = selectedRoomIds.first;
       try {
         // #Pangea
-        if (client.getRoomById(roomId)!.isUnread) {
-          await client.getRoomById(roomId)!.markUnread(false);
-        }
+        // await client.getRoomById(roomId)!.leave();
+        await client.getRoomById(roomId)!.archive();
         // Pangea#
-        await client.getRoomById(roomId)!.leave();
       } finally {
         toggleSelection(roomId);
       }
     }
   }
 
+  // #Pangea
+  Future<void> _leaveSelectedRooms(bool onlyAdmin) async {
+    final client = Matrix.of(context).client;
+    while (selectedRoomIds.isNotEmpty) {
+      final roomId = selectedRoomIds.first;
+      try {
+        final room = client.getRoomById(roomId);
+        if (!room!.isSpace &&
+            room.membership == Membership.join &&
+            room.isUnread) {
+          await room.markUnread(false);
+        }
+        onlyAdmin ? await room.archive() : await room.leave();
+      } finally {
+        toggleSelection(roomId);
+      }
+    }
+  }
+  // Pangea#
+
   Future<void> addToSpace() async {
+    // #Pangea
+    final firstSelectedRoom =
+        Matrix.of(context).client.getRoomById(selectedRoomIds.toList().first);
+    // Pangea#
     final selectedSpace = await showConfirmationDialog<String>(
       context: context,
       title: L10n.of(context)!.addToSpace,
-      message: L10n.of(context)!.addToSpaceDescription,
+      // #Pangea
+      // message: L10n.of(context)!.addToSpaceDescription,
+      message: L10n.of(context)!.addSpaceToSpaceDescription,
+      // Pangea#
       fullyCapitalizedForMaterial: false,
       actions: Matrix.of(context)
           .client
@@ -756,15 +806,26 @@ class ChatListController extends State<ChatList>
                 &&
                 selectedRoomIds
                     .map((id) => Matrix.of(context).client.getRoomById(id))
-                    .where((e) => !(e?.isPangeaClass ?? true))
-                    .every((e) => r.canIAddSpaceChild(e)),
+                    // Only show non-recursion-causing spaces
+                    // Performs a few other checks as well
+                    .every((e) => r.canAddAsParentOf(e)),
             //Pangea#
           )
           .map(
             (space) => AlertDialogAction(
               key: space.id,
-              label: space
-                  .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+              // #Pangea
+              // label: space
+              //     .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+              label: space.nameIncludingParents(context),
+              // If user is not admin of space, button is grayed out
+              textStyle: TextStyle(
+                color: (firstSelectedRoom == null ||
+                        (firstSelectedRoom.isSpace && !space.isRoomAdmin))
+                    ? Theme.of(context).colorScheme.outline
+                    : Theme.of(context).colorScheme.surfaceTint,
+              ),
+              // Pangea#
             ),
           )
           .toList(),
@@ -775,12 +836,20 @@ class ChatListController extends State<ChatList>
       future: () async {
         final space = Matrix.of(context).client.getRoomById(selectedSpace)!;
         // #Pangea
+        if (firstSelectedRoom == null) {
+          throw L10n.of(context)!.nonexistentSelection;
+        }
+        // If user is not admin of the would-be parent space, does not allow
+        if (firstSelectedRoom.isSpace && !space.isRoomAdmin) {
+          throw L10n.of(context)!.cantAddSpaceChild;
+        }
         await pangeaAddToSpace(
           space,
           selectedRoomIds.toList(),
           context,
           pangeaController,
         );
+
         // if (space.canSendDefaultStates) {
         //   for (final roomId in selectedRoomIds) {
         //     await space.setSpaceChild(roomId);
@@ -793,7 +862,10 @@ class ChatListController extends State<ChatList>
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
+          // #Pangea
+          // content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
+          content: Text(L10n.of(context)!.roomAddedToSpace),
+          // Pangea#
         ),
       );
     }
@@ -845,6 +917,7 @@ class ChatListController extends State<ChatList>
     if (mounted) {
       GoogleAnalytics.analyticsUserUpdate(client.userID);
       await pangeaController.subscriptionController.initialize();
+      await pangeaController.myAnalytics.addEventsListener();
       pangeaController.afterSyncAndFirstLoginInitialization(context);
       await pangeaController.inviteBotToExistingSpaces();
       await pangeaController.setPangeaPushRules();

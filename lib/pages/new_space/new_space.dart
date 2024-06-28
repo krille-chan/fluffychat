@@ -3,21 +3,19 @@ import 'dart:developer';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/new_space/new_space_view.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/class_chat_power_levels.dart';
-import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
+import 'package:fluffychat/pangea/utils/space_code.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
-import 'package:fluffychat/pangea/widgets/space/class_settings.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
@@ -36,8 +34,11 @@ class NewSpaceController extends State<NewSpace> {
   bool publicGroup = true;
   final GlobalKey<RoomRulesState> rulesEditorKey = GlobalKey<RoomRulesState>();
   final GlobalKey<AddToSpaceState> addToSpaceKey = GlobalKey<AddToSpaceState>();
-  final GlobalKey<ClassSettingsState> classSettingsKey =
-      GlobalKey<ClassSettingsState>();
+  // commenting out language settings in spaces for now
+  // final GlobalKey<LanguageSettingsState> languageSettingsKey =
+  //     GlobalKey<LanguageSettingsState>();
+  final GlobalKey<RoomCapacityButtonState> addCapacityKey =
+      GlobalKey<RoomCapacityButtonState>();
 
   //Pangea#
   bool loading = false;
@@ -66,8 +67,6 @@ class NewSpaceController extends State<NewSpace> {
   void setPublicGroup(bool b) => setState(() => publicGroup = b);
 
   // #Pangea
-  bool newClassMode = true;
-
   List<StateEvent> get initialState {
     final events = <StateEvent>[];
 
@@ -77,8 +76,7 @@ class NewSpaceController extends State<NewSpace> {
         stateKey: '',
         content: {
           'events': {
-            PangeaEventTypes.studentAnalyticsSummary: 0,
-            EventTypes.spaceChild: 0,
+            EventTypes.SpaceChild: 0,
           },
           'users_default': 0,
           'users': {
@@ -94,11 +92,11 @@ class NewSpaceController extends State<NewSpace> {
     } else {
       debugger(when: kDebugMode);
     }
-    if (classSettingsKey.currentState != null) {
-      events.add(classSettingsKey.currentState!.classSettings.toStateEvent);
-    } else {
-      debugger(when: kDebugMode && newClassMode);
-    }
+    // commenting out language settings in spaces for now
+    // if (languageSettingsKey.currentState != null) {
+    //   events
+    //       .add(languageSettingsKey.currentState!.languageSettings.toStateEvent);
+    // }
 
     return events;
   }
@@ -116,33 +114,30 @@ class NewSpaceController extends State<NewSpace> {
       debugger(when: kDebugMode);
       return;
     }
-    if (classSettingsKey.currentState != null &&
-        classSettingsKey.currentState!.sameLanguages) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context)!.noIdenticalLanguages),
-        ),
-      );
-      return;
-    }
-    if (newClassMode) {
-      final int? languageLevel =
-          classSettingsKey.currentState!.classSettings.languageLevel;
-      if (languageLevel == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.languageLevelWarning)),
-        );
-        return;
-      }
-    }
+    // commenting out language settings in spaces for now
+    // if (languageSettingsKey.currentState != null &&
+    //     languageSettingsKey.currentState!.sameLanguages) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //       content: Text(L10n.of(context)!.noIdenticalLanguages),
+    //     ),
+    //   );
+    //   return;
+    // }
+    // final int? languageLevel =
+    //     languageSettingsKey.currentState!.languageSettings.languageLevel;
+    // if (languageLevel == null) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(content: Text(L10n.of(context)!.languageLevelWarning)),
+    //   );
+    //   return;
+    // }
     // Pangea#
     if (nameController.text.isEmpty) {
       setState(() {
         // #Pangea
         // nameError = L10n.of(context)!.pleaseChoose;
-        final String warning = newClassMode
-            ? L10n.of(context)!.emptyClassNameWarning
-            : L10n.of(context)!.emptyExchangeNameWarning;
+        final String warning = L10n.of(context)!.emptySpaceNameWarning;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(warning)),
         );
@@ -167,7 +162,7 @@ class NewSpaceController extends State<NewSpace> {
         // roomAliasName: publicGroup
         //     ? nameController.text.trim().toLowerCase().replaceAll(' ', '_')
         //     : null,
-        roomAliasName: ClassCodeUtil.generateClassCode(),
+        roomAliasName: SpaceCodeUtil.generateSpaceCode(),
         // Pangea#
         name: nameController.text.trim(),
         topic: topicController.text.isEmpty ? null : topicController.text,
@@ -176,9 +171,7 @@ class NewSpaceController extends State<NewSpace> {
         powerLevelContentOverride: addToSpaceKey.currentState != null
             ? await ClassChatPowerLevels.powerLevelOverrideForClassChat(
                 context,
-                addToSpaceKey.currentState!.parents
-                    .map((suggestionStatus) => suggestionStatus.room)
-                    .toList(),
+                addToSpaceKey.currentState!.parents,
               )
             : null,
         // initialState: [
@@ -200,6 +193,11 @@ class NewSpaceController extends State<NewSpace> {
       }
       await Future.wait(futures);
 
+      final capacity = addCapacityKey.currentState?.capacity;
+      final space = client.getRoomById(spaceId);
+      if (capacity != null && space != null) {
+        space.updateRoomCapacity(capacity);
+      }
       final newChatRoomId = await Matrix.of(context).client.createGroupChat(
             enableEncryption: false,
             preset: sdk.CreateRoomPreset.publicChat,
@@ -216,20 +214,14 @@ class NewSpaceController extends State<NewSpace> {
         );
         MatrixState.pangeaController.classController
             .setActiveSpaceIdInChatListController(spaceId);
-        context.go("/rooms/$spaceId/details");
         return;
       }
 
       room.setSpaceChild(newChatRoomId, suggested: true);
-      newClassMode
-          ? GoogleAnalytics.addParent(
-              newChatRoomId,
-              room.classCode,
-            )
-          : GoogleAnalytics.addChatToExchange(
-              newChatRoomId,
-              room.classCode,
-            );
+      GoogleAnalytics.addParent(
+        newChatRoomId,
+        room.classCode,
+      );
 
       GoogleAnalytics.createClass(room.name, room.classCode);
       try {
@@ -245,7 +237,6 @@ class NewSpaceController extends State<NewSpace> {
       // context.pop<String>(spaceId);
       MatrixState.pangeaController.classController
           .setActiveSpaceIdInChatListController(spaceId);
-      context.go("/rooms/$spaceId/details");
       // Pangea#
     } catch (e) {
       setState(() {
@@ -265,8 +256,6 @@ class NewSpaceController extends State<NewSpace> {
   // #Pangea
   // Widget build(BuildContext context) => NewSpaceView(this);
   Widget build(BuildContext context) {
-    newClassMode =
-        GoRouterState.of(context).pathParameters['newexchange'] != 'exchange';
     return NewSpaceView(this);
   }
   // Pangea#

@@ -68,13 +68,6 @@ class GoogleAnalytics {
     );
   }
 
-  static createExchange(String exchangeName, String classCode) {
-    logEvent(
-      'create_exchange',
-      parameters: {'name': exchangeName, 'group_id': classCode},
-    );
-  }
-
   static createChat(String newChatRoomId) {
     logEvent('create_chat', parameters: {"chat_id": newChatRoomId});
   }
@@ -90,27 +83,6 @@ class GoogleAnalytics {
     logEvent(
       'remove_room_from_class',
       parameters: {"chat_id": chatRoomId, 'group_id': classCode},
-    );
-  }
-
-  static addChatToExchange(String chatRoomId, String classCode) {
-    logEvent(
-      'add_chat_to_exchange',
-      parameters: {"chat_id": chatRoomId, 'group_id': classCode},
-    );
-  }
-
-  static inviteClassToExchange(String classId, String exchangeId) {
-    logEvent(
-      'invite_class_to_exchange',
-      parameters: {'group_id': classId, 'exchange_id': exchangeId},
-    );
-  }
-
-  static kickClassFromExchange(String classId, String exchangeId) {
-    logEvent(
-      'kick_class_from_exchange',
-      parameters: {'group_id': classId, 'exchange_id': exchangeId},
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -31,6 +32,25 @@ class ChatInputRow extends StatelessWidget {
         controller.pangeaController.languageController.activeL1Model();
     final activel2 =
         controller.pangeaController.languageController.activeL2Model();
+
+    String hintText() {
+      if (controller.choreographer.choreoMode == ChoreoMode.it) {
+        return L10n.of(context)!.buildTranslation;
+      }
+      return activel1 != null &&
+              activel2 != null &&
+              activel1.langCode != LanguageKeys.unknownLanguage &&
+              activel2.langCode != LanguageKeys.unknownLanguage
+          ? L10n.of(context)!.writeAMessageFlag(
+              activel1.languageEmoji ??
+                  activel1.getDisplayName(context) ??
+                  activel1.langCode,
+              activel2.languageEmoji ??
+                  activel2.getDisplayName(context) ??
+                  activel2.langCode,
+            )
+          : L10n.of(context)!.writeAMessage;
+    }
 
     return Column(
       children: [
@@ -327,21 +347,10 @@ class ChatInputRow extends StatelessWidget {
                             bottom: 6.0,
                             top: 3.0,
                           ),
-                          hintText: activel1 != null &&
-                                  activel2 != null &&
-                                  activel1.langCode !=
-                                      LanguageKeys.unknownLanguage &&
-                                  activel2.langCode !=
-                                      LanguageKeys.unknownLanguage
-                              ? L10n.of(context)!.writeAMessageFlag(
-                                  activel1.languageEmoji ??
-                                      activel1.getDisplayName(context) ??
-                                      activel1.langCode,
-                                  activel2.languageEmoji ??
-                                      activel2.getDisplayName(context) ??
-                                      activel2.langCode,
-                                )
-                              : L10n.of(context)!.writeAMessage,
+                          // #Pangea
+                          // hintText: L10n.of(context)!.writeAMessage,
+                          hintText: hintText(),
+                          // Pangea#
                           hintMaxLines: 1,
                           border: InputBorder.none,
                           enabledBorder: InputBorder.none,

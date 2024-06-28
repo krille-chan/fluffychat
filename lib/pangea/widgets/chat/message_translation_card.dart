@@ -35,9 +35,11 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
 
   String? translationLangCode() {
     if (widget.immersionMode) return l1Code;
-    final String? originalWrittenCode =
-        widget.messageEvent.originalWritten?.content.langCode;
-    return l1Code == originalWrittenCode ? l2Code : l1Code;
+    final String? originalSentCode =
+        widget.messageEvent.originalSent?.content.langCode;
+    return (l1Code == originalSentCode || originalSentCode == null)
+        ? l2Code
+        : l1Code;
   }
 
   Future<void> fetchRepresentation(BuildContext context) async {
@@ -107,12 +109,8 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   @override
   void initState() {
     super.initState();
-    l1Code = MatrixState.pangeaController.languageController.activeL1Code(
-      roomID: widget.messageEvent.room.id,
-    );
-    l2Code = MatrixState.pangeaController.languageController.activeL2Code(
-      roomID: widget.messageEvent.room.id,
-    );
+    l1Code = MatrixState.pangeaController.languageController.activeL1Code();
+    l2Code = MatrixState.pangeaController.languageController.activeL2Code();
     if (mounted) {
       setState(() {});
     }

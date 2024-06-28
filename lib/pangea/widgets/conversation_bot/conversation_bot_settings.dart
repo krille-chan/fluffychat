@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_dynamic_zone.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_select.dart';
 import 'package:fluffychat/pangea/widgets/space/language_level_dropdown.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,21 +14,19 @@ import 'package:matrix/matrix.dart';
 
 import '../../../widgets/matrix.dart';
 import '../../constants/pangea_event_types.dart';
-import '../../extensions/pangea_room_extension.dart';
+import '../../extensions/pangea_room_extension/pangea_room_extension.dart';
 import '../../utils/error_handler.dart';
 
 class ConversationBotSettings extends StatefulWidget {
   final Room? room;
   final bool startOpen;
   final String? activeSpaceId;
-  // final ClassSettingsModel? initialSettings;
 
   const ConversationBotSettings({
     super.key,
     this.room,
     this.startOpen = false,
     this.activeSpaceId,
-    // this.initialSettings,
   });
 
   @override
@@ -47,7 +45,9 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
   void initState() {
     super.initState();
     isOpen = widget.startOpen;
-    botOptions = widget.room?.botOptions ?? BotOptionsModel();
+    botOptions = widget.room?.botOptions != null
+        ? BotOptionsModel.fromJson(widget.room?.botOptions?.toJson())
+        : BotOptionsModel();
     widget.room?.isBotRoom.then((bool isBotRoom) {
       setState(() {
         addBot = isBotRoom;
@@ -56,9 +56,6 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
     parentSpace = widget.activeSpaceId != null
         ? Matrix.of(context).client.getRoomById(widget.activeSpaceId!)
         : null;
-    if (parentSpace != null && botOptions.languageLevel == null) {
-      botOptions.languageLevel = parentSpace?.classSettings?.languageLevel;
-    }
   }
 
   Future<void> updateBotOption(void Function() makeLocalChange) async {
@@ -126,7 +123,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 16),
-                    child: SwitchListTile.adaptive(
+                    child: ListTile(
                       title: Text(
                         L10n.of(context)!.addConversationBot,
                         style: TextStyle(
@@ -135,7 +132,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                         ),
                       ),
                       subtitle: Text(L10n.of(context)!.addConversationBotDesc),
-                      secondary: CircleAvatar(
+                      leading: CircleAvatar(
                         backgroundColor:
                             Theme.of(context).scaffoldBackgroundColor,
                         foregroundColor:
@@ -145,85 +142,68 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                           expression: BotExpression.idle,
                         ),
                       ),
-                      activeColor: AppConfig.activeToggleColor,
-                      value: addBot,
-                      onChanged: (bool add) {
-                        setState(() => addBot = add);
-                        add
-                            ? widget.room?.invite(BotName.byEnvironment)
-                            : widget.room?.kick(BotName.byEnvironment);
-                      },
+                      trailing: ElevatedButton(
+                        onPressed: () async {
+                          final bool? confirm = await showDialog<bool>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: addBot
+                                    ? Text(
+                                        L10n.of(context)!
+                                            .addConversationBotButtonTitleRemove,
+                                      )
+                                    : Text(
+                                        L10n.of(context)!
+                                            .addConversationBotDialogTitleInvite,
+                                      ),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(false);
+                                    },
+                                    child: Text(L10n.of(context)!.cancel),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(!addBot);
+                                    },
+                                    child: addBot
+                                        ? Text(
+                                            L10n.of(context)!
+                                                .addConversationBotDialogRemoveConfirmation,
+                                          )
+                                        : Text(
+                                            L10n.of(context)!
+                                                .addConversationBotDialogInviteConfirmation,
+                                          ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+
+                          if (confirm == true) {
+                            setState(() => addBot = true);
+                            widget.room?.invite(BotName.byEnvironment);
+                          } else {
+                            setState(() => addBot = false);
+                            widget.room?.kick(BotName.byEnvironment);
+                          }
+                        },
+                        child: addBot
+                            ? Text(
+                                L10n.of(context)!
+                                    .addConversationBotButtonRemove,
+                              )
+                            : Text(
+                                L10n.of(context)!
+                                    .addConversationBotButtonInvite,
+                              ),
+                      ),
                     ),
                   ),
                   if (addBot) ...[
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 16),
-                    //   child: ListTile(
-                    //     onTap: () async {
-                    //       final topic = await showTextInputDialog(
-                    //         context: context,
-                    //         textFields: [
-                    //           DialogTextField(
-                    //             initialText: botOptions.topic.isEmpty
-                    //                 ? ""
-                    //                 : botOptions.topic,
-                    //             hintText:
-                    //                 L10n.of(context)!.enterAConversationTopic,
-                    //           ),
-                    //         ],
-                    //         title: L10n.of(context)!.conversationTopic,
-                    //       );
-                    //       if (topic == null) return;
-                    //       updateBotOption(() {
-                    //         botOptions.topic = topic.single;
-                    //       });
-                    //     },
-                    //     leading: CircleAvatar(
-                    //       backgroundColor:
-                    //           Theme.of(context).scaffoldBackgroundColor,
-                    //       foregroundColor:
-                    //           Theme.of(context).textTheme.bodyLarge!.color,
-                    //       child: const Icon(Icons.topic_outlined),
-                    //     ),
-                    //     subtitle: Text(
-                    //       botOptions.topic.isEmpty
-                    //           ? L10n.of(context)!.enterAConversationTopic
-                    //           : botOptions.topic,
-                    //     ),
-                    //     title: Text(
-                    //       L10n.of(context)!.conversationTopic,
-                    //       style: TextStyle(
-                    //         color: Theme.of(context).colorScheme.secondary,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 16),
-                    //   child: SwitchListTile.adaptive(
-                    //     title: Text(
-                    //       L10n.of(context)!.enableModeration,
-                    //       style: TextStyle(
-                    //         color: Theme.of(context).colorScheme.secondary,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //     subtitle: Text(L10n.of(context)!.enableModerationDesc),
-                    //     secondary: CircleAvatar(
-                    //       backgroundColor:
-                    //           Theme.of(context).scaffoldBackgroundColor,
-                    //       foregroundColor:
-                    //           Theme.of(context).textTheme.bodyLarge!.color,
-                    //       child: const Icon(Icons.shield_outlined),
-                    //     ),
-                    //     activeColor: AppConfig.activeToggleColor,
-                    //     value: botOptions.safetyModeration,
-                    //     onChanged: (bool newValue) => updateBotOption(() {
-                    //       botOptions.safetyModeration = newValue;
-                    //     }),
-                    //   ),
-                    // ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(32, 16, 0, 0),
                       child: Text(
@@ -244,28 +224,28 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                         }),
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.fromLTRB(32, 16, 0, 0),
-                    //   child: Text(
-                    //     L10n.of(context)!.conversationBotModeSelectDescription,
-                    //     style: TextStyle(
-                    //       color: Theme.of(context).colorScheme.secondary,
-                    //       fontWeight: FontWeight.bold,
-                    //       fontSize: 16,
-                    //     ),
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 16),
-                    //   child: ConversationBotModeSelect(
-                    //     initialMode: botOptions.mode,
-                    //     onChanged: (String? mode) => updateBotOption(
-                    //       () {
-                    //         botOptions.mode = mode ?? "discussion";
-                    //       },
-                    //     ),
-                    //   ),
-                    // ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(32, 16, 0, 0),
+                      child: Text(
+                        L10n.of(context)!.conversationBotModeSelectDescription,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: ConversationBotModeSelect(
+                        initialMode: botOptions.mode,
+                        onChanged: (String? mode) => updateBotOption(
+                          () {
+                            botOptions.mode = mode ?? "discussion";
+                          },
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(28, 0, 12, 0),
                       child: ConversationBotModeDynamicZone(

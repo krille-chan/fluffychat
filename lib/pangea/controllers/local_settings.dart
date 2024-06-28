@@ -1,5 +1,5 @@
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 
 class LocalSettings {
   late PangeaController _pangeaController;
@@ -8,8 +8,14 @@ class LocalSettings {
     _pangeaController = pangeaController;
   }
 
-  bool userLanguageToolSetting(ToolSetting setting) =>
-      _pangeaController.pStoreService.read(setting.toString()) ?? true;
+  bool userLanguageToolSetting(ToolSetting setting) {
+    final profileSetting =
+        _pangeaController.pStoreService.read(setting.toString());
+    if (profileSetting != null) {
+      return profileSetting;
+    }
+    return setting == ToolSetting.immersionMode ? false : true;
+  }
 
   // bool get userEnableIT =>
   //     _pangeaController.pStoreService.read(ToolSetting.interactiveTranslator.toString()) ?? true;

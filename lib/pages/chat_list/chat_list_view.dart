@@ -3,7 +3,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/navi_rail_item.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -30,13 +30,13 @@ class ChatListView extends StatelessWidget {
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
-            child: const Icon(Icons.forum_outlined),
+            child: const Icon(Icons.chat_outlined),
           ),
           selectedIcon: UnreadRoomsBadge(
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
-            child: const Icon(Icons.forum),
+            child: const Icon(Icons.chat),
           ),
           //#Pangea
           // label: L10n.of(context)!.messages,
@@ -62,13 +62,13 @@ class ChatListView extends StatelessWidget {
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
-            child: const Icon(Icons.forum_outlined),
+            child: const Icon(Icons.chat_outlined),
           ),
           selectedIcon: UnreadRoomsBadge(
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
-            child: const Icon(Icons.forum),
+            child: const Icon(Icons.chat),
           ),
           // #Pangea
           // label: L10n.of(context)!.chats,
@@ -138,17 +138,14 @@ class ChatListView extends StatelessWidget {
                   builder: (context) {
                     final allSpaces =
                         client.rooms.where((room) => room.isSpace);
-                    // #Pangea
-                    // final rootSpaces = allSpaces
-                    //     .where(
-                    //       (space) => !allSpaces.any(
-                    //         (parentSpace) => parentSpace.spaceChildren
-                    //             .any((child) => child.roomId == space.id),
-                    //       ),
-                    //     )
-                    //     .toList();
-                    final rootSpaces = allSpaces.toList();
-                    // Pangea#
+                    final rootSpaces = allSpaces
+                        .where(
+                          (space) => !allSpaces.any(
+                            (parentSpace) => parentSpace.spaceChildren
+                                .any((child) => child.roomId == space.id),
+                          ),
+                        )
+                        .toList();
                     final destinations = getNavigationDestinations(context);
 
                     return SizedBox(
@@ -198,7 +195,6 @@ class ChatListView extends StatelessWidget {
                                 MatrixLocals(L10n.of(context)!),
                               ),
                               size: 32,
-                              fontSize: 12,
                               // #Pangea
                               littleIcon: room?.roomTypeIcon,
                               // Pangea#
@@ -225,12 +221,13 @@ class ChatListView extends StatelessWidget {
                         ? NavigationBar(
                             elevation: 4,
                             labelBehavior:
-                                NavigationDestinationLabelBehavior.alwaysHide,
-                            height: 64,
+                                NavigationDestinationLabelBehavior.alwaysShow,
                             shadowColor:
-                                Theme.of(context).colorScheme.onBackground,
+                                Theme.of(context).colorScheme.onSurface,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.surface,
                             surfaceTintColor:
-                                Theme.of(context).colorScheme.background,
+                                Theme.of(context).colorScheme.surface,
                             selectedIndex: controller.selectedIndex,
                             onDestinationSelected:
                                 controller.onDestinationSelected,

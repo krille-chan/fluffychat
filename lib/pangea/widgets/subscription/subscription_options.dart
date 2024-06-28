@@ -109,7 +109,7 @@ class SubscriptionCard extends StatelessWidget {
                 title ?? subscription?.displayName(context) ?? '',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 20,
                   color:
                       enabled ? null : const Color.fromARGB(255, 174, 174, 174),
                 ),

@@ -10,6 +10,7 @@ import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/html.dart' as html;
 
+// ignore: deprecated_member_use
 class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
   FlutterHiveCollectionsDatabase(
     super.name,

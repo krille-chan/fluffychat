@@ -21,13 +21,14 @@ class MultipleEmotesSettingsView extends StatelessWidget {
         title: Text(L10n.of(context)!.emotePacks),
       ),
       body: StreamBuilder(
-        stream: room.onUpdate.stream,
+        stream: room.client.onRoomState.stream
+            .where((update) => update.roomId == room.id),
         builder: (context, snapshot) {
           final packStateEvents = room.states['im.ponies.room_emotes'];
           // we need to manually convert the map using Map.of, otherwise assigning null will throw a type error.
-          final Map<String, Event?> packs = packStateEvents != null
-              ? Map<String, Event?>.of(packStateEvents)
-              : <String, Event?>{};
+          final packs = packStateEvents != null
+              ? Map<String, StrippedStateEvent?>.of(packStateEvents)
+              : <String, StrippedStateEvent?>{};
           if (!packs.containsKey('')) {
             packs[''] = null;
           }
