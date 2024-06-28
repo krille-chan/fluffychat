@@ -44,6 +44,8 @@ class InstructionsController {
         value,
       );
 
+  /// Instruction Card gives users tips on
+  /// how to use Pangea Chat's features
   Future<void> showInstructionsPopup(
     BuildContext context,
     InstructionsEnum key,
@@ -109,7 +111,7 @@ class InstructionsController {
   }
 
   /// Returns a widget that will be added to existing widget
-  /// that displays hint text defined in the enum extension
+  /// which displays hint text defined in the enum extension
   Widget getInlineTooltip(
     BuildContext context,
     InstructionsEnum key,
@@ -127,39 +129,45 @@ class InstructionsController {
       );
       return const SizedBox();
     }
-    return Column(
-      children: [
-        Row(
-          children: [
-            const Expanded(
-              child: Divider(),
-            ),
-            CircleAvatar(
-              radius: 10,
-              backgroundColor:
-                  Theme.of(context).colorScheme.primary.withAlpha(50),
-              child: IconButton(
-                padding: EdgeInsets.zero,
-                icon: const Icon(
-                  Icons.close_outlined,
-                  size: 15,
-                ),
-                onPressed: () {
-                  _instructionsClosed[key] = true;
-                  refreshOnClose();
-                },
-              ),
-            ),
-          ],
+    return Badge(
+      offset: const Offset(0, -7),
+      backgroundColor: Colors.transparent,
+      label: CircleAvatar(
+        radius: 10,
+        backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(20),
+        child: IconButton(
+          padding: EdgeInsets.zero,
+          icon: const Icon(
+            Icons.close_outlined,
+            size: 15,
+          ),
+          onPressed: () {
+            _instructionsClosed[key] = true;
+            refreshOnClose();
+          },
         ),
-        key.inlineTooltip(context),
-        const SizedBox(height: 9),
-        const Divider(),
-      ],
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            10,
+          ),
+          color: Theme.of(context).colorScheme.primary.withAlpha(20),
+          // border: Border.all(
+          //   color: Theme.of(context).colorScheme.primary.withAlpha(50),
+          // ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: key.inlineTooltip(context),
+        ),
+      ),
     );
   }
 }
 
+/// User can toggle on to prevent Instruction Card
+/// from appearing in future sessions
 class InstructionsToggle extends StatefulWidget {
   const InstructionsToggle({
     super.key,

@@ -49,9 +49,21 @@ extension Copy on InstructionsEnum {
       case InstructionsEnum.speechToText:
         return Column(
           children: [
-            Text(
-              title(context),
-              style: BotStyle.text(context),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.record_voice_over_outlined,
+                  size: 20,
+                ),
+                const SizedBox(
+                  width: 7,
+                ),
+                Text(
+                  title(context),
+                  style: BotStyle.text(context),
+                ),
+              ],
             ),
             Text(
               body(context),
