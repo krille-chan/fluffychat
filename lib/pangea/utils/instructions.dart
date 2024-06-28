@@ -1,4 +1,4 @@
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -14,24 +14,24 @@ import 'overlay.dart';
 class InstructionsController {
   late PangeaController _pangeaController;
 
+  // We have these three methods to make sure that the instructions are not shown too much
+
   /// Instruction popup was closed by the user
   final Map<InstructionsEnum, bool> _instructionsClosed = {};
 
-  /// Instructions that were shown in that session
+  /// Instruction popup has already been shown this session
   final Map<InstructionsEnum, bool> _instructionsShown = {};
 
-  /// Returns true if the instructions were turned off by the user via the toggle switch
+  /// Returns true if the user requested this popup not be shown again
   bool? toggledOff(InstructionsEnum key) =>
       _pangeaController.pStoreService.read(key.toString());
-
-  /// We have these three methods to make sure that the instructions are not shown too much
 
   InstructionsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
   }
 
-  /// Returns true if the instructions were turned off by the user
-  /// via the toggle switch
+  /// Returns true if the instructions were closed
+  /// or turned off by the user via the toggle switch
   bool wereInstructionsTurnedOff(InstructionsEnum key) =>
       toggledOff(key) ?? _instructionsClosed[key] ?? false;
 
@@ -43,29 +43,6 @@ class InstructionsController {
         key.toString(),
         value,
       );
-
-  // return a text widget with constainer that expands to fill a parent container
-  // and displays instructions text defined in the enum extension
-  Future<Widget> getInlineTooltip(
-    BuildContext context,
-    InstructionsEnum key,
-  ) async {
-    if (wereInstructionsTurnedOff(key)) {
-      return const SizedBox();
-    }
-    if (L10n.of(context) == null) {
-      ErrorHandler.logError(
-        m: "null context in ITBotButton.showCard",
-        s: StackTrace.current,
-      );
-      return const SizedBox();
-    }
-    if (_instructionsShown[key] ?? false) {
-      return const SizedBox();
-    }
-
-    return key.inlineTooltip(context);
-  }
 
   Future<void> showInstructionsPopup(
     BuildContext context,
@@ -130,58 +107,56 @@ class InstructionsController {
       ),
     );
   }
-}
 
-enum InstructionsEnum {
-  itInstructions,
-  clickMessage,
-  blurMeansTranslate,
-  tooltipInstructions,
-}
-
-extension Copy on InstructionsEnum {
-  String title(BuildContext context) {
-    switch (this) {
-      case InstructionsEnum.itInstructions:
-        return L10n.of(context)!.itInstructionsTitle;
-      case InstructionsEnum.clickMessage:
-        return L10n.of(context)!.clickMessageTitle;
-      case InstructionsEnum.blurMeansTranslate:
-        return L10n.of(context)!.blurMeansTranslateTitle;
-      case InstructionsEnum.tooltipInstructions:
-        return L10n.of(context)!.tooltipInstructionsTitle;
+  /// Returns a widget that will be added to existing widget
+  /// that displays hint text defined in the enum extension
+  Widget getInlineTooltip(
+    BuildContext context,
+    InstructionsEnum key,
+    Function refreshOnClose,
+  ) {
+    if (wereInstructionsTurnedOff(key)) {
+      // Uncomment this line to make hint viewable again
+      // _instructionsClosed[key] = false;
+      return const SizedBox();
     }
-  }
-
-  String body(BuildContext context) {
-    switch (this) {
-      case InstructionsEnum.itInstructions:
-        return L10n.of(context)!.itInstructionsBody;
-      case InstructionsEnum.clickMessage:
-        return L10n.of(context)!.clickMessageBody;
-      case InstructionsEnum.blurMeansTranslate:
-        return L10n.of(context)!.blurMeansTranslateBody;
-      case InstructionsEnum.tooltipInstructions:
-        return PlatformInfos.isMobile
-            ? L10n.of(context)!.tooltipInstructionsMobileBody
-            : L10n.of(context)!.tooltipInstructionsBrowserBody;
+    if (L10n.of(context) == null) {
+      ErrorHandler.logError(
+        m: "null context in ITBotButton.showCard",
+        s: StackTrace.current,
+      );
+      return const SizedBox();
     }
-  }
-
-  Widget inlineTooltip(BuildContext context) {
-    switch (this) {
-      case InstructionsEnum.itInstructions:
-        return Padding(
-          padding: const EdgeInsets.all(6.0),
-          child: Text(
-            body(context),
-            style: BotStyle.text(context),
-          ),
-        );
-      default:
-        print('inlineTooltip not implemented for $this');
-        return const SizedBox();
-    }
+    return Column(
+      children: [
+        Row(
+          children: [
+            const Expanded(
+              child: Divider(),
+            ),
+            CircleAvatar(
+              radius: 10,
+              backgroundColor:
+                  Theme.of(context).colorScheme.primary.withAlpha(50),
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                icon: const Icon(
+                  Icons.close_outlined,
+                  size: 15,
+                ),
+                onPressed: () {
+                  _instructionsClosed[key] = true;
+                  refreshOnClose();
+                },
+              ),
+            ),
+          ],
+        ),
+        key.inlineTooltip(context),
+        const SizedBox(height: 9),
+        const Divider(),
+      ],
+    );
   }
 }
 
