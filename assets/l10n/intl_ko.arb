@@ -808,7 +808,7 @@
       "targetName": {}
     }
   },
-  "guestsAreForbidden": "게스트는 금지되어 있습니다",
+  "guestsAreForbidden": "게스트가 들어올 수 없음",
   "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
