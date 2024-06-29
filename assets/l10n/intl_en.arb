@@ -272,7 +272,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} changed their displayname to: '{displayname}'",
+  "changedTheDisplaynameTo": "'{username}' changed their displayname to: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -1199,7 +1199,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "New chat",
+  "newChat": "Create new chat",
   "@newChat": {
     "type": "text",
     "placeholders": {}
@@ -1630,7 +1630,7 @@
   },
   "recoveryKey": "Recovery key",
   "@recoveryKey": {},
-  "recoveryKeyLost": "Recovery key lost?",
+  "recoveryKeyLost": "Lost recovery key and other devices to transfer from?",
   "@recoveryKeyLost": {},
   "seenByUser": "Seen by {username}",
   "@seenByUser": {
@@ -2152,7 +2152,7 @@
   "@addToSpaceDescription": {},
   "start": "Start",
   "@start": {},
-  "pleaseEnterRecoveryKeyDescription": "To unlock your old messages, please enter your recovery key that has been generated in a previous session. Your recovery key is NOT your password.",
+  "pleaseEnterRecoveryKeyDescription": "To unlock your old messages, please enter your recovery key that has been generated in a previous session. Your recovery key is not the same as your password.",
   "@pleaseEnterRecoveryKeyDescription": {},
   "publish": "Publish",
   "@publish": {},
@@ -2352,9 +2352,9 @@
   "@whyIsThisMessageEncrypted": {},
   "noKeyForThisMessage": "This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings.",
   "@noKeyForThisMessage": {},
-  "newGroup": "New group",
+  "newGroup": "Create new group",
   "@newGroup": {},
-  "newSpace": "New space",
+  "newSpace": "Create new space",
   "@newSpace": {},
   "enterSpace": "Enter space",
   "@enterSpace": {},
