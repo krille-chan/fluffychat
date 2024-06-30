@@ -10,11 +10,8 @@ import 'package:fluffychat/pangea/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
-import '../../models/language_detection_model.dart';
 import '../../models/span_card_model.dart';
-import '../../repo/tokens_repo.dart';
 import '../../utils/error_handler.dart';
 import '../../utils/overlay.dart';
 
@@ -64,22 +61,6 @@ class IgcController {
         return;
       }
 
-      //TO-DO: in api call, specify turning off IT and/or grammar checking
-      // UPDATE: This is now done in the API call. New TODO is to test this.
-      // if (!choreographer.igcEnabled) {
-      //   igcTextDataResponse.matches = igcTextDataResponse.matches
-      //       .where((match) => !match.isGrammarMatch)
-      //       .toList();
-      // }
-      // if (!choreographer.itEnabled) {
-      //   igcTextDataResponse.matches = igcTextDataResponse.matches
-      //       .where((match) => !match.isOutOfTargetMatch)
-      //       .toList();
-      // }
-      // if (!choreographer.itEnabled && !choreographer.igcEnabled) {
-      //   igcTextDataResponse.matches = [];
-      // }
-
       igcTextData = igcTextDataResponse;
 
       // TODO - for each new match,
@@ -106,61 +87,61 @@ class IgcController {
     }
   }
 
-  Future<void> justGetTokensAndAddThemToIGCTextData() async {
-    try {
-      if (igcTextData == null) {
-        debugger(when: kDebugMode);
-        choreographer.getLanguageHelp();
-        return;
-      }
-      igcTextData!.loading = true;
-      choreographer.startLoading();
-      if (igcTextData!.originalInput != choreographer.textController.text) {
-        debugger(when: kDebugMode);
-        ErrorHandler.logError(
-          m: "igcTextData fullText does not match current text",
-          s: StackTrace.current,
-          data: igcTextData!.toJson(),
-        );
-      }
+  // Future<void> justGetTokensAndAddThemToIGCTextData() async {
+  //   try {
+  //     if (igcTextData == null) {
+  //       debugger(when: kDebugMode);
+  //       choreographer.getLanguageHelp();
+  //       return;
+  //     }
+  //     igcTextData!.loading = true;
+  //     choreographer.startLoading();
+  //     if (igcTextData!.originalInput != choreographer.textController.text) {
+  //       debugger(when: kDebugMode);
+  //       ErrorHandler.logError(
+  //         m: "igcTextData fullText does not match current text",
+  //         s: StackTrace.current,
+  //         data: igcTextData!.toJson(),
+  //       );
+  //     }
 
-      if (choreographer.l1LangCode == null ||
-          choreographer.l2LangCode == null) {
-        debugger(when: kDebugMode);
-        ErrorHandler.logError(
-          m: "l1LangCode and/or l2LangCode is null",
-          s: StackTrace.current,
-          data: {
-            "l1LangCode": choreographer.l1LangCode,
-            "l2LangCode": choreographer.l2LangCode,
-          },
-        );
-        return;
-      }
+  //     if (choreographer.l1LangCode == null ||
+  //         choreographer.l2LangCode == null) {
+  //       debugger(when: kDebugMode);
+  //       ErrorHandler.logError(
+  //         m: "l1LangCode and/or l2LangCode is null",
+  //         s: StackTrace.current,
+  //         data: {
+  //           "l1LangCode": choreographer.l1LangCode,
+  //           "l2LangCode": choreographer.l2LangCode,
+  //         },
+  //       );
+  //       return;
+  //     }
 
-      final TokensResponseModel res = await TokensRepo.tokenize(
-        await choreographer.pangeaController.userController.accessToken,
-        TokensRequestModel(
-          fullText: igcTextData!.originalInput,
-          userL1: choreographer.l1LangCode!,
-          userL2: choreographer.l2LangCode!,
-        ),
-      );
-      igcTextData?.tokens = res.tokens;
-    } catch (err, stack) {
-      debugger(when: kDebugMode);
-      choreographer.errorService.setError(
-        ChoreoError(type: ChoreoErrorType.unknown, raw: err),
-      );
-      Sentry.addBreadcrumb(
-        Breadcrumb.fromJson({"igctextDdata": igcTextData?.toJson()}),
-      );
-      ErrorHandler.logError(e: err, s: stack);
-    } finally {
-      igcTextData?.loading = false;
-      choreographer.stopLoading();
-    }
-  }
+  //     final TokensResponseModel res = await TokensRepo.tokenize(
+  //       await choreographer.pangeaController.userController.accessToken,
+  //       TokensRequestModel(
+  //         fullText: igcTextData!.originalInput,
+  //         userL1: choreographer.l1LangCode!,
+  //         userL2: choreographer.l2LangCode!,
+  //       ),
+  //     );
+  //     igcTextData?.tokens = res.tokens;
+  //   } catch (err, stack) {
+  //     debugger(when: kDebugMode);
+  //     choreographer.errorService.setError(
+  //       ChoreoError(type: ChoreoErrorType.unknown, raw: err),
+  //     );
+  //     Sentry.addBreadcrumb(
+  //       Breadcrumb.fromJson({"igctextDdata": igcTextData?.toJson()}),
+  //     );
+  //     ErrorHandler.logError(e: err, s: stack);
+  //   } finally {
+  //     igcTextData?.loading = false;
+  //     choreographer.stopLoading();
+  //   }
+  // }
 
   void showFirstMatch(BuildContext context) {
     if (igcTextData == null || igcTextData!.matches.isEmpty) {
@@ -216,14 +197,6 @@ class IgcController {
       return false;
     }
     return true;
-  }
-
-  String? get detectedLangCode {
-    if (!hasRelevantIGCTextData) return null;
-
-    final LanguageDetection first = igcTextData!.detections.first;
-
-    return first.langCode;
   }
 
   clear() {

@@ -309,7 +309,10 @@ class MyAnalyticsController {
     recentConstructUses.addAll(constructLists.expand((e) => e));
 
     //TODO - confirm that this is the correct construct content
-    debugger(when: kDebugMode && recentConstructUses.isNotEmpty);
+    debugger(
+        when: kDebugMode &&
+            (recentPangeaMessageEvents.isNotEmpty ||
+                recentActivityRecords.isNotEmpty));
 
     await analyticsRoom.sendConstructsEvent(
       recentConstructUses,

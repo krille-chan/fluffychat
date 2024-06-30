@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fluffychat/pangea/config/environment.dart';
+import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/models/lemma.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
@@ -39,7 +40,10 @@ class IgcRepo {
     await Future.delayed(const Duration(seconds: 2));
 
     final IGCTextData igcTextData = IGCTextData(
-      detections: [LanguageDetection(langCode: "en", confidence: 0.99)],
+      detections: LanguageDetectionResponse(
+        detections: [LanguageDetection(langCode: "en", confidence: 0.99)],
+        fullText: "This be a sample text",
+      ),
       tokens: [
         PangeaToken(
           text: PangeaTokenText(content: "This", offset: 0, length: 4),

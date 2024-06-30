@@ -666,7 +666,6 @@ class PangeaMessageEvent {
 
   /// get construct uses of type vocab for the message
   List<OneConstructUse> get _vocabUses {
-    debugger();
     final List<OneConstructUse> uses = [];
 
     // missing vital info so return. should not happen
@@ -739,7 +738,6 @@ class PangeaMessageEvent {
   /// it is considered to be a [ConstructUseTypeEnum.corIt].
   /// If the [token] is not included in any choreoStep, it is considered to be a [ConstructUseTypeEnum.wa].
   List<OneConstructUse> _getVocabUseForToken(PangeaToken token) {
-    debugger();
     if (originalSent?.choreo == null) {
       final bool inUserL2 = originalSent?.langCode == l2Code;
       return _lemmasToVocabUses(

@@ -117,34 +117,39 @@ class Choreographer {
     // TODO - move this to somewhere such that the message can be cleared from the input field
     // before the language detection is complete. Otherwise, user is going to be waiting
     // in cases of slow internet or slow language detection
-    final String originalSentLangCode = langCodeOfCurrentText ??
-        (await pangeaController.languageDetection.detectLanguage(
-          currentText,
-          pangeaController.languageController.userL2?.langCode,
-          pangeaController.languageController.userL1?.langCode,
-        ))
-            .bestDetection()
-            .langCode;
-
-    final PangeaRepresentation originalSent = PangeaRepresentation(
-      langCode: originalSentLangCode,
-      text: currentText,
-      originalSent: true,
-      originalWritten: originalWritten == null,
-    );
+    final String? originalSentLangCode = igc.igcTextData?.detectedLanguage;
 
     // TODO - why does both it and igc need to be enabled for choreo to be applicable?
     final ChoreoRecord? applicableChoreo =
         isITandIGCEnabled && igc.igcTextData != null ? choreoRecord : null;
 
     final UseType useType = useTypeCalculator(applicableChoreo);
-    debugPrint("use type in choreographer $useType");
+
+    // if tokens or language detection are not available, get them
+    // note that we probably need to move this to after we clear the input field
+    // or the user could experience some lag here. note that this call is being
+    // made after we've determined if we have an applicable choreo in order to
+    // say whether correction was run on the message. we may eventually want
+    // to edit the useType after
+    if (igc.igcTextData?.tokens == null ||
+        igc.igcTextData?.detectedLanguage == null) {
+      await igc.getIGCTextData(onlyTokensAndLanguageDetection: true);
+    }
+
+    final PangeaRepresentation originalSent = PangeaRepresentation(
+      langCode: originalSentLangCode ?? LanguageKeys.unknownLanguage,
+      text: currentText,
+      originalSent: true,
+      originalWritten: originalWritten == null,
+    );
+    debugger(when: kDebugMode);
 
     chatController.send(
       // PTODO - turn this back on in conjunction with saving tokens
       // we need to save those tokens as well, in order for exchanges to work
       // properly. in an exchange, the other user will want
       // originalWritten: originalWritten,
+
       originalSent: originalSent,
       tokensSent: igc.igcTextData?.tokens != null
           ? PangeaMessageTokens(tokens: igc.igcTextData!.tokens)
@@ -170,7 +175,7 @@ class Choreographer {
     }
     choreoMode = ChoreoMode.it;
     itController.initializeIT(
-      ITStartData(_textController.text, igc.detectedLangCode),
+      ITStartData(_textController.text, igc.igcTextData?.detectedLanguage),
     );
     itMatch.status = PangeaMatchStatus.accepted;
 
@@ -195,7 +200,7 @@ class Choreographer {
       // this may be unnecessary now that tokens are not used
       // to allow click of words in the input field and we're getting this at the end
       // TODO - turn it off and tested that this is fine
-      igc.justGetTokensAndAddThemToIGCTextData();
+      // igc.justGetTokensAndAddThemToIGCTextData();
 
       // we set editType to keyboard here because that is the default for it
       // and we want to make sure that the next change is treated as a keyboard change
@@ -498,22 +503,6 @@ class Choreographer {
       ].contains(_textController.editType);
 
   bool get editTypeIsKeyboard => EditType.keyboard == _textController.editType;
-
-  /// If there is applicable igcTextData, return the detected langCode
-  /// Otherwise, if the IT controller is open, return the user's L2 langCode
-  /// This second piece assumes that IT is being used to translate into the user's L2
-  /// and could be spotty. It's a bit of a hack, and should be tested more.
-  String? get langCodeOfCurrentText {
-    if (igc.detectedLangCode != null) return igc.detectedLangCode!;
-
-    // TODO - this is a bit of a hack, and should be tested more
-    // we should also check that user has not done customInput
-    if (itController.completedITSteps.isNotEmpty && itController.allCorrect) {
-      return l2LangCode!;
-    }
-
-    return null;
-  }
 
   setState() {
     if (!stateListener.isClosed) {

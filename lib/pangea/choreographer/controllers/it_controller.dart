@@ -72,8 +72,6 @@ class ITController {
 
   /// if IGC isn't positive that text is full L1 then translate to L1
   Future<void> _setSourceText() async {
-    debugger(when: kDebugMode);
-    // try {
     if (_itStartData == null || _itStartData!.text.isEmpty) {
       Sentry.addBreadcrumb(
         Breadcrumb(
@@ -98,21 +96,12 @@ class ITController {
       request: FullTextTranslationRequestModel(
         text: _itStartData!.text,
         tgtLang: choreographer.l1LangCode!,
-        srcLang: choreographer.l2LangCode,
+        srcLang: _itStartData!.langCode,
         userL1: choreographer.l1LangCode!,
         userL2: choreographer.l2LangCode!,
       ),
     );
     sourceText = res.bestTranslation;
-    // } catch (err, stack) {
-    //   debugger(when: kDebugMode);
-    //   if (_itStartData?.text.isNotEmpty ?? false) {
-    //     ErrorHandler.logError(e: err, s: stack);
-    //     sourceText = _itStartData!.text;
-    //   } else {
-    //     rethrow;
-    //   }
-    // }
   }
 
   // used 1) at very beginning (with custom input = null)
