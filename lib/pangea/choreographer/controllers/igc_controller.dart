@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
-import 'package:fluffychat/pangea/controllers/span_data_controller.dart';
+import 'package:fluffychat/pangea/choreographer/controllers/span_data_controller.dart';
 import 'package:fluffychat/pangea/models/igc_text_data_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/repo/igc_repo.dart';
@@ -29,58 +29,63 @@ class IgcController {
     spanDataController = SpanDataController(choreographer);
   }
 
-  Future<void> getIGCTextData({required bool tokensOnly}) async {
+  Future<void> getIGCTextData({
+    required bool onlyTokensAndLanguageDetection,
+  }) async {
     try {
       if (choreographer.currentText.isEmpty) return clear();
 
       // the error spans are going to be reloaded, so clear the cache
+      // @ggurdin: Why is this separate from the clear() call?
+      // Also, if the spans are equal according the to the equals method, why not reuse the cached span data?
+      // It seems this would save some calls if the user makes some tiny changes to the text that don't
+      // change the matches at all.
       spanDataController.clearCache();
       debugPrint('getIGCTextData called with ${choreographer.currentText}');
-      debugPrint('getIGCTextData called with tokensOnly = $tokensOnly');
+      debugPrint(
+        'getIGCTextData called with tokensOnly = $onlyTokensAndLanguageDetection',
+      );
 
       final IGCRequestBody reqBody = IGCRequestBody(
         fullText: choreographer.currentText,
         userL1: choreographer.l1LangCode!,
         userL2: choreographer.l2LangCode!,
-        enableIGC: choreographer.igcEnabled && !tokensOnly,
-        enableIT: choreographer.itEnabled && !tokensOnly,
-        tokensOnly: tokensOnly,
+        enableIGC: choreographer.igcEnabled && !onlyTokensAndLanguageDetection,
+        enableIT: choreographer.itEnabled && !onlyTokensAndLanguageDetection,
       );
 
       final IGCTextData igcTextDataResponse = await IgcRepo.getIGC(
         await choreographer.accessToken,
         igcRequest: reqBody,
       );
-      // temp fix
-      igcTextDataResponse.originalInput = reqBody.fullText;
 
-      //this will happen when the user changes the input while igc is fetching results
+      // this will happen when the user changes the input while igc is fetching results
       if (igcTextDataResponse.originalInput != choreographer.currentText) {
-        // final current = choreographer.currentText;
-        // final igctext = igcTextDataResponse.originalInput;
-        // Sentry.addBreadcrumb(
-        //   Breadcrumb(message: "igc return input does not match current text"),
-        // );
-        // debugger(when: kDebugMode);
         return;
       }
 
       //TO-DO: in api call, specify turning off IT and/or grammar checking
-      if (!choreographer.igcEnabled) {
-        igcTextDataResponse.matches = igcTextDataResponse.matches
-            .where((match) => !match.isGrammarMatch)
-            .toList();
-      }
-      if (!choreographer.itEnabled) {
-        igcTextDataResponse.matches = igcTextDataResponse.matches
-            .where((match) => !match.isOutOfTargetMatch)
-            .toList();
-      }
-      if (!choreographer.itEnabled && !choreographer.igcEnabled) {
-        igcTextDataResponse.matches = [];
-      }
+      // UPDATE: This is now done in the API call. New TODO is to test this.
+      // if (!choreographer.igcEnabled) {
+      //   igcTextDataResponse.matches = igcTextDataResponse.matches
+      //       .where((match) => !match.isGrammarMatch)
+      //       .toList();
+      // }
+      // if (!choreographer.itEnabled) {
+      //   igcTextDataResponse.matches = igcTextDataResponse.matches
+      //       .where((match) => !match.isOutOfTargetMatch)
+      //       .toList();
+      // }
+      // if (!choreographer.itEnabled && !choreographer.igcEnabled) {
+      //   igcTextDataResponse.matches = [];
+      // }
 
       igcTextData = igcTextDataResponse;
+
+      // TODO - for each new match,
+      // check if existing igcTextData has one and only one match with the same error text and correction
+      // if so, keep the original match and discard the new one
+      // if not, add the new match to the existing igcTextData
 
       // After fetching igc data, pre-call span details for each match optimistically.
       // This will make the loading of span details faster for the user
@@ -170,11 +175,9 @@ class IgcController {
     const int firstMatchIndex = 0;
     final PangeaMatch match = igcTextData!.matches[firstMatchIndex];
 
-    if (
-        match.isITStart &&
+    if (match.isITStart &&
         choreographer.itAutoPlayEnabled &&
-        igcTextData != null
-    ) {
+        igcTextData != null) {
       choreographer.onITStart(igcTextData!.matches[firstMatchIndex]);
       return;
     }

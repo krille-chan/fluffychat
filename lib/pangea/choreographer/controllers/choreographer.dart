@@ -183,6 +183,7 @@ class Choreographer {
     _textController.setSystemText("", EditType.itStart);
   }
 
+  /// Handles any changes to the text input
   _onChangeListener() {
     if (_noChange) {
       return;
@@ -191,21 +192,26 @@ class Choreographer {
     if ([
       EditType.igc,
     ].contains(_textController.editType)) {
+      // this may be unnecessary now that tokens are not used
+      // to allow click of words in the input field and we're getting this at the end
+      // TODO - turn it off and tested that this is fine
       igc.justGetTokensAndAddThemToIGCTextData();
+
+      // we set editType to keyboard here because that is the default for it
+      // and we want to make sure that the next change is treated as a keyboard change
+      // unless the system explicity sets it to something else. this
       textController.editType = EditType.keyboard;
       return;
     }
 
+    // not sure if this is necessary now
     MatrixState.pAnyState.closeOverlay();
 
     if (errorService.isError) {
       return;
     }
 
-    // if (igc.igcTextData != null) {
     igc.clear();
-    // setState();
-    // }
 
     _resetDebounceTimer();
 
@@ -215,7 +221,9 @@ class Choreographer {
         () => getLanguageHelp(),
       );
     } else {
-      getLanguageHelp(ChoreoMode.it == choreoMode);
+      getLanguageHelp(
+        onlyTokensAndLanguageDetection: ChoreoMode.it == choreoMode,
+      );
     }
 
     //Note: we don't set the keyboard type on each keyboard stroke so this is how we default to
@@ -224,10 +232,14 @@ class Choreographer {
     textController.editType = EditType.keyboard;
   }
 
-  Future<void> getLanguageHelp([
-    bool tokensOnly = false,
+  /// Fetches the language help for the current text, including grammar correction, language detection,
+  /// tokens, and translations. Includes logic to exit the flow if the user is not subscribed, if the tools are not enabled, or
+  /// or if autoIGC is not enabled and the user has not manually requested it.
+  /// [onlyTokensAndLanguageDetection] will
+  Future<void> getLanguageHelp({
+    bool onlyTokensAndLanguageDetection = false,
     bool manual = false,
-  ]) async {
+  }) async {
     try {
       if (errorService.isError) return;
       final CanSendStatus canSendStatus =
@@ -242,13 +254,15 @@ class Choreographer {
       startLoading();
       if (choreoMode == ChoreoMode.it &&
           itController.isTranslationDone &&
-          !tokensOnly) {
+          !onlyTokensAndLanguageDetection) {
         // debugger(when: kDebugMode);
       }
 
       await (choreoMode == ChoreoMode.it && !itController.isTranslationDone
           ? itController.getTranslationData(_useCustomInput)
-          : igc.getIGCTextData(tokensOnly: tokensOnly));
+          : igc.getIGCTextData(
+              onlyTokensAndLanguageDetection: onlyTokensAndLanguageDetection,
+            ));
     } catch (err, stack) {
       ErrorHandler.logError(e: err, s: stack);
     } finally {
@@ -494,8 +508,9 @@ class Choreographer {
 
     // TODO - this is a bit of a hack, and should be tested more
     // we should also check that user has not done customInput
-    if (itController.completedITSteps.isNotEmpty && itController.allCorrect)
+    if (itController.completedITSteps.isNotEmpty && itController.allCorrect) {
       return l2LangCode!;
+    }
 
     return null;
   }
@@ -533,9 +548,11 @@ class Choreographer {
         chatController.room,
       );
 
-  bool get itAutoPlayEnabled => pangeaController.pStoreService.read(
+  bool get itAutoPlayEnabled =>
+      pangeaController.pStoreService.read(
         MatrixProfile.itAutoPlay.title,
-      ) ?? false;
+      ) ??
+      false;
 
   bool get definitionsEnabled =>
       pangeaController.permissionsController.isToolEnabled(

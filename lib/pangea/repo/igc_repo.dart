@@ -89,7 +89,6 @@ class IGCRequestBody {
   String fullText;
   String userL1;
   String userL2;
-  bool tokensOnly;
   bool enableIT;
   bool enableIGC;
 
@@ -99,7 +98,6 @@ class IGCRequestBody {
     required this.userL2,
     required this.enableIGC,
     required this.enableIT,
-    this.tokensOnly = false,
   });
 
   Map<String, dynamic> toJson() => {
@@ -108,6 +106,5 @@ class IGCRequestBody {
         ModelKey.userL2: userL2,
         "enable_it": enableIT,
         "enable_igc": enableIGC,
-        "tokens_only": tokensOnly,
       };
 }

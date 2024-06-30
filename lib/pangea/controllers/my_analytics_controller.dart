@@ -239,7 +239,7 @@ class MyAnalyticsController {
     }
     final List<List<Event>> recentMsgs =
         (await Future.wait(recentMsgFutures)).toList();
-    final List<PracticeActivityRecordEvent> recentActivityReconds =
+    final List<PracticeActivityRecordEvent> recentActivityRecords =
         (await Future.wait(recentActivityFutures))
             .expand((e) => e)
             .map((event) => PracticeActivityRecordEvent(event: event))
@@ -284,14 +284,14 @@ class MyAnalyticsController {
     }
 
     // get constructs for messages
-    final List<OneConstructUse> constructContent = [];
+    final List<OneConstructUse> recentConstructUses = [];
     for (final PangeaMessageEvent message in allRecentMessages) {
-      constructContent.addAll(message.allConstructUses);
+      recentConstructUses.addAll(message.allConstructUses);
     }
 
     // get constructs for practice activities
     final List<Future<List<OneConstructUse>>> constructFutures = [];
-    for (final PracticeActivityRecordEvent activity in recentActivityReconds) {
+    for (final PracticeActivityRecordEvent activity in recentActivityRecords) {
       final Timeline? timeline = timelineMap[activity.event.roomId!];
       if (timeline == null) {
         debugger(when: kDebugMode);
@@ -306,13 +306,13 @@ class MyAnalyticsController {
     final List<List<OneConstructUse>> constructLists =
         await Future.wait(constructFutures);
 
-    constructContent.addAll(constructLists.expand((e) => e));
+    recentConstructUses.addAll(constructLists.expand((e) => e));
 
     //TODO - confirm that this is the correct construct content
-    debugger(when: kDebugMode);
+    debugger(when: kDebugMode && recentConstructUses.isNotEmpty);
 
     await analyticsRoom.sendConstructsEvent(
-      constructContent,
+      recentConstructUses,
     );
   }
 }
