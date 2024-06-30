@@ -37,7 +37,6 @@ class PangeaMessageEvent {
   late Event _event;
   final Timeline timeline;
   final bool ownMessage;
-  bool _isValidPangeaMessageEvent = true;
 
   PangeaMessageEvent({
     required Event event,
@@ -45,7 +44,7 @@ class PangeaMessageEvent {
     required this.ownMessage,
   }) {
     if (event.type != EventTypes.Message) {
-      _isValidPangeaMessageEvent = false;
+      debugger(when: kDebugMode);
       ErrorHandler.logError(
         m: "${event.type} should not be used to make a PangeaMessageEvent",
       );
@@ -548,7 +547,18 @@ class PangeaMessageEvent {
         originalWritten: false,
       );
 
-  UseType get useType => useTypeCalculator(originalSent?.choreo);
+  UseType get msgUseType {
+    final ChoreoRecord? choreoRecord = originalSent?.choreo;
+    if (choreoRecord == null) {
+      return UseType.un;
+    } else if (choreoRecord.includedIT) {
+      return UseType.ta;
+    } else if (choreoRecord.hasAcceptedMatches) {
+      return UseType.ga;
+    } else {
+      return UseType.wa;
+    }
+  }
 
   bool get showUseType =>
       !ownMessage &&
@@ -662,30 +672,7 @@ class PangeaMessageEvent {
 
   /// all construct uses for the message, including vocab and grammar
   List<OneConstructUse> get allConstructUses =>
-      [..._grammarConstructUses, ..._vocabUses];
-
-  /// get construct uses of type vocab for the message
-  List<OneConstructUse> get _vocabUses {
-    final List<OneConstructUse> uses = [];
-
-    // missing vital info so return. should not happen
-    if (event.roomId == null) {
-      debugger(when: kDebugMode);
-      return uses;
-    }
-
-    // for each token, record whether selected in ga, ta, or wa
-    if (originalSent?.tokens != null) {
-      for (final token in originalSent!.tokens!) {
-        uses.addAll(_getVocabUseForToken(token));
-      }
-    }
-
-    // add construct uses related to IT use
-    uses.addAll(_itStepsToConstructUses);
-
-    return uses;
-  }
+      [..._grammarConstructUses, ..._vocabUses, ..._itStepsToConstructUses];
 
   /// Returns a list of [OneConstructUse] from itSteps for which the continuance
   /// was selected or ignored. Correct selections are considered in the tokens
@@ -696,6 +683,8 @@ class PangeaMessageEvent {
   /// are actually in the final message.
   List<OneConstructUse> get _itStepsToConstructUses {
     final List<OneConstructUse> uses = [];
+    if (originalSent?.choreo == null) return uses;
+
     for (final itStep in originalSent!.choreo!.itSteps) {
       for (final continuance in itStep.continuances) {
         // this seems to always be false for continuances right now
@@ -725,6 +714,24 @@ class PangeaMessageEvent {
         }
       }
     }
+    return uses;
+  }
+
+  /// get construct uses of type vocab for the message
+  List<OneConstructUse> get _vocabUses {
+    final List<OneConstructUse> uses = [];
+
+    // missing vital info so return
+    if (event.roomId == null || originalSent?.tokens == null) {
+      debugger(when: kDebugMode);
+      return uses;
+    }
+
+    // for each token, record whether selected in ga, ta, or wa
+    for (final token in originalSent!.tokens!) {
+      uses.addAll(_getVocabUseForToken(token));
+    }
+
     return uses;
   }
 

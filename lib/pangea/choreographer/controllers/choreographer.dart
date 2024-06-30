@@ -24,7 +24,6 @@ import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../widgets/matrix.dart';
-import '../../enum/use_type.dart';
 import '../../models/choreo_record.dart';
 import '../../models/language_model.dart';
 import '../../models/pangea_match_model.dart';
@@ -108,27 +107,16 @@ class Choreographer {
                 originalSent: false,
               )
             : null;
-    //TODO - confirm that IT is indeed making sure the message is in the user's L1
-
-    // if the message has not been processed to determine its language
-    // then run it through the language detection endpoint. If the detection
-    // confidence is high enough, use that language code as the message's language
-    // to save that pangea representation
-    // TODO - move this to somewhere such that the message can be cleared from the input field
-    // before the language detection is complete. Otherwise, user is going to be waiting
-    // in cases of slow internet or slow language detection
-    final String? originalSentLangCode = igc.igcTextData?.detectedLanguage;
 
     // TODO - why does both it and igc need to be enabled for choreo to be applicable?
-    final ChoreoRecord? applicableChoreo =
-        isITandIGCEnabled && igc.igcTextData != null ? choreoRecord : null;
+    // final ChoreoRecord? applicableChoreo =
+    //     isITandIGCEnabled && igc.igcTextData != null ? choreoRecord : null;
 
-    final UseType useType = useTypeCalculator(applicableChoreo);
-
-    // if tokens or language detection are not available, get them
-    // note that we probably need to move this to after we clear the input field
-    // or the user could experience some lag here. note that this call is being
-    // made after we've determined if we have an applicable choreo in order to
+    // if tokens or language detection are not available, we should get them
+    // notes
+    // 1) we probably need to move this to after we clear the input field
+    // or the user could experience some lag here.
+    // 2)  that this call is being made after we've determined if we have an applicable choreo in order to
     // say whether correction was run on the message. we may eventually want
     // to edit the useType after
     if (igc.igcTextData?.tokens == null ||
@@ -137,26 +125,24 @@ class Choreographer {
     }
 
     final PangeaRepresentation originalSent = PangeaRepresentation(
-      langCode: originalSentLangCode ?? LanguageKeys.unknownLanguage,
+      langCode:
+          igc.igcTextData?.detectedLanguage ?? LanguageKeys.unknownLanguage,
       text: currentText,
       originalSent: true,
       originalWritten: originalWritten == null,
     );
-    debugger(when: kDebugMode);
+
+    final PangeaMessageTokens? tokensSent = igc.igcTextData?.tokens != null
+        ? PangeaMessageTokens(tokens: igc.igcTextData!.tokens)
+        : null;
 
     chatController.send(
-      // PTODO - turn this back on in conjunction with saving tokens
-      // we need to save those tokens as well, in order for exchanges to work
-      // properly. in an exchange, the other user will want
       // originalWritten: originalWritten,
-
       originalSent: originalSent,
-      tokensSent: igc.igcTextData?.tokens != null
-          ? PangeaMessageTokens(tokens: igc.igcTextData!.tokens)
-          : null,
+      tokensSent: tokensSent,
       //TODO - save originalwritten tokens
-      choreo: applicableChoreo,
-      useType: useType,
+      // choreo: applicableChoreo,
+      choreo: choreoRecord,
     );
 
     clear();

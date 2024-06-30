@@ -66,7 +66,6 @@ class ModelKey {
   static const String tokensSent = "tokens_sent";
   static const String tokensWritten = "tokens_written";
   static const String choreoRecord = "choreo_record";
-  static const String useType = "use_type";
 
   static const String baseDefinition = "base_definition";
   static const String targetDefinition = "target_definition";

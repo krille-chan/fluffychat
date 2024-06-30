@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import '../../models/chat_topic_model.dart';
 import '../../models/lemma.dart';
 import '../../repo/topic_data_repo.dart';
@@ -76,7 +75,7 @@ class ChatVocabularyList extends StatelessWidget {
         for (final word in topic.vocab)
           Chip(
             labelStyle: Theme.of(context).textTheme.bodyMedium,
-            label: Text(word.form),
+            label: Text(word.text),
             onDeleted: () {
               onChanged(topic.vocab..remove(word));
             },
@@ -464,7 +463,7 @@ class PromptsFieldState extends State<PromptsField> {
 
         // button to call API
         ElevatedButton.icon(
-          icon: BotFace(
+          icon: const BotFace(
             width: 50.0,
             expression: BotExpression.idle,
           ),

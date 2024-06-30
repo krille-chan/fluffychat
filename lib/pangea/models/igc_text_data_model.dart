@@ -51,7 +51,8 @@ class IGCTextData {
                 "full_text": json["original_input"],
               })
             : LanguageDetectionResponse.fromJson(
-                json[_detectionsKey] as Map<String, dynamic>);
+                json[_detectionsKey] as Map<String, dynamic>,
+              );
 
     return IGCTextData(
       tokens: (json[_tokensKey] as Iterable)
@@ -96,7 +97,17 @@ class IGCTextData {
         "enable_igc": enableIGC,
       };
 
-  String get detectedLanguage => detections.bestDetection().langCode;
+  /// if we haven't run IGC or IT or there are no matches, we use the highest validated detection
+  /// from [LanguageDetectionResponse.highestValidatedDetection]
+  /// if we have run igc/it and there are no matches, we can relax the threshold
+  /// and use the highest confidence detection
+  String get detectedLanguage {
+    if (!(enableIGC && enableIT) || matches.isNotEmpty) {
+      return detections.highestValidatedDetection().langCode;
+    } else {
+      return detections.highestConfidenceDetection.langCode;
+    }
+  }
 
   // reconstruct fullText based on accepted match
   //update offsets in existing matches to reflect the change

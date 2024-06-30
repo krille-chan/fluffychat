@@ -166,7 +166,7 @@ class OverlayMessage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     if (pangeaMessageEvent.showUseType) ...[
-                      pangeaMessageEvent.useType.iconView(
+                      pangeaMessageEvent.msgUseType.iconView(
                         context,
                         textColor.withAlpha(164),
                       ),

@@ -216,8 +216,6 @@ class MyAnalyticsController {
         .where((room) => !room.isSpace && !room.isAnalyticsRoom)
         .toList();
 
-    final DateTime now = DateTime.now();
-
     // get the recent message events and activity records for each chat
     final List<Future<List<Event>>> recentMsgFutures = [];
     final List<Future<List<Event>>> recentActivityFutures = [];
@@ -309,10 +307,13 @@ class MyAnalyticsController {
     recentConstructUses.addAll(constructLists.expand((e) => e));
 
     //TODO - confirm that this is the correct construct content
-    debugger(
-        when: kDebugMode &&
-            (recentPangeaMessageEvents.isNotEmpty ||
-                recentActivityRecords.isNotEmpty));
+    // debugger(
+    //   when: kDebugMode,
+    // );
+    // ;    debugger(
+    //       when: kDebugMode &&
+    //           (allRecentMessages.isNotEmpty || recentActivityRecords.isNotEmpty),
+    //     );
 
     await analyticsRoom.sendConstructsEvent(
       recentConstructUses,

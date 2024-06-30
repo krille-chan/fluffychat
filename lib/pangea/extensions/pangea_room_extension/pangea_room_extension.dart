@@ -34,7 +34,6 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../config/app_config.dart';
 import '../../constants/pangea_event_types.dart';
-import '../../enum/use_type.dart';
 import '../../models/choreo_record.dart';
 import '../../models/representation_content_model.dart';
 import '../client_extension/client_extension.dart';
@@ -181,7 +180,6 @@ extension PangeaRoom on Room {
     PangeaMessageTokens? tokensSent,
     PangeaMessageTokens? tokensWritten,
     ChoreoRecord? choreo,
-    UseType? useType,
   }) =>
       _pangeaSendTextEvent(
         message,
@@ -198,7 +196,6 @@ extension PangeaRoom on Room {
         tokensSent: tokensSent,
         tokensWritten: tokensWritten,
         choreo: choreo,
-        useType: useType,
       );
 
   Future<String> updateStateEvent(Event stateEvent) =>

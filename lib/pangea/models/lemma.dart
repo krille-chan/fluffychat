@@ -1,6 +1,13 @@
+/// Represents a lemma object
 class Lemma {
+  /// [text] ex "ir" - text of the lemma of the word
   final String text;
+
+  /// [form] ex "vamos" - conjugated form of the lemma and as it appeared in some original text
   final String form;
+
+  /// [saveVocab] true - whether to save the lemma to the user's vocabulary
+  /// vocab that are not saved: emails, urls, numbers, punctuation, etc.
   final bool saveVocab;
 
   Lemma({required this.text, required this.saveVocab, required this.form});
