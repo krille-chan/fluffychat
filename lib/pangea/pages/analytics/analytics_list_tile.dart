@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -141,9 +140,7 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
             return;
           }
           if ((room?.isSpace ?? false) && widget.allowNavigateOnSelect) {
-            final String selectedView =
-                widget.controller!.widget.selectedView!.route;
-            context.go('/rooms/analytics/${room!.id}/$selectedView');
+            context.go('/rooms/analytics/${room!.id}');
             return;
           }
           widget.onTap(widget.selected);

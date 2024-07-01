@@ -4084,5 +4084,6 @@
   "@interactiveTranslatorAutoPlayDesc": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "changeAnalyticsView": "Change Analytics View"
 }

@@ -18,8 +18,8 @@ import '../base_analytics.dart';
 import 'student_analytics_view.dart';
 
 class StudentAnalyticsPage extends StatefulWidget {
-  final BarChartViewSelection? selectedView;
-  const StudentAnalyticsPage({super.key, this.selectedView});
+  final BarChartViewSelection selectedView;
+  const StudentAnalyticsPage({super.key, required this.selectedView});
 
   @override
   State<StudentAnalyticsPage> createState() => StudentAnalyticsController();
