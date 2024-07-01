@@ -68,20 +68,17 @@ class PangeaRichTextState extends State<PangeaRichText> {
       });
     } catch (error, stackTrace) {
       ErrorHandler.logError(
-        e: error,
-        s: stackTrace,
-        m: "Error setting text span in PangeaRichText",
-      );
+          e: PangeaWarningError(error),
+          s: stackTrace,
+          m: "Error setting text span in PangeaRichText");
     }
   }
 
   void setTextSpan() {
     if (_fetchingRepresentation) {
-      _setTextSpan(
-        widget.pangeaMessageEvent.event
-            .getDisplayEvent(widget.pangeaMessageEvent.timeline)
-            .body,
-      );
+      _setTextSpan(widget.pangeaMessageEvent.event
+          .getDisplayEvent(widget.pangeaMessageEvent.timeline)
+          .body);
       return;
     }
 
@@ -91,24 +88,20 @@ class PangeaRichTextState extends State<PangeaRichText> {
 
     repEvent = widget.pangeaMessageEvent
         .representationByLanguage(
-          widget.pangeaMessageEvent.messageDisplayLangCode,
-        )
+            widget.pangeaMessageEvent.messageDisplayLangCode)
         ?.content;
 
     if (repEvent == null) {
       setState(() => _fetchingRepresentation = true);
       widget.pangeaMessageEvent
           .representationByLanguageGlobal(
-            langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
-          )
-          .onError(
-            (error, stackTrace) => ErrorHandler.logError(
-              e: error,
-              s: stackTrace,
-              m: "Error fetching representation",
-            ),
-          )
-          .then((event) {
+              langCode: widget.pangeaMessageEvent.messageDisplayLangCode)
+          .onError((error, stackTrace) {
+        ErrorHandler.logError(
+            e: PangeaWarningError(error),
+            s: stackTrace,
+            m: "Error fetching representation");
+      }).then((event) {
         if (!mounted) return;
         repEvent = event;
         _setTextSpan(repEvent?.text ?? widget.pangeaMessageEvent.body);
