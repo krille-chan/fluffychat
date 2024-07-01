@@ -170,7 +170,7 @@ class ChatListController extends State<ChatList>
 
   List<String> getBotIds() {
     final hostName = getHostName();
-    return socialNetwork.map((sn) => sn.chatBot + hostName).toList();
+    return SocialNetworkManager.socialNetworks.map((sn) => sn.chatBot + hostName).toList();
   }
 
   // List of user or bot IDs to exclude

@@ -5,12 +5,14 @@ import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:tawkie/pages/add_bridge/social_network_item.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/platform_size.dart';
+
 import 'add_bridge_header.dart';
 import 'model/social_network.dart';
 
 // Page offering brigde bot connections to social network chats
 class AddBridgeBody extends StatelessWidget {
   final BotController controller;
+
   const AddBridgeBody({
     super.key,
     required this.controller,
@@ -24,7 +26,7 @@ class AddBridgeBody extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              _showPopupMenu(context);
+              controller.showPopupMenu(context);
             },
           ),
         ],
@@ -36,15 +38,15 @@ class AddBridgeBody extends StatelessWidget {
             buildHeaderBridgeText(context),
             buildHeaderBridgeSubText(context),
             PlatformInfos.isWeb ||
-                PlatformInfos.isDesktop ||
-                PlatformInfos.isWindows ||
-                PlatformInfos.isMacOS
+                    PlatformInfos.isDesktop ||
+                    PlatformInfos.isWindows ||
+                    PlatformInfos.isMacOS
                 ? ElevatedButton(
-              onPressed: () {
-                // controller.handleRefresh();
-              },
-              child: Text(L10n.of(context)!.refreshList),
-            )
+                    onPressed: () {
+                      // controller.handleRefresh();
+                    },
+                    child: Text(L10n.of(context)!.refreshList),
+                  )
                 : Container(),
             const SizedBox(
               height: 10,
@@ -65,16 +67,19 @@ class AddBridgeBody extends StatelessWidget {
                           controller.socialNetworks[index].name,
                         ),
                         // Different build of subtle depending on the social network, for now only Instagram
-                        subtitle: buildSubtitle(context, controller.socialNetworks[index]),
-                        trailing: controller.socialNetworks[index].error == false
-                            ? const Icon(
-                          CupertinoIcons.right_chevron,
-                        )
-                            : const Icon(
-                          CupertinoIcons.refresh_bold,
-                        ),
+                        subtitle: buildSubtitle(
+                            context, controller.socialNetworks[index]),
+                        trailing:
+                            controller.socialNetworks[index].error == false
+                                ? const Icon(
+                                    CupertinoIcons.right_chevron,
+                                  )
+                                : const Icon(
+                                    CupertinoIcons.refresh_bold,
+                                  ),
                         // Different ways of connecting and disconnecting depending on the social network
-                        onTap: () => controller.handleSocialNetworkAction(controller.socialNetworks[index]),
+                        onTap: () => controller.handleSocialNetworkAction(
+                            controller.socialNetworks[index]),
                       );
                     },
                   ),

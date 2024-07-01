@@ -15,6 +15,7 @@ import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
 
+import 'bot_chat_list.dart';
 import 'connection_bridge_dialog.dart';
 import 'delete_conversation_dialog.dart';
 import 'error_message_dialog.dart';
@@ -64,6 +65,36 @@ class BotController extends State<AddBridge> {
 
   void stopProcess() {
     continueProcess = false;
+  }
+
+  List<String> getBotIds() {
+    return SocialNetworkManager.socialNetworks
+        .map((sn) => sn.chatBot + hostname)
+        .toList();
+  }
+
+  List<String> get botIds => getBotIds();
+
+  void showPopupMenu(BuildContext context) async {
+    await showMenu(
+      context: context,
+      position: const RelativeRect.fromLTRB(100, 80, 0, 100),
+      items: [
+        PopupMenuItem(
+          value: 'see_bots',
+          child: Text('Voir les bots'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BotChatListPage(botUserIds: botIds),
+              ),
+            );
+          },
+        ),
+      ],
+      elevation: 8.0,
+    );
   }
 
   Future<String?> _getOrCreateDirectChat(String botUserId) async {
