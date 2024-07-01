@@ -8,6 +8,11 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+class PangeaWarningError implements Exception {
+  final String message;
+  PangeaWarningError(message) : message = "Pangea Warning Error: $message";
+}
+
 class ErrorHandler {
   ErrorHandler();
 

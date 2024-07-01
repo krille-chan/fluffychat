@@ -57,20 +57,28 @@ class PangeaRichTextState extends State<PangeaRichText> {
   }
 
   void _setTextSpan(String newTextSpan) {
-    widget.toolbarController?.toolbar?.textSelection.setMessageText(
-      newTextSpan,
-    );
-    if (mounted) {
+    try {
+      if (!mounted) return; // Early exit if the widget is no longer in the tree
+
+      widget.toolbarController?.toolbar?.textSelection.setMessageText(
+        newTextSpan,
+      );
       setState(() {
         textSpan = newTextSpan;
       });
+    } catch (error, stackTrace) {
+      ErrorHandler.logError(
+        e: PangeaWarningError(error),
+        s: stackTrace,
+        m: "Error setting text span in PangeaRichText",
+      );
     }
   }
 
   void setTextSpan() {
-    if (_fetchingRepresentation == true) {
+    if (_fetchingRepresentation) {
       _setTextSpan(
-        textSpan = widget.pangeaMessageEvent.event
+        widget.pangeaMessageEvent.event
             .getDisplayEvent(widget.pangeaMessageEvent.timeline)
             .body,
       );
@@ -91,13 +99,17 @@ class PangeaRichTextState extends State<PangeaRichText> {
       setState(() => _fetchingRepresentation = true);
       widget.pangeaMessageEvent
           .representationByLanguageGlobal(
-            langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
-          )
-          .onError(
-            (error, stackTrace) =>
-                ErrorHandler.logError(e: error, s: stackTrace),
-          )
-          .then((event) {
+        langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
+      )
+          .onError((error, stackTrace) {
+        ErrorHandler.logError(
+          e: PangeaWarningError(error),
+          s: stackTrace,
+          m: "Error fetching representation",
+        );
+        return null;
+      }).then((event) {
+        if (!mounted) return;
         repEvent = event;
         _setTextSpan(repEvent?.text ?? widget.pangeaMessageEvent.body);
       }).whenComplete(() {
