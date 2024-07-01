@@ -20,9 +20,9 @@ class SettingsView extends StatelessWidget {
 
   const SettingsView(this.controller, {super.key});
 
-  Future<String> getAppVersion() async {
-  PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  return 'Version: ${packageInfo.version}+${packageInfo.buildNumber}';
+  Future<String> getAppVersion(BuildContext context) async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    return L10n.of(context)!.versionText(packageInfo.version, packageInfo.buildNumber);
 }
 
 
@@ -262,7 +262,7 @@ class SettingsView extends StatelessWidget {
           ),
           // Adding the FutureBuilder here
           FutureBuilder<String>(
-            future: getAppVersion(),
+            future: getAppVersion(context),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 return ListTile(

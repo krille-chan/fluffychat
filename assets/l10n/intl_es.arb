@@ -4679,5 +4679,21 @@
   "versionNotFound": "Versión no encontrada",
   "fetchingVersion": "Obteniendo versión...",
   "versionFetchError": "Error al obtener la versión",
-  "connectedToStaging": "Conectado al entorno de pruebas"
+  "connectedToStaging": "Conectado al entorno de pruebas",
+  "versionText": "Versión: {version}+{buildNumber}",
+  "@versionText": {
+    "description": "Texto que muestra la versión y el número de compilación de la aplicación.",
+    "type": "text",
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "description": "La versión actual de la aplicación."
+      },
+      "buildNumber": {
+        "type": "String",
+        "description": "El número de compilación de la aplicación."
+      }
+    }
+  }
+
 }

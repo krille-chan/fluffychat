@@ -4072,6 +4072,24 @@
   "versionNotFound": "Version Not Found",
   "fetchingVersion": "Fetching version...",
   "versionFetchError": "Error fetching version",
-  "connectedToStaging": "Connected to Staging"
+  "connectedToStaging": "Connected to Staging",
+  "versionText": "Version: {version}+{buildNumber}",
+  "@versionText": {
+    "description": "Text displaying the app version and build number.",
+    "type": "text",
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "description": "The current version of the app."
+      },
+      "buildNumber": {
+        "type": "String",
+        "description": "The build number of the app."
+      }
+    }
+  }
+
+
+  
 
 }

@@ -869,7 +869,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "be": [
@@ -2375,7 +2376,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "bn": [
@@ -3877,7 +3879,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "bo": [
@@ -5383,7 +5386,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "ca": [
@@ -6291,7 +6295,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "cs": [
@@ -7281,7 +7286,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "de": [
@@ -8154,7 +8160,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "el": [
@@ -9611,7 +9618,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "eo": [
@@ -10766,7 +10774,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "es": [
@@ -10813,10 +10822,7 @@
     "knockRestricted",
     "nonexistentSelection",
     "cantAddSpaceChild",
-    "roomAddedToSpace",
-    "versionNotFound",
-    "fetchingVersion",
-    "versionFetchError"
+    "roomAddedToSpace"
   ],
 
   "et": [
@@ -11689,7 +11695,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "eu": [
@@ -12564,7 +12571,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "fa": [
@@ -13576,7 +13584,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "fi": [
@@ -14552,7 +14561,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "fil": [
@@ -15884,7 +15894,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "fr": [
@@ -16895,7 +16906,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "ga": [
@@ -18035,7 +18047,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "gl": [
@@ -18908,7 +18921,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "he": [
@@ -20167,7 +20181,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "hi": [
@@ -21666,7 +21681,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "hr": [
@@ -22618,7 +22634,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "hu": [
@@ -23507,7 +23524,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "ia": [
@@ -24999,7 +25017,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "id": [
@@ -25878,7 +25897,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "ie": [
@@ -27141,7 +27161,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "it": [
@@ -28071,7 +28092,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "ja": [
@@ -29112,7 +29134,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "ka": [
@@ -30472,7 +30495,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "ko": [
@@ -31347,7 +31371,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "lt": [
@@ -32388,7 +32413,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "lv": [
@@ -33269,7 +33295,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "nb": [
@@ -34474,7 +34501,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "nl": [
@@ -35443,7 +35471,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "pl": [
@@ -36421,7 +36450,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "pt": [
@@ -37905,7 +37935,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "pt_BR": [
@@ -38784,7 +38815,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "pt_PT": [
@@ -39990,7 +40022,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "ro": [
@@ -41003,7 +41036,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "ru": [
@@ -41882,7 +41916,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "sk": [
@@ -43154,7 +43189,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "sl": [
@@ -44556,7 +44592,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "sr": [
@@ -45732,7 +45769,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "sv": [
@@ -46642,7 +46680,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "ta": [
@@ -48145,7 +48184,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "th": [
@@ -49602,7 +49642,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "tr": [
@@ -50475,7 +50516,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "uk": [
@@ -51385,7 +51427,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "vi": [
@@ -52743,7 +52786,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "zh": [
@@ -53616,7 +53660,8 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ],
 
   "zh_Hant": [
@@ -54770,6 +54815,7 @@
     "roomAddedToSpace",
     "versionNotFound",
     "fetchingVersion",
-    "versionFetchError"
+    "versionFetchError",
+    "versionText"
   ]
 }
