@@ -641,7 +641,7 @@ class AnalyticsController extends BaseController {
 
   List<ConstructAnalyticsEvent>? getConstructsLocal({
     required TimeSpan timeSpan,
-    required ConstructType constructType,
+    required ConstructTypeEnum constructType,
     required AnalyticsSelected defaultSelected,
     AnalyticsSelected? selected,
     DateTime? lastUpdated,
@@ -669,7 +669,7 @@ class AnalyticsController extends BaseController {
   }
 
   void cacheConstructs({
-    required ConstructType constructType,
+    required ConstructTypeEnum constructType,
     required List<ConstructAnalyticsEvent> events,
     required AnalyticsSelected defaultSelected,
     AnalyticsSelected? selected,
@@ -687,7 +687,7 @@ class AnalyticsController extends BaseController {
 
   Future<List<ConstructAnalyticsEvent>> getMyConstructs({
     required AnalyticsSelected defaultSelected,
-    required ConstructType constructType,
+    required ConstructTypeEnum constructType,
     AnalyticsSelected? selected,
   }) async {
     final List<ConstructAnalyticsEvent> unfilteredConstructs =
@@ -706,7 +706,7 @@ class AnalyticsController extends BaseController {
   }
 
   Future<List<ConstructAnalyticsEvent>> getSpaceConstructs({
-    required ConstructType constructType,
+    required ConstructTypeEnum constructType,
     required Room space,
     required AnalyticsSelected defaultSelected,
     AnalyticsSelected? selected,
@@ -768,7 +768,7 @@ class AnalyticsController extends BaseController {
   }
 
   Future<List<ConstructAnalyticsEvent>?> getConstructs({
-    required ConstructType constructType,
+    required ConstructTypeEnum constructType,
     required AnalyticsSelected defaultSelected,
     AnalyticsSelected? selected,
     bool removeIT = true,
@@ -898,7 +898,7 @@ abstract class CacheEntry {
 }
 
 class ConstructCacheEntry extends CacheEntry {
-  final ConstructType type;
+  final ConstructTypeEnum type;
   final List<ConstructAnalyticsEvent> events;
 
   ConstructCacheEntry({

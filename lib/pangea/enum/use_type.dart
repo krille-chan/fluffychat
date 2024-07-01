@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../models/choreo_record.dart';
 import '../utils/bot_style.dart';
 
 enum UseType { wa, ta, ga, un }
@@ -91,19 +89,5 @@ extension UseTypeMethods on UseType {
       default:
         return Theme.of(context).textTheme.bodyLarge!.color ?? Colors.blueGrey;
     }
-  }
-}
-
-UseType useTypeCalculator(
-  ChoreoRecord? choreoRecord,
-) {
-  if (choreoRecord == null) {
-    return UseType.un;
-  } else if (choreoRecord.includedIT) {
-    return UseType.ta;
-  } else if (choreoRecord.hasAcceptedMatches) {
-    return UseType.ga;
-  } else {
-    return UseType.wa;
   }
 }

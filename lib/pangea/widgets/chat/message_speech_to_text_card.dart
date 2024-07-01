@@ -65,7 +65,10 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
     }
   }
 
-  void refreshOnCloseHint() {
+  void closeHint() {
+    MatrixState.pangeaController.instructions.turnOffInstruction(
+      InstructionsEnum.speechToText,
+    );
     setState(() {});
   }
 
@@ -199,10 +202,10 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
             ),
           ],
         ),
-        MatrixState.pangeaController.instructions.getInlineTooltip(
+        MatrixState.pangeaController.instructions.getInstructionInlineTooltip(
           context,
           InstructionsEnum.speechToText,
-          refreshOnCloseHint,
+          closeHint,
         ),
       ],
     );

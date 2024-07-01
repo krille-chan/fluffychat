@@ -5,7 +5,7 @@ class Environment {
       DateTime.utc(2023, 1, 25).isBefore(DateTime.now());
 
   static String get fileName {
-    return ".env";
+    return ".local_choreo.env";
   }
 
   static bool get isStaging => synapsURL.contains("staging");

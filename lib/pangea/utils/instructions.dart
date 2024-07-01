@@ -1,4 +1,5 @@
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
+import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -34,6 +35,9 @@ class InstructionsController {
   /// or turned off by the user via the toggle switch
   bool wereInstructionsTurnedOff(InstructionsEnum key) =>
       toggledOff(key) ?? _instructionsClosed[key] ?? false;
+
+  void turnOffInstruction(InstructionsEnum key) =>
+      _instructionsClosed[key] = true;
 
   Future<void> updateEnableInstructions(
     InstructionsEnum key,
@@ -112,16 +116,15 @@ class InstructionsController {
 
   /// Returns a widget that will be added to existing widget
   /// which displays hint text defined in the enum extension
-  Widget getInlineTooltip(
+  Widget getInstructionInlineTooltip(
     BuildContext context,
     InstructionsEnum key,
-    Function refreshOnClose,
+    VoidCallback onClose,
   ) {
     if (wereInstructionsTurnedOff(key)) {
-      // Uncomment this line to make hint viewable again
-      // _instructionsClosed[key] = false;
       return const SizedBox();
     }
+
     if (L10n.of(context) == null) {
       ErrorHandler.logError(
         m: "null context in ITBotButton.showCard",
@@ -129,39 +132,10 @@ class InstructionsController {
       );
       return const SizedBox();
     }
-    return Badge(
-      offset: const Offset(0, -7),
-      backgroundColor: Colors.transparent,
-      label: CircleAvatar(
-        radius: 10,
-        backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(20),
-        child: IconButton(
-          padding: EdgeInsets.zero,
-          icon: const Icon(
-            Icons.close_outlined,
-            size: 15,
-          ),
-          onPressed: () {
-            _instructionsClosed[key] = true;
-            refreshOnClose();
-          },
-        ),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            10,
-          ),
-          color: Theme.of(context).colorScheme.primary.withAlpha(20),
-          // border: Border.all(
-          //   color: Theme.of(context).colorScheme.primary.withAlpha(50),
-          // ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: key.inlineTooltip(context),
-        ),
-      ),
+
+    return InlineTooltip(
+      body: InstructionsEnum.speechToText.body(context),
+      onClose: onClose,
     );
   }
 }

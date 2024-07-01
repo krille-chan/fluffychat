@@ -470,7 +470,7 @@ class Message extends StatelessWidget {
                                                               ?.showUseType ??
                                                           false) ...[
                                                         pangeaMessageEvent!
-                                                            .useType
+                                                            .msgUseType
                                                             .iconView(
                                                           context,
                                                           textColor

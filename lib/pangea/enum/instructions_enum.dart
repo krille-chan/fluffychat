@@ -1,4 +1,3 @@
-import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -41,40 +40,6 @@ extension Copy on InstructionsEnum {
         return PlatformInfos.isMobile
             ? L10n.of(context)!.tooltipInstructionsMobileBody
             : L10n.of(context)!.tooltipInstructionsBrowserBody;
-    }
-  }
-
-  Widget inlineTooltip(BuildContext context) {
-    switch (this) {
-      case InstructionsEnum.speechToText:
-        return Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.record_voice_over_outlined,
-                  size: 20,
-                ),
-                const SizedBox(
-                  width: 7,
-                ),
-                Text(
-                  title(context),
-                  style: BotStyle.text(context),
-                ),
-              ],
-            ),
-            Text(
-              body(context),
-              style: BotStyle.text(context),
-            ),
-            // ),
-          ],
-        );
-      default:
-        debugPrint('inlineTooltip not implemented for $this');
-        return const SizedBox();
     }
   }
 }

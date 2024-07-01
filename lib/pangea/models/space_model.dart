@@ -7,7 +7,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import '../constants/class_default_values.dart';
-import '../constants/language_keys.dart';
+import '../constants/language_constants.dart';
 import '../constants/pangea_event_types.dart';
 import 'language_model.dart';
 

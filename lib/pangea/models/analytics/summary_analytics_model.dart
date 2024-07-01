@@ -50,7 +50,7 @@ class SummaryAnalyticsModel extends AnalyticsModel {
           (msg) => RecentMessageRecord(
             eventId: msg.eventId,
             chatId: msg.room.id,
-            useType: msg.useType,
+            useType: msg.msgUseType,
             time: msg.originServerTs,
           ),
         )
