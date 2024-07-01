@@ -186,7 +186,7 @@ class Choreographer {
       // this may be unnecessary now that tokens are not used
       // to allow click of words in the input field and we're getting this at the end
       // TODO - turn it off and tested that this is fine
-      // igc.justGetTokensAndAddThemToIGCTextData();
+      igc.justGetTokensAndAddThemToIGCTextData();
 
       // we set editType to keyboard here because that is the default for it
       // and we want to make sure that the next change is treated as a keyboard change

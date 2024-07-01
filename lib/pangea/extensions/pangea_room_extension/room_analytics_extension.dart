@@ -253,8 +253,6 @@ extension AnalyticsRoomExtension on Room {
   Future<String?> sendSummaryAnalyticsEvent(
     List<RecentMessageRecord> records,
   ) async {
-    if (records.isEmpty) return null;
-
     final SummaryAnalyticsModel analyticsModel = SummaryAnalyticsModel(
       messages: records,
     );
@@ -268,7 +266,6 @@ extension AnalyticsRoomExtension on Room {
   Future<String?> sendConstructsEvent(
     List<OneConstructUse> uses,
   ) async {
-    if (uses.isEmpty) return null;
     final ConstructAnalyticsModel constructsModel = ConstructAnalyticsModel(
       uses: uses,
     );
