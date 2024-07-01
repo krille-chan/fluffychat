@@ -19,7 +19,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 class ConstructList extends StatefulWidget {
-  final ConstructType constructType;
+  final ConstructTypeEnum constructType;
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? selected;
   final BaseAnalyticsController controller;
@@ -94,7 +94,7 @@ class ConstructListView extends StatefulWidget {
 }
 
 class ConstructListViewState extends State<ConstructListView> {
-  final ConstructType constructType = ConstructType.grammar;
+  final ConstructTypeEnum constructType = ConstructTypeEnum.grammar;
   final Map<String, Timeline> _timelinesCache = {};
   final Map<String, PangeaMessageEvent> _msgEventCache = {};
   final List<PangeaMessageEvent> _msgEvents = [];

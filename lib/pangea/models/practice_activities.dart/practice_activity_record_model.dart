@@ -5,16 +5,18 @@
 import 'dart:developer';
 import 'dart:typed_data';
 
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+
 class PracticeActivityRecordModel {
   final String? question;
-  late List<ActivityResponse> responses;
+  late List<ActivityRecordResponse> responses;
 
   PracticeActivityRecordModel({
     required this.question,
-    List<ActivityResponse>? responses,
+    List<ActivityRecordResponse>? responses,
   }) {
     if (responses == null) {
-      this.responses = List<ActivityResponse>.empty(growable: true);
+      this.responses = List<ActivityRecordResponse>.empty(growable: true);
     } else {
       this.responses = responses;
     }
@@ -26,7 +28,9 @@ class PracticeActivityRecordModel {
     return PracticeActivityRecordModel(
       question: json['question'] as String,
       responses: (json['responses'] as List)
-          .map((e) => ActivityResponse.fromJson(e as Map<String, dynamic>))
+          .map(
+            (e) => ActivityRecordResponse.fromJson(e as Map<String, dynamic>),
+          )
           .toList(),
     );
   }
@@ -40,26 +44,34 @@ class PracticeActivityRecordModel {
 
   /// get the latest response index according to the response timeStamp
   /// sort the responses by timestamp and get the index of the last response
-  String? get latestResponse {
+  ActivityRecordResponse? get latestResponse {
     if (responses.isEmpty) {
       return null;
     }
     responses.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-    return responses[responses.length - 1].text;
+    return responses[responses.length - 1];
   }
+
+  ConstructUseTypeEnum get useType => latestResponse?.score != null
+      ? (latestResponse!.score > 0
+          ? ConstructUseTypeEnum.corPA
+          : ConstructUseTypeEnum.incPA)
+      : ConstructUseTypeEnum.unk;
 
   void addResponse({
     String? text,
     Uint8List? audioBytes,
     Uint8List? imageBytes,
+    required double score,
   }) {
     try {
       responses.add(
-        ActivityResponse(
+        ActivityRecordResponse(
           text: text,
           audioBytes: audioBytes,
           imageBytes: imageBytes,
           timestamp: DateTime.now(),
+          score: score,
         ),
       );
     } catch (e) {
@@ -84,27 +96,33 @@ class PracticeActivityRecordModel {
   int get hashCode => question.hashCode ^ responses.hashCode;
 }
 
-class ActivityResponse {
+class ActivityRecordResponse {
   // the user's response
   // has nullable string, nullable audio bytes, nullable image bytes, and timestamp
   final String? text;
   final Uint8List? audioBytes;
   final Uint8List? imageBytes;
   final DateTime timestamp;
+  final double score;
 
-  ActivityResponse({
+  ActivityRecordResponse({
     this.text,
     this.audioBytes,
     this.imageBytes,
+    required this.score,
     required this.timestamp,
   });
 
-  factory ActivityResponse.fromJson(Map<String, dynamic> json) {
-    return ActivityResponse(
+  factory ActivityRecordResponse.fromJson(Map<String, dynamic> json) {
+    return ActivityRecordResponse(
       text: json['text'] as String?,
       audioBytes: json['audio'] as Uint8List?,
       imageBytes: json['image'] as Uint8List?,
       timestamp: DateTime.parse(json['timestamp'] as String),
+      // this has a default of 1 to make this backwards compatible
+      // score was added later and is not present in all records
+      // currently saved to Matrix
+      score: json['score'] ?? 1.0,
     );
   }
 
@@ -114,6 +132,7 @@ class ActivityResponse {
       'audio': audioBytes,
       'image': imageBytes,
       'timestamp': timestamp.toIso8601String(),
+      'score': score,
     };
   }
 
@@ -121,7 +140,7 @@ class ActivityResponse {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ActivityResponse &&
+    return other is ActivityRecordResponse &&
         other.text == text &&
         other.audioBytes == audioBytes &&
         other.imageBytes == imageBytes &&

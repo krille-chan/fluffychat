@@ -18,18 +18,4 @@ class SummaryAnalyticsEvent extends AnalyticsEvent {
     contentCache ??= SummaryAnalyticsModel.fromJson(event.content);
     return contentCache as SummaryAnalyticsModel;
   }
-
-  static Future<String?> sendSummaryAnalyticsEvent(
-    Room analyticsRoom,
-    List<RecentMessageRecord> records,
-  ) async {
-    final SummaryAnalyticsModel analyticsModel = SummaryAnalyticsModel(
-      messages: records,
-    );
-    final String? eventId = await analyticsRoom.sendEvent(
-      analyticsModel.toJson(),
-      type: PangeaEventTypes.summaryAnalytics,
-    );
-    return eventId;
-  }
 }

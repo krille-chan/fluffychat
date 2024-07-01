@@ -8,7 +8,7 @@ import 'package:flutter/foundation.dart';
 
 class ConstructIdentifier {
   final String lemma;
-  final ConstructType type;
+  final ConstructTypeEnum type;
 
   ConstructIdentifier({required this.lemma, required this.type});
 
@@ -16,7 +16,7 @@ class ConstructIdentifier {
     try {
       return ConstructIdentifier(
         lemma: json['lemma'] as String,
-        type: ConstructType.values.firstWhere(
+        type: ConstructTypeEnum.values.firstWhere(
           (e) => e.string == json['type'],
         ),
       );

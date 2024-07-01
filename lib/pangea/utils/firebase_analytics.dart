@@ -4,7 +4,6 @@ import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../config/firebase_options.dart';
-import '../enum/use_type.dart';
 
 // PageRoute import
 
@@ -90,13 +89,12 @@ class GoogleAnalytics {
     logEvent('join_group', parameters: {'group_id': classCode});
   }
 
-  static sendMessage(String chatRoomId, String classCode, UseType useType) {
+  static sendMessage(String chatRoomId, String classCode) {
     logEvent(
       'sent_message',
       parameters: {
         "chat_id": chatRoomId,
         'group_id': classCode,
-        "message_type": useType.toString(),
       },
     );
   }

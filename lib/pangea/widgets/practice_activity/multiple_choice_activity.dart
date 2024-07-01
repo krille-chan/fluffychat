@@ -28,7 +28,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       widget.controller.currentRecordModel;
 
   bool get isSubmitted =>
-      widget.currentActivity?.userRecord?.record?.latestResponse != null;
+      widget.currentActivity?.userRecord?.record.latestResponse != null;
 
   @override
   void initState() {
@@ -64,15 +64,19 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           .setCurrentModel(widget.currentActivity!.userRecord!.record);
       selectedChoiceIndex = widget
           .currentActivity?.practiceActivity.multipleChoice!
-          .choiceIndex(currentRecordModel!.latestResponse!);
+          .choiceIndex(currentRecordModel!.latestResponse!.text!);
     }
     setState(() {});
   }
 
   void updateChoice(int index) {
     currentRecordModel?.addResponse(
-      text: widget.controller.currentActivity?.practiceActivity.multipleChoice!
+      text: widget.controller.currentActivity!.practiceActivity.multipleChoice!
           .choices[index],
+      score: widget.controller.currentActivity!.practiceActivity.multipleChoice!
+              .isCorrect(index)
+          ? 1
+          : 0,
     );
     setState(() => selectedChoiceIndex = index);
   }

@@ -72,7 +72,6 @@ class ITController {
 
   /// if IGC isn't positive that text is full L1 then translate to L1
   Future<void> _setSourceText() async {
-    // try {
     if (_itStartData == null || _itStartData!.text.isEmpty) {
       Sentry.addBreadcrumb(
         Breadcrumb(
@@ -97,21 +96,12 @@ class ITController {
       request: FullTextTranslationRequestModel(
         text: _itStartData!.text,
         tgtLang: choreographer.l1LangCode!,
-        srcLang: choreographer.l2LangCode,
+        srcLang: _itStartData!.langCode,
         userL1: choreographer.l1LangCode!,
         userL2: choreographer.l2LangCode!,
       ),
     );
     sourceText = res.bestTranslation;
-    // } catch (err, stack) {
-    //   debugger(when: kDebugMode);
-    //   if (_itStartData?.text.isNotEmpty ?? false) {
-    //     ErrorHandler.logError(e: err, s: stack);
-    //     sourceText = _itStartData!.text;
-    //   } else {
-    //     rethrow;
-    //   }
-    // }
   }
 
   // used 1) at very beginning (with custom input = null)
@@ -167,7 +157,7 @@ class ITController {
 
       if (isTranslationDone) {
         choreographer.altTranslator.setTranslationFeedback();
-        choreographer.getLanguageHelp(true);
+        choreographer.getLanguageHelp(onlyTokensAndLanguageDetection: true);
       } else {
         getNextTranslationData();
       }
@@ -218,7 +208,6 @@ class ITController {
 
   Future<void> onEditSourceTextSubmit(String newSourceText) async {
     try {
-
       _isOpen = true;
       _isEditingSourceText = false;
       _itStartData = ITStartData(newSourceText, choreographer.l1LangCode);
@@ -230,7 +219,6 @@ class ITController {
 
       _setSourceText();
       getTranslationData(false);
-
     } catch (err, stack) {
       debugger(when: kDebugMode);
       if (err is! http.Response) {
@@ -331,9 +319,6 @@ class ITController {
   String get sourceLangCode => choreographer.l1LangCode!;
 
   bool get isLoading => choreographer.isFetching;
-
-  bool get correctChoicesSelected =>
-      completedITSteps.every((ITStep step) => step.isCorrect);
 
   String latestChoiceFeedback(BuildContext context) =>
       completedITSteps.isNotEmpty
