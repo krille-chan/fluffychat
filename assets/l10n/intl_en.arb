@@ -2682,5 +2682,6 @@
   "privacyTextPrivacy": "privacy policy",
   "privacyTextAnd": " and ",
   "privacyTextTerms": "terms of service",
-  "createGroupLimitationWarning": "Only Tawkie / Matrix users can be added to a group chat."
+  "createGroupLimitationWarning": "Only Tawkie / Matrix users can be added to a group chat.",
+  "seeBotsRoom":"See bots"
 }

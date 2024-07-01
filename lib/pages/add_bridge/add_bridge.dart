@@ -82,7 +82,7 @@ class BotController extends State<AddBridge> {
       items: [
         PopupMenuItem(
           value: 'see_bots',
-          child: Text('Voir les bots'),
+          child: Text(L10n.of(context)!.seeBotsRoom),
           onTap: () {
             Navigator.push(
               context,
