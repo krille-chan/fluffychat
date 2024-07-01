@@ -1,13 +1,13 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/enum/span_data_type.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'package:fluffychat/pangea/enum/span_data_type.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../constants/match_rule_ids.dart';
 import '../models/pangea_match_model.dart';
 
@@ -96,7 +96,11 @@ class MatchCopy {
       switch (afterColon) {
         case MatchRuleIds.interactiveTranslation:
           title = l10n.needsItShortMessage;
-          description = l10n.needsItMessage;
+          description = l10n.needsItMessage(
+            MatrixState
+                    .pangeaController.languageController.userL2?.displayName ??
+                "target language",
+          );
           break;
         case MatchRuleIds.tokenNeedsTranslation:
           title = l10n.tokenTranslationTitle;

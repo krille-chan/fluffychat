@@ -4,12 +4,12 @@ import 'package:country_picker/country_picker.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
-import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../constants/language_keys.dart';
+import '../constants/language_constants.dart';
 import 'language_model.dart';
 
 PUserModel pUserModelFromJson(String str) =>
@@ -54,6 +54,7 @@ class PUserModel {
 enum MatrixProfile {
   dateOfBirth,
   autoPlayMessages,
+  itAutoPlay,
   activatedFreeTrial,
   interactiveTranslator,
   interactiveGrammar,
@@ -79,6 +80,8 @@ extension MatrixProfileExtension on MatrixProfile {
         return ModelKey.userDateOfBirth;
       case MatrixProfile.autoPlayMessages:
         return PLocalKey.autoPlayMessages;
+      case MatrixProfile.itAutoPlay:
+        return PLocalKey.itAutoPlay;
       case MatrixProfile.activatedFreeTrial:
         return PLocalKey.activatedTrialKey;
       case MatrixProfile.interactiveTranslator:

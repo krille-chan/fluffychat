@@ -3064,6 +3064,17 @@
     "type": "text",
     "placeholders": {}
   },
+  "interactiveTranslatorAutoPlaySliderHeader": "Traducción de reproducción automática",
+  "interactiveTranslatorAutoPlay": "Traductora interactiva de reproducción automática",
+  "@interactiveTranslatorAutoPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "interactiveTranslatorAutoPlayDesc": "Inicia el traductor interactivo sin preguntar.",
+  "@interactiveTranslatorAutoPlayDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
   "grammarAssistance": "Asistencia gramatical",
   "@grammarAssistance": {
     "type": "text",
@@ -3126,10 +3137,16 @@
   "translationSeemsFinished": "La traducción parece estar terminada.",
   "needsItShortMessage": "¡Pruebe la traducción interactiva!",
   "needsIGCShortMessage": "¡Pruebe el corrector gramatical interactivo!",
-  "needsItMessage": "Este mensaje tiene demasiadas palabras en su idioma base.",
+  "needsItMessage": "Espera, ¡ese no es {targetLanguage}! ¿Necesitas ayuda para traducir?",
+  "@needsItMessage": {
+    "type": "text",
+    "placeholders": {
+      "targetLanguage": {}
+    }
+  },
   "needsIgcMessage": "Este mensaje tiene un error gramatical.",
   "tokenTranslationTitle": "Una palabra está en su idioma base.",
-  "helpMeTranslate": "¡Ayúdeme a traducir!",
+  "helpMeTranslate": "¡Sí!",
   "setToPublicSettingsTitle": "¿Quiere encontrar un compañero de conversación?",
   "setToPublicSettingsDesc": "Antes de que pueda buscar un compañero de conversación, debe configurar la visibilidad de su perfil como pública.",
   "publicProfileTitle": "Perfil público",
@@ -4512,7 +4529,7 @@
   "definitions": "definiciones",
   "subscribedToUnlockTools": "Suscríbase para desbloquear herramientas lingüísticas, como",
   "clickMessageTitle": "¿Necesitas ayuda?",
-  "clickMessageBody": "Haga clic en los mensajes para acceder a las definiciones, traducciones y audio.",
+  "clickMessageBody": "¡Lame un mensaje para obtener ayuda con el idioma! Haz clic y mantén presionado para reaccionar 😀",
   "more": "Más",
   "translationTooltip": "Traducir",
   "audioTooltip": "Reproducir audio",
@@ -4609,9 +4626,9 @@
   "enterNumber": "Introduzca un valor numérico entero.",
   "autoIGCToolName": "Ejecutar automáticamente la asistencia lingüística",
   "autoIGCToolDescription": "Ejecutar automáticamente la asistencia lingüística después de escribir mensajes",
-  "runGrammarCorrection": "Corregir la gramática",
+  "runGrammarCorrection": "Comprobar mensaje",
   "grammarCorrectionFailed": "Cuestiones a tratar",
-  "grammarCorrectionComplete": "Corrección gramatical completa",
+  "grammarCorrectionComplete": "¡Se ve bien!",
   "leaveRoomDescription": "El chat se moverá al archivo. Los demás usuarios podrán ver que has abandonado el chat.",
   "archiveSpaceDescription": "Todos los chats de este espacio se moverán al archivo para ti y otros usuarios que no sean administradores.",
   "leaveSpaceDescription": "Todos los chats dentro de este espacio se moverán al archivo. Los demás usuarios podrán ver que has abandonado el espacio.",

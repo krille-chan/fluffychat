@@ -21,6 +21,7 @@ class ITController {
   Choreographer choreographer;
 
   bool _isOpen = false;
+  bool _willOpen = false;
   bool _isEditingSourceText = false;
   bool showChoiceFeedback = false;
 
@@ -36,6 +37,7 @@ class ITController {
 
   void clear() {
     _isOpen = false;
+    _willOpen = false;
     showChoiceFeedback = false;
     _isEditingSourceText = false;
 
@@ -54,6 +56,7 @@ class ITController {
   }
 
   Future<void> initializeIT(ITStartData itStartData) async {
+    _willOpen = true;
     Future.delayed(const Duration(microseconds: 100), () {
       _isOpen = true;
     });
@@ -61,17 +64,14 @@ class ITController {
   }
 
   void closeIT() {
-    //if they close it before choosing anything, just put their text back
+    //if they close it before completing, just put their text back
     //PTODO - explore using last itStep
-    if (choreographer.currentText.isEmpty) {
-      choreographer.textController.text = sourceText ?? "";
-    }
+    choreographer.textController.text = sourceText ?? "";
     clear();
   }
 
   /// if IGC isn't positive that text is full L1 then translate to L1
   Future<void> _setSourceText() async {
-    // try {
     if (_itStartData == null || _itStartData!.text.isEmpty) {
       Sentry.addBreadcrumb(
         Breadcrumb(
@@ -96,21 +96,12 @@ class ITController {
       request: FullTextTranslationRequestModel(
         text: _itStartData!.text,
         tgtLang: choreographer.l1LangCode!,
-        srcLang: choreographer.l2LangCode,
+        srcLang: _itStartData!.langCode,
         userL1: choreographer.l1LangCode!,
         userL2: choreographer.l2LangCode!,
       ),
     );
     sourceText = res.bestTranslation;
-    // } catch (err, stack) {
-    //   debugger(when: kDebugMode);
-    //   if (_itStartData?.text.isNotEmpty ?? false) {
-    //     ErrorHandler.logError(e: err, s: stack);
-    //     sourceText = _itStartData!.text;
-    //   } else {
-    //     rethrow;
-    //   }
-    // }
   }
 
   // used 1) at very beginning (with custom input = null)
@@ -166,7 +157,7 @@ class ITController {
 
       if (isTranslationDone) {
         choreographer.altTranslator.setTranslationFeedback();
-        choreographer.getLanguageHelp(true);
+        choreographer.getLanguageHelp(onlyTokensAndLanguageDetection: true);
       } else {
         getNextTranslationData();
       }
@@ -217,31 +208,17 @@ class ITController {
 
   Future<void> onEditSourceTextSubmit(String newSourceText) async {
     try {
-      sourceText = newSourceText;
+      _isOpen = true;
       _isEditingSourceText = false;
-      final String currentText = choreographer.currentText;
+      _itStartData = ITStartData(newSourceText, choreographer.l1LangCode);
+      completedITSteps = [];
+      currentITStep = null;
+      nextITStep = null;
+      goldRouteTracker = GoldRouteTracker.defaultTracker;
+      payLoadIds = [];
 
-      choreographer.startLoading();
-
-      final List<ITResponseModel> responses = await Future.wait([
-        _customInputTranslation(""),
-        _customInputTranslation(choreographer.currentText),
-      ]);
-      if (responses[0].goldContinuances != null &&
-          responses[0].goldContinuances!.isNotEmpty) {
-        goldRouteTracker = GoldRouteTracker(
-          responses[0].goldContinuances!,
-          sourceText!,
-        );
-      }
-      currentITStep = CurrentITStep(
-        sourceText: sourceText!,
-        currentText: currentText,
-        responseModel: responses[1],
-        storedGoldContinuances: goldRouteTracker.continuances,
-      );
-
-      _addPayloadId(responses[1]);
+      _setSourceText();
+      getTranslationData(false);
     } catch (err, stack) {
       debugger(when: kDebugMode);
       if (err is! http.Response) {
@@ -252,6 +229,7 @@ class ITController {
       );
     } finally {
       choreographer.stopLoading();
+      choreographer.textController.text = "";
     }
   }
 
@@ -334,14 +312,13 @@ class ITController {
 
   bool get isOpen => _isOpen;
 
+  bool get willOpen => _willOpen;
+
   String get targetLangCode => choreographer.l2LangCode!;
 
   String get sourceLangCode => choreographer.l1LangCode!;
 
   bool get isLoading => choreographer.isFetching;
-
-  bool get correctChoicesSelected =>
-      completedITSteps.every((ITStep step) => step.isCorrect);
 
   String latestChoiceFeedback(BuildContext context) =>
       completedITSteps.isNotEmpty

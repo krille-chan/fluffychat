@@ -94,65 +94,73 @@ class ToolbarDisplayController {
       previousEvent: previousEvent,
     );
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Widget overlayEntry;
-      if (toolbar == null) return;
-      try {
-        overlayEntry = Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: pangeaMessageEvent.ownMessage
-              ? CrossAxisAlignment.end
-              : CrossAxisAlignment.start,
-          children: [
-            toolbarUp ? toolbar! : overlayMessage,
-            const SizedBox(height: 6),
-            toolbarUp ? overlayMessage : toolbar!,
-          ],
-        );
-      } catch (err) {
-        debugger(when: kDebugMode);
-        ErrorHandler.logError(e: err, s: StackTrace.current);
-        return;
-      }
-
-      OverlayUtil.showOverlay(
-        context: context,
-        child: overlayEntry,
-        transformTargetId: targetId,
-        targetAnchor: pangeaMessageEvent.ownMessage
-            ? toolbarUp
-                ? Alignment.bottomRight
-                : Alignment.topRight
-            : toolbarUp
-                ? Alignment.bottomLeft
-                : Alignment.topLeft,
-        followerAnchor: pangeaMessageEvent.ownMessage
-            ? toolbarUp
-                ? Alignment.bottomRight
-                : Alignment.topRight
-            : toolbarUp
-                ? Alignment.bottomLeft
-                : Alignment.topLeft,
-        backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
+    // I'm not sure why I put this here, but it causes the toolbar
+    // not to open immediately after clicking (user has to scroll or move their cursor)
+    // so I'm commenting it out for now
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    Widget overlayEntry;
+    if (toolbar == null) return;
+    try {
+      overlayEntry = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: pangeaMessageEvent.ownMessage
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
+        children: [
+          toolbarUp ? toolbar! : overlayMessage,
+          const SizedBox(height: 6),
+          toolbarUp ? overlayMessage : toolbar!,
+        ],
       );
+    } catch (err) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: err, s: StackTrace.current);
+      return;
+    }
 
-      if (MatrixState.pAnyState.overlay != null) {
-        overlayId = MatrixState.pAnyState.overlay.hashCode.toString();
-      }
+    OverlayUtil.showOverlay(
+      context: context,
+      child: overlayEntry,
+      transformTargetId: targetId,
+      targetAnchor: pangeaMessageEvent.ownMessage
+          ? toolbarUp
+              ? Alignment.bottomRight
+              : Alignment.topRight
+          : toolbarUp
+              ? Alignment.bottomLeft
+              : Alignment.topLeft,
+      followerAnchor: pangeaMessageEvent.ownMessage
+          ? toolbarUp
+              ? Alignment.bottomRight
+              : Alignment.topRight
+          : toolbarUp
+              ? Alignment.bottomLeft
+              : Alignment.topLeft,
+      backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
+      closePrevOverlay:
+          MatrixState.pangeaController.subscriptionController.isSubscribed,
+    );
 
-      if (mode != null) {
-        Future.delayed(
-          const Duration(milliseconds: 100),
-          () => toolbarModeStream.add(mode),
-        );
-      }
-    });
+    if (MatrixState.pAnyState.entries.isNotEmpty) {
+      overlayId = MatrixState.pAnyState.entries.last.hashCode.toString();
+    }
+
+    if (mode != null) {
+      Future.delayed(
+        const Duration(milliseconds: 100),
+        () => toolbarModeStream.add(mode),
+      );
+    }
+    // });
   }
 
   bool get highlighted {
     if (overlayId == null) return false;
-    if (MatrixState.pAnyState.overlay == null) overlayId = null;
-    return MatrixState.pAnyState.overlay.hashCode.toString() == overlayId;
+    if (MatrixState.pAnyState.entries.isEmpty) {
+      overlayId = null;
+      return false;
+    }
+    return MatrixState.pAnyState.entries.last.hashCode.toString() == overlayId;
   }
 }
 
@@ -299,7 +307,6 @@ class MessageToolbarState extends State<MessageToolbar> {
   void showPracticeActivity() {
     toolbarContent = PracticeActivityCard(
       pangeaMessageEvent: widget.pangeaMessageEvent,
-      controller: this,
     );
   }
 

@@ -66,7 +66,6 @@ class ModelKey {
   static const String tokensSent = "tokens_sent";
   static const String tokensWritten = "tokens_written";
   static const String choreoRecord = "choreo_record";
-  static const String useType = "use_type";
 
   static const String baseDefinition = "base_definition";
   static const String targetDefinition = "target_definition";
@@ -95,17 +94,16 @@ class ModelKey {
   static const String languageLevel = "difficulty";
   static const String safetyModeration = "safety_moderation";
   static const String mode = "mode";
-  static const String custom = "custom";
   static const String discussionTopic = "discussion_topic";
   static const String discussionKeywords = "discussion_keywords";
-  static const String discussionTriggerScheduleEnabled =
-      "discussion_trigger_schedule_enabled";
-  static const String discussionTriggerScheduleHourInterval =
-      "discussion_trigger_schedule_hour_interval";
   static const String discussionTriggerReactionEnabled =
       "discussion_trigger_reaction_enabled";
   static const String discussionTriggerReactionKey =
       "discussion_trigger_reaction_key";
+  static const String customSystemPrompt = "custom_system_prompt";
+  static const String customTriggerReactionEnabled =
+      "custom_trigger_reaction_enabled";
+  static const String customTriggerReactionKey = "custom_trigger_reaction_key";
 
   static const String prevEventId = "prev_event_id";
   static const String prevLastUpdated = "prev_last_updated";

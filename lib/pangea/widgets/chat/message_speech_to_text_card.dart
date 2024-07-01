@@ -1,9 +1,9 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/common/icon_number_widget.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
@@ -63,6 +63,13 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
     } finally {
       setState(() => _fetchingTranscription = false);
     }
+  }
+
+  void closeHint() {
+    MatrixState.pangeaController.instructions.turnOffInstruction(
+      InstructionsEnum.speechToText,
+    );
+    setState(() {});
   }
 
   TextSpan _buildTranscriptText(BuildContext context) {
@@ -172,7 +179,8 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
               number:
                   "${selectedToken?.confidence ?? speechToTextResponse!.transcript.confidence}%",
               toolTip: L10n.of(context)!.accuracy,
-              onPressed: () => MatrixState.pangeaController.instructions.show(
+              onPressed: () => MatrixState.pangeaController.instructions
+                  .showInstructionsPopup(
                 context,
                 InstructionsEnum.tooltipInstructions,
                 widget.messageEvent.eventId,
@@ -184,7 +192,8 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
               number:
                   wordsPerMinuteString != null ? "$wordsPerMinuteString" : "??",
               toolTip: L10n.of(context)!.wordsPerMinute,
-              onPressed: () => MatrixState.pangeaController.instructions.show(
+              onPressed: () => MatrixState.pangeaController.instructions
+                  .showInstructionsPopup(
                 context,
                 InstructionsEnum.tooltipInstructions,
                 widget.messageEvent.eventId,
@@ -192,6 +201,11 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
               ),
             ),
           ],
+        ),
+        MatrixState.pangeaController.instructions.getInstructionInlineTooltip(
+          context,
+          InstructionsEnum.speechToText,
+          closeHint,
         ),
       ],
     );

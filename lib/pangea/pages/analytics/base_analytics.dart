@@ -20,21 +20,25 @@ import '../../models/analytics/chart_analytics_model.dart';
 class BaseAnalyticsPage extends StatefulWidget {
   final String pageTitle;
   final List<TabData> tabs;
-  final BarChartViewSelection? selectedView;
+  final BarChartViewSelection selectedView;
 
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? alwaysSelected;
   final StudentAnalyticsController? myAnalyticsController;
+  final List<LanguageModel> targetLanguages;
 
-  const BaseAnalyticsPage({
+  BaseAnalyticsPage({
     super.key,
     required this.pageTitle,
     required this.tabs,
     required this.alwaysSelected,
     required this.defaultSelected,
-    this.selectedView,
+    required this.selectedView,
     this.myAnalyticsController,
-  });
+    targetLanguages,
+  }) : targetLanguages = (targetLanguages?.isNotEmpty ?? false)
+            ? targetLanguages
+            : MatrixState.pangeaController.pLanguageStore.targetOptions;
 
   @override
   State<BaseAnalyticsPage> createState() => BaseAnalyticsController();
@@ -46,6 +50,7 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   String? currentLemma;
   ChartAnalyticsModel? chartData;
   StreamController refreshStream = StreamController.broadcast();
+  BarChartViewSelection currentView = BarChartViewSelection.messages;
 
   bool isSelected(String chatOrStudentId) => chatOrStudentId == selected?.id;
 
@@ -59,6 +64,7 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   @override
   void initState() {
     super.initState();
+    currentView = widget.selectedView;
     if (widget.defaultSelected.type == AnalyticsEntryType.student) {
       runFirstRefresh();
     }
@@ -159,7 +165,13 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   }
 
   Future<void> toggleSpaceLang(LanguageModel lang) async {
-    await pangeaController.analytics.setCurrentAnalyticsSpaceLang(lang);
+    await pangeaController.analytics.setCurrentAnalyticsLang(lang);
+    await setChartData();
+    refreshStream.add(false);
+  }
+
+  Future<void> toggleView(BarChartViewSelection view) async {
+    currentView = view;
     await setChartData();
     refreshStream.add(false);
   }

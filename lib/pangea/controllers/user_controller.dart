@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -123,6 +123,7 @@ class UserController extends BaseController {
         : null;
 
     final bool? autoPlay = migratedProfileInfo(MatrixProfile.autoPlayMessages);
+    final bool? itAutoPlay = migratedProfileInfo(MatrixProfile.itAutoPlay);
     final bool? trial = migratedProfileInfo(MatrixProfile.activatedFreeTrial);
     final bool? interactiveTranslator =
         migratedProfileInfo(MatrixProfile.interactiveTranslator);
@@ -142,6 +143,7 @@ class UserController extends BaseController {
     await updateMatrixProfile(
       dateOfBirth: dob,
       autoPlayMessages: autoPlay,
+      itAutoPlay: itAutoPlay,
       activatedFreeTrial: trial,
       interactiveTranslator: interactiveTranslator,
       interactiveGrammar: interactiveGrammar,
@@ -223,6 +225,7 @@ class UserController extends BaseController {
   Future<void> updateMatrixProfile({
     String? dateOfBirth,
     bool? autoPlayMessages,
+    bool? itAutoPlay,
     bool? activatedFreeTrial,
     bool? interactiveTranslator,
     bool? interactiveGrammar,
@@ -249,6 +252,12 @@ class UserController extends BaseController {
       await _pangeaController.pStoreService.save(
         MatrixProfile.autoPlayMessages.title,
         autoPlayMessages,
+      );
+    }
+    if (itAutoPlay != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.itAutoPlay.title,
+        itAutoPlay,
       );
     }
     if (activatedFreeTrial != null) {

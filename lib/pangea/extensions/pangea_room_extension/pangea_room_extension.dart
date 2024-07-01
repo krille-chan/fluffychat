@@ -4,14 +4,18 @@ import 'dart:developer';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
+import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
@@ -30,7 +34,6 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../config/app_config.dart';
 import '../../constants/pangea_event_types.dart';
-import '../../enum/use_type.dart';
 import '../../models/choreo_record.dart';
 import '../../models/representation_content_model.dart';
 import '../client_extension/client_extension.dart';
@@ -129,6 +132,9 @@ extension PangeaRoom on Room {
 
   Event? get pangeaRoomRulesStateEvent => _pangeaRoomRulesStateEvent;
 
+  Future<List<LanguageModel>> targetLanguages() async =>
+      await _targetLanguages();
+
 // events
 
   Future<bool> leaveIfFull() async => await _leaveIfFull();
@@ -174,7 +180,6 @@ extension PangeaRoom on Room {
     PangeaMessageTokens? tokensSent,
     PangeaMessageTokens? tokensWritten,
     ChoreoRecord? choreo,
-    UseType? useType,
   }) =>
       _pangeaSendTextEvent(
         message,
@@ -191,7 +196,6 @@ extension PangeaRoom on Room {
         tokensSent: tokensSent,
         tokensWritten: tokensWritten,
         choreo: choreo,
-        useType: useType,
       );
 
   Future<String> updateStateEvent(Event stateEvent) =>

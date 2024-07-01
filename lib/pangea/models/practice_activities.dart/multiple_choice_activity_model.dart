@@ -27,7 +27,7 @@ class MultipleChoice {
     return MultipleChoice(
       question: json['question'] as String,
       choices: (json['choices'] as List).map((e) => e as String).toList(),
-      answer: json['answer'] as String,
+      answer: json['answer'] ?? json['correct_answer'] as String,
     );
   }
 

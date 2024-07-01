@@ -2894,21 +2894,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "helpMeTranslate": "Help me translate!",
+  "helpMeTranslate": "Yes!",
   "@helpMeTranslate": {
     "type": "text",
     "placeholders": {}
   },
-  "needsItShortMessage": "Try interactive translation!",
+  "needsItShortMessage": "Out of target",
   "needsIGCShortMessage": "Try interactive grammar assistance!",
   "@needsItShortMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "needsItMessage": "This message has too many words in your base language.",
+  "needsItMessage": "Wait, that's not {targetLanguage}! Do you need help translating?",
   "@needsItMessage": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": {
+      "targetLanguage": {}
+    }
   },
   "needsIgcMessage": "This message has a grammar error.",
   "tokenTranslationTitle": "A word is in your base language.",
@@ -3109,7 +3111,7 @@
   "prettyGood": "Pretty good! Here's what I would have said.",
   "letMeThink": "Hmm, let's see how you did!",
   "clickMessageTitle": "Need help?",
-  "clickMessageBody": "Click messages to access definitions, translations, and audio!",
+  "clickMessageBody": "Click a message for language help! Click and hold to react 😀.",
   "understandingMessagesTitle": "Definitions and translations!",
   "understandingMessagesBody": "Click underlined words for definitions. Translate with message options (upper right).",
   "allDone": "All done!",
@@ -3998,6 +4000,10 @@
   "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Hours between discussion prompts",
   "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Responds on ⏩ reaction",
   "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel": "Reaction to send discussion prompt",
+  "conversationBotCustomZone_title": "Custom Settings",
+  "conversationBotCustomZone_customSystemPromptLabel": "System prompt",
+  "conversationBotCustomZone_customSystemPromptPlaceholder": "Set custom system prompt",
+  "conversationBotCustomZone_customTriggerReactionEnabledLabel": "Responds on ⏩ reaction",
   "addConversationBotDialogTitleInvite": "Confirm inviting conversation bot",
   "addConversationBotButtonInvite": "Invite",
   "addConversationBotDialogInviteConfirmation": "Invite",
@@ -4010,9 +4016,9 @@
   "wordsPerMinute": "Words per minute",
   "autoIGCToolName": "Run Language Assistance Automatically",
   "autoIGCToolDescription": "Automatically run language assistance after typing messages",
-  "runGrammarCorrection": "Run grammar correction",
+  "runGrammarCorrection": "Check message",
   "grammarCorrectionFailed": "Issues to address",
-  "grammarCorrectionComplete": "Grammar correction complete",
+  "grammarCorrectionComplete": "Looks good!",
   "leaveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
   "archiveSpaceDescription": "All chats within this space will be moved to the archive for yourself and other non-admin users.",
   "leaveSpaceDescription": "All chats within this space will be moved to the archive. Other users will be able to see that you have left the space.",
@@ -4058,5 +4064,26 @@
   "suggestToSpaceDesc": "Suggested spaces will appear in the chat lists for their parent spaces",
   "practice": "Practice",
   "noLanguagesSet": "No languages set",
-  "noActivitiesFound": "No practice activities found for this message"
+  "noActivitiesFound": "No practice activities found for this message",
+  "hintTitle": "Hint:",
+  "speechToTextBody": "See how well you did by looking at your Accuracy and Words Per Minute scores",
+  "previous": "Previous",
+  "languageButtonLabel": "Language: {currentLanguage}",
+  "@languageButtonLabel": {
+    "type": "text",
+    "placeholders": {
+      "currentLanguage": {}
+    }
+  },
+  "interactiveTranslatorAutoPlaySliderHeader": "Autoplay translation",
+  "@interactiveTranslatorAutoPlaySliderHeader": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "interactiveTranslatorAutoPlayDesc": "Launches the interactive translator without asking.",
+  "@interactiveTranslatorAutoPlayDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeAnalyticsView": "Change Analytics View"
 }

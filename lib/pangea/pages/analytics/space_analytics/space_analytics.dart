@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
 import 'package:fluffychat/pangea/widgets/common/p_circular_loader.dart';
@@ -17,8 +18,8 @@ import '../../../utils/sync_status_util_v2.dart';
 import 'space_analytics_view.dart';
 
 class SpaceAnalyticsPage extends StatefulWidget {
-  final BarChartViewSelection? selectedView;
-  const SpaceAnalyticsPage({super.key, this.selectedView});
+  final BarChartViewSelection selectedView;
+  const SpaceAnalyticsPage({super.key, required this.selectedView});
 
   @override
   State<SpaceAnalyticsPage> createState() => SpaceAnalyticsV2Controller();
@@ -33,6 +34,18 @@ class SpaceAnalyticsV2Controller extends State<SpaceAnalyticsPage> {
   List<User> students = [];
   String? get spaceId => GoRouterState.of(context).pathParameters['spaceid'];
   Room? _spaceRoom;
+  List<LanguageModel> targetLanguages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () async {
+      if (spaceRoom == null || (!(spaceRoom?.isSpace ?? false))) {
+        context.go('/rooms');
+      }
+      getChatAndStudents();
+    });
+  }
 
   Room? get spaceRoom {
     if (_spaceRoom == null || _spaceRoom!.id != spaceId) {
@@ -44,21 +57,9 @@ class SpaceAnalyticsV2Controller extends State<SpaceAnalyticsPage> {
         context.go('/rooms/analytics');
         return null;
       }
-      getChatAndStudents();
+      getChatAndStudents().then((_) => setTargetLanguages());
     }
     return _spaceRoom;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    debugPrint("init space analytics");
-    Future.delayed(Duration.zero, () async {
-      if (spaceRoom == null || (!(spaceRoom?.isSpace ?? false))) {
-        context.go('/rooms');
-      }
-      getChatAndStudents();
-    });
   }
 
   Future<void> getChatAndStudents() async {
@@ -97,12 +98,12 @@ class SpaceAnalyticsV2Controller extends State<SpaceAnalyticsPage> {
     }
   }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   refreshTimer?.cancel();
-  //   stateSub?.cancel();
-  // }
+  Future<void> setTargetLanguages() async {
+    // get a list of language models, sorted by the
+    // number of students who are learning that language
+    targetLanguages = await spaceRoom?.targetLanguages() ?? [];
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {

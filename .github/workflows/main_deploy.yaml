@@ -79,5 +79,7 @@ jobs:
         with:
           name: web
           path: build/web
+      - name: Update packages
+        run: flutter pub get
       - name: Update sentry
         run: flutter packages pub run sentry_dart_plugin

@@ -16,7 +16,6 @@ class AnalyticsLanguageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<LanguageModel>(
-      icon: const Icon(Icons.language_outlined),
       tooltip: L10n.of(context)!.changeAnalyticsLanguage,
       initialValue: value,
       onSelected: (LanguageModel? lang) {
@@ -33,6 +32,19 @@ class AnalyticsLanguageButton extends StatelessWidget {
           child: Text(lang.getDisplayName(context) ?? lang.langCode),
         );
       }).toList(),
+      child: TextButton.icon(
+        label: Text(
+          value.getDisplayName(context) ?? value.langCode,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
+        icon: Icon(
+          Icons.language_outlined,
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+        onPressed: null,
+      ),
     );
   }
 }

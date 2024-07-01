@@ -3,10 +3,10 @@ import 'dart:ui';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -120,7 +120,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
   @override
   Widget build(BuildContext context) {
     if (blur > 0) {
-      pangeaController.instructions.show(
+      pangeaController.instructions.showInstructionsPopup(
         context,
         InstructionsEnum.blurMeansTranslate,
         widget.pangeaMessageEvent.eventId,

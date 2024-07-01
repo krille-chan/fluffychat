@@ -12,6 +12,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   pasteboard
   permission_handler_windows
   record_windows
+  rive_common
   sentry_flutter
   share_plus
   sqlcipher_flutter_libs

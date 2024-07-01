@@ -26,7 +26,13 @@ class PangeaEventTypes {
   static const String report = 'm.report';
   static const textToSpeechRule = "p.rule.text_to_speech";
 
-  static const pangeaActivityRes = "pangea.activity_res";
-  static const acitivtyRequest = "pangea.activity_req";
+  /// A request to the server to generate activities
+  static const activityRequest = "pangea.activity_req";
+
+  /// A practice activity that is related to a message
+  static const pangeaActivity = "pangea.activity_res";
+
+  /// A record of completion of an activity. There
+  /// can be one per user per activity.
   static const activityRecord = "pangea.activity_completion";
 }

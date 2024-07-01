@@ -19,7 +19,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 class ConstructList extends StatefulWidget {
-  final ConstructType constructType;
+  final ConstructTypeEnum constructType;
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? selected;
   final BaseAnalyticsController controller;
@@ -94,7 +94,7 @@ class ConstructListView extends StatefulWidget {
 }
 
 class ConstructListViewState extends State<ConstructListView> {
-  final ConstructType constructType = ConstructType.grammar;
+  final ConstructTypeEnum constructType = ConstructTypeEnum.grammar;
   final Map<String, Timeline> _timelinesCache = {};
   final Map<String, PangeaMessageEvent> _msgEventCache = {};
   final List<PangeaMessageEvent> _msgEvents = [];
@@ -355,15 +355,17 @@ class ConstructMessagesDialog extends StatelessWidget {
 
     final msgEventMatches = controller.getMessageEventMatches();
 
+    final noData = controller.constructs![controller.lemmaIndex].uses.length >
+        controller._msgEvents.length;
+
     return AlertDialog(
       title: Center(child: Text(controller.widget.controller.currentLemma!)),
       content: SizedBox(
-        height: 350,
-        width: 500,
+        height: noData ? 90 : 250,
+        width: noData ? 200 : 400,
         child: Column(
           children: [
-            if (controller.constructs![controller.lemmaIndex].uses.length >
-                controller._msgEvents.length)
+            if (noData)
               Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -398,8 +400,8 @@ class ConstructMessagesDialog extends StatelessWidget {
           child: Text(
             L10n.of(context)!.close.toUpperCase(),
             style: TextStyle(
-              color:
-                  Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(150),
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),

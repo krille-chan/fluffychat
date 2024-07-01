@@ -51,7 +51,9 @@ extension PangeaClient on Client {
 
   Future<List<Room>> get spacesImTeaching async => await _spacesImTeaching;
 
-  Future<List<Room>> get spacesImStudyingIn async => await _spacesImStudyingIn;
+  Future<List<Room>> get chatsImAStudentIn async => await _chatsImAStudentIn;
+
+  Future<List<Room>> get spaceImAStudentIn async => await _spacesImStudyingIn;
 
   List<Room> get spacesImIn => _spacesImIn;
 

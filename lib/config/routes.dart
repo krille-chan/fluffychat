@@ -170,31 +170,11 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const StudentAnalyticsPage(),
+                const StudentAnalyticsPage(
+                  selectedView: BarChartViewSelection.messages,
+                ),
               ),
               redirect: loggedOutRedirect,
-              routes: [
-                GoRoute(
-                  path: 'messages',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    const StudentAnalyticsPage(
-                      selectedView: BarChartViewSelection.messages,
-                    ),
-                  ),
-                ),
-                GoRoute(
-                  path: 'errors',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    const StudentAnalyticsPage(
-                      selectedView: BarChartViewSelection.grammar,
-                    ),
-                  ),
-                ),
-              ],
             ),
             GoRoute(
               path: 'analytics',
@@ -207,34 +187,13 @@ abstract class AppRoutes {
               routes: [
                 GoRoute(
                   path: ':spaceid',
-                  redirect: loggedOutRedirect,
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    const SpaceAnalyticsPage(),
+                    const SpaceAnalyticsPage(
+                      selectedView: BarChartViewSelection.messages,
+                    ),
                   ),
-                  routes: [
-                    GoRoute(
-                      path: 'messages',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const SpaceAnalyticsPage(
-                          selectedView: BarChartViewSelection.messages,
-                        ),
-                      ),
-                    ),
-                    GoRoute(
-                      path: 'errors',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const SpaceAnalyticsPage(
-                          selectedView: BarChartViewSelection.grammar,
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

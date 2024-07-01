@@ -24,6 +24,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import '../../pangea/choreographer/widgets/it_bar.dart';
 import '../../utils/stream_extension.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
@@ -440,6 +441,9 @@ class ChatView extends StatelessWidget {
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               const ConnectionStatusHeader(),
+                                              ITBar(
+                                                choreographer: controller.choreographer,
+                                              ),
                                               ReactionsPicker(controller),
                                               ReplyDisplay(controller),
                                               ChatInputRow(controller),
