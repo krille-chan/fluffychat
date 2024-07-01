@@ -6,8 +6,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/archive/archive.dart';
+import 'package:tawkie/pages/auth/auth.dart';
 import 'package:tawkie/pages/chat/chat.dart';
 import 'package:tawkie/pages/chat_access_settings/chat_access_settings_controller.dart';
 import 'package:tawkie/pages/chat_details/chat_details.dart';
@@ -18,12 +20,10 @@ import 'package:tawkie/pages/chat_permissions_settings/chat_permissions_settings
 import 'package:tawkie/pages/chat_search/chat_search_page.dart';
 import 'package:tawkie/pages/device_settings/device_settings.dart';
 import 'package:tawkie/pages/invitation_selection/invitation_selection.dart';
-import 'package:tawkie/pages/login/login.dart';
 import 'package:tawkie/pages/new_group/new_group.dart';
 import 'package:tawkie/pages/new_private_chat/new_private_chat.dart';
 import 'package:tawkie/pages/new_space/new_space.dart';
 import 'package:tawkie/pages/not_subscribe/not_subscribe_page.dart';
-import 'package:tawkie/pages/register/register.dart';
 import 'package:tawkie/pages/settings/settings.dart';
 import 'package:tawkie/pages/settings_3pid/settings_3pid.dart';
 import 'package:tawkie/pages/settings_chat/settings_chat.dart';
@@ -88,7 +88,7 @@ abstract class AppRoutes {
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
         state,
-        const Login(),
+        const Auth(authType: AuthType.register),
       ),
       redirect: loggedInRedirect,
       routes: [
@@ -106,7 +106,7 @@ abstract class AppRoutes {
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
             state,
-            const Login(),
+            const Auth(authType: AuthType.login),
           ),
           redirect: loggedInRedirect,
         ),
@@ -115,7 +115,7 @@ abstract class AppRoutes {
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
             state,
-            const Register(),
+            const Auth(authType: AuthType.register),
           ),
           redirect: loggedInRedirect,
         ),
@@ -292,7 +292,7 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        const Login(),
+                        const Auth(authType: AuthType.login),
                       ),
                       routes: [
                         GoRoute(
@@ -300,7 +300,7 @@ abstract class AppRoutes {
                           pageBuilder: (context, state) => defaultPageBuilder(
                             context,
                             state,
-                            const Login(),
+                            const Auth(authType: AuthType.login),
                           ),
                           redirect: loggedOutRedirect,
                         ),
@@ -313,7 +313,7 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        const AddBridgeBody(),
+                        const AddBridge(),
                       ),
                       redirect: loggedOutRedirect,
                     ),

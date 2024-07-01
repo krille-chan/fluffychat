@@ -1,5 +1,5 @@
+import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:tawkie/pages/add_bridge/model/social_network.dart';
-import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 class QRCodeConnectPage extends StatefulWidget {
   final String qrCode;
   final String code;
-  final BotBridgeConnection botConnection;
+  final BotController botConnection;
 
   const QRCodeConnectPage({
     super.key,
@@ -224,7 +224,7 @@ class WhatsAppQRFutureBuilder extends StatelessWidget {
             TextButton(
               onPressed: () {
                 // SocialNetwork network update
-                socialNetwork
+                SocialNetworkManager.socialNetworks
                     .firstWhere((element) => element.name == "WhatsApp")
                     .connected = true;
 

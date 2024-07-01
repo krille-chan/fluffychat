@@ -16,24 +16,21 @@ abstract class AppConfig {
   static const double messageFontSize = 15.75;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
-  static const Color primaryColor = Color(0xFF3614A6);
+  static const Color primaryColor = Color(0xFF8123B0);
   static const Color primaryColorLight = Color(0xFFFEEA77);
   static const Color secondaryColor = Color(0xFFFAAB22);
   static String _privacyUrl = 'https://tawkie.fr/privacy-policy/';
   static String get privacyUrl => _privacyUrl;
-  static const String enablePushTutorial =
-      'https://www.tawkie.fr/faq/';
-  static const String encryptionTutorial =
-      'https://www.tawkie.fr/faq/';
-  static const String startChatTutorial =
-      'https://www.tawkie.fr/faq/';
+  static const String termsUrl = 'https://tawkie.fr/legal/';
+  static const String enablePushTutorial = 'https://www.tawkie.fr/faq/';
+  static const String encryptionTutorial = 'https://www.tawkie.fr/faq/';
+  static const String startChatTutorial = 'https://www.tawkie.fr/faq/';
   static const String appId = 'fr.tawkie.app';
   static const String appOpenUrlScheme = 'fr.tawkie';
   static String _webBaseUrl = 'https://tawkie.fr/web/';
   static String get webBaseUrl => _webBaseUrl;
   static const String sourceCodeUrl = 'https://github.com/Tawkie/tawkie-app';
-  static const String supportUrl =
-      'https://www.tawkie.fr/faq/';
+  static const String supportUrl = 'https://www.tawkie.fr/faq/';
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',

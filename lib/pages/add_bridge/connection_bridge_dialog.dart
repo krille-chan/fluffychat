@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:tawkie/pages/add_bridge/qr_code_connect.dart';
-import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:provider/provider.dart';
@@ -16,10 +16,10 @@ import 'model/social_network.dart';
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 // ShowDialog for WhatsApp connection
-Future<bool> connectToWhatsApp(
+Future<void> connectToWhatsApp(
   BuildContext context,
   SocialNetwork network,
-  BotBridgeConnection botConnection,
+  BotController botConnection,
 ) async {
   final Completer<bool> completer = Completer<bool>();
 
@@ -30,7 +30,7 @@ Future<bool> connectToWhatsApp(
     required BuildContext context,
     required GlobalKey<FormState> formKey,
     required String? phoneNumber,
-    required BotBridgeConnection botConnection,
+    required BotController botConnection,
   }) async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save(); // Save form values
@@ -143,6 +143,4 @@ Future<bool> connectToWhatsApp(
       );
     },
   );
-
-  return completer.future;
 }

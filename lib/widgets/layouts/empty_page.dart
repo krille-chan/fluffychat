@@ -45,7 +45,7 @@ class EmptyPage extends StatelessWidget {
               PlatformInfos.isDesktop ||
               PlatformInfos.isLinux ||
               PlatformInfos.isMacOS)
-            const AddChatNetwork(),
+            const AddChatNetwork(true),
         ],
       ),
     );

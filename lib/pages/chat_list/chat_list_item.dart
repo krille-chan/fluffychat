@@ -138,9 +138,9 @@ class ChatListItem extends StatelessWidget {
     }
 
     void removeLinkedinTag() {
-      if (displayname.contains('(Linkedin)')) {
+      if (displayname.contains('(LinkedIn)')) {
         displayname =
-            displayname.replaceAll('(Linkedin)', ''); // Delete (Linkedin)
+            displayname.replaceAll('(LinkedIn)', ''); // Delete (Linkedin)
       }
     }
 
