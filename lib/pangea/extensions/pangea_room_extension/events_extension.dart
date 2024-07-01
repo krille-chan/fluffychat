@@ -229,7 +229,6 @@ extension EventsRoomExtension on Room {
     PangeaMessageTokens? tokensSent,
     PangeaMessageTokens? tokensWritten,
     ChoreoRecord? choreo,
-    UseType? useType,
   }) {
     // if (parseCommands) {
     //   return client.parseAndRunCommand(this, message,
@@ -247,7 +246,6 @@ extension EventsRoomExtension on Room {
       ModelKey.originalWritten: originalWritten?.toJson(),
       ModelKey.tokensSent: tokensSent?.toJson(),
       ModelKey.tokensWritten: tokensWritten?.toJson(),
-      ModelKey.useType: useType?.string,
     };
     if (parseMarkdown) {
       final html = markdown(
@@ -347,7 +345,7 @@ extension EventsRoomExtension on Room {
             RecentMessageRecord(
               eventId: event.eventId,
               chatId: id,
-              useType: pMsgEvent.useType,
+              useType: pMsgEvent.msgUseType,
               time: event.originServerTs,
             ),
           );
@@ -425,26 +423,6 @@ extension EventsRoomExtension on Room {
   //     rethrow;
   //   }
   // }
-
-  Future<List<PangeaMessageEvent>> myMessageEventsInChat({
-    DateTime? since,
-  }) async {
-    final List<Event> msgEvents = await getEventsBySender(
-      type: EventTypes.Message,
-      sender: client.userID!,
-      since: since,
-    );
-    final Timeline timeline = await getTimeline();
-    return msgEvents
-        .where((event) => (event.content['msgtype'] == MessageTypes.Text))
-        .map((event) {
-      return PangeaMessageEvent(
-        event: event,
-        timeline: timeline,
-        ownMessage: true,
-      );
-    }).toList();
-  }
 
   // fetch event of a certain type by a certain sender
   // since a certain time or up to a certain amount

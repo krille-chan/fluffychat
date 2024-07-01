@@ -9,7 +9,7 @@ import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../constants/language_keys.dart';
+import '../constants/language_constants.dart';
 import 'language_model.dart';
 
 PUserModel pUserModelFromJson(String str) =>

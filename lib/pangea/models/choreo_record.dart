@@ -1,13 +1,8 @@
 import 'dart:convert';
 
-import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 
-import '../constants/choreo_constants.dart';
-import '../enum/construct_type_enum.dart';
 import 'it_step.dart';
-import 'lemma.dart';
 
 /// this class lives within a [PangeaIGCEvent]
 /// it always has a [RepresentationEvent] parent
@@ -110,135 +105,6 @@ class ChoreoRecord {
         choreoSteps: [],
         openMatches: [],
       );
-
-  /// [tokens] is the final list of tokens that were sent
-  /// if no ga or ta,
-  ///   make wa use for each and return
-  /// else
-  ///   for each saveable vocab in the final message
-  ///     if vocab is contained in an accepted replacement, make ga use
-  ///     if vocab is contained in ta choice,
-  ///       if selected as choice, corIt
-  ///       if written as customInput, corIt? (account for score in this)
-  ///   for each it step
-  ///     for each continuance
-  ///       if not within the final message, save ignIT/incIT
-  List<OneConstructUse> toVocabUse(
-    List<PangeaToken> tokens,
-    String chatId,
-    String msgId,
-    DateTime timestamp,
-  ) {
-    final List<OneConstructUse> uses = [];
-    final DateTime now = DateTime.now();
-    List<OneConstructUse> lemmasToVocabUses(
-      List<Lemma> lemmas,
-      ConstructUseType type,
-    ) {
-      final List<OneConstructUse> uses = [];
-      for (final lemma in lemmas) {
-        if (lemma.saveVocab) {
-          uses.add(
-            OneConstructUse(
-              useType: type,
-              chatId: chatId,
-              timeStamp: timestamp,
-              lemma: lemma.text,
-              form: lemma.form,
-              msgId: msgId,
-              constructType: ConstructType.vocab,
-            ),
-          );
-        }
-      }
-      return uses;
-    }
-
-    List<OneConstructUse> getVocabUseForToken(PangeaToken token) {
-      for (final step in choreoSteps) {
-        /// if 1) accepted match 2) token is in the replacement and 3) replacement
-        /// is in the overall step text, then token was a ga
-        if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted &&
-            (step.acceptedOrIgnoredMatch!.match.choices?.any(
-                  (r) =>
-                      r.value.contains(token.text.content) &&
-                      step.text.contains(r.value),
-                ) ??
-                false)) {
-          return lemmasToVocabUses(token.lemmas, ConstructUseType.ga);
-        }
-        if (step.itStep != null) {
-          final bool pickedThroughIT = step.itStep!.chosenContinuance?.text
-                  .contains(token.text.content) ??
-              false;
-          if (pickedThroughIT) {
-            return lemmasToVocabUses(token.lemmas, ConstructUseType.corIt);
-            //PTODO - check if added via custom input in IT flow
-          }
-        }
-      }
-      return lemmasToVocabUses(token.lemmas, ConstructUseType.wa);
-    }
-
-    /// for each token, record whether selected in ga, ta, or wa
-    for (final token in tokens) {
-      uses.addAll(getVocabUseForToken(token));
-    }
-
-    for (final itStep in itSteps) {
-      for (final continuance in itStep.continuances) {
-        // this seems to always be false for continuances right now
-
-        if (finalMessage.contains(continuance.text)) {
-          continue;
-        }
-        if (continuance.wasClicked) {
-          //PTODO - account for end of flow score
-          if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
-            uses.addAll(
-              lemmasToVocabUses(continuance.lemmas, ConstructUseType.incIt),
-            );
-          }
-        } else {
-          if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
-            uses.addAll(
-              lemmasToVocabUses(continuance.lemmas, ConstructUseType.ignIt),
-            );
-          }
-        }
-      }
-    }
-
-    return uses;
-  }
-
-  List<OneConstructUse> toGrammarConstructUse(
-    String msgId,
-    String chatId,
-    DateTime timestamp,
-  ) {
-    final List<OneConstructUse> uses = [];
-    for (final step in choreoSteps) {
-      if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted) {
-        final String name = step.acceptedOrIgnoredMatch!.match.rule?.id ??
-            step.acceptedOrIgnoredMatch!.match.shortMessage ??
-            step.acceptedOrIgnoredMatch!.match.type.typeName.name;
-        uses.add(
-          OneConstructUse(
-            useType: ConstructUseType.ga,
-            chatId: chatId,
-            timeStamp: timestamp,
-            lemma: name,
-            form: name,
-            msgId: msgId,
-            constructType: ConstructType.grammar,
-            id: "${msgId}_${step.acceptedOrIgnoredMatch!.match.offset}_${step.acceptedOrIgnoredMatch!.match.length}",
-          ),
-        );
-      }
-    }
-    return uses;
-  }
 
   List<ITStep> get itSteps =>
       choreoSteps.where((e) => e.itStep != null).map((e) => e.itStep!).toList();

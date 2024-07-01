@@ -35,7 +35,7 @@ class BaseAnalyticsView extends StatelessWidget {
         );
       case BarChartViewSelection.grammar:
         return ConstructList(
-          constructType: ConstructType.grammar,
+          constructType: ConstructTypeEnum.grammar,
           defaultSelected: controller.widget.defaultSelected,
           selected: controller.selected,
           controller: controller,
