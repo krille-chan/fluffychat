@@ -105,12 +105,12 @@ class NewGroupView extends StatelessWidget {
             SwitchListTile.adaptive(
               secondary: Icon(
                 Icons.lock_outlined,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
               title: Text(
                 L10n.of(context)!.enableEncryption,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onBackground,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
               value: !controller.publicGroup,

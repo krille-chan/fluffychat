@@ -35,6 +35,12 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
           ),
         );
 
+    // Delete database file:
+    if (database == null && !kIsWeb) {
+      final dbFile = File(await _getDatabasePath(client.clientName));
+      if (await dbFile.exists()) await dbFile.delete();
+    }
+
     try {
       // Send error notification:
       final l10n = lookupL10n(PlatformDispatcher.instance.locale);
@@ -61,9 +67,6 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
 
   final cipher = await getDatabaseCipher();
 
-  final databaseDirectory = PlatformInfos.isIOS || PlatformInfos.isMacOS
-      ? await getLibraryDirectory()
-      : await getApplicationSupportDirectory();
   Directory? fileStorageLocation;
   try {
     fileStorageLocation = await getTemporaryDirectory();
@@ -73,7 +76,7 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
     );
   }
 
-  final path = join(databaseDirectory.path, '${client.clientName}.sqlite');
+  final path = await _getDatabasePath(client.clientName);
 
   // fix dlopen for old Android
   await applyWorkaroundToOpenSqlCipherOnOldAndroidVersions();
@@ -116,6 +119,14 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
     fileStorageLocation: fileStorageLocation?.uri,
     deleteFilesAfterDuration: const Duration(days: 30),
   );
+}
+
+Future<String> _getDatabasePath(String clientName) async {
+  final databaseDirectory = PlatformInfos.isIOS || PlatformInfos.isMacOS
+      ? await getLibraryDirectory()
+      : await getApplicationSupportDirectory();
+
+  return join(databaseDirectory.path, '$clientName.sqlite');
 }
 
 Future<void> _migrateLegacyLocation(

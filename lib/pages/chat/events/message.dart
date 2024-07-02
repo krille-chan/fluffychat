@@ -77,6 +77,7 @@ class Message extends StatelessWidget {
     final client = Matrix.of(context).client;
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
+    // ignore: deprecated_member_use
     var color = Theme.of(context).colorScheme.surfaceVariant;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
@@ -101,7 +102,7 @@ class Message extends StatelessWidget {
 
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
-        : Theme.of(context).colorScheme.onBackground;
+        : Theme.of(context).colorScheme.onSurface;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
@@ -259,6 +260,8 @@ class Message extends StatelessWidget {
                                                     : displayname
                                                         .lightColorText),
                                               ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
                                             );
                                           },
                                         ),
@@ -434,11 +437,8 @@ class Message extends StatelessWidget {
               child: Center(
                 child: Material(
                   color: displayTime
-                      ? Theme.of(context).colorScheme.background
-                      : Theme.of(context)
-                          .colorScheme
-                          .background
-                          .withOpacity(0.33),
+                      ? Theme.of(context).colorScheme.surface
+                      : Theme.of(context).colorScheme.surface.withOpacity(0.33),
                   borderRadius:
                       BorderRadius.circular(AppConfig.borderRadius / 2),
                   clipBehavior: Clip.antiAlias,
@@ -515,7 +515,9 @@ class Message extends StatelessWidget {
             child: Icon(Icons.check_outlined),
           ),
         ),
-        direction: SwipeDirection.endToStart,
+        direction: AppConfig.swipeRightToLeftToReply
+            ? SwipeDirection.endToStart
+            : SwipeDirection.startToEnd,
         onSwipe: (_) => onSwipe(),
         child: Container(
           constraints: const BoxConstraints(

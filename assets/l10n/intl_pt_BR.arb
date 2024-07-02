@@ -2688,5 +2688,22 @@
   "createNewAddress": "Criar um novo endereço",
   "@createNewAddress": {},
   "knock": "Bater na porta",
-  "@knock": {}
+  "@knock": {},
+  "searchIn": "Pesquisar em {chat}...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "restricted": "Restrito",
+  "@restricted": {},
+  "knockRestricted": "Bater na porta restrito",
+  "@knockRestricted": {},
+  "searchMore": "Pesquisar mais...",
+  "@searchMore": {},
+  "gallery": "Galeria",
+  "@gallery": {},
+  "files": "Arquivos",
+  "@files": {}
 }

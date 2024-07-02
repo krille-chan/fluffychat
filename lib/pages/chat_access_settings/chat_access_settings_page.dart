@@ -266,6 +266,10 @@ extension JoinRulesDisplayString on JoinRules {
         return l10n.usersMustKnock;
       case JoinRules.private:
         return l10n.noOneCanJoin;
+      case JoinRules.restricted:
+        return l10n.restricted;
+      case JoinRules.knockRestricted:
+        return l10n.knockRestricted;
     }
   }
 }

@@ -37,7 +37,7 @@ class SettingsView extends StatelessWidget {
         ],
       ),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onBackground,
+        iconColor: Theme.of(context).colorScheme.onSurface,
         child: ListView(
           key: const Key('SettingsListViewContent'),
           children: <Widget>[
@@ -74,7 +74,6 @@ class SettingsView extends StatelessWidget {
                               mxContent: profile?.avatarUrl,
                               name: displayname,
                               size: Avatar.defaultSize * 2.5,
-                              fontSize: 18 * 2.5,
                             ),
                           ),
                           if (profile != null)
@@ -103,7 +102,7 @@ class SettingsView extends StatelessWidget {
                             ),
                             style: TextButton.styleFrom(
                               foregroundColor:
-                                  Theme.of(context).colorScheme.onBackground,
+                                  Theme.of(context).colorScheme.onSurface,
                             ),
                             label: Text(
                               displayname,
