@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
-import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -85,23 +84,23 @@ class ITController {
       throw Exception("null _itStartData or empty text in _setSourceText");
     }
     debugPrint("_setSourceText with detectedLang ${_itStartData!.langCode}");
-    if (_itStartData!.langCode == choreographer.l1LangCode) {
-      sourceText = _itStartData!.text;
-      return;
-    }
+    // if (_itStartData!.langCode == choreographer.l1LangCode) {
+    sourceText = _itStartData!.text;
+    return;
+    // }
 
-    final FullTextTranslationResponseModel res =
-        await FullTextTranslationRepo.translate(
-      accessToken: await choreographer.accessToken,
-      request: FullTextTranslationRequestModel(
-        text: _itStartData!.text,
-        tgtLang: choreographer.l1LangCode!,
-        srcLang: _itStartData!.langCode,
-        userL1: choreographer.l1LangCode!,
-        userL2: choreographer.l2LangCode!,
-      ),
-    );
-    sourceText = res.bestTranslation;
+    // final FullTextTranslationResponseModel res =
+    //     await FullTextTranslationRepo.translate(
+    //   accessToken: await choreographer.accessToken,
+    //   request: FullTextTranslationRequestModel(
+    //     text: _itStartData!.text,
+    //     tgtLang: choreographer.l1LangCode!,
+    //     srcLang: _itStartData!.langCode,
+    //     userL1: choreographer.l1LangCode!,
+    //     userL2: choreographer.l2LangCode!,
+    //   ),
+    // );
+    // sourceText = res.bestTranslation;
   }
 
   // used 1) at very beginning (with custom input = null)
