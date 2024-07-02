@@ -369,12 +369,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsUserName": "유저 이름 포함",
+  "containsUserName": "내 아이디 포함",
   "@containsUserName": {
     "type": "text",
     "placeholders": {}
   },
-  "containsDisplayName": "표시 이름 포함",
+  "containsDisplayName": "내 닉네임 포함",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
@@ -1723,7 +1723,7 @@
       "username": {}
     }
   },
-  "isTyping": "가 입력 중…",
+  "isTyping": "입력 중…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -1736,7 +1736,7 @@
       "link": {}
     }
   },
-  "inviteForMe": "나를 위해 초대",
+  "inviteForMe": "초대됨",
   "@inviteForMe": {
     "type": "text",
     "placeholders": {}
