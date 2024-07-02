@@ -25,8 +25,7 @@ class TypingIndicators extends StatelessWidget {
       builder: (context, _) {
         final typingUsers = controller.room.typingUsers
           ..removeWhere((u) => u.stateKey == controller.sendingClient.userID);
-        const topPadding = 20.0;
-        const bottomPadding = 4.0;
+
         return Container(
           width: double.infinity,
           alignment: Alignment.center,
