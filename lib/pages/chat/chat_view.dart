@@ -303,7 +303,8 @@ class ChatView extends StatelessWidget {
                                 clipBehavior: Clip.hardEdge,
                                 color: Theme.of(context)
                                     .colorScheme
-                                    .surfaceContainerHighest,
+                                    // ignore: deprecated_member_use
+                                    .surfaceVariant,
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(24),
                                 ),

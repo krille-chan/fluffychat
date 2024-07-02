@@ -41,7 +41,6 @@ class SeenByRow extends StatelessWidget {
                 mxContent: user.avatarUrl,
                 name: user.calcDisplayname(),
                 size: 16,
-                fontSize: 9,
               ),
             ),
             if (seenByUsers.length > maxAvatars)

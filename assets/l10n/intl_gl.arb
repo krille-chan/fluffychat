@@ -2689,5 +2689,24 @@
     "placeholders": {
       "level": {}
     }
-  }
+  },
+  "searchIn": "Buscar no chat \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Buscar máis...",
+  "@searchMore": {},
+  "gallery": "Galería",
+  "@gallery": {},
+  "files": "Ficheiros",
+  "@files": {},
+  "knockRestricted": "Peta á porta",
+  "@knockRestricted": {},
+  "restricted": "Non accesible",
+  "@restricted": {},
+  "swipeRightToLeftToReply": "Despraza hacia a esquerda para responder",
+  "@swipeRightToLeftToReply": {}
 }

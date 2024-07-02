@@ -2689,5 +2689,24 @@
       "appname": {},
       "unread": {}
     }
-  }
+  },
+  "searchIn": "\"{chat}\" sohbeti içinde ara...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Daha fazla ara...",
+  "@searchMore": {},
+  "gallery": "Galeri",
+  "@gallery": {},
+  "files": "Dosyalar",
+  "@files": {},
+  "knockRestricted": "Tıklatma kısıtlı",
+  "@knockRestricted": {},
+  "restricted": "Kısıtlı",
+  "@restricted": {},
+  "swipeRightToLeftToReply": "Yanıtlamak için sağdan sola kaydır",
+  "@swipeRightToLeftToReply": {}
 }

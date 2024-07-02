@@ -205,10 +205,14 @@ class SettingsStyleView extends StatelessWidget {
               ),
             ),
             StreamBuilder(
-              stream: client.onAccountData.stream.where(
-                (data) =>
-                    data.type ==
-                    ApplicationAccountConfigExtension.accountDataKey,
+              stream: client.onSync.stream.where(
+                (syncUpdate) =>
+                    syncUpdate.accountData?.any(
+                      (accountData) =>
+                          accountData.type ==
+                          ApplicationAccountConfigExtension.accountDataKey,
+                    ) ??
+                    false,
               ),
               builder: (context, snapshot) {
                 final accountConfig = client.applicationAccountConfig;

@@ -48,6 +48,7 @@ abstract class AppConfig {
   static bool autoplayImages = true;
   static bool sendTypingNotifications = true;
   static bool sendPublicReadReceipts = true;
+  static bool swipeRightToLeftToReply = true;
   static bool? sendOnEnter;
   static bool showPresences = true;
   static bool experimentalVoip = false;

@@ -133,7 +133,6 @@ class PublicRoomBottomSheet extends StatelessWidget {
                         mxContent: profile.avatarUrl,
                         name: profile.name ?? roomAlias,
                         size: Avatar.defaultSize * 3,
-                        fontSize: 36,
                       ),
                     ),
                   ),

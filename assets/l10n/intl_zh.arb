@@ -2689,5 +2689,24 @@
   "publicChatAddresses": "公开聊天的地址",
   "@publicChatAddresses": {},
   "createNewAddress": "新建地址",
-  "@createNewAddress": {}
+  "@createNewAddress": {},
+  "searchMore": "搜索更多…",
+  "@searchMore": {},
+  "gallery": "图库",
+  "@gallery": {},
+  "files": "文件",
+  "@files": {},
+  "searchIn": "在 “{chat}” 聊天中搜索…",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "knockRestricted": "“请求加入”请求受限",
+  "@knockRestricted": {},
+  "restricted": "受限",
+  "@restricted": {},
+  "swipeRightToLeftToReply": "从右向左滑动进行回复",
+  "@swipeRightToLeftToReply": {}
 }

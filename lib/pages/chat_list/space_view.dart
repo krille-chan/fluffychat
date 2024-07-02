@@ -461,7 +461,6 @@ class _SpaceViewState extends State<SpaceView> {
                                   size: 24,
                                   mxContent: spaceChild.avatarUrl,
                                   name: spaceChild.name,
-                                  fontSize: 9,
                                 ),
                               ),
                               color: Theme.of(context)

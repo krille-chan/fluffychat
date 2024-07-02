@@ -120,7 +120,8 @@ class UserBottomSheetView extends StatelessWidget {
                     padding: const EdgeInsets.all(12.0),
                     child: Material(
                       color:
-                          Theme.of(context).colorScheme.surfaceContainerHighest,
+                          // ignore: deprecated_member_use
+                          Theme.of(context).colorScheme.surfaceVariant,
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
                       child: ListTile(
@@ -186,7 +187,6 @@ class UserBottomSheetView extends StatelessWidget {
                           mxContent: avatarUrl,
                           name: displayname,
                           size: Avatar.defaultSize * 2.5,
-                          fontSize: 18 * 2.5,
                         ),
                       ),
                     ),

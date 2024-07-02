@@ -78,7 +78,8 @@ class Message extends StatelessWidget {
 
     final ownMessage = event.senderId == controller.sendingClient.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    var color = Theme.of(context).colorScheme.surfaceContainerHighest;
+    // ignore: deprecated_member_use
+    var color = Theme.of(context).colorScheme.surfaceVariant;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -260,6 +261,8 @@ class Message extends StatelessWidget {
                                                     : displayname
                                                         .lightColorText),
                                               ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
                                             );
                                           },
                                         ),
@@ -514,7 +517,9 @@ class Message extends StatelessWidget {
             child: Icon(Icons.check_outlined),
           ),
         ),
-        direction: SwipeDirection.endToStart,
+        direction: AppConfig.swipeRightToLeftToReply
+            ? SwipeDirection.endToStart
+            : SwipeDirection.startToEnd,
         onSwipe: (_) => onSwipe(),
         child: Container(
           constraints: const BoxConstraints(

@@ -111,7 +111,6 @@ class ChatDetailsView extends StatelessWidget {
                                         mxContent: room.avatar,
                                         name: displayname,
                                         size: Avatar.defaultSize * 2.5,
-                                        fontSize: 18 * 2.5,
                                       ),
                                     ),
                                   ),
