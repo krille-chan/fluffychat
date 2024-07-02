@@ -135,7 +135,7 @@ class ClientChooserButton extends StatelessWidget {
                             name: snapshot.data?.displayName ??
                                 client.userID!.localpart,
                             size: 32,
-                                  ),
+                          ),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
