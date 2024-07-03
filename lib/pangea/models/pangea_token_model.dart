@@ -1,55 +1,58 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../constants/model_keys.dart';
-import '../utils/error_handler.dart';
 import 'lemma.dart';
 
 class PangeaToken {
   PangeaTokenText text;
-  List<Lemma> lemmas;
+  Lemma lemma;
+
+  /// [pos] ex "VERB" - part of speech of the token
+  /// https://universaldependencies.org/u/pos/
+  final String pos;
+
+  /// [morph] ex {} - morphological features of the token
+  /// https://universaldependencies.org/u/feat/
+  final Map<String, dynamic> morph;
 
   PangeaToken({
     required this.text,
-    required this.lemmas,
+    required this.lemma,
+    required this.pos,
+    required this.morph,
   });
 
-  static getLemmas(String text, Iterable? json) {
+  static _getLemmas(String text, dynamic json) {
     if (json != null) {
-      return json
-          .map<Lemma>(
-            (e) => Lemma.fromJson(e as Map<String, dynamic>),
-          )
-          .toList()
-          .cast<Lemma>();
+      // July 24, 2024 - we're changing from a list to a single lemma and this is for backwards compatibility
+      // previously sent tokens have lists of lemmas
+      if (json is Iterable) {
+        return json
+            .map<Lemma>(
+              (e) => Lemma.fromJson(e as Map<String, dynamic>),
+            )
+            .toList()
+            .cast<Lemma>();
+      } else {
+        return Lemma.fromJson(json);
+      }
     } else {
-      return [Lemma(text: text, saveVocab: false, form: text)];
+      // earlier still, we didn't have lemmas so this is for really old tokens
+      return Lemma(text: text, saveVocab: false, form: text);
     }
   }
 
   factory PangeaToken.fromJson(Map<String, dynamic> json) {
-    try {
-      final PangeaTokenText text =
-          PangeaTokenText.fromJson(json[_textKey] as Map<String, dynamic>);
-      return PangeaToken(
-        text: text,
-        lemmas: getLemmas(text.content, json[_lemmaKey]),
-      );
-    } catch (err, s) {
-      debugger(when: kDebugMode);
-      Sentry.addBreadcrumb(
-        Breadcrumb(
-          message: "PangeaToken.fromJson error",
-          data: {
-            "json": json,
-          },
-        ),
-      );
-      ErrorHandler.logError(e: err, s: s);
-      rethrow;
-    }
+    final PangeaTokenText text =
+        PangeaTokenText.fromJson(json[_textKey] as Map<String, dynamic>);
+    return PangeaToken(
+      text: text,
+      lemma: _getLemmas(text.content, json[_lemmaKey]),
+      pos: json['pos'] ?? '',
+      morph: json['morph'] ?? '{}',
+    );
   }
 
   static const String _textKey = "text";
@@ -57,7 +60,7 @@ class PangeaToken {
 
   Map<String, dynamic> toJson() => {
         _textKey: text.toJson(),
-        _lemmaKey: lemmas.map((e) => e.toJson()).toList(),
+        _lemmaKey: lemma.toJson(),
       };
 
   int get end => text.offset + text.length;
