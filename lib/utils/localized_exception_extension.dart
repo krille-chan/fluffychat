@@ -67,7 +67,7 @@ extension LocalizedExceptionExtension on Object {
         supportedVersions,
       );
     }
-    if (this is MatrixConnectionException ||
+    if (this is IOException ||
         this is SocketException ||
         this is SyncConnectionException) {
       return L10n.of(context)!.noConnectionToTheServer;
