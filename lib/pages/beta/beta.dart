@@ -1,10 +1,10 @@
 import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:matrix/matrix_api_lite.dart' as MatrixLite;
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -44,241 +44,88 @@ class BetaJoinPage extends StatelessWidget {
     }
   }
 
-  Future<void> createAndJoinRoom({
-    required BuildContext context,
-  }) async {
-    final client = Matrix.of(context).client;
-    final String roomAliasName = 'testTree'; // L'alias local de la room
-    final String roomAlias = '#$roomAliasName:staging.tawkie.fr';
-
-    try {
-      final createRoomResult = await showFutureLoadingDialog<String>(
-        context: context,
-        future: () async {
-          try {
-            print('Creating room'); // Log pour diagnostiquer
-
-            // Créer la room
-            final roomId = await client.createRoom(
-              name: 'testTree Room',
-              topic: 'Room for testTree',
-              visibility: MatrixLite.Visibility.public,
-              roomAliasName: roomAliasName,
-              preset: CreateRoomPreset.publicChat,
-              // Utiliser le preset pour les rooms publiques
-              initialState: [
-                StateEvent(
-                  type: 'm.room.join_rules',
-                  stateKey: '',
-                  content: {
-                    'join_rule': 'public',
-                  },
-                ),
-                StateEvent(
-                  type: 'm.room.history_visibility',
-                  stateKey: '',
-                  content: {
-                    'history_visibility': 'shared',
-                  },
-                ),
-              ],
-            );
-
-            if (roomId == null) {
-              print('Failed to create room');
-              throw Exception('Failed to create room');
-            }
-
-            print('Room created with ID: $roomId');
-            return roomId;
-          } catch (e) {
-            // Gérer les exceptions pendant la création de la room
-            print('Error creating room: $e'); // Log pour diagnostiquer
-            throw Exception('Failed to create room: $e');
-          }
-        },
-      );
-
-      if (createRoomResult.error == null) {
-        final roomId = createRoomResult.result!;
-        print('Room created successfully: $roomId');
-
-        final joinResult = await showFutureLoadingDialog<String>(
-          context: context,
-          future: () async {
-            try {
-              print(
-                  'Attempting to join room: $roomAlias'); // Log pour diagnostiquer
-
-              // Obtenir l'ID de la room à partir de l'alias
-              final id = await client.getRoomIdByAlias(roomAlias);
-              if (id == null) {
-                print('Room ID is null');
-                throw Exception('Failed to get room ID for alias: $roomAlias');
-              }
-              print('Room ID: ${id.roomId}');
-
-              final waitForRoom = client.waitForRoomInSync(
-                id.roomId!,
-                join: true,
-              );
-
-              await client
-                  .joinRoom(id.roomId!, serverName: ['staging.tawkie.fr']);
-              await waitForRoom;
-
-              return id.roomId!; // Retourner l'ID de la room
-            } catch (e) {
-              // Gérer les exceptions pendant la tentative de rejoindre la room
-              print('Error joining room: $e'); // Log pour diagnostiquer
-              throw Exception('Failed to join room: $e');
-            }
-          },
-        );
-
-        if (joinResult.error == null) {
-          // Fermer la boîte de dialogue
-          Navigator.of(context).pop();
-
-          final joinedRoom = client.getRoomById(joinResult.result!);
-          if (joinedRoom == null) {
-            print('Room not found after joining');
-            throw Exception('Room not found after joining');
-          }
-
-          // Vérifier si la room est un espace et naviguer vers la room si ce n'est pas le cas
-          if (!joinedRoom.isSpace) {
-            context.go('/rooms/${joinResult.result!}');
-          }
-        } else {
-          // Gérer l'erreur si l'adhésion à la room échoue
-          print(
-              'Failed to join room: ${joinResult.error}'); // Log pour diagnostiquer
-          final snackBar = SnackBar(
-              content: Text('Failed to join room: ${joinResult.error}'));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        }
-      } else {
-        print(
-            'Failed to create room: ${createRoomResult.error}'); // Log pour diagnostiquer
-        final snackBar = SnackBar(
-            content: Text('Failed to create room: ${createRoomResult.error}'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
-    } catch (e) {
-      // Afficher un message d'erreur général si une exception est levée
-      print('Something went wrong: $e'); // Log pour diagnostiquer
-      final snackBar = SnackBar(content: Text('Something went wrong: $e'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-  }
-
   Future<void> joinGroup({
     required BuildContext context,
   }) async {
     final client = Matrix.of(context).client;
-    final String roomAlias = '#testTree:staging.tawkie.fr';
-    final List<String> serverName = [
-      'staging.tawkie.fr'
-    ]; // Liste des serveurs à contacter
+    const String roomAliasName = 'testbeta';
+    const String roomAlias = '#$roomAliasName:staging.tawkie.fr';
 
     try {
+      if (kDebugMode) {
+        print('Attempting to join room: $roomAlias');
+      }
+
+      // Get room ID from alias
+      final roomAliasResult = await client.getRoomIdByAlias(roomAlias);
+      final roomId = roomAliasResult.roomId;
+
+      if (roomId == null) {
+        final errorMsg = 'Room ID is null for alias: $roomAlias';
+        if (kDebugMode) {
+          print(errorMsg);
+        }
+        throw Exception(errorMsg);
+      }
+
+      // Check if the user is already a member of the room
+      final room = client.getRoomById(roomId);
+      if (room != null && room.membership == Membership.join) {
+        // Navigate directly to the room
+        context.go('/rooms/$roomId');
+        return;
+      }
+
       final result = await showFutureLoadingDialog<String>(
         context: context,
         future: () async {
           try {
-            print(
-                'Attempting to join room: $roomAlias'); // Log pour diagnostiquer
+            // Retrieve participating servers
+            final servers = roomAliasResult.servers ?? ['staging.tawkie.fr'];
+            final waitForRoom = client.waitForRoomInSync(roomId, join: true);
 
-            // Obtenir l'ID de la room à partir de l'alias
-            final roomAliasResult = await client.getRoomIdByAlias(roomAlias);
+            await client.joinRoom(roomId, serverName: servers);
+            await waitForRoom;
 
-            final roomId = roomAliasResult.roomId;
-            if (roomId == null) {
-              print('Room ID is null');
-              throw Exception('Room ID is null for alias: $roomAlias');
-            }
-
-            final joinResult = await showFutureLoadingDialog<String>(
-              context: context,
-              future: () async {
-                try {
-                  print(
-                      'Attempting to join room: $roomAlias'); // Log pour diagnostiquer
-
-                  client.clearArchivesFromCache();
-
-                  // Obtenir l'ID de la room à partir de l'alias
-                  final id = await client.getRoomIdByAlias(roomAlias);
-                  if (id == null) {
-                    print('Room ID is null');
-                    throw Exception(
-                        'Failed to get room ID for alias: $roomAlias');
-                  }
-                  print('Room ID: ${id.roomId}');
-
-                  await client
-                      .joinRoom(id.roomId!, serverName: ['staging.tawkie.fr']);
-
-                  return id.roomId!; // Retourner l'ID de la room
-                } catch (e) {
-                  // Gérer les exceptions pendant la tentative de rejoindre la room
-                  print('Error joining room: $e'); // Log pour diagnostiquer
-                  throw Exception('Failed to join room: $e');
-                }
-              },
-            );
-
-            if (joinResult.error == null) {
-              // Fermer la boîte de dialogue
-              Navigator.of(context).pop();
-
-              final joinedRoom = client.getRoomById(joinResult.result!);
-              if (joinedRoom == null) {
-                print('Room not found after joining');
-                throw Exception('Room not found after joining');
-              }
-
-              // Vérifier si la room est un espace et naviguer vers la room si ce n'est pas le cas
-              if (!joinedRoom.isSpace) {
-                context.go('/rooms/${joinResult.result!}');
-              }
-            }
-
-            return roomId; // Retourner l'ID de la room
+            return roomId;
           } catch (e) {
-            // Gérer les exceptions pendant la tentative de rejoindre la room
-            print('Error joining room: $e'); // Log pour diagnostiquer
-            throw Exception('Failed to join room: $e');
+            final errorMsg = 'Failed to join room: $e';
+            if (kDebugMode) {
+              print(errorMsg);
+            }
+            throw Exception(errorMsg);
           }
         },
       );
 
       if (result.error == null) {
-        // Fermer la boîte de dialogue
         Navigator.of(context).pop();
 
-        final room = client.getRoomById(result.result!);
-        if (room == null) {
-          print('Room not found after joining');
-          throw Exception('Room not found after joining');
+        final joinedRoom = client.getRoomById(result.result!);
+        if (joinedRoom == null) {
+          final errorMsg = 'Room not found after joining';
+          if (kDebugMode) {
+            print(errorMsg);
+          }
+          throw Exception(errorMsg);
         }
 
-        // Vérifier si la room est un espace et naviguer vers la room si ce n'est pas le cas
-        if (!room.isSpace) {
-          context.go('/rooms/${result.result!}');
-        }
+        // Navigate to the room
+        context.go('/rooms/${result.result!}');
       } else {
-        // Gérer l'erreur si l'adhésion à la room échoue
-        print('Failed to join room: ${result.error}'); // Log pour diagnostiquer
-        final snackBar =
-            SnackBar(content: Text('Failed to join room: ${result.error}'));
+        final errorMsg = 'Failed to join room: ${result.error}';
+        if (kDebugMode) {
+          print(errorMsg);
+        }
+        final snackBar = SnackBar(content: Text(errorMsg));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     } catch (e) {
-      // Afficher un message d'erreur général si une exception est levée
-      print('Something went wrong: $e'); // Log pour diagnostiquer
-      final snackBar = SnackBar(content: Text('Something went wrong: $e'));
+      final errorMsg = 'Something went wrong: $e';
+      if (kDebugMode) {
+        print(errorMsg);
+      }
+      final snackBar = SnackBar(content: Text(errorMsg));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
@@ -372,7 +219,6 @@ class BetaJoinPage extends StatelessWidget {
             ],
             ElevatedButton.icon(
               onPressed: () async {
-                //await createAndJoinRoom(context: context);
                 await joinGroup(context: context);
               },
               icon: Icon(Icons.new_releases),
