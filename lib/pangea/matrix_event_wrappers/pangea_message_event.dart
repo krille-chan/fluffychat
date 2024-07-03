@@ -723,7 +723,7 @@ class PangeaMessageEvent {
 
     // missing vital info so return
     if (event.roomId == null || originalSent?.tokens == null) {
-      debugger(when: kDebugMode);
+      // debugger(when: kDebugMode);
       return uses;
     }
 

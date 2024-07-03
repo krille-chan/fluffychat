@@ -9,12 +9,10 @@ import 'lemma.dart';
 
 class PangeaToken {
   PangeaTokenText text;
-  bool hasInfo;
   List<Lemma> lemmas;
 
   PangeaToken({
     required this.text,
-    required this.hasInfo,
     required this.lemmas,
   });
 
@@ -37,7 +35,6 @@ class PangeaToken {
           PangeaTokenText.fromJson(json[_textKey] as Map<String, dynamic>);
       return PangeaToken(
         text: text,
-        hasInfo: json[_hasInfoKey] ?? text.length > 2,
         lemmas: getLemmas(text.content, json[_lemmaKey]),
       );
     } catch (err, s) {
@@ -56,12 +53,10 @@ class PangeaToken {
   }
 
   static const String _textKey = "text";
-  static const String _hasInfoKey = "has_info";
   static const String _lemmaKey = ModelKey.lemma;
 
   Map<String, dynamic> toJson() => {
         _textKey: text.toJson(),
-        _hasInfoKey: hasInfo,
         _lemmaKey: lemmas.map((e) => e.toJson()).toList(),
       };
 
