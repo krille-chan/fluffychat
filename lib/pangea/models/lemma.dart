@@ -16,14 +16,15 @@ class Lemma {
 
   /// [morph] ex {} - morphological features of the lemma
   /// https://universaldependencies.org/u/feat/
-  final Map<String, String> morph;
+  final Map<String, dynamic> morph;
 
-  Lemma(
-      {required this.text,
-      required this.saveVocab,
-      required this.form,
-      this.pos = '',
-      this.morph = const {}});
+  Lemma({
+    required this.text,
+    required this.saveVocab,
+    required this.form,
+    this.pos = '',
+    this.morph = const {},
+  });
 
   factory Lemma.fromJson(Map<String, dynamic> json) {
     return Lemma(
@@ -31,7 +32,7 @@ class Lemma {
       saveVocab: json['save_vocab'] ?? json['saveVocab'] ?? false,
       form: json["form"] ?? json['text'],
       pos: json['pos'] ?? '',
-      morph: json['morph'] ?? {},
+      morph: json['morph'] ?? '{}',
     );
   }
 
@@ -41,7 +42,7 @@ class Lemma {
       'save_vocab': saveVocab,
       'form': form,
       'pos': pos,
-      'morph': morph
+      'morph': morph,
     };
   }
 
