@@ -6,42 +6,40 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BetaJoinPage extends StatelessWidget {
-  // URLs
-  final String testflightAppUrl =
-      'https://apps.apple.com/us/app/testflight/id899247664';
-  final String appleBetaUrl = 'https://testflight.apple.com/join/daXe0NfW';
-  final String playStoreUrl =
-      'https://play.google.com/store/apps/details?id=fr.tawkie.app';
-  final String androidBetaUrl =
-      'https://play.google.com/apps/testing/fr.tawkie.app';
-
   const BetaJoinPage({super.key});
 
   void joinBeta() async {
-    if (Platform.isIOS) {
-      final String appStoreUrl =
-          'itms-apps://itunes.apple.com/app/id899247664'; // Direct link to the TestFlight app
-      if (await canLaunchUrl(Uri.parse(appStoreUrl))) {
-        await launchUrl(Uri.parse(appStoreUrl));
-      } else if (await canLaunchUrl(Uri.parse(appleBetaUrl))) {
-        await launchUrl(Uri.parse(appleBetaUrl));
-      } else {
-        throw 'Could not launch $appleBetaUrl';
+    try {
+      if (Platform.isIOS) {
+        if (await canLaunchUrl(Uri.parse(AppConfig.iosUrl))) {
+          await launchUrl(Uri.parse(AppConfig.iosUrl));
+        } else {
+          await _launchUrlOrThrow(AppConfig.appleBetaUrl);
+        }
+      } else if (Platform.isAndroid) {
+        if (await canLaunchUrl(Uri.parse(AppConfig.androidUrl))) {
+          await launchUrl(Uri.parse(AppConfig.androidUrl));
+        } else {
+          await _launchUrlOrThrow(AppConfig.androidBetaUrl);
+        }
       }
-    } else if (Platform.isAndroid) {
-      final String playStoreUrl =
-          'market://details?id=fr.tawkie.app'; // Direct link to the Play Store app
-      if (await canLaunchUrl(Uri.parse(playStoreUrl))) {
-        await launchUrl(Uri.parse(playStoreUrl));
-      } else if (await canLaunchUrl(Uri.parse(androidBetaUrl))) {
-        await launchUrl(Uri.parse(androidBetaUrl));
-      } else {
-        throw 'Could not launch $androidBetaUrl';
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error launching URL: $e');
       }
+    }
+  }
+
+  Future<void> _launchUrlOrThrow(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
     }
   }
 
@@ -49,8 +47,7 @@ class BetaJoinPage extends StatelessWidget {
     required BuildContext context,
   }) async {
     final client = Matrix.of(context).client;
-    const String roomAliasName = 'testbeta';
-    const String roomAlias = '#$roomAliasName:staging.tawkie.fr';
+    const String roomAlias = AppConfig.roomAlias;
 
     try {
       if (kDebugMode) {
@@ -149,105 +146,15 @@ class BetaJoinPage extends StatelessWidget {
               L10n.of(context)!.betaJoinExplanation,
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 20.0,
-            ),
+            const SizedBox(height: 20.0),
             Text(
               L10n.of(context)!.betaJoinBenefit,
               style: const TextStyle(fontSize: 16),
             ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            if (Platform.isIOS) ...[
-              Text(
-                L10n.of(context)!.iosInstructionsTitle,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                L10n.of(context)!.installTestflight,
-                style: const TextStyle(fontSize: 16),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  if (await canLaunchUrl(Uri.parse(testflightAppUrl))) {
-                    await launchUrl(Uri.parse(testflightAppUrl));
-                  } else {
-                    throw 'Could not launch $testflightAppUrl';
-                  }
-                },
-                child: Text(L10n.of(context)!.downloadTestflightButton),
-              ),
-              const Divider(thickness: 1),
-              Text(
-                L10n.of(context)!.joinBetaTitleIOS,
-                style: const TextStyle(fontSize: 16),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  if (await canLaunchUrl(Uri.parse(appleBetaUrl))) {
-                    await launchUrl(Uri.parse(appleBetaUrl));
-                  } else {
-                    throw 'Could not launch $appleBetaUrl';
-                  }
-                },
-                child: Text(L10n.of(context)!.downloadBetaIOSButton),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              const Divider(thickness: 1),
-              Text(
-                L10n.of(context)!.joinBetaGroup,
-                style: const TextStyle(fontSize: 16),
-              ),
-            ],
-            if (Platform.isAndroid) ...[
-              Text(
-                L10n.of(context)!.androidInstructionsTitle,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                L10n.of(context)!.joinBetaPlayStore,
-                style: const TextStyle(fontSize: 16),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  final String playStoreUrl =
-                      'market://details?id=fr.tawkie.app';
-                  if (await canLaunchUrl(Uri.parse(playStoreUrl))) {
-                    await launchUrl(Uri.parse(playStoreUrl));
-                  } else if (await canLaunchUrl(Uri.parse(androidBetaUrl))) {
-                    await launchUrl(Uri.parse(androidBetaUrl));
-                  } else {
-                    throw 'Could not launch $androidBetaUrl';
-                  }
-                },
-                child: Text(L10n.of(context)!.downloadBetaAndroidButton),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              const Divider(thickness: 1),
-              Text(
-                L10n.of(context)!.joinBetaGroup,
-                style: const TextStyle(fontSize: 16),
-              ),
-            ],
-            const SizedBox(
-              height: 10.0,
-            ),
+            const SizedBox(height: 20.0),
+            if (Platform.isIOS) _buildIOSInstructions(context),
+            if (Platform.isAndroid) _buildAndroidInstructions(context),
+            const SizedBox(height: 10.0),
             ElevatedButton.icon(
               onPressed: () async {
                 await joinGroup(context: context);
@@ -258,6 +165,78 @@ class BetaJoinPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildIOSInstructions(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          L10n.of(context)!.iosInstructionsTitle,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          L10n.of(context)!.installTestflight,
+          style: const TextStyle(fontSize: 16),
+        ),
+        const SizedBox(height: 10.0),
+        ElevatedButton(
+          onPressed: () async {
+            await _launchUrlOrThrow(AppConfig.testflightAppUrl);
+          },
+          child: Text(L10n.of(context)!.downloadTestflightButton),
+        ),
+        const Divider(thickness: 1),
+        Text(
+          L10n.of(context)!.joinBetaTitleIOS,
+          style: const TextStyle(fontSize: 16),
+        ),
+        const SizedBox(height: 10.0),
+        ElevatedButton(
+          onPressed: () async {
+            await _launchUrlOrThrow(AppConfig.appleBetaUrl);
+          },
+          child: Text(L10n.of(context)!.downloadBetaIOSButton),
+        ),
+        const Divider(thickness: 1),
+        Text(
+          L10n.of(context)!.joinBetaGroup,
+          style: const TextStyle(fontSize: 16),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildAndroidInstructions(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          L10n.of(context)!.androidInstructionsTitle,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          L10n.of(context)!.joinBetaPlayStore,
+          style: const TextStyle(fontSize: 16),
+        ),
+        const SizedBox(height: 10.0),
+        ElevatedButton(
+          onPressed: () async {
+            try {
+              await _launchUrlOrThrow(AppConfig.playStoreUrl);
+            } catch (e) {
+              await _launchUrlOrThrow(AppConfig.androidBetaUrl);
+            }
+          },
+          child: Text(L10n.of(context)!.downloadBetaAndroidButton),
+        ),
+        const Divider(thickness: 1),
+        Text(
+          L10n.of(context)!.joinBetaGroup,
+          style: const TextStyle(fontSize: 16),
+        ),
+      ],
     );
   }
 }
