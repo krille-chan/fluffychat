@@ -55,14 +55,6 @@ extension AnalyticsRoomExtension on Room {
     }
   }
 
-  // check if analytics room exists for a given language code
-  // and if not, create it
-  Future<void> _ensureAnalyticsRoomExists() async {
-    await postLoad();
-    if (firstLanguageSettings?.targetLanguage == null) return;
-    await client.getMyAnalyticsRoom(firstLanguageSettings!.targetLanguage);
-  }
-
   // add 1 analytics room to 1 space
   Future<void> _addAnalyticsRoomToSpace(Room analyticsRoom) async {
     if (!isSpace) {
@@ -107,7 +99,7 @@ extension AnalyticsRoomExtension on Room {
       return;
     }
 
-    for (final Room space in (await client.classesAndExchangesImStudyingIn)) {
+    for (final Room space in (await client.spaceImAStudentIn)) {
       if (space.spaceChildren.any((sc) => sc.roomId == id)) continue;
       await space.addAnalyticsRoomToSpace(this);
     }
@@ -183,7 +175,7 @@ extension AnalyticsRoomExtension on Room {
       return;
     }
 
-    for (final Room space in (await client.classesAndExchangesImStudyingIn)) {
+    for (final Room space in (await client.spaceImAStudentIn)) {
       await space.inviteSpaceTeachersToAnalyticsRoom(this);
     }
   }
@@ -202,7 +194,7 @@ extension AnalyticsRoomExtension on Room {
     final List<Event> events = await getEventsBySender(
       type: type,
       sender: userId,
-      count: 1,
+      count: 10,
     );
     if (events.isEmpty) return null;
     final Event event = events.first;
@@ -256,5 +248,32 @@ extension AnalyticsRoomExtension on Room {
     final creationContent = getState(EventTypes.RoomCreate)?.content;
     return creationContent?.tryGet<String>(ModelKey.langCode) == langCode ||
         creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
+  }
+
+  Future<String?> sendSummaryAnalyticsEvent(
+    List<RecentMessageRecord> records,
+  ) async {
+    final SummaryAnalyticsModel analyticsModel = SummaryAnalyticsModel(
+      messages: records,
+    );
+    final String? eventId = await sendEvent(
+      analyticsModel.toJson(),
+      type: PangeaEventTypes.summaryAnalytics,
+    );
+    return eventId;
+  }
+
+  Future<String?> sendConstructsEvent(
+    List<OneConstructUse> uses,
+  ) async {
+    final ConstructAnalyticsModel constructsModel = ConstructAnalyticsModel(
+      uses: uses,
+    );
+
+    final String? eventId = await sendEvent(
+      constructsModel.toJson(),
+      type: PangeaEventTypes.construct,
+    );
+    return eventId;
   }
 }

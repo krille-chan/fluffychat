@@ -1,8 +1,8 @@
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/utils/instructions.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import '../../widgets/common/bot_face_svg.dart';
 import '../controllers/choreographer.dart';
 import '../controllers/it_controller.dart';
@@ -37,7 +37,7 @@ class ITBotButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    choreographer.pangeaController.instructions.show(
+    choreographer.pangeaController.instructions.showInstructionsPopup(
       context,
       InstructionsEnum.itInstructions,
       choreographer.itBotTransformTargetKey,
@@ -45,8 +45,9 @@ class ITBotButton extends StatelessWidget {
     );
 
     return IconButton(
-      icon: const BotFace(width: 40.0, expression: BotExpression.right),
-      onPressed: () => choreographer.pangeaController.instructions.show(
+      icon: const BotFace(width: 40.0, expression: BotExpression.idle),
+      onPressed: () =>
+          choreographer.pangeaController.instructions.showInstructionsPopup(
         context,
         InstructionsEnum.itInstructions,
         choreographer.itBotTransformTargetKey,

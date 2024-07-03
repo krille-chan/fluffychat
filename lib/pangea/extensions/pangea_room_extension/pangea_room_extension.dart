@@ -4,15 +4,19 @@ import 'dart:developer';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
 import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/language_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -30,17 +34,16 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../config/app_config.dart';
 import '../../constants/pangea_event_types.dart';
-import '../../enum/use_type.dart';
 import '../../models/choreo_record.dart';
 import '../../models/representation_content_model.dart';
 import '../client_extension/client_extension.dart';
 
 part "children_and_parents_extension.dart";
-part "class_and_exchange_settings_extension.dart";
 part "events_extension.dart";
 part "room_analytics_extension.dart";
 part "room_information_extension.dart";
 part "room_settings_extension.dart";
+part "space_settings_extension.dart";
 part "user_permissions_extension.dart";
 
 extension PangeaRoom on Room {
@@ -48,9 +51,6 @@ extension PangeaRoom on Room {
 
   Future<void> joinAnalyticsRoomsInSpace() async =>
       await _joinAnalyticsRoomsInSpace();
-
-  Future<void> ensureAnalyticsRoomExists() async =>
-      await _ensureAnalyticsRoomExists();
 
   Future<void> addAnalyticsRoomToSpace(Room analyticsRoom) async =>
       await _addAnalyticsRoomToSpace(analyticsRoom);
@@ -105,8 +105,6 @@ extension PangeaRoom on Room {
   Room? firstParentWithState(String stateType) =>
       _firstParentWithState(stateType);
 
-  List<Room> get immediateClassParents => _immediateClassParents;
-
   List<Room> get pangeaSpaceParents => _pangeaSpaceParents;
 
   String nameIncludingParents(BuildContext context) =>
@@ -114,7 +112,9 @@ extension PangeaRoom on Room {
 
   List<String> get allSpaceChildRoomIds => _allSpaceChildRoomIds;
 
-  bool canAddAsParentOf(Room? child) => _canAddAsParentOf(child);
+  bool canAddAsParentOf(Room? child, {bool spaceMode = false}) {
+    return _canAddAsParentOf(child, spaceMode: spaceMode);
+  }
 
 // class_and_exchange_settings
 
@@ -130,15 +130,10 @@ extension PangeaRoom on Room {
 
   Future<void> setClassPowerLevels() async => await _setClassPowerLevels();
 
-  DateTime? get classSettingsUpdatedAt => _classSettingsUpdatedAt;
-
-  ClassSettingsModel? get classSettings => _classSettings;
-
-  Event? get languageSettingsStateEvent => _languageSettingsStateEvent;
-
   Event? get pangeaRoomRulesStateEvent => _pangeaRoomRulesStateEvent;
 
-  ClassSettingsModel? get firstLanguageSettings => _firstLanguageSettings;
+  Future<List<LanguageModel>> targetLanguages() async =>
+      await _targetLanguages();
 
 // events
 
@@ -185,7 +180,6 @@ extension PangeaRoom on Room {
     PangeaMessageTokens? tokensSent,
     PangeaMessageTokens? tokensWritten,
     ChoreoRecord? choreo,
-    UseType? useType,
   }) =>
       _pangeaSendTextEvent(
         message,
@@ -202,7 +196,6 @@ extension PangeaRoom on Room {
         tokensSent: tokensSent,
         tokensWritten: tokensWritten,
         choreo: choreo,
-        useType: useType,
       );
 
   Future<String> updateStateEvent(Event stateEvent) =>
@@ -222,8 +215,6 @@ extension PangeaRoom on Room {
 
   bool isFirstOrSecondChild(String roomId) => _isFirstOrSecondChild(roomId);
 
-  bool get isExchange => _isExchange;
-
   bool get isDirectChatWithoutMe => _isDirectChatWithoutMe;
 
   // bool isMadeForLang(String langCode) => _isMadeForLang(langCode);
@@ -233,8 +224,6 @@ extension PangeaRoom on Room {
   Future<bool> get isBotDM async => await _isBotDM;
 
   bool get isLocked => _isLocked;
-
-  bool get isPangeaClass => _isPangeaClass;
 
   bool isAnalyticsRoomOfUser(String userId) => _isAnalyticsRoomOfUser(userId);
 
@@ -283,7 +272,9 @@ extension PangeaRoom on Room {
 
   bool get canDelete => _canDelete;
 
-  bool canIAddSpaceChild(Room? room) => _canIAddSpaceChild(room);
+  bool canIAddSpaceChild(Room? room, {bool spaceMode = false}) {
+    return _canIAddSpaceChild(room, spaceMode: spaceMode);
+  }
 
   bool get canIAddSpaceParents => _canIAddSpaceParents;
 

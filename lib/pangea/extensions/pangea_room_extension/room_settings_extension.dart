@@ -40,8 +40,7 @@ extension RoomSettingsRoomExtension on Room {
 
   IconData? get _roomTypeIcon {
     if (membership == Membership.invite) return Icons.add;
-    if (isPangeaClass) return Icons.school;
-    if (isExchange) return Icons.connecting_airports;
+    if (isSpace) return Icons.school;
     if (isAnalyticsRoom) return Icons.analytics;
     if (isDirectChat) return Icons.forum;
     return Icons.group;

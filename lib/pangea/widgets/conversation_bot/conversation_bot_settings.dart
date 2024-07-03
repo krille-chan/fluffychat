@@ -4,6 +4,7 @@ import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_dynamic_zone.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_select.dart';
 import 'package:fluffychat/pangea/widgets/space/language_level_dropdown.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,14 +21,12 @@ class ConversationBotSettings extends StatefulWidget {
   final Room? room;
   final bool startOpen;
   final String? activeSpaceId;
-  // final ClassSettingsModel? initialSettings;
 
   const ConversationBotSettings({
     super.key,
     this.room,
     this.startOpen = false,
     this.activeSpaceId,
-    // this.initialSettings,
   });
 
   @override
@@ -46,7 +45,9 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
   void initState() {
     super.initState();
     isOpen = widget.startOpen;
-    botOptions = widget.room?.botOptions ?? BotOptionsModel();
+    botOptions = widget.room?.botOptions != null
+        ? BotOptionsModel.fromJson(widget.room?.botOptions?.toJson())
+        : BotOptionsModel();
     widget.room?.isBotRoom.then((bool isBotRoom) {
       setState(() {
         addBot = isBotRoom;
@@ -55,9 +56,6 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
     parentSpace = widget.activeSpaceId != null
         ? Matrix.of(context).client.getRoomById(widget.activeSpaceId!)
         : null;
-    if (parentSpace != null && botOptions.languageLevel == null) {
-      botOptions.languageLevel = parentSpace?.classSettings?.languageLevel;
-    }
   }
 
   Future<void> updateBotOption(void Function() makeLocalChange) async {
@@ -141,7 +139,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                             Theme.of(context).textTheme.bodyLarge!.color,
                         child: const BotFace(
                           width: 30.0,
-                          expression: BotExpression.right,
+                          expression: BotExpression.idle,
                         ),
                       ),
                       trailing: ElevatedButton(
@@ -226,28 +224,28 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                         }),
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.fromLTRB(32, 16, 0, 0),
-                    //   child: Text(
-                    //     L10n.of(context)!.conversationBotModeSelectDescription,
-                    //     style: TextStyle(
-                    //       color: Theme.of(context).colorScheme.secondary,
-                    //       fontWeight: FontWeight.bold,
-                    //       fontSize: 16,
-                    //     ),
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 16),
-                    //   child: ConversationBotModeSelect(
-                    //     initialMode: botOptions.mode,
-                    //     onChanged: (String? mode) => updateBotOption(
-                    //       () {
-                    //         botOptions.mode = mode ?? "discussion";
-                    //       },
-                    //     ),
-                    //   ),
-                    // ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(32, 16, 0, 0),
+                      child: Text(
+                        L10n.of(context)!.conversationBotModeSelectDescription,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: ConversationBotModeSelect(
+                        initialMode: botOptions.mode,
+                        onChanged: (String? mode) => updateBotOption(
+                          () {
+                            botOptions.mode = mode ?? "discussion";
+                          },
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(28, 0, 12, 0),
                       child: ConversationBotModeDynamicZone(

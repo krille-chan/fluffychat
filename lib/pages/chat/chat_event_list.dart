@@ -4,8 +4,8 @@ import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/pangea/widgets/chat/locked_chat_message.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
@@ -45,7 +45,8 @@ class ChatEventList extends StatelessWidget {
     // after the chat event list mounts, if the user hasn't yet seen this instruction
     // card, attach it on top of the first shown message
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller.pangeaController.instructions.show(
+      if (events.isEmpty) return;
+      controller.pangeaController.instructions.showInstructionsPopup(
         context,
         InstructionsEnum.clickMessage,
         events[0].eventId,

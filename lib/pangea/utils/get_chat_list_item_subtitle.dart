@@ -1,9 +1,9 @@
 import 'package:collection/collection.dart';
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -69,9 +69,7 @@ class GetChatListItemSubtitle {
         timeline: timeline,
         ownMessage: false,
       );
-      final l2Code = pangeaController.languageController
-          .activeL2Code(roomID: event.roomId);
-
+      final l2Code = pangeaController.languageController.activeL2Code();
       if (l2Code == null || l2Code == LanguageKeys.unknownLanguage) {
         return event.body;
       }

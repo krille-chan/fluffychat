@@ -29,15 +29,4 @@ extension BarChartViewSelectionExtension on BarChartViewSelection {
         return Icons.spellcheck_outlined;
     }
   }
-
-  String get route {
-    switch (this) {
-      case BarChartViewSelection.messages:
-        return 'messages';
-      // case BarChartViewSelection.vocab:
-      //   return 'vocab';
-      case BarChartViewSelection.grammar:
-        return 'errors';
-    }
-  }
 }

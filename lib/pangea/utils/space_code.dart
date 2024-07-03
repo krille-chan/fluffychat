@@ -6,25 +6,25 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../controllers/pangea_controller.dart';
 
-class ClassCodeUtil {
+class SpaceCodeUtil {
   static const codeLength = 6;
 
-  static bool isValidCode(String? classcode) {
-    return classcode == null || classcode.length > 4;
+  static bool isValidCode(String? spacecode) {
+    return spacecode == null || spacecode.length > 4;
   }
 
-  static String generateClassCode() {
+  static String generateSpaceCode() {
     final r = Random();
     const chars = 'AaBbCcDdEeFfGgHhiJjKkLMmNnoPpQqRrSsTtUuVvWwXxYyZz1234567890';
     return List.generate(codeLength, (index) => chars[r.nextInt(chars.length)])
         .join();
   }
 
-  static Future<void> joinWithClassCodeDialog(
+  static Future<void> joinWithSpaceCodeDialog(
     BuildContext context,
     PangeaController pangeaController,
   ) async {
-    final List<String>? classCode = await showTextInputDialog(
+    final List<String>? spaceCode = await showTextInputDialog(
       context: context,
       title: L10n.of(context)!.joinWithClassCode,
       okLabel: L10n.of(context)!.ok,
@@ -33,10 +33,10 @@ class ClassCodeUtil {
         DialogTextField(hintText: L10n.of(context)!.joinWithClassCodeHint),
       ],
     );
-    if (classCode == null || classCode.single.isEmpty) return;
+    if (spaceCode == null || spaceCode.single.isEmpty) return;
     await pangeaController.classController.joinClasswithCode(
       context,
-      classCode.first,
+      spaceCode.first,
     );
   }
 

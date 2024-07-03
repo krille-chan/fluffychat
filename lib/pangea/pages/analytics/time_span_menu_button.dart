@@ -15,8 +15,6 @@ class TimeSpanMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<TimeSpan>(
-      offset: const Offset(0, 100),
-      icon: const Icon(Icons.calendar_month_outlined),
       tooltip: L10n.of(context)!.changeDateRange,
       initialValue: value,
       onSelected: (TimeSpan? timeSpan) {
@@ -33,6 +31,19 @@ class TimeSpanMenuButton extends StatelessWidget {
           child: Text(timeSpan.string(context)),
         );
       }).toList(),
+      child: TextButton.icon(
+        label: Text(
+          value.string(context),
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
+        icon: Icon(
+          Icons.calendar_month_outlined,
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+        onPressed: null,
+      ),
     );
   }
 }

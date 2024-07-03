@@ -4,7 +4,6 @@ import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../config/firebase_options.dart';
-import '../enum/use_type.dart';
 
 // PageRoute import
 
@@ -68,13 +67,6 @@ class GoogleAnalytics {
     );
   }
 
-  static createExchange(String exchangeName, String classCode) {
-    logEvent(
-      'create_exchange',
-      parameters: {'name': exchangeName, 'group_id': classCode},
-    );
-  }
-
   static createChat(String newChatRoomId) {
     logEvent('create_chat', parameters: {"chat_id": newChatRoomId});
   }
@@ -93,38 +85,16 @@ class GoogleAnalytics {
     );
   }
 
-  static addChatToExchange(String chatRoomId, String classCode) {
-    logEvent(
-      'add_chat_to_exchange',
-      parameters: {"chat_id": chatRoomId, 'group_id': classCode},
-    );
-  }
-
-  static inviteClassToExchange(String classId, String exchangeId) {
-    logEvent(
-      'invite_class_to_exchange',
-      parameters: {'group_id': classId, 'exchange_id': exchangeId},
-    );
-  }
-
-  static kickClassFromExchange(String classId, String exchangeId) {
-    logEvent(
-      'kick_class_from_exchange',
-      parameters: {'group_id': classId, 'exchange_id': exchangeId},
-    );
-  }
-
   static joinClass(String classCode) {
     logEvent('join_group', parameters: {'group_id': classCode});
   }
 
-  static sendMessage(String chatRoomId, String classCode, UseType useType) {
+  static sendMessage(String chatRoomId, String classCode) {
     logEvent(
       'sent_message',
       parameters: {
         "chat_id": chatRoomId,
         'group_id': classCode,
-        "message_type": useType.toString(),
       },
     );
   }

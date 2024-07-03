@@ -16,7 +16,7 @@ class ConversationBotModeSelect extends StatelessWidget {
     final Map<String, String> options = {
       "discussion":
           L10n.of(context)!.conversationBotModeSelectOption_discussion,
-      // "custom": L10n.of(context)!.conversationBotModeSelectOption_custom,
+      "custom": L10n.of(context)!.conversationBotModeSelectOption_custom,
       // "conversation":
       //     L10n.of(context)!.conversationBotModeSelectOption_conversation,
       // "text_adventure":

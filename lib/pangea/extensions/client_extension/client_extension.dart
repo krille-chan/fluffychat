@@ -3,17 +3,18 @@ import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
-part "classes_and_exchanges_extension.dart";
 part "client_analytics_extension.dart";
 part "general_info_extension.dart";
+part "space_extension.dart";
 
 extension PangeaClient on Client {
 // analytics
@@ -43,26 +44,21 @@ extension PangeaClient on Client {
 
   Future<void> migrateAnalyticsRooms() async => await _migrateAnalyticsRooms();
 
-  // classes_and_exchanges
+  Future<Map<String, DateTime?>> allAnalyticsRoomsLastUpdated() async =>
+      await _allAnalyticsRoomsLastUpdated();
 
-  List<Room> get classes => _classes;
+  // spaces
 
-  List<Room> get classesImTeaching => _classesImTeaching;
+  Future<List<Room>> get spacesImTeaching async => await _spacesImTeaching;
 
-  Future<List<Room>> get classesAndExchangesImTeaching async =>
-      await _classesAndExchangesImTeaching;
+  Future<List<Room>> get chatsImAStudentIn async => await _chatsImAStudentIn;
 
-  List<Room> get classesImIn => _classesImIn;
+  Future<List<Room>> get spaceImAStudentIn async => await _spacesImStudyingIn;
 
-  Future<List<Room>> get classesAndExchangesImStudyingIn async =>
-      await _classesAndExchangesImStudyingIn;
-
-  List<Room> get classesAndExchangesImIn => _classesAndExchangesImIn;
+  List<Room> get spacesImIn => _spacesImIn;
 
   Future<PangeaRoomRules?> get lastUpdatedRoomRules async =>
       await _lastUpdatedRoomRules;
-
-  ClassSettingsModel? get lastUpdatedClassSettings => _lastUpdatedClassSettings;
 
 // general_info
 

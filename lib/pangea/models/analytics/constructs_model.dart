@@ -1,11 +1,9 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_model.dart';
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../enum/construct_type_enum.dart';
@@ -24,7 +22,7 @@ class ConstructAnalyticsModel extends AnalyticsModel {
     if (json[_usesKey] is List) {
       // This is the new format
       uses.addAll(
-        json[_usesKey]
+        (json[_usesKey] as List)
             .map((use) => OneConstructUse.fromJson(use))
             .cast<OneConstructUse>()
             .toList(),
@@ -39,13 +37,13 @@ class ConstructAnalyticsModel extends AnalyticsModel {
           final lemmaUses = useValue[_usesKey];
           for (final useData in lemmaUses) {
             final use = OneConstructUse(
-              useType: ConstructUseType.ga,
+              useType: ConstructUseTypeEnum.ga,
               chatId: useData["chatId"],
               timeStamp: DateTime.parse(useData["timeStamp"]),
               lemma: lemma,
               form: useData["form"],
               msgId: useData["msgId"],
-              constructType: ConstructType.grammar,
+              constructType: ConstructTypeEnum.grammar,
             );
             uses.add(use);
           }
@@ -70,122 +68,13 @@ class ConstructAnalyticsModel extends AnalyticsModel {
       _usesKey: uses.map((use) => use.toJson()).toList(),
     };
   }
-
-  static List<OneConstructUse> formatConstructsContent(
-    List<PangeaMessageEvent> recentMsgs,
-  ) {
-    final List<PangeaMessageEvent> filtered = List.from(recentMsgs);
-    final List<OneConstructUse> uses = [];
-
-    for (final msg in filtered) {
-      if (msg.originalSent?.choreo == null) continue;
-      uses.addAll(
-        msg.originalSent!.choreo!.toGrammarConstructUse(
-          msg.eventId,
-          msg.room.id,
-          msg.originServerTs,
-        ),
-      );
-
-      final List<PangeaToken>? tokens = msg.originalSent?.tokens;
-      if (tokens == null) continue;
-      uses.addAll(
-        msg.originalSent!.choreo!.toVocabUse(
-          tokens,
-          msg.room.id,
-          msg.eventId,
-          msg.originServerTs,
-        ),
-      );
-    }
-
-    return uses;
-  }
-}
-
-enum ConstructUseType {
-  /// produced in chat by user, igc was run, and we've judged it to be a correct use
-  wa,
-
-  /// produced in chat by user, igc was run, and we've judged it to be a incorrect use
-  /// Note: if the IGC match is ignored, this is not counted as an incorrect use
-  ga,
-
-  /// produced in chat by user and igc was not run
-  unk,
-
-  /// selected correctly in IT flow
-  corIt,
-
-  /// encountered as IT distractor and correctly ignored it
-  ignIt,
-
-  /// encountered as it distractor and selected it
-  incIt,
-
-  /// encountered in igc match and ignored match
-  ignIGC,
-
-  /// selected correctly in IGC flow
-  corIGC,
-
-  /// encountered as distractor in IGC flow and selected it
-  incIGC,
-}
-
-extension on ConstructUseType {
-  String get string {
-    switch (this) {
-      case ConstructUseType.ga:
-        return 'ga';
-      case ConstructUseType.wa:
-        return 'wa';
-      case ConstructUseType.corIt:
-        return 'corIt';
-      case ConstructUseType.incIt:
-        return 'incIt';
-      case ConstructUseType.ignIt:
-        return 'ignIt';
-      case ConstructUseType.ignIGC:
-        return 'ignIGC';
-      case ConstructUseType.corIGC:
-        return 'corIGC';
-      case ConstructUseType.incIGC:
-        return 'incIGC';
-      case ConstructUseType.unk:
-        return 'unk';
-    }
-  }
-
-  IconData get icon {
-    switch (this) {
-      case ConstructUseType.ga:
-        return Icons.check;
-      case ConstructUseType.wa:
-        return Icons.thumb_up_sharp;
-      case ConstructUseType.corIt:
-        return Icons.check;
-      case ConstructUseType.incIt:
-        return Icons.close;
-      case ConstructUseType.ignIt:
-        return Icons.close;
-      case ConstructUseType.ignIGC:
-        return Icons.close;
-      case ConstructUseType.corIGC:
-        return Icons.check;
-      case ConstructUseType.incIGC:
-        return Icons.close;
-      case ConstructUseType.unk:
-        return Icons.help;
-    }
-  }
 }
 
 class OneConstructUse {
   String? lemma;
-  ConstructType? constructType;
+  ConstructTypeEnum? constructType;
   String? form;
-  ConstructUseType useType;
+  ConstructUseTypeEnum useType;
   String chatId;
   String? msgId;
   DateTime timeStamp;
@@ -204,7 +93,7 @@ class OneConstructUse {
 
   factory OneConstructUse.fromJson(Map<String, dynamic> json) {
     return OneConstructUse(
-      useType: ConstructUseType.values
+      useType: ConstructUseTypeEnum.values
           .firstWhere((e) => e.string == json['useType']),
       chatId: json['chatId'],
       timeStamp: DateTime.parse(json['timeStamp']),
@@ -248,7 +137,7 @@ class OneConstructUse {
 
 class ConstructUses {
   final List<OneConstructUse> uses;
-  final ConstructType constructType;
+  final ConstructTypeEnum constructType;
   final String lemma;
 
   ConstructUses({

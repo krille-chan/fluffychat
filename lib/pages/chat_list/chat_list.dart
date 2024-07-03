@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
@@ -213,32 +212,12 @@ class ChatListController extends State<ChatList>
   }
 
   List<Room> get filteredRooms => Matrix.of(context)
-          .client
-          .rooms
-          .where(
-            getRoomFilterByActiveFilter(activeFilter),
-          )
-          // #Pangea
-          .sorted((roomA, roomB) {
-        // put rooms with unread messages at the top of the list
-        if (roomA.membership == Membership.invite &&
-            roomB.membership != Membership.invite) {
-          return -1;
-        }
-        if (roomA.membership != Membership.invite &&
-            roomB.membership == Membership.invite) {
-          return 1;
-        }
-
-        final bool aUnread = roomA.notificationCount > 0 || roomA.markedUnread;
-        final bool bUnread = roomB.notificationCount > 0 || roomB.markedUnread;
-        if (aUnread && !bUnread) return -1;
-        if (!aUnread && bUnread) return 1;
-
-        return 0;
-      })
-          // Pangea#
-          .toList();
+      .client
+      .rooms
+      .where(
+        getRoomFilterByActiveFilter(activeFilter),
+      )
+      .toList();
 
   bool isSearchMode = false;
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;
@@ -938,7 +917,7 @@ class ChatListController extends State<ChatList>
     if (mounted) {
       GoogleAnalytics.analyticsUserUpdate(client.userID);
       await pangeaController.subscriptionController.initialize();
-      await pangeaController.myAnalytics.addEventsListener();
+      await pangeaController.myAnalytics.initialize();
       pangeaController.afterSyncAndFirstLoginInitialization(context);
       await pangeaController.inviteBotToExistingSpaces();
       await pangeaController.setPangeaPushRules();

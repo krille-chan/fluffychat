@@ -1,5 +1,5 @@
 import 'package:fluffychat/pangea/constants/local.key.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/country_picker_tile.dart';
@@ -61,6 +61,16 @@ class SettingsLearningView extends StatelessWidget {
                   pStoreKey: setting.toString(),
                   local: false,
                 ),
+              PSettingsSwitchListTile.adaptive(
+                defaultValue: controller.pangeaController.pStoreService.read(
+                      PLocalKey.itAutoPlay,
+                    ) ??
+                    false,
+                title: L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader,
+                subtitle: L10n.of(context)!.interactiveTranslatorAutoPlayDesc,
+                pStoreKey: PLocalKey.itAutoPlay,
+                local: false,
+              ),
               PSettingsSwitchListTile.adaptive(
                 defaultValue: controller.pangeaController.pStoreService.read(
                       PLocalKey.autoPlayMessages,

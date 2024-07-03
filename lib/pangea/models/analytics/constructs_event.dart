@@ -18,19 +18,4 @@ class ConstructAnalyticsEvent extends AnalyticsEvent {
     contentCache ??= ConstructAnalyticsModel.fromJson(event.content);
     return contentCache as ConstructAnalyticsModel;
   }
-
-  static Future<String?> sendConstructsEvent(
-    Room analyticsRoom,
-    List<OneConstructUse> uses,
-  ) async {
-    final ConstructAnalyticsModel constructsModel = ConstructAnalyticsModel(
-      uses: uses,
-    );
-
-    final String? eventId = await analyticsRoom.sendEvent(
-      constructsModel.toJson(),
-      type: PangeaEventTypes.construct,
-    );
-    return eventId;
-  }
 }

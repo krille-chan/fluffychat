@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -79,8 +79,8 @@ class LanguageModel {
 
   static LanguageModel multiLingual([BuildContext? context]) => LanguageModel(
         displayName: context != null
-            ? L10n.of(context)!.multiLingualClass
-            : "Multilingual Class",
+            ? L10n.of(context)!.multiLingualSpace
+            : "Multilingual Space",
         l2: false,
         l1: false,
         langCode: LanguageKeys.multiLanguage,

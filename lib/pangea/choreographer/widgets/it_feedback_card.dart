@@ -129,7 +129,7 @@ class ITFeedbackCardView extends StatelessWidget {
           children: [
             CardHeader(
               text: controller.widget.req.chosenContinuance,
-              botExpression: BotExpression.down,
+              botExpression: BotExpression.nonGold,
             ),
             Text(
               controller.widget.choiceFeedback,

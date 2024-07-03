@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
@@ -61,10 +61,8 @@ class WordDataCardController extends State<WordDataCard> {
   @override
   void initState() {
     if (!mounted) return;
-    activeL1 =
-        controller.languageController.activeL1Model(roomID: widget.room.id)!;
-    activeL2 =
-        controller.languageController.activeL2Model(roomID: widget.room.id)!;
+    activeL1 = controller.languageController.activeL1Model()!;
+    activeL2 = controller.languageController.activeL2Model()!;
     if (activeL1 == null || activeL2 == null) {
       wordNetError = noLanguages;
       definitionError = noLanguages;

@@ -5,17 +5,16 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/alternative_translator.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/igc_controller.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/message_options.dart';
-import 'package:fluffychat/pangea/constants/language_keys.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
+import 'package:fluffychat/pangea/enum/assistance_state_enum.dart';
 import 'package:fluffychat/pangea/enum/edit_type.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/it_step.dart';
-import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
+import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
@@ -25,7 +24,6 @@ import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../widgets/matrix.dart';
-import '../../enum/use_type.dart';
 import '../../models/choreo_record.dart';
 import '../../models/language_model.dart';
 import '../../models/pangea_match_model.dart';
@@ -95,63 +93,59 @@ class Choreographer {
   }
 
   Future<void> _sendWithIGC(BuildContext context) async {
-    if (igc.canSendMessage) {
-      final PangeaRepresentation? originalWritten =
-          choreoRecord.includedIT && itController.sourceText != null
-              ? PangeaRepresentation(
-                  langCode: l1LangCode ?? LanguageKeys.unknownLanguage,
-                  text: itController.sourceText!,
-                  originalWritten: true,
-                  originalSent: false,
-                )
-              : null;
-
-      final PangeaRepresentation originalSent = PangeaRepresentation(
-        langCode: langCodeOfCurrentText ?? LanguageKeys.unknownLanguage,
-        text: currentText,
-        originalSent: true,
-        originalWritten: originalWritten == null,
-      );
-      final ChoreoRecord? applicableChoreo =
-          isITandIGCEnabled && igc.igcTextData != null ? choreoRecord : null;
-
-      // if the message has not been processed to determine its language
-      // then run it through the language detection endpoint. If the detection
-      // confidence is high enough, use that language code as the message's language
-      // to save that pangea representation
-      if (applicableChoreo == null) {
-        final resp = await pangeaController.languageDetection.detectLanguage(
-          currentText,
-          pangeaController.languageController.userL2?.langCode,
-          pangeaController.languageController.userL1?.langCode,
-        );
-        final LanguageDetection? bestDetection = resp.bestDetection();
-        if (bestDetection != null) {
-          originalSent.langCode = bestDetection.langCode;
-        }
-      }
-
-      final UseType useType = useTypeCalculator(applicableChoreo);
-      debugPrint("use type in choreographer $useType");
-
-      chatController.send(
-        // PTODO - turn this back on in conjunction with saving tokens
-        // we need to save those tokens as well, in order for exchanges to work
-        // properly. in an exchange, the other user will want
-        // originalWritten: originalWritten,
-        originalSent: originalSent,
-        tokensSent: igc.igcTextData?.tokens != null
-            ? PangeaMessageTokens(tokens: igc.igcTextData!.tokens)
-            : null,
-        //TODO - save originalwritten tokens
-        choreo: applicableChoreo,
-        useType: useType,
-      );
-
-      clear();
-    } else {
+    if (!igc.canSendMessage) {
       igc.showFirstMatch(context);
+      return;
     }
+
+    final PangeaRepresentation? originalWritten =
+        choreoRecord.includedIT && itController.sourceText != null
+            ? PangeaRepresentation(
+                langCode: l1LangCode ?? LanguageKeys.unknownLanguage,
+                text: itController.sourceText!,
+                originalWritten: true,
+                originalSent: false,
+              )
+            : null;
+
+    // TODO - why does both it and igc need to be enabled for choreo to be applicable?
+    // final ChoreoRecord? applicableChoreo =
+    //     isITandIGCEnabled && igc.igcTextData != null ? choreoRecord : null;
+
+    // if tokens or language detection are not available, we should get them
+    // notes
+    // 1) we probably need to move this to after we clear the input field
+    // or the user could experience some lag here.
+    // 2)  that this call is being made after we've determined if we have an applicable choreo in order to
+    // say whether correction was run on the message. we may eventually want
+    // to edit the useType after
+    if (igc.igcTextData?.tokens == null ||
+        igc.igcTextData?.detectedLanguage == null) {
+      await igc.getIGCTextData(onlyTokensAndLanguageDetection: true);
+    }
+
+    final PangeaRepresentation originalSent = PangeaRepresentation(
+      langCode:
+          igc.igcTextData?.detectedLanguage ?? LanguageKeys.unknownLanguage,
+      text: currentText,
+      originalSent: true,
+      originalWritten: originalWritten == null,
+    );
+
+    final PangeaMessageTokens? tokensSent = igc.igcTextData?.tokens != null
+        ? PangeaMessageTokens(tokens: igc.igcTextData!.tokens)
+        : null;
+
+    chatController.send(
+      // originalWritten: originalWritten,
+      originalSent: originalSent,
+      tokensSent: tokensSent,
+      //TODO - save originalwritten tokens
+      // choreo: applicableChoreo,
+      choreo: choreoRecord,
+    );
+
+    clear();
   }
 
   _resetDebounceTimer() {
@@ -167,7 +161,7 @@ class Choreographer {
     }
     choreoMode = ChoreoMode.it;
     itController.initializeIT(
-      ITStartData(_textController.text, igc.detectedLangCode),
+      ITStartData(_textController.text, igc.igcTextData?.detectedLanguage),
     );
     itMatch.status = PangeaMatchStatus.accepted;
 
@@ -180,6 +174,7 @@ class Choreographer {
     _textController.setSystemText("", EditType.itStart);
   }
 
+  /// Handles any changes to the text input
   _onChangeListener() {
     if (_noChange) {
       return;
@@ -188,21 +183,26 @@ class Choreographer {
     if ([
       EditType.igc,
     ].contains(_textController.editType)) {
+      // this may be unnecessary now that tokens are not used
+      // to allow click of words in the input field and we're getting this at the end
+      // TODO - turn it off and tested that this is fine
       igc.justGetTokensAndAddThemToIGCTextData();
+
+      // we set editType to keyboard here because that is the default for it
+      // and we want to make sure that the next change is treated as a keyboard change
+      // unless the system explicity sets it to something else. this
       textController.editType = EditType.keyboard;
       return;
     }
 
+    // not sure if this is necessary now
     MatrixState.pAnyState.closeOverlay();
 
     if (errorService.isError) {
       return;
     }
 
-    // if (igc.igcTextData != null) {
     igc.clear();
-    // setState();
-    // }
 
     _resetDebounceTimer();
 
@@ -212,7 +212,9 @@ class Choreographer {
         () => getLanguageHelp(),
       );
     } else {
-      getLanguageHelp(ChoreoMode.it == choreoMode);
+      getLanguageHelp(
+        onlyTokensAndLanguageDetection: ChoreoMode.it == choreoMode,
+      );
     }
 
     //Note: we don't set the keyboard type on each keyboard stroke so this is how we default to
@@ -221,10 +223,14 @@ class Choreographer {
     textController.editType = EditType.keyboard;
   }
 
-  Future<void> getLanguageHelp([
-    bool tokensOnly = false,
+  /// Fetches the language help for the current text, including grammar correction, language detection,
+  /// tokens, and translations. Includes logic to exit the flow if the user is not subscribed, if the tools are not enabled, or
+  /// or if autoIGC is not enabled and the user has not manually requested it.
+  /// [onlyTokensAndLanguageDetection] will
+  Future<void> getLanguageHelp({
+    bool onlyTokensAndLanguageDetection = false,
     bool manual = false,
-  ]) async {
+  }) async {
     try {
       if (errorService.isError) return;
       final CanSendStatus canSendStatus =
@@ -239,13 +245,15 @@ class Choreographer {
       startLoading();
       if (choreoMode == ChoreoMode.it &&
           itController.isTranslationDone &&
-          !tokensOnly) {
+          !onlyTokensAndLanguageDetection) {
         // debugger(when: kDebugMode);
       }
 
       await (choreoMode == ChoreoMode.it && !itController.isTranslationDone
           ? itController.getTranslationData(_useCustomInput)
-          : igc.getIGCTextData(tokensOnly: tokensOnly));
+          : igc.getIGCTextData(
+              onlyTokensAndLanguageDetection: onlyTokensAndLanguageDetection,
+            ));
     } catch (err, stack) {
       ErrorHandler.logError(e: err, s: stack);
     } finally {
@@ -443,25 +451,15 @@ class Choreographer {
   }
 
   LanguageModel? get l2Lang {
-    return pangeaController.languageController.activeL2Model(
-      roomID: roomId,
-    );
+    return pangeaController.languageController.activeL2Model();
   }
 
   String? get l2LangCode => l2Lang?.langCode;
 
   LanguageModel? get l1Lang =>
-      pangeaController.languageController.activeL1Model(
-        roomID: roomId,
-      );
-  String? get l1LangCode => l1Lang?.langCode;
+      pangeaController.languageController.activeL1Model();
 
-  String? get classId => roomId != null
-      ? pangeaController.matrixState.client
-          .getRoomById(roomId)
-          ?.firstParentWithState(PangeaEventTypes.classSettings)
-          ?.id
-      : null;
+  String? get l1LangCode => l1Lang?.langCode;
 
   String? get userId => pangeaController.userController.userId;
 
@@ -491,14 +489,6 @@ class Choreographer {
       ].contains(_textController.editType);
 
   bool get editTypeIsKeyboard => EditType.keyboard == _textController.editType;
-
-  String? get langCodeOfCurrentText {
-    if (igc.detectedLangCode != null) return igc.detectedLangCode!;
-
-    if (itController.isOpen) return l2LangCode!;
-
-    return null;
-  }
 
   setState() {
     if (!stateListener.isClosed) {
@@ -532,6 +522,12 @@ class Choreographer {
         ToolSetting.interactiveTranslator,
         chatController.room,
       );
+
+  bool get itAutoPlayEnabled =>
+      pangeaController.pStoreService.read(
+        MatrixProfile.itAutoPlay.title,
+      ) ??
+      false;
 
   bool get definitionsEnabled =>
       pangeaController.permissionsController.isToolEnabled(
@@ -581,14 +577,4 @@ class Choreographer {
 
     return AssistanceState.complete;
   }
-}
-
-// assistance state is, user has not typed a message, user has typed a message and IGC has not run,
-// IGC is running, IGC has run and there are remaining steps (either IT or IGC), or all steps are done
-enum AssistanceState {
-  noMessage,
-  notFetched,
-  fetching,
-  fetched,
-  complete,
 }

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/span_card_model.dart';
@@ -13,12 +14,11 @@ import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../constants/model_keys.dart';
-import 'language_detection_model.dart';
 
 // import 'package:language_tool/language_tool.dart';
 
 class IGCTextData {
-  List<LanguageDetection> detections;
+  LanguageDetectionResponse detections;
   String originalInput;
   String? fullTextCorrection;
   List<PangeaToken> tokens;
@@ -42,6 +42,18 @@ class IGCTextData {
   });
 
   factory IGCTextData.fromJson(Map<String, dynamic> json) {
+    // changing this to allow for use of the LanguageDetectionResponse methods
+    // TODO - change API after we're sure all clients are updated. not urgent.
+    final LanguageDetectionResponse detections =
+        json[_detectionsKey] is Iterable
+            ? LanguageDetectionResponse.fromJson({
+                "detections": json[_detectionsKey],
+                "full_text": json["original_input"],
+              })
+            : LanguageDetectionResponse.fromJson(
+                json[_detectionsKey] as Map<String, dynamic>,
+              );
+
     return IGCTextData(
       tokens: (json[_tokensKey] as Iterable)
           .map<PangeaToken>(
@@ -59,12 +71,7 @@ class IGCTextData {
               .toList()
               .cast<PangeaMatch>()
           : [],
-      detections: (json[_detectionsKey] as Iterable)
-          .map<LanguageDetection>(
-            (e) => LanguageDetection.fromJson(e as Map<String, dynamic>),
-          )
-          .toList()
-          .cast<LanguageDetection>(),
+      detections: detections,
       originalInput: json["original_input"],
       fullTextCorrection: json["full_text_correction"],
       userL1: json[ModelKey.userL1],
@@ -79,7 +86,7 @@ class IGCTextData {
   static const String _detectionsKey = "detections";
 
   Map<String, dynamic> toJson() => {
-        _detectionsKey: detections.map((e) => e.toJson()).toList(),
+        _detectionsKey: detections.toJson(),
         "original_input": originalInput,
         "full_text_correction": fullTextCorrection,
         _tokensKey: tokens.map((e) => e.toJson()).toList(),
@@ -89,6 +96,18 @@ class IGCTextData {
         "enable_it": enableIT,
         "enable_igc": enableIGC,
       };
+
+  /// if we haven't run IGC or IT or there are no matches, we use the highest validated detection
+  /// from [LanguageDetectionResponse.highestValidatedDetection]
+  /// if we have run igc/it and there are no matches, we can relax the threshold
+  /// and use the highest confidence detection
+  String get detectedLanguage {
+    if (!(enableIGC && enableIT) || matches.isNotEmpty) {
+      return detections.highestValidatedDetection().langCode;
+    } else {
+      return detections.highestConfidenceDetection.langCode;
+    }
+  }
 
   // reconstruct fullText based on accepted match
   //update offsets in existing matches to reflect the change

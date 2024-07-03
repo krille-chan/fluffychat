@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -93,65 +94,73 @@ class ToolbarDisplayController {
       previousEvent: previousEvent,
     );
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Widget overlayEntry;
-      if (toolbar == null) return;
-      try {
-        overlayEntry = Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: pangeaMessageEvent.ownMessage
-              ? CrossAxisAlignment.end
-              : CrossAxisAlignment.start,
-          children: [
-            toolbarUp ? toolbar! : overlayMessage,
-            const SizedBox(height: 6),
-            toolbarUp ? overlayMessage : toolbar!,
-          ],
-        );
-      } catch (err) {
-        debugger(when: kDebugMode);
-        ErrorHandler.logError(e: err, s: StackTrace.current);
-        return;
-      }
-
-      OverlayUtil.showOverlay(
-        context: context,
-        child: overlayEntry,
-        transformTargetId: targetId,
-        targetAnchor: pangeaMessageEvent.ownMessage
-            ? toolbarUp
-                ? Alignment.bottomRight
-                : Alignment.topRight
-            : toolbarUp
-                ? Alignment.bottomLeft
-                : Alignment.topLeft,
-        followerAnchor: pangeaMessageEvent.ownMessage
-            ? toolbarUp
-                ? Alignment.bottomRight
-                : Alignment.topRight
-            : toolbarUp
-                ? Alignment.bottomLeft
-                : Alignment.topLeft,
-        backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
+    // I'm not sure why I put this here, but it causes the toolbar
+    // not to open immediately after clicking (user has to scroll or move their cursor)
+    // so I'm commenting it out for now
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    Widget overlayEntry;
+    if (toolbar == null) return;
+    try {
+      overlayEntry = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: pangeaMessageEvent.ownMessage
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
+        children: [
+          toolbarUp ? toolbar! : overlayMessage,
+          const SizedBox(height: 6),
+          toolbarUp ? overlayMessage : toolbar!,
+        ],
       );
+    } catch (err) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: err, s: StackTrace.current);
+      return;
+    }
 
-      if (MatrixState.pAnyState.overlay != null) {
-        overlayId = MatrixState.pAnyState.overlay.hashCode.toString();
-      }
+    OverlayUtil.showOverlay(
+      context: context,
+      child: overlayEntry,
+      transformTargetId: targetId,
+      targetAnchor: pangeaMessageEvent.ownMessage
+          ? toolbarUp
+              ? Alignment.bottomRight
+              : Alignment.topRight
+          : toolbarUp
+              ? Alignment.bottomLeft
+              : Alignment.topLeft,
+      followerAnchor: pangeaMessageEvent.ownMessage
+          ? toolbarUp
+              ? Alignment.bottomRight
+              : Alignment.topRight
+          : toolbarUp
+              ? Alignment.bottomLeft
+              : Alignment.topLeft,
+      backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
+      closePrevOverlay:
+          MatrixState.pangeaController.subscriptionController.isSubscribed,
+    );
 
-      if (mode != null) {
-        Future.delayed(
-          const Duration(milliseconds: 100),
-          () => toolbarModeStream.add(mode),
-        );
-      }
-    });
+    if (MatrixState.pAnyState.entries.isNotEmpty) {
+      overlayId = MatrixState.pAnyState.entries.last.hashCode.toString();
+    }
+
+    if (mode != null) {
+      Future.delayed(
+        const Duration(milliseconds: 100),
+        () => toolbarModeStream.add(mode),
+      );
+    }
+    // });
   }
 
   bool get highlighted {
     if (overlayId == null) return false;
-    if (MatrixState.pAnyState.overlay == null) overlayId = null;
-    return MatrixState.pAnyState.overlay.hashCode.toString() == overlayId;
+    if (MatrixState.pAnyState.entries.isEmpty) {
+      overlayId = null;
+      return false;
+    }
+    return MatrixState.pAnyState.entries.last.hashCode.toString() == overlayId;
   }
 }
 
@@ -202,6 +211,12 @@ class MessageToolbarState extends State<MessageToolbar> {
       return;
     }
 
+    // if there is an uncompleted activity, then show that
+    // we don't want the user to user the tools to get the answer :P
+    if (widget.pangeaMessageEvent.hasUncompletedActivity) {
+      newMode = MessageMode.practiceActivity;
+    }
+
     if (mounted) {
       setState(() {
         currentMode = newMode;
@@ -228,6 +243,9 @@ class MessageToolbarState extends State<MessageToolbar> {
           break;
         case MessageMode.definition:
           showDefinition();
+          break;
+        case MessageMode.practiceActivity:
+          showPracticeActivity();
           break;
         default:
           ErrorHandler.logError(
@@ -283,6 +301,12 @@ class MessageToolbarState extends State<MessageToolbar> {
       fullTextLang: widget.pangeaMessageEvent.messageDisplayLangCode,
       hasInfo: true,
       room: widget.room,
+    );
+  }
+
+  void showPracticeActivity() {
+    toolbarContent = PracticeActivityCard(
+      pangeaMessageEvent: widget.pangeaMessageEvent,
     );
   }
 
@@ -403,9 +427,11 @@ class MessageToolbarState extends State<MessageToolbar> {
                       message: mode.tooltip(context),
                       child: IconButton(
                         icon: Icon(mode.icon),
-                        color: currentMode == mode
-                            ? Theme.of(context).colorScheme.primary
-                            : null,
+                        color: mode.iconColor(
+                          widget.pangeaMessageEvent,
+                          currentMode,
+                          context,
+                        ),
                         onPressed: () => updateMode(mode),
                       ),
                     );

@@ -24,7 +24,7 @@ import 'dart:io';
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';

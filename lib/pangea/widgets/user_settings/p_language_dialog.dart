@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
@@ -98,7 +98,6 @@ pLanguageDialog(BuildContext parentContext, Function callback) async {
                                 Navigator.pop(context);
                               } catch (err, s) {
                                 debugger(when: kDebugMode);
-                                //PTODO-Lala add standard error message
                                 ErrorHandler.logError(e: err, s: s);
                                 rethrow;
                               } finally {

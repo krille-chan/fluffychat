@@ -209,6 +209,12 @@ class SettingsView extends StatelessWidget {
                 Icons.chevron_right_outlined,
               ),
             ),
+            ListTile(
+              leading: const Icon(Icons.psychology_outlined),
+              title: Text(L10n.of(context)!.learningSettings),
+              onTap: () => context.go('/rooms/settings/learning'),
+              trailing: const Icon(Icons.chevron_right_outlined),
+            ),
             // Pangea#
             ListTile(
               leading: const Icon(Icons.shield_outlined),

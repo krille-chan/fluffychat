@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
 import 'package:fluffychat/pangea/widgets/common/p_circular_loader.dart';
@@ -14,75 +15,74 @@ import 'package:matrix/matrix.dart';
 
 import '../../../../widgets/matrix.dart';
 import '../../../utils/sync_status_util_v2.dart';
-import 'class_analytics_view.dart';
+import 'space_analytics_view.dart';
 
-enum AnalyticsPageType { classList, student, classDetails }
-
-class ClassAnalyticsPage extends StatefulWidget {
-  final BarChartViewSelection? selectedView;
-  const ClassAnalyticsPage({super.key, this.selectedView});
+class SpaceAnalyticsPage extends StatefulWidget {
+  final BarChartViewSelection selectedView;
+  const SpaceAnalyticsPage({super.key, required this.selectedView});
 
   @override
-  State<ClassAnalyticsPage> createState() => ClassAnalyticsV2Controller();
+  State<SpaceAnalyticsPage> createState() => SpaceAnalyticsV2Controller();
 }
 
-class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
+class SpaceAnalyticsV2Controller extends State<SpaceAnalyticsPage> {
   bool _initialized = false;
   // StreamSubscription<Event>? stateSub;
   // Timer? refreshTimer;
 
   List<SpaceRoomsChunk> chats = [];
   List<User> students = [];
-  String? get classId => GoRouterState.of(context).pathParameters['classid'];
-  Room? _classRoom;
-
-  Room? get classRoom {
-    if (_classRoom == null || _classRoom!.id != classId) {
-      debugPrint("updating _classRoom");
-      _classRoom = classId != null
-          ? Matrix.of(context).client.getRoomById(classId!)
-          : null;
-      if (_classRoom == null) {
-        context.go('/rooms/analytics');
-      }
-      getChatAndStudents();
-    }
-    return _classRoom;
-  }
+  String? get spaceId => GoRouterState.of(context).pathParameters['spaceid'];
+  Room? _spaceRoom;
+  List<LanguageModel> targetLanguages = [];
 
   @override
   void initState() {
     super.initState();
-    debugPrint("init class analytics");
     Future.delayed(Duration.zero, () async {
-      if (classRoom == null || (!(classRoom?.isSpace ?? false))) {
+      if (spaceRoom == null || (!(spaceRoom?.isSpace ?? false))) {
         context.go('/rooms');
       }
       getChatAndStudents();
     });
   }
 
+  Room? get spaceRoom {
+    if (_spaceRoom == null || _spaceRoom!.id != spaceId) {
+      debugPrint("updating _spaceRoom");
+      _spaceRoom = spaceId != null
+          ? Matrix.of(context).client.getRoomById(spaceId!)
+          : null;
+      if (_spaceRoom == null) {
+        context.go('/rooms/analytics');
+        return null;
+      }
+      getChatAndStudents().then((_) => setTargetLanguages());
+    }
+    return _spaceRoom;
+  }
+
   Future<void> getChatAndStudents() async {
     try {
-      await classRoom?.postLoad();
-      await classRoom?.requestParticipants();
+      await spaceRoom?.postLoad();
+      await spaceRoom?.requestParticipants();
 
-      if (classRoom != null) {
+      if (spaceRoom != null) {
         final response = await Matrix.of(context).client.getSpaceHierarchy(
-              classRoom!.id,
+              spaceRoom!.id,
             );
 
         // set the latest fetched full hierarchy in message analytics controller
         // we want to avoid calling this endpoint again and again, so whenever the
         // data is made available, set it in the controller
         MatrixState.pangeaController.analytics
-            .setLatestHierarchy(_classRoom!.id, response);
+            .setLatestHierarchy(_spaceRoom!.id, response);
 
-        students = classRoom!.students;
+        students = spaceRoom!.students;
         chats = response.rooms
             .where(
               (room) =>
-                  room.roomId != classRoom!.id &&
+                  room.roomId != spaceRoom!.id &&
                   room.roomType != PangeaRoomTypes.analytics,
             )
             .toList();
@@ -98,12 +98,12 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
     }
   }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   refreshTimer?.cancel();
-  //   stateSub?.cancel();
-  // }
+  Future<void> setTargetLanguages() async {
+    // get a list of language models, sorted by the
+    // number of students who are learning that language
+    targetLanguages = await spaceRoom?.targetLanguages() ?? [];
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +116,7 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
       // onFinish: () {
       //   getChatAndStudentAnalytics(context);
       // },
-      child: ClassAnalyticsView(this),
+      child: SpaceAnalyticsView(this),
     );
   }
 }
