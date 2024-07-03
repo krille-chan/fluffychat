@@ -29,41 +29,26 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   PangeaRepresentation? repEvent;
   String? selectionTranslation;
   String? oldSelectedText;
-  String? l1Code;
-  String? l2Code;
   bool _fetchingRepresentation = false;
 
-  String? translationLangCode() {
-    if (widget.immersionMode) return l1Code;
-    final String? originalSentCode =
-        widget.messageEvent.originalSent?.content.langCode;
-    return (l1Code == originalSentCode || originalSentCode == null)
-        ? l2Code
-        : l1Code;
-  }
-
   Future<void> fetchRepresentation(BuildContext context) async {
-    final String? langCode = translationLangCode();
-    if (langCode == null) return;
+    if (l1Code == null) return;
 
     repEvent = widget.messageEvent
         .representationByLanguage(
-          langCode,
+          l1Code!,
         )
         ?.content;
 
     if (repEvent == null && mounted) {
       repEvent = await widget.messageEvent.representationByLanguageGlobal(
-        langCode: langCode,
+        langCode: l1Code!,
       );
     }
   }
 
   Future<void> translateSelection() async {
-    final String? targetLang = translationLangCode();
-
     if (widget.selection.selectedText == null ||
-        targetLang == null ||
         l1Code == null ||
         l2Code == null) {
       selectionTranslation = null;
@@ -78,7 +63,7 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
       accessToken: accessToken,
       request: FullTextTranslationRequestModel(
         text: widget.selection.messageText,
-        tgtLang: translationLangCode()!,
+        tgtLang: l1Code!,
         userL1: l1Code!,
         userL2: l2Code!,
         srcLang: widget.messageEvent.messageDisplayLangCode,
@@ -106,11 +91,14 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     }
   }
 
+  String? get l1Code =>
+      MatrixState.pangeaController.languageController.activeL1Code();
+  String? get l2Code =>
+      MatrixState.pangeaController.languageController.activeL2Code();
+
   @override
   void initState() {
     super.initState();
-    l1Code = MatrixState.pangeaController.languageController.activeL1Code();
-    l2Code = MatrixState.pangeaController.languageController.activeL2Code();
     if (mounted) {
       setState(() {});
     }
