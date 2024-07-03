@@ -45,6 +45,7 @@ import 'package:matrix/matrix.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -481,35 +482,35 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void>? _setReadMarkerFuture;
 
   void setReadMarker({String? eventId}) {
-    if (_setReadMarkerFuture != null) return;
-    if (_scrolledUp) return;
-    if (scrollUpBannerEventId != null) return;
-    if (eventId == null &&
-        !room.hasNewMessages &&
-        room.notificationCount == 0) {
-      return;
-    }
+  if (_setReadMarkerFuture != null) return;
+  if (_scrolledUp) return;
+  if (scrollUpBannerEventId != null) return;
+  if (eventId == null && !room.hasNewMessages && room.notificationCount == 0) {
+    return;
+  }
 
-    // Do not send read markers when app is not in foreground
-    // #Pangea
-    try {
-      // Pangea#
-      if (kIsWeb && !Matrix.of(context).webHasFocus) return;
-      // #Pangea
-    } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
-      return;
-    }
+  // Do not send read markers when app is not in foreground
+  // #Pangea
+  try {
     // Pangea#
-    if (!kIsWeb &&
-        WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
-      return;
-    }
+    if (kIsWeb && !Matrix.of(context).webHasFocus) return;
+    // #Pangea
+  } catch (err, s) {
+    ErrorHandler.logError(e: PangeaWarningError("Web focus error: $err"), s: s);
+    return;
+  }
+  // Pangea#
+  if (!kIsWeb && WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
+    return;
+  }
 
-    final timeline = this.timeline;
-    if (timeline == null || timeline.events.isEmpty) return;
+  final timeline = this.timeline;
+  if (timeline == null || timeline.events.isEmpty) {
+    ErrorHandler.logError(e: PangeaWarningError("Timeline is null or empty"), s: StackTrace.current);
+    return;
+  }
 
-    Logs().d('Set read marker...', eventId);
+  Logs().d('Set read marker...', eventId);
     // ignore: unawaited_futures
     _setReadMarkerFuture = timeline
         .setReadMarker(
@@ -518,11 +519,27 @@ class ChatController extends State<ChatPageWithRoom>
     )
         .then((_) {
       _setReadMarkerFuture = null;
-    });
-    if (eventId == null || eventId == timeline.room.lastEvent?.eventId) {
-      Matrix.of(context).backgroundPush?.cancelNotification(roomId);
-    }
+  }).catchError((e, s) {
+    ErrorHandler.logError(
+      e: PangeaWarningError("Failed to set read marker: $e"), 
+      s: s, 
+      m: 'Failed to set read marker for eventId: $eventId'
+    );
+    Sentry.captureException(
+      e,
+      stackTrace: s,
+      withScope: (scope) {
+        scope.setExtra('extra_info', 'Failed during setReadMarker with eventId: $eventId');
+        scope.setTag('where', 'setReadMarker');
+      }
+    );
+  });
+
+  if (eventId == null || eventId == timeline.room.lastEvent?.eventId) {
+    Matrix.of(context).backgroundPush?.cancelNotification(roomId);
   }
+}
+
 
   @override
   void dispose() {
