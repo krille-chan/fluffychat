@@ -151,6 +151,8 @@ flutter:
     # causes error with github actions
     # - .env
     # - assets/.env
+    - .env.local_choreo
+    - assets/.env.local_choreo
     - assets/pangea/
     - assets/pangea/bot_faces/
     # Pangea#
