@@ -687,7 +687,8 @@ class PangeaMessageEvent {
 
     for (final itStep in originalSent!.choreo!.itSteps) {
       for (final continuance in itStep.continuances) {
-        // this seems to always be false for continuances right now
+        final List<PangeaToken> tokensToSave =
+            continuance.tokens.where((t) => t.lemma.saveVocab).toList();
 
         if (originalSent!.choreo!.finalMessage.contains(continuance.text)) {
           continue;
@@ -695,7 +696,7 @@ class PangeaMessageEvent {
         if (continuance.wasClicked) {
           //PTODO - account for end of flow score
           if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
-            for (final token in continuance.tokens) {
+            for (final token in tokensToSave) {
               uses.add(
                 _lemmaToVocabUse(
                   token.lemma,
@@ -706,7 +707,7 @@ class PangeaMessageEvent {
           }
         } else {
           if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
-            for (final token in continuance.tokens) {
+            for (final token in tokensToSave) {
               uses.add(
                 _lemmaToVocabUse(
                   token.lemma,
@@ -732,7 +733,9 @@ class PangeaMessageEvent {
     }
 
     // for each token, record whether selected in ga, ta, or wa
-    for (final token in originalSent!.tokens!) {
+    for (final token in originalSent!.tokens!
+        .where((token) => token.lemma.saveVocab)
+        .toList()) {
       uses.add(_getVocabUseForToken(token));
     }
 
@@ -782,28 +785,19 @@ class PangeaMessageEvent {
     return _lemmaToVocabUse(token.lemma, ConstructUseTypeEnum.wa);
   }
 
-  /// Convert a list of [lemmas] into a list of vocab uses
-  /// with the given [type]
   OneConstructUse _lemmaToVocabUse(
     Lemma lemma,
     ConstructUseTypeEnum type,
-  ) {
-    final List<OneConstructUse> uses = [];
-    if (lemma.saveVocab) {
-      uses.add(
-        OneConstructUse(
-          useType: type,
-          chatId: event.roomId!,
-          timeStamp: event.originServerTs,
-          lemma: lemma.text,
-          form: lemma.form,
-          msgId: event.eventId,
-          constructType: ConstructTypeEnum.vocab,
-        ),
+  ) =>
+      OneConstructUse(
+        useType: type,
+        chatId: event.roomId!,
+        timeStamp: event.originServerTs,
+        lemma: lemma.text,
+        form: lemma.form,
+        msgId: event.eventId,
+        constructType: ConstructTypeEnum.vocab,
       );
-    }
-    return uses;
-  }
 
   /// get construct uses of type grammar for the message
   List<OneConstructUse> get _grammarConstructUses {
