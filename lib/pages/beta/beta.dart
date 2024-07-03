@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
@@ -61,7 +62,9 @@ class BetaJoinPage extends StatelessWidget {
       final roomId = roomAliasResult.roomId;
 
       if (roomId == null) {
-        final errorMsg = 'Room ID is null for alias: $roomAlias';
+        final errorMsg = L10n.of(context)!.failedToJoinRoom +
+            L10n.of(context)!.roomIdNullError +
+            roomAlias;
         if (kDebugMode) {
           print(errorMsg);
         }
@@ -89,7 +92,7 @@ class BetaJoinPage extends StatelessWidget {
 
             return roomId;
           } catch (e) {
-            final errorMsg = 'Failed to join room: $e';
+            final errorMsg = L10n.of(context)!.failedToJoinRoom + e.toString();
             if (kDebugMode) {
               print(errorMsg);
             }
@@ -103,7 +106,8 @@ class BetaJoinPage extends StatelessWidget {
 
         final joinedRoom = client.getRoomById(result.result!);
         if (joinedRoom == null) {
-          final errorMsg = 'Room not found after joining';
+          final errorMsg = L10n.of(context)!.failedToJoinRoom +
+              L10n.of(context)!.roomNotFoundError;
           if (kDebugMode) {
             print(errorMsg);
           }
@@ -113,7 +117,8 @@ class BetaJoinPage extends StatelessWidget {
         // Navigate to the room
         context.go('/rooms/${result.result!}');
       } else {
-        final errorMsg = 'Failed to join room: ${result.error}';
+        final errorMsg =
+            L10n.of(context)!.failedToJoinRoom + result.error.toString();
         if (kDebugMode) {
           print(errorMsg);
         }
@@ -121,7 +126,7 @@ class BetaJoinPage extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     } catch (e) {
-      final errorMsg = 'Something went wrong: $e';
+      final errorMsg = L10n.of(context)!.joinBetaError + e.toString();
       if (kDebugMode) {
         print(errorMsg);
       }
@@ -134,28 +139,38 @@ class BetaJoinPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rejoindre la Bêta'),
+        title: Text(L10n.of(context)!.joinBetaTitle),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
             Text(
-              '## Comment tester la version Beta et accéder aux nouvelles fonctionnalités en avance ?\n',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              L10n.of(context)!.betaJoinExplanation,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 20.0,
             ),
             Text(
-              'Participer à la Beta permet d\'avoir accès aux mises à jour de l\'application en avance et tester en premier.ère les nouvelles fonctionnalités !\n',
-              style: TextStyle(fontSize: 16),
+              L10n.of(context)!.betaJoinBenefit,
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(
+              height: 20.0,
             ),
             if (Platform.isIOS) ...[
               Text(
-                'Sous iOS :',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                L10n.of(context)!.iosInstructionsTitle,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               Text(
-                '- Installer Apple Testflight',
-                style: TextStyle(fontSize: 16),
+                L10n.of(context)!.installTestflight,
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(
+                height: 10.0,
               ),
               ElevatedButton(
                 onPressed: () async {
@@ -165,12 +180,15 @@ class BetaJoinPage extends StatelessWidget {
                     throw 'Could not launch $testflightAppUrl';
                   }
                 },
-                child: Text('Télécharger Apple Testflight'),
+                child: Text(L10n.of(context)!.downloadTestflightButton),
               ),
-              Divider(thickness: 1),
+              const Divider(thickness: 1),
               Text(
-                '- Rejoindre la Beta',
-                style: TextStyle(fontSize: 16),
+                L10n.of(context)!.joinBetaTitleIOS,
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(
+                height: 10.0,
               ),
               ElevatedButton(
                 onPressed: () async {
@@ -180,22 +198,29 @@ class BetaJoinPage extends StatelessWidget {
                     throw 'Could not launch $appleBetaUrl';
                   }
                 },
-                child: Text('Télécharger la Beta iOS'),
+                child: Text(L10n.of(context)!.downloadBetaIOSButton),
               ),
-              Divider(thickness: 1),
+              const SizedBox(
+                height: 10.0,
+              ),
+              const Divider(thickness: 1),
               Text(
-                '- Rejoindre le groupe Tawkie de la Beta : #beta:alpha.tawkie.fr\n',
-                style: TextStyle(fontSize: 16),
+                L10n.of(context)!.joinBetaGroup,
+                style: const TextStyle(fontSize: 16),
               ),
             ],
             if (Platform.isAndroid) ...[
               Text(
-                'Sous Android :',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                L10n.of(context)!.androidInstructionsTitle,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               Text(
-                '- Rejoindre la Beta depuis le Play Store ou en ligne',
-                style: TextStyle(fontSize: 16),
+                L10n.of(context)!.joinBetaPlayStore,
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(
+                height: 10.0,
               ),
               ElevatedButton(
                 onPressed: () async {
@@ -209,20 +234,26 @@ class BetaJoinPage extends StatelessWidget {
                     throw 'Could not launch $androidBetaUrl';
                   }
                 },
-                child: Text('Télécharger la Beta Android'),
+                child: Text(L10n.of(context)!.downloadBetaAndroidButton),
               ),
-              Divider(thickness: 1),
+              const SizedBox(
+                height: 10.0,
+              ),
+              const Divider(thickness: 1),
               Text(
-                '- Rejoindre le groupe Tawkie de la Beta : #beta:alpha.tawkie.fr\n',
-                style: TextStyle(fontSize: 16),
+                L10n.of(context)!.joinBetaGroup,
+                style: const TextStyle(fontSize: 16),
               ),
             ],
+            const SizedBox(
+              height: 10.0,
+            ),
             ElevatedButton.icon(
               onPressed: () async {
                 await joinGroup(context: context);
               },
-              icon: Icon(Icons.new_releases),
-              label: Text('Rejoindre le groupe Beta'),
+              icon: const Icon(Icons.new_releases),
+              label: Text(L10n.of(context)!.joinBetaButtonLabel),
             ),
           ],
         ),
