@@ -89,19 +89,17 @@ class ChatView extends StatelessWidget {
               }
             },
             itemBuilder: (context) => [
-              // #Pangea
-              // PopupMenuItem(
-              //   value: _EventContextAction.info,
-              //   child: Row(
-              //     mainAxisSize: MainAxisSize.min,
-              //     children: [
-              //       const Icon(Icons.info_outlined),
-              //       const SizedBox(width: 12),
-              //       Text(L10n.of(context)!.messageInfo),
-              //     ],
-              //   ),
-              // ),
-              // Pangea#
+              PopupMenuItem(
+                value: _EventContextAction.info,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.info_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.messageInfo),
+                  ],
+                ),
+              ),
               if (controller.selectedEvents.single.status.isSent)
                 PopupMenuItem(
                   value: _EventContextAction.report,
@@ -442,7 +440,8 @@ class ChatView extends StatelessWidget {
                                             children: [
                                               const ConnectionStatusHeader(),
                                               ITBar(
-                                                choreographer: controller.choreographer,
+                                                choreographer:
+                                                    controller.choreographer,
                                               ),
                                               ReactionsPicker(controller),
                                               ReplyDisplay(controller),
