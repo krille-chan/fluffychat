@@ -9,6 +9,7 @@ linter:
     - prefer_final_in_for_each
     - sort_pub_dependencies
     - require_trailing_commas
+    - omit_local_variable_types
 
 analyzer:
   errors:

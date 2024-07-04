@@ -165,7 +165,7 @@ class ClientChooserButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final matrix = Matrix.of(context);
 
-    int clientCount = 0;
+    var clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
     return FutureBuilder<Profile>(
       future: matrix.client.fetchOwnProfile(),
@@ -292,7 +292,7 @@ class ClientChooserButton extends StatelessWidget {
       );
     // beginning from end if negative
     if (index < 0) {
-      int clientCount = 0;
+      var clientCount = 0;
       matrix.accountBundles
           .forEach((key, value) => clientCount += value.length);
       _handleKeyboardShortcut(matrix, clientCount, context);
@@ -312,7 +312,7 @@ class ClientChooserButton extends StatelessWidget {
   }
 
   int? _shortcutIndexOfClient(MatrixState matrix, Client client) {
-    int index = 0;
+    var index = 0;
 
     final bundles = matrix.accountBundles.keys.toList()
       ..sort(
