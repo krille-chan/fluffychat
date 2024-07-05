@@ -4721,7 +4721,7 @@
   "versionNotFound": "Versión no encontrada",
   "fetchingVersion": "Obteniendo versión...",
   "versionFetchError": "Error al obtener la versión",
-  "connectedToStaging": "Conectado al entorno de pruebas"
+  "connectedToStaging": "Conectado al entorno de pruebas",
   "connectedToStaging": "Conectado al entorno de pruebas",
   "versionText": "Versión: {version}+{buildNumber}",
   "@versionText": {

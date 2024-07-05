@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart'
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../extensions/client_extension/client_extension.dart';
 import '../extensions/pangea_room_extension/pangea_room_extension.dart';
@@ -113,20 +114,36 @@ class MyAnalyticsController {
   // adds an event ID to the cache of un-added event IDs
   // if the event IDs isn't already added
   void addMessageSinceUpdate(String eventId) {
-    final List<String> currentCache = messagesSinceUpdate;
-    if (!currentCache.contains(eventId)) {
-      currentCache.add(eventId);
-      _pangeaController.pStoreService.save(
-        PLocalKey.messagesSinceUpdate,
-        currentCache,
-        local: true,
-      );
-    }
+    try{
+      final List<String> currentCache = messagesSinceUpdate;
+      if (!currentCache.contains(eventId)) {
+        currentCache.add(eventId);
+        _pangeaController.pStoreService.save(
+          PLocalKey.messagesSinceUpdate,
+          currentCache,
+          local: true,
+        );
+      }
 
-    // if the cached has reached if max-length, update analytics
-    if (messagesSinceUpdate.length > _maxMessagesCached) {
-      debugPrint("reached max messages, updating");
-      updateAnalytics();
+      // if the cached has reached if max-length, update analytics
+      if (messagesSinceUpdate.length > _maxMessagesCached) {
+        debugPrint("reached max messages, updating");
+        updateAnalytics();
+      }
+        } catch (exception, stackTrace) {
+        ErrorHandler.logError(
+            e: PangeaWarningError("Failed to add message since update: $exception"),
+            s: stackTrace,
+            m: 'Failed to add message since update for eventId: $eventId'
+        );
+        Sentry.captureException(
+            exception,
+            stackTrace: stackTrace,
+            withScope: (scope) {
+                scope.setExtra('extra_info', 'Failed during addMessageSinceUpdate with eventId: $eventId');
+                scope.setTag('where', 'addMessageSinceUpdate');
+            }
+        );
     }
   }
 
@@ -143,30 +160,45 @@ class MyAnalyticsController {
   // it's possible for this cache to be invalid or deleted
   // It's a proxy measure for messages sent since last update
   List<String> get messagesSinceUpdate {
-    final dynamic locallySaved = _pangeaController.pStoreService.read(
-      PLocalKey.messagesSinceUpdate,
-      local: true,
-    );
-    if (locallySaved == null) {
-      _pangeaController.pStoreService.save(
-        PLocalKey.messagesSinceUpdate,
-        [],
-        local: true,
-      );
-      return [];
-    }
-
     try {
-      return locallySaved as List<String>;
-    } catch (err) {
-      _pangeaController.pStoreService.save(
-        PLocalKey.messagesSinceUpdate,
-        [],
-        local: true,
-      );
-      return [];
+        Logs().d('Reading messages since update from local storage');
+        final dynamic locallySaved = _pangeaController.pStoreService.read(
+          PLocalKey.messagesSinceUpdate,
+          local: true,
+        );
+        if (locallySaved == null) {
+            Logs().d('No locally saved messages found, initializing empty list.');
+            _pangeaController.pStoreService.save(
+                PLocalKey.messagesSinceUpdate,
+                [],
+                local: true,
+            );
+            return [];
+        }
+        return locallySaved as List<String>;
+    } catch (exception, stackTrace) {
+        ErrorHandler.logError(
+            e: PangeaWarningError("Failed to get messages since update: $exception"),
+            s: stackTrace,
+            m: 'Failed to retrieve messages since update'
+        );
+        Sentry.captureException(
+            exception,
+            stackTrace: stackTrace,
+            withScope: (scope) {
+                scope.setExtra('extra_info', 'Error during messagesSinceUpdate getter');
+                scope.setTag('where', 'messagesSinceUpdate');
+            }
+        );
+        _pangeaController.pStoreService.save(
+            PLocalKey.messagesSinceUpdate,
+            [],
+            local: true,
+        );
+        return [];
     }
-  }
+}
+
 
   Completer<void>? _updateCompleter;
   Future<void> updateAnalytics() async {

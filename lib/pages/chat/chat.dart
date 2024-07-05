@@ -523,7 +523,7 @@ class ChatController extends State<ChatPageWithRoom>
     ErrorHandler.logError(
       e: PangeaWarningError("Failed to set read marker: $e"), 
       s: s, 
-      m: 'Failed to set read marker for eventId: $eventId'
+      m: 'Failed to set read marker for eventId: $eventId',
     );
     Sentry.captureException(
       e,
@@ -531,7 +531,7 @@ class ChatController extends State<ChatPageWithRoom>
       withScope: (scope) {
         scope.setExtra('extra_info', 'Failed during setReadMarker with eventId: $eventId');
         scope.setTag('where', 'setReadMarker');
-      }
+      },
     );
   });
 
