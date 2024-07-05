@@ -38,41 +38,47 @@ class ChatAppBarTitle extends StatelessWidget {
     return participantsIds.any((id) => id.contains('@signal'));
   }
 
-  void removeFacebookTag(String displayname) {
+  String removeFacebookTag(String displayname) {
     if (displayname.contains('(FB)')) {
       displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
     }
+    return displayname;
   }
 
-  void removeInstagramTag(String displayname) {
+  String removeInstagramTag(String displayname) {
     if (displayname.contains('(IG)')) {
       displayname = displayname.replaceAll('(IG)', ''); // Delete (Instagram)
     }
+    return displayname;
   }
 
-  void removeWhatsAppTag(String displayname) {
+  String removeWhatsAppTag(String displayname) {
     if (displayname.contains('(WA)')) {
       displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
     }
+    return displayname;
   }
 
-  void removeLinkedinTag(String displayname) {
+  String removeLinkedinTag(String displayname) {
     if (displayname.contains('(LinkedIn)')) {
       displayname =
           displayname.replaceAll('(LinkedIn)', ''); // Delete (LinkedIn)
     }
+    return displayname;
   }
 
-  void removeDiscordTag(String displayname) {
+  String removeDiscordTag(String displayname) {
     if (displayname.contains('(Discord)')) {
       displayname = displayname.replaceAll('(Discord)', ''); // Delete (Discord)
     }
+    return displayname;
   }
 
-  void removeSignalTag(String displayname) {
+  String removeSignalTag(String displayname) {
     if (displayname.contains('(Signal)')) {
       displayname = displayname.replaceAll('(Signal)', ''); // Delete (Signal)
     }
+    return displayname;
   }
 
   Future<List<dynamic>> loadRoomInfo(BuildContext context, Room room) async {
@@ -90,7 +96,7 @@ class ChatAppBarTitle extends StatelessWidget {
         color: networkColor,
         filterQuality: FilterQuality.high,
       );
-      removeFacebookTag(displayname);
+      displayname = removeFacebookTag(displayname);
     } else if (containsInstagram(participantsIds)) {
       networkColor = FluffyThemes.instagramColor;
       networkImage = Image.asset(
@@ -98,7 +104,7 @@ class ChatAppBarTitle extends StatelessWidget {
         color: networkColor,
         filterQuality: FilterQuality.high,
       );
-      removeInstagramTag(displayname);
+      displayname = removeInstagramTag(displayname);
     } else if (containsWhatsApp(participantsIds)) {
       networkColor = FluffyThemes.whatsAppColor;
       networkImage = Image.asset(
@@ -106,7 +112,7 @@ class ChatAppBarTitle extends StatelessWidget {
         color: networkColor,
         filterQuality: FilterQuality.high,
       );
-      removeWhatsAppTag(displayname);
+      displayname = removeWhatsAppTag(displayname);
     } else if (containsLinkedin(participantsIds)) {
       networkColor = FluffyThemes.linkedinColor;
       networkImage = Image.asset(
@@ -114,7 +120,7 @@ class ChatAppBarTitle extends StatelessWidget {
         color: networkColor,
         filterQuality: FilterQuality.high,
       );
-      removeLinkedinTag(displayname);
+      displayname = removeLinkedinTag(displayname);
     } else if (containsDiscord(participantsIds)) {
       networkColor = FluffyThemes.dicordColor;
       networkImage = Image.asset(
@@ -122,7 +128,7 @@ class ChatAppBarTitle extends StatelessWidget {
         color: networkColor,
         filterQuality: FilterQuality.high,
       );
-      removeDiscordTag(displayname);
+      displayname = removeDiscordTag(displayname);
     } else if (containsSignal(participantsIds)) {
       networkColor = FluffyThemes.signalColor;
       networkImage = Image.asset(
@@ -130,7 +136,7 @@ class ChatAppBarTitle extends StatelessWidget {
         color: networkColor,
         filterQuality: FilterQuality.high,
       );
-      removeSignalTag(displayname);
+      displayname = removeSignalTag(displayname);
     }
 
     return [networkColor, networkImage, displayname];
