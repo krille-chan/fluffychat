@@ -1,3 +1,25 @@
+## v1.21.2
+Updates the Matrix Dart SDK to fix some minor bugs.
+
+- Added translation using Weblate (Lojban) (Zig-Rust-Odin)
+- build: Update matrix dart sdk (Krille)
+- chore: Update last event after decryption (Krille)
+- fix: Correctly localize time of date (Krille)
+- refactor: Omit local types (Krille)
+- Translated using Weblate (Arabic) (Rex_sa)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Chinese (Simplified)) (大王叫我来巡山)
+- Translated using Weblate (Croatian) (Milo Ivir)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (Hungarian) (H Tamás)
+- Translated using Weblate (Korean) (kdh8219)
+- Translated using Weblate (Latvian) (Edgars Andersons)
+- Translated using Weblate (Polish) (Eryk Michalak)
+- Translated using Weblate (Portuguese (Brazil)) (lucasmz-dev)
+- Translated using Weblate (Russian) (Nicholas Winterhalter)
+- Translated using Weblate (Turkish) (Oğuz Ersen)
+
 ## v1.21.1
 - build: Update Matrix Dart SDK (Krille)
 - build: Update to Flutter 3.22.2 (krille-chan)
