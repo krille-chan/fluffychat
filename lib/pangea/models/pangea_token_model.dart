@@ -24,17 +24,19 @@ class PangeaToken {
     required this.morph,
   });
 
-  static _getLemmas(String text, dynamic json) {
+  static Lemma _getLemmas(String text, dynamic json) {
     if (json != null) {
       // July 24, 2024 - we're changing from a list to a single lemma and this is for backwards compatibility
       // previously sent tokens have lists of lemmas
       if (json is Iterable) {
         return json
-            .map<Lemma>(
-              (e) => Lemma.fromJson(e as Map<String, dynamic>),
-            )
-            .toList()
-            .cast<Lemma>();
+                .map<Lemma>(
+                  (e) => Lemma.fromJson(e as Map<String, dynamic>),
+                )
+                .toList()
+                .cast<Lemma>()
+                .firstOrNull ??
+            Lemma(text: text, saveVocab: false, form: text);
       } else {
         return Lemma.fromJson(json);
       }
@@ -61,6 +63,8 @@ class PangeaToken {
   Map<String, dynamic> toJson() => {
         _textKey: text.toJson(),
         _lemmaKey: lemma.toJson(),
+        'pos': pos,
+        'morph': morph,
       };
 
   int get end => text.offset + text.length;
