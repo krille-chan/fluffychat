@@ -4068,7 +4068,7 @@
   "hintTitle": "Hint:",
   "speechToTextBody": "See how well you did by looking at your Accuracy and Words Per Minute scores",
   "previous": "Previous",
-    "versionNotFound": "Version Not Found",
+  "versionNotFound": "Version Not Found",
   "fetchingVersion": "Fetching version...",
   "versionFetchError": "Error fetching version",
   "connectedToStaging": "Connected to Staging",
@@ -4104,5 +4104,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeAnalyticsView": "Change Analytics View"
+  "changeAnalyticsView": "Change Analytics View",
+  "l1TranslationBody": "Oops! It looks like this message wasn't sent in your target language. Messages not sent in your target language will not be translated."
 }

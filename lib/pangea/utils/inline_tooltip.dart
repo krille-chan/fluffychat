@@ -34,7 +34,7 @@ class InlineTooltip extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: RichText(
-            textAlign: TextAlign.justify,
+            textAlign: TextAlign.center,
             text: TextSpan(
               children: [
                 const WidgetSpan(
@@ -50,6 +50,7 @@ class InlineTooltip extends StatelessWidget {
                   text: body,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
+                    height: 1.5,
                   ),
                 ),
               ],

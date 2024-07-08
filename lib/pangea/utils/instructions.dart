@@ -18,13 +18,13 @@ class InstructionsController {
   // We have these three methods to make sure that the instructions are not shown too much
 
   /// Instruction popup was closed by the user
-  final Map<InstructionsEnum, bool> _instructionsClosed = {};
+  final Map<String, bool> _instructionsClosed = {};
 
   /// Instruction popup has already been shown this session
-  final Map<InstructionsEnum, bool> _instructionsShown = {};
+  final Map<String, bool> _instructionsShown = {};
 
   /// Returns true if the user requested this popup not be shown again
-  bool? toggledOff(InstructionsEnum key) =>
+  bool? toggledOff(String key) =>
       _pangeaController.pStoreService.read(key.toString());
 
   InstructionsController(PangeaController pangeaController) {
@@ -33,18 +33,17 @@ class InstructionsController {
 
   /// Returns true if the instructions were closed
   /// or turned off by the user via the toggle switch
-  bool wereInstructionsTurnedOff(InstructionsEnum key) =>
+  bool wereInstructionsTurnedOff(String key) =>
       toggledOff(key) ?? _instructionsClosed[key] ?? false;
 
-  void turnOffInstruction(InstructionsEnum key) =>
-      _instructionsClosed[key] = true;
+  void turnOffInstruction(String key) => _instructionsClosed[key] = true;
 
   Future<void> updateEnableInstructions(
-    InstructionsEnum key,
+    String key,
     bool value,
   ) async =>
       await _pangeaController.pStoreService.save(
-        key.toString(),
+        key,
         value,
       );
 
@@ -56,12 +55,12 @@ class InstructionsController {
     String transformTargetKey, [
     bool showToggle = true,
   ]) async {
-    if (_instructionsShown[key] ?? false) {
+    if (_instructionsShown[key.toString()] ?? false) {
       return;
     }
-    _instructionsShown[key] = true;
+    _instructionsShown[key.toString()] = true;
 
-    if (wereInstructionsTurnedOff(key)) {
+    if (wereInstructionsTurnedOff(key.toString())) {
       return;
     }
     if (L10n.of(context) == null) {
@@ -90,7 +89,7 @@ class InstructionsController {
             CardHeader(
               text: key.title(context),
               botExpression: BotExpression.idle,
-              onClose: () => {_instructionsClosed[key] = true},
+              onClose: () => {_instructionsClosed[key.toString()] = true},
             ),
             const SizedBox(height: 10.0),
             Expanded(
@@ -118,10 +117,10 @@ class InstructionsController {
   /// which displays hint text defined in the enum extension
   Widget getInstructionInlineTooltip(
     BuildContext context,
-    InstructionsEnum key,
+    InlineInstructions key,
     VoidCallback onClose,
   ) {
-    if (wereInstructionsTurnedOff(key)) {
+    if (wereInstructionsTurnedOff(key.toString())) {
       return const SizedBox();
     }
 
@@ -134,7 +133,7 @@ class InstructionsController {
     }
 
     return InlineTooltip(
-      body: InstructionsEnum.speechToText.body(context),
+      body: InlineInstructions.speechToText.body(context),
       onClose: onClose,
     );
   }
@@ -167,11 +166,12 @@ class InstructionsToggleState extends State<InstructionsToggle> {
     return SwitchListTile.adaptive(
       activeColor: AppConfig.activeToggleColor,
       title: Text(L10n.of(context)!.doNotShowAgain),
-      value: pangeaController.instructions
-          .wereInstructionsTurnedOff(widget.instructionsKey),
+      value: pangeaController.instructions.wereInstructionsTurnedOff(
+        widget.instructionsKey.toString(),
+      ),
       onChanged: ((value) async {
         await pangeaController.instructions.updateEnableInstructions(
-          widget.instructionsKey,
+          widget.instructionsKey.toString(),
           value,
         );
         setState(() {});
