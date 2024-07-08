@@ -7,7 +7,6 @@ enum InstructionsEnum {
   clickMessage,
   blurMeansTranslate,
   tooltipInstructions,
-  speechToText,
 }
 
 extension Copy on InstructionsEnum {
@@ -21,8 +20,6 @@ extension Copy on InstructionsEnum {
         return L10n.of(context)!.blurMeansTranslateTitle;
       case InstructionsEnum.tooltipInstructions:
         return L10n.of(context)!.tooltipInstructionsTitle;
-      case InstructionsEnum.speechToText:
-        return L10n.of(context)!.hintTitle;
     }
   }
 
@@ -34,12 +31,26 @@ extension Copy on InstructionsEnum {
         return L10n.of(context)!.clickMessageBody;
       case InstructionsEnum.blurMeansTranslate:
         return L10n.of(context)!.blurMeansTranslateBody;
-      case InstructionsEnum.speechToText:
-        return L10n.of(context)!.speechToTextBody;
       case InstructionsEnum.tooltipInstructions:
         return PlatformInfos.isMobile
             ? L10n.of(context)!.tooltipInstructionsMobileBody
             : L10n.of(context)!.tooltipInstructionsBrowserBody;
+    }
+  }
+}
+
+enum InlineInstructions {
+  speechToText,
+  l1Translation,
+}
+
+extension InlineInstructionsExtension on InlineInstructions {
+  String body(BuildContext context) {
+    switch (this) {
+      case InlineInstructions.speechToText:
+        return L10n.of(context)!.speechToTextBody;
+      case InlineInstructions.l1Translation:
+        return L10n.of(context)!.l1TranslationBody;
     }
   }
 }

@@ -1,8 +1,10 @@
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
@@ -119,6 +121,17 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     }
   }
 
+  void closeHint() {
+    MatrixState.pangeaController.instructions.turnOffInstruction(
+      InlineInstructions.l1Translation.toString(),
+    );
+    MatrixState.pangeaController.instructions.updateEnableInstructions(
+      InlineInstructions.l1Translation.toString(),
+      true,
+    );
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!_fetchingRepresentation &&
@@ -127,18 +140,35 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
       return const CardErrorWidget();
     }
 
+    final bool showWarning = l2Code != null &&
+        !widget.immersionMode &&
+        widget.messageEvent.originalSent?.langCode != l2Code &&
+        !MatrixState.pangeaController.instructions.wereInstructionsTurnedOff(
+          InlineInstructions.l1Translation.toString(),
+        );
+
     return Container(
       child: _fetchingRepresentation
           ? const ToolbarContentLoadingIndicator()
-          : selectionTranslation != null
-              ? Text(
-                  selectionTranslation!,
-                  style: BotStyle.text(context),
-                )
-              : Text(
-                  repEvent!.text,
-                  style: BotStyle.text(context),
-                ),
+          : Column(
+              children: [
+                selectionTranslation != null
+                    ? Text(
+                        selectionTranslation!,
+                        style: BotStyle.text(context),
+                      )
+                    : Text(
+                        repEvent!.text,
+                        style: BotStyle.text(context),
+                      ),
+                const SizedBox(height: 10),
+                if (showWarning)
+                  InlineTooltip(
+                    body: InlineInstructions.l1Translation.body(context),
+                    onClose: closeHint,
+                  ),
+              ],
+            ),
     );
   }
 }
