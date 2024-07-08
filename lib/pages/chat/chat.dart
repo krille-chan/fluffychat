@@ -43,6 +43,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -497,7 +498,10 @@ class ChatController extends State<ChatPageWithRoom>
       if (kIsWeb && !Matrix.of(context).webHasFocus) return;
       // #Pangea
     } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: PangeaWarningError("Web focus error: $err"),
+        s: s,
+      );
       return;
     }
     // Pangea#
@@ -507,7 +511,15 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     final timeline = this.timeline;
-    if (timeline == null || timeline.events.isEmpty) return;
+    if (timeline == null || timeline.events.isEmpty) {
+      // #Pangea
+      ErrorHandler.logError(
+        e: PangeaWarningError("Timeline is null or empty"),
+        s: StackTrace.current,
+      );
+      // Pangea#
+      return;
+    }
 
     Logs().d('Set read marker...', eventId);
     // ignore: unawaited_futures
@@ -518,7 +530,28 @@ class ChatController extends State<ChatPageWithRoom>
     )
         .then((_) {
       _setReadMarkerFuture = null;
+    })
+        // #Pangea
+        .catchError((e, s) {
+      ErrorHandler.logError(
+        e: PangeaWarningError("Failed to set read marker: $e"),
+        s: s,
+        m: 'Failed to set read marker for eventId: $eventId',
+      );
+      Sentry.captureException(
+        e,
+        stackTrace: s,
+        withScope: (scope) {
+          scope.setExtra(
+            'extra_info',
+            'Failed during setReadMarker with eventId: $eventId',
+          );
+          scope.setTag('where', 'setReadMarker');
+        },
+      );
     });
+    // Pangea#
+
     if (eventId == null || eventId == timeline.room.lastEvent?.eventId) {
       Matrix.of(context).backgroundPush?.cancelNotification(roomId);
     }
