@@ -856,24 +856,22 @@ class _SpaceViewState extends State<SpaceView> {
                               ),
                               // Pangea#
                             ),
-                            // #Pangea
-                            // if (activeSpace?.canChangeStateEvent(
-                            //       EventTypes.SpaceChild,
-                            //     ) ==
-                            //     true)
-                            //   Material(
-                            //     child: ListTile(
-                            //       leading: const CircleAvatar(
-                            //         child: Icon(Icons.group_add_outlined),
-                            //       ),
-                            //       title:
-                            //           Text(L10n.of(context)!.addChatOrSubSpace),
-                            //       trailing:
-                            //           const Icon(Icons.chevron_right_outlined),
-                            //       onTap: _addChatOrSubSpace,
-                            //     ),
-                            //   ),
-                            // Pangea#
+                            if (activeSpace?.canChangeStateEvent(
+                                  EventTypes.SpaceChild,
+                                ) ==
+                                true)
+                              Material(
+                                child: ListTile(
+                                  leading: const CircleAvatar(
+                                    child: Icon(Icons.group_add_outlined),
+                                  ),
+                                  title:
+                                      Text(L10n.of(context)!.addChatOrSubSpace),
+                                  trailing:
+                                      const Icon(Icons.chevron_right_outlined),
+                                  onTap: _addChatOrSubSpace,
+                                ),
+                              ),
                           ],
                         );
                       }

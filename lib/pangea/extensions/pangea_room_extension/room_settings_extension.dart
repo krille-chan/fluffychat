@@ -116,7 +116,7 @@ extension RoomSettingsRoomExtension on Room {
 
   Future<void> _setSuggestedInSpace(bool suggest, Room space) async {
     try {
-      await space.setSpaceChild(id, suggested: suggest);
+      await space.pangeaSetSpaceChild(id, suggested: suggest);
     } catch (err) {
       ErrorHandler.logError(
         e: "Failed to set suggestion status of room $id in space ${space.id}",

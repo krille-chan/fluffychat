@@ -8,7 +8,7 @@ import '../extensions/pangea_room_extension/pangea_room_extension.dart';
 class ClassChatPowerLevels {
   static Future<Map<String, dynamic>> powerLevelOverrideForClassChat(
     BuildContext context,
-    List<Room> spaceParents,
+    Room? parent,
   ) async {
     final Client client = Matrix.of(context).client;
     final Map<String, dynamic> powerLevelOverride = {};
@@ -18,8 +18,9 @@ class ClassChatPowerLevels {
     powerLevelOverride['users'] = {};
 
     final List<User> spaceAdmin = [];
-    for (final classRoom in spaceParents) {
-      final List<User> classTeachers = await classRoom.teachers;
+
+    if (parent != null) {
+      final List<User> classTeachers = await parent.teachers;
       spaceAdmin.addAll(classTeachers);
     }
 

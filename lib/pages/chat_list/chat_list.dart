@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/utils/add_to_space.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
@@ -843,18 +842,12 @@ class ChatListController extends State<ChatList>
         if (firstSelectedRoom.isSpace && !space.isRoomAdmin) {
           throw L10n.of(context)!.cantAddSpaceChild;
         }
-        await pangeaAddToSpace(
-          space,
-          selectedRoomIds.toList(),
-          context,
-          pangeaController,
-        );
 
-        // if (space.canSendDefaultStates) {
-        //   for (final roomId in selectedRoomIds) {
-        //     await space.setSpaceChild(roomId);
-        //   }
-        // }
+        if (space.canSendDefaultStates) {
+          for (final roomId in selectedRoomIds) {
+            await space.pangeaSetSpaceChild(roomId);
+          }
+        }
         // Pangea#
       },
     );
