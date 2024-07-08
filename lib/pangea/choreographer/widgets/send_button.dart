@@ -1,4 +1,4 @@
-import 'package:fluffychat/pangea/constants/colors.dart';
+import 'package:fluffychat/pangea/enum/assistance_state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -28,10 +28,8 @@ class ChoreographerSendButton extends StatelessWidget {
             alignment: Alignment.center,
             child: IconButton(
               icon: const Icon(Icons.send_outlined),
-              color: controller.choreographer.igc.canSendMessage ||
-                      !controller.choreographer.isAutoIGCEnabled
-                  ? null
-                  : PangeaColors.igcError,
+              color:
+                  controller.choreographer.assistanceState.stateColor(context),
               onPressed: () {
                 controller.choreographer.send(context);
               },
