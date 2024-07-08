@@ -32,7 +32,7 @@ class Lemma {
       saveVocab: json['save_vocab'] ?? json['saveVocab'] ?? false,
       form: json["form"] ?? json['text'],
       pos: json['pos'] ?? '',
-      morph: json['morph'] ?? '{}',
+      morph: json['morph'] ?? {},
     );
   }
 
