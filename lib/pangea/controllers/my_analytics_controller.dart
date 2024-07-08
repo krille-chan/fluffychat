@@ -114,7 +114,7 @@ class MyAnalyticsController {
   // adds an event ID to the cache of un-added event IDs
   // if the event IDs isn't already added
   void addMessageSinceUpdate(String eventId) {
-    try{
+    try {
       final List<String> currentCache = messagesSinceUpdate;
       if (!currentCache.contains(eventId)) {
         currentCache.add(eventId);
@@ -130,20 +130,23 @@ class MyAnalyticsController {
         debugPrint("reached max messages, updating");
         updateAnalytics();
       }
-        } catch (exception, stackTrace) {
-        ErrorHandler.logError(
-            e: PangeaWarningError("Failed to add message since update: $exception"),
-            s: stackTrace,
-            m: 'Failed to add message since update for eventId: $eventId'
-        );
-        Sentry.captureException(
-            exception,
-            stackTrace: stackTrace,
-            withScope: (scope) {
-                scope.setExtra('extra_info', 'Failed during addMessageSinceUpdate with eventId: $eventId');
-                scope.setTag('where', 'addMessageSinceUpdate');
-            }
-        );
+    } catch (exception, stackTrace) {
+      ErrorHandler.logError(
+        e: PangeaWarningError("Failed to add message since update: $exception"),
+        s: stackTrace,
+        m: 'Failed to add message since update for eventId: $eventId',
+      );
+      Sentry.captureException(
+        exception,
+        stackTrace: stackTrace,
+        withScope: (scope) {
+          scope.setExtra(
+            'extra_info',
+            'Failed during addMessageSinceUpdate with eventId: $eventId',
+          );
+          scope.setTag('where', 'addMessageSinceUpdate');
+        },
+      );
     }
   }
 
@@ -161,44 +164,48 @@ class MyAnalyticsController {
   // It's a proxy measure for messages sent since last update
   List<String> get messagesSinceUpdate {
     try {
-        Logs().d('Reading messages since update from local storage');
-        final dynamic locallySaved = _pangeaController.pStoreService.read(
+      Logs().d('Reading messages since update from local storage');
+      final dynamic locallySaved = _pangeaController.pStoreService.read(
+        PLocalKey.messagesSinceUpdate,
+        local: true,
+      );
+      if (locallySaved == null) {
+        Logs().d('No locally saved messages found, initializing empty list.');
+        _pangeaController.pStoreService.save(
           PLocalKey.messagesSinceUpdate,
+          [],
           local: true,
         );
-        if (locallySaved == null) {
-            Logs().d('No locally saved messages found, initializing empty list.');
-            _pangeaController.pStoreService.save(
-                PLocalKey.messagesSinceUpdate,
-                [],
-                local: true,
-            );
-            return [];
-        }
-        return locallySaved as List<String>;
-    } catch (exception, stackTrace) {
-        ErrorHandler.logError(
-            e: PangeaWarningError("Failed to get messages since update: $exception"),
-            s: stackTrace,
-            m: 'Failed to retrieve messages since update'
-        );
-        Sentry.captureException(
-            exception,
-            stackTrace: stackTrace,
-            withScope: (scope) {
-                scope.setExtra('extra_info', 'Error during messagesSinceUpdate getter');
-                scope.setTag('where', 'messagesSinceUpdate');
-            }
-        );
-        _pangeaController.pStoreService.save(
-            PLocalKey.messagesSinceUpdate,
-            [],
-            local: true,
-        );
         return [];
+      }
+      return locallySaved.cast<String>();
+    } catch (exception, stackTrace) {
+      ErrorHandler.logError(
+        e: PangeaWarningError(
+          "Failed to get messages since update: $exception",
+        ),
+        s: stackTrace,
+        m: 'Failed to retrieve messages since update',
+      );
+      Sentry.captureException(
+        exception,
+        stackTrace: stackTrace,
+        withScope: (scope) {
+          scope.setExtra(
+            'extra_info',
+            'Error during messagesSinceUpdate getter',
+          );
+          scope.setTag('where', 'messagesSinceUpdate');
+        },
+      );
+      _pangeaController.pStoreService.save(
+        PLocalKey.messagesSinceUpdate,
+        [],
+        local: true,
+      );
+      return [];
     }
-}
-
+  }
 
   Completer<void>? _updateCompleter;
   Future<void> updateAnalytics() async {

@@ -8,10 +8,8 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:package_info_plus/package_info_plus.dart'; //adding to check app version
-
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'settings.dart';
 
@@ -20,13 +18,13 @@ class SettingsView extends StatelessWidget {
 
   const SettingsView(this.controller, {super.key});
 
+  // #Pangea
   Future<String> getAppVersion(BuildContext context) async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    return L10n.of(context)!.versionText(packageInfo.version, packageInfo.buildNumber);
-}
-
-
-
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    return L10n.of(context)!
+        .versionText(packageInfo.version, packageInfo.buildNumber);
+  }
+  // Pangea#
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +53,6 @@ class SettingsView extends StatelessWidget {
           key: const Key('SettingsListViewContent'),
           children: <Widget>[
             FutureBuilder<Profile>(
-
-              
               future: controller.profileFuture,
               builder: (context, snapshot) {
                 final profile = snapshot.data;
@@ -149,8 +145,6 @@ class SettingsView extends StatelessWidget {
                   ],
                 );
               },
-
-              
             ),
             // #Pangea
             // Divider(
@@ -260,40 +254,41 @@ class SettingsView extends StatelessWidget {
             //   onTap: () => PlatformInfos.showDialog(context),
             //   trailing: const Icon(Icons.chevron_right_outlined),
             // ),
-          ListTile(
-            leading: const Icon(Icons.shield_outlined),
-            title: Text(L10n.of(context)!.termsAndConditions),
-            onTap: () => launchUrlString(AppConfig.termsOfServiceUrl),
-            trailing: const Icon(Icons.open_in_new_outlined),
-          ),
-          // Adding the FutureBuilder here
-          FutureBuilder<String>(
-            future: getAppVersion(context),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return ListTile(
-                  leading: Icon(Icons.info_outline),
-                  title: Text(snapshot.data ?? L10n.of(context)!.versionNotFound),
-                );
-              } else if (snapshot.hasError) {
-                return ListTile(
-                  leading: Icon(Icons.error_outline),
-                  title: Text(L10n.of(context)!.versionFetchError),
-                );
-              } else {
-                return ListTile(
-                  leading: CircularProgressIndicator(),
-                  title: Text(L10n.of(context)!.fetchingVersion),
-                );
-              }
-            },
-          ),
-          // Conditional ListTile based on the environment (staging or not)
-          if (Environment.isStaging)
-          ListTile(
-            leading: const Icon(Icons.bug_report_outlined),
-            title: Text(L10n.of(context)!.connectedToStaging),
-          ),
+            ListTile(
+              leading: const Icon(Icons.shield_outlined),
+              title: Text(L10n.of(context)!.termsAndConditions),
+              onTap: () => launchUrlString(AppConfig.termsOfServiceUrl),
+              trailing: const Icon(Icons.open_in_new_outlined),
+            ),
+            FutureBuilder<String>(
+              future: getAppVersion(context),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title: Text(
+                      snapshot.data ?? L10n.of(context)!.versionNotFound,
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return ListTile(
+                    leading: const Icon(Icons.error_outline),
+                    title: Text(L10n.of(context)!.versionFetchError),
+                  );
+                } else {
+                  return ListTile(
+                    leading: const CircularProgressIndicator(),
+                    title: Text(L10n.of(context)!.fetchingVersion),
+                  );
+                }
+              },
+            ),
+            // Conditional ListTile based on the environment (staging or not)
+            if (Environment.isStaging)
+              ListTile(
+                leading: const Icon(Icons.bug_report_outlined),
+                title: Text(L10n.of(context)!.connectedToStaging),
+              ),
             // Pangea#
           ],
         ),
