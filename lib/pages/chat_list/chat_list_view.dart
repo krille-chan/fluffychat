@@ -199,22 +199,38 @@ class ChatListView extends StatelessWidget {
                             destinations: getNavigationDestinations(context),
                           )
                         : null,
-                    floatingActionButton: KeyBoardShortcuts(
-                      keysToPress: {
-                        LogicalKeyboardKey.controlLeft,
-                        LogicalKeyboardKey.keyN,
-                      },
-                      onKeysPressed: () => context.go('/rooms/newprivatechat'),
-                      helpLabel: L10n.of(context)!.newChat,
-                      child: selectMode == SelectMode.normal &&
-                              !controller.isSearchMode
-                          ? StartChatFloatingActionButton(
+                    floatingActionButton: Stack(
+                      children: [
+                        Positioned(
+                          bottom: 16.0,
+                          left: 32.0,child: FloatingActionButton(
+                          onPressed: () {
+                            // Add your onPressed code here!
+                          },
+                          child: const Icon(Icons.sync),
+                        ),),
+                        Positioned(
+                          bottom: 16.0,
+                          right: 0.0,
+                          child: KeyBoardShortcuts(
+                            keysToPress: {
+                              LogicalKeyboardKey.controlLeft,
+                              LogicalKeyboardKey.keyN,
+                            },
+                            onKeysPressed: () => context.go('/rooms/newprivatechat'),
+                            helpLabel: L10n.of(context)!.newChat,
+                            child: selectMode == SelectMode.normal &&
+                                !controller.isSearchMode
+                                ? StartChatFloatingActionButton(
                               activeFilter: controller.activeFilter,
                               roomsIsEmpty: false,
                               scrolledToTop: controller.scrolledToTop,
                               createNewSpace: controller.createNewSpace,
                             )
-                          : const SizedBox.shrink(),
+                                : const SizedBox.shrink(),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
