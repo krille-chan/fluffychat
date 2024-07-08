@@ -34,9 +34,7 @@ class AnalyticsLanguageButton extends StatelessWidget {
       }).toList(),
       child: TextButton.icon(
         label: Text(
-          L10n.of(context)!.languageButtonLabel(
-            value.getDisplayName(context) ?? value.langCode,
-          ),
+          value.getDisplayName(context) ?? value.langCode,
           style: TextStyle(
             color: Theme.of(context).colorScheme.onSurface,
           ),

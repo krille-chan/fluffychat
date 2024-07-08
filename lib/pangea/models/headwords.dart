@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -154,32 +155,37 @@ class VocabTotals {
   void addVocabUseBasedOnUseType(List<OneConstructUse> uses) {
     for (final use in uses) {
       switch (use.useType) {
-        case ConstructUseType.ga:
+        case ConstructUseTypeEnum.ga:
           ga++;
           break;
-        case ConstructUseType.wa:
+        case ConstructUseTypeEnum.wa:
           wa++;
           break;
-        case ConstructUseType.corIt:
+        case ConstructUseTypeEnum.corIt:
           corIt++;
           break;
-        case ConstructUseType.incIt:
+        case ConstructUseTypeEnum.incIt:
           incIt++;
           break;
-        case ConstructUseType.ignIt:
+        case ConstructUseTypeEnum.ignIt:
           ignIt++;
           break;
         //TODO - these shouldn't be counted as such
-        case ConstructUseType.ignIGC:
+        case ConstructUseTypeEnum.ignIGC:
           ignIt++;
           break;
-        case ConstructUseType.corIGC:
+        case ConstructUseTypeEnum.corIGC:
           corIt++;
           break;
-        case ConstructUseType.incIGC:
+        case ConstructUseTypeEnum.incIGC:
           incIt++;
           break;
-        case ConstructUseType.unk:
+        //TODO if we bring back Headwords then we need to add these
+        case ConstructUseTypeEnum.corPA:
+          break;
+        case ConstructUseTypeEnum.incPA:
+          break;
+        case ConstructUseTypeEnum.unk:
           break;
       }
     }

@@ -16,7 +16,6 @@ import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/enum/use_type.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
@@ -586,7 +585,6 @@ class ChatController extends State<ChatPageWithRoom>
     PangeaMessageTokens? tokensSent,
     PangeaMessageTokens? tokensWritten,
     ChoreoRecord? choreo,
-    UseType? useType,
   }) async {
     // Pangea#
     if (sendController.text.trim().isEmpty) return;
@@ -630,7 +628,6 @@ class ChatController extends State<ChatPageWithRoom>
       tokensSent: tokensSent,
       tokensWritten: tokensWritten,
       choreo: choreo,
-      useType: useType,
     )
         .then(
       (String? msgEventId) async {
@@ -644,7 +641,6 @@ class ChatController extends State<ChatPageWithRoom>
         GoogleAnalytics.sendMessage(
           room.id,
           room.classCode,
-          useType ?? UseType.un,
         );
 
         if (msgEventId == null) {

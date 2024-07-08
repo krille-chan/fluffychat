@@ -12,7 +12,7 @@ import 'package:matrix/src/utils/markdown.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../widgets/matrix.dart';
-import '../constants/language_keys.dart';
+import '../constants/language_constants.dart';
 import '../constants/pangea_event_types.dart';
 import '../models/choreo_record.dart';
 import '../models/representation_content_model.dart';

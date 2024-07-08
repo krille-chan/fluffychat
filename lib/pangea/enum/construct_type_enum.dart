@@ -1,30 +1,30 @@
-enum ConstructType {
+enum ConstructTypeEnum {
   grammar,
   vocab,
 }
 
-extension ConstructExtension on ConstructType {
+extension ConstructExtension on ConstructTypeEnum {
   String get string {
     switch (this) {
-      case ConstructType.grammar:
+      case ConstructTypeEnum.grammar:
         return 'grammar';
-      case ConstructType.vocab:
+      case ConstructTypeEnum.vocab:
         return 'vocab';
     }
   }
 }
 
 class ConstructTypeUtil {
-  static ConstructType fromString(String? string) {
+  static ConstructTypeEnum fromString(String? string) {
     switch (string) {
       case 'g':
       case 'grammar':
-        return ConstructType.grammar;
+        return ConstructTypeEnum.grammar;
       case 'v':
       case 'vocab':
-        return ConstructType.vocab;
+        return ConstructTypeEnum.vocab;
       default:
-        return ConstructType.vocab;
+        return ConstructTypeEnum.vocab;
     }
   }
 }

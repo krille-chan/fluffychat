@@ -137,6 +137,8 @@ class ToolbarDisplayController {
               ? Alignment.bottomLeft
               : Alignment.topLeft,
       backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
+      closePrevOverlay:
+          MatrixState.pangeaController.subscriptionController.isSubscribed,
     );
 
     if (MatrixState.pAnyState.entries.isNotEmpty) {

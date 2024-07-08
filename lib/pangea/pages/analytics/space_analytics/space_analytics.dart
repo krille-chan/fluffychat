@@ -18,8 +18,8 @@ import '../../../utils/sync_status_util_v2.dart';
 import 'space_analytics_view.dart';
 
 class SpaceAnalyticsPage extends StatefulWidget {
-  final BarChartViewSelection? selectedView;
-  const SpaceAnalyticsPage({super.key, this.selectedView});
+  final BarChartViewSelection selectedView;
+  const SpaceAnalyticsPage({super.key, required this.selectedView});
 
   @override
   State<SpaceAnalyticsPage> createState() => SpaceAnalyticsV2Controller();

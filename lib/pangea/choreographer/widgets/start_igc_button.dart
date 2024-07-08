@@ -91,8 +91,8 @@ class StartIGCButtonState extends State<StartIGCButton>
             if (assistanceState != AssistanceState.fetching) {
               widget.controller.choreographer
                   .getLanguageHelp(
-                false,
-                true,
+                onlyTokensAndLanguageDetection: false,
+                manual: true,
               )
                   .then((_) {
                 if (widget.controller.choreographer.igc.igcTextData != null &&

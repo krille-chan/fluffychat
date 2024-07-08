@@ -1,4 +1,5 @@
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
+import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -14,17 +15,29 @@ import 'overlay.dart';
 class InstructionsController {
   late PangeaController _pangeaController;
 
+  // We have these three methods to make sure that the instructions are not shown too much
+
+  /// Instruction popup was closed by the user
   final Map<InstructionsEnum, bool> _instructionsClosed = {};
+
+  /// Instruction popup has already been shown this session
   final Map<InstructionsEnum, bool> _instructionsShown = {};
+
+  /// Returns true if the user requested this popup not be shown again
+  bool? toggledOff(InstructionsEnum key) =>
+      _pangeaController.pStoreService.read(key.toString());
 
   InstructionsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
   }
 
+  /// Returns true if the instructions were closed
+  /// or turned off by the user via the toggle switch
   bool wereInstructionsTurnedOff(InstructionsEnum key) =>
-      _pangeaController.pStoreService.read(key.toString()) ??
-      _instructionsClosed[key] ??
-      false;
+      toggledOff(key) ?? _instructionsClosed[key] ?? false;
+
+  void turnOffInstruction(InstructionsEnum key) =>
+      _instructionsClosed[key] = true;
 
   Future<void> updateEnableInstructions(
     InstructionsEnum key,
@@ -35,7 +48,9 @@ class InstructionsController {
         value,
       );
 
-  Future<void> show(
+  /// Instruction Card gives users tips on
+  /// how to use Pangea Chat's features
+  Future<void> showInstructionsPopup(
     BuildContext context,
     InstructionsEnum key,
     String transformTargetKey, [
@@ -98,45 +113,35 @@ class InstructionsController {
       ),
     );
   }
-}
 
-enum InstructionsEnum {
-  itInstructions,
-  clickMessage,
-  blurMeansTranslate,
-  tooltipInstructions,
-}
-
-extension Copy on InstructionsEnum {
-  String title(BuildContext context) {
-    switch (this) {
-      case InstructionsEnum.itInstructions:
-        return L10n.of(context)!.itInstructionsTitle;
-      case InstructionsEnum.clickMessage:
-        return L10n.of(context)!.clickMessageTitle;
-      case InstructionsEnum.blurMeansTranslate:
-        return L10n.of(context)!.blurMeansTranslateTitle;
-      case InstructionsEnum.tooltipInstructions:
-        return L10n.of(context)!.tooltipInstructionsTitle;
+  /// Returns a widget that will be added to existing widget
+  /// which displays hint text defined in the enum extension
+  Widget getInstructionInlineTooltip(
+    BuildContext context,
+    InstructionsEnum key,
+    VoidCallback onClose,
+  ) {
+    if (wereInstructionsTurnedOff(key)) {
+      return const SizedBox();
     }
-  }
 
-  String body(BuildContext context) {
-    switch (this) {
-      case InstructionsEnum.itInstructions:
-        return L10n.of(context)!.itInstructionsBody;
-      case InstructionsEnum.clickMessage:
-        return L10n.of(context)!.clickMessageBody;
-      case InstructionsEnum.blurMeansTranslate:
-        return L10n.of(context)!.blurMeansTranslateBody;
-      case InstructionsEnum.tooltipInstructions:
-        return PlatformInfos.isMobile
-            ? L10n.of(context)!.tooltipInstructionsMobileBody
-            : L10n.of(context)!.tooltipInstructionsBrowserBody;
+    if (L10n.of(context) == null) {
+      ErrorHandler.logError(
+        m: "null context in ITBotButton.showCard",
+        s: StackTrace.current,
+      );
+      return const SizedBox();
     }
+
+    return InlineTooltip(
+      body: InstructionsEnum.speechToText.body(context),
+      onClose: onClose,
+    );
   }
 }
 
+/// User can toggle on to prevent Instruction Card
+/// from appearing in future sessions
 class InstructionsToggle extends StatefulWidget {
   const InstructionsToggle({
     super.key,

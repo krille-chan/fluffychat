@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/practice_acitivity_record_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_record_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
@@ -71,7 +71,9 @@ class PracticeActivityEvent {
     return records.firstOrNull;
   }
 
-  /// Checks if there is a user record for this activity,
+  String get parentMessageId => event.relationshipEventId!;
+
+  /// Checks if there are any user records in the list for this activity,
   /// and, if so, then the activity is complete
   bool get isComplete => userRecord != null;
 }

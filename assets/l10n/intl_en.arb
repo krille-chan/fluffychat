@@ -3111,7 +3111,7 @@
   "prettyGood": "Pretty good! Here's what I would have said.",
   "letMeThink": "Hmm, let's see how you did!",
   "clickMessageTitle": "Need help?",
-  "clickMessageBody": "Click messages to access definitions, translations, and audio!",
+  "clickMessageBody": "Click a message for language help! Click and hold to react 😀.",
   "understandingMessagesTitle": "Definitions and translations!",
   "understandingMessagesBody": "Click underlined words for definitions. Translate with message options (upper right).",
   "allDone": "All done!",
@@ -4065,6 +4065,8 @@
   "practice": "Practice",
   "noLanguagesSet": "No languages set",
   "noActivitiesFound": "No practice activities found for this message",
+  "hintTitle": "Hint:",
+  "speechToTextBody": "See how well you did by looking at your Accuracy and Words Per Minute scores",
   "previous": "Previous",
   "languageButtonLabel": "Language: {currentLanguage}",
   "@languageButtonLabel": {
@@ -4082,5 +4084,6 @@
   "@interactiveTranslatorAutoPlayDesc": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "changeAnalyticsView": "Change Analytics View"
 }

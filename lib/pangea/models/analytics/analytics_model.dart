@@ -12,7 +12,11 @@ abstract class AnalyticsModel {
       case PangeaEventTypes.summaryAnalytics:
         return SummaryAnalyticsModel.formatSummaryContent(recentMsgs);
       case PangeaEventTypes.construct:
-        return ConstructAnalyticsModel.formatConstructsContent(recentMsgs);
+        final List<OneConstructUse> uses = [];
+        for (final msg in recentMsgs) {
+          uses.addAll(msg.allConstructUses);
+        }
+        return uses;
     }
     return [];
   }
