@@ -137,7 +137,11 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
             ]
           : selectMode == SelectMode.select
               ? [
-                  if (controller.spaces.isNotEmpty)
+                  // #Pangea
+                  // if (controller.spaces.isNotEmpty)
+                  if (controller.spaces.isNotEmpty &&
+                      controller.selectedRoomIds.length == 1)
+                    // Pangea#
                     IconButton(
                       tooltip: L10n.of(context)!.addToSpace,
                       icon: const Icon(Icons.workspaces_outlined),

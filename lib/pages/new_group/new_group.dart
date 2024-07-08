@@ -134,7 +134,7 @@ class NewGroupController extends State<NewGroup> {
         powerLevelContentOverride:
             await ClassChatPowerLevels.powerLevelOverrideForClassChat(
           context,
-          addToSpaceKey.currentState!.parents,
+          addToSpaceKey.currentState!.parent,
         ),
         invite: [
           if (addConversationBotKey.currentState?.addBot ?? false)

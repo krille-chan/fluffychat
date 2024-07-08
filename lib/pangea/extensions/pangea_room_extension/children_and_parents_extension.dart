@@ -138,4 +138,27 @@ extension ChildrenAndParentsRoomExtension on Room {
         child != null ? child._allSpaceChildRoomIds.contains(id) : false;
     return canAddChild && !isCycle;
   }
+
+  /// Wrapper around call to setSpaceChild with added functionality
+  /// to prevent adding one room to multiple spaces
+  Future<void> _pangeaSetSpaceChild(
+    String roomId, {
+    bool? suggested,
+  }) async {
+    final Room? child = client.getRoomById(roomId);
+    if (child != null) {
+      final List<Room> spaceParents = child.pangeaSpaceParents;
+      for (final Room parent in spaceParents) {
+        try {
+          await parent.removeSpaceChild(roomId);
+        } catch (e) {
+          ErrorHandler.logError(
+            e: e,
+            m: 'Failed to remove child from parent',
+          );
+        }
+      }
+      await setSpaceChild(roomId, suggested: suggested);
+    }
+  }
 }
