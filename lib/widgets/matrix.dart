@@ -32,7 +32,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'local_notifications_extension.dart';
-import 'matrix_client.dart';
+import 'matrix_client_wrapper.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
