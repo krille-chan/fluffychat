@@ -349,15 +349,17 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   void initMatrix() async {
     for (final c in widget.clients) {
       _registerSubs(c.clientName);
-      final matrixClient = MatrixClient(c);
+      final matrixClient = MatrixClientWrapper(c);
       matrixClient.start(); // Start background synchronization
     }
 
     // Wait for all clients to initialize and synchronize
-    await Future.wait(widget.clients.map((c) {
-      final matrixClient = MatrixClient(c);
-      return matrixClient.ensureInitializationComplete();
-    }));
+    await Future.wait(
+      widget.clients.map((c) {
+        final matrixClient = MatrixClientWrapper(c);
+        return matrixClient.ensureInitializationComplete();
+      }),
+    );
 
     if (kIsWeb) {
       onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
