@@ -5,6 +5,23 @@ import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
 
+enum SocialNetworkEnum { WhatsApp, FacebookMessenger, Instagram, Linkedin }
+
+SocialNetworkEnum? getSocialNetworkEnum(String name) {
+  switch (name) {
+    case "WhatsApp":
+      return SocialNetworkEnum.WhatsApp;
+    case "Facebook Messenger":
+      return SocialNetworkEnum.FacebookMessenger;
+    case "Instagram":
+      return SocialNetworkEnum.Instagram;
+    case "Linkedin":
+      return SocialNetworkEnum.Linkedin;
+    default:
+      return null; // Or throw an exception if you prefer
+  }
+}
+
 /// Format cookies into a JSON string
 String formatCookiesToJsonString(
     List<io.Cookie> cookies, SocialNetwork network) {
@@ -58,33 +75,33 @@ bool isStillConnected(String message, Map<String, RegExp> patterns) {
 }
 
 /// Get the regular expressions for a specific social network
-RegExpPingPatterns getPingPatterns(String networkName) {
-  switch (networkName) {
-    case "WhatsApp":
+RegExpPingPatterns getPingPatterns(SocialNetworkEnum network) {
+  switch (network) {
+    case SocialNetworkEnum.WhatsApp:
       return RegExpPingPatterns(
         PingPatterns.whatsAppOnlineMatch,
         PingPatterns.whatsAppNotLoggedMatch,
         PingPatterns.whatsAppLoggedButNotConnectedMatch,
       );
-    case "Facebook Messenger":
+    case SocialNetworkEnum.FacebookMessenger:
       return RegExpPingPatterns(
         PingPatterns.facebookOnlineMatch,
         PingPatterns.facebookNotLoggedMatch,
         PingPatterns.facebookNotLoggedAnymoreMatch,
       );
-    case "Instagram":
+    case SocialNetworkEnum.Instagram:
       return RegExpPingPatterns(
         PingPatterns.instagramOnlineMatch,
         PingPatterns.instagramNotLoggedMatch,
         PingPatterns.instagramNotLoggedAnymoreMatch,
       );
-    case "Linkedin":
+    case SocialNetworkEnum.Linkedin:
       return RegExpPingPatterns(
         PingPatterns.linkedinOnlineMatch,
         PingPatterns.linkedinNotLoggedMatch,
       );
     default:
-      throw Exception("Unsupported social network: $networkName");
+      throw Exception("Unsupported social network: $network");
   }
 }
 

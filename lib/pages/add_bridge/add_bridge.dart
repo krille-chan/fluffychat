@@ -142,7 +142,10 @@ class BotController extends State<AddBridge> {
   /// Ping a social network to check connection status
   Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
     final String botUserId = '${socialNetwork.chatBot}$hostname';
-    final RegExpPingPatterns patterns = getPingPatterns(socialNetwork.name);
+    final SocialNetworkEnum? networkEnum =
+        getSocialNetworkEnum(socialNetwork.name);
+
+    final RegExpPingPatterns patterns = getPingPatterns(networkEnum!);
     final String? directChat = await _getOrCreateDirectChat(botUserId);
 
     if (directChat == null) {
