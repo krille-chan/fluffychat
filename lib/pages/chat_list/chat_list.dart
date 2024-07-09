@@ -188,13 +188,68 @@ class ChatListController extends State<ChatList>
         participants.any((user) => user.id == client.id.toString());
   }
 
-  List<Room> get filteredRooms => Matrix.of(context)
-      .client
-      .rooms
-      .where(getRoomFilterByActiveFilter(activeFilter))
-      .where((room) => !excludedUserIds.contains(room.directChatMatrixID))
-      .where((room) => !isGroupWithOnlyBotAndUser(room))
-      .toList();
+  // Method to identify and remove duplicate rooms
+  void identifyAndRemoveDuplicates(List<Room> rooms) {
+    final Map<String, List<Room>> roomMap = {};
+    final client = Matrix.of(context).client;
+
+    // Group rooms by the bot ID in _excludedUserIds
+    for (var room in rooms) {
+      String? botId = room.directChatMatrixID;
+      if (botId == null && isGroupWithOnlyBotAndUser(room)) {
+        botId = _excludedUserIds.firstWhere(
+              (id) => room.getParticipants().any((user) => user.id == id),
+          orElse: () => '',
+        );
+      }
+
+      if (botId != null && botId.isNotEmpty) {
+        if (!roomMap.containsKey(botId)) {
+          roomMap[botId] = [];
+        }
+        roomMap[botId]!.add(room);
+      }
+    }
+
+    // Check and remove duplicates
+    roomMap.forEach((botId, roomList) async {
+      if (roomList.length > 1) {
+        // Sort by the timestamp of the last event
+        roomList.sort((a, b) => b.lastEvent?.originServerTs.compareTo(a.lastEvent!.originServerTs) ?? 0);
+
+        // Keep the room with the most recent event by the bot
+        for (int i = 1; i < roomList.length; i++) {
+          final room = roomList[i];
+          if (room.lastEvent?.senderId == client.userID) {
+            await room.leave();
+          } else {
+            await roomList[0].leave();
+            roomList.removeAt(0);
+          }
+        }
+      }
+    });
+  }
+
+  List<Room> get filteredRooms {
+    final rooms = Matrix.of(context)
+        .client
+        .rooms
+        .where(getRoomFilterByActiveFilter(activeFilter))
+        .toList();
+
+    // Exclude rooms based on _excludedUserIds and isGroupWithOnlyBotAndUser
+    final filteredRooms = rooms
+        .where((room) =>
+    !excludedUserIds.contains(room.directChatMatrixID) &&
+        !isGroupWithOnlyBotAndUser(room))
+        .toList();
+
+    // Identify and remove duplicates
+    identifyAndRemoveDuplicates(filteredRooms);
+
+    return filteredRooms;
+  }
 
   bool isSearchMode = false;
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;
