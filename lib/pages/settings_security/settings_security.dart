@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
 import 'settings_security_view.dart';
 
@@ -51,6 +51,28 @@ class SettingsSecurityController extends State<SettingsSecurity> {
   }
 
   void deleteAccountAction() async {
+    // #Pangea
+    final subscriptionController =
+        MatrixState.pangeaController.subscriptionController;
+    if (subscriptionController.subscription?.isPaidSubscription == true &&
+        subscriptionController.subscription?.defaultManagementURL != null) {
+      final resp = await showOkCancelAlertDialog(
+        useRootNavigator: false,
+        context: context,
+        title: L10n.of(context)!.deleteSubscriptionWarningTitle,
+        message: L10n.of(context)!.deleteSubscriptionWarningBody,
+        okLabel: L10n.of(context)!.manageSubscription,
+        cancelLabel: L10n.of(context)!.continueText,
+      );
+      if (resp == OkCancelResult.ok) {
+        launchUrlString(
+          subscriptionController.subscription!.defaultManagementURL!,
+          mode: LaunchMode.externalApplication,
+        );
+        return;
+      }
+    }
+    // Pangea#
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
