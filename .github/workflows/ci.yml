@@ -1,0 +1,48 @@
+name: CI/CD Pipeline
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Daily at midnight
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  update-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+
+      - name: Fetch upstream changes
+        run: |
+          git remote add upstream https://github.com/krille-chan/fluffychat.git
+          git fetch upstream
+          git merge upstream/main --allow-unrelated-histories
+          git push origin main
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
