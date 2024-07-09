@@ -85,6 +85,8 @@ class ChatListController extends State<ChatList>
 
   String? activeSpaceId;
 
+  late final List<String> _excludedUserIds;
+
   void resetActiveSpaceId() {
     setState(() {
       selectedRoomIds.clear();
@@ -170,11 +172,13 @@ class ChatListController extends State<ChatList>
 
   List<String> getBotIds() {
     final hostName = getHostName();
-    return SocialNetworkManager.socialNetworks.map((sn) => sn.chatBot + hostName).toList();
+    return SocialNetworkManager.socialNetworks
+        .map((sn) => sn.chatBot + hostName)
+        .toList();
   }
 
   // List of user or bot IDs to exclude
-  List<String> get excludedUserIds => getBotIds();
+  List<String> get excludedUserIds => _excludedUserIds;
 
   List<Room> get filteredRooms => Matrix.of(context)
       .client
@@ -453,6 +457,9 @@ class ChatListController extends State<ChatList>
     });
 
     _checkTorBrowser();
+
+    // Calculates the list of excluded IDs at once
+    _excludedUserIds = getBotIds();
 
     super.initState();
   }
