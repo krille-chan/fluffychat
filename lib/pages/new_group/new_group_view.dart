@@ -27,6 +27,15 @@ class NewGroupView extends StatelessWidget {
         ),
         title: Text(L10n.of(context)!.createGroup),
       ),
+      // #Pangea
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: controller.loading ? null : controller.submitAction,
+        icon: controller.loading ? null : const Icon(Icons.chat_bubble_outline),
+        label: controller.loading
+            ? const CircularProgressIndicator.adaptive()
+            : Text(L10n.of(context)!.createChat),
+      ),
+      // Pangea#
       body: MaxWidthBody(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -134,33 +143,33 @@ class NewGroupView extends StatelessWidget {
             //   value: !controller.publicGroup,
             //   onChanged: null,
             // ),
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: SizedBox(
+            //     width: double.infinity,
+            //     child: ElevatedButton(
+            //       style: ElevatedButton.styleFrom(
+            //         foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            //         backgroundColor: Theme.of(context).colorScheme.primary,
+            //       ),
+            //       onPressed:
+            //           controller.loading ? null : controller.submitAction,
+            // child: controller.loading
+            //     ? const LinearProgressIndicator()
+            //     : Row(
+            //         children: [
+            //           Expanded(
+            //             child: Text(
+            //               L10n.of(context)!.createGroupAndInviteUsers,
+            //             ),
+            //           ),
+            //           Icon(Icons.adaptive.arrow_forward_outlined),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
             // Pangea#
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                  ),
-                  onPressed:
-                      controller.loading ? null : controller.submitAction,
-                  child: controller.loading
-                      ? const LinearProgressIndicator()
-                      : Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                L10n.of(context)!.createGroupAndInviteUsers,
-                              ),
-                            ),
-                            Icon(Icons.adaptive.arrow_forward_outlined),
-                          ],
-                        ),
-                ),
-              ),
-            ),
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
               child: error == null

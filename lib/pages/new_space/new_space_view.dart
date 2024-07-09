@@ -32,6 +32,15 @@ class NewSpaceView extends StatelessWidget {
         // Pangea#
         title: Text(L10n.of(context)!.createNewSpace),
       ),
+      // #Pangea
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: controller.loading ? null : controller.submitAction,
+        icon: controller.loading ? null : const Icon(Icons.workspaces_outlined),
+        label: controller.loading
+            ? const CircularProgressIndicator.adaptive()
+            : Text(L10n.of(context)!.createSpace),
+      ),
+      // Pangea#
       body: MaxWidthBody(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -158,33 +167,33 @@ class NewSpaceView extends StatelessWidget {
             //   value: controller.publicGroup,
             //   onChanged: controller.setPublicGroup,
             // ),
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: SizedBox(
+            //     width: double.infinity,
+            //     child: ElevatedButton(
+            //       style: ElevatedButton.styleFrom(
+            //         foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            //         backgroundColor: Theme.of(context).colorScheme.primary,
+            //       ),
+            //       onPressed:
+            //           controller.loading ? null : controller.submitAction,
+            //       child: controller.loading
+            //           ? const LinearProgressIndicator()
+            //           : Row(
+            //               children: [
+            //                 Expanded(
+            //                   child: Text(
+            //                     L10n.of(context)!.createNewSpace,
+            //                   ),
+            //                 ),
+            //                 Icon(Icons.adaptive.arrow_forward_outlined),
+            //               ],
+            //             ),
+            //     ),
+            //   ),
+            // ),
             // Pangea#
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                  ),
-                  onPressed:
-                      controller.loading ? null : controller.submitAction,
-                  child: controller.loading
-                      ? const LinearProgressIndicator()
-                      : Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                L10n.of(context)!.createNewSpace,
-                              ),
-                            ),
-                            Icon(Icons.adaptive.arrow_forward_outlined),
-                          ],
-                        ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
