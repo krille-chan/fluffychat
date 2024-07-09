@@ -1,14 +1,12 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/span_card_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/utils/overlay.dart';
-import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -262,7 +260,20 @@ class IGCTextData {
     return matchTokens;
   }
 
+  TextSpan getSpanItem({
+    required int start,
+    required int end,
+    TextStyle? style,
+  }) {
+    return TextSpan(
+      text: originalInput.characters.getRange(start, end).toString(),
+      style: style,
+    );
+  }
+
   //PTODO - handle multitoken spans
+  /// Returns a list of [TextSpan]s used to display the text in the input field
+  /// with the appropriate styling for each error match.
   List<TextSpan> constructTokenSpan({
     required BuildContext context,
     TextStyle? defaultStyle,
@@ -282,79 +293,58 @@ class IGCTextData {
       ];
     }
 
-    final List<MatchToken> matchTokens = getMatchTokens();
+    final List<List<int>> matchRanges = matches
+        .map(
+          (match) => [
+            match.match.offset,
+            match.match.length + match.match.offset,
+          ],
+        )
+        .toList();
 
-    for (int tokenIndex = 0; tokenIndex < matchTokens.length; tokenIndex++) {
-      final MatchToken matchToken = matchTokens[tokenIndex];
-      final Widget? cardToShow =
-          matchToken.match != null && spanCardModel != null
-              ? SpanCard(scm: spanCardModel)
-              : null;
-
-      int nextTokenIndex = matchTokens.indexWhere(
-        (e) => matchToken.match != null
-            ? e.match != matchToken.match
-            : e.match != null,
-        tokenIndex,
+    // create a pointer to the current index in the original input
+    // and iterate until the pointer has reached the end of the input
+    int currentIndex = 0;
+    while (currentIndex < originalInput.characters.length - 1) {
+      // check if the pointer is at a match, and if so, get the index of the match
+      final int matchIndex = matchRanges.indexWhere(
+        (range) => currentIndex >= range[0] && currentIndex < range[1],
       );
+      final bool inMatch = matchIndex != -1;
 
-      if (nextTokenIndex < 0) {
-        nextTokenIndex = matchTokens.length;
-      }
-
-      String matchText;
-      try {
-        final int start = matchTokens[tokenIndex].token.text.offset;
-        final int end = matchTokens[nextTokenIndex - 1].token.end;
-        matchText = originalInput.characters.getRange(start, end).toString();
-      } catch (err) {
-        return [
-          TextSpan(
-            text: originalInput,
-            style: defaultStyle,
-          ),
-        ];
-      }
-
-      items.add(
-        TextSpan(
-          text: matchText,
-          style: matchTokens[tokenIndex].match?.textStyle(defaultStyle) ??
-              defaultStyle,
-          recognizer: handleClick && cardToShow != null
-              ? (TapGestureRecognizer()
-                ..onTapDown = (details) => OverlayUtil.showPositionedCard(
-                      context: context,
-                      cardToShow: cardToShow,
-                      cardSize:
-                          matchTokens[tokenIndex].match?.isITStart ?? false
-                              ? const Size(350, 220)
-                              : const Size(350, 400),
-                      transformTargetId: transformTargetId,
-                    ))
-              : null,
-        ),
-      );
-
-      final String beforeNextToken = originalInput.characters
-          .getRange(
-            matchTokens[nextTokenIndex - 1].token.end,
-            nextTokenIndex < matchTokens.length
-                ? matchTokens[nextTokenIndex].token.text.offset
-                : originalInput.length,
-          )
-          .toString();
-
-      if (beforeNextToken.isNotEmpty) {
+      if (inMatch) {
+        // if the pointer is in a match, then add that match to items
+        // and then move the pointer to the end of the match range
+        final PangeaMatch match = matches[matchIndex];
         items.add(
-          TextSpan(
-            text: beforeNextToken,
+          getSpanItem(
+            start: match.match.offset,
+            end: match.match.offset + match.match.length,
+            style: match.textStyle(defaultStyle),
+          ),
+        );
+
+        currentIndex = match.match.offset + match.match.length;
+      } else {
+        // otherwise, if the pointer is not at a match, then add all the text
+        // until the next match (or, if there is not next match, the end of the
+        // text) to items and move the pointer to the start of the next match
+        final int nextIndex = matchRanges
+                .firstWhereOrNull(
+                  (range) => range[0] > currentIndex,
+                )
+                ?.first ??
+            originalInput.characters.length;
+
+        items.add(
+          getSpanItem(
+            start: currentIndex,
+            end: nextIndex,
             style: defaultStyle,
           ),
         );
+        currentIndex = nextIndex;
       }
-
-      tokenIndex = nextTokenIndex - 1;
     }
 
     return items;
