@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -85,22 +86,19 @@ class BotController extends State<AddBridge> {
   /// Get or create a direct chat with the bot
   Future<String?> _getOrCreateDirectChat(String botUserId) async {
     try {
-      await waitForMatrixSync();
+      await waitForMatrixSync(); // Make sure all conversations are loaded
       final client = Matrix.of(context).client;
       String? directChat;
 
-      // Check if a direct chat room already exists for this bot
-      try {
-        final room = client.rooms.firstWhere(
-          (room) => botUserId == room.directChatMatrixID,
-        );
-        directChat = room.id;
-      } catch (e) {
-        directChat = null;
-      }
+      // Check whether a direct conversation already exists for this bot
+      final room = client.rooms.firstWhereOrNull(
+        (room) => botUserId == room.directChatMatrixID,
+      );
 
-      // If the room does not exist, a new direct chat room is created.
-      if (directChat == null) {
+      if (room != null) {
+        directChat = room.id;
+      } else {
+        // If the conversation doesn't exist, create a new one
         directChat = await client.startDirectChat(botUserId,
             preset: CreateRoomPreset.publicChat);
         final roomBot = client.getRoomById(directChat);
