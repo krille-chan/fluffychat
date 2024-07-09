@@ -177,7 +177,8 @@ class BotController extends State<AddBridge> {
     _pingSubscriptions[socialNetwork.name] = subscription;
 
     try {
-      if (!await _sendPingMessage(roomBot, socialNetwork)) {
+      final successSendingPing = await _sendPingMessage(roomBot, socialNetwork);
+      if (!successSendingPing) {
         _handleError(socialNetwork);
         return;
       }
