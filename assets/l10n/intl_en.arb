@@ -4109,5 +4109,7 @@
   "continueText": "Continue",
   "deleteSubscriptionWarningTitle": "You have an active subscription",
   "deleteSubscriptionWarningBody": "Deleting your account will not automatically cancel your subscription.",
-  "manageSubscription": "Manage Subscription"
+  "manageSubscription": "Manage Subscription",
+  "createSpace": "Create space",
+  "createChat": "Create chat"
 }
