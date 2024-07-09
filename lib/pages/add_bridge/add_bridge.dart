@@ -302,13 +302,14 @@ class BotController extends State<AddBridge> {
   Future<String> disconnectFromNetwork(BuildContext context,
       SocialNetwork network, ConnectionStateModel connectionState) async {
     final String botUserId = '${network.chatBot}$hostname';
+    final SocialNetworkEnum? networkEnum = getSocialNetworkEnum(network.name);
 
     Future.microtask(() {
       connectionState
           .updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
     });
 
-    final Map<String, RegExp> patterns = getLogoutNetworkPatterns(network.name);
+    final Map<String, RegExp> patterns = getLogoutNetworkPatterns(networkEnum!);
     final String eventName = _getEventName(network.name);
 
     final String? directChat = await _getOrCreateDirectChat(botUserId);

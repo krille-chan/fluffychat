@@ -106,29 +106,29 @@ RegExpPingPatterns getPingPatterns(SocialNetworkEnum network) {
 }
 
 /// Get the logout patterns for a specific social network
-Map<String, RegExp> getLogoutNetworkPatterns(String networkName) {
-  switch (networkName) {
-    case 'Instagram':
+Map<String, RegExp> getLogoutNetworkPatterns(SocialNetworkEnum network) {
+  switch (network) {
+    case SocialNetworkEnum.Instagram:
       return {
         'logoutSuccess': LogoutRegex.instagramSuccessMatch,
         'alreadyLoggedOut': LogoutRegex.instagramAlreadyLogoutMatch
       };
-    case 'WhatsApp':
+    case SocialNetworkEnum.WhatsApp:
       return {
         'logoutSuccess': LogoutRegex.whatsappSuccessMatch,
         'alreadyLoggedOut': LogoutRegex.whatsappAlreadyLogoutMatch
       };
-    case 'Facebook Messenger':
+    case SocialNetworkEnum.FacebookMessenger:
       return {
         'logoutSuccess': LogoutRegex.facebookSuccessMatch,
         'alreadyLoggedOut': LogoutRegex.facebookAlreadyLogoutMatch
       };
-    case 'Linkedin':
+    case SocialNetworkEnum.Linkedin:
       return {
         'logoutSuccess': LogoutRegex.linkedinSuccessMatch,
         'alreadyLoggedOut': LogoutRegex.linkedinAlreadyLogoutMatch
       };
     default:
-      throw ArgumentError('Unsupported network: $networkName');
+      throw ArgumentError('Unsupported network: $network');
   }
 }
