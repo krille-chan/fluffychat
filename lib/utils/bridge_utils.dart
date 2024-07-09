@@ -53,14 +53,14 @@ bool shouldReconnect(RegExp? mQTTNotMatch, String latestMessage) {
 
 /// Check if the message indicates the user is still connected
 bool isStillConnected(String message, Map<String, RegExp> patterns) {
-  return !patterns['success']!.hasMatch(message) &&
-      !patterns['alreadyLogout']!.hasMatch(message);
+  return !patterns['logoutSuccess']!.hasMatch(message) &&
+      !patterns['alreadyLoggedOut']!.hasMatch(message);
 }
 
 /// Check if the message indicates the user is disconnected
 bool isDisconnected(String message, Map<String, RegExp> patterns) {
-  return patterns['success']!.hasMatch(message) ||
-      patterns['alreadyLogout']!.hasMatch(message);
+  return patterns['logoutSuccess']!.hasMatch(message) ||
+      patterns['alreadyLoggedOut']!.hasMatch(message);
 }
 
 /// Get the regular expressions for a specific social network
@@ -99,23 +99,23 @@ Map<String, RegExp> getLogoutNetworkPatterns(String networkName) {
   switch (networkName) {
     case 'Instagram':
       return {
-        'success': LogoutRegex.instagramSuccessMatch,
-        'alreadyLogout': LogoutRegex.instagramAlreadyLogoutMatch
+        'logoutSuccess': LogoutRegex.instagramSuccessMatch,
+        'alreadyLoggedOut': LogoutRegex.instagramAlreadyLogoutMatch
       };
     case 'WhatsApp':
       return {
-        'success': LogoutRegex.whatsappSuccessMatch,
-        'alreadyLogout': LogoutRegex.whatsappAlreadyLogoutMatch
+        'logoutSuccess': LogoutRegex.whatsappSuccessMatch,
+        'alreadyLoggedOut': LogoutRegex.whatsappAlreadyLogoutMatch
       };
     case 'Facebook Messenger':
       return {
-        'success': LogoutRegex.facebookSuccessMatch,
-        'alreadyLogout': LogoutRegex.facebookAlreadyLogoutMatch
+        'logoutSuccess': LogoutRegex.facebookSuccessMatch,
+        'alreadyLoggedOut': LogoutRegex.facebookAlreadyLogoutMatch
       };
     case 'Linkedin':
       return {
-        'success': LogoutRegex.linkedinSuccessMatch,
-        'alreadyLogout': LogoutRegex.linkedinAlreadyLogoutMatch
+        'logoutSuccess': LogoutRegex.linkedinSuccessMatch,
+        'alreadyLoggedOut': LogoutRegex.linkedinAlreadyLogoutMatch
       };
     default:
       throw ArgumentError('Unsupported network: $networkName');
