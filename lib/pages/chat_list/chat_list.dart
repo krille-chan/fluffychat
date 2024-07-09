@@ -180,11 +180,20 @@ class ChatListController extends State<ChatList>
   // List of user or bot IDs to exclude
   List<String> get excludedUserIds => _excludedUserIds;
 
+  bool isGroupWithOnlyBotAndUser(Room room) {
+    final client = Matrix.of(context).client;
+    final participants = room.getParticipants();
+    return participants.length == 2 &&
+        participants.any((user) => _excludedUserIds.contains(user.id)) &&
+        participants.any((user) => user.id == client.id.toString());
+  }
+
   List<Room> get filteredRooms => Matrix.of(context)
       .client
       .rooms
       .where(getRoomFilterByActiveFilter(activeFilter))
       .where((room) => !excludedUserIds.contains(room.directChatMatrixID))
+      .where((room) => !isGroupWithOnlyBotAndUser(room))
       .toList();
 
   bool isSearchMode = false;
