@@ -57,12 +57,6 @@ bool isStillConnected(String message, Map<String, RegExp> patterns) {
       !patterns['alreadyLoggedOut']!.hasMatch(message);
 }
 
-/// Check if the message indicates the user is disconnected
-bool isDisconnected(String message, Map<String, RegExp> patterns) {
-  return patterns['logoutSuccess']!.hasMatch(message) ||
-      patterns['alreadyLoggedOut']!.hasMatch(message);
-}
-
 /// Get the regular expressions for a specific social network
 RegExpPingPatterns getPingPatterns(String networkName) {
   switch (networkName) {

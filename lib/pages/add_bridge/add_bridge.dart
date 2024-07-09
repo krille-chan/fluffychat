@@ -371,7 +371,7 @@ class BotController extends State<AddBridge> {
               return 'Connected';
             }
 
-            if (isDisconnected(latestMessage, patterns)) {
+            if (!isStillConnected(latestMessage, patterns)) {
               Logs().v("You're disconnected from ${network.name}");
               connectionState.updateConnectionTitle(
                   L10n.of(context)!.loadingDisconnectionSuccess);
