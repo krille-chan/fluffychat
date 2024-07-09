@@ -1,4 +1,5 @@
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/repo/subscription_repo.dart';
@@ -51,6 +52,11 @@ class SubscriptionInfo {
   bool get currentSubscriptionIsPromotional =>
       currentSubscriptionId?.startsWith("rc_promo") ?? false;
 
+  bool get isPaidSubscription =>
+      (currentSubscription != null || currentSubscriptionId != null) &&
+      !isNewUserTrial &&
+      !currentSubscriptionIsPromotional;
+
   bool get isLifetimeSubscription =>
       currentSubscriptionIsPromotional &&
       expirationDate != null &&
@@ -86,4 +92,13 @@ class SubscriptionInfo {
   }
 
   Future<void> setCustomerInfo() async {}
+
+  String? get defaultManagementURL {
+    final String? purchaseAppId = currentSubscription?.appId;
+    return purchaseAppId == appIds?.androidId
+        ? AppConfig.googlePlayMangementUrl
+        : purchaseAppId == appIds?.appleId
+            ? AppConfig.appleMangementUrl
+            : Environment.stripeManagementUrl;
+  }
 }
