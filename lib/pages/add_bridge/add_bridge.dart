@@ -66,6 +66,7 @@ class BotController extends State<AddBridge> {
   /// Initialize Matrix client and extract hostname
   void matrixInit() {
     client = Matrix.of(context).client;
+
     final String fullUrl = client.homeserver!.host;
     hostname = extractHostName(fullUrl);
   }
@@ -239,10 +240,13 @@ class BotController extends State<AddBridge> {
     if (kDebugMode) {
       print("social network: $socialNetwork");
     }
+
     final lastEvent = roomBot.lastEvent?.text;
+
     if (kDebugMode) {
       print("lastest message: $lastEvent");
     }
+
     if (isOnline(patterns.onlineMatch, lastEvent!)) {
       Logs().v("You're logged to ${socialNetwork.name}");
       _updateNetworkStatus(socialNetwork, true, false);
@@ -403,13 +407,16 @@ class BotController extends State<AddBridge> {
   Future<void> deleteConversation(BuildContext context, String chatBot,
       ConnectionStateModel connectionState) async {
     final String botUserId = "$chatBot$hostname";
+
     Future.microtask(() {
       connectionState
           .updateConnectionTitle(L10n.of(context)!.loadingDeleteRoom);
     });
+
     try {
       final roomId = client.getDirectChatFromUserId(botUserId);
       final room = client.getRoomById(roomId!);
+
       if (room != null) {
         await room.leave();
         Logs().v('Conversation deleted successfully');
@@ -604,24 +611,29 @@ class BotController extends State<AddBridge> {
       Completer<void> completer) {
     final lastEvent = roomBot.lastEvent;
     final lastMessage = lastEvent?.text;
+
     if (lastEvent != null && lastEvent.senderId == botUserId) {
       if (pasteCookie.hasMatch(lastMessage!)) {
         roomBot.sendTextEvent(formattedCookieString);
       } else if (alreadyConnected.hasMatch(lastMessage)) {
         Logs().v("Already Connected to ${network.name}");
+
         setState(() => network.updateConnectionResult(true));
         connectionState.updateConnectionTitle(L10n.of(context)!.connected);
         connectionState.updateLoading(false);
         connectionState.reset();
+
         if (!completer.isCompleted) {
           completer.complete(lastMessage);
         }
       } else if (successMatch.hasMatch(lastMessage)) {
         Logs().v("You're logged to ${network.name}");
+
         setState(() => network.updateConnectionResult(true));
         connectionState.updateConnectionTitle(L10n.of(context)!.connected);
         connectionState.updateLoading(false);
         connectionState.reset();
+
         if (!completer.isCompleted) {
           completer.complete(lastMessage);
         }
@@ -785,15 +797,18 @@ class BotController extends State<AddBridge> {
     final lastEvent = roomBot.lastEvent;
     final lastMessage = lastEvent?.text;
     final senderId = lastEvent?.senderId;
+
     if (lastEvent != null && senderId == botUserId) {
       if (successMatch.hasMatch(lastMessage!)) {
         Logs().v("You're logged to WhatsApp");
+
         setState(() => whatsAppNetwork.connected = true);
         if (!completer.isCompleted) {
           completer.complete("success");
         }
       } else if (timeOutMatch.hasMatch(lastMessage)) {
         Logs().v("Login timed out");
+
         if (!completer.isCompleted) {
           completer.complete("loginTimedOut");
         }
@@ -905,18 +920,22 @@ class BotController extends State<AddBridge> {
       Completer<String> completer) {
     final lastEvent = roomBot.lastEvent;
     final lastMessage = lastEvent?.text;
+
     final senderId = lastEvent?.senderId;
     if (lastEvent != null && senderId == botUserId) {
       if (successMatch.hasMatch(lastMessage!) ||
           alreadySuccessMatch.hasMatch(lastMessage)) {
         Logs().v("You're logged to Linkedin");
+
         if (!completer.isCompleted) {
           completer.complete(lastMessage);
         }
+
         Future.microtask(() {
           connectionState.updateConnectionTitle(L10n.of(context)!.connected);
           connectionState.updateLoading(false);
         });
+
         setState(() => network.updateConnectionResult(true));
       }
     }
