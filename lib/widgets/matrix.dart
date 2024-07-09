@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' as http;
@@ -21,17 +20,17 @@ import 'package:tawkie/config/setting_keys.dart';
 import 'package:tawkie/pages/key_verification/key_verification_dialog.dart';
 import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/background_push.dart';
-import 'package:tawkie/utils/init_with_restore.dart';
-import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
-import 'package:universal_html/html.dart' as html;
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:tawkie/utils/client_manager.dart';
+import 'package:tawkie/utils/init_with_restore.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/uia_request_manager.dart';
 import 'package:tawkie/utils/voip_plugin.dart';
 import 'package:tawkie/widgets/fluffy_chat_app.dart';
+import 'package:universal_html/html.dart' as html;
+import 'package:url_launcher/url_launcher_string.dart';
+
 import 'local_notifications_extension.dart';
 import 'matrix_client.dart';
 
@@ -375,7 +374,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             title: L10n.of(context)!.pushNotificationsNotAvailable,
             message: errorMsg,
             fullyCapitalizedForMaterial: false,
-            okLabel: link == null ? L10n.of(context)!.ok : L10n.of(context)!.learnMore,
+            okLabel: link == null
+                ? L10n.of(context)!.ok
+                : L10n.of(context)!.learnMore,
             cancelLabel: L10n.of(context)!.doNotShowAgain,
           );
           if (result == OkCancelResult.ok && link != null) {
