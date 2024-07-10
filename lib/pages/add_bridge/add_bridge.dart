@@ -154,13 +154,13 @@ class BotController extends State<AddBridge> {
     final String? directChat = await _getOrCreateDirectChat(botUserId);
 
     if (directChat == null) {
-      _handleError(socialNetwork);
+      _handleError(socialNetwork, ConnectionError.directChatCreationFailed);
       return;
     }
 
     final Room? roomBot = client.getRoomById(directChat);
     if (roomBot == null) {
-      _handleError(socialNetwork);
+      _handleError(socialNetwork, ConnectionError.roomNotFound);
       return;
     }
 
@@ -186,7 +186,7 @@ class BotController extends State<AddBridge> {
     try {
       final successSendingPing = await _sendPingMessage(roomBot, socialNetwork);
       if (!successSendingPing) {
-        _handleError(socialNetwork);
+        _handleError(socialNetwork, ConnectionError.messageSendingFailed);
         return;
       }
 
@@ -196,7 +196,7 @@ class BotController extends State<AddBridge> {
       await _processPingResponse(socialNetwork, completer);
     } catch (e) {
       Logs().v("Error processing ping response: ${e.toString()}");
-      _handleError(socialNetwork);
+      _handleError(socialNetwork, ConnectionError.unknown);
     } finally {
       subscription.cancel();
     }
@@ -222,7 +222,7 @@ class BotController extends State<AddBridge> {
       SocialNetwork socialNetwork, Completer<void> completer) async {
     final timer = Timer(const Duration(seconds: 30), () {
       if (!completer.isCompleted) {
-        completer.completeError("Timeout reached");
+        completer.completeError(ConnectionError.timeout);
       }
     });
 
@@ -231,7 +231,7 @@ class BotController extends State<AddBridge> {
     } catch (e) {
       Logs().v(
           "Timeout reached, setting result to 'error to ${socialNetwork.name}'");
-      _handleError(socialNetwork);
+      _handleError(socialNetwork, ConnectionError.timeout);
     } finally {
       timer.cancel();
     }
@@ -814,6 +814,7 @@ class BotController extends State<AddBridge> {
   }
 
   /// Check last received message for WhatsApp
+  /// Check last received message for WhatsApp
   void _onWhatsAppMessage(
       String directChat,
       String botUserId,
@@ -824,7 +825,7 @@ class BotController extends State<AddBridge> {
     final Room? roomBot = client.getRoomById(directChat);
     if (roomBot == null) {
       if (!completer.isCompleted) {
-        completer.complete("error");
+        completer.completeError(ConnectionError.roomNotFound);
       }
       return;
     }
@@ -856,6 +857,7 @@ class BotController extends State<AddBridge> {
   // 📌 ***********************************************************************
 
   /// Create a bridge for LinkedIn using cookies
+  /// Create a bridge for LinkedIn using cookies
   Future<void> createBridgeLinkedin(
       BuildContext context,
       WebviewCookieManager cookieManager,
@@ -886,20 +888,20 @@ class BotController extends State<AddBridge> {
 
     final String? directChat = await _getOrCreateDirectChat(botUserId);
     if (directChat == null) {
-      _handleError(network);
+      _handleError(network, ConnectionError.directChatCreationFailed);
       return;
     }
 
     final Room? roomBot = client.getRoomById(directChat);
     if (roomBot == null) {
-      _handleError(network);
+      _handleError(network, ConnectionError.roomNotFound);
       return;
     }
 
     final completer = Completer<String>();
     final timer = Timer(const Duration(seconds: 20), () {
       if (!completer.isCompleted) {
-        completer.completeError("Timeout reached");
+        completer.completeError(ConnectionError.timeout);
       }
     });
 
@@ -934,7 +936,7 @@ class BotController extends State<AddBridge> {
           "Maximum iterations reached, setting result to 'error to ${network.name}'");
       showCatchErrorDialog(context,
           "${L10n.of(context)!.errorConnectionText}.\nFaites nous part du message d'erreur rencontré: $e\nLast message: $lastMessage");
-      _handleError(network);
+      _handleError(network, ConnectionError.unknown);
     } finally {
       timer.cancel();
       await subscription
