@@ -539,6 +539,7 @@ class AuthController extends State<Auth> {
       await oryWithCode(email!, code!, kratosClient);
     } else {
       try {
+        formData['method'] = 'code';
         final response = await dio.post(
           actionUrl,
           data: formData,
