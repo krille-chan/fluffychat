@@ -72,8 +72,18 @@ class ITFeedbackCardController extends State<ITFeedbackCard> {
     setState(() {
       isTranslating = true;
     });
+
+    final String? accessToken = await controller.userController.accessToken;
+    if (accessToken == null) {
+      ErrorHandler.logError(
+        m: "Cannot translate feedback because accessToken is null",
+      );
+      error = "Cannot translate feedback because accessToken is null";
+      return;
+    }
+
     FullTextTranslationRepo.translate(
-      accessToken: await controller.userController.accessToken,
+      accessToken: accessToken,
       request: FullTextTranslationRequestModel(
         text: res!.text,
         tgtLang: controller.languageController.userL1?.langCode ??
@@ -197,7 +207,7 @@ class TranslateButton extends StatelessWidget {
     return TextButton(
       onPressed: loading ? null : onPress,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(
+        backgroundColor: WidgetStateProperty.all<Color>(
           AppConfig.primaryColor.withOpacity(0.1),
         ),
       ),

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:country_picker/country_picker.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/matrix.dart';
@@ -91,9 +92,19 @@ class FindPartnerController extends State<FindPartner> {
     if (loading || nextUrl == null) return;
     setState(() => loading = true);
 
+    final String? accessToken =
+        await pangeaController.userController.accessToken;
+    if (accessToken == null) {
+      ErrorHandler.logError(
+        e: "null accessToken in find partner controller",
+        s: StackTrace.current,
+      );
+      return;
+    }
+
     final UserProfileSearchResponse response =
         await PUserRepo.searchUserProfiles(
-      accessToken: await pangeaController.userController.accessToken,
+      accessToken: accessToken,
       targetLanguage: targetLanguageSearch.langCode,
       sourceLanguage: sourceLanguageSearch.langCode,
       country: countrySearch,

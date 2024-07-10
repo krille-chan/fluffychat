@@ -58,8 +58,16 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     }
 
     oldSelectedText = widget.selection.selectedText;
-    final String accessToken =
+    final String? accessToken =
         await MatrixState.pangeaController.userController.accessToken;
+
+    if (accessToken == null) {
+      ErrorHandler.logError(
+        e: "null accessToken in translateSelection",
+        s: StackTrace.current,
+      );
+      return;
+    }
 
     final resp = await FullTextTranslationRepo.translate(
       accessToken: accessToken,

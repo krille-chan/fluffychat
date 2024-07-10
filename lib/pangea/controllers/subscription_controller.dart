@@ -97,12 +97,10 @@ class SubscriptionController extends BaseController {
       } else {
         final bool? beganWebPayment = _pangeaController.pStoreService.read(
           PLocalKey.beganWebPayment,
-          local: true,
         );
         if (beganWebPayment ?? false) {
           await _pangeaController.pStoreService.delete(
             PLocalKey.beganWebPayment,
-            local: true,
           );
           if (_pangeaController.subscriptionController.isSubscribed) {
             subscriptionStream.add(true);
@@ -142,7 +140,6 @@ class SubscriptionController extends BaseController {
         await _pangeaController.pStoreService.save(
           PLocalKey.beganWebPayment,
           true,
-          local: true,
         );
         setState();
         launchUrlString(
@@ -184,18 +181,12 @@ class SubscriptionController extends BaseController {
 
   bool get _activatedNewUserTrial =>
       _pangeaController.userController.inTrialWindow &&
-      (_pangeaController.pStoreService.read(
-            MatrixProfile.activatedFreeTrial.title,
-          ) ??
-          false);
+      MatrixProfile.activatedFreeTrial;
 
   void activateNewUserTrial() {
-    _pangeaController.pStoreService
-        .save(
-      MatrixProfile.activatedFreeTrial.title,
-      true,
-    )
-        .then((_) {
+    MatrixProfile.saveProfileData({
+      MatrixProfileEnum.activatedFreeTrial.title: true,
+    }).then((_) {
       setNewUserTrial();
       trialActivationStream.add(true);
     });
@@ -242,7 +233,6 @@ class SubscriptionController extends BaseController {
   DateTime? get _lastDismissedPaywall {
     final lastDismissed = _pangeaController.pStoreService.read(
       PLocalKey.dismissedPaywall,
-      local: true,
     );
     if (lastDismissed == null) return null;
     return DateTime.tryParse(lastDismissed);
@@ -251,7 +241,6 @@ class SubscriptionController extends BaseController {
   int? get _paywallBackoff {
     final backoff = _pangeaController.pStoreService.read(
       PLocalKey.paywallBackoff,
-      local: true,
     );
     if (backoff == null) return null;
     return backoff;
@@ -269,20 +258,17 @@ class SubscriptionController extends BaseController {
     await _pangeaController.pStoreService.save(
       PLocalKey.dismissedPaywall,
       DateTime.now().toString(),
-      local: true,
     );
 
     if (_paywallBackoff == null) {
       await _pangeaController.pStoreService.save(
         PLocalKey.paywallBackoff,
         1,
-        local: true,
       );
     } else {
       await _pangeaController.pStoreService.save(
         PLocalKey.paywallBackoff,
         _paywallBackoff! + 1,
-        local: true,
       );
     }
   }

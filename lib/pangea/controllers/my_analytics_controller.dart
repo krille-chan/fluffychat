@@ -121,7 +121,6 @@ class MyAnalyticsController {
         _pangeaController.pStoreService.save(
           PLocalKey.messagesSinceUpdate,
           currentCache,
-          local: true,
         );
       }
 
@@ -155,7 +154,6 @@ class MyAnalyticsController {
     _pangeaController.pStoreService.save(
       PLocalKey.messagesSinceUpdate,
       [],
-      local: true,
     );
   }
 
@@ -167,14 +165,12 @@ class MyAnalyticsController {
       Logs().d('Reading messages since update from local storage');
       final dynamic locallySaved = _pangeaController.pStoreService.read(
         PLocalKey.messagesSinceUpdate,
-        local: true,
       );
       if (locallySaved == null) {
         Logs().d('No locally saved messages found, initializing empty list.');
         _pangeaController.pStoreService.save(
           PLocalKey.messagesSinceUpdate,
           [],
-          local: true,
         );
         return [];
       }
@@ -201,7 +197,6 @@ class MyAnalyticsController {
       _pangeaController.pStoreService.save(
         PLocalKey.messagesSinceUpdate,
         [],
-        local: true,
       );
       return [];
     }

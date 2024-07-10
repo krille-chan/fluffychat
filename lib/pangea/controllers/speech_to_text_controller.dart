@@ -44,7 +44,7 @@ class SpeechToTextController {
     _cacheClearTimer?.cancel();
   }
 
-  Future<SpeechToTextModel> get(
+  Future<SpeechToTextModel?> get(
     SpeechToTextRequestModel requestModel,
   ) async {
     final int cacheKey = requestModel.hashCode;
@@ -52,8 +52,18 @@ class SpeechToTextController {
     if (_cache.containsKey(cacheKey)) {
       return _cache[cacheKey]!.data;
     } else {
+      final String? accessToken =
+          await _pangeaController.userController.accessToken;
+      if (accessToken == null) {
+        ErrorHandler.logError(
+          e: 'null accessToken in speech to text controller',
+          s: StackTrace.current,
+        );
+        return null;
+      }
+
       final Future<SpeechToTextModel> response = _fetchResponse(
-        accessToken: await _pangeaController.userController.accessToken,
+        accessToken: accessToken,
         requestModel: requestModel,
       );
       _cache[cacheKey] = _SpeechToTextCacheItem(data: response);

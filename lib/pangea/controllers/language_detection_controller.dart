@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:http/http.dart' as http;
 
 import '../network/requests.dart';
@@ -125,7 +126,7 @@ class LanguageDetectionController {
     _cacheClearTimer?.cancel();
   }
 
-  Future<LanguageDetectionResponse> detectLanguage(
+  Future<LanguageDetectionResponse?> detectLanguage(
     String fullText,
     String? userL2,
     String? userL1,
@@ -138,14 +139,23 @@ class LanguageDetectionController {
     return get(params);
   }
 
-  Future<LanguageDetectionResponse> get(
+  Future<LanguageDetectionResponse?> get(
     LanguageDetectionRequest params,
   ) async {
     if (_cache.containsKey(params)) {
       return _cache[params]!.data;
     } else {
+      final String? accessToken =
+          await _pangeaController.userController.accessToken;
+      if (accessToken == null) {
+        ErrorHandler.logError(
+          e: "null accessToken in language detection controller",
+          s: StackTrace.current,
+        );
+        return null;
+      }
       final Future<LanguageDetectionResponse> response = _fetchResponse(
-        await _pangeaController.userController.accessToken,
+        accessToken,
         params,
       );
       _cache[params] = _LanguageDetectionCacheItem(data: response);

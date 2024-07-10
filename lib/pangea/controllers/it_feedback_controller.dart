@@ -51,8 +51,17 @@ class ITFeedbackController {
     ITFeedbackRequestModel request,
   ) async {
     try {
+      final String? accessToken =
+          await _pangeaController.userController.accessToken;
+      if (accessToken == null) {
+        ErrorHandler.logError(
+          e: "null accessToken in it feedback controller",
+          s: StackTrace.current,
+        );
+        return null;
+      }
       final ITFeedbackResponseModel res = await _ITFeedbackRepo.get(
-        await _pangeaController.userController.accessToken,
+        accessToken,
         request,
       );
       return res;

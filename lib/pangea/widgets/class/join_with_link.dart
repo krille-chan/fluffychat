@@ -43,8 +43,7 @@ class _JoinClassWithLinkState extends State<JoinClassWithLink> {
       await _pangeaController.pStoreService.save(
         PLocalKey.cachedClassCodeToJoin,
         classCode,
-        addClientIdToKey: false,
-        local: true,
+        isAccountData: false,
       );
       context.go("/home");
     });

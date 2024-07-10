@@ -88,7 +88,7 @@ class PangeaMessageEvent {
     return _latestEdit;
   }
 
-  Future<PangeaAudioFile> getMatrixAudioFile(
+  Future<PangeaAudioFile?> getMatrixAudioFile(
     String langCode,
     BuildContext context,
   ) async {
@@ -102,10 +102,14 @@ class PangeaMessageEvent {
       langCode: langCode,
     );
 
-    final TextToSpeechResponse response =
+    final TextToSpeechResponse? response =
         await MatrixState.pangeaController.textToSpeech.get(
       params,
     );
+
+    if (response == null) {
+      return null;
+    }
 
     final audioBytes = base64.decode(response.audioContent);
     final eventIdParam = _event.eventId;
@@ -177,10 +181,13 @@ class PangeaMessageEvent {
       langCode: langCode,
     );
 
-    final TextToSpeechResponse response =
+    final TextToSpeechResponse? response =
         await MatrixState.pangeaController.textToSpeech.get(
       params,
     );
+    if (response == null) {
+      return null;
+    }
 
     final audioBytes = base64.decode(response.audioContent);
 
@@ -323,7 +330,7 @@ class PangeaMessageEvent {
     debugPrint("mimeType ${matrixFile.mimeType}");
     debugPrint("encoding ${mimeTypeToAudioEncoding(matrixFile.mimeType)}");
 
-    final SpeechToTextModel response =
+    final SpeechToTextModel? response =
         await MatrixState.pangeaController.speechToText.get(
       SpeechToTextRequestModel(
         audioContent: matrixFile.bytes,
@@ -338,6 +345,10 @@ class PangeaMessageEvent {
         ),
       ),
     );
+
+    if (response == null) {
+      return null;
+    }
 
     _representations?.add(
       RepresentationEvent(

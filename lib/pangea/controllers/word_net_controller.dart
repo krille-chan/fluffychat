@@ -1,8 +1,9 @@
 import 'package:collection/collection.dart';
-import 'package:http/http.dart' as http;
-
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/repo/word_repo.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:http/http.dart' as http;
+
 import '../models/word_data_model.dart';
 import 'base_controller.dart';
 import 'pangea_controller.dart';
@@ -31,7 +32,7 @@ class WordController extends BaseController {
         ),
       );
 
-  Future<WordData> getWordDataGlobal({
+  Future<WordData?> getWordDataGlobal({
     required String word,
     required String fullText,
     required String? userL1,
@@ -53,8 +54,18 @@ class WordController extends BaseController {
 
     if (local != null) return local;
 
+    final String? accessToken =
+        await _pangeaController.userController.accessToken;
+    if (accessToken == null) {
+      ErrorHandler.logError(
+        e: "null accessToken in word controller",
+        s: StackTrace.current,
+      );
+      return null;
+    }
+
     final WordData remote = await WordRepo.getWordNetData(
-      accessToken: await _pangeaController.userController.accessToken,
+      accessToken: accessToken,
       fullText: fullText,
       word: word,
       userL1: userL1,

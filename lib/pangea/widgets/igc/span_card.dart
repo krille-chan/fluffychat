@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
+import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/match_copy.dart';
@@ -154,21 +154,18 @@ class WordMatchContent extends StatelessWidget {
         .selected = true;
 
     controller.setState(
-      () => (
-        controller.currentExpression =
-          controller
-            .widget
-            .scm
-            .choreographer
-            .igc
-            .igcTextData
-            !.matches[controller.widget.scm.matchIndex]
-            .match
-            .choices![index]
-            .isBestCorrection
+      () => (controller.currentExpression = controller
+              .widget
+              .scm
+              .choreographer
+              .igc
+              .igcTextData!
+              .matches[controller.widget.scm.matchIndex]
+              .match
+              .choices![index]
+              .isBestCorrection
           ? BotExpression.gold
-          : BotExpression.surprised
-      ),
+          : BotExpression.surprised),
     );
     // if (controller.widget.scm.pangeaMatch.match.choices![index].type ==
     //     SpanChoiceType.distractor) {
@@ -510,12 +507,11 @@ class DontShowSwitchListTileState extends State<DontShowSwitchListTile> {
       activeColor: AppConfig.activeToggleColor,
       title: Text(L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader),
       value: switchValue,
-      onChanged: (value) => {
-        widget.controller.pStoreService.save(
-          PLocalKey.itAutoPlay.toString(),
-          value,
-        ),
-        setState(() => switchValue = value),
+      onChanged: (value) {
+        MatrixProfile.saveProfileData(
+          {MatrixProfileEnum.itAutoPlay.title: value},
+        );
+        setState(() => switchValue = value);
       },
     );
   }

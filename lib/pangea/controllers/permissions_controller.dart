@@ -31,14 +31,11 @@ class PermissionsController extends BaseController {
   }
 
   /// Returns false if user is null
-  bool isUser18() {
-    final dob = _pangeaController.pStoreService.read(
-      MatrixProfile.dateOfBirth.title,
-    );
-    return dob != null
-        ? DateTime.parse(dob).isAtLeastYearsOld(AgeLimits.toAccessFeatures)
-        : false;
-  }
+  bool isUser18() =>
+      MatrixProfile.dateOfBirth?.isAtLeastYearsOld(
+        AgeLimits.toAccessFeatures,
+      ) ??
+      false;
 
   /// A user can private chat if
   /// 1) they are 18 and outside a class context or
@@ -99,18 +96,32 @@ class PermissionsController extends BaseController {
     return classPermission == 0;
   }
 
-  bool userToolSetting(ToolSetting setting) =>
-      _pangeaController.localSettings.userLanguageToolSetting(setting);
+  bool userToolSetting(MatrixProfileEnum setting) {
+    switch (setting.asToolSetting) {
+      case ToolSetting.interactiveTranslator:
+        return MatrixProfile.interactiveTranslator;
+      case ToolSetting.interactiveGrammar:
+        return MatrixProfile.interactiveGrammar;
+      case ToolSetting.immersionMode:
+        return MatrixProfile.immersionMode;
+      case ToolSetting.definitions:
+        return MatrixProfile.definitions;
+      case ToolSetting.autoIGC:
+        return MatrixProfile.autoIGC;
+      default:
+        return false;
+    }
+  }
 
   bool isToolEnabled(ToolSetting setting, Room? room) {
     if (room?.isSpaceAdmin ?? false) {
-      return userToolSetting(setting);
+      return userToolSetting(setting.asMatrixProfileField);
     }
     final int? classPermission =
         room != null ? classLanguageToolPermission(room, setting) : 1;
     if (classPermission == 0) return false;
     if (classPermission == 2) return true;
-    return userToolSetting(setting);
+    return userToolSetting(setting.asMatrixProfileField);
   }
 
   bool isWritingAssistanceEnabled(Room? room) {

@@ -1,21 +1,17 @@
-import 'dart:convert';
-
 import 'package:country_picker/country_picker.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 import '../constants/language_constants.dart';
 import 'language_model.dart';
-
-PUserModel pUserModelFromJson(String str) =>
-    PUserModel.fromJson(json.decode(str));
-
-String pUserModelToJson(PUserModel data) => json.encode(data.toJson());
 
 class PUserModel {
   String access;
@@ -46,12 +42,12 @@ class PUserModel {
     await pangeaController.pStoreService.save(
       PLocalKey.user,
       toJson(),
-      local: true,
     );
   }
 }
 
-enum MatrixProfile {
+/// A list of all the fields in the user profile saved to matrix
+enum MatrixProfileEnum {
   dateOfBirth,
   autoPlayMessages,
   itAutoPlay,
@@ -60,7 +56,6 @@ enum MatrixProfile {
   interactiveGrammar,
   immersionMode,
   definitions,
-  // translations,
   showedItInstructions,
   showedClickMessage,
   showedBlurMeansTranslate,
@@ -73,49 +68,182 @@ enum MatrixProfile {
   autoIGC,
 }
 
-extension MatrixProfileExtension on MatrixProfile {
+extension MatrixProfileEnumExtension on MatrixProfileEnum {
   String get title {
     switch (this) {
-      case MatrixProfile.dateOfBirth:
+      case MatrixProfileEnum.dateOfBirth:
         return ModelKey.userDateOfBirth;
-      case MatrixProfile.autoPlayMessages:
-        return PLocalKey.autoPlayMessages;
-      case MatrixProfile.itAutoPlay:
-        return PLocalKey.itAutoPlay;
-      case MatrixProfile.activatedFreeTrial:
-        return PLocalKey.activatedTrialKey;
-      case MatrixProfile.interactiveTranslator:
+      case MatrixProfileEnum.autoPlayMessages:
+        return ModelKey.autoPlayMessages;
+      case MatrixProfileEnum.itAutoPlay:
+        return ModelKey.itAutoPlay;
+      case MatrixProfileEnum.activatedFreeTrial:
+        return ModelKey.activatedTrialKey;
+      case MatrixProfileEnum.interactiveTranslator:
         return ToolSetting.interactiveTranslator.toString();
-      case MatrixProfile.interactiveGrammar:
+      case MatrixProfileEnum.interactiveGrammar:
         return ToolSetting.interactiveGrammar.toString();
-      case MatrixProfile.immersionMode:
+      case MatrixProfileEnum.immersionMode:
         return ToolSetting.immersionMode.toString();
-      case MatrixProfile.definitions:
+      case MatrixProfileEnum.definitions:
         return ToolSetting.definitions.toString();
-      // case MatrixProfile.translations:
-      //   return ToolSetting.translations.toString();
-      case MatrixProfile.autoIGC:
+      case MatrixProfileEnum.autoIGC:
         return ToolSetting.autoIGC.toString();
-      case MatrixProfile.showedItInstructions:
+      case MatrixProfileEnum.showedItInstructions:
         return InstructionsEnum.itInstructions.toString();
-      case MatrixProfile.showedClickMessage:
+      case MatrixProfileEnum.showedClickMessage:
         return InstructionsEnum.clickMessage.toString();
-      case MatrixProfile.showedBlurMeansTranslate:
+      case MatrixProfileEnum.showedBlurMeansTranslate:
         return InstructionsEnum.blurMeansTranslate.toString();
-      case MatrixProfile.showedTooltipInstructions:
+      case MatrixProfileEnum.showedTooltipInstructions:
         return InstructionsEnum.tooltipInstructions.toString();
-      case MatrixProfile.createdAt:
+      case MatrixProfileEnum.createdAt:
         return ModelKey.userCreatedAt;
-      case MatrixProfile.targetLanguage:
+      case MatrixProfileEnum.targetLanguage:
         return ModelKey.l2LanguageKey;
-      case MatrixProfile.sourceLanguage:
+      case MatrixProfileEnum.sourceLanguage:
         return ModelKey.l1LanguageKey;
-      case MatrixProfile.country:
+      case MatrixProfileEnum.country:
         return ModelKey.userCountry;
-      case MatrixProfile.publicProfile:
+      case MatrixProfileEnum.publicProfile:
         return ModelKey.publicProfile;
     }
   }
+
+  ToolSetting? get asToolSetting {
+    switch (this) {
+      case MatrixProfileEnum.interactiveTranslator:
+        return ToolSetting.interactiveTranslator;
+      case MatrixProfileEnum.interactiveGrammar:
+        return ToolSetting.interactiveGrammar;
+      case MatrixProfileEnum.immersionMode:
+        return ToolSetting.immersionMode;
+      case MatrixProfileEnum.definitions:
+        return ToolSetting.definitions;
+      case MatrixProfileEnum.autoIGC:
+        return ToolSetting.autoIGC;
+      default:
+        return null;
+    }
+  }
+}
+
+/// A wrapper around the matrix account data for the user profile.
+/// Enables easy access to the profile data and saving new data.
+/// The matrix profile doesn't function exactly the same as a 'model',
+/// since all the data here is already stored in the client as account
+/// data, and duplicating that data could lead to some inconsistenies.
+/// So this class is more of a helper class to make it easier to
+/// access and save the data.
+class MatrixProfile {
+  /// Returns the profile of the user.
+  ///
+  /// The profile is retrieved from the `MatrixState.pangeaController.matrixState.client.accountData`
+  /// using the key `ModelKey.userProfile`. It returns a `Map<String, dynamic>` object
+  /// representing the user's profile information.
+  static Map<String, dynamic>? get profile => MatrixState.pangeaController
+      .matrixState.client.accountData[ModelKey.userProfile]?.content;
+
+  static dynamic getProfileData(MatrixProfileEnum key) => profile?[key.title];
+
+  /// Saves the profile data by updating the current user's profile with the provided updates.
+  ///
+  /// The [updates] parameter is a map containing the key-value pairs of the profile fields to be updated.
+  /// Only non-null values in the [updates] map will be applied to the current profile.
+  ///
+  /// If the updated profile is equal to the current profile, no changes will be made.
+  ///
+  /// If [waitForDataInSync] is true, the function will wait for the updated data in a sync update
+  /// If this is set to false, after this function completes there may be a gap where the
+  /// data has been sent but is not in the client's account data, as the sync update has not yet been received.
+  static Future<void> saveProfileData(
+    Map<String, dynamic> updates, {
+    waitForDataInSync = false,
+  }) async {
+    final currentProfile = toJson();
+    for (final entry in updates.entries) {
+      if (entry.value == null) continue;
+      currentProfile[entry.key] = entry.value;
+    }
+    if (mapEquals(MatrixProfile.toJson(), currentProfile)) return;
+
+    final PangeaController pangeaController = MatrixState.pangeaController;
+    final Client client = pangeaController.matrixState.client;
+
+    final List<String> profileKeys =
+        MatrixProfileEnum.values.map((e) => e.title).toList();
+
+    Future<SyncUpdate>? waitForUpdate;
+    if (waitForDataInSync) {
+      waitForUpdate = client.onSync.stream.firstWhere(
+        (sync) =>
+            sync.accountData != null &&
+            sync.accountData!.any(
+              (event) => event.content.keys.any((k) => profileKeys.contains(k)),
+            ),
+      );
+    }
+    await client.setAccountData(
+      client.userID!,
+      ModelKey.userProfile,
+      currentProfile,
+    );
+    if (waitForDataInSync) await waitForUpdate;
+  }
+
+  /// Converts the Matrix Profile to a JSON representation.
+  static Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = {};
+    for (final value in MatrixProfileEnum.values) {
+      json[value.title] = getProfileData(value);
+    }
+    return json;
+  }
+
+  // below are some convenience methods for accessing the profile data
+  // getProfileData could be used directly, but these methods reduce the
+  // need for repeating the same code (like parsing DateTimes or
+  // assigning default values to null booleans) when accessing specific values.
+
+  static DateTime? get dateOfBirth {
+    final dob = getProfileData(MatrixProfileEnum.dateOfBirth);
+    return dob != null ? DateTime.parse(dob) : null;
+  }
+
+  static bool get autoPlayMessages =>
+      getProfileData(MatrixProfileEnum.autoPlayMessages) ?? false;
+  static bool get itAutoPlay =>
+      getProfileData(MatrixProfileEnum.itAutoPlay) ?? false;
+  static bool get activatedFreeTrial =>
+      getProfileData(MatrixProfileEnum.activatedFreeTrial) ?? false;
+  static bool get interactiveTranslator =>
+      getProfileData(MatrixProfileEnum.interactiveTranslator) ?? true;
+  static bool get interactiveGrammar =>
+      getProfileData(MatrixProfileEnum.interactiveGrammar) ?? true;
+  static bool get immersionMode =>
+      getProfileData(MatrixProfileEnum.immersionMode) ?? false;
+  static bool get definitions =>
+      getProfileData(MatrixProfileEnum.definitions) ?? true;
+  static bool get autoIGC => getProfileData(MatrixProfileEnum.autoIGC) ?? false;
+
+  /// A list of all the fields in MatrixProfileEnum that correspond to tool settings
+  static List<MatrixProfileEnum> get toolSettings => [
+        MatrixProfileEnum.interactiveTranslator,
+        MatrixProfileEnum.interactiveGrammar,
+        MatrixProfileEnum.immersionMode,
+        MatrixProfileEnum.definitions,
+        MatrixProfileEnum.autoIGC,
+      ];
+
+  /// A list of all the fields in MatrixProfileEnum that correspond to pangea profile values
+  static List<MatrixProfileEnum> pangeaProfileFields = [
+    MatrixProfileEnum.dateOfBirth,
+    MatrixProfileEnum.createdAt,
+    MatrixProfileEnum.targetLanguage,
+    MatrixProfileEnum.sourceLanguage,
+    MatrixProfileEnum.country,
+    MatrixProfileEnum.publicProfile,
+  ];
 }
 
 class Profile {

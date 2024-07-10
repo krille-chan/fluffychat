@@ -407,7 +407,8 @@ class Choreographer {
 
   PangeaTextController get textController => _textController;
 
-  Future<String> get accessToken => pangeaController.userController.accessToken;
+  Future<String?> get accessToken =>
+      pangeaController.userController.accessToken;
 
   clear() {
     choreoMode = ChoreoMode.igc;
@@ -514,11 +515,7 @@ class Choreographer {
         chatController.room,
       );
 
-  bool get itAutoPlayEnabled =>
-      pangeaController.pStoreService.read(
-        MatrixProfile.itAutoPlay.title,
-      ) ??
-      false;
+  bool get itAutoPlayEnabled => MatrixProfile.itAutoPlay;
 
   bool get definitionsEnabled =>
       pangeaController.permissionsController.isToolEnabled(

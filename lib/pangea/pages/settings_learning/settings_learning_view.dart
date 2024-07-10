@@ -1,5 +1,5 @@
-import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
+import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/country_picker_tile.dart';
@@ -52,34 +52,30 @@ class SettingsLearningView extends StatelessWidget {
               ListTile(
                 subtitle: Text(L10n.of(context)!.toggleToolSettingsDescription),
               ),
-              for (final setting in ToolSetting.values)
-                PSettingsSwitchListTile.adaptive(
-                  defaultValue: controller.pangeaController.localSettings
-                      .userLanguageToolSetting(setting),
-                  title: setting.toolName(context),
-                  subtitle: setting.toolDescription(context),
-                  pStoreKey: setting.toString(),
-                  local: false,
-                ),
-              PSettingsSwitchListTile.adaptive(
-                defaultValue: controller.pangeaController.pStoreService.read(
-                      PLocalKey.itAutoPlay,
-                    ) ??
-                    false,
-                title: L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader,
+              for (final setting in MatrixProfile.toolSettings)
+                setting.asToolSetting != null
+                    ? ProfileSettingsSwitchListTile.adaptive(
+                        defaultValue: controller
+                            .pangeaController.permissionsController
+                            .userToolSetting(setting),
+                        title: setting.asToolSetting!.toolName(context),
+                        subtitle:
+                            setting.asToolSetting!.toolDescription(context),
+                        profileKey: setting.asToolSetting!.asMatrixProfileField,
+                      )
+                    : const SizedBox(),
+              ProfileSettingsSwitchListTile.adaptive(
+                defaultValue: MatrixProfile.itAutoPlay,
+                title:
+                    L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader,
                 subtitle: L10n.of(context)!.interactiveTranslatorAutoPlayDesc,
-                pStoreKey: PLocalKey.itAutoPlay,
-                local: false,
+                profileKey: MatrixProfileEnum.itAutoPlay,
               ),
-              PSettingsSwitchListTile.adaptive(
-                defaultValue: controller.pangeaController.pStoreService.read(
-                      PLocalKey.autoPlayMessages,
-                    ) ??
-                    false,
+              ProfileSettingsSwitchListTile.adaptive(
+                defaultValue: MatrixProfile.autoPlayMessages,
                 title: L10n.of(context)!.autoPlayTitle,
                 subtitle: L10n.of(context)!.autoPlayDesc,
-                pStoreKey: PLocalKey.autoPlayMessages,
-                local: false,
+                profileKey: MatrixProfileEnum.autoPlayMessages,
               ),
             ],
           ),
