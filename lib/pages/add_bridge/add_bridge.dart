@@ -302,27 +302,40 @@ class BotController extends State<AddBridge> {
 
   /// Error handling method with a default error type
   void _handleError(SocialNetwork socialNetwork,
-      [ConnectionError error = ConnectionError.unknown]) {
+      [ConnectionError error = ConnectionError.unknown, String? lastMessage]) {
     setState(() {
       socialNetwork.setError(true);
     });
+
+    String errorMessage;
+
     switch (error) {
       case ConnectionError.roomNotFound:
-        Logs().v('Room not found');
+        errorMessage = 'Room not found';
         break;
       case ConnectionError.directChatCreationFailed:
-        Logs().v('Failed to create direct chat');
+        errorMessage = 'Failed to create direct chat';
         break;
       case ConnectionError.messageSendingFailed:
-        Logs().v('Failed to send message');
+        errorMessage = 'Failed to send message';
         break;
       case ConnectionError.timeout:
-        Logs().v('Operation timed out');
+        errorMessage = 'Operation timed out';
         break;
       case ConnectionError.unknown:
       default:
-        Logs().v('An unknown error occurred');
+        errorMessage = 'An unknown error occurred';
         break;
+    }
+
+    Logs().v(errorMessage);
+
+    if (lastMessage != null) {
+      showCatchErrorDialog(
+          context, "${L10n.of(context)!.errorSendUsProblem} $lastMessage");
+    } else {
+      showCatchErrorDialog(context,
+          "${L10n.of(context)!.errorConnectionText}.\n\n${L10n.of(context)!.errorSendUsProblem} $errorMessage");
     }
   }
 
@@ -621,9 +634,8 @@ class BotController extends State<AddBridge> {
     } catch (e) {
       Logs().v(
           "Maximum iterations reached, setting result to 'error to ${network.name}'");
-      showCatchErrorDialog(context,
-          "${L10n.of(context)!.errorConnectionText}.\nFaites nous part du message d'erreur rencontré: $e\nLast message: $lastMessage");
-      _handleError(network, ConnectionError.unknown);
+      _handleError(
+          network, ConnectionError.unknown, lastMessage ?? e.toString());
     } finally {
       timer.cancel();
       await subscription
@@ -857,7 +869,6 @@ class BotController extends State<AddBridge> {
   // 📌 ***********************************************************************
 
   /// Create a bridge for LinkedIn using cookies
-  /// Create a bridge for LinkedIn using cookies
   Future<void> createBridgeLinkedin(
       BuildContext context,
       WebviewCookieManager cookieManager,
@@ -934,9 +945,8 @@ class BotController extends State<AddBridge> {
     } catch (e) {
       Logs().v(
           "Maximum iterations reached, setting result to 'error to ${network.name}'");
-      showCatchErrorDialog(context,
-          "${L10n.of(context)!.errorConnectionText}.\nFaites nous part du message d'erreur rencontré: $e\nLast message: $lastMessage");
-      _handleError(network, ConnectionError.unknown);
+      _handleError(
+          network, ConnectionError.unknown, lastMessage ?? e.toString());
     } finally {
       timer.cancel();
       await subscription
