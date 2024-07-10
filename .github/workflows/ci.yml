@@ -5,10 +5,10 @@ on:
     - cron: '0 0 * * *' # Daily at midnight
   push:
     branches:
-      - main
+      - unisync_main
   pull_request:
     branches:
-      - main
+      - unisync_main
 
 jobs:
   update-and-build:
@@ -27,8 +27,11 @@ jobs:
         run: |
           git remote add upstream https://github.com/krille-chan/fluffychat.git
           git fetch upstream
-          git merge upstream/main --allow-unrelated-histories
-          git push origin main
+          git merge upstream/main --allow-unrelated-histories || exit 1
+
+      - name: Push changes if any
+        run: |
+          git push origin unisync_main
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2

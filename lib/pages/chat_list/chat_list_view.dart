@@ -1,3 +1,4 @@
+import 'package:fluffychat/pages/course_screen/course_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -205,7 +206,10 @@ class ChatListView extends StatelessWidget {
                           bottom: 16.0,
                           left: 32.0,child: FloatingActionButton(
                           onPressed: () {
-                            // Add your onPressed code here!
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const CourseScreen()),
+                            );
                           },
                           child: const Icon(Icons.sync),
                         ),),
