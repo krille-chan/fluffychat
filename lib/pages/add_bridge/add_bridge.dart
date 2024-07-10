@@ -27,6 +27,14 @@ enum ConnectionStatus {
   error,
 }
 
+enum ConnectionError {
+  roomNotFound,
+  directChatCreationFailed,
+  messageSendingFailed,
+  timeout,
+  unknown,
+}
+
 class AddBridge extends StatefulWidget {
   const AddBridge({super.key});
 
@@ -292,11 +300,30 @@ class BotController extends State<AddBridge> {
     });
   }
 
-  /// Handle errors for a social network
-  void _handleError(SocialNetwork socialNetwork) {
+  /// Error handling method with a default error type
+  void _handleError(SocialNetwork socialNetwork,
+      [ConnectionError error = ConnectionError.unknown]) {
     setState(() {
       socialNetwork.setError(true);
     });
+    switch (error) {
+      case ConnectionError.roomNotFound:
+        Logs().v('Room not found');
+        break;
+      case ConnectionError.directChatCreationFailed:
+        Logs().v('Failed to create direct chat');
+        break;
+      case ConnectionError.messageSendingFailed:
+        Logs().v('Failed to send message');
+        break;
+      case ConnectionError.timeout:
+        Logs().v('Operation timed out');
+        break;
+      case ConnectionError.unknown:
+      default:
+        Logs().v('An unknown error occurred');
+        break;
+    }
   }
 
   /// Disconnect from a social network
@@ -314,10 +341,18 @@ class BotController extends State<AddBridge> {
     final String eventName = _getEventName(network.name);
 
     final String? directChat = await _getOrCreateDirectChat(botUserId);
+    if (directChat == null) {
+      _handleError(network, ConnectionError.directChatCreationFailed);
+      return ConnectionStatus.error;
+    }
 
-    final Room? roomBot = client.getRoomById(directChat!);
+    final Room? roomBot = client.getRoomById(directChat);
+    if (roomBot == null) {
+      _handleError(network, ConnectionError.roomNotFound);
+      return ConnectionStatus.error;
+    }
 
-    await _sendLogoutEvent(roomBot!, eventName);
+    await _sendLogoutEvent(roomBot, eventName);
 
     return await _waitForDisconnection(
         context, network, connectionState, directChat, patterns);
@@ -392,12 +427,14 @@ class BotController extends State<AddBridge> {
         }
       } catch (e) {
         Logs().v('Error in matrix related async function call: $e');
+        _handleError(network, ConnectionError.unknown);
         return ConnectionStatus.error;
       }
       currentIteration++;
     }
 
     connectionState.reset();
+    _handleError(network, ConnectionError.timeout);
     return ConnectionStatus.error;
   }
 
@@ -536,20 +573,20 @@ class BotController extends State<AddBridge> {
 
     final String? directChat = await _getOrCreateDirectChat(botUserId);
     if (directChat == null) {
-      _handleError(network);
+      _handleError(network, ConnectionError.directChatCreationFailed);
       return;
     }
 
     final Room? roomBot = client.getRoomById(directChat);
     if (roomBot == null) {
-      _handleError(network);
+      _handleError(network, ConnectionError.roomNotFound);
       return;
     }
 
     final completer = Completer<String>();
     final timer = Timer(const Duration(seconds: 20), () {
       if (!completer.isCompleted) {
-        completer.completeError("Timeout reached");
+        completer.completeError(ConnectionError.timeout);
       }
     });
 
@@ -586,7 +623,7 @@ class BotController extends State<AddBridge> {
           "Maximum iterations reached, setting result to 'error to ${network.name}'");
       showCatchErrorDialog(context,
           "${L10n.of(context)!.errorConnectionText}.\nFaites nous part du message d'erreur rencontré: $e\nLast message: $lastMessage");
-      _handleError(network);
+      _handleError(network, ConnectionError.unknown);
     } finally {
       timer.cancel();
       await subscription
