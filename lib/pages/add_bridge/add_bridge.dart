@@ -21,14 +21,6 @@ import 'delete_conversation_dialog.dart';
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
-enum ConnectionResult {
-  success,
-  loginTimedOut,
-  notLogged,
-  error,
-  stopListening,
-}
-
 class AddBridge extends StatefulWidget {
   const AddBridge({super.key});
 
