@@ -21,6 +21,12 @@ import 'delete_conversation_dialog.dart';
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
+enum ConnectionStatus {
+  connected,
+  notConnected,
+  error,
+}
+
 class AddBridge extends StatefulWidget {
   const AddBridge({super.key});
 
@@ -294,7 +300,7 @@ class BotController extends State<AddBridge> {
   }
 
   /// Disconnect from a social network
-  Future<String> disconnectFromNetwork(BuildContext context,
+  Future<ConnectionStatus> disconnectFromNetwork(BuildContext context,
       SocialNetwork network, ConnectionStateModel connectionState) async {
     final String botUserId = '${network.chatBot}$hostname';
     final SocialNetworkEnum? networkEnum = getSocialNetworkEnum(network.name);
@@ -341,7 +347,7 @@ class BotController extends State<AddBridge> {
   }
 
   /// Wait for the disconnection process to complete
-  Future<String> _waitForDisconnection(
+  Future<ConnectionStatus> _waitForDisconnection(
       BuildContext context,
       SocialNetwork network,
       ConnectionStateModel connectionState,
@@ -367,7 +373,7 @@ class BotController extends State<AddBridge> {
             if (isStillConnected(latestMessage, patterns)) {
               Logs().v("You're still connected to ${network.name}");
               setState(() => network.updateConnectionResult(true));
-              return 'Connected';
+              return ConnectionStatus.connected;
             }
 
             if (!isStillConnected(latestMessage, patterns)) {
@@ -378,7 +384,7 @@ class BotController extends State<AddBridge> {
               await Future.delayed(const Duration(seconds: 1));
               connectionState.reset();
               setState(() => network.updateConnectionResult(false));
-              return 'Not Connected';
+              return ConnectionStatus.notConnected;
             }
           }
 
@@ -386,13 +392,13 @@ class BotController extends State<AddBridge> {
         }
       } catch (e) {
         Logs().v('Error in matrix related async function call: $e');
-        return 'error';
+        return ConnectionStatus.error;
       }
       currentIteration++;
     }
 
     connectionState.reset();
-    return 'error';
+    return ConnectionStatus.error;
   }
 
   /// Delete a conversation with the bot

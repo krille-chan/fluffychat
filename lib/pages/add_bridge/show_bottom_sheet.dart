@@ -1,12 +1,13 @@
 import 'dart:async';
 
-import 'package:provider/provider.dart';
-import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:provider/provider.dart';
+import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:tawkie/widgets/future_loading_dialog_custom.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
+
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
@@ -36,26 +37,27 @@ Future<bool> showBottomSheetBridge(
             ),
             onTap: () async {
               try {
-                String result =
-                    ""; // Variable to store the result of the connection
+                ConnectionStatus?
+                    result; // Variable to store the result of the connection
 
                 // To show Loading while executing the function
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
-                     result = await controller.disconnectFromNetwork(
-                         context, network, connectionStateModel);
+                    result = await controller.disconnectFromNetwork(
+                        context, network, connectionStateModel);
                   },
                 );
 
-                if (result == 'Not Connected') {
+                if (result == ConnectionStatus.notConnected) {
                   Navigator.of(context).pop();
 
                   // returns true if is not connected
-                  completer.complete(result == "Not Connected");
+                  completer.complete(result == ConnectionStatus.notConnected);
                 }
 
-                if (result == "error" || result == 'Connected') {
+                if (result == ConnectionStatus.error ||
+                    result == ConnectionStatus.connected) {
                   // Display a showDialog with an unknown error message
                   showCatchErrorDialog(
                     context,
