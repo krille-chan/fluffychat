@@ -9,15 +9,26 @@ class ErrorReporter {
   const ErrorReporter(this.context, [this.message]);
 
   void onErrorCallback(Object error, [StackTrace? stackTrace]) async {
-    Logs().e(message ?? 'Error caught', error, stackTrace);
-    // #Pangea
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          L10n.of(context)!.oopsSomethingWentWrong,
-        ),
+  Logs().e(message ?? 'Error caught', error, stackTrace);
+  // #Pangea
+  // Attempt to retrieve the L10n instance using the current context 
+  final L10n? l10n = L10n.of(context);
+
+  // Check if the L10n instance is null
+  if (l10n == null) {
+    // Log an error message saying that the localization object is null
+    Logs().e('Localization object is null, cannot show error message.');
+    // Exits early to prevent further execution
+    return;
+  }
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        l10n.oopsSomethingWentWrong, // Use the non-null L10n instance to get the error message
       ),
-    );
+    ),
+  );
+}
     // final text = '$error\n${stackTrace ?? ''}';
     // await showAdaptiveDialog(
     //   context: context,
@@ -64,4 +75,4 @@ class ErrorReporter {
     // );
     // Pangea#
   }
-}
+
