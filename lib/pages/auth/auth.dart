@@ -454,7 +454,13 @@ class AuthController extends State<Auth> {
 
   Widget _buildSubmitButton(kratos.UiNodeInputAttributes attributes,
       String actionUrl, kratos.UiNode node) {
-    if (attributes.name == "resend") {
+    final isBackButton = attributes.name.equals("screen") &&
+        attributes.value.toString().equals("credential-selection");
+
+    if (isBackButton) {
+      // Do not show back button
+      return Container();
+    } else if (attributes.name == "resend") {
       return Padding(
         padding: const EdgeInsets.all(12.0),
         child: TextButton(
