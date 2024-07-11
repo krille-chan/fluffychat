@@ -1,0 +1,50 @@
+name: Release Workflow Windows
+
+on:
+  release:
+    types:
+      - created
+
+concurrency:
+  group: release_workflow
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Build Windows App
+        run: |
+          flutter config --enable-windows-desktop
+          flutter build windows --release
+
+      - name: Build iss script
+        run: dart run inno_bundle:build --no-app --release --no-installer
+
+      - name: Output config into github output
+        id: envs
+        # thanks to https://github.com/actions/runner/issues/2224#issuecomment-1289925992
+        run: echo $(dart run inno_bundle:build --envs --no-hf --release) | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Build installer
+        uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
+        with:
+          path: ./build/windows/x64/installer/Release/inno-script.iss
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./build/windows/x64/installer/Release/${{ steps.envs.outputs.APP_NAME_CAMEL_CASE }}-x86_64-${{ steps.envs.outputs.APP_VERSION }}-Installer.exe
