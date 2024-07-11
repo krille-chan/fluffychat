@@ -355,14 +355,12 @@ class BotController extends State<AddBridge> {
 
     final String? directChat = await _getOrCreateDirectChat(botUserId);
     if (directChat == null) {
-      _handleError(network, ConnectionError.directChatCreationFailed);
-      return ConnectionStatus.error;
+      throw ConnectionError.directChatCreationFailed;
     }
 
     final Room? roomBot = client.getRoomById(directChat);
     if (roomBot == null) {
-      _handleError(network, ConnectionError.roomNotFound);
-      return ConnectionStatus.error;
+      throw ConnectionError.roomNotFound;
     }
 
     await _sendLogoutEvent(roomBot, eventName);
@@ -440,15 +438,13 @@ class BotController extends State<AddBridge> {
         }
       } catch (e) {
         Logs().v('Error in matrix related async function call: $e');
-        _handleError(network, ConnectionError.unknown);
-        return ConnectionStatus.error;
+        throw ConnectionError.unknown;
       }
       currentIteration++;
     }
 
     connectionState.reset();
-    _handleError(network, ConnectionError.timeout);
-    return ConnectionStatus.error;
+    throw ConnectionError.timeout;
   }
 
   /// Delete a conversation with the bot
@@ -494,7 +490,15 @@ class BotController extends State<AddBridge> {
       if (!network.connected && !network.error) {
         await processSocialNetworkAuthentication(context, network);
       } else if (network.connected && !network.error) {
-        await handleDisconnection(context, network);
+        try {
+          await handleDisconnection(context, network);
+        } catch (error) {
+          if (error is ConnectionError) {
+            _handleError(network, error);
+          } else {
+            _handleError(network, ConnectionError.unknown);
+          }
+        }
       }
 
       if (network.error && !network.connected) {
@@ -502,7 +506,15 @@ class BotController extends State<AddBridge> {
           network.loading = true;
         });
 
-        await pingSocialNetwork(network);
+        try {
+          await pingSocialNetwork(network);
+        } catch (error) {
+          if (error is ConnectionError) {
+            _handleError(network, error);
+          } else {
+            _handleError(network, ConnectionError.unknown);
+          }
+        }
       }
     }
   }
