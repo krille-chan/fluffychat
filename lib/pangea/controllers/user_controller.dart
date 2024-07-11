@@ -69,11 +69,8 @@ class UserController extends BaseController {
     );
   }
 
-  /// A boolean flag indicating whether the profile data is currently being fetched.
-  bool _isFetching = false;
-
   /// A completer for the profile model of a user.
-  Completer<PUserModel?> _profileCompleter = Completer<PUserModel?>();
+  Completer<PUserModel?>? _profileCompleter;
 
   /// Fetches the user model.
   ///
@@ -85,25 +82,27 @@ class UserController extends BaseController {
   ///
   /// Returns the future value of the user model completer.
   Future<PUserModel?> fetchUserModel() async {
-    if (_profileCompleter.isCompleted) return _profileCompleter.future;
-    if (_isFetching) {
-      await _profileCompleter.future;
-      return _profileCompleter.future;
+    if (_profileCompleter?.isCompleted ?? false) {
+      return _profileCompleter!.future;
     }
 
-    _isFetching = true;
+    if (_profileCompleter != null) {
+      await _profileCompleter!.future;
+      return _profileCompleter!.future;
+    }
+
+    _profileCompleter = Completer<PUserModel?>();
     PUserModel? fetchedUserModel;
 
     try {
       fetchedUserModel = await _fetchUserModel();
     } catch (err, s) {
       ErrorHandler.logError(e: err, s: s);
-      return null;
+    } finally {
+      _profileCompleter!.complete(fetchedUserModel);
     }
 
-    _isFetching = false;
-    _profileCompleter.complete(fetchedUserModel);
-    return _profileCompleter.future;
+    return _profileCompleter!.future;
   }
 
   /// Fetches the user model asynchronously.
@@ -133,13 +132,9 @@ class UserController extends BaseController {
   }
 
   /// Reinitializes the user's profile
-  ///
-  /// This method sets up the necessary variables and fetches the user model.
-  /// It completes the [_profileCompleter] with the fetched user model.
   /// This method should be called whenever the user's login status changes
   Future<void> reinitialize() async {
-    _profileCompleter = Completer<PUserModel?>();
-    _isFetching = false;
+    _profileCompleter = null;
     await fetchUserModel();
   }
 
