@@ -7,8 +7,8 @@ import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/utils/date_time_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:tawkie/utils/social_media_utils.dart';
 import 'package:tawkie/utils/room_status_extension.dart';
+import 'package:tawkie/utils/social_media_utils.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/hover_builder.dart';
 
