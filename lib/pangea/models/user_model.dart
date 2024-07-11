@@ -217,7 +217,7 @@ class MatrixProfile {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = {};
     for (final value in MatrixProfileEnum.values) {
-      json[value.title] = getProfileData(value);
+      json[value.title] = profile?[value.title];
     }
     return json;
   }
