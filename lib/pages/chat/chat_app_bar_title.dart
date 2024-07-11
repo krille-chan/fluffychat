@@ -30,7 +30,7 @@ class ChatAppBarTitle extends StatelessWidget {
           : () => FluffyThemes.isThreeColumnMode(context)
               ? controller.toggleDisplayChatDetailsColumn()
               : context.go('/rooms/${room.id}/details'),
-      child: FutureBuilder<List<dynamic>>(
+      child: FutureBuilder<RoomDisplayInfo>(
         future: loadRoomInfo(context, room),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -59,9 +59,10 @@ class ChatAppBarTitle extends StatelessWidget {
             );
           }
 
-          final networkColor = snapshot.data![0] as Color?;
-          final networkImage = snapshot.data![1] as Image?;
-          final displayname = snapshot.data![2] as String;
+          final roomInfo = snapshot.data!;
+          final networkColor = roomInfo.networkColor;
+          final networkImage = roomInfo.networkImage;
+          final displayname = roomInfo.displayname;
 
           return Row(
             children: [

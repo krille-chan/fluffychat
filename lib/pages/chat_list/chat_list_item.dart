@@ -101,8 +101,8 @@ class ChatListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         clipBehavior: Clip.hardEdge,
         color: backgroundColor,
-        child: FutureBuilder(
-          future: room.loadHeroUsers(),
+        child: FutureBuilder<RoomDisplayInfo>(
+          future: loadRoomInfo(context, room),
           builder: (context, snapshot) => HoverBuilder(
             builder: (context, hovered) => ListTile(
               visualDensity: const VisualDensity(vertical: -0.5),
@@ -146,7 +146,7 @@ class ChatListItem extends StatelessWidget {
                   ),
                 ],
               ),
-              title: FutureBuilder<List<dynamic>>(
+              title: FutureBuilder<RoomDisplayInfo>(
                 future: loadRoomInfo(context, room),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
@@ -159,9 +159,10 @@ class ChatListItem extends StatelessWidget {
                       ),
                     );
                   } else {
-                    final networkColor = snapshot.data![0];
-                    final networkImage = snapshot.data![1];
-                    final displayname = snapshot.data![2];
+                    final roomInfo = snapshot.data!;
+                    final networkColor = roomInfo.networkColor;
+                    final networkImage = roomInfo.networkImage;
+                    final displayname = roomInfo.displayname;
                     return Row(
                       children: <Widget>[
                         if (networkImage != null)

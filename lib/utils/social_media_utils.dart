@@ -5,6 +5,18 @@ import 'package:tawkie/config/themes.dart';
 
 import 'matrix_sdk_extensions/matrix_locals.dart';
 
+class RoomDisplayInfo {
+  final Color? networkColor;
+  final Image? networkImage;
+  final String displayname;
+
+  RoomDisplayInfo({
+    required this.networkColor,
+    required this.networkImage,
+    required this.displayname,
+  });
+}
+
 bool containsFacebook(List<String> participantsIds) {
   return participantsIds.any((id) => id.contains('@messenger2'));
 }
@@ -71,13 +83,13 @@ String removeSignalTag(String displayname) {
   return displayname;
 }
 
-Future<List<dynamic>> loadRoomInfo(BuildContext context, Room room) async {
+Future<RoomDisplayInfo> loadRoomInfo(BuildContext context, Room room) async {
   List<User> participants = room.getParticipants();
   Color? networkColor;
   Image? networkImage;
   final participantsIds = participants.map((member) => member.id).toList();
   String displayname =
-      room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
+  room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
 
   if (containsFacebook(participantsIds)) {
     networkColor = FluffyThemes.facebookColor;
@@ -129,5 +141,10 @@ Future<List<dynamic>> loadRoomInfo(BuildContext context, Room room) async {
     displayname = removeSignalTag(displayname);
   }
 
-  return [networkColor, networkImage, displayname];
+  return RoomDisplayInfo(
+    networkColor: networkColor,
+    networkImage: networkImage,
+    displayname: displayname,
+  );
 }
+
