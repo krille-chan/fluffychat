@@ -162,12 +162,12 @@ class SettingsView extends StatelessWidget {
               onTap: () => context.go('/rooms/settings/addbridgebot'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
-            ListTile(
-              leading: const Icon(Icons.credit_card),
-              title: Text(L10n.of(context)!.subscription),
-              onTap: () => context.go('/rooms/settings/subs'),
-              trailing: const Icon(Icons.chevron_right_outlined),
-            ),
+            // ListTile(
+            //   leading: const Icon(Icons.credit_card),
+            //   title: Text(L10n.of(context)!.subscription),
+            //   onTap: () => context.go('/rooms/settings/subs'),
+            //   trailing: const Icon(Icons.chevron_right_outlined),
+            // ),
             ListTile(
               leading: const Icon(Icons.format_paint_outlined),
               title: Text(L10n.of(context)!.changeTheme),
