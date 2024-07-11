@@ -85,7 +85,7 @@ class ChatListController extends State<ChatList>
 
   String? activeSpaceId;
 
-  late final List<String> _excludedUserIds;
+  late final List<String> _excludedUserIds = getBotIds();
 
   void resetActiveSpaceId() {
     setState(() {
@@ -521,9 +521,6 @@ class ChatListController extends State<ChatList>
     });
 
     _checkTorBrowser();
-
-    // Calculates the list of excluded IDs at once
-    _excludedUserIds = getBotIds();
 
     super.initState();
   }
