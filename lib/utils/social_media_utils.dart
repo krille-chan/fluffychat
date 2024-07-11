@@ -44,8 +44,8 @@ String removeInstagramTag(String displayname) {
 }
 
 String removeWhatsAppTag(String displayname) {
-  if (displayname.contains('(WA)')) {
-    displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
+  if (displayname.contains('(WhatsApp)')) {
+    displayname = displayname.replaceAll('(WhatsApp)', ''); // Delete (WhatsApp)
   }
   return displayname;
 }
