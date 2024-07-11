@@ -1,6 +1,7 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
 class ProfileSettingsSwitchListTile extends StatefulWidget {
@@ -27,7 +28,8 @@ class PSettingsSwitchListTileState
 
   @override
   void initState() {
-    currentValue = MatrixProfile.getProfileData(
+    currentValue = MatrixState.pangeaController.userController.matrixProfile
+            .getProfileData(
           widget.profileKey,
         ) ??
         widget.defaultValue;
@@ -43,7 +45,8 @@ class PSettingsSwitchListTileState
       subtitle: widget.subtitle != null ? Text(widget.subtitle!) : null,
       onChanged: (bool newValue) async {
         try {
-          MatrixProfile.saveProfileData({
+          MatrixState.pangeaController.userController.matrixProfile
+              .saveProfileData({
             widget.profileKey.title: newValue,
           });
           setState(() => currentValue = newValue);

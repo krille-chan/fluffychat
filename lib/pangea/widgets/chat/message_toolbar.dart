@@ -5,7 +5,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
@@ -334,7 +333,7 @@ class MessageToolbarState extends State<MessageToolbar> {
         return;
       }
 
-      MatrixProfile.autoPlayMessages
+      MatrixState.pangeaController.userController.matrixProfile.autoPlayMessages
           ? updateMode(MessageMode.textToSpeech)
           : updateMode(MessageMode.translation);
     });

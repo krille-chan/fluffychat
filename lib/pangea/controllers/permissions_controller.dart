@@ -32,7 +32,8 @@ class PermissionsController extends BaseController {
 
   /// Returns false if user is null
   bool isUser18() =>
-      MatrixProfile.dateOfBirth?.isAtLeastYearsOld(
+      _pangeaController.userController.matrixProfile.dateOfBirth
+          ?.isAtLeastYearsOld(
         AgeLimits.toAccessFeatures,
       ) ??
       false;
@@ -99,15 +100,17 @@ class PermissionsController extends BaseController {
   bool userToolSetting(MatrixProfileEnum setting) {
     switch (setting.asToolSetting) {
       case ToolSetting.interactiveTranslator:
-        return MatrixProfile.interactiveTranslator;
+        return _pangeaController
+            .userController.matrixProfile.interactiveTranslator;
       case ToolSetting.interactiveGrammar:
-        return MatrixProfile.interactiveGrammar;
+        return _pangeaController
+            .userController.matrixProfile.interactiveGrammar;
       case ToolSetting.immersionMode:
-        return MatrixProfile.immersionMode;
+        return _pangeaController.userController.matrixProfile.immersionMode;
       case ToolSetting.definitions:
-        return MatrixProfile.definitions;
+        return _pangeaController.userController.matrixProfile.definitions;
       case ToolSetting.autoIGC:
-        return MatrixProfile.autoIGC;
+        return _pangeaController.userController.matrixProfile.autoIGC;
       default:
         return false;
     }

@@ -136,15 +136,37 @@ extension MatrixProfileEnumExtension on MatrixProfileEnum {
 /// So this class is more of a helper class to make it easier to
 /// access and save the data.
 class MatrixProfile {
+  /// Convenience function get get user's account data from the client
+  Map<String, BasicEvent> get accountData =>
+      MatrixState.pangeaController.matrixState.client.accountData;
+
   /// Returns the profile of the user.
   ///
-  /// The profile is retrieved from the `MatrixState.pangeaController.matrixState.client.accountData`
+  /// The profile is retrieved from the user's account data
   /// using the key `ModelKey.userProfile`. It returns a `Map<String, dynamic>` object
   /// representing the user's profile information.
-  static Map<String, dynamic>? get profile => MatrixState.pangeaController
-      .matrixState.client.accountData[ModelKey.userProfile]?.content;
+  Map<String, dynamic>? get profile =>
+      accountData[ModelKey.userProfile]?.content;
 
-  static dynamic getProfileData(MatrixProfileEnum key) => profile?[key.title];
+  /// Retrieves the profile data for the given [key].
+  ///
+  /// This method first tries to get the data from the new profile format. If the data is found,
+  /// it is returned. If not, it checks if the data is stored in the old format. If it is, the data
+  /// is saved to the new format and returned.
+  dynamic getProfileData(MatrixProfileEnum key) {
+    // try to get the data from the new profile format
+    if (profile?[key.title] != null) {
+      return profile?[key.title];
+    }
+
+    // check if the data is stored in the old format
+    // and if so, save it to the new format
+    final prevFormatData = accountData[key.title]?.content[key.title];
+    if (prevFormatData != null) {
+      saveProfileData({key.title: prevFormatData});
+      return prevFormatData;
+    }
+  }
 
   /// Saves the profile data by updating the current user's profile with the provided updates.
   ///
@@ -156,7 +178,7 @@ class MatrixProfile {
   /// If [waitForDataInSync] is true, the function will wait for the updated data in a sync update
   /// If this is set to false, after this function completes there may be a gap where the
   /// data has been sent but is not in the client's account data, as the sync update has not yet been received.
-  static Future<void> saveProfileData(
+  Future<void> saveProfileData(
     Map<String, dynamic> updates, {
     waitForDataInSync = false,
   }) async {
@@ -165,7 +187,7 @@ class MatrixProfile {
       if (entry.value == null) continue;
       currentProfile[entry.key] = entry.value;
     }
-    if (mapEquals(MatrixProfile.toJson(), currentProfile)) return;
+    if (mapEquals(toJson(), currentProfile)) return;
 
     final PangeaController pangeaController = MatrixState.pangeaController;
     final Client client = pangeaController.matrixState.client;
@@ -192,7 +214,7 @@ class MatrixProfile {
   }
 
   /// Converts the Matrix Profile to a JSON representation.
-  static Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = {};
     for (final value in MatrixProfileEnum.values) {
       json[value.title] = getProfileData(value);
@@ -205,26 +227,24 @@ class MatrixProfile {
   // need for repeating the same code (like parsing DateTimes or
   // assigning default values to null booleans) when accessing specific values.
 
-  static DateTime? get dateOfBirth {
+  DateTime? get dateOfBirth {
     final dob = getProfileData(MatrixProfileEnum.dateOfBirth);
     return dob != null ? DateTime.parse(dob) : null;
   }
 
-  static bool get autoPlayMessages =>
+  bool get autoPlayMessages =>
       getProfileData(MatrixProfileEnum.autoPlayMessages) ?? false;
-  static bool get itAutoPlay =>
-      getProfileData(MatrixProfileEnum.itAutoPlay) ?? false;
-  static bool get activatedFreeTrial =>
+  bool get itAutoPlay => getProfileData(MatrixProfileEnum.itAutoPlay) ?? false;
+  bool get activatedFreeTrial =>
       getProfileData(MatrixProfileEnum.activatedFreeTrial) ?? false;
-  static bool get interactiveTranslator =>
+  bool get interactiveTranslator =>
       getProfileData(MatrixProfileEnum.interactiveTranslator) ?? true;
-  static bool get interactiveGrammar =>
+  bool get interactiveGrammar =>
       getProfileData(MatrixProfileEnum.interactiveGrammar) ?? true;
-  static bool get immersionMode =>
+  bool get immersionMode =>
       getProfileData(MatrixProfileEnum.immersionMode) ?? false;
-  static bool get definitions =>
-      getProfileData(MatrixProfileEnum.definitions) ?? true;
-  static bool get autoIGC => getProfileData(MatrixProfileEnum.autoIGC) ?? false;
+  bool get definitions => getProfileData(MatrixProfileEnum.definitions) ?? true;
+  bool get autoIGC => getProfileData(MatrixProfileEnum.autoIGC) ?? false;
 
   /// A list of all the fields in MatrixProfileEnum that correspond to tool settings
   static List<MatrixProfileEnum> get toolSettings => [

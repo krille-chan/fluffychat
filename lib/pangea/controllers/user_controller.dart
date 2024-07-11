@@ -27,6 +27,11 @@ class UserController extends BaseController {
   String? get _matrixAccessToken =>
       _pangeaController.matrixState.client.accessToken;
 
+  /// An instance of matrix profile. Used to update and access info from the user's matrix profile.
+  /// No information needs to be passing in the constructor as the matrix
+  /// profile get all of it's internal data the accountData stored in the client.
+  MatrixProfile matrixProfile = MatrixProfile();
+
   /// Returns the [PUserModel] object representing the current user.
   ///
   /// This method retrieves the user data from the local storage using the [PLocalKey.user] key.
@@ -58,7 +63,7 @@ class UserController extends BaseController {
       matrixAccessToken: _matrixAccessToken!,
     );
     newUserModel.save(_pangeaController);
-    await MatrixProfile.saveProfileData(
+    await matrixProfile.saveProfileData(
       {MatrixProfileEnum.dateOfBirth.title: dob},
       waitForDataInSync: true,
     );
@@ -161,7 +166,7 @@ class UserController extends BaseController {
     final Profile? pangeaProfile = userModel?.profile;
 
     for (final field in MatrixProfile.pangeaProfileFields) {
-      final dynamic matrixValue = MatrixProfile.getProfileData(field);
+      final dynamic matrixValue = matrixProfile.getProfileData(field);
       dynamic pangeaValue;
       switch (field) {
         case MatrixProfileEnum.dateOfBirth:
@@ -194,7 +199,7 @@ class UserController extends BaseController {
       if (profileUpdates.containsKey(value.title)) continue;
       final dynamic localValue =
           _pangeaController.pStoreService.read(value.title);
-      final dynamic matrixValue = MatrixProfile.getProfileData(value);
+      final dynamic matrixValue = matrixProfile.getProfileData(value);
       final dynamic unmigratedValue =
           localValue != null && matrixValue == null ? localValue : null;
       if (unmigratedValue != null) {
@@ -202,7 +207,7 @@ class UserController extends BaseController {
       }
     }
 
-    await MatrixProfile.saveProfileData(
+    await matrixProfile.saveProfileData(
       profileUpdates,
       waitForDataInSync: true,
     );
@@ -271,7 +276,7 @@ class UserController extends BaseController {
       profile: updatedUserProfile,
     ).save(_pangeaController);
 
-    MatrixProfile.saveProfileData({
+    matrixProfile.saveProfileData({
       MatrixProfileEnum.dateOfBirth.title: dateOfBirth,
       MatrixProfileEnum.targetLanguage.title: targetLanguage,
       MatrixProfileEnum.sourceLanguage.title: sourceLanguage,
@@ -340,7 +345,7 @@ class UserController extends BaseController {
       // the function fetchUserModel() uses a completer, so it shouldn't
       // re-call the endpoint if it has already been called
       await fetchUserModel();
-      return MatrixProfile.dateOfBirth != null;
+      return matrixProfile.dateOfBirth != null;
     } catch (err, s) {
       ErrorHandler.logError(e: err, s: s);
       return false;
@@ -387,9 +392,7 @@ class UserController extends BaseController {
   }
 
   /// Returns a boolean value indicating whether the user's profile is public.
-  bool get isPublic =>
-      _pangeaController.userController.userModel?.profile?.publicProfile ??
-      false;
+  bool get isPublic => userModel?.profile?.publicProfile ?? false;
 
   /// Retrieves the user's email address.
   ///

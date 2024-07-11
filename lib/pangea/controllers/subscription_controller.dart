@@ -181,10 +181,10 @@ class SubscriptionController extends BaseController {
 
   bool get _activatedNewUserTrial =>
       _pangeaController.userController.inTrialWindow &&
-      MatrixProfile.activatedFreeTrial;
+      _pangeaController.userController.matrixProfile.activatedFreeTrial;
 
   void activateNewUserTrial() {
-    MatrixProfile.saveProfileData({
+    _pangeaController.userController.matrixProfile.saveProfileData({
       MatrixProfileEnum.activatedFreeTrial.title: true,
     }).then((_) {
       setNewUserTrial();

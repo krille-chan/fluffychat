@@ -65,14 +65,16 @@ class SettingsLearningView extends StatelessWidget {
                       )
                     : const SizedBox(),
               ProfileSettingsSwitchListTile.adaptive(
-                defaultValue: MatrixProfile.itAutoPlay,
+                defaultValue: controller
+                    .pangeaController.userController.matrixProfile.itAutoPlay,
                 title:
                     L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader,
                 subtitle: L10n.of(context)!.interactiveTranslatorAutoPlayDesc,
                 profileKey: MatrixProfileEnum.itAutoPlay,
               ),
               ProfileSettingsSwitchListTile.adaptive(
-                defaultValue: MatrixProfile.autoPlayMessages,
+                defaultValue: controller.pangeaController.userController
+                    .matrixProfile.autoPlayMessages,
                 title: L10n.of(context)!.autoPlayTitle,
                 subtitle: L10n.of(context)!.autoPlayDesc,
                 profileKey: MatrixProfileEnum.autoPlayMessages,

@@ -508,7 +508,8 @@ class DontShowSwitchListTileState extends State<DontShowSwitchListTile> {
       title: Text(L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader),
       value: switchValue,
       onChanged: (value) {
-        MatrixProfile.saveProfileData(
+        MatrixState.pangeaController.userController.matrixProfile
+            .saveProfileData(
           {MatrixProfileEnum.itAutoPlay.title: value},
         );
         setState(() => switchValue = value);
