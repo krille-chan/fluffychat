@@ -222,8 +222,6 @@ class UserController extends BaseController {
   /// The [interests] parameter is a list of new interests for the user.
   /// The [speaks] parameter is a list of new languages the user speaks.
   /// The [publicProfile] parameter indicates whether the user's profile should be public or not.
-  ///
-  /// Throws an error if [userModel] or [accessToken] is null.
   Future<void> updateUserProfile({
     String? dateOfBirth,
     String? targetLanguage,
@@ -233,10 +231,9 @@ class UserController extends BaseController {
     List<String>? speaks,
     bool? publicProfile,
   }) async {
-    final String? accessToken = await this.accessToken;
-    if (userModel == null || accessToken == null) {
+    if (userModel == null) {
       ErrorHandler.logError(
-        e: "calling updateUserProfile with userModel == null or accessToken == null",
+        e: "calling updateUserProfile with userModel == null",
       );
       return;
     }
@@ -267,11 +264,11 @@ class UserController extends BaseController {
 
     final Profile updatedUserProfile = await PUserRepo.updateUserProfile(
       Profile.fromJson(profileJson),
-      accessToken,
+      await accessToken,
     );
 
     PUserModel(
-      access: accessToken,
+      access: await accessToken,
       refresh: userModel!.refresh,
       profile: updatedUserProfile,
     ).save(_pangeaController);
@@ -295,19 +292,17 @@ class UserController extends BaseController {
   ///
   /// If the locally stored user model is null or the access token has
   /// expired, it fetches the user model.
-  /// If the user model is still null after fetching, an error is logged.
+  /// If the user model is still null after fetching, an error thrown.
   ///
   /// Returns the access token as a string, or null if the user model is null.
-  Future<String?> get accessToken async {
+  Future<String> get accessToken async {
     final PUserModel? useThisOne =
         needNewJWT ? await fetchUserModel() : userModel;
 
     if (useThisOne == null) {
-      ErrorHandler.logError(
-        e: "trying to get accessToken with userModel = null",
-      );
+      throw ("Trying to get accessToken with null userModel");
     }
-    return useThisOne?.access;
+    return useThisOne.access;
   }
 
   /// Returns the full name of the user.

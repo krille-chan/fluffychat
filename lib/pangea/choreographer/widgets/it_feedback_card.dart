@@ -73,15 +73,7 @@ class ITFeedbackCardController extends State<ITFeedbackCard> {
       isTranslating = true;
     });
 
-    final String? accessToken = await controller.userController.accessToken;
-    if (accessToken == null) {
-      ErrorHandler.logError(
-        m: "Cannot translate feedback because accessToken is null",
-      );
-      error = "Cannot translate feedback because accessToken is null";
-      return;
-    }
-
+    final String accessToken = await controller.userController.accessToken;
     FullTextTranslationRepo.translate(
       accessToken: accessToken,
       request: FullTextTranslationRequestModel(

@@ -406,8 +406,7 @@ class Choreographer {
 
   PangeaTextController get textController => _textController;
 
-  Future<String?> get accessToken =>
-      pangeaController.userController.accessToken;
+  Future<String> get accessToken => pangeaController.userController.accessToken;
 
   clear() {
     choreoMode = ChoreoMode.igc;

@@ -50,13 +50,6 @@ class ContextualDefinitionController {
   ) async {
     try {
       final accessToken = await _pangeaController.userController.accessToken;
-      if (accessToken == null) {
-        ErrorHandler.logError(
-          e: "null accessToken in contextual definition controller",
-          s: StackTrace.current,
-        );
-        return null;
-      }
       final ContextualDefinitionResponseModel res =
           await _ContextualDefinitionRepo.define(
         accessToken,

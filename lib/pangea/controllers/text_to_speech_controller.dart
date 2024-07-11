@@ -6,7 +6,6 @@ import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:http/http.dart';
 
 import '../network/requests.dart';
@@ -100,15 +99,8 @@ class TextToSpeechController {
     if (_cache.containsKey(params)) {
       return _cache[params]!.data;
     } else {
-      final String? accessToken =
+      final String accessToken =
           await _pangeaController.userController.accessToken;
-      if (accessToken == null) {
-        ErrorHandler.logError(
-          e: "null accessToken in text to speech controller",
-          s: StackTrace.current,
-        );
-        return null;
-      }
       final Future<TextToSpeechResponse> response = _fetchResponse(
         accessToken,
         params,

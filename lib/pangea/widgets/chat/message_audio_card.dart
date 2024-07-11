@@ -46,7 +46,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
           await widget.messageEvent.getMatrixAudioFile(langCode, context);
       if (mounted) setState(() => _isLoading = false);
     } catch (e, _) {
-      debugPrint(StackTrace.current.toString());
       if (!mounted) return;
       setState(() => _isLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(

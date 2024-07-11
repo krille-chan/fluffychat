@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/repo/word_repo.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/word_data_model.dart';
@@ -54,16 +53,8 @@ class WordController extends BaseController {
 
     if (local != null) return local;
 
-    final String? accessToken =
+    final String accessToken =
         await _pangeaController.userController.accessToken;
-    if (accessToken == null) {
-      ErrorHandler.logError(
-        e: "null accessToken in word controller",
-        s: StackTrace.current,
-      );
-      return null;
-    }
-
     final WordData remote = await WordRepo.getWordNetData(
       accessToken: accessToken,
       fullText: fullText,

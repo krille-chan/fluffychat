@@ -43,15 +43,6 @@ class MessageDataController extends BaseController {
     TokensRequestModel req,
   ) async {
     final accessToken = await _pangeaController.userController.accessToken;
-
-    if (accessToken == null) {
-      ErrorHandler.logError(
-        e: "null accessToken in _getTokens",
-        s: StackTrace.current,
-      );
-      return null;
-    }
-
     final TokensResponseModel igcTextData =
         await TokensRepo.tokenize(accessToken, req);
 
@@ -201,15 +192,8 @@ class MessageDataController extends BaseController {
     );
 
     try {
-      final String? accessToken =
+      final String accessToken =
           await _pangeaController.userController.accessToken;
-      if (accessToken == null) {
-        ErrorHandler.logError(
-          e: "null accessToken in _getPangeaRepresentation",
-          s: StackTrace.current,
-        );
-        return null;
-      }
 
       final FullTextTranslationResponseModel res =
           await FullTextTranslationRepo.translate(
