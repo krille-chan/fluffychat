@@ -17,28 +17,28 @@ class RoomDisplayInfo {
   });
 }
 
-bool containsFacebook(List<String> participantsIds) {
-  return participantsIds.any((id) => id.contains('@messenger2'));
+bool containsFacebook(List<User> participants) {
+  return participants.any((user) => user.id.contains('@messenger2'));
 }
 
-bool containsInstagram(List<String> participantsIds) {
-  return participantsIds.any((id) => id.contains('@instagram2'));
+bool containsInstagram(List<User> participants) {
+  return participants.any((user) => user.id.contains('@instagram2'));
 }
 
-bool containsWhatsApp(List<String> participantsIds) {
-  return participantsIds.any((id) => id.contains('@whatsapp'));
+bool containsWhatsApp(List<User> participants) {
+  return participants.any((user) => user.id.contains('@whatsapp'));
 }
 
-bool containsLinkedin(List<String> participantsIds) {
-  return participantsIds.any((id) => id.contains('@linkedin'));
+bool containsLinkedin(List<User> participants) {
+  return participants.any((user) => user.id.contains('@linkedin'));
 }
 
-bool containsDiscord(List<String> participantsIds) {
-  return participantsIds.any((id) => id.contains('@discord'));
+bool containsDiscord(List<User> participants) {
+  return participants.any((user) => user.id.contains('@discord'));
 }
 
-bool containsSignal(List<String> participantsIds) {
-  return participantsIds.any((id) => id.contains('@signal'));
+bool containsSignal(List<User> participants) {
+  return participants.any((user) => user.id.contains('@signal'));
 }
 
 String removeFacebookTag(String displayname) {
@@ -87,11 +87,10 @@ Future<RoomDisplayInfo> loadRoomInfo(BuildContext context, Room room) async {
   List<User> participants = room.getParticipants();
   Color? networkColor;
   Image? networkImage;
-  final participantsIds = participants.map((member) => member.id).toList();
   String displayname =
-  room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
+      room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
 
-  if (containsFacebook(participantsIds)) {
+  if (containsFacebook(participants)) {
     networkColor = FluffyThemes.facebookColor;
     networkImage = Image.asset(
       'assets/facebook-messenger.png',
@@ -99,7 +98,7 @@ Future<RoomDisplayInfo> loadRoomInfo(BuildContext context, Room room) async {
       filterQuality: FilterQuality.high,
     );
     displayname = removeFacebookTag(displayname);
-  } else if (containsInstagram(participantsIds)) {
+  } else if (containsInstagram(participants)) {
     networkColor = FluffyThemes.instagramColor;
     networkImage = Image.asset(
       'assets/instagram.png',
@@ -107,7 +106,7 @@ Future<RoomDisplayInfo> loadRoomInfo(BuildContext context, Room room) async {
       filterQuality: FilterQuality.high,
     );
     displayname = removeInstagramTag(displayname);
-  } else if (containsWhatsApp(participantsIds)) {
+  } else if (containsWhatsApp(participants)) {
     networkColor = FluffyThemes.whatsAppColor;
     networkImage = Image.asset(
       'assets/whatsapp.png',
@@ -115,7 +114,7 @@ Future<RoomDisplayInfo> loadRoomInfo(BuildContext context, Room room) async {
       filterQuality: FilterQuality.high,
     );
     displayname = removeWhatsAppTag(displayname);
-  } else if (containsLinkedin(participantsIds)) {
+  } else if (containsLinkedin(participants)) {
     networkColor = FluffyThemes.linkedinColor;
     networkImage = Image.asset(
       'assets/linkedin.png',
@@ -123,7 +122,7 @@ Future<RoomDisplayInfo> loadRoomInfo(BuildContext context, Room room) async {
       filterQuality: FilterQuality.high,
     );
     displayname = removeLinkedinTag(displayname);
-  } else if (containsDiscord(participantsIds)) {
+  } else if (containsDiscord(participants)) {
     networkColor = FluffyThemes.dicordColor;
     networkImage = Image.asset(
       'assets/discord.png',
@@ -131,7 +130,7 @@ Future<RoomDisplayInfo> loadRoomInfo(BuildContext context, Room room) async {
       filterQuality: FilterQuality.high,
     );
     displayname = removeDiscordTag(displayname);
-  } else if (containsSignal(participantsIds)) {
+  } else if (containsSignal(participants)) {
     networkColor = FluffyThemes.signalColor;
     networkImage = Image.asset(
       'assets/signal.png',
@@ -147,4 +146,3 @@ Future<RoomDisplayInfo> loadRoomInfo(BuildContext context, Room room) async {
     displayname: displayname,
   );
 }
-
