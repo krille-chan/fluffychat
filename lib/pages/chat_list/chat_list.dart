@@ -197,9 +197,9 @@ class ChatListController extends State<ChatList>
     for (var room in rooms) {
       String? botId = room.directChatMatrixID;
       if (botId == null && isGroupWithOnlyBotAndUser(room)) {
-        botId = _excludedUserIds.firstWhere(
+        botId = _excludedUserIds.cast<String?>().firstWhere(
               (id) => room.getParticipants().any((user) => user.id == id),
-          orElse: () => '',
+          orElse: () => null,
         );
       }
 
