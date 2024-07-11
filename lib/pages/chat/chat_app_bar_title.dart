@@ -5,7 +5,7 @@ import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat/chat.dart';
 import 'package:tawkie/utils/date_time_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:tawkie/utils/network_utils.dart'; // Ajoutez cette ligne
+import 'package:tawkie/utils/network_utils.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/presence_builder.dart';
 
