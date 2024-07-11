@@ -60,18 +60,27 @@ class _WebViewConnectionState extends State<WebViewConnection> {
     }
   }
 
+  // Whether the social network is FB Messenger
+  bool _isMessenger() {
+    return widget.network.name == 'Facebook Messenger';
+  }
+
   @override
   Widget build(BuildContext context) {
     final connectionState =
         Provider.of<ConnectionStateModel>(context, listen: false);
 
-    InAppWebViewSettings settings = InAppWebViewSettings();
-    if (widget.network.name == "Facebook Messenger") {
-      settings = InAppWebViewSettings(
-        userAgent:
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
-      );
-    }
+    // Set custom user agent to increase credibility and *confusion*
+    // Messenger will not display the login fields if we use a mobile user-agent
+    final userAgent = _isMessenger()
+        // Chrome on Windows 10
+        ? 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+        // Chrome on Galaxy S9
+        : 'Mozilla/5.0 (Linux; Android 14; SM-G960U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.6478.122 Mobile Safari/537.36';
+
+    final InAppWebViewSettings settings = InAppWebViewSettings(
+      userAgent: userAgent,
+    );
 
     return Scaffold(
       appBar: AppBar(
