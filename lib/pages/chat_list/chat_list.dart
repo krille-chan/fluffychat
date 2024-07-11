@@ -191,7 +191,6 @@ class ChatListController extends State<ChatList>
   // Method to identify and remove duplicate rooms
   void identifyAndRemoveDuplicates(List<Room> rooms) {
     final Map<String, List<Room>> roomMap = {};
-    final client = Matrix.of(context).client;
 
     // Group rooms by the bot ID in _excludedUserIds
     for (var room in rooms) {
@@ -203,29 +202,24 @@ class ChatListController extends State<ChatList>
         );
       }
 
-      if (botId != null && botId.isNotEmpty) {
-        if (!roomMap.containsKey(botId)) {
-          roomMap[botId] = [];
+        if (botId != null && botId.isNotEmpty) {
+          if (!roomMap.containsKey(botId)) {
+            roomMap[botId] = [];
+          }
+          roomMap[botId]!.add(room);
         }
-        roomMap[botId]!.add(room);
-      }
     }
 
     // Check and remove duplicates
     roomMap.forEach((botId, roomList) async {
       if (roomList.length > 1) {
-        // Sort by the timestamp of the last event
-        roomList.sort((a, b) => b.lastEvent?.originServerTs.compareTo(a.lastEvent!.originServerTs) ?? 0);
+        // Sort by the timestamp of the last event (ascending order)
+        roomList.sort((a, b) => a.lastEvent?.originServerTs.compareTo(b.lastEvent!.originServerTs) ?? 0);
 
-        // Keep the room with the most recent event by the bot
+        // Keep the room with the oldest event and remove all others
         for (int i = 1; i < roomList.length; i++) {
           final room = roomList[i];
-          if (room.lastEvent?.senderId == client.userID) {
-            await room.leave();
-          } else {
-            await roomList[0].leave();
-            roomList.removeAt(0);
-          }
+          await room.leave();
         }
       }
     });
