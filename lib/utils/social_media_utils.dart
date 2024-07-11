@@ -41,6 +41,15 @@ bool containsSignal(List<User> participants) {
   return participants.any((user) => user.id.contains('@signal'));
 }
 
+bool allNetworksAbsent(List<User> participants) {
+  return !containsFacebook(participants) &&
+      !containsInstagram(participants) &&
+      !containsWhatsApp(participants) &&
+      !containsLinkedin(participants) &&
+      !containsDiscord(participants) &&
+      !containsSignal(participants);
+}
+
 String removeFacebookTag(String displayname) {
   if (displayname.contains('(FB)')) {
     displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
@@ -90,54 +99,63 @@ Future<RoomDisplayInfo> loadRoomInfo(BuildContext context, Room room) async {
   String displayname =
       room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
 
-  if (containsFacebook(participants)) {
-    networkColor = FluffyThemes.facebookColor;
-    networkImage = Image.asset(
-      'assets/facebook-messenger.png',
-      color: networkColor,
-      filterQuality: FilterQuality.high,
-    );
-    displayname = removeFacebookTag(displayname);
-  } else if (containsInstagram(participants)) {
-    networkColor = FluffyThemes.instagramColor;
-    networkImage = Image.asset(
-      'assets/instagram.png',
-      color: networkColor,
-      filterQuality: FilterQuality.high,
-    );
-    displayname = removeInstagramTag(displayname);
-  } else if (containsWhatsApp(participants)) {
-    networkColor = FluffyThemes.whatsAppColor;
-    networkImage = Image.asset(
-      'assets/whatsapp.png',
-      color: networkColor,
-      filterQuality: FilterQuality.high,
-    );
-    displayname = removeWhatsAppTag(displayname);
-  } else if (containsLinkedin(participants)) {
-    networkColor = FluffyThemes.linkedinColor;
-    networkImage = Image.asset(
-      'assets/linkedin.png',
-      color: networkColor,
-      filterQuality: FilterQuality.high,
-    );
-    displayname = removeLinkedinTag(displayname);
-  } else if (containsDiscord(participants)) {
-    networkColor = FluffyThemes.dicordColor;
-    networkImage = Image.asset(
-      'assets/discord.png',
-      color: networkColor,
-      filterQuality: FilterQuality.high,
-    );
-    displayname = removeDiscordTag(displayname);
-  } else if (containsSignal(participants)) {
-    networkColor = FluffyThemes.signalColor;
-    networkImage = Image.asset(
-      'assets/signal.png',
-      color: networkColor,
-      filterQuality: FilterQuality.high,
-    );
-    displayname = removeSignalTag(displayname);
+  if(participants.isNotEmpty){
+    if (containsFacebook(participants)) {
+      networkColor = FluffyThemes.facebookColor;
+      networkImage = Image.asset(
+        'assets/facebook-messenger.png',
+        color: networkColor,
+        filterQuality: FilterQuality.high,
+      );
+      displayname = removeFacebookTag(displayname);
+    } else if (containsInstagram(participants)) {
+      networkColor = FluffyThemes.instagramColor;
+      networkImage = Image.asset(
+        'assets/instagram.png',
+        color: networkColor,
+        filterQuality: FilterQuality.high,
+      );
+      displayname = removeInstagramTag(displayname);
+    } else if (containsWhatsApp(participants)) {
+      networkColor = FluffyThemes.whatsAppColor;
+      networkImage = Image.asset(
+        'assets/whatsapp.png',
+        color: networkColor,
+        filterQuality: FilterQuality.high,
+      );
+      displayname = removeWhatsAppTag(displayname);
+    } else if (containsLinkedin(participants)) {
+      networkColor = FluffyThemes.linkedinColor;
+      networkImage = Image.asset(
+        'assets/linkedin.png',
+        color: networkColor,
+        filterQuality: FilterQuality.high,
+      );
+      displayname = removeLinkedinTag(displayname);
+    } else if (containsDiscord(participants)) {
+      networkColor = FluffyThemes.dicordColor;
+      networkImage = Image.asset(
+        'assets/discord.png',
+        color: networkColor,
+        filterQuality: FilterQuality.high,
+      );
+      displayname = removeDiscordTag(displayname);
+    } else if (containsSignal(participants)) {
+      networkColor = FluffyThemes.signalColor;
+      networkImage = Image.asset(
+        'assets/signal.png',
+        color: networkColor,
+        filterQuality: FilterQuality.high,
+      );
+      displayname = removeSignalTag(displayname);
+    } else if (allNetworksAbsent(participants)) {
+      networkColor = FluffyThemes.tawkieColor;
+      networkImage = Image.asset(
+        'assets/tawkie.png',
+        color: networkColor,
+        filterQuality: FilterQuality.high,
+      );
+    }
   }
 
   return RoomDisplayInfo(
