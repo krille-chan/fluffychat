@@ -65,6 +65,22 @@ class _WebViewConnectionState extends State<WebViewConnection> {
     return widget.network.name == 'Facebook Messenger';
   }
 
+  // Add custom style to the login page to make it more user-friendly
+  Future<void> _addCustomStyle() async {
+    if (_isMessenger() && _webViewController != null) {
+      await _webViewController!.evaluateJavascript(
+        source: """
+          document.getElementsByClassName('_2kzy').item(0).style = 'width = 100%';
+          document.getElementById('email').style = 'height : 200px';
+          document.getElementById('pass').style = 'height : 200px';
+          document.getElementById('loginbutton').style = 'height : 200px';
+          // close cookie prompt
+          document.getElementsByClassName('selected')[0].click();
+        """,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final connectionState =
@@ -102,11 +118,12 @@ class _WebViewConnectionState extends State<WebViewConnection> {
           // Check the URL when the page finishes loading
           switch (widget.network.name) {
             case "Facebook Messenger":
-              if (!_facebookBridgeCreated &&
+              final successfullyRedirected = !_facebookBridgeCreated &&
                   url != null &&
                   url.toString() != widget.network.urlLogin! &&
-                  url.toString().contains(widget.network.urlRedirect!)) {
-                // Close the WebView
+                  url.toString().contains(widget.network.urlRedirect!);
+
+              if (successfullyRedirected) {
                 await _closeWebView();
 
                 await showCustomLoadingDialog(
@@ -119,6 +136,9 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                         cookieManager, connectionState, widget.network);
                   },
                 );
+              } else {
+                // assume login page
+                await _addCustomStyle();
               }
               break;
 
