@@ -20,6 +20,7 @@ import '../../../utils/error_reporter.dart';
 
 class EventVideoPlayer extends StatefulWidget {
   final Event event;
+
   const EventVideoPlayer(this.event, {super.key});
 
   @override
@@ -28,6 +29,7 @@ class EventVideoPlayer extends StatefulWidget {
 
 class EventVideoPlayerState extends State<EventVideoPlayer> {
   ChewieController? _chewieManager;
+  VideoPlayerController? _videoPlayerController;
   bool _isDownloading = false;
   String? _networkUri;
   File? _tmpFile;
@@ -57,16 +59,17 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
       final tmpFile = _tmpFile;
       final networkUri = _networkUri;
       if (kIsWeb && networkUri != null && _chewieManager == null) {
+        _videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(networkUri));
         _chewieManager ??= ChewieController(
-          videoPlayerController:
-              VideoPlayerController.networkUrl(Uri.parse(networkUri)),
+          videoPlayerController: _videoPlayerController!,
           autoPlay: true,
           autoInitialize: true,
         );
       } else if (!kIsWeb && tmpFile != null && _chewieManager == null) {
+        _videoPlayerController = VideoPlayerController.file(tmpFile);
         _chewieManager ??= ChewieController(
           useRootNavigator: false,
-          videoPlayerController: VideoPlayerController.file(tmpFile),
+          videoPlayerController: _videoPlayerController!,
           autoPlay: true,
           autoInitialize: true,
         );
@@ -89,6 +92,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   @override
   void dispose() {
     _chewieManager?.dispose();
+    _videoPlayerController?.dispose();
     super.dispose();
   }
 
@@ -97,9 +101,9 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     final hasThumbnail = widget.event.hasThumbnail;
-    final blurHash = (widget.event.infoMap as Map<String, dynamic>)
-            .tryGet<String>('xyz.amorgan.blurhash') ??
-        fallbackBlurHash;
+    final blurHash =
+        (widget.event.infoMap as Map<String, dynamic>).tryGet<String>('xyz.amorgan.blurhash') ??
+            fallbackBlurHash;
 
     final chewieManager = _chewieManager;
     return Material(
