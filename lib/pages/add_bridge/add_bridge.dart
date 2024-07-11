@@ -170,7 +170,7 @@ class BotController extends State<AddBridge> {
     // Initialize listener before sending ping
     final Completer<void> completer = Completer<void>();
     final subscription = client.onEvent.stream.listen((eventUpdate) {
-      if (eventUpdate.content['sender'].contains(socialNetwork.chatBot)) {
+      if (eventUpdate.content['sender']?.contains(socialNetwork.chatBot)) {
         _onNewPingMessage(
           roomBot,
           socialNetwork,
@@ -618,7 +618,7 @@ class BotController extends State<AddBridge> {
     String? lastMessage;
     StreamSubscription? subscription;
     subscription = client.onEvent.stream.listen((eventUpdate) {
-      if (eventUpdate.content['sender'].contains(network.chatBot)) {
+      if (eventUpdate.content['sender']?.contains(network.chatBot)) {
         lastMessage = _onNewMessage(
           roomBot,
           botUserId,
@@ -816,7 +816,7 @@ class BotController extends State<AddBridge> {
 
     StreamSubscription? subscription;
     subscription = client.onEvent.stream.listen((eventUpdate) {
-      if (eventUpdate.content['sender'].contains(whatsAppNetwork.chatBot)) {
+      if (eventUpdate.content['sender']?.contains(whatsAppNetwork.chatBot)) {
         _onWhatsAppMessage(
           directChat!,
           botUserId,
@@ -931,7 +931,7 @@ class BotController extends State<AddBridge> {
     String? lastMessage;
     StreamSubscription? subscription;
     subscription = client.onEvent.stream.listen((eventUpdate) {
-      if (eventUpdate.content['sender'].contains(network.chatBot)) {
+      if (eventUpdate.content['sender']?.contains(network.chatBot)) {
         lastMessage = _onLinkedInMessage(
           roomBot,
           botUserId,
