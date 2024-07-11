@@ -55,6 +55,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
     if (_webViewController != null && mounted) {
       await _webViewController!
           .loadUrl(urlRequest: URLRequest(url: WebUri('about:blank')));
+      _webViewController!.dispose();
       _webViewController = null;
     }
   }
