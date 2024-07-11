@@ -161,6 +161,7 @@ class ChatListItem extends StatelessWidget {
                   } else {
                     final networkColor = snapshot.data![0];
                     final networkImage = snapshot.data![1];
+                    final displayname = snapshot.data![2];
                     return Row(
                       children: <Widget>[
                         if (networkImage != null)
