@@ -340,7 +340,7 @@ class BotController extends State<AddBridge> {
   }
 
   /// Disconnect from a social network
-  Future<ConnectionStatus> disconnectFromNetwork(BuildContext context,
+  Future<void> disconnectFromNetwork(BuildContext context,
       SocialNetwork network, ConnectionStateModel connectionState) async {
     final String botUserId = '${network.chatBot}$hostname';
     final SocialNetworkEnum? networkEnum = getSocialNetworkEnum(network.name);
@@ -365,7 +365,7 @@ class BotController extends State<AddBridge> {
 
     await _sendLogoutEvent(roomBot, eventName);
 
-    return await _waitForDisconnection(
+    await _waitForDisconnection(
         context, network, connectionState, directChat, patterns);
   }
 
@@ -393,7 +393,7 @@ class BotController extends State<AddBridge> {
   }
 
   /// Wait for the disconnection process to complete
-  Future<ConnectionStatus> _waitForDisconnection(
+  Future<void> _waitForDisconnection(
       BuildContext context,
       SocialNetwork network,
       ConnectionStateModel connectionState,
@@ -419,7 +419,7 @@ class BotController extends State<AddBridge> {
             if (isStillConnected(latestMessage, patterns)) {
               Logs().v("You're still connected to ${network.name}");
               setState(() => network.updateConnectionResult(true));
-              return ConnectionStatus.connected;
+              return;
             }
 
             if (!isStillConnected(latestMessage, patterns)) {
@@ -430,7 +430,7 @@ class BotController extends State<AddBridge> {
               await Future.delayed(const Duration(seconds: 1));
               connectionState.reset();
               setState(() => network.updateConnectionResult(false));
-              return ConnectionStatus.notConnected;
+              return;
             }
           }
 

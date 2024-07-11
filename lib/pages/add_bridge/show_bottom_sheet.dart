@@ -37,39 +37,24 @@ Future<bool> showBottomSheetBridge(
             ),
             onTap: () async {
               try {
-                ConnectionStatus?
-                    result; // Variable to store the result of the connection
-
                 // To show Loading while executing the function
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
-                    result = await controller.disconnectFromNetwork(
+                    await controller.disconnectFromNetwork(
                         context, network, connectionStateModel);
                   },
                 );
 
-                if (result == ConnectionStatus.notConnected) {
-                  Navigator.of(context).pop();
-
-                  // returns true if is not connected
-                  completer.complete(result == ConnectionStatus.notConnected);
-                }
-
-                if (result == ConnectionStatus.error ||
-                    result == ConnectionStatus.connected) {
-                  // Display a showDialog with an unknown error message
-                  showCatchErrorDialog(
-                    context,
-                    L10n.of(context)!.errTryAgain,
-                  );
-                }
+                Navigator.of(context).pop();
+                completer.complete(true);
               } catch (e) {
                 Navigator.of(context).pop();
                 Logs().v('Error: $e');
 
-                //To view other catch-related errors
-                showCatchErrorDialog(context, e);
+                // To view other catch-related errors
+                showCatchErrorDialog(context, e.toString());
+                completer.complete(false);
               }
             },
           ),
