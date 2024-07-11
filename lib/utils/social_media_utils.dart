@@ -10,7 +10,7 @@ bool containsFacebook(List<String> participantsIds) {
 }
 
 bool containsInstagram(List<String> participantsIds) {
-  return participantsIds.any((id) => id.contains('@instagram2_'));
+  return participantsIds.any((id) => id.contains('@instagram2'));
 }
 
 bool containsWhatsApp(List<String> participantsIds) {
