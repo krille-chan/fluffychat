@@ -85,7 +85,11 @@ class ChatListController extends State<ChatList>
 
   String? activeSpaceId;
 
+  late List<Room> _filteredRooms;
+
   late final List<String> _excludedUserIds = getBotIds();
+  List<Room> get filteredRooms => _filteredRooms;
+
 
   void resetActiveSpaceId() {
     setState(() {
@@ -225,7 +229,7 @@ class ChatListController extends State<ChatList>
     });
   }
 
-  List<Room> get filteredRooms {
+  void initializeFilteredRooms() {
     final rooms = Matrix.of(context)
         .client
         .rooms
@@ -233,17 +237,16 @@ class ChatListController extends State<ChatList>
         .toList();
 
     // Exclude rooms based on _excludedUserIds and isGroupWithOnlyBotAndUser
-    final filteredRooms = rooms
+    _filteredRooms = rooms
         .where((room) =>
     !excludedUserIds.contains(room.directChatMatrixID) &&
         !isGroupWithOnlyBotAndUser(room))
         .toList();
 
-    // Identify and remove duplicates
-    identifyAndRemoveDuplicates(filteredRooms);
-
-    return filteredRooms;
+    // Identify and delete duplicates
+    identifyAndRemoveDuplicates(_filteredRooms);
   }
+
 
   bool isSearchMode = false;
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;
@@ -515,6 +518,8 @@ class ChatListController extends State<ChatList>
     });
 
     _checkTorBrowser();
+
+    initializeFilteredRooms();
 
     super.initState();
   }
