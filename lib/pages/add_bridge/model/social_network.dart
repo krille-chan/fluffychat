@@ -7,8 +7,8 @@ class SocialNetwork {
   final String chatBot; // ChatBot for send demand
   final String? urlLogin;
   final String? urlRedirect;
-  bool? loading; // To find out if state is loading
-  bool? connected; // To find out if state is disconnected
+  bool loading; // To find out if state is loading
+  bool connected; // To find out if state is disconnected
   bool error; // Bool to indicate if there is an error
 
   SocialNetwork({
@@ -73,4 +73,10 @@ class SocialNetworkManager{
       urlRedirect: "https://www.linkedin.com/feed/",
     ),
   ];
+
+  static SocialNetwork? fromName(String name) {
+    return socialNetworks.firstWhere(
+          (network) => network.name == name,
+    );
+  }
 }
