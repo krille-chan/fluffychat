@@ -93,16 +93,14 @@ class TextToSpeechController {
     _cacheClearTimer?.cancel();
   }
 
-  Future<TextToSpeechResponse?> get(
+  Future<TextToSpeechResponse> get(
     TextToSpeechRequest params,
   ) async {
     if (_cache.containsKey(params)) {
       return _cache[params]!.data;
     } else {
-      final String accessToken =
-          await _pangeaController.userController.accessToken;
       final Future<TextToSpeechResponse> response = _fetchResponse(
-        accessToken,
+        await _pangeaController.userController.accessToken,
         params,
       );
       _cache[params] = _TextToSpeechCacheItem(data: response);

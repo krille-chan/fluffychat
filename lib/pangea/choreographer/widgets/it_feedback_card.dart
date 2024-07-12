@@ -72,10 +72,8 @@ class ITFeedbackCardController extends State<ITFeedbackCard> {
     setState(() {
       isTranslating = true;
     });
-
-    final String accessToken = await controller.userController.accessToken;
     FullTextTranslationRepo.translate(
-      accessToken: accessToken,
+      accessToken: await controller.userController.accessToken,
       request: FullTextTranslationRequestModel(
         text: res!.text,
         tgtLang: controller.languageController.userL1?.langCode ??

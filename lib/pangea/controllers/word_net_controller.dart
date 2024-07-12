@@ -31,7 +31,7 @@ class WordController extends BaseController {
         ),
       );
 
-  Future<WordData?> getWordDataGlobal({
+  Future<WordData> getWordDataGlobal({
     required String word,
     required String fullText,
     required String? userL1,
@@ -53,10 +53,8 @@ class WordController extends BaseController {
 
     if (local != null) return local;
 
-    final String accessToken =
-        await _pangeaController.userController.accessToken;
     final WordData remote = await WordRepo.getWordNetData(
-      accessToken: accessToken,
+      accessToken: await _pangeaController.userController.accessToken,
       fullText: fullText,
       word: word,
       userL1: userL1,

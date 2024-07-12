@@ -51,10 +51,8 @@ class ITFeedbackController {
     ITFeedbackRequestModel request,
   ) async {
     try {
-      final String accessToken =
-          await _pangeaController.userController.accessToken;
       final ITFeedbackResponseModel res = await _ITFeedbackRepo.get(
-        accessToken,
+        await _pangeaController.userController.accessToken,
         request,
       );
       return res;

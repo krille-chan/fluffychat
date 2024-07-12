@@ -125,7 +125,7 @@ class LanguageDetectionController {
     _cacheClearTimer?.cancel();
   }
 
-  Future<LanguageDetectionResponse?> detectLanguage(
+  Future<LanguageDetectionResponse> detectLanguage(
     String fullText,
     String? userL2,
     String? userL1,
@@ -138,16 +138,14 @@ class LanguageDetectionController {
     return get(params);
   }
 
-  Future<LanguageDetectionResponse?> get(
+  Future<LanguageDetectionResponse> get(
     LanguageDetectionRequest params,
   ) async {
     if (_cache.containsKey(params)) {
       return _cache[params]!.data;
     } else {
-      final String accessToken =
-          await _pangeaController.userController.accessToken;
       final Future<LanguageDetectionResponse> response = _fetchResponse(
-        accessToken,
+        await _pangeaController.userController.accessToken,
         params,
       );
       _cache[params] = _LanguageDetectionCacheItem(data: response);

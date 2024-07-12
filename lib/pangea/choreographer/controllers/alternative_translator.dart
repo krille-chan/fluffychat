@@ -89,19 +89,9 @@ class AlternativeTranslator {
       final String? goldRouteTranslation =
           choreographer.itController.goldRouteTracker.fullTranslation;
 
-      final accessToken = await choreographer.accessToken;
-      if (accessToken == null) {
-        ErrorHandler.logError(
-          m: "accessToken null in setTranslationFeedback",
-          s: StackTrace.current,
-        );
-        translationFeedbackKey = FeedbackKey.loadingPleaseWait;
-        return;
-      }
-
       final FullTextTranslationResponseModel results =
           await FullTextTranslationRepo.translate(
-        accessToken: accessToken,
+        accessToken: await choreographer.accessToken,
         request: FullTextTranslationRequestModel(
           text: choreographer.itController.sourceText!,
           tgtLang: choreographer.l2LangCode!,
@@ -127,7 +117,7 @@ class AlternativeTranslator {
       }
 
       similarityResponse = await SimilarityRepo.get(
-        accessToken: accessToken,
+        accessToken: await choreographer.accessToken,
         request: SimilarityRequestModel(
           benchmark: results.bestTranslation,
           toCompare: [userTranslation!],
