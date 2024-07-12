@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
-import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/match_copy.dart';
@@ -341,6 +340,12 @@ class WordMatchContent extends StatelessWidget {
           if (controller.widget.scm.pangeaMatch!.isITStart)
             DontShowSwitchListTile(
               controller: pangeaController,
+              onSwitch: (bool value) {
+                pangeaController.userController.updateProfile((profile) {
+                  profile.userSettings.itAutoPlay = value;
+                  return profile;
+                });
+              },
             ),
         ],
       );
@@ -483,10 +488,12 @@ class StartITButton extends StatelessWidget {
 
 class DontShowSwitchListTile extends StatefulWidget {
   final PangeaController controller;
+  final Function(bool) onSwitch;
 
   const DontShowSwitchListTile({
     super.key,
     required this.controller,
+    required this.onSwitch,
   });
 
   @override
@@ -508,10 +515,7 @@ class DontShowSwitchListTileState extends State<DontShowSwitchListTile> {
       title: Text(L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader),
       value: switchValue,
       onChanged: (value) {
-        MatrixState.pangeaController.userController.matrixProfile
-            .saveProfileData(
-          {MatrixProfileEnum.itAutoPlay.title: value},
-        );
+        widget.onSwitch(value);
         setState(() => switchValue = value);
       },
     );

@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -268,21 +267,6 @@ extension SettingCopy on ToolSetting {
       //   return L10n.of(context)!.translationsToolDescrption;
       case ToolSetting.autoIGC:
         return L10n.of(context)!.autoIGCToolDescription;
-    }
-  }
-
-  MatrixProfileEnum get asMatrixProfileField {
-    switch (this) {
-      case ToolSetting.interactiveTranslator:
-        return MatrixProfileEnum.interactiveTranslator;
-      case ToolSetting.interactiveGrammar:
-        return MatrixProfileEnum.interactiveGrammar;
-      case ToolSetting.immersionMode:
-        return MatrixProfileEnum.immersionMode;
-      case ToolSetting.definitions:
-        return MatrixProfileEnum.definitions;
-      case ToolSetting.autoIGC:
-        return MatrixProfileEnum.autoIGC;
     }
   }
 }

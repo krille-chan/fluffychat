@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
-import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -27,61 +26,62 @@ class UserController extends BaseController {
   String? get _matrixAccessToken =>
       _pangeaController.matrixState.client.accessToken;
 
-  /// An instance of matrix profile. Used to update and access info from the user's matrix profile.
-  /// No information needs to be passing in the constructor as the matrix
-  /// profile get all of it's internal data the accountData stored in the client.
-  MatrixProfile matrixProfile = MatrixProfile();
+  Profile? _cachedProfile;
 
-  /// Returns the [PUserModel] object representing the current user.
-  ///
-  /// This method retrieves the user data from the local storage using the [PLocalKey.user] key.
-  /// If the data exists, it is converted to a [PUserModel] object using the [PUserModel.fromJson] method.
-  /// If the data is null, indicating that the user is not logged in (or that
-  /// profile fetching has not yet completed, or had an error), null is returned.
-  PUserModel? get userModel {
-    final data = _pangeaController.pStoreService.read(PLocalKey.user);
-    return data != null ? PUserModel.fromJson(data) : null;
+  /// Listen for updates to account data in syncs and update the cached profile
+  void addProfileListener() {
+    _pangeaController.matrixState.client.onSync.stream
+        .where((sync) => sync.accountData != null)
+        .listen((sync) {
+      final Profile? fromAccountData = Profile.fromAccountData();
+      if (fromAccountData != null) {
+        _cachedProfile = fromAccountData;
+      }
+    });
   }
 
-  /// Creates a user pangea chat profile, saves the user's profile information
-  /// locally, and set the user's DOB in their matrix profile.
-  ///
-  /// The [dob] parameter is required and represents the date of birth of the user.
-  /// This method creates a new [PUserModel] using the [PUserRepo.repoCreatePangeaUser] method,
-  /// and saves the user model in local storage.
-  /// It also updates the user's matrix profile using the [updateMatrixProfile] method.
-  Future<void> createProfile({required String dob}) async {
-    if (userId == null || _matrixAccessToken == null) {
-      ErrorHandler.logError(
-        e: "calling createProfile with userId == null or matrixAccessToken == null",
-      );
+  /// The user's profile. Will be empty if the client's accountData hasn't
+  /// been loaded yet (if the first sync hasn't gone through yet)
+  /// or if the user hasn't yer set their date of birth.
+  Profile get profile {
+    /// if the profile is cached, return it
+    if (_cachedProfile != null) return _cachedProfile!;
+
+    /// if account data is empty, return an empty profile
+    if (_pangeaController.matrixState.client.accountData.isEmpty) {
+      return Profile.emptyProfile;
     }
-    final PUserModel newUserModel = await PUserRepo.repoCreatePangeaUser(
-      userID: userId!,
-      fullName: fullname,
-      dob: dob,
-      matrixAccessToken: _matrixAccessToken!,
+
+    /// try to get the account data in the up-to-date format
+    final Profile? fromAccountData = Profile.fromAccountData();
+    if (fromAccountData != null) {
+      _cachedProfile = fromAccountData;
+      return fromAccountData;
+    }
+
+    _cachedProfile = Profile.migrateFromAccountData();
+    _cachedProfile?.saveProfileData();
+    return _cachedProfile ?? Profile.emptyProfile;
+  }
+
+  void updateProfile(Profile Function(Profile) update) {
+    final Profile updatedProfile = update(profile);
+    updatedProfile.saveProfileData();
+  }
+
+  Future<void> createProfile({required DateTime dob}) async {
+    final userSettings = UserSettings(
+      dateOfBirth: dob,
+      createdAt: DateTime.now(),
     );
-    newUserModel.save(_pangeaController);
-    await matrixProfile.saveProfileData(
-      {MatrixProfileEnum.dateOfBirth.title: dob},
-      waitForDataInSync: true,
-    );
+    final newProfile = Profile(userSettings: userSettings);
+    await newProfile.saveProfileData(waitForDataInSync: true);
   }
 
   /// A completer for the profile model of a user.
-  Completer<PUserModel?>? _profileCompleter;
+  Completer<void>? _profileCompleter;
 
-  /// Fetches the user model.
-  ///
-  /// This method retrieves the user model asynchronously. If the profile completer is already completed,
-  /// it returns the future value of the completer. If the user model is currently being fetched,
-  /// it waits for the completion of the completer and returns the future value. Otherwise, it sets
-  /// the fetching flag, fetches the user model, completes the profile completer with the fetched user model,
-  /// and returns the future value of the completer.
-  ///
-  /// Returns the future value of the user model completer.
-  Future<PUserModel?> fetchUserModel() async {
+  Future<void> initialize() async {
     if (_profileCompleter?.isCompleted ?? false) {
       return _profileCompleter!.future;
     }
@@ -91,213 +91,79 @@ class UserController extends BaseController {
       return _profileCompleter!.future;
     }
 
-    _profileCompleter = Completer<PUserModel?>();
-    PUserModel? fetchedUserModel;
+    _profileCompleter = Completer<void>();
 
     try {
-      fetchedUserModel = await _fetchUserModel();
+      await _initialize();
+      addProfileListener();
     } catch (err, s) {
       ErrorHandler.logError(e: err, s: s);
     } finally {
-      _profileCompleter!.complete(fetchedUserModel);
+      _profileCompleter!.complete();
     }
 
     return _profileCompleter!.future;
   }
 
-  /// Fetches the user model asynchronously.
-  ///
-  /// This method fetches the user model by calling the [fetchPangeaUserInfo] method
-  /// from the [PUserRepo] class. It requires the [_matrixAccessToken] and [userId]
-  /// to be non-null. If either of them is null, an error is logged.
-  ///
-  /// The fetched [newUserModel] is then saved locally.
-  /// The [migrateMatrixProfile] method is called, to migrate any information that is
-  /// already saved in the user's pangea profile but is not yet saved in the
-  /// user's matrix profile. Finally, the [newUserModel] is returned.
-  Future<PUserModel?> _fetchUserModel() async {
-    if (_matrixAccessToken == null || userId == null) {
-      ErrorHandler.logError(
-        e: "calling fetchUserModel with userId == null or matrixAccessToken == null",
-      );
-      return null;
+  Future<void> _initialize() async {
+    await waitForAccountData();
+    if (profile.userSettings.dateOfBirth != null) {
+      return;
     }
-    final PUserModel? newUserModel = await PUserRepo.fetchPangeaUserInfo(
+    final PangeaProfileResponse? resp = await PUserRepo.fetchPangeaUserInfo(
       userID: userId!,
       matrixAccessToken: _matrixAccessToken!,
     );
-    newUserModel?.save(_pangeaController);
-    await migrateMatrixProfile();
-    return newUserModel;
+    if (resp?.profile == null) {
+      return;
+    }
+    final userSetting = UserSettings.fromJson(resp!.profile.toJson());
+    final newProfile = Profile(userSettings: userSetting);
+    await newProfile.saveProfileData(waitForDataInSync: true);
   }
 
   /// Reinitializes the user's profile
   /// This method should be called whenever the user's login status changes
   Future<void> reinitialize() async {
     _profileCompleter = null;
-    await fetchUserModel();
+    _cachedProfile = null;
+    await initialize();
   }
 
-  /// Migrates the user's profile from Pangea to Matrix.
-  ///
-  /// This method retrieves the user's profile / local settings information from Pangea and checks for corresponding information stored in Matrix.
-  /// If any of the profile fields in Pangea have information, but the corresponding fields in Matrix are null, the values are updated in Matrix.
-  /// The profile fields that are checked for migration include date of birth, creation date, target language, source language, country, and public profile.
-  /// Additionally, several profile settings related to auto play, trial activation, interactive features, and instructional messages are also checked for migration.
-  ///
-  /// This method calls the [updateMatrixProfile] method to update the user's profile in Matrix with the migrated values.
-  ///
-  /// Note: This method assumes that the [userModel] and [_pangeaController] instances are properly initialized before calling this method.
-  Future<void> migrateMatrixProfile() async {
-    // This function relies on the client's account data being loaded.
-    // The account data is loaded during
-    // the first sync, so wait for that to complete.
+  /// Account data comes through in the first sync, so wait for that
+  Future<void> waitForAccountData() async {
     final client = _pangeaController.matrixState.client;
     if (client.prevBatch == null) {
       await client.onSync.stream.first;
     }
-
-    final Map<String, dynamic> profileUpdates = {};
-    final Profile? pangeaProfile = userModel?.profile;
-
-    for (final field in MatrixProfile.pangeaProfileFields) {
-      final dynamic matrixValue = matrixProfile.getProfileData(field);
-      dynamic pangeaValue;
-      switch (field) {
-        case MatrixProfileEnum.dateOfBirth:
-          pangeaValue = pangeaProfile?.dateOfBirth;
-          break;
-        case MatrixProfileEnum.createdAt:
-          pangeaValue = pangeaProfile?.createdAt;
-          break;
-        case MatrixProfileEnum.targetLanguage:
-          pangeaValue = pangeaProfile?.targetLanguage;
-          break;
-        case MatrixProfileEnum.sourceLanguage:
-          pangeaValue = pangeaProfile?.sourceLanguage;
-          break;
-        case MatrixProfileEnum.country:
-          pangeaValue = pangeaProfile?.country;
-          break;
-        case MatrixProfileEnum.publicProfile:
-          pangeaValue = pangeaProfile?.publicProfile;
-          break;
-        default:
-          break;
-      }
-      if (pangeaValue != null && matrixValue == null) {
-        profileUpdates[field.title] = pangeaValue;
-      }
-    }
-
-    for (final value in MatrixProfileEnum.values) {
-      if (profileUpdates.containsKey(value.title)) continue;
-      final dynamic localValue =
-          _pangeaController.pStoreService.read(value.title);
-      final dynamic matrixValue = matrixProfile.getProfileData(value);
-      final dynamic unmigratedValue =
-          localValue != null && matrixValue == null ? localValue : null;
-      if (unmigratedValue != null) {
-        profileUpdates[value.title] = unmigratedValue;
-      }
-    }
-
-    await matrixProfile.saveProfileData(
-      profileUpdates,
-      waitForDataInSync: true,
-    );
-  }
-
-  /// Updates the user's profile with the provided information.
-  ///
-  /// The [dateOfBirth] parameter is the new date of birth for the user.
-  /// The [targetLanguage] parameter is the new target language for the user.
-  /// The [sourceLanguage] parameter is the new source language for the user.
-  /// The [country] parameter is the new country for the user.
-  /// The [interests] parameter is a list of new interests for the user.
-  /// The [speaks] parameter is a list of new languages the user speaks.
-  /// The [publicProfile] parameter indicates whether the user's profile should be public or not.
-  Future<void> updateUserProfile({
-    String? dateOfBirth,
-    String? targetLanguage,
-    String? sourceLanguage,
-    String? country,
-    List<String>? interests,
-    List<String>? speaks,
-    bool? publicProfile,
-  }) async {
-    if (userModel == null) {
-      ErrorHandler.logError(
-        e: "calling updateUserProfile with userModel == null",
-      );
-      return;
-    }
-
-    final profileJson = userModel!.profile!.toJson();
-
-    if (dateOfBirth != null) {
-      profileJson[ModelKey.userDateOfBirth] = dateOfBirth;
-    }
-    if (targetLanguage != null) {
-      profileJson[ModelKey.userTargetLanguage] = targetLanguage;
-    }
-    if (sourceLanguage != null) {
-      profileJson[ModelKey.userSourceLanguage] = sourceLanguage;
-    }
-    if (interests != null) {
-      profileJson[ModelKey.userInterests] = interests.toString();
-    }
-    if (speaks != null) {
-      profileJson[ModelKey.userSpeaks] = speaks.toString();
-    }
-    if (country != null) {
-      profileJson[ModelKey.userCountry] = country;
-    }
-    if (publicProfile != null) {
-      profileJson[ModelKey.publicProfile] = publicProfile;
-    }
-
-    final Profile updatedUserProfile = await PUserRepo.updateUserProfile(
-      Profile.fromJson(profileJson),
-      await accessToken,
-    );
-
-    PUserModel(
-      access: await accessToken,
-      refresh: userModel!.refresh,
-      profile: updatedUserProfile,
-    ).save(_pangeaController);
-
-    matrixProfile.saveProfileData({
-      MatrixProfileEnum.dateOfBirth.title: dateOfBirth,
-      MatrixProfileEnum.targetLanguage.title: targetLanguage,
-      MatrixProfileEnum.sourceLanguage.title: sourceLanguage,
-      MatrixProfileEnum.country.title: country,
-      MatrixProfileEnum.publicProfile.title: publicProfile,
-    });
   }
 
   /// Returns a boolean value indicating whether a new JWT (JSON Web Token) is needed.
-  /// It checks if the `userModel` has a non-null `access` token and if the token is expired using the `Jwt.isExpired()` method.
-  /// If the `userModel` is null or the `access` token is null, it returns true indicating that a new JWT is needed.
-  bool get needNewJWT =>
-      userModel?.access != null ? Jwt.isExpired(userModel!.access) : true;
+  bool needNewJWT(String token) => Jwt.isExpired(token);
 
-  /// Retrieves the access token for the user.
-  ///
-  /// If the locally stored user model is null or the access token has
-  /// expired, it fetches the user model.
-  /// If the user model is still null after fetching, an error thrown.
-  ///
-  /// Returns the access token as a string, or null if the user model is null.
+  /// Retrieves the access token for the user. Looks for it locally,
+  /// and if it's not found or expired, fetches it from the server.
   Future<String> get accessToken async {
-    final PUserModel? useThisOne =
-        needNewJWT ? await fetchUserModel() : userModel;
+    final localAccessToken =
+        _pangeaController.pStoreService.read(PLocalKey.access);
 
-    if (useThisOne == null) {
-      throw ("Trying to get accessToken with null userModel");
+    if (localAccessToken == null || needNewJWT(localAccessToken)) {
+      final PangeaProfileResponse? userModel =
+          await PUserRepo.fetchPangeaUserInfo(
+        userID: userId!,
+        matrixAccessToken: _matrixAccessToken!,
+      );
+      if (userModel?.access == null) {
+        throw ("Trying to get accessToken with null userModel");
+      }
+      _pangeaController.pStoreService.save(
+        PLocalKey.access,
+        userModel!.access,
+      );
+      return userModel.access;
     }
-    return useThisOne.access;
+
+    return localAccessToken;
   }
 
   /// Returns the full name of the user.
@@ -314,19 +180,6 @@ class UserController extends BaseController {
     return userId!.substring(0, userId!.indexOf(":")).replaceAll("@", "");
   }
 
-  /// Checks if the user data is available.
-  /// Returns a [Future] that completes with a [bool] value
-  /// indicating whether the user data is available or not.
-  Future<bool> get isPUserDataAvailable async {
-    try {
-      final PUserModel? toCheck = userModel ?? (await fetchUserModel());
-      return toCheck != null;
-    } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
-      return false;
-    }
-  }
-
   /// Checks if user data is available and the date of birth is set.
   /// Returns a [Future] that completes with a [bool] value indicating
   /// whether the user data is available and the date of birth is set.
@@ -334,8 +187,8 @@ class UserController extends BaseController {
     try {
       // the function fetchUserModel() uses a completer, so it shouldn't
       // re-call the endpoint if it has already been called
-      await fetchUserModel();
-      return matrixProfile.dateOfBirth != null;
+      await initialize();
+      return profile.userSettings.dateOfBirth != null;
     } catch (err, s) {
       ErrorHandler.logError(e: err, s: s);
       return false;
@@ -344,11 +197,11 @@ class UserController extends BaseController {
 
   /// Returns a boolean value indicating whether the user is currently in the trial window.
   bool get inTrialWindow {
-    final String? createdAt = userModel?.profile?.createdAt;
+    final DateTime? createdAt = profile.userSettings.createdAt;
     if (createdAt == null) {
       return false;
     }
-    return DateTime.parse(createdAt).isAfter(
+    return createdAt.isAfter(
       DateTime.now().subtract(const Duration(days: 7)),
     );
   }
@@ -363,12 +216,8 @@ class UserController extends BaseController {
   /// If an error occurs during the process, it logs the error and returns `false`.
   Future<bool> get areUserLanguagesSet async {
     try {
-      final PUserModel? toCheck = userModel ?? (await fetchUserModel());
-      if (toCheck?.profile == null) {
-        return false;
-      }
-      final String? srcLang = toCheck!.profile!.sourceLanguage;
-      final String? tgtLang = toCheck.profile!.targetLanguage;
+      final String? srcLang = profile.userSettings.sourceLanguage;
+      final String? tgtLang = profile.userSettings.targetLanguage;
       return srcLang != null &&
           tgtLang != null &&
           srcLang.isNotEmpty &&
@@ -382,7 +231,9 @@ class UserController extends BaseController {
   }
 
   /// Returns a boolean value indicating whether the user's profile is public.
-  bool get isPublic => userModel?.profile?.publicProfile ?? false;
+  bool get isPublic {
+    return profile.userSettings.publicProfile;
+  }
 
   /// Retrieves the user's email address.
   ///

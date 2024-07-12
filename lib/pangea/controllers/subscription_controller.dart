@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/base_subscription_info.dart';
 import 'package:fluffychat/pangea/models/mobile_subscriptions.dart';
-import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/models/web_subscriptions.dart';
 import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
@@ -179,31 +178,35 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  bool get _activatedNewUserTrial =>
-      _pangeaController.userController.inTrialWindow &&
-      _pangeaController.userController.matrixProfile.activatedFreeTrial;
+  bool get _activatedNewUserTrial {
+    final bool activated = _pangeaController
+        .userController.profile.userSettings.activatedFreeTrial;
+    return _pangeaController.userController.inTrialWindow && activated;
+  }
 
   void activateNewUserTrial() {
-    _pangeaController.userController.matrixProfile.saveProfileData({
-      MatrixProfileEnum.activatedFreeTrial.title: true,
-    }).then((_) {
-      setNewUserTrial();
-      trialActivationStream.add(true);
-    });
+    _pangeaController.userController.updateProfile(
+      (profile) {
+        profile.userSettings.activatedFreeTrial = true;
+        return profile;
+      },
+    );
+    setNewUserTrial();
+    trialActivationStream.add(true);
   }
 
   void setNewUserTrial() {
-    if (_pangeaController.userController.userModel?.profile == null) {
+    final DateTime? createdAt =
+        _pangeaController.userController.profile.userSettings.createdAt;
+    if (createdAt == null) {
       ErrorHandler.logError(
-        m: "Null user profile in subscription settings",
+        m: "Null user profile createAt in subscription settings",
         s: StackTrace.current,
       );
       return;
     }
-    final String profileCreatedAt =
-        _pangeaController.userController.userModel!.profile!.createdAt;
-    final DateTime creationTimestamp = DateTime.parse(profileCreatedAt);
-    final DateTime expirationDate = creationTimestamp.add(
+
+    final DateTime expirationDate = createdAt.add(
       const Duration(days: 7),
     );
     subscription?.setTrial(expirationDate);

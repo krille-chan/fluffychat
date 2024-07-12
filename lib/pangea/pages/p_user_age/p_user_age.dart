@@ -10,7 +10,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:intl/intl.dart';
 
 import '../../utils/bot_name.dart';
 import '../../utils/error_handler.dart';
@@ -73,26 +72,24 @@ class PUserAgeController extends State<PUserAge> {
   }
 
   //Note: used linear progress bar (also used in fluffychat signup button) for consistency
-  createUserInPangea() async {
+  Future<void> createUserInPangea() async {
     try {
-      setState(() {
-        error = dobValidator();
-      });
-
+      setState(() => error = dobValidator());
       if (error?.isNotEmpty == true) return;
+      setState(() => loading = true);
 
-      setState(() {
-        loading = true;
-      });
+      final DateTime? dob =
+          pangeaController.userController.profile.userSettings.dateOfBirth;
 
-      final String date = DateFormat('yyyy-MM-dd').format(selectedDate!);
-
-      if (pangeaController.userController.userModel?.access == null) {
-        await pangeaController.userController.createProfile(dob: date);
-      } else {
-        await pangeaController.userController.updateUserProfile(
-          dateOfBirth: date,
+      if (dob == null) {
+        await pangeaController.userController.createProfile(
+          dob: selectedDate!,
         );
+      } else {
+        pangeaController.userController.updateProfile((profile) {
+          profile.userSettings.dateOfBirth = selectedDate!;
+          return profile;
+        });
       }
       FluffyChatApp.router.go('/rooms');
     } catch (err, s) {

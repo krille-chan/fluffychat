@@ -333,7 +333,8 @@ class MessageToolbarState extends State<MessageToolbar> {
         return;
       }
 
-      MatrixState.pangeaController.userController.matrixProfile.autoPlayMessages
+      MatrixState.pangeaController.userController.profile.userSettings
+              .autoPlayMessages
           ? updateMode(MessageMode.textToSpeech)
           : updateMode(MessageMode.translation);
     });

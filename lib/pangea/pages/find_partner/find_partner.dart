@@ -37,7 +37,7 @@ class FindPartnerController extends State<FindPartner> {
 
   Timer? coolDown;
 
-  final List<Profile> _userProfilesCache = [];
+  final List<PangeaProfile> _userProfilesCache = [];
 
   final scrollController = ScrollController();
   String? error;
@@ -83,7 +83,7 @@ class FindPartnerController extends State<FindPartner> {
     return FindPartnerView(this);
   }
 
-  List<Profile> get userProfiles => _userProfilesCache.where((p) {
+  List<PangeaProfile> get userProfiles => _userProfilesCache.where((p) {
         return (p.targetLanguage != null &&
                 targetLanguageSearch.langCode == p.targetLanguage) &&
             (p.sourceLanguage != null &&
@@ -127,8 +127,7 @@ class FindPartnerController extends State<FindPartner> {
     nextUrl = response.next;
     nextPage++;
 
-    final String? currentUserId =
-        pangeaController.userController.userModel?.profile?.pangeaUserId;
+    final String? currentUserId = pangeaController.matrixState.client.userID;
     _userProfilesCache.addAll(
       response.results.where(
         (p) =>

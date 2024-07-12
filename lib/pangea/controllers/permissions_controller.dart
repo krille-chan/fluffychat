@@ -4,7 +4,6 @@ import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
-import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/p_extension.dart';
 import 'package:matrix/matrix.dart';
 
@@ -31,12 +30,11 @@ class PermissionsController extends BaseController {
   }
 
   /// Returns false if user is null
-  bool isUser18() =>
-      _pangeaController.userController.matrixProfile.dateOfBirth
-          ?.isAtLeastYearsOld(
-        AgeLimits.toAccessFeatures,
-      ) ??
-      false;
+  bool isUser18() {
+    final DateTime? dob =
+        _pangeaController.userController.profile.userSettings.dateOfBirth;
+    return dob?.isAtLeastYearsOld(AgeLimits.toAccessFeatures) ?? false;
+  }
 
   /// A user can private chat if
   /// 1) they are 18 and outside a class context or
@@ -97,20 +95,22 @@ class PermissionsController extends BaseController {
     return classPermission == 0;
   }
 
-  bool userToolSetting(MatrixProfileEnum setting) {
-    switch (setting.asToolSetting) {
+  bool userToolSetting(ToolSetting setting) {
+    switch (setting) {
       case ToolSetting.interactiveTranslator:
         return _pangeaController
-            .userController.matrixProfile.interactiveTranslator;
+            .userController.profile.toolSettings.interactiveTranslator;
       case ToolSetting.interactiveGrammar:
         return _pangeaController
-            .userController.matrixProfile.interactiveGrammar;
+            .userController.profile.toolSettings.interactiveGrammar;
       case ToolSetting.immersionMode:
-        return _pangeaController.userController.matrixProfile.immersionMode;
+        return _pangeaController
+            .userController.profile.toolSettings.immersionMode;
       case ToolSetting.definitions:
-        return _pangeaController.userController.matrixProfile.definitions;
+        return _pangeaController
+            .userController.profile.toolSettings.definitions;
       case ToolSetting.autoIGC:
-        return _pangeaController.userController.matrixProfile.autoIGC;
+        return _pangeaController.userController.profile.toolSettings.autoIGC;
       default:
         return false;
     }
@@ -118,13 +118,13 @@ class PermissionsController extends BaseController {
 
   bool isToolEnabled(ToolSetting setting, Room? room) {
     if (room?.isSpaceAdmin ?? false) {
-      return userToolSetting(setting.asMatrixProfileField);
+      return userToolSetting(setting);
     }
     final int? classPermission =
         room != null ? classLanguageToolPermission(room, setting) : 1;
     if (classPermission == 0) return false;
     if (classPermission == 2) return true;
-    return userToolSetting(setting.asMatrixProfileField);
+    return userToolSetting(setting);
   }
 
   bool isWritingAssistanceEnabled(Room? room) {

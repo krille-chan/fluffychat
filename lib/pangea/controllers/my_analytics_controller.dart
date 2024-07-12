@@ -204,24 +204,24 @@ class MyAnalyticsController {
 
   Completer<void>? _updateCompleter;
   Future<void> updateAnalytics() async {
-    if (!(_updateCompleter?.isCompleted ?? true)) {
-      await _updateCompleter!.future;
-      return;
-    }
-    _updateCompleter = Completer<void>();
-    try {
-      await _updateAnalytics();
-      clearMessagesSinceUpdate();
-    } catch (err, s) {
-      ErrorHandler.logError(
-        e: err,
-        m: "Failed to update analytics",
-        s: s,
-      );
-    } finally {
-      _updateCompleter?.complete();
-      _updateCompleter = null;
-    }
+    // if (!(_updateCompleter?.isCompleted ?? true)) {
+    //   await _updateCompleter!.future;
+    //   return;
+    // }
+    // _updateCompleter = Completer<void>();
+    // try {
+    //   await _updateAnalytics();
+    //   clearMessagesSinceUpdate();
+    // } catch (err, s) {
+    //   ErrorHandler.logError(
+    //     e: err,
+    //     m: "Failed to update analytics",
+    //     s: s,
+    //   );
+    // } finally {
+    //   _updateCompleter?.complete();
+    //   _updateCompleter = null;
+    // }
   }
 
   String? get userL2 => _pangeaController.languageController.activeL2Code();

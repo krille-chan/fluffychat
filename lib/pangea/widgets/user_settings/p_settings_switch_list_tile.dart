@@ -1,20 +1,18 @@
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
 class ProfileSettingsSwitchListTile extends StatefulWidget {
   final bool defaultValue;
-  final MatrixProfileEnum profileKey;
   final String title;
   final String? subtitle;
+  final Function(bool) onChange;
 
   const ProfileSettingsSwitchListTile.adaptive({
     super.key,
-    this.defaultValue = false,
-    required this.profileKey,
+    required this.defaultValue,
     required this.title,
+    required this.onChange,
     this.subtitle,
   });
 
@@ -28,11 +26,7 @@ class PSettingsSwitchListTileState
 
   @override
   void initState() {
-    currentValue = MatrixState.pangeaController.userController.matrixProfile
-            .getProfileData(
-          widget.profileKey,
-        ) ??
-        widget.defaultValue;
+    currentValue = widget.defaultValue;
     super.initState();
   }
 
@@ -45,15 +39,12 @@ class PSettingsSwitchListTileState
       subtitle: widget.subtitle != null ? Text(widget.subtitle!) : null,
       onChanged: (bool newValue) async {
         try {
-          MatrixState.pangeaController.userController.matrixProfile
-              .saveProfileData({
-            widget.profileKey.title: newValue,
-          });
+          widget.onChange(newValue);
           setState(() => currentValue = newValue);
         } catch (err, s) {
           ErrorHandler.logError(
             e: err,
-            m: "Failed to updates user setting ${widget.profileKey.title}",
+            m: "Failed to updates user setting",
             s: s,
           );
         }

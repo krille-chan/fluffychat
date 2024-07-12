@@ -1,5 +1,5 @@
 class PLocalKey {
-  static const String user = 'user';
+  static const String access = "access";
   static const String cachedClassCodeToJoin = "cachedclasscodetojoin";
   static const String beganWebPayment = "beganWebPayment";
   static const String dismissedPaywall = 'dismissedPaywall';

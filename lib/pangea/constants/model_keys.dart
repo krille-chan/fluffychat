@@ -16,6 +16,9 @@ class ModelKey {
   static const String l1LanguageKey = 'source_language';
   static const String publicProfile = 'public';
   static const String userId = 'user_id';
+  static const String toolSettings = 'tool_settings';
+  static const String userSettings = 'user_settings';
+  static const String instructionsSettings = 'instructions_settings';
 
   // matrix profile keys
   // making this a random string so that it's harder to guess
