@@ -87,9 +87,9 @@ class ChatListController extends State<ChatList>
 
   late List<Room> _filteredRooms;
 
+  // List of user or bot IDs to exclude
   late final List<String> _excludedUserIds = getBotIds();
-  List<Room> get filteredRooms => _filteredRooms;
-
+  List<String> get excludedUserIds => _excludedUserIds;
 
   void resetActiveSpaceId() {
     setState(() {
@@ -181,14 +181,11 @@ class ChatListController extends State<ChatList>
         .toList();
   }
 
-  // List of user or bot IDs to exclude
-  List<String> get excludedUserIds => _excludedUserIds;
-
   bool isGroupWithOnlyBotAndUser(Room room) {
     final client = Matrix.of(context).client;
     final participants = room.getParticipants();
     return participants.length == 2 &&
-        participants.any((user) => _excludedUserIds.contains(user.id)) &&
+        participants.any((user) => excludedUserIds.contains(user.id)) &&
         participants.any((user) => user.id == client.id.toString());
   }
 
@@ -196,8 +193,8 @@ class ChatListController extends State<ChatList>
   void identifyAndRemoveDuplicates(List<Room> rooms) {
     final Map<String, List<Room>> roomMap = {};
 
-    // Group rooms by the bot ID in _excludedUserIds
-    for (var room in rooms) {
+    // Group rooms by the bot ID in excludedUserIds
+    for (final room in rooms) {
       String? botId = room.directChatMatrixID;
       if (botId == null && isGroupWithOnlyBotAndUser(room)) {
         botId = _excludedUserIds.cast<String?>().firstWhere(
