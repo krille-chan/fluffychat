@@ -349,7 +349,6 @@ class MessageToolbarState extends State<MessageToolbar> {
     Timer? timer;
     selectionStream =
         widget.textSelection.selectionStream.stream.listen((value) {
-      //talk about this
       timer?.cancel();
       timer = Timer(const Duration(milliseconds: 500), () {
         if (value != null && value.isNotEmpty) {
