@@ -53,7 +53,7 @@ class PangeaToken {
       text: text,
       lemma: _getLemmas(text.content, json[_lemmaKey]),
       pos: json['pos'] ?? '',
-      morph: json['morph'] ?? '{}',
+      morph: json['morph'] ?? {},
     );
   }
 
