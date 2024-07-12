@@ -85,8 +85,11 @@ class ChatListController extends State<ChatList>
 
   String? activeSpaceId;
 
+  Set<String> loadingRooms = Set<String>();
+
   // List of user or bot IDs to exclude
   late final List<String> _excludedUserIds = getBotIds();
+
   List<String> get excludedUserIds => _excludedUserIds;
 
   void resetActiveSpaceId() {
@@ -193,10 +196,29 @@ class ChatListController extends State<ChatList>
 
   bool isGroupWithOnlyBotAndUser(Room room) {
     final client = Matrix.of(context).client;
+
+    // Check that participants are fully charged
+    if (!room.participantListComplete && !loadingRooms.contains(room.id)) {
+      loadingRooms.add(room.id);
+      room.requestParticipants().then((_) {
+        loadingRooms.remove(room.id);
+        setState(() {}); // Force a rebuild to recheck the room
+      });
+      return false;
+    }
+
     final participants = room.getParticipants();
-    return participants.length == 2 &&
-        participants.any((user) => excludedUserIds.contains(user.id)) &&
-        participants.any((user) => user.id == client.id.toString());
+
+    if (participants.length != 2) {
+      return false;
+    }
+
+    // Check whether participants include the current user and one of the bots
+    final userIds = participants.map((user) => user.id).toList();
+    final containsCurrentUser = userIds.contains(client.userID);
+    final containsBot = userIds.any((id) => excludedUserIds.contains(id));
+
+    return containsCurrentUser && containsBot;
   }
 
   // Method to identify and remove duplicate rooms
