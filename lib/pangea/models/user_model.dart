@@ -7,6 +7,7 @@ import 'package:matrix/matrix.dart';
 
 import 'language_model.dart';
 
+/// The user's settings learning settings.
 class UserSettings {
   DateTime? dateOfBirth;
   DateTime? createdAt;
@@ -114,6 +115,7 @@ class UserSettings {
   }
 }
 
+/// The user's language tool settings.
 class UserToolSettings {
   bool interactiveTranslator;
   bool interactiveGrammar;
@@ -177,6 +179,7 @@ class UserToolSettings {
   }
 }
 
+/// The user's settings for whether or not to show instuction messages.
 class UserInstructions {
   bool showedItInstructions;
   bool showedClickMessage;
@@ -255,6 +258,7 @@ class Profile {
     this.instructionSettings = instructionSettings ?? UserInstructions();
   }
 
+  /// Load an instance of profile from the client's account data.
   static Profile? fromAccountData() {
     final profileData = MatrixState.pangeaController.matrixState.client
         .accountData[ModelKey.userProfile]?.content;
@@ -292,6 +296,8 @@ class Profile {
     return json;
   }
 
+  /// Migrate data from the old matrix account data
+  /// format to the new matrix account data format.
   static Profile? migrateFromAccountData() {
     final userSettings = UserSettings.migrateFromAccountData();
     if (userSettings == null) return null;
@@ -305,6 +311,9 @@ class Profile {
     );
   }
 
+  /// Saves the current configuration of the profile to the client's account data.
+  /// If [waitForDataInSync] is true, the function will wait for the updated account
+  /// data to come through in a sync, indicating that it has been set on the matrix server.
   Future<void> saveProfileData({
     waitForDataInSync = false,
   }) async {

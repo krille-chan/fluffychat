@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
@@ -26,11 +27,16 @@ class UserController extends BaseController {
   String? get _matrixAccessToken =>
       _pangeaController.matrixState.client.accessToken;
 
+  /// Cached version of the user profile, so it doesn't have
+  /// to be read in from client's account data each time it is accessed.
   Profile? _cachedProfile;
+
+  /// Listens for account updates and updates the cached profile
+  StreamSubscription? _profileListener;
 
   /// Listen for updates to account data in syncs and update the cached profile
   void addProfileListener() {
-    _pangeaController.matrixState.client.onSync.stream
+    _profileListener ??= _pangeaController.matrixState.client.onSync.stream
         .where((sync) => sync.accountData != null)
         .listen((sync) {
       final Profile? fromAccountData = Profile.fromAccountData();
@@ -64,11 +70,13 @@ class UserController extends BaseController {
     return _cachedProfile ?? Profile.emptyProfile;
   }
 
+  /// Updates the user's profile with the given [update] function and saves it.
   void updateProfile(Profile Function(Profile) update) {
     final Profile updatedProfile = update(profile);
     updatedProfile.saveProfileData();
   }
 
+  /// Creates a new profile for the user with the given date of birth.
   Future<void> createProfile({required DateTime dob}) async {
     final userSettings = UserSettings(
       dateOfBirth: dob,
@@ -81,6 +89,9 @@ class UserController extends BaseController {
   /// A completer for the profile model of a user.
   Completer<void>? _profileCompleter;
 
+  /// Initializes the user's profile. Runs a function to wait for account data to load,
+  /// read account data into profile, and migrate any missing info from the pangea profile.
+  /// Finally, it adds a listen to update the profile data when new account data comes in.
   Future<void> initialize() async {
     if (_profileCompleter?.isCompleted ?? false) {
       return _profileCompleter!.future;
@@ -105,11 +116,14 @@ class UserController extends BaseController {
     return _profileCompleter!.future;
   }
 
+  /// Initializes the user's profile by waiting for account data to load, reading in account
+  /// data to profile, and migrating from the pangea profile if the account data is not present.
   Future<void> _initialize() async {
-    await waitForAccountData();
+    await _pangeaController.matrixState.client.waitForAccountData();
     if (profile.userSettings.dateOfBirth != null) {
       return;
     }
+
     final PangeaProfileResponse? resp = await PUserRepo.fetchPangeaUserInfo(
       userID: userId!,
       matrixAccessToken: _matrixAccessToken!,
@@ -117,6 +131,7 @@ class UserController extends BaseController {
     if (resp?.profile == null) {
       return;
     }
+
     final userSetting = UserSettings.fromJson(resp!.profile.toJson());
     final newProfile = Profile(userSettings: userSetting);
     await newProfile.saveProfileData(waitForDataInSync: true);
@@ -128,14 +143,6 @@ class UserController extends BaseController {
     _profileCompleter = null;
     _cachedProfile = null;
     await initialize();
-  }
-
-  /// Account data comes through in the first sync, so wait for that
-  Future<void> waitForAccountData() async {
-    final client = _pangeaController.matrixState.client;
-    if (client.prevBatch == null) {
-      await client.onSync.stream.first;
-    }
   }
 
   /// Returns a boolean value indicating whether a new JWT (JSON Web Token) is needed.
