@@ -50,7 +50,7 @@ class SocialNetworkManager{
       logo: Logo(Logos.facebook_messenger),
       name: "Facebook Messenger",
       chatBot: "@messenger2bot:",
-      urlLogin: "https://www.messenger.com/",
+      urlLogin: "https://www.messenger.com/login/",
       urlRedirect: "https://www.messenger.com/t/",
     ),
     SocialNetwork(
