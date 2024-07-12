@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -13,7 +15,7 @@ class CourseScreen extends StatefulWidget {
 
 class _CourseScreenState extends State<CourseScreen> {
   bool _isLoading = false;
-  List<dynamic> courses = [];
+  List<Map<String, dynamic>> courses = [];
   InAppWebViewController? _webViewController;
   bool showPage = false;
 
@@ -57,7 +59,7 @@ class _CourseScreenState extends State<CourseScreen> {
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             appBar: AppBar(
               centerTitle: true,
-              title: Text(courses.isNotEmpty ? 'Your courses':''),
+              title: Text(courses.isNotEmpty ? 'Your courses' : ''),
               actions: [
                 // Add any actions you need here
               ],
@@ -171,58 +173,36 @@ class _CourseScreenState extends State<CourseScreen> {
                                 }
                                 });
 
-                                courses;
+                                JSON.stringify(courses);
                                 ''');
 
-                              // Simulate data scraping
-                              var finalCourseList = [];
+                              // Parse the result from JSON
+                              List<dynamic> courseList = json.decode(result);
 
-                              for (final courseDetails in result) {
-                                var refId = courseDetails['refId'];
-                                var courseUrl =
-                                    'https://ilias.hs-heilbronn.de/ilias.php?baseClass=ilrepositorygui&cmdNode=yc:ml:95:17a&cmdClass=ilusersgallerygui&cmd=view&ref_id=${refId.toString()}';
-                                controller.loadUrl(
-                                  urlRequest: URLRequest(
-                                    url: WebUri(courseUrl),
-                                  ),
-                                );
-
-                                var courseMemberList = await Future.delayed(
-                                    const Duration(seconds: 5), () async {
-                                  final memberList = await controller
-                                      .evaluateJavascript(source: '''
-                                (() => {
-                                  let memberRows = document.querySelectorAll('.col-xs-6.col-sm-3.col-md-3.col-lg-2');
-                                  let members = [];
-                                  memberRows.forEach((memberRow) => {
-                                    let memberName = memberRow.querySelector('dd').innerText;
-                                    const str1 = '';
-                                    let memberMatrixId = "@"+memberName+":unify.server.com";
-                                    members.push(memberMatrixId);
-                                  });
-                                  return members;
-                                })();
-                              ''');
-                                  return memberList;
-                                });
-
-                                var finalCourseDetails = [
-                                  {
-                                    'room_name': courseDetails['name'],
-                                    'users': courseMemberList
-                                  }
-                                ];
-
-                                finalCourseList.add(finalCourseDetails);
-                              }
-
-                              print("finalCourseList");
-                              print(finalCourseList);
+                              // Ensure the types are correct
+                              List<Map<String, dynamic>> typedCourseList =
+                                  courseList.map((course) {
+                                // Check if course is a Map and has the required keys
+                                if (course is Map) {
+                                  return {
+                                    'name': course['name']?.toString() ?? '',
+                                    'refId': course['refId']?.toString() ?? '',
+                                    'url': course['url']?.toString() ?? '',
+                                  };
+                                } else {
+                                  // Handle the case where course is not a Map
+                                  return {
+                                    'name': '',
+                                    'refId': '',
+                                    'url': '',
+                                  };
+                                }
+                              }).toList();
 
                               setState(() {
-                                courses = result;
+                                courses = typedCourseList;
                                 print('Scrapped_result');
-                                print(result);
+                                print(typedCourseList);
                                 showPage = !showPage;
                               });
                             });
@@ -273,7 +253,8 @@ class CourseDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(course['name'] ?? 'Course Details'),
+        title: Text(course['name'] ?? 'Course Details',
+            style: const TextStyle(fontSize: 14),),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -321,7 +302,7 @@ class CourseDetailsPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium,
                   maxLines: 10,
                 ),
-                // Add more details if available
+// Add more details if available
               ],
             ),
           ),
