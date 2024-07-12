@@ -28,12 +28,15 @@ class _BotChatListPageState extends State<BotChatListPage> {
     setState(() {
       _roomsFuture = Future.delayed(
         Duration.zero,
-        () => Matrix.of(context)
-            .client
-            .rooms
-            .where(
-                (room) => widget.botUserIds.contains(room.directChatMatrixID))
-            .toList(),
+            () =>
+            Matrix
+                .of(context)
+                .client
+                .rooms
+                .where(
+                    (room) =>
+                    widget.botUserIds.contains(room.directChatMatrixID))
+                .toList(),
       );
     });
   }
@@ -61,12 +64,12 @@ class _BotChatListPageState extends State<BotChatListPage> {
                 final room = rooms[i];
                 return ChatListItem(rooms[i],
                     key: Key('chat_list_item_${rooms[i].id}'), onTap: () {
-                  // Handle tap on a bot conversation
-                  _onChatTap(room, context);
-                }, onLongPress: () {
-                  // Handle long press to delete the room
-                  _onChatLongPress(room, context);
-                });
+                      // Handle tap on a bot conversation
+                      _onChatTap(room, context);
+                    }, onLongPress: () {
+                      // Handle long press to delete the room
+                      _onChatLongPress(room, context);
+                    });
               },
             );
           }
@@ -80,7 +83,8 @@ class _BotChatListPageState extends State<BotChatListPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => ChatPage(
+          builder: (context) =>
+              ChatPage(
                 roomId: room.id,
               )),
     );
@@ -92,8 +96,7 @@ class _BotChatListPageState extends State<BotChatListPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Quitter la conversation'),
-          content: Text('Voulez-vous vraiment quitter cette conversation ?'),
+          content: Text(L10n.of(context)!.leaveTheConvDesc),
           actions: <Widget>[
             TextButton(
               child: Text(L10n.of(context)!.cancel),
@@ -122,19 +125,19 @@ class _BotChatListPageState extends State<BotChatListPage> {
     try {
       await room.leave();
       await Future.delayed(
-          const Duration(seconds: 2)); // Delay to ensure the room is left
+          const Duration(seconds: 1)); // Delay to ensure the room is left
       // Reload rooms after leaving one
       _loadRooms();
       scaffoldMessenger.showSnackBar(
         SnackBar(
-          content: Text('Vous avez quitté la conversation avec succès.'),
+          content: Text(L10n.of(context)!.leaveTheConvSuccess),
         ),
       );
     } catch (e) {
       scaffoldMessenger.showSnackBar(
         SnackBar(
           content:
-              Text('Erreur lors de la tentative de quitter la conversation.'),
+          Text(L10n.of(context)!.tryAgain),
         ),
       );
     }

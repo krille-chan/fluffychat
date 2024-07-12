@@ -2683,5 +2683,7 @@
   "privacyTextAnd": " and ",
   "privacyTextTerms": "terms of service",
   "createGroupLimitationWarning": "Only Tawkie / Matrix users can be added to a group chat.",
-  "seeBotsRoom":"See bots"
+  "seeBotsRoom":"See bots",
+  "leaveTheConvDesc": "Do you really want to leave this conversation?",
+  "leaveTheConvSuccess": "You have left the conversation."
 }
