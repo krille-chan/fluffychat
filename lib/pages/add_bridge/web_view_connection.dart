@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge.dart';
+import 'package:tawkie/utils/webview_scripts.dart';
 import 'package:tawkie/widgets/future_loading_dialog_custom.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
@@ -68,83 +69,8 @@ class _WebViewConnectionState extends State<WebViewConnection> {
   // Add custom style to the login page to make it more user-friendly
   Future<void> _addCustomStyle() async {
     if (_isMessenger() && _webViewController != null) {
-      await _webViewController!.evaluateJavascript(
-        source: """
-      function declineCookies() {
-        // Attempt to refuse the cookie prompts immediately using specific selectors
-        var declineButton = document.querySelector('button[data-cookiebanner="accept_only_essential_button"]');
-        if (declineButton) {
-          declineButton.click();
-        }
-
-        var manageDialogAcceptButton = document.querySelector('button[data-testid="cookie-policy-manage-dialog-accept-button"]');
-        if (manageDialogAcceptButton) {
-          manageDialogAcceptButton.click();
-        }
-      }
-
-      function applyCustomStyles() {
-        // Adjust the login form elements for mobile
-        var emailField = document.querySelector('input[name="email"]');
-        if (emailField) {
-          emailField.style.height = '70px';
-          emailField.style.width = '80%';
-          emailField.style.fontSize = '32px';
-          emailField.style.padding = '14px';
-          emailField.style.border = '2px solid #ccc';
-          emailField.style.borderRadius = '8px';
-          emailField.style.marginBottom = '20px';
-        }
-      
-        var passField = document.querySelector('input[name="pass"]');
-        if (passField) {
-          passField.style.height = '70px';
-          passField.style.width = '80%';
-          passField.style.fontSize = '32px';
-          passField.style.padding = '14px';
-          passField.style.border = '2px solid #ccc';
-          passField.style.borderRadius = '8px';
-          passField.style.marginBottom = '20px';
-        }
-      
-        var loginButton = document.querySelector('button[name="login"]');
-        if (loginButton) {
-          loginButton.style.height = '70px';
-          loginButton.style.fontSize = '32px';
-          loginButton.style.width = '80%';
-          loginButton.style.marginTop = '22px';
-          loginButton.style.padding = '14px';
-          loginButton.style.border = 'none';
-          loginButton.style.borderRadius = '8px';
-          loginButton.style.backgroundColor = '#007bff';
-          loginButton.style.color = '#fff';
-        }
-
-        // Hide the divs with specified classes
-        var uiInputLabel = document.querySelector('.uiInputLabel.clearfix');
-        if (uiInputLabel) {
-          uiInputLabel.style.display = 'none';
-        }
-
-        var specificDiv = document.querySelector('._210n._7mqw');
-        if (specificDiv) {
-          specificDiv.style.display = 'none';
-        }
-
-        // Set height and width of img with class img
-        var imgElement = document.querySelector('img.img');
-        if (imgElement) {
-          imgElement.setAttribute('style', 'height: 150px !important; width: 150px !important;');
-        }
-      }
-
-      // Decline cookies immediately
-      declineCookies();
-
-      // Apply the custom styles after a short delay to ensure the page is fully loaded
-      setTimeout(applyCustomStyles, 50);
-    """,
-      );
+      await _webViewController!
+          .evaluateJavascript(source: getCombinedScriptMessenger());
     }
   }
 
