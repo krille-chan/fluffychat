@@ -2708,5 +2708,9 @@
   "restricted": "受限",
   "@restricted": {},
   "swipeRightToLeftToReply": "从右向左滑动进行回复",
-  "@swipeRightToLeftToReply": {}
+  "@swipeRightToLeftToReply": {},
+  "alwaysUse24HourFormat": "否",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  }
 }

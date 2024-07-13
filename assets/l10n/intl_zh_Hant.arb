@@ -164,7 +164,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username}變更了對話介紹為：「{description}」",
+  "changedTheChatDescriptionTo": "{username}變更了聊天介紹為：「{description}」",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -172,7 +172,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username}變更了暱稱為：「{chatname}」",
+  "changedTheChatNameTo": "{username}變更了聊天名稱為：「{chatname}」",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -1791,43 +1791,8 @@
       "senderName": {}
     }
   },
-  "@jumpToLastReadMessage": {},
-  "@allRooms": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@obtainingLocation": {
-    "type": "text",
-    "placeholders": {}
-  },
   "commandHint_cuddle": "發送一個摟抱表情",
   "@commandHint_cuddle": {},
-  "@widgetVideo": {},
-  "@dismiss": {},
-  "@reportErrorDescription": {},
-  "@addAccount": {},
-  "@removeYourAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@unsupportedAndroidVersion": {},
-  "@commandHint_html": {
-    "type": "text",
-    "description": "Usage hint for the command /html"
-  },
-  "@widgetJitsi": {},
-  "@messageType": {},
-  "@indexedDbErrorLong": {},
-  "@oneClientLoggedOut": {},
-  "@startFirstChat": {},
-  "@callingAccount": {},
-  "@setColorTheme": {},
-  "@nextAccount": {},
-  "@singlesignon": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@allSpaces": {},
   "supposedMxid": "此處應爲{mxid}",
   "@supposedMxid": {
     "type": "text",
@@ -1835,212 +1800,17 @@
       "mxid": {}
     }
   },
-  "@user": {},
-  "@youAcceptedTheInvitation": {},
-  "@noMatrixServer": {
-    "type": "text",
-    "placeholders": {
-      "server1": {},
-      "server2": {}
-    }
-  },
-  "@youInvitedBy": {
-    "placeholders": {
-      "user": {}
-    }
-  },
-  "@banUserDescription": {},
-  "@widgetEtherpad": {},
-  "@removeDevicesDescription": {},
-  "@separateChatTypes": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@tryAgain": {},
-  "@youKickedAndBanned": {
-    "placeholders": {
-      "user": {}
-    }
-  },
-  "@unbanUserDescription": {},
-  "@saveFile": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@youRejectedTheInvitation": {},
-  "@otherCallingPermissions": {},
-  "@messagesStyle": {},
-  "@link": {},
-  "@widgetUrlError": {},
-  "@emailOrUsername": {},
-  "@newSpaceDescription": {},
-  "@chatDescription": {},
-  "@callingAccountDetails": {},
-  "@enterSpace": {},
-  "@encryptThisChat": {},
-  "@previousAccount": {},
-  "@reopenChat": {},
-  "@pleaseEnterRecoveryKey": {},
-  "@widgetNameError": {},
-  "@addToBundle": {},
-  "@spaceIsPublic": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@addWidget": {},
-  "@countFiles": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "@noKeyForThisMessage": {},
-  "@shareLocation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@commandHint_markasgroup": {},
-  "@errorObtainingLocation": {
-    "type": "text",
-    "placeholders": {
-      "error": {}
-    }
-  },
-  "@hydrateTor": {},
-  "@pushNotificationsNotAvailable": {},
-  "@storeInAppleKeyChain": {},
-  "@hydrate": {},
   "invalidServerName": "伺服器名稱錯誤",
   "@invalidServerName": {},
-  "@chatPermissions": {},
-  "@sender": {},
-  "@storeInAndroidKeystore": {},
-  "@signInWithPassword": {},
-  "@makeAdminDescription": {},
-  "@synchronizingPleaseWait": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@saveKeyManuallyDescription": {},
-  "@editBundlesForAccount": {},
-  "@whyIsThisMessageEncrypted": {},
-  "@setChatDescription": {},
-  "@spaceName": {
-    "type": "text",
-    "placeholders": {}
-  },
   "importFromZipFile": "從 zip 檔案匯入",
   "@importFromZipFile": {},
-  "@or": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@dehydrateWarning": {},
-  "@noOtherDevicesFound": {},
-  "@redactedBy": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "@videoCallsBetaWarning": {},
-  "@signInWith": {
-    "type": "text",
-    "placeholders": {
-      "provider": {}
-    }
-  },
-  "@fileIsTooBigForServer": {},
   "homeserver": "伺服器",
   "@homeserver": {},
-  "@callingPermissions": {},
-  "@readUpToHere": {},
-  "@start": {},
-  "@register": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@unlockOldMessages": {},
-  "@numChats": {
-    "type": "number",
-    "placeholders": {
-      "number": {}
-    }
-  },
-  "@optionalRedactReason": {},
-  "@dehydrate": {},
-  "@locationPermissionDeniedNotice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@sendAsText": {
-    "type": "text"
-  },
-  "@archiveRoomDescription": {},
   "exportEmotePack": "將表情包匯出成 zip 檔案",
   "@exportEmotePack": {},
-  "@sendSticker": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@switchToAccount": {
-    "type": "number",
-    "placeholders": {
-      "number": {}
-    }
-  },
   "commandInvalid": "命令無效",
   "@commandInvalid": {
     "type": "text"
-  },
-  "@setAsCanonicalAlias": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@locationDisabledNotice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@commandHint_plain": {
-    "type": "text",
-    "description": "Usage hint for the command /plain"
-  },
-  "@experimentalVideoCalls": {},
-  "@pleaseEnterRecoveryKeyDescription": {},
-  "@openInMaps": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@inviteContactToGroupQuestion": {},
-  "@redactedByBecause": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "reason": {}
-    }
-  },
-  "@youHaveWithdrawnTheInvitationFor": {
-    "placeholders": {
-      "user": {}
-    }
-  },
-  "@appearOnTopDetails": {},
-  "@enterRoom": {},
-  "@reportUser": {},
-  "@commandHint_send": {
-    "type": "text",
-    "description": "Usage hint for the command /send"
-  },
-  "@confirmEventUnpin": {},
-  "@youInvitedUser": {
-    "placeholders": {
-      "user": {}
-    }
-  },
-  "@fileHasBeenSavedAt": {
-    "type": "text",
-    "placeholders": {
-      "path": {}
-    }
   },
   "commandMissing": "{command}不是正確的命令。",
   "@commandMissing": {
@@ -2050,18 +1820,6 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "@redactMessageDescription": {},
-  "@recoveryKey": {},
-  "@invalidInput": {},
-  "@dehydrateTorLong": {},
-  "@doNotShowAgain": {},
-  "@report": {},
-  "@unverified": {},
-  "@serverRequiresEmail": {},
-  "@hideUnimportantStateEvents": {},
-  "@screenSharingTitle": {},
-  "@widgetCustom": {},
-  "@addToSpaceDescription": {},
   "googlyEyesContent": "{senderName}向您發送了瞪眼表情",
   "@googlyEyesContent": {
     "type": "text",
@@ -2069,101 +1827,16 @@
       "senderName": {}
     }
   },
-  "@youBannedUser": {
-    "placeholders": {
-      "user": {}
-    }
-  },
   "addChatDescription": "新增聊天說明...",
   "@addChatDescription": {},
-  "@hasKnocked": {
-    "placeholders": {
-      "user": {}
-    }
-  },
-  "@publish": {},
-  "@openLinkInBrowser": {},
-  "@commandHint_react": {
-    "type": "text",
-    "description": "Usage hint for the command /react"
-  },
-  "@commandHint_me": {
-    "type": "text",
-    "description": "Usage hint for the command /me"
-  },
-  "@messageInfo": {},
-  "@disableEncryptionWarning": {},
-  "@directChat": {},
-  "@wrongPinEntered": {
-    "type": "text",
-    "placeholders": {
-      "seconds": {}
-    }
-  },
   "sendTypingNotifications": "傳送「輸入中」通知",
   "@sendTypingNotifications": {},
-  "@inviteGroupChat": {},
-  "@appearOnTop": {},
-  "@invitePrivateChat": {},
-  "@foregroundServiceRunning": {},
-  "@voiceCall": {},
-  "@createNewSpace": {
-    "type": "text",
-    "placeholders": {}
-  },
   "importEmojis": "匯入表情包",
   "@importEmojis": {},
-  "@wasDirectChatDisplayName": {
-    "type": "text",
-    "placeholders": {
-      "oldDisplayName": {}
-    }
-  },
-  "@noChatDescriptionYet": {},
-  "@removeFromBundle": {},
   "confirmMatrixId": "如需要刪除你的帳戶，請確認你的Matrix ID。",
   "@confirmMatrixId": {},
-  "@learnMore": {},
   "notAnImage": "不是圖片檔案。",
   "@notAnImage": {},
-  "@users": {},
-  "@openGallery": {},
-  "@chatDescriptionHasBeenChanged": {},
-  "@newGroup": {},
-  "@bundleName": {},
-  "@dehydrateTor": {},
-  "@removeFromSpace": {},
-  "@commandHint_op": {
-    "type": "text",
-    "description": "Usage hint for the command /op"
-  },
-  "@roomUpgradeDescription": {},
-  "@scanQrCode": {},
-  "@pleaseEnterANumber": {},
-  "@youKicked": {
-    "placeholders": {
-      "user": {}
-    }
-  },
-  "@profileNotFound": {},
-  "@jump": {},
-  "@reactedWith": {
-    "type": "text",
-    "placeholders": {
-      "sender": {},
-      "reaction": {}
-    }
-  },
-  "@sorryThatsNotPossible": {},
-  "@videoWithSize": {
-    "type": "text",
-    "placeholders": {
-      "size": {}
-    }
-  },
-  "@shareInviteLink": {},
-  "@commandHint_markasdm": {},
-  "@recoveryKeyLost": {},
   "cuddleContent": "{senderName}摟抱您",
   "@cuddleContent": {
     "type": "text",
@@ -2171,64 +1844,14 @@
       "senderName": {}
     }
   },
-  "@deviceKeys": {},
-  "@emoteKeyboardNoRecents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@setTheme": {},
-  "@youJoinedTheChat": {},
-  "@openVideoCamera": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@markAsRead": {},
-  "@widgetName": {},
-  "@errorAddingWidget": {},
   "commandHint_hug": "發送一個擁抱表情",
   "@commandHint_hug": {},
   "replace": "取代",
   "@replace": {},
-  "@oopsPushError": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@youUnbannedUser": {
-    "placeholders": {
-      "user": {}
-    }
-  },
-  "@newSpace": {},
-  "@emojis": {},
-  "@pleaseEnterYourPin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@pleaseChoose": {
-    "type": "text",
-    "placeholders": {}
-  },
   "commandHint_googly": "發送一些瞪眼表情",
   "@commandHint_googly": {},
-  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "@createGroup": {},
-  "@hydrateTorLong": {},
-  "@time": {},
-  "@custom": {},
-  "@noBackupWarning": {},
-  "@storeInSecureStorageDescription": {},
-  "@openChat": {},
-  "@kickUserDescription": {},
   "importNow": "立即匯入",
   "@importNow": {},
-  "@pinMessage": {},
-  "@invite": {},
-  "@enableMultiAccounts": {},
-  "@indexedDbErrorTitle": {},
-  "@unsupportedAndroidVersionLong": {},
-  "@storeSecurlyOnThisDevice": {},
-  "@screenSharingDetail": {},
-  "@placeCall": {},
   "blockListDescription": "你可以封鎖打擾你的使用者。你不會再收到任何從已封鎖使用者發來的訊息或聊天室邀請。",
   "@blockListDescription": {},
   "blockedUsers": "已封鎖的使用者",

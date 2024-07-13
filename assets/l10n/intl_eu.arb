@@ -2708,5 +2708,9 @@
   "knockRestricted": "Eskatu baimena sarrera mugatua duen txatean",
   "@knockRestricted": {},
   "swipeRightToLeftToReply": "Herrestatu eskuin-ezker erantzuteko",
-  "@swipeRightToLeftToReply": {}
+  "@swipeRightToLeftToReply": {},
+  "alwaysUse24HourFormat": "ez",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  }
 }
