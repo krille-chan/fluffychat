@@ -113,13 +113,6 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".FcmPushService"
-          android:exported="false">
-          <intent-filter>
-            <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-          </intent-filter>
-        </service>
-
         <service android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
              android:foregroundServiceType="camera|microphone|mediaProjection">
         </service>

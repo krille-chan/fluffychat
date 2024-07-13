@@ -25,8 +25,9 @@ dependencies:
   emoji_picker_flutter: ^2.1.1
   emoji_proposal: ^0.0.1
   emojis: ^0.9.9
-  #fcm_shared_isolate: ^0.1.0
   file_picker: ^8.0.1
+  #<GOOGLE_SERVICES>firebase_core: ^2.24.2
+  #<GOOGLE_SERVICES>firebase_messaging: ^14.7.9
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
@@ -160,3 +161,9 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
+  # blocked upgrade of package_info_plus for null safety
+  wakelock_windows:
+    git:
+      url: https://github.com/chandrabezzo/wakelock.git
+      ref: main
+      path: wakelock_windows/

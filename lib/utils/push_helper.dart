@@ -18,6 +18,10 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 
+Future<void> pushHelperBackground(message) => pushHelper(
+      PushNotification.fromJson(message.data),
+    );
+
 Future<void> pushHelper(
   PushNotification notification, {
   Client? client,
@@ -53,7 +57,7 @@ Future<void> pushHelper(
       l10n.newMessageInFluffyChat,
       l10n.openAppToReadMessages,
       NotificationDetails(
-        iOS: const DarwinNotificationDetails(),
+        iOS: const DarwinNotificationDetails(sound: 'notification.caf'),
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
           l10n.incomingMessages,
@@ -104,7 +108,7 @@ Future<void> _tryPushHelper(
   );
 
   client ??= (await ClientManager.getClients(
-    initialize: false,
+    isBackgroundClient: true,
     store: await SharedPreferences.getInstance(),
   ))
       .first;
@@ -292,7 +296,9 @@ Future<void> _tryPushHelper(
     priority: Priority.max,
     groupKey: notificationGroupId,
   );
-  const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
+  const iOSPlatformChannelSpecifics = DarwinNotificationDetails(
+    sound: "notification.caf",
+  );
   final platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
     iOS: iOSPlatformChannelSpecifics,

@@ -2307,6 +2307,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.2.1"
+  wakelock_platform_interface:
+    dependency: transitive
+    description:
+      name: wakelock_platform_interface
+      sha256: "1f4aeb81fb592b863da83d2d0f7b8196067451e4df91046c26b54a403f9de621"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   wakelock_plus:
     dependency: "direct main"
     description:
@@ -2323,6 +2331,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  wakelock_windows:
+    dependency: "direct overridden"
+    description:
+      path: wakelock_windows
+      ref: main
+      resolved-ref: f3610d6c246098fee74463de09434ed81fc2a7c8
+      url: "https://github.com/chandrabezzo/wakelock.git"
+    source: git
+    version: "0.2.2"
   watcher:
     dependency: transitive
     description:
