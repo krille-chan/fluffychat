@@ -185,12 +185,6 @@ class SettingsStyleView extends StatelessWidget {
               storeKey: SettingKeys.showPresences,
               defaultValue: AppConfig.showPresences,
             ),
-            SettingsSwitchListTile.adaptive(
-              title: L10n.of(context)!.separateChatTypes,
-              onChanged: (b) => AppConfig.separateChatTypes = b,
-              storeKey: SettingKeys.separateChatTypes,
-              defaultValue: AppConfig.separateChatTypes,
-            ),
             Divider(
               height: 1,
               color: Theme.of(context).dividerColor,

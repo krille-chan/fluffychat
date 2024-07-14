@@ -15,6 +15,8 @@ class Avatar extends StatelessWidget {
   final Client? client;
   final String? presenceUserId;
   final Color? presenceBackgroundColor;
+  final BorderRadius? borderRadius;
+  final IconData? icon;
 
   const Avatar({
     this.mxContent,
@@ -24,6 +26,8 @@ class Avatar extends StatelessWidget {
     this.client,
     this.presenceUserId,
     this.presenceBackgroundColor,
+    this.borderRadius,
+    this.icon,
     super.key,
   });
 
@@ -50,18 +54,25 @@ class Avatar extends StatelessWidget {
         ),
       ),
     );
-    final borderRadius = BorderRadius.circular(size / 2);
+    final borderRadius = this.borderRadius ?? BorderRadius.circular(size / 2);
     final presenceUserId = this.presenceUserId;
     final color =
         noPic ? name?.lightColorAvatar : Theme.of(context).secondaryHeaderColor;
     final container = Stack(
       children: [
-        ClipRRect(
-          borderRadius: borderRadius,
-          child: Container(
-            width: size,
-            height: size,
+        SizedBox(
+          width: size,
+          height: size,
+          child: Material(
             color: color,
+            shape: RoundedRectangleBorder(
+              borderRadius: borderRadius,
+              side: BorderSide(
+                width: 0,
+                color: Theme.of(context).dividerColor,
+              ),
+            ),
+            clipBehavior: Clip.hardEdge,
             child: noPic
                 ? textWidget
                 : MxcImage(
@@ -75,48 +86,49 @@ class Avatar extends StatelessWidget {
                   ),
           ),
         ),
-        PresenceBuilder(
-          client: client,
-          userId: presenceUserId,
-          builder: (context, presence) {
-            if (presence == null ||
-                (presence.presence == PresenceType.offline &&
-                    presence.lastActiveTimestamp == null)) {
-              return const SizedBox.shrink();
-            }
-            final dotColor = presence.presence.isOnline
-                ? Colors.green
-                : presence.presence.isUnavailable
-                    ? Colors.orange
-                    : Colors.grey;
-            return Positioned(
-              bottom: -3,
-              right: -3,
-              child: Container(
-                width: 16,
-                height: 16,
-                decoration: BoxDecoration(
-                  color: presenceBackgroundColor ??
-                      Theme.of(context).colorScheme.surface,
-                  borderRadius: BorderRadius.circular(32),
-                ),
-                alignment: Alignment.center,
+        if (presenceUserId != null)
+          PresenceBuilder(
+            client: client,
+            userId: presenceUserId,
+            builder: (context, presence) {
+              if (presence == null ||
+                  (presence.presence == PresenceType.offline &&
+                      presence.lastActiveTimestamp == null)) {
+                return const SizedBox.shrink();
+              }
+              final dotColor = presence.presence.isOnline
+                  ? Colors.green
+                  : presence.presence.isUnavailable
+                      ? Colors.orange
+                      : Colors.grey;
+              return Positioned(
+                bottom: -3,
+                right: -3,
                 child: Container(
-                  width: 10,
-                  height: 10,
+                  width: 16,
+                  height: 16,
                   decoration: BoxDecoration(
-                    color: dotColor,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      width: 1,
-                      color: Theme.of(context).colorScheme.surface,
+                    color: presenceBackgroundColor ??
+                        Theme.of(context).colorScheme.surface,
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: dotColor,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        width: 1,
+                        color: Theme.of(context).colorScheme.surface,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            );
-          },
-        ),
+              );
+            },
+          ),
       ],
     );
     if (onTap == null) return container;
