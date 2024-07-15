@@ -42,9 +42,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../pangea/pages/analytics/space_analytics/space_analytics.dart';
-import '../pangea/pages/analytics/space_list/space_list.dart';
-
 abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
     BuildContext context,
@@ -176,27 +173,27 @@ abstract class AppRoutes {
               ),
               redirect: loggedOutRedirect,
             ),
-            GoRoute(
-              path: 'analytics',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const AnalyticsSpaceList(),
-              ),
-              redirect: loggedOutRedirect,
-              routes: [
-                GoRoute(
-                  path: ':spaceid',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    const SpaceAnalyticsPage(
-                      selectedView: BarChartViewSelection.messages,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            // GoRoute(
+            //   path: 'analytics',
+            //   pageBuilder: (context, state) => defaultPageBuilder(
+            //     context,
+            //     state,
+            //     const AnalyticsSpaceList(),
+            //   ),
+            //   redirect: loggedOutRedirect,
+            //   routes: [
+            //     GoRoute(
+            //       path: ':spaceid',
+            //       pageBuilder: (context, state) => defaultPageBuilder(
+            //         context,
+            //         state,
+            //         const SpaceAnalyticsPage(
+            //           selectedView: BarChartViewSelection.messages,
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
             // Pangea#
             GoRoute(
               path: 'archive',
