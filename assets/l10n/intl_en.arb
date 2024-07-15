@@ -2710,5 +2710,6 @@
   "@goToSpace": {
     "type": "text",
     "space": {}
-  }
+  },
+  "markAsUnread": "Mark as unread"
 }

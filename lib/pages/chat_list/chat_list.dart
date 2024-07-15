@@ -619,7 +619,7 @@ class ChatListController extends State<ChatList>
         if (space != null)
           SheetAction(
             key: ChatContextAction.goToSpace,
-            icon: Icons.workspaces_outlined,
+            icon: Icons.chevron_right_outlined,
             label: L10n.of(context)!.goToSpace(space.getLocalizedDisplayname()),
           ),
         SheetAction(
@@ -627,11 +627,13 @@ class ChatListController extends State<ChatList>
           icon: room.markedUnread
               ? Icons.mark_as_unread
               : Icons.mark_as_unread_outlined,
-          label: L10n.of(context)!.toggleUnread,
+          label: room.markedUnread
+              ? L10n.of(context)!.markAsRead
+              : L10n.of(context)!.markAsUnread,
         ),
         SheetAction(
           key: ChatContextAction.favorite,
-          icon: room.isFavourite ? Icons.pin : Icons.pin_outlined,
+          icon: room.isFavourite ? Icons.push_pin : Icons.push_pin_outlined,
           label: room.isFavourite
               ? L10n.of(context)!.unpin
               : L10n.of(context)!.pin,
@@ -640,7 +642,7 @@ class ChatListController extends State<ChatList>
           key: ChatContextAction.mute,
           icon: room.pushRuleState == PushRuleState.notify
               ? Icons.notifications_off_outlined
-              : Icons.notifications,
+              : Icons.notifications_outlined,
           label: room.pushRuleState == PushRuleState.notify
               ? L10n.of(context)!.muteChat
               : L10n.of(context)!.unmuteChat,
@@ -655,6 +657,19 @@ class ChatListController extends State<ChatList>
     );
 
     if (action == null) return;
+    if (!mounted) return;
+
+    if (action == ChatContextAction.leave) {
+      final confirmed = await showOkCancelAlertDialog(
+        useRootNavigator: false,
+        context: context,
+        title: L10n.of(context)!.areYouSure,
+        okLabel: L10n.of(context)!.yes,
+        cancelLabel: L10n.of(context)!.no,
+        message: L10n.of(context)!.archiveRoomDescription,
+      );
+      if (confirmed == OkCancelResult.cancel) return;
+    }
     if (!mounted) return;
 
     await showFutureLoadingDialog(
