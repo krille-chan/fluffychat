@@ -26,6 +26,10 @@ class ChatListView extends StatelessWidget {
               controller.activeFilter == ActiveFilter.allChats,
           onPopInvoked: (pop) async {
             if (pop) return;
+            if (controller.activeSpaceId != null) {
+              controller.clearActiveSpace();
+              return;
+            }
             final selMode = controller.selectMode;
             if (controller.isSearchMode) {
               controller.cancelSearch();

@@ -200,7 +200,7 @@ class ChatListController extends State<ChatList>
     if (result.error != null) return;
   }
 
-  void onChatTap(Room room, BuildContext context) async {
+  void onChatTap(Room room) async {
     if (room.isSpace) {
       setActiveSpace(room.id);
       return;

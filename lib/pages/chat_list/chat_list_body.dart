@@ -32,7 +32,7 @@ class ChatListViewBody extends StatelessWidget {
       return SpaceView(
         spaceId: activeSpace,
         onBack: controller.clearActiveSpace,
-        onChatTab: (room) => controller.onChatTap(room, context),
+        onChatTab: (room) => controller.onChatTap(room),
         onChatContext: (room) => controller.chatContextAction(room),
         activeChat: controller.activeChat,
         toParentSpace: controller.setActiveSpace,
@@ -62,17 +62,15 @@ class ChatListViewBody extends StatelessWidget {
       builder: (context, _) {
         final rooms = controller.filteredRooms;
 
-        final spaces = rooms.where((r) => r.isSpace);
+        final spaces = client.rooms.where((r) => r.isSpace);
         final spaceDelegateCandidates = <String, Room>{};
         for (final space in spaces) {
-          spaceDelegateCandidates[space.id] = space;
           for (final spaceChild in space.spaceChildren) {
             final roomId = spaceChild.roomId;
             if (roomId == null) continue;
             spaceDelegateCandidates[roomId] = space;
           }
         }
-        final spaceDelegates = <String>{};
 
         return SafeArea(
           child: CustomScrollView(
@@ -298,26 +296,14 @@ class ChatListViewBody extends StatelessWidget {
                 SliverList.builder(
                   itemCount: rooms.length,
                   itemBuilder: (BuildContext context, int i) {
-                    var room = rooms[i];
-                    if (controller.activeFilter != ActiveFilter.groups) {
-                      final parent = room.isSpace
-                          ? room
-                          : spaceDelegateCandidates[room.id];
-                      if (parent != null) {
-                        if (spaceDelegates.contains(parent.id)) {
-                          return const SizedBox.shrink();
-                        }
-                        spaceDelegates.add(parent.id);
-                        room = parent;
-                      }
-                    }
-
+                    final room = rooms[i];
+                    final space = spaceDelegateCandidates[room.id];
                     return ChatListItem(
                       room,
-                      lastEventRoom: rooms[i],
+                      space: space,
                       key: Key('chat_list_item_${room.id}'),
                       filter: filter,
-                      onTap: () => controller.onChatTap(room, context),
+                      onTap: () => controller.onChatTap(room),
                       onLongPress: () => controller.chatContextAction(room),
                       activeChat: controller.activeChat == room.id,
                     );

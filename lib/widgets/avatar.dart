@@ -17,6 +17,7 @@ class Avatar extends StatelessWidget {
   final Color? presenceBackgroundColor;
   final BorderRadius? borderRadius;
   final IconData? icon;
+  final BorderSide? border;
 
   const Avatar({
     this.mxContent,
@@ -27,6 +28,7 @@ class Avatar extends StatelessWidget {
     this.presenceUserId,
     this.presenceBackgroundColor,
     this.borderRadius,
+    this.border,
     this.icon,
     super.key,
   });
@@ -67,10 +69,7 @@ class Avatar extends StatelessWidget {
             color: color,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadius,
-              side: BorderSide(
-                width: 0,
-                color: Theme.of(context).dividerColor,
-              ),
+              side: border ?? BorderSide.none,
             ),
             clipBehavior: Clip.hardEdge,
             child: noPic
