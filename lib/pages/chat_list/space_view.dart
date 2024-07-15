@@ -20,7 +20,7 @@ class SpaceView extends StatefulWidget {
   final void Function() onBack;
   final void Function(String spaceId) toParentSpace;
   final void Function(Room room) onChatTab;
-  final void Function(Room room) onChatContext;
+  final void Function(Room room, BuildContext context) onChatContext;
   final String? activeChat;
 
   const SpaceView({
@@ -367,7 +367,10 @@ class _SpaceViewState extends State<SpaceView> {
                             room,
                             filter: filter,
                             onTap: () => widget.onChatTab(room),
-                            onLongPress: () => widget.onChatContext(room),
+                            onLongPress: (context) => widget.onChatContext(
+                              room,
+                              context,
+                            ),
                             activeChat: widget.activeChat == room.id,
                           );
                         },

@@ -14,6 +14,7 @@ import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import '../../config/themes.dart';
 import '../../widgets/connection_status_header.dart';
@@ -34,8 +35,8 @@ class ChatListViewBody extends StatelessWidget {
         spaceId: activeSpace,
         onBack: controller.clearActiveSpace,
         onChatTab: (room) => controller.onChatTap(room),
-        onChatContext: (room) =>
-            controller.chatContextAction(room, client.getRoomById(activeSpace)),
+        onChatContext: (room, context) =>
+            controller.chatContextAction(room, context),
         activeChat: controller.activeChat,
         toParentSpace: controller.setActiveSpace,
       );
@@ -174,45 +175,54 @@ class ChatListViewBody extends StatelessWidget {
                                 (filter) => Padding(
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 4),
-                                  child: InkWell(
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
-                                    onTap: () =>
-                                        controller.setActiveFilter(filter),
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 6,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: filter == controller.activeFilter
-                                            ? Theme.of(context)
-                                                .colorScheme
-                                                .primary
-                                            : Theme.of(context)
-                                                .colorScheme
-                                                .secondaryContainer,
+                                  child: HoverBuilder(
+                                    builder: (context, hovered) =>
+                                        AnimatedScale(
+                                      duration: FluffyThemes.animationDuration,
+                                      curve: FluffyThemes.animationCurve,
+                                      scale: hovered ? 1.1 : 1.0,
+                                      child: InkWell(
                                         borderRadius: BorderRadius.circular(
                                           AppConfig.borderRadius,
                                         ),
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        filter.toLocalizedString(context),
-                                        style: TextStyle(
-                                          fontWeight:
-                                              filter == controller.activeFilter
+                                        onTap: () =>
+                                            controller.setActiveFilter(filter),
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 12,
+                                            vertical: 6,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: filter ==
+                                                    controller.activeFilter
+                                                ? Theme.of(context)
+                                                    .colorScheme
+                                                    .primary
+                                                : Theme.of(context)
+                                                    .colorScheme
+                                                    .secondaryContainer,
+                                            borderRadius: BorderRadius.circular(
+                                              AppConfig.borderRadius,
+                                            ),
+                                          ),
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            filter.toLocalizedString(context),
+                                            style: TextStyle(
+                                              fontWeight: filter ==
+                                                      controller.activeFilter
                                                   ? FontWeight.bold
                                                   : FontWeight.normal,
-                                          color:
-                                              filter == controller.activeFilter
+                                              color: filter ==
+                                                      controller.activeFilter
                                                   ? Theme.of(context)
                                                       .colorScheme
                                                       .onPrimary
                                                   : Theme.of(context)
                                                       .colorScheme
                                                       .onSecondaryContainer,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -311,8 +321,8 @@ class ChatListViewBody extends StatelessWidget {
                       key: Key('chat_list_item_${room.id}'),
                       filter: filter,
                       onTap: () => controller.onChatTap(room),
-                      onLongPress: () =>
-                          controller.chatContextAction(room, space),
+                      onLongPress: (context) =>
+                          controller.chatContextAction(room, context, space),
                       activeChat: controller.activeChat == room.id,
                     );
                   },
