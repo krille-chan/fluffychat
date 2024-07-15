@@ -2,6 +2,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
+import 'package:fluffychat/pangea/utils/country_display.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
 import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_language_dropdown.dart';
@@ -244,7 +245,7 @@ class LanguageSelectionRow extends StatelessWidget {
 }
 
 class UserProfileEntry extends StatelessWidget {
-  final Profile pangeaProfile;
+  final PangeaProfile pangeaProfile;
   final FindPartnerController controller;
 
   const UserProfileEntry({
@@ -287,7 +288,7 @@ class UserProfileEntry extends StatelessWidget {
                   const SizedBox(width: 20),
                   RichText(
                     text: TextSpan(
-                      text: pangeaProfile.flagEmoji,
+                      text: CountryDisplayUtil.flagEmoji(pangeaProfile.country),
                       style: const TextStyle(fontSize: 15),
                     ),
                   ),

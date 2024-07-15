@@ -88,13 +88,14 @@ pLanguageDialog(BuildContext parentContext, Function callback) async {
                             context: context,
                             future: () async {
                               try {
-                                await pangeaController.userController
-                                    .updateUserProfile(
-                                  sourceLanguage:
-                                      selectedSourceLanguage.langCode,
-                                  targetLanguage:
-                                      selectedTargetLanguage.langCode,
-                                );
+                                pangeaController.userController
+                                    .updateProfile((profile) {
+                                  profile.userSettings.sourceLanguage =
+                                      selectedSourceLanguage.langCode;
+                                  profile.userSettings.targetLanguage =
+                                      selectedTargetLanguage.langCode;
+                                  return profile;
+                                });
                                 Navigator.pop(context);
                               } catch (err, s) {
                                 debugger(when: kDebugMode);

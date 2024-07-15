@@ -1,4 +1,3 @@
-import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -18,73 +17,97 @@ class SettingsLearningView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          L10n.of(context)!.learningSettings,
-        ),
+    // rebuild this page each time a sync comes through with new account data
+    // this prevents having to call setState each time an individual setting is changed
+    return StreamBuilder(
+      stream:
+          controller.pangeaController.matrixState.client.onSync.stream.where(
+        (update) => update.accountData != null,
       ),
-      body: ListTileTheme(
-        iconColor: Theme.of(context).textTheme.bodyLarge!.color,
-        child: MaxWidthBody(
-          withScrolling: true,
-          child: Column(
-            children: [
-              LanguageTile(controller),
-              CountryPickerTile(controller),
-              const SizedBox(height: 8),
-              const Divider(height: 1),
-              const SizedBox(height: 8),
-              if (controller.pangeaController.permissionsController.isUser18())
-                SwitchListTile.adaptive(
-                  activeColor: AppConfig.activeToggleColor,
-                  title: Text(L10n.of(context)!.publicProfileTitle),
-                  subtitle: Text(L10n.of(context)!.publicProfileDesc),
-                  value: controller.pangeaController.userController.isPublic,
-                  onChanged: (bool isPublicProfile) => showFutureLoadingDialog(
-                    context: context,
-                    future: () => controller.setPublicProfile(isPublicProfile),
-                    onError: (err) =>
-                        ErrorHandler.logError(e: err, s: StackTrace.current),
-                  ),
-                ),
-              ListTile(
-                subtitle: Text(L10n.of(context)!.toggleToolSettingsDescription),
-              ),
-              for (final setting in ToolSetting.values)
-                PSettingsSwitchListTile.adaptive(
-                  defaultValue: controller.pangeaController.localSettings
-                      .userLanguageToolSetting(setting),
-                  title: setting.toolName(context),
-                  subtitle: setting.toolDescription(context),
-                  pStoreKey: setting.toString(),
-                  local: false,
-                ),
-              PSettingsSwitchListTile.adaptive(
-                defaultValue: controller.pangeaController.pStoreService.read(
-                      PLocalKey.itAutoPlay,
-                    ) ??
-                    false,
-                title: L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader,
-                subtitle: L10n.of(context)!.interactiveTranslatorAutoPlayDesc,
-                pStoreKey: PLocalKey.itAutoPlay,
-                local: false,
-              ),
-              PSettingsSwitchListTile.adaptive(
-                defaultValue: controller.pangeaController.pStoreService.read(
-                      PLocalKey.autoPlayMessages,
-                    ) ??
-                    false,
-                title: L10n.of(context)!.autoPlayTitle,
-                subtitle: L10n.of(context)!.autoPlayDesc,
-                pStoreKey: PLocalKey.autoPlayMessages,
-                local: false,
-              ),
-            ],
+      builder: (context, snapshot) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              L10n.of(context)!.learningSettings,
+            ),
           ),
-        ),
-      ),
+          body: ListTileTheme(
+            iconColor: Theme.of(context).textTheme.bodyLarge!.color,
+            child: MaxWidthBody(
+              withScrolling: true,
+              child: Column(
+                children: [
+                  LanguageTile(controller),
+                  CountryPickerTile(controller),
+                  const SizedBox(height: 8),
+                  const Divider(height: 1),
+                  const SizedBox(height: 8),
+                  if (controller.pangeaController.permissionsController
+                      .isUser18())
+                    SwitchListTile.adaptive(
+                      activeColor: AppConfig.activeToggleColor,
+                      title: Text(L10n.of(context)!.publicProfileTitle),
+                      subtitle: Text(L10n.of(context)!.publicProfileDesc),
+                      value:
+                          controller.pangeaController.userController.isPublic,
+                      onChanged: (bool isPublicProfile) =>
+                          showFutureLoadingDialog(
+                        context: context,
+                        future: () =>
+                            controller.setPublicProfile(isPublicProfile),
+                        onError: (err) => ErrorHandler.logError(
+                          e: err,
+                          s: StackTrace.current,
+                        ),
+                      ),
+                    ),
+                  ListTile(
+                    subtitle:
+                        Text(L10n.of(context)!.toggleToolSettingsDescription),
+                  ),
+                  for (final toolSetting in ToolSetting.values)
+                    ProfileSettingsSwitchListTile.adaptive(
+                      defaultValue: controller.getToolSetting(toolSetting),
+                      title: toolSetting.toolName(context),
+                      subtitle: toolSetting.toolDescription(context),
+                      onChange: (bool value) => controller.updateToolSetting(
+                        toolSetting,
+                        value,
+                      ),
+                    ),
+                  ProfileSettingsSwitchListTile.adaptive(
+                    defaultValue: controller.pangeaController.userController
+                        .profile.userSettings.itAutoPlay,
+                    title: L10n.of(context)!
+                        .interactiveTranslatorAutoPlaySliderHeader,
+                    subtitle:
+                        L10n.of(context)!.interactiveTranslatorAutoPlayDesc,
+                    onChange: (bool value) => controller
+                        .pangeaController.userController
+                        .updateProfile((profile) {
+                      profile.userSettings.itAutoPlay = value;
+                      return profile;
+                    }),
+                  ),
+                  ProfileSettingsSwitchListTile.adaptive(
+                    defaultValue: controller.pangeaController.userController
+                        .profile.userSettings.autoPlayMessages,
+                    title: L10n.of(context)!.autoPlayTitle,
+                    subtitle: L10n.of(context)!.autoPlayDesc,
+                    onChange: (bool value) => controller
+                        .pangeaController.userController
+                        .updateProfile((profile) {
+                      profile.userSettings.autoPlayMessages = value;
+                      return profile;
+                    }),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

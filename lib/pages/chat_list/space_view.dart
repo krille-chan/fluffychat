@@ -50,10 +50,7 @@ class _SpaceViewState extends State<SpaceView> {
 
   final String _chatCountsKey = 'chatCounts';
   Map<String, int> get chatCounts => Map.from(
-        widget.controller.pangeaController.pStoreService.read(
-              _chatCountsKey,
-              local: true,
-            ) ??
+        widget.controller.pangeaController.pStoreService.read(_chatCountsKey) ??
             {},
       );
   // Pangea#
@@ -550,7 +547,6 @@ class _SpaceViewState extends State<SpaceView> {
     await widget.controller.pangeaController.pStoreService.save(
       _chatCountsKey,
       updatedChatCounts,
-      local: true,
     );
   }
 

@@ -1,12 +1,8 @@
-import 'dart:developer';
-
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../widgets/user_settings/p_language_dialog.dart';
 
@@ -18,15 +14,6 @@ class LanguageController {
   }
   //show diloag when user does not have languages selected
   showDialogOnEmptyLanguage(BuildContext dialogContext, Function callback) {
-    if (_pangeaController.userController.userModel?.profile == null) {
-      debugger(when: kDebugMode);
-      Sentry.addBreadcrumb(
-        Breadcrumb(
-          message: 'calling showDialogOnEmptyLanguagae with empty user',
-        ),
-      );
-      return;
-    }
     if (!languagesSet) {
       pLanguageDialog(dialogContext, callback);
     }
@@ -42,13 +29,13 @@ class LanguageController {
 
   String? get _userL1Code {
     final source =
-        _pangeaController.userController.userModel?.profile?.sourceLanguage;
+        _pangeaController.userController.profile.userSettings.sourceLanguage;
     return source == null || source.isEmpty ? null : source;
   }
 
   String? get _userL2Code {
     final target =
-        _pangeaController.userController.userModel?.profile?.targetLanguage;
+        _pangeaController.userController.profile.userSettings.targetLanguage;
     return target == null || target.isEmpty ? null : target;
   }
 

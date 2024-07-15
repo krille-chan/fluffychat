@@ -16,6 +16,15 @@ class ModelKey {
   static const String l1LanguageKey = 'source_language';
   static const String publicProfile = 'public';
   static const String userId = 'user_id';
+  static const String toolSettings = 'tool_settings';
+  static const String userSettings = 'user_settings';
+  static const String instructionsSettings = 'instructions_settings';
+
+  // matrix profile keys
+  // making this a random string so that it's harder to guess
+  static const String activatedTrialKey = '7C4EuKIsph';
+  static const String autoPlayMessages = 'autoPlayMessages';
+  static const String itAutoPlay = 'itAutoPlay';
 
   static const String clientClassCity = "city";
   static const String clientClassCountry = "country";
