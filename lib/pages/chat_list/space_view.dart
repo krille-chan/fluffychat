@@ -126,7 +126,7 @@ class _SpaceViewState extends State<SpaceView> {
     try {
       final response = await client.getSpaceHierarchy(
         activeSpaceId,
-        maxDepth: 1,
+        maxDepth: 2,
         from: prevBatch,
       );
 
