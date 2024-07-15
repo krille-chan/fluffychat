@@ -201,10 +201,6 @@ class ChatListController extends State<ChatList>
   }
 
   void onChatTap(Room room) async {
-    if (room.isSpace) {
-      setActiveSpace(room.id);
-      return;
-    }
     if (room.membership == Membership.invite) {
       final inviterId =
           room.getState(EventTypes.RoomMember, room.client.userID!)?.senderId;
@@ -275,6 +271,10 @@ class ChatListController extends State<ChatList>
       return;
     }
 
+    if (room.isSpace) {
+      setActiveSpace(room.id);
+      return;
+    }
     // Share content into this room
     final shareContent = Matrix.of(context).shareContent;
     if (shareContent != null) {
