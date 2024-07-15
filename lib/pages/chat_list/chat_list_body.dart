@@ -40,6 +40,16 @@ class ChatListViewBody extends StatelessWidget {
         toParentSpace: controller.setActiveSpace,
       );
     }
+    final spaces = client.rooms.where((r) => r.isSpace);
+    final spaceDelegateCandidates = <String, Room>{};
+    for (final space in spaces) {
+      for (final spaceChild in space.spaceChildren) {
+        final roomId = spaceChild.roomId;
+        if (roomId == null) continue;
+        spaceDelegateCandidates[roomId] = space;
+      }
+    }
+
     final publicRooms = controller.roomSearchResult?.chunk
         .where((room) => room.roomType != 'm.space')
         .toList();
@@ -62,16 +72,6 @@ class ChatListViewBody extends StatelessWidget {
           .rateLimit(const Duration(seconds: 1)),
       builder: (context, _) {
         final rooms = controller.filteredRooms;
-
-        final spaces = client.rooms.where((r) => r.isSpace);
-        final spaceDelegateCandidates = <String, Room>{};
-        for (final space in spaces) {
-          for (final spaceChild in space.spaceChildren) {
-            final roomId = spaceChild.roomId;
-            if (roomId == null) continue;
-            spaceDelegateCandidates[roomId] = space;
-          }
-        }
 
         return SafeArea(
           child: CustomScrollView(
