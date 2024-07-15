@@ -2705,5 +2705,10 @@
   "restricted": "Restricted",
   "@restricted": {},
   "knockRestricted": "Knock restricted",
-  "@knockRestricted": {}
+  "@knockRestricted": {},
+  "download": "Download",
+  "@download": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
