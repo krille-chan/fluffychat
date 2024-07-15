@@ -170,10 +170,13 @@ class ChatListItem extends StatelessWidget {
                             onTap: () => onLongPress?.call(context),
                           ),
                         ),
-                        if (listTileHovered)
-                          Positioned(
-                            top: -2,
-                            right: -2,
+                        Positioned(
+                          top: -2,
+                          right: -2,
+                          child: AnimatedScale(
+                            duration: FluffyThemes.animationDuration,
+                            curve: FluffyThemes.animationCurve,
+                            scale: listTileHovered ? 1.1 : 1.0,
                             child: Material(
                               color: backgroundColor,
                               borderRadius: BorderRadius.circular(16),
@@ -183,6 +186,7 @@ class ChatListItem extends StatelessWidget {
                               ),
                             ),
                           ),
+                        ),
                       ],
                     ),
                   ),
