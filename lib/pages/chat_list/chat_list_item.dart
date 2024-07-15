@@ -108,96 +108,72 @@ class ChatListItem extends StatelessWidget {
               visualDensity: const VisualDensity(vertical: -0.5),
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
               onLongPress: onLongPress,
-              leading: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  HoverBuilder(
-                    builder: (context, hovered) => AnimatedScale(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      scale: hovered ? 1.1 : 1.0,
-                      child: SizedBox(
-                        width: Avatar.defaultSize,
-                        height: Avatar.defaultSize,
-                        child: Stack(
-                          children: [
-                            if (space != null)
-                              Positioned(
-                                top: 0,
-                                left: 0,
-                                child: Avatar(
-                                  border: BorderSide(
+              leading: HoverBuilder(
+                builder: (context, hovered) => AnimatedScale(
+                  duration: FluffyThemes.animationDuration,
+                  curve: FluffyThemes.animationCurve,
+                  scale: hovered ? 1.1 : 1.0,
+                  child: SizedBox(
+                    width: Avatar.defaultSize,
+                    height: Avatar.defaultSize,
+                    child: Stack(
+                      children: [
+                        if (space != null)
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            child: Avatar(
+                              border: BorderSide(
+                                width: 2,
+                                color: backgroundColor ??
+                                    Theme.of(context).colorScheme.surface,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.borderRadius / 4,
+                              ),
+                              mxContent: space.avatar,
+                              size: Avatar.defaultSize * 0.75,
+                              name: space.getLocalizedDisplayname(),
+                              onTap: onLongPress,
+                            ),
+                          ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Avatar(
+                            border: space == null
+                                ? room.isSpace
+                                    ? BorderSide(
+                                        width: 0,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline,
+                                      )
+                                    : null
+                                : BorderSide(
                                     width: 2,
                                     color: backgroundColor ??
                                         Theme.of(context).colorScheme.surface,
                                   ),
-                                  borderRadius: BorderRadius.circular(
+                            borderRadius: room.isSpace
+                                ? BorderRadius.circular(
                                     AppConfig.borderRadius / 4,
-                                  ),
-                                  mxContent: space.avatar,
-                                  size: Avatar.defaultSize * 0.75,
-                                  name: space.getLocalizedDisplayname(),
-                                  onTap: onLongPress,
-                                ),
-                              ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: Avatar(
-                                border: space == null
-                                    ? room.isSpace
-                                        ? BorderSide(
-                                            width: 0,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .outline,
-                                          )
-                                        : null
-                                    : BorderSide(
-                                        width: 2,
-                                        color: backgroundColor ??
-                                            Theme.of(context)
-                                                .colorScheme
-                                                .surface,
-                                      ),
-                                borderRadius: room.isSpace
-                                    ? BorderRadius.circular(
-                                        AppConfig.borderRadius / 4,
-                                      )
-                                    : null,
-                                mxContent: room.avatar,
-                                size: space != null
-                                    ? Avatar.defaultSize * 0.75
-                                    : Avatar.defaultSize,
-                                name: displayname,
-                                presenceUserId: directChatMatrixId,
-                                presenceBackgroundColor: backgroundColor,
-                                onTap: onLongPress,
-                              ),
-                            ),
-                          ],
+                                  )
+                                : null,
+                            mxContent: room.avatar,
+                            size: space != null
+                                ? Avatar.defaultSize * 0.75
+                                : Avatar.defaultSize,
+                            name: displayname,
+                            presenceUserId: directChatMatrixId,
+                            presenceBackgroundColor: backgroundColor,
+                            onTap: onLongPress,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                  Positioned(
-                    bottom: -2,
-                    right: -2,
-                    child: AnimatedScale(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      scale: (hovered) ? 1.0 : 0.0,
-                      child: Material(
-                        color: backgroundColor,
-                        borderRadius: BorderRadius.circular(16),
-                        child: const Icon(
-                          Icons.check_circle_outlined,
-                          size: 18,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
               title: Row(
                 children: <Widget>[
