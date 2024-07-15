@@ -163,7 +163,13 @@ class ChatListViewBody extends StatelessWidget {
                           ),
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
-                          children: ActiveFilter.values
+                          children: [
+                            ActiveFilter.allChats,
+                            ActiveFilter.unread,
+                            ActiveFilter.groups,
+                            if (spaceDelegateCandidates.isNotEmpty)
+                              ActiveFilter.spaces,
+                          ]
                               .map(
                                 (filter) => Padding(
                                   padding:
