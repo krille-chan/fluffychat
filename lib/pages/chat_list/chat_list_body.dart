@@ -168,7 +168,8 @@ class ChatListViewBody extends StatelessWidget {
                             ActiveFilter.allChats,
                             ActiveFilter.unread,
                             ActiveFilter.groups,
-                            if (spaceDelegateCandidates.isNotEmpty)
+                            if (spaceDelegateCandidates.isNotEmpty &&
+                                !controller.widget.displayNavigationRail)
                               ActiveFilter.spaces,
                           ]
                               .map(

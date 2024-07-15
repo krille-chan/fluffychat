@@ -73,10 +73,12 @@ extension LocalizedActiveFilter on ActiveFilter {
 class ChatList extends StatefulWidget {
   static BuildContext? contextForVoip;
   final String? activeChat;
+  final bool displayNavigationRail;
 
   const ChatList({
     super.key,
     required this.activeChat,
+    this.displayNavigationRail = false,
   });
 
   @override
@@ -667,7 +669,11 @@ class ChatListController extends State<ChatList>
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.navigate_next_outlined),
+                Avatar(
+                  mxContent: space.avatar,
+                  size: Avatar.defaultSize / 2,
+                  name: space.getLocalizedDisplayname(),
+                ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(

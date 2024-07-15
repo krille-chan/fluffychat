@@ -171,12 +171,12 @@ class ChatListItem extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          top: -2,
-                          right: -2,
+                          top: 0,
+                          right: 0,
                           child: AnimatedScale(
                             duration: FluffyThemes.animationDuration,
                             curve: FluffyThemes.animationCurve,
-                            scale: listTileHovered ? 1.1 : 1.0,
+                            scale: listTileHovered ? 1.0 : 0.0,
                             child: Material(
                               color: backgroundColor,
                               borderRadius: BorderRadius.circular(16),
