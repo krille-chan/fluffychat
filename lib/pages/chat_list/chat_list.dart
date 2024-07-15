@@ -612,19 +612,22 @@ class ChatListController extends State<ChatList>
     super.dispose();
   }
 
-  void chatContextAction(Room room) async {
+  void chatContextAction(Room room, [Room? space]) async {
     final action = await showModalActionSheet<ChatContextAction>(
       context: context,
-      title: room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
       actions: [
+        if (space != null)
+          SheetAction(
+            key: ChatContextAction.goToSpace,
+            icon: Icons.workspaces_outlined,
+            label: L10n.of(context)!.goToSpace(space.getLocalizedDisplayname()),
+          ),
         SheetAction(
           key: ChatContextAction.markUnread,
           icon: room.markedUnread
               ? Icons.mark_as_unread
               : Icons.mark_as_unread_outlined,
-          label: room.markedUnread
-              ? L10n.of(context)!.markAsRead
-              : L10n.of(context)!.unread,
+          label: L10n.of(context)!.toggleUnread,
         ),
         SheetAction(
           key: ChatContextAction.favorite,
@@ -656,8 +659,11 @@ class ChatListController extends State<ChatList>
 
     await showFutureLoadingDialog(
       context: context,
-      future: () {
+      future: () async {
         switch (action) {
+          case ChatContextAction.goToSpace:
+            setActiveSpace(space!.id);
+            return;
           case ChatContextAction.favorite:
             return room.setFavourite(!room.isFavourite);
           case ChatContextAction.markUnread:
@@ -872,6 +878,7 @@ enum InviteActions {
 enum AddRoomType { chat, subspace }
 
 enum ChatContextAction {
+  goToSpace,
   favorite,
   markUnread,
   mute,

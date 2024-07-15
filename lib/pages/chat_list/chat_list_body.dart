@@ -27,13 +27,15 @@ class ChatListViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final client = Matrix.of(context).client;
     final activeSpace = controller.activeSpaceId;
     if (activeSpace != null) {
       return SpaceView(
         spaceId: activeSpace,
         onBack: controller.clearActiveSpace,
         onChatTab: (room) => controller.onChatTap(room),
-        onChatContext: (room) => controller.chatContextAction(room),
+        onChatContext: (room) =>
+            controller.chatContextAction(room, client.getRoomById(activeSpace)),
         activeChat: controller.activeChat,
         toParentSpace: controller.setActiveSpace,
       );
@@ -45,7 +47,6 @@ class ChatListViewBody extends StatelessWidget {
         .where((room) => room.roomType == 'm.space')
         .toList();
     final userSearchResult = controller.userSearchResult;
-    final client = Matrix.of(context).client;
     const dummyChatCount = 4;
     final titleColor =
         Theme.of(context).textTheme.bodyLarge!.color!.withAlpha(100);
@@ -304,7 +305,8 @@ class ChatListViewBody extends StatelessWidget {
                       key: Key('chat_list_item_${room.id}'),
                       filter: filter,
                       onTap: () => controller.onChatTap(room),
-                      onLongPress: () => controller.chatContextAction(room),
+                      onLongPress: () =>
+                          controller.chatContextAction(room, space),
                       activeChat: controller.activeChat == room.id,
                     );
                   },

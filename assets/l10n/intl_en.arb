@@ -2705,5 +2705,10 @@
   "restricted": "Restricted",
   "@restricted": {},
   "knockRestricted": "Knock restricted",
-  "@knockRestricted": {}
+  "@knockRestricted": {},
+  "goToSpace": "Go to space: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  }
 }
