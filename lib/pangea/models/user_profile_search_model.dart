@@ -4,7 +4,7 @@ class UserProfileSearchResponse {
   int count;
   String? next;
   String? previous;
-  List<Profile> results;
+  List<PangeaProfile> results;
 
   UserProfileSearchResponse({
     required this.count,
@@ -19,9 +19,9 @@ class UserProfileSearchResponse {
       next: json["next"],
       previous: json["previous"],
       results: json["results"]
-          .map((p) => Profile.fromJson(p))
+          .map((p) => PangeaProfile.fromJson(p))
           .toList()
-          .cast<Profile>(),
+          .cast<PangeaProfile>(),
     );
   }
 }

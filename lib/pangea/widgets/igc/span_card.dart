@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
@@ -154,21 +153,18 @@ class WordMatchContent extends StatelessWidget {
         .selected = true;
 
     controller.setState(
-      () => (
-        controller.currentExpression =
-          controller
-            .widget
-            .scm
-            .choreographer
-            .igc
-            .igcTextData
-            !.matches[controller.widget.scm.matchIndex]
-            .match
-            .choices![index]
-            .isBestCorrection
+      () => (controller.currentExpression = controller
+              .widget
+              .scm
+              .choreographer
+              .igc
+              .igcTextData!
+              .matches[controller.widget.scm.matchIndex]
+              .match
+              .choices![index]
+              .isBestCorrection
           ? BotExpression.gold
-          : BotExpression.surprised
-      ),
+          : BotExpression.surprised),
     );
     // if (controller.widget.scm.pangeaMatch.match.choices![index].type ==
     //     SpanChoiceType.distractor) {
@@ -344,6 +340,12 @@ class WordMatchContent extends StatelessWidget {
           if (controller.widget.scm.pangeaMatch!.isITStart)
             DontShowSwitchListTile(
               controller: pangeaController,
+              onSwitch: (bool value) {
+                pangeaController.userController.updateProfile((profile) {
+                  profile.userSettings.itAutoPlay = value;
+                  return profile;
+                });
+              },
             ),
         ],
       );
@@ -486,10 +488,12 @@ class StartITButton extends StatelessWidget {
 
 class DontShowSwitchListTile extends StatefulWidget {
   final PangeaController controller;
+  final Function(bool) onSwitch;
 
   const DontShowSwitchListTile({
     super.key,
     required this.controller,
+    required this.onSwitch,
   });
 
   @override
@@ -510,12 +514,9 @@ class DontShowSwitchListTileState extends State<DontShowSwitchListTile> {
       activeColor: AppConfig.activeToggleColor,
       title: Text(L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader),
       value: switchValue,
-      onChanged: (value) => {
-        widget.controller.pStoreService.save(
-          PLocalKey.itAutoPlay.toString(),
-          value,
-        ),
-        setState(() => switchValue = value),
+      onChanged: (value) {
+        widget.onSwitch(value);
+        setState(() => switchValue = value);
       },
     );
   }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:country_picker/country_picker.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
+import 'package:fluffychat/pangea/utils/country_display.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +20,13 @@ class CountryPickerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Profile? profile = pangeaController.userController.userModel?.profile;
+    final Profile profile = pangeaController.userController.profile;
     return ListTile(
       title: Text(
-        "${L10n.of(context)!.countryInformation}: ${profile?.countryDisplayName(context) ?? ''} ${profile?.flagEmoji}",
+        "${L10n.of(context)!.countryInformation}: ${CountryDisplayUtil.countryDisplayName(
+              profile.userSettings.country,
+              context,
+            ) ?? ''} ${CountryDisplayUtil.flagEmoji(profile.userSettings.country)}",
       ),
       trailing: const Icon(Icons.edit_outlined),
       onTap: () => showCountryPicker(
