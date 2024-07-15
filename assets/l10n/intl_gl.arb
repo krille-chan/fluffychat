@@ -2708,5 +2708,9 @@
   "restricted": "Non accesible",
   "@restricted": {},
   "swipeRightToLeftToReply": "Despraza hacia a esquerda para responder",
-  "@swipeRightToLeftToReply": {}
+  "@swipeRightToLeftToReply": {},
+  "alwaysUse24HourFormat": "falso",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  }
 }
