@@ -168,6 +168,19 @@ class ChatListItem extends StatelessWidget {
                           onTap: () => onLongPress?.call(context),
                         ),
                       ),
+                      if (hovered)
+                        Positioned(
+                          top: -2,
+                          right: -2,
+                          child: Material(
+                            color: backgroundColor,
+                            borderRadius: BorderRadius.circular(16),
+                            child: const Icon(
+                              Icons.arrow_drop_down_circle_outlined,
+                              size: 18,
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
