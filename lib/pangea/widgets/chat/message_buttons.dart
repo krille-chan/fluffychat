@@ -4,15 +4,18 @@ import 'package:flutter/material.dart';
 
 class MessageButtons extends StatelessWidget {
   final ToolbarDisplayController? toolbarController;
+  final ScrollController scrollController;
 
   const MessageButtons({
     super.key,
+    required this.scrollController,
     this.toolbarController,
   });
 
   void showActivity(BuildContext context) {
     toolbarController?.showToolbar(
       context,
+      scrollController,
       mode: MessageMode.practiceActivity,
     );
   }

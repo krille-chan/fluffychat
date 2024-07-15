@@ -43,6 +43,7 @@ class Message extends StatelessWidget {
   final bool immersionMode;
   final bool definitions;
   final ChatController controller;
+  final ScrollController scrollController;
   // Pangea#
   final Color? avatarPresenceBackgroundColor;
 
@@ -68,6 +69,7 @@ class Message extends StatelessWidget {
     required this.immersionMode,
     required this.definitions,
     required this.controller,
+    required this.scrollController,
     // Pangea#
     super.key,
   });
@@ -317,10 +319,12 @@ class Message extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 8),
                                 child: GestureDetector(
                                   // #Pangea
-                                  onTap: () =>
-                                      toolbarController?.showToolbar(context),
-                                  onDoubleTap: () =>
-                                      toolbarController?.showToolbar(context),
+                                  onTap: () => toolbarController?.showToolbar(
+                                    context,
+                                    scrollController,
+                                  ),
+                                  onDoubleTap: () => toolbarController
+                                      ?.showToolbar(context, scrollController),
                                   // Pangea#
                                   onLongPress: longPressSelect
                                       ? null
@@ -443,6 +447,8 @@ class Message extends StatelessWidget {
                                                 immersionMode: immersionMode,
                                                 toolbarController:
                                                     toolbarController,
+                                                scrollController:
+                                                    scrollController,
                                                 // Pangea#
                                               ),
                                               if (event.hasAggregatedEvents(
@@ -588,7 +594,9 @@ class Message extends StatelessWidget {
                           : MainAxisAlignment.start,
                       children: [
                         if (pangeaMessageEvent?.showMessageButtons ?? false)
-                          MessageButtons(toolbarController: toolbarController),
+                          MessageButtons(
+                              toolbarController: toolbarController,
+                              scrollController: scrollController),
                         MessageReactions(event, timeline),
                       ],
                     ),

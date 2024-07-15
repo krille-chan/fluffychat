@@ -59,7 +59,11 @@ class ToolbarDisplayController {
     );
   }
 
-  void showToolbar(BuildContext context, {MessageMode? mode}) {
+  void showToolbar(
+    BuildContext context,
+    ScrollController scrollController, {
+    MessageMode? mode,
+  }) {
     bool toolbarUp = true;
     if (highlighted) return;
     if (controller.selectMode) {
@@ -79,8 +83,23 @@ class ToolbarDisplayController {
       final Size transformTargetSize = (targetRenderBox as RenderBox).size;
       messageWidth = transformTargetSize.width;
       final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
-      final double screenHeight = MediaQuery.of(context).size.height;
-      toolbarUp = targetOffset.dy >= screenHeight / 2;
+      // final double screenHeight = MediaQuery.of(context).size.height;
+      // If message is too close to top, make space for toolbar
+      if (targetOffset.dy < 360) {
+        // If chat can scroll up, do so
+        final scrollTo = scrollController.offset - targetOffset.dy + 360 + 118;
+        if (scrollTo >= 0) {
+          scrollController.animateTo(
+            scrollTo,
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+          );
+        }
+        // If cannot scroll up enough, show toolbar underneath instead
+        else {
+          toolbarUp = false;
+        }
+      }
     }
 
     final Widget overlayMessage = OverlayMessage(
@@ -89,6 +108,7 @@ class ToolbarDisplayController {
       immersionMode: immersionMode,
       ownMessage: pangeaMessageEvent.ownMessage,
       toolbarController: this,
+      scrollController: scrollController,
       width: messageWidth,
       nextEvent: nextEvent,
       previousEvent: previousEvent,
