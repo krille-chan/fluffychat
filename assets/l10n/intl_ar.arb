@@ -736,7 +736,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "عذراً، هناك خطأ ما…",
+  "oopsSomethingWentWrong": "عفوًا، حدث خطأ ما…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -2260,7 +2260,7 @@
   },
   "jump": "قفز",
   "@jump": {},
-  "report": "التقرير",
+  "report": "تقرير",
   "@report": {},
   "noKeyForThisMessage": "يمكن أن يحدث هذا إذا تم إرسال الرسالة قبل تسجيل الدخول إلى حسابك على هذا الجهاز.\n\nمن الممكن أيضا أن يكون المرسل قد حظر جهازك أو حدث خطأ ما في الاتصال بالإنترنت.\n\nهل يمكنك قراءة الرسالة في جلسة أخرى؟ ثم يمكنك نقل الرسالة منه! انتقل إلى الإعدادات > الأجهزة وتأكد من أن أجهزتك قد تحققت من بعضها البعض. عندما تفتح الغرفة في المرة التالية وتكون كلتا الجلستين في المقدمة ، سيتم إرسال المفاتيح تلقائيا.\n\nألا تريد أن تفقد المفاتيح عند تسجيل الخروج أو تبديل الأجهزة؟ تأكد من تمكين النسخ الاحتياطي للدردشة في الإعدادات.",
   "@noKeyForThisMessage": {},
@@ -2712,5 +2712,30 @@
   "alwaysUse24HourFormat": "خاطئ",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "countChatsAndCountParticipants": "{chats} دردشات و {participants} مشاركين",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "لم يتم العثور على دردشات...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "انضم إلى الدردشة",
+  "@joinedChats": {},
+  "unread": "غير المقروءة",
+  "@unread": {},
+  "space": "المساحة",
+  "@space": {},
+  "spaces": "المساحات",
+  "@spaces": {},
+  "markAsUnread": "تحديد كغير مقروء",
+  "@markAsUnread": {},
+  "goToSpace": "انتقل إلى المساحة: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
   }
 }
