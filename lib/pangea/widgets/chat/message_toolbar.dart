@@ -193,6 +193,8 @@ class MessageToolbarState extends State<MessageToolbar> {
   late StreamSubscription<MessageMode> toolbarModeStream;
 
   void updateMode(MessageMode newMode) {
+    //Early exit from the function if the widget has been unmounted to prevent updates on an inactive widget.
+    if (!mounted) return;
     if (updatingMode) return;
     debugPrint("updating toolbar mode");
     final bool subscribed =
