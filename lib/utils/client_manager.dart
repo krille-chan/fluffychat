@@ -132,6 +132,19 @@ abstract class ClientManager {
       customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
       defaultNetworkRequestTimeout: const Duration(minutes: 30),
       enableDehydratedDevices: true,
+      // #Pangea
+      syncFilter: Filter(
+        room: RoomFilter(
+          state: StateFilter(lazyLoadMembers: true),
+          timeline: StateFilter(
+            notTypes: [
+              PangeaEventTypes.construct,
+              PangeaEventTypes.summaryAnalytics,
+            ],
+          ),
+        ),
+      ),
+      // Pangea#
     );
   }
 

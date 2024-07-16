@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:country_picker/country_picker.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../../../widgets/matrix.dart';
 import '../../controllers/pangea_controller.dart';
@@ -35,9 +37,10 @@ class FindPartnerController extends State<FindPartner> {
 
   Timer? coolDown;
 
-  final List<Profile> _userProfilesCache = [];
+  final List<PangeaProfile> _userProfilesCache = [];
 
   final scrollController = ScrollController();
+  String? error;
 
   @override
   void initState() {
@@ -66,10 +69,21 @@ class FindPartnerController extends State<FindPartner> {
 
   @override
   Widget build(BuildContext context) {
+    if (error != null && error!.isNotEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(L10n.of(context)!.oopsSomethingWentWrong),
+            Text(L10n.of(context)!.errorPleaseRefresh),
+          ],
+        ),
+      );
+    }
     return FindPartnerView(this);
   }
 
-  List<Profile> get userProfiles => _userProfilesCache.where((p) {
+  List<PangeaProfile> get userProfiles => _userProfilesCache.where((p) {
         return (p.targetLanguage != null &&
                 targetLanguageSearch.langCode == p.targetLanguage) &&
             (p.sourceLanguage != null &&
@@ -91,21 +105,29 @@ class FindPartnerController extends State<FindPartner> {
     if (loading || nextUrl == null) return;
     setState(() => loading = true);
 
-    final UserProfileSearchResponse response =
-        await PUserRepo.searchUserProfiles(
-      accessToken: await pangeaController.userController.accessToken,
-      targetLanguage: targetLanguageSearch.langCode,
-      sourceLanguage: sourceLanguageSearch.langCode,
-      country: countrySearch,
-      limit: 15,
-      pageNumber: nextPage.toString(),
-    );
+    UserProfileSearchResponse response;
+    try {
+      final String accessToken =
+          await pangeaController.userController.accessToken;
+      response = await PUserRepo.searchUserProfiles(
+        accessToken: accessToken,
+        targetLanguage: targetLanguageSearch.langCode,
+        sourceLanguage: sourceLanguageSearch.langCode,
+        country: countrySearch,
+        limit: 15,
+        pageNumber: nextPage.toString(),
+      );
+    } catch (err, s) {
+      error = err.toString();
+      setState(() => loading = false);
+      ErrorHandler.logError(e: err, s: s);
+      return;
+    }
 
     nextUrl = response.next;
     nextPage++;
 
-    final String? currentUserId =
-        pangeaController.userController.userModel?.profile?.pangeaUserId;
+    final String? currentUserId = pangeaController.matrixState.client.userID;
     _userProfilesCache.addAll(
       response.results.where(
         (p) =>

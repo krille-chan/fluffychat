@@ -42,7 +42,6 @@ class AnalyticsController extends BaseController {
     try {
       final String? str = _pangeaController.pStoreService.read(
         _analyticsTimeSpanKey,
-        local: true,
       );
       return str != null
           ? TimeSpan.values.firstWhere((e) {
@@ -60,7 +59,6 @@ class AnalyticsController extends BaseController {
     await _pangeaController.pStoreService.save(
       _analyticsTimeSpanKey,
       timeSpan.toString(),
-      local: true,
     );
     setState();
   }
@@ -72,7 +70,6 @@ class AnalyticsController extends BaseController {
     try {
       final String? str = _pangeaController.pStoreService.read(
         _analyticsSpaceLangKey,
-        local: true,
       );
       return str != null
           ? PangeaLanguage.byLangCode(str)
@@ -88,7 +85,6 @@ class AnalyticsController extends BaseController {
     await _pangeaController.pStoreService.save(
       _analyticsSpaceLangKey,
       lang.langCode,
-      local: true,
     );
     setState();
   }

@@ -4,7 +4,6 @@ import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
-import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/p_extension.dart';
 import 'package:matrix/matrix.dart';
 
@@ -32,12 +31,9 @@ class PermissionsController extends BaseController {
 
   /// Returns false if user is null
   bool isUser18() {
-    final dob = _pangeaController.pStoreService.read(
-      MatrixProfile.dateOfBirth.title,
-    );
-    return dob != null
-        ? DateTime.parse(dob).isAtLeastYearsOld(AgeLimits.toAccessFeatures)
-        : false;
+    final DateTime? dob =
+        _pangeaController.userController.profile.userSettings.dateOfBirth;
+    return dob?.isAtLeastYearsOld(AgeLimits.toAccessFeatures) ?? false;
   }
 
   /// A user can private chat if
@@ -99,8 +95,26 @@ class PermissionsController extends BaseController {
     return classPermission == 0;
   }
 
-  bool userToolSetting(ToolSetting setting) =>
-      _pangeaController.localSettings.userLanguageToolSetting(setting);
+  bool userToolSetting(ToolSetting setting) {
+    switch (setting) {
+      case ToolSetting.interactiveTranslator:
+        return _pangeaController
+            .userController.profile.toolSettings.interactiveTranslator;
+      case ToolSetting.interactiveGrammar:
+        return _pangeaController
+            .userController.profile.toolSettings.interactiveGrammar;
+      case ToolSetting.immersionMode:
+        return _pangeaController
+            .userController.profile.toolSettings.immersionMode;
+      case ToolSetting.definitions:
+        return _pangeaController
+            .userController.profile.toolSettings.definitions;
+      case ToolSetting.autoIGC:
+        return _pangeaController.userController.profile.toolSettings.autoIGC;
+      default:
+        return false;
+    }
+  }
 
   bool isToolEnabled(ToolSetting setting, Room? room) {
     if (room?.isSpaceAdmin ?? false) {

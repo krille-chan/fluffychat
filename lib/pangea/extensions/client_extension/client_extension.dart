@@ -80,4 +80,6 @@ extension PangeaClient on Client {
 
   String? powerLevelName(int powerLevel, L10n l10n) =>
       _powerLevelName(powerLevel, l10n);
+
+  Future<void> waitForAccountData() async => await _waitForAccountData();
 }

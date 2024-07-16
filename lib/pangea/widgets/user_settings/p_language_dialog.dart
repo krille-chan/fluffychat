@@ -15,7 +15,10 @@ import '../../../widgets/matrix.dart';
 import 'p_language_dropdown.dart';
 import 'p_question_container.dart';
 
-pLanguageDialog(BuildContext parentContext, Function callback) async {
+Future<void> pLanguageDialog(
+  BuildContext parentContext,
+  Function callback,
+) async {
   final PangeaController pangeaController = MatrixState.pangeaController;
   //PTODO: if source language not set by user, default to languge from device settings
   final LanguageModel? userL1 = pangeaController.languageController.userL1;
@@ -88,13 +91,14 @@ pLanguageDialog(BuildContext parentContext, Function callback) async {
                             context: context,
                             future: () async {
                               try {
-                                await pangeaController.userController
-                                    .updateUserProfile(
-                                  sourceLanguage:
-                                      selectedSourceLanguage.langCode,
-                                  targetLanguage:
-                                      selectedTargetLanguage.langCode,
-                                );
+                                pangeaController.userController
+                                    .updateProfile((profile) {
+                                  profile.userSettings.sourceLanguage =
+                                      selectedSourceLanguage.langCode;
+                                  profile.userSettings.targetLanguage =
+                                      selectedTargetLanguage.langCode;
+                                  return profile;
+                                });
                                 Navigator.pop(context);
                               } catch (err, s) {
                                 debugger(when: kDebugMode);

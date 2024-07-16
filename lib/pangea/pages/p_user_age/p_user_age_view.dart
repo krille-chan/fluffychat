@@ -18,31 +18,24 @@ class PUserAgeView extends StatelessWidget {
       body: ListView(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 10),
-            padding: const EdgeInsets.all(15),
-            child: Text(
-              L10n.of(context)!.yourBirthdayPlease,
-              textAlign: TextAlign.justify,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Theme.of(context)
-                  .colorScheme
-                  .onSecondaryContainer
-                  .withAlpha(50),
+              color: Theme.of(context).colorScheme.onSecondaryContainer.withAlpha(50),
             ),
             child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Text(
+                    L10n.of(context)!.yourBirthdayPlease,
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal, 
+                    ),
+                  ),
+                ),
                 ListTile(
                   title: Text(
                     L10n.of(context)!.certifyAge(13),
@@ -70,23 +63,16 @@ class PUserAgeView extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          if (controller.error != null)
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Text(
-                controller.error!,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
+          const SizedBox(height: 20), 
           Hero(
             tag: 'loginButton',
             child: Padding(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: ElevatedButton(
                 onPressed: controller.createUserInPangea,
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50), 
+                ),
                 child: controller.loading
                     ? const LinearProgressIndicator()
                     : Text(L10n.of(context)!.getStarted),
@@ -95,7 +81,6 @@ class PUserAgeView extends StatelessWidget {
           ),
         ],
       ),
-      // ),
     );
   }
 }

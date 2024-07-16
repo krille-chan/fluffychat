@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/base_subscription_info.dart';
 import 'package:fluffychat/pangea/models/mobile_subscriptions.dart';
-import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/models/web_subscriptions.dart';
 import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
@@ -97,12 +96,10 @@ class SubscriptionController extends BaseController {
       } else {
         final bool? beganWebPayment = _pangeaController.pStoreService.read(
           PLocalKey.beganWebPayment,
-          local: true,
         );
         if (beganWebPayment ?? false) {
           await _pangeaController.pStoreService.delete(
             PLocalKey.beganWebPayment,
-            local: true,
           );
           if (_pangeaController.subscriptionController.isSubscribed) {
             subscriptionStream.add(true);
@@ -142,7 +139,6 @@ class SubscriptionController extends BaseController {
         await _pangeaController.pStoreService.save(
           PLocalKey.beganWebPayment,
           true,
-          local: true,
         );
         setState();
         launchUrlString(
@@ -182,37 +178,35 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  bool get _activatedNewUserTrial =>
-      _pangeaController.userController.inTrialWindow &&
-      (_pangeaController.pStoreService.read(
-            MatrixProfile.activatedFreeTrial.title,
-          ) ??
-          false);
+  bool get _activatedNewUserTrial {
+    final bool activated = _pangeaController
+        .userController.profile.userSettings.activatedFreeTrial;
+    return _pangeaController.userController.inTrialWindow && activated;
+  }
 
   void activateNewUserTrial() {
-    _pangeaController.pStoreService
-        .save(
-      MatrixProfile.activatedFreeTrial.title,
-      true,
-    )
-        .then((_) {
-      setNewUserTrial();
-      trialActivationStream.add(true);
-    });
+    _pangeaController.userController.updateProfile(
+      (profile) {
+        profile.userSettings.activatedFreeTrial = true;
+        return profile;
+      },
+    );
+    setNewUserTrial();
+    trialActivationStream.add(true);
   }
 
   void setNewUserTrial() {
-    if (_pangeaController.userController.userModel?.profile == null) {
+    final DateTime? createdAt =
+        _pangeaController.userController.profile.userSettings.createdAt;
+    if (createdAt == null) {
       ErrorHandler.logError(
-        m: "Null user profile in subscription settings",
+        m: "Null user profile createAt in subscription settings",
         s: StackTrace.current,
       );
       return;
     }
-    final String profileCreatedAt =
-        _pangeaController.userController.userModel!.profile!.createdAt;
-    final DateTime creationTimestamp = DateTime.parse(profileCreatedAt);
-    final DateTime expirationDate = creationTimestamp.add(
+
+    final DateTime expirationDate = createdAt.add(
       const Duration(days: 7),
     );
     subscription?.setTrial(expirationDate);
@@ -242,7 +236,6 @@ class SubscriptionController extends BaseController {
   DateTime? get _lastDismissedPaywall {
     final lastDismissed = _pangeaController.pStoreService.read(
       PLocalKey.dismissedPaywall,
-      local: true,
     );
     if (lastDismissed == null) return null;
     return DateTime.tryParse(lastDismissed);
@@ -251,7 +244,6 @@ class SubscriptionController extends BaseController {
   int? get _paywallBackoff {
     final backoff = _pangeaController.pStoreService.read(
       PLocalKey.paywallBackoff,
-      local: true,
     );
     if (backoff == null) return null;
     return backoff;
@@ -269,20 +261,17 @@ class SubscriptionController extends BaseController {
     await _pangeaController.pStoreService.save(
       PLocalKey.dismissedPaywall,
       DateTime.now().toString(),
-      local: true,
     );
 
     if (_paywallBackoff == null) {
       await _pangeaController.pStoreService.save(
         PLocalKey.paywallBackoff,
         1,
-        local: true,
       );
     } else {
       await _pangeaController.pStoreService.save(
         PLocalKey.paywallBackoff,
         _paywallBackoff! + 1,
-        local: true,
       );
     }
   }
