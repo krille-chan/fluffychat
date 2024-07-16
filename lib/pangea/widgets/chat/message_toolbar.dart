@@ -86,8 +86,9 @@ class ToolbarDisplayController {
       // If message is too close to top, make space for toolbar
       if (targetOffset.dy < 360) {
         // If chat can scroll up, do so
-        final scrollTo = scrollController.offset - targetOffset.dy + 360 + 118;
-        if (scrollTo >= 0) {
+        final scrollTo = scrollController.offset - targetOffset.dy + 300;
+        if (scrollTo >= scrollController.position.minScrollExtent &&
+            scrollTo <= scrollController.position.maxScrollExtent) {
           scrollController.animateTo(
             scrollTo,
             duration: FluffyThemes.animationDuration,
