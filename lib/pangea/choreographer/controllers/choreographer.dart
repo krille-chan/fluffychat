@@ -14,7 +14,6 @@ import 'package:fluffychat/pangea/models/it_step.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
-import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
@@ -180,18 +179,9 @@ class Choreographer {
       return;
     }
 
-    if ([
-      EditType.igc,
-    ].contains(_textController.editType)) {
-      // this may be unnecessary now that tokens are not used
-      // to allow click of words in the input field and we're getting this at the end
-      // TODO - turn it off and tested that this is fine
-      igc.justGetTokensAndAddThemToIGCTextData();
-
-      // we set editType to keyboard here because that is the default for it
-      // and we want to make sure that the next change is treated as a keyboard change
-      // unless the system explicity sets it to something else. this
-      textController.editType = EditType.keyboard;
+    if (_textController.editType == EditType.igc) {
+      _lastChecked = _textController.text;
+      _textController.editType = EditType.keyboard;
       return;
     }
 
@@ -523,11 +513,9 @@ class Choreographer {
         chatController.room,
       );
 
-  bool get itAutoPlayEnabled =>
-      pangeaController.pStoreService.read(
-        MatrixProfile.itAutoPlay.title,
-      ) ??
-      false;
+  bool get itAutoPlayEnabled {
+    return pangeaController.userController.profile.userSettings.itAutoPlay;
+  }
 
   bool get definitionsEnabled =>
       pangeaController.permissionsController.isToolEnabled(

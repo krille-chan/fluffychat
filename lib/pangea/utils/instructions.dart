@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -18,14 +19,15 @@ class InstructionsController {
   // We have these three methods to make sure that the instructions are not shown too much
 
   /// Instruction popup was closed by the user
-  final Map<InstructionsEnum, bool> _instructionsClosed = {};
+  final Map<String, bool> _instructionsClosed = {};
 
   /// Instruction popup has already been shown this session
-  final Map<InstructionsEnum, bool> _instructionsShown = {};
+  final Map<String, bool> _instructionsShown = {};
 
   /// Returns true if the user requested this popup not be shown again
-  bool? toggledOff(InstructionsEnum key) =>
-      _pangeaController.pStoreService.read(key.toString());
+  bool? toggledOff(String key) => InstructionsEnum.values
+      .firstWhereOrNull((value) => value.toString() == key)
+      ?.toggledOff;
 
   InstructionsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
@@ -33,20 +35,32 @@ class InstructionsController {
 
   /// Returns true if the instructions were closed
   /// or turned off by the user via the toggle switch
-  bool wereInstructionsTurnedOff(InstructionsEnum key) =>
-      toggledOff(key) ?? _instructionsClosed[key] ?? false;
+  bool wereInstructionsTurnedOff(String key) {
+    return toggledOff(key) ?? _instructionsClosed[key] ?? false;
+  }
 
-  void turnOffInstruction(InstructionsEnum key) =>
-      _instructionsClosed[key] = true;
+  void turnOffInstruction(String key) => _instructionsClosed[key] = true;
 
-  Future<void> updateEnableInstructions(
-    InstructionsEnum key,
+  void updateEnableInstructions(
+    String key,
     bool value,
-  ) async =>
-      await _pangeaController.pStoreService.save(
-        key.toString(),
-        value,
-      );
+  ) {
+    _pangeaController.userController.updateProfile((profile) {
+      if (key == InstructionsEnum.itInstructions.toString()) {
+        profile.instructionSettings.showedItInstructions = value;
+      }
+      if (key == InstructionsEnum.clickMessage.toString()) {
+        profile.instructionSettings.showedClickMessage = value;
+      }
+      if (key == InstructionsEnum.blurMeansTranslate.toString()) {
+        profile.instructionSettings.showedBlurMeansTranslate = value;
+      }
+      if (key == InstructionsEnum.tooltipInstructions.toString()) {
+        profile.instructionSettings.showedTooltipInstructions = value;
+      }
+      return profile;
+    });
+  }
 
   /// Instruction Card gives users tips on
   /// how to use Pangea Chat's features
@@ -56,12 +70,12 @@ class InstructionsController {
     String transformTargetKey, [
     bool showToggle = true,
   ]) async {
-    if (_instructionsShown[key] ?? false) {
+    if (_instructionsShown[key.toString()] ?? false) {
       return;
     }
-    _instructionsShown[key] = true;
+    _instructionsShown[key.toString()] = true;
 
-    if (wereInstructionsTurnedOff(key)) {
+    if (wereInstructionsTurnedOff(key.toString())) {
       return;
     }
     if (L10n.of(context) == null) {
@@ -90,7 +104,7 @@ class InstructionsController {
             CardHeader(
               text: key.title(context),
               botExpression: BotExpression.idle,
-              onClose: () => {_instructionsClosed[key] = true},
+              onClose: () => {_instructionsClosed[key.toString()] = true},
             ),
             const SizedBox(height: 10.0),
             Expanded(
@@ -118,10 +132,10 @@ class InstructionsController {
   /// which displays hint text defined in the enum extension
   Widget getInstructionInlineTooltip(
     BuildContext context,
-    InstructionsEnum key,
+    InlineInstructions key,
     VoidCallback onClose,
   ) {
-    if (wereInstructionsTurnedOff(key)) {
+    if (wereInstructionsTurnedOff(key.toString())) {
       return const SizedBox();
     }
 
@@ -134,7 +148,7 @@ class InstructionsController {
     }
 
     return InlineTooltip(
-      body: InstructionsEnum.speechToText.body(context),
+      body: InlineInstructions.speechToText.body(context),
       onClose: onClose,
     );
   }
@@ -167,11 +181,12 @@ class InstructionsToggleState extends State<InstructionsToggle> {
     return SwitchListTile.adaptive(
       activeColor: AppConfig.activeToggleColor,
       title: Text(L10n.of(context)!.doNotShowAgain),
-      value: pangeaController.instructions
-          .wereInstructionsTurnedOff(widget.instructionsKey),
+      value: pangeaController.instructions.wereInstructionsTurnedOff(
+        widget.instructionsKey.toString(),
+      ),
       onChanged: ((value) async {
-        await pangeaController.instructions.updateEnableInstructions(
-          widget.instructionsKey,
+        pangeaController.instructions.updateEnableInstructions(
+          widget.instructionsKey.toString(),
           value,
         );
         setState(() {});

@@ -491,7 +491,12 @@ class InputBar extends StatelessWidget {
               textInputAction: textInputAction,
               autofocus: autofocus!,
               inputFormatters: [
-                LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+                //#Pangea
+                //LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+                //setting max character count to 1000
+                //after max, nothing else can be typed
+                LengthLimitingTextInputFormatter(1000),
+                //Pangea#
               ],
               onSubmitted: (text) {
                 // fix for library for now

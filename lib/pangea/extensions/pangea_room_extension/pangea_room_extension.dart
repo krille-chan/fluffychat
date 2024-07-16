@@ -116,6 +116,12 @@ extension PangeaRoom on Room {
     return _canAddAsParentOf(child, spaceMode: spaceMode);
   }
 
+  Future<void> pangeaSetSpaceChild(
+    String roomId, {
+    bool? suggested,
+  }) async =>
+      await _pangeaSetSpaceChild(roomId, suggested: suggested);
+
 // class_and_exchange_settings
 
   DateTime? get rulesUpdatedAt => _rulesUpdatedAt;

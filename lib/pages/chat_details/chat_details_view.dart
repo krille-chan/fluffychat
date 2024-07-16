@@ -263,28 +263,6 @@ class ChatDetailsView extends StatelessWidget {
                             controller: controller,
                           ),
                           // Pangea#
-                          if (room.isSpace && room.isRoomAdmin)
-                            ListTile(
-                              title: Text(
-                                L10n.of(context)!.spaceAnalytics,
-                                style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              leading: CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                foregroundColor: iconColor,
-                                child: const Icon(
-                                  Icons.analytics_outlined,
-                                ),
-                              ),
-                              onTap: () => context.go(
-                                '/rooms/analytics/${room.id}',
-                              ),
-                            ),
                           // commenting out language settings in spaces for now
                           // if (room.languageSettings != null && room.isRoomAdmin)
                           //   LanguageSettings(

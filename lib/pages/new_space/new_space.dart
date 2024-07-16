@@ -171,7 +171,7 @@ class NewSpaceController extends State<NewSpace> {
         powerLevelContentOverride: addToSpaceKey.currentState != null
             ? await ClassChatPowerLevels.powerLevelOverrideForClassChat(
                 context,
-                addToSpaceKey.currentState!.parents,
+                addToSpaceKey.currentState!.parent,
               )
             : null,
         // initialState: [
