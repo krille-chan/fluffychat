@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/enum/activity_display_instructions_enum.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
@@ -277,6 +279,60 @@ class PracticeActivityModel {
       'listening': listening?.toJson(),
       'speaking': speaking?.toJson(),
       'free_response': freeResponse?.toJson(),
+    };
+  }
+
+  RelevantSpanDisplayDetails? getRelevantSpanDisplayDetails() {
+    switch (activityType) {
+      case ActivityTypeEnum.multipleChoice:
+        return multipleChoice?.spanDisplayDetails;
+      case ActivityTypeEnum.listening:
+        return null;
+      case ActivityTypeEnum.speaking:
+        return null;
+      case ActivityTypeEnum.freeResponse:
+        return null;
+      default:
+        debugger(when: kDebugMode);
+        return null;
+    }
+  }
+}
+
+/// For those activities with a relevant span, this class will hold the details
+/// of the span and how it should be displayed
+/// e.g. hide the span for conjugation activities
+class RelevantSpanDisplayDetails {
+  final int offset;
+  final int length;
+  final ActivityDisplayInstructionsEnum displayInstructions;
+
+  RelevantSpanDisplayDetails({
+    required this.offset,
+    required this.length,
+    required this.displayInstructions,
+  });
+
+  factory RelevantSpanDisplayDetails.fromJson(Map<String, dynamic> json) {
+    final ActivityDisplayInstructionsEnum? display =
+        ActivityDisplayInstructionsEnum.values.firstWhereOrNull(
+      (e) => e.string == json['display_instructions'],
+    );
+    if (display == null) {
+      debugger(when: kDebugMode);
+    }
+    return RelevantSpanDisplayDetails(
+      offset: json['offset'] as int,
+      length: json['length'] as int,
+      displayInstructions: display ?? ActivityDisplayInstructionsEnum.hide,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'offset': offset,
+      'length': length,
+      'display_instructions': displayInstructions,
     };
   }
 }
