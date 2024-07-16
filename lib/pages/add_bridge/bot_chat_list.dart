@@ -42,7 +42,7 @@ class _BotChatListPageState extends State<BotChatListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Conversations avec les bots'),
+        title: Text(L10n.of(context)!.chatBotRoomsTitle),
       ),
       body: FutureBuilder<List<Room>>(
         future: _roomsFuture,
@@ -50,9 +50,11 @@ class _BotChatListPageState extends State<BotChatListPage> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Erreur: ${snapshot.error}'));
+            return Center(
+                child: Text('${L10n.of(context)!.err_} ${snapshot.error}')
+            );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('Aucune conversation avec les bots.'));
+            return Center(child: Text(L10n.of(context)!.chatBotRoomsNotFound));
           } else {
             final rooms = snapshot.data!;
             return ListView.builder(
