@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/alternative_translator.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/igc_controller.dart';
-import 'package:fluffychat/pangea/choreographer/controllers/message_options.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
@@ -38,7 +37,6 @@ class Choreographer {
   late PangeaTextController _textController;
   late ITController itController;
   late IgcController igc;
-  late MessageOptions messageOptions;
   late AlternativeTranslator altTranslator;
   late ErrorService errorService;
 
@@ -59,7 +57,6 @@ class Choreographer {
     _textController = PangeaTextController(choreographer: this);
     itController = ITController(this);
     igc = IgcController(this);
-    messageOptions = MessageOptions(this);
     errorService = ErrorService(this);
     altTranslator = AlternativeTranslator(this);
     _textController.addListener(_onChangeListener);
