@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:country_picker/country_picker.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
@@ -17,25 +15,26 @@ class SettingsLearning extends StatefulWidget {
 }
 
 class SettingsLearningController extends State<SettingsLearning> {
-  late StreamSubscription _userSubscription;
   PangeaController pangeaController = MatrixState.pangeaController;
 
-  Future<void> changeLanguage() async {
-    await pLanguageDialog(context, () {});
-  }
-
-  Future<void> setPublicProfile(bool isPublic) async {
+  setPublicProfile(bool isPublic) {
     pangeaController.userController.updateProfile((profile) {
       profile.userSettings.publicProfile = isPublic;
       return profile;
     });
+    setState(() {});
   }
 
-  Future<void> changeCountry(Country country) async {
-    pangeaController.userController.updateProfile((profile) {
+  void changeLanguage() {
+    pLanguageDialog(context, () {}).then((_) => setState(() {}));
+  }
+
+  void changeCountry(Country country) {
+    pangeaController.userController.updateProfile((Profile profile) {
       profile.userSettings.country = country.displayNameNoCountryCode;
       return profile;
     });
+    setState(() {});
   }
 
   void updateToolSetting(ToolSetting toolSetting, bool value) {
@@ -69,12 +68,6 @@ class SettingsLearningController extends State<SettingsLearning> {
       case ToolSetting.autoIGC:
         return toolSettings.autoIGC;
     }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _userSubscription.cancel();
   }
 
   @override
