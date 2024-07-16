@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' as http;
@@ -21,18 +20,19 @@ import 'package:tawkie/config/setting_keys.dart';
 import 'package:tawkie/pages/key_verification/key_verification_dialog.dart';
 import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/background_push.dart';
-import 'package:tawkie/utils/init_with_restore.dart';
-import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
-import 'package:universal_html/html.dart' as html;
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:tawkie/utils/client_manager.dart';
+import 'package:tawkie/utils/init_with_restore.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/uia_request_manager.dart';
 import 'package:tawkie/utils/voip_plugin.dart';
 import 'package:tawkie/widgets/fluffy_chat_app.dart';
+import 'package:universal_html/html.dart' as html;
+import 'package:url_launcher/url_launcher_string.dart';
+
 import 'local_notifications_extension.dart';
+import 'matrix_client_wrapper.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -346,10 +346,20 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onNotification.remove(name);
   }
 
-  void initMatrix() {
+  void initMatrix() async {
     for (final c in widget.clients) {
       _registerSubs(c.clientName);
+      final matrixClient = MatrixClientWrapper(c);
+      matrixClient.start(); // Start background synchronization
     }
+
+    // Wait for all clients to initialize and synchronize
+    await Future.wait(
+      widget.clients.map((c) {
+        final matrixClient = MatrixClientWrapper(c);
+        return matrixClient.ensureInitializationComplete();
+      }),
+    );
 
     if (kIsWeb) {
       onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);

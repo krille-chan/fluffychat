@@ -370,23 +370,23 @@ class AuthController extends State<Auth> {
       // Adding the controller to the map
       textControllers[attributes.name] = controller;
 
+      // Building the widget based on the type of input
       Widget widget;
-      if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.email) {
-        widget = _buildEmailInputWidget(attributes, controller, node);
-      } else {
-        switch (attributes.type) {
-          case kratos.UiNodeInputAttributesTypeEnum.hidden:
-            widget = _buildHiddenWidget(attributes);
-            break;
-          case kratos.UiNodeInputAttributesTypeEnum.text:
-            widget = _buildTextInputWidget(attributes, controller, node);
-            break;
-          case kratos.UiNodeInputAttributesTypeEnum.submit:
-            widget = _buildSubmitButton(attributes, actionUrl, node);
-            break;
-          default:
-            widget = Container(); // Placeholder for unsupported types
-        }
+      switch (attributes.type) {
+        case kratos.UiNodeInputAttributesTypeEnum.email:
+          widget = _buildEmailInputWidget(attributes, controller, node);
+          break;
+        case kratos.UiNodeInputAttributesTypeEnum.hidden:
+          widget = _buildHiddenWidget(attributes);
+          break;
+        case kratos.UiNodeInputAttributesTypeEnum.text:
+          widget = _buildTextInputWidget(attributes, controller, node);
+          break;
+        case kratos.UiNodeInputAttributesTypeEnum.submit:
+          widget = _buildSubmitButton(attributes, actionUrl, node);
+          break;
+        default:
+          widget = Container(); // Placeholder for unsupported types
       }
 
       if (node.messages.isNotEmpty && node.messages[0].text.isNotEmpty) {
@@ -454,7 +454,13 @@ class AuthController extends State<Auth> {
 
   Widget _buildSubmitButton(kratos.UiNodeInputAttributes attributes,
       String actionUrl, kratos.UiNode node) {
-    if (attributes.name == "resend") {
+    final isBackButton = attributes.name.equals("screen") &&
+        attributes.value.toString().equals("credential-selection");
+
+    if (isBackButton) {
+      // Do not show back button
+      return Container();
+    } else if (attributes.name == "resend") {
       return Padding(
         padding: const EdgeInsets.all(12.0),
         child: TextButton(
@@ -539,6 +545,7 @@ class AuthController extends State<Auth> {
       await oryWithCode(email!, code!, kratosClient);
     } else {
       try {
+        formData['method'] = 'code';
         final response = await dio.post(
           actionUrl,
           data: formData,
