@@ -13,34 +13,23 @@ import 'package:url_launcher/url_launcher.dart';
 class BetaJoinPage extends StatelessWidget {
   const BetaJoinPage({super.key});
 
-  void joinBeta() async {
+  Future<bool> _launchUrl(String url, BuildContext context) async {
     try {
-      if (Platform.isIOS) {
-        if (await canLaunchUrl(Uri.parse(AppConfig.iosUrl))) {
-          await launchUrl(Uri.parse(AppConfig.iosUrl));
-        } else {
-          await _launchUrlOrThrow(AppConfig.appleBetaUrl);
-        }
-      } else if (Platform.isAndroid) {
-        if (await canLaunchUrl(Uri.parse(AppConfig.androidUrl))) {
-          await launchUrl(Uri.parse(AppConfig.androidUrl));
-        } else {
-          await _launchUrlOrThrow(AppConfig.androidBetaUrl);
-        }
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url));
+        return true;
       }
     } catch (e) {
       if (kDebugMode) {
         print('Error launching URL: $e');
       }
+      final snackBar = SnackBar(content: Text(L10n.of(context)!.tryAgain));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      if (kDebugMode) {
+        print('Error launching Apple Beta URL: $e');
+      }
     }
-  }
-
-  Future<void> _launchUrlOrThrow(String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    } else {
-      throw 'Could not launch $url';
-    }
+    return false;
   }
 
   Future<void> joinGroup({
@@ -183,7 +172,7 @@ class BetaJoinPage extends StatelessWidget {
         const SizedBox(height: 10.0),
         ElevatedButton(
           onPressed: () async {
-            await _launchUrlOrThrow(AppConfig.testflightAppUrl);
+            await _launchUrl(AppConfig.testflightAppUrl, context);
           },
           child: Text(L10n.of(context)!.downloadTestflightButton),
         ),
@@ -195,7 +184,7 @@ class BetaJoinPage extends StatelessWidget {
         const SizedBox(height: 10.0),
         ElevatedButton(
           onPressed: () async {
-            await _launchUrlOrThrow(AppConfig.appleBetaUrl);
+            await _launchUrl(AppConfig.appleBetaUrl, context);
           },
           child: Text(L10n.of(context)!.downloadBetaIOSButton),
         ),
@@ -223,10 +212,9 @@ class BetaJoinPage extends StatelessWidget {
         const SizedBox(height: 10.0),
         ElevatedButton(
           onPressed: () async {
-            try {
-              await _launchUrlOrThrow(AppConfig.playStoreUrl);
-            } catch (e) {
-              await _launchUrlOrThrow(AppConfig.androidBetaUrl);
+            bool success = await _launchUrl(AppConfig.playStoreUrl, context);
+            if (!success) {
+              await _launchUrl(AppConfig.androidBetaUrl, context);
             }
           },
           child: Text(L10n.of(context)!.downloadBetaAndroidButton),
