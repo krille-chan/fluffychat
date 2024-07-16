@@ -198,14 +198,6 @@ class NewSpaceController extends State<NewSpace> {
       if (capacity != null && space != null) {
         space.updateRoomCapacity(capacity);
       }
-      final newChatRoomId = await Matrix.of(context).client.createGroupChat(
-            enableEncryption: false,
-            preset: sdk.CreateRoomPreset.publicChat,
-            // Welcome chat name is '[space name acronym]: Welcome Chat'
-            groupName:
-                '${nameController.text.trim().split(RegExp(r"\s+")).map((s) => s[0]).join()}: ${L10n.of(context)!.classWelcomeChat}',
-          );
-      GoogleAnalytics.createChat(newChatRoomId);
 
       final Room? room = Matrix.of(context).client.getRoomById(spaceId);
       if (room == null) {
@@ -216,12 +208,6 @@ class NewSpaceController extends State<NewSpace> {
             .setActiveSpaceIdInChatListController(spaceId);
         return;
       }
-
-      room.setSpaceChild(newChatRoomId, suggested: true);
-      GoogleAnalytics.addParent(
-        newChatRoomId,
-        room.classCode,
-      );
 
       GoogleAnalytics.createClass(room.name, room.classCode);
       try {
