@@ -65,7 +65,7 @@ class _BotChatListPageState extends State<BotChatListPage> {
                 return ChatListItem(rooms[i],
                     key: Key('chat_list_item_${rooms[i].id}'), onTap: () {
                       // Handle tap on a bot conversation
-                      _onChatTap(room, context);
+                      openChatRoom(room, context);
                     }, onLongPress: () {
                       // Handle long press to delete the room
                       _onChatLongPress(room, context);
@@ -79,7 +79,7 @@ class _BotChatListPageState extends State<BotChatListPage> {
   }
 
   // Method to handle chat tap
-  void _onChatTap(Room room, BuildContext context) {
+  void openChatRoom(Room room, BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
