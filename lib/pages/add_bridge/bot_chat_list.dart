@@ -28,15 +28,11 @@ class _BotChatListPageState extends State<BotChatListPage> {
     setState(() {
       _roomsFuture = Future.delayed(
         Duration.zero,
-            () =>
-            Matrix
-                .of(context)
-                .client
-                .rooms
-                .where(
-                    (room) =>
-                    widget.botUserIds.contains(room.directChatMatrixID))
-                .toList(),
+            () => Matrix.of(context)
+            .client
+            .rooms
+            .where((room) => widget.botUserIds.contains(room.directChatMatrixID))
+            .toList(),
       );
     });
   }
