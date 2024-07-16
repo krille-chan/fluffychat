@@ -59,8 +59,7 @@ class ToolbarDisplayController {
   }
 
   void showToolbar(
-    BuildContext context,
-    ScrollController scrollController, {
+    BuildContext context, {
     MessageMode? mode,
   }) {
     bool toolbarUp = true;
@@ -82,46 +81,49 @@ class ToolbarDisplayController {
       final Size transformTargetSize = (targetRenderBox as RenderBox).size;
       messageWidth = transformTargetSize.width;
       final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
-      // final double screenHeight = MediaQuery.of(context).size.height;
-      // If message is too close to top, make space for toolbar
+
+      // If there is enough space above, procede as normal
+      // Else if there is enough space below, show toolbar underneath
       if (targetOffset.dy < 320) {
-        // If chat can scroll up, do so
-        var scrollTo = scrollController.offset - targetOffset.dy + 320;
-        if (scrollTo >= scrollController.position.minScrollExtent &&
-            scrollTo <= scrollController.position.maxScrollExtent) {
-          scrollController.animateTo(
-            scrollTo,
+        final spaceBeneath = MediaQuery.of(context).size.height -
+            (targetOffset.dy + transformTargetSize.height);
+        if (spaceBeneath >= 320) {
+          toolbarUp = false;
+        }
+
+        // See if it's possible to scroll up to make space
+        else if (controller.scrollController.offset - targetOffset.dy + 320 >=
+                controller.scrollController.position.minScrollExtent &&
+            controller.scrollController.offset - targetOffset.dy + 320 <=
+                controller.scrollController.position.maxScrollExtent) {
+          controller.scrollController.animateTo(
+            controller.scrollController.offset - targetOffset.dy + 320,
             duration: FluffyThemes.animationDuration,
             curve: FluffyThemes.animationCurve,
           );
         }
-        // If cannot scroll up enough, show toolbar underneath instead
-        else {
+
+        // See if it's possible to scroll down to make space
+        else if (controller.scrollController.offset + spaceBeneath - 320 >=
+                controller.scrollController.position.minScrollExtent &&
+            controller.scrollController.offset + spaceBeneath - 320 <=
+                controller.scrollController.position.maxScrollExtent) {
+          controller.scrollController.animateTo(
+            controller.scrollController.offset + spaceBeneath - 320,
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+          );
           toolbarUp = false;
-          // Scroll down if need more space beneath message
-          final spaceBeneath = MediaQuery.of(context).size.height -
-              targetOffset.dy -
-              transformTargetSize.height;
-          if (spaceBeneath < 320) {
-            scrollTo = scrollController.offset + spaceBeneath - 320;
-            if (scrollTo >= scrollController.position.minScrollExtent &&
-                scrollTo <= scrollController.position.maxScrollExtent) {
-              scrollController.animateTo(
-                scrollTo,
-                duration: FluffyThemes.animationDuration,
-                curve: FluffyThemes.animationCurve,
-              );
-            }
-            // If can't scroll down enough, scroll up as much as possible and show toolbar above
-            else {
-              scrollController.animateTo(
-                scrollController.position.minScrollExtent,
-                duration: FluffyThemes.animationDuration,
-                curve: FluffyThemes.animationCurve,
-              );
-              toolbarUp = true;
-            }
-          }
+        }
+
+        // If message is too big and can't scroll either way
+        // Scroll up as much as possible, and show toolbar above
+        else {
+          controller.scrollController.animateTo(
+            controller.scrollController.position.minScrollExtent,
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+          );
         }
       }
     }
@@ -132,7 +134,6 @@ class ToolbarDisplayController {
       immersionMode: immersionMode,
       ownMessage: pangeaMessageEvent.ownMessage,
       toolbarController: this,
-      scrollController: scrollController,
       width: messageWidth,
       nextEvent: nextEvent,
       previousEvent: previousEvent,

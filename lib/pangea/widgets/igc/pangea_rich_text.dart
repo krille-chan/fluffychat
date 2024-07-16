@@ -21,14 +21,12 @@ class PangeaRichText extends StatefulWidget {
   final bool immersionMode;
   final ToolbarDisplayController? toolbarController;
   final TextStyle? style;
-  final ScrollController scrollController;
 
   const PangeaRichText({
     super.key,
     required this.pangeaMessageEvent,
     required this.immersionMode,
     required this.toolbarController,
-    required this.scrollController,
     this.style,
   });
 
@@ -153,8 +151,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
         widget.toolbarController?.toolbar?.textSelection
             .onTextSelection(selection);
       },
-      onTap: () => widget.toolbarController
-          ?.showToolbar(context, widget.scrollController),
+      onTap: () => widget.toolbarController?.showToolbar(context),
       enableInteractiveSelection:
           widget.toolbarController?.highlighted ?? false,
       contextMenuBuilder: (context, state) =>
@@ -165,12 +162,10 @@ class PangeaRichTextState extends State<PangeaRichText> {
                   textSelection: state,
                   onDefine: () => widget.toolbarController?.showToolbar(
                     context,
-                    widget.scrollController,
                     mode: MessageMode.definition,
                   ),
                   onListen: () => widget.toolbarController?.showToolbar(
                     context,
-                    widget.scrollController,
                     mode: MessageMode.textToSpeech,
                   ),
                 ),

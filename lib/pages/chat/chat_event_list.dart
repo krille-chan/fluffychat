@@ -168,7 +168,6 @@ class ChatEventList extends StatelessWidget {
                 onSelect: controller.onSelectMessage,
                 scrollToEventId: (String eventId) =>
                     controller.scrollToEventId(eventId),
-                scrollController: controller.scrollController,
                 longPressSelect: controller.selectedEvents.isNotEmpty,
                 // #Pangea
                 selectedDisplayLang:

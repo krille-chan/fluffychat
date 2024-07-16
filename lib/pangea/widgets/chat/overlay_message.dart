@@ -21,7 +21,6 @@ class OverlayMessage extends StatelessWidget {
   final bool ownMessage;
   final ToolbarDisplayController toolbarController;
   final double? width;
-  final ScrollController scrollController;
 
   const OverlayMessage(
     this.event, {
@@ -32,7 +31,6 @@ class OverlayMessage extends StatelessWidget {
     required this.immersionMode,
     required this.ownMessage,
     required this.toolbarController,
-    required this.scrollController,
     this.width,
     super.key,
   });
@@ -153,7 +151,6 @@ class OverlayMessage extends StatelessWidget {
               pangeaMessageEvent: pangeaMessageEvent,
               immersionMode: immersionMode,
               toolbarController: toolbarController,
-              scrollController: scrollController,
               isOverlay: true,
             ),
             if (event.hasAggregatedEvents(

@@ -39,7 +39,6 @@ class MessageContent extends StatelessWidget {
   final bool immersionMode;
   final ToolbarDisplayController? toolbarController;
   final bool isOverlay;
-  final ScrollController scrollController;
   // Pangea#
 
   const MessageContent(
@@ -53,7 +52,6 @@ class MessageContent extends StatelessWidget {
     required this.immersionMode,
     required this.toolbarController,
     this.isOverlay = false,
-    required this.scrollController,
     // Pangea#
     required this.borderRadius,
   });
@@ -301,7 +299,6 @@ class MessageContent extends StatelessWidget {
                 style: messageTextStyle,
                 pangeaMessageEvent: pangeaMessageEvent!,
                 immersionMode: immersionMode,
-                scrollController: scrollController,
                 toolbarController: toolbarController,
               );
             } else if (pangeaMessageEvent != null) {
@@ -325,8 +322,7 @@ class MessageContent extends StatelessWidget {
                 toolbarController?.toolbar?.textSelection
                     .onTextSelection(selection);
               },
-              onTap: () =>
-                  toolbarController?.showToolbar(context, scrollController),
+              onTap: () => toolbarController?.showToolbar(context),
               contextMenuBuilder: (context, state) =>
                   (toolbarController?.highlighted ?? false)
                       ? const SizedBox.shrink()
@@ -335,12 +331,10 @@ class MessageContent extends StatelessWidget {
                           textSelection: state,
                           onDefine: () => toolbarController?.showToolbar(
                             context,
-                            scrollController,
                             mode: MessageMode.definition,
                           ),
                           onListen: () => toolbarController?.showToolbar(
                             context,
-                            scrollController,
                             mode: MessageMode.textToSpeech,
                           ),
                         ),

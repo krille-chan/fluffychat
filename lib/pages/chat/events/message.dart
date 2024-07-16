@@ -43,7 +43,6 @@ class Message extends StatelessWidget {
   final bool immersionMode;
   final bool definitions;
   final ChatController controller;
-  final ScrollController scrollController;
   // Pangea#
   final Color? avatarPresenceBackgroundColor;
 
@@ -69,7 +68,6 @@ class Message extends StatelessWidget {
     required this.immersionMode,
     required this.definitions,
     required this.controller,
-    required this.scrollController,
     // Pangea#
     super.key,
   });
@@ -321,10 +319,9 @@ class Message extends StatelessWidget {
                                   // #Pangea
                                   onTap: () => toolbarController?.showToolbar(
                                     context,
-                                    scrollController,
                                   ),
-                                  onDoubleTap: () => toolbarController
-                                      ?.showToolbar(context, scrollController),
+                                  onDoubleTap: () =>
+                                      toolbarController?.showToolbar(context),
                                   // Pangea#
                                   onLongPress: longPressSelect
                                       ? null
@@ -447,8 +444,6 @@ class Message extends StatelessWidget {
                                                 immersionMode: immersionMode,
                                                 toolbarController:
                                                     toolbarController,
-                                                scrollController:
-                                                    scrollController,
                                                 // Pangea#
                                               ),
                                               if (event.hasAggregatedEvents(
@@ -595,8 +590,8 @@ class Message extends StatelessWidget {
                       children: [
                         if (pangeaMessageEvent?.showMessageButtons ?? false)
                           MessageButtons(
-                              toolbarController: toolbarController,
-                              scrollController: scrollController),
+                            toolbarController: toolbarController,
+                          ),
                         MessageReactions(event, timeline),
                       ],
                     ),
