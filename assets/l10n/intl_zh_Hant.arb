@@ -316,7 +316,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "對比並確認這些表情符合其他那些裝置：",
+  "compareEmojiMatch": "請你對比這些表情",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
