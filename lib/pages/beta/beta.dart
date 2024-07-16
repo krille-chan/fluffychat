@@ -69,11 +69,9 @@ class BetaJoinPage extends StatelessWidget {
         context: context,
         future: () async {
           try {
-            // Retrieve participating servers
-            final servers = roomAliasResult.servers ?? ['staging.tawkie.fr'];
             final waitForRoom = client.waitForRoomInSync(roomId, join: true);
 
-            await client.joinRoom(roomId, serverName: servers);
+            await client.joinRoom(roomId);
             await waitForRoom;
 
             return roomId;
