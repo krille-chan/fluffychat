@@ -84,7 +84,7 @@ class ToolbarDisplayController {
       final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
       // final double screenHeight = MediaQuery.of(context).size.height;
       // If message is too close to top, make space for toolbar
-      if (targetOffset.dy < 360) {
+      if (targetOffset.dy < 320) {
         // If chat can scroll up, do so
         var scrollTo = scrollController.offset - targetOffset.dy + 320;
         if (scrollTo >= scrollController.position.minScrollExtent &&
@@ -102,7 +102,7 @@ class ToolbarDisplayController {
           final spaceBeneath = MediaQuery.of(context).size.height -
               targetOffset.dy -
               transformTargetSize.height;
-          if (spaceBeneath < 360) {
+          if (spaceBeneath < 320) {
             scrollTo = scrollController.offset + spaceBeneath - 320;
             if (scrollTo >= scrollController.position.minScrollExtent &&
                 scrollTo <= scrollController.position.maxScrollExtent) {
