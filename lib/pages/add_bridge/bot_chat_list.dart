@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -47,7 +48,7 @@ class _BotChatListPageState extends State<BotChatListPage> {
         future: _roomsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Erreur: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -130,6 +131,10 @@ class _BotChatListPageState extends State<BotChatListPage> {
         ),
       );
     } catch (e) {
+      // Log the error
+      if (kDebugMode) {
+        print('Error leaving the room: $e');
+      }
       scaffoldMessenger.showSnackBar(
         SnackBar(
           content:
