@@ -126,8 +126,11 @@ class _SpaceViewState extends State<SpaceView> {
     try {
       final response = await client.getSpaceHierarchy(
         activeSpaceId,
-        maxDepth: 2,
+        maxDepth: 1,
         from: prevBatch,
+        // #Pangea
+        limit: 100,
+        // Pangea#
       );
 
       if (prevBatch != null) {
