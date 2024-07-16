@@ -216,24 +216,27 @@ class ChatListController extends State<ChatList>
     // Check whether participants include the current user and one of the bots
     final userIds = participants.map((user) => user.id).toList();
     final containsCurrentUser = userIds.contains(client.userID);
-    final containsBot = userIds.any((id) => id.contains('bot') && excludedUserIds.contains(id));
+    final containsBot =
+        userIds.any((id) => id.contains('bot') && excludedUserIds.contains(id));
 
     return containsCurrentUser && containsBot;
   }
 
   // Method to identify and remove duplicate rooms
-  void identifyAndRemoveDuplicates(List<Room> rooms) {
+  Future<void> identifyAndRemoveDuplicates(List<Room> rooms) async {
     final Map<String, List<Room>> roomMap = {};
+    final List<Future<void>> futures = [];
 
-    // Group rooms by the bot ID in excludedUserIds
+    // Collect all isGroupWithOnlyBotAndUser futures
     for (final room in rooms) {
-      String? botId = room.directChatMatrixID;
-      if (botId == null && isGroupWithOnlyBotAndUser(room)) {
-        botId = excludedUserIds.firstWhere(
-          (id) => room.getParticipants().any((user) => user.id == id),
-          orElse: () => '',
-        );
-      }
+      futures.add(() async {
+        String? botId = room.directChatMatrixID;
+        if (botId == null && await isGroupWithOnlyBotAndUser(room)) {
+          botId = excludedUserIds.firstWhere(
+            (id) => room.getParticipants().any((user) => user.id == id),
+            orElse: () => '',
+          );
+        }
 
         if (botId != null && botId.isNotEmpty) {
           if (!roomMap.containsKey(botId)) {
@@ -241,13 +244,21 @@ class ChatListController extends State<ChatList>
           }
           roomMap[botId]!.add(room);
         }
+      }());
     }
 
+    // Wait for all futures to complete
+    await Future.wait(futures);
+
     // Check and remove duplicates
-    roomMap.forEach((botId, roomList) async {
+    for (final entry in roomMap.entries) {
+      final roomList = entry.value;
       if (roomList.length > 1) {
         // Sort by the timestamp of the last event (ascending order)
-        roomList.sort((a, b) => a.lastEvent?.originServerTs.compareTo(b.lastEvent!.originServerTs) ?? 0);
+        roomList.sort((a, b) =>
+            a.lastEvent?.originServerTs
+                .compareTo(b.lastEvent!.originServerTs) ??
+            0);
 
         // Keep the room with the oldest event and remove all others
         for (int i = 1; i < roomList.length; i++) {
@@ -255,7 +266,7 @@ class ChatListController extends State<ChatList>
           await room.leave();
         }
       }
-    });
+    }
   }
 
   bool isSearchMode = false;
@@ -508,12 +519,14 @@ class ChatListController extends State<ChatList>
 
   @override
   void initState() {
-    _initReceiveSharingIntent();
+    super.initState();
 
+    _initReceiveSharingIntent();
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
     _hackyWebRTCFixForWeb();
     CallKeepManager().initialize();
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
         searchServer =
@@ -525,13 +538,12 @@ class ChatListController extends State<ChatList>
       SystemChrome.setSystemUIOverlayStyle(
         Theme.of(context).appBarTheme.systemOverlayStyle!,
       );
+
+      await identifyAndRemoveDuplicates(filteredRooms);
+      setState(() {}); // Force a rebuild after all futures are completed
     });
 
     _checkTorBrowser();
-
-    identifyAndRemoveDuplicates(filteredRooms);
-
-    super.initState();
   }
 
   @override
