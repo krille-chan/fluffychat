@@ -687,7 +687,8 @@ class PangeaMessageEvent {
 
     for (final itStep in originalSent!.choreo!.itSteps) {
       for (final continuance in itStep.continuances) {
-        // this seems to always be false for continuances right now
+        final List<PangeaToken> tokensToSave =
+            continuance.tokens.where((t) => t.lemma.saveVocab).toList();
 
         if (originalSent!.choreo!.finalMessage.contains(continuance.text)) {
           continue;
@@ -695,21 +696,25 @@ class PangeaMessageEvent {
         if (continuance.wasClicked) {
           //PTODO - account for end of flow score
           if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
-            uses.addAll(
-              _lemmasToVocabUses(
-                continuance.lemmas,
-                ConstructUseTypeEnum.incIt,
-              ),
-            );
+            for (final token in tokensToSave) {
+              uses.add(
+                _lemmaToVocabUse(
+                  token.lemma,
+                  ConstructUseTypeEnum.incIt,
+                ),
+              );
+            }
           }
         } else {
           if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
-            uses.addAll(
-              _lemmasToVocabUses(
-                continuance.lemmas,
-                ConstructUseTypeEnum.ignIt,
-              ),
-            );
+            for (final token in tokensToSave) {
+              uses.add(
+                _lemmaToVocabUse(
+                  token.lemma,
+                  ConstructUseTypeEnum.ignIt,
+                ),
+              );
+            }
           }
         }
       }
@@ -728,14 +733,16 @@ class PangeaMessageEvent {
     }
 
     // for each token, record whether selected in ga, ta, or wa
-    for (final token in originalSent!.tokens!) {
-      uses.addAll(_getVocabUseForToken(token));
+    for (final token in originalSent!.tokens!
+        .where((token) => token.lemma.saveVocab)
+        .toList()) {
+      uses.add(_getVocabUseForToken(token));
     }
 
     return uses;
   }
 
-  /// Returns a list of [OneConstructUse] objects for the given [token]
+  /// Returns a [OneConstructUse] for the given [token]
   /// If there is no [originalSent] or [originalSent.choreo], the [token] is
   /// considered to be a [ConstructUseTypeEnum.wa] as long as it matches the target language.
   /// Later on, we may want to consider putting it in some category of like 'pending'
@@ -744,11 +751,11 @@ class PangeaMessageEvent {
   /// If the [token] is in the [originalSent.choreo.acceptedOrIgnoredMatch.choices],
   /// it is considered to be a [ConstructUseTypeEnum.corIt].
   /// If the [token] is not included in any choreoStep, it is considered to be a [ConstructUseTypeEnum.wa].
-  List<OneConstructUse> _getVocabUseForToken(PangeaToken token) {
+  OneConstructUse _getVocabUseForToken(PangeaToken token) {
     if (originalSent?.choreo == null) {
       final bool inUserL2 = originalSent?.langCode == l2Code;
-      return _lemmasToVocabUses(
-        token.lemmas,
+      return _lemmaToVocabUse(
+        token.lemma,
         inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk,
       );
     }
@@ -763,45 +770,34 @@ class PangeaMessageEvent {
                     step.text.contains(r.value),
               ) ??
               false)) {
-        return _lemmasToVocabUses(token.lemmas, ConstructUseTypeEnum.ga);
+        return _lemmaToVocabUse(token.lemma, ConstructUseTypeEnum.ga);
       }
       if (step.itStep != null) {
         final bool pickedThroughIT =
             step.itStep!.chosenContinuance?.text.contains(token.text.content) ??
                 false;
         if (pickedThroughIT) {
-          return _lemmasToVocabUses(token.lemmas, ConstructUseTypeEnum.corIt);
+          return _lemmaToVocabUse(token.lemma, ConstructUseTypeEnum.corIt);
           //PTODO - check if added via custom input in IT flow
         }
       }
     }
-    return _lemmasToVocabUses(token.lemmas, ConstructUseTypeEnum.wa);
+    return _lemmaToVocabUse(token.lemma, ConstructUseTypeEnum.wa);
   }
 
-  /// Convert a list of [lemmas] into a list of vocab uses
-  /// with the given [type]
-  List<OneConstructUse> _lemmasToVocabUses(
-    List<Lemma> lemmas,
+  OneConstructUse _lemmaToVocabUse(
+    Lemma lemma,
     ConstructUseTypeEnum type,
-  ) {
-    final List<OneConstructUse> uses = [];
-    for (final lemma in lemmas) {
-      if (lemma.saveVocab) {
-        uses.add(
-          OneConstructUse(
-            useType: type,
-            chatId: event.roomId!,
-            timeStamp: event.originServerTs,
-            lemma: lemma.text,
-            form: lemma.form,
-            msgId: event.eventId,
-            constructType: ConstructTypeEnum.vocab,
-          ),
-        );
-      }
-    }
-    return uses;
-  }
+  ) =>
+      OneConstructUse(
+        useType: type,
+        chatId: event.roomId!,
+        timeStamp: event.originServerTs,
+        lemma: lemma.text,
+        form: lemma.form,
+        msgId: event.eventId,
+        constructType: ConstructTypeEnum.vocab,
+      );
 
   /// get construct uses of type grammar for the message
   List<OneConstructUse> get _grammarConstructUses {
