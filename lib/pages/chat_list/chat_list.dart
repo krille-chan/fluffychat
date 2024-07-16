@@ -216,7 +216,7 @@ class ChatListController extends State<ChatList>
     // Check whether participants include the current user and one of the bots
     final userIds = participants.map((user) => user.id).toList();
     final containsCurrentUser = userIds.contains(client.userID);
-    final containsBot = userIds.any((id) => excludedUserIds.contains(id));
+    final containsBot = userIds.any((id) => id.contains('bot') && excludedUserIds.contains(id));
 
     return containsCurrentUser && containsBot;
   }
