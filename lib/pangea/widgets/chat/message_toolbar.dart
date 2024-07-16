@@ -86,7 +86,7 @@ class ToolbarDisplayController {
       // If message is too close to top, make space for toolbar
       if (targetOffset.dy < 360) {
         // If chat can scroll up, do so
-        final scrollTo = scrollController.offset - targetOffset.dy + 300;
+        var scrollTo = scrollController.offset - targetOffset.dy + 320;
         if (scrollTo >= scrollController.position.minScrollExtent &&
             scrollTo <= scrollController.position.maxScrollExtent) {
           scrollController.animateTo(
@@ -98,6 +98,30 @@ class ToolbarDisplayController {
         // If cannot scroll up enough, show toolbar underneath instead
         else {
           toolbarUp = false;
+          // Scroll down if need more space beneath message
+          final spaceBeneath = MediaQuery.of(context).size.height -
+              targetOffset.dy -
+              transformTargetSize.height;
+          if (spaceBeneath < 360) {
+            scrollTo = scrollController.offset + spaceBeneath - 320;
+            if (scrollTo >= scrollController.position.minScrollExtent &&
+                scrollTo <= scrollController.position.maxScrollExtent) {
+              scrollController.animateTo(
+                scrollTo,
+                duration: FluffyThemes.animationDuration,
+                curve: FluffyThemes.animationCurve,
+              );
+            }
+            // If can't scroll down enough, scroll up as much as possible and show toolbar above
+            else {
+              scrollController.animateTo(
+                scrollController.position.minScrollExtent,
+                duration: FluffyThemes.animationDuration,
+                curve: FluffyThemes.animationCurve,
+              );
+              toolbarUp = true;
+            }
+          }
         }
       }
     }
