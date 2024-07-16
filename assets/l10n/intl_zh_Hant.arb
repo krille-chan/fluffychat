@@ -321,7 +321,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "比較以下數字，確保它們和另一個裝置上的相同：",
+  "compareNumbersMatch": "比較以下數字：",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -1859,5 +1859,9 @@
   "block": "封鎖",
   "@block": {},
   "discover": "探索",
-  "@discover": {}
+  "@discover": {},
+  "alwaysUse24HourFormat": "否",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  }
 }
