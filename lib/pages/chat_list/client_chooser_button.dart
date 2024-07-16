@@ -100,17 +100,17 @@ class ClientChooserButton extends StatelessWidget {
       //     ],
       //   ),
       // ),
-      if (controller.pangeaController.permissionsController.isUser18())
-        PopupMenuItem(
-          value: SettingsAction.findAConversationPartner,
-          child: Row(
-            children: [
-              const Icon(Icons.add_circle_outline),
-              const SizedBox(width: 18),
-              Expanded(child: Text(L10n.of(context)!.findALanguagePartner)),
-            ],
-          ),
-        ),
+      // if (controller.pangeaController.permissionsController.isUser18())
+      //   PopupMenuItem(
+      //     value: SettingsAction.findAConversationPartner,
+      //     child: Row(
+      //       children: [
+      //         const Icon(Icons.add_circle_outline),
+      //         const SizedBox(width: 18),
+      //         Expanded(child: Text(L10n.of(context)!.findALanguagePartner)),
+      //       ],
+      //     ),
+      //   ),
       // PopupMenuItem(
       //   value: SettingsAction.setStatus,
       //   child: Row(
