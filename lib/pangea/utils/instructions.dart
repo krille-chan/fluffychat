@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,9 @@ class InstructionsController {
   final Map<String, bool> _instructionsShown = {};
 
   /// Returns true if the user requested this popup not be shown again
-  bool? toggledOff(String key) =>
-      _pangeaController.pStoreService.read(key.toString());
+  bool? toggledOff(String key) => InstructionsEnum.values
+      .firstWhereOrNull((value) => value.toString() == key)
+      ?.toggledOff;
 
   InstructionsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
@@ -33,19 +35,32 @@ class InstructionsController {
 
   /// Returns true if the instructions were closed
   /// or turned off by the user via the toggle switch
-  bool wereInstructionsTurnedOff(String key) =>
-      toggledOff(key) ?? _instructionsClosed[key] ?? false;
+  bool wereInstructionsTurnedOff(String key) {
+    return toggledOff(key) ?? _instructionsClosed[key] ?? false;
+  }
 
   void turnOffInstruction(String key) => _instructionsClosed[key] = true;
 
-  Future<void> updateEnableInstructions(
+  void updateEnableInstructions(
     String key,
     bool value,
-  ) async =>
-      await _pangeaController.pStoreService.save(
-        key,
-        value,
-      );
+  ) {
+    _pangeaController.userController.updateProfile((profile) {
+      if (key == InstructionsEnum.itInstructions.toString()) {
+        profile.instructionSettings.showedItInstructions = value;
+      }
+      if (key == InstructionsEnum.clickMessage.toString()) {
+        profile.instructionSettings.showedClickMessage = value;
+      }
+      if (key == InstructionsEnum.blurMeansTranslate.toString()) {
+        profile.instructionSettings.showedBlurMeansTranslate = value;
+      }
+      if (key == InstructionsEnum.tooltipInstructions.toString()) {
+        profile.instructionSettings.showedTooltipInstructions = value;
+      }
+      return profile;
+    });
+  }
 
   /// Instruction Card gives users tips on
   /// how to use Pangea Chat's features
@@ -170,7 +185,7 @@ class InstructionsToggleState extends State<InstructionsToggle> {
         widget.instructionsKey.toString(),
       ),
       onChanged: ((value) async {
-        await pangeaController.instructions.updateEnableInstructions(
+        pangeaController.instructions.updateEnableInstructions(
           widget.instructionsKey.toString(),
           value,
         );

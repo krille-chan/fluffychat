@@ -93,7 +93,6 @@ class PangeaLanguage {
   }
 
   static LanguageModel byLangCode(String langCode) {
-    final list = _langList;
     for (final element in _langList) {
       if (element.langCode == langCode) return element;
     }

@@ -78,4 +78,11 @@ extension GeneralInfoClientExtension on Client {
         50: l10n.moderator,
         100: l10n.admin,
       }[powerLevel];
+
+  /// Account data comes through in the first sync, so wait for that
+  Future<void> _waitForAccountData() async {
+    if (prevBatch == null) {
+      await onSync.stream.first;
+    }
+  }
 }

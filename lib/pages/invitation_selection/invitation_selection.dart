@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
@@ -48,16 +49,29 @@ class InvitationSelectionController extends State<InvitationSelection> {
     );
     final contacts = client.rooms
         .where((r) => r.isDirectChat)
-        .map((r) => r.unsafeGetUserFromMemoryOrFallback(r.directChatMatrixID!))
+        // #Pangea
+        // .map((r) => r.unsafeGetUserFromMemoryOrFallback(r.directChatMatrixID!))
+        .map(
+          (r) => r
+              .getParticipants()
+              .firstWhereOrNull((u) => u.id != client.userID),
+        )
+        // Pangea#
         .toList();
+    // #Pangea
+    contacts.removeWhere((u) => u == null || u.id != BotName.byEnvironment);
     contacts.sort(
-      (a, b) => a.calcDisplayname().toLowerCase().compareTo(
-            b.calcDisplayname().toLowerCase(),
+      (a, b) => a!.calcDisplayname().toLowerCase().compareTo(
+            b!.calcDisplayname().toLowerCase(),
           ),
     );
-    //#Pangea
+    return contacts.cast<User>();
+    // contacts.sort(
+    //   (a, b) => a.calcDisplayname().toLowerCase().compareTo(
+    //         b.calcDisplayname().toLowerCase(),
+    //       ),
+    // );
     // return contacts;
-    return contacts.where((u) => u.id != BotName.byEnvironment).toList();
     //Pangea#
   }
 

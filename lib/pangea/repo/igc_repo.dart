@@ -47,23 +47,33 @@ class IgcRepo {
       tokens: [
         PangeaToken(
           text: PangeaTokenText(content: "This", offset: 0, length: 4),
-          lemmas: [Lemma(form: "This", text: "this", saveVocab: true)],
+          lemma: Lemma(form: "This", text: "this", saveVocab: true),
+          pos: "DET",
+          morph: {},
         ),
         PangeaToken(
           text: PangeaTokenText(content: "be", offset: 5, length: 2),
-          lemmas: [Lemma(form: "be", text: "be", saveVocab: true)],
+          lemma: Lemma(form: "be", text: "be", saveVocab: true),
+          pos: "VERB",
+          morph: {},
         ),
         PangeaToken(
           text: PangeaTokenText(content: "a", offset: 8, length: 1),
-          lemmas: [],
+          lemma: Lemma(form: "a", text: "a", saveVocab: true),
+          pos: "DET",
+          morph: {},
         ),
         PangeaToken(
           text: PangeaTokenText(content: "sample", offset: 10, length: 6),
-          lemmas: [],
+          lemma: Lemma(form: "sample", text: "sample", saveVocab: true),
+          pos: "NOUN",
+          morph: {},
         ),
         PangeaToken(
           text: PangeaTokenText(content: "text", offset: 17, length: 4),
-          lemmas: [],
+          lemma: Lemma(form: "text", text: "text", saveVocab: true),
+          pos: "NOUN",
+          morph: {},
         ),
       ],
       matches: [

@@ -82,15 +82,19 @@ class GetChatListItemSubtitle {
 
       final i18n = MatrixLocals(l10n);
 
-      if (text == null) return l10n.emptyChat;
+      if (text == null || event.room.lastEvent == null) {
+        return l10n.emptyChat;
+      }
 
       if (!event.room.isDirectChat ||
-          event.room.directChatMatrixID != event.room.lastEvent?.senderId) {
+          event.room.directChatMatrixID != event.room.lastEvent!.senderId) {
         final senderNameOrYou = event.senderId == event.room.client.userID
             ? i18n.you
             : event.room
-                .unsafeGetUserFromMemoryOrFallback(event.senderId)
-                .calcDisplayname(i18n: i18n);
+                    .getParticipants()
+                    .firstWhereOrNull((u) => u.id != event!.room.client.userID)
+                    ?.calcDisplayname(i18n: i18n) ??
+                event.room.lastEvent!.senderId;
 
         return "$senderNameOrYou: $text";
       }

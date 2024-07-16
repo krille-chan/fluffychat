@@ -1,133 +1,71 @@
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:matrix/matrix.dart';
 
-class PLocalStore {
+/// Utility to save and read data both in the matrix profile (this is the default
+/// behavior) and in the local storage (local needs to be specificied). An
+/// instance of this class is created in the PangeaController.
+class PStore {
   final GetStorage _box = GetStorage();
   final PangeaController pangeaController;
 
-  PLocalStore({required this.pangeaController});
+  PStore({required this.pangeaController});
 
-  /// save data in local
+  /// Saves the provided [data] with the specified [key] in the local storage.
+  ///
+  /// By default, the [data] is considered as account data, but you can set
+  /// [isAccountData] to false if it's not account-related data.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// await save('user', {'name': 'John Doe', 'age': 25});
+  /// ```
   Future<void> save(
     String key,
     dynamic data, {
-    bool addClientIdToKey = true,
-    bool local = false,
+    bool isAccountData = true,
   }) async {
-    local
-        ? await saveLocal(
-            key,
-            data,
-            addClientIdToKey: addClientIdToKey,
-          )
-        : await saveProfile(key, data);
+    await _box.write(_key(key, isAccountData: isAccountData), data);
   }
 
-  /// fetch data from local
-  dynamic read(
-    String key, {
-    bool addClientIdToKey = true,
-    local = false,
-  }) {
-    return local
-        ? readLocal(
-            key,
-            addClientIdToKey: addClientIdToKey,
-          )
-        : readProfile(key);
-  }
-
-  /// delete data from local
-  Future<void> delete(
-    String key, {
-    bool addClientIdToKey = true,
-    local = false,
-  }) async {
-    return local
-        ? deleteLocal(
-            key,
-            addClientIdToKey: addClientIdToKey,
-          )
-        : deleteProfile(key);
-  }
-
-  /// save data in local
-  Future<void> saveLocal(
-    String key,
-    dynamic data, {
-    bool addClientIdToKey = true,
-  }) async {
-    await _box.write(_key(key, addClientIdToKey: addClientIdToKey), data);
-  }
-
-  Future<void> saveProfile(
-    String key,
-    dynamic data,
-  ) async {
-    final waitForAccountSync =
-        pangeaController.matrixState.client.onSync.stream.firstWhere(
-      (sync) =>
-          sync.accountData != null &&
-          sync.accountData!.any(
-            (event) => event.content.keys.any(
-              (k) => k == key,
-            ),
-          ),
-    );
-    await pangeaController.matrixState.client.setAccountData(
-      pangeaController.matrixState.client.userID!,
-      key,
-      {key: data},
-    );
-    await waitForAccountSync;
-    await pangeaController.matrixState.client.onSyncStatus.stream.firstWhere(
-      (syncStatus) => syncStatus.status == SyncStatus.finished,
-    );
-  }
-
-  /// fetch data from local
-  dynamic readLocal(String key, {bool addClientIdToKey = true}) {
+  /// Reads the value associated with the given [key] from the local store.
+  ///
+  /// If [isAccountData] is true, tries to find key assosiated with the logged in user.
+  /// Otherwise, it is read from the general store.
+  ///
+  /// Returns the value associated with the [key], or
+  /// null if the user ID is null or value hasn't been set.
+  dynamic read(String key, {bool isAccountData = true}) {
     return pangeaController.matrixState.client.userID != null
-        ? _box.read(_key(key, addClientIdToKey: addClientIdToKey))
+        ? _box.read(_key(key, isAccountData: isAccountData))
         : null;
   }
 
-  dynamic readProfile(String key) {
-    try {
-      return pangeaController.matrixState.client.accountData[key]?.content[key];
-    } catch (err) {
-      ErrorHandler.logError(e: err);
-      return null;
-    }
-  }
-
-  /// delete data from local
-  Future<void> deleteLocal(String key, {bool addClientIdToKey = true}) async {
+  /// Deletes the value associated with the given [key] from the local store.
+  ///
+  /// If [isAccountData] is true (default), will try to use key assosiated with the logged in user's ID
+  ///
+  /// Returns a [Future] that completes when the value is successfully deleted.
+  /// If the user is not logged in, the value will not be deleted and the [Future] will complete with null.
+  Future<void> delete(String key, {bool isAccountData = true}) async {
     return pangeaController.matrixState.client.userID != null
-        ? _box.remove(_key(key, addClientIdToKey: addClientIdToKey))
+        ? _box.remove(_key(key, isAccountData: isAccountData))
         : null;
   }
 
-  Future<void> deleteProfile(key) async {
-    return pangeaController.matrixState.client.userID != null
-        ? pangeaController.matrixState.client.setAccountData(
-            pangeaController.matrixState.client.userID!,
-            key,
-            {key: null},
-          )
-        : null;
-  }
-
-  _key(String key, {bool addClientIdToKey = true}) {
-    return addClientIdToKey
+  /// Returns the key for storing data in the pangea store.
+  ///
+  /// The [key] parameter represents the base key for the data.
+  /// The [isAccountData] parameter indicates whether the data is account-specific.
+  /// If [isAccountData] is true, the account-specific key is returned by appending the user ID to the base key.
+  /// If [isAccountData] is false, the base key is returned as is.
+  String _key(String key, {bool isAccountData = true}) {
+    return isAccountData
         ? pangeaController.matrixState.client.userID! + key
         : key;
   }
 
-  /// clear all local storage
-  clearStorage() {
+  /// Clears the storage by erasing all data in the box.
+  void clearStorage() {
     _box.erase();
   }
 }

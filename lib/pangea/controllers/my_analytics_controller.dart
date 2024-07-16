@@ -121,7 +121,6 @@ class MyAnalyticsController {
         _pangeaController.pStoreService.save(
           PLocalKey.messagesSinceUpdate,
           currentCache,
-          local: true,
         );
       }
 
@@ -155,7 +154,6 @@ class MyAnalyticsController {
     _pangeaController.pStoreService.save(
       PLocalKey.messagesSinceUpdate,
       [],
-      local: true,
     );
   }
 
@@ -167,14 +165,12 @@ class MyAnalyticsController {
       Logs().d('Reading messages since update from local storage');
       final dynamic locallySaved = _pangeaController.pStoreService.read(
         PLocalKey.messagesSinceUpdate,
-        local: true,
       );
       if (locallySaved == null) {
         Logs().d('No locally saved messages found, initializing empty list.');
         _pangeaController.pStoreService.save(
           PLocalKey.messagesSinceUpdate,
           [],
-          local: true,
         );
         return [];
       }
@@ -201,7 +197,6 @@ class MyAnalyticsController {
       _pangeaController.pStoreService.save(
         PLocalKey.messagesSinceUpdate,
         [],
-        local: true,
       );
       return [];
     }
@@ -234,11 +229,8 @@ class MyAnalyticsController {
   /// top level analytics sending function. Gather recent messages and activity records,
   /// convert them into the correct formats, and send them to the analytics room
   Future<void> _updateAnalytics() async {
-    // if missing important info, don't send analytics
-    if (userL2 == null || _client.userID == null) {
-      debugger(when: kDebugMode);
-      return;
-    }
+    // if missing important info, don't send analytics. Could happen if user just signed up.
+    if (userL2 == null || _client.userID == null) return;
 
     // analytics room for the user and current target language
     final Room analyticsRoom = await _client.getMyAnalyticsRoom(userL2!);

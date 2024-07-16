@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
@@ -194,6 +193,8 @@ class MessageToolbarState extends State<MessageToolbar> {
   late StreamSubscription<MessageMode> toolbarModeStream;
 
   void updateMode(MessageMode newMode) {
+    //Early exit from the function if the widget has been unmounted to prevent updates on an inactive widget.
+    if (!mounted) return;
     if (updatingMode) return;
     debugPrint("updating toolbar mode");
     final bool subscribed =
@@ -329,17 +330,13 @@ class MessageToolbarState extends State<MessageToolbar> {
     });
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      final bool autoplay = MatrixState.pangeaController.pStoreService.read(
-            PLocalKey.autoPlayMessages,
-          ) ??
-          false;
-
       if (widget.pangeaMessageEvent.isAudioMessage) {
         updateMode(MessageMode.speechToText);
         return;
       }
 
-      autoplay
+      MatrixState.pangeaController.userController.profile.userSettings
+              .autoPlayMessages
           ? updateMode(MessageMode.textToSpeech)
           : updateMode(MessageMode.translation);
     });
