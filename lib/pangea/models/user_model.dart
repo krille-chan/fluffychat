@@ -420,7 +420,7 @@ class PangeaProfileResponse {
 
   factory PangeaProfileResponse.fromJson(Map<String, dynamic> json) {
     return PangeaProfileResponse(
-      profile: PangeaProfile.fromJson(json),
+      profile: PangeaProfile.fromJson(json[ModelKey.userProfile]),
       access: json[ModelKey.userAccess],
     );
   }
