@@ -451,9 +451,22 @@ class _SpaceViewState extends State<SpaceView> {
 
   // #Pangea
   Future<void> loadChatCounts() async {
-    for (final Room room in Matrix.of(context).client.rooms) {
-      if (room.isSpace && !chatCounts.containsKey(room.id)) {
-        await loadHierarchy(null, room.id);
+    // if not in the call spaces view, don't load chat count yet
+    if (widget.controller.activeSpaceId != null) return;
+
+    final List<Room> allSpaces =
+        Matrix.of(context).client.rooms.where((room) => room.isSpace).toList();
+
+    for (final Room space in allSpaces) {
+      // check if the space is visible in the all spaces list
+      final bool isRootSpace = !allSpaces.any(
+        (parentSpace) =>
+            parentSpace.spaceChildren.any((child) => child.roomId == space.id),
+      );
+
+      // if it's visible, and it hasn't been loaded yet, load chat count
+      if (isRootSpace && !chatCounts.containsKey(space.id)) {
+        await loadHierarchy(null, space.id);
       }
     }
   }
@@ -479,6 +492,7 @@ class _SpaceViewState extends State<SpaceView> {
         event.isSpaceChildUpdate(
           widget.controller.activeSpaceId!,
         )) {
+      debugPrint("refresh on update");
       await loadHierarchy();
     }
     setState(() => refreshing = false);
