@@ -62,7 +62,7 @@ class PangeaToken {
 
   Map<String, dynamic> toJson() => {
         _textKey: text.toJson(),
-        _lemmaKey: lemma.toJson(),
+        _lemmaKey: [lemma.toJson()],
         'pos': pos,
         'morph': morph,
       };
