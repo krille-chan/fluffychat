@@ -2712,5 +2712,30 @@
   "alwaysUse24HourFormat": "vale",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "noMoreChatsFound": "Rohkem vestlusi ei leidu...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Vestlusi, millega oled liitunud",
+  "@joinedChats": {},
+  "unread": "Lugemata",
+  "@unread": {},
+  "space": "Kogukond",
+  "@space": {},
+  "spaces": "Kogukonnad",
+  "@spaces": {},
+  "goToSpace": "Ava kogukond: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Märgi mitteloetuks",
+  "@markAsUnread": {},
+  "countChatsAndCountParticipants": "{chats} vestlust ja {participants} osalejat",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
   }
 }
