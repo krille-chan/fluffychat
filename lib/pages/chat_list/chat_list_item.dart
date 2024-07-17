@@ -173,16 +173,19 @@ class ChatListItem extends StatelessWidget {
                         Positioned(
                           top: 0,
                           right: 0,
-                          child: AnimatedScale(
-                            duration: FluffyThemes.animationDuration,
-                            curve: FluffyThemes.animationCurve,
-                            scale: listTileHovered ? 1.0 : 0.0,
-                            child: Material(
-                              color: backgroundColor,
-                              borderRadius: BorderRadius.circular(16),
-                              child: const Icon(
-                                Icons.arrow_drop_down_circle_outlined,
-                                size: 18,
+                          child: GestureDetector(
+                            onTap: () => onLongPress?.call(context),
+                            child: AnimatedScale(
+                              duration: FluffyThemes.animationDuration,
+                              curve: FluffyThemes.animationCurve,
+                              scale: listTileHovered ? 1.0 : 0.0,
+                              child: Material(
+                                color: backgroundColor,
+                                borderRadius: BorderRadius.circular(16),
+                                child: const Icon(
+                                  Icons.arrow_drop_down_circle_outlined,
+                                  size: 18,
+                                ),
                               ),
                             ),
                           ),
