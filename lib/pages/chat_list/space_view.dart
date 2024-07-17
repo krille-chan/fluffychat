@@ -130,19 +130,27 @@ class _SpaceViewState extends State<SpaceView> {
       if (prevBatch != null) {
         response.rooms.insertAll(0, _lastResponse[activeSpaceId]?.rooms ?? []);
       }
-      setState(() {
-        _lastResponse[activeSpaceId] = response;
-      });
+      // #Pangea
+      if (mounted) {
+        // Pangea#
+        setState(() {
+          _lastResponse[activeSpaceId] = response;
+        });
+      }
       return _lastResponse[activeSpaceId]!;
     } catch (e) {
-      setState(() {
-        error = e;
-      });
+      // #Pangea
+      if (mounted) {
+        // Pangea#
+        setState(() {
+          error = e;
+        });
+      }
       rethrow;
     } finally {
       // #Pangea
       if (activeSpace != null) {
-        await setChatCount(
+        setChatCount(
           activeSpace,
           _lastResponse[activeSpaceId] ??
               GetSpaceHierarchyResponse(
@@ -150,10 +158,12 @@ class _SpaceViewState extends State<SpaceView> {
               ),
         );
       }
-      // Pangea#
-      setState(() {
-        loading = false;
-      });
+      if (mounted) {
+        // Pangea#
+        setState(() {
+          loading = false;
+        });
+      }
     }
   }
 
@@ -499,6 +509,7 @@ class _SpaceViewState extends State<SpaceView> {
   }
 
   bool includeSpaceChild(sc, matchingSpaceChildren) {
+    if (!mounted) return false;
     final bool isAnalyticsRoom = sc.roomType == PangeaRoomTypes.analytics;
     final bool isMember = [Membership.join, Membership.invite]
         .contains(Matrix.of(context).client.getRoomById(sc.roomId)?.membership);

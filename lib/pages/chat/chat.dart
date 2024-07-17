@@ -416,7 +416,7 @@ class ChatController extends State<ChatPageWithRoom>
         onInsert: onInsert,
       );
       // #Pangea
-      if (visibleEvents.length < 10) {
+      if (visibleEvents.length < 10 && timeline != null) {
         int prevNumEvents = timeline!.events.length;
         await requestHistory();
         int numRequests = 0;
