@@ -47,29 +47,32 @@ class Avatar extends StatelessWidget {
     final noPic = mxContent == null ||
         mxContent.toString().isEmpty ||
         mxContent.toString() == 'null';
-    final textWidget = Center(
+    final textWidget = Container(
+      color: name?.lightColorAvatar,
+      alignment: Alignment.center,
       child: Text(
         fallbackLetters,
         style: TextStyle(
-          color: noPic ? Colors.white : null,
+          color: Colors.white,
           fontSize: (size / 2.5).roundToDouble(),
         ),
       ),
     );
     final borderRadius = this.borderRadius ?? BorderRadius.circular(size / 2);
     final presenceUserId = this.presenceUserId;
-    final color =
-        noPic ? name?.lightColorAvatar : Theme.of(context).secondaryHeaderColor;
     final container = Stack(
       children: [
         SizedBox(
           width: size,
           height: size,
           child: Material(
-            color: color,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadius,
-              side: border ?? BorderSide.none,
+              side: border ??
+                  BorderSide(
+                    color: Theme.of(context).dividerColor,
+                    width: 1,
+                  ),
             ),
             clipBehavior: Clip.hardEdge,
             child: noPic
@@ -81,7 +84,6 @@ class Avatar extends StatelessWidget {
                     width: size,
                     height: size,
                     placeholder: (_) => textWidget,
-                    cacheKey: mxContent.toString(),
                   ),
           ),
         ),
