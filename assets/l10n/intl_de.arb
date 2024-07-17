@@ -1712,7 +1712,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unpin": "Abpinnen",
+  "unpin": "Nicht mehr anpinnen",
   "@unpin": {
     "type": "text",
     "placeholders": {}

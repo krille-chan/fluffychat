@@ -2712,5 +2712,30 @@
   "alwaysUse24HourFormat": "否",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "noMoreChatsFound": "找不到更多聊天…",
+  "@noMoreChatsFound": {},
+  "joinedChats": "已加入的聊天",
+  "@joinedChats": {},
+  "space": "空间",
+  "@space": {},
+  "spaces": "空间",
+  "@spaces": {},
+  "goToSpace": "转到空间：{space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "标为未读",
+  "@markAsUnread": {},
+  "countChatsAndCountParticipants": "{chats} 个聊天和 {participants} 名参与者",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "unread": "未读",
+  "@unread": {}
 }
