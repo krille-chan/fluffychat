@@ -109,46 +109,6 @@ class PangeaRoomRules {
     this.autoIGC = ClassDefaultValues.languageToolPermissions,
   });
 
-  updatePermission(String key, bool value) {
-    switch (key) {
-      case 'isPublic':
-        isPublic = value;
-        break;
-      case 'isOpenEnrollment':
-        isOpenEnrollment = value;
-        break;
-      case 'oneToOneChatClass':
-        oneToOneChatClass = value;
-        break;
-      case 'isCreateRooms':
-        isCreateRooms = value;
-        break;
-      case 'isShareVideo':
-        isShareVideo = value;
-        break;
-      case 'isSharePhoto':
-        isSharePhoto = value;
-        break;
-      case 'isShareFiles':
-        isShareFiles = value;
-        break;
-      case 'isShareLocation':
-        isShareLocation = value;
-        break;
-      case 'isCreateStories':
-        isCreateStories = value;
-        break;
-      case 'isVoiceNotes':
-        isVoiceNotes = value;
-        break;
-      case 'isInviteOnlyStudents':
-        isInviteOnlyStudents = value;
-        break;
-      default:
-        throw Exception('Invalid key for setting permissions - $key');
-    }
-  }
-
   setLanguageToolSetting(ToolSetting setting, int value) {
     switch (setting) {
       case ToolSetting.interactiveTranslator:

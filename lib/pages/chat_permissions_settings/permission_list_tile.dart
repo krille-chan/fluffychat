@@ -1,9 +1,9 @@
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/config/app_config.dart';
 
 class PermissionsListTile extends StatelessWidget {
   final String permissionKey;
@@ -72,7 +72,16 @@ class PermissionsListTile extends StatelessWidget {
     return ListTile(
       title: Text(getLocalizedPowerLevelString(context)),
       subtitle: Text(
-        L10n.of(context)!.minimumPowerLevel(permission.toString()),
+        // #Pangea
+        // L10n.of(context)!.minimumPowerLevel(permission.toString()),
+        L10n.of(context)!.minimumPowerLevel(
+          Matrix.of(context).client.powerLevelName(
+                    permission,
+                    L10n.of(context)!,
+                  ) ??
+              permission.toString(),
+        ),
+        // Pangea#
       ),
       trailing: Material(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),

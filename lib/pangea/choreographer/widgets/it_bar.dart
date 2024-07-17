@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
@@ -7,7 +8,6 @@ import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/translation_finished_flow.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -18,112 +18,140 @@ import '../../utils/overlay.dart';
 import '../../widgets/igc/word_data_card.dart';
 import 'choice_array.dart';
 
-class ITBar extends StatelessWidget {
+class ITBar extends StatefulWidget {
   final Choreographer choreographer;
   const ITBar({super.key, required this.choreographer});
 
-  ITController get itController => choreographer.itController;
+  @override
+  ITBarState createState() => ITBarState();
+}
+
+class ITBarState extends State<ITBar> {
+  ITController get itController => widget.choreographer.itController;
+  StreamSubscription? _choreoSub;
+
+  @override
+  void initState() {
+    // Rebuild the widget each time there's an update from choreo.
+    _choreoSub = widget.choreographer.stateListener.stream.listen((_) {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _choreoSub?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return AnimatedSize(
       duration: itController.willOpen
-        ? const Duration(milliseconds: 2000)
-        : const Duration(milliseconds: 500),
+          ? const Duration(milliseconds: 2000)
+          : const Duration(milliseconds: 500),
       curve: Curves.fastOutSlowIn,
       clipBehavior: Clip.none,
       child: !itController.willOpen
-        ? const SizedBox()
-        : CompositedTransformTarget(
-          link: choreographer.itBarLinkAndKey.link,
-          child: AnimatedOpacity(
-            duration: itController.willOpen
-              ? const Duration(milliseconds: 2000)
-              : const Duration(milliseconds: 500),
-            opacity: itController.willOpen ? 1.0 : 0.0,
-            child: Container(
-              key: choreographer.itBarLinkAndKey.key,
-              decoration: BoxDecoration(
-                color: Theme.of(context).brightness == Brightness.light
-                    ? Colors.white
-                    : Colors.black,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(AppConfig.borderRadius),
-                  topRight: Radius.circular(AppConfig.borderRadius),
-                ),
-              ),
-              width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(0, 3, 3, 3),
-              child: Stack(
-                children: [
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //   crossAxisAlignment: CrossAxisAlignment.start,
-                        //   children: [
-                        //     // Row(
-                        //     //   mainAxisAlignment: MainAxisAlignment.start,
-                        //     //   crossAxisAlignment: CrossAxisAlignment.start,
-                        //     //   children: [
-                        //     //     CounterDisplay(
-                        //     //       correct: controller.correctChoices,
-                        //     //       custom: controller.customChoices,
-                        //     //       incorrect: controller.incorrectChoices,
-                        //     //       yellow: controller.wildcardChoices,
-                        //     //     ),
-                        //     //     CompositedTransformTarget(
-                        //     //       link: choreographer.itBotLayerLinkAndKey.link,
-                        //     //       child: ITBotButton(
-                        //     //         key: choreographer.itBotLayerLinkAndKey.key,
-                        //     //         choreographer: choreographer,
-                        //     //       ),
-                        //     //     ),
-                        //     //   ],
-                        //     // ),
-                        //     ITCloseButton(choreographer: choreographer),
-                        //   ],
-                        // ),
-                        // const SizedBox(height: 40.0),
-                        OriginalText(controller: itController),
-                        const SizedBox(height: 7.0),
-                        IntrinsicHeight(
-                          child: Container(
-                            constraints: const BoxConstraints(minHeight: 80),
-                            width: double.infinity,
-                            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                            child: Center(
-                              child: itController.choreographer.errorService.isError
-                                  ? ITError(
-                                error: itController
-                                    .choreographer.errorService.error!,
-                                controller: itController,
-                              )
-                                  : itController.showChoiceFeedback
-                                  ? ChoiceFeedbackText(controller: itController)
-                                  : itController.isTranslationDone
-                                  ? TranslationFeedback(
-                                controller: itController,
-                              )
-                                  : ITChoices(controller: itController),
-                            ),
-                          ),
-                        ),
-                      ],
+          ? const SizedBox()
+          : CompositedTransformTarget(
+              link: widget.choreographer.itBarLinkAndKey.link,
+              child: AnimatedOpacity(
+                duration: itController.willOpen
+                    ? const Duration(milliseconds: 2000)
+                    : const Duration(milliseconds: 500),
+                opacity: itController.willOpen ? 1.0 : 0.0,
+                child: Container(
+                  key: widget.choreographer.itBarLinkAndKey.key,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? Colors.white
+                        : Colors.black,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(AppConfig.borderRadius),
+                      topRight: Radius.circular(AppConfig.borderRadius),
                     ),
                   ),
-                  Positioned(
-                    top: 0.0,
-                    right: 0.0,
-                    child: ITCloseButton(choreographer: choreographer),
+                  width: double.infinity,
+                  padding: const EdgeInsets.fromLTRB(0, 3, 3, 3),
+                  child: Stack(
+                    children: [
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   crossAxisAlignment: CrossAxisAlignment.start,
+                            //   children: [
+                            //     // Row(
+                            //     //   mainAxisAlignment: MainAxisAlignment.start,
+                            //     //   crossAxisAlignment: CrossAxisAlignment.start,
+                            //     //   children: [
+                            //     //     CounterDisplay(
+                            //     //       correct: controller.correctChoices,
+                            //     //       custom: controller.customChoices,
+                            //     //       incorrect: controller.incorrectChoices,
+                            //     //       yellow: controller.wildcardChoices,
+                            //     //     ),
+                            //     //     CompositedTransformTarget(
+                            //     //       link: choreographer.itBotLayerLinkAndKey.link,
+                            //     //       child: ITBotButton(
+                            //     //         key: choreographer.itBotLayerLinkAndKey.key,
+                            //     //         choreographer: choreographer,
+                            //     //       ),
+                            //     //     ),
+                            //     //   ],
+                            //     // ),
+                            //     ITCloseButton(choreographer: choreographer),
+                            //   ],
+                            // ),
+                            // const SizedBox(height: 40.0),
+                            OriginalText(controller: itController),
+                            const SizedBox(height: 7.0),
+                            IntrinsicHeight(
+                              child: Container(
+                                constraints:
+                                    const BoxConstraints(minHeight: 80),
+                                width: double.infinity,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4.0),
+                                child: Center(
+                                  child: itController
+                                          .choreographer.errorService.isError
+                                      ? ITError(
+                                          error: itController.choreographer
+                                              .errorService.error!,
+                                          controller: itController,
+                                        )
+                                      : itController.showChoiceFeedback
+                                          ? ChoiceFeedbackText(
+                                              controller: itController,
+                                            )
+                                          : itController.isTranslationDone
+                                              ? TranslationFeedback(
+                                                  controller: itController,
+                                                )
+                                              : ITChoices(
+                                                  controller: itController,
+                                                ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        top: 0.0,
+                        right: 0.0,
+                        child:
+                            ITCloseButton(choreographer: widget.choreographer),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-      ),
     );
   }
 }
@@ -199,20 +227,16 @@ class OriginalText extends StatelessWidget {
                 ),
               ),
             ),
-          if (
-            !controller.isEditingSourceText
-            && controller.sourceText != null
-          )
+          if (!controller.isEditingSourceText && controller.sourceText != null)
             AnimatedOpacity(
               duration: const Duration(milliseconds: 500),
-              opacity: controller.nextITStep != null
-                  ? 1.0
-                  : 0.0,
+              opacity: controller.nextITStep != null ? 1.0 : 0.0,
               child: IconButton(
                 onPressed: () => {
-                  if (controller.nextITStep != null) {
-                    controller.setIsEditingSourceText(true),
-                  },
+                  if (controller.nextITStep != null)
+                    {
+                      controller.setIsEditingSourceText(true),
+                    },
                 },
                 icon: const Icon(Icons.edit_outlined),
               ),
@@ -309,9 +333,9 @@ class ITChoices extends StatelessWidget {
         choices: controller.currentITStep!.continuances.map((e) {
           try {
             return Choice(
-                text: e.text.trim(),
-                color: e.color,
-                isGold: e.description == "best",
+              text: e.text.trim(),
+              color: e.color,
+              isGold: e.description == "best",
             );
           } catch (e) {
             debugger(when: kDebugMode);

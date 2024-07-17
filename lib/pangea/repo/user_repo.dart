@@ -4,37 +4,13 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:http/http.dart';
 
-import '../../widgets/matrix.dart';
 import '../models/user_model.dart';
 import '../models/user_profile_search_model.dart';
 import '../network/requests.dart';
 import '../network/urls.dart';
 
 class PUserRepo {
-  static Future<PUserModel> repoCreatePangeaUser({
-    required String userID,
-    required String dob,
-    required fullName,
-    required String matrixAccessToken,
-  }) async {
-    final Requests req = Requests(
-      baseUrl: PApiUrls.baseAPI,
-      matrixAccessToken: matrixAccessToken,
-    );
-
-    final Map<String, dynamic> body = {
-      ModelKey.userFullName: fullName,
-      ModelKey.userPangeaUserId: userID,
-      ModelKey.userDateOfBirth: dob,
-    };
-    final Response res = await req.post(
-      url: PApiUrls.createUser,
-      body: body,
-    );
-    return PUserModel.fromJson(jsonDecode(res.body));
-  }
-
-  static Future<PUserModel?> fetchPangeaUserInfo({
+  static Future<PangeaProfileResponse?> fetchPangeaUserInfo({
     required String userID,
     required String matrixAccessToken,
   }) async {
@@ -49,38 +25,12 @@ class PUserRepo {
         objectId: userID,
       );
 
-      return PUserModel.fromJson(jsonDecode(res.body));
+      return PangeaProfileResponse.fromJson(jsonDecode(res.body));
     } catch (err) {
       //status code should be 400 - PTODO - check ffor this.
       log("Most likely a first signup and needs to make an account");
       return null;
     }
-  }
-
-  //notes for jordan - only replace non-null fields, return whole profile
-  //Jordan - should return pangeaUserId as well
-  static Future<Profile> updateUserProfile(
-    Profile userProfile,
-    String accessToken,
-  ) async {
-    final Requests req = Requests(
-      baseUrl: PApiUrls.baseAPI,
-      accessToken: accessToken,
-    );
-    final Response res = await req.put(
-      url: PApiUrls.updateUserProfile,
-      body: userProfile.toJson(),
-    );
-
-    //temp fix
-    final content = jsonDecode(res.body);
-    //PTODO - try taking this out and see where bug occurs
-    if (content[ModelKey.userPangeaUserId] == null) {
-      content[ModelKey.userPangeaUserId] =
-          MatrixState.pangeaController.matrixState.client.userID;
-    }
-
-    return Profile.fromJson(content);
   }
 
   static Future<UserProfileSearchResponse> searchUserProfiles({

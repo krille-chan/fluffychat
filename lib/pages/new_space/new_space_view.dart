@@ -1,12 +1,8 @@
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
-import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
-import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -32,6 +28,15 @@ class NewSpaceView extends StatelessWidget {
         // Pangea#
         title: Text(L10n.of(context)!.createNewSpace),
       ),
+      // #Pangea
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: controller.loading ? null : controller.submitAction,
+        icon: controller.loading ? null : const Icon(Icons.workspaces_outlined),
+        label: controller.loading
+            ? const CircularProgressIndicator.adaptive()
+            : Text(L10n.of(context)!.createSpace),
+      ),
+      // Pangea#
       body: MaxWidthBody(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -124,67 +129,71 @@ class NewSpaceView extends StatelessWidget {
               startOpen: true,
               spaceMode: true,
             ),
-            if (controller.rulesEditorKey.currentState != null)
-              RoomRulesEditor(
-                key: controller.rulesEditorKey,
-                roomId: null,
-                startOpen: false,
-                initialRules: controller.rulesEditorKey.currentState!.rules,
-              ),
-            if (controller.rulesEditorKey.currentState == null)
-              FutureBuilder<PangeaRoomRules?>(
-                future: Matrix.of(context).client.lastUpdatedRoomRules,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return RoomRulesEditor(
-                      key: controller.rulesEditorKey,
-                      roomId: null,
-                      startOpen: false,
-                      initialRules: snapshot.data,
-                    );
-                  } else {
-                    return const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Center(
-                        child:
-                            CircularProgressIndicator.adaptive(strokeWidth: 2),
-                      ),
-                    );
-                  }
-                },
-              ),
+            // Commenting out pangea room rules for now
+            // if (controller.rulesEditorKey.currentState != null)
+            //   RoomRulesEditor(
+            //     key: controller.rulesEditorKey,
+            //     roomId: null,
+            //     startOpen: false,
+            //     initialRules: controller.rulesEditorKey.currentState!.rules,
+            //   ),
+
+            // Commenting out pangea room rules for now
+            // if (controller.rulesEditorKey.currentState == null)
+            //   FutureBuilder<PangeaRoomRules?>(
+            //     future: Matrix.of(context).client.lastUpdatedRoomRules,
+            //     builder: (context, snapshot) {
+            //       if (snapshot.connectionState == ConnectionState.done) {
+            //         return RoomRulesEditor(
+            //           key: controller.rulesEditorKey,
+            //           roomId: null,
+            //           startOpen: false,
+            //           initialRules: snapshot.data,
+            //         );
+            //       } else {
+            //         return const Padding(
+            //           padding: EdgeInsets.all(16.0),
+            //           child: Center(
+            //             child:
+            //                 CircularProgressIndicator.adaptive(strokeWidth: 2),
+            //           ),
+            //         );
+            //       }
+            //     },
+            //   ),
+
             // SwitchListTile.adaptive(
             //   title: Text(L10n.of(context)!.spaceIsPublic),
             //   value: controller.publicGroup,
             //   onChanged: controller.setPublicGroup,
             // ),
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: SizedBox(
+            //     width: double.infinity,
+            //     child: ElevatedButton(
+            //       style: ElevatedButton.styleFrom(
+            //         foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            //         backgroundColor: Theme.of(context).colorScheme.primary,
+            //       ),
+            //       onPressed:
+            //           controller.loading ? null : controller.submitAction,
+            //       child: controller.loading
+            //           ? const LinearProgressIndicator()
+            //           : Row(
+            //               children: [
+            //                 Expanded(
+            //                   child: Text(
+            //                     L10n.of(context)!.createNewSpace,
+            //                   ),
+            //                 ),
+            //                 Icon(Icons.adaptive.arrow_forward_outlined),
+            //               ],
+            //             ),
+            //     ),
+            //   ),
+            // ),
             // Pangea#
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                  ),
-                  onPressed:
-                      controller.loading ? null : controller.submitAction,
-                  child: controller.loading
-                      ? const LinearProgressIndicator()
-                      : Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                L10n.of(context)!.createNewSpace,
-                              ),
-                            ),
-                            Icon(Icons.adaptive.arrow_forward_outlined),
-                          ],
-                        ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

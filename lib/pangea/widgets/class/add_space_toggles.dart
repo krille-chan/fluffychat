@@ -32,7 +32,7 @@ class AddToSpaceToggles extends StatefulWidget {
 
 class AddToSpaceState extends State<AddToSpaceToggles> {
   late Room? room;
-  late List<Room> parents;
+  late Room? parent;
   late List<Room> possibleParents;
   late bool isOpen;
   late bool isSuggested;
@@ -70,20 +70,17 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
         )
         .toList();
 
-    parents = widget.roomId != null
-        ? possibleParents
-            .where(
-              (r) =>
-                  r.spaceChildren.any((room) => room.roomId == widget.roomId),
-            )
-            .toList()
-        : [];
+    parent = widget.roomId != null
+        ? possibleParents.firstWhereOrNull(
+            (r) => r.spaceChildren.any((room) => room.roomId == widget.roomId),
+          )
+        : null;
 
     if (widget.activeSpaceId != null) {
       final activeSpace =
           Matrix.of(context).client.getRoomById(widget.activeSpaceId!);
       if (activeSpace != null && activeSpace.canIAddSpaceChild(null)) {
-        parents.add(activeSpace);
+        parent = activeSpace;
       } else {
         ErrorHandler.logError(
           e: Exception('activeSpaceId ${widget.activeSpaceId} not found'),
@@ -95,9 +92,9 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     //if possibleParent in parents, put first
     //use sort but use any instead of contains because contains uses == and we want to compare by id
     possibleParents.sort((a, b) {
-      if (parents.any((parent) => parent.id == a.id)) {
+      if (parent?.id == a.id) {
         return -1;
-      } else if (parents.any((parent) => parent.id == b.id)) {
+      } else if (parent?.id == b.id) {
         return 1;
       } else {
         return a.name.compareTo(b.name);
@@ -109,18 +106,15 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
   Future<void> _addSingleSpace(String roomToAddId, Room newParent) async {
     GoogleAnalytics.addParent(roomToAddId, newParent.classCode);
-    await newParent.setSpaceChild(
+    await newParent.pangeaSetSpaceChild(
       roomToAddId,
       suggested: isSuggested,
     );
   }
 
   Future<void> addSpaces(String roomToAddId) async {
-    final List<Future<void>> addFutures = [];
-    for (final Room parent in parents) {
-      addFutures.add(_addSingleSpace(roomToAddId, parent));
-    }
-    await addFutures.wait;
+    if (parent == null) return;
+    await _addSingleSpace(roomToAddId, parent!);
   }
 
   Future<void> handleAdd(bool add, Room possibleParent) async {
@@ -142,11 +136,7 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     }
 
     setState(
-      () => add
-          ? parents.add(possibleParent)
-          : parents.removeWhere(
-              (parent) => parent.id == possibleParent.id,
-            ),
+      () => add ? parent = possibleParent : parent = null,
     );
   }
 
@@ -164,7 +154,7 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
           SwitchListTile.adaptive(
             title: possibleParent.nameAndRoomTypeIcon(),
             activeColor: AppConfig.activeToggleColor,
-            value: parents.any((r) => r.id == possibleParent.id),
+            value: parent?.id == possibleParent.id,
             onChanged: (bool add) => canAdd
                 ? handleAdd(add, possibleParent)
                 : ScaffoldMessenger.of(context).showSnackBar(

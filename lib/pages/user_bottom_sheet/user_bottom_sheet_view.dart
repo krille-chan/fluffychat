@@ -1,4 +1,5 @@
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -91,7 +92,12 @@ class UserBottomSheetView extends StatelessWidget {
           ),
           actions: [
             if (userId != client.userID &&
-                !client.ignoredUsers.contains(userId))
+                    !client.ignoredUsers.contains(userId)
+                    // #Pangea
+                    &&
+                    userId != BotName.byEnvironment
+                // Pangea#
+                )
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: IconButton(

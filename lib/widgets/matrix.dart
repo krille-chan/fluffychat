@@ -342,8 +342,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       } else {
         // #Pangea
         if (state == LoginState.loggedIn) {
-          await (await pangeaController.userController.completer).future;
-          await pangeaController.subscriptionController.reinitialize();
+          final futures = [
+            pangeaController.userController.reinitialize(),
+            pangeaController.subscriptionController.reinitialize(),
+          ];
+          await Future.wait(futures);
         }
         String routeDestination;
         if (state == LoginState.loggedIn) {

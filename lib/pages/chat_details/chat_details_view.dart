@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_det
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_invitation_buttons.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_name_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
-import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/utils/lock_room.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
@@ -263,39 +262,20 @@ class ChatDetailsView extends StatelessWidget {
                             controller: controller,
                           ),
                           // Pangea#
-                          if (room.isSpace && room.isRoomAdmin)
-                            ListTile(
-                              title: Text(
-                                L10n.of(context)!.spaceAnalytics,
-                                style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              leading: CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                foregroundColor: iconColor,
-                                child: const Icon(
-                                  Icons.analytics_outlined,
-                                ),
-                              ),
-                              onTap: () => context.go(
-                                '/rooms/analytics/${room.id}',
-                              ),
-                            ),
                           // commenting out language settings in spaces for now
                           // if (room.languageSettings != null && room.isRoomAdmin)
                           //   LanguageSettings(
                           //     roomId: controller.roomId,
                           //     startOpen: false,
                           //   ),
-                          if (room.pangeaRoomRules != null)
-                            RoomRulesEditor(
-                              roomId: controller.roomId,
-                              startOpen: false,
-                            ),
+
+                          // Commenting out pangea room rules for now
+                          // if (room.pangeaRoomRules != null)
+                          //   RoomRulesEditor(
+                          //     roomId: controller.roomId,
+                          //     startOpen: false,
+                          //   ),
+
                           // if (!room.canChangeStateEvent(EventTypes.RoomTopic))
                           //   ListTile(
                           //     title: Text(

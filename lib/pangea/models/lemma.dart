@@ -8,22 +8,13 @@ class Lemma {
 
   /// [saveVocab] true - whether to save the lemma to the user's vocabulary
   /// vocab that are not saved: emails, urls, numbers, punctuation, etc.
+  /// server handles this determination
   final bool saveVocab;
-
-  /// [pos] ex "v" - part of speech of the lemma
-  /// https://universaldependencies.org/u/pos/
-  final String pos;
-
-  /// [morph] ex {} - morphological features of the lemma
-  /// https://universaldependencies.org/u/feat/
-  final Map<String, dynamic> morph;
 
   Lemma({
     required this.text,
     required this.saveVocab,
     required this.form,
-    this.pos = '',
-    this.morph = const {},
   });
 
   factory Lemma.fromJson(Map<String, dynamic> json) {
@@ -31,8 +22,6 @@ class Lemma {
       text: json['text'],
       saveVocab: json['save_vocab'] ?? json['saveVocab'] ?? false,
       form: json["form"] ?? json['text'],
-      pos: json['pos'] ?? '',
-      morph: json['morph'] ?? {},
     );
   }
 
@@ -41,8 +30,6 @@ class Lemma {
       'text': text,
       'save_vocab': saveVocab,
       'form': form,
-      'pos': pos,
-      'morph': morph,
     };
   }
 

@@ -17,7 +17,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../widgets/matrix.dart';
-import '../utils/bot_name.dart';
 import '../utils/firebase_analytics.dart';
 import 'base_controller.dart';
 
@@ -49,15 +48,13 @@ class ClassController extends BaseController {
   Future<void> checkForClassCodeAndSubscription(BuildContext context) async {
     final String? classCode = _pangeaController.pStoreService.read(
       PLocalKey.cachedClassCodeToJoin,
-      addClientIdToKey: false,
-      local: true,
+      isAccountData: false,
     );
 
     if (classCode != null) {
       await _pangeaController.pStoreService.delete(
         PLocalKey.cachedClassCodeToJoin,
-        addClientIdToKey: false,
-        local: true,
+        isAccountData: false,
       );
       await joinClasswithCode(
         context,
@@ -67,41 +64,6 @@ class ClassController extends BaseController {
             SpaceCodeUtil.messageSnack(context, ErrorCopy(context, error).body),
       );
     }
-  }
-
-  /// if not bot chat return
-  /// if bot chat, get pangeaClassContext
-  /// for all classes not in pangeaClassContext, add bot chat to that class
-  /// PTODO - add analytics bot to all chats and have that do this work
-  Future<List<Room>> addDirectChatsToClasses(Room room) async {
-    if (!room.isDirectChat) return [];
-    final List<String> existingParentsIds =
-        room.pangeaSpaceParents.map((e) => e.id).toList();
-    final List<Room> spaces = _pangeaController.matrixState.client.spacesImIn;
-
-    //make sure we have the latest participants
-    await Future.wait(spaces.map((e) => e.requestParticipants()));
-
-    //get spaces where,
-    //other chat participant is the bot OR is in the space AND the chat is not
-    final List<Room> spacesToAdd = spaces
-        .where(
-          (s) =>
-              (room.directChatMatrixID == BotName.byEnvironment ||
-                  s
-                      .getParticipants()
-                      .map(
-                        (u) => u.id,
-                      )
-                      .contains(room.directChatMatrixID)) &&
-              !existingParentsIds.contains(s.id),
-        )
-        .toList();
-
-    //set the space child for each space
-    return Future.wait(
-      spacesToAdd.map((s) => s.setSpaceChild(room.id, suggested: true)),
-    ).then((value) => spaces);
   }
 
   Future<void> joinClasswithCode(BuildContext context, String classCode) async {

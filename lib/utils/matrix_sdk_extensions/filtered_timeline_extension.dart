@@ -40,6 +40,7 @@ extension IsStateExtension on Event {
       }.contains(type);
 
   // #Pangea
+  // we're filtering out some state events that we don't want to render
   static const Set<String> importantStateEvents = {
     EventTypes.Encryption,
     EventTypes.RoomCreate,

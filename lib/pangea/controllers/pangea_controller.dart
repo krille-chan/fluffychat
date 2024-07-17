@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/controllers/contextual_definition_controller.d
 import 'package:fluffychat/pangea/controllers/language_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
-import 'package:fluffychat/pangea/controllers/local_settings.dart';
 import 'package:fluffychat/pangea/controllers/message_data_controller.dart';
 import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/permissions_controller.dart';
@@ -47,7 +46,6 @@ class PangeaController {
   late AnalyticsController analytics;
   late MyAnalyticsController myAnalytics;
   late WordController wordNet;
-  late LocalSettings localSettings;
   late MessageDataController messageData;
   late ContextualDefinitionController definitions;
   late ITFeedbackController itFeedback;
@@ -60,7 +58,7 @@ class PangeaController {
   late PracticeGenerationController practiceGenerationController;
 
   ///store Services
-  late PLocalStore pStoreService;
+  late PStore pStoreService;
   final pLanguageStore = PangeaLanguage();
 
   ///Matrix Variables
@@ -89,10 +87,9 @@ class PangeaController {
 
   /// Initialize controllers
   _addRefInObjects() {
-    pStoreService = PLocalStore(pangeaController: this);
+    pStoreService = PStore(pangeaController: this);
     userController = UserController(this);
     languageController = LanguageController(this);
-    localSettings = LocalSettings(this);
     classController = ClassController(this);
     permissionsController = PermissionsController(this);
     analytics = AnalyticsController(this);

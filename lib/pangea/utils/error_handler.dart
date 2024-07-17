@@ -11,6 +11,9 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class PangeaWarningError implements Exception {
   final String message;
   PangeaWarningError(message) : message = "Pangea Warning Error: $message";
+
+  @override
+  String toString() => message;
 }
 
 class ErrorHandler {
@@ -53,8 +56,13 @@ class ErrorHandler {
     Map<String, dynamic>? data,
     SentryLevel level = SentryLevel.error,
   }) async {
-    if (m != null) debugPrint("error message: $m");
-    if ((e ?? m) != null) debugPrint("error to string: ${e?.toString() ?? m}");
+    if (e is PangeaWarningError) {
+      // Custom handling for PangeaWarningError
+      debugPrint("PangeaWarningError: ${e.message}");
+    } else {
+      if (m != null) debugPrint("error message: $m");
+    }
+
     if (data != null) {
       Sentry.addBreadcrumb(Breadcrumb.fromJson(data));
       debugPrint(data.toString());

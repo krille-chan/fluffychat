@@ -72,4 +72,17 @@ extension GeneralInfoClientExtension on Client {
     editEvents.add(originalEvent);
     return editEvents.slice(1).map((e) => e.eventId).toList();
   }
+
+  String? _powerLevelName(int powerLevel, L10n l10n) => {
+        0: l10n.user,
+        50: l10n.moderator,
+        100: l10n.admin,
+      }[powerLevel];
+
+  /// Account data comes through in the first sync, so wait for that
+  Future<void> _waitForAccountData() async {
+    if (prevBatch == null) {
+      await onSync.stream.first;
+    }
+  }
 }
