@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/new_space/new_space_view.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
-import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/class_chat_power_levels.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -32,7 +29,7 @@ class NewSpaceController extends State<NewSpace> {
   // #Pangea
   // bool publicGroup = false;
   bool publicGroup = true;
-  final GlobalKey<RoomRulesState> rulesEditorKey = GlobalKey<RoomRulesState>();
+  // final GlobalKey<RoomRulesState> rulesEditorKey = GlobalKey<RoomRulesState>();
   final GlobalKey<AddToSpaceState> addToSpaceKey = GlobalKey<AddToSpaceState>();
   // commenting out language settings in spaces for now
   // final GlobalKey<LanguageSettingsState> languageSettingsKey =
@@ -87,11 +84,12 @@ class NewSpaceController extends State<NewSpace> {
       ),
     );
 
-    if (rulesEditorKey.currentState?.rules != null) {
-      events.add(rulesEditorKey.currentState!.rules.toStateEvent);
-    } else {
-      debugger(when: kDebugMode);
-    }
+    // commenting out pangea room rules in spaces for now
+    // if (rulesEditorKey.currentState?.rules != null) {
+    //   events.add(rulesEditorKey.currentState!.rules.toStateEvent);
+    // } else {
+    //   debugger(when: kDebugMode);
+    // }
     // commenting out language settings in spaces for now
     // if (languageSettingsKey.currentState != null) {
     //   events
@@ -110,10 +108,11 @@ class NewSpaceController extends State<NewSpace> {
       // Pangea#
     });
     // #Pangea
-    if (rulesEditorKey.currentState == null) {
-      debugger(when: kDebugMode);
-      return;
-    }
+    // commenting out pangea room rules in spaces for now
+    // if (rulesEditorKey.currentState == null) {
+    //   debugger(when: kDebugMode);
+    //   return;
+    // }
     // commenting out language settings in spaces for now
     // if (languageSettingsKey.currentState != null &&
     //     languageSettingsKey.currentState!.sameLanguages) {
