@@ -3,6 +3,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
+import 'package:fluffychat/pangea/widgets/chat/input_bar_wrapper.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -12,7 +13,6 @@ import 'package:matrix/matrix.dart';
 
 import '../../config/themes.dart';
 import 'chat.dart';
-import 'input_bar.dart';
 
 class ChatInputRow extends StatelessWidget {
   final ChatController controller;
@@ -322,7 +322,10 @@ class ChatInputRow extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 0.0),
-                      child: InputBar(
+                      // #Pangea
+                      // child: InputBar(
+                      child: InputBarWrapper(
+                        // Pangea#
                         room: controller.room,
                         minLines: 1,
                         maxLines: 8,

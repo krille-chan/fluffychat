@@ -1,12 +1,8 @@
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
-import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
-import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -133,35 +129,39 @@ class NewSpaceView extends StatelessWidget {
               startOpen: true,
               spaceMode: true,
             ),
-            if (controller.rulesEditorKey.currentState != null)
-              RoomRulesEditor(
-                key: controller.rulesEditorKey,
-                roomId: null,
-                startOpen: false,
-                initialRules: controller.rulesEditorKey.currentState!.rules,
-              ),
-            if (controller.rulesEditorKey.currentState == null)
-              FutureBuilder<PangeaRoomRules?>(
-                future: Matrix.of(context).client.lastUpdatedRoomRules,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return RoomRulesEditor(
-                      key: controller.rulesEditorKey,
-                      roomId: null,
-                      startOpen: false,
-                      initialRules: snapshot.data,
-                    );
-                  } else {
-                    return const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Center(
-                        child:
-                            CircularProgressIndicator.adaptive(strokeWidth: 2),
-                      ),
-                    );
-                  }
-                },
-              ),
+            // Commenting out pangea room rules for now
+            // if (controller.rulesEditorKey.currentState != null)
+            //   RoomRulesEditor(
+            //     key: controller.rulesEditorKey,
+            //     roomId: null,
+            //     startOpen: false,
+            //     initialRules: controller.rulesEditorKey.currentState!.rules,
+            //   ),
+
+            // Commenting out pangea room rules for now
+            // if (controller.rulesEditorKey.currentState == null)
+            //   FutureBuilder<PangeaRoomRules?>(
+            //     future: Matrix.of(context).client.lastUpdatedRoomRules,
+            //     builder: (context, snapshot) {
+            //       if (snapshot.connectionState == ConnectionState.done) {
+            //         return RoomRulesEditor(
+            //           key: controller.rulesEditorKey,
+            //           roomId: null,
+            //           startOpen: false,
+            //           initialRules: snapshot.data,
+            //         );
+            //       } else {
+            //         return const Padding(
+            //           padding: EdgeInsets.all(16.0),
+            //           child: Center(
+            //             child:
+            //                 CircularProgressIndicator.adaptive(strokeWidth: 2),
+            //           ),
+            //         );
+            //       }
+            //     },
+            //   ),
+
             // SwitchListTile.adaptive(
             //   title: Text(L10n.of(context)!.spaceIsPublic),
             //   value: controller.publicGroup,

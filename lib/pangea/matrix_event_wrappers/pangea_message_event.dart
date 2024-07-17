@@ -82,10 +82,9 @@ class PangeaMessageEvent {
           .firstOrNull ??
       _event;
 
-  Event updateLatestEdit() {
+  void updateLatestEdit() {
     _latestEditCache = null;
     _representations = null;
-    return _latestEdit;
   }
 
   Future<PangeaAudioFile> getMatrixAudioFile(
