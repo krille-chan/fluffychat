@@ -125,6 +125,9 @@ class _SpaceViewState extends State<SpaceView> {
         activeSpaceId,
         maxDepth: 1,
         from: prevBatch,
+        // #Pangea
+        limit: 100,
+        // Pangea#
       );
 
       if (prevBatch != null) {

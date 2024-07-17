@@ -147,7 +147,7 @@ class LoginView extends StatelessWidget {
                             controller.showPassword
                                 ? Icons.visibility_off_outlined
                                 : Icons.visibility_outlined,
-                            color: Colors.black,
+                            // color: Colors.black,
                           ),
                         ),
                       ),
