@@ -198,6 +198,10 @@ class NewSpaceController extends State<NewSpace> {
         space.updateRoomCapacity(capacity);
       }
 
+      if (avatar != null && space != null) {
+        space.setAvatar(MatrixFile(bytes: avatar, name: 'Avatar'));
+      }
+
       final Room? room = Matrix.of(context).client.getRoomById(spaceId);
       if (room == null) {
         ErrorHandler.logError(
