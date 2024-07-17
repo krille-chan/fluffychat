@@ -170,7 +170,7 @@ class ChatListController extends State<ChatList>
 
   bool hideBotsRoomFilter(Room room) {
     return !excludedUserIds.contains(room.directChatMatrixID) &&
-        !isGroupWithOnlyBotAndUser(room);
+        !(roomBotCheckCache[room.id] ?? false);
   }
 
   List<Room> get filteredRooms => Matrix.of(context)
@@ -194,32 +194,39 @@ class ChatListController extends State<ChatList>
         .toList();
   }
 
-  bool isGroupWithOnlyBotAndUser(Room room) {
+  Map<String, bool> roomBotCheckCache = {};
+
+  Future<bool> isGroupWithOnlyBotAndUser(Room room) async {
     final client = Matrix.of(context).client;
 
     // Check that participants are fully charged
     if (!room.participantListComplete && !loadingRooms.contains(room.id)) {
       loadingRooms.add(room.id);
-      room.requestParticipants().then((_) {
-        loadingRooms.remove(room.id);
-        setState(() {}); // Force a rebuild to recheck the room
-      });
-      return false;
+      await room.requestParticipants();
+      loadingRooms.remove(room.id);
     }
 
     final participants = room.getParticipants();
 
     if (participants.length != 2) {
+      roomBotCheckCache[room.id] = false;
       return false;
     }
 
     // Check whether participants include the current user and one of the bots
     final userIds = participants.map((user) => user.id).toList();
     final containsCurrentUser = userIds.contains(client.userID);
-    final containsBot =
-        userIds.any((id) => id.contains('bot') && excludedUserIds.contains(id));
+    final containsBot = userIds.any((id) => id.contains('bot') && excludedUserIds.contains(id));
 
-    return containsCurrentUser && containsBot;
+    final result = containsCurrentUser && containsBot;
+    roomBotCheckCache[room.id] = result;
+    return result;
+  }
+
+  Future<void> preloadRoomBotChecks(List<Room> rooms) async {
+    for (final room in rooms) {
+      await isGroupWithOnlyBotAndUser(room);
+    }
   }
 
   // Method to identify and remove duplicate rooms
@@ -233,7 +240,7 @@ class ChatListController extends State<ChatList>
         String? botId = room.directChatMatrixID;
         if (botId == null && await isGroupWithOnlyBotAndUser(room)) {
           botId = excludedUserIds.firstWhere(
-            (id) => room.getParticipants().any((user) => user.id == id),
+                (id) => room.getParticipants().any((user) => user.id == id),
             orElse: () => '',
           );
         }
@@ -256,8 +263,8 @@ class ChatListController extends State<ChatList>
       if (roomList.length > 1) {
         // Sort by the timestamp of the last event (ascending order)
         roomList.sort((a, b) =>
-            a.lastEvent?.originServerTs
-                .compareTo(b.lastEvent!.originServerTs) ??
+        a.lastEvent?.originServerTs
+            .compareTo(b.lastEvent!.originServerTs) ??
             0);
 
         // Keep the room with the oldest event and remove all others
@@ -516,7 +523,7 @@ class ChatListController extends State<ChatList>
           );
     }
   }
-
+  
   @override
   void initState() {
     super.initState();
@@ -529,8 +536,7 @@ class ChatListController extends State<ChatList>
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
-        searchServer =
-            Matrix.of(context).store.getString(_serverStoreNamespace);
+        searchServer = Matrix.of(context).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
       }
 
@@ -539,6 +545,7 @@ class ChatListController extends State<ChatList>
         Theme.of(context).appBarTheme.systemOverlayStyle!,
       );
 
+      await preloadRoomBotChecks(Matrix.of(context).client.rooms);
       await identifyAndRemoveDuplicates(filteredRooms);
       setState(() {}); // Force a rebuild after all futures are completed
     });
