@@ -122,6 +122,16 @@ extension PangeaRoom on Room {
   }) async =>
       await _pangeaSetSpaceChild(roomId, suggested: suggested);
 
+  /// Returns a map of child suggestion status for a space.
+  ///
+  /// If the current object is not a space, an empty map is returned.
+  /// Otherwise, it iterates through each child in the `spaceChildren` list
+  /// and adds their suggestion status to the `suggestionStatus` map.
+  /// The suggestion status is determined by the `suggested` property of each child.
+  /// If the `suggested` property is `null`, it defaults to `true`.
+  Map<String, bool> get spaceChildSuggestionStatus =>
+      _spaceChildSuggestionStatus;
+
   /// Checks if this space has a parent space
   bool get isSubspace => _isSubspace;
 
