@@ -2709,7 +2709,7 @@
   "@knockRestricted": {},
   "swipeRightToLeftToReply": "Herrestatu eskuin-ezker erantzuteko",
   "@swipeRightToLeftToReply": {},
-  "alwaysUse24HourFormat": "ez",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
