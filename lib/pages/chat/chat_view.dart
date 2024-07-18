@@ -5,14 +5,12 @@ import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
-import 'package:fluffychat/pages/chat/reactions_picker.dart';
-import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/widgets/chat/chat_floating_action_button.dart';
+import 'package:fluffychat/pangea/widgets/chat/chat_footer.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
-import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
@@ -22,10 +20,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import '../../pangea/choreographer/widgets/it_bar.dart';
 import '../../utils/stream_extension.dart';
-import 'chat_emoji_picker.dart';
-import 'chat_input_row.dart';
 
 enum _EventContextAction { info, report }
 
@@ -404,19 +399,9 @@ class ChatView extends StatelessWidget {
                                         ),
                                       ],
                                     )
-                                  : Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const ConnectionStatusHeader(),
-                                        ITBar(
-                                          choreographer:
-                                              controller.choreographer,
-                                        ),
-                                        ReactionsPicker(controller),
-                                        ReplyDisplay(controller),
-                                        ChatInputRow(controller),
-                                        ChatEmojiPicker(controller),
-                                      ],
+                                  : ChatFooter(
+                                      controller,
+                                      key: controller.chatFooterKey,
                                     ),
                             ),
                           ),
@@ -437,7 +422,8 @@ class ChatView extends StatelessWidget {
                   //   ),
                   Positioned(
                     left: 20,
-                    bottom: 75,
+                    bottom:
+                        controller.chatFooterKey.currentState?.height ?? 100,
                     child: StartIGCButton(controller: controller),
                   ),
                   // Pangea#
