@@ -1860,7 +1860,7 @@
   "@block": {},
   "discover": "發現",
   "@discover": {},
-  "alwaysUse24HourFormat": "否",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
