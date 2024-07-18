@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 import 'package:tawkie/utils/fluffy_share.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/matrix.dart';
 
@@ -79,16 +80,18 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      PopupMenuItem(
-        value: SettingsAction.joinBeta,
-        child: Row(
-          children: [
-            const Icon(Icons.new_releases),
-            const SizedBox(width: 18),
-            Text("Rejoindre la bêta"),
-          ],
+      // Check if the device is mobile
+      if (PlatformInfos.isMobile)
+        PopupMenuItem(
+          value: SettingsAction.joinBeta,
+          child: Row(
+            children: [
+              const Icon(Icons.new_releases),
+              const SizedBox(width: 18),
+              Text("Rejoindre la bêta"),
+            ],
+          ),
         ),
-      ),
       PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(
