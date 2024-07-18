@@ -122,6 +122,9 @@ extension PangeaRoom on Room {
   }) async =>
       await _pangeaSetSpaceChild(roomId, suggested: suggested);
 
+  /// Checks if this space has a parent space
+  bool get isSubspace => _isSubspace;
+
 // class_and_exchange_settings
 
   DateTime? get rulesUpdatedAt => _rulesUpdatedAt;
