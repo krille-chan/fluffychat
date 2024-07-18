@@ -66,13 +66,10 @@ class Avatar extends StatelessWidget {
           width: size,
           height: size,
           child: Material(
+            color: Theme.of(context).colorScheme.surfaceContainerLowest,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadius,
-              side: border ??
-                  BorderSide(
-                    color: Theme.of(context).dividerColor,
-                    width: 1,
-                  ),
+              side: border ?? BorderSide.none,
             ),
             clipBehavior: Clip.hardEdge,
             child: noPic

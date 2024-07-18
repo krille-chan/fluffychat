@@ -142,14 +142,7 @@ class ChatListItem extends StatelessWidget {
                           right: 0,
                           child: Avatar(
                             border: space == null
-                                ? room.isSpace
-                                    ? BorderSide(
-                                        width: 0,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .outline,
-                                      )
-                                    : null
+                                ? null
                                 : BorderSide(
                                     width: 2,
                                     color: backgroundColor ??
