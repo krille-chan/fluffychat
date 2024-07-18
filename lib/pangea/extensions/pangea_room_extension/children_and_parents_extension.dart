@@ -163,4 +163,14 @@ extension ChildrenAndParentsRoomExtension on Room {
       await setSpaceChild(roomId, suggested: suggested);
     }
   }
+
+  /// A map of child suggestion status for a space.
+  Map<String, bool> get _spaceChildSuggestionStatus {
+    if (!isSpace) return {};
+    final Map<String, bool> suggestionStatus = {};
+    for (final child in spaceChildren) {
+      suggestionStatus[child.roomId!] = child.suggested ?? true;
+    }
+    return suggestionStatus;
+  }
 }
