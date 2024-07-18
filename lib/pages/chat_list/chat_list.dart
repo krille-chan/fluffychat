@@ -819,8 +819,7 @@ class ChatListController extends State<ChatList>
               label: space.nameIncludingParents(context),
               // If user is not admin of space, button is grayed out
               textStyle: TextStyle(
-                color: (firstSelectedRoom == null ||
-                        (firstSelectedRoom.isSpace && !space.isRoomAdmin))
+                color: (firstSelectedRoom == null)
                     ? Theme.of(context).colorScheme.outline
                     : Theme.of(context).colorScheme.surfaceTint,
               ),
@@ -837,10 +836,6 @@ class ChatListController extends State<ChatList>
         // #Pangea
         if (firstSelectedRoom == null) {
           throw L10n.of(context)!.nonexistentSelection;
-        }
-        // If user is not admin of the would-be parent space, does not allow
-        if (firstSelectedRoom.isSpace && !space.isRoomAdmin) {
-          throw L10n.of(context)!.cantAddSpaceChild;
         }
 
         if (space.canSendDefaultStates) {

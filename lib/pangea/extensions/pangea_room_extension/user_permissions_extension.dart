@@ -88,20 +88,8 @@ extension UserPermissionsRoomExtension on Room {
       return false;
     }
 
-    final isSpaceAdmin = isRoomAdmin;
-    final isChildRoomAdmin = room?.isRoomAdmin ?? true;
-
-    // if user is not admin of child room, return false
-    if (!isChildRoomAdmin) return false;
-
-    // if the child room is a space, or will be a space,
-    // then the user must be an admin of the parent space
-    if (room?.isSpace ?? spaceMode) return isSpaceAdmin;
-
-    // otherwise, the user can add the child room to the parent
-    // if they're the admin of the parent or if the parent creation
-    // of group chats
-    return isSpaceAdmin || (pangeaRoomRules?.isCreateRooms ?? false);
+    // Can add child if, and only if, admin of child
+    return room?.isRoomAdmin ?? true;
   }
 
   bool get _canIAddSpaceParents =>
