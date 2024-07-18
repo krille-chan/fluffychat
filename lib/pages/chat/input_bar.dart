@@ -504,6 +504,9 @@ class InputBar extends StatelessWidget {
                 onSubmitted!(text);
               },
               // #Pangea
+              style: controller?.text.length == 1000
+                  ? const TextStyle(color: Colors.red)
+                  : null,
               onTap: () {
                 controller!.onInputTap(
                   context,
