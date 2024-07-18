@@ -84,6 +84,15 @@ class NewSpaceController extends State<NewSpace> {
       ),
     );
 
+    if (avatar != null) {
+      events.add(
+        StateEvent(
+          type: sdk.EventTypes.RoomAvatar,
+          content: {'url': avatarUrl.toString()},
+        ),
+      );
+    }
+
     // commenting out pangea room rules in spaces for now
     // if (rulesEditorKey.currentState?.rules != null) {
     //   events.add(rulesEditorKey.currentState!.rules.toStateEvent);
@@ -196,10 +205,6 @@ class NewSpaceController extends State<NewSpace> {
       final space = client.getRoomById(spaceId);
       if (capacity != null && space != null) {
         space.updateRoomCapacity(capacity);
-      }
-
-      if (avatar != null && space != null) {
-        space.setAvatar(MatrixFile(bytes: avatar, name: 'Avatar'));
       }
 
       final Room? room = Matrix.of(context).client.getRoomById(spaceId);
