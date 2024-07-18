@@ -4,8 +4,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:tawkie/pages/add_bridge/model/social_network.dart';
-import 'package:tawkie/widgets/mxc_image.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class QRCodeConnectPage extends StatefulWidget {
   final String qrCode;
@@ -94,7 +92,7 @@ class QRExplanation extends StatelessWidget {
 
     String qrExplainOne = "";
     String qrExplainTwo = "";
-    String qrExplainTree = "";
+    String qrExplainThree = "";
     String qrExplainFour = "";
     String qrExplainFive = "";
     String qrExplainSix = "";
@@ -106,7 +104,7 @@ class QRExplanation extends StatelessWidget {
       case "WhatsApp":
         qrExplainOne = L10n.of(context)!.whatsAppQrExplainOne;
         qrExplainTwo = L10n.of(context)!.whatsAppQrExplainTwo;
-        qrExplainTree = L10n.of(context)!.whatsAppQrExplainTree;
+        qrExplainThree = L10n.of(context)!.whatsAppQrExplainTree;
         qrExplainFour = L10n.of(context)!.whatsAppQrExplainFour;
         qrExplainFive = L10n.of(context)!.whatsAppQrExplainFive;
         qrExplainSix = L10n.of(context)!.whatsAppQrExplainSix;
@@ -142,7 +140,7 @@ class QRExplanation extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          qrExplainTree,
+          qrExplainThree,
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 8),
@@ -158,14 +156,10 @@ class QRExplanation extends StatelessWidget {
         const SizedBox(height: 8),
         ElevatedButton(
           onPressed: () {
-            if (network.name == "Discord") {
-              launchUrl(Uri.parse(code));
-            } else {
-              Clipboard.setData(ClipboardData(text: code));
-              final SnackBar snackBar =
-              SnackBar(content: Text(L10n.of(context)!.codeCopy));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            }
+            Clipboard.setData(ClipboardData(text: code));
+            final SnackBar snackBar =
+                SnackBar(content: Text(L10n.of(context)!.codeCopy));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
           child: Padding(
             padding: const EdgeInsets.all(2.0),
@@ -174,9 +168,8 @@ class QRExplanation extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                decoration:
-                network.name == "Discord" ? TextDecoration.underline : null,
-                color: network.name == "Discord" ? Colors.blue : null,
+                decoration: null,
+                color: Colors.blue,
               ),
             ),
           ),
@@ -243,7 +236,7 @@ class QRFutureBuilder extends StatelessWidget {
     );
   }
 
-// AlertDialog displayed when an error or success occurs, listening directly to the response
+  // AlertDialog displayed when an error or success occurs, listening directly to the response
   Widget buildAlertDialog(
       BuildContext context, String result, SocialNetwork network) {
     if (result == "success") {
@@ -261,7 +254,7 @@ class QRFutureBuilder extends StatelessWidget {
     return Container();
   }
 
-// showDialog of a success message when connecting and updating socialNetwork
+  // showDialog of a success message when connecting and updating socialNetwork
   Future<void> showSuccessDialog(
       BuildContext context, SocialNetwork network) async {
     await showDialog(
@@ -283,9 +276,6 @@ class QRFutureBuilder extends StatelessWidget {
                     .connected = true;
 
                 Navigator.of(context).pop();
-                if (network.name != "Discord") {
-                  Navigator.pop(context, true);
-                }
               },
               child: Text(
                 L10n.of(context)!.ok,
@@ -297,7 +287,7 @@ class QRFutureBuilder extends StatelessWidget {
     );
   }
 
-// showDialog of elapsed time error message
+  // showDialog of elapsed time error message
   Future<void> showTimeoutDialog(
       BuildContext context, SocialNetwork network) async {
     await showDialog(
@@ -314,9 +304,6 @@ class QRFutureBuilder extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                if (network.name != "Discord") {
-                  Navigator.of(context).pop();
-                }
               },
               child: Text(
                 L10n.of(context)!.ok,
