@@ -88,7 +88,7 @@ class ClientChooserButton extends StatelessWidget {
             children: [
               const Icon(Icons.new_releases),
               const SizedBox(width: 18),
-              Text("Rejoindre la bêta"),
+              Text(L10n.of(context)!.joinBetaTitle),
             ],
           ),
         ),

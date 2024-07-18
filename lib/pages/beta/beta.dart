@@ -176,7 +176,7 @@ class BetaJoinPage extends StatelessWidget {
         ),
         const Divider(thickness: 1),
         Text(
-          L10n.of(context)!.joinBetaTitleIOS,
+          L10n.of(context)!.joinBetaTitle,
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 10.0),
