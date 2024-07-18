@@ -152,9 +152,17 @@ class ToolbarDisplayController {
             ? CrossAxisAlignment.end
             : CrossAxisAlignment.start,
         children: [
-          toolbarUp ? toolbar! : overlayMessage,
+          toolbarUp
+              // Column is limited to screen height
+              // If message portion is too tall, decrease toolbar height
+              // as necessary to prevent toolbar from acting strange
+              // Problems may still occur if toolbar height is decreased too much
+              ? Flexible(
+                  child: toolbar!,
+                )
+              : overlayMessage,
           const SizedBox(height: 6),
-          toolbarUp ? overlayMessage : toolbar!,
+          toolbarUp ? overlayMessage : Flexible(child: toolbar!),
         ],
       );
     } catch (err) {
