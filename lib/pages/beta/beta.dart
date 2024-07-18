@@ -8,29 +8,12 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import 'android_instructions.dart';
+import 'ios_instructions.dart';
 
 class BetaJoinPage extends StatelessWidget {
   const BetaJoinPage({super.key});
-
-  Future<bool> _launchUrl(String url, BuildContext context) async {
-    try {
-      if (await canLaunchUrl(Uri.parse(url))) {
-        await launchUrl(Uri.parse(url));
-        return true;
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error launching URL: $e');
-      }
-      final snackBar = SnackBar(content: Text(L10n.of(context)!.tryAgain));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      if (kDebugMode) {
-        print('Error launching Apple Beta URL: $e');
-      }
-    }
-    return false;
-  }
 
   Future<void> joinGroup({
     required BuildContext context,
@@ -139,8 +122,8 @@ class BetaJoinPage extends StatelessWidget {
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20.0),
-            if (Platform.isIOS) _buildIOSInstructions(context),
-            if (Platform.isAndroid) _buildAndroidInstructions(context),
+            if (Platform.isIOS) const IOSInstructions(),
+            if (Platform.isAndroid) const AndroidInstructions(),
             const SizedBox(height: 10.0),
             ElevatedButton.icon(
               onPressed: () async {
@@ -152,77 +135,6 @@ class BetaJoinPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildIOSInstructions(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          L10n.of(context)!.iosInstructionsTitle,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          L10n.of(context)!.installTestflight,
-          style: const TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 10.0),
-        ElevatedButton(
-          onPressed: () async {
-            await _launchUrl(AppConfig.testflightAppUrl, context);
-          },
-          child: Text(L10n.of(context)!.downloadTestflightButton),
-        ),
-        const Divider(thickness: 1),
-        Text(
-          L10n.of(context)!.joinBetaTitle,
-          style: const TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 10.0),
-        ElevatedButton(
-          onPressed: () async {
-            await _launchUrl(AppConfig.appleBetaUrl, context);
-          },
-          child: Text(L10n.of(context)!.downloadBetaIOSButton),
-        ),
-        const Divider(thickness: 1),
-        Text(
-          L10n.of(context)!.joinBetaGroup,
-          style: const TextStyle(fontSize: 16),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildAndroidInstructions(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          L10n.of(context)!.androidInstructionsTitle,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          L10n.of(context)!.joinBetaPlayStore,
-          style: const TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 10.0),
-        ElevatedButton(
-          onPressed: () async {
-            bool success = await _launchUrl(AppConfig.playStoreUrl, context);
-            if (!success) {
-              await _launchUrl(AppConfig.androidBetaUrl, context);
-            }
-          },
-          child: Text(L10n.of(context)!.downloadBetaAndroidButton),
-        ),
-        const Divider(thickness: 1),
-        Text(
-          L10n.of(context)!.joinBetaGroup,
-          style: const TextStyle(fontSize: 16),
-        ),
-      ],
     );
   }
 }
