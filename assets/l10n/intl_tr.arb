@@ -2709,7 +2709,7 @@
   "@restricted": {},
   "swipeRightToLeftToReply": "Yanıtlamak için sağdan sola kaydır",
   "@swipeRightToLeftToReply": {},
-  "alwaysUse24HourFormat": "yanlış",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
