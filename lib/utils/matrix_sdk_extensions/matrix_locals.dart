@@ -344,4 +344,10 @@ class MatrixLocals extends MatrixLocalizations {
   @override
   String startedKeyVerification(String senderName) =>
       l10n.startedKeyVerification(senderName);
+
+  @override
+  String invitedBy(String senderName) {
+    // TODO: implement invitedBy
+    throw UnimplementedError();
+  }
 }
