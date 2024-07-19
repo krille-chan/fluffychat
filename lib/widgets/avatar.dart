@@ -55,7 +55,8 @@ class Avatar extends StatelessWidget {
         fallbackLetters,
         style: TextStyle(
           color: Colors.white,
-          fontSize: (size / 2.5).roundToDouble(),
+          fontWeight: FontWeight.bold,
+          fontSize: (size / 3).roundToDouble(),
         ),
       ),
     );
@@ -85,7 +86,7 @@ class Avatar extends StatelessWidget {
                     placeholder: (_) => Center(
                       child: Icon(
                         Icons.person_2,
-                        color: textColor,
+                        color: Theme.of(context).colorScheme.tertiary,
                         size: size / 1.5,
                       ),
                     ),
