@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
-import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
@@ -20,10 +19,15 @@ part "space_extension.dart";
 extension PangeaClient on Client {
 // analytics
 
+  /// Get the logged in user's analytics room matching
+  /// a given langCode. If not present, create it.
   Future<Room> getMyAnalyticsRoom(String langCode) async =>
       await _getMyAnalyticsRoom(langCode);
 
-  Room? analyticsRoomLocal(String? langCode, [String? userIdParam]) =>
+  /// Get local analytics room for a given langCode and
+  /// optional userId (if not specified, uses current user).
+  /// If user is invited to the room, joins the room.
+  Room? analyticsRoomLocal(String langCode, [String? userIdParam]) =>
       _analyticsRoomLocal(langCode, userIdParam);
 
   List<Room> get allMyAnalyticsRooms => _allMyAnalyticsRooms;
@@ -31,35 +35,24 @@ extension PangeaClient on Client {
   Future<void> updateAnalyticsRoomVisibility() async =>
       await _updateAnalyticsRoomVisibility();
 
-  Future<void> addAnalyticsRoomsToAllSpaces() async =>
-      await _addAnalyticsRoomsToAllSpaces();
-
-  Future<void> inviteAllTeachersToAllAnalyticsRooms() async =>
-      await _inviteAllTeachersToAllAnalyticsRooms();
-
-  Future<void> joinAnalyticsRoomsInAllSpaces() async =>
-      await _joinAnalyticsRoomsInAllSpaces();
-
-  Future<void> joinInvitedAnalyticsRooms() async =>
-      await _joinInvitedAnalyticsRooms();
-
-  Future<void> migrateAnalyticsRooms() async => await _migrateAnalyticsRooms();
+  /// Helper function to join all relevant analytics rooms
+  /// and set up those rooms to be joined by other users.
+  void migrateAnalyticsRooms() => _migrateAnalyticsRooms();
 
   Future<Map<String, DateTime?>> allAnalyticsRoomsLastUpdated() async =>
       await _allAnalyticsRoomsLastUpdated();
 
   // spaces
 
-  Future<List<Room>> get spacesImTeaching async => await _spacesImTeaching;
+  List<Room> get spacesImTeaching => _spacesImTeaching;
 
   Future<List<Room>> get chatsImAStudentIn async => await _chatsImAStudentIn;
 
-  Future<List<Room>> get spaceImAStudentIn async => await _spacesImStudyingIn;
+  List<Room> get spacesImAStudentIn => _spacesImStudyingIn;
 
   List<Room> get spacesImIn => _spacesImIn;
 
-  Future<PangeaRoomRules?> get lastUpdatedRoomRules async =>
-      await _lastUpdatedRoomRules;
+  PangeaRoomRules? get lastUpdatedRoomRules => _lastUpdatedRoomRules;
 
 // general_info
 
