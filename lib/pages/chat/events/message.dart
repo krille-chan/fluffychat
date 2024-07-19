@@ -2,7 +2,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/use_type.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_buttons.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -39,7 +38,6 @@ class Message extends StatelessWidget {
   final bool animateIn;
   final void Function()? resetAnimateIn;
   // #Pangea
-  final LanguageModel? selectedDisplayLang;
   final bool immersionMode;
   final bool definitions;
   final ChatController controller;
@@ -64,7 +62,6 @@ class Message extends StatelessWidget {
     this.resetAnimateIn,
     this.avatarPresenceBackgroundColor,
     // #Pangea
-    required this.selectedDisplayLang,
     required this.immersionMode,
     required this.definitions,
     required this.controller,
@@ -82,9 +79,9 @@ class Message extends StatelessWidget {
     // #Pangea
     debugPrint('Message.build()');
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (controller.edittingEvents.contains(event.eventId)) {
+      if (controller.pangeaEditingEvent?.eventId == event.eventId) {
         pangeaMessageEvent?.updateLatestEdit();
-        controller.clearEdittingEvent(event.eventId);
+        controller.clearEditingEvent();
       }
     });
     // Pangea#

@@ -81,8 +81,7 @@ class PangeaController {
     BuildContext context,
   ) async {
     await classController.checkForClassCodeAndSubscription(context);
-    // startChatWithBotIfNotPresent();
-    await classController.fixClassPowerLevels();
+    classController.fixClassPowerLevels();
   }
 
   /// Initialize controllers

@@ -55,27 +55,39 @@ extension SpaceRoomExtension on Room {
         : participants;
   }
 
+  /// Synchronous version of _teachers. Does not request participants, so this list may not be complete.
+  List<User> get _teachersLocal {
+    if (!isSpace) return [];
+    return getParticipants()
+        .where(
+          (e) =>
+              e.powerLevel == ClassDefaultValues.powerLevelOfAdmin &&
+              e.id != BotName.byEnvironment,
+        )
+        .toList();
+  }
+
+  /// If the user is an admin of this space, and the space's
+  /// m.space.child power level hasn't yet been set, so it to 0
   Future<void> _setClassPowerLevels() async {
     try {
-      if (ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin) {
-        return;
-      }
+      if (!isRoomAdmin) return;
       final dynamic currentPower = getState(EventTypes.RoomPowerLevels);
-      if (currentPower is! Event?) {
-        return;
-      }
-      final Map<String, dynamic>? currentPowerContent =
+      if (currentPower is! Event?) return;
+
+      final currentPowerContent =
           currentPower?.content["events"] as Map<String, dynamic>?;
       final spaceChildPower = currentPowerContent?[EventTypes.SpaceChild];
 
       if (spaceChildPower == null && currentPowerContent != null) {
-        currentPowerContent["events"][EventTypes.SpaceChild] = 0;
+        currentPowerContent[EventTypes.SpaceChild] = 0;
+        currentPower!.content["events"] = currentPowerContent;
 
         await client.setRoomStateWithKey(
           id,
           EventTypes.RoomPowerLevels,
-          currentPower?.stateKey ?? "",
-          currentPowerContent,
+          currentPower.stateKey ?? "",
+          currentPower.content,
         );
       }
     } catch (err, s) {

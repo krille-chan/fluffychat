@@ -7,11 +7,9 @@ import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/has_error_button.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/language_permissions_warning_buttons.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/pages/class_analytics/measure_able.dart';
+import 'package:fluffychat/pangea/widgets/chat/chat_floating_action_button.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
@@ -266,32 +264,20 @@ class ChatView extends StatelessWidget {
               // #Pangea
               // floatingActionButton: controller.showScrollDownButton &&
               //         controller.selectedEvents.isEmpty
-              floatingActionButton: controller.selectedEvents.isEmpty
-                  ? (controller.showScrollDownButton
-                      // Pangea#
-                      ? Padding(
-                          padding: const EdgeInsets.only(bottom: 56.0),
-                          child: FloatingActionButton(
-                            onPressed: controller.scrollDown,
-                            heroTag: null,
-                            mini: true,
-                            child: const Icon(Icons.arrow_downward_outlined),
-                          ),
-                        )
-                      // #Pangea
-                      : controller.choreographer.errorService.error != null
-                          ? ChoreographerHasErrorButton(
-                              controller.pangeaController,
-                              controller.choreographer.errorService.error!,
-                            )
-                          : controller.showPermissionsError
-                              ? LanguagePermissionsButtons(
-                                  choreographer: controller.choreographer,
-                                  roomID: controller.roomId,
-                                )
-                              : null)
-                  // #Pangea
-                  : null,
+              //     ? Padding(
+              //         padding: const EdgeInsets.only(bottom: 56.0),
+              //         child: FloatingActionButton(
+              //           onPressed: controller.scrollDown,
+              //           heroTag: null,
+              //           mini: true,
+              //           child: const Icon(Icons.arrow_downward_outlined),
+              //         ),
+              //       )
+              //     : null,
+              floatingActionButton: ChatFloatingActionButton(
+                controller: controller,
+              ),
+              // Pangea#
               body:
                   // #Pangea
                   // DropTarget(
@@ -338,120 +324,100 @@ class ChatView extends StatelessWidget {
                         ),
                         if (controller.room.canSendDefaultMessages &&
                             controller.room.membership == Membership.join)
-                          // #Pangea
-                          // Container(
-                          ConditionalFlexible(
-                            isScroll: controller.isRowScrollable,
-                            child: ConditionalScroll(
-                              isScroll: controller.isRowScrollable,
-                              child: MeasurableWidget(
-                                onChange: (size, position) {
-                                  controller.inputRowSize = size!.height;
-                                },
-                                child: Container(
-                                  // Pangea#
-                                  margin: EdgeInsets.only(
-                                    bottom: bottomSheetPadding,
-                                    left: bottomSheetPadding,
-                                    right: bottomSheetPadding,
-                                  ),
-                                  constraints: const BoxConstraints(
-                                    maxWidth: FluffyThemes.columnWidth * 2.5,
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Material(
-                                    clipBehavior: Clip.hardEdge,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        // ignore: deprecated_member_use
-                                        .surfaceVariant,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(24),
-                                    ),
-                                    child: controller.room.isAbandonedDMRoom ==
-                                            true
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              // #Pangea
-                                              if (controller.room.isRoomAdmin)
-                                                TextButton.icon(
-                                                  style: TextButton.styleFrom(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                      16,
-                                                    ),
-                                                    foregroundColor:
-                                                        Theme.of(context)
-                                                            .colorScheme
-                                                            .error,
-                                                  ),
-                                                  icon: const Icon(
-                                                    Icons.archive_outlined,
-                                                  ),
-                                                  onPressed:
-                                                      controller.archiveChat,
-                                                  label: Text(
-                                                    L10n.of(context)!.archive,
-                                                  ),
-                                                ),
-                                              // Pangea#
-                                              TextButton.icon(
-                                                style: TextButton.styleFrom(
-                                                  padding: const EdgeInsets.all(
-                                                    16,
-                                                  ),
-                                                  foregroundColor:
-                                                      Theme.of(context)
-                                                          .colorScheme
-                                                          .error,
-                                                ),
-                                                icon: const Icon(
-                                                  // #Pangea
-                                                  // Icons.archive_outlined,
-                                                  Icons.arrow_forward,
-                                                  // Pangea#
-                                                ),
-                                                onPressed: controller.leaveChat,
-                                                label: Text(
-                                                  L10n.of(context)!.leave,
-                                                ),
-                                              ),
-                                              TextButton.icon(
-                                                style: TextButton.styleFrom(
-                                                  padding: const EdgeInsets.all(
-                                                    16,
-                                                  ),
-                                                ),
-                                                icon: const Icon(
-                                                  Icons.forum_outlined,
-                                                ),
-                                                onPressed:
-                                                    controller.recreateChat,
-                                                label: Text(
-                                                  L10n.of(context)!.reopenChat,
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        : Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              const ConnectionStatusHeader(),
-                                              ITBar(
-                                                choreographer:
-                                                    controller.choreographer,
-                                              ),
-                                              ReactionsPicker(controller),
-                                              ReplyDisplay(controller),
-                                              ChatInputRow(controller),
-                                              ChatEmojiPicker(controller),
-                                            ],
-                                          ),
-                                  ),
-                                ),
+                          Container(
+                            margin: EdgeInsets.only(
+                              bottom: bottomSheetPadding,
+                              left: bottomSheetPadding,
+                              right: bottomSheetPadding,
+                            ),
+                            constraints: const BoxConstraints(
+                              maxWidth: FluffyThemes.columnWidth * 2.5,
+                            ),
+                            alignment: Alignment.center,
+                            child: Material(
+                              clipBehavior: Clip.hardEdge,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  // ignore: deprecated_member_use
+                                  .surfaceVariant,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(24),
                               ),
+                              child: controller.room.isAbandonedDMRoom == true
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        // #Pangea
+                                        if (controller.room.isRoomAdmin)
+                                          TextButton.icon(
+                                            style: TextButton.styleFrom(
+                                              padding: const EdgeInsets.all(
+                                                16,
+                                              ),
+                                              foregroundColor: Theme.of(context)
+                                                  .colorScheme
+                                                  .error,
+                                            ),
+                                            icon: const Icon(
+                                              Icons.archive_outlined,
+                                            ),
+                                            onPressed: controller.archiveChat,
+                                            label: Text(
+                                              L10n.of(context)!.archive,
+                                            ),
+                                          ),
+                                        // Pangea#
+                                        TextButton.icon(
+                                          style: TextButton.styleFrom(
+                                            padding: const EdgeInsets.all(
+                                              16,
+                                            ),
+                                            foregroundColor: Theme.of(context)
+                                                .colorScheme
+                                                .error,
+                                          ),
+                                          icon: const Icon(
+                                            // #Pangea
+                                            // Icons.archive_outlined,
+                                            Icons.arrow_forward,
+                                            // Pangea#
+                                          ),
+                                          onPressed: controller.leaveChat,
+                                          label: Text(
+                                            L10n.of(context)!.leave,
+                                          ),
+                                        ),
+                                        TextButton.icon(
+                                          style: TextButton.styleFrom(
+                                            padding: const EdgeInsets.all(
+                                              16,
+                                            ),
+                                          ),
+                                          icon: const Icon(
+                                            Icons.forum_outlined,
+                                          ),
+                                          onPressed: controller.recreateChat,
+                                          label: Text(
+                                            L10n.of(context)!.reopenChat,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  : Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const ConnectionStatusHeader(),
+                                        ITBar(
+                                          choreographer:
+                                              controller.choreographer,
+                                        ),
+                                        ReactionsPicker(controller),
+                                        ReplyDisplay(controller),
+                                        ChatInputRow(controller),
+                                        ChatEmojiPicker(controller),
+                                      ],
+                                    ),
                             ),
                           ),
                       ],
@@ -484,35 +450,3 @@ class ChatView extends StatelessWidget {
     );
   }
 }
-
-// #Pangea
-Widget ConditionalFlexible({required bool isScroll, required Widget child}) {
-  if (isScroll) {
-    return Flexible(
-      flex: 9999999,
-      child: child,
-    );
-  }
-  return child;
-}
-
-class ConditionalScroll extends StatelessWidget {
-  final bool isScroll;
-  final Widget child;
-  const ConditionalScroll({
-    super.key,
-    required this.isScroll,
-    required this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    if (isScroll) {
-      return SingleChildScrollView(
-        child: child,
-      );
-    }
-    return child;
-  }
-}
-// Pangea#

@@ -2,7 +2,6 @@ part of "pangea_room_extension.dart";
 
 extension EventsRoomExtension on Room {
   Future<bool> _leaveIfFull() async {
-    await postLoad();
     if (!isRoomAdmin &&
         (_capacity != null) &&
         (await _numNonAdmins) > (_capacity!)) {
