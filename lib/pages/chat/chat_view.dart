@@ -269,9 +269,6 @@ class ChatView extends StatelessWidget {
               //         ),
               //       )
               //     : null,
-              floatingActionButton: ChatFloatingActionButton(
-                controller: controller,
-              ),
               // Pangea#
               body:
                   // #Pangea
@@ -399,10 +396,25 @@ class ChatView extends StatelessWidget {
                                         ),
                                       ],
                                     )
+                                  // #Pangea
+                                  // : Column(
+                                  // mainAxisSize: MainAxisSize.min,
+                                  // children: [
+                                  //   const ConnectionStatusHeader(),
+                                  //   ITBar(
+                                  //     choreographer:
+                                  //         controller.choreographer,
+                                  //   ),
+                                  //   ReactionsPicker(controller),
+                                  //   ReplyDisplay(controller),
+                                  //   ChatInputRow(controller),
+                                  //   ChatEmojiPicker(controller),
+                                  // ],
                                   : ChatFooter(
                                       controller,
                                       key: controller.chatFooterKey,
                                     ),
+                              // Pangea#
                             ),
                           ),
                       ],
@@ -421,10 +433,18 @@ class ChatView extends StatelessWidget {
                   //     ),
                   //   ),
                   Positioned(
-                    left: 20,
-                    bottom:
-                        controller.chatFooterKey.currentState?.height ?? 100,
+                    left: 7,
+                    bottom: 50 +
+                        (controller.chatFooterKey.currentState?.height ?? 50),
                     child: StartIGCButton(controller: controller),
+                  ),
+                  Positioned(
+                    right: 7,
+                    bottom: 50 +
+                        (controller.chatFooterKey.currentState?.height ?? 50),
+                    child: ChatFloatingActionButton(
+                      controller: controller,
+                    ),
                   ),
                   // Pangea#
                 ],

@@ -19,30 +19,41 @@ class ChatFooter extends StatefulWidget {
 }
 
 class ChatFooterState extends State<ChatFooter> {
-  final GlobalKey _widgetKey = GlobalKey();
-
-  double? get height => _widgetKey.currentContext?.size?.height;
+  double? height;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        height = context.size!.height;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      key: _widgetKey,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const ConnectionStatusHeader(),
-        ITBar(
-          choreographer: widget.controller.choreographer,
-        ),
-        ReactionsPicker(widget.controller),
-        ReplyDisplay(widget.controller),
-        ChatInputRow(widget.controller),
-        ChatEmojiPicker(widget.controller),
-      ],
+    return NotificationListener(
+      onNotification: (_) {
+        if (height != context.size!.height) {
+          height = context.size!.height;
+          widget.controller.updateView();
+        }
+        return true;
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const ConnectionStatusHeader(),
+          ITBar(
+            choreographer: widget.controller.choreographer,
+          ),
+          ReactionsPicker(widget.controller),
+          ReplyDisplay(widget.controller),
+          ChatInputRow(widget.controller),
+          ChatEmojiPicker(widget.controller),
+        ],
+      ),
     );
   }
 }

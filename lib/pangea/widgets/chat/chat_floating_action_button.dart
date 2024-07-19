@@ -67,14 +67,11 @@ class ChatFloatingActionButtonState extends State<ChatFloatingActionButton> {
       return const SizedBox.shrink();
     }
     if (widget.controller.showScrollDownButton) {
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 56.0),
-        child: FloatingActionButton(
-          onPressed: widget.controller.scrollDown,
-          heroTag: null,
-          mini: true,
-          child: const Icon(Icons.arrow_downward_outlined),
-        ),
+      return FloatingActionButton(
+        onPressed: widget.controller.scrollDown,
+        heroTag: null,
+        mini: true,
+        child: const Icon(Icons.arrow_downward_outlined),
       );
     }
     if (widget.controller.choreographer.errorService.error != null) {
