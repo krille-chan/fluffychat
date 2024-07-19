@@ -10,6 +10,7 @@ import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class MessageTranslationCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
@@ -140,9 +141,15 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
       return const CardErrorWidget();
     }
 
-    final bool showWarning = l2Code != null &&
-        !widget.immersionMode &&
-        widget.messageEvent.originalSent?.langCode != l2Code &&
+    // Show warning if message's language code is user's L1
+    // or if translated text is same as original text
+    // Warning does not show if was previously closed
+    final bool showWarning = widget.messageEvent.originalSent != null &&
+        ((!widget.immersionMode &&
+                widget.messageEvent.originalSent!.langCode.equals(l1Code)) ||
+            (selectionTranslation == null ||
+                widget.messageEvent.originalSent!.text
+                    .equals(selectionTranslation))) &&
         !MatrixState.pangeaController.instructions.wereInstructionsTurnedOff(
           InlineInstructions.l1Translation.toString(),
         );
