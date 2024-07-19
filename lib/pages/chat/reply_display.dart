@@ -64,9 +64,13 @@ class _EditContent extends StatelessWidget {
           Icons.edit,
           color: Theme.of(context).colorScheme.primary,
         ),
+        // #Pangea
+        // Container(width: 15.0),
         Container(width: 8.0),
         Flexible(
-          child: Text(
+          child:
+              // Pangea#
+              Text(
             event.calcLocalizedBodyFallback(
               MatrixLocals(L10n.of(context)!),
               withSenderNamePrefix: false,
@@ -79,7 +83,9 @@ class _EditContent extends StatelessWidget {
             ),
           ),
         ),
+        // #Pangea
         Container(width: 10.0),
+        // Pangea#
       ],
     );
   }
