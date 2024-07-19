@@ -476,6 +476,8 @@ class ChatListController extends State<ChatList>
   StreamSubscription? classStream;
   StreamSubscription? _invitedSpaceSubscription;
   StreamSubscription? _subscriptionStatusStream;
+  StreamSubscription? _spaceChildSubscription;
+  final Set<String> hasUpdates = {};
   //Pangea#
 
   @override
@@ -567,6 +569,16 @@ class ChatListController extends State<ChatList>
         showSubscribedSnackbar(context);
       }
     });
+
+    // listen for space child updates for any space that is not the active space
+    // so that when the user navigates to the space that was updated, it will
+    // reload any rooms that have been added / removed
+    final client = pangeaController.matrixState.client;
+    _spaceChildSubscription ??= client.onRoomState.stream.where((u) {
+      return u.state.type == EventTypes.SpaceChild && u.roomId != activeSpaceId;
+    }).listen((update) {
+      hasUpdates.add(update.roomId);
+    });
     //Pangea#
 
     super.initState();
@@ -581,6 +593,7 @@ class ChatListController extends State<ChatList>
     classStream?.cancel();
     _invitedSpaceSubscription?.cancel();
     _subscriptionStatusStream?.cancel();
+    _spaceChildSubscription?.cancel();
     //Pangea#
     scrollController.removeListener(_onScroll);
     super.dispose();
@@ -908,13 +921,14 @@ class ChatListController extends State<ChatList>
 
     // #Pangea
     if (mounted) {
+      // TODO try not to await so much
       GoogleAnalytics.analyticsUserUpdate(client.userID);
       await pangeaController.subscriptionController.initialize();
       await pangeaController.myAnalytics.initialize();
       pangeaController.afterSyncAndFirstLoginInitialization(context);
       await pangeaController.inviteBotToExistingSpaces();
       await pangeaController.setPangeaPushRules();
-      await client.migrateAnalyticsRooms();
+      client.migrateAnalyticsRooms();
     } else {
       ErrorHandler.logError(
         m: "didn't run afterSyncAndFirstLoginInitialization because not mounted",

@@ -10,7 +10,6 @@ import 'package:fluffychat/pages/chat_list/utils/on_chat_tap.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/extensions/sync_update_extension.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -46,8 +45,8 @@ class _SpaceViewState extends State<SpaceView> {
   Object? error;
   bool loading = false;
   // #Pangea
-  StreamSubscription<SyncUpdate>? _roomSubscription;
   bool refreshing = false;
+  StreamSubscription? _roomSubscription;
 
   final String _chatCountsKey = 'chatCounts';
   Map<String, int> get chatCounts => Map.from(
@@ -58,9 +57,33 @@ class _SpaceViewState extends State<SpaceView> {
 
   @override
   void initState() {
-    loadHierarchy();
     // #Pangea
+    // loadHierarchy();
+
+    // If, on launch, this room has had updates to its children,
+    // ensure the hierarchy is properly reloaded
+    final bool hasUpdate = widget.controller.hasUpdates.contains(
+      widget.controller.activeSpaceId,
+    );
+
+    loadHierarchy(hasUpdate: hasUpdate).then(
+      // remove this space ID from the set of space IDs with updates
+      (_) => widget.controller.hasUpdates.remove(
+        widget.controller.activeSpaceId,
+      ),
+    );
+
     loadChatCounts();
+
+    // Listen for changes to the activeSpace's hierarchy,
+    // and reload the hierarchy when they come through
+    final client = Matrix.of(context).client;
+    _roomSubscription ??= client.onRoomState.stream.where((u) {
+      return u.state.type == EventTypes.SpaceChild &&
+          u.roomId == widget.controller.activeSpaceId;
+    }).listen((update) {
+      loadHierarchy(hasUpdate: true);
+    });
     // Pangea#
     super.initState();
   }
@@ -76,11 +99,11 @@ class _SpaceViewState extends State<SpaceView> {
   void _refresh() {
     // #Pangea
     // _lastResponse.remove(widget.controller.activseSpaceId);
-    if (mounted) {
-      // Pangea#
-      loadHierarchy();
-      // #Pangea
-    }
+    // loadHierarchy();
+    if (mounted) setState(() => refreshing = true);
+    loadHierarchy(hasUpdate: true).whenComplete(() {
+      if (mounted) setState(() => refreshing = false);
+    });
     // Pangea#
   }
 
@@ -129,8 +152,10 @@ class _SpaceViewState extends State<SpaceView> {
   /// spaceId, it will try to load the next batch and add the new rooms to the
   /// already loaded ones. Displays a loading indicator while loading, and an error
   /// message if an error occurs.
+  /// If hasUpdate is true, it will force the hierarchy to be reloaded.
   Future<void> loadHierarchy({
     String? spaceId,
+    bool hasUpdate = false,
   }) async {
     if ((widget.controller.activeSpaceId == null && spaceId == null) ||
         loading) {
@@ -142,7 +167,7 @@ class _SpaceViewState extends State<SpaceView> {
     setState(() {});
 
     try {
-      await _loadHierarchy(spaceId: spaceId);
+      await _loadHierarchy(spaceId: spaceId, hasUpdate: hasUpdate);
     } catch (e, s) {
       if (mounted) {
         setState(() => error = e);
@@ -159,6 +184,7 @@ class _SpaceViewState extends State<SpaceView> {
   /// the active space id (or specified spaceId).
   Future<void> _loadHierarchy({
     String? spaceId,
+    bool hasUpdate = false,
   }) async {
     final client = Matrix.of(context).client;
     final activeSpaceId = (widget.controller.activeSpaceId ?? spaceId)!;
@@ -177,7 +203,7 @@ class _SpaceViewState extends State<SpaceView> {
     await activeSpace.postLoad();
 
     // The current number of rooms loaded for this space that are visible in the UI
-    final int prevLength = _lastResponse[activeSpaceId] != null
+    final int prevLength = _lastResponse[activeSpaceId] != null && !hasUpdate
         ? filterHierarchyResponse(
             activeSpace,
             _lastResponse[activeSpaceId]!.rooms,
@@ -187,6 +213,9 @@ class _SpaceViewState extends State<SpaceView> {
     // Failsafe to prevent too many calls to the server in a row
     int callsToServer = 0;
 
+    GetSpaceHierarchyResponse? currentHierarchy =
+        hasUpdate ? null : _lastResponse[activeSpaceId];
+
     // Makes repeated calls to the server until 10 new visible rooms have
     // been loaded, or there are no rooms left to load. Using a loop here,
     // rather than one single call to the endpoint, because some spaces have
@@ -195,16 +224,15 @@ class _SpaceViewState extends State<SpaceView> {
     // coming through from those calls are analytics rooms).
     while (callsToServer < 5) {
       // if this space has been loaded and there are no more rooms to load, break
-      if (_lastResponse[activeSpaceId] != null &&
-          _lastResponse[activeSpaceId]!.nextBatch == null) {
+      if (currentHierarchy != null && currentHierarchy.nextBatch == null) {
         break;
       }
 
       // if this space has been loaded and 10 new rooms have been loaded, break
-      if (_lastResponse[activeSpaceId] != null) {
+      if (currentHierarchy != null) {
         final int currentLength = filterHierarchyResponse(
           activeSpace,
-          _lastResponse[activeSpaceId]!.rooms,
+          currentHierarchy.rooms,
         ).length;
 
         if (currentLength - prevLength >= 10) {
@@ -216,22 +244,26 @@ class _SpaceViewState extends State<SpaceView> {
       final response = await client.getSpaceHierarchy(
         activeSpaceId,
         maxDepth: 1,
-        from: _lastResponse[activeSpaceId]?.nextBatch,
+        from: currentHierarchy?.nextBatch,
         limit: 100,
       );
       callsToServer++;
 
       // if rooms have earlier been loaded for this space, add those
       // previously loaded rooms to the front of the response list
-      if (_lastResponse[activeSpaceId] != null) {
+      if (currentHierarchy != null) {
         response.rooms.insertAll(
           0,
-          _lastResponse[activeSpaceId]?.rooms ?? [],
+          currentHierarchy.rooms,
         );
       }
 
       // finally, set the response to the last response for this space
-      _lastResponse[activeSpaceId] = response;
+      currentHierarchy = response;
+    }
+
+    if (currentHierarchy != null) {
+      _lastResponse[activeSpaceId] = currentHierarchy;
     }
 
     // After making those calls to the server, set the chat count for
@@ -560,34 +592,6 @@ class _SpaceViewState extends State<SpaceView> {
     }
   }
 
-  void refreshOnUpdate(SyncUpdate event) {
-    /* refresh on leave, invite, and space child update
-      not join events, because there's already a listener on 
-      onTapSpaceChild, and they interfere with each other */
-    if (widget.controller.activeSpaceId == null || !mounted || refreshing) {
-      return;
-    }
-    setState(() => refreshing = true);
-    final client = Matrix.of(context).client;
-    if (mounted &&
-            event.isMembershipUpdateByType(
-              Membership.leave,
-              client.userID!,
-            ) ||
-        event.isMembershipUpdateByType(
-          Membership.invite,
-          client.userID!,
-        ) ||
-        event.isSpaceChildUpdate(
-          widget.controller.activeSpaceId!,
-        )) {
-      debugPrint("refresh on update");
-      loadHierarchy().whenComplete(() {
-        if (mounted) setState(() => refreshing = false);
-      });
-    }
-  }
-
   bool includeSpaceChild(
     Room space,
     SpaceRoomsChunk hierarchyMember,
@@ -768,12 +772,6 @@ class _SpaceViewState extends State<SpaceView> {
         ),
       );
     }
-
-    // #Pangea
-    _roomSubscription ??= client.onSync.stream
-        .where((event) => event.hasRoomUpdate)
-        .listen(refreshOnUpdate);
-    // Pangea#
 
     final parentSpace = allSpaces.firstWhereOrNull(
       (space) =>
