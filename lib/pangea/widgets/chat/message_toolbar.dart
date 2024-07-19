@@ -58,7 +58,10 @@ class ToolbarDisplayController {
     );
   }
 
-  void showToolbar(BuildContext context, {MessageMode? mode}) {
+  void showToolbar(
+    BuildContext context, {
+    MessageMode? mode,
+  }) {
     bool toolbarUp = true;
     if (highlighted) return;
     if (controller.selectMode) {
@@ -78,8 +81,51 @@ class ToolbarDisplayController {
       final Size transformTargetSize = (targetRenderBox as RenderBox).size;
       messageWidth = transformTargetSize.width;
       final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
-      final double screenHeight = MediaQuery.of(context).size.height;
-      toolbarUp = targetOffset.dy >= screenHeight / 2;
+
+      // If there is enough space above, procede as normal
+      // Else if there is enough space below, show toolbar underneath
+      if (targetOffset.dy < 320) {
+        final spaceBeneath = MediaQuery.of(context).size.height -
+            (targetOffset.dy + transformTargetSize.height);
+        if (spaceBeneath >= 320) {
+          toolbarUp = false;
+        }
+
+        // See if it's possible to scroll up to make space
+        else if (controller.scrollController.offset - targetOffset.dy + 320 >=
+                controller.scrollController.position.minScrollExtent &&
+            controller.scrollController.offset - targetOffset.dy + 320 <=
+                controller.scrollController.position.maxScrollExtent) {
+          controller.scrollController.animateTo(
+            controller.scrollController.offset - targetOffset.dy + 320,
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+          );
+        }
+
+        // See if it's possible to scroll down to make space
+        else if (controller.scrollController.offset + spaceBeneath - 320 >=
+                controller.scrollController.position.minScrollExtent &&
+            controller.scrollController.offset + spaceBeneath - 320 <=
+                controller.scrollController.position.maxScrollExtent) {
+          controller.scrollController.animateTo(
+            controller.scrollController.offset + spaceBeneath - 320,
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+          );
+          toolbarUp = false;
+        }
+
+        // If message is too big and can't scroll either way
+        // Scroll up as much as possible, and show toolbar above
+        else {
+          controller.scrollController.animateTo(
+            controller.scrollController.position.minScrollExtent,
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+          );
+        }
+      }
     }
 
     final Widget overlayMessage = OverlayMessage(
@@ -106,7 +152,13 @@ class ToolbarDisplayController {
             ? CrossAxisAlignment.end
             : CrossAxisAlignment.start,
         children: [
-          toolbarUp ? toolbar! : overlayMessage,
+          toolbarUp
+              // Column is limited to screen height
+              // If message portion is too tall, decrease toolbar height
+              // as necessary to prevent toolbar from acting strange
+              // Problems may still occur if toolbar height is decreased too much
+              ? toolbar!
+              : overlayMessage,
           const SizedBox(height: 6),
           toolbarUp ? overlayMessage : toolbar!,
         ],
@@ -367,83 +419,85 @@ class MessageToolbarState extends State<MessageToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      type: MaterialType.transparency,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          border: Border.all(
-            width: 2,
-            color: Theme.of(context).colorScheme.primary,
+    return Flexible(
+      child: Material(
+        type: MaterialType.transparency,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            border: Border.all(
+              width: 2,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(25),
+            ),
           ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(25),
+          constraints: const BoxConstraints(
+            maxWidth: 300,
+            minWidth: 300,
+            maxHeight: 300,
           ),
-        ),
-        constraints: const BoxConstraints(
-          maxWidth: 300,
-          minWidth: 300,
-          maxHeight: 300,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Flexible(
-              child: SingleChildScrollView(
-                child: AnimatedSize(
-                  duration: FluffyThemes.animationDuration,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: toolbarContent ?? const SizedBox(),
-                      ),
-                      SizedBox(height: toolbarContent == null ? 0 : 20),
-                    ],
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                child: SingleChildScrollView(
+                  child: AnimatedSize(
+                    duration: FluffyThemes.animationDuration,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: toolbarContent ?? const SizedBox(),
+                        ),
+                        SizedBox(height: toolbarContent == null ? 0 : 20),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: MessageMode.values.map((mode) {
-                    if ([
-                          MessageMode.definition,
-                          MessageMode.textToSpeech,
-                          MessageMode.translation,
-                        ].contains(mode) &&
-                        widget.pangeaMessageEvent.isAudioMessage) {
-                      return const SizedBox.shrink();
-                    }
-                    if (mode == MessageMode.speechToText &&
-                        !widget.pangeaMessageEvent.isAudioMessage) {
-                      return const SizedBox.shrink();
-                    }
-                    return Tooltip(
-                      message: mode.tooltip(context),
-                      child: IconButton(
-                        icon: Icon(mode.icon),
-                        color: mode.iconColor(
-                          widget.pangeaMessageEvent,
-                          currentMode,
-                          context,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: MessageMode.values.map((mode) {
+                      if ([
+                            MessageMode.definition,
+                            MessageMode.textToSpeech,
+                            MessageMode.translation,
+                          ].contains(mode) &&
+                          widget.pangeaMessageEvent.isAudioMessage) {
+                        return const SizedBox.shrink();
+                      }
+                      if (mode == MessageMode.speechToText &&
+                          !widget.pangeaMessageEvent.isAudioMessage) {
+                        return const SizedBox.shrink();
+                      }
+                      return Tooltip(
+                        message: mode.tooltip(context),
+                        child: IconButton(
+                          icon: Icon(mode.icon),
+                          color: mode.iconColor(
+                            widget.pangeaMessageEvent,
+                            currentMode,
+                            context,
+                          ),
+                          onPressed: () => updateMode(mode),
                         ),
-                        onPressed: () => updateMode(mode),
+                      );
+                    }).toList() +
+                    [
+                      Tooltip(
+                        message: L10n.of(context)!.more,
+                        child: IconButton(
+                          icon: const Icon(Icons.add_reaction_outlined),
+                          onPressed: showMore,
+                        ),
                       ),
-                    );
-                  }).toList() +
-                  [
-                    Tooltip(
-                      message: L10n.of(context)!.more,
-                      child: IconButton(
-                        icon: const Icon(Icons.add_reaction_outlined),
-                        onPressed: showMore,
-                      ),
-                    ),
-                  ],
-            ),
-          ],
+                    ],
+              ),
+            ],
+          ),
         ),
       ),
     );
