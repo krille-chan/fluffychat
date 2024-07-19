@@ -59,19 +59,28 @@ class _SpaceViewState extends State<SpaceView> {
   void initState() {
     // #Pangea
     // loadHierarchy();
+
+    // If, on launch, this room has had updates to its children,
+    // ensure the hierarchy is properly reloaded
     final bool hasUpdate = widget.controller.hasUpdates.contains(
       widget.controller.activeSpaceId,
     );
+
     loadHierarchy(hasUpdate: hasUpdate).then(
+      // remove this space ID from the set of space IDs with updates
       (_) => widget.controller.hasUpdates.remove(
         widget.controller.activeSpaceId,
       ),
     );
+
     loadChatCounts();
-    _roomSubscription ??=
-        Matrix.of(context).client.onRoomState.stream.where((update) {
-      return update.state.type == EventTypes.SpaceChild &&
-          update.roomId == widget.controller.activeSpaceId;
+
+    // Listen for changes to the activeSpace's hierarchy,
+    // and reload the hierarchy when they come through
+    final client = Matrix.of(context).client;
+    _roomSubscription ??= client.onRoomState.stream.where((u) {
+      return u.state.type == EventTypes.SpaceChild &&
+          u.roomId == widget.controller.activeSpaceId;
     }).listen((update) {
       loadHierarchy(hasUpdate: true);
     });
@@ -143,6 +152,7 @@ class _SpaceViewState extends State<SpaceView> {
   /// spaceId, it will try to load the next batch and add the new rooms to the
   /// already loaded ones. Displays a loading indicator while loading, and an error
   /// message if an error occurs.
+  /// If hasUpdate is true, it will force the hierarchy to be reloaded.
   Future<void> loadHierarchy({
     String? spaceId,
     bool hasUpdate = false,

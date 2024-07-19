@@ -570,14 +570,13 @@ class ChatListController extends State<ChatList>
       }
     });
 
-    _spaceChildSubscription ??=
-        pangeaController.matrixState.client.onRoomState.stream
-            .where(
-      (update) =>
-          update.state.type == EventTypes.SpaceChild &&
-          update.roomId != activeSpaceId,
-    )
-            .listen((update) {
+    // listen for space child updates for any space that is not the active space
+    // so that when the user navigates to the space that was updated, it will
+    // reload any rooms that have been added / removed
+    final client = pangeaController.matrixState.client;
+    _spaceChildSubscription ??= client.onRoomState.stream.where((u) {
+      return u.state.type == EventTypes.SpaceChild && u.roomId != activeSpaceId;
+    }).listen((update) {
       hasUpdates.add(update.roomId);
     });
     //Pangea#
