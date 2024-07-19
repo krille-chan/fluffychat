@@ -198,9 +198,7 @@ class AnalyticsController extends BaseController {
     // gets all the summary analytics events for the students
     // in a space since the current timespace's cut off date
 
-    // ensure that all the space's events are loaded (mainly the for langCode)
-    // and that the participants are loaded
-    await space.postLoad();
+    // ensure that the participants of the space are loaded
     await space.requestParticipants();
 
     // TODO switch to using list of futures
@@ -439,7 +437,6 @@ class AnalyticsController extends BaseController {
             timeSpan: currentAnalyticsTimeSpan,
           );
         }
-        await space.postLoad();
       }
 
       DateTime? lastUpdated;
@@ -545,7 +542,6 @@ class AnalyticsController extends BaseController {
   Future<List<ConstructAnalyticsEvent>> allSpaceMemberConstructs(
     Room space,
   ) async {
-    await space.postLoad();
     await space.requestParticipants();
     final List<ConstructAnalyticsEvent> constructEvents = [];
     for (final student in space.students) {
@@ -788,7 +784,6 @@ class AnalyticsController extends BaseController {
         );
         return [];
       }
-      await space.postLoad();
     }
 
     DateTime? lastUpdated;
