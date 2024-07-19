@@ -476,6 +476,8 @@ class ChatListController extends State<ChatList>
   StreamSubscription? classStream;
   StreamSubscription? _invitedSpaceSubscription;
   StreamSubscription? _subscriptionStatusStream;
+  StreamSubscription? _spaceChildSubscription;
+  final Set<String> hasUpdates = {};
   //Pangea#
 
   @override
@@ -567,6 +569,17 @@ class ChatListController extends State<ChatList>
         showSubscribedSnackbar(context);
       }
     });
+
+    _spaceChildSubscription ??=
+        pangeaController.matrixState.client.onRoomState.stream
+            .where(
+      (update) =>
+          update.state.type == EventTypes.SpaceChild &&
+          update.roomId != activeSpaceId,
+    )
+            .listen((update) {
+      hasUpdates.add(update.roomId);
+    });
     //Pangea#
 
     super.initState();
@@ -581,6 +594,7 @@ class ChatListController extends State<ChatList>
     classStream?.cancel();
     _invitedSpaceSubscription?.cancel();
     _subscriptionStatusStream?.cancel();
+    _spaceChildSubscription?.cancel();
     //Pangea#
     scrollController.removeListener(_onScroll);
     super.dispose();
