@@ -436,7 +436,9 @@ class ChatDetailsView extends StatelessWidget {
                               onTap: () =>
                                   context.go('/rooms/${room.id}/invite'),
                             ),
-                          if (room.showClassEditOptions && room.isSpace)
+                          if (room.showClassEditOptions &&
+                              room.isSpace &&
+                              !room.isSubspace)
                             SpaceDetailsToggleAddStudentsTile(
                               controller: controller,
                             ),

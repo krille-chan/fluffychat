@@ -173,15 +173,17 @@ class NewSpaceController extends State<NewSpace> {
                 addToSpaceKey.currentState!.parent,
               )
             : null,
-        // initialState: [
-        //   if (avatar != null)
-        //     sdk.StateEvent(
-        //       type: sdk.EventTypes.RoomAvatar,
-        //       content: {'url': avatarUrl.toString()},
-        //     ),
-        // ],
-        initialState: initialState,
         // Pangea#
+        initialState: [
+          if (avatar != null)
+            sdk.StateEvent(
+              type: sdk.EventTypes.RoomAvatar,
+              content: {'url': avatarUrl.toString()},
+            ),
+          // #Pangea
+          ...initialState,
+          // Pangea#
+        ],
       );
       // #Pangea
       final List<Future<dynamic>> futures = [

@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/extensions/sync_update_extension.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:flutter/material.dart';
@@ -83,92 +84,167 @@ class _SpaceViewState extends State<SpaceView> {
     // Pangea#
   }
 
-  Future<GetSpaceHierarchyResponse> loadHierarchy([
-    String? prevBatch,
-    // #Pangea
+  // #Pangea
+  // Future<GetSpaceHierarchyResponse?> loadHierarchy([String? prevBatch]) async {
+  //   final activeSpaceId = widget.controller.activeSpaceId;
+  //   if (activeSpaceId == null) return null;
+  //   final client = Matrix.of(context).client;
+
+  //   final activeSpace = client.getRoomById(activeSpaceId);
+  //   await activeSpace?.postLoad();
+
+  //   setState(() {
+  //     error = null;
+  //     loading = true;
+  //   });
+
+  //   try {
+  //     final response = await client.getSpaceHierarchy(
+  //       activeSpaceId,
+  //       maxDepth: 1,
+  //       from: prevBatch,
+  //     );
+
+  //     if (prevBatch != null) {
+  //       response.rooms.insertAll(0, _lastResponse[activeSpaceId]?.rooms ?? []);
+  //     }
+  //     setState(() {
+  //       _lastResponse[activeSpaceId] = response;
+  //     });
+  //     return _lastResponse[activeSpaceId]!;
+  //   } catch (e) {
+  //     setState(() {
+  //       error = e;
+  //     });
+  //     rethrow;
+  //   } finally {
+  //     setState(() {
+  //       loading = false;
+  //     });
+  //   }
+  // }
+
+  /// Loads the hierarchy of the active space (or the given spaceId) and stores
+  /// it in _lastResponse map. If there's already a response in that map for the
+  /// spaceId, it will try to load the next batch and add the new rooms to the
+  /// already loaded ones. Displays a loading indicator while loading, and an error
+  /// message if an error occurs.
+  Future<void> loadHierarchy({
     String? spaceId,
-    // Pangea#
-  ]) async {
-    // #Pangea
+  }) async {
     if ((widget.controller.activeSpaceId == null && spaceId == null) ||
         loading) {
-      return GetSpaceHierarchyResponse(
-        rooms: [],
-        nextBatch: null,
-      );
+      return;
     }
 
-    setState(() {
-      error = null;
-      loading = true;
-    });
-    // Pangea#
-
-    // #Pangea
-    // final activeSpaceId = widget.controller.activeSpaceId!;
-    final activeSpaceId = (widget.controller.activeSpaceId ?? spaceId)!;
-    // Pangea#
-    final client = Matrix.of(context).client;
-
-    final activeSpace = client.getRoomById(activeSpaceId);
-    await activeSpace?.postLoad();
-
-    // #Pangea
-    // setState(() {
-    //   error = null;
-    //   loading = true;
-    // });
-    // Pangea#
+    loading = true;
+    error = null;
+    setState(() {});
 
     try {
-      final response = await client.getSpaceHierarchy(
-        activeSpaceId,
-        maxDepth: 1,
-        from: prevBatch,
-        // #Pangea
-        limit: 100,
-        // Pangea#
-      );
-
-      if (prevBatch != null) {
-        response.rooms.insertAll(0, _lastResponse[activeSpaceId]?.rooms ?? []);
-      }
-      // #Pangea
+      await _loadHierarchy(spaceId: spaceId);
+    } catch (e, s) {
       if (mounted) {
-        // Pangea#
-        setState(() {
-          _lastResponse[activeSpaceId] = response;
-        });
+        setState(() => error = e);
       }
-      return _lastResponse[activeSpaceId]!;
-    } catch (e) {
-      // #Pangea
-      if (mounted) {
-        // Pangea#
-        setState(() {
-          error = e;
-        });
-      }
-      rethrow;
+      ErrorHandler.logError(e: e, s: s);
     } finally {
-      // #Pangea
-      if (activeSpace != null) {
-        setChatCount(
-          activeSpace,
-          _lastResponse[activeSpaceId] ??
-              GetSpaceHierarchyResponse(
-                rooms: [],
-              ),
-        );
-      }
       if (mounted) {
-        // Pangea#
-        setState(() {
-          loading = false;
-        });
+        setState(() => loading = false);
       }
     }
   }
+
+  /// Internal logic of loadHierarchy. It will load the hierarchy of
+  /// the active space id (or specified spaceId).
+  Future<void> _loadHierarchy({
+    String? spaceId,
+  }) async {
+    final client = Matrix.of(context).client;
+    final activeSpaceId = (widget.controller.activeSpaceId ?? spaceId)!;
+    final activeSpace = client.getRoomById(activeSpaceId);
+
+    if (activeSpace == null) {
+      ErrorHandler.logError(
+        e: Exception('Space not found in loadHierarchy'),
+        data: {'spaceId': activeSpaceId},
+      );
+      return;
+    }
+
+    // Load all of the space's state events. Space Child events
+    // are used to filtering out unsuggested, unjoined rooms.
+    await activeSpace.postLoad();
+
+    // The current number of rooms loaded for this space that are visible in the UI
+    final int prevLength = _lastResponse[activeSpaceId] != null
+        ? filterHierarchyResponse(
+            activeSpace,
+            _lastResponse[activeSpaceId]!.rooms,
+          ).length
+        : 0;
+
+    // Failsafe to prevent too many calls to the server in a row
+    int callsToServer = 0;
+
+    // Makes repeated calls to the server until 10 new visible rooms have
+    // been loaded, or there are no rooms left to load. Using a loop here,
+    // rather than one single call to the endpoint, because some spaces have
+    // so many invisible rooms (analytics rooms) that it might look like
+    // pressing the 'load more' button does nothing (Because the only rooms
+    // coming through from those calls are analytics rooms).
+    while (callsToServer < 5) {
+      // if this space has been loaded and there are no more rooms to load, break
+      if (_lastResponse[activeSpaceId] != null &&
+          _lastResponse[activeSpaceId]!.nextBatch == null) {
+        break;
+      }
+
+      // if this space has been loaded and 10 new rooms have been loaded, break
+      if (_lastResponse[activeSpaceId] != null) {
+        final int currentLength = filterHierarchyResponse(
+          activeSpace,
+          _lastResponse[activeSpaceId]!.rooms,
+        ).length;
+
+        if (currentLength - prevLength >= 10) {
+          break;
+        }
+      }
+
+      // make the call to the server
+      final response = await client.getSpaceHierarchy(
+        activeSpaceId,
+        maxDepth: 1,
+        from: _lastResponse[activeSpaceId]?.nextBatch,
+        limit: 100,
+      );
+      callsToServer++;
+
+      // if rooms have earlier been loaded for this space, add those
+      // previously loaded rooms to the front of the response list
+      if (_lastResponse[activeSpaceId] != null) {
+        response.rooms.insertAll(
+          0,
+          _lastResponse[activeSpaceId]?.rooms ?? [],
+        );
+      }
+
+      // finally, set the response to the last response for this space
+      _lastResponse[activeSpaceId] = response;
+    }
+
+    // After making those calls to the server, set the chat count for
+    // this space. Used for the UI of the 'All Spaces' view
+    setChatCount(
+      activeSpace,
+      _lastResponse[activeSpaceId] ??
+          GetSpaceHierarchyResponse(
+            rooms: [],
+          ),
+    );
+  }
+  // Pangea#
 
   void _onJoinSpaceChild(SpaceRoomsChunk spaceChild) async {
     final client = Matrix.of(context).client;
@@ -479,12 +555,12 @@ class _SpaceViewState extends State<SpaceView> {
 
       // if it's visible, and it hasn't been loaded yet, load chat count
       if (isRootSpace && !chatCounts.containsKey(space.id)) {
-        await loadHierarchy(null, space.id);
+        loadHierarchy(spaceId: space.id);
       }
     }
   }
 
-  Future<void> refreshOnUpdate(SyncUpdate event) async {
+  void refreshOnUpdate(SyncUpdate event) {
     /* refresh on leave, invite, and space child update
       not join events, because there's already a listener on 
       onTapSpaceChild, and they interfere with each other */
@@ -506,44 +582,46 @@ class _SpaceViewState extends State<SpaceView> {
           widget.controller.activeSpaceId!,
         )) {
       debugPrint("refresh on update");
-      await loadHierarchy();
+      loadHierarchy().whenComplete(() {
+        if (mounted) setState(() => refreshing = false);
+      });
     }
-    setState(() => refreshing = false);
   }
 
-  bool includeSpaceChild(sc, matchingSpaceChildren) {
+  bool includeSpaceChild(
+    Room space,
+    SpaceRoomsChunk hierarchyMember,
+  ) {
     if (!mounted) return false;
-    final bool isAnalyticsRoom = sc.roomType == PangeaRoomTypes.analytics;
-    final bool isMember = [Membership.join, Membership.invite]
-        .contains(Matrix.of(context).client.getRoomById(sc.roomId)?.membership);
-    final bool isSuggested = matchingSpaceChildren.any(
-      (matchingSpaceChild) =>
-          matchingSpaceChild.roomId == sc.roomId &&
-          matchingSpaceChild.suggested == true,
+    final bool isAnalyticsRoom =
+        hierarchyMember.roomType == PangeaRoomTypes.analytics;
+
+    final bool isMember = [Membership.join, Membership.invite].contains(
+      Matrix.of(context).client.getRoomById(hierarchyMember.roomId)?.membership,
     );
+
+    final bool isSuggested =
+        space.spaceChildSuggestionStatus[hierarchyMember.roomId] ?? true;
+
     return !isAnalyticsRoom && (isMember || isSuggested);
   }
 
-  List<SpaceRoomsChunk> filterSpaceChildren(
+  List<SpaceRoomsChunk> filterHierarchyResponse(
     Room space,
-    List<SpaceRoomsChunk> spaceChildren,
+    List<SpaceRoomsChunk> hierarchyResponse,
   ) {
-    final childIds =
-        spaceChildren.map((hierarchyMember) => hierarchyMember.roomId);
+    final List<SpaceRoomsChunk> filteredChildren = [];
+    for (final child in hierarchyResponse) {
+      final isDuplicate = filteredChildren.any(
+        (filtered) => filtered.roomId == child.roomId,
+      );
+      if (isDuplicate) continue;
 
-    final matchingSpaceChildren = space.spaceChildren
-        .where((spaceChild) => childIds.contains(spaceChild.roomId))
-        .toList();
-
-    final filteredSpaceChildren = spaceChildren
-        .where(
-          (sc) => includeSpaceChild(
-            sc,
-            matchingSpaceChildren,
-          ),
-        )
-        .toList();
-    return filteredSpaceChildren;
+      if (includeSpaceChild(space, child)) {
+        filteredChildren.add(child);
+      }
+    }
+    return filteredChildren;
   }
 
   int sortSpaceChildren(
@@ -567,7 +645,7 @@ class _SpaceViewState extends State<SpaceView> {
   ) async {
     final Map<String, int> updatedChatCounts = Map.from(chatCounts);
     final List<SpaceRoomsChunk> spaceChildren = response?.rooms ?? [];
-    final filteredChildren = filterSpaceChildren(space, spaceChildren)
+    final filteredChildren = filterHierarchyResponse(space, spaceChildren)
         .where((sc) => sc.roomId != space.id)
         .toList();
     updatedChatCounts[space.id] = filteredChildren.length;
@@ -799,7 +877,7 @@ class _SpaceViewState extends State<SpaceView> {
                 final space =
                     Matrix.of(context).client.getRoomById(activeSpaceId);
                 if (space != null) {
-                  spaceChildren = filterSpaceChildren(space, spaceChildren);
+                  spaceChildren = filterHierarchyResponse(space, spaceChildren);
                 }
                 spaceChildren.sort(sortSpaceChildren);
                 // Pangea#
@@ -818,7 +896,10 @@ class _SpaceViewState extends State<SpaceView> {
                             onPressed: loading
                                 ? null
                                 : () {
-                                    loadHierarchy(response.nextBatch);
+                                    // #Pangea
+                                    // loadHierarchy(response.nextBatch);
+                                    loadHierarchy();
+                                    // Pangea#
                                   },
                           ),
                         );
