@@ -921,13 +921,14 @@ class ChatListController extends State<ChatList>
 
     // #Pangea
     if (mounted) {
+      // TODO try not to await so much
       GoogleAnalytics.analyticsUserUpdate(client.userID);
       await pangeaController.subscriptionController.initialize();
       await pangeaController.myAnalytics.initialize();
       pangeaController.afterSyncAndFirstLoginInitialization(context);
       await pangeaController.inviteBotToExistingSpaces();
       await pangeaController.setPangeaPushRules();
-      await client.migrateAnalyticsRooms();
+      client.migrateAnalyticsRooms();
     } else {
       ErrorHandler.logError(
         m: "didn't run afterSyncAndFirstLoginInitialization because not mounted",

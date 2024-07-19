@@ -64,7 +64,6 @@ class SpaceAnalyticsV2Controller extends State<SpaceAnalyticsPage> {
 
   Future<void> getChatAndStudents() async {
     try {
-      await spaceRoom?.postLoad();
       await spaceRoom?.requestParticipants();
 
       if (spaceRoom != null) {
