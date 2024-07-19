@@ -36,7 +36,6 @@ void chatListHandleSpaceTap(
         if (await space.leaveIfFull()) {
           throw L10n.of(context)!.roomFull;
         }
-        await space.postLoad();
         setActiveSpaceAndCloseChat();
       },
       onError: (exception) {
@@ -72,7 +71,7 @@ void chatListHandleSpaceTap(
             throw L10n.of(context)!.roomFull;
           }
           if (space.isSpace) {
-            await space.joinAnalyticsRoomsInSpace();
+            space.joinAnalyticsRoomsInSpace();
           }
           setActiveSpaceAndCloseChat();
           ScaffoldMessenger.of(context).showSnackBar(
