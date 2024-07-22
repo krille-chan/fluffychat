@@ -1,11 +1,11 @@
 import 'package:animations/animations.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
-import 'package:fluffychat/pages/chat_list/utils/on_chat_tap.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/chat_list_body_text.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/chat_list_header_wrapper.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/chat_list_item_wrapper.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -17,7 +17,6 @@ import 'package:matrix/matrix.dart';
 import '../../config/themes.dart';
 import '../../widgets/connection_status_header.dart';
 import '../../widgets/matrix.dart';
-import 'chat_list_header.dart';
 
 class ChatListViewBody extends StatelessWidget {
   final ChatListController controller;
@@ -76,7 +75,10 @@ class ChatListViewBody extends StatelessWidget {
             child: CustomScrollView(
               controller: controller.scrollController,
               slivers: [
-                ChatListHeader(controller: controller),
+                // #Pangea
+                // ChatListHeader(controller: controller),
+                ChatListHeaderWrapper(controller: controller),
+                // Pangea#
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
@@ -247,17 +249,23 @@ class ChatListViewBody extends StatelessWidget {
                   SliverList.builder(
                     itemCount: rooms.length,
                     itemBuilder: (BuildContext context, int i) {
-                      return ChatListItem(
+                      // #Pangea
+                      // return ChatListItem(
+                      return ChatListItemWrapper(
+                        controller: controller,
+                        // Pangea#
                         rooms[i],
                         key: Key('chat_list_item_${rooms[i].id}'),
                         filter: filter,
-                        selected:
-                            controller.selectedRoomIds.contains(rooms[i].id),
-                        onTap: controller.selectMode == SelectMode.select
-                            ? () => controller.toggleSelection(rooms[i].id)
-                            : () => onChatTap(rooms[i], context),
-                        onLongPress: () =>
-                            controller.toggleSelection(rooms[i].id),
+                        // #Pangea
+                        // selected:
+                        //     controller.selectedRoomIds.contains(rooms[i].id),
+                        // onTap: controller.selectMode == SelectMode.select
+                        //     ? () => controller.toggleSelection(rooms[i].id)
+                        //     : () => onChatTap(rooms[i], context),
+                        // onLongPress: () =>
+                        //     controller.toggleSelection(rooms[i].id),
+                        // Pangea#
                         activeChat: controller.activeChat == rooms[i].id,
                       );
                     },

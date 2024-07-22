@@ -599,12 +599,23 @@ class ChatListController extends State<ChatList>
     super.dispose();
   }
 
+  // #Pangea
+  final StreamController<String> selectionsStream =
+      StreamController.broadcast();
+  // Pangea#
+
   void toggleSelection(String roomId) {
-    setState(
-      () => selectedRoomIds.contains(roomId)
-          ? selectedRoomIds.remove(roomId)
-          : selectedRoomIds.add(roomId),
-    );
+    // #Pangea
+    // setState(
+    //   () => selectedRoomIds.contains(roomId)
+    //       ? selectedRoomIds.remove(roomId)
+    //       : selectedRoomIds.add(roomId),
+    // );
+    selectedRoomIds.contains(roomId)
+        ? selectedRoomIds.remove(roomId)
+        : selectedRoomIds.add(roomId);
+    selectionsStream.add(roomId);
+    // Pangea#
   }
 
   Future<void> toggleUnread() async {
@@ -676,8 +687,8 @@ class ChatListController extends State<ChatList>
       context: context,
       future: () => _archiveSelectedRooms(),
     );
-    setState(() {});
     // #Pangea
+    // setState(() {});
     if (archivedActiveRoom) {
       context.go('/rooms');
     }
@@ -709,7 +720,6 @@ class ChatListController extends State<ChatList>
       context: context,
       future: () => _leaveSelectedRooms(onlyAdmin),
     );
-    setState(() {});
     if (leftActiveRoom) {
       context.go('/rooms');
     }
@@ -871,7 +881,12 @@ class ChatListController extends State<ChatList>
       );
     }
 
-    setState(() => selectedRoomIds.clear());
+    // #Pangea
+    // setState(() => selectedRoomIds.clear());
+    if (firstSelectedRoom != null) {
+      toggleSelection(firstSelectedRoom.id);
+    }
+    // Pangea#
   }
 
   bool get anySelectedRoomNotMarkedUnread => selectedRoomIds.any(
@@ -941,7 +956,12 @@ class ChatListController extends State<ChatList>
     if (selectMode == SelectMode.share) {
       setState(() => Matrix.of(context).shareContent = null);
     } else {
-      setState(() => selectedRoomIds.clear());
+      // #Pangea
+      // setState(() => selectedRoomIds.clear());
+      for (final roomId in selectedRoomIds.toList()) {
+        toggleSelection(roomId);
+      }
+      // Pangea#
     }
   }
 
