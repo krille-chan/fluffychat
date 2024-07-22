@@ -378,13 +378,6 @@ class ChatController extends State<ChatPageWithRoom>
     setState(() {});
   }
 
-  // #Pangea
-  void closeEmojiPicker() {
-    showEmojiPicker = false;
-    updateView();
-  }
-  // Pangea#
-
   Future<void>? loadTimelineFuture;
 
   int? animateInEventIndex;

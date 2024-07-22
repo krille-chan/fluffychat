@@ -350,7 +350,16 @@ class ChatView extends StatelessWidget {
                                     ITBar(
                                       choreographer: controller.choreographer,
                                     ),
-                                    ReplyDisplay(controller),
+                                    Row(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        ReplyDisplay(controller),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),
@@ -481,29 +490,6 @@ class ChatView extends StatelessWidget {
                     right: 0,
                     child: ChatEmojiPicker(controller),
                   ),
-                  // Close button placed at bottom of emoji picker
-                  if (controller.showEmojiPicker)
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 5,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FloatingActionButton(
-                            onPressed: controller.closeEmojiPicker,
-                            backgroundColor: Colors.black,
-                            shape: const CircleBorder(),
-                            heroTag: null,
-                            mini: true,
-                            child: const Icon(
-                              Icons.close,
-                              size: 20,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                   // Pangea#
                 ],
               ),

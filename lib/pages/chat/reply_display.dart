@@ -13,35 +13,40 @@ class ReplyDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: FluffyThemes.animationDuration,
-      curve: FluffyThemes.animationCurve,
-      height: controller.editEvent != null || controller.replyEvent != null
-          ? 56
-          : 0,
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onInverseSurface,
-      ),
-      child: Row(
-        children: <Widget>[
-          IconButton(
-            tooltip: L10n.of(context)!.close,
-            icon: const Icon(Icons.close),
-            onPressed: controller.cancelReplyEventAction,
-          ),
-          Expanded(
-            child: controller.replyEvent != null
-                ? ReplyContent(
-                    controller.replyEvent!,
-                    timeline: controller.timeline!,
-                    backgroundColor: Colors.transparent,
-                  )
-                : _EditContent(
-                    controller.editEvent?.getDisplayEvent(controller.timeline!),
-                  ),
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: AnimatedContainer(
+        duration: FluffyThemes.animationDuration,
+        curve: FluffyThemes.animationCurve,
+        height: controller.editEvent != null || controller.replyEvent != null
+            ? 56
+            : 0,
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(28.0)),
+          color: Theme.of(context).colorScheme.onInverseSurface,
+        ),
+        child: Row(
+          children: <Widget>[
+            IconButton(
+              tooltip: L10n.of(context)!.close,
+              icon: const Icon(Icons.close),
+              onPressed: controller.cancelReplyEventAction,
+            ),
+            Expanded(
+              child: controller.replyEvent != null
+                  ? ReplyContent(
+                      controller.replyEvent!,
+                      timeline: controller.timeline!,
+                      backgroundColor: Colors.transparent,
+                    )
+                  : _EditContent(
+                      controller.editEvent
+                          ?.getDisplayEvent(controller.timeline!),
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }
