@@ -31,18 +31,16 @@ class ClassController extends BaseController {
     setState(data: {"activeSpaceId": classId});
   }
 
-  Future<void> fixClassPowerLevels() async {
-    try {
-      final teacherSpaces =
-          await _pangeaController.matrixState.client.spacesImTeaching;
-      final List<Future<void>> classFixes = List<Room>.from(teacherSpaces)
-          .map((adminSpace) => adminSpace.setClassPowerLevels())
-          .toList();
-      await Future.wait(classFixes);
-    } catch (err, stack) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: stack);
-    }
+  /// For all the spaces that the user is teaching, set the power levels
+  /// to enable all other users to add child rooms to the space.
+  void fixClassPowerLevels() {
+    Future.wait(
+      _pangeaController.matrixState.client.spacesImTeaching.map(
+        (space) => space.setClassPowerLevels().catchError((err, s) {
+          ErrorHandler.logError(e: err, s: s);
+        }),
+      ),
+    );
   }
 
   Future<void> checkForClassCodeAndSubscription(BuildContext context) async {
@@ -131,10 +129,10 @@ class ClassController extends BaseController {
           _pangeaController.matrixState.client.getRoomById(classChunk.roomId);
 
       // when possible, add user's analytics room the to space they joined
-      await joinedSpace?.addAnalyticsRoomsToSpace();
+      joinedSpace?.addAnalyticsRoomsToSpace();
 
       // and invite the space's teachers to the user's analytics rooms
-      await joinedSpace?.inviteSpaceTeachersToAnalyticsRooms();
+      joinedSpace?.inviteSpaceTeachersToAnalyticsRooms();
       GoogleAnalytics.joinClass(classCode);
       return;
     } catch (err) {
