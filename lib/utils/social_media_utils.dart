@@ -41,7 +41,9 @@ String removeSignalTag(String displayname) {
 }
 
 SocialNetwork identifySocialNetwork(Room room) {
-  final List<User> participants = room.getParticipants();
+  // Assume that the first 5 participants are enough to identify the social network
+  // to avoid going through all participants in large rooms
+  final Iterable<User> participants = room.getParticipants().take(5);
 
   return SocialNetworkManager.socialNetworks.firstWhere(
     (network) =>
