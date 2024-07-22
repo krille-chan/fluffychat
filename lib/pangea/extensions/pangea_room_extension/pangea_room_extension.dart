@@ -291,12 +291,6 @@ extension PangeaRoom on Room {
 
   bool get canDelete => _canDelete;
 
-  /// Determines whether user has permission to add child room to this
-  /// Can add child if, and only if, is admin of child
-  bool canIAddSpaceChild(Room? room, {bool spaceMode = false}) {
-    return _canIAddSpaceChild(room, spaceMode: spaceMode);
-  }
-
   bool get canIAddSpaceParents => _canIAddSpaceParents;
 
   bool pangeaCanSendEvent(String eventType) => _pangeaCanSendEvent(eventType);

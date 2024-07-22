@@ -78,24 +78,10 @@ extension UserPermissionsRoomExtension on Room {
 
   bool get _canDelete => isSpaceAdmin;
 
-  bool _canIAddSpaceChild(Room? room, {bool spaceMode = false}) {
-    if (!isSpace) {
-      ErrorHandler.logError(
-        m: "should not call canIAddSpaceChildren on non-space room. Room id: $id",
-        data: toJson(),
-        s: StackTrace.current,
-      );
-      return false;
-    }
-
-    // Can add child if, and only if, admin of child
-    return room?.isRoomAdmin ?? true;
-  }
-
   bool get _canIAddSpaceParents =>
       _isRoomAdmin || pangeaCanSendEvent(EventTypes.SpaceParent);
 
-  //overriding the default canSendEvent to check power levels
+  // Overriding the default canSendEvent to check power levels
   bool _pangeaCanSendEvent(String eventType) {
     final powerLevelsMap = getState(EventTypes.RoomPowerLevels)?.content;
     if (powerLevelsMap == null) return 0 <= ownPowerLevel;

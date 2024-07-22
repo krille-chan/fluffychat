@@ -68,19 +68,17 @@ extension AnalyticsRoomExtension on Room {
     }
 
     if (spaceChildren.any((sc) => sc.roomId == analyticsRoom.id)) return;
-    if (canIAddSpaceChild(null)) {
-      try {
-        await setSpaceChild(analyticsRoom.id);
-      } catch (err) {
-        debugPrint(
-          "Failed to add analytics room ${analyticsRoom.id} for student to space $id",
-        );
-        Sentry.addBreadcrumb(
-          Breadcrumb(
-            message: "Failed to add analytics room to space $id",
-          ),
-        );
-      }
+    try {
+      await setSpaceChild(analyticsRoom.id);
+    } catch (err) {
+      debugPrint(
+        "Failed to add analytics room ${analyticsRoom.id} for student to space $id",
+      );
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: "Failed to add analytics room to space $id",
+        ),
+      );
     }
   }
 
