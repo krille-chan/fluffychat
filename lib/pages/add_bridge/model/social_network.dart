@@ -98,5 +98,14 @@ class SocialNetworkManager {
       urlLogin: "https://www.linkedin.com/login/",
       urlRedirect: "https://www.linkedin.com/feed/",
     ),
+    // Tawkie must be last to be default
+    SocialNetwork(
+      logo: Container(),
+      chatIconPath: "assets/tawkie.png",
+      name: "Tawkie",
+      color: FluffyThemes.tawkieColor,
+      chatBot: "",
+      mxidPrefix: "@",
+    ),
   ];
 }
