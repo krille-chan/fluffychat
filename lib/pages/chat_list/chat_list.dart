@@ -50,8 +50,9 @@ enum PopupMenuAction {
 
 enum ActiveFilter {
   allChats,
-  unread,
+  messages,
   groups,
+  unread,
   spaces,
 }
 
@@ -60,6 +61,8 @@ extension LocalizedActiveFilter on ActiveFilter {
     switch (this) {
       case ActiveFilter.allChats:
         return L10n.of(context)!.all;
+      case ActiveFilter.messages:
+        return L10n.of(context)!.messages;
       case ActiveFilter.unread:
         return L10n.of(context)!.unread;
       case ActiveFilter.groups:
@@ -321,6 +324,8 @@ class ChatListController extends State<ChatList>
     switch (activeFilter) {
       case ActiveFilter.allChats:
         return (room) => true;
+      case ActiveFilter.messages:
+        return (room) => !room.isSpace && room.isDirectChat;
       case ActiveFilter.groups:
         return (room) => !room.isSpace && !room.isDirectChat;
       case ActiveFilter.unread:
