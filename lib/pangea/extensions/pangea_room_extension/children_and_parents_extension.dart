@@ -131,7 +131,8 @@ extension ChildrenAndParentsRoomExtension on Room {
     spaceMode = child?.isSpace ?? spaceMode;
 
     // get the bool for adding chats to spaces
-    final bool canAddChild = child?.isRoomAdmin ?? true;
+    final bool canAddChild =
+        (child?.isRoomAdmin ?? true) && canSendEvent(EventTypes.SpaceChild);
     if (!spaceMode) return canAddChild;
 
     // if adding space to a space, check if the child is an ancestor

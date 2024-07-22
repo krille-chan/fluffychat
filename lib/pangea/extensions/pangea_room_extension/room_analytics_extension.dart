@@ -67,7 +67,9 @@ extension AnalyticsRoomExtension on Room {
       return Future.value();
     }
 
+    if (!canSendEvent(EventTypes.SpaceChild)) return;
     if (spaceChildren.any((sc) => sc.roomId == analyticsRoom.id)) return;
+
     try {
       await setSpaceChild(analyticsRoom.id);
     } catch (err) {

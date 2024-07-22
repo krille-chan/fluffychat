@@ -76,18 +76,6 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
           )
         : null;
 
-    if (widget.activeSpaceId != null) {
-      final activeSpace =
-          Matrix.of(context).client.getRoomById(widget.activeSpaceId!);
-      if (activeSpace != null) {
-        parent = activeSpace;
-      } else {
-        ErrorHandler.logError(
-          e: Exception('activeSpaceId ${widget.activeSpaceId} not found'),
-        );
-      }
-    }
-
     //sort possibleParents
     //if possibleParent in parents, put first
     //use sort but use any instead of contains because contains uses == and we want to compare by id
@@ -102,6 +90,20 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     });
 
     isOpen = widget.startOpen;
+
+    if (widget.activeSpaceId != null) {
+      final activeSpace =
+          Matrix.of(context).client.getRoomById(widget.activeSpaceId!);
+      if (activeSpace == null) {
+        ErrorHandler.logError(
+          e: Exception('activeSpaceId ${widget.activeSpaceId} not found'),
+        );
+        return;
+      }
+      if (activeSpace.canSendEvent(EventTypes.SpaceChild)) {
+        parent = activeSpace;
+      }
+    }
   }
 
   Future<void> _addSingleSpace(String roomToAddId, Room newParent) async {
