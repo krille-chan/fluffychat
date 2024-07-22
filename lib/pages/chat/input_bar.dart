@@ -21,6 +21,7 @@ class InputBar extends StatelessWidget {
   final ValueChanged<Uint8List?>? onSubmitImage;
   final FocusNode? focusNode;
   // #Pangea
+  final Function? updateBar;
   // final TextEditingController? controller;
   final PangeaTextController? controller;
   // Pangea#
@@ -38,6 +39,7 @@ class InputBar extends StatelessWidget {
     this.onSubmitImage,
     this.focusNode,
     this.controller,
+    this.updateBar,
     this.decoration,
     this.onChanged,
     this.autofocus,
@@ -401,6 +403,9 @@ class InputBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final useShortCuts = (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile);
+    // #Pangea
+    final bool maxLength = controller?.text.length == 1000;
+    // Pangea#
     return Shortcuts(
       shortcuts: !useShortCuts
           ? {}
@@ -504,9 +509,7 @@ class InputBar extends StatelessWidget {
                 onSubmitted!(text);
               },
               // #Pangea
-              style: controller?.text.length == 1000
-                  ? const TextStyle(color: Colors.red)
-                  : null,
+              style: maxLength ? const TextStyle(color: Colors.red) : null,
               onTap: () {
                 controller!.onInputTap(
                   context,
@@ -519,6 +522,11 @@ class InputBar extends StatelessWidget {
                 // fix for the library for now
                 // it sets the types for the callback incorrectly
                 onChanged!(text);
+                // #Pangea
+                if (maxLength != (controller?.text.length == 1000)) {
+                  updateBar!();
+                }
+                // Pangea#
               },
               textCapitalization: TextCapitalization.sentences,
             ),

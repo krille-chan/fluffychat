@@ -61,8 +61,7 @@ class InputBarWrapperState extends State<InputBarWrapper> {
     super.dispose();
   }
 
-  void refreshOnChange(String text) {
-    widget.onChanged!(text);
+  void refreshOnChange() {
     setState(() {});
   }
 
@@ -78,7 +77,8 @@ class InputBarWrapperState extends State<InputBarWrapper> {
       focusNode: widget.focusNode,
       controller: widget.controller,
       decoration: widget.decoration,
-      onChanged: widget.onChanged != null ? refreshOnChange : null,
+      updateBar: refreshOnChange,
+      onChanged: widget.onChanged,
       autofocus: widget.autofocus,
       textInputAction: widget.textInputAction,
       readOnly: widget.readOnly,
