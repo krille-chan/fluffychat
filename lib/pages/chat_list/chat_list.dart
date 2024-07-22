@@ -100,7 +100,9 @@ class ChatListController extends State<ChatList>
     context.push<String?>('/rooms/newspace');
   }
 
-  ActiveFilter activeFilter = ActiveFilter.allChats;
+  ActiveFilter activeFilter = AppConfig.separateChatTypes
+      ? ActiveFilter.messages
+      : ActiveFilter.allChats;
 
   String? _activeSpaceId;
   String? get activeSpaceId => _activeSpaceId;
