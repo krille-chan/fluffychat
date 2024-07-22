@@ -7,6 +7,7 @@ class SocialNetwork {
   final String chatIconPath; // The path to chat icon asset
   final Color color; // The color of the social media displayed in chat list
   final String name; // Social media name
+  final bool available; // Whether to display on add bridge page
   final String chatBot; // ChatBot for send demand
   final String mxidPrefix; // The matrix ID prefix used to identify puppets
   final String
@@ -22,6 +23,7 @@ class SocialNetwork {
     required this.chatIconPath,
     required this.color,
     required this.name,
+    required this.available,
     required this.chatBot,
     required this.mxidPrefix,
     this.displayNameSuffix = "",
@@ -61,6 +63,7 @@ class SocialNetworkManager {
       chatIconPath: "assets/facebook-messenger.png",
       color: FluffyThemes.facebookColor,
       name: "Facebook Messenger",
+      available: true,
       chatBot: "@messenger2bot:",
       displayNameSuffix: "(FB)",
       mxidPrefix: "@messenger2_",
@@ -72,6 +75,7 @@ class SocialNetworkManager {
       chatIconPath: "assets/instagram.png",
       color: FluffyThemes.instagramColor,
       name: "Instagram",
+      available: true,
       chatBot: "@instagram2bot:",
       displayNameSuffix: "(IG)",
       mxidPrefix: "@instagram2_",
@@ -83,6 +87,7 @@ class SocialNetworkManager {
       chatIconPath: "assets/whatsapp.png",
       color: FluffyThemes.whatsAppColor,
       name: "WhatsApp",
+      available: true,
       chatBot: "@whatsappbot:",
       displayNameSuffix: "(WhatsApp)",
       mxidPrefix: "@whatsapp_",
@@ -91,6 +96,7 @@ class SocialNetworkManager {
       logo: Logo(Logos.linkedin),
       chatIconPath: "assets/linkedin.png",
       name: "Linkedin",
+      available: true,
       color: FluffyThemes.linkedinColor,
       chatBot: "@linkedinbot:",
       displayNameSuffix: "(LinkedIn)",
@@ -103,6 +109,7 @@ class SocialNetworkManager {
       logo: Container(),
       chatIconPath: "assets/tawkie.png",
       name: "Tawkie",
+      available: false,
       color: FluffyThemes.tawkieColor,
       chatBot: "",
       mxidPrefix: "@",
