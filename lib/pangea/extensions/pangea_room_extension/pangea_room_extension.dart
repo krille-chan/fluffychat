@@ -306,10 +306,6 @@ extension PangeaRoom on Room {
 
   bool get canDelete => _canDelete;
 
-  bool canIAddSpaceChild(Room? room, {bool spaceMode = false}) {
-    return _canIAddSpaceChild(room, spaceMode: spaceMode);
-  }
-
   bool get canIAddSpaceParents => _canIAddSpaceParents;
 
   bool pangeaCanSendEvent(String eventType) => _pangeaCanSendEvent(eventType);
