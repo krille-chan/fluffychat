@@ -101,8 +101,8 @@ class ChatListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         clipBehavior: Clip.hardEdge,
         color: backgroundColor,
-        child: FutureBuilder<RoomDisplayInfo>(
-          future: loadRoomInfo(context, room),
+        child: FutureBuilder(
+          future: room.loadHeroUsers(),
           builder: (context, snapshot) => HoverBuilder(
             builder: (context, hovered) => ListTile(
               visualDensity: const VisualDensity(vertical: -0.5),
