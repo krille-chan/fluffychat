@@ -350,16 +350,7 @@ class ChatView extends StatelessWidget {
                                     ITBar(
                                       choreographer: controller.choreographer,
                                     ),
-                                    Row(
-                                      // crossAxisAlignment: CrossAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        ReplyDisplay(controller),
-                                      ],
-                                    ),
+                                    ReplyDisplay(controller),
                                   ],
                                 ),
                               ),
