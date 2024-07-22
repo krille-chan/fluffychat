@@ -112,6 +112,24 @@ class SocialNetworkManager {
       urlLogin: "https://www.linkedin.com/login/",
       urlRedirect: "https://www.linkedin.com/feed/",
     ),
+    SocialNetwork(
+      logo: Container(),
+      chatIconPath: "assets/discord.png",
+      name: "Discord",
+      available: false,
+      color: FluffyThemes.dicordColor,
+      chatBot: "@discordbot:",
+      mxidPrefix: "@discord_",
+    ),
+    SocialNetwork(
+      logo: Container(),
+      chatIconPath: "assets/signal.png",
+      name: "Signal",
+      available: false,
+      color: FluffyThemes.signalColor,
+      chatBot: "@signalbot:",
+      mxidPrefix: "@signal_",
+    ),
     // Tawkie must be last to be default
     SocialNetwork(
       logo: Container(),
