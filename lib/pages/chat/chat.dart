@@ -113,8 +113,6 @@ class ChatController extends State<ChatPageWithRoom>
   // #Pangea
   final PangeaController pangeaController = MatrixState.pangeaController;
 
-  // final GlobalKey<ChatFooterState> chatFooterKey = GlobalKey<ChatFooterState>();
-
   late Choreographer choreographer = Choreographer(pangeaController, this);
   // Pangea#
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;

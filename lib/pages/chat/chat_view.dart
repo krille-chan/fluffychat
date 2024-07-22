@@ -301,8 +301,11 @@ class ChatView extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Expanded(
-                          child: Stack(
+                          child:
+                              // #Pangea
+                              Stack(
                             children: [
+                              // Pangea#
                               GestureDetector(
                                 onTap: controller.clearSingleSelectedEvent,
                                 child: Builder(
@@ -321,6 +324,7 @@ class ChatView extends StatelessWidget {
                                   },
                                 ),
                               ),
+                              // #Pangea
                               Positioned(
                                 left: 0,
                                 right: 0,
@@ -346,12 +350,12 @@ class ChatView extends StatelessWidget {
                                     ITBar(
                                       choreographer: controller.choreographer,
                                     ),
-                                    // if (!controller.selectMode)
                                     ReplyDisplay(controller),
                                   ],
                                 ),
                               ),
                             ],
+                            // Pangea#
                           ),
                         ),
                         if (controller.room.canSendDefaultMessages &&
@@ -436,22 +440,19 @@ class ChatView extends StatelessWidget {
                                         ),
                                       ],
                                     )
-                                  // #Pangea
-                                  // : Column(
-                                  // mainAxisSize: MainAxisSize.min,
-                                  // children: [
-                                  //   const ConnectionStatusHeader(),
-                                  //   ITBar(
-                                  //     choreographer:
-                                  //         controller.choreographer,
-                                  //   ),
-                                  //   ReactionsPicker(controller),
-                                  //   ReplyDisplay(controller),
-                                  //   ChatInputRow(controller),
-                                  //   ChatEmojiPicker(controller),
-                                  // ],
                                   : Column(
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
+                                        // #Pangea
+                                        //   const ConnectionStatusHeader(),
+                                        //   ITBar(
+                                        //     choreographer:
+                                        //         controller.choreographer,
+                                        //   ),
+                                        //   ReactionsPicker(controller),
+                                        //   ReplyDisplay(controller),
+                                        //   ChatInputRow(controller),
+                                        //   ChatEmojiPicker(controller),
                                         ReactionsPicker(controller),
                                         ChatInputRow(controller),
                                       ],
