@@ -12,6 +12,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -95,7 +96,7 @@ class _SpaceViewState extends State<SpaceView> {
     final consent = await showOkCancelAlertDialog(
       context: context,
       title: item.name ?? item.canonicalAlias ?? L10n.of(context)!.emptyChat,
-      message: item.topic,
+      message: item.topic?.bidiFormatted,
       okLabel: L10n.of(context)!.joinRoom,
       cancelLabel: L10n.of(context)!.cancel,
     );

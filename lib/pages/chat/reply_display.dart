@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import '../../config/themes.dart';
 import 'chat.dart';
 import 'events/reply_content.dart';
@@ -67,11 +68,13 @@ class _EditContent extends StatelessWidget {
         ),
         Container(width: 15.0),
         Text(
-          event.calcLocalizedBodyFallback(
-            MatrixLocals(L10n.of(context)!),
-            withSenderNamePrefix: false,
-            hideReply: true,
-          ),
+          event
+              .calcLocalizedBodyFallback(
+                MatrixLocals(L10n.of(context)!),
+                withSenderNamePrefix: false,
+                hideReply: true,
+              )
+              .bidiFormatted,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: TextStyle(

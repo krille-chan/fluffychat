@@ -10,6 +10,7 @@ import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
@@ -86,9 +87,11 @@ class MessageContent extends StatelessWidget {
               ),
               const Divider(),
               Text(
-                event.calcLocalizedBodyFallback(
-                  MatrixLocals(l10n),
-                ),
+                event
+                    .calcLocalizedBodyFallback(
+                      MatrixLocals(l10n),
+                    )
+                    .bidiFormatted,
               ),
             ],
           ),
@@ -252,10 +255,12 @@ class MessageContent extends StatelessWidget {
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 10;
             return Linkify(
-              text: event.calcLocalizedBodyFallback(
-                MatrixLocals(L10n.of(context)!),
-                hideReply: true,
-              ),
+              text: event
+                  .calcLocalizedBodyFallback(
+                    MatrixLocals(L10n.of(context)!),
+                    hideReply: true,
+                  )
+                  .bidiFormatted,
               style: TextStyle(
                 color: textColor,
                 fontSize: bigEmotes ? fontSize * 3 : fontSize,

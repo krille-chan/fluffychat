@@ -8,6 +8,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import '../../config/themes.dart';
 import '../../utils/date_time_extension.dart';
@@ -290,28 +291,32 @@ class ChatListItem extends StatelessWidget {
                                   '${lastEvent?.eventId}_${lastEvent?.type}',
                                 ),
                                 future: needLastEventSender
-                                    ? lastEvent.calcLocalizedBody(
-                                        MatrixLocals(L10n.of(context)!),
-                                        hideReply: true,
-                                        hideEdit: true,
-                                        plaintextBody: true,
-                                        removeMarkdown: true,
-                                        withSenderNamePrefix: (!isDirectChat ||
-                                            directChatMatrixId !=
-                                                room.lastEvent?.senderId),
-                                      )
+                                    ? lastEvent
+                                        .calcLocalizedBody(
+                                          MatrixLocals(L10n.of(context)!),
+                                          hideReply: true,
+                                          hideEdit: true,
+                                          plaintextBody: true,
+                                          removeMarkdown: true,
+                                          withSenderNamePrefix:
+                                              (!isDirectChat ||
+                                                  directChatMatrixId !=
+                                                      room.lastEvent?.senderId),
+                                        )
+                                        .then((e) => e.bidiFormatted)
                                     : null,
-                                initialData:
-                                    lastEvent?.calcLocalizedBodyFallback(
-                                  MatrixLocals(L10n.of(context)!),
-                                  hideReply: true,
-                                  hideEdit: true,
-                                  plaintextBody: true,
-                                  removeMarkdown: true,
-                                  withSenderNamePrefix: (!isDirectChat ||
-                                      directChatMatrixId !=
-                                          room.lastEvent?.senderId),
-                                ),
+                                initialData: lastEvent
+                                    ?.calcLocalizedBodyFallback(
+                                      MatrixLocals(L10n.of(context)!),
+                                      hideReply: true,
+                                      hideEdit: true,
+                                      plaintextBody: true,
+                                      removeMarkdown: true,
+                                      withSenderNamePrefix: (!isDirectChat ||
+                                          directChatMatrixId !=
+                                              room.lastEvent?.senderId),
+                                    )
+                                    .bidiFormatted,
                                 builder: (context, snapshot) => Text(
                                   room.membership == Membership.invite
                                       ? isDirectChat

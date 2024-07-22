@@ -14,6 +14,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 extension LocalNotificationsExtension on MatrixState {
@@ -64,7 +65,7 @@ extension LocalNotificationsExtension on MatrixState {
       _audioPlayer.play();
       html.Notification(
         title,
-        body: body,
+        body: body.bidiFormatted,
         icon: icon.toString(),
       );
     } else if (Platform.isLinux) {

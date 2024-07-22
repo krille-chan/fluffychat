@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 
 class ChatAppBarListTile extends StatelessWidget {
@@ -33,7 +34,7 @@ class ChatAppBarListTile extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: Linkify(
-                text: title,
+                text: title.bidiFormatted,
                 options: const LinkifyOptions(humanize: false),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
