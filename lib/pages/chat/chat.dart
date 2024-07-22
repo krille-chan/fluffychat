@@ -24,7 +24,6 @@ import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/utils/report_message.dart';
-import 'package:fluffychat/pangea/widgets/chat/chat_footer.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
@@ -114,7 +113,7 @@ class ChatController extends State<ChatPageWithRoom>
   // #Pangea
   final PangeaController pangeaController = MatrixState.pangeaController;
 
-  final GlobalKey<ChatFooterState> chatFooterKey = GlobalKey<ChatFooterState>();
+  // final GlobalKey<ChatFooterState> chatFooterKey = GlobalKey<ChatFooterState>();
 
   late Choreographer choreographer = Choreographer(pangeaController, this);
   // Pangea#
@@ -380,6 +379,13 @@ class ChatController extends State<ChatPageWithRoom>
     if (!mounted) return;
     setState(() {});
   }
+
+  // #Pangea
+  void closeEmojiPicker() {
+    showEmojiPicker = false;
+    updateView();
+  }
+  // Pangea#
 
   Future<void>? loadTimelineFuture;
 

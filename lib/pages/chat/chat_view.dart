@@ -3,14 +3,19 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
+import 'package:fluffychat/pages/chat/chat_emoji_picker.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
+import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
+import 'package:fluffychat/pages/chat/reactions_picker.dart';
+import 'package:fluffychat/pages/chat/reply_display.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/widgets/chat/chat_floating_action_button.dart';
-import 'package:fluffychat/pangea/widgets/chat/chat_footer.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
+import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
@@ -296,22 +301,57 @@ class ChatView extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Expanded(
-                          child: GestureDetector(
-                            onTap: controller.clearSingleSelectedEvent,
-                            child: Builder(
-                              builder: (context) {
-                                if (controller.timeline == null) {
-                                  return const Center(
-                                    child: CircularProgressIndicator.adaptive(
-                                      strokeWidth: 2,
+                          child: Stack(
+                            children: [
+                              GestureDetector(
+                                onTap: controller.clearSingleSelectedEvent,
+                                child: Builder(
+                                  builder: (context) {
+                                    if (controller.timeline == null) {
+                                      return const Center(
+                                        child:
+                                            CircularProgressIndicator.adaptive(
+                                          strokeWidth: 2,
+                                        ),
+                                      );
+                                    }
+                                    return ChatEventList(
+                                      controller: controller,
+                                    );
+                                  },
+                                ),
+                              ),
+                              Positioned(
+                                left: 0,
+                                right: 0,
+                                bottom: 7,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    if (!controller.selectMode)
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          StartIGCButton(
+                                            controller: controller,
+                                          ),
+                                          ChatFloatingActionButton(
+                                            controller: controller,
+                                          ),
+                                        ],
+                                      ),
+                                    const ConnectionStatusHeader(),
+                                    ITBar(
+                                      choreographer: controller.choreographer,
                                     ),
-                                  );
-                                }
-                                return ChatEventList(
-                                  controller: controller,
-                                );
-                              },
-                            ),
+                                    // if (!controller.selectMode)
+                                    ReplyDisplay(controller),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         if (controller.room.canSendDefaultMessages &&
@@ -410,9 +450,11 @@ class ChatView extends StatelessWidget {
                                   //   ChatInputRow(controller),
                                   //   ChatEmojiPicker(controller),
                                   // ],
-                                  : ChatFooter(
-                                      controller,
-                                      key: controller.chatFooterKey,
+                                  : Column(
+                                      children: [
+                                        ReactionsPicker(controller),
+                                        ChatInputRow(controller),
+                                      ],
                                     ),
                               // Pangea#
                             ),
@@ -433,19 +475,34 @@ class ChatView extends StatelessWidget {
                   //     ),
                   //   ),
                   Positioned(
-                    left: 7,
-                    bottom: 50 +
-                        (controller.chatFooterKey.currentState?.height ?? 50),
-                    child: StartIGCButton(controller: controller),
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: ChatEmojiPicker(controller),
                   ),
-                  Positioned(
-                    right: 7,
-                    bottom: 50 +
-                        (controller.chatFooterKey.currentState?.height ?? 50),
-                    child: ChatFloatingActionButton(
-                      controller: controller,
+                  // Close button placed at bottom of emoji picker
+                  if (controller.showEmojiPicker)
+                    Positioned(
+                      left: 0,
+                      right: 0,
+                      bottom: 5,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FloatingActionButton(
+                            onPressed: controller.closeEmojiPicker,
+                            backgroundColor: Colors.black,
+                            shape: const CircleBorder(),
+                            heroTag: null,
+                            mini: true,
+                            child: const Icon(
+                              Icons.close,
+                              size: 20,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
                   // Pangea#
                 ],
               ),
