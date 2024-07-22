@@ -45,6 +45,14 @@ class SocialNetwork {
     loading = false;
     error = errorValue;
   }
+
+  // Remove `(Network)` suffix from displayname
+  String removeSuffix(String displayname) {
+    if (displayNameSuffix.isNotEmpty) {
+      return displayname.replaceAll(displayNameSuffix, ''); // Delete (Network)
+    }
+    return displayname;
+  }
 }
 
 // Model for WhatsApp message response
