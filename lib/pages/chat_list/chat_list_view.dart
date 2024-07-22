@@ -146,9 +146,11 @@ class ChatListView extends StatelessWidget {
                       onKeysPressed: () => context.go('/rooms/newprivatechat'),
                       helpLabel: L10n.of(context)!.newChat,
                       child: selectMode == SelectMode.normal &&
-                              !controller.isSearchMode
+                              !controller.isSearchMode &&
+                              controller.activeSpaceId == null
                           ? FloatingActionButton.extended(
-                              onPressed: controller.addChatAction,
+                              onPressed: () =>
+                                  context.go('/rooms/newprivatechat'),
                               icon: const Icon(Icons.add_outlined),
                               label: Text(
                                 L10n.of(context)!.chat,
