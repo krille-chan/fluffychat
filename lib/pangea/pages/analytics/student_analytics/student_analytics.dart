@@ -49,15 +49,8 @@ class StudentAnalyticsController extends State<StudentAnalyticsPage> {
     return _chats;
   }
 
-  List<Room> _spaces = [];
-  List<Room> get spaces {
-    if (_spaces.isEmpty) {
-      _pangeaController.matrixState.client.spaceImAStudentIn.then((result) {
-        setState(() => _spaces = result);
-      });
-    }
-    return _spaces;
-  }
+  List<Room> get spaces =>
+      _pangeaController.matrixState.client.spacesImAStudentIn;
 
   String? get userId {
     final id = _pangeaController.matrixState.client.userID;
