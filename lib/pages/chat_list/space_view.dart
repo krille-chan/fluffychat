@@ -4,7 +4,6 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/utils/on_chat_tap.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
@@ -12,6 +11,8 @@ import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/chat_list_header_wrapper.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/chat_list_item_wrapper.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,6 @@ import 'package:matrix/matrix.dart';
 
 import '../../utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
-import 'chat_list_header.dart';
 
 class SpaceView extends StatefulWidget {
   final ChatListController controller;
@@ -709,7 +709,10 @@ class _SpaceViewState extends State<SpaceView> {
         child: CustomScrollView(
           controller: widget.scrollController,
           slivers: [
-            ChatListHeader(controller: widget.controller),
+            // #Pangea
+            // ChatListHeader(controller: widget.controller),
+            ChatListHeaderWrapper(controller: widget.controller),
+            // Pangea#
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, i) {
@@ -789,7 +792,13 @@ class _SpaceViewState extends State<SpaceView> {
         child: CustomScrollView(
           controller: widget.scrollController,
           slivers: [
-            ChatListHeader(controller: widget.controller, globalSearch: false),
+            // #Pangea
+            // ChatListHeader(controller: widget.controller, globalSearch: false),
+            ChatListHeaderWrapper(
+              controller: widget.controller,
+              globalSearch: false,
+            ),
+            // Pangea#
             SliverAppBar(
               automaticallyImplyLeading: false,
               primary: false,
@@ -911,7 +920,11 @@ class _SpaceViewState extends State<SpaceView> {
                               room.membership != Membership.leave
                           // Pangea#
                           ) {
-                        return ChatListItem(
+                        // #Pangea
+                        // return ChatListItem(
+                        return ChatListItemWrapper(
+                          controller: widget.controller,
+                          // Pangea#
                           room,
                           onLongPress: () =>
                               _onSpaceChildContextMenu(spaceChild, room),
