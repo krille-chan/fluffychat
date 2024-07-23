@@ -63,7 +63,6 @@ class ToolbarDisplayController {
     MessageMode? mode,
   }) {
     bool toolbarUp = true;
-    bool messageTooLong = false;
     if (highlighted) return;
     if (controller.selectMode) {
       controller.clearSelectedEvents();
@@ -82,10 +81,6 @@ class ToolbarDisplayController {
       final Size transformTargetSize = (targetRenderBox as RenderBox).size;
       messageWidth = transformTargetSize.width;
       final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
-
-      // If the message is too long, will need to anchor by toolbar
-      messageTooLong =
-          transformTargetSize.height > MediaQuery.of(context).size.height - 320;
 
       // If there is enough space above, procede as normal
       // Else if there is enough space below, show toolbar underneath
@@ -424,10 +419,7 @@ class MessageToolbarState extends State<MessageToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    return
-        // Flexible(
-        //   child:
-        Material(
+    return Material(
       type: MaterialType.transparency,
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -504,7 +496,6 @@ class MessageToolbarState extends State<MessageToolbar> {
                   ],
             ),
           ],
-          // ),
         ),
       ),
     );
