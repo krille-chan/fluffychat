@@ -149,16 +149,16 @@ class ClientChooserButton extends StatelessWidget {
           ),
         ),
       ],
-      PopupMenuItem(
-        value: SettingsAction.addAccount,
-        child: Row(
-          children: [
-            const Icon(Icons.person_add_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context)!.addAccount),
-          ],
-        ),
-      ),
+      // PopupMenuItem(
+      //   value: SettingsAction.addAccount,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.person_add_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context)!.addAccount),
+      //     ],
+      //   ),
+      // ),
     ];
   }
 
