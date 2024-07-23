@@ -60,14 +60,14 @@ class PermissionsController extends BaseController {
   }
 
   bool showChatInputAddButton(String roomId) {
-    final PangeaRoomRules? perms = _getRoomRules(roomId);
-    if (perms == null) return isUser18();
     // Rules can't be edited; default to true
+    // final PangeaRoomRules? perms = _getRoomRules(roomId);
+    // if (perms == null) return isUser18();
     // return perms.isShareFiles ||
     //     perms.isShareLocation ||
     //     perms.isSharePhoto ||
     //     perms.isShareVideo;
-    return true;
+    return isUser18();
   }
 
   /// works for both roomID of chat and class
