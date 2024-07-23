@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge.dart';
+import 'package:tawkie/utils/webview_scripts.dart';
 import 'package:tawkie/widgets/future_loading_dialog_custom.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
@@ -55,7 +56,21 @@ class _WebViewConnectionState extends State<WebViewConnection> {
     if (_webViewController != null && mounted) {
       await _webViewController!
           .loadUrl(urlRequest: URLRequest(url: WebUri('about:blank')));
+      _webViewController!.dispose();
       _webViewController = null;
+    }
+  }
+
+  // Whether the social network is FB Messenger
+  bool _isMessenger() {
+    return widget.network.name == 'Facebook Messenger';
+  }
+
+  // Add custom style to the login page to make it more user-friendly
+  Future<void> _addCustomStyle() async {
+    if (_isMessenger() && _webViewController != null) {
+      await _webViewController!
+          .evaluateJavascript(source: getCombinedScriptMessenger());
     }
   }
 
@@ -64,13 +79,17 @@ class _WebViewConnectionState extends State<WebViewConnection> {
     final connectionState =
         Provider.of<ConnectionStateModel>(context, listen: false);
 
-    InAppWebViewSettings settings = InAppWebViewSettings();
-    if (widget.network.name == "Facebook Messenger") {
-      settings = InAppWebViewSettings(
-        userAgent:
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
-      );
-    }
+    // Set custom user agent to increase credibility and *confusion*
+    // Messenger will not display the login fields if we use a mobile user-agent
+    final userAgent = _isMessenger()
+        // Chrome on Windows 10
+        ? 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+        // Chrome on Galaxy S9
+        : 'Mozilla/5.0 (Linux; Android 14; SM-G960U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.6478.122 Mobile Safari/537.36';
+
+    final InAppWebViewSettings settings = InAppWebViewSettings(
+      userAgent: userAgent,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -92,11 +111,12 @@ class _WebViewConnectionState extends State<WebViewConnection> {
           // Check the URL when the page finishes loading
           switch (widget.network.name) {
             case "Facebook Messenger":
-              if (!_facebookBridgeCreated &&
+              final successfullyRedirected = !_facebookBridgeCreated &&
                   url != null &&
                   url.toString() != widget.network.urlLogin! &&
-                  url.toString().contains(widget.network.urlRedirect!)) {
-                // Close the WebView
+                  url.toString().contains(widget.network.urlRedirect!);
+
+              if (successfullyRedirected) {
                 await _closeWebView();
 
                 await showCustomLoadingDialog(
@@ -109,6 +129,9 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                         cookieManager, connectionState, widget.network);
                   },
                 );
+              } else {
+                // assume login page
+                await _addCustomStyle();
               }
               break;
 
@@ -153,7 +176,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
             // Other network
           }
 
-          if (widget.network.connected == true && !_isDisposed) {
+          if (widget.network.connected && !_isDisposed) {
             // Close the current page
             await _closeWebView();
 

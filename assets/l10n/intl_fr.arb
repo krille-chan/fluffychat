@@ -2462,6 +2462,7 @@
     "usernameRequirements": "Le nom d'utilisateur doit être composé uniquement de lettres minuscules et de chiffres (3-16 caractères). Exemple : charlie",
     "registerInvalidEmail": "Veuillez entrer une adresse e-mail valide.",
     "errorConnectionText": "Veuillez vérifier votre connexion Internet et réessayer.",
+    "errorSendUsProblem": "Faites nous part du message d'erreur rencontré:",
     "slideOne": "Bienvenue sur Tawkie, votre application de messagerie tout-en-un.",
     "slideTwo": "Nous sommes une petite start-up mais avec de fortes valeurs.",
     "slideThree": "Merci d'être l'un des premiers à utiliser Tawkie. Vos retours seront précieux pour nous.",
@@ -2514,5 +2515,10 @@
     "joinBetaError": "Une erreur s'est produite : ",
     "failedToJoinRoom": "Échec de la connexion à la salle : ",
     "roomIdNullError": "L'ID de la salle est nul pour l'alias : ",
-    "roomNotFoundError": "Salle introuvable après la connexion"
+    "roomNotFoundError": "Salle introuvable après la connexion",
+    "seeBotsRoom":"Voir les bots",
+    "leaveTheConvDesc": "Voulez-vous vraiment quitter cette conversation ?",
+    "leaveTheConvSuccess": "Vous avez quitté la conversation.",
+    "chatBotRoomsTitle": "Conversations des bots",
+    "chatBotRoomsNotFound": "Aucune conversation avec les bots."
 }

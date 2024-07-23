@@ -2643,6 +2643,7 @@
   "usernameRequirements": "Username must only contain lowercase letters and digits (3-16 characters). Example : john123",
   "registerInvalidEmail": "Please enter a valid email address.",
   "errorConnectionText": "Please check your Internet connection and try again.",
+  "errorSendUsProblem": "Please let us know if you encounter an error:",
   "slideOne": "Welcome to Tawkie your all-in-one messaging application.",
   "slideTwo": "We are a start-up with strong values.",
   "slideThree": "Thank you to be one of the first to use Tawkie. Your feedback is gold to us.",
@@ -2698,5 +2699,10 @@
   "joinBetaError": "Something went wrong: ",
   "failedToJoinRoom": "Failed to join room: ",
   "roomIdNullError": "Room ID is null for alias: ",
-  "roomNotFoundError": "Room not found after joining"
+  "roomNotFoundError": "Room not found after joining",
+  "seeBotsRoom":"See bots",
+  "leaveTheConvDesc": "Do you really want to leave this conversation?",
+  "leaveTheConvSuccess": "You have left the conversation.",
+  "chatBotRoomsTitle": "Bots conversations",
+  "chatBotRoomsNotFound": "No conversation with bots."
 }
