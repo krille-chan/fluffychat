@@ -68,10 +68,8 @@ class ChatListItem extends StatelessWidget {
     final theme = Theme.of(context);
     final directChatMatrixId = room.directChatMatrixID;
     final isDirectChat = directChatMatrixId != null;
-    final unreadBubbleSize = unread || room.hasNewMessages
-        ? room.notificationCount > 0
-            ? 20.0
-            : 14.0
+    final unreadBubbleSize = (unread || room.hasNewMessages)
+        ? (room.notificationCount > 0 ? 20.0 : 14.0)
         : 0.0;
     final hasNotifications = room.notificationCount > 0;
     final backgroundColor = selected
