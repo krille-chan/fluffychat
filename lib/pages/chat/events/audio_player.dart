@@ -298,7 +298,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final statusText = this.statusText ??= _durationString ?? '00:00';
     final audioPlayer = this.audioPlayer;
     return Padding(
+      // #Pangea
+      // padding: const EdgeInsets.all(12.0),
       padding: const EdgeInsets.all(5.0),
+      // Pangea#
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -332,7 +335,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                     },
                   ),
           ),
+          // #Pangea
+          // const SizedBox(width: 8),
           const SizedBox(width: 5),
+          // Pangea#
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -368,7 +374,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                 ),
             ],
           ),
+          // #Pangea
+          // const SizedBox(width: 8),
           const SizedBox(width: 5),
+          // Pangea#
           SizedBox(
             width: 36,
             child: Text(
