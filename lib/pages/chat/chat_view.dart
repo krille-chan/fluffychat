@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/widgets/chat/chat_floating_action_button.dart';
 import 'package:fluffychat/utils/account_config.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -301,87 +302,22 @@ class ChatView extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Expanded(
-                          child:
-                              // #Pangea
-                              Stack(
-                            children: [
-                              // Pangea#
-                              GestureDetector(
-                                onTap: controller.clearSingleSelectedEvent,
-                                child: Builder(
-                                  builder: (context) {
-                                    if (controller.timeline == null) {
-                                      return const Center(
-                                        child:
-                                            CircularProgressIndicator.adaptive(
-                                          strokeWidth: 2,
-                                        ),
-                                      );
-                                    }
-                                    return ChatEventList(
-                                      controller: controller,
-                                    );
-                                  },
-                                ),
-                              ),
-                              // #Pangea
-                              Positioned(
-                                left: 0,
-                                right: 0,
-                                bottom: 7,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    if (!controller.selectMode)
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          StartIGCButton(
-                                            controller: controller,
-                                          ),
-                                          ChatFloatingActionButton(
-                                            controller: controller,
-                                          ),
-                                        ],
-                                      ),
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                        bottom: bottomSheetPadding,
-                                        left: bottomSheetPadding,
-                                        right: bottomSheetPadding,
-                                      ),
-                                      constraints: const BoxConstraints(
-                                        maxWidth:
-                                            FluffyThemes.columnWidth * 2.5,
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Material(
-                                        clipBehavior: Clip.hardEdge,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .surfaceContainerHighest,
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(24),
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            const ConnectionStatusHeader(),
-                                            ITBar(
-                                              choreographer:
-                                                  controller.choreographer,
-                                            ),
-                                            ReplyDisplay(controller),
-                                          ],
-                                        ),
-                                      ),
+                          child: GestureDetector(
+                            onTap: controller.clearSingleSelectedEvent,
+                            child: Builder(
+                              builder: (context) {
+                                if (controller.timeline == null) {
+                                  return const Center(
+                                    child: CircularProgressIndicator.adaptive(
+                                      strokeWidth: 2,
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                            // Pangea#
+                                  );
+                                }
+                                return ChatEventList(
+                                  controller: controller,
+                                );
+                              },
+                            ),
                           ),
                         ),
                         if (controller.room.canSendDefaultMessages &&
@@ -466,26 +402,31 @@ class ChatView extends StatelessWidget {
                                         ),
                                       ],
                                     )
-                                  : Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        // #Pangea
-                                        //   const ConnectionStatusHeader(),
-                                        //   ITBar(
-                                        //     choreographer:
-                                        //         controller.choreographer,
-                                        //   ),
-                                        //   ReactionsPicker(controller),
-                                        //   ReplyDisplay(controller),
-                                        //   ChatInputRow(controller),
-                                        //   ChatEmojiPicker(controller),
-                                        ReactionsPicker(controller),
-                                        ChatInputRow(controller),
-                                      ],
-                                    ),
+                                  :
+                                  // #Pangea
+                                  null,
+                              // Column(
+                              //     mainAxisSize: MainAxisSize.min,
+                              //     children: [
+                              //   const ConnectionStatusHeader(),
+                              //   ITBar(
+                              //     choreographer:
+                              //         controller.choreographer,
+                              //   ),
+                              //   ReactionsPicker(controller),
+                              //   ReplyDisplay(controller),
+                              //   ChatInputRow(controller),
+                              //   ChatEmojiPicker(controller),
+                              //   ],
+                              // ),
                               // Pangea#
                             ),
                           ),
+                        // #Pangea
+                        SizedBox(
+                          height: (PlatformInfos.isMobile ? 15 : 50),
+                        ),
+                        // Pangea#
                       ],
                     ),
                   ),
@@ -501,6 +442,70 @@ class ChatView extends StatelessWidget {
                   //       size: 100,
                   //     ),
                   //   ),
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 7,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if (!controller.selectMode)
+                          Container(
+                            margin: const EdgeInsets.only(
+                              bottom: 7,
+                              left: 11,
+                              right: 11,
+                            ),
+                            constraints: const BoxConstraints(
+                              maxWidth: FluffyThemes.columnWidth * 2.4,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                StartIGCButton(
+                                  controller: controller,
+                                ),
+                                ChatFloatingActionButton(
+                                  controller: controller,
+                                ),
+                              ],
+                            ),
+                          ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            bottom: bottomSheetPadding,
+                            left: bottomSheetPadding,
+                            right: bottomSheetPadding,
+                          ),
+                          constraints: const BoxConstraints(
+                            maxWidth: FluffyThemes.columnWidth * 2.5,
+                          ),
+                          alignment: Alignment.center,
+                          child: Material(
+                            clipBehavior: Clip.hardEdge,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .surfaceContainerHighest,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(24),
+                            ),
+                            child: Column(
+                              children: [
+                                const ConnectionStatusHeader(),
+                                ITBar(
+                                  choreographer: controller.choreographer,
+                                ),
+                                ReactionsPicker(controller),
+                                ReplyDisplay(controller),
+                                ChatInputRow(controller),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Positioned(
                     bottom: 0,
                     left: 0,
