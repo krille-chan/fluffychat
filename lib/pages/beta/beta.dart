@@ -124,6 +124,11 @@ class BetaJoinPage extends StatelessWidget {
             const SizedBox(height: 20.0),
             if (Platform.isIOS) const IOSInstructions(),
             if (Platform.isAndroid) const AndroidInstructions(),
+            const Divider(thickness: 1),
+            Text(
+              L10n.of(context)!.joinBetaGroup,
+              style: const TextStyle(fontSize: 16),
+            ),
             const SizedBox(height: 10.0),
             ElevatedButton.icon(
               onPressed: () async {

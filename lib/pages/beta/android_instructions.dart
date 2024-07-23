@@ -29,11 +29,6 @@ class AndroidInstructions extends BetaInstructions {
           },
           child: Text(L10n.of(context)!.downloadBetaAndroidButton),
         ),
-        const Divider(thickness: 1),
-        Text(
-          L10n.of(context)!.joinBetaGroup,
-          style: const TextStyle(fontSize: 16),
-        ),
       ],
     );
   }
