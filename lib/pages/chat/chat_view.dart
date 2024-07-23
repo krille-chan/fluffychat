@@ -346,11 +346,37 @@ class ChatView extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                    const ConnectionStatusHeader(),
-                                    ITBar(
-                                      choreographer: controller.choreographer,
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                        bottom: bottomSheetPadding,
+                                        left: bottomSheetPadding,
+                                        right: bottomSheetPadding,
+                                      ),
+                                      constraints: const BoxConstraints(
+                                        maxWidth:
+                                            FluffyThemes.columnWidth * 2.5,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: Material(
+                                        clipBehavior: Clip.hardEdge,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .surfaceContainerHighest,
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(24),
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            const ConnectionStatusHeader(),
+                                            ITBar(
+                                              choreographer:
+                                                  controller.choreographer,
+                                            ),
+                                            ReplyDisplay(controller),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                    ReplyDisplay(controller),
                                   ],
                                 ),
                               ),
