@@ -1,27 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/config/app_config.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:tawkie/pages/beta/instructions.dart';
 
-class AndroidInstructions extends StatelessWidget {
+class AndroidInstructions extends BetaInstructions {
   const AndroidInstructions({super.key});
-
-  Future<bool> _launchUrl(String url, BuildContext context) async {
-    try {
-      if (await canLaunchUrl(Uri.parse(url))) {
-        await launchUrl(Uri.parse(url));
-        return true;
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error to lauch url: $e');
-      }
-      final snackBar = SnackBar(content: Text(L10n.of(context)!.tryAgain));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-    return false;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +22,9 @@ class AndroidInstructions extends StatelessWidget {
         const SizedBox(height: 10.0),
         ElevatedButton(
           onPressed: () async {
-            bool success = await _launchUrl(AppConfig.playStoreUrl, context);
+            final bool success = await openUrl(AppConfig.playStoreUrl, context);
             if (!success) {
-              await _launchUrl(AppConfig.androidBetaUrl, context);
+              await openUrl(AppConfig.androidBetaUrl, context);
             }
           },
           child: Text(L10n.of(context)!.downloadBetaAndroidButton),
