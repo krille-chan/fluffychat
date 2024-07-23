@@ -13,6 +13,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:tawkie/config/setting_keys.dart';
+import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:tawkie/pages/bootstrap/bootstrap_dialog.dart';
 import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -82,6 +83,8 @@ class ChatListController extends State<ChatList>
       (spaces.isNotEmpty || AppConfig.separateChatTypes);
 
   String? activeSpaceId;
+
+  Set<String> loadingRooms = Set<String>();
 
   void resetActiveSpaceId() {
     setState(() {
@@ -159,11 +162,125 @@ class ChatListController extends State<ChatList>
     }
   }
 
+  // Maps a roomId to a cached boolean value indicating
+  // whether the room is a Direct Chat with a bridge bot
+  // or a user conversation.
+  // false => hide the room (bot conversation)
+  // true => display the room (user conversation)
+  final Map<String, bool> _roomBotCheckCache = {};
+
+  // Returns false if given room is a Direct Chat with a bridge bot
+  bool hideBotsRoomFilter(Room room) {
+    // return cached value if available
+    final cached = _roomBotCheckCache[room.id];
+    if (cached != null) {
+      return cached;
+    }
+
+    // We check whether Matrix thinks this room is a direct chat
+    // with a bot. This is relatively quick but not always accurate.
+    final bool quickCheck =
+        !SocialNetworkManager.isBridgeBotId(room.directChatMatrixID);
+
+    // update cache
+    _roomBotCheckCache[room.id] = quickCheck;
+
+    // For a more accurate check, we need to check the participants
+    // of the room. This is more expensive and is done in the background.
+    // see preloadRoomBotChecks()
+    return quickCheck;
+  }
+
   List<Room> get filteredRooms => Matrix.of(context)
       .client
       .rooms
       .where(getRoomFilterByActiveFilter(activeFilter))
+      .where(hideBotsRoomFilter)
       .toList();
+
+  Future<bool> isGroupWithOnlyBotAndUser(Room room) async {
+    final client = Matrix.of(context).client;
+
+    // Check that participants are fully charged
+    if (!room.participantListComplete && !loadingRooms.contains(room.id)) {
+      loadingRooms.add(room.id);
+      await room.requestParticipants();
+      loadingRooms.remove(room.id);
+    }
+
+    final participants = room.getParticipants();
+
+    if (participants.length != 2) {
+      // update cache
+      _roomBotCheckCache[room.id] = true; // true => displayed
+      return false;
+    }
+
+    // Check whether participants include the current user and one of the bots
+    final userIds = participants
+        .map((user) => user.id)
+        .toList(); // perf: only 2 participants
+    final containsCurrentUser = userIds.contains(client.userID);
+    final containsBot = userIds.any((id) =>
+        id.contains('bot', 1) && SocialNetworkManager.isBridgeBotId(id));
+
+    final result = containsCurrentUser && containsBot;
+    // update cache
+    _roomBotCheckCache[room.id] = !result; // true => displayed
+    return result;
+  }
+
+  Future<void> preloadRoomBotChecks(List<Room> rooms) async {
+    for (final room in rooms) {
+      await isGroupWithOnlyBotAndUser(room);
+      // cache updates are handled in isGroupWithOnlyBotAndUser
+    }
+  }
+
+  // Method to identify and remove duplicate rooms
+  Future<void> identifyAndRemoveDuplicates(List<Room> rooms) async {
+    final Map<String, List<Room>> roomMap = {};
+
+    for (final room in rooms) {
+      // cache should be fully populated by now
+      if (_roomBotCheckCache[room.id] ?? false) {
+        final botId = room.directChatMatrixID ??
+            room
+                .getParticipants()
+                // perf: room should only contain 2 participants
+                .map((matrixUser) => matrixUser.id)
+                .firstWhere(
+                  (matrixId) => SocialNetworkManager.isBridgeBotId(matrixId),
+                  orElse: () => '',
+                );
+
+        if (botId.isNotEmpty) {
+          if (!roomMap.containsKey(botId)) {
+            roomMap[botId] = [];
+          }
+          roomMap[botId]!.add(room);
+        }
+      }
+    }
+
+    // Check and remove duplicates
+    for (final entry in roomMap.entries) {
+      final roomList = entry.value;
+      if (roomList.length > 1) {
+        // Sort by the timestamp of the last event (ascending order)
+        roomList.sort((a, b) =>
+        a.lastEvent?.originServerTs
+            .compareTo(b.lastEvent!.originServerTs) ??
+            0);
+
+        // Keep the room with the oldest event and remove all others
+        for (int i = 1; i < roomList.length; i++) {
+          final room = roomList[i];
+          await room.leave();
+        }
+      }
+    }
+  }
 
   bool isSearchMode = false;
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;
@@ -173,7 +290,7 @@ class ChatListController extends State<ChatList>
   QueryPublicRoomsResponse? roomSearchResult;
 
   bool isSearching = false;
-  static const String _serverStoreNamespace = 'im.fluffychat.search.server';
+  static const String _serverStoreNamespace = 'im.tawkie.search.server';
 
   void setServer() async {
     final newServer = await showTextInputDialog(
@@ -412,19 +529,20 @@ class ChatListController extends State<ChatList>
           );
     }
   }
-
+  
   @override
   void initState() {
-    _initReceiveSharingIntent();
+    super.initState();
 
+    _initReceiveSharingIntent();
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
     _hackyWebRTCFixForWeb();
     CallKeepManager().initialize();
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
-        searchServer =
-            Matrix.of(context).store.getString(_serverStoreNamespace);
+        searchServer = Matrix.of(context).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
       }
 
@@ -432,11 +550,13 @@ class ChatListController extends State<ChatList>
       SystemChrome.setSystemUIOverlayStyle(
         Theme.of(context).appBarTheme.systemOverlayStyle!,
       );
+
+      await preloadRoomBotChecks(Matrix.of(context).client.rooms);
+      await identifyAndRemoveDuplicates(filteredRooms);
+      setState(() {}); // Force a rebuild after all futures are completed
     });
 
     _checkTorBrowser();
-
-    super.initState();
   }
 
   @override

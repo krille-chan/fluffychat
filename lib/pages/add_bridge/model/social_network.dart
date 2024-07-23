@@ -44,7 +44,7 @@ class WhatsAppResult {
   WhatsAppResult(this.result, this.code, this.qrCode);
 }
 
-class SocialNetworkManager{
+class SocialNetworkManager {
   static final List<SocialNetwork> socialNetworks = [
     SocialNetwork(
       logo: Logo(Logos.facebook_messenger),
@@ -77,6 +77,14 @@ class SocialNetworkManager{
   static SocialNetwork? fromName(String name) {
     return socialNetworks.firstWhere(
           (network) => network.name == name,
+    );
+  }
+
+  static bool isBridgeBotId(String? matrixId) {
+    if (matrixId == null) return false;
+
+    return socialNetworks.any(
+      (network) => matrixId.startsWith(network.chatBot),
     );
   }
 }

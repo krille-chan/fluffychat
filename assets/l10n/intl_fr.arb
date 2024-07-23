@@ -2499,5 +2499,10 @@
     "privacyTextPrivacy": "politiques de confidentialité",
     "privacyTextAnd": " et ",
     "privacyTextTerms": "conditions générales d’utilisation et de services",
-    "createGroupLimitationWarning": "Seul.es les utilisateur.ices Tawkie peuvent être rajouté.es aux groupes."
+    "createGroupLimitationWarning": "Seul.es les utilisateur.ices Tawkie peuvent être rajouté.es aux groupes.",
+    "seeBotsRoom":"Voir les bots",
+    "leaveTheConvDesc": "Voulez-vous vraiment quitter cette conversation ?",
+    "leaveTheConvSuccess": "Vous avez quitté la conversation.",
+    "chatBotRoomsTitle": "Conversations des bots",
+    "chatBotRoomsNotFound": "Aucune conversation avec les bots."
 }
