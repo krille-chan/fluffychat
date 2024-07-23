@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
@@ -67,9 +66,7 @@ extension LocalizedExceptionExtension on Object {
         supportedVersions,
       );
     }
-    if (this is MatrixConnectionException ||
-        this is SocketException ||
-        this is SyncConnectionException) {
+    if (this is SocketException || this is SyncConnectionException) {
       return L10n.of(context)!.noConnectionToTheServer;
     }
     if (this is String) return toString();
