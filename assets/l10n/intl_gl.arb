@@ -2712,5 +2712,30 @@
   "alwaysUse24HourFormat": "falso",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "noMoreChatsFound": "Non se atopan máis chats…",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Chats nos que participas",
+  "@joinedChats": {},
+  "countChatsAndCountParticipants": "{chats} chats e {participants} participantes",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "unread": "Sen ler",
+  "@unread": {},
+  "space": "Espazo",
+  "@space": {},
+  "spaces": "Espazos",
+  "@spaces": {},
+  "goToSpace": "Ir ao espazo: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Marcar como non lido",
+  "@markAsUnread": {}
 }
