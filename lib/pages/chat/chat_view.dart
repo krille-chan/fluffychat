@@ -423,8 +423,9 @@ class ChatView extends StatelessWidget {
                             ),
                           ),
                         // #Pangea
+                        // Keep messages above minimum input bar height
                         SizedBox(
-                          height: (PlatformInfos.isMobile ? 15 : 50),
+                          height: (PlatformInfos.isMobile ? 24 : 50),
                         ),
                         // Pangea#
                       ],
@@ -445,7 +446,7 @@ class ChatView extends StatelessWidget {
                   Positioned(
                     left: 0,
                     right: 0,
-                    bottom: 7,
+                    bottom: 13,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
