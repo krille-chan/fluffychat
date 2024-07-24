@@ -54,6 +54,7 @@ extension AnalyticsRoomExtension on Room {
       return Future.value();
     }
 
+    // Checks that user has permission to add child to space
     if (!canSendEvent(EventTypes.SpaceChild)) return;
     if (spaceChildren.any((sc) => sc.roomId == analyticsRoom.id)) return;
 
@@ -103,7 +104,7 @@ extension AnalyticsRoomExtension on Room {
         .where((teacher) => !participants.contains(teacher))
         .toList();
 
-    if (!canSendEvent(EventTypes.SpaceChild)) {
+    if (analyticsRoom.canSendEvent(EventTypes.RoomMember)) {
       Future.wait(
         uninvitedTeachers.map(
           (teacher) => analyticsRoom.invite(teacher.id).catchError((err, s) {
