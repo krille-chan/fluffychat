@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -80,6 +81,9 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
   }
 
   final cipher = await getDatabaseCipher();
+  // #Pangea
+  Sentry.addBreadcrumb(Breadcrumb(message: 'Database cipher: $cipher'));
+  // Pangea#
 
   Directory? fileStorageLocation;
   try {
@@ -97,6 +101,9 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
   // import the SQLite / SQLCipher shared objects / dynamic libraries
   final factory =
       createDatabaseFactoryFfi(ffiInit: SQfLiteEncryptionHelper.ffiInit);
+  // #Pangea
+  Sentry.addBreadcrumb(Breadcrumb(message: 'Database path: $path'));
+  // Pangea#
 
   // migrate from potential previous SQLite database path to current one
   await _migrateLegacyLocation(path, client.clientName);
@@ -113,6 +120,9 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
           path: path,
           cipher: cipher,
         );
+  // #Pangea
+  Sentry.addBreadcrumb(Breadcrumb(message: 'Database cipher helper: $helper'));
+  // Pangea#
 
   // check whether the DB is already encrypted and otherwise do so
   await helper?.ensureDatabaseFileEncrypted();
