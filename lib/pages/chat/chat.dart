@@ -475,10 +475,10 @@ class ChatController extends State<ChatPageWithRoom>
       if (kIsWeb && !Matrix.of(context).webHasFocus) return;
       // #Pangea
     } catch (err, s) {
-      ErrorHandler.logError(
-        e: PangeaWarningError("Web focus error: $err"),
-        s: s,
-      );
+      // ErrorHandler.logError(
+      //   e: PangeaWarningError("Web focus error: $err"),
+      //   s: s,
+      // );
       return;
     }
     // Pangea#
