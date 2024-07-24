@@ -314,8 +314,9 @@ class Message extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 8),
                                 child: GestureDetector(
                                   // #Pangea
-                                  onTap: () =>
-                                      toolbarController?.showToolbar(context),
+                                  onTap: () => toolbarController?.showToolbar(
+                                    context,
+                                  ),
                                   onDoubleTap: () =>
                                       toolbarController?.showToolbar(context),
                                   // Pangea#
@@ -585,7 +586,9 @@ class Message extends StatelessWidget {
                           : MainAxisAlignment.start,
                       children: [
                         if (pangeaMessageEvent?.showMessageButtons ?? false)
-                          MessageButtons(toolbarController: toolbarController),
+                          MessageButtons(
+                            toolbarController: toolbarController,
+                          ),
                         MessageReactions(event, timeline),
                       ],
                     ),
