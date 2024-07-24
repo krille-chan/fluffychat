@@ -53,6 +53,25 @@ class _SpaceViewState extends State<SpaceView> {
         widget.controller.pangeaController.pStoreService.read(_chatCountsKey) ??
             {},
       );
+
+  /// Used to filter out sync updates with hierarchy updates for the active
+  /// space so that the view can be auto-reloaded in the room subscription
+  bool hasHierarchyUpdate(SyncUpdate update) {
+    final joinTimeline =
+        update.rooms?.join?[widget.controller.activeSpaceId]?.timeline;
+    final leaveTimeline =
+        update.rooms?.leave?[widget.controller.activeSpaceId]?.timeline;
+    if (joinTimeline == null && leaveTimeline == null) return false;
+    final bool hasJoinUpdate = joinTimeline?.events?.any(
+          (event) => event.type == EventTypes.SpaceChild,
+        ) ??
+        false;
+    final bool hasLeaveUpdate = leaveTimeline?.events?.any(
+          (event) => event.type == EventTypes.SpaceChild,
+        ) ??
+        false;
+    return hasJoinUpdate || hasLeaveUpdate;
+  }
   // Pangea#
 
   @override
@@ -78,12 +97,9 @@ class _SpaceViewState extends State<SpaceView> {
     // Listen for changes to the activeSpace's hierarchy,
     // and reload the hierarchy when they come through
     final client = Matrix.of(context).client;
-    _roomSubscription ??= client.onRoomState.stream.where((u) {
-      return u.state.type == EventTypes.SpaceChild &&
-          u.roomId == widget.controller.activeSpaceId;
-    }).listen((update) {
-      loadHierarchy(hasUpdate: true);
-    });
+    _roomSubscription ??= client.onSync.stream
+        .where(hasHierarchyUpdate)
+        .listen((update) => loadHierarchy(hasUpdate: true));
     // Pangea#
     super.initState();
   }
