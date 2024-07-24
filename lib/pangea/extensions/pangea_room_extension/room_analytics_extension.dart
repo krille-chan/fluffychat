@@ -103,17 +103,19 @@ extension AnalyticsRoomExtension on Room {
         .where((teacher) => !participants.contains(teacher))
         .toList();
 
-    Future.wait(
-      uninvitedTeachers.map(
-        (teacher) => analyticsRoom.invite(teacher.id).catchError((err, s) {
-          ErrorHandler.logError(
-            e: err,
-            m: "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
-            s: s,
-          );
-        }),
-      ),
-    );
+    if (!canSendEvent(EventTypes.SpaceChild)) {
+      Future.wait(
+        uninvitedTeachers.map(
+          (teacher) => analyticsRoom.invite(teacher.id).catchError((err, s) {
+            ErrorHandler.logError(
+              e: err,
+              m: "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
+              s: s,
+            );
+          }),
+        ),
+      );
+    }
   }
 
   /// Invite all the user's teachers to 1 analytics room.
