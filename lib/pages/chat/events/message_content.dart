@@ -289,17 +289,20 @@ class MessageContent extends StatelessWidget {
             // #Pangea
             // return Linkify(
             final messageTextStyle = TextStyle(
+              overflow: TextOverflow.ellipsis,
               color: textColor,
               fontSize: bigEmotes ? fontSize * 3 : fontSize,
               decoration: event.redacted ? TextDecoration.lineThrough : null,
               height: 1.3,
             );
             if (immersionMode && pangeaMessageEvent != null) {
-              return PangeaRichText(
-                style: messageTextStyle,
-                pangeaMessageEvent: pangeaMessageEvent!,
-                immersionMode: immersionMode,
-                toolbarController: toolbarController,
+              return Flexible(
+                child: PangeaRichText(
+                  style: messageTextStyle,
+                  pangeaMessageEvent: pangeaMessageEvent!,
+                  immersionMode: immersionMode,
+                  toolbarController: toolbarController,
+                ),
               );
             } else if (pangeaMessageEvent != null) {
               toolbarController?.toolbar?.textSelection.setMessageText(
