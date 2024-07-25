@@ -1,5 +1,4 @@
 import 'package:fluffychat/pangea/constants/age_limits.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
@@ -36,63 +35,73 @@ class PermissionsController extends BaseController {
     return dob?.isAtLeastYearsOld(AgeLimits.toAccessFeatures) ?? false;
   }
 
-  /// A user can private chat if
-  /// 1) they are 18 and outside a class context or
-  /// 2) they are in a class context and the class rules permit it
-  /// If no class is passed, uses classController.activeClass
+  /// A user can private chat if they are 18+
   bool canUserPrivateChat({String? roomID}) {
-    final Room? classContext =
-        firstRoomWithState(roomID: roomID, type: PangeaEventTypes.rules);
-    return classContext?.pangeaRoomRules == null
-        ? isUser18()
-        : classContext!.pangeaRoomRules!.oneToOneChatClass ||
-            classContext.isRoomAdmin;
+    return isUser18();
+    // Rules can't be edited; default to true
+    // final Room? classContext =
+    //     firstRoomWithState(roomID: roomID, type: PangeaEventTypes.rules);
+    // return classContext?.pangeaRoomRules == null
+    //     ? isUser18()
+    //     : classContext!.pangeaRoomRules!.oneToOneChatClass ||
+    //         classContext.isRoomAdmin;
   }
 
   bool canUserGroupChat({String? roomID}) {
-    final Room? classContext =
-        firstRoomWithState(roomID: roomID, type: PangeaEventTypes.rules);
+    return isUser18();
+    // Rules can't be edited; default to true
+    // final Room? classContext =
+    //     firstRoomWithState(roomID: roomID, type: PangeaEventTypes.rules);
 
-    return classContext?.pangeaRoomRules == null
-        ? isUser18()
-        : classContext!.pangeaRoomRules!.isCreateRooms ||
-            classContext.isRoomAdmin;
+    // return classContext?.pangeaRoomRules == null
+    //     ? isUser18()
+    //     : classContext!.pangeaRoomRules!.isCreateRooms ||
+    //         classContext.isRoomAdmin;
   }
 
   bool showChatInputAddButton(String roomId) {
-    final PangeaRoomRules? perms = _getRoomRules(roomId);
-    if (perms == null) return isUser18();
-    return perms.isShareFiles ||
-        perms.isShareLocation ||
-        perms.isSharePhoto ||
-        perms.isShareVideo;
+    // Rules can't be edited; default to true
+    // final PangeaRoomRules? perms = _getRoomRules(roomId);
+    // if (perms == null) return isUser18();
+    // return perms.isShareFiles ||
+    //     perms.isShareLocation ||
+    //     perms.isSharePhoto ||
+    //     perms.isShareVideo;
+    return isUser18();
   }
 
   /// works for both roomID of chat and class
-  bool canShareVideo(String? roomID) =>
-      _getRoomRules(roomID)?.isShareVideo ?? isUser18();
+  bool canShareVideo(String? roomID) => isUser18();
+  // Rules can't be edited; default to true
+  // _getRoomRules(roomID)?.isShareVideo ?? isUser18();
 
   /// works for both roomID of chat and class
-  bool canSharePhoto(String? roomID) =>
-      _getRoomRules(roomID)?.isSharePhoto ?? isUser18();
+  bool canSharePhoto(String? roomID) => isUser18();
+  // Rules can't be edited; default to true
+  // _getRoomRules(roomID)?.isSharePhoto ?? isUser18();
 
   /// works for both roomID of chat and class
-  bool canShareFile(String? roomID) =>
-      _getRoomRules(roomID)?.isShareFiles ?? isUser18();
+  bool canShareFile(String? roomID) => isUser18();
+  // Rules can't be edited; default to true
+  // _getRoomRules(roomID)?.isShareFiles ?? isUser18();
 
   /// works for both roomID of chat and class
-  bool canShareLocation(String? roomID) =>
-      _getRoomRules(roomID)?.isShareLocation ?? isUser18();
+  bool canShareLocation(String? roomID) => isUser18();
+  // Rules can't be edited; default to true
+  // _getRoomRules(roomID)?.isShareLocation ?? isUser18();
 
-  int? classLanguageToolPermission(Room room, ToolSetting setting) =>
-      room.firstRules?.getToolSettings(setting);
+  int? classLanguageToolPermission(Room room, ToolSetting setting) => 1;
+  // Rules can't be edited; default to student choice
+  // room.firstRules?.getToolSettings(setting);
 
-  //what happens if a room isn't in a class?
+  // what happens if a room isn't in a class?
   bool isToolDisabledByClass(ToolSetting setting, Room? room) {
-    if (room?.isSpaceAdmin ?? false) return false;
-    final int? classPermission =
-        room != null ? classLanguageToolPermission(room, setting) : 1;
-    return classPermission == 0;
+    return false;
+    // Rules can't be edited; default to false
+    // if (room?.isSpaceAdmin ?? false) return false;
+    // final int? classPermission =
+    //     room != null ? classLanguageToolPermission(room, setting) : 1;
+    // return classPermission == 0;
   }
 
   bool userToolSetting(ToolSetting setting) {
@@ -117,18 +126,22 @@ class PermissionsController extends BaseController {
   }
 
   bool isToolEnabled(ToolSetting setting, Room? room) {
-    if (room?.isSpaceAdmin ?? false) {
-      return userToolSetting(setting);
-    }
-    final int? classPermission =
-        room != null ? classLanguageToolPermission(room, setting) : 1;
-    if (classPermission == 0) return false;
-    if (classPermission == 2) return true;
+    // Rules can't be edited; default to true
     return userToolSetting(setting);
+    // if (room?.isSpaceAdmin ?? false) {
+    //   return userToolSetting(setting);
+    // }
+    // final int? classPermission =
+    //     room != null ? classLanguageToolPermission(room, setting) : 1;
+    // if (classPermission == 0) return false;
+    // if (classPermission == 2) return true;
+    // return userToolSetting(setting);
   }
 
   bool isWritingAssistanceEnabled(Room? room) {
-    return isToolEnabled(ToolSetting.interactiveTranslator, room) &&
-        isToolEnabled(ToolSetting.interactiveGrammar, room);
+    // Rules can't be edited; default to true
+    return true;
+    // return isToolEnabled(ToolSetting.interactiveTranslator, room) &&
+    //     isToolEnabled(ToolSetting.interactiveGrammar, room);
   }
 }
