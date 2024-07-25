@@ -320,7 +320,7 @@ extension EventsRoomExtension on Room {
           "In messageListForChat with room that is not a chat",
         );
       }
-      final Timeline timeline = await getTimeline();
+      final Timeline timeline = this.timeline ?? await getTimeline();
 
       while (timeline.canRequestHistory && numberOfSearches < 50) {
         await timeline.requestHistory(historyCount: 100);
@@ -433,7 +433,7 @@ extension EventsRoomExtension on Room {
   }) async {
     try {
       int numberOfSearches = 0;
-      final Timeline timeline = await getTimeline();
+      final Timeline timeline = this.timeline ?? await getTimeline();
 
       List<Event> relevantEvents() => timeline.events
           .where((event) => event.senderId == sender && event.type == type)

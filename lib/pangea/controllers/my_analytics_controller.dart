@@ -277,7 +277,11 @@ class MyAnalyticsController {
     // get the timelines for each chat
     final List<Future<Timeline>> timelineFutures = [];
     for (final chat in chats) {
-      timelineFutures.add(chat.getTimeline());
+      timelineFutures.add(
+        chat.timeline == null
+            ? chat.getTimeline()
+            : Future.value(chat.timeline),
+      );
     }
     final List<Timeline> timelines = await Future.wait(timelineFutures);
     final Map<String, Timeline> timelineMap =

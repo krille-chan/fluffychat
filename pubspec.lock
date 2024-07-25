@@ -105,14 +105,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.0"
-  base58check:
-    dependency: transitive
-    description:
-      name: base58check
-      sha256: "6c300dfc33e598d2fe26319e13f6243fea81eaf8204cb4c6b69ef20a625319a5"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   blurhash_dart:
     dependency: "direct main"
     description:
@@ -145,14 +137,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.3"
-  canonical_json:
-    dependency: transitive
-    description:
-      name: canonical_json
-      sha256: d6be1dd66b420c6ac9f42e3693e09edf4ff6edfee26cb4c28c1c019fdb8c0c15
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.2"
   characters:
     dependency: transitive
     description:
@@ -369,14 +353,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.9.9"
-  enhanced_enum:
-    dependency: transitive
-    description:
-      name: enhanced_enum
-      sha256: "074c5a8b9664799ca91e1e8b68003b8694cb19998671cbafd9c7779c13fcdecf"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.4"
   equatable:
     dependency: transitive
     description:
@@ -1039,14 +1015,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.4"
-  html_unescape:
-    dependency: transitive
-    description:
-      name: html_unescape
-      sha256: "15362d7a18f19d7b742ef8dcb811f5fd2a2df98db9f80ea393c075189e0b61e3"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   http:
     dependency: "direct main"
     description:
@@ -1434,7 +1402,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "0e27bd767a7f0faa7c25ea5f68292fb0b4f59a97"
+      resolved-ref: "40b095825f2cefeac548009e96376110e72c76ff"
       url: "https://github.com/pangeachat/matrix-dart-sdk.git"
     source: git
     version: "0.30.0"
@@ -1494,14 +1462,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
-  olm:
-    dependency: transitive
-    description:
-      name: olm
-      sha256: "37948a6576949256f3ee1d0063d5b408634ff7e452b9a5c2f6410f9d7ced1c20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   open_file:
     dependency: "direct main"
     description:
@@ -1846,14 +1806,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
-  random_string:
-    dependency: transitive
-    description:
-      name: random_string
-      sha256: "03b52435aae8cbdd1056cf91bfc5bf845e9706724dd35ae2e99fa14a1ef79d02"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.1"
   receive_sharing_intent:
     dependency: "direct main"
     description:
@@ -1974,14 +1926,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
-  sdp_transform:
-    dependency: transitive
-    description:
-      name: sdp_transform
-      sha256: "73e412a5279a5c2de74001535208e20fff88f225c9a4571af0f7146202755e45"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.2"
   sentiment_dart:
     dependency: transitive
     description:
@@ -2459,14 +2403,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.2"
-  unorm_dart:
-    dependency: transitive
-    description:
-      name: unorm_dart
-      sha256: "5b35bff83fce4d76467641438f9e867dc9bcfdb8c1694854f230579d68cd8f4b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
   url_launcher:
     dependency: "direct main"
     description:

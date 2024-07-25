@@ -36,9 +36,11 @@ class GetChatListItemSubtitle {
         eventContextId = null;
       }
 
-      final Timeline timeline = await event.room.getTimeline(
-        eventContextId: eventContextId,
-      );
+      final Timeline timeline = event.room.timeline != null &&
+              event.room.timeline!.events
+                  .any((event) => event.eventId == eventContextId)
+          ? event.room.timeline!
+          : await event.room.getTimeline(eventContextId: eventContextId);
 
       if (moveBackInTimeline(event)) {
         event = timeline.events.firstWhereOrNull((e) => !moveBackInTimeline(e));
