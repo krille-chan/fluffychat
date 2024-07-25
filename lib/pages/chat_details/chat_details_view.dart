@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_det
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_invitation_buttons.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_name_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
-import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/utils/lock_room.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
@@ -269,11 +268,14 @@ class ChatDetailsView extends StatelessWidget {
                           //     roomId: controller.roomId,
                           //     startOpen: false,
                           //   ),
-                          if (room.pangeaRoomRules != null)
-                            RoomRulesEditor(
-                              roomId: controller.roomId,
-                              startOpen: false,
-                            ),
+
+                          // Commenting out pangea room rules for now
+                          // if (room.pangeaRoomRules != null)
+                          //   RoomRulesEditor(
+                          //     roomId: controller.roomId,
+                          //     startOpen: false,
+                          //   ),
+
                           // if (!room.canChangeStateEvent(EventTypes.RoomTopic))
                           //   ListTile(
                           //     title: Text(
@@ -434,7 +436,9 @@ class ChatDetailsView extends StatelessWidget {
                               onTap: () =>
                                   context.go('/rooms/${room.id}/invite'),
                             ),
-                          if (room.showClassEditOptions && room.isSpace)
+                          if (room.showClassEditOptions &&
+                              room.isSpace &&
+                              !room.isSubspace)
                             SpaceDetailsToggleAddStudentsTile(
                               controller: controller,
                             ),

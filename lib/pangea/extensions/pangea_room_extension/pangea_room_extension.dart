@@ -49,26 +49,35 @@ part "user_permissions_extension.dart";
 extension PangeaRoom on Room {
 // analytics
 
+  /// Join analytics rooms in space.
+  /// Allows teachers to join analytics rooms without being invited.
   Future<void> joinAnalyticsRoomsInSpace() async =>
       await _joinAnalyticsRoomsInSpace();
 
   Future<void> addAnalyticsRoomToSpace(Room analyticsRoom) async =>
       await _addAnalyticsRoomToSpace(analyticsRoom);
 
-  Future<void> addAnalyticsRoomToSpaces() async =>
-      await _addAnalyticsRoomToSpaces();
+  /// Add analytics room to all spaces the user is a student in (1 analytics room to all spaces).
+  /// Enables teachers to join student analytics rooms via space hierarchy.
+  /// Will not always work, as there may be spaces where students don't have permission to add chats,
+  /// but allows teachers to join analytics rooms without being invited.
+  void addAnalyticsRoomToSpaces() => _addAnalyticsRoomToSpaces();
 
-  Future<void> addAnalyticsRoomsToSpace() async =>
-      await _addAnalyticsRoomsToSpace();
+  /// Add all the user's analytics rooms to 1 space.
+  void addAnalyticsRoomsToSpace() => _addAnalyticsRoomsToSpace();
 
+  /// Invite teachers of 1 space to 1 analytics room
   Future<void> inviteSpaceTeachersToAnalyticsRoom(Room analyticsRoom) async =>
       await _inviteSpaceTeachersToAnalyticsRoom(analyticsRoom);
 
-  Future<void> inviteTeachersToAnalyticsRoom() async =>
-      await _inviteTeachersToAnalyticsRoom();
+  /// Invite all the user's teachers to 1 analytics room.
+  /// Handles case when students cannot add analytics room to space
+  /// so teacher is still able to get analytics data for this student.
+  void inviteTeachersToAnalyticsRoom() => _inviteTeachersToAnalyticsRoom();
 
-  Future<void> inviteSpaceTeachersToAnalyticsRooms() async =>
-      await _inviteSpaceTeachersToAnalyticsRooms();
+  /// Invite teachers of 1 space to all users' analytics rooms
+  void inviteSpaceTeachersToAnalyticsRooms() =>
+      _inviteSpaceTeachersToAnalyticsRooms();
 
   Future<AnalyticsEvent?> getLastAnalyticsEvent(
     String type,
@@ -122,6 +131,19 @@ extension PangeaRoom on Room {
   }) async =>
       await _pangeaSetSpaceChild(roomId, suggested: suggested);
 
+  /// Returns a map of child suggestion status for a space.
+  ///
+  /// If the current object is not a space, an empty map is returned.
+  /// Otherwise, it iterates through each child in the `spaceChildren` list
+  /// and adds their suggestion status to the `suggestionStatus` map.
+  /// The suggestion status is determined by the `suggested` property of each child.
+  /// If the `suggested` property is `null`, it defaults to `true`.
+  Map<String, bool> get spaceChildSuggestionStatus =>
+      _spaceChildSuggestionStatus;
+
+  /// Checks if this space has a parent space
+  bool get isSubspace => _isSubspace;
+
 // class_and_exchange_settings
 
   DateTime? get rulesUpdatedAt => _rulesUpdatedAt;
@@ -134,6 +156,12 @@ extension PangeaRoom on Room {
 
   Future<List<User>> get teachers async => await _teachers;
 
+  /// Synchronous version of teachers getter. Does not request
+  /// participants, so this list may not be complete.
+  List<User> get teachersLocal => _teachersLocal;
+
+  /// If the user is an admin of this space, and the space's
+  /// m.space.child power level hasn't yet been set, so it to 0
   Future<void> setClassPowerLevels() async => await _setClassPowerLevels();
 
   Event? get pangeaRoomRulesStateEvent => _pangeaRoomRulesStateEvent;
@@ -277,10 +305,6 @@ extension PangeaRoom on Room {
   bool get showClassEditOptions => _showClassEditOptions;
 
   bool get canDelete => _canDelete;
-
-  bool canIAddSpaceChild(Room? room, {bool spaceMode = false}) {
-    return _canIAddSpaceChild(room, spaceMode: spaceMode);
-  }
 
   bool get canIAddSpaceParents => _canIAddSpaceParents;
 

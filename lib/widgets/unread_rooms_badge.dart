@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:badges/badges.dart' as b;
+import 'package:fluffychat/utils/stream_extension.dart';
+import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'matrix.dart';
@@ -24,7 +24,10 @@ class UnreadRoomsBadge extends StatelessWidget {
           .client
           .onSync
           .stream
-          .where((syncUpdate) => syncUpdate.hasRoomUpdate),
+          .where((syncUpdate) => syncUpdate.hasRoomUpdate)
+          // #Pangea
+          .rateLimit(const Duration(seconds: 1)),
+      // Pangea#
       builder: (context, _) {
         // #Pangea
         // final unreadCount = Matrix.of(context)

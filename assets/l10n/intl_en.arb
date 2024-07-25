@@ -4111,5 +4111,7 @@
   "deleteSubscriptionWarningBody": "Deleting your account will not automatically cancel your subscription.",
   "manageSubscription": "Manage Subscription",
   "createSpace": "Create space",
-  "createChat": "Create chat"
+  "createChat": "Create chat",
+  "error520Title": "Please try again.",
+  "error520Desc": "Sorry, we could not understand your message..."
 }

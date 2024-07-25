@@ -1,6 +1,8 @@
 part of "pangea_room_extension.dart";
 
 extension ChildrenAndParentsRoomExtension on Room {
+  bool get _isSubspace => _pangeaSpaceParents.isNotEmpty;
+
   //note this only will return rooms that the user has joined or been invited to
   List<Room> get _joinedChildren {
     if (!isSpace) return [];
@@ -91,7 +93,7 @@ extension ChildrenAndParentsRoomExtension on Room {
   String _nameIncludingParents(BuildContext context) {
     String nameSoFar = getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
     Room currentRoom = this;
-    if (currentRoom.pangeaSpaceParents.isEmpty) {
+    if (!currentRoom._isSubspace) {
       return nameSoFar;
     }
     currentRoom = currentRoom.pangeaSpaceParents.first;
@@ -100,7 +102,7 @@ extension ChildrenAndParentsRoomExtension on Room {
     nameToAdd =
         nameToAdd.length <= 10 ? nameToAdd : "${nameToAdd.substring(0, 10)}...";
     nameSoFar = '$nameToAdd > $nameSoFar';
-    if (currentRoom.pangeaSpaceParents.isEmpty) {
+    if (!currentRoom._isSubspace) {
       return nameSoFar;
     }
     return "... > $nameSoFar";
@@ -129,7 +131,8 @@ extension ChildrenAndParentsRoomExtension on Room {
     spaceMode = child?.isSpace ?? spaceMode;
 
     // get the bool for adding chats to spaces
-    final bool canAddChild = _canIAddSpaceChild(child, spaceMode: spaceMode);
+    final bool canAddChild =
+        (child?.isRoomAdmin ?? true) && canSendEvent(EventTypes.SpaceChild);
     if (!spaceMode) return canAddChild;
 
     // if adding space to a space, check if the child is an ancestor
@@ -160,5 +163,15 @@ extension ChildrenAndParentsRoomExtension on Room {
       }
       await setSpaceChild(roomId, suggested: suggested);
     }
+  }
+
+  /// A map of child suggestion status for a space.
+  Map<String, bool> get _spaceChildSuggestionStatus {
+    if (!isSpace) return {};
+    final Map<String, bool> suggestionStatus = {};
+    for (final child in spaceChildren) {
+      suggestionStatus[child.roomId!] = child.suggested ?? true;
+    }
+    return suggestionStatus;
   }
 }

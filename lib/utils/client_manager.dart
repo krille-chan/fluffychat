@@ -111,12 +111,12 @@ abstract class ClientManager {
         // To make room emotes work
         'im.ponies.room_emotes',
         // #Pangea
-        PangeaEventTypes.languageSettings,
+        // The things in this list will be loaded in the first sync, without having
+        // to postLoad to confirm that these state events are completely loaded
         PangeaEventTypes.rules,
         PangeaEventTypes.botOptions,
-        EventTypes.RoomTopic,
-        EventTypes.RoomAvatar,
         PangeaEventTypes.capacity,
+        EventTypes.RoomPowerLevels,
         // Pangea#
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,

@@ -122,6 +122,10 @@ class ErrorCopy {
           title = l10n.error502504Title;
           body = l10n.error502504Desc;
           break;
+        case 520:
+          title = l10n.error520Title;
+          body = l10n.error520Desc;
+          break;
         case 404:
           title = l10n.error404Title;
           body = l10n.error404Desc;

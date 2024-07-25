@@ -476,6 +476,8 @@ class ChatListController extends State<ChatList>
   StreamSubscription? classStream;
   StreamSubscription? _invitedSpaceSubscription;
   StreamSubscription? _subscriptionStatusStream;
+  StreamSubscription? _spaceChildSubscription;
+  final Set<String> hasUpdates = {};
   //Pangea#
 
   @override
@@ -567,6 +569,16 @@ class ChatListController extends State<ChatList>
         showSubscribedSnackbar(context);
       }
     });
+
+    // listen for space child updates for any space that is not the active space
+    // so that when the user navigates to the space that was updated, it will
+    // reload any rooms that have been added / removed
+    final client = pangeaController.matrixState.client;
+    _spaceChildSubscription ??= client.onRoomState.stream.where((u) {
+      return u.state.type == EventTypes.SpaceChild && u.roomId != activeSpaceId;
+    }).listen((update) {
+      hasUpdates.add(update.roomId);
+    });
     //Pangea#
 
     super.initState();
@@ -581,17 +593,29 @@ class ChatListController extends State<ChatList>
     classStream?.cancel();
     _invitedSpaceSubscription?.cancel();
     _subscriptionStatusStream?.cancel();
+    _spaceChildSubscription?.cancel();
     //Pangea#
     scrollController.removeListener(_onScroll);
     super.dispose();
   }
 
+  // #Pangea
+  final StreamController<String> selectionsStream =
+      StreamController.broadcast();
+  // Pangea#
+
   void toggleSelection(String roomId) {
-    setState(
-      () => selectedRoomIds.contains(roomId)
-          ? selectedRoomIds.remove(roomId)
-          : selectedRoomIds.add(roomId),
-    );
+    // #Pangea
+    // setState(
+    //   () => selectedRoomIds.contains(roomId)
+    //       ? selectedRoomIds.remove(roomId)
+    //       : selectedRoomIds.add(roomId),
+    // );
+    selectedRoomIds.contains(roomId)
+        ? selectedRoomIds.remove(roomId)
+        : selectedRoomIds.add(roomId);
+    selectionsStream.add(roomId);
+    // Pangea#
   }
 
   Future<void> toggleUnread() async {
@@ -663,8 +687,8 @@ class ChatListController extends State<ChatList>
       context: context,
       future: () => _archiveSelectedRooms(),
     );
-    setState(() {});
     // #Pangea
+    // setState(() {});
     if (archivedActiveRoom) {
       context.go('/rooms');
     }
@@ -696,7 +720,6 @@ class ChatListController extends State<ChatList>
       context: context,
       future: () => _leaveSelectedRooms(onlyAdmin),
     );
-    setState(() {});
     if (leftActiveRoom) {
       context.go('/rooms');
     }
@@ -819,8 +842,7 @@ class ChatListController extends State<ChatList>
               label: space.nameIncludingParents(context),
               // If user is not admin of space, button is grayed out
               textStyle: TextStyle(
-                color: (firstSelectedRoom == null ||
-                        (firstSelectedRoom.isSpace && !space.isRoomAdmin))
+                color: (firstSelectedRoom == null)
                     ? Theme.of(context).colorScheme.outline
                     : Theme.of(context).colorScheme.surfaceTint,
               ),
@@ -837,10 +859,6 @@ class ChatListController extends State<ChatList>
         // #Pangea
         if (firstSelectedRoom == null) {
           throw L10n.of(context)!.nonexistentSelection;
-        }
-        // If user is not admin of the would-be parent space, does not allow
-        if (firstSelectedRoom.isSpace && !space.isRoomAdmin) {
-          throw L10n.of(context)!.cantAddSpaceChild;
         }
 
         if (space.canSendDefaultStates) {
@@ -863,7 +881,12 @@ class ChatListController extends State<ChatList>
       );
     }
 
-    setState(() => selectedRoomIds.clear());
+    // #Pangea
+    // setState(() => selectedRoomIds.clear());
+    if (firstSelectedRoom != null) {
+      toggleSelection(firstSelectedRoom.id);
+    }
+    // Pangea#
   }
 
   bool get anySelectedRoomNotMarkedUnread => selectedRoomIds.any(
@@ -908,13 +931,14 @@ class ChatListController extends State<ChatList>
 
     // #Pangea
     if (mounted) {
+      // TODO try not to await so much
       GoogleAnalytics.analyticsUserUpdate(client.userID);
       await pangeaController.subscriptionController.initialize();
       await pangeaController.myAnalytics.initialize();
       pangeaController.afterSyncAndFirstLoginInitialization(context);
       await pangeaController.inviteBotToExistingSpaces();
       await pangeaController.setPangeaPushRules();
-      await client.migrateAnalyticsRooms();
+      client.migrateAnalyticsRooms();
     } else {
       ErrorHandler.logError(
         m: "didn't run afterSyncAndFirstLoginInitialization because not mounted",
@@ -932,7 +956,12 @@ class ChatListController extends State<ChatList>
     if (selectMode == SelectMode.share) {
       setState(() => Matrix.of(context).shareContent = null);
     } else {
-      setState(() => selectedRoomIds.clear());
+      // #Pangea
+      // setState(() => selectedRoomIds.clear());
+      for (final roomId in selectedRoomIds.toList()) {
+        toggleSelection(roomId);
+      }
+      // Pangea#
     }
   }
 

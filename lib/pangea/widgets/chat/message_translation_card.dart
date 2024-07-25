@@ -132,6 +132,22 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     setState(() {});
   }
 
+  /// Show warning if message's language code is user's L1
+  /// or if translated text is same as original text.
+  /// Warning does not show if was previously closed
+  bool get showWarning {
+    if (MatrixState.pangeaController.instructions.wereInstructionsTurnedOff(
+      InlineInstructions.l1Translation.toString(),
+    )) return false;
+
+    final bool isWrittenInL1 =
+        l1Code != null && widget.messageEvent.originalSent?.langCode == l1Code;
+    final bool isTextIdentical = selectionTranslation != null &&
+        widget.messageEvent.originalSent?.text == selectionTranslation;
+
+    return isWrittenInL1 || isTextIdentical;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!_fetchingRepresentation &&
@@ -139,13 +155,6 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
         selectionTranslation == null) {
       return const CardErrorWidget();
     }
-
-    final bool showWarning = l2Code != null &&
-        !widget.immersionMode &&
-        widget.messageEvent.originalSent?.langCode != l2Code &&
-        !MatrixState.pangeaController.instructions.wereInstructionsTurnedOff(
-          InlineInstructions.l1Translation.toString(),
-        );
 
     return Container(
       child: _fetchingRepresentation
