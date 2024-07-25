@@ -401,9 +401,6 @@ class InputBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final useShortCuts = (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile);
-    // #Pangea
-    controller?.currentlyMaxLength = controller?.isMaxLength ?? false;
-    // Pangea#
     return Shortcuts(
       shortcuts: !useShortCuts
           ? {}

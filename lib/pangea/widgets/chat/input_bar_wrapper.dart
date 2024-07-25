@@ -44,6 +44,7 @@ class InputBarWrapper extends StatefulWidget {
 
 class InputBarWrapperState extends State<InputBarWrapper> {
   StreamSubscription? _choreoSub;
+  String _currentText = '';
 
   @override
   void initState() {
@@ -65,10 +66,18 @@ class InputBarWrapperState extends State<InputBarWrapper> {
     if (widget.onChanged != null) {
       widget.onChanged!(text);
     }
-    if (widget.controller?.currentlyMaxLength !=
-        widget.controller?.isMaxLength) {
+
+    final bool decreasedFromMaxLength =
+        _currentText.length >= PangeaTextController.maxLength &&
+            text.length < PangeaTextController.maxLength;
+    final bool reachedMaxLength =
+        _currentText.length < PangeaTextController.maxLength &&
+            text.length < PangeaTextController.maxLength;
+
+    if (decreasedFromMaxLength || reachedMaxLength) {
       setState(() {});
     }
+    _currentText = text;
   }
 
   @override
