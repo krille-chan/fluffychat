@@ -4,7 +4,6 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/utils/on_chat_tap.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
@@ -12,6 +11,8 @@ import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/chat_list_header_wrapper.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/chat_list_item_wrapper.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,6 @@ import 'package:matrix/matrix.dart';
 
 import '../../utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
-import 'chat_list_header.dart';
 
 class SpaceView extends StatefulWidget {
   final ChatListController controller;
@@ -53,6 +53,25 @@ class _SpaceViewState extends State<SpaceView> {
         widget.controller.pangeaController.pStoreService.read(_chatCountsKey) ??
             {},
       );
+
+  /// Used to filter out sync updates with hierarchy updates for the active
+  /// space so that the view can be auto-reloaded in the room subscription
+  bool hasHierarchyUpdate(SyncUpdate update) {
+    final joinTimeline =
+        update.rooms?.join?[widget.controller.activeSpaceId]?.timeline;
+    final leaveTimeline =
+        update.rooms?.leave?[widget.controller.activeSpaceId]?.timeline;
+    if (joinTimeline == null && leaveTimeline == null) return false;
+    final bool hasJoinUpdate = joinTimeline?.events?.any(
+          (event) => event.type == EventTypes.SpaceChild,
+        ) ??
+        false;
+    final bool hasLeaveUpdate = leaveTimeline?.events?.any(
+          (event) => event.type == EventTypes.SpaceChild,
+        ) ??
+        false;
+    return hasJoinUpdate || hasLeaveUpdate;
+  }
   // Pangea#
 
   @override
@@ -78,12 +97,9 @@ class _SpaceViewState extends State<SpaceView> {
     // Listen for changes to the activeSpace's hierarchy,
     // and reload the hierarchy when they come through
     final client = Matrix.of(context).client;
-    _roomSubscription ??= client.onRoomState.stream.where((u) {
-      return u.state.type == EventTypes.SpaceChild &&
-          u.roomId == widget.controller.activeSpaceId;
-    }).listen((update) {
-      loadHierarchy(hasUpdate: true);
-    });
+    _roomSubscription ??= client.onSync.stream
+        .where(hasHierarchyUpdate)
+        .listen((update) => loadHierarchy(hasUpdate: true));
     // Pangea#
     super.initState();
   }
@@ -709,7 +725,10 @@ class _SpaceViewState extends State<SpaceView> {
         child: CustomScrollView(
           controller: widget.scrollController,
           slivers: [
-            ChatListHeader(controller: widget.controller),
+            // #Pangea
+            // ChatListHeader(controller: widget.controller),
+            ChatListHeaderWrapper(controller: widget.controller),
+            // Pangea#
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, i) {
@@ -789,7 +808,13 @@ class _SpaceViewState extends State<SpaceView> {
         child: CustomScrollView(
           controller: widget.scrollController,
           slivers: [
-            ChatListHeader(controller: widget.controller, globalSearch: false),
+            // #Pangea
+            // ChatListHeader(controller: widget.controller, globalSearch: false),
+            ChatListHeaderWrapper(
+              controller: widget.controller,
+              globalSearch: false,
+            ),
+            // Pangea#
             SliverAppBar(
               automaticallyImplyLeading: false,
               primary: false,
@@ -911,7 +936,11 @@ class _SpaceViewState extends State<SpaceView> {
                               room.membership != Membership.leave
                           // Pangea#
                           ) {
-                        return ChatListItem(
+                        // #Pangea
+                        // return ChatListItem(
+                        return ChatListItemWrapper(
+                          controller: widget.controller,
+                          // Pangea#
                           room,
                           onLongPress: () =>
                               _onSpaceChildContextMenu(spaceChild, room),
