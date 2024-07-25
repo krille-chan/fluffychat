@@ -13,36 +13,40 @@ class AnalyticsViewButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<BarChartViewSelection>(
-      tooltip: L10n.of(context)!.changeAnalyticsView,
-      initialValue: value,
-      onSelected: (BarChartViewSelection? view) {
-        if (view == null) {
-          debugPrint("when is view null?");
-          return;
-        }
-        onChange(view);
-      },
-      itemBuilder: (BuildContext context) => BarChartViewSelection.values
-          .map<PopupMenuEntry<BarChartViewSelection>>(
-              (BarChartViewSelection view) {
-        return PopupMenuItem<BarChartViewSelection>(
-          value: view,
-          child: Text(view.string(context)),
-        );
-      }).toList(),
-      child: TextButton.icon(
-        label: Text(
-          value.string(context),
-          style: TextStyle(
+    return Flexible(
+      child: PopupMenuButton<BarChartViewSelection>(
+        tooltip: L10n.of(context)!.changeAnalyticsView,
+        initialValue: value,
+        onSelected: (BarChartViewSelection? view) {
+          if (view == null) {
+            debugPrint("when is view null?");
+            return;
+          }
+          onChange(view);
+        },
+        itemBuilder: (BuildContext context) => BarChartViewSelection.values
+            .map<PopupMenuEntry<BarChartViewSelection>>(
+                (BarChartViewSelection view) {
+          return PopupMenuItem<BarChartViewSelection>(
+            value: view,
+            child: Text(
+              view.string(context),
+            ),
+          );
+        }).toList(),
+        child: TextButton.icon(
+          label: Text(
+            value.string(context),
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+          ),
+          icon: Icon(
+            value.icon,
             color: Theme.of(context).colorScheme.onSurface,
           ),
+          onPressed: null,
         ),
-        icon: Icon(
-          value.icon,
-          color: Theme.of(context).colorScheme.onSurface,
-        ),
-        onPressed: null,
       ),
     );
   }
