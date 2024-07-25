@@ -5,6 +5,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const _passwordStorageKey = 'database_password';
@@ -58,6 +59,12 @@ void _sendNoEncryptionWarning(Object exception) async {
   //   l10n.noDatabaseEncryption,
   //   exception.toString(),
   // );
+  Sentry.addBreadcrumb(
+    Breadcrumb(
+      message: 'No database encryption',
+      data: {'exception': exception},
+    ),
+  );
   // Pangea#
 
   await store.setBool(SettingKeys.noEncryptionWarningShown, true);

@@ -25,6 +25,10 @@ class PangeaTextController extends TextEditingController {
     text ??= '';
     this.text = text;
   }
+
+  static const int maxLength = 1000;
+  bool get isMaxLength => text.length == 1000;
+
   bool forceKeepOpen = false;
 
   setSystemText(String text, EditType type) {
