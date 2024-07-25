@@ -419,85 +419,83 @@ class MessageToolbarState extends State<MessageToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Material(
-        type: MaterialType.transparency,
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
-            border: Border.all(
-              width: 2,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(25),
-            ),
+    return Material(
+      type: MaterialType.transparency,
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          border: Border.all(
+            width: 2,
+            color: Theme.of(context).colorScheme.primary,
           ),
-          constraints: const BoxConstraints(
-            maxWidth: 300,
-            minWidth: 300,
-            maxHeight: 300,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(25),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flexible(
-                child: SingleChildScrollView(
-                  child: AnimatedSize(
-                    duration: FluffyThemes.animationDuration,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: toolbarContent ?? const SizedBox(),
-                        ),
-                        SizedBox(height: toolbarContent == null ? 0 : 20),
-                      ],
-                    ),
+        ),
+        constraints: const BoxConstraints(
+          maxWidth: 300,
+          minWidth: 300,
+          maxHeight: 300,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(
+              child: SingleChildScrollView(
+                child: AnimatedSize(
+                  duration: FluffyThemes.animationDuration,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: toolbarContent ?? const SizedBox(),
+                      ),
+                      SizedBox(height: toolbarContent == null ? 0 : 20),
+                    ],
                   ),
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: MessageMode.values.map((mode) {
-                      if ([
-                            MessageMode.definition,
-                            MessageMode.textToSpeech,
-                            MessageMode.translation,
-                          ].contains(mode) &&
-                          widget.pangeaMessageEvent.isAudioMessage) {
-                        return const SizedBox.shrink();
-                      }
-                      if (mode == MessageMode.speechToText &&
-                          !widget.pangeaMessageEvent.isAudioMessage) {
-                        return const SizedBox.shrink();
-                      }
-                      return Tooltip(
-                        message: mode.tooltip(context),
-                        child: IconButton(
-                          icon: Icon(mode.icon),
-                          color: mode.iconColor(
-                            widget.pangeaMessageEvent,
-                            currentMode,
-                            context,
-                          ),
-                          onPressed: () => updateMode(mode),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: MessageMode.values.map((mode) {
+                    if ([
+                          MessageMode.definition,
+                          MessageMode.textToSpeech,
+                          MessageMode.translation,
+                        ].contains(mode) &&
+                        widget.pangeaMessageEvent.isAudioMessage) {
+                      return const SizedBox.shrink();
+                    }
+                    if (mode == MessageMode.speechToText &&
+                        !widget.pangeaMessageEvent.isAudioMessage) {
+                      return const SizedBox.shrink();
+                    }
+                    return Tooltip(
+                      message: mode.tooltip(context),
+                      child: IconButton(
+                        icon: Icon(mode.icon),
+                        color: mode.iconColor(
+                          widget.pangeaMessageEvent,
+                          currentMode,
+                          context,
                         ),
-                      );
-                    }).toList() +
-                    [
-                      Tooltip(
-                        message: L10n.of(context)!.more,
-                        child: IconButton(
-                          icon: const Icon(Icons.add_reaction_outlined),
-                          onPressed: showMore,
-                        ),
+                        onPressed: () => updateMode(mode),
                       ),
-                    ],
-              ),
-            ],
-          ),
+                    );
+                  }).toList() +
+                  [
+                    Tooltip(
+                      message: L10n.of(context)!.more,
+                      child: IconButton(
+                        icon: const Icon(Icons.add_reaction_outlined),
+                        onPressed: showMore,
+                      ),
+                    ),
+                  ],
+            ),
+          ],
         ),
       ),
     );
