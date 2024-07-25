@@ -187,6 +187,8 @@ class VocabTotals {
           break;
         case ConstructUseTypeEnum.unk:
           break;
+        case ConstructUseTypeEnum.ignPA:
+          break;
       }
     }
   }
