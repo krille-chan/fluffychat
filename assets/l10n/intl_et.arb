@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Vaikimisi õigused",
+  "defaultPermissionLevel": "Vaikimisi õigused uutele kasutajatele",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2737,5 +2737,40 @@
       "chats": {},
       "participants": {}
     }
-  }
+  },
+  "userLevel": "{level} - kasutaja",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - moderaator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - peakasutaja",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheVisibilityOfChatHistory": "Muuda vestluse ajaloo nähtavust",
+  "@changeTheVisibilityOfChatHistory": {},
+  "sendRoomNotifications": "Saada @jututuba teavitusi",
+  "@sendRoomNotifications": {},
+  "changeTheCanonicalRoomAlias": "Muuda vestluse põhilist avalikult nähtavat aadressi",
+  "@changeTheCanonicalRoomAlias": {},
+  "changeGeneralChatSettings": "Muuda vestluse üldiseid seadistusi",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "Kutsu teisi osalejaid sellesse vestlusesse",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Muuda vestluse õigusi",
+  "@changeTheChatPermissions": {},
+  "changeTheDescriptionOfTheGroup": "Muuda vestluse kirjeldust",
+  "@changeTheDescriptionOfTheGroup": {}
 }
