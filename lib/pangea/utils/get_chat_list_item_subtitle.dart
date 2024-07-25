@@ -37,8 +37,7 @@ class GetChatListItemSubtitle {
       }
 
       final Timeline timeline = event.room.timeline != null &&
-              event.room.timeline!.events
-                  .any((event) => event.eventId == eventContextId)
+              event.room.timeline!.chunk.eventsMap.containsKey(eventContextId)
           ? event.room.timeline!
           : await event.room.getTimeline(eventContextId: eventContextId);
 
