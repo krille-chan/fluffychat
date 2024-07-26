@@ -71,8 +71,8 @@ class PinnedEvents extends StatelessWidget {
               ) ??
               L10n.of(context)!.loadingPleaseWait,
           leading: IconButton(
-            splashRadius: 20,
-            iconSize: 20,
+            splashRadius: 18,
+            iconSize: 18,
             color: Theme.of(context).colorScheme.onSurfaceVariant,
             icon: const Icon(Icons.push_pin),
             tooltip: L10n.of(context)!.unpin,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_linkify/flutter_linkify.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 
 class ChatAppBarListTile extends StatelessWidget {
@@ -10,6 +9,8 @@ class ChatAppBarListTile extends StatelessWidget {
   final String title;
   final Widget? trailing;
   final void Function()? onTap;
+
+  static const double fixedHeight = 40.0;
 
   const ChatAppBarListTile({
     super.key,
@@ -23,38 +24,40 @@ class ChatAppBarListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final leading = this.leading;
     final trailing = this.trailing;
-    final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
-    return InkWell(
-      onTap: onTap,
-      child: Row(
-        children: [
-          if (leading != null) leading,
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4.0),
-              child: Linkify(
-                text: title,
-                options: const LinkifyOptions(humanize: false),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+    return SizedBox(
+      height: fixedHeight,
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          children: [
+            if (leading != null) leading,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: Linkify(
+                  text: title,
+                  options: const LinkifyOptions(humanize: false),
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  fontSize: fontSize,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    overflow: TextOverflow.ellipsis,
+                    fontSize: 14,
+                  ),
+                  linkStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontSize: 14,
+                    decoration: TextDecoration.underline,
+                    decorationColor:
+                        Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
                 ),
-                linkStyle: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  fontSize: fontSize,
-                  decoration: TextDecoration.underline,
-                  decorationColor:
-                      Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
               ),
             ),
-          ),
-          if (trailing != null) trailing,
-        ],
+            if (trailing != null) trailing,
+          ],
+        ),
       ),
     );
   }
