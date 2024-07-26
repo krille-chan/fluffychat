@@ -119,83 +119,85 @@ class OverlayMessage extends StatelessWidget {
     );
 
     return Flexible(
-      child: Material(
-        color: noBubble ? Colors.transparent : color,
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: borderRadius,
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              AppConfig.borderRadius,
-            ),
+      child: SingleChildScrollView(
+        child: Material(
+          color: noBubble ? Colors.transparent : color,
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(
+            borderRadius: borderRadius,
           ),
-          padding: noBubble || noPadding
-              ? EdgeInsets.zero
-              : const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-          constraints: BoxConstraints(
-            maxWidth: width ?? FluffyThemes.columnWidth * 1.25,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                child: MessageContent(
-                  event.getDisplayEvent(timeline),
-                  textColor: textColor,
-                  borderRadius: borderRadius,
-                  selected: selected,
-                  pangeaMessageEvent: pangeaMessageEvent,
-                  immersionMode: immersionMode,
-                  toolbarController: toolbarController,
-                  isOverlay: true,
-                ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                AppConfig.borderRadius,
               ),
-              if (event.hasAggregatedEvents(
-                    timeline,
-                    RelationshipTypes.edit,
-                  ) ||
-                  (pangeaMessageEvent.showUseType))
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 4.0,
+            ),
+            padding: noBubble || noPadding
+                ? EdgeInsets.zero
+                : const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (pangeaMessageEvent.showUseType) ...[
-                        pangeaMessageEvent.msgUseType.iconView(
-                          context,
-                          textColor.withAlpha(164),
-                        ),
-                        const SizedBox(width: 4),
-                      ],
-                      if (event.hasAggregatedEvents(
-                        timeline,
-                        RelationshipTypes.edit,
-                      )) ...[
-                        Icon(
-                          Icons.edit_outlined,
-                          color: textColor.withAlpha(164),
-                          size: 14,
-                        ),
-                        Text(
-                          ' - ${event.getDisplayEvent(timeline).originServerTs.localizedTimeShort(context)}',
-                          style: TextStyle(
-                            color: textColor.withAlpha(164),
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ],
+            constraints: BoxConstraints(
+              maxWidth: width ?? FluffyThemes.columnWidth * 1.25,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  child: MessageContent(
+                    event.getDisplayEvent(timeline),
+                    textColor: textColor,
+                    borderRadius: borderRadius,
+                    selected: selected,
+                    pangeaMessageEvent: pangeaMessageEvent,
+                    immersionMode: immersionMode,
+                    toolbarController: toolbarController,
+                    isOverlay: true,
                   ),
                 ),
-            ],
+                if (event.hasAggregatedEvents(
+                      timeline,
+                      RelationshipTypes.edit,
+                    ) ||
+                    (pangeaMessageEvent.showUseType))
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 4.0,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (pangeaMessageEvent.showUseType) ...[
+                          pangeaMessageEvent.msgUseType.iconView(
+                            context,
+                            textColor.withAlpha(164),
+                          ),
+                          const SizedBox(width: 4),
+                        ],
+                        if (event.hasAggregatedEvents(
+                          timeline,
+                          RelationshipTypes.edit,
+                        )) ...[
+                          Icon(
+                            Icons.edit_outlined,
+                            color: textColor.withAlpha(164),
+                            size: 14,
+                          ),
+                          Text(
+                            ' - ${event.getDisplayEvent(timeline).originServerTs.localizedTimeShort(context)}',
+                            style: TextStyle(
+                              color: textColor.withAlpha(164),
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),

@@ -5,7 +5,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
@@ -20,7 +19,6 @@ import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 class ToolbarDisplayController {
@@ -61,72 +59,12 @@ class ToolbarDisplayController {
   void showToolbar(BuildContext context, {MessageMode? mode}) {
     // Close keyboard, if open
     FocusManager.instance.primaryFocus?.unfocus();
-    bool toolbarUp = true;
     if (highlighted) return;
-    if (controller.selectMode) {
-      controller.clearSelectedEvents();
-    }
     if (!MatrixState.pangeaController.languageController.languagesSet) {
       pLanguageDialog(context, () {});
       return;
     }
     focusNode.requestFocus();
-
-    final LayerLinkAndKey layerLinkAndKey =
-        MatrixState.pAnyState.layerLinkAndKey(targetId);
-    final targetRenderBox =
-        layerLinkAndKey.key.currentContext?.findRenderObject();
-    if (targetRenderBox != null) {
-      final Size transformTargetSize = (targetRenderBox as RenderBox).size;
-      messageWidth = transformTargetSize.width;
-      final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
-
-      // If there is enough space above, procede as normal
-      // Else if there is enough space below, show toolbar underneath
-      if (targetOffset.dy < 320) {
-        final spaceBeneath = MediaQuery.of(context).size.height -
-            (targetOffset.dy + transformTargetSize.height);
-        // If toolbar is open, opening toolbar beneath without scrolling can cause issues
-        // if (spaceBeneath >= 320) {
-        //   toolbarUp = false;
-        // }
-
-        // See if it's possible to scroll up to make space
-        if (controller.scrollController.offset - targetOffset.dy + 320 >=
-                controller.scrollController.position.minScrollExtent &&
-            controller.scrollController.offset - targetOffset.dy + 320 <=
-                controller.scrollController.position.maxScrollExtent) {
-          controller.scrollController.animateTo(
-            controller.scrollController.offset - targetOffset.dy + 320,
-            duration: FluffyThemes.animationDuration,
-            curve: FluffyThemes.animationCurve,
-          );
-        }
-
-        // See if it's possible to scroll down to make space
-        else if (controller.scrollController.offset + spaceBeneath - 320 >=
-                controller.scrollController.position.minScrollExtent &&
-            controller.scrollController.offset + spaceBeneath - 320 <=
-                controller.scrollController.position.maxScrollExtent) {
-          controller.scrollController.animateTo(
-            controller.scrollController.offset + spaceBeneath - 320,
-            duration: FluffyThemes.animationDuration,
-            curve: FluffyThemes.animationCurve,
-          );
-          toolbarUp = false;
-        }
-
-        // If message is too big and can't scroll either way
-        // Scroll up as much as possible, and show toolbar above
-        else {
-          controller.scrollController.animateTo(
-            controller.scrollController.position.minScrollExtent,
-            duration: FluffyThemes.animationDuration,
-            curve: FluffyThemes.animationCurve,
-          );
-        }
-      }
-    }
 
     final Widget overlayMessage = OverlayMessage(
       pangeaMessageEvent.event,
@@ -146,16 +84,18 @@ class ToolbarDisplayController {
     Widget overlayEntry;
     if (toolbar == null) return;
     try {
-      overlayEntry = Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: pangeaMessageEvent.ownMessage
-            ? CrossAxisAlignment.end
-            : CrossAxisAlignment.start,
-        children: [
-          toolbarUp ? toolbar! : overlayMessage,
-          const SizedBox(height: 6),
-          toolbarUp ? overlayMessage : toolbar!,
-        ],
+      overlayEntry = Container(
+        constraints:
+            BoxConstraints(maxHeight: MediaQuery.sizeOf(context).height * .72),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            toolbar!,
+            const SizedBox(height: 6),
+            overlayMessage,
+          ],
+        ),
       );
     } catch (err) {
       debugger(when: kDebugMode);
@@ -167,24 +107,15 @@ class ToolbarDisplayController {
       context: context,
       child: overlayEntry,
       transformTargetId: targetId,
-      targetAnchor: pangeaMessageEvent.ownMessage
-          ? toolbarUp
-              ? Alignment.bottomRight
-              : Alignment.topRight
-          : toolbarUp
-              ? Alignment.bottomLeft
-              : Alignment.topLeft,
-      followerAnchor: pangeaMessageEvent.ownMessage
-          ? toolbarUp
-              ? Alignment.bottomRight
-              : Alignment.topRight
-          : toolbarUp
-              ? Alignment.bottomLeft
-              : Alignment.topLeft,
+      targetAnchor: Alignment.center,
+      followerAnchor: Alignment.center,
       backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
       closePrevOverlay:
           MatrixState.pangeaController.subscriptionController.isSubscribed,
+      targetScreen: true,
     );
+
+    // controller.onSelectMessage(pangeaMessageEvent.event);
 
     if (MatrixState.pAnyState.entries.isNotEmpty) {
       overlayId = MatrixState.pAnyState.entries.last.hashCode.toString();
@@ -361,11 +292,6 @@ class MessageToolbarState extends State<MessageToolbar> {
 
   void spellCheck() {}
 
-  void showMore() {
-    MatrixState.pAnyState.closeOverlay();
-    widget.controller.onSelectMessage(widget.pangeaMessageEvent.event);
-  }
-
   @override
   void initState() {
     super.initState();
@@ -454,40 +380,31 @@ class MessageToolbarState extends State<MessageToolbar> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: MessageMode.values.map((mode) {
-                    if ([
-                          MessageMode.definition,
-                          MessageMode.textToSpeech,
-                          MessageMode.translation,
-                        ].contains(mode) &&
-                        widget.pangeaMessageEvent.isAudioMessage) {
-                      return const SizedBox.shrink();
-                    }
-                    if (mode == MessageMode.speechToText &&
-                        !widget.pangeaMessageEvent.isAudioMessage) {
-                      return const SizedBox.shrink();
-                    }
-                    return Tooltip(
-                      message: mode.tooltip(context),
-                      child: IconButton(
-                        icon: Icon(mode.icon),
-                        color: mode.iconColor(
-                          widget.pangeaMessageEvent,
-                          currentMode,
-                          context,
-                        ),
-                        onPressed: () => updateMode(mode),
-                      ),
-                    );
-                  }).toList() +
-                  [
-                    Tooltip(
-                      message: L10n.of(context)!.more,
-                      child: IconButton(
-                        icon: const Icon(Icons.add_reaction_outlined),
-                        onPressed: showMore,
-                      ),
+                if ([
+                      MessageMode.definition,
+                      MessageMode.textToSpeech,
+                      MessageMode.translation,
+                    ].contains(mode) &&
+                    widget.pangeaMessageEvent.isAudioMessage) {
+                  return const SizedBox.shrink();
+                }
+                if (mode == MessageMode.speechToText &&
+                    !widget.pangeaMessageEvent.isAudioMessage) {
+                  return const SizedBox.shrink();
+                }
+                return Tooltip(
+                  message: mode.tooltip(context),
+                  child: IconButton(
+                    icon: Icon(mode.icon),
+                    color: mode.iconColor(
+                      widget.pangeaMessageEvent,
+                      currentMode,
+                      context,
                     ),
-                  ],
+                    onPressed: () => updateMode(mode),
+                  ),
+                );
+              }).toList(),
             ),
           ],
         ),

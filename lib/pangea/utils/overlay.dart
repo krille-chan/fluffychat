@@ -26,6 +26,7 @@ class OverlayUtil {
     Alignment? targetAnchor,
     Alignment? followerAnchor,
     bool closePrevOverlay = true,
+    bool targetScreen = false,
   }) {
     try {
       if (closePrevOverlay) {
@@ -47,14 +48,16 @@ class OverlayUtil {
               Positioned(
                 width: width,
                 height: height,
-                child: CompositedTransformFollower(
-                  targetAnchor: targetAnchor ?? Alignment.topLeft,
-                  followerAnchor: followerAnchor ?? Alignment.topLeft,
-                  link: layerLinkAndKey.link,
-                  showWhenUnlinked: false,
-                  offset: offset ?? Offset.zero,
-                  child: child,
-                ),
+                child: targetScreen
+                    ? Center(child: child)
+                    : CompositedTransformFollower(
+                        targetAnchor: targetAnchor ?? Alignment.topLeft,
+                        followerAnchor: followerAnchor ?? Alignment.topLeft,
+                        link: layerLinkAndKey.link,
+                        showWhenUnlinked: false,
+                        offset: offset ?? Offset.zero,
+                        child: child,
+                      ),
               ),
             ],
           ),
