@@ -112,6 +112,7 @@ class ChatController extends State<ChatPageWithRoom>
     with WidgetsBindingObserver {
   // #Pangea
   final PangeaController pangeaController = MatrixState.pangeaController;
+
   late Choreographer choreographer = Choreographer(pangeaController, this);
   // Pangea#
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
@@ -475,10 +476,6 @@ class ChatController extends State<ChatPageWithRoom>
       if (kIsWeb && !Matrix.of(context).webHasFocus) return;
       // #Pangea
     } catch (err, s) {
-      ErrorHandler.logError(
-        e: PangeaWarningError("Web focus error: $err"),
-        s: s,
-      );
       return;
     }
     // Pangea#
