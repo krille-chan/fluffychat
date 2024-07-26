@@ -10,7 +10,6 @@ import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../utils/localized_exception_extension.dart';
 
 class PublicRoomBottomSheet extends StatelessWidget {
   final String? roomAlias;
@@ -82,6 +81,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final roomAlias = this.roomAlias ?? chunk?.canonicalAlias;
+    final roomLink = roomAlias ?? chunk?.roomId;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -114,28 +114,71 @@ class PublicRoomBottomSheet extends StatelessWidget {
             return ListView(
               padding: EdgeInsets.zero,
               children: [
-                if (profile == null)
-                  Container(
-                    height: 156,
-                    alignment: Alignment.center,
-                    color: Theme.of(context).secondaryHeaderColor,
-                    child: snapshot.hasError
-                        ? Text(snapshot.error!.toLocalizedString(context))
-                        : const CircularProgressIndicator.adaptive(
-                            strokeWidth: 2,
-                          ),
-                  )
-                else
-                  Center(
-                    child: Padding(
+                Row(
+                  children: [
+                    Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Avatar(
-                        mxContent: profile.avatarUrl,
-                        name: profile.name ?? roomAlias,
-                        size: Avatar.defaultSize * 3,
+                      child: profile == null
+                          ? const Center(
+                              child: CircularProgressIndicator.adaptive(),
+                            )
+                          : Avatar(
+                              client: Matrix.of(outerContext).client,
+                              mxContent: profile.avatarUrl,
+                              name: profile.name ?? roomAlias,
+                              size: Avatar.defaultSize * 3,
+                            ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextButton.icon(
+                            onPressed: roomLink != null
+                                ? () => FluffyShare.share(
+                                      roomLink,
+                                      context,
+                                      copyOnly: true,
+                                    )
+                                : null,
+                            icon: const Icon(
+                              Icons.copy_outlined,
+                              size: 14,
+                            ),
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.onSurface,
+                            ),
+                            label: Text(
+                              roomLink ?? '...',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          TextButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.groups_3_outlined,
+                              size: 14,
+                            ),
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.onSurface,
+                            ),
+                            label: Text(
+                              L10n.of(context)!.countParticipants(
+                                profile?.numJoinedMembers ?? 0,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: ElevatedButton.icon(
@@ -151,36 +194,10 @@ class PublicRoomBottomSheet extends StatelessWidget {
                               ? L10n.of(context)!.joinSpace
                               : L10n.of(context)!.joinRoom,
                     ),
-                    icon: const Icon(Icons.login_outlined),
+                    icon: const Icon(Icons.navigate_next),
                   ),
                 ),
                 const SizedBox(height: 16),
-                ListTile(
-                  title: Text(
-                    profile?.name ??
-                        roomAlias?.localpart ??
-                        chunk?.roomId.localpart ??
-                        L10n.of(context)!.chat,
-                  ),
-                  subtitle: Text(
-                    '${L10n.of(context)!.participant}: ${profile?.numJoinedMembers ?? 0}',
-                  ),
-                  trailing: const Icon(Icons.account_box_outlined),
-                ),
-                if (roomAlias != null)
-                  ListTile(
-                    title: Text(L10n.of(context)!.publicLink),
-                    subtitle: SelectableText(roomAlias),
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 16.0),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.copy_outlined),
-                      onPressed: () => FluffyShare.share(
-                        roomAlias,
-                        context,
-                      ),
-                    ),
-                  ),
                 if (profile?.topic?.isNotEmpty ?? false)
                   ListTile(
                     subtitle: SelectableLinkify(
