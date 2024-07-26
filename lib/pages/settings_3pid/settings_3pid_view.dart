@@ -69,7 +69,7 @@ class Settings3PidView extends StatelessWidget {
                             .withTheseAddressesRecoveryDescription,
                   ),
                 ),
-                const Divider(height: 1),
+                const Divider(),
                 Expanded(
                   child: ListView.builder(
                     itemCount: identifier.length,

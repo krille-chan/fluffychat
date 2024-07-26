@@ -7,6 +7,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
@@ -29,6 +30,7 @@ class UserBottomSheetView extends StatelessWidget {
 
     final client = Matrix.of(controller.widget.outerContext).client;
     final profileSearchError = controller.widget.profileSearchError;
+    final dmRoomId = client.getDirectChatFromUserId(userId);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -90,19 +92,19 @@ class UserBottomSheetView extends StatelessWidget {
               ),
             ],
           ),
-          actions: [
-            if (userId != client.userID &&
-                !client.ignoredUsers.contains(userId))
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: IconButton(
-                  icon: const Icon(Icons.block_outlined),
-                  tooltip: L10n.of(context)!.block,
-                  onPressed: () => controller
-                      .participantAction(UserBottomSheetAction.ignore),
-                ),
-              ),
-          ],
+          actions: dmRoomId == null
+              ? null
+              : [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    child: FloatingActionButton.small(
+                      elevation: 0,
+                      onPressed: () => controller
+                          .participantAction(UserBottomSheetAction.message),
+                      child: const Icon(Icons.chat_outlined),
+                    ),
+                  ),
+                ],
         ),
         body: StreamBuilder<Object>(
           stream: user?.room.client.onSync.stream.where(
@@ -169,25 +171,10 @@ class UserBottomSheetView extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Material(
-                        elevation: Theme.of(context)
-                                .appBarTheme
-                                .scrolledUnderElevation ??
-                            4,
-                        shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: Theme.of(context).dividerColor,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            Avatar.defaultSize * 2.5,
-                          ),
-                        ),
-                        child: Avatar(
-                          mxContent: avatarUrl,
-                          name: displayname,
-                          size: Avatar.defaultSize * 2.5,
-                        ),
+                      child: Avatar(
+                        mxContent: avatarUrl,
+                        name: displayname,
+                        size: Avatar.defaultSize * 2.5,
                       ),
                     ),
                     Expanded(
@@ -212,7 +199,7 @@ class UserBottomSheetView extends StatelessWidget {
                               displayname,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              //  style: const TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 18),
                             ),
                           ),
                           TextButton.icon(
@@ -247,16 +234,35 @@ class UserBottomSheetView extends StatelessWidget {
                       horizontal: 16.0,
                       vertical: 8.0,
                     ),
-                    child: ElevatedButton.icon(
-                      onPressed: () => controller
-                          .participantAction(UserBottomSheetAction.message),
-                      icon: const Icon(Icons.forum_outlined),
-                      label: Text(
-                        controller.widget.user == null
-                            ? L10n.of(context)!.startConversation
-                            : L10n.of(context)!.sendAMessage,
-                      ),
-                    ),
+                    child: dmRoomId == null
+                        ? ElevatedButton.icon(
+                            onPressed: () => controller.participantAction(
+                              UserBottomSheetAction.message,
+                            ),
+                            icon: const Icon(Icons.chat_outlined),
+                            label: Text(L10n.of(context)!.startConversation),
+                          )
+                        : TextField(
+                            controller: controller.sendController,
+                            readOnly: controller.isSending,
+                            onSubmitted: controller.sendAction,
+                            minLines: 1,
+                            maxLines: 1,
+                            textInputAction: TextInputAction.send,
+                            decoration: InputDecoration(
+                              errorText: controller.sendError
+                                  ?.toLocalizedString(context),
+                              hintText: L10n.of(context)!.sendMessages,
+                              suffixIcon: controller.isSending
+                                  ? const CircularProgressIndicator.adaptive(
+                                      strokeWidth: 2,
+                                    )
+                                  : IconButton(
+                                      icon: const Icon(Icons.send_outlined),
+                                      onPressed: controller.sendAction,
+                                    ),
+                            ),
+                          ),
                   ),
                 PresenceBuilder(
                   userId: userId,
@@ -334,8 +340,8 @@ class UserBottomSheetView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Divider(color: Theme.of(context).dividerColor),
                 ],
+                Divider(color: Theme.of(context).dividerColor),
                 if (user != null && user.canKick)
                   ListTile(
                     textColor: Theme.of(context).colorScheme.error,
@@ -370,7 +376,7 @@ class UserBottomSheetView extends StatelessWidget {
                     textColor: Theme.of(context).colorScheme.onErrorContainer,
                     iconColor: Theme.of(context).colorScheme.onErrorContainer,
                     title: Text(L10n.of(context)!.reportUser),
-                    leading: const Icon(Icons.report_outlined),
+                    leading: const Icon(Icons.gavel_outlined),
                     onTap: () => controller
                         .participantAction(UserBottomSheetAction.report),
                   ),
@@ -384,6 +390,16 @@ class UserBottomSheetView extends StatelessWidget {
                       L10n.of(context)!.profileNotFound,
                       style: const TextStyle(color: Colors.orange),
                     ),
+                  ),
+                if (userId != client.userID &&
+                    !client.ignoredUsers.contains(userId))
+                  ListTile(
+                    textColor: Theme.of(context).colorScheme.onErrorContainer,
+                    iconColor: Theme.of(context).colorScheme.onErrorContainer,
+                    leading: const Icon(Icons.block_outlined),
+                    title: Text(L10n.of(context)!.block),
+                    onTap: () => controller
+                        .participantAction(UserBottomSheetAction.ignore),
                   ),
               ],
             );

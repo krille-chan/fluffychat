@@ -85,33 +85,16 @@ class ChatDetailsView extends StatelessWidget {
                               padding: const EdgeInsets.all(32.0),
                               child: Stack(
                                 children: [
-                                  Material(
-                                    elevation: Theme.of(context)
-                                            .appBarTheme
-                                            .scrolledUnderElevation ??
-                                        4,
-                                    shadowColor: Theme.of(context)
-                                        .appBarTheme
-                                        .shadowColor,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                        color: Theme.of(context).dividerColor,
-                                      ),
-                                      borderRadius: BorderRadius.circular(
-                                        Avatar.defaultSize * 2.5,
-                                      ),
-                                    ),
-                                    child: Hero(
-                                      tag: controller
-                                                  .widget.embeddedCloseButton !=
-                                              null
-                                          ? 'embedded_content_banner'
-                                          : 'content_banner',
-                                      child: Avatar(
-                                        mxContent: room.avatar,
-                                        name: displayname,
-                                        size: Avatar.defaultSize * 2.5,
-                                      ),
+                                  Hero(
+                                    tag:
+                                        controller.widget.embeddedCloseButton !=
+                                                null
+                                            ? 'embedded_content_banner'
+                                            : 'content_banner',
+                                    child: Avatar(
+                                      mxContent: room.avatar,
+                                      name: displayname,
+                                      size: Avatar.defaultSize * 2.5,
                                     ),
                                   ),
                                   if (!room.isDirectChat &&
@@ -170,7 +153,7 @@ class ChatDetailsView extends StatelessWidget {
                                           : displayname,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
-                                      //  style: const TextStyle(fontSize: 18),
+                                      style: const TextStyle(fontSize: 18),
                                     ),
                                   ),
                                   TextButton.icon(
@@ -202,10 +185,7 @@ class ChatDetailsView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Divider(
-                          height: 1,
-                          color: Theme.of(context).dividerColor,
-                        ),
+                        Divider(color: Theme.of(context).dividerColor),
                         if (!room.canChangeStateEvent(EventTypes.RoomTopic))
                           ListTile(
                             title: Text(
@@ -261,10 +241,7 @@ class ChatDetailsView extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 16),
-                        Divider(
-                          height: 1,
-                          color: Theme.of(context).dividerColor,
-                        ),
+                        Divider(color: Theme.of(context).dividerColor),
                         ListTile(
                           leading: CircleAvatar(
                             backgroundColor:
@@ -316,10 +293,7 @@ class ChatDetailsView extends StatelessWidget {
                             onTap: () => context
                                 .push('/rooms/${room.id}/details/permissions'),
                           ),
-                        Divider(
-                          height: 1,
-                          color: Theme.of(context).dividerColor,
-                        ),
+                        Divider(color: Theme.of(context).dividerColor),
                         ListTile(
                           title: Text(
                             L10n.of(context)!.countParticipants(
