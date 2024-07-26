@@ -9,7 +9,6 @@ import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
@@ -26,7 +25,6 @@ class Message extends StatelessWidget {
   final Event? nextEvent;
   final Event? previousEvent;
   final bool displayReadMarker;
-  final void Function(Event) onSelect;
   final void Function(Event) onAvatarTab;
   final void Function(Event) onInfoTab;
   final void Function(String) scrollToEventId;
@@ -38,6 +36,7 @@ class Message extends StatelessWidget {
   final bool animateIn;
   final void Function()? resetAnimateIn;
   // #Pangea
+  // final void Function(Event) onSelect;
   final bool immersionMode;
   final bool definitions;
   final ChatController controller;
@@ -50,7 +49,9 @@ class Message extends StatelessWidget {
     this.previousEvent,
     this.displayReadMarker = false,
     this.longPressSelect = false,
-    required this.onSelect,
+    // #Pangea
+    // required this.onSelect,
+    // Pangea#
     required this.onInfoTab,
     required this.onAvatarTab,
     required this.scrollToEventId,
@@ -203,8 +204,10 @@ class Message extends StatelessWidget {
                       left: 0,
                       right: 0,
                       child: InkWell(
-                        onTap: () => onSelect(event),
-                        onLongPress: () => onSelect(event),
+                        // #Pangea
+                        // onTap: () => onSelect(event),
+                        // onLongPress: () => onSelect(event),
+                        // Pangea#
                         borderRadius:
                             BorderRadius.circular(AppConfig.borderRadius / 2),
                         child: Material(
@@ -228,17 +231,20 @@ class Message extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: rowMainAxisAlignment,
                       children: [
-                        if (longPressSelect)
-                          SizedBox(
-                            height: 32,
-                            width: Avatar.defaultSize,
-                            child: Checkbox.adaptive(
-                              value: selected,
-                              shape: const CircleBorder(),
-                              onChanged: (_) => onSelect(event),
-                            ),
-                          )
-                        else if (nextEventSameSender || ownMessage)
+                        // #Pangea
+                        // if (longPressSelect)
+                        //   SizedBox(
+                        //     height: 32,
+                        //     width: Avatar.defaultSize,
+                        //     child: Checkbox.adaptive(
+                        //       value: selected,
+                        //       shape: const CircleBorder(),
+                        //       onChanged: (_) => onSelect(event),
+                        //     ),
+                        //   )
+                        // else
+                        // Pangea#
+                        if (nextEventSameSender || ownMessage)
                           SizedBox(
                             width: Avatar.defaultSize,
                             child: Center(
@@ -319,13 +325,13 @@ class Message extends StatelessWidget {
                                   ),
                                   onDoubleTap: () =>
                                       toolbarController?.showToolbar(context),
+                                  // onLongPress: longPressSelect
+                                  //     ? null
+                                  //     : () {
+                                  //         HapticFeedback.heavyImpact();
+                                  //         onSelect(event);
+                                  //       },
                                   // Pangea#
-                                  onLongPress: longPressSelect
-                                      ? null
-                                      : () {
-                                          HapticFeedback.heavyImpact();
-                                          onSelect(event);
-                                        },
                                   child: AnimatedOpacity(
                                     opacity: animateIn
                                         ? 0

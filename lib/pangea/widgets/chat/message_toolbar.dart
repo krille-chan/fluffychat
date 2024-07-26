@@ -12,6 +12,8 @@ import 'package:fluffychat/pangea/widgets/chat/message_speech_to_text_card.dart'
 import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
+import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
+import 'package:fluffychat/pangea/widgets/chat/overlay_header.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
@@ -72,7 +74,7 @@ class ToolbarDisplayController {
       immersionMode: immersionMode,
       ownMessage: pangeaMessageEvent.ownMessage,
       toolbarController: this,
-      width: messageWidth,
+      width: 300,
       nextEvent: nextEvent,
       previousEvent: previousEvent,
     );
@@ -84,18 +86,33 @@ class ToolbarDisplayController {
     Widget overlayEntry;
     if (toolbar == null) return;
     try {
-      overlayEntry = Container(
-        constraints:
-            BoxConstraints(maxHeight: MediaQuery.sizeOf(context).height * .72),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            toolbar!,
-            const SizedBox(height: 6),
-            overlayMessage,
-          ],
-        ),
+      overlayEntry = Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          OverlayHeader(controller: controller),
+          const SizedBox(
+            height: 7,
+          ),
+          Container(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.sizeOf(context).height * .72,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                toolbar!,
+                const SizedBox(height: 9),
+                overlayMessage,
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 7,
+          ),
+          OverlayFooter(controller: controller),
+        ],
       );
     } catch (err) {
       debugger(when: kDebugMode);
@@ -113,9 +130,10 @@ class ToolbarDisplayController {
       closePrevOverlay:
           MatrixState.pangeaController.subscriptionController.isSubscribed,
       targetScreen: true,
+      onDismiss: controller.clearSelectedEvents,
     );
 
-    // controller.onSelectMessage(pangeaMessageEvent.event);
+    controller.onSelectMessage(pangeaMessageEvent.event);
 
     if (MatrixState.pAnyState.entries.isNotEmpty) {
       overlayId = MatrixState.pAnyState.entries.last.hashCode.toString();

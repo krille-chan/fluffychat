@@ -27,6 +27,7 @@ class OverlayUtil {
     Alignment? followerAnchor,
     bool closePrevOverlay = true,
     bool targetScreen = false,
+    Function? onDismiss,
   }) {
     try {
       if (closePrevOverlay) {
@@ -44,6 +45,7 @@ class OverlayUtil {
               if (backDropToDismiss)
                 TransparentBackdrop(
                   backgroundColor: backgroundColor,
+                  onDismiss: onDismiss,
                 ),
               Positioned(
                 width: width,
@@ -194,8 +196,10 @@ class OverlayUtil {
 
 class TransparentBackdrop extends StatelessWidget {
   final Color? backgroundColor;
+  final Function? onDismiss;
   const TransparentBackdrop({
     super.key,
+    this.onDismiss,
     this.backgroundColor,
   });
 
@@ -211,6 +215,9 @@ class TransparentBackdrop extends StatelessWidget {
         focusColor: Colors.transparent,
         highlightColor: Colors.transparent,
         onTap: () {
+          if (onDismiss != null) {
+            onDismiss!();
+          }
           MatrixState.pAnyState.closeOverlay();
         },
         child: Container(

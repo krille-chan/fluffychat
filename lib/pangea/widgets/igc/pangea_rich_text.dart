@@ -143,9 +143,9 @@ class PangeaRichTextState extends State<PangeaRichText> {
                   (e) => e.eventId == widget.pangeaMessageEvent.eventId,
                 ) ??
                 false)) {
-          widget.toolbarController?.controller.onSelectMessage(
-            widget.pangeaMessageEvent.event,
-          );
+          // widget.toolbarController?.controller.onSelectMessage(
+          //   widget.pangeaMessageEvent.event,
+          // );
           return;
         }
         widget.toolbarController?.toolbar?.textSelection

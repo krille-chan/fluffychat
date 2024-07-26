@@ -165,7 +165,9 @@ class ChatEventList extends StatelessWidget {
                 ),
                 highlightMarker:
                     controller.scrollToEventIdMarker == event.eventId,
-                onSelect: controller.onSelectMessage,
+                // #Pangea
+                // onSelect: controller.onSelectMessage,
+                // Pangea#
                 scrollToEventId: (String eventId) =>
                     controller.scrollToEventId(eventId),
                 longPressSelect: controller.selectedEvents.isNotEmpty,
