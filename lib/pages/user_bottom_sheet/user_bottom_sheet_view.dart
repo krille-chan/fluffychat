@@ -119,6 +119,8 @@ class UserBottomSheetView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Avatar(
+                        client:
+                            Matrix.of(controller.widget.outerContext).client,
                         mxContent: avatarUrl,
                         name: displayname,
                         size: Avatar.defaultSize * 2.5,
