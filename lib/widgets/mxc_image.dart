@@ -23,6 +23,7 @@ class MxcImage extends StatefulWidget {
   final ThumbnailMethod thumbnailMethod;
   final Widget Function(BuildContext context)? placeholder;
   final String? cacheKey;
+  final Client? client;
 
   const MxcImage({
     this.uri,
@@ -38,6 +39,7 @@ class MxcImage extends StatefulWidget {
     this.animationCurve = FluffyThemes.animationCurve,
     this.thumbnailMethod = ThumbnailMethod.scale,
     this.cacheKey,
+    this.client,
     super.key,
   });
 
@@ -64,7 +66,7 @@ class _MxcImageState extends State<MxcImage> {
   bool? _isCached;
 
   Future<void> _load() async {
-    final client = Matrix.of(context).client;
+    final client = widget.client ?? Matrix.of(context).client;
     final uri = widget.uri;
     final event = widget.event;
 
