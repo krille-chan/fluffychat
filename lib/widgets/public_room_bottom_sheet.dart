@@ -64,17 +64,17 @@ class PublicRoomBottomSheet extends StatelessWidget {
 
   bool _testRoom(PublicRoomsChunk r) => r.canonicalAlias == roomAlias;
 
-  Future<PublicRoomsChunk> _search(BuildContext context) async {
+  Future<PublicRoomsChunk> _search() async {
     final chunk = this.chunk;
     if (chunk != null) return chunk;
-    final query = await Matrix.of(context).client.queryPublicRooms(
+    final query = await Matrix.of(outerContext).client.queryPublicRooms(
           server: roomAlias!.domain,
           filter: PublicRoomQueryFilter(
             genericSearchTerm: roomAlias,
           ),
         );
     if (!query.chunk.any(_testRoom)) {
-      throw (L10n.of(context)!.noRoomsFound);
+      throw (L10n.of(outerContext)!.noRoomsFound);
     }
     return query.chunk.firstWhere(_testRoom);
   }
@@ -108,7 +108,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
           ],
         ),
         body: FutureBuilder<PublicRoomsChunk>(
-          future: _search(context),
+          future: _search(),
           builder: (context, snapshot) {
             final profile = snapshot.data;
             return ListView(
@@ -142,7 +142,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                     onPressed: () => _joinRoom(context),
                     label: Text(
                       chunk?.joinRule == 'knock' &&
-                              Matrix.of(context)
+                              Matrix.of(outerContext)
                                       .client
                                       .getRoomById(chunk!.roomId) ==
                                   null

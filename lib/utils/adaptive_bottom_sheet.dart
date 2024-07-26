@@ -8,18 +8,19 @@ Future<T?> showAdaptiveBottomSheet<T>({
   required Widget Function(BuildContext) builder,
   bool isDismissible = true,
   bool isScrollControlled = true,
-  double maxHeight = 480.0,
+  double maxHeight = 512,
+  bool useRootNavigator = true,
 }) =>
     showModalBottomSheet(
       context: context,
       builder: builder,
       // this sadly is ugly on desktops but otherwise breaks `.of(context)` calls
-      useRootNavigator: false,
+      useRootNavigator: useRootNavigator,
       isDismissible: isDismissible,
       isScrollControlled: isScrollControlled,
       constraints: BoxConstraints(
         maxHeight: maxHeight,
-        maxWidth: FluffyThemes.columnWidth * 1.5,
+        maxWidth: FluffyThemes.columnWidth * 1.25,
       ),
       clipBehavior: Clip.hardEdge,
       shape: const RoundedRectangleBorder(

@@ -207,6 +207,29 @@ class UserBottomSheetView extends StatelessWidget {
                     ),
                   ],
                 ),
+                PresenceBuilder(
+                  userId: userId,
+                  client: client,
+                  builder: (context, presence) {
+                    final status = presence?.statusMsg;
+                    if (status == null || status.isEmpty) {
+                      return const SizedBox.shrink();
+                    }
+                    return ListTile(
+                      title: SelectableLinkify(
+                        text: status,
+                        style: const TextStyle(fontSize: 16),
+                        options: const LinkifyOptions(humanize: false),
+                        linkStyle: const TextStyle(
+                          color: Colors.blueAccent,
+                          decorationColor: Colors.blueAccent,
+                        ),
+                        onOpen: (url) =>
+                            UrlLauncher(context, url.url).launchUrl(),
+                      ),
+                    );
+                  },
+                ),
                 if (userId != client.userID)
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -250,29 +273,6 @@ class UserBottomSheetView extends StatelessWidget {
                             ),
                           ),
                   ),
-                PresenceBuilder(
-                  userId: userId,
-                  client: client,
-                  builder: (context, presence) {
-                    final status = presence?.statusMsg;
-                    if (status == null || status.isEmpty) {
-                      return const SizedBox.shrink();
-                    }
-                    return ListTile(
-                      title: SelectableLinkify(
-                        text: status,
-                        style: const TextStyle(fontSize: 16),
-                        options: const LinkifyOptions(humanize: false),
-                        linkStyle: const TextStyle(
-                          color: Colors.blueAccent,
-                          decorationColor: Colors.blueAccent,
-                        ),
-                        onOpen: (url) =>
-                            UrlLauncher(context, url.url).launchUrl(),
-                      ),
-                    );
-                  },
-                ),
                 if (controller.widget.onMention != null)
                   ListTile(
                     leading: const Icon(Icons.alternate_email_outlined),

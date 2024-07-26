@@ -234,7 +234,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
 
   void sendAction([_]) async {
     final userId = widget.user?.id ?? widget.profile?.userId;
-    final client = Matrix.of(context).client;
+    final client = Matrix.of(widget.outerContext).client;
     if (userId == null) throw ('user or profile must not be null!');
 
     final input = sendController.text.trim();
