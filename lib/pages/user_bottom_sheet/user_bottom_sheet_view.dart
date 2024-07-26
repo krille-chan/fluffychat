@@ -96,7 +96,7 @@ class UserBottomSheetView extends StatelessWidget {
               ? null
               : [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: FloatingActionButton.small(
                       elevation: 0,
                       onPressed: () => controller
@@ -253,10 +253,17 @@ class UserBottomSheetView extends StatelessWidget {
                               errorText: controller.sendError
                                   ?.toLocalizedString(context),
                               hintText: L10n.of(context)!.sendMessages,
-                              suffixIcon: controller.isSending
-                                  ? const CircularProgressIndicator.adaptive(
-                                      strokeWidth: 2,
+                              suffix: controller.isSending
+                                  ? const SizedBox(
+                                      width: 16,
+                                      height: 16,
+                                      child: CircularProgressIndicator.adaptive(
+                                        strokeWidth: 2,
+                                      ),
                                     )
+                                  : null,
+                              suffixIcon: controller.isSending
+                                  ? null
                                   : IconButton(
                                       icon: const Icon(Icons.send_outlined),
                                       onPressed: controller.sendAction,
