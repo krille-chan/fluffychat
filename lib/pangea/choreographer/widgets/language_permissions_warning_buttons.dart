@@ -58,13 +58,10 @@ class LanguagePermissionsButtons extends StatelessWidget {
       ),
     );
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 56.0),
-      child: FloatingActionButton(
-        mini: true,
-        child: const Icon(Icons.history_edu_outlined),
-        onPressed: () => showMessage(context, text),
-      ),
+    return FloatingActionButton(
+      mini: true,
+      child: const Icon(Icons.history_edu_outlined),
+      onPressed: () => showMessage(context, text),
     );
   }
 

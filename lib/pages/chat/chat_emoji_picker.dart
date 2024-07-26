@@ -83,6 +83,17 @@ class ChatEmojiPicker extends StatelessWidget {
                       ],
                     ),
                   ),
+                  // #Pangea
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: FloatingActionButton(
+                      onPressed: controller.hideEmojiPicker,
+                      shape: const CircleBorder(),
+                      mini: true,
+                      child: const Icon(Icons.close),
+                    ),
+                  ),
+                  // Pangea#
                 ],
               ),
             )

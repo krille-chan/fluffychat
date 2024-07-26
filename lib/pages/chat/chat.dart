@@ -112,6 +112,7 @@ class ChatController extends State<ChatPageWithRoom>
     with WidgetsBindingObserver {
   // #Pangea
   final PangeaController pangeaController = MatrixState.pangeaController;
+
   late Choreographer choreographer = Choreographer(pangeaController, this);
   // Pangea#
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
