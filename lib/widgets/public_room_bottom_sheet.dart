@@ -15,13 +15,13 @@ class PublicRoomBottomSheet extends StatelessWidget {
   final String? roomAlias;
   final BuildContext outerContext;
   final PublicRoomsChunk? chunk;
-  final VoidCallback? onRoomJoined;
+  final List<String>? via;
 
   PublicRoomBottomSheet({
     this.roomAlias,
     required this.outerContext,
     this.chunk,
-    this.onRoomJoined,
+    this.via,
     super.key,
   }) {
     assert(roomAlias != null || chunk != null);
@@ -38,8 +38,11 @@ class PublicRoomBottomSheet extends StatelessWidget {
           return chunk.roomId;
         }
         final roomId = chunk != null && knock
-            ? await client.knockRoom(chunk.roomId)
-            : await client.joinRoom(roomAlias ?? chunk!.roomId);
+            ? await client.knockRoom(chunk.roomId, serverName: via)
+            : await client.joinRoom(
+                roomAlias ?? chunk!.roomId,
+                serverName: via,
+              );
 
         if (!knock && client.getRoomById(roomId) == null) {
           await client.waitForRoomInSync(roomId);
@@ -51,7 +54,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
       return;
     }
     if (result.error == null) {
-      Navigator.of(context).pop();
+      Navigator.of(context).pop<bool>(true);
       // don't open the room if the joined room is a space
       if (chunk?.roomType != 'm.space' &&
           !client.getRoomById(result.result!)!.isSpace) {
