@@ -32,6 +32,9 @@ enum ConstructUseTypeEnum {
   /// selected correctly in practice activity flow
   corPA,
 
+  /// encountered as distractor in practice activity flow and correctly ignored it
+  ignPA,
+
   /// was target construct in practice activity but user did not select correctly
   incPA,
 }
@@ -61,6 +64,8 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
         return 'corPA';
       case ConstructUseTypeEnum.incPA:
         return 'incPA';
+      case ConstructUseTypeEnum.ignPA:
+        return 'ignPA';
     }
   }
 
@@ -71,11 +76,11 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.wa:
         return Icons.thumb_up_sharp;
       case ConstructUseTypeEnum.corIt:
-        return Icons.check;
+        return Icons.translate;
       case ConstructUseTypeEnum.incIt:
-        return Icons.close;
+        return Icons.translate;
       case ConstructUseTypeEnum.ignIt:
-        return Icons.close;
+        return Icons.translate;
       case ConstructUseTypeEnum.ignIGC:
         return Icons.close;
       case ConstructUseTypeEnum.corIGC:
@@ -86,8 +91,45 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
         return Icons.check;
       case ConstructUseTypeEnum.incPA:
         return Icons.close;
+      case ConstructUseTypeEnum.ignPA:
+        return Icons.close;
       case ConstructUseTypeEnum.unk:
         return Icons.help;
+    }
+  }
+
+  /// Returns the point value for the construct use type
+  /// This is used to calculate the both the total points for a user and per construct
+  /// Users get slightly negative points for incorrect uses to encourage them to be more careful
+  /// They get the most points for direct uses without help.
+  /// They get a small amount of points for correct uses in interactions.
+  /// Practice activities get a moderate amount of points.
+  int get pointValue {
+    switch (this) {
+      case ConstructUseTypeEnum.ga:
+        return 2;
+      case ConstructUseTypeEnum.wa:
+        return 3;
+      case ConstructUseTypeEnum.corIt:
+        return 1;
+      case ConstructUseTypeEnum.incIt:
+        return -1;
+      case ConstructUseTypeEnum.ignIt:
+        return 1;
+      case ConstructUseTypeEnum.ignIGC:
+        return 1;
+      case ConstructUseTypeEnum.corIGC:
+        return 2;
+      case ConstructUseTypeEnum.incIGC:
+        return -1;
+      case ConstructUseTypeEnum.unk:
+        return 0;
+      case ConstructUseTypeEnum.corPA:
+        return 2;
+      case ConstructUseTypeEnum.incPA:
+        return -1;
+      case ConstructUseTypeEnum.ignPA:
+        return 1;
     }
   }
 }
