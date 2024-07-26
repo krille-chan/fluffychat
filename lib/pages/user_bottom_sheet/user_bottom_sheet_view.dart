@@ -38,60 +38,7 @@ class UserBottomSheetView extends StatelessWidget {
             onPressed: Navigator.of(context, rootNavigator: false).pop,
           ),
           centerTitle: false,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(displayname),
-              PresenceBuilder(
-                userId: userId,
-                client: client,
-                builder: (context, presence) {
-                  if (presence == null ||
-                      (presence.presence == PresenceType.offline &&
-                          presence.lastActiveTimestamp == null)) {
-                    return const SizedBox.shrink();
-                  }
-
-                  final dotColor = presence.presence.isOnline
-                      ? Colors.green
-                      : presence.presence.isUnavailable
-                          ? Colors.orange
-                          : Colors.grey;
-
-                  final lastActiveTimestamp = presence.lastActiveTimestamp;
-
-                  return Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: 8,
-                        height: 8,
-                        margin: const EdgeInsets.only(right: 8),
-                        decoration: BoxDecoration(
-                          color: dotColor,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      if (presence.currentlyActive == true)
-                        Text(
-                          L10n.of(context)!.currentlyActive,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        )
-                      else if (lastActiveTimestamp != null)
-                        Text(
-                          L10n.of(context)!.lastActiveAgo(
-                            lastActiveTimestamp.localizedTimeShort(context),
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                    ],
-                  );
-                },
-              ),
-            ],
-          ),
+          title: Text(displayname),
           actions: dmRoomId == null
               ? null
               : [
@@ -184,26 +131,6 @@ class UserBottomSheetView extends StatelessWidget {
                         children: [
                           TextButton.icon(
                             onPressed: () => FluffyShare.share(
-                              'https://matrix.to/#/$userId',
-                              context,
-                            ),
-                            icon: Icon(
-                              Icons.adaptive.share_outlined,
-                              size: 16,
-                            ),
-                            style: TextButton.styleFrom(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.onSurface,
-                            ),
-                            label: Text(
-                              displayname,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(fontSize: 18),
-                            ),
-                          ),
-                          TextButton.icon(
-                            onPressed: () => FluffyShare.share(
                               userId,
                               context,
                               copyOnly: true,
@@ -214,14 +141,66 @@ class UserBottomSheetView extends StatelessWidget {
                             ),
                             style: TextButton.styleFrom(
                               foregroundColor:
-                                  Theme.of(context).colorScheme.secondary,
+                                  Theme.of(context).colorScheme.onSurface,
                             ),
                             label: Text(
                               userId,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              //    style: const TextStyle(fontSize: 12),
                             ),
+                          ),
+                          PresenceBuilder(
+                            userId: userId,
+                            client: client,
+                            builder: (context, presence) {
+                              if (presence == null ||
+                                  (presence.presence == PresenceType.offline &&
+                                      presence.lastActiveTimestamp == null)) {
+                                return const SizedBox.shrink();
+                              }
+
+                              final dotColor = presence.presence.isOnline
+                                  ? Colors.green
+                                  : presence.presence.isUnavailable
+                                      ? Colors.orange
+                                      : Colors.grey;
+
+                              final lastActiveTimestamp =
+                                  presence.lastActiveTimestamp;
+
+                              return Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const SizedBox(width: 16),
+                                  Container(
+                                    width: 8,
+                                    height: 8,
+                                    decoration: BoxDecoration(
+                                      color: dotColor,
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  if (presence.currentlyActive == true)
+                                    Text(
+                                      L10n.of(context)!.currentlyActive,
+                                      overflow: TextOverflow.ellipsis,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    )
+                                  else if (lastActiveTimestamp != null)
+                                    Text(
+                                      L10n.of(context)!.lastActiveAgo(
+                                        lastActiveTimestamp
+                                            .localizedTimeShort(context),
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                ],
+                              );
+                            },
                           ),
                         ],
                       ),
