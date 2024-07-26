@@ -446,17 +446,17 @@ class ChatView extends StatelessWidget {
                   Positioned(
                     left: 0,
                     right: 0,
-                    bottom: 13,
+                    bottom: 16,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         if (!controller.selectMode)
                           Container(
-                            margin: const EdgeInsets.only(
-                              bottom: 7,
-                              left: 11,
-                              right: 11,
+                            margin: EdgeInsets.only(
+                              bottom: 10,
+                              left: bottomSheetPadding,
+                              right: bottomSheetPadding,
                             ),
                             constraints: const BoxConstraints(
                               maxWidth: FluffyThemes.columnWidth * 2.4,
@@ -500,18 +500,13 @@ class ChatView extends StatelessWidget {
                                 ReactionsPicker(controller),
                                 ReplyDisplay(controller),
                                 ChatInputRow(controller),
+                                ChatEmojiPicker(controller),
                               ],
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: ChatEmojiPicker(controller),
                   ),
                   // Pangea#
                 ],

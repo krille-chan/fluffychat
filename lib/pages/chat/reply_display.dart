@@ -21,9 +21,6 @@ class ReplyDisplay extends StatelessWidget {
           : 0,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        // #Pangea
-        borderRadius: const BorderRadius.all(Radius.circular(28.0)),
-        // Pangea#
         color: Theme.of(context).colorScheme.onInverseSurface,
       ),
       child: Row(
@@ -67,28 +64,19 @@ class _EditContent extends StatelessWidget {
           Icons.edit,
           color: Theme.of(context).colorScheme.primary,
         ),
-        // #Pangea
-        // Container(width: 15.0),
-        Container(width: 8.0),
-        Flexible(
-          child:
-              // Pangea#
-              Text(
-            event.calcLocalizedBodyFallback(
-              MatrixLocals(L10n.of(context)!),
-              withSenderNamePrefix: false,
-              hideReply: true,
-            ),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            style: TextStyle(
-              color: Theme.of(context).textTheme.bodyMedium!.color,
-            ),
+        Container(width: 15.0),
+        Text(
+          event.calcLocalizedBodyFallback(
+            MatrixLocals(L10n.of(context)!),
+            withSenderNamePrefix: false,
+            hideReply: true,
+          ),
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+          style: TextStyle(
+            color: Theme.of(context).textTheme.bodyMedium!.color,
           ),
         ),
-        // #Pangea
-        Container(width: 10.0),
-        // Pangea#
       ],
     );
   }
