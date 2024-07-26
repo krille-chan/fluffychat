@@ -33,8 +33,8 @@ class NaviRailItem extends StatelessWidget {
     return HoverBuilder(
       builder: (context, hovered) {
         return SizedBox(
-          height: 64,
-          width: 64,
+          height: FluffyThemes.navRailWidth,
+          width: FluffyThemes.navRailWidth,
           child: Stack(
             children: [
               Positioned(

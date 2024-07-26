@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/themes.dart';
 import 'package:flutter/material.dart';
 
 class TwoColumnLayout extends StatelessWidget {
@@ -20,7 +21,8 @@ class TwoColumnLayout extends StatelessWidget {
             Container(
               clipBehavior: Clip.antiAlias,
               decoration: const BoxDecoration(),
-              width: 360.0 + (displayNavigationRail ? 64 : 0),
+              width: FluffyThemes.columnWidth +
+                  (displayNavigationRail ? FluffyThemes.navRailWidth : 0),
               child: mainView,
             ),
             Container(
