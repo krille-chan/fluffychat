@@ -7,6 +7,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 
@@ -166,7 +167,8 @@ class _MessageSearchResultListTile extends StatelessWidget {
                 L10n.of(context)!,
               ),
             )
-            .trim(),
+            .trim()
+            .bidiFormatted,
         maxLines: 7,
         overflow: TextOverflow.ellipsis,
       ),

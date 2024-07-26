@@ -16,6 +16,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 
 Future<void> pushHelper(
@@ -167,14 +168,16 @@ Future<void> _tryPushHelper(
   // Calculate the body
   final body = event.type == EventTypes.Encrypted
       ? l10n.newMessageInFluffyChat
-      : await event.calcLocalizedBody(
-          matrixLocals,
-          plaintextBody: true,
-          withSenderNamePrefix: false,
-          hideReply: true,
-          hideEdit: true,
-          removeMarkdown: true,
-        );
+      : await event
+          .calcLocalizedBody(
+            matrixLocals,
+            plaintextBody: true,
+            withSenderNamePrefix: false,
+            hideReply: true,
+            hideEdit: true,
+            removeMarkdown: true,
+          )
+          .then((e) => e.bidiFormatted);
 
   // The person object for the android message style notification
   final avatar = event.room.avatar
@@ -280,14 +283,16 @@ Future<void> _tryPushHelper(
           groupConversation: !event.room.isDirectChat,
           messages: [newMessage],
         ),
-    ticker: event.calcLocalizedBodyFallback(
-      matrixLocals,
-      plaintextBody: true,
-      withSenderNamePrefix: true,
-      hideReply: true,
-      hideEdit: true,
-      removeMarkdown: true,
-    ),
+    ticker: event
+        .calcLocalizedBodyFallback(
+          matrixLocals,
+          plaintextBody: true,
+          withSenderNamePrefix: true,
+          hideReply: true,
+          hideEdit: true,
+          removeMarkdown: true,
+        )
+        .bidiFormatted,
     importance: Importance.high,
     priority: Priority.max,
     groupKey: notificationGroupId,

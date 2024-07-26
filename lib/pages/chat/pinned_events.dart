@@ -10,6 +10,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 
 class PinnedEvents extends StatelessWidget {
   final ChatController controller;
@@ -37,11 +38,13 @@ class PinnedEvents extends StatelessWidget {
                 .map(
                   (event) => AlertDialogAction(
                     key: event?.eventId ?? '',
-                    label: event?.calcLocalizedBodyFallback(
-                          MatrixLocals(L10n.of(context)!),
-                          withSenderNamePrefix: true,
-                          hideReply: true,
-                        ) ??
+                    label: event
+                            ?.calcLocalizedBodyFallback(
+                              MatrixLocals(L10n.of(context)!),
+                              withSenderNamePrefix: true,
+                              hideReply: true,
+                            )
+                            .bidiFormatted ??
                         'UNKNOWN',
                   ),
                 )
@@ -64,11 +67,13 @@ class PinnedEvents extends StatelessWidget {
       builder: (context, snapshot) {
         final event = snapshot.data;
         return ChatAppBarListTile(
-          title: event?.calcLocalizedBodyFallback(
-                MatrixLocals(L10n.of(context)!),
-                withSenderNamePrefix: true,
-                hideReply: true,
-              ) ??
+          title: event
+                  ?.calcLocalizedBodyFallback(
+                    MatrixLocals(L10n.of(context)!),
+                    withSenderNamePrefix: true,
+                    hideReply: true,
+                  )
+                  .bidiFormatted ??
               L10n.of(context)!.loadingPleaseWait,
           leading: IconButton(
             splashRadius: 20,

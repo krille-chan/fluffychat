@@ -31,6 +31,7 @@ import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/account_bundles.dart';
@@ -1058,7 +1059,8 @@ class ChatController extends State<ChatPageWithRoom>
           message: room
               .getState(EventTypes.RoomTombstone)!
               .parsedTombstoneContent
-              .body,
+              .body
+              .bidiFormatted,
           okLabel: L10n.of(context)!.ok,
           cancelLabel: L10n.of(context)!.cancel,
         )) {

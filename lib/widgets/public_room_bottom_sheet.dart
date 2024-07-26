@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -184,7 +185,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                 if (profile?.topic?.isNotEmpty ?? false)
                   ListTile(
                     subtitle: SelectableLinkify(
-                      text: profile!.topic!,
+                      text: profile!.topic!.bidiFormatted,
                       linkStyle: const TextStyle(
                         color: Colors.blueAccent,
                         decorationColor: Colors.blueAccent,

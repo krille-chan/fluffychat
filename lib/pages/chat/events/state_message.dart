@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import '../../../config/app_config.dart';
 
 class StateMessage extends StatelessWidget {
@@ -22,9 +23,11 @@ class StateMessage extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
           child: Text(
-            event.calcLocalizedBodyFallback(
-              MatrixLocals(L10n.of(context)!),
-            ),
+            event
+                .calcLocalizedBodyFallback(
+                  MatrixLocals(L10n.of(context)!),
+                )
+                .bidiFormatted,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12 * AppConfig.fontSizeFactor,
