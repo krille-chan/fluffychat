@@ -435,22 +435,20 @@ class Message extends StatelessWidget {
                   ? const EdgeInsets.symmetric(vertical: 8.0)
                   : EdgeInsets.zero,
               child: Center(
-                child: Material(
-                  color: displayTime
-                      ? Theme.of(context).colorScheme.surface
-                      : Theme.of(context).colorScheme.surface.withOpacity(0.33),
-                  borderRadius:
-                      BorderRadius.circular(AppConfig.borderRadius / 2),
-                  clipBehavior: Clip.antiAlias,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
-                    child: Text(
-                      event.originServerTs.localizedTime(context),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12 * AppConfig.fontSizeFactor,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4.0),
+                  child: Text(
+                    event.originServerTs.localizedTime(context),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12 * AppConfig.fontSizeFactor,
+                      color: Theme.of(context).colorScheme.secondary,
+                      shadows: [
+                        Shadow(
+                          color: Theme.of(context).colorScheme.surface,
+                          blurRadius: 3,
+                        ),
+                      ],
                     ),
                   ),
                 ),
