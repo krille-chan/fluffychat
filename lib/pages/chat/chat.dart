@@ -455,18 +455,46 @@ class ChatController extends State<ChatPageWithRoom>
     var parseCommands = true;
 
     final commandMatch = RegExp(r'^\/(\w+)').firstMatch(sendController.text);
-    if (commandMatch != null &&
-        !sendingClient.commands.keys.contains(commandMatch[1]!.toLowerCase())) {
-      final l10n = L10n.of(context)!;
-      final dialogResult = await showOkCancelAlertDialog(
-        context: context,
-        title: l10n.commandInvalid,
-        message: l10n.commandMissing(commandMatch[0]!),
-        okLabel: l10n.sendAsText,
-        cancelLabel: l10n.cancel,
-      );
-      if (dialogResult == OkCancelResult.cancel) return;
-      parseCommands = false;
+    if (commandMatch != null) {
+      if (!sendingClient.commands.keys
+          .contains(commandMatch[1]!.toLowerCase())) {
+        final l10n = L10n.of(context)!;
+        final dialogResult = await showOkCancelAlertDialog(
+          context: context,
+          title: l10n.commandInvalid,
+          message: l10n.commandMissing(commandMatch[0]!),
+          okLabel: l10n.sendAsText,
+          cancelLabel: l10n.cancel,
+        );
+        if (dialogResult == OkCancelResult.cancel) return;
+        parseCommands = false;
+      }
+
+      // if the user is reacting with a custom emote, try to convert
+      // it to the URI of the emote so that the URI will be set as the
+      // key of the reaction event and render properly
+      if (commandMatch[1] == 'react') {
+        final emotePacks = room.getImagePacksFlat(ImagePackUsage.emoticon);
+        final match = RegExp(
+          r':(?:([-\w]+)~)?([-\w]+):',
+        ).firstMatch(sendController.text);
+        if (match != null) {
+          final pack = match[1];
+          final emote = match[2];
+          String? mxc;
+          if (pack != null) {
+            mxc = emotePacks[pack]?[emote];
+          } else {
+            for (final emotePack in emotePacks.values) {
+              mxc = emotePack[emote];
+              if (mxc != null) break;
+            }
+          }
+          if (mxc != null) {
+            sendController.text = '/react $mxc';
+          }
+        }
+      }
     }
 
     // ignore: unawaited_futures
