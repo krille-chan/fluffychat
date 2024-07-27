@@ -1821,7 +1821,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "مستوى الأذونات الإفتراضي",
+  "defaultPermissionLevel": "مستوى الأذونات الافتراضية للمستخدمين الجدد",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2709,7 +2709,7 @@
   "@gallery": {},
   "swipeRightToLeftToReply": "اسحب من اليمين إلى اليسار للرد",
   "@swipeRightToLeftToReply": {},
-  "alwaysUse24HourFormat": "خاطئ",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
@@ -2737,5 +2737,40 @@
   "@goToSpace": {
     "type": "text",
     "space": {}
-  }
+  },
+  "userLevel": "{level} - مستخدم",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - مشرف",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - مدير",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "تغيير إعدادات الدردشة العامة",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "دعوة مستخدمين آخرين إلى هذه الدردشة",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "تغيير أذونات الدردشة",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "تغيير رؤية سجل الدردشة",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "تغيير عنوان الدردشة العامة الرئيسي",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "إرسال إشعارات @room",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "تغيير وصف الدردشة",
+  "@changeTheDescriptionOfTheGroup": {}
 }

@@ -1,1984 +1,575 @@
 {
-    "repeatPassword": "Ponovite geslo",
-    "@repeatPassword": {},
-    "about": "O aplikaciji",
-    "@about": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "accept": "Sprejmi",
-    "@accept": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "account": "Račun",
-    "@account": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "activatedEndToEndEncryption": "Uporabnik {username} je aktiviral šifriranje od konca do konca",
-    "@activatedEndToEndEncryption": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "addEmail": "Dodajte e-pošto",
-    "@addEmail": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "addToSpace": "Dodajte v prostor",
-    "@addToSpace": {},
-    "alias": "vzdevek",
-    "@alias": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "all": "Vse",
-    "@all": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "allChats": "Vsi klepeti",
-    "@allChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "answeredTheCall": "Oseba {senderName} je odgovorila na klic",
-    "@answeredTheCall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "anyoneCanJoin": "Pridruži se lahko vsak",
-    "@anyoneCanJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "appLock": "Zaklepanje aplikacije",
-    "@appLock": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "askSSSSSign": "Če želite podpisati drugo osebo, vnesite geslo za varno trgovino ali obnovitveni ključ.",
-    "@askSSSSSign": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "askVerificationRequest": "Ali želite sprejeti to zahtevo za preverjanje od {username}?",
-    "@askVerificationRequest": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "autoplayImages": "Samodejno predvajajte animirane nalepke in čustva",
-    "@autoplayImages": {
-        "type": "text",
-        "placeholder": {}
-    },
-    "badServerLoginTypesException": "Domači strežnik podpira vrste prijave:\n{serverVersions}\nToda ta aplikacija podpira samo:\n{supportedVersions}",
-    "@badServerLoginTypesException": {
-        "type": "text",
-        "placeholders": {
-            "serverVersions": {},
-            "supportedVersions": {}
-        }
-    },
-    "sendOnEnter": "Pošlji ob vstopu",
-    "@sendOnEnter": {},
-    "banFromChat": "Prepoved klepeta",
-    "@banFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "banned": "Prepovedano",
-    "@banned": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "bannedUser": "{username} je prepovedan v {targetName}",
-    "@bannedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "blockDevice": "Blokirana naprava",
-    "@blockDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "blocked": "Blokirano",
-    "@blocked": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "botMessages": "Botova sporočila",
-    "@botMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "cancel": "Prekliči",
-    "@cancel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "cantOpenUri": "URI-ja {uri} ni mogoče odpreti",
-    "@cantOpenUri": {
-        "type": "text",
-        "placeholders": {
-            "uri": {}
-        }
-    },
-    "changedTheChatAvatar": "{username} je spremenil avatar za klepet",
-    "@changedTheChatAvatar": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheChatPermissions": "{username} je spremenila dovoljenja za klepet",
-    "@changedTheChatPermissions": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheDisplaynameTo": "{username} je spremenil svoje prikazno ime v: '{displayname}'",
-    "@changedTheDisplaynameTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "displayname": {}
-        }
-    },
-    "changedTheGuestAccessRules": "{username} je spremenila pravila dostopa za goste",
-    "@changedTheGuestAccessRules": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheGuestAccessRulesTo": "{username} je spremenila pravila dostopa za goste v: {rules}",
-    "@changedTheGuestAccessRulesTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "rules": {}
-        }
-    },
-    "changedTheHistoryVisibilityTo": "{username} je spremenil vidnost zgodovine v: {rules}",
-    "@changedTheHistoryVisibilityTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "rules": {}
-        }
-    },
-    "changedTheJoinRules": "{username} je spremenil pravila za pridružitev",
-    "@changedTheJoinRules": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheJoinRulesTo": "{username} je spremenila pravila pridružitve v: {joinRules}",
-    "@changedTheJoinRulesTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "joinRules": {}
-        }
-    },
-    "changedTheProfileAvatar": "{username} je spremenil avatar",
-    "@changedTheProfileAvatar": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheRoomAliases": "{username} je spremenil vzdevke sobe",
-    "@changedTheRoomAliases": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheRoomInvitationLink": "{username} je spremenil povezavo za povabilo",
-    "@changedTheRoomInvitationLink": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changePassword": "Spremeni geslo",
-    "@changePassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheHomeserver": "Spremenite domači strežnik",
-    "@changeTheHomeserver": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheme": "Spremenite svoj slog",
-    "@changeTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheNameOfTheGroup": "Spremenite ime skupine",
-    "@changeTheNameOfTheGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeYourAvatar": "Spremenite svoj avatar",
-    "@changeYourAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chat": "Klepet",
-    "@chat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "yourChatBackupHasBeenSetUp": "Varnostna kopija klepeta je nastavljena.",
-    "@yourChatBackupHasBeenSetUp": {},
-    "chatBackup": "Varnostno kopiranje klepeta",
-    "@chatBackup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatDetails": "Podrobnosti klepeta",
-    "@chatDetails": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatHasBeenAddedToThisSpace": "Klepet je bil dodan v ta prostor",
-    "@chatHasBeenAddedToThisSpace": {},
-    "chats": "Klepeti",
-    "@chats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chooseAStrongPassword": "Izberite močno geslo",
-    "@chooseAStrongPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "clearArchive": "Počisti arhiv",
-    "@clearArchive": {},
-    "close": "Zapri",
-    "@close": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_ban": "Izključi določenega uporabnika iz te sobe",
-    "@commandHint_ban": {
-        "type": "text",
-        "description": "Usage hint for the command /ban"
-    },
-    "commandHint_html": "Pošljite besedilo v obliki HTML",
-    "@commandHint_html": {
-        "type": "text",
-        "description": "Usage hint for the command /html"
-    },
-    "commandHint_invite": "Povabi danega uporabnika v to sobo",
-    "@commandHint_invite": {
-        "type": "text",
-        "description": "Usage hint for the command /invite"
-    },
-    "commandHint_join": "Pridružite se dani sobi",
-    "@commandHint_join": {
-        "type": "text",
-        "description": "Usage hint for the command /join"
-    },
-    "commandHint_kick": "Odstranite danega uporabnika iz te sobe",
-    "@commandHint_kick": {
-        "type": "text",
-        "description": "Usage hint for the command /kick"
-    },
-    "commandHint_me": "Opisi sebe",
-    "@commandHint_me": {
-        "type": "text",
-        "description": "Usage hint for the command /me"
-    },
-    "commandHint_myroomavatar": "Nastavite svojo sliko za to sobo",
-    "@commandHint_myroomavatar": {
-        "type": "text",
-        "description": "Usage hint for the command /myroomavatar"
-    },
-    "commandHint_op": "Nastavite raven moči danega uporabnika (privzeto: 50)",
-    "@commandHint_op": {
-        "type": "text",
-        "description": "Usage hint for the command /op"
-    },
-    "commandHint_react": "Pošljite odgovor kot reakcijo",
-    "@commandHint_react": {
-        "type": "text",
-        "description": "Usage hint for the command /react"
-    },
-    "commandHint_send": "Pošlji besedilo",
-    "@commandHint_send": {
-        "type": "text",
-        "description": "Usage hint for the command /send"
-    },
-    "commandHint_unban": "Prekliči izključitev določenega uporabnika iz te sobe",
-    "@commandHint_unban": {
-        "type": "text",
-        "description": "Usage hint for the command /unban"
-    },
-    "commandInvalid": "Ukaz ni veljaven",
-    "@commandInvalid": {
-        "type": "text"
-    },
-    "commandMissing": "{command} is not a command.",
-    "@commandMissing": {
-        "type": "text",
-        "placeholders": {
-            "command": {}
-        },
-        "description": "State that {command} is not a valid /command."
-    },
-    "compareEmojiMatch": "Primerjajte in se prepričajte, da se naslednji emoji ujemajo s tistimi iz druge naprave:",
-    "@compareEmojiMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "compareNumbersMatch": "Primerjajte in se prepričajte, da se naslednje številke ujemajo s številkami druge naprave:",
-    "@compareNumbersMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "configureChat": "Konfigurirajte klepet",
-    "@configureChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "confirm": "Potrdi",
-    "@confirm": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "containsDisplayName": "Vsebuje prikazno ime",
-    "@containsDisplayName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "containsUserName": "Vsebuje uporabniško ime",
-    "@containsUserName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "archive": "Arhiv",
-    "@archive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "areYouSure": "Ali si prepričan?",
-    "@areYouSure": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "acceptedTheInvitation": "{username} je sprejel povabilo",
-    "@acceptedTheInvitation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "areYouSureYouWantToLogout": "Ali ste prepričani, da se želite odjaviti?",
-    "@areYouSureYouWantToLogout": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changedTheChatDescriptionTo": "{username} je spremenil opis klepeta v: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "description": {}
-        }
-    },
-    "areGuestsAllowedToJoin": "Ali se lahko gostujoči uporabniki pridružijo",
-    "@areGuestsAllowedToJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "admin": "Admin",
-    "@admin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "badServerVersionsException": "Domači strežnik podpira različice Spec:\n{serverVersions}\nToda ta aplikacija podpira samo {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "text",
-        "placeholders": {
-            "serverVersions": {},
-            "supportedVersions": {}
-        }
-    },
-    "changedTheChatNameTo": "{username} je spremenil ime klepeta v: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "chatname": {}
-        }
-    },
-    "changeDeviceName": "Spremenite ime naprave",
-    "@changeDeviceName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changedTheHistoryVisibility": "{username} je spremenila vidnost zgodovine",
-    "@changedTheHistoryVisibility": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "channelCorruptedDecryptError": "Šifriranje je poškodovano",
-    "@channelCorruptedDecryptError": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "contentHasBeenReported": "Vsebina je bila prijavljena skrbnikom strežnika",
-    "@contentHasBeenReported": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "Varnostna kopija klepeta je zavarovana z varnostnim ključem. Prosimo, pazite, da ga ne izgubite.",
-    "@chatBackupDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_myroomnick": "Nastavite prikazno ime za to sobo",
-    "@commandHint_myroomnick": {
-        "type": "text",
-        "description": "Usage hint for the command /myroomnick"
-    },
-    "connect": "Povežite se",
-    "@connect": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "contactHasBeenInvitedToTheGroup": "Kontakt je bil povabljen v skupino",
-    "@contactHasBeenInvitedToTheGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_leave": "Zapusti to sobo",
-    "@commandHint_leave": {
-        "type": "text",
-        "description": "Usage hint for the command /leave"
-    },
-    "commandHint_plain": "Pošlji neformatirano besedilo",
-    "@commandHint_plain": {
-        "type": "text",
-        "description": "Usage hint for the command /plain"
-    },
-    "copiedToClipboard": "Kopirano v odložišče",
-    "@copiedToClipboard": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "copy": "Kopiraj",
-    "@copy": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "copyToClipboard": "Kopiraj v odložišče",
-    "@copyToClipboard": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "couldNotDecryptMessage": "Sporočila ni bilo mogoče dešifrirati: {error}",
-    "@couldNotDecryptMessage": {
-        "type": "text",
-        "placeholders": {
-            "error": {}
-        }
-    },
-    "countParticipants": "{count} udeležencev",
-    "@countParticipants": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "create": "Ustvari",
-    "@create": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "createNewSpace": "Nov prostor",
-    "@createNewSpace": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "currentlyActive": "Trenutno aktiven",
-    "@currentlyActive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "darkTheme": "Temno",
-    "@darkTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "defaultPermissionLevel": "Privzeta raven dovoljenja",
-    "@defaultPermissionLevel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "dateWithYear": "{day}-{month}-{year}",
-    "@dateWithYear": {
-        "type": "text",
-        "placeholders": {
-            "year": {},
-            "month": {},
-            "day": {}
-        }
-    },
-    "dateWithoutYear": "{month}-{day}",
-    "@dateWithoutYear": {
-        "type": "text",
-        "placeholders": {
-            "month": {},
-            "day": {}
-        }
-    },
-    "createdTheChat": "{username} je ustvaril klepet",
-    "@createdTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "dateAndTimeOfDay": "{date}, {timeOfDay}",
-    "@dateAndTimeOfDay": {
-        "type": "text",
-        "placeholders": {
-            "date": {},
-            "timeOfDay": {}
-        }
-    },
-    "deactivateAccountWarning": "S tem boste deaktivirali vaš uporabniški račun. Tega ni mogoče razveljaviti! Ali si prepričan?",
-    "@deactivateAccountWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@showPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@hugContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-      "@passphraseOrKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pleaseEnterYourPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@jumpToLastReadMessage": {},
-      "@allRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@obtainingLocation": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@commandHint_cuddle": {},
-      "@widgetVideo": {},
-      "@dismiss": {},
-      "@unknownDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@emoteShortcode": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@noEncryptionForPublicRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@reportErrorDescription": {},
-      "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@setPermissionsLevel": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@inviteContactToGroup": {
-        "type": "text",
-        "placeholders": {
-            "groupName": {}
-        }
-    },
-      "@addAccount": {},
-      "@reply": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@removeYourAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@unsupportedAndroidVersion": {},
-      "@device": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@widgetJitsi": {},
-      "@youAreNoLongerParticipatingInThisChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@encryption": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@messageType": {},
-      "@indexedDbErrorLong": {},
-      "@oneClientLoggedOut": {},
-      "@toggleMuted": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@kicked": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-      "@title": {
-        "description": "Title for the application",
-        "type": "text",
-        "placeholders": {}
-    },
-      "@verifySuccess": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@sendFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@newVerificationRequest": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@startFirstChat": {},
-      "@callingAccount": {},
-      "@requestPermission": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@sentAPicture": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@invited": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@setColorTheme": {},
-      "@nextAccount": {},
-      "@commandHint_create": {
-        "type": "text",
-        "description": "Usage hint for the command /create"
-    },
-      "@singlesignon": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@warning": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@password": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@allSpaces": {},
-      "@supposedMxid": {
-        "type": "text",
-        "placeholders": {
-            "mxid": {}
-        }
-    },
-      "@editDisplayname": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@user": {},
-      "@roomVersion": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@sentAFile": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@videoCall": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@youAcceptedTheInvitation": {},
-      "@noMatrixServer": {
-        "type": "text",
-        "placeholders": {
-            "server1": {},
-            "server2": {}
-        }
-    },
-      "@userAndOthersAreTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "count": {}
-        }
-    },
-      "@youInvitedBy": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-      "@userIsTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@openAppToReadMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@sentAVideo": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@banUserDescription": {},
-      "@inviteContact": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@widgetEtherpad": {},
-      "@waitingPartnerAcceptRequest": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@remove": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@writeAMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@id": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@removeDevicesDescription": {},
-      "@separateChatTypes": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@tryAgain": {},
-      "@youKickedAndBanned": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-      "@removeDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@unbanUserDescription": {},
-      "@userAndUserAreTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "username2": {}
-        }
-    },
-      "@pleaseClickOnLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@saveFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pickImage": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@youRejectedTheInvitation": {},
-      "@otherCallingPermissions": {},
-      "@messagesStyle": {},
-      "@invitedUsersOnly": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@link": {},
-      "@widgetUrlError": {},
-      "@emailOrUsername": {},
-      "@newSpaceDescription": {},
-      "@chatDescription": {},
-      "@callingAccountDetails": {},
-      "@next": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pleaseFollowInstructionsOnWeb": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@editRoomAliases": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@enterSpace": {},
-      "@encryptThisChat": {},
-      "@fileName": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@unavailable": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@previousAccount": {},
-      "@publicRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@fromTheInvitation": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@sendMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@incorrectPassphraseOrKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@emoteWarnNeedToPick": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@reopenChat": {},
-      "@pleaseEnterRecoveryKey": {},
-      "@toggleFavorite": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@no": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@widgetNameError": {},
-      "@inoffensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@unpin": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@addToBundle": {},
-      "@reportMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@spaceIsPublic": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@addWidget": {},
-      "@removeAllOtherDevices": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@unblockDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@countFiles": {
-        "placeholders": {
-            "count": {}
-        }
-    },
-      "@noKeyForThisMessage": {},
-      "@enableEncryptionWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@inviteText": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "link": {}
-        }
-    },
-      "@shareLocation": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@reason": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@commandHint_markasgroup": {},
-      "@errorObtainingLocation": {
-        "type": "text",
-        "placeholders": {
-            "error": {}
-        }
-    },
-      "@hydrateTor": {},
-      "@pushNotificationsNotAvailable": {},
-      "@passwordRecovery": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@storeInAppleKeyChain": {},
-      "@replaceRoomWithNewerVersion": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@hydrate": {},
-      "@invalidServerName": {},
-      "@chatPermissions": {},
-      "@voiceMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@wipeChatBackup": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@sender": {},
-      "@storeInAndroidKeystore": {},
-      "@hideRedactedEvents": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@online": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@signInWithPassword": {},
-      "@ignoredUsers": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@lastActiveAgo": {
-        "type": "text",
-        "placeholders": {
-            "localizedTimeShort": {}
-        }
-    },
-      "@weSentYouAnEmail": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@offensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@needPantalaimonWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@makeAdminDescription": {},
-      "@edit": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@loadMore": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@noEmotesFound": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@synchronizingPleaseWait": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@transferFromAnotherDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@passwordHasBeenChanged": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pushRules": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@goToTheNewRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@commandHint_clearcache": {
-        "type": "text",
-        "description": "Usage hint for the command /clearcache"
-    },
-      "@loadingPleaseWait": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@saveKeyManuallyDescription": {},
-      "@none": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@editBundlesForAccount": {},
-      "@renderRichContent": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@enableEncryption": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@whyIsThisMessageEncrypted": {},
-      "@unreadChats": {
-        "type": "text",
-        "placeholders": {
-            "unreadCount": {}
-        }
-    },
-      "@rejectedTheInvitation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@setChatDescription": {},
-      "@userLeftTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@spaceName": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@importFromZipFile": {},
-      "@toggleUnread": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@or": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@dehydrateWarning": {},
-      "@sendOriginal": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@noOtherDevicesFound": {},
-      "@whoIsAllowedToJoinThisGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@emptyChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@seenByUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@redactedBy": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@submit": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@videoCallsBetaWarning": {},
-      "@unmuteChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@redactedAnEvent": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@participant": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@logInTo": {
-        "type": "text",
-        "placeholders": {
-            "homeserver": {}
-        }
-    },
-      "@yes": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@signInWith": {
-        "type": "text",
-        "placeholders": {
-            "provider": {}
-        }
-    },
-      "@username": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@fileIsTooBigForServer": {},
-      "@homeserver": {},
-      "@help": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@people": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@leftTheChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@verified": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@setStatus": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@groupWith": {
-        "type": "text",
-        "placeholders": {
-            "displayname": {}
-        }
-    },
-      "@callingPermissions": {},
-      "@delete": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@newMessageInFluffyChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@readUpToHere": {},
-      "@start": {},
-      "@downloadFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@deviceId": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@register": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@unlockOldMessages": {},
-      "@identity": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {}
-        }
-    },
-      "@ignore": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@recording": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@optionalRedactReason": {},
-      "@waitingPartnerEmoji": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@guestsCanJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@ok": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@dehydrate": {},
-      "@locationPermissionDeniedNotice": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@send": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@hasWithdrawnTheInvitationFor": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-      "@visibleForAllParticipants": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@noRoomsFound": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@sendAsText": {
-        "type": "text"
-    },
-      "@inviteForMe": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@archiveRoomDescription": {},
-      "@exportEmotePack": {},
-      "@sendSticker": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@switchToAccount": {
-        "type": "number",
-        "placeholders": {
-            "number": {}
-        }
-    },
-      "@setAsCanonicalAlias": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@whyDoYouWantToReportThis": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@locationDisabledNotice": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@removedBy": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@newChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@notifications": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@emoteSettings": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@experimentalVideoCalls": {},
-      "@openCamera": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pleaseEnterRecoveryKeyDescription": {},
-      "@guestsAreForbidden": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@mention": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@openInMaps": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@withTheseAddressesRecoveryDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@inviteContactToGroupQuestion": {},
-      "@emoteExists": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@redactedByBecause": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "reason": {}
-        }
-    },
-      "@isTyping": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@youHaveWithdrawnTheInvitationFor": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-      "@group": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@leave": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@skip": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@appearOnTopDetails": {},
-      "@roomHasBeenUpgraded": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@enterRoom": {},
-      "@enableEmotesGlobally": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pleaseChooseAPasscode": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@noPasswordRecoveryDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@reportUser": {},
-      "@sharedTheLocation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@onlineKeyBackupEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@unbannedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-      "@confirmEventUnpin": {},
-      "@youInvitedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-      "@kickedAndBanned": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-      "@noConnectionToTheServer": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@fileHasBeenSavedAt": {
-        "type": "text",
-        "placeholders": {
-            "path": {}
-        }
-    },
-      "@license": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@unbanFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@redactMessageDescription": {},
-      "@rejoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@recoveryKey": {},
-      "@redactMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@commandHint_discardsession": {
-        "type": "text",
-        "description": "Usage hint for the command /discardsession"
-    },
-      "@invalidInput": {},
-      "@hideUnknownEvents": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@dehydrateTorLong": {},
-      "@yourPublicKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@tooManyRequestsWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@invitedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-      "@kickFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@offline": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@noPermission": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@doNotShowAgain": {},
-      "@report": {},
-      "@status": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@groupIsPublic": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@verifyStart": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@memberChanges": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@joinRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@unverified": {},
-      "@fluffychat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@howOffensiveIsThisContent": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@serverRequiresEmail": {},
-      "@hideUnimportantStateEvents": {},
-      "@screenSharingTitle": {},
-      "@widgetCustom": {},
-      "@sentCallInformations": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-      "@addToSpaceDescription": {},
-      "@googlyEyesContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-      "@youBannedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-      "@theyDontMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@youHaveBeenBannedFromThisChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@displaynameHasBeenChanged": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@addChatDescription": {},
-      "@sentAnAudio": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@editRoomAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@encrypted": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@hasKnocked": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-      "@publish": {},
-      "@openLinkInBrowser": {},
-      "@pleaseEnterYourUsername": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@messageInfo": {},
-      "@disableEncryptionWarning": {},
-      "@directChat": {},
-      "@encryptionNotEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@wrongPinEntered": {
-        "type": "text",
-        "placeholders": {
-            "seconds": {}
-        }
-    },
-      "@sendTypingNotifications": {},
-      "@lightTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@inviteGroupChat": {},
-      "@appearOnTop": {},
-      "@invitePrivateChat": {},
-      "@verifyTitle": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@foregroundServiceRunning": {},
-      "@enterAnEmailAddress": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@voiceCall": {},
-      "@unknownEncryptionAlgorithm": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@importEmojis": {},
-      "@wasDirectChatDisplayName": {
-        "type": "text",
-        "placeholders": {
-            "oldDisplayName": {}
-        }
-    },
-      "@noChatDescriptionYet": {},
-      "@removeFromBundle": {},
-      "@numUsersTyping": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-      "@fontSize": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@whoCanPerformWhichAction": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@confirmMatrixId": {},
-      "@learnMore": {},
-      "@iHaveClickedOnLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@you": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@notAnImage": {},
-      "@users": {},
-      "@openGallery": {},
-      "@chatDescriptionHasBeenChanged": {},
-      "@search": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@newGroup": {},
-      "@bundleName": {},
-      "@dehydrateTor": {},
-      "@removeFromSpace": {},
-      "@sourceCode": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@roomUpgradeDescription": {},
-      "@userSentUnknownEvent": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "type": {}
-        }
-    },
-      "@scanQrCode": {},
-      "@logout": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pleaseEnterANumber": {},
-      "@youKicked": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-      "@profileNotFound": {},
-      "@jump": {},
-      "@groups": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@reactedWith": {
-        "type": "text",
-        "placeholders": {
-            "sender": {},
-            "reaction": {}
-        }
-    },
-      "@sorryThatsNotPossible": {},
-      "@videoWithSize": {
-        "type": "text",
-        "placeholders": {
-            "size": {}
-        }
-    },
-      "@oopsSomethingWentWrong": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@loadCountMoreParticipants": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-      "@shareInviteLink": {},
-      "@commandHint_markasdm": {},
-      "@recoveryKeyLost": {},
-      "@cuddleContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-      "@messages": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@login": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@deviceKeys": {},
-      "@waitingPartnerNumbers": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@noGoogleServicesWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@everythingReady": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@emoteKeyboardNoRecents": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@setCustomEmotes": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@startedACall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-      "@emoteInvalid": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@systemTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@notificationsEnabledForThisAccount": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@deleteMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@visibilityOfTheChatHistory": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@settings": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@setTheme": {},
-      "@youJoinedTheChat": {},
-      "@wallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@openVideoCamera": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@play": {
-        "type": "text",
-        "placeholders": {
-            "fileName": {}
-        }
-    },
-      "@passwordForgotten": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@statusExampleMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@security": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@markAsRead": {},
-      "@sendAudio": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@widgetName": {},
-      "@sentASticker": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@errorAddingWidget": {},
-      "@commandHint_dm": {
-        "type": "text",
-        "description": "Usage hint for the command /dm"
-    },
-      "@commandHint_hug": {},
-      "@replace": {},
-      "@reject": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@extremeOffensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@editBlockedServers": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@oopsPushError": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@youUnbannedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-      "@joinedTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-      "@visibleForEveryone": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pleaseEnter4Digits": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@newSpace": {},
-      "@devices": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@unknownEvent": {
-        "type": "text",
-        "placeholders": {
-            "type": {}
-        }
-    },
-      "@emojis": {},
-      "@pleaseEnterYourPin": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pleaseChoose": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@share": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@commandHint_googly": {},
-      "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-      "@createGroup": {},
-      "@privacy": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@sendImage": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@hydrateTorLong": {},
-      "@time": {},
-      "@enterYourHomeserver": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@custom": {},
-      "@noBackupWarning": {},
-      "@fromJoining": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@verify": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@sendVideo": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@storeInSecureStorageDescription": {},
-      "@openChat": {},
-      "@kickUserDescription": {},
-      "@sendAMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pin": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@importNow": {},
-      "@deleteAccount": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@setInvitationLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@pinMessage": {},
-      "@muteChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@invite": {},
-      "@enableMultiAccounts": {},
-      "@emotePacks": {
-        "type": "text",
-        "placeholders": {}
-    },
-      "@indexedDbErrorTitle": {},
-      "@endedTheCall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-      "@unsupportedAndroidVersionLong": {},
-      "@storeSecurlyOnThisDevice": {},
-      "@screenSharingDetail": {},
-      "@placeCall": {}
+  "repeatPassword": "Ponovite geslo",
+  "@repeatPassword": {},
+  "about": "O aplikaciji",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accept": "Sprejmi",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "Račun",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "Uporabnik {username} je aktiviral šifriranje od konca do konca",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "addEmail": "Dodajte e-pošto",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Dodajte v prostor",
+  "@addToSpace": {},
+  "alias": "vzdevek",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Vse",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Vsi klepeti",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "Oseba {senderName} je odgovorila na klic",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "Pridruži se lahko vsak",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Zaklepanje aplikacije",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Če želite podpisati drugo osebo, vnesite geslo za varno trgovino ali obnovitveni ključ.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Ali želite sprejeti to zahtevo za preverjanje od {username}?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "autoplayImages": "Samodejno predvajajte animirane nalepke in čustva",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "badServerLoginTypesException": "Domači strežnik podpira vrste prijave:\n{serverVersions}\nToda ta aplikacija podpira samo:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "sendOnEnter": "Pošlji ob vstopu",
+  "@sendOnEnter": {},
+  "banFromChat": "Prepoved klepeta",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banned": "Prepovedano",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} je prepovedan v {targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "blockDevice": "Blokirana naprava",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Blokirano",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Botova sporočila",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Prekliči",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "URI-ja {uri} ni mogoče odpreti",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "changedTheChatAvatar": "{username} je spremenil avatar za klepet",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheChatPermissions": "{username} je spremenila dovoljenja za klepet",
+  "@changedTheChatPermissions": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheDisplaynameTo": "{username} je spremenil svoje prikazno ime v: '{displayname}'",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "changedTheGuestAccessRules": "{username} je spremenila pravila dostopa za goste",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} je spremenila pravila dostopa za goste v: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username} je spremenil vidnost zgodovine v: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheJoinRules": "{username} je spremenil pravila za pridružitev",
+  "@changedTheJoinRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheJoinRulesTo": "{username} je spremenila pravila pridružitve v: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "joinRules": {}
+    }
+  },
+  "changedTheProfileAvatar": "{username} je spremenil avatar",
+  "@changedTheProfileAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomAliases": "{username} je spremenil vzdevke sobe",
+  "@changedTheRoomAliases": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomInvitationLink": "{username} je spremenil povezavo za povabilo",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changePassword": "Spremeni geslo",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheHomeserver": "Spremenite domači strežnik",
+  "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheme": "Spremenite svoj slog",
+  "@changeTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheNameOfTheGroup": "Spremenite ime skupine",
+  "@changeTheNameOfTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Spremenite svoj avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "Klepet",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatBackupHasBeenSetUp": "Varnostna kopija klepeta je nastavljena.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "chatBackup": "Varnostno kopiranje klepeta",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatDetails": "Podrobnosti klepeta",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Klepet je bil dodan v ta prostor",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chats": "Klepeti",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Izberite močno geslo",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Počisti arhiv",
+  "@clearArchive": {},
+  "close": "Zapri",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_ban": "Izključi določenega uporabnika iz te sobe",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_html": "Pošljite besedilo v obliki HTML",
+  "@commandHint_html": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHint_invite": "Povabi danega uporabnika v to sobo",
+  "@commandHint_invite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHint_join": "Pridružite se dani sobi",
+  "@commandHint_join": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_kick": "Odstranite danega uporabnika iz te sobe",
+  "@commandHint_kick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_me": "Opisi sebe",
+  "@commandHint_me": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHint_myroomavatar": "Nastavite svojo sliko za to sobo",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_op": "Nastavite raven moči danega uporabnika (privzeto: 50)",
+  "@commandHint_op": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHint_react": "Pošljite odgovor kot reakcijo",
+  "@commandHint_react": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHint_send": "Pošlji besedilo",
+  "@commandHint_send": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "commandHint_unban": "Prekliči izključitev določenega uporabnika iz te sobe",
+  "@commandHint_unban": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandInvalid": "Ukaz ni veljaven",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandMissing": "{command} is not a command.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "compareEmojiMatch": "Primerjajte in se prepričajte, da se naslednji emoji ujemajo s tistimi iz druge naprave:",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Primerjajte in se prepričajte, da se naslednje številke ujemajo s številkami druge naprave:",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "Konfigurirajte klepet",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Potrdi",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Vsebuje prikazno ime",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Vsebuje uporabniško ime",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "Arhiv",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Ali si prepričan?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "{username} je sprejel povabilo",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "areYouSureYouWantToLogout": "Ali ste prepričani, da se želite odjaviti?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheChatDescriptionTo": "{username} je spremenil opis klepeta v: '{description}'",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "areGuestsAllowedToJoin": "Ali se lahko gostujoči uporabniki pridružijo",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "admin": "Admin",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerVersionsException": "Domači strežnik podpira različice Spec:\n{serverVersions}\nToda ta aplikacija podpira samo {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} je spremenil ime klepeta v: '{chatname}'",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "changeDeviceName": "Spremenite ime naprave",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheHistoryVisibility": "{username} je spremenila vidnost zgodovine",
+  "@changedTheHistoryVisibility": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "channelCorruptedDecryptError": "Šifriranje je poškodovano",
+  "@channelCorruptedDecryptError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Vsebina je bila prijavljena skrbnikom strežnika",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Varnostna kopija klepeta je zavarovana z varnostnim ključem. Prosimo, pazite, da ga ne izgubite.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_myroomnick": "Nastavite prikazno ime za to sobo",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "connect": "Povežite se",
+  "@connect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contactHasBeenInvitedToTheGroup": "Kontakt je bil povabljen v skupino",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_leave": "Zapusti to sobo",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHint_plain": "Pošlji neformatirano besedilo",
+  "@commandHint_plain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "copiedToClipboard": "Kopirano v odložišče",
+  "@copiedToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "Kopiraj",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Kopiraj v odložišče",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Sporočila ni bilo mogoče dešifrirati: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "countParticipants": "{count} udeležencev",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "create": "Ustvari",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewSpace": "Nov prostor",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentlyActive": "Trenutno aktiven",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "Temno",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Privzeta raven dovoljenja",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateWithYear": "{day}-{month}-{year}",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateWithoutYear": "{month}-{day}",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "createdTheChat": "{username} je ustvaril klepet",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "deactivateAccountWarning": "S tem boste deaktivirali vaš uporabniški račun. Tega ni mogoče razveljaviti! Ali si prepričan?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  }
 }

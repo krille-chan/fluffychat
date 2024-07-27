@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Vaikimisi õigused",
+  "defaultPermissionLevel": "Vaikimisi õigused uutele kasutajatele",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2709,8 +2709,68 @@
   "@files": {},
   "swipeRightToLeftToReply": "Vastamiseks viipa paremalt vasakule",
   "@swipeRightToLeftToReply": {},
-  "alwaysUse24HourFormat": "vale",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "noMoreChatsFound": "Rohkem vestlusi ei leidu...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Vestlusi, millega oled liitunud",
+  "@joinedChats": {},
+  "unread": "Lugemata",
+  "@unread": {},
+  "space": "Kogukond",
+  "@space": {},
+  "spaces": "Kogukonnad",
+  "@spaces": {},
+  "goToSpace": "Ava kogukond: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Märgi mitteloetuks",
+  "@markAsUnread": {},
+  "countChatsAndCountParticipants": "{chats} vestlust ja {participants} osalejat",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "userLevel": "{level} - kasutaja",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - moderaator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - peakasutaja",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheVisibilityOfChatHistory": "Muuda vestluse ajaloo nähtavust",
+  "@changeTheVisibilityOfChatHistory": {},
+  "sendRoomNotifications": "Saada @jututuba teavitusi",
+  "@sendRoomNotifications": {},
+  "changeTheCanonicalRoomAlias": "Muuda vestluse põhilist avalikult nähtavat aadressi",
+  "@changeTheCanonicalRoomAlias": {},
+  "changeGeneralChatSettings": "Muuda vestluse üldiseid seadistusi",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "Kutsu teisi osalejaid sellesse vestlusesse",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Muuda vestluse õigusi",
+  "@changeTheChatPermissions": {},
+  "changeTheDescriptionOfTheGroup": "Muuda vestluse kirjeldust",
+  "@changeTheDescriptionOfTheGroup": {}
 }
