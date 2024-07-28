@@ -29,6 +29,7 @@ import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
@@ -292,7 +293,7 @@ class ChatController extends State<ChatPageWithRoom>
       if (timeline?.events.any((event) => event.eventId == fullyRead) ??
           false) {
         Logs().v('Scroll up to visible event', fullyRead);
-        setReadMarker();
+        scrollToEventId(fullyRead);
         return;
       }
       if (!mounted) return;
@@ -901,7 +902,10 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void scrollToEventId(String eventId) async {
-    final eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
+    final eventIndex = timeline!.events
+        .where((event) => event.isVisibleInGui)
+        .toList()
+        .indexWhere((e) => e.eventId == eventId);
     if (eventIndex == -1) {
       setState(() {
         timeline = null;
@@ -921,7 +925,8 @@ class ChatController extends State<ChatPageWithRoom>
       scrollToEventIdMarker = eventId;
     });
     await scrollController.scrollToIndex(
-      eventIndex,
+      eventIndex + 1,
+      duration: FluffyThemes.animationDuration,
       preferPosition: AutoScrollPosition.middle,
     );
     _updateScrollController();
