@@ -16,7 +16,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:record/record.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -29,6 +29,7 @@ import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
@@ -104,7 +105,13 @@ class ChatController extends State<ChatPageWithRoom>
 
   String get roomId => widget.room.id;
 
-  final AutoScrollController scrollController = AutoScrollController();
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ScrollOffsetController scrollOffsetController =
+      ScrollOffsetController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+  final ScrollOffsetListener scrollOffsetListener =
+      ScrollOffsetListener.create();
 
   FocusNode inputFocus = FocusNode();
   StreamSubscription<html.Event>? onFocusSub;
@@ -230,21 +237,20 @@ class ChatController extends State<ChatPageWithRoom>
     setReadMarker(eventId: mostRecentEventId);
   }
 
-  void _updateScrollController() {
+  void _updateScrollController(double offset) {
     if (!mounted) {
       return;
     }
-    if (!scrollController.hasClients) return;
+
     if (timeline?.allowNewEvent == false ||
-        scrollController.position.pixels > 0 && _scrolledUp == false) {
+        offset > 2 && _scrolledUp == false) {
       setState(() => _scrolledUp = true);
-    } else if (scrollController.position.pixels <= 0 && _scrolledUp == true) {
+    } else if (offset <= 2 && _scrolledUp == true) {
       setState(() => _scrolledUp = false);
       setReadMarker();
     }
 
-    if (scrollController.position.pixels == 0 ||
-        scrollController.position.pixels == 64) {
+    if (offset == 0 || offset == 64) {
       requestFuture();
     }
   }
@@ -259,7 +265,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   @override
   void initState() {
-    scrollController.addListener(_updateScrollController);
+    scrollOffsetListener.changes.listen(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
 
     _loadDraft();
@@ -292,7 +298,7 @@ class ChatController extends State<ChatPageWithRoom>
       if (timeline?.events.any((event) => event.eventId == fullyRead) ??
           false) {
         Logs().v('Scroll up to visible event', fullyRead);
-        setReadMarker();
+        scrollToEventId(fullyRead);
         return;
       }
       if (!mounted) return;
@@ -901,7 +907,9 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void scrollToEventId(String eventId) async {
-    final eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
+    final events =
+        timeline!.events.where((event) => event.isVisibleInGui).toList();
+    final eventIndex = events.indexWhere((e) => e.eventId == eventId);
     if (eventIndex == -1) {
       setState(() {
         timeline = null;
@@ -920,11 +928,11 @@ class ChatController extends State<ChatPageWithRoom>
     setState(() {
       scrollToEventIdMarker = eventId;
     });
-    await scrollController.scrollToIndex(
-      eventIndex,
-      preferPosition: AutoScrollPosition.middle,
+    await itemScrollController.scrollTo(
+      index: eventIndex + 1,
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
     );
-    _updateScrollController();
   }
 
   void scrollDown() async {
@@ -939,7 +947,11 @@ class ChatController extends State<ChatPageWithRoom>
       });
       await loadTimelineFuture;
     }
-    scrollController.jumpTo(0);
+    itemScrollController.scrollTo(
+      index: 0,
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
+    );
   }
 
   void onEmojiSelected(_, Emoji? emoji) {
