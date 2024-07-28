@@ -293,7 +293,7 @@ class ChatController extends State<ChatPageWithRoom>
       if (timeline?.events.any((event) => event.eventId == fullyRead) ??
           false) {
         Logs().v('Scroll up to visible event', fullyRead);
-        scrollToEventId(fullyRead);
+        scrollToEventId(fullyRead, highlightEvent: false);
         return;
       }
       if (!mounted) return;
@@ -901,7 +901,10 @@ class ChatController extends State<ChatPageWithRoom>
     inputFocus.requestFocus();
   }
 
-  void scrollToEventId(String eventId) async {
+  void scrollToEventId(
+    String eventId, {
+    bool highlightEvent = true,
+  }) async {
     final eventIndex = timeline!.events
         .where((event) => event.isVisibleInGui)
         .toList()
@@ -921,9 +924,11 @@ class ChatController extends State<ChatPageWithRoom>
       });
       return;
     }
-    setState(() {
-      scrollToEventIdMarker = eventId;
-    });
+    if (highlightEvent) {
+      setState(() {
+        scrollToEventIdMarker = eventId;
+      });
+    }
     await scrollController.scrollToIndex(
       eventIndex + 1,
       duration: FluffyThemes.animationDuration,
