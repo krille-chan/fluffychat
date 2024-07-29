@@ -18,26 +18,23 @@ class ChatAppBarTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final room = controller.room;
-    final isArchived = controller.isArchived;
-    final selectedEvents = controller.selectedEvents;
 
-    if (selectedEvents.isNotEmpty) {
-      return Text(selectedEvents.length.toString());
+    if (controller.selectedEvents.isNotEmpty) {
+      return Text(controller.selectedEvents.length.toString());
     }
 
-    final localizedDisplayName = room.getLocalizedDisplayname(
-        MatrixLocals(L10n.of(context)!));
+    final localizedDisplayName =
+        room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
 
     return InkWell(
       hoverColor: Colors.transparent,
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      onTap: isArchived
+      onTap: controller.isArchived
           ? null
-          : () =>
-      FluffyThemes.isThreeColumnMode(context)
-          ? controller.toggleDisplayChatDetailsColumn()
-          : context.go('/rooms/${room.id}/details'),
+          : () => FluffyThemes.isThreeColumnMode(context)
+              ? controller.toggleDisplayChatDetailsColumn()
+              : context.go('/rooms/${room.id}/details'),
       child: FutureBuilder<RoomDisplayInfo>(
         future: loadRoomInfo(context, room),
         builder: (context, snapshot) {
@@ -76,8 +73,8 @@ class ChatAppBarTitle extends StatelessWidget {
     );
   }
 
-  Widget _buildRoomInfo(BuildContext context, RoomDisplayInfo roomInfo,
-      Room room) {
+  Widget _buildRoomInfo(
+      BuildContext context, RoomDisplayInfo roomInfo, Room room) {
     final theme = Theme.of(context);
     final networkColor = roomInfo.networkColor;
     final networkImage = roomInfo.networkImage;
