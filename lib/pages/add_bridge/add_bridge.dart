@@ -838,7 +838,6 @@ class BotController extends State<AddBridge> {
   }
 
   /// Check last received message for WhatsApp
-  /// Check last received message for WhatsApp
   void _onWhatsAppMessage(
       String directChat,
       String botUserId,

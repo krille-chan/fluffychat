@@ -25,13 +25,12 @@ class QRCodeConnectPage extends StatefulWidget {
 
 class _QRCodeConnectPageState extends State<QRCodeConnectPage> {
   late Future<String> responseFuture;
+  bool _isDialogShown = false;
 
   @override
   void initState() {
     super.initState();
-
     widget.botConnection.continueProcess = true;
-
     responseFuture = widget.botConnection.fetchDataWhatsApp();
   }
 
@@ -39,6 +38,12 @@ class _QRCodeConnectPageState extends State<QRCodeConnectPage> {
   void dispose() {
     widget.botConnection.stopProcess();
     super.dispose();
+  }
+
+  void _setDialogShown() {
+    setState(() {
+      _isDialogShown = true;
+    });
   }
 
   @override
@@ -64,6 +69,8 @@ class _QRCodeConnectPageState extends State<QRCodeConnectPage> {
               QRFutureBuilder(
                 responseFuture: responseFuture,
                 network: widget.socialNetwork,
+                isDialogShown: _isDialogShown,
+                setDialogShown: _setDialogShown,
               ),
             ],
           ),
@@ -175,11 +182,15 @@ class QRExplanation extends StatelessWidget {
 class QRFutureBuilder extends StatelessWidget {
   final Future<String> responseFuture;
   final SocialNetwork network;
+  final bool isDialogShown;
+  final VoidCallback setDialogShown;
 
   const QRFutureBuilder({
     super.key,
     required this.responseFuture,
     required this.network,
+    required this.isDialogShown,
+    required this.setDialogShown,
   });
 
   @override
@@ -192,33 +203,25 @@ class QRFutureBuilder extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('${L10n.of(context)!.err_} ${snapshot.error}');
         } else {
-          return buildAlertDialog(context, snapshot.data as String, network);
+          if (!isDialogShown) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (snapshot.data == "success") {
+                showSuccessDialog(context, network);
+              } else if (snapshot.data == "loginTimedOut") {
+                showTimeoutDialog(context, network);
+              }
+            });
+          }
+          return Container();
         }
       },
     );
   }
 
-  // AlertDialog displayed when an error or success occurs, listening directly to the response
-  Widget buildAlertDialog(
-      BuildContext context, String result, SocialNetwork network) {
-    if (result == "success") {
-      Future.microtask(() {
-        // Call function to display success dialog box
-        showSuccessDialog(context, network);
-      });
-    } else if (result == "loginTimedOut") {
-      Future.microtask(() {
-        // Call the function to display the "Elapsed time" dialog box
-        showTimeoutDialog(context, network);
-      });
-    }
-
-    return Container();
-  }
-
   // showDialog of a success message when connecting and updating socialNetwork
   Future<void> showSuccessDialog(
       BuildContext context, SocialNetwork network) async {
+    setDialogShown();
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -238,6 +241,7 @@ class QRFutureBuilder extends StatelessWidget {
                     .connected = true;
 
                 Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
               child: Text(
                 L10n.of(context)!.ok,
@@ -252,6 +256,7 @@ class QRFutureBuilder extends StatelessWidget {
   // showDialog of elapsed time error message
   Future<void> showTimeoutDialog(
       BuildContext context, SocialNetwork network) async {
+    setDialogShown();
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -265,6 +270,7 @@ class QRFutureBuilder extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
+                Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
               child: Text(
