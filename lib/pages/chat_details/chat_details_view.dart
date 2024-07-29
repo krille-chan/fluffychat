@@ -138,17 +138,18 @@ class ChatDetailsView extends StatelessWidget {
                                           Avatar.defaultSize * 2.5,
                                         ),
                                       ),
-                                      child: Hero(
-                                        tag: controller.widget
-                                                    .embeddedCloseButton !=
-                                                null
-                                            ? 'embedded_content_banner'
-                                            : 'content_banner',
-                                        child: Avatar(
-                                          mxContent: room.avatar,
-                                          name: displayname,
-                                          size: Avatar.defaultSize * 2.5,
-                                        ),
+                                      // #Pangea
+                                      // child: Hero(
+                                      //   tag: controller.widget
+                                      //               .embeddedCloseButton !=
+                                      //           null
+                                      //       ? 'embedded_content_banner'
+                                      //       : 'content_banner',
+                                      // Pangea#
+                                      child: Avatar(
+                                        mxContent: room.avatar,
+                                        name: displayname,
+                                        size: Avatar.defaultSize * 2.5,
                                       ),
                                     ),
                                     if (!room.isDirectChat &&
