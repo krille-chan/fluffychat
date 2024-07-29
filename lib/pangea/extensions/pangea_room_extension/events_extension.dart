@@ -282,83 +282,6 @@ extension EventsRoomExtension on Room {
     );
   }
 
-  Future<List<RecentMessageRecord>> get _messageListForAllChildChats async {
-    try {
-      if (!isSpace) return [];
-      final List<Room> spaceChats = spaceChildren
-          .where((e) => e.roomId != null)
-          .map((e) => client.getRoomById(e.roomId!))
-          .where((element) => element != null)
-          .cast<Room>()
-          .where((element) => !element.isSpace)
-          .toList();
-
-      final List<Future<List<RecentMessageRecord>>> msgListFutures = [];
-      for (final chat in spaceChats) {
-        msgListFutures.add(chat._messageListForChat);
-      }
-      final List<List<RecentMessageRecord>> msgLists =
-          await Future.wait(msgListFutures);
-
-      final List<RecentMessageRecord> joined = [];
-      for (final msgList in msgLists) {
-        joined.addAll(msgList);
-      }
-      return joined;
-    } catch (err) {
-      // debugger(when: kDebugMode);
-      rethrow;
-    }
-  }
-
-  Future<List<RecentMessageRecord>> get _messageListForChat async {
-    try {
-      int numberOfSearches = 0;
-
-      if (isSpace) {
-        throw Exception(
-          "In messageListForChat with room that is not a chat",
-        );
-      }
-      final Timeline timeline = await getTimeline();
-
-      while (timeline.canRequestHistory && numberOfSearches < 50) {
-        await timeline.requestHistory(historyCount: 100);
-        numberOfSearches += 1;
-      }
-      if (timeline.canRequestHistory) {
-        debugger(when: kDebugMode);
-      }
-
-      final List<RecentMessageRecord> msgs = [];
-      for (final event in timeline.events) {
-        if (event.senderId == client.userID &&
-            event.type == EventTypes.Message &&
-            event.content['msgtype'] == MessageTypes.Text) {
-          final PangeaMessageEvent pMsgEvent = PangeaMessageEvent(
-            event: event,
-            timeline: timeline,
-            ownMessage: true,
-          );
-          msgs.add(
-            RecentMessageRecord(
-              eventId: event.eventId,
-              chatId: id,
-              useType: pMsgEvent.msgUseType,
-              time: event.originServerTs,
-            ),
-          );
-        }
-      }
-      return msgs;
-    } catch (err, s) {
-      if (kDebugMode) rethrow;
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s);
-      return [];
-    }
-  }
-
   // ConstructEvent? _vocabEventLocal(String lemma) {
   //   if (!isAnalyticsRoom) throw Exception("not an analytics room");
 
@@ -451,14 +374,11 @@ extension EventsRoomExtension on Room {
         return false;
       }
 
-      while (timeline.canRequestHistory &&
-          !reachedEnd() &&
-          numberOfSearches < 10) {
+      while (timeline.canRequestHistory && numberOfSearches < 10) {
         await timeline.requestHistory(historyCount: 100);
         numberOfSearches += 1;
-        if (reachedEnd()) {
-          break;
-        }
+        if (!timeline.canRequestHistory) break;
+        if (reachedEnd()) break;
       }
 
       final List<Event> fetchedEvents = timeline.events

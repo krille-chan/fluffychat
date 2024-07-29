@@ -140,52 +140,36 @@ extension AnalyticsRoomExtension on Room {
     );
   }
 
-  Future<AnalyticsEvent?> _getLastAnalyticsEvent(
-    String type,
+  Future<ConstructAnalyticsEvent?> _getLastAnalyticsEvent(
     String userId,
   ) async {
     final List<Event> events = await getEventsBySender(
-      type: type,
+      type: PangeaEventTypes.construct,
       sender: userId,
       count: 10,
     );
     if (events.isEmpty) return null;
     final Event event = events.first;
-    AnalyticsEvent? analyticsEvent;
-    switch (type) {
-      case PangeaEventTypes.summaryAnalytics:
-        analyticsEvent = SummaryAnalyticsEvent(event: event);
-      case PangeaEventTypes.construct:
-        analyticsEvent = ConstructAnalyticsEvent(event: event);
-    }
-    return analyticsEvent;
+    return ConstructAnalyticsEvent(event: event);
   }
 
-  Future<DateTime?> _analyticsLastUpdated(String type, String userId) async {
-    final lastEvent = await _getLastAnalyticsEvent(type, userId);
+  Future<DateTime?> _analyticsLastUpdated(String userId) async {
+    final lastEvent = await _getLastAnalyticsEvent(userId);
     return lastEvent?.event.originServerTs;
   }
 
-  Future<List<AnalyticsEvent>?> _getAnalyticsEvents({
-    required String type,
+  Future<List<ConstructAnalyticsEvent>?> _getAnalyticsEvents({
     required String userId,
     DateTime? since,
   }) async {
     final List<Event> events = await getEventsBySender(
-      type: type,
+      type: PangeaEventTypes.construct,
       sender: userId,
       since: since,
     );
-    final List<AnalyticsEvent> analyticsEvents = [];
+    final List<ConstructAnalyticsEvent> analyticsEvents = [];
     for (final Event event in events) {
-      switch (type) {
-        case PangeaEventTypes.summaryAnalytics:
-          analyticsEvents.add(SummaryAnalyticsEvent(event: event));
-          break;
-        case PangeaEventTypes.construct:
-          analyticsEvents.add(ConstructAnalyticsEvent(event: event));
-          break;
-      }
+      analyticsEvents.add(ConstructAnalyticsEvent(event: event));
     }
 
     return analyticsEvents;
@@ -201,18 +185,6 @@ extension AnalyticsRoomExtension on Room {
     final creationContent = getState(EventTypes.RoomCreate)?.content;
     return creationContent?.tryGet<String>(ModelKey.langCode) == langCode ||
         creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
-  }
-
-  Future<void> sendSummaryAnalyticsEvent(
-    List<RecentMessageRecord> records,
-  ) async {
-    final SummaryAnalyticsModel analyticsModel = SummaryAnalyticsModel(
-      messages: records,
-    );
-    await sendEvent(
-      analyticsModel.toJson(),
-      type: PangeaEventTypes.summaryAnalytics,
-    );
   }
 
   /// Sends construct events to the server.

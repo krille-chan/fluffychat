@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
@@ -22,7 +23,7 @@ class ConstructList extends StatefulWidget {
   final ConstructTypeEnum constructType;
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? selected;
-  final BaseAnalyticsController controller;
+  final TimeSpan timeSpan;
   final PangeaController pangeaController;
   final StreamController refreshStream;
 
@@ -30,9 +31,9 @@ class ConstructList extends StatefulWidget {
     super.key,
     required this.constructType,
     required this.defaultSelected,
-    required this.controller,
     required this.pangeaController,
     required this.refreshStream,
+    required this.timeSpan,
     this.selected,
   });
 
@@ -53,11 +54,11 @@ class ConstructListState extends State<ConstructList> {
         : Column(
             children: [
               ConstructListView(
-                controller: widget.controller,
                 pangeaController: widget.pangeaController,
                 defaultSelected: widget.defaultSelected,
                 selected: widget.selected,
                 refreshStream: widget.refreshStream,
+                timeSpan: widget.timeSpan,
               ),
             ],
           );
@@ -74,17 +75,17 @@ class ConstructListState extends State<ConstructList> {
 //    subtitle = total uses, equal to construct.content.uses.length
 // list has a fixed height of 400 and is scrollable
 class ConstructListView extends StatefulWidget {
-  final BaseAnalyticsController controller;
   final PangeaController pangeaController;
   final AnalyticsSelected defaultSelected;
+  final TimeSpan timeSpan;
   final AnalyticsSelected? selected;
   final StreamController refreshStream;
 
   const ConstructListView({
     super.key,
-    required this.controller,
     required this.pangeaController,
     required this.defaultSelected,
+    required this.timeSpan,
     required this.refreshStream,
     this.selected,
   });
@@ -101,6 +102,7 @@ class ConstructListViewState extends State<ConstructListView> {
   bool fetchingConstructs = true;
   bool fetchingUses = false;
   StreamSubscription? refreshSubscription;
+  String? currentLemma;
 
   @override
   void initState() {
@@ -112,6 +114,7 @@ class ConstructListViewState extends State<ConstructListView> {
           defaultSelected: widget.defaultSelected,
           selected: widget.selected,
           forceUpdate: true,
+          timeSpan: widget.timeSpan,
         )
         .whenComplete(() => setState(() => fetchingConstructs = false))
         .then((value) => setState(() => _constructs = value));
@@ -127,6 +130,7 @@ class ConstructListViewState extends State<ConstructListView> {
               defaultSelected: widget.defaultSelected,
               selected: widget.selected,
               forceUpdate: true,
+              timeSpan: widget.timeSpan,
             )
             .then(
               (value) => setState(() {
@@ -143,9 +147,14 @@ class ConstructListViewState extends State<ConstructListView> {
     super.dispose();
   }
 
+  void setCurrentLemma(String? lemma) {
+    currentLemma = lemma;
+    setState(() {});
+  }
+
   int get lemmaIndex =>
       constructs?.indexWhere(
-        (element) => element.lemma == widget.controller.currentLemma,
+        (element) => element.lemma == currentLemma,
       ) ??
       -1;
 
@@ -258,7 +267,7 @@ class ConstructListViewState extends State<ConstructListView> {
   }
 
   ConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
-        (element) => element.lemma == widget.controller.currentLemma,
+        (element) => element.lemma == currentLemma,
       );
 
   // given the current lemma and list of message events, return a list of
@@ -266,7 +275,7 @@ class ConstructListViewState extends State<ConstructListView> {
   // this is because some message events may have has more than one PangeaMatch of a
   // given lemma type.
   List<MessageEventMatch> getMessageEventMatches() {
-    if (widget.controller.currentLemma == null) return [];
+    if (currentLemma == null) return [];
     final List<MessageEventMatch> allMsgErrorSteps = [];
 
     for (final msgEvent in _msgEvents) {
@@ -277,7 +286,7 @@ class ConstructListViewState extends State<ConstructListView> {
       }
       // get all the pangea matches in that message which have that lemma
       final List<PangeaMatch>? msgErrorSteps = msgEvent.errorSteps(
-        widget.controller.currentLemma!,
+        currentLemma!,
       );
       if (msgErrorSteps == null) continue;
 
@@ -327,7 +336,7 @@ class ConstructListViewState extends State<ConstructListView> {
             ),
             onTap: () async {
               final String lemma = constructs![index].lemma;
-              widget.controller.setCurrentLemma(lemma);
+              setCurrentLemma(lemma);
               fetchUses().then((_) => showConstructMessagesDialog());
             },
           );
@@ -346,7 +355,7 @@ class ConstructMessagesDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.widget.controller.currentLemma == null ||
+    if (controller.currentLemma == null ||
         controller.constructs == null ||
         controller.lemmaIndex < 0 ||
         controller.lemmaIndex >= controller.constructs!.length) {
@@ -359,7 +368,7 @@ class ConstructMessagesDialog extends StatelessWidget {
         controller._msgEvents.length;
 
     return AlertDialog(
-      title: Center(child: Text(controller.widget.controller.currentLemma!)),
+      title: Center(child: Text(controller.currentLemma!)),
       content: SizedBox(
         height: noData ? 90 : 250,
         width: noData ? 200 : 400,
@@ -380,7 +389,7 @@ class ConstructMessagesDialog extends StatelessWidget {
                       children: [
                         ConstructMessage(
                           msgEvent: event.msgEvent,
-                          lemma: controller.widget.controller.currentLemma!,
+                          lemma: controller.currentLemma!,
                           errorMessage: event.lemmaMatch,
                         ),
                         if (index < msgEventMatches.length - 1)
@@ -528,42 +537,37 @@ class ConstructMessageBubble extends StatelessWidget {
             vertical: 8,
           ),
           child: RichText(
-            text: (end == null)
-                ? TextSpan(
-                    text: errorText,
-                    style: defaultStyle,
-                  )
-                : TextSpan(
-                    children: [
-                      TextSpan(
-                        text: errorText.substring(0, start),
-                        style: defaultStyle,
-                      ),
-                      TextSpan(
-                        text: errorText.substring(start, end),
-                        style: defaultStyle.merge(
-                          TextStyle(
-                            backgroundColor: Colors.red.withOpacity(0.25),
-                            decoration: TextDecoration.lineThrough,
-                            decorationThickness: 2.5,
-                          ),
-                        ),
-                      ),
-                      const TextSpan(text: " "),
-                      TextSpan(
-                        text: replacementText,
-                        style: defaultStyle.merge(
-                          TextStyle(
-                            backgroundColor: Colors.green.withOpacity(0.25),
-                          ),
-                        ),
-                      ),
-                      TextSpan(
-                        text: errorText.substring(end),
-                        style: defaultStyle,
-                      ),
-                    ],
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: errorText.substring(0, start),
+                  style: defaultStyle,
+                ),
+                TextSpan(
+                  text: errorText.substring(start, end),
+                  style: defaultStyle.merge(
+                    TextStyle(
+                      backgroundColor: Colors.red.withOpacity(0.25),
+                      decoration: TextDecoration.lineThrough,
+                      decorationThickness: 2.5,
+                    ),
                   ),
+                ),
+                const TextSpan(text: " "),
+                TextSpan(
+                  text: replacementText,
+                  style: defaultStyle.merge(
+                    TextStyle(
+                      backgroundColor: Colors.green.withOpacity(0.25),
+                    ),
+                  ),
+                ),
+                TextSpan(
+                  text: errorText.substring(end),
+                  style: defaultStyle,
+                ),
+              ],
+            ),
           ),
         ),
       ),

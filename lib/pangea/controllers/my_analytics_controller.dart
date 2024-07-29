@@ -4,17 +4,15 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_record_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
-import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-
-import '../extensions/client_extension/client_extension.dart';
-import '../extensions/pangea_room_extension/pangea_room_extension.dart';
 
 /// handles the processing of analytics for
 /// 1) messages sent by the user and
@@ -56,15 +54,14 @@ class MyAnalyticsController {
 
   /// If analytics haven't been updated in the last day, update them
   Future<DateTime?> _refreshAnalyticsIfOutdated() async {
-    DateTime? lastUpdated = await _pangeaController.analytics
-        .myAnalyticsLastUpdated(PangeaEventTypes.summaryAnalytics);
+    DateTime? lastUpdated =
+        await _pangeaController.analytics.myAnalyticsLastUpdated();
     final DateTime yesterday = DateTime.now().subtract(_timeSinceUpdate);
 
     if (lastUpdated?.isBefore(yesterday) ?? true) {
       debugPrint("analytics out-of-date, updating");
       await updateAnalytics();
-      lastUpdated = await _pangeaController.analytics
-          .myAnalyticsLastUpdated(PangeaEventTypes.summaryAnalytics);
+      lastUpdated = await _pangeaController.analytics.myAnalyticsLastUpdated();
     }
     return lastUpdated;
   }
@@ -238,7 +235,6 @@ class MyAnalyticsController {
     // get the last time analytics were updated for this room
     final DateTime? l2AnalyticsLastUpdated =
         await analyticsRoom.analyticsLastUpdated(
-      PangeaEventTypes.summaryAnalytics,
       _client.userID!,
     );
 
@@ -301,16 +297,6 @@ class MyAnalyticsController {
 
     final List<PangeaMessageEvent> allRecentMessages =
         recentPangeaMessageEvents.expand((e) => e).toList();
-
-    final List<RecentMessageRecord> summaryContent =
-        SummaryAnalyticsModel.formatSummaryContent(allRecentMessages);
-    // if there's new content to be sent, or if lastUpdated hasn't been
-    // set yet for this room, send the analytics events
-    if (summaryContent.isNotEmpty || l2AnalyticsLastUpdated == null) {
-      await analyticsRoom.sendSummaryAnalyticsEvent(
-        summaryContent,
-      );
-    }
 
     // get constructs for messages
     final List<OneConstructUse> recentConstructUses = [];

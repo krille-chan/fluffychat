@@ -9,12 +9,8 @@ import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
-import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
-import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
@@ -80,22 +76,15 @@ extension PangeaRoom on Room {
   void inviteSpaceTeachersToAnalyticsRooms() =>
       _inviteSpaceTeachersToAnalyticsRooms();
 
-  Future<AnalyticsEvent?> getLastAnalyticsEvent(
-    String type,
-    String userId,
-  ) async =>
-      await _getLastAnalyticsEvent(type, userId);
-
-  Future<DateTime?> analyticsLastUpdated(String type, String userId) async {
-    return await _analyticsLastUpdated(type, userId);
+  Future<DateTime?> analyticsLastUpdated(String userId) async {
+    return await _analyticsLastUpdated(userId);
   }
 
-  Future<List<AnalyticsEvent>?> getAnalyticsEvents({
-    required String type,
+  Future<List<ConstructAnalyticsEvent>?> getAnalyticsEvents({
     required String userId,
     DateTime? since,
   }) async =>
-      await _getAnalyticsEvents(type: type, since: since, userId: userId);
+      await _getAnalyticsEvents(since: since, userId: userId);
 
   String? get madeForLang => _madeForLang;
 

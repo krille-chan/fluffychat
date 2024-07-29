@@ -1,14 +1,13 @@
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
-import 'package:fluffychat/pangea/models/analytics/analytics_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../enum/construct_type_enum.dart';
 
-class ConstructAnalyticsModel extends AnalyticsModel {
+class ConstructAnalyticsModel {
   List<OneConstructUse> uses;
 
   ConstructAnalyticsModel({

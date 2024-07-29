@@ -475,7 +475,7 @@ class ChatController extends State<ChatPageWithRoom>
       // Pangea#
       if (kIsWeb && !Matrix.of(context).webHasFocus) return;
       // #Pangea
-    } catch (err, s) {
+    } catch (err) {
       return;
     }
     // Pangea#

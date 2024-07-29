@@ -152,7 +152,6 @@ extension AnalyticsClientExtension on Client {
     final Map<String, DateTime?> lastUpdatedMap = {};
     for (final analyticsRoom in allMyAnalyticsRooms) {
       final DateTime? lastUpdated = await analyticsRoom.analyticsLastUpdated(
-        PangeaEventTypes.summaryAnalytics,
         userID!,
       );
       lastUpdatedMap[analyticsRoom.id] = lastUpdated;

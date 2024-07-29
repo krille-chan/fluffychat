@@ -139,7 +139,6 @@ abstract class ClientManager {
           timeline: StateFilter(
             notTypes: [
               PangeaEventTypes.construct,
-              PangeaEventTypes.summaryAnalytics,
             ],
           ),
         ),
