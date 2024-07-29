@@ -203,30 +203,66 @@ extension AnalyticsRoomExtension on Room {
         creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
   }
 
-  Future<String?> sendSummaryAnalyticsEvent(
+  Future<void> sendSummaryAnalyticsEvent(
     List<RecentMessageRecord> records,
   ) async {
     final SummaryAnalyticsModel analyticsModel = SummaryAnalyticsModel(
       messages: records,
     );
-    final String? eventId = await sendEvent(
+    await sendEvent(
       analyticsModel.toJson(),
       type: PangeaEventTypes.summaryAnalytics,
     );
-    return eventId;
   }
 
-  Future<String?> sendConstructsEvent(
+  /// Sends construct events to the server.
+  ///
+  /// The [uses] parameter is a list of [OneConstructUse] objects representing the
+  /// constructs to be sent. To prevent hitting the maximum event size, the events
+  /// are chunked into smaller lists. Each chunk is sent as a separate event.
+  Future<void> sendConstructsEvent(
     List<OneConstructUse> uses,
   ) async {
-    final ConstructAnalyticsModel constructsModel = ConstructAnalyticsModel(
-      uses: uses,
-    );
+    // these events can get big, so we chunk them to prevent hitting the max event size.
+    // go through each of the uses being sent and add them to the current chunk until
+    // the size (in bytes) of the current chunk is greater than the max event size, then
+    // start a new chunk until all uses have been added.
+    final List<List<OneConstructUse>> useChunks = [];
+    List<OneConstructUse> currentChunk = [];
+    int currentChunkSize = 0;
 
-    final String? eventId = await sendEvent(
-      constructsModel.toJson(),
-      type: PangeaEventTypes.construct,
-    );
-    return eventId;
+    for (final use in uses) {
+      // get the size, in bytes, of the json representation of the use
+      final json = use.toJson();
+      final jsonString = jsonEncode(json);
+      final jsonSizeInBytes = utf8.encode(jsonString).length;
+
+      // If this use would tip this chunk over the size limit,
+      // add it to the list of all chunks and start a new chunk.
+      //
+      // I tested with using the maxPDUSize constant, but the events
+      // were still too large. 50000 seems to be a safe number of bytes.
+      if (currentChunkSize + jsonSizeInBytes > (maxPDUSize - 10000)) {
+        useChunks.add(currentChunk);
+        currentChunk = [];
+        currentChunkSize = 0;
+      }
+
+      // add this use to the current chunk
+      currentChunk.add(use);
+      currentChunkSize += jsonSizeInBytes;
+    }
+
+    if (currentChunk.isNotEmpty) {
+      useChunks.add(currentChunk);
+    }
+
+    for (final chunk in useChunks) {
+      final constructsModel = ConstructAnalyticsModel(uses: chunk);
+      await sendEvent(
+        constructsModel.toJson(),
+        type: PangeaEventTypes.construct,
+      );
+    }
   }
 }

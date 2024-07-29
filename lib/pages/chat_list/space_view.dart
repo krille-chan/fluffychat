@@ -579,7 +579,12 @@ class _SpaceViewState extends State<SpaceView> {
                 : null,
           );
         }
-        await activeSpace.setSpaceChild(roomId);
+        await activeSpace.setSpaceChild(
+          roomId,
+          // #Pangea
+          suggested: true,
+          // Pangea#
+        );
       },
     );
     if (result.error != null) return;

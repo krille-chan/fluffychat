@@ -863,7 +863,7 @@ class ChatListController extends State<ChatList>
 
         if (space.canSendDefaultStates) {
           for (final roomId in selectedRoomIds) {
-            await space.pangeaSetSpaceChild(roomId);
+            await space.pangeaSetSpaceChild(roomId, suggested: true);
           }
         }
         // Pangea#
