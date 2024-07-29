@@ -2772,5 +2772,11 @@
   "changeTheVisibilityOfChatHistory": "Aldatu txataren historiaren ikusgaitasuna",
   "@changeTheVisibilityOfChatHistory": {},
   "changeTheCanonicalRoomAlias": "Aldatu txataren helbide publiko nagusia",
-  "@changeTheCanonicalRoomAlias": {}
+  "@changeTheCanonicalRoomAlias": {},
+  "invitedBy": "📩 {user}(e)k gonbidatua",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  }
 }
