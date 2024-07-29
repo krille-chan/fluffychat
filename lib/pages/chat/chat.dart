@@ -1080,6 +1080,9 @@ class ChatController extends State<ChatPageWithRoom>
 
   void forwardEventsAction() async {
     if (selectedEvents.length == 1) {
+      // #Pangea
+      MatrixState.pAnyState.closeOverlay();
+      // Pangea#
       Matrix.of(context).shareContent =
           selectedEvents.first.getDisplayEvent(timeline!).content;
     } else {
@@ -1111,6 +1114,7 @@ class ChatController extends State<ChatPageWithRoom>
       replyEvent = replyTo ?? selectedEvents.first;
       selectedEvents.clear();
     });
+    MatrixState.pAnyState.closeOverlay();
     inputFocus.requestFocus();
   }
 

@@ -126,7 +126,7 @@ class ToolbarDisplayController {
       transformTargetId: targetId,
       targetAnchor: Alignment.center,
       followerAnchor: Alignment.center,
-      backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
+      backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(200),
       closePrevOverlay:
           MatrixState.pangeaController.subscriptionController.isSubscribed,
       targetScreen: true,

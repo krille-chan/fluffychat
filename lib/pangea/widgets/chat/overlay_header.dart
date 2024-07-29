@@ -20,6 +20,7 @@ class OverlayHeader extends StatelessWidget {
     final Event selectedEvent = controller.selectedEvents.single;
 
     return AppBar(
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
       actionsIconTheme: IconThemeData(
         color: Theme.of(context).colorScheme.primary,
       ),

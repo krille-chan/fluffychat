@@ -47,7 +47,7 @@ class OverlayFooter extends StatelessWidget {
             ReplyDisplay(controller),
             ChatInputRow(controller),
             SizedBox(
-              height: (FluffyThemes.isColumnMode(context) ? 16.0 : 8.0),
+              height: (FluffyThemes.isColumnMode(context) ? 18.0 : 10.0),
             ),
           ],
         ),
