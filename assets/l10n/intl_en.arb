@@ -2279,6 +2279,12 @@
       "user": {}
     }
   },
+  "invitedBy": "📩 Invited by {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
   "youInvitedUser": "📩 You invited {user}",
   "@youInvitedUser": {
     "placeholders": {
