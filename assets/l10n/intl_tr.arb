@@ -2772,5 +2772,13 @@
   "changeGeneralChatSettings": "Genel sohbet ayarlarını değiştir",
   "@changeGeneralChatSettings": {},
   "changeTheVisibilityOfChatHistory": "Sohbet geçmişinin görünürlüğünü değiştir",
-  "@changeTheVisibilityOfChatHistory": {}
+  "@changeTheVisibilityOfChatHistory": {},
+  "invitedBy": "📩 {user} davet etti",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "chatPermissionsDescription": "Bu sohbette belirli eylemler için hangi güç düzeyinin gerekli olduğunu tanımlayın. 0, 50 ve 100 güç düzeyleri genellikle kullanıcıları, moderatörleri ve yöneticileri temsil eder, ancak herhangi bir derecelendirme mümkündür.",
+  "@chatPermissionsDescription": {}
 }
