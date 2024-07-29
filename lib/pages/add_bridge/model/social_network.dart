@@ -147,4 +147,12 @@ class SocialNetworkManager {
           (network) => network.name == name,
     );
   }
+
+  static bool isBridgeBotId(String? matrixId) {
+    if (matrixId == null) return false;
+
+    return socialNetworks.any(
+      (network) => matrixId.startsWith(network.chatBot),
+    );
+  }
 }

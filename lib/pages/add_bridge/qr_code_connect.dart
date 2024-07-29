@@ -1,20 +1,22 @@
-import 'package:tawkie/pages/add_bridge/add_bridge.dart';
-import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:tawkie/pages/add_bridge/add_bridge.dart';
+import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 
 class QRCodeConnectPage extends StatefulWidget {
   final String qrCode;
   final String code;
   final BotController botConnection;
+  final SocialNetwork socialNetwork;
 
   const QRCodeConnectPage({
     super.key,
     required this.qrCode,
     required this.code,
     required this.botConnection,
+    required this.socialNetwork,
   });
 
   @override
@@ -23,30 +25,34 @@ class QRCodeConnectPage extends StatefulWidget {
 
 class _QRCodeConnectPageState extends State<QRCodeConnectPage> {
   late Future<String> responseFuture;
+  bool _isDialogShown = false;
 
   @override
   void initState() {
     super.initState();
-
-    // To make sure the continueProcess variable is true
-    // (in case you've already left the page before coming back)
     widget.botConnection.continueProcess = true;
-
     responseFuture = widget.botConnection.fetchDataWhatsApp();
   }
 
   @override
   void dispose() {
-    // To stop listening to received messages if the page is exited
     widget.botConnection.stopProcess();
     super.dispose();
+  }
+
+  void _setDialogShown() {
+    setState(() {
+      _isDialogShown = true;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.whatsAppQrTitle),
+        title: Text(
+          "${L10n.of(context)!.connectYourSocialAccount} ${widget.socialNetwork.name}",
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -54,13 +60,17 @@ class _QRCodeConnectPageState extends State<QRCodeConnectPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              WhatsAppQRExplanation(
+              QRExplanation(
+                network: widget.socialNetwork,
                 qrCode: widget.qrCode,
                 code: widget.code,
               ),
               const SizedBox(height: 16),
-              WhatsAppQRFutureBuilder(
+              QRFutureBuilder(
                 responseFuture: responseFuture,
+                network: widget.socialNetwork,
+                isDialogShown: _isDialogShown,
+                setDialogShown: _setDialogShown,
               ),
             ],
           ),
@@ -71,49 +81,68 @@ class _QRCodeConnectPageState extends State<QRCodeConnectPage> {
 }
 
 // Connection explanation section
-class WhatsAppQRExplanation extends StatelessWidget {
+class QRExplanation extends StatelessWidget {
+  final SocialNetwork network;
   final String qrCode;
   final String code;
-  const WhatsAppQRExplanation(
-      {super.key, required this.qrCode, required this.code});
+
+  const QRExplanation({
+    super.key,
+    required this.network,
+    required this.qrCode,
+    required this.code,
+  });
 
   @override
   Widget build(BuildContext context) {
+    Widget qrWidget;
+
+    List<String> qrExplains = [];
+
+    switch (network.name) {
+      case "WhatsApp":
+        qrExplains = [
+          L10n.of(context)!.whatsAppQrExplainOne,
+          L10n.of(context)!.whatsAppQrExplainTwo,
+          L10n.of(context)!.whatsAppQrExplainTree,
+          L10n.of(context)!.whatsAppQrExplainFour,
+          L10n.of(context)!.whatsAppQrExplainFive,
+          L10n.of(context)!.whatsAppQrExplainSix,
+          L10n.of(context)!.whatsAppQrExplainSeven,
+          L10n.of(context)!.whatsAppQrExplainEight,
+          L10n.of(context)!.whatsAppQrExplainNine,
+        ];
+
+        qrWidget = QrImageView(
+          data: qrCode,
+          version: QrVersions.auto,
+          size: 300,
+        );
+        break;
+      default:
+        qrWidget = QrImageView(
+          data: qrCode,
+          version: QrVersions.auto,
+          size: 300,
+        );
+        break;
+    }
+
     return Column(
       children: [
-        Text(
-          L10n.of(context)!.whatsAppQrExplainOne,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          L10n.of(context)!.whatsAppQrExplainTwo,
-          style: const TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          L10n.of(context)!.whatsAppQrExplainTree,
-          style: const TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          L10n.of(context)!.whatsAppQrExplainFour,
-          style: const TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          L10n.of(context)!.whatsAppQrExplainFive,
-          style: const TextStyle(fontSize: 16),
-        ),
+        ...qrExplains.take(5).map((text) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: Text(
+                text,
+                style: const TextStyle(fontSize: 16),
+              ),
+            )),
         const SizedBox(height: 8),
         ElevatedButton(
           onPressed: () {
             Clipboard.setData(ClipboardData(text: code));
-
-            final SnackBar snackBar = SnackBar(
-                content: Text(
-              L10n.of(context)!.codeCopy,
-            ));
+            final SnackBar snackBar =
+                SnackBar(content: Text(L10n.of(context)!.codeCopy));
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
           child: Padding(
@@ -123,6 +152,8 @@ class WhatsAppQRExplanation extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                decoration: null,
+                color: Colors.blue,
               ),
             ),
           ),
@@ -132,47 +163,34 @@ class WhatsAppQRExplanation extends StatelessWidget {
           color: Colors.grey,
           height: 20,
         ),
-        Text(
-          L10n.of(context)!.whatsAppQrExplainSix,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(L10n.of(context)!.whatsAppQrExplainSeven,
-                style: const TextStyle(
-                  fontSize: 16,
-                )),
-            Text(
-              L10n.of(context)!.whatsAppQrExplainEight,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ...qrExplains.skip(5).map(
+              (text) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Text(text,
+                    style: const TextStyle(fontSize: 16),
+                    textAlign: TextAlign.center),
+              ),
             ),
-          ],
-        ),
         const SizedBox(height: 8),
-        Text(
-          L10n.of(context)!.whatsAppQrExplainTen,
-          style: const TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 8),
-        QrImageView(
-          data: qrCode,
-          version: QrVersions.auto,
-          size: 300,
-        ),
+        qrWidget,
       ],
     );
   }
 }
 
 // FutureBuilder part listening to responses in real time
-class WhatsAppQRFutureBuilder extends StatelessWidget {
+class QRFutureBuilder extends StatelessWidget {
   final Future<String> responseFuture;
+  final SocialNetwork network;
+  final bool isDialogShown;
+  final VoidCallback setDialogShown;
 
-  const WhatsAppQRFutureBuilder({
+  const QRFutureBuilder({
     super.key,
     required this.responseFuture,
+    required this.network,
+    required this.isDialogShown,
+    required this.setDialogShown,
   });
 
   @override
@@ -185,31 +203,25 @@ class WhatsAppQRFutureBuilder extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('${L10n.of(context)!.err_} ${snapshot.error}');
         } else {
-          return buildAlertDialog(context, snapshot.data as String);
+          if (!isDialogShown) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (snapshot.data == "success") {
+                showSuccessDialog(context, network);
+              } else if (snapshot.data == "loginTimedOut") {
+                showTimeoutDialog(context, network);
+              }
+            });
+          }
+          return Container();
         }
       },
     );
   }
 
-// AlertDialog displayed when an error or success occurs, listening directly to the response
-  Widget buildAlertDialog(BuildContext context, String result) {
-    if (result == "success") {
-      Future.microtask(() {
-        // Call function to display success dialog box
-        showSuccessDialog(context);
-      });
-    } else if (result == "loginTimedOut") {
-      Future.microtask(() {
-        // Call the function to display the "Elapsed time" dialog box
-        showTimeoutDialog(context);
-      });
-    }
-
-    return Container();
-  }
-
-// showDialog of a success message when connecting and updating socialNetwork
-  Future<void> showSuccessDialog(BuildContext context) async {
+  // showDialog of a success message when connecting and updating socialNetwork
+  Future<void> showSuccessDialog(
+      BuildContext context, SocialNetwork network) async {
+    setDialogShown();
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -225,12 +237,11 @@ class WhatsAppQRFutureBuilder extends StatelessWidget {
               onPressed: () {
                 // SocialNetwork network update
                 SocialNetworkManager.socialNetworks
-                    .firstWhere((element) => element.name == "WhatsApp")
+                    .firstWhere((element) => element.name == network.name)
                     .connected = true;
 
                 Navigator.of(context).pop();
-                // Goes back twice (closes current and previous pages)
-                Navigator.pop(context, true);
+                Navigator.of(context).pop();
               },
               child: Text(
                 L10n.of(context)!.ok,
@@ -242,8 +253,10 @@ class WhatsAppQRFutureBuilder extends StatelessWidget {
     );
   }
 
-// showDialog of elapsed time error message
-  Future<void> showTimeoutDialog(BuildContext context) async {
+  // showDialog of elapsed time error message
+  Future<void> showTimeoutDialog(
+      BuildContext context, SocialNetwork network) async {
+    setDialogShown();
     await showDialog(
       context: context,
       builder: (BuildContext context) {
