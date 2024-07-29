@@ -120,12 +120,14 @@ Future<void> connectToWhatsApp(
               ),
               TextButton(
                 onPressed: () async {
-                  await whatsAppLoginFunction(
-                    context: context,
-                    formKey: formKey,
-                    phoneNumber: controller.text,
-                    botConnection: botConnection,
-                  );
+                  if (controller.text.isNotEmpty) {
+                    await whatsAppLoginFunction(
+                      context: context,
+                      formKey: formKey,
+                      phoneNumber: controller.text,
+                      botConnection: botConnection,
+                    );
+                  }
                 },
                 child: Text(
                   L10n.of(context)!.login,
