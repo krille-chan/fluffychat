@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
@@ -17,7 +18,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 /// handles the processing of analytics for
 /// 1) messages sent by the user and
 /// 2) constructs used by the user, both in sending messages and doing practice activities
-class MyAnalyticsController {
+class MyAnalyticsController extends BaseController {
   late PangeaController _pangeaController;
   Timer? _updateTimer;
 
@@ -33,27 +34,25 @@ class MyAnalyticsController {
 
   MyAnalyticsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
-  }
+    _refreshAnalyticsIfOutdated();
 
-  /// adds the listener that handles when to run automatic updates
-  /// to analytics - either after a certain number of messages sent
-  /// received or after a certain amount of time [_timeSinceUpdate] without an update
-  Future<void> initialize() async {
-    final lastUpdated = await _refreshAnalyticsIfOutdated();
-
-    // listen for new messages and updateAnalytics timer
-    // we are doing this in an attempt to update analytics when activitiy is low
-    // both in messages sent by this client and other clients that you're connected with
-    // doesn't account for messages sent by other clients that you're not connected with
-    _client.onSync.stream
-        .where((SyncUpdate update) => update.rooms?.join != null)
-        .listen((update) {
-      updateAnalyticsTimer(update, lastUpdated);
+    // Listen to a stream that provides the eventIDs
+    // of new messages sent by the logged in user
+    stateStream
+        .where((data) => data is Map && data.containsKey("eventID"))
+        .listen((data) {
+      updateAnalyticsTimer(data['eventID']);
     });
   }
 
   /// If analytics haven't been updated in the last day, update them
   Future<DateTime?> _refreshAnalyticsIfOutdated() async {
+    /// wait for the initial sync to finish, so the
+    /// timeline data from analytics rooms is accurate
+    if (_client.prevBatch == null) {
+      await _client.onSync.stream.first;
+    }
+
     DateTime? lastUpdated =
         await _pangeaController.analytics.myAnalyticsLastUpdated();
     final DateTime yesterday = DateTime.now().subtract(_timeSinceUpdate);
@@ -68,44 +67,18 @@ class MyAnalyticsController {
 
   Client get _client => _pangeaController.matrixState.client;
 
-  /// Given an update from sync stream, check if the update contains
-  /// messages for which analytics will be saved. If so, reset the timer
+  /// Given an newly sent message, reset the timer
   /// and add the event ID to the cache of un-added event IDs
-  void updateAnalyticsTimer(SyncUpdate update, DateTime? lastUpdated) {
-    for (final entry in update.rooms!.join!.entries) {
-      final Room room = _client.getRoomById(entry.key)!;
+  void updateAnalyticsTimer(String newEventId) {
+    addMessageSinceUpdate(newEventId);
 
-      // get the new events in this sync that are messages
-      final List<Event>? events = entry.value.timeline?.events
-          ?.map((event) => Event.fromMatrixEvent(event, room))
-          .where((event) => hasUserAnalyticsToCache(event, lastUpdated))
-          .toList();
-
-      // add their event IDs to the cache of un-added event IDs
-      if (events == null || events.isEmpty) continue;
-      for (final event in events) {
-        addMessageSinceUpdate(event.eventId);
-      }
-
-      // cancel the last timer that was set on message event and
-      // reset it to fire after _minutesBeforeUpdate minutes
-      _updateTimer?.cancel();
-      _updateTimer = Timer(Duration(minutes: _minutesBeforeUpdate), () {
-        debugPrint("timer fired, updating analytics");
-        updateAnalytics();
-      });
-    }
-  }
-
-  // checks if event from sync update is a message that should have analytics
-  bool hasUserAnalyticsToCache(Event event, DateTime? lastUpdated) {
-    return event.senderId == _client.userID &&
-        (lastUpdated == null || event.originServerTs.isAfter(lastUpdated)) &&
-        event.type == EventTypes.Message &&
-        event.messageType == MessageTypes.Text &&
-        !(event.eventId.contains("web") &&
-            !(event.eventId.contains("android")) &&
-            !(event.eventId.contains("iOS")));
+    // cancel the last timer that was set on message event and
+    // reset it to fire after _minutesBeforeUpdate minutes
+    _updateTimer?.cancel();
+    _updateTimer = Timer(Duration(minutes: _minutesBeforeUpdate), () {
+      debugPrint("timer fired, updating analytics");
+      updateAnalytics();
+    });
   }
 
   // adds an event ID to the cache of un-added event IDs
@@ -332,7 +305,7 @@ class MyAnalyticsController {
     //           (allRecentMessages.isNotEmpty || recentActivityRecords.isNotEmpty),
     //     );
 
-    if (recentConstructUses.isNotEmpty) {
+    if (recentConstructUses.isNotEmpty || l2AnalyticsLastUpdated == null) {
       await analyticsRoom.sendConstructsEvent(
         recentConstructUses,
       );

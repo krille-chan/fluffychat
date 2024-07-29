@@ -195,6 +195,18 @@ extension AnalyticsRoomExtension on Room {
   Future<void> sendConstructsEvent(
     List<OneConstructUse> uses,
   ) async {
+    // It's possible that the user has no info to send yet, but to prevent trying
+    // to load the data over and over again, we'll sometimes send an empty event to
+    // indicate that we have checked and there was no data.
+    if (uses.isEmpty) {
+      final constructsModel = ConstructAnalyticsModel(uses: []);
+      await sendEvent(
+        constructsModel.toJson(),
+        type: PangeaEventTypes.construct,
+      );
+      return;
+    }
+
     // these events can get big, so we chunk them to prevent hitting the max event size.
     // go through each of the uses being sent and add them to the current chunk until
     // the size (in bytes) of the current chunk is greater than the max event size, then
