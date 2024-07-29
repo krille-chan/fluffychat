@@ -558,7 +558,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Standardberechtigungsstufe",
+  "defaultPermissionLevel": "Standardberechtigungsstufe für neue Benutzer",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2737,5 +2737,48 @@
       "chats": {},
       "participants": {}
     }
-  }
+  },
+  "changeGeneralChatSettings": "Allgemeine Chat-Einstellungen ändern",
+  "@changeGeneralChatSettings": {},
+  "userLevel": "{level} - Benutzer",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheChatPermissions": "Ändere die Chat-Berechtigungen",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "Wechsele die Sichtbarkeit der Chat-Historie",
+  "@changeTheVisibilityOfChatHistory": {},
+  "chatPermissionsDescription": "Definieren Sie, welche Befugnisstufe für bestimmte Aktionen in diesem Chat erforderlich ist. Die Befugnisstufen 0, 50 und 100 stehen üblicherweise für Benutzer, Moderatoren und Admins, aber jede Abstufung ist möglich.",
+  "@chatPermissionsDescription": {},
+  "invitedBy": "📩 Eingeladen von {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "adminLevel": "{level} - Administrator",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "inviteOtherUsers": "Lade andere Benutzer in diesen Chat ein",
+  "@inviteOtherUsers": {},
+  "changeTheCanonicalRoomAlias": "Ändern der Hauptadresse für den öffentlichen Chat",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "Senden Sie eine @room-Benachrichtigung",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Ändern Sie die Beschreibung des Chats",
+  "@changeTheDescriptionOfTheGroup": {}
 }
