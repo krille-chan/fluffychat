@@ -43,6 +43,7 @@ class IgcController {
         userL2: choreographer.l2LangCode!,
         enableIGC: choreographer.igcEnabled && !onlyTokensAndLanguageDetection,
         enableIT: choreographer.itEnabled && !onlyTokensAndLanguageDetection,
+        prevMessages: choreographer.prevMessages(),
       );
 
       final IGCTextData igcTextDataResponse = await IgcRepo.getIGC(

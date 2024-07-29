@@ -9,16 +9,19 @@ import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/enum/assistance_state_enum.dart';
 import 'package:fluffychat/pangea/enum/edit_type.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/it_step.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
+import 'package:fluffychat/pangea/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/widgets/igc/paywall_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../widgets/matrix.dart';
@@ -64,6 +67,36 @@ class Choreographer {
         .listen((_) => _onChangeListener);
 
     clear();
+  }
+
+  List<PreviousMessage> prevMessages() {
+    const int howFarBack = 5;
+    final List<Event> events = chatController.timeline?.events ?? [];
+    final List<PreviousMessage> messages = [];
+    for (final Event event in events) {
+      if (event.messageType == MessageTypes.Text ||
+          event.messageType == MessageTypes.Audio) {
+        final Map<String, Object?>? content =
+            (event.messageType == MessageTypes.Text)
+                ? event.content
+                : (event as PangeaMessageEvent)
+                    .getSpeechToTextLocalOnly(l1LangCode, l2LangCode)
+                    ?.toJson();
+        if (content != null) {
+          messages.add(
+            PreviousMessage(
+              event.content,
+              event.senderId,
+              event.originServerTs,
+            ),
+          );
+          if (messages.length >= howFarBack) {
+            return messages;
+          }
+        }
+      }
+    }
+    return messages;
   }
 
   void send(BuildContext context) {

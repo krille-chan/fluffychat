@@ -94,12 +94,27 @@ class IgcRepo {
   }
 }
 
+/// Previous text/audio messages sent in chat
+/// Contain message content, sender, and timestamp
+class PreviousMessage {
+  Map<String, Object?> content;
+  String sender;
+  DateTime timestamp;
+
+  PreviousMessage(
+    this.content,
+    this.sender,
+    this.timestamp,
+  );
+}
+
 class IGCRequestBody {
   String fullText;
   String userL1;
   String userL2;
   bool enableIT;
   bool enableIGC;
+  List<PreviousMessage> prevMessages;
 
   IGCRequestBody({
     required this.fullText,
@@ -107,6 +122,7 @@ class IGCRequestBody {
     required this.userL2,
     required this.enableIGC,
     required this.enableIT,
+    required this.prevMessages,
   });
 
   Map<String, dynamic> toJson() => {

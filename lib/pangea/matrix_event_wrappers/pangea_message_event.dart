@@ -269,6 +269,21 @@ class PangeaMessageEvent {
             null;
       }).toSet();
 
+  SpeechToTextModel? getSpeechToTextLocalOnly(
+    String? l1Code,
+    String? l2Code,
+  ) {
+    if (l1Code == null || l2Code == null) {
+      return null;
+    }
+    return representations
+        .firstWhereOrNull(
+          (element) => element.content.speechToText != null,
+        )
+        ?.content
+        .speechToText;
+  }
+
   Future<SpeechToTextModel?> getSpeechToText(
     String l1Code,
     String l2Code,
