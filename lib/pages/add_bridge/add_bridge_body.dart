@@ -61,10 +61,15 @@ class AddBridgeBody extends StatelessWidget {
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemCount: SocialNetworkManager.socialNetworks.length,
                     itemBuilder: (BuildContext context, int index) {
+                      final network =
+                          SocialNetworkManager.socialNetworks[index];
+                      if (!network.available) {
+                        return const SizedBox();
+                      }
                       return ListTile(
-                        leading: controller.socialNetworks[index].logo,
+                        leading: network.logo,
                         title: Text(
-                          controller.socialNetworks[index].name,
+                          network.name,
                         ),
                         // Different build of subtle depending on the social network, for now only Instagram
                         subtitle: buildSubtitle(

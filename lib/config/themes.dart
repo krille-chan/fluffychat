@@ -29,6 +29,7 @@ abstract class FluffyThemes {
   static const Color linkedinColor = Color(0xFF0077B5);
   static const Color dicordColor = Color(0xFF7289DA);
   static const Color signalColor = Color(0xFF3A76F0);
+  static const Color tawkieColor = Color(0xFFA13EAE);
 
   static var fallbackTextTheme = const TextTheme(
     bodyLarge: fallbackTextStyle,

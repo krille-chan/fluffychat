@@ -8,9 +8,9 @@ import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/utils/date_time_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/room_status_extension.dart';
+import 'package:tawkie/utils/social_media_utils.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/hover_builder.dart';
-import 'package:tawkie/widgets/matrix.dart';
 
 enum ArchivedRoomAction { delete, rejoin }
 
@@ -35,29 +35,27 @@ class ChatListItem extends StatelessWidget {
   });
 
   Future<void> archiveAction(BuildContext context) async {
-    {
-      if ([Membership.leave, Membership.ban].contains(room.membership)) {
-        await showFutureLoadingDialog(
-          context: context,
-          future: () => room.forget(),
-        );
-        return;
-      }
-      final confirmed = await showOkCancelAlertDialog(
-        useRootNavigator: false,
-        context: context,
-        title: L10n.of(context)!.areYouSure,
-        okLabel: L10n.of(context)!.yes,
-        cancelLabel: L10n.of(context)!.no,
-        message: L10n.of(context)!.archiveRoomDescription,
-      );
-      if (confirmed == OkCancelResult.cancel) return;
+    if ([Membership.leave, Membership.ban].contains(room.membership)) {
       await showFutureLoadingDialog(
         context: context,
-        future: () => room.leave(),
+        future: () => room.forget(),
       );
       return;
     }
+    final confirmed = await showOkCancelAlertDialog(
+      useRootNavigator: false,
+      context: context,
+      title: L10n.of(context)!.areYouSure,
+      okLabel: L10n.of(context)!.yes,
+      cancelLabel: L10n.of(context)!.no,
+      message: L10n.of(context)!.archiveRoomDescription,
+    );
+    if (confirmed == OkCancelResult.cancel) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => room.leave(),
+    );
+    return;
   }
 
   @override
@@ -70,10 +68,8 @@ class ChatListItem extends StatelessWidget {
     final theme = Theme.of(context);
     final directChatMatrixId = room.directChatMatrixID;
     final isDirectChat = directChatMatrixId != null;
-    final unreadBubbleSize = unread || room.hasNewMessages
-        ? room.notificationCount > 0
-            ? 20.0
-            : 14.0
+    final unreadBubbleSize = (unread || room.hasNewMessages)
+        ? (room.notificationCount > 0 ? 20.0 : 14.0)
         : 0.0;
     final hasNotifications = room.notificationCount > 0;
     final backgroundColor = selected
@@ -93,132 +89,6 @@ class ChatListItem extends StatelessWidget {
     final needLastEventSender = lastEvent == null
         ? false
         : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
-
-
-    bool containsFacebook(List<String> participantsIds) {
-      return participantsIds.any((id) => id.contains('@messenger2'));
-    }
-
-    bool containsInstagram(List<String> participantsIds) {
-      return participantsIds.any((id) => id.contains('@instagram2_'));
-    }
-
-    bool containsWhatsApp(List<String> participantsIds) {
-      return participantsIds.any((id) => id.contains('@whatsapp'));
-    }
-
-    bool containsLinkedin(List<String> participantsIds) {
-      return participantsIds.any((id) => id.contains('@linkedin'));
-    }
-
-    bool containsDiscord(List<String> participantsIds) {
-      return participantsIds.any((id) => id.contains('@discord'));
-    }
-
-    bool containsSignal(List<String> participantsIds) {
-      return participantsIds.any((id) => id.contains('@signal'));
-    }
-
-    void removeFacebookTag() {
-      if (displayname.contains('(FB)')) {
-        displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
-      }
-    }
-
-    void removeInstagramTag() {
-      if (displayname.contains('(IG)')) {
-        displayname = displayname.replaceAll('(IG)', ''); // Delete (Instagram)
-      }
-    }
-
-    void removeWhatsAppTag() {
-      if (displayname.contains('(WA)')) {
-        displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
-      }
-    }
-
-    void removeLinkedinTag() {
-      if (displayname.contains('(LinkedIn)')) {
-        displayname =
-            displayname.replaceAll('(LinkedIn)', ''); // Delete (Linkedin)
-      }
-    }
-
-    // It's the only bridge that doesn't display the social network source in the name.
-    // But I'm putting this function here just in case, for the future.
-    void removeDiscordTag() {
-      if (displayname.contains('(Discord)')) {
-        displayname =
-            displayname.replaceAll('(Discord)', ''); // Delete (Discord)
-      }
-    }
-
-    void removeSignalTag() {
-      if (displayname.contains('(Signal)')) {
-        displayname =
-            displayname.replaceAll('(Signal)', ''); // Delete (Linkedin)
-      }
-    }
-
-    // Condition for verifying the presence of social networks in participants ID
-    Future<List<dynamic>> loadRoomInfo() async {
-      List<User> participants = room.getParticipants();
-      Color? networkColor;
-      Image? networkImage;
-      final participantsIds = participants.map((member) => member.id).toList();
-
-      if (containsFacebook(participantsIds)) {
-        networkColor = FluffyThemes.facebookColor;
-        networkImage = Image.asset(
-          'assets/facebook-messenger.png',
-          color: networkColor,
-          filterQuality: FilterQuality.high,
-        );
-        removeFacebookTag();
-      } else if (containsInstagram(participantsIds)) {
-        networkColor = FluffyThemes.instagramColor;
-        networkImage = Image.asset(
-          'assets/instagram.png',
-          color: networkColor,
-          filterQuality: FilterQuality.high,
-        );
-        removeInstagramTag();
-      } else if (containsWhatsApp(participantsIds)) {
-        networkColor = FluffyThemes.whatsAppColor;
-        networkImage = Image.asset(
-          'assets/whatsapp.png',
-          color: networkColor,
-          filterQuality: FilterQuality.high,
-        );
-        removeWhatsAppTag();
-      } else if (containsLinkedin(participantsIds)) {
-        networkColor = FluffyThemes.linkedinColor;
-        networkImage = Image.asset(
-          'assets/linkedin.png',
-          color: networkColor,
-          filterQuality: FilterQuality.high,
-        );
-        removeLinkedinTag();
-      } else if (containsDiscord(participantsIds)) {
-        networkColor = FluffyThemes.dicordColor;
-        networkImage = Image.asset(
-          'assets/discord.png',
-          color: networkColor,
-          filterQuality: FilterQuality.high,
-        );
-        removeDiscordTag();
-      } else if (containsSignal(participantsIds)) {
-        networkColor = FluffyThemes.signalColor;
-        networkImage = Image.asset(
-          'assets/signal.png',
-          color: networkColor,
-          filterQuality: FilterQuality.high,
-        );
-        removeSignalTag();
-      }
-
-      return [networkColor, networkImage];
-    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -274,8 +144,8 @@ class ChatListItem extends StatelessWidget {
                   ),
                 ],
               ),
-              title: FutureBuilder<List<dynamic>>(
-                future: loadRoomInfo(),
+              title: FutureBuilder<RoomDisplayInfo>(
+                future: loadRoomInfo(context, room),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return Container(
@@ -287,8 +157,10 @@ class ChatListItem extends StatelessWidget {
                       ),
                     );
                   } else {
-                    final networkColor = snapshot.data![0];
-                    final networkImage = snapshot.data![1];
+                    final roomInfo = snapshot.data!;
+                    final networkColor = roomInfo.networkColor;
+                    final networkImage = roomInfo.networkImage;
+                    final displayname = roomInfo.displayname;
                     return Row(
                       children: <Widget>[
                         if (networkImage != null)
