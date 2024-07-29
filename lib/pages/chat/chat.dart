@@ -486,12 +486,6 @@ class ChatController extends State<ChatPageWithRoom>
 
     final timeline = this.timeline;
     if (timeline == null || timeline.events.isEmpty) {
-      // #Pangea
-      ErrorHandler.logError(
-        e: PangeaWarningError("Timeline is null or empty"),
-        s: StackTrace.current,
-      );
-      // Pangea#
       return;
     }
 
