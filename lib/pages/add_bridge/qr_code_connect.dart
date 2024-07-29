@@ -90,27 +90,21 @@ class QRExplanation extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget qrWidget;
 
-    String qrExplainOne = "";
-    String qrExplainTwo = "";
-    String qrExplainThree = "";
-    String qrExplainFour = "";
-    String qrExplainFive = "";
-    String qrExplainSix = "";
-    String qrExplainSeven = "";
-    String qrExplainEight = "";
-    String qrExplainNine = "";
+    List<String> qrExplains = [];
 
     switch (network.name) {
       case "WhatsApp":
-        qrExplainOne = L10n.of(context)!.whatsAppQrExplainOne;
-        qrExplainTwo = L10n.of(context)!.whatsAppQrExplainTwo;
-        qrExplainThree = L10n.of(context)!.whatsAppQrExplainTree;
-        qrExplainFour = L10n.of(context)!.whatsAppQrExplainFour;
-        qrExplainFive = L10n.of(context)!.whatsAppQrExplainFive;
-        qrExplainSix = L10n.of(context)!.whatsAppQrExplainSix;
-        qrExplainSeven = L10n.of(context)!.whatsAppQrExplainSeven;
-        qrExplainEight = L10n.of(context)!.whatsAppQrExplainEight;
-        qrExplainNine = L10n.of(context)!.whatsAppQrExplainNine;
+        qrExplains = [
+          L10n.of(context)!.whatsAppQrExplainOne,
+          L10n.of(context)!.whatsAppQrExplainTwo,
+          L10n.of(context)!.whatsAppQrExplainTree,
+          L10n.of(context)!.whatsAppQrExplainFour,
+          L10n.of(context)!.whatsAppQrExplainFive,
+          L10n.of(context)!.whatsAppQrExplainSix,
+          L10n.of(context)!.whatsAppQrExplainSeven,
+          L10n.of(context)!.whatsAppQrExplainEight,
+          L10n.of(context)!.whatsAppQrExplainNine,
+        ];
 
         qrWidget = QrImageView(
           data: qrCode,
@@ -129,30 +123,13 @@ class QRExplanation extends StatelessWidget {
 
     return Column(
       children: [
-        Text(
-          qrExplainOne,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          qrExplainTwo,
-          style: const TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          qrExplainThree,
-          style: const TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          qrExplainFour,
-          style: const TextStyle(fontSize: 16),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          qrExplainFive,
-          style: const TextStyle(fontSize: 16),
-        ),
+        ...qrExplains.take(5).map((text) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: Text(
+                text,
+                style: const TextStyle(fontSize: 16),
+              ),
+            )),
         const SizedBox(height: 8),
         ElevatedButton(
           onPressed: () {
@@ -165,7 +142,7 @@ class QRExplanation extends StatelessWidget {
             padding: const EdgeInsets.all(2.0),
             child: Text(
               code,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 decoration: null,
@@ -179,29 +156,14 @@ class QRExplanation extends StatelessWidget {
           color: Colors.grey,
           height: 20,
         ),
-        Text(
-          qrExplainSix,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              qrExplainSeven,
-              style: const TextStyle(fontSize: 16),
+        ...qrExplains.skip(5).map(
+              (text) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Text(text,
+                    style: const TextStyle(fontSize: 16),
+                    textAlign: TextAlign.center),
+              ),
             ),
-            Text(
-              qrExplainEight,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Text(
-          qrExplainNine,
-          style: const TextStyle(fontSize: 16),
-        ),
         const SizedBox(height: 8),
         qrWidget,
       ],
