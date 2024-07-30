@@ -75,7 +75,7 @@ class SpanDetailsRepoReqAndRes {
         userL2: json['user_l2'] as String,
         enableIT: json['enable_it'] as bool,
         enableIGC: json['enable_igc'] as bool,
-        prevMessages: json['prev_messages'],
+        prevMessages: json['prev_messages'] as List<PreviousMessage>,
         span: SpanData.fromJson(json['span']),
       );
 
@@ -90,6 +90,7 @@ class SpanDetailsRepoReqAndRes {
     if (other.userL2 != userL2) return false;
     if (other.enableIT != enableIT) return false;
     if (other.enableIGC != enableIGC) return false;
+    if (!other.prevMessages.equals(prevMessages)) return false;
     if (const ListEquality().equals(
           other.span.choices?.sorted((a, b) => b.value.compareTo(a.value)),
           span.choices?.sorted((a, b) => b.value.compareTo(a.value)),
@@ -109,6 +110,7 @@ class SpanDetailsRepoReqAndRes {
       userL2.hashCode,
       enableIT.hashCode,
       enableIGC.hashCode,
+      prevMessages.hashCode,
       if (span.choices != null)
         Object.hashAll(
           span.choices!

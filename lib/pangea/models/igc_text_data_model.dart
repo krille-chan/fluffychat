@@ -5,6 +5,7 @@ import 'package:fluffychat/pangea/controllers/language_detection_controller.dart
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/span_card_model.dart';
+import 'package:fluffychat/pangea/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class IGCTextData {
   bool enableIT;
   bool enableIGC;
   bool loading = false;
-  Map<String, Object?> prevMessages;
+  List<PreviousMessage> prevMessages;
 
   IGCTextData({
     required this.detections,
