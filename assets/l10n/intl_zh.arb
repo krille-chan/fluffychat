@@ -2772,5 +2772,13 @@
   "changeTheDescriptionOfTheGroup": "更改聊天描述",
   "@changeTheDescriptionOfTheGroup": {},
   "changeGeneralChatSettings": "更改常规聊天设置",
-  "@changeGeneralChatSettings": {}
+  "@changeGeneralChatSettings": {},
+  "invitedBy": "📩 邀请人 {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "chatPermissionsDescription": "定义此聊天中哪个权限等级对特定操作是必需的。权限等级 0、50 和 100 通常代表用户、主持人和管理员，但你可以自定义任何等级。",
+  "@chatPermissionsDescription": {}
 }
