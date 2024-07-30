@@ -100,6 +100,7 @@ extension AnalyticsClientExtension on Client {
   /// Handles case when students cannot add analytics room to space(s)
   /// so teacher is still able to get analytics data for this student
   void _inviteAllTeachersToAllAnalyticsRooms() {
+    if (userID == null || userID == BotName.byEnvironment) return;
     for (final Room room in allMyAnalyticsRooms) {
       room.inviteTeachersToAnalyticsRoom();
     }
