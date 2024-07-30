@@ -933,8 +933,17 @@ class ChatListController extends State<ChatList>
     }
 
     // #Pangea
+    _lessImportantSyncs(client);
+    // Pangea#
+    if (!mounted) return;
+    setState(() {
+      waitForFirstSync = true;
+    });
+  }
+
+  // #Pangea
+  Future<void> _lessImportantSyncs(Client client) async {
     if (mounted) {
-      // TODO try not to await so much
       GoogleAnalytics.analyticsUserUpdate(client.userID);
       await pangeaController.subscriptionController.initialize();
       await pangeaController.myAnalytics.initialize();
@@ -946,14 +955,9 @@ class ChatListController extends State<ChatList>
       ErrorHandler.logError(
         m: "didn't run afterSyncAndFirstLoginInitialization because not mounted",
       );
-      // debugger(when: kDebugMode);
     }
-    // Pangea#
-    if (!mounted) return;
-    setState(() {
-      waitForFirstSync = true;
-    });
   }
+  // Pangea#
 
   void cancelAction() {
     if (selectMode == SelectMode.share) {
