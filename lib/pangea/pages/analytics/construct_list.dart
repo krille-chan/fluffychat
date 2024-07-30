@@ -110,11 +110,7 @@ class ConstructListViewState extends State<ConstructListView> {
     widget.pangeaController.analytics
         .getConstructs(
           constructType: constructType,
-          removeIT: true,
-          defaultSelected: widget.defaultSelected,
-          selected: widget.selected,
           forceUpdate: true,
-          timeSpan: widget.timeSpan,
         )
         .whenComplete(() => setState(() => fetchingConstructs = false))
         .then((value) => setState(() => _constructs = value));
@@ -126,11 +122,7 @@ class ConstructListViewState extends State<ConstructListView> {
         widget.pangeaController.analytics
             .getConstructs(
               constructType: constructType,
-              removeIT: true,
-              defaultSelected: widget.defaultSelected,
-              selected: widget.selected,
               forceUpdate: true,
-              timeSpan: widget.timeSpan,
             )
             .then(
               (value) => setState(() {
@@ -163,11 +155,11 @@ class ConstructListViewState extends State<ConstructListView> {
   ) async {
     final Client client = Matrix.of(context).client;
     PangeaMessageEvent msgEvent;
-    if (_msgEventCache.containsKey(use.msgId!)) {
-      return _msgEventCache[use.msgId!]!;
+    if (_msgEventCache.containsKey(use.msgId)) {
+      return _msgEventCache[use.msgId]!;
     }
     final Room? msgRoom = use.getRoom(client);
-    if (msgRoom == null || use.msgId == null) {
+    if (msgRoom == null) {
       return null;
     }
 
@@ -189,7 +181,7 @@ class ConstructListViewState extends State<ConstructListView> {
       timeline: timeline,
       ownMessage: event.senderId == client.userID,
     );
-    _msgEventCache[use.msgId!] = msgEvent;
+    _msgEventCache[use.msgId] = msgEvent;
     return msgEvent;
   }
 

@@ -636,7 +636,15 @@ class ChatController extends State<ChatPageWithRoom>
         // analytics based on when / how many messages the logged in user send. This
         // stream sends the data for newly sent messages.
         if (msgEventId != null) {
-          pangeaController.myAnalytics.setState(data: {'eventID': msgEventId});
+          pangeaController.myAnalytics.setState(
+            data: {
+              'eventID': msgEventId,
+              'roomID': room.id,
+              'originalSent': originalSent,
+              'tokensSent': tokensSent,
+              'choreo': choreo,
+            },
+          );
         }
 
         if (previousEdit != null) {

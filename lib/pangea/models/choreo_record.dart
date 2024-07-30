@@ -118,7 +118,10 @@ class ChoreoRecord {
   String get finalMessage =>
       choreoSteps.isNotEmpty ? choreoSteps.last.text : "";
 
-  /// get construct uses of type grammar for the message
+  /// Get construct uses of type grammar for the message from this ChoreoRecord.
+  /// Takes either an event (typically when the Representation itself is
+  /// available) or construct use metadata (when the event is not available,
+  /// i.e. immediately after message send) to create the construct uses.
   List<OneConstructUse> grammarConstructUses({
     Event? event,
     ConstructUseMetaData? metadata,

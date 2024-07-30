@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
-import 'package:fluffychat/pangea/enum/time_span.dart';
-import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
+import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/progress_indicator.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -30,64 +32,78 @@ class LearningProgressIndicators extends StatefulWidget {
 class LearningProgressIndicatorsState
     extends State<LearningProgressIndicators> {
   final PangeaController _pangeaController = MatrixState.pangeaController;
-  int? wordsUsed;
-  int? errorTypes;
+
+  /// A stream subscription to listen for updates to
+  /// the analytics data, either locally or from events
+  StreamSubscription? _onAnalyticsUpdate;
+
+  /// Vocabulary constructs model
+  ConstructListModel? words;
+
+  /// Grammar constructs model
+  ConstructListModel? errors;
 
   @override
   void initState() {
     super.initState();
-    setData();
+    updateAnalyticsData();
+    // listen for changes to analytics data and update the UI
+    _onAnalyticsUpdate = _pangeaController
+        .myAnalytics.analyticsUpdateStream.stream
+        .listen((_) => updateAnalyticsData());
   }
 
-  AnalyticsSelected get defaultSelected => AnalyticsSelected(
-        _pangeaController.matrixState.client.userID!,
-        AnalyticsEntryType.student,
-        "",
+  @override
+  void dispose() {
+    _onAnalyticsUpdate?.cancel();
+    super.dispose();
+  }
+
+  /// Update the analytics data shown in the UI. This comes from a
+  /// combination of stored events and locally cached data.
+  Future<void> updateAnalyticsData() async {
+    final constructEvents = await _pangeaController.analytics.getConstructs();
+    final List<OneConstructUse> localUses = [];
+    for (final uses in _pangeaController.analytics.messagesSinceUpdate.values) {
+      localUses.addAll(uses);
+    }
+
+    if (constructEvents == null || constructEvents.isEmpty) {
+      words = ConstructListModel(
+        type: ConstructTypeEnum.vocab,
+        uses: localUses,
       );
-
-  Future<void> setData() async {
-    await getNumLemmasUsed();
-    setState(() {});
-  }
-
-  Future<void> getNumLemmasUsed() async {
-    final constructs = await _pangeaController.analytics.getConstructs(
-      defaultSelected: defaultSelected,
-      timeSpan: TimeSpan.forever,
-    );
-    if (constructs == null) {
-      errorTypes = 0;
-      wordsUsed = 0;
+      errors = ConstructListModel(
+        type: ConstructTypeEnum.grammar,
+        uses: localUses,
+      );
       return;
     }
 
-    final List<String> errorLemmas = [];
-    final List<String> vocabLemmas = [];
-    for (final event in constructs) {
-      for (final use in event.content.uses) {
-        if (use.lemma == null) continue;
-        switch (use.constructType) {
-          case ConstructTypeEnum.grammar:
-            errorLemmas.add(use.lemma!);
-            break;
-          case ConstructTypeEnum.vocab:
-            vocabLemmas.add(use.lemma!);
-            break;
-          default:
-            break;
-        }
-      }
-    }
-    errorTypes = errorLemmas.toSet().length;
-    wordsUsed = vocabLemmas.toSet().length;
+    final List<OneConstructUse> storedConstruct =
+        constructEvents.expand((e) => e.content.uses).toList();
+    final List<OneConstructUse> allConstructs = [
+      ...storedConstruct,
+      ...localUses,
+    ];
+
+    words = ConstructListModel(
+      type: ConstructTypeEnum.vocab,
+      uses: allConstructs,
+    );
+    errors = ConstructListModel(
+      type: ConstructTypeEnum.grammar,
+      uses: allConstructs,
+    );
+    setState(() {});
   }
 
   int? getProgressPoints(ProgressIndicatorEnum indicator) {
     switch (indicator) {
       case ProgressIndicatorEnum.wordsUsed:
-        return wordsUsed;
+        return words?.lemmas.length;
       case ProgressIndicatorEnum.errorTypes:
-        return errorTypes;
+        return errors?.lemmas.length;
       case ProgressIndicatorEnum.level:
         return level;
     }
@@ -95,8 +111,8 @@ class LearningProgressIndicatorsState
 
   int get xpPoints {
     final points = [
-      wordsUsed ?? 0,
-      errorTypes ?? 0,
+      words?.lemmas.length ?? 0,
+      errors?.lemmas.length ?? 0,
     ];
     return points.reduce((a, b) => a + b);
   }
@@ -161,14 +177,36 @@ class LearningProgressIndicatorsState
                     children: [
                       SizedBox(
                         width: FluffyThemes.columnWidth - (36 * 2) - 25,
-                        child: LinearProgressIndicator(
-                          value: (xpPoints % 100) / 100,
-                          color: Theme.of(context).colorScheme.primary,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.onPrimary,
-                          minHeight: 15,
-                          borderRadius:
-                              BorderRadius.circular(AppConfig.borderRadius),
+                        child: Expanded(
+                          child: Stack(
+                            alignment: Alignment.centerLeft,
+                            children: [
+                              Container(
+                                height: 15,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    AppConfig.borderRadius,
+                                  ),
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                ),
+                              ),
+                              AnimatedContainer(
+                                duration: FluffyThemes.animationDuration,
+                                curve: FluffyThemes.animationCurve,
+                                height: 15,
+                                width:
+                                    (FluffyThemes.columnWidth - (36 * 2) - 25) *
+                                        ((xpPoints % 100) / 100),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    AppConfig.borderRadius,
+                                  ),
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

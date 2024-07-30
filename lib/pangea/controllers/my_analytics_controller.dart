@@ -10,16 +10,19 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_e
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_record_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
+import 'package:fluffychat/pangea/models/choreo_record.dart';
+import 'package:fluffychat/pangea/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// handles the processing of analytics for
 /// 1) messages sent by the user and
 /// 2) constructs used by the user, both in sending messages and doing practice activities
 class MyAnalyticsController extends BaseController {
   late PangeaController _pangeaController;
+  final StreamController analyticsUpdateStream = StreamController.broadcast();
   Timer? _updateTimer;
 
   /// the max number of messages that will be cached before
@@ -38,10 +41,8 @@ class MyAnalyticsController extends BaseController {
 
     // Listen to a stream that provides the eventIDs
     // of new messages sent by the logged in user
-    stateStream
-        .where((data) => data is Map && data.containsKey("eventID"))
-        .listen((data) {
-      updateAnalyticsTimer(data['eventID']);
+    stateStream.where((data) => data is Map).listen((data) {
+      onMessageSent(data as Map<String, dynamic>);
     });
   }
 
@@ -67,11 +68,9 @@ class MyAnalyticsController extends BaseController {
 
   Client get _client => _pangeaController.matrixState.client;
 
-  /// Given an newly sent message, reset the timer
-  /// and add the event ID to the cache of un-added event IDs
-  void updateAnalyticsTimer(String newEventId) {
-    addMessageSinceUpdate(newEventId);
-
+  /// Given the data from a newly sent message, format and cache
+  /// the message's construct data locally and reset the update timer
+  void onMessageSent(Map<String, dynamic> data) {
     // cancel the last timer that was set on message event and
     // reset it to fire after _minutesBeforeUpdate minutes
     _updateTimer?.cancel();
@@ -79,97 +78,88 @@ class MyAnalyticsController extends BaseController {
       debugPrint("timer fired, updating analytics");
       updateAnalytics();
     });
-  }
 
-  // adds an event ID to the cache of un-added event IDs
-  // if the event IDs isn't already added
-  void addMessageSinceUpdate(String eventId) {
-    try {
-      final List<String> currentCache = messagesSinceUpdate;
-      if (!currentCache.contains(eventId)) {
-        currentCache.add(eventId);
-        _pangeaController.pStoreService.save(
-          PLocalKey.messagesSinceUpdate,
-          currentCache,
-        );
-      }
+    // extract the relevant data about this message
+    final String? eventID = data['eventID'];
+    final String? roomID = data['roomID'];
+    final PangeaRepresentation? originalSent = data['originalSent'];
+    final PangeaMessageTokens? tokensSent = data['tokensSent'];
+    final ChoreoRecord? choreo = data['choreo'];
 
-      // if the cached has reached if max-length, update analytics
-      if (messagesSinceUpdate.length > _maxMessagesCached) {
-        debugPrint("reached max messages, updating");
-        updateAnalytics();
-      }
-    } catch (exception, stackTrace) {
-      ErrorHandler.logError(
-        e: PangeaWarningError("Failed to add message since update: $exception"),
-        s: stackTrace,
-        m: 'Failed to add message since update for eventId: $eventId',
-      );
-      Sentry.captureException(
-        exception,
-        stackTrace: stackTrace,
-        withScope: (scope) {
-          scope.setExtra(
-            'extra_info',
-            'Failed during addMessageSinceUpdate with eventId: $eventId',
-          );
-          scope.setTag('where', 'addMessageSinceUpdate');
-        },
-      );
-    }
-  }
+    if (roomID == null || eventID == null) return;
 
-  // called before updating analytics
-  void clearMessagesSinceUpdate() {
-    _pangeaController.pStoreService.save(
-      PLocalKey.messagesSinceUpdate,
-      [],
+    // convert that data into construct uses and add it to the cache
+    final metadata = ConstructUseMetaData(
+      roomId: roomID,
+      eventId: eventID,
+      timeStamp: DateTime.now(),
+    );
+
+    final grammarConstructs = choreo?.grammarConstructUses(metadata: metadata);
+    final itConstructs = choreo?.itStepsToConstructUses(metadata: metadata);
+    final vocabUses = tokensSent != null
+        ? originalSent?.vocabUses(
+            choreo: choreo,
+            tokens: tokensSent.tokens,
+            metadata: metadata,
+          )
+        : null;
+    final List<OneConstructUse> constructs = [
+      ...(grammarConstructs ?? []),
+      ...(itConstructs ?? []),
+      ...(vocabUses ?? []),
+    ];
+    addMessageSinceUpdate(
+      eventID,
+      constructs,
     );
   }
 
-  // a local cache of eventIds for messages sent since the last update
-  // it's possible for this cache to be invalid or deleted
-  // It's a proxy measure for messages sent since last update
-  List<String> get messagesSinceUpdate {
+  /// Add a list of construct uses for a new message to the local
+  /// cache of recently sent messages
+  void addMessageSinceUpdate(
+    String eventID,
+    List<OneConstructUse> constructs,
+  ) {
     try {
-      Logs().d('Reading messages since update from local storage');
-      final dynamic locallySaved = _pangeaController.pStoreService.read(
-        PLocalKey.messagesSinceUpdate,
-      );
-      if (locallySaved == null) {
-        Logs().d('No locally saved messages found, initializing empty list.');
-        _pangeaController.pStoreService.save(
-          PLocalKey.messagesSinceUpdate,
-          [],
-        );
-        return [];
+      final currentCache = _pangeaController.analytics.messagesSinceUpdate;
+      if (!currentCache.containsKey(eventID)) {
+        currentCache[eventID] = constructs;
+        setMessagesSinceUpdate(currentCache);
       }
-      return locallySaved.cast<String>();
-    } catch (exception, stackTrace) {
+
+      // if the cached has reached if max-length, update analytics
+      if (_pangeaController.analytics.messagesSinceUpdate.length >
+          _maxMessagesCached) {
+        debugPrint("reached max messages, updating");
+        updateAnalytics();
+      }
+    } catch (e, s) {
       ErrorHandler.logError(
-        e: PangeaWarningError(
-          "Failed to get messages since update: $exception",
-        ),
-        s: stackTrace,
-        m: 'Failed to retrieve messages since update',
+        e: PangeaWarningError("Failed to add message since update: $e"),
+        s: s,
+        m: 'Failed to add message since update for eventId: $eventID',
       );
-      Sentry.captureException(
-        exception,
-        stackTrace: stackTrace,
-        withScope: (scope) {
-          scope.setExtra(
-            'extra_info',
-            'Error during messagesSinceUpdate getter',
-          );
-          scope.setTag('where', 'messagesSinceUpdate');
-        },
-      );
-      _pangeaController.pStoreService.save(
-        PLocalKey.messagesSinceUpdate,
-        [],
-      );
-      return [];
     }
+  }
+
+  /// Clears the local cache of recently sent constructs. Called before updating analytics
+  void clearMessagesSinceUpdate() {
+    setMessagesSinceUpdate({});
+  }
+
+  /// Save the local cache of recently sent constructs to the local storage
+  void setMessagesSinceUpdate(Map<String, List<OneConstructUse>> cache) {
+    final formattedCache = {};
+    for (final entry in cache.entries) {
+      final constructJsons = entry.value.map((e) => e.toJson()).toList();
+      formattedCache[entry.key] = constructJsons;
+    }
+    _pangeaController.pStoreService.save(
+      PLocalKey.messagesSinceUpdate,
+      formattedCache,
+    );
+    analyticsUpdateStream.add(null);
   }
 
   Completer<void>? _updateCompleter;
@@ -182,6 +172,7 @@ class MyAnalyticsController extends BaseController {
     try {
       await _updateAnalytics();
       clearMessagesSinceUpdate();
+      analyticsUpdateStream.add(null);
     } catch (err, s) {
       ErrorHandler.logError(
         e: err,
