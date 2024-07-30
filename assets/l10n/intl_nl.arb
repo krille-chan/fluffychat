@@ -562,7 +562,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Standaardmachtigingsniveau",
+  "defaultPermissionLevel": "Standaard machtigingsniveau voor nieuwe personen",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2404,7 +2404,7 @@
   "@makeAdminDescription": {},
   "archiveRoomDescription": "De chat zal naar het archief worden verplaatst. Andere personen zullen in staat zijn te zien dat je de chat hebt verlaten.",
   "@archiveRoomDescription": {},
-  "hasKnocked": "{user} heeft geklopt",
+  "hasKnocked": "🚪 {user} heeft geklopt",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2418,7 +2418,7 @@
   "@pleaseEnterANumber": {},
   "kickUserDescription": "De persoon is verwijderd uit de chat, maar is niet verbannen. In publieke chats kan de persoon op elk moment opnieuw deelnemen.",
   "@kickUserDescription": {},
-  "alwaysUse24HourFormat": "true",
+  "alwaysUse24HourFormat": "fout",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   }
