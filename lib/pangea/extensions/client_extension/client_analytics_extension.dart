@@ -3,7 +3,7 @@ part of "client_extension.dart";
 extension AnalyticsClientExtension on Client {
   /// Get the logged in user's analytics room matching
   /// a given langCode. If not present, create it.
-  Future<Room> _getMyAnalyticsRoom(String langCode) async {
+  Future<Room?> _getMyAnalyticsRoom(String langCode) async {
     final Room? analyticsRoom = _analyticsRoomLocal(langCode);
     if (analyticsRoom != null) return analyticsRoom;
     return _makeAnalyticsRoom(langCode);
@@ -35,7 +35,11 @@ extension AnalyticsClientExtension on Client {
   ///
   /// If the room does not appear immediately after creation, this method waits for it to appear in sync.
   /// Returns the created [Room] object.
-  Future<Room> _makeAnalyticsRoom(String langCode) async {
+  Future<Room?> _makeAnalyticsRoom(String langCode) async {
+    if (userID == null || userID == BotName.byEnvironment) {
+      return null;
+    }
+
     final String roomID = await createRoom(
       creationContent: {
         'type': PangeaRoomTypes.analytics,
