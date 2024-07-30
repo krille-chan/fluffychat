@@ -78,6 +78,7 @@ extension AnalyticsClientExtension on Client {
   // migration function to change analytics rooms' vsibility to public
   // so they will appear in the space hierarchy
   Future<void> _updateAnalyticsRoomVisibility() async {
+    if (userID == null || userID == BotName.byEnvironment) return;
     await Future.wait(
       allMyAnalyticsRooms.map((room) async {
         final visability = await getRoomVisibilityOnDirectory(room.id);
@@ -95,6 +96,7 @@ extension AnalyticsClientExtension on Client {
   /// so teachers can join them via space hierarchy.
   /// Allows teachers to join analytics rooms without being invited.
   void _addAnalyticsRoomsToAllSpaces() {
+    if (userID == null || userID == BotName.byEnvironment) return;
     for (final Room room in allMyAnalyticsRooms) {
       room.addAnalyticsRoomToSpaces();
     }
