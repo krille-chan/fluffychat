@@ -88,6 +88,7 @@ class IgcRepo {
       userL2: "en",
       enableIT: true,
       enableIGC: true,
+      prevMessages: <String, Object?>{},
     );
 
     return igcTextData;
@@ -131,5 +132,6 @@ class IGCRequestBody {
         ModelKey.userL2: userL2,
         "enable_it": enableIT,
         "enable_igc": enableIGC,
+        "prev_messages": prevMessages,
       };
 }

@@ -54,6 +54,7 @@ class SpanDataController {
       userL2: choreographer.l2LangCode!,
       enableIGC: choreographer.igcEnabled,
       enableIT: choreographer.itEnabled,
+      prevMessages: choreographer.prevMessages(),
       span: span,
     );
     final int cacheKey = req.hashCode;
@@ -71,6 +72,7 @@ class SpanDataController {
           userL2: choreographer.l2LangCode!,
           enableIGC: choreographer.igcEnabled,
           enableIT: choreographer.itEnabled,
+          prevMessages: choreographer.prevMessages(),
           span: span,
         ),
       );

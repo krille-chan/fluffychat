@@ -5,6 +5,7 @@ import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/enum/span_choice_type.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
+import 'package:fluffychat/pangea/repo/igc_repo.dart';
 import 'package:http/http.dart';
 
 import '../constants/model_keys.dart';
@@ -47,6 +48,7 @@ class SpanDetailsRepoReqAndRes {
   String userL2;
   bool enableIT;
   bool enableIGC;
+  List<PreviousMessage> prevMessages;
   SpanData span;
 
   SpanDetailsRepoReqAndRes({
@@ -54,6 +56,7 @@ class SpanDetailsRepoReqAndRes {
     required this.userL2,
     required this.enableIGC,
     required this.enableIT,
+    required this.prevMessages,
     required this.span,
   });
 
@@ -62,6 +65,7 @@ class SpanDetailsRepoReqAndRes {
         ModelKey.userL2: userL2,
         "enable_it": enableIT,
         "enable_igc": enableIGC,
+        "prev_messages": prevMessages,
         'span': span.toJson(),
       };
 
@@ -71,6 +75,7 @@ class SpanDetailsRepoReqAndRes {
         userL2: json['user_l2'] as String,
         enableIT: json['enable_it'] as bool,
         enableIGC: json['enable_igc'] as bool,
+        prevMessages: json['prev_messages'],
         span: SpanData.fromJson(json['span']),
       );
 
@@ -132,6 +137,7 @@ final mockRequest = SpanDetailsRepoReqAndRes(
   userL2: "en",
   enableIGC: true,
   enableIT: true,
+  prevMessages: [],
   span: spanDataRepomockSpan,
 );
 

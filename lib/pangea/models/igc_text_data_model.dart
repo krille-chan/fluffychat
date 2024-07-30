@@ -26,6 +26,7 @@ class IGCTextData {
   bool enableIT;
   bool enableIGC;
   bool loading = false;
+  Map<String, Object?> prevMessages;
 
   IGCTextData({
     required this.detections,
@@ -37,6 +38,7 @@ class IGCTextData {
     required this.userL2,
     required this.enableIT,
     required this.enableIGC,
+    required this.prevMessages,
   });
 
   factory IGCTextData.fromJson(Map<String, dynamic> json) {
@@ -76,6 +78,7 @@ class IGCTextData {
       userL2: json[ModelKey.userL2],
       enableIT: json["enable_it"],
       enableIGC: json["enable_igc"],
+      prevMessages: json["prev_messages"],
     );
   }
 
@@ -93,6 +96,7 @@ class IGCTextData {
         ModelKey.userL2: userL2,
         "enable_it": enableIT,
         "enable_igc": enableIGC,
+        "prev_messages": prevMessages,
       };
 
   /// if we haven't run IGC or IT or there are no matches, we use the highest validated detection
