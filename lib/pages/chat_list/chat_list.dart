@@ -909,6 +909,9 @@ class ChatListController extends State<ChatList>
   Future<void> _waitForFirstSync() async {
     final client = Matrix.of(context).client;
     await client.roomsLoading;
+    // #Pangea
+    setState(() {});
+    // Pangea#
     await client.accountDataLoading;
     await client.userDeviceKeysLoading;
     if (client.prevBatch == null) {
