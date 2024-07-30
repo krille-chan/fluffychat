@@ -72,9 +72,11 @@ class PracticeActivityRecordEvent {
             //TODO - find form of construct within the message
             //this is related to the feature of highlighting the target construct in the message
             form: construct.lemma,
-            chatId: event.roomId ?? practiceEvent.roomId ?? timeline.room.id,
-            msgId: practiceActivity.parentMessageId,
-            timeStamp: event.originServerTs,
+            metadata: ConstructUseMetaData(
+              roomId: event.roomId ?? practiceEvent.roomId ?? timeline.room.id,
+              eventId: practiceActivity.parentMessageId,
+              timeStamp: event.originServerTs,
+            ),
           ),
         );
       }

@@ -1,6 +1,12 @@
 import 'dart:convert';
 
+import 'package:fluffychat/pangea/constants/choreo_constants.dart';
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:matrix/matrix.dart';
 
 import 'it_step.dart';
 
@@ -111,6 +117,100 @@ class ChoreoRecord {
 
   String get finalMessage =>
       choreoSteps.isNotEmpty ? choreoSteps.last.text : "";
+
+  /// get construct uses of type grammar for the message
+  List<OneConstructUse> grammarConstructUses({
+    Event? event,
+    ConstructUseMetaData? metadata,
+  }) {
+    final List<OneConstructUse> uses = [];
+    if (event?.roomId == null && metadata?.roomId == null) {
+      return uses;
+    }
+    metadata ??= ConstructUseMetaData(
+      roomId: event!.roomId!,
+      eventId: event.eventId,
+      timeStamp: event.originServerTs,
+    );
+
+    for (final step in choreoSteps) {
+      if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted) {
+        final String name = step.acceptedOrIgnoredMatch!.match.rule?.id ??
+            step.acceptedOrIgnoredMatch!.match.shortMessage ??
+            step.acceptedOrIgnoredMatch!.match.type.typeName.name;
+        uses.add(
+          OneConstructUse(
+            useType: ConstructUseTypeEnum.ga,
+            lemma: name,
+            form: name,
+            constructType: ConstructTypeEnum.grammar,
+            id: "${metadata.eventId}_${step.acceptedOrIgnoredMatch!.match.offset}_${step.acceptedOrIgnoredMatch!.match.length}",
+            metadata: metadata,
+          ),
+        );
+      }
+    }
+    return uses;
+  }
+
+  /// Returns a list of [OneConstructUse] from itSteps for which the continuance
+  /// was selected or ignored. Correct selections are considered in the tokens
+  /// flow. Once all continuances have lemmas, we can do both correct and incorrect
+  /// in this flow. It actually doesn't do anything at all right now, because the
+  /// choregrapher is not returning lemmas for continuances. This is a TODO.
+  /// So currently only the lemmas can be gotten from the tokens for choices that
+  /// are actually in the final message.
+  List<OneConstructUse> itStepsToConstructUses({
+    Event? event,
+    ConstructUseMetaData? metadata,
+  }) {
+    final List<OneConstructUse> uses = [];
+    if (event == null && metadata == null) {
+      return uses;
+    }
+
+    metadata ??= ConstructUseMetaData(
+      roomId: event!.roomId!,
+      eventId: event.eventId,
+      timeStamp: event.originServerTs,
+    );
+
+    for (final itStep in itSteps) {
+      for (final continuance in itStep.continuances) {
+        final List<PangeaToken> tokensToSave =
+            continuance.tokens.where((t) => t.lemma.saveVocab).toList();
+
+        if (finalMessage.contains(continuance.text)) {
+          continue;
+        }
+        if (continuance.wasClicked) {
+          //PTODO - account for end of flow score
+          if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
+            for (final token in tokensToSave) {
+              uses.add(
+                token.lemma.toVocabUse(
+                  ConstructUseTypeEnum.incIt,
+                  metadata,
+                ),
+              );
+            }
+          }
+        } else {
+          if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
+            for (final token in tokensToSave) {
+              uses.add(
+                token.lemma.toVocabUse(
+                  ConstructUseTypeEnum.ignIt,
+                  metadata,
+                ),
+              );
+            }
+          }
+        }
+      }
+    }
+    return uses;
+  }
 }
 
 /// A new ChoreoRecordStep is saved in the following cases:

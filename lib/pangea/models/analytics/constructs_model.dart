@@ -37,12 +37,14 @@ class ConstructAnalyticsModel {
           for (final useData in lemmaUses) {
             final use = OneConstructUse(
               useType: ConstructUseTypeEnum.ga,
-              chatId: useData["chatId"],
-              timeStamp: DateTime.parse(useData["timeStamp"]),
               lemma: lemma,
               form: useData["form"],
-              msgId: useData["msgId"],
               constructType: ConstructTypeEnum.grammar,
+              metadata: ConstructUseMetaData(
+                eventId: useData["msgId"],
+                roomId: useData["chatId"],
+                timeStamp: DateTime.parse(useData["timeStamp"]),
+              ),
             );
             uses.add(use);
           }
@@ -69,50 +71,64 @@ class ConstructAnalyticsModel {
   }
 }
 
+class ConstructUses {
+  final List<OneConstructUse> uses;
+  final ConstructTypeEnum constructType;
+  final String lemma;
+
+  ConstructUses({
+    required this.uses,
+    required this.constructType,
+    required this.lemma,
+  });
+}
+
 class OneConstructUse {
   String? lemma;
   ConstructTypeEnum? constructType;
   String? form;
   ConstructUseTypeEnum useType;
-  String chatId;
-  String? msgId;
-  DateTime timeStamp;
   String? id;
+  ConstructUseMetaData metadata;
 
   OneConstructUse({
     required this.useType,
-    required this.chatId,
-    required this.timeStamp,
     required this.lemma,
     required this.form,
-    required this.msgId,
     required this.constructType,
+    required this.metadata,
     this.id,
   });
+
+  String get chatId => metadata.roomId;
+  String get msgId => metadata.eventId!;
+  DateTime get timeStamp => metadata.timeStamp;
 
   factory OneConstructUse.fromJson(Map<String, dynamic> json) {
     return OneConstructUse(
       useType: ConstructUseTypeEnum.values
           .firstWhere((e) => e.string == json['useType']),
-      chatId: json['chatId'],
-      timeStamp: DateTime.parse(json['timeStamp']),
       lemma: json['lemma'],
       form: json['form'],
-      msgId: json['msgId'],
       constructType: json['constructType'] != null
           ? ConstructTypeUtil.fromString(json['constructType'])
           : null,
       id: json['id'],
+      metadata: ConstructUseMetaData(
+        eventId: json['msgId'],
+        roomId: json['chatId'],
+        timeStamp: DateTime.parse(json['timeStamp']),
+      ),
     );
   }
 
   Map<String, dynamic> toJson([bool condensed = false]) {
     final Map<String, String?> data = {
       'useType': useType.string,
-      'chatId': chatId,
-      'timeStamp': timeStamp.toIso8601String(),
+      'chatId': metadata.roomId,
+      'timeStamp': metadata.timeStamp.toIso8601String(),
       'form': form,
-      'msgId': msgId,
+      'msgId': metadata.eventId,
     };
     if (!condensed && lemma != null) data['lemma'] = lemma!;
     if (!condensed && constructType != null) {
@@ -124,24 +140,24 @@ class OneConstructUse {
   }
 
   Room? getRoom(Client client) {
-    return client.getRoomById(chatId);
+    return client.getRoomById(metadata.roomId);
   }
 
   Future<Event?> getEvent(Client client) async {
     final Room? room = getRoom(client);
-    if (room == null || msgId == null) return null;
-    return room.getEventById(msgId!);
+    if (room == null || metadata.eventId == null) return null;
+    return room.getEventById(metadata.eventId!);
   }
 }
 
-class ConstructUses {
-  final List<OneConstructUse> uses;
-  final ConstructTypeEnum constructType;
-  final String lemma;
+class ConstructUseMetaData {
+  String? eventId;
+  String roomId;
+  DateTime timeStamp;
 
-  ConstructUses({
-    required this.uses,
-    required this.constructType,
-    required this.lemma,
+  ConstructUseMetaData({
+    required this.roomId,
+    required this.timeStamp,
+    this.eventId,
   });
 }
