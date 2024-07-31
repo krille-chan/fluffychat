@@ -2772,5 +2772,13 @@
   "changeTheChatPermissions": "Muuda vestluse õigusi",
   "@changeTheChatPermissions": {},
   "changeTheDescriptionOfTheGroup": "Muuda vestluse kirjeldust",
-  "@changeTheDescriptionOfTheGroup": {}
+  "@changeTheDescriptionOfTheGroup": {},
+  "chatPermissionsDescription": "Määra erinevatele kasutajatele selles vestluses vajalikud õigused. Tüüpiliselt on need 0, 50 ja 100 (vastavalt kasutajad, moderaatorid ja peakasutajad), kuid igasugused vahepealsed variatsioonid on ka võimalikud.",
+  "@chatPermissionsDescription": {},
+  "invitedBy": "📩 Kutsujaks {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  }
 }
