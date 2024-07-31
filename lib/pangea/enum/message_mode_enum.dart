@@ -76,9 +76,6 @@ extension MessageModeExtension on MessageMode {
       case MessageMode.speechToText:
         return event.messageType == MessageTypes.Audio;
       case MessageMode.practiceActivity:
-        return event.messageType == MessageTypes.Audio ||
-            event.messageType == MessageTypes.Text;
-      default:
         return true;
     }
   }
