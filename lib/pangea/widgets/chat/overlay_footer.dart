@@ -31,26 +31,30 @@ class OverlayFooter extends StatelessWidget {
         maxWidth: FluffyThemes.columnWidth * 2.5,
       ),
       alignment: Alignment.center,
-      child: Material(
-        clipBehavior: Clip.hardEdge,
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(24),
-        ),
-        child: Column(
-          children: [
-            const ConnectionStatusHeader(),
-            ITBar(
-              choreographer: controller.choreographer,
+      child: Column(
+        children: [
+          Material(
+            clipBehavior: Clip.hardEdge,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(24),
             ),
-            ReactionsPicker(controller),
-            ReplyDisplay(controller),
-            ChatInputRow(controller),
-            SizedBox(
-              height: (FluffyThemes.isColumnMode(context) ? 18.0 : 10.0),
+            child: Column(
+              children: [
+                const ConnectionStatusHeader(),
+                ITBar(
+                  choreographer: controller.choreographer,
+                ),
+                ReactionsPicker(controller),
+                ReplyDisplay(controller),
+                ChatInputRow(controller),
+              ],
             ),
-          ],
-        ),
+          ),
+          SizedBox(
+            height: FluffyThemes.isColumnMode(context) ? 16.0 : 8.0,
+          ),
+        ],
       ),
     );
   }
