@@ -21,7 +21,7 @@ extension PangeaClient on Client {
 
   /// Get the logged in user's analytics room matching
   /// a given langCode. If not present, create it.
-  Future<Room> getMyAnalyticsRoom(String langCode) async =>
+  Future<Room?> getMyAnalyticsRoom(String langCode) async =>
       await _getMyAnalyticsRoom(langCode);
 
   /// Get local analytics room for a given langCode and

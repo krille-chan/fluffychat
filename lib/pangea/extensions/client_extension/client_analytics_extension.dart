@@ -3,7 +3,7 @@ part of "client_extension.dart";
 extension AnalyticsClientExtension on Client {
   /// Get the logged in user's analytics room matching
   /// a given langCode. If not present, create it.
-  Future<Room> _getMyAnalyticsRoom(String langCode) async {
+  Future<Room?> _getMyAnalyticsRoom(String langCode) async {
     final Room? analyticsRoom = _analyticsRoomLocal(langCode);
     if (analyticsRoom != null) return analyticsRoom;
     return _makeAnalyticsRoom(langCode);
@@ -35,7 +35,11 @@ extension AnalyticsClientExtension on Client {
   ///
   /// If the room does not appear immediately after creation, this method waits for it to appear in sync.
   /// Returns the created [Room] object.
-  Future<Room> _makeAnalyticsRoom(String langCode) async {
+  Future<Room?> _makeAnalyticsRoom(String langCode) async {
+    if (userID == null || userID == BotName.byEnvironment) {
+      return null;
+    }
+
     final String roomID = await createRoom(
       creationContent: {
         'type': PangeaRoomTypes.analytics,
@@ -74,6 +78,7 @@ extension AnalyticsClientExtension on Client {
   // migration function to change analytics rooms' vsibility to public
   // so they will appear in the space hierarchy
   Future<void> _updateAnalyticsRoomVisibility() async {
+    if (userID == null || userID == BotName.byEnvironment) return;
     await Future.wait(
       allMyAnalyticsRooms.map((room) async {
         final visability = await getRoomVisibilityOnDirectory(room.id);
@@ -91,6 +96,7 @@ extension AnalyticsClientExtension on Client {
   /// so teachers can join them via space hierarchy.
   /// Allows teachers to join analytics rooms without being invited.
   void _addAnalyticsRoomsToAllSpaces() {
+    if (userID == null || userID == BotName.byEnvironment) return;
     for (final Room room in allMyAnalyticsRooms) {
       room.addAnalyticsRoomToSpaces();
     }
@@ -100,6 +106,7 @@ extension AnalyticsClientExtension on Client {
   /// Handles case when students cannot add analytics room to space(s)
   /// so teacher is still able to get analytics data for this student
   void _inviteAllTeachersToAllAnalyticsRooms() {
+    if (userID == null || userID == BotName.byEnvironment) return;
     for (final Room room in allMyAnalyticsRooms) {
       room.inviteTeachersToAnalyticsRoom();
     }
