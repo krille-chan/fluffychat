@@ -198,11 +198,11 @@ class MyAnalyticsController extends BaseController {
     if (userL2 == null || _client.userID == null) return;
 
     // analytics room for the user and current target language
-    final Room analyticsRoom = await _client.getMyAnalyticsRoom(userL2!);
+    final Room? analyticsRoom = await _client.getMyAnalyticsRoom(userL2!);
 
     // get the last time analytics were updated for this room
     final DateTime? l2AnalyticsLastUpdated =
-        await analyticsRoom.analyticsLastUpdated(
+        await analyticsRoom?.analyticsLastUpdated(
       _client.userID!,
     );
 
@@ -301,7 +301,7 @@ class MyAnalyticsController extends BaseController {
     //     );
 
     if (recentConstructUses.isNotEmpty || l2AnalyticsLastUpdated == null) {
-      await analyticsRoom.sendConstructsEvent(
+      await analyticsRoom?.sendConstructsEvent(
         recentConstructUses,
       );
     }
