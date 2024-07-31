@@ -42,45 +42,16 @@ class OverlayMessage extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    var color = Theme.of(context).colorScheme.surfaceContainerHighest;
+    var color = Theme.of(context).colorScheme.surfaceContainer;
     final isLight = Theme.of(context).brightness == Brightness.light;
-    var lightness = isLight ? .05 : .85;
+    var lightness = isLight ? .05 : .2;
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
         : Theme.of(context).colorScheme.onSurface;
 
-    const hardCorner = Radius.circular(4);
-
-    final displayTime = event.type == EventTypes.RoomCreate ||
-        nextEvent == null ||
-        !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
-
-    final nextEventSameSender = nextEvent != null &&
-        {
-          EventTypes.Message,
-          EventTypes.Sticker,
-          EventTypes.Encrypted,
-        }.contains(nextEvent!.type) &&
-        nextEvent!.senderId == event.senderId &&
-        !displayTime;
-
-    final previousEventSameSender = previousEvent != null &&
-        {
-          EventTypes.Message,
-          EventTypes.Sticker,
-          EventTypes.Encrypted,
-        }.contains(previousEvent!.type) &&
-        previousEvent!.senderId == event.senderId &&
-        previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
-
     const roundedCorner = Radius.circular(AppConfig.borderRadius);
-    final borderRadius = BorderRadius.only(
-      topLeft: !ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
-      topRight: ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
-      bottomLeft:
-          !ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
-      bottomRight:
-          ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
+    const borderRadius = BorderRadius.all(
+      roundedCorner,
     );
 
     final noBubble = {
@@ -101,13 +72,13 @@ class OverlayMessage extends StatelessWidget {
     // Make overlay a little darker/lighter than the message
     color = Color.fromARGB(
       color.alpha,
-      isLight
+      isLight || !ownMessage
           ? (color.red + lightness * (255 - color.red)).round()
           : (color.red * lightness).round(),
-      isLight
+      isLight || !ownMessage
           ? (color.green + lightness * (255 - color.green)).round()
           : (color.green * lightness).round(),
-      isLight
+      isLight || !ownMessage
           ? (color.blue + lightness * (255 - color.blue)).round()
           : (color.blue * lightness).round(),
     );
@@ -123,7 +94,7 @@ class OverlayMessage extends StatelessWidget {
         child: Material(
           color: noBubble ? Colors.transparent : color,
           clipBehavior: Clip.antiAlias,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: borderRadius,
           ),
           child: Container(
