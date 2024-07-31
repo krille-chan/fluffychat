@@ -986,6 +986,9 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void redactEventsAction() async {
+    // #Pangea
+    MatrixState.pAnyState.closeOverlay();
+    // Pangea#
     final reasonInput = selectedEvents.any((event) => event.status.isSent)
         ? await showTextInputDialog(
             context: context,
@@ -1001,7 +1004,12 @@ class ChatController extends State<ChatPageWithRoom>
             cancelLabel: L10n.of(context)!.cancel,
           )
         : <String>[];
-    if (reasonInput == null) return;
+    if (reasonInput == null) {
+      // #Pangea
+      clearSelectedEvents();
+      // Pangea#
+      return;
+    }
     final reason = reasonInput.single.isEmpty ? null : reasonInput.single;
     for (final event in selectedEvents) {
       await showFutureLoadingDialog(
@@ -1076,10 +1084,10 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void forwardEventsAction() async {
+    // #Pangea
+    MatrixState.pAnyState.closeOverlay();
+    // Pangea#
     if (selectedEvents.length == 1) {
-      // #Pangea
-      MatrixState.pAnyState.closeOverlay();
-      // Pangea#
       Matrix.of(context).shareContent =
           selectedEvents.first.getDisplayEvent(timeline!).content;
     } else {
