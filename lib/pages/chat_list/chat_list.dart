@@ -21,6 +21,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/show_update_snackbar.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import '../../../utils/account_bundles.dart';
 import '../../config/setting_keys.dart';
@@ -511,6 +512,7 @@ class ChatListController extends State<ChatList>
         searchServer =
             Matrix.of(context).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
+        UpdateNotifier.showUpdateSnackBar(context);
       }
 
       // Workaround for system UI overlay style not applied on app start
