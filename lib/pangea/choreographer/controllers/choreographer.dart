@@ -71,28 +71,36 @@ class Choreographer {
 
   List<PreviousMessage> prevMessages() {
     const int howFarBack = 5;
-    final List<Event> events = chatController.timeline?.events ?? [];
+    final List<Event> events = chatController.timeline?.events
+            .where(
+              (e) =>
+                  e.messageType == MessageTypes.Text ||
+                  e.messageType == MessageTypes.Audio,
+            )
+            .toList() ??
+        [];
+    // Sort from most recent to least
+    events.sort(
+      (a, b) => b.originServerTs.compareTo(a.originServerTs),
+    );
     final List<PreviousMessage> messages = [];
     for (final Event event in events) {
-      if (event.messageType == MessageTypes.Text ||
-          event.messageType == MessageTypes.Audio) {
-        final Map<String, Object?>? content =
-            (event.messageType == MessageTypes.Text)
-                ? event.content
-                : (event as PangeaMessageEvent)
-                    .getSpeechToTextLocalOnly(l1LangCode, l2LangCode)
-                    ?.toJson();
-        if (content != null) {
-          messages.add(
-            PreviousMessage(
-              event.content,
-              event.senderId,
-              event.originServerTs,
-            ),
-          );
-          if (messages.length >= howFarBack) {
-            return messages;
-          }
+      final Map<String, Object?>? content =
+          (event.messageType == MessageTypes.Text)
+              ? event.content
+              : (event as PangeaMessageEvent)
+                  .getSpeechToTextLocalOnly(l1LangCode, l2LangCode)
+                  ?.toJson();
+      if (content != null) {
+        messages.add(
+          PreviousMessage(
+            event.content,
+            event.senderId,
+            event.originServerTs,
+          ),
+        );
+        if (messages.length >= howFarBack) {
+          return messages;
         }
       }
     }

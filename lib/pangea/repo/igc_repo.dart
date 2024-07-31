@@ -95,18 +95,33 @@ class IgcRepo {
   }
 }
 
-/// Previous text/audio messages sent in chat
+/// Previous text/audio message sent in chat
 /// Contain message content, sender, and timestamp
 class PreviousMessage {
   Map<String, Object?> content;
   String sender;
   DateTime timestamp;
 
-  PreviousMessage(
-    this.content,
-    this.sender,
-    this.timestamp,
-  );
+  PreviousMessage({
+    required this.content,
+    required this.sender,
+    required this.timestamp,
+  });
+
+  factory PreviousMessage.fromJson(Map<String, dynamic> json) =>
+      PreviousMessage(
+        content: jsonDecode(json[ModelKey.prevContent]) ?? <String, Object?>{},
+        sender: json[ModelKey.prevSender] ?? "",
+        timestamp: json[ModelKey.prevTimestamp] == null
+            ? DateTime.now()
+            : DateTime.parse(json[ModelKey.prevTimestamp]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        ModelKey.prevContent: jsonEncode(content),
+        ModelKey.prevSender: sender,
+        ModelKey.prevTimestamp: timestamp.toIso8601String(),
+      };
 }
 
 class IGCRequestBody {
@@ -132,6 +147,7 @@ class IGCRequestBody {
         ModelKey.userL2: userL2,
         "enable_it": enableIT,
         "enable_igc": enableIGC,
-        "prev_messages": prevMessages,
+        ModelKey.prevMessages:
+            jsonEncode(prevMessages.map((x) => x.toJson()).toList()),
       };
 }
