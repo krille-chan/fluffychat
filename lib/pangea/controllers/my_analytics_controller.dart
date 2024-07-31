@@ -31,7 +31,7 @@ class MyAnalyticsController extends BaseController {
 
   /// the max number of messages that will be cached before
   /// an automatic update is triggered
-  final int _maxMessagesCached = 1;
+  final int _maxMessagesCached = 10;
 
   /// the number of minutes before an automatic update is triggered
   final int _minutesBeforeUpdate = 5;
