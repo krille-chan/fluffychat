@@ -116,7 +116,7 @@ class LearningProgressIndicatorsState
   /// Get the current level based on the number of xp points
   int get level => xpPoints ~/ 500;
 
-  double get levelBarWidth => FluffyThemes.columnWidth - (36 * 2) - 25;
+  double get levelBarWidth => FluffyThemes.columnWidth - (32 * 2) - 25;
   double get pointsBarWidth {
     final percent = (xpPoints % 500) / 500;
     return levelBarWidth * percent;
@@ -136,16 +136,57 @@ class LearningProgressIndicatorsState
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 36,
-        vertical: 16,
+    final levelBar = Container(
+      height: 20,
+      width: levelBarWidth,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+          width: 2,
+        ),
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(AppConfig.borderRadius),
+          bottomRight: Radius.circular(AppConfig.borderRadius),
+        ),
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    );
+
+    final xpBar = AnimatedContainer(
+      duration: FluffyThemes.animationDuration,
+      height: 16,
+      width: pointsBarWidth,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(AppConfig.borderRadius),
+          bottomRight: Radius.circular(AppConfig.borderRadius),
+        ),
+        color: Theme.of(context).colorScheme.primary,
+      ),
+    );
+
+    final levelBadge = Container(
+      width: 32,
+      height: 32,
+      decoration: BoxDecoration(
+        color: levelColor(level),
+        borderRadius: BorderRadius.circular(32),
+      ),
+      child: Center(
+        child: Text(
+          "$level",
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(46, 0, 32, 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               FutureBuilder(
                 future:
@@ -162,7 +203,6 @@ class LearningProgressIndicatorsState
                   );
                 },
               ),
-              const SizedBox(width: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: ProgressIndicatorEnum.values
@@ -180,85 +220,24 @@ class LearningProgressIndicatorsState
               ),
             ],
           ),
-          const SizedBox(height: 4),
-          SizedBox(
-            height: 35,
-            child: Stack(
-              alignment: Alignment.centerLeft,
-              children: [
-                Positioned(
-                  right: 0,
-                  left: 10,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: levelBarWidth,
-                        child: Expanded(
-                          child: Stack(
-                            alignment: Alignment.centerLeft,
-                            children: [
-                              Container(
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .primary
-                                        .withOpacity(0.5),
-                                    width: 2,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topRight:
-                                        Radius.circular(AppConfig.borderRadius),
-                                    bottomRight:
-                                        Radius.circular(AppConfig.borderRadius),
-                                  ),
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withOpacity(0.2),
-                                ),
-                              ),
-                              AnimatedContainer(
-                                duration: FluffyThemes.animationDuration,
-                                height: 16,
-                                width: pointsBarWidth,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                    AppConfig.borderRadius,
-                                  ),
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  left: 0,
-                  child: Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                      color: levelColor(level),
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "$level",
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+        ),
+        Container(
+          // decoration: BoxDecoration(
+          //   border: Border.all(color: Colors.green),
+          // ),
+          height: 36,
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(left: 16, right: 0, child: levelBar),
+              Positioned(left: 16, child: xpBar),
+              Positioned(left: 0, child: levelBadge),
+            ],
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 16),
+      ],
     );
   }
 }

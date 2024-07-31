@@ -41,7 +41,13 @@ class ProgressIndicatorBadge extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       )
-                    : const CircularProgressIndicator.adaptive(),
+                    : const SizedBox(
+                        height: 8,
+                        width: 8,
+                        child: CircularProgressIndicator.adaptive(
+                          strokeWidth: 2,
+                        ),
+                      ),
               ],
             ),
           ),
