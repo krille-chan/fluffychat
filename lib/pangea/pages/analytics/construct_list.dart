@@ -7,7 +7,7 @@ import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
-import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
+import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
@@ -113,7 +113,14 @@ class ConstructListViewState extends State<ConstructListView> {
           forceUpdate: true,
         )
         .whenComplete(() => setState(() => fetchingConstructs = false))
-        .then((value) => setState(() => _constructs = value));
+        .then(
+          (value) => setState(
+            () => constructs = ConstructListModel(
+              type: constructType,
+              uses: value,
+            ),
+          ),
+        );
 
     refreshSubscription = widget.refreshStream.stream.listen((forceUpdate) {
       // postframe callback to let widget rebuild with the new selected parameter
@@ -126,7 +133,10 @@ class ConstructListViewState extends State<ConstructListView> {
             )
             .then(
               (value) => setState(() {
-                _constructs = value;
+                ConstructListModel(
+                  type: constructType,
+                  uses: value,
+                );
               }),
             );
       });
@@ -143,12 +153,6 @@ class ConstructListViewState extends State<ConstructListView> {
     currentLemma = lemma;
     setState(() {});
   }
-
-  int get lemmaIndex =>
-      constructs?.indexWhere(
-        (element) => element.lemma == currentLemma,
-      ) ??
-      -1;
 
   Future<PangeaMessageEvent?> getMessageEvent(
     OneConstructUse use,
@@ -187,14 +191,19 @@ class ConstructListViewState extends State<ConstructListView> {
 
   Future<void> fetchUses() async {
     if (fetchingUses) return;
-    if (currentConstruct == null) {
+    if (currentLemma == null) {
       setState(() => _msgEvents.clear());
       return;
     }
 
     setState(() => fetchingUses = true);
     try {
-      final List<OneConstructUse> uses = currentConstruct!.uses;
+      final List<OneConstructUse> uses = constructs?.constructs
+              .firstWhereOrNull(
+                (element) => element.lemma == currentLemma,
+              )
+              ?.uses ??
+          [];
       _msgEvents.clear();
 
       for (final OneConstructUse use in uses) {
@@ -213,54 +222,12 @@ class ConstructListViewState extends State<ConstructListView> {
       ErrorHandler.logError(
         e: err,
         s: s,
-        m: "Failed to fetch uses for current construct ${currentConstruct?.lemma}",
+        m: "Failed to fetch uses for current construct $currentLemma",
       );
     }
   }
 
-  List<ConstructAnalyticsEvent>? _constructs;
-
-  List<ConstructUses>? get constructs {
-    if (_constructs == null) {
-      return null;
-    }
-
-    final List<OneConstructUse> filtered = List.from(_constructs!)
-        .map((event) => event.content.uses)
-        .expand((uses) => uses)
-        .cast<OneConstructUse>()
-        .where((use) => use.constructType == constructType)
-        .toList();
-
-    final Map<String, List<OneConstructUse>> lemmaToUses = {};
-    for (final use in filtered) {
-      if (use.lemma == null) continue;
-      lemmaToUses[use.lemma!] ??= [];
-      lemmaToUses[use.lemma!]!.add(use);
-    }
-
-    final constructUses = lemmaToUses.entries
-        .map(
-          (entry) => ConstructUses(
-            lemma: entry.key,
-            uses: entry.value,
-            constructType: constructType,
-          ),
-        )
-        .toList();
-
-    constructUses.sort((a, b) {
-      final comp = b.uses.length.compareTo(a.uses.length);
-      if (comp != 0) return comp;
-      return a.lemma.compareTo(b.lemma);
-    });
-
-    return constructUses;
-  }
-
-  ConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
-        (element) => element.lemma == currentLemma,
-      );
+  ConstructListModel? constructs;
 
   // given the current lemma and list of message events, return a list of
   // MessageEventMatch objects, which contain one PangeaMessageEvent to one PangeaMatch
@@ -309,7 +276,7 @@ class ConstructListViewState extends State<ConstructListView> {
       );
     }
 
-    if (constructs?.isEmpty ?? true) {
+    if (constructs?.constructs.isEmpty ?? true) {
       return Expanded(
         child: Center(child: Text(L10n.of(context)!.noDataFound)),
       );
@@ -317,17 +284,17 @@ class ConstructListViewState extends State<ConstructListView> {
 
     return Expanded(
       child: ListView.builder(
-        itemCount: constructs!.length,
+        itemCount: constructs!.constructs.length,
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(
-              constructs![index].lemma,
+              constructs!.constructs[index].lemma,
             ),
             subtitle: Text(
-              '${L10n.of(context)!.total} ${constructs![index].uses.length}',
+              '${L10n.of(context)!.total} ${constructs!.constructs[index].uses.length}',
             ),
             onTap: () async {
-              final String lemma = constructs![index].lemma;
+              final String lemma = constructs!.constructs[index].lemma;
               setCurrentLemma(lemma);
               fetchUses().then((_) => showConstructMessagesDialog());
             },
@@ -347,17 +314,17 @@ class ConstructMessagesDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.currentLemma == null ||
-        controller.constructs == null ||
-        controller.lemmaIndex < 0 ||
-        controller.lemmaIndex >= controller.constructs!.length) {
+    if (controller.currentLemma == null || controller.constructs == null) {
       return const AlertDialog(content: CircularProgressIndicator.adaptive());
     }
 
     final msgEventMatches = controller.getMessageEventMatches();
 
-    final noData = controller.constructs![controller.lemmaIndex].uses.length >
-        controller._msgEvents.length;
+    final currentConstruct = controller.constructs!.constructs.firstWhereOrNull(
+      (construct) => construct.lemma == controller.currentLemma,
+    );
+    final noData = currentConstruct == null ||
+        currentConstruct.uses.length > controller._msgEvents.length;
 
     return AlertDialog(
       title: Center(child: Text(controller.currentLemma!)),

@@ -23,6 +23,8 @@ class GetAnalyticsController {
 
   String? get l2Code => _pangeaController.languageController.userL2?.langCode;
 
+  Client get client => _pangeaController.matrixState.client;
+
   // A local cache of eventIds and construct uses for messages sent since the last update
   Map<String, List<OneConstructUse>> get messagesSinceUpdate {
     try {
@@ -60,17 +62,17 @@ class GetAnalyticsController {
     }
   }
 
-  /// Get a list of all the construct analytics events
-  /// for the logged in user in their current L2
-  Future<List<ConstructAnalyticsEvent>?> getConstructs({
+  /// Get a list of all constructs used by the logged in user in their current L2
+  Future<List<OneConstructUse>> getConstructs({
     bool forceUpdate = false,
     ConstructTypeEnum? constructType,
   }) async {
     debugPrint("getting constructs");
-    await _pangeaController.matrixState.client.roomsLoading;
+    await client.roomsLoading;
 
+    // first, try to get a cached list of all uses, if it exists and is valid
     final DateTime? lastUpdated = await myAnalyticsLastUpdated();
-    final List<ConstructAnalyticsEvent>? local = getConstructsLocal(
+    final List<OneConstructUse>? local = getConstructsLocal(
       constructType: constructType,
       lastUpdated: lastUpdated,
     );
@@ -80,35 +82,46 @@ class GetAnalyticsController {
     }
     debugPrint("fetching new constructs");
 
-    final unfilteredConstructs = await allMyConstructs();
-    final filteredConstructs = await filterConstructs(
-      unfilteredConstructs: unfilteredConstructs,
+    // if there is no cached data (or if force updating),
+    // get all the construct events for the user from analytics room
+    // and convert their content into a list of construct uses
+    final List<ConstructAnalyticsEvent> constructEvents =
+        await allMyConstructs();
+
+    final List<OneConstructUse> unfilteredUses = [];
+    for (final event in constructEvents) {
+      unfilteredUses.addAll(event.content.uses);
+    }
+
+    // filter out any constructs that are not relevant to the user
+    final List<OneConstructUse> filteredUses = await filterConstructs(
+      unfilteredConstructs: unfilteredUses,
     );
 
+    // if there isn't already a valid, local cache, cache the filtered uses
     if (local == null) {
       cacheConstructs(
         constructType: constructType,
-        events: filteredConstructs,
+        uses: filteredUses,
       );
     }
 
-    return filteredConstructs;
+    return filteredUses;
   }
 
   /// Get the last time the user updated their analytics for their current l2
   Future<DateTime?> myAnalyticsLastUpdated() async {
     if (l2Code == null) return null;
-    final Room? analyticsRoom =
-        _pangeaController.matrixState.client.analyticsRoomLocal(l2Code!);
+    final Room? analyticsRoom = client.analyticsRoomLocal(l2Code!);
     if (analyticsRoom == null) return null;
     final DateTime? lastUpdated = await analyticsRoom.analyticsLastUpdated(
-      _pangeaController.matrixState.client.userID!,
+      client.userID!,
     );
     return lastUpdated;
   }
 
-  /// Get the cached construct analytics events for the current user, if it exists
-  List<ConstructAnalyticsEvent>? getConstructsLocal({
+  /// Get the cached construct uses for the current user, if it exists
+  List<OneConstructUse>? getConstructsLocal({
     DateTime? lastUpdated,
     ConstructTypeEnum? constructType,
   }) {
@@ -121,7 +134,7 @@ class GetAnalyticsController {
         _cache.removeAt(index);
         return null;
       }
-      return _cache[index].events;
+      return _cache[index].uses;
     }
 
     return null;
@@ -130,48 +143,34 @@ class GetAnalyticsController {
   /// Get all the construct analytics events for the logged in user
   Future<List<ConstructAnalyticsEvent>> allMyConstructs() async {
     if (l2Code == null) return [];
-    final Room? analyticsRoom =
-        _pangeaController.matrixState.client.analyticsRoomLocal(l2Code!);
+    final Room? analyticsRoom = client.analyticsRoomLocal(l2Code!);
     if (analyticsRoom == null) return [];
-
-    return await analyticsRoom.getAnalyticsEvents(
-          userId: _pangeaController.matrixState.client.userID!,
-        ) ??
-        [];
+    return await analyticsRoom.getAnalyticsEvents(userId: client.userID!) ?? [];
   }
 
   /// Filter out constructs that are not relevant to the user, specifically those from
   /// rooms in which the user is a teacher and those that are interative translation span constructs
-  Future<List<ConstructAnalyticsEvent>> filterConstructs({
-    required List<ConstructAnalyticsEvent> unfilteredConstructs,
+  Future<List<OneConstructUse>> filterConstructs({
+    required List<OneConstructUse> unfilteredConstructs,
   }) async {
-    final List<String> adminSpaceRooms =
-        await _pangeaController.matrixState.client.teacherRoomIds;
-    for (final construct in unfilteredConstructs) {
-      construct.content.uses.removeWhere(
-        (use) {
-          if (adminSpaceRooms.contains(use.chatId)) {
-            return true;
-          }
-          return use.lemma == "Try interactive translation" ||
-              use.lemma == "itStart" ||
-              use.lemma == MatchRuleIds.interactiveTranslation;
-        },
-      );
-    }
-    unfilteredConstructs.removeWhere((e) => e.content.uses.isEmpty);
-    return unfilteredConstructs;
+    final List<String> adminSpaceRooms = await client.teacherRoomIds;
+    return unfilteredConstructs.where((use) {
+      if (adminSpaceRooms.contains(use.chatId)) return false;
+      return use.lemma != "Try interactive translation" &&
+              use.lemma != "itStart" ||
+          use.lemma != MatchRuleIds.interactiveTranslation;
+    }).toList();
   }
 
-  /// Cache the construct analytics events for the current user
+  /// Cache the construct uses for the current user
   void cacheConstructs({
-    required List<ConstructAnalyticsEvent> events,
+    required List<OneConstructUse> uses,
     ConstructTypeEnum? constructType,
   }) {
     if (l2Code == null) return;
     final entry = AnalyticsCacheEntry(
       type: constructType,
-      events: List.from(events),
+      uses: List.from(uses),
       langCode: l2Code!,
     );
     _cache.add(entry);
@@ -181,13 +180,13 @@ class GetAnalyticsController {
 class AnalyticsCacheEntry {
   final String langCode;
   final ConstructTypeEnum? type;
-  final List<ConstructAnalyticsEvent> events;
+  final List<OneConstructUse> uses;
   late final DateTime _createdAt;
 
   AnalyticsCacheEntry({
     required this.langCode,
     required this.type,
-    required this.events,
+    required this.uses,
   }) {
     _createdAt = DateTime.now();
   }

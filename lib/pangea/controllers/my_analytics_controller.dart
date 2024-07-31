@@ -25,9 +25,13 @@ class MyAnalyticsController extends BaseController {
   final StreamController analyticsUpdateStream = StreamController.broadcast();
   Timer? _updateTimer;
 
+  Client get _client => _pangeaController.matrixState.client;
+
+  String? get userL2 => _pangeaController.languageController.activeL2Code();
+
   /// the max number of messages that will be cached before
   /// an automatic update is triggered
-  final int _maxMessagesCached = 10;
+  final int _maxMessagesCached = 1;
 
   /// the number of minutes before an automatic update is triggered
   final int _minutesBeforeUpdate = 5;
@@ -37,7 +41,11 @@ class MyAnalyticsController extends BaseController {
 
   MyAnalyticsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
-    _refreshAnalyticsIfOutdated();
+
+    // Wait for the next sync in the stream to ensure that the pangea controller
+    // is fully initialized. It will throw an error if it is not.
+    _pangeaController.matrixState.client.onSync.stream.first
+        .then((_) => _refreshAnalyticsIfOutdated());
 
     // Listen to a stream that provides the eventIDs
     // of new messages sent by the logged in user
@@ -65,8 +73,6 @@ class MyAnalyticsController extends BaseController {
     }
     return lastUpdated;
   }
-
-  Client get _client => _pangeaController.matrixState.client;
 
   /// Given the data from a newly sent message, format and cache
   /// the message's construct data locally and reset the update timer
@@ -184,8 +190,6 @@ class MyAnalyticsController extends BaseController {
       _updateCompleter = null;
     }
   }
-
-  String? get userL2 => _pangeaController.languageController.activeL2Code();
 
   /// top level analytics sending function. Gather recent messages and activity records,
   /// convert them into the correct formats, and send them to the analytics room

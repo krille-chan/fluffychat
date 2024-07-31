@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/progress_indicator.dart';
-import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -62,13 +61,14 @@ class LearningProgressIndicatorsState
   /// Update the analytics data shown in the UI. This comes from a
   /// combination of stored events and locally cached data.
   Future<void> updateAnalyticsData() async {
-    final constructEvents = await _pangeaController.analytics.getConstructs();
+    final List<OneConstructUse> storedUses =
+        await _pangeaController.analytics.getConstructs();
     final List<OneConstructUse> localUses = [];
     for (final uses in _pangeaController.analytics.messagesSinceUpdate.values) {
       localUses.addAll(uses);
     }
 
-    if (constructEvents == null || constructEvents.isEmpty) {
+    if (storedUses.isEmpty) {
       words = ConstructListModel(
         type: ConstructTypeEnum.vocab,
         uses: localUses,
@@ -80,10 +80,8 @@ class LearningProgressIndicatorsState
       return;
     }
 
-    final List<OneConstructUse> storedConstruct =
-        constructEvents.expand((e) => e.content.uses).toList();
     final List<OneConstructUse> allConstructs = [
-      ...storedConstruct,
+      ...storedUses,
       ...localUses,
     ];
 
@@ -98,6 +96,7 @@ class LearningProgressIndicatorsState
     setState(() {});
   }
 
+  /// Get the number of points for a given progress indicator
   int? getProgressPoints(ProgressIndicatorEnum indicator) {
     switch (indicator) {
       case ProgressIndicatorEnum.wordsUsed:
@@ -109,15 +108,31 @@ class LearningProgressIndicatorsState
     }
   }
 
+  /// Get the total number of xp points, based on the point values of use types
   int get xpPoints {
-    final points = [
-      words?.lemmas.length ?? 0,
-      errors?.lemmas.length ?? 0,
-    ];
-    return points.reduce((a, b) => a + b);
+    return (words?.points ?? 0) + (errors?.points ?? 0);
   }
 
-  int get level => xpPoints ~/ 100;
+  /// Get the current level based on the number of xp points
+  int get level => xpPoints ~/ 500;
+
+  double get levelBarWidth => FluffyThemes.columnWidth - (36 * 2) - 25;
+  double get pointsBarWidth {
+    final percent = (xpPoints % 500) / 500;
+    return levelBarWidth * percent;
+  }
+
+  Color levelColor(int level) {
+    final colors = [
+      const Color.fromARGB(255, 33, 97, 140), // Dark blue
+      const Color.fromARGB(255, 186, 104, 200), // Soft purple
+      const Color.fromARGB(255, 123, 31, 162), // Deep purple
+      const Color.fromARGB(255, 0, 150, 136), // Teal
+      const Color.fromARGB(255, 247, 143, 143), // Light pink
+      const Color.fromARGB(255, 220, 20, 60), // Crimson red
+    ];
+    return colors[level % colors.length];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +145,7 @@ class LearningProgressIndicatorsState
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               FutureBuilder(
                 future:
@@ -143,25 +158,25 @@ class LearningProgressIndicatorsState
                   return Avatar(
                     name: snapshot.data?.displayName ?? mxid.localpart ?? mxid,
                     mxContent: snapshot.data?.avatarUrl,
+                    size: 40,
                   );
                 },
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: ProgressIndicatorEnum.values
-                      .where(
-                        (indicator) => indicator != ProgressIndicatorEnum.level,
-                      )
-                      .map(
-                        (indicator) => ProgressIndicatorBadge(
-                          points: getProgressPoints(indicator),
-                          onTap: () {},
-                          progressIndicator: indicator,
-                        ),
-                      )
-                      .toList(),
-                ),
+              const SizedBox(width: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: ProgressIndicatorEnum.values
+                    .where(
+                      (indicator) => indicator != ProgressIndicatorEnum.level,
+                    )
+                    .map(
+                      (indicator) => ProgressIndicatorBadge(
+                        points: getProgressPoints(indicator),
+                        onTap: () {},
+                        progressIndicator: indicator,
+                      ),
+                    )
+                    .toList(),
               ),
             ],
           ),
@@ -173,31 +188,41 @@ class LearningProgressIndicatorsState
               children: [
                 Positioned(
                   right: 0,
+                  left: 10,
                   child: Row(
                     children: [
                       SizedBox(
-                        width: FluffyThemes.columnWidth - (36 * 2) - 25,
+                        width: levelBarWidth,
                         child: Expanded(
                           child: Stack(
                             alignment: Alignment.centerLeft,
                             children: [
                               Container(
-                                height: 15,
+                                height: 20,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                    AppConfig.borderRadius,
+                                  border: Border.all(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primary
+                                        .withOpacity(0.5),
+                                    width: 2,
                                   ),
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
+                                  borderRadius: const BorderRadius.only(
+                                    topRight:
+                                        Radius.circular(AppConfig.borderRadius),
+                                    bottomRight:
+                                        Radius.circular(AppConfig.borderRadius),
+                                  ),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.2),
                                 ),
                               ),
                               AnimatedContainer(
                                 duration: FluffyThemes.animationDuration,
-                                curve: FluffyThemes.animationCurve,
-                                height: 15,
-                                width:
-                                    (FluffyThemes.columnWidth - (36 * 2) - 25) *
-                                        ((xpPoints % 100) / 100),
+                                height: 16,
+                                width: pointsBarWidth,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
                                     AppConfig.borderRadius,
@@ -214,12 +239,18 @@ class LearningProgressIndicatorsState
                 ),
                 Positioned(
                   left: 0,
-                  child: CircleAvatar(
-                    backgroundColor: "$level $xpPoints".lightColorAvatar,
-                    radius: 16,
-                    child: Text(
-                      "$level",
-                      style: const TextStyle(color: Colors.white),
+                  child: Container(
+                    width: 32,
+                    height: 32,
+                    decoration: BoxDecoration(
+                      color: levelColor(level),
+                      borderRadius: BorderRadius.circular(32),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "$level",
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ),

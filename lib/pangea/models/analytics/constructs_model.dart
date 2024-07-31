@@ -71,18 +71,6 @@ class ConstructAnalyticsModel {
   }
 }
 
-class ConstructUses {
-  final List<OneConstructUse> uses;
-  final ConstructTypeEnum constructType;
-  final String lemma;
-
-  ConstructUses({
-    required this.uses,
-    required this.constructType,
-    required this.lemma,
-  });
-}
-
 class OneConstructUse {
   String? lemma;
   ConstructTypeEnum? constructType;
@@ -148,6 +136,8 @@ class OneConstructUse {
     if (room == null || metadata.eventId == null) return null;
     return room.getEventById(metadata.eventId!);
   }
+
+  int get pointValue => useType.pointValue;
 }
 
 class ConstructUseMetaData {

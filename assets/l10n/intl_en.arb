@@ -4116,5 +4116,6 @@
   "error520Desc": "Sorry, we could not understand your message...",
   "wordsUsed": "Words Used",
   "errorTypes": "Error Types",
-  "level": "Level"
+  "level": "Level",
+  "canceledSend": "Canceled send"
 }
