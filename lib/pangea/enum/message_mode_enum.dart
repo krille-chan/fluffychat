@@ -71,11 +71,13 @@ extension MessageModeExtension on MessageMode {
     switch (this) {
       case MessageMode.translation:
       case MessageMode.textToSpeech:
-      case MessageMode.practiceActivity:
       case MessageMode.definition:
         return event.messageType == MessageTypes.Text;
       case MessageMode.speechToText:
         return event.messageType == MessageTypes.Audio;
+      case MessageMode.practiceActivity:
+        return event.messageType == MessageTypes.Audio ||
+            event.messageType == MessageTypes.Text;
       default:
         return true;
     }
