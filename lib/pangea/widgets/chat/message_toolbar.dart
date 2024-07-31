@@ -47,6 +47,11 @@ class ToolbarDisplayController {
     this.previousEvent,
   });
 
+  void closeToolbar() {
+    controller.clearSelectedEvents();
+    MatrixState.pAnyState.closeOverlay();
+  }
+
   void setToolbar() {
     toolbar ??= MessageToolbar(
       textSelection: MessageTextSelection(),
@@ -90,13 +95,16 @@ class ToolbarDisplayController {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: [
-          OverlayHeader(controller: controller),
+          OverlayHeader(
+            controller: controller,
+            closeToolbar: closeToolbar,
+          ),
           const SizedBox(
             height: 7,
           ),
           Container(
             constraints: BoxConstraints(
-              maxHeight: MediaQuery.sizeOf(context).height * .72,
+              maxHeight: MediaQuery.sizeOf(context).height * .7,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,

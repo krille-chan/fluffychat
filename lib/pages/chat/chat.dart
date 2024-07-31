@@ -885,6 +885,9 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void copyEventsAction() {
+    // #Pangea
+    MatrixState.pAnyState.closeOverlay();
+    // Pangea#
     Clipboard.setData(ClipboardData(text: _getSelectedEventString()));
     setState(() {
       showEmojiPicker = false;
