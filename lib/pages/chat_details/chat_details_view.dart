@@ -139,6 +139,8 @@ class ChatDetailsView extends StatelessWidget {
                                         ),
                                       ),
                                       // #Pangea
+                                      // Hero animation is causing weird visual glitch
+                                      // Probably not worth keeping
                                       // child: Hero(
                                       //   tag: controller.widget
                                       //               .embeddedCloseButton !=
