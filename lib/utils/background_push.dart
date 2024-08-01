@@ -71,7 +71,7 @@ class BackgroundPush {
 
   BackgroundPush._(this.client) {
     firebase?.setListeners(
-      onMessage: (message) => pushHelper(
+      onMessage: (message) => PushHelper.processNotification(
         PushNotification.fromJson(
           Map<String, dynamic>.from(message['data'] ?? message),
         ),
@@ -393,7 +393,7 @@ class BackgroundPush {
     );
     // UP may strip the devices list
     data['devices'] ??= [];
-    await pushHelper(
+    await PushHelper.processNotification(
       PushNotification.fromJson(data),
       client: client,
       l10n: l10n,
