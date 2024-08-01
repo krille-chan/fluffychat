@@ -29,6 +29,7 @@ class OverlayUtil {
     bool targetScreen = false,
     Function? onDismiss,
     bool centered = true,
+    bool bottom = false,
   }) {
     try {
       if (closePrevOverlay) {
@@ -47,16 +48,20 @@ class OverlayUtil {
                   onDismiss: onDismiss,
                 ),
               Positioned(
-                top: (targetScreen && !centered)
+                top: (targetScreen && !centered && !bottom)
                     ? FluffyThemes.isColumnMode(context)
                         ? 20
                         : 65
                     : null,
                 right: (targetScreen && !centered)
-                    ? FluffyThemes.isColumnMode(context)
-                        ? 20
-                        : 15
+                    ? bottom
+                        ? 0
+                        : FluffyThemes.isColumnMode(context)
+                            ? 20
+                            : 15
                     : null,
+                left: bottom ? 0 : null,
+                bottom: bottom ? 0 : null,
                 width: width,
                 height: height,
                 child: targetScreen

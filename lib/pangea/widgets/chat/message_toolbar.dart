@@ -66,6 +66,8 @@ class ToolbarDisplayController {
   void showToolbar(BuildContext context, {MessageMode? mode}) {
     // Close keyboard, if open
     FocusManager.instance.primaryFocus?.unfocus();
+    // Close emoji picker, if open
+    controller.showEmojiPicker = false;
     if (highlighted) return;
     if (!MatrixState.pangeaController.languageController.languagesSet) {
       pLanguageDialog(context, () {});

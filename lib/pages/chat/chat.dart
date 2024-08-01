@@ -10,6 +10,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/chat/chat_emoji_picker.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
@@ -23,6 +24,7 @@ import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
+import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/utils/report_message.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
@@ -841,6 +843,11 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void hideEmojiPicker() {
+    // #Pangea
+    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeOverlay();
+    clearSelectedEvents();
+    // Pangea
     setState(() => showEmojiPicker = false);
   }
 
@@ -1234,11 +1241,29 @@ class ChatController extends State<ChatPageWithRoom>
     _allReactionEvents = allReactionEvents;
     emojiPickerType = EmojiPickerType.reaction;
     setState(() => showEmojiPicker = true);
+    // #Pangea
+    OverlayUtil.showOverlay(
+      context: context,
+      child: ChatEmojiPicker(this),
+      transformTargetId: selectedEvents.first.eventId,
+      targetAnchor: Alignment.center,
+      followerAnchor: Alignment.center,
+      backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
+      closePrevOverlay: false,
+      targetScreen: true,
+      onDismiss: hideEmojiPicker,
+      centered: false,
+      bottom: true,
+    );
+    // Pangea#
   }
 
   void sendEmojiAction(String? emoji) async {
     final events = List<Event>.from(selectedEvents);
     setState(() => selectedEvents.clear());
+    // #Pangea
+    MatrixState.pAnyState.closeOverlay();
+    // Pangea#
     for (final event in events) {
       await room.sendReaction(
         event.eventId,
