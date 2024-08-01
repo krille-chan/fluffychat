@@ -1,5 +1,6 @@
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
+import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -67,21 +68,67 @@ class OverlayHeader extends StatelessWidget {
             tooltip: L10n.of(context)!.redactMessage,
             onPressed: controller.redactEventsAction,
           ),
-        PopupMenuButton<_EventContextAction>(
-          onSelected: (action) {
-            switch (action) {
-              case _EventContextAction.info:
-                controller.showEventInfo();
-                controller.clearSelectedEvents();
-                break;
-              case _EventContextAction.report:
-                controller.reportEventAction();
-                break;
-            }
-          },
-          itemBuilder: (context) => [
-            PopupMenuItem(
-              value: _EventContextAction.info,
+        IconButton(
+          padding: const EdgeInsets.only(bottom: 6),
+          icon: Icon(
+            Icons.more_horiz,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+          onPressed: () => showPopup(context),
+        ),
+      ],
+    );
+  }
+
+  void showPopup(BuildContext context) {
+    OverlayUtil.showOverlay(
+      context: context,
+      child: SelectionPopup(controller: controller),
+      transformTargetId: "",
+      targetAnchor: Alignment.center,
+      followerAnchor: Alignment.center,
+      backgroundColor: Colors.transparent,
+      closePrevOverlay: false,
+      targetScreen: true,
+      onDismiss: closeToolbar,
+      centered: false,
+    );
+  }
+}
+
+class SelectionPopup extends StatelessWidget {
+  ChatController controller;
+
+  SelectionPopup({
+    required this.controller,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      type: MaterialType.transparency,
+      child: Container(
+        // padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surfaceContainer,
+          border: Border.all(
+            width: 3,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(20),
+          ),
+        ),
+        constraints: const BoxConstraints(
+          maxWidth: 200,
+          maxHeight: 200,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            TextButton(
+              onPressed: controller.showEventInfo,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -91,24 +138,27 @@ class OverlayHeader extends StatelessWidget {
                 ],
               ),
             ),
-            if (selectedEvent.status.isSent)
-              PopupMenuItem(
-                value: _EventContextAction.report,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(
-                      Icons.shield_outlined,
-                      color: Colors.red,
-                    ),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context)!.reportMessage),
-                  ],
-                ),
+            Divider(
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
+              height: 5,
+            ),
+            TextButton(
+              onPressed: controller.reportEventAction,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.shield_outlined,
+                    color: Colors.red,
+                  ),
+                  const SizedBox(width: 12),
+                  Text(L10n.of(context)!.reportMessage),
+                ],
               ),
+            ),
           ],
         ),
-      ],
+      ),
     );
   }
 }

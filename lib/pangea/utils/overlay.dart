@@ -28,13 +28,12 @@ class OverlayUtil {
     bool closePrevOverlay = true,
     bool targetScreen = false,
     Function? onDismiss,
+    bool centered = true,
   }) {
     try {
       if (closePrevOverlay) {
         MatrixState.pAnyState.closeOverlay();
       }
-      final LayerLinkAndKey layerLinkAndKey =
-          MatrixState.pAnyState.layerLinkAndKey(transformTargetId);
 
       final OverlayEntry entry = OverlayEntry(
         builder: (context) => AnimatedContainer(
@@ -48,14 +47,28 @@ class OverlayUtil {
                   onDismiss: onDismiss,
                 ),
               Positioned(
+                top: (targetScreen && !centered)
+                    ? FluffyThemes.isColumnMode(context)
+                        ? 20
+                        : 65
+                    : null,
+                right: (targetScreen && !centered)
+                    ? FluffyThemes.isColumnMode(context)
+                        ? 20
+                        : 15
+                    : null,
                 width: width,
                 height: height,
                 child: targetScreen
-                    ? Center(child: child)
+                    ? centered
+                        ? Center(child: child)
+                        : child
                     : CompositedTransformFollower(
                         targetAnchor: targetAnchor ?? Alignment.topLeft,
                         followerAnchor: followerAnchor ?? Alignment.topLeft,
-                        link: layerLinkAndKey.link,
+                        link: MatrixState.pAnyState
+                            .layerLinkAndKey(transformTargetId)
+                            .link,
                         showWhenUnlinked: false,
                         offset: offset ?? Offset.zero,
                         child: child,

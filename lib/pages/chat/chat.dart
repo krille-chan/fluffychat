@@ -115,6 +115,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   late Choreographer choreographer = Choreographer(pangeaController, this);
   // Pangea#
+
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
   late Client sendingClient;
@@ -896,7 +897,14 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void reportEventAction() async {
+    // #Pangea
+    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeOverlay();
+    // Pangea#
     final event = selectedEvents.single;
+    // #Pangea
+    clearSelectedEvents();
+    // Pangea#
     final score = await showConfirmationDialog<int>(
       context: context,
       title: L10n.of(context)!.reportMessage,
@@ -1476,8 +1484,18 @@ class ChatController extends State<ChatPageWithRoom>
   bool get isArchived =>
       {Membership.leave, Membership.ban}.contains(room.membership);
 
-  void showEventInfo([Event? event]) =>
-      (event ?? selectedEvents.single).showInfoDialog(context);
+  void showEventInfo([Event? event])
+  // #Pangea
+  // =>
+  {
+    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeOverlay();
+    // Pangea#
+    (event ?? selectedEvents.single).showInfoDialog(context);
+    // #Pangea
+    clearSelectedEvents();
+    // Pangea#
+  }
 
   void onPhoneButtonTap() async {
     // VoIP required Android SDK 21
