@@ -6,7 +6,7 @@ import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_description_button.dart';
 import 'package:fluffychat/pangea/utils/set_class_name.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
-import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings_create_group.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -43,8 +43,9 @@ class ChatDetailsController extends State<ChatDetails> {
 
   // #Pangea
   final GlobalKey<AddToSpaceState> addToSpaceKey = GlobalKey<AddToSpaceState>();
-  final GlobalKey<ConversationBotSettingsState> addConversationBotKey =
-      GlobalKey<ConversationBotSettingsState>();
+  final GlobalKey<ConversationBotSettingsCreateGroupState>
+      addConversationBotKey =
+      GlobalKey<ConversationBotSettingsCreateGroupState>();
 
   bool displayAddStudentOptions = false;
   void toggleAddStudentOptions() =>
