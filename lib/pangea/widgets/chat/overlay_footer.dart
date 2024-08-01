@@ -2,9 +2,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
-import 'package:fluffychat/pages/chat/reply_display.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
-import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:flutter/material.dart';
 
 enum _EventContextAction { info, report }
@@ -41,18 +38,13 @@ class OverlayFooter extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const ConnectionStatusHeader(),
-                ITBar(
-                  choreographer: controller.choreographer,
-                ),
                 ReactionsPicker(controller),
-                ReplyDisplay(controller),
                 ChatInputRow(controller),
               ],
             ),
           ),
           SizedBox(
-            height: FluffyThemes.isColumnMode(context) ? 16.0 : 8.0,
+            height: FluffyThemes.isColumnMode(context) ? 23.0 : 15.0,
           ),
         ],
       ),
