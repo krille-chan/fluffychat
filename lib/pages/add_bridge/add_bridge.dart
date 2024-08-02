@@ -136,8 +136,10 @@ class BotController extends State<AddBridge> {
         directChat = room.id;
       } else {
         // If the conversation doesn't exist, create a new one
-        directChat = await client.startDirectChat(botUserId,
-            preset: CreateRoomPreset.publicChat);
+        directChat = await client.startDirectChat(
+          botUserId,
+          preset: CreateRoomPreset.privateChat,
+        );
         final roomBot = client.getRoomById(directChat);
         if (roomBot != null) {
           await waitForBotFirstMessage(roomBot);
