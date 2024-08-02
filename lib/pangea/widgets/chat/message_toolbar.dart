@@ -49,7 +49,7 @@ class ToolbarDisplayController {
 
   void closeToolbar() {
     controller.clearSelectedEvents();
-    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeAllOverlays();
   }
 
   void setToolbar() {

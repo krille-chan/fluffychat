@@ -844,8 +844,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void hideEmojiPicker() {
     // #Pangea
-    MatrixState.pAnyState.closeOverlay();
-    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeAllOverlays();
     clearSelectedEvents();
     // Pangea
     setState(() => showEmojiPicker = false);
@@ -894,7 +893,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void copyEventsAction() {
     // #Pangea
-    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeAllOverlays();
     // Pangea#
     Clipboard.setData(ClipboardData(text: _getSelectedEventString()));
     setState(() {
@@ -905,8 +904,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void reportEventAction() async {
     // #Pangea
-    MatrixState.pAnyState.closeOverlay();
-    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeAllOverlays();
     // Pangea#
     final event = selectedEvents.single;
     // #Pangea
@@ -1002,7 +1000,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void redactEventsAction() async {
     // #Pangea
-    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeAllOverlays();
     // Pangea#
     final reasonInput = selectedEvents.any((event) => event.status.isSent)
         ? await showTextInputDialog(
@@ -1100,7 +1098,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void forwardEventsAction() async {
     // #Pangea
-    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeAllOverlays();
     // Pangea#
     if (selectedEvents.length == 1) {
       Matrix.of(context).shareContent =
@@ -1134,7 +1132,7 @@ class ChatController extends State<ChatPageWithRoom>
       replyEvent = replyTo ?? selectedEvents.first;
       selectedEvents.clear();
     });
-    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeAllOverlays();
     inputFocus.requestFocus();
   }
 
@@ -1262,7 +1260,7 @@ class ChatController extends State<ChatPageWithRoom>
     final events = List<Event>.from(selectedEvents);
     setState(() => selectedEvents.clear());
     // #Pangea
-    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeAllOverlays();
     // Pangea#
     for (final event in events) {
       await room.sendReaction(
@@ -1513,8 +1511,7 @@ class ChatController extends State<ChatPageWithRoom>
   // #Pangea
   // =>
   {
-    MatrixState.pAnyState.closeOverlay();
-    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeAllOverlays();
     // Pangea#
     (event ?? selectedEvents.single).showInfoDialog(context);
     // #Pangea

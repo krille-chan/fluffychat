@@ -61,6 +61,23 @@ class PangeaAnyState {
     }
   }
 
+  void closeAllOverlays() {
+    while (entries.isNotEmpty) {
+      try {
+        entries.last.remove();
+      } catch (err, s) {
+        ErrorHandler.logError(
+          e: err,
+          s: s,
+          data: {
+            "overlay": entries.last,
+          },
+        );
+      }
+      entries.removeLast();
+    }
+  }
+
   LayerLinkAndKey messageLinkAndKey(String eventId) => layerLinkAndKey(eventId);
 
   // String chatViewTargetKey(String? roomId) => "chatViewKey$roomId";
