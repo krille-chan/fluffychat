@@ -435,7 +435,11 @@ class MessageToolbarState extends State<MessageToolbar> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Flexible(
+            Container(
+              constraints: const BoxConstraints(
+                minWidth: 300,
+                maxHeight: 228,
+              ),
               child: SingleChildScrollView(
                 child: AnimatedSize(
                   duration: FluffyThemes.animationDuration,
