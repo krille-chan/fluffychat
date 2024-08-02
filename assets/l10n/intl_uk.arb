@@ -1557,7 +1557,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Типовий рівень дозволів",
+  "defaultPermissionLevel": "Типовий рівень дозволів для нових користувачів",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2708,5 +2708,49 @@
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
-  }
+  },
+  "moderatorLevel": "{level} - Модератор",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Адміністратор",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "userLevel": "{level} - Користувач",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Змінити загальні налаштування чату",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "Запросіть інших користувачів до цього чату",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Змінити права доступу до чату",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "Змінити видимість історії чату",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Змініть основну адресу публічного чату",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "Надсилати сповіщення в @кімнату",
+  "@sendRoomNotifications": {},
+  "space": "Простір",
+  "@space": {},
+  "spaces": "Простори",
+  "@spaces": {},
+  "goToSpace": "Перейти до простору: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Позначити як непрочитане",
+  "@markAsUnread": {}
 }
