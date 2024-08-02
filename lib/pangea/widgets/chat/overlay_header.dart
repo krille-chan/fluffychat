@@ -109,13 +109,9 @@ class SelectionPopup extends StatelessWidget {
     return Material(
       type: MaterialType.transparency,
       child: Container(
-        // padding: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surfaceContainer,
-          border: Border.all(
-            width: 3,
-            color: Theme.of(context).colorScheme.surfaceContainerHighest,
-          ),
           borderRadius: const BorderRadius.all(
             Radius.circular(20),
           ),
@@ -126,6 +122,7 @@ class SelectionPopup extends StatelessWidget {
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             TextButton(
               onPressed: controller.showEventInfo,
@@ -137,10 +134,6 @@ class SelectionPopup extends StatelessWidget {
                   Text(L10n.of(context)!.messageInfo),
                 ],
               ),
-            ),
-            Divider(
-              color: Theme.of(context).colorScheme.surfaceContainerHighest,
-              height: 5,
             ),
             TextButton(
               onPressed: controller.reportEventAction,
