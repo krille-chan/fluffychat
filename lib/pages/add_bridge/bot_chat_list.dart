@@ -65,7 +65,7 @@ class _BotChatListPageState extends State<BotChatListPage> {
                     key: Key('chat_list_item_${rooms[i].id}'), onTap: () {
                       // Handle tap on a bot conversation
                       openChatRoom(room, context);
-                    }, onLongPress: () {
+                    }, onLongPress: (context) {
                       // Handle long press to delete the room
                       _onChatLongPress(room, context);
                     });

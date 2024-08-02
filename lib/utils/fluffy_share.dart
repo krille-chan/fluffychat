@@ -35,7 +35,7 @@ abstract class FluffyShare {
     final ownProfile = await client.fetchOwnProfile();
     await FluffyShare.share(
       L10n.of(context)!.inviteTextTawkie(
-        ownProfile.displayName ?? client.userID!
+          ownProfile.displayName ?? client.userID!
       ),
       context,
     );

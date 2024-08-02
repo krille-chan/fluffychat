@@ -31,6 +31,7 @@ import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/error_reporter.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/event_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/platform_infos.dart';

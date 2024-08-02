@@ -11,6 +11,7 @@ import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat_list/chat_list.dart';
 import 'package:tawkie/pages/chat_list/navi_rail_item.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/utils/stream_extension.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/unread_rooms_badge.dart';
@@ -110,7 +111,7 @@ class ChatListView extends StatelessWidget {
                             isSelected: controller.activeSpaceId == space.id,
                             onTap: () =>
                                 controller.setActiveSpace(rootSpaces[i].id),
-                            unreadBadgeFilter: (room) =>
+                            unreadBadgeFilter: (Room room) =>
                                 spaceChildrenIds.contains(room.id),
                             icon: Avatar(
                               mxContent: rootSpaces[i].avatar,

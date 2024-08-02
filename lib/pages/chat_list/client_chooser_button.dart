@@ -21,11 +21,11 @@ class ClientChooserButton extends StatelessWidget {
     final matrix = Matrix.of(context);
     final bundles = matrix.accountBundles.keys.toList()
       ..sort(
-        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
+            (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
             ? 0
             : a.isValidMatrixId && !b.isValidMatrixId
-                ? -1
-                : 1,
+            ? -1
+            : 1,
       );
     return <PopupMenuEntry<Object>>[
       PopupMenuItem(
@@ -70,9 +70,7 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      // Currently disabled because of:
-      // https://github.com/matrix-org/matrix-react-sdk/pull/12286
-      /*PopupMenuItem(
+      PopupMenuItem(
         value: SettingsAction.archive,
         child: Row(
           children: [
@@ -81,7 +79,19 @@ class ClientChooserButton extends StatelessWidget {
             Text(L10n.of(context)!.archive),
           ],
         ),
-      ),*/
+      ),
+      // Check if the device is mobile
+      if (PlatformInfos.isMobile)
+        PopupMenuItem(
+          value: SettingsAction.joinBeta,
+          child: Row(
+            children: [
+              const Icon(Icons.new_releases),
+              const SizedBox(width: 18),
+              Text(L10n.of(context)!.joinBetaTitle),
+            ],
+          ),
+        ),
       PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(
@@ -131,6 +141,7 @@ class ClientChooserButton extends StatelessWidget {
                     name:
                         snapshot.data?.displayName ?? client.userID!.localpart,
                     size: 32,
+                    fontSize: 12,
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -183,7 +194,7 @@ class ClientChooserButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final matrix = Matrix.of(context);
 
-    var clientCount = 0;
+    int clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
     return FutureBuilder<Profile>(
       future: matrix.client.fetchOwnProfile(),
@@ -192,7 +203,7 @@ class ClientChooserButton extends StatelessWidget {
         children: [
           ...List.generate(
             clientCount,
-            (index) => KeyBoardShortcuts(
+                (index) => KeyBoardShortcuts(
               keysToPress: _buildKeyboardShortcut(index + 1),
               helpLabel: L10n.of(context)!.switchToAccount(index + 1),
               onKeysPressed: () => _handleKeyboardShortcut(
@@ -253,9 +264,9 @@ class ClientChooserButton extends StatelessWidget {
   }
 
   void _clientSelected(
-    Object object,
-    BuildContext context,
-  ) async {
+      Object object,
+      BuildContext context,
+      ) async {
     if (object is Client) {
       controller.setActiveClient(object);
     } else if (object is String) {
@@ -291,7 +302,7 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.joinBeta:
           context.go('/rooms/settings/joinBeta');
           break;
-        // Redirect to bot social network connection page
+      // Redirect to bot social network connection page
         case SettingsAction.addBridgeBot:
           context.go('/rooms/settings/addbridgebot');
           break;
@@ -302,21 +313,21 @@ class ClientChooserButton extends StatelessWidget {
   }
 
   void _handleKeyboardShortcut(
-    MatrixState matrix,
-    int index,
-    BuildContext context,
-  ) {
+      MatrixState matrix,
+      int index,
+      BuildContext context,
+      ) {
     final bundles = matrix.accountBundles.keys.toList()
       ..sort(
-        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
+            (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
             ? 0
             : a.isValidMatrixId && !b.isValidMatrixId
-                ? -1
-                : 1,
+            ? -1
+            : 1,
       );
     // beginning from end if negative
     if (index < 0) {
-      var clientCount = 0;
+      int clientCount = 0;
       matrix.accountBundles
           .forEach((key, value) => clientCount += value.length);
       _handleKeyboardShortcut(matrix, clientCount, context);
@@ -336,15 +347,15 @@ class ClientChooserButton extends StatelessWidget {
   }
 
   int? _shortcutIndexOfClient(MatrixState matrix, Client client) {
-    var index = 0;
+    int index = 0;
 
     final bundles = matrix.accountBundles.keys.toList()
       ..sort(
-        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
+            (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
             ? 0
             : a.isValidMatrixId && !b.isValidMatrixId
-                ? -1
-                : 1,
+            ? -1
+            : 1,
       );
     for (final bundleName in bundles) {
       final bundle = matrix.accountBundles[bundleName];

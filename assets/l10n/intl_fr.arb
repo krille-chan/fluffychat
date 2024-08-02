@@ -624,7 +624,6 @@
         "placeholders": {}
     },
     "editDisplayname": "Changer de nom d'affichage",
-    "editDisplaynameMessage": "Note: Visible uniquement par les utilisateur·ices de Tawkie.",
     "@editDisplayname": {
         "type": "text",
         "placeholders": {}
@@ -1091,7 +1090,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Il semble que vous n'ayez aucun service Google sur votre téléphone. C'est une bonne décision pour votre vie privée ! Pour recevoir des notifications dans FluffyChat, nous vous recommandons d'utiliser https://microg.org/ ou https://unifiedpush.org/.",
+    "noGoogleServicesWarning": "Firebase Cloud Messaging ne semble pas être disponible sur votre appareil. Pour continuer à recevoir des notifications poussées, nous vous recommandons d'installer ntfy. Avec ntfy ou un autre fournisseur Unified Push, vous pouvez recevoir des notifications poussées de manière sécurisée. Vous pouvez télécharger ntfy sur le PlayStore ou sur F-Droid.",
     "@noGoogleServicesWarning": {
         "type": "text",
         "placeholders": {}
@@ -1847,7 +1846,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "wallpaper": "Image de fond",
+    "wallpaper": "Image de fond :",
     "@wallpaper": {
         "type": "text",
         "placeholders": {}
@@ -2171,7 +2170,7 @@
     "@enterRoom": {},
     "allSpaces": "Tous les espaces",
     "@allSpaces": {},
-    "commandHint_markasdm": "Marquer comme salon de messagerie directe",
+    "commandHint_markasdm": "Marquer comme salon de messages directs pour l'identifiant Matrix indiqué",
     "@commandHint_markasdm": {},
     "commandHint_markasgroup": "Marquer comme groupe",
     "@commandHint_markasgroup": {},
@@ -2286,7 +2285,7 @@
     "@jumpToLastReadMessage": {},
     "readUpToHere": "Lisez jusqu’ici",
     "@readUpToHere": {},
-    "allRooms": "Toutes les conversations groupées",
+    "allRooms": "Tous les groupes de discussion",
     "@allRooms": {
         "type": "text",
         "placeholders": {}
@@ -2299,7 +2298,7 @@
     "@inviteContactToGroupQuestion": {},
     "importEmojis": "Importer des Emojis",
     "@importEmojis": {},
-    "notAnImage": "Pas un fichier image",
+    "notAnImage": "Pas un fichier image.",
     "@notAnImage": {},
     "chatDescriptionHasBeenChanged": "La description du salon a changé",
     "@chatDescriptionHasBeenChanged": {},
@@ -2307,34 +2306,195 @@
     "@createGroup": {},
     "importNow": "Importer maintenant",
     "@importNow": {},
-    "@reportErrorDescription": {},
-    "@setColorTheme": {},
-    "@banUserDescription": {},
-    "@removeDevicesDescription": {},
+    "tryAgain": "Nouvelle tentative",
     "@tryAgain": {},
-    "@unbanUserDescription": {},
-    "@messagesStyle": {},
-    "@chatDescription": {},
-    "@pushNotificationsNotAvailable": {},
-    "@invalidServerName": {},
-    "@signInWithPassword": {},
-    "@makeAdminDescription": {},
-    "@setChatDescription": {},
+    "blockedUsers": "Utilisateurs/trices bloqués",
+    "@blockedUsers": {},
+    "redactMessageDescription": "Le message sera modifié pour tous les participants de cette conversation. Il n'est pas possible de revenir en arrière.",
+    "@redactMessageDescription": {},
+    "redactedBy": "Modifié par {username}",
     "@redactedBy": {
         "type": "text",
         "placeholders": {
             "username": {}
         }
     },
-    "@signInWith": {
+    "directChat": "Discussion directe",
+    "@directChat": {},
+    "optionalRedactReason": "(Facultatif) Raison de la modification de ce message...",
+    "@optionalRedactReason": {},
+    "subspace": "Sous-espace",
+    "@subspace": {},
+    "sendTypingNotifications": "Envoyer des notifications de frappe",
+    "@sendTypingNotifications": {},
+    "replace": "Remplacer",
+    "@replace": {},
+    "emoteKeyboardNoRecents": "Les émoticônes récemment utilisées apparaîtront ici...",
+    "@emoteKeyboardNoRecents": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "nothingFound": "Rien n'a été trouvé...",
+    "@nothingFound": {},
+    "chatDescription": "Description de la discussion",
+    "@chatDescription": {},
+    "invalidServerName": "Nom de serveur invalide",
+    "@invalidServerName": {},
+    "addChatDescription": "Ajouter une description à la discussion...",
+    "@addChatDescription": {},
+    "shareInviteLink": "Partager un lien d'invitation",
+    "@shareInviteLink": {},
+    "openLinkInBrowser": "Ouvrir le lien dans le navigateur",
+    "@openLinkInBrowser": {},
+    "setTheme": "Définir le thème :",
+    "@setTheme": {},
+    "setColorTheme": "Définir la couleur du thème :",
+    "@setColorTheme": {},
+    "databaseMigrationBody": "Veuillez patienter. Cela peut prendre un moment.",
+    "@databaseMigrationBody": {},
+    "searchForUsers": "Rechercher des @utilisateurs/trices...",
+    "@searchForUsers": {},
+    "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
+    "@passwordsDoNotMatch": {},
+    "passwordIsWrong": "Votre mot de passe saisi est erroné",
+    "@passwordIsWrong": {},
+    "publicLink": "Lien public",
+    "@publicLink": {},
+    "joinSpace": "Rejoindre l'espace",
+    "@joinSpace": {},
+    "publicSpaces": "Espaces publics",
+    "@publicSpaces": {},
+    "addChatOrSubSpace": "Ajouter une discussion ou un sous-espace",
+    "@addChatOrSubSpace": {},
+    "thisDevice": "Cet appareil :",
+    "@thisDevice": {},
+    "sendReadReceipts": "Envoyer des accusés de réception",
+    "@sendReadReceipts": {},
+    "sendTypingNotificationsDescription": "Les autres participants à une discussion peuvent voir que vous êtes en train de taper un nouveau message.",
+    "@sendTypingNotificationsDescription": {},
+    "verifyOtherDevice": "🔐 Vérifier l'autre appareil",
+    "@verifyOtherDevice": {},
+    "databaseBuildErrorBody": "La base de données SQlite ne peut pas être créée. L'application essaie d'utiliser la base de données existante pour le moment. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
+    "@databaseBuildErrorBody": {
         "type": "text",
         "placeholders": {
-            "provider": {}
+            "url": {},
+            "error": {}
         }
     },
-    "@optionalRedactReason": {},
-    "@archiveRoomDescription": {},
-    "@exportEmotePack": {},
+    "startConversation": "Démarrer la conversation",
+    "@startConversation": {},
+    "formattedMessagesDescription": "Affichez le contenu formaté des messages comme du texte en gras à l'aide de markdown.",
+    "@formattedMessagesDescription": {},
+    "incomingMessages": "Messages entrants",
+    "@incomingMessages": {},
+    "acceptedKeyVerification": "{sender} a accepté la vérification de clé",
+    "@acceptedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "pleaseTryAgainLaterOrChooseDifferentServer": "Veuillez réessayer plus tard ou choisir un autre serveur.",
+    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+    "inviteGroupChat": "📨 Inviter à une discussion de groupe",
+    "@inviteGroupChat": {},
+    "invitePrivateChat": "📨 Inviter à une discussion privée",
+    "@invitePrivateChat": {},
+    "jump": "Sauter",
+    "@jump": {},
+    "signInWithPassword": "Se connecter avec mot de passe",
+    "@signInWithPassword": {},
+    "hideMemberChangesInPublicChats": "Masquer les modifications de membres dans les discussions publiques",
+    "@hideMemberChangesInPublicChats": {},
+    "hideMemberChangesInPublicChatsBody": "Ne pas afficher dans la chronologie de la discussion si quelqu'un rejoint ou quitte une discussion publique afin d'améliorer la lisibilité.",
+    "@hideMemberChangesInPublicChatsBody": {},
+    "overview": "Aperçu",
+    "@overview": {},
+    "notifyMeFor": "Me notifier pour",
+    "@notifyMeFor": {},
+    "passwordRecoverySettings": "Paramètres de récupération de mot de passe",
+    "@passwordRecoverySettings": {},
+    "hasKnocked": "🚪 {user} a frappé",
+    "@hasKnocked": {
+        "placeholders": {
+            "user": {}
+        }
+    },
+    "canceledKeyVerification": "{sender} a annulé la vérification de clé",
+    "@canceledKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "unreadChatsInApp": "{appname} : {unread} discussions non lus",
+    "@unreadChatsInApp": {
+        "type": "text",
+        "placeholders": {
+            "appname": {},
+            "unread": {}
+        }
+    },
+    "requestedKeyVerification": "{sender} a demandé une vérification de clé",
+    "@requestedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "startedKeyVerification": "{sender} a lancé la vérification de clé",
+    "@startedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "discover": "Découvrir",
+    "@discover": {},
+    "usersMustKnock": "Les utilisateurs/trices doivent frapper",
+    "@usersMustKnock": {},
+    "noOneCanJoin": "Personne ne peut rejoindre",
+    "@noOneCanJoin": {},
+    "knock": "Frapper à la porte",
+    "@knock": {},
+    "hidePresences": "Cacher la liste des statuts ?",
+    "@hidePresences": {},
+    "appLockDescription": "Verrouiller l'application avec un code PIN lorsqu'elle n'est pas utilisée",
+    "@appLockDescription": {},
+    "globalChatId": "Identifiant global de la discussion",
+    "@globalChatId": {},
+    "accessAndVisibility": "Accès et visibilité",
+    "@accessAndVisibility": {},
+    "accessAndVisibilityDescription": "Qui est autorisé à rejoindre cette discussion et comment la discussion peut être découverte.",
+    "@accessAndVisibilityDescription": {},
+    "calls": "Appels",
+    "@calls": {},
+    "customEmojisAndStickers": "Émoticônes et autocollants personnalisés",
+    "@customEmojisAndStickers": {},
+    "hideRedactedMessages": "Cacher les messages édités",
+    "@hideRedactedMessages": {},
+    "pleaseEnterYourCurrentPassword": "Veuillez saisir votre mot de passe actuel",
+    "@pleaseEnterYourCurrentPassword": {},
+    "swipeRightToLeftToReply": "Glisser de droite à gauche pour répondre",
+    "@swipeRightToLeftToReply": {},
+    "alwaysUse24HourFormat": "true",
+    "@alwaysUse24HourFormat": {
+        "description": "Set to true to always display time of day in 24 hour format."
+    },
+    "hideRedactedMessagesBody": "Si quelqu'un modifie un message, celui-ci ne sera plus visible dans la discussion.",
+    "@hideRedactedMessagesBody": {},
+    "customEmojisAndStickersBody": "Ajoutez ou partagez des émoticônes ou autocollants personnalisés qui peuvent être utilisés dans n'importe quelle discussion.",
+    "@customEmojisAndStickersBody": {},
+    "blockListDescription": "Vous pouvez bloquer des utilisateurs/trices qui vous dérangent. Vous ne pourrez plus recevoir aucun message ou invitation à un salon d'utilisateurs/trices figurant sur votre liste de blocage personnelle.",
+    "@blockListDescription": {},
+    "blockUsername": "Ignorer le nom d'utilisateur/trice",
+    "@blockUsername": {},
+    "hideInvalidOrUnknownMessageFormats": "Masquer les formats de message invalides ou inconnus",
+    "@hideInvalidOrUnknownMessageFormats": {},
+    "messagesStyle": "Messages :",
+    "@messagesStyle": {},
+    "redactedByBecause": "Modifié par {username} car : \"{reason}\"",
     "@redactedByBecause": {
         "type": "text",
         "placeholders": {
@@ -2342,42 +2502,243 @@
             "reason": {}
         }
     },
-    "@redactMessageDescription": {},
-    "@invalidInput": {},
-    "@report": {},
-    "@addChatDescription": {},
-    "@hasKnocked": {
+    "setChatDescription": "Définir la description de la discussion",
+    "@setChatDescription": {},
+    "presenceStyle": "Statut :",
+    "@presenceStyle": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "presencesToggle": "Afficher les messages de statut des autres utilisateurs/trices",
+    "@presencesToggle": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "youInvitedToBy": "📩 Vous avez été invité par lien à :\n{alias}",
+    "@youInvitedToBy": {
+        "placeholders": {
+            "alias": {}
+        }
+    },
+    "userWouldLikeToChangeTheChat": "{user} souhaite rejoindre la discussion.",
+    "@userWouldLikeToChangeTheChat": {
         "placeholders": {
             "user": {}
         }
     },
-    "@directChat": {},
+    "noPublicLinkHasBeenCreatedYet": "Aucun lien public n'a encore été crée",
+    "@noPublicLinkHasBeenCreatedYet": {},
+    "gallery": "Galerie",
+    "@gallery": {},
+    "files": "Fichiers",
+    "@files": {},
+    "sessionLostBody": "Votre session est perdue. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
+    "@sessionLostBody": {
+        "type": "text",
+        "placeholders": {
+            "url": {},
+            "error": {}
+        }
+    },
+    "searchIn": "Rechercher dans la discussion \"{chat}\"...",
+    "@searchIn": {
+        "type": "text",
+        "placeholders": {
+            "chat": {}
+        }
+    },
+    "forwardMessageTo": "Transférer le message à {roomName} ?",
+    "@forwardMessageTo": {
+        "type": "text",
+        "placeholders": {
+            "roomName": {}
+        }
+    },
+    "sendReadReceiptsDescription": "Les autres participants à une discussion peuvent voir si vous avez lu un message.",
+    "@sendReadReceiptsDescription": {},
+    "formattedMessages": "Messages formatés",
+    "@formattedMessages": {},
+    "verifyOtherUser": "🔐 Vérifier l'autre utilisateur/trice",
+    "@verifyOtherUser": {},
+    "searchMore": "Rechercher davantage...",
+    "@searchMore": {},
+    "verifyOtherUserDescription": "Si vous vérifiez un autre utilisateur/trice, vous pouvez être sûr de savoir à qui vous écrivez réellement. 💪\n\nLorsque vous lancez une vérification, vous et l'autre utilisateur/trice verrez une fenêtre contextuelle dans l'application. Vous y verrez alors une série d'émoticônes ou de chiffres que vous devrez comparer.\n\nLa meilleure façon de procéder est de se rencontrer ou de lancer un appel vidéo. 👭",
+    "@verifyOtherUserDescription": {},
+    "verifyOtherDeviceDescription": "Lorsque vous vérifiez un autre appareil, ces appareils peuvent échanger des clés, ce qui augmente votre sécurité globale. 💪 Lorsque vous lancez une vérification, une fenêtre contextuelle s'affiche dans l'application sur les deux appareils. Vous y verrez alors une série d'émoticônes ou de chiffres que vous devrez comparer. Il est préférable d'avoir les deux appareils à portée de main avant de lancer la vérification. 🤳",
+    "@verifyOtherDeviceDescription": {},
+    "completedKeyVerification": "{sender} a terminé la vérification de clé",
+    "@completedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "isReadyForKeyVerification": "{sender} est prêt pour la vérification de clé",
+    "@isReadyForKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "transparent": "Transparent",
+    "@transparent": {},
+    "stickers": "Autocollants",
+    "@stickers": {},
+    "noDatabaseEncryption": "Le chiffrement de la base de données n'est pas supporté sur cette plateforme",
+    "@noDatabaseEncryption": {},
+    "commandHint_ignore": "Ignorer l'identifiant Matrix indiqué",
+    "@commandHint_ignore": {},
+    "commandHint_unignore": "Ne plus ignorer l'identifiant Matrix indiqué",
+    "@commandHint_unignore": {},
+    "thereAreCountUsersBlocked": "Actuellement, il y a {count} utilisateurs/trices bloqués.",
+    "@thereAreCountUsersBlocked": {
+        "type": "text",
+        "count": {}
+    },
+    "restricted": "Limité",
+    "@restricted": {},
+    "knockRestricted": "Frapper à la porte limité",
+    "@knockRestricted": {},
+    "signInWith": "Se connecter avec {provider}",
+    "@signInWith": {
+        "type": "text",
+        "placeholders": {
+            "provider": {}
+        }
+    },
+    "groupCanBeFoundViaSearch": "Le groupe peut être trouvé via la recherche",
+    "@groupCanBeFoundViaSearch": {},
+    "groupName": "Nom du groupe",
+    "@groupName": {},
+    "invalidInput": "Entrée invalide !",
+    "@invalidInput": {},
+    "block": "Bloquer",
+    "@block": {},
+    "removeDevicesDescription": "Vous serez déconnecté de cet appareil et ne pourrez plus recevoir de messages.",
+    "@removeDevicesDescription": {},
+    "userRole": "Rôle de l'utilisateur/trice",
+    "@userRole": {},
+    "createNewAddress": "Créer une nouvelle adresse",
+    "@createNewAddress": {},
+    "publicChatAddresses": "Addresses de discussion publiques",
+    "@publicChatAddresses": {},
+    "countChatsAndCountParticipants": "{chats} discussions et {participants} participants",
+    "@countChatsAndCountParticipants": {
+        "type": "text",
+        "placeholders": {
+            "chats": {},
+            "participants": {}
+        }
+    },
+    "space": "Espace",
+    "@space": {},
+    "spaces": "Espaces",
+    "@spaces": {},
+    "noMoreChatsFound": "Aucune autre discussion trouvée...",
+    "@noMoreChatsFound": {},
+    "unread": "Non lu",
+    "@unread": {},
+    "joinedChats": "Discussions rejointes",
+    "@joinedChats": {},
+    "commandHint_sendraw": "Envoyer du JSON brut",
+    "@commandHint_sendraw": {},
+    "databaseMigrationTitle": "La base de données est optimisée",
+    "@databaseMigrationTitle": {},
+    "leaveEmptyToClearStatus": "Laisser vide pour effacer votre statut.",
+    "@leaveEmptyToClearStatus": {},
+    "select": "Sélectionner",
+    "@select": {},
+    "reportErrorDescription": "😭 Oh non. Quelque chose s'est mal passé. Si vous le souhaitez, vous pouvez signaler ce bogue aux développeurs.",
+    "@reportErrorDescription": {},
+    "report": "signaler",
+    "@report": {},
+    "wrongPinEntered": "Mauvais code PIN saisi ! Veuillez réessayer dans {seconds} secondes...",
     "@wrongPinEntered": {
         "type": "text",
         "placeholders": {
             "seconds": {}
         }
     },
-    "@sendTypingNotifications": {},
-    "@inviteGroupChat": {},
-    "@invitePrivateChat": {},
-    "@noChatDescriptionYet": {},
-    "@learnMore": {},
-    "@roomUpgradeDescription": {},
-    "@pleaseEnterANumber": {},
-    "@profileNotFound": {},
-    "@jump": {},
-    "@shareInviteLink": {},
-    "@emoteKeyboardNoRecents": {
+    "pushNotificationsNotAvailable": "Notifications poussées indisponibles",
+    "@pushNotificationsNotAvailable": {},
+    "yourGlobalUserIdIs": "Votre identifiant utilisateur global est : ",
+    "@yourGlobalUserIdIs": {},
+    "chatCanBeDiscoveredViaSearchOnServer": "La discussion peut être découverte via la recherche sur {server}",
+    "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "text",
-        "placeholders": {}
+        "placeholders": {
+            "server": {}
+        }
     },
-    "@setTheme": {},
-    "@replace": {},
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+    "knocking": "Frapper",
+    "@knocking": {},
+    "banUserDescription": "L'utilisateur/trice sera banni de la discussion et ne pourra plus y accéder jusqu'à ce qu'il/elle soit débanni.",
+    "@banUserDescription": {},
+    "unbanUserDescription": "L'utilisateur/trice pourra entrer à nouveau dans la discussion si il/elle le souhaite.",
+    "@unbanUserDescription": {},
+    "kickUserDescription": "L'utilisateur/trice est expulsé de la discussion mais n'est pas banni. Dans les discussions publiques, l'utilisateur/trice peut revenir à tout moment.",
     "@kickUserDescription": {},
+    "makeAdminDescription": "Une fois que vous aurez nommé cet utilisateur/trice administrateur, vous ne pourrez peut-être plus annuler cette opération, car il disposera alors des mêmes autorisations que vous.",
+    "@makeAdminDescription": {},
+    "newPassword": "Nouveau mot de passe",
+    "@newPassword": {},
+    "pleaseChooseAStrongPassword": "Veuillez choisir un mot de passe fort",
+    "@pleaseChooseAStrongPassword": {},
+    "decline": "Refuser",
+    "@decline": {},
+    "initAppError": "Une erreur est survenue pendant l'initialisation de l'application",
+    "@initAppError": {},
+    "markAsUnread": "Marquer comme non lu",
+    "@markAsUnread": {},
+    "wrongRecoveryKey": "Désolé... il ne semble pas s'agir de la bonne clé de récupération.",
+    "@wrongRecoveryKey": {},
+    "searchChatsRooms": "Rechercher des #discussions, @utilisateurs/trices...",
+    "@searchChatsRooms": {},
+    "createGroupAndInviteUsers": "Créer un groupe et inviter des utilisateurs/trices",
+    "@createGroupAndInviteUsers": {},
+    "goToSpace": "Aller dans l'espace : {space}",
+    "@goToSpace": {
+        "type": "text",
+        "space": {}
+    },
+    "exportEmotePack": "Exporter le pack d'émoticônes au format .zip",
+    "@exportEmotePack": {},
+    "noChatDescriptionYet": "Aucune description de discussion n'a encore été créée.",
+    "@noChatDescriptionYet": {},
+    "invite": "Inviter",
     "@invite": {},
-    "@openLinkInBrowser": {},
+    "pleaseEnterANumber": "Veuillez saisir un nombre supérieur à 0",
+    "@pleaseEnterANumber": {},
+    "roomUpgradeDescription": "La discussion sera alors recréé avec la nouvelle version de salon. Tous les participants seront informés qu'ils doivent passer à la nouvelle discussion. Pour en savoir plus sur les versions des salons, consultez le site https://spec.matrix.org/latest/rooms/",
+    "@roomUpgradeDescription": {},
+    "learnMore": "En savoir plus",
+    "@learnMore": {},
+    "minimumPowerLevel": "{level} est le niveau minimum de droits.",
+    "@minimumPowerLevel": {
+        "type": "text",
+        "placeholders": {
+            "level": {}
+        }
+    },
+    "restoreSessionBody": "L'application tente maintenant de restaurer votre session depuis la sauvegarde. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
+    "@restoreSessionBody": {
+        "type": "text",
+        "placeholders": {
+            "url": {},
+            "error": {}
+        }
+    },
+    "profileNotFound": "Cet utilisateur/trice n'a pu être trouvé sur le serveur. Peut-être est-ce un problème de connexion ou l'utilisateur/trice n'existe pas.",
+    "@profileNotFound": {},
+    "archiveRoomDescription": "La discussion sera déplacée dans les archives. Les autres utilisateurs/trices pourront voir que vous avez quitté la discussion.",
+    "@archiveRoomDescription": {},
+    "noUsersFoundWithQuery": "Malheureusement, aucun utilisateur/trice n'a pu être trouvé avec \"{query}\". Veuillez vérifier si vous n'avez pas fait de faute de frappe.",
+    "@noUsersFoundWithQuery": {
+        "type": "text",
+        "placeholders": {
+            "query": {}
+        }
+    },
     "youDonTHaveConversation": "Tu n'as pas encore de conversation.",
     "connectChatNetworks": "Connecte tes réseaux de chat",
     "addChatNetwork": "Ajouter un réseau",
@@ -2520,6 +2881,5 @@
     "leaveTheConvDesc": "Voulez-vous vraiment quitter cette conversation ?",
     "leaveTheConvSuccess": "Vous avez quitté la conversation.",
     "chatBotRoomsTitle": "Conversations des bots",
-    "chatBotRoomsNotFound": "Aucune conversation avec les bots.",
-    
+    "chatBotRoomsNotFound": "Aucune conversation avec les bots."
 }

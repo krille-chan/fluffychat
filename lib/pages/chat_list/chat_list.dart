@@ -16,10 +16,13 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:tawkie/config/setting_keys.dart';
 import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:tawkie/pages/bootstrap/bootstrap_dialog.dart';
+import 'package:tawkie/pages/chat/send_file_dialog.dart';
 import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:tawkie/utils/show_update_snackbar.dart';
 import 'package:tawkie/utils/url_launcher.dart';
 import 'package:tawkie/utils/voip/callkeep_manager.dart';
+import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/fluffy_chat_app.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:uni_links/uni_links.dart';
@@ -106,6 +109,8 @@ class ChatListController extends State<ChatList>
 
   String? _activeSpaceId;
   String? get activeSpaceId => _activeSpaceId;
+
+  Set<String> loadingRooms = Set<String>();
 
   void setActiveSpace(String spaceId) async {
     await Matrix.of(context).client.getRoomById(spaceId)!.postLoad();

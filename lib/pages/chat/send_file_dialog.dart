@@ -8,6 +8,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/error_reporter.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
 import 'package:tawkie/utils/resize_image.dart';
 import 'package:tawkie/utils/size_string.dart';

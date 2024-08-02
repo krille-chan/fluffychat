@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
 
 class MaxWidthBody extends StatelessWidget {
   final Widget child;
