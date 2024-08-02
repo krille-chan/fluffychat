@@ -2780,5 +2780,14 @@
     }
   },
   "chatPermissionsDescription": "‪حدد مستوى الصلاحية الضروري لإجراءات معينة في هذه الدردشة. عادة ما تمثل مستويات الصلاحية 0 و 50 و 100 المستخدمين والمشرفين ولكن أي تدرج ممكن.",
-  "@chatPermissionsDescription": {}
+  "@chatPermissionsDescription": {},
+  "changelog": "سجل التغييرات",
+  "@changelog": {},
+  "updateInstalled": "تم تثبيت🎉 تحديث {version}!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  }
 }
