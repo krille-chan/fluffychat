@@ -11,6 +11,13 @@ import '../../config/themes.dart';
 import '../../widgets/matrix.dart';
 import 'error_handler.dart';
 
+enum OverlayEnum {
+  transform,
+  centered,
+  topRight,
+  bottom,
+}
+
 class OverlayUtil {
   static showOverlay({
     required BuildContext context,
@@ -26,10 +33,8 @@ class OverlayUtil {
     Alignment? targetAnchor,
     Alignment? followerAnchor,
     bool closePrevOverlay = true,
-    bool targetScreen = false,
     Function? onDismiss,
-    bool centered = true,
-    bool bottom = false,
+    OverlayEnum position = OverlayEnum.transform,
   }) {
     try {
       if (closePrevOverlay) {
@@ -48,24 +53,24 @@ class OverlayUtil {
                   onDismiss: onDismiss,
                 ),
               Positioned(
-                top: (targetScreen && !centered && !bottom)
+                top: (position == OverlayEnum.topRight)
                     ? FluffyThemes.isColumnMode(context)
                         ? 20
                         : 65
                     : null,
-                right: (targetScreen && !centered)
-                    ? bottom
+                right: (position == OverlayEnum.topRight)
+                    ? FluffyThemes.isColumnMode(context)
+                        ? 20
+                        : 15
+                    : (position == OverlayEnum.bottom)
                         ? 0
-                        : FluffyThemes.isColumnMode(context)
-                            ? 20
-                            : 15
-                    : null,
-                left: bottom ? 0 : null,
-                bottom: bottom ? 0 : null,
+                        : null,
+                left: (position == OverlayEnum.bottom) ? 0 : null,
+                bottom: (position == OverlayEnum.bottom) ? 0 : null,
                 width: width,
                 height: height,
-                child: targetScreen
-                    ? centered
+                child: (position != OverlayEnum.transform)
+                    ? (position == OverlayEnum.centered)
                         ? Center(child: child)
                         : child
                     : CompositedTransformFollower(

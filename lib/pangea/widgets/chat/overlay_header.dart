@@ -87,11 +87,8 @@ class OverlayHeader extends StatelessWidget {
       transformTargetId: "",
       targetAnchor: Alignment.center,
       followerAnchor: Alignment.center,
-      backgroundColor: Colors.transparent,
       closePrevOverlay: false,
-      targetScreen: true,
-      onDismiss: closeToolbar,
-      centered: false,
+      position: OverlayEnum.topRight,
     );
   }
 }

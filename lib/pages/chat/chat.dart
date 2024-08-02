@@ -1132,7 +1132,9 @@ class ChatController extends State<ChatPageWithRoom>
       replyEvent = replyTo ?? selectedEvents.first;
       selectedEvents.clear();
     });
+    // #Pangea
     MatrixState.pAnyState.closeAllOverlays();
+    // Pangea
     inputFocus.requestFocus();
   }
 
@@ -1248,10 +1250,8 @@ class ChatController extends State<ChatPageWithRoom>
       followerAnchor: Alignment.center,
       backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
       closePrevOverlay: false,
-      targetScreen: true,
       onDismiss: hideEmojiPicker,
-      centered: false,
-      bottom: true,
+      position: OverlayEnum.bottom,
     );
     // Pangea#
   }
