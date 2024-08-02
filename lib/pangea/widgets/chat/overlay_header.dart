@@ -111,14 +111,10 @@ class SelectionPopup extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainer,
+          color: Theme.of(context).colorScheme.surfaceContainerHigh,
           borderRadius: const BorderRadius.all(
             Radius.circular(20),
           ),
-        ),
-        constraints: const BoxConstraints(
-          maxWidth: 200,
-          maxHeight: 200,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
