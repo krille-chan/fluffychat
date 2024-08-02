@@ -104,10 +104,7 @@ class ToolbarDisplayController {
           const SizedBox(
             height: 7,
           ),
-          Container(
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.sizeOf(context).height * .7,
-            ),
+          Flexible(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
