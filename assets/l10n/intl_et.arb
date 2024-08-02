@@ -2780,5 +2780,14 @@
     "placeholders": {
       "user": {}
     }
-  }
+  },
+  "updateInstalled": "🎉 Versiooniuuendus {version} on paigaldatud!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Muudatuste logi",
+  "@changelog": {}
 }
