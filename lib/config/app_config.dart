@@ -13,7 +13,7 @@ abstract class AppConfig {
   static double fontSizeFactor = 1;
   static const Color chatColor = primaryColor;
   static Color? colorSchemeSeed = primaryColor;
-  static const double messageFontSize = 15.75;
+  static const double messageFontSize = 16.0;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
   static const Color primaryColor = Color(0xFF8123B0);
@@ -44,6 +44,7 @@ abstract class AppConfig {
   static bool autoplayImages = true;
   static bool sendTypingNotifications = true;
   static bool sendPublicReadReceipts = true;
+  static bool swipeRightToLeftToReply = true;
   static bool? sendOnEnter;
   static bool showPresences = true;
   static bool experimentalVoip = false;

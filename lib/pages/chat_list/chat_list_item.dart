@@ -16,9 +16,9 @@ enum ArchivedRoomAction { delete, rejoin }
 
 class ChatListItem extends StatelessWidget {
   final Room room;
+  final Room? space;
   final bool activeChat;
-  final bool selected;
-  final void Function()? onLongPress;
+  final void Function(BuildContext context)? onLongPress;
   final void Function()? onForget;
   final void Function() onTap;
   final String? filter;
@@ -26,11 +26,11 @@ class ChatListItem extends StatelessWidget {
   const ChatListItem(
     this.room, {
     this.activeChat = false,
-    this.selected = false,
     required this.onTap,
     this.onLongPress,
     this.onForget,
     this.filter,
+    this.space,
     super.key,
   });
 
@@ -72,12 +72,9 @@ class ChatListItem extends StatelessWidget {
         ? (room.notificationCount > 0 ? 20.0 : 14.0)
         : 0.0;
     final hasNotifications = room.notificationCount > 0;
-    final backgroundColor = selected
-        ? theme.colorScheme.primaryContainer
-        : activeChat
-            ? theme.colorScheme.secondaryContainer
-            : null;
-    var displayname = room.getLocalizedDisplayname(
+    final backgroundColor =
+        activeChat ? theme.colorScheme.secondaryContainer : null;
+    final displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
     );
 
@@ -89,6 +86,7 @@ class ChatListItem extends StatelessWidget {
     final needLastEventSender = lastEvent == null
         ? false
         : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
+    final space = this.space;
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -102,47 +100,89 @@ class ChatListItem extends StatelessWidget {
         child: FutureBuilder(
           future: room.loadHeroUsers(),
           builder: (context, snapshot) => HoverBuilder(
-            builder: (context, hovered) => ListTile(
+            builder: (context, listTileHovered) => ListTile(
               visualDensity: const VisualDensity(vertical: -0.5),
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-              onLongPress: onLongPress,
-              leading: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  HoverBuilder(
-                    builder: (context, hovered) => AnimatedScale(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      scale: hovered ? 1.1 : 1.0,
-                      child: Avatar(
-                        mxContent: room.avatar,
-                        name: displayname,
-                        presenceUserId: directChatMatrixId,
-                        presenceBackgroundColor: backgroundColor,
-                        onTap: onLongPress,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: -2,
-                    right: -2,
-                    child: AnimatedScale(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      scale: (hovered || selected) ? 1.0 : 0.0,
-                      child: Material(
-                        color: backgroundColor,
-                        borderRadius: BorderRadius.circular(16),
-                        child: Icon(
-                          selected
-                              ? Icons.check_circle
-                              : Icons.check_circle_outlined,
-                          size: 18,
+              onLongPress: () => onLongPress?.call(context),
+              leading: HoverBuilder(
+                builder: (context, hovered) => AnimatedScale(
+                  duration: FluffyThemes.animationDuration,
+                  curve: FluffyThemes.animationCurve,
+                  scale: hovered ? 1.1 : 1.0,
+                  child: SizedBox(
+                    width: Avatar.defaultSize,
+                    height: Avatar.defaultSize,
+                    child: Stack(
+                      children: [
+                        if (space != null)
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            child: Avatar(
+                              border: BorderSide(
+                                width: 2,
+                                color: backgroundColor ??
+                                    Theme.of(context).colorScheme.surface,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.borderRadius / 4,
+                              ),
+                              mxContent: space.avatar,
+                              size: Avatar.defaultSize * 0.75,
+                              name: space.getLocalizedDisplayname(),
+                              onTap: () => onLongPress?.call(context),
+                            ),
+                          ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Avatar(
+                            border: space == null
+                                ? null
+                                : BorderSide(
+                                    width: 2,
+                                    color: backgroundColor ??
+                                        Theme.of(context).colorScheme.surface,
+                                  ),
+                            borderRadius: room.isSpace
+                                ? BorderRadius.circular(
+                                    AppConfig.borderRadius / 4,
+                                  )
+                                : null,
+                            mxContent: room.avatar,
+                            size: space != null
+                                ? Avatar.defaultSize * 0.75
+                                : Avatar.defaultSize,
+                            name: displayname,
+                            presenceUserId: directChatMatrixId,
+                            presenceBackgroundColor: backgroundColor,
+                            onTap: () => onLongPress?.call(context),
+                          ),
                         ),
-                      ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () => onLongPress?.call(context),
+                            child: AnimatedScale(
+                              duration: FluffyThemes.animationDuration,
+                              curve: FluffyThemes.animationCurve,
+                              scale: listTileHovered ? 1.0 : 0.0,
+                              child: Material(
+                                color: backgroundColor,
+                                borderRadius: BorderRadius.circular(16),
+                                child: const Icon(
+                                  Icons.arrow_drop_down_circle_outlined,
+                                  size: 18,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
               title: FutureBuilder<RoomDisplayInfo>(
                 future: loadRoomInfo(context, room),
@@ -263,60 +303,70 @@ class ChatListItem extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: typingText.isNotEmpty
+                    child: room.isSpace && room.membership == Membership.join
                         ? Text(
-                            typingText,
-                            style: TextStyle(
-                              color: theme.colorScheme.primary,
+                            L10n.of(context)!.countChatsAndCountParticipants(
+                              room.spaceChildren.length.toString(),
+                              (room.summary.mJoinedMemberCount ?? 1).toString(),
                             ),
-                            maxLines: 1,
-                            softWrap: false,
                           )
-                        : FutureBuilder(
-                            key: ValueKey(lastEvent?.eventId),
-                            future: needLastEventSender
-                                ? lastEvent.calcLocalizedBody(
-                                    MatrixLocals(L10n.of(context)!),
-                                    hideReply: true,
-                                    hideEdit: true,
-                                    plaintextBody: true,
-                                    removeMarkdown: true,
-                                    withSenderNamePrefix: !isDirectChat ||
-                                        directChatMatrixId !=
-                                            room.lastEvent?.senderId,
-                                  )
-                                : null,
-                            initialData: lastEvent?.calcLocalizedBodyFallback(
-                              MatrixLocals(L10n.of(context)!),
-                              hideReply: true,
-                              hideEdit: true,
-                              plaintextBody: true,
-                              removeMarkdown: true,
-                              withSenderNamePrefix: !isDirectChat ||
-                                  directChatMatrixId !=
-                                      room.lastEvent?.senderId,
-                            ),
-                            builder: (context, snapshot) => Text(
-                              room.membership == Membership.invite
-                                  ? isDirectChat
-                                      ? L10n.of(context)!.invitePrivateChat
-                                      : L10n.of(context)!.inviteGroupChat
-                                  : snapshot.data ??
-                                      L10n.of(context)!.emptyChat,
-                              softWrap: false,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontWeight: unread || room.hasNewMessages
-                                    ? FontWeight.bold
+                        : typingText.isNotEmpty
+                            ? Text(
+                                typingText,
+                                style: TextStyle(
+                                  color: theme.colorScheme.primary,
+                                ),
+                                maxLines: 1,
+                                softWrap: false,
+                              )
+                            : FutureBuilder(
+                                key: ValueKey(
+                                  '${lastEvent?.eventId}_${lastEvent?.type}',
+                                ),
+                                future: needLastEventSender
+                                    ? lastEvent.calcLocalizedBody(
+                                        MatrixLocals(L10n.of(context)!),
+                                        hideReply: true,
+                                        hideEdit: true,
+                                        plaintextBody: true,
+                                        removeMarkdown: true,
+                                        withSenderNamePrefix: (!isDirectChat ||
+                                            directChatMatrixId !=
+                                                room.lastEvent?.senderId),
+                                      )
                                     : null,
-                                color: theme.colorScheme.onSurfaceVariant,
-                                decoration: room.lastEvent?.redacted == true
-                                    ? TextDecoration.lineThrough
-                                    : null,
+                                initialData:
+                                    lastEvent?.calcLocalizedBodyFallback(
+                                  MatrixLocals(L10n.of(context)!),
+                                  hideReply: true,
+                                  hideEdit: true,
+                                  plaintextBody: true,
+                                  removeMarkdown: true,
+                                  withSenderNamePrefix: (!isDirectChat ||
+                                      directChatMatrixId !=
+                                          room.lastEvent?.senderId),
+                                ),
+                                builder: (context, snapshot) => Text(
+                                  room.membership == Membership.invite
+                                      ? isDirectChat
+                                          ? L10n.of(context)!.invitePrivateChat
+                                          : L10n.of(context)!.inviteGroupChat
+                                      : snapshot.data ??
+                                          L10n.of(context)!.emptyChat,
+                                  softWrap: false,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontWeight: unread || room.hasNewMessages
+                                        ? FontWeight.bold
+                                        : null,
+                                    color: theme.colorScheme.onSurfaceVariant,
+                                    decoration: room.lastEvent?.redacted == true
+                                        ? TextDecoration.lineThrough
+                                        : null,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
                   ),
                   const SizedBox(width: 8),
                   AnimatedContainer(

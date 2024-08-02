@@ -24,6 +24,36 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
   bool guestAccessLoading = false;
   Room get room => Matrix.of(context).client.getRoomById(widget.roomId)!;
 
+  String get roomVersion =>
+      room
+          .getState(EventTypes.RoomCreate)!
+          .content
+          .tryGet<String>('room_version') ??
+      'Unknown';
+
+  /// Calculates which join rules are available based on the information on
+  /// https://spec.matrix.org/v1.11/rooms/#feature-matrix
+  List<JoinRules> get availableJoinRules {
+    final joinRules = Set<JoinRules>.from(JoinRules.values);
+
+    final roomVersionInt = int.tryParse(roomVersion);
+
+    // Knock is only supported for rooms up from version 7:
+    if (roomVersionInt != null && roomVersionInt <= 6) {
+      joinRules.remove(JoinRules.knock);
+    }
+
+    // Not yet supported in FluffyChat:
+    joinRules.remove(JoinRules.restricted);
+    joinRules.remove(JoinRules.knockRestricted);
+
+    // If an unsupported join rule is the current join rule, display it:
+    final currentJoinRule = room.joinRules;
+    if (currentJoinRule != null) joinRules.add(currentJoinRule);
+
+    return joinRules.toList();
+  }
+
   void setJoinRule(JoinRules? newJoinRules) async {
     if (newJoinRules == null) return;
     setState(() {

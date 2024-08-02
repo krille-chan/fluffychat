@@ -427,6 +427,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     AppConfig.renderHtml =
         store.getBool(SettingKeys.renderHtml) ?? AppConfig.renderHtml;
 
+    AppConfig.swipeRightToLeftToReply =
+        store.getBool(SettingKeys.swipeRightToLeftToReply) ??
+            AppConfig.swipeRightToLeftToReply;
+
     AppConfig.hideRedactedEvents =
         store.getBool(SettingKeys.hideRedactedEvents) ??
             AppConfig.hideRedactedEvents;

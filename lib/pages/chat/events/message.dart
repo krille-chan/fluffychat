@@ -83,7 +83,8 @@ class Message extends StatelessWidget {
     final client = Matrix.of(context).client;
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    var color = Theme.of(context).colorScheme.surfaceContainerHighest;
+    // ignore: deprecated_member_use
+    var color = Theme.of(context).colorScheme.surfaceVariant;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -265,6 +266,8 @@ class Message extends StatelessWidget {
                                                     : displayname
                                                         .lightColorText),
                                               ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
                                             );
                                           },
                                         ),
@@ -440,22 +443,20 @@ class Message extends StatelessWidget {
                   ? const EdgeInsets.symmetric(vertical: 8.0)
                   : EdgeInsets.zero,
               child: Center(
-                child: Material(
-                  color: displayTime
-                      ? Theme.of(context).colorScheme.surface
-                      : Theme.of(context).colorScheme.surface.withOpacity(0.33),
-                  borderRadius:
-                      BorderRadius.circular(AppConfig.borderRadius / 2),
-                  clipBehavior: Clip.antiAlias,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
-                    child: Text(
-                      event.originServerTs.localizedTime(context),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12 * AppConfig.fontSizeFactor,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4.0),
+                  child: Text(
+                    event.originServerTs.localizedTime(context),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12 * AppConfig.fontSizeFactor,
+                      color: Theme.of(context).colorScheme.secondary,
+                      shadows: [
+                        Shadow(
+                          color: Theme.of(context).colorScheme.surface,
+                          blurRadius: 3,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -515,7 +516,9 @@ class Message extends StatelessWidget {
             child: Icon(Icons.check_outlined),
           ),
         ),
-        direction: SwipeDirection.endToStart,
+        direction: AppConfig.swipeRightToLeftToReply
+            ? SwipeDirection.endToStart
+            : SwipeDirection.startToEnd,
         onSwipe: (_) => onSwipe(),
         child: InkWell(
           onDoubleTap: () => onDoubleTap(event),

@@ -136,7 +136,6 @@ class SettingsSecurityView extends StatelessWidget {
                       ),
                   },
                   Divider(
-                    height: 1,
                     color: Theme.of(context).dividerColor,
                   ),
                   ListTile(

@@ -117,7 +117,7 @@ class EmotesSettingsView extends StatelessWidget {
                 onChanged: controller.setIsGloballyActive,
               ),
             if (!controller.readonly || controller.room != null)
-              const Divider(thickness: 1),
+              const Divider(),
             imageKeys.isEmpty
                 ? Center(
                     child: Padding(

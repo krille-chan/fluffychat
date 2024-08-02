@@ -22,8 +22,9 @@ class SettingsIgnoreListController extends State<SettingsIgnoreList> {
   @override
   void initState() {
     super.initState();
-    if (widget.initialUserId != null) {
-      controller.text = widget.initialUserId!.replaceAll('@', '');
+    final initialUserId = widget.initialUserId;
+    if (initialUserId != null) {
+      controller.text = initialUserId;
     }
   }
 

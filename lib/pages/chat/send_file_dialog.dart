@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -42,19 +44,20 @@ class SendFileDialogState extends State<SendFileDialog> {
           },
         );
       }
-      final scaffoldMessenger = ScaffoldMessenger.of(context);
-      widget.room
-          .sendFileEvent(
-        file,
-        thumbnail: thumbnail,
-        shrinkImageMaxDimension: origImage ? null : 1600,
-      )
-          .catchError((e) {
-        scaffoldMessenger.showSnackBar(
-          SnackBar(content: Text((e as Object).toLocalizedString(context))),
+      try {
+        await widget.room.sendFileEvent(
+          file,
+          thumbnail: thumbnail,
+          shrinkImageMaxDimension: origImage ? null : 1600,
         );
-        return null;
-      });
+      } on IOException catch (_) {
+      } on FileTooBigMatrixException catch (_) {
+      } catch (e, s) {
+        if (mounted) {
+          ErrorReporter(context, 'Unable to send file').onErrorCallback(e, s);
+        }
+        rethrow;
+      }
     }
     Navigator.of(context, rootNavigator: false).pop();
 
@@ -64,7 +67,7 @@ class SendFileDialogState extends State<SendFileDialog> {
   @override
   Widget build(BuildContext context) {
     var sendStr = L10n.of(context)!.sendFile;
-    final bool allFilesAreImages =
+    final allFilesAreImages =
         widget.files.every((file) => file is MatrixImageFile);
     final sizeString = widget.files
         .fold<double>(0, (p, file) => p + file.bytes.length)

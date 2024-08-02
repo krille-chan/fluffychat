@@ -82,7 +82,7 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
   }
 
   static Future<String> findDatabasePath(Client client) async {
-    String path = client.clientName;
+    var path = client.clientName;
     if (!kIsWeb) {
       Directory directory;
       try {

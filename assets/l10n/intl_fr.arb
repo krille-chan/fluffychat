@@ -2520,5 +2520,6 @@
     "leaveTheConvDesc": "Voulez-vous vraiment quitter cette conversation ?",
     "leaveTheConvSuccess": "Vous avez quitté la conversation.",
     "chatBotRoomsTitle": "Conversations des bots",
-    "chatBotRoomsNotFound": "Aucune conversation avec les bots."
+    "chatBotRoomsNotFound": "Aucune conversation avec les bots.",
+    
 }

@@ -65,10 +65,13 @@ class SettingsChatView extends StatelessWidget {
                 storeKey: SettingKeys.sendOnEnter,
                 defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
               ),
-              Divider(
-                height: 1,
-                color: Theme.of(context).dividerColor,
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.swipeRightToLeftToReply,
+                onChanged: (b) => AppConfig.swipeRightToLeftToReply = b,
+                storeKey: SettingKeys.swipeRightToLeftToReply,
+                defaultValue: AppConfig.swipeRightToLeftToReply,
               ),
+              Divider(color: Theme.of(context).dividerColor),
               ListTile(
                 title: Text(
                   L10n.of(context)!.customEmojisAndStickers,
@@ -87,10 +90,7 @@ class SettingsChatView extends StatelessWidget {
                   child: Icon(Icons.chevron_right_outlined),
                 ),
               ),
-              Divider(
-                height: 1,
-                color: Theme.of(context).dividerColor,
-              ),
+              Divider(color: Theme.of(context).dividerColor),
               ListTile(
                 title: Text(
                   L10n.of(context)!.calls,

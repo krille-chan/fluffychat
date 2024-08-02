@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -22,14 +23,14 @@ class _LockScreenState extends State<LockScreen> {
   bool _inputBlocked = false;
   final TextEditingController _textEditingController = TextEditingController();
 
-  void tryUnlock(BuildContext context) async {
+  void tryUnlock(String text) async {
     setState(() {
       _errorText = null;
     });
-    if (_textEditingController.text.length < 4) return;
+    if (text.length < 4) return;
 
-    final enteredPin = int.tryParse(_textEditingController.text);
-    if (enteredPin == null || _textEditingController.text.length != 4) {
+    final enteredPin = int.tryParse(text);
+    if (enteredPin == null || text.length != 4) {
       setState(() {
         _errorText = L10n.of(context)!.invalidInput;
       });
@@ -92,12 +93,19 @@ class _LockScreenState extends State<LockScreen> {
                   autofocus: true,
                   textAlign: TextAlign.center,
                   readOnly: _inputBlocked,
-                  onChanged: (_) => tryUnlock(context),
-                  onSubmitted: (_) => tryUnlock(context),
+                  onChanged: tryUnlock,
+                  onSubmitted: tryUnlock,
                   style: const TextStyle(fontSize: 40),
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(4),
+                  ],
                   decoration: InputDecoration(
                     errorText: _errorText,
                     hintText: '****',
+                    suffix: IconButton(
+                      icon: const Icon(Icons.lock_open_outlined),
+                      onPressed: () => tryUnlock(_textEditingController.text),
+                    ),
                   ),
                 ),
                 if (_inputBlocked)
