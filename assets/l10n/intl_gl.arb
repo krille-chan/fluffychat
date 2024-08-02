@@ -2772,5 +2772,22 @@
   "sendRoomNotifications": "Enviar notificacións a @room",
   "@sendRoomNotifications": {},
   "changeTheDescriptionOfTheGroup": "Cambiar a descrición do chat",
-  "@changeTheDescriptionOfTheGroup": {}
+  "@changeTheDescriptionOfTheGroup": {},
+  "invitedBy": "📩 Convidada por {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "changelog": "Novidades na versión",
+  "@changelog": {},
+  "chatPermissionsDescription": "Define que nivel de permisos son necesarios para realizar certas accións neste chat. Os niveis de permiso 0, 50 e 100 normalmente representan, usuarias, moderadoras e administradoras, pero son posibles outras escalas.",
+  "@chatPermissionsDescription": {},
+  "updateInstalled": "🎉 Instalouse a actualización a {version}!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  }
 }
