@@ -2780,5 +2780,14 @@
     }
   },
   "chatPermissionsDescription": "Bu sohbette belirli eylemler için hangi güç düzeyinin gerekli olduğunu tanımlayın. 0, 50 ve 100 güç düzeyleri genellikle kullanıcıları, moderatörleri ve yöneticileri temsil eder, ancak herhangi bir derecelendirme mümkündür.",
-  "@chatPermissionsDescription": {}
+  "@chatPermissionsDescription": {},
+  "changelog": "Değişiklik günlüğü",
+  "@changelog": {},
+  "updateInstalled": "🎉 Güncelleme {version} kuruldu!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  }
 }
