@@ -13,7 +13,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
-  static const String recordingFileType = 'm4a';
   const RecordingDialog({
     super.key,
   });
@@ -36,9 +35,11 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   Future<void> startRecording() async {
     try {
+      final useOpus =
+          await _audioRecorder.isEncoderSupported(AudioEncoder.opus);
       final tempDir = await getTemporaryDirectory();
       final path = _recordedPath =
-          '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
+          '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${useOpus ? 'ogg' : 'm4a'}';
 
       final result = await _audioRecorder.hasPermission();
       if (result != true) {
@@ -46,14 +47,16 @@ class RecordingDialogState extends State<RecordingDialog> {
         return;
       }
       await WakelockPlus.enable();
+
       await _audioRecorder.start(
-        const RecordConfig(
+        RecordConfig(
           bitRate: bitRate,
           sampleRate: samplingRate,
           numChannels: 1,
           autoGain: true,
           echoCancel: true,
           noiseSuppress: true,
+          encoder: useOpus ? AudioEncoder.opus : AudioEncoder.aacLc,
         ),
         path: path,
       );
