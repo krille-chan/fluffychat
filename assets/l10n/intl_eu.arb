@@ -2679,7 +2679,7 @@
   "@noPublicLinkHasBeenCreatedYet": {},
   "userRole": "Erabiltzailearen rola",
   "@userRole": {},
-  "minimumPowerLevel": "{level} da gutxieneko botere maila.",
+  "minimumPowerLevel": "{level} da gutxieneko botere-maila.",
   "@minimumPowerLevel": {
     "type": "text",
     "placeholders": {
@@ -2778,5 +2778,16 @@
     "placeholders": {
       "user": {}
     }
-  }
+  },
+  "updateInstalled": "🎉 {version} bertsioa instalatu da!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Aldaketak",
+  "@changelog": {},
+  "chatPermissionsDescription": "Definitu zer botere-maila behar den txat honetako ekintza jakinetarako. 0, 50 eta 100 botere-mailek erabiltzaileak, moderatzaileak eta administratzaileak ordezkatzen dituzte, baina edozein graduazio posible da.",
+  "@chatPermissionsDescription": {}
 }
