@@ -108,10 +108,10 @@ class _Reaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = Theme.of(context).brightness == Brightness.dark
-        ? Colors.white
-        : Colors.black;
-    final color = Theme.of(context).colorScheme.surface;
+    final theme = Theme.of(context);
+    final textColor =
+        theme.brightness == Brightness.dark ? Colors.white : Colors.black;
+    final color = theme.colorScheme.surface;
     Widget content;
     if (reactionKey.startsWith('mxc://')) {
       content = Row(
@@ -158,8 +158,8 @@ class _Reaction extends StatelessWidget {
           border: Border.all(
             width: 1,
             color: reacted!
-                ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.primaryContainer,
+                ? theme.colorScheme.primary
+                : theme.colorScheme.primaryContainer,
           ),
           borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),

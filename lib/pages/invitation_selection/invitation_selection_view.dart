@@ -153,6 +153,8 @@ class _InviteContactListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Opacity(
       opacity: isMember ? 0.5 : 1,
       child: ListTile(
@@ -171,7 +173,7 @@ class _InviteContactListTile extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.secondary,
+            color: theme.colorScheme.secondary,
           ),
         ),
         onTap: isMember ? null : onTap,

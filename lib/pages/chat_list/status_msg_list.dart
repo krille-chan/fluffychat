@@ -116,6 +116,8 @@ class PresenceAvatar extends StatelessWidget {
     return FutureBuilder<Profile>(
       future: client.getProfileFromUserId(presence.userid),
       builder: (context, snapshot) {
+        final theme = Theme.of(context);
+
         final profile = snapshot.data;
         final displayName = profile?.displayName ??
             presence.userid.localpart ??
@@ -123,9 +125,8 @@ class PresenceAvatar extends StatelessWidget {
         final statusMsg = presence.statusMsg;
 
         final statusMsgBubbleElevation =
-            Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4;
-        final statusMsgBubbleShadowColor =
-            Theme.of(context).colorScheme.onSurface;
+            theme.appBarTheme.scrolledUnderElevation ?? 4;
+        final statusMsgBubbleShadowColor = theme.colorScheme.onSurface;
         final statusMsgBubbleColor = Colors.white.withAlpha(245);
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),

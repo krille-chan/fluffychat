@@ -88,6 +88,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     _wipe ??= widget.wipe;
     final buttons = <Widget>[];
     Widget body = const CircularProgressIndicator.adaptive();
@@ -119,7 +120,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                     backgroundColor: Colors.transparent,
                     child: Icon(
                       Icons.info_outlined,
-                      color: Theme.of(context).colorScheme.primary,
+                      color: theme.colorScheme.primary,
                     ),
                   ),
                   subtitle: Text(L10n.of(context)!.chatBackupDescription),
@@ -144,7 +145,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                   CheckboxListTile.adaptive(
                     contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
                     value: _storeInSecureStorage,
-                    activeColor: Theme.of(context).colorScheme.primary,
+                    activeColor: theme.colorScheme.primary,
                     onChanged: (b) {
                       setState(() {
                         _storeInSecureStorage = b;
@@ -158,7 +159,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                 CheckboxListTile.adaptive(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
                   value: _recoveryKeyCopied,
-                  activeColor: Theme.of(context).colorScheme.primary,
+                  activeColor: theme.colorScheme.primary,
                   onChanged: (b) {
                     FluffyShare.share(key!, context);
                     setState(() => _recoveryKeyCopied = true);
@@ -241,7 +242,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                           const EdgeInsets.symmetric(horizontal: 8.0),
                       trailing: Icon(
                         Icons.info_outlined,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: theme.colorScheme.primary,
                       ),
                       subtitle: Text(
                         L10n.of(context)!.pleaseEnterRecoveryKeyDescription,
@@ -261,8 +262,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16),
                         hintStyle: TextStyle(
-                          fontFamily:
-                              Theme.of(context).textTheme.bodyLarge?.fontFamily,
+                          fontFamily: theme.textTheme.bodyLarge?.fontFamily,
                         ),
                         hintText: L10n.of(context)!.recoveryKey,
                         errorText: _recoveryKeyInputError,
@@ -272,9 +272,8 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        foregroundColor:
-                            Theme.of(context).colorScheme.onPrimary,
-                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        foregroundColor: theme.colorScheme.onPrimary,
+                        backgroundColor: theme.colorScheme.primary,
                       ),
                       icon: _recoveryKeyInputLoading
                           ? const CircularProgressIndicator.adaptive()
@@ -386,10 +385,8 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.errorContainer,
-                        foregroundColor:
-                            Theme.of(context).colorScheme.onErrorContainer,
+                        backgroundColor: theme.colorScheme.errorContainer,
+                        foregroundColor: theme.colorScheme.onErrorContainer,
                       ),
                       icon: const Icon(Icons.delete_outlined),
                       label: Text(L10n.of(context)!.recoveryKeyLost),

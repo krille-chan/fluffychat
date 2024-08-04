@@ -17,14 +17,15 @@ class HomeserverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return TypeAheadField<PublicHomeserver>(
       decorationBuilder: (context, child) => ConstrainedBox(
         constraints: const BoxConstraints(maxHeight: 256),
         child: Material(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          elevation: Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
-          shadowColor:
-              Theme.of(context).appBarTheme.shadowColor ?? Colors.black,
+          elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
+          shadowColor: theme.appBarTheme.shadowColor ?? Colors.black,
           child: child,
         ),
       ),
@@ -92,9 +93,9 @@ class HomeserverAppBar extends StatelessWidget {
                 )
               : null,
           fillColor: FluffyThemes.isColumnMode(context)
-              ? Theme.of(context).colorScheme.surface
+              ? theme.colorScheme.surface
               // ignore: deprecated_member_use
-              : Theme.of(context).colorScheme.surfaceVariant,
+              : theme.colorScheme.surfaceVariant,
           prefixText: '${L10n.of(context)!.homeserver}: ',
           hintText: L10n.of(context)!.enterYourHomeserver,
           suffixIcon: const Icon(Icons.search),

@@ -21,6 +21,8 @@ class MaxWidthBody extends StatelessWidget {
     return SafeArea(
       child: LayoutBuilder(
         builder: (context, constraints) {
+          final theme = Theme.of(context);
+
           const desiredWidth = FluffyThemes.columnWidth * 1.5;
           final body = constraints.maxWidth <= desiredWidth
               ? child
@@ -32,14 +34,11 @@ class MaxWidthBody extends StatelessWidget {
                       maxWidth: FluffyThemes.columnWidth * 1.5,
                     ),
                     child: Material(
-                      elevation: Theme.of(context)
-                              .appBarTheme
-                              .scrolledUnderElevation ??
-                          4,
+                      elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
                       clipBehavior: Clip.hardEdge,
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
-                      shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                      shadowColor: theme.appBarTheme.shadowColor,
                       child: child,
                     ),
                   ),

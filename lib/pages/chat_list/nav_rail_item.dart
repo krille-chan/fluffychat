@@ -35,6 +35,8 @@ class _NaviRailItemState extends State<NaviRailItem> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final borderRadius = BorderRadius.circular(AppConfig.borderRadius);
     return SizedBox(
       height: 64,
@@ -50,7 +52,7 @@ class _NaviRailItemState extends State<NaviRailItem> {
               duration: FluffyThemes.animationDuration,
               curve: FluffyThemes.animationCurve,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
+                color: theme.colorScheme.primary,
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(90),
                   bottomRight: Radius.circular(90),
@@ -66,8 +68,8 @@ class _NaviRailItemState extends State<NaviRailItem> {
               child: Material(
                 borderRadius: borderRadius,
                 color: widget.isSelected
-                    ? Theme.of(context).colorScheme.primaryContainer
-                    : Theme.of(context).colorScheme.surface,
+                    ? theme.colorScheme.primaryContainer
+                    : theme.colorScheme.surface,
                 child: Tooltip(
                   message: widget.toolTip,
                   child: InkWell(
