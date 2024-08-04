@@ -128,6 +128,7 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     if (controller.room.membership == Membership.invite) {
       showFutureLoadingDialog(
         context: context,
@@ -173,14 +174,14 @@ class ChatView extends StatelessWidget {
                 actionsIconTheme: IconThemeData(
                   color: controller.selectedEvents.isEmpty
                       ? null
-                      : Theme.of(context).colorScheme.primary,
+                      : theme.colorScheme.primary,
                 ),
                 leading: controller.selectMode
                     ? IconButton(
                         icon: const Icon(Icons.close),
                         onPressed: controller.clearSelectedEvents,
                         tooltip: L10n.of(context)!.close,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: theme.colorScheme.primary,
                       )
                     : StreamBuilder<Object>(
                         stream: Matrix.of(context)
@@ -218,8 +219,7 @@ class ChatView extends StatelessWidget {
                       if (scrollUpBannerEventId != null)
                         ChatAppBarListTile(
                           leading: IconButton(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: theme.colorScheme.onSurfaceVariant,
                             icon: const Icon(Icons.close),
                             tooltip: L10n.of(context)!.close,
                             onPressed: () {
@@ -308,7 +308,7 @@ class ChatView extends StatelessWidget {
                               alignment: Alignment.center,
                               child: Material(
                                 clipBehavior: Clip.hardEdge,
-                                color: Theme.of(context)
+                                color: theme
                                     .colorScheme
                                     // ignore: deprecated_member_use
                                     .surfaceVariant,
@@ -325,9 +325,8 @@ class ChatView extends StatelessWidget {
                                               padding: const EdgeInsets.all(
                                                 16,
                                               ),
-                                              foregroundColor: Theme.of(context)
-                                                  .colorScheme
-                                                  .error,
+                                              foregroundColor:
+                                                  theme.colorScheme.error,
                                             ),
                                             icon: const Icon(
                                               Icons.archive_outlined,
@@ -370,9 +369,7 @@ class ChatView extends StatelessWidget {
                     ),
                     if (controller.dragging)
                       Container(
-                        color: Theme.of(context)
-                            .scaffoldBackgroundColor
-                            .withOpacity(0.9),
+                        color: theme.scaffoldBackgroundColor.withOpacity(0.9),
                         alignment: Alignment.center,
                         child: const Icon(
                           Icons.upload_outlined,

@@ -33,6 +33,7 @@ class ChatSearchMessageTab extends StatelessWidget {
       key: ValueKey(searchQuery),
       stream: searchStream,
       builder: (context, snapshot) {
+        final theme = Theme.of(context);
         if (searchStream == null) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +56,7 @@ class ChatSearchMessageTab extends StatelessWidget {
           child: ListView.separated(
             itemCount: events.length + 1,
             separatorBuilder: (context, _) => Divider(
-              color: Theme.of(context).dividerColor,
+              color: theme.dividerColor,
               height: 1,
             ),
             itemBuilder: (context, i) {
@@ -79,10 +80,8 @@ class ChatSearchMessageTab extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: TextButton.icon(
                       style: TextButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondaryContainer,
-                        foregroundColor:
-                            Theme.of(context).colorScheme.onSecondaryContainer,
+                        backgroundColor: theme.colorScheme.secondaryContainer,
+                        foregroundColor: theme.colorScheme.onSecondaryContainer,
                       ),
                       onPressed: () => startSearch(
                         prevBatch: nextBatch,
@@ -130,6 +129,8 @@ class _MessageSearchResultListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return ListTile(
       title: Row(
         children: [
@@ -153,9 +154,9 @@ class _MessageSearchResultListTile extends StatelessWidget {
       subtitle: Linkify(
         options: const LinkifyOptions(humanize: false),
         linkStyle: TextStyle(
-          color: Theme.of(context).colorScheme.primary,
+          color: theme.colorScheme.primary,
           decoration: TextDecoration.underline,
-          decorationColor: Theme.of(context).colorScheme.primary,
+          decorationColor: theme.colorScheme.primary,
         ),
         onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
         text: event

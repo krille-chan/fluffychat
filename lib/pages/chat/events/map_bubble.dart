@@ -22,6 +22,8 @@ class MapBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(radius),
       child: Container(
@@ -72,11 +74,10 @@ class MapBubble extends StatelessWidget {
                 child: Text(
                   ' © OpenStreetMap contributors ',
                   style: TextStyle(
-                    color: Theme.of(context).brightness == Brightness.dark
+                    color: theme.brightness == Brightness.dark
                         ? Colors.white
                         : Colors.black,
-                    backgroundColor:
-                        Theme.of(context).appBarTheme.backgroundColor,
+                    backgroundColor: theme.appBarTheme.backgroundColor,
                   ),
                 ),
               ),

@@ -12,6 +12,8 @@ class SeenByRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final seenByUsers = controller.room.getSeenByUsers(controller.timeline!);
     const maxAvatars = 7;
     return Container(
@@ -49,7 +51,7 @@ class SeenByRow extends StatelessWidget {
                 width: 16,
                 height: 16,
                 child: Material(
-                  color: Theme.of(context).colorScheme.surface,
+                  color: theme.colorScheme.surface,
                   borderRadius: BorderRadius.circular(32),
                   child: Center(
                     child: Text(

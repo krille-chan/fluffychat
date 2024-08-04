@@ -17,6 +17,8 @@ class VerificationRequestContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final events = event.aggregatedEvents(timeline, 'm.reference');
     final done = events.where((e) => e.type == EventTypes.KeyVerificationDone);
     final start =
@@ -36,10 +38,10 @@ class VerificationRequestContent extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Theme.of(context).dividerColor,
+              color: theme.dividerColor,
             ),
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            color: Theme.of(context).colorScheme.surface,
+            color: theme.colorScheme.surface,
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,

@@ -12,6 +12,8 @@ class StateMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Center(
@@ -27,7 +29,7 @@ class StateMessage extends StatelessWidget {
               decoration: event.redacted ? TextDecoration.lineThrough : null,
               shadows: [
                 Shadow(
-                  color: Theme.of(context).colorScheme.surface,
+                  color: theme.colorScheme.surface,
                   blurRadius: 3,
                 ),
               ],

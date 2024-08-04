@@ -15,6 +15,8 @@ class ChatPermissionsSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
@@ -47,12 +49,12 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                     L10n.of(context)!.chatPermissionsDescription,
                   ),
                 ),
-                Divider(color: Theme.of(context).dividerColor),
+                Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
                     L10n.of(context)!.chatPermissions,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
+                      color: theme.colorScheme.primary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -72,12 +74,12 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         ),
                         canEdit: room.canChangePowerLevel,
                       ),
-                    Divider(color: Theme.of(context).dividerColor),
+                    Divider(color: theme.dividerColor),
                     ListTile(
                       title: Text(
                         L10n.of(context)!.notifications,
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -107,12 +109,12 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         );
                       },
                     ),
-                    Divider(color: Theme.of(context).dividerColor),
+                    Divider(color: theme.dividerColor),
                     ListTile(
                       title: Text(
                         L10n.of(context)!.configureChat,
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

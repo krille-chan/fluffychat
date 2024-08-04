@@ -94,6 +94,8 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     User? user;
     final directChatId =
         widget.request.client.getDirectChatFromUserId(widget.request.userId);
@@ -139,10 +141,8 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: L10n.of(context)!.passphraseOrKey,
-                  prefixStyle:
-                      TextStyle(color: Theme.of(context).colorScheme.primary),
-                  suffixStyle:
-                      TextStyle(color: Theme.of(context).colorScheme.primary),
+                  prefixStyle: TextStyle(color: theme.colorScheme.primary),
+                  suffixStyle: TextStyle(color: theme.colorScheme.primary),
                   border: const OutlineInputBorder(),
                 ),
               ),

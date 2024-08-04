@@ -22,6 +22,7 @@ class DevicesSettingsView extends StatelessWidget {
         child: FutureBuilder<bool>(
           future: controller.loadUserDevices(context),
           builder: (BuildContext context, snapshot) {
+            final theme = Theme.of(context);
             if (snapshot.hasError) {
               return Center(
                 child: Column(
@@ -58,7 +59,7 @@ class DevicesSettingsView extends StatelessWidget {
                             L10n.of(context)!.thisDevice,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary,
+                              color: theme.colorScheme.primary,
                             ),
                             textAlign: TextAlign.left,
                           ),
@@ -86,12 +87,10 @@ class DevicesSettingsView extends StatelessWidget {
                                     L10n.of(context)!.removeAllOtherDevices,
                               ),
                               style: TextButton.styleFrom(
-                                foregroundColor: Theme.of(context)
-                                    .colorScheme
-                                    .onErrorContainer,
-                                backgroundColor: Theme.of(context)
-                                    .colorScheme
-                                    .errorContainer,
+                                foregroundColor:
+                                    theme.colorScheme.onErrorContainer,
+                                backgroundColor:
+                                    theme.colorScheme.errorContainer,
                               ),
                               icon: controller.loadingDeletingDevices
                                   ? const CircularProgressIndicator.adaptive(

@@ -21,6 +21,7 @@ class ChatInputRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     if (controller.showEmojiPicker &&
         controller.emojiPickerType == EmojiPickerType.reaction) {
       return const SizedBox.shrink();
@@ -37,7 +38,7 @@ class ChatInputRow extends StatelessWidget {
                   height: height,
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.error,
+                      foregroundColor: theme.colorScheme.error,
                     ),
                     onPressed: controller.deleteErrorEventsAction,
                     child: Row(
@@ -278,9 +279,8 @@ class ChatInputRow extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(height),
                         ),
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        foregroundColor:
-                            Theme.of(context).colorScheme.onPrimary,
+                        backgroundColor: theme.colorScheme.primary,
+                        foregroundColor: theme.colorScheme.onPrimary,
                         child: const Icon(Icons.mic_none_outlined),
                       )
                     : FloatingActionButton.small(
@@ -291,10 +291,8 @@ class ChatInputRow extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(height),
                         ),
-                        backgroundColor:
-                            Theme.of(context).colorScheme.onPrimaryContainer,
-                        foregroundColor:
-                            Theme.of(context).colorScheme.onPrimary,
+                        backgroundColor: theme.colorScheme.onPrimaryContainer,
+                        foregroundColor: theme.colorScheme.onPrimary,
                         child: const Icon(Icons.send_outlined),
                       ),
               ),

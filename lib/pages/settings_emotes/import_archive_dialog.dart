@@ -231,6 +231,8 @@ class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     // TODO: support Lottie here as well ...
     final controller = TextEditingController(text: widget.entry.value);
 
@@ -281,11 +283,11 @@ class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
                       suffixText: ':',
                       border: const OutlineInputBorder(),
                       prefixStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                       suffixStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -314,6 +316,8 @@ class _ImageFileError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SizedBox.square(
       dimension: 64,
       child: Tooltip(
@@ -327,7 +331,7 @@ class _ImageFileError extends StatelessWidget {
             Text(
               L10n.of(context)!.notAnImage,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.labelSmall,
+              style: theme.textTheme.labelSmall,
             ),
           ],
         ),

@@ -12,6 +12,8 @@ class SettingsPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(L10n.of(context)!.changePassword),
@@ -23,7 +25,7 @@ class SettingsPasswordView extends StatelessWidget {
         ],
       ),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onSurface,
+        iconColor: theme.colorScheme.onSurface,
         child: MaxWidthBody(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -32,7 +34,7 @@ class SettingsPasswordView extends StatelessWidget {
                 Center(
                   child: Icon(
                     Icons.key_outlined,
-                    color: Theme.of(context).dividerColor,
+                    color: theme.dividerColor,
                     size: 80,
                   ),
                 ),

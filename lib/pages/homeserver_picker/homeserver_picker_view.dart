@@ -19,6 +19,8 @@ class HomeserverPickerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final identityProviders = controller.identityProviders;
     final errorText = controller.error;
     final publicHomeserver = controller.cachedHomeservers?.singleWhereOrNull(
@@ -32,7 +34,7 @@ class HomeserverPickerView extends StatelessWidget {
       appBar: AppBar(
         titleSpacing: 12,
         automaticallyImplyLeading: false,
-        surfaceTintColor: Theme.of(context).colorScheme.surface,
+        surfaceTintColor: theme.colorScheme.surface,
         title: HomeserverAppBar(controller: controller),
       ),
       body: Column(
@@ -50,7 +52,7 @@ class HomeserverPickerView extends StatelessWidget {
               clipBehavior: Clip.hardEdge,
               borderRadius:
                   const BorderRadius.vertical(bottom: Radius.circular(8)),
-              color: Theme.of(context).colorScheme.surface,
+              color: theme.colorScheme.surface,
               child: ListTile(
                 leading: const Icon(Icons.vpn_key),
                 title: Text(L10n.of(context)!.hydrateTor),
@@ -80,7 +82,7 @@ class HomeserverPickerView extends StatelessWidget {
                             errorText,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.error,
+                              color: theme.colorScheme.error,
                               fontSize: 18,
                             ),
                           ),
@@ -91,7 +93,7 @@ class HomeserverPickerView extends StatelessWidget {
                                 .pleaseTryAgainLaterOrChooseDifferentServer,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.error,
+                              color: theme.colorScheme.error,
                               fontSize: 12,
                             ),
                           ),
@@ -189,6 +191,8 @@ class _LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final icon = this.icon;
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -201,16 +205,15 @@ class _LoginButton extends StatelessWidget {
             side: FluffyThemes.isColumnMode(context)
                 ? BorderSide.none
                 : BorderSide(
-                    color: Theme.of(context).colorScheme.outlineVariant,
+                    color: theme.colorScheme.outlineVariant,
                     width: 1,
                   ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(99),
             ),
-            foregroundColor: Theme.of(context).colorScheme.onSurface,
-            backgroundColor: withBorder
-                ? Theme.of(context).colorScheme.surface
-                : Colors.transparent,
+            foregroundColor: theme.colorScheme.onSurface,
+            backgroundColor:
+                withBorder ? theme.colorScheme.surface : Colors.transparent,
           ),
           onPressed: onPressed,
           label: Text(label),

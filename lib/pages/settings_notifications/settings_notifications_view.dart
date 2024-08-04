@@ -30,6 +30,7 @@ class SettingsNotificationsView extends StatelessWidget {
                     false,
               ),
           builder: (BuildContext context, _) {
+            final theme = Theme.of(context);
             return Column(
               children: [
                 SwitchListTile.adaptive(
@@ -41,12 +42,12 @@ class SettingsNotificationsView extends StatelessWidget {
                       ? null
                       : (_) => controller.onToggleMuteAllNotifications(),
                 ),
-                Divider(color: Theme.of(context).dividerColor),
+                Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
                     L10n.of(context)!.notifyMeFor,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: theme.colorScheme.secondary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -64,12 +65,12 @@ class SettingsNotificationsView extends StatelessWidget {
                             : (bool enabled) => controller
                                 .setNotificationSetting(item, enabled),
                   ),
-                Divider(color: Theme.of(context).dividerColor),
+                Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
                     L10n.of(context)!.devices,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: theme.colorScheme.secondary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

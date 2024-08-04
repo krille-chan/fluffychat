@@ -14,6 +14,8 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final homeserver = Matrix.of(context)
         .getLoginClient()
         .homeserver
@@ -23,9 +25,9 @@ class LoginView extends StatelessWidget {
     final titleParts = title.split(homeserver);
 
     final textFieldFillColor = FluffyThemes.isColumnMode(context)
-        ? Theme.of(context).colorScheme.surface
+        ? theme.colorScheme.surface
         // ignore: deprecated_member_use
-        : Theme.of(context).colorScheme.surfaceVariant;
+        : theme.colorScheme.surfaceVariant;
 
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
@@ -111,8 +113,8 @@ class LoginView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                      backgroundColor: theme.colorScheme.primary,
+                      foregroundColor: theme.colorScheme.onPrimary,
                     ),
                     onPressed: controller.loading ? null : controller.login,
                     icon: const Icon(Icons.login_outlined),
@@ -129,7 +131,7 @@ class LoginView extends StatelessWidget {
                         ? () {}
                         : controller.passwordForgotten,
                     style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.error,
+                      foregroundColor: theme.colorScheme.error,
                     ),
                     icon: const Icon(Icons.safety_check_outlined),
                     label: Text(L10n.of(context)!.passwordForgotten),

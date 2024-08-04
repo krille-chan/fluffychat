@@ -53,6 +53,8 @@ class PinnedEvents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final pinnedEventIds = controller.room.pinnedEventIds;
 
     if (pinnedEventIds.isEmpty) {
@@ -73,7 +75,7 @@ class PinnedEvents extends StatelessWidget {
           leading: IconButton(
             splashRadius: 18,
             iconSize: 18,
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
+            color: theme.colorScheme.onSurfaceVariant,
             icon: const Icon(Icons.push_pin),
             tooltip: L10n.of(context)!.unpin,
             onPressed: controller.room.canSendEvent(EventTypes.RoomPinnedEvents)

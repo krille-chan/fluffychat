@@ -28,6 +28,8 @@ class ChatListViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final client = Matrix.of(context).client;
     final activeSpace = controller.activeSpaceId;
     if (activeSpace != null) {
@@ -59,10 +61,8 @@ class ChatListViewBody extends StatelessWidget {
         .toList();
     final userSearchResult = controller.userSearchResult;
     const dummyChatCount = 4;
-    final titleColor =
-        Theme.of(context).textTheme.bodyLarge!.color!.withAlpha(100);
-    final subtitleColor =
-        Theme.of(context).textTheme.bodyLarge!.color!.withAlpha(50);
+    final titleColor = theme.textTheme.bodyLarge!.color!.withAlpha(100);
+    final subtitleColor = theme.textTheme.bodyLarge!.color!.withAlpha(50);
     final filter = controller.searchController.text.toLowerCase();
     return StreamBuilder(
       key: ValueKey(
@@ -144,7 +144,7 @@ class ChatListViewBody extends StatelessWidget {
                       clipBehavior: Clip.hardEdge,
                       decoration: const BoxDecoration(),
                       child: Material(
-                        color: Theme.of(context).colorScheme.surface,
+                        color: theme.colorScheme.surface,
                         child: ListTile(
                           leading: const Icon(Icons.vpn_key),
                           title: Text(L10n.of(context)!.dehydrateTor),
@@ -199,11 +199,8 @@ class ChatListViewBody extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             color: filter ==
                                                     controller.activeFilter
-                                                ? Theme.of(context)
-                                                    .colorScheme
-                                                    .primary
-                                                : Theme.of(context)
-                                                    .colorScheme
+                                                ? theme.colorScheme.primary
+                                                : theme.colorScheme
                                                     .secondaryContainer,
                                             borderRadius: BorderRadius.circular(
                                               AppConfig.borderRadius,
@@ -219,11 +216,8 @@ class ChatListViewBody extends StatelessWidget {
                                                   : FontWeight.normal,
                                               color: filter ==
                                                       controller.activeFilter
-                                                  ? Theme.of(context)
-                                                      .colorScheme
-                                                      .onPrimary
-                                                  : Theme.of(context)
-                                                      .colorScheme
+                                                  ? theme.colorScheme.onPrimary
+                                                  : theme.colorScheme
                                                       .onSecondaryContainer,
                                             ),
                                           ),
@@ -249,7 +243,7 @@ class ChatListViewBody extends StatelessWidget {
                         child: Icon(
                           CupertinoIcons.chat_bubble_2,
                           size: 128,
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: theme.colorScheme.secondary,
                         ),
                       ),
                     ],
@@ -266,7 +260,7 @@ class ChatListViewBody extends StatelessWidget {
                           backgroundColor: titleColor,
                           child: CircularProgressIndicator(
                             strokeWidth: 1,
-                            color: Theme.of(context).textTheme.bodyLarge!.color,
+                            color: theme.textTheme.bodyLarge!.color,
                           ),
                         ),
                         title: Row(
