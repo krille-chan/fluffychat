@@ -66,6 +66,7 @@ dependencies:
   linkify: ^5.0.0
   matrix: ^0.31.0
   native_imaging: ^0.1.1
+  nyx_converter: ^0.1.1
   package_info_plus: ^6.0.0
   pasteboard: ^0.2.0
   path: ^1.9.0
