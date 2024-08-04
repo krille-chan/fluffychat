@@ -1913,12 +1913,12 @@
   },
   "unverified": "Неперевірений",
   "@unverified": {},
-  "locationDisabledNotice": "Послуги визначення місцеперебування вимкнені. Будь ласка, увімкніть їх, щоб мати змогу ділитися своїм місцеперебуванням.",
+  "locationDisabledNotice": "Служби визначення розташування вимкнені. Увімкніть їх, щоб мати змогу ділитися своїм розташуванням.",
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "locationPermissionDeniedNotice": "Дозвіл на розташування відхилено. Надайте можливість ділитися своїм місцеперебуванням.",
+  "locationPermissionDeniedNotice": "Дозвіл на розташування відхилено. Надайте можливість ділитися своїм розташуванням.",
   "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
@@ -2732,15 +2732,15 @@
   },
   "changeGeneralChatSettings": "Змінити загальні налаштування чату",
   "@changeGeneralChatSettings": {},
-  "inviteOtherUsers": "Запросіть інших користувачів до цього чату",
+  "inviteOtherUsers": "Запросити інших користувачів до цього чату",
   "@inviteOtherUsers": {},
   "changeTheChatPermissions": "Змінити права доступу до чату",
   "@changeTheChatPermissions": {},
   "changeTheVisibilityOfChatHistory": "Змінити видимість історії чату",
   "@changeTheVisibilityOfChatHistory": {},
-  "changeTheCanonicalRoomAlias": "Змініть основну адресу публічного чату",
+  "changeTheCanonicalRoomAlias": "Змінити основну адресу загальнодоступного чату",
   "@changeTheCanonicalRoomAlias": {},
-  "sendRoomNotifications": "Надсилати сповіщення в @кімнату",
+  "sendRoomNotifications": "Надсилати сповіщення @room",
   "@sendRoomNotifications": {},
   "space": "Простір",
   "@space": {},
@@ -2751,7 +2751,7 @@
     "type": "text",
     "space": {}
   },
-  "markAsUnread": "Позначити як непрочитане",
+  "markAsUnread": "Позначити непрочитаним",
   "@markAsUnread": {},
   "alwaysUse24HourFormat": "ні",
   "@alwaysUse24HourFormat": {
