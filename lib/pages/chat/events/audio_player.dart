@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
-import 'package:nyx_converter/nyx_converter.dart';
+import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/utils/error_reporter.dart';
@@ -77,27 +77,11 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         if (Platform.isIOS &&
             matrixFile.mimeType.toLowerCase() == 'audio/ogg') {
           Logs().v('Convert ogg audio file for iOS...');
-          final convertedFile = File('${file.path}.aac');
-          if (await convertedFile.exists()) {
-            file = convertedFile;
-          } else {
-            final completer = Completer<File>();
-            NyxConverter.convertTo(
-              file.path,
-              tempDir.path,
-              fileName: '${fileName}_${matrixFile.name}',
-              container: NyxContainer.aac,
-              execution: (
-                String? path,
-                NyxStatus status, {
-                String? errorMessage,
-              }) {
-                if (path != null) completer.complete(File(path));
-                if (errorMessage != null) completer.completeError(errorMessage);
-              },
-            );
-            file = await completer.future;
+          final convertedFile = File('${file.path}.caf');
+          if (await convertedFile.exists() == false) {
+            OpusCaf().convertOpusToCaf(file.path, convertedFile.path);
           }
+          file = convertedFile;
         }
       }
 
