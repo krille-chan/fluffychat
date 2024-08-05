@@ -187,12 +187,7 @@ class ChatListViewBody extends StatelessWidget {
                     ],
                   ),
                 ),
-                // #Pangea
-                // Only show loading screen if room list is empty
-                // because it is still loading
-                // if (client.prevBatch == null)
-                if (rooms.isEmpty && client.prevBatch == null)
-                  // Pangea#
+                if (client.prevBatch == null)
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, i) => Opacity(
@@ -250,10 +245,7 @@ class ChatListViewBody extends StatelessWidget {
                       childCount: dummyChatCount,
                     ),
                   ),
-                // #Pangea
-                // if (client.prevBatch != null)
-                if (rooms.isNotEmpty)
-                  // Pangea#
+                if (client.prevBatch != null)
                   SliverList.builder(
                     itemCount: rooms.length,
                     itemBuilder: (BuildContext context, int i) {

@@ -911,11 +911,12 @@ class ChatListController extends State<ChatList>
     await client.roomsLoading;
     await client.accountDataLoading;
     await client.userDeviceKeysLoading;
-    if (client.prevBatch == null) {
+    // #Pangea
+    // See here for explanation of this change: https://github.com/pangeachat/client/pull/539
+    // if (client.prevBatch == null) {
+    if (client.onSync.value?.nextBatch == null) {
+      // Pangea#
       await client.onSync.stream.first;
-      // #Pangea
-      pangeaController.startChatWithBotIfNotPresent();
-      //Pangea#
 
       // Display first login bootstrap if enabled
       // #Pangea
@@ -930,7 +931,7 @@ class ChatListController extends State<ChatList>
     }
 
     // #Pangea
-    _lessImportantSyncs(client);
+    await _initPangeaControllers(client);
     // Pangea#
     if (!mounted) return;
     setState(() {
@@ -939,9 +940,10 @@ class ChatListController extends State<ChatList>
   }
 
   // #Pangea
-  Future<void> _lessImportantSyncs(Client client) async {
+  Future<void> _initPangeaControllers(Client client) async {
     if (mounted) {
       GoogleAnalytics.analyticsUserUpdate(client.userID);
+      pangeaController.startChatWithBotIfNotPresent();
       await pangeaController.subscriptionController.initialize();
       await pangeaController.myAnalytics.initialize();
       pangeaController.afterSyncAndFirstLoginInitialization(context);
