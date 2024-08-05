@@ -63,13 +63,11 @@ abstract class AppConfig {
     path: '/krille-chan/fluffychat/issues/new',
   );
   // #Pangea
-  // static bool renderHtml = true;
   static const bool enableSentry = true;
   static const String sentryDns =
       'https://8591d0d863b646feb4f3dda7e5dcab38@o256755.ingest.sentry.io/5243143';
-  static bool renderHtml = false;
-  // static bool renderHtml = true;
   // Pangea#
+  static bool renderHtml = true;
   static bool hideRedactedEvents = false;
   static bool hideUnknownEvents = true;
   static bool hideUnimportantStateEvents = true;
