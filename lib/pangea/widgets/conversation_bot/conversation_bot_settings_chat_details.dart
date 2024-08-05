@@ -118,44 +118,46 @@ class ConversationBotSettingsChatDetailsState
                 final bool? confirm = await showDialog<bool>(
                   context: context,
                   builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text(
-                        L10n.of(context)!.botConfig,
-                      ),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(L10n.of(context)!.conversationBotStatus),
-                              Switch(
-                                value: addBot,
-                                onChanged: (value) {
-                                  setState(
-                                    () => addBot = value,
-                                  );
-                                },
-                              ),
-                            ],
+                    return StatefulBuilder(
+                      builder: (context, setState) => AlertDialog(
+                        title: Text(
+                          L10n.of(context)!.botConfig,
+                        ),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(L10n.of(context)!.conversationBotStatus),
+                                Switch(
+                                  value: addBot,
+                                  onChanged: (value) {
+                                    setState(
+                                      () => addBot = value,
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(false);
+                            },
+                            child: Text(L10n.of(context)!.cancel),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              L10n.of(context)!
+                                  .conversationBotConfigConfirmChange,
+                            ),
                           ),
                         ],
                       ),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(false);
-                          },
-                          child: Text(L10n.of(context)!.cancel),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            L10n.of(context)!
-                                .conversationBotConfigConfirmChange,
-                          ),
-                        ),
-                      ],
                     );
                   },
                 );
