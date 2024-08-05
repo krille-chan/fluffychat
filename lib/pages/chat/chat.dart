@@ -1109,7 +1109,13 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void scrollToEventId(String eventId) async {
-    final eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
+    // #Pangea
+    // final eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
+    final eventIndex = timeline!.events
+        .where((event) => event.isVisibleInGui)
+        .toList()
+        .indexWhere((e) => e.eventId == eventId);
+    // Pangea#
     if (eventIndex == -1) {
       setState(() {
         timeline = null;
