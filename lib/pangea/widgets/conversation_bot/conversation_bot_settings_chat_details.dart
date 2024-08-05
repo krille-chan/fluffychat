@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
-import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_dynamic_zone.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_select.dart';
@@ -120,15 +119,28 @@ class ConversationBotSettingsChatDetailsState
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: addBot
-                          ? Text(
-                              L10n.of(context)!
-                                  .addConversationBotButtonTitleRemove,
-                            )
-                          : Text(
-                              L10n.of(context)!
-                                  .addConversationBotDialogTitleInvite,
-                            ),
+                      title: Text(
+                        L10n.of(context)!.botConfig,
+                      ),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(L10n.of(context)!.conversationBotStatus),
+                              Switch(
+                                value: addBot,
+                                onChanged: (value) {
+                                  setState(
+                                    () => addBot = value,
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
@@ -137,29 +149,22 @@ class ConversationBotSettingsChatDetailsState
                           child: Text(L10n.of(context)!.cancel),
                         ),
                         TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(!addBot);
-                          },
-                          child: addBot
-                              ? Text(
-                                  L10n.of(context)!
-                                      .addConversationBotDialogRemoveConfirmation,
-                                )
-                              : Text(
-                                  L10n.of(context)!
-                                      .addConversationBotDialogInviteConfirmation,
-                                ),
+                          onPressed: () {},
+                          child: Text(
+                            L10n.of(context)!
+                                .conversationBotConfigConfirmChange,
+                          ),
                         ),
                       ],
                     );
                   },
                 );
                 if (confirm == true) {
-                  setState(() => addBot = true);
-                  widget.room?.invite(BotName.byEnvironment);
+                  // setState(() => addBot = true);
+                  // widget.room?.invite(BotName.byEnvironment);
                 } else {
-                  setState(() => addBot = false);
-                  widget.room?.kick(BotName.byEnvironment);
+                  // setState(() => addBot = false);
+                  // widget.room?.kick(BotName.byEnvironment);
                 }
               },
             ),

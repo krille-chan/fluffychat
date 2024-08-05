@@ -4011,6 +4011,8 @@
   "addConversationBotButtonTitleRemove": "Confirm removing conversation bot",
   "addConversationBotButtonRemove": "Remove",
   "addConversationBotDialogRemoveConfirmation": "Remove",
+  "conversationBotConfigConfirmChange": "Confirm",
+  "conversationBotStatus": "Bot Status",
   "studentAnalyticsNotAvailable": "Student data not currently available",
   "roomDataMissing": "Some data may be missing from rooms in which you are not a member.",
   "updatePhoneOS": "You may need to update your device's OS version.",
