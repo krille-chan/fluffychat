@@ -2780,5 +2780,14 @@
   "sendRoomNotifications": "Senden Sie eine @room-Benachrichtigung",
   "@sendRoomNotifications": {},
   "changeTheDescriptionOfTheGroup": "Ändern Sie die Beschreibung des Chats",
-  "@changeTheDescriptionOfTheGroup": {}
+  "@changeTheDescriptionOfTheGroup": {},
+  "updateInstalled": "🎉 Update {version} installiert!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Änderungsprotokoll",
+  "@changelog": {}
 }
