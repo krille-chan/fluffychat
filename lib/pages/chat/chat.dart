@@ -621,10 +621,10 @@ class ChatController extends State<ChatPageWithRoom>
       builder: (c) => const RecordingDialog(),
     );
     if (result == null) return;
-    final audioFile = File(result.path);
+    final audioFile = XFile(result.path);
     final file = MatrixAudioFile(
-      bytes: audioFile.readAsBytesSync(),
-      name: audioFile.path,
+      bytes: await audioFile.readAsBytes(),
+      name: result.fileName ?? audioFile.path,
     );
     await room.sendFileEvent(
       file,
