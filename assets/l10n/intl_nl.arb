@@ -2418,7 +2418,7 @@
   "@pleaseEnterANumber": {},
   "kickUserDescription": "De persoon is verwijderd uit de chat, maar is niet verbannen. In publieke chats kan de persoon op elk moment opnieuw deelnemen.",
   "@kickUserDescription": {},
-  "alwaysUse24HourFormat": "fout",
+  "alwaysUse24HourFormat": "true",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
