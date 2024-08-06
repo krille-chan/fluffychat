@@ -221,7 +221,6 @@ class InputBar extends StatelessWidget {
         }
       }
     }
-    print("ret length: ${ret.length}");
     return ret;
   }
 
@@ -231,7 +230,10 @@ class InputBar extends StatelessWidget {
     Client? client,
   ) {
     const size = 30.0;
-    const padding = EdgeInsets.all(4.0);
+    // #Pangea
+    // const padding = EdgeInsets.all(4.0);
+    const padding = EdgeInsets.all(8.0);
+    // Pangea#
     if (suggestion['type'] == 'command') {
       final command = suggestion['name']!;
       final hint = commandHint(L10n.of(context)!, command);
@@ -323,7 +325,17 @@ class InputBar extends StatelessWidget {
               client: client,
             ),
             const SizedBox(width: 6),
-            Text(suggestion['displayname'] ?? suggestion['mxid']!),
+            // #Pangea
+            Flexible(
+              child:
+                  // Pangea#
+                  Text(
+                suggestion['displayname'] ?? suggestion['mxid']!,
+                // #Pangea
+                overflow: TextOverflow.ellipsis,
+                // Pangea#
+              ),
+            ),
           ],
         ),
       );
@@ -536,6 +548,15 @@ class InputBar extends StatelessWidget {
             // fix loading briefly flickering a dark box
             emptyBuilder: (BuildContext context) => const SizedBox
                 .shrink(), // fix loading briefly showing no suggestions
+            // #Pangea
+            // If we ever want to change the suggestion background color
+            // here is the code for it
+            // decorationBuilder: (context, child) => Material(
+            //   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            //   color: Theme.of(context).colorScheme.surfaceContainerHigh,
+            //   child: child,
+            // ),
+            // Pangea#
           ),
         ),
       ),
