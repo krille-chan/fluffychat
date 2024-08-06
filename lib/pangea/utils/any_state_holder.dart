@@ -62,7 +62,7 @@ class PangeaAnyState {
   }
 
   void closeAllOverlays() {
-    while (entries.isNotEmpty) {
+    for (int i = 0; i < entries.length; i++) {
       try {
         entries.last.remove();
       } catch (err, s) {

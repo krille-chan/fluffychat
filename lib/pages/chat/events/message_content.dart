@@ -317,11 +317,6 @@ class MessageContent extends StatelessWidget {
                     pangeaMessageEvent != null &&
                     !(toolbarController!.highlighted) &&
                     !selected) {
-                  // #Pangea
-                  // toolbarController!.controller.onSelectMessage(
-                  //   pangeaMessageEvent!.event,
-                  // );
-                  // Pangea#
                   return;
                 }
                 toolbarController?.toolbar?.textSelection

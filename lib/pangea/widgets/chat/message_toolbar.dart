@@ -8,12 +8,11 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_speech_to_text_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
-import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
-import 'package:fluffychat/pangea/widgets/chat/overlay_header.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
@@ -93,33 +92,11 @@ class ToolbarDisplayController {
     Widget overlayEntry;
     if (toolbar == null) return;
     try {
-      overlayEntry = Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          OverlayHeader(
-            controller: controller,
-            closeToolbar: closeToolbar,
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          Flexible(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                toolbar!,
-                const SizedBox(height: 9),
-                overlayMessage,
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          OverlayFooter(controller: controller),
-        ],
+      overlayEntry = MessageSelectionOverlay(
+        controller: controller,
+        closeToolbar: closeToolbar,
+        toolbar: toolbar!,
+        overlayMessage: overlayMessage,
       );
     } catch (err) {
       debugger(when: kDebugMode);

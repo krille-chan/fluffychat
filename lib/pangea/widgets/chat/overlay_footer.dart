@@ -4,8 +4,6 @@ import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:flutter/material.dart';
 
-enum _EventContextAction { info, report }
-
 class OverlayFooter extends StatelessWidget {
   ChatController controller;
 

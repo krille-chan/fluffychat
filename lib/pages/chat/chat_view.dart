@@ -34,21 +34,6 @@ class ChatView extends StatelessWidget {
 
   const ChatView(this.controller, {super.key});
 
-  // #Pangea
-  List<Widget> _editedAppBarActions(BuildContext context) {
-    if (!controller.selectMode) {
-      return [
-        ChatSettingsPopupMenu(
-          controller.room,
-          (!controller.room.isDirectChat && !controller.room.isArchived),
-        ),
-      ];
-    } else {
-      return [];
-    }
-  }
-  // Pangea#
-
   List<Widget> _appBarActions(BuildContext context) {
     if (controller.selectMode) {
       return [
@@ -234,10 +219,7 @@ class ChatView extends StatelessWidget {
                 ),
                 titleSpacing: 0,
                 title: ChatAppBarTitle(controller),
-                // #Pangea
-                // actions: _appBarActions(context),
-                actions: _editedAppBarActions(context),
-                // Pangea#
+                actions: _appBarActions(context),
                 bottom: PreferredSize(
                   preferredSize: Size.fromHeight(appbarBottomHeight),
                   child: Column(

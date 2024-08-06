@@ -90,6 +90,7 @@ class OverlayMessage extends StatelessWidget {
     );
 
     return Flexible(
+      // Make overlay message scrollable so long messages don't run offscreen
       child: SingleChildScrollView(
         child: Material(
           color: noBubble ? Colors.transparent : color,

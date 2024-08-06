@@ -16,6 +16,7 @@ class ChatEmojiPicker extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     return
         // #Pangea
+        // Emoji picker can't display without a material parent
         Material(
       child:
           // Pangea#
@@ -41,6 +42,8 @@ class ChatEmojiPicker extends StatelessWidget {
                     Expanded(
                       child:
                           // #Pangea
+                          // Display the button to close the emoji picker
+                          // over the emoji picker
                           Stack(
                         children: [
                           // Pangea#

@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:emoji_proposal/emoji_proposal.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../config/themes.dart';
 
 class ReactionsPicker extends StatelessWidget {
@@ -16,10 +15,13 @@ class ReactionsPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (controller.showEmojiPicker) return const SizedBox.shrink();
-    final display = controller.editEvent == null &&
-        controller.replyEvent == null &&
+    final display =
+        // #Pangea
+        // controller.editEvent == null &&
+        //     controller.replyEvent == null &&
+        // Pangea#
         controller.room.canSendDefaultMessages &&
-        controller.selectedEvents.isNotEmpty;
+            controller.selectedEvents.isNotEmpty;
     return AnimatedContainer(
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
