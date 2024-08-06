@@ -2449,7 +2449,7 @@
   "@hideRedactedMessages": {},
   "hideRedactedMessagesBody": "Als iemand een bericht verwijdert, is dit bericht niet meer zichtbaar in de chat.",
   "@hideRedactedMessagesBody": {},
-  "hideInvalidOrUnknownMessageFormats": "Verberg ongeldige of onbekende bericht formaten",
+  "hideInvalidOrUnknownMessageFormats": "Verberg ongeldige of onbekende berichtformaten",
   "@hideInvalidOrUnknownMessageFormats": {},
   "passwordRecoverySettings": "Wachtwoord herstel instellingen",
   "@passwordRecoverySettings": {},
