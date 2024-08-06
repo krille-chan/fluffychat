@@ -20,6 +20,7 @@ class BotOptionsModel {
   String? customSystemPrompt;
   bool? customTriggerReactionEnabled;
   String? customTriggerReactionKey;
+  String? textAdventureGameMasterInstructions;
 
   BotOptionsModel({
     ////////////////////////////////////////////////////////////////////////////
@@ -45,6 +46,11 @@ class BotOptionsModel {
     this.customSystemPrompt,
     this.customTriggerReactionEnabled = true,
     this.customTriggerReactionKey = "⏩",
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Text Adventure Mode Options
+    ////////////////////////////////////////////////////////////////////////////
+    this.textAdventureGameMasterInstructions,
   });
 
   factory BotOptionsModel.fromJson(json) {
@@ -73,6 +79,12 @@ class BotOptionsModel {
       customTriggerReactionEnabled:
           json[ModelKey.customTriggerReactionEnabled] ?? true,
       customTriggerReactionKey: json[ModelKey.customTriggerReactionKey] ?? "⏩",
+
+      //////////////////////////////////////////////////////////////////////////
+      // Text Adventure Mode Options
+      //////////////////////////////////////////////////////////////////////////
+      textAdventureGameMasterInstructions:
+          json[ModelKey.textAdventureGameMasterInstructions],
     );
   }
 
@@ -93,6 +105,8 @@ class BotOptionsModel {
       data[ModelKey.customTriggerReactionEnabled] =
           customTriggerReactionEnabled ?? true;
       data[ModelKey.customTriggerReactionKey] = customTriggerReactionKey ?? "⏩";
+      data[ModelKey.textAdventureGameMasterInstructions] =
+          textAdventureGameMasterInstructions;
       return data;
     } catch (e, s) {
       debugger(when: kDebugMode);
@@ -133,6 +147,9 @@ class BotOptionsModel {
         break;
       case ModelKey.customTriggerReactionKey:
         customTriggerReactionKey = value;
+        break;
+      case ModelKey.textAdventureGameMasterInstructions:
+        textAdventureGameMasterInstructions = value;
         break;
       default:
         throw Exception('Invalid key for bot options - $key');
