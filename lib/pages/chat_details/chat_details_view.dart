@@ -11,7 +11,7 @@ import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_nam
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/utils/lock_room.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
-import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings_chat_details.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -452,7 +452,7 @@ class ChatDetailsView extends StatelessWidget {
                           if (!room.isSpace &&
                               !room.isDirectChat &&
                               room.canInvite)
-                            ConversationBotSettingsChatDetails(
+                            ConversationBotSettings(
                               key: controller.addConversationBotKey,
                               room: room,
                             ),
