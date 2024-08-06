@@ -16,7 +16,6 @@ class ConversationBotCustomZone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(initialBotOptions.toJson());
     return Column(
       children: [
         const SizedBox(height: 12),
