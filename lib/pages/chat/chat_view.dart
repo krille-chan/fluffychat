@@ -7,13 +7,13 @@ import 'package:fluffychat/pages/chat/chat_emoji_picker.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
+import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/widgets/chat/chat_floating_action_button.dart';
 import 'package:fluffychat/utils/account_config.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -302,215 +302,232 @@ class ChatView extends StatelessWidget {
                       ),
                     ),
                   SafeArea(
-                    child: Column(
-                      children: <Widget>[
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: controller.clearSingleSelectedEvent,
-                            child: Builder(
-                              builder: (context) {
-                                if (controller.timeline == null) {
-                                  return const Center(
-                                    child: CircularProgressIndicator.adaptive(
-                                      strokeWidth: 2,
-                                    ),
-                                  );
-                                }
-                                return ChatEventList(
-                                  controller: controller,
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                        if (controller.room.canSendDefaultMessages &&
-                            controller.room.membership == Membership.join)
-                          Container(
-                            margin: EdgeInsets.only(
-                              bottom: bottomSheetPadding,
-                              left: bottomSheetPadding,
-                              right: bottomSheetPadding,
-                            ),
-                            constraints: const BoxConstraints(
-                              maxWidth: FluffyThemes.columnWidth * 2.5,
-                            ),
-                            alignment: Alignment.center,
-                            child: Material(
-                              clipBehavior: Clip.hardEdge,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  // ignore: deprecated_member_use
-                                  .surfaceVariant,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(24),
-                              ),
-                              child: controller.room.isAbandonedDMRoom == true
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        // #Pangea
-                                        if (controller.room.isRoomAdmin)
-                                          TextButton.icon(
-                                            style: TextButton.styleFrom(
-                                              padding: const EdgeInsets.all(
-                                                16,
-                                              ),
-                                              foregroundColor: Theme.of(context)
-                                                  .colorScheme
-                                                  .error,
-                                            ),
-                                            icon: const Icon(
-                                              Icons.archive_outlined,
-                                            ),
-                                            onPressed: controller.archiveChat,
-                                            label: Text(
-                                              L10n.of(context)!.archive,
-                                            ),
-                                          ),
-                                        // Pangea#
-                                        TextButton.icon(
-                                          style: TextButton.styleFrom(
-                                            padding: const EdgeInsets.all(
-                                              16,
-                                            ),
-                                            foregroundColor: Theme.of(context)
-                                                .colorScheme
-                                                .error,
-                                          ),
-                                          icon: const Icon(
-                                            // #Pangea
-                                            // Icons.archive_outlined,
-                                            Icons.arrow_forward,
-                                            // Pangea#
-                                          ),
-                                          onPressed: controller.leaveChat,
-                                          label: Text(
-                                            L10n.of(context)!.leave,
-                                          ),
-                                        ),
-                                        TextButton.icon(
-                                          style: TextButton.styleFrom(
-                                            padding: const EdgeInsets.all(
-                                              16,
-                                            ),
-                                          ),
-                                          icon: const Icon(
-                                            Icons.forum_outlined,
-                                          ),
-                                          onPressed: controller.recreateChat,
-                                          label: Text(
-                                            L10n.of(context)!.reopenChat,
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  :
-                                  // #Pangea
-                                  null,
-                              // Column(
-                              //     mainAxisSize: MainAxisSize.min,
-                              //     children: [
-                              //   const ConnectionStatusHeader(),
-                              //   ITBar(
-                              //     choreographer:
-                              //         controller.choreographer,
-                              //   ),
-                              //   ReactionsPicker(controller),
-                              //   ReplyDisplay(controller),
-                              //   ChatInputRow(controller),
-                              //   ChatEmojiPicker(controller),
-                              //   ],
-                              // ),
-                              // Pangea#
-                            ),
-                          ),
+                    child:
                         // #Pangea
-                        // Keep messages above minimum input bar height
-                        SizedBox(
-                          height: (PlatformInfos.isMobile ? 30 : 60),
+                        Stack(
+                      children: [
+                        // Pangea#
+                        Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: controller.clearSingleSelectedEvent,
+                                child: Builder(
+                                  builder: (context) {
+                                    if (controller.timeline == null) {
+                                      return const Center(
+                                        child:
+                                            CircularProgressIndicator.adaptive(
+                                          strokeWidth: 2,
+                                        ),
+                                      );
+                                    }
+                                    return ChatEventList(
+                                      controller: controller,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            if (controller.room.canSendDefaultMessages &&
+                                controller.room.membership == Membership.join)
+                              Container(
+                                margin: EdgeInsets.only(
+                                  bottom: bottomSheetPadding,
+                                  left: bottomSheetPadding,
+                                  right: bottomSheetPadding,
+                                ),
+                                constraints: const BoxConstraints(
+                                  maxWidth: FluffyThemes.columnWidth * 2.5,
+                                ),
+                                alignment: Alignment.center,
+                                child: Material(
+                                  clipBehavior: Clip.hardEdge,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      // ignore: deprecated_member_use
+                                      .surfaceVariant,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(24),
+                                  ),
+                                  child: controller.room.isAbandonedDMRoom ==
+                                          true
+                                      ? Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            // #Pangea
+                                            if (controller.room.isRoomAdmin)
+                                              TextButton.icon(
+                                                style: TextButton.styleFrom(
+                                                  padding: const EdgeInsets.all(
+                                                    16,
+                                                  ),
+                                                  foregroundColor:
+                                                      Theme.of(context)
+                                                          .colorScheme
+                                                          .error,
+                                                ),
+                                                icon: const Icon(
+                                                  Icons.archive_outlined,
+                                                ),
+                                                onPressed:
+                                                    controller.archiveChat,
+                                                label: Text(
+                                                  L10n.of(context)!.archive,
+                                                ),
+                                              ),
+                                            // Pangea#
+                                            TextButton.icon(
+                                              style: TextButton.styleFrom(
+                                                padding: const EdgeInsets.all(
+                                                  16,
+                                                ),
+                                                foregroundColor:
+                                                    Theme.of(context)
+                                                        .colorScheme
+                                                        .error,
+                                              ),
+                                              icon: const Icon(
+                                                // #Pangea
+                                                // Icons.archive_outlined,
+                                                Icons.arrow_forward,
+                                                // Pangea#
+                                              ),
+                                              onPressed: controller.leaveChat,
+                                              label: Text(
+                                                L10n.of(context)!.leave,
+                                              ),
+                                            ),
+                                            TextButton.icon(
+                                              style: TextButton.styleFrom(
+                                                padding: const EdgeInsets.all(
+                                                  16,
+                                                ),
+                                              ),
+                                              icon: const Icon(
+                                                Icons.forum_outlined,
+                                              ),
+                                              onPressed:
+                                                  controller.recreateChat,
+                                              label: Text(
+                                                L10n.of(context)!.reopenChat,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      :
+                                      // #Pangea
+                                      null,
+                                  // Column(
+                                  //     mainAxisSize: MainAxisSize.min,
+                                  //     children: [
+                                  //   const ConnectionStatusHeader(),
+                                  //   ITBar(
+                                  //     choreographer:
+                                  //         controller.choreographer,
+                                  //   ),
+                                  //   ReactionsPicker(controller),
+                                  //   ReplyDisplay(controller),
+                                  //   ChatInputRow(controller),
+                                  //   ChatEmojiPicker(controller),
+                                  //   ],
+                                  // ),
+                                  // Pangea#
+                                ),
+                              ),
+                            // #Pangea
+                            // Keep messages above minimum input bar height
+                            const SizedBox(
+                              height: 60,
+                            ),
+                            // Pangea#
+                          ],
+                        ),
+                        // #Pangea
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 16,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              if (!controller.selectMode)
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    bottom: 10,
+                                    left: bottomSheetPadding,
+                                    right: bottomSheetPadding,
+                                  ),
+                                  constraints: const BoxConstraints(
+                                    maxWidth: FluffyThemes.columnWidth * 2.4,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      StartIGCButton(
+                                        controller: controller,
+                                      ),
+                                      ChatFloatingActionButton(
+                                        controller: controller,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              Container(
+                                margin: EdgeInsets.only(
+                                  bottom: bottomSheetPadding,
+                                  left: bottomSheetPadding,
+                                  right: bottomSheetPadding,
+                                ),
+                                constraints: const BoxConstraints(
+                                  maxWidth: FluffyThemes.columnWidth * 2.5,
+                                ),
+                                alignment: Alignment.center,
+                                child: Material(
+                                  clipBehavior: Clip.hardEdge,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceContainerHighest,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(24),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      const ConnectionStatusHeader(),
+                                      ITBar(
+                                        choreographer: controller.choreographer,
+                                      ),
+                                      ReactionsPicker(controller),
+                                      ReplyDisplay(controller),
+                                      ChatInputRow(controller),
+                                      ChatEmojiPicker(controller),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         // Pangea#
                       ],
                     ),
+                    // #Pangea
+                    // if (controller.dragging)
+                    //   Container(
+                    //     color: Theme.of(context)
+                    //         .scaffoldBackgroundColor
+                    //         .withOpacity(0.9),
+                    //     alignment: Alignment.center,
+                    //     child: const Icon(
+                    //       Icons.upload_outlined,
+                    //       size: 100,
+                    //     ),
+                    //   ),
+                    // Pangea#
                   ),
-                  // #Pangea
-                  // if (controller.dragging)
-                  //   Container(
-                  //     color: Theme.of(context)
-                  //         .scaffoldBackgroundColor
-                  //         .withOpacity(0.9),
-                  //     alignment: Alignment.center,
-                  //     child: const Icon(
-                  //       Icons.upload_outlined,
-                  //       size: 100,
-                  //     ),
-                  //   ),
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 16,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        if (!controller.selectMode)
-                          Container(
-                            margin: EdgeInsets.only(
-                              bottom: 10,
-                              left: bottomSheetPadding,
-                              right: bottomSheetPadding,
-                            ),
-                            constraints: const BoxConstraints(
-                              maxWidth: FluffyThemes.columnWidth * 2.4,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                StartIGCButton(
-                                  controller: controller,
-                                ),
-                                ChatFloatingActionButton(
-                                  controller: controller,
-                                ),
-                              ],
-                            ),
-                          ),
-                        Container(
-                          margin: EdgeInsets.only(
-                            bottom: bottomSheetPadding,
-                            left: bottomSheetPadding,
-                            right: bottomSheetPadding,
-                          ),
-                          constraints: const BoxConstraints(
-                            maxWidth: FluffyThemes.columnWidth * 2.5,
-                          ),
-                          alignment: Alignment.center,
-                          child: Material(
-                            clipBehavior: Clip.hardEdge,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .surfaceContainerHighest,
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(24),
-                            ),
-                            child: Column(
-                              children: [
-                                const ConnectionStatusHeader(),
-                                ITBar(
-                                  choreographer: controller.choreographer,
-                                ),
-                                ReplyDisplay(controller),
-                                ChatInputRow(controller),
-                                ChatEmojiPicker(controller),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Pangea#
                 ],
               ),
             );
