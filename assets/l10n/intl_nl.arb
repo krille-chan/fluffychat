@@ -2421,5 +2421,92 @@
   "alwaysUse24HourFormat": "fout",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "joinSpace": "Deelname aan ruimte",
+  "@joinSpace": {},
+  "block": "Blokkeren",
+  "@block": {},
+  "blockedUsers": "Geblokkeerde gebruikers",
+  "@blockedUsers": {},
+  "presenceStyle": "Aanwezigheid:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchChatsRooms": "Zoek naar #chats, @gebruikers...",
+  "@searchChatsRooms": {},
+  "swipeRightToLeftToReply": "Veeg van rechts naar links om te reageren",
+  "@swipeRightToLeftToReply": {},
+  "calls": "Gesprekken",
+  "@calls": {},
+  "customEmojisAndStickers": "Aangepaste emojis and stickers",
+  "@customEmojisAndStickers": {},
+  "accessAndVisibilityDescription": "Wie mag meedoen in deze chat en hoe de chat ontdekt kan worden.",
+  "@accessAndVisibilityDescription": {},
+  "customEmojisAndStickersBody": "Voeg toe of deel aangepaste emojis of stickers die gebruikt kunnen worden in elke chat.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "Verberg verwijderde berichten",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Als iemand een bericht verwijdert, is dit bericht niet meer zichtbaar in de chat.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Verberg ongeldige of onbekende bericht formaten",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "passwordRecoverySettings": "Wachtwoord herstel instellingen",
+  "@passwordRecoverySettings": {},
+  "youInvitedToBy": "📩 Je bent uitgenodigd via een link voor:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "knock": "Kloppen",
+  "@knock": {},
+  "overview": "Overzicht",
+  "@overview": {},
+  "hidePresences": "Verberg Status Lijst?",
+  "@hidePresences": {},
+  "noOneCanJoin": "Niemand kan meedoen",
+  "@noOneCanJoin": {},
+  "yourGlobalUserIdIs": "Je globale gebruikers-ID is: ",
+  "@yourGlobalUserIdIs": {},
+  "appLockDescription": "Vergendel de app wanneer het niet gebruikt wordt met een pin code",
+  "@appLockDescription": {},
+  "globalChatId": "Globale chat ID",
+  "@globalChatId": {},
+  "accessAndVisibility": "Toegang en zichtbaarheid",
+  "@accessAndVisibility": {},
+  "invitedBy": "📩 Uitgenodigd door: {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "publicSpaces": "Publieke ruimtes",
+  "@publicSpaces": {},
+  "blockUsername": "Negeer gebruikersnaam",
+  "@blockUsername": {},
+  "publicChatAddresses": "Publieke chat adressen",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Creëer nieuw adres",
+  "@createNewAddress": {},
+  "countChatsAndCountParticipants": "{chats} chats en {participants} deelnemers",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "Geen chats gevonden...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Deelnemende chats",
+  "@joinedChats": {},
+  "knocking": "Kloppen",
+  "@knocking": {},
+  "space": "Ruimte",
+  "@space": {},
+  "spaces": "Ruimtes",
+  "@spaces": {},
+  "unread": "Zet als ongelezen",
+  "@unread": {}
 }
