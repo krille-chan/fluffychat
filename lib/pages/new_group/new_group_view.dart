@@ -2,7 +2,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
-import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings_create_group.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -99,7 +99,7 @@ class NewGroupView extends StatelessWidget {
             RoomCapacityButton(
               key: controller.addCapacityKey,
             ),
-            ConversationBotSettingsCreateGroup(
+            ConversationBotSettings(
               key: controller.addConversationBotKey,
               activeSpaceId: controller.activeSpaceId,
             ),

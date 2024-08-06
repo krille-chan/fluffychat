@@ -11,7 +11,7 @@ import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/class_chat_power_levels.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
-import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings_create_group.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -51,9 +51,8 @@ class NewGroupController extends State<NewGroup> {
   // #Pangea
   PangeaController pangeaController = MatrixState.pangeaController;
   final GlobalKey<AddToSpaceState> addToSpaceKey = GlobalKey<AddToSpaceState>();
-  final GlobalKey<ConversationBotSettingsCreateGroupState>
-      addConversationBotKey =
-      GlobalKey<ConversationBotSettingsCreateGroupState>();
+  final GlobalKey<ConversationBotSettingsState> addConversationBotKey =
+      GlobalKey<ConversationBotSettingsState>();
   final GlobalKey<RoomCapacityButtonState> addCapacityKey =
       GlobalKey<RoomCapacityButtonState>();
 
