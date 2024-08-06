@@ -29,7 +29,7 @@ abstract class PlatformInfos {
 
   static bool get usesTouchscreen => !isMobile;
 
-  static bool get platformCanRecord => (isMobile || isMacOS);
+  static bool get platformCanRecord => (isMobile || isMacOS || isWeb);
 
   static String get clientName =>
       '${AppConfig.applicationName} ${isWeb ? 'web' : Platform.operatingSystem}${kReleaseMode ? '' : 'Debug'}';

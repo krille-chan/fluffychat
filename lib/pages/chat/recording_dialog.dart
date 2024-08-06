@@ -39,10 +39,16 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   Future<void> startRecording() async {
     try {
-      final useOpus =
-          await _audioRecorder.isEncoderSupported(AudioEncoder.opus);
+      final codec = kIsWeb
+          // Web seems to create webm instead of ogg when using opus encoder
+          // which does not play on iOS right now. So we use wav for now:
+          ? AudioEncoder.wav
+          // Everywhere else we use opus if supported by the platform:
+          : await _audioRecorder.isEncoderSupported(AudioEncoder.opus)
+              ? AudioEncoder.opus
+              : AudioEncoder.aacLc;
       fileName =
-          'recording${DateTime.now().microsecondsSinceEpoch}.${useOpus ? 'ogg' : 'm4a'}';
+          'recording${DateTime.now().microsecondsSinceEpoch}.${codec.fileExtension}';
       String? path;
       if (!kIsWeb) {
         final tempDir = await getTemporaryDirectory();
@@ -64,7 +70,7 @@ class RecordingDialogState extends State<RecordingDialog> {
           autoGain: true,
           echoCancel: true,
           noiseSuppress: true,
-          encoder: useOpus ? AudioEncoder.opus : AudioEncoder.aacLc,
+          encoder: codec,
         ),
         path: path ?? '',
       );
@@ -237,4 +243,24 @@ class RecordingResult {
     required this.waveform,
     required this.fileName,
   });
+}
+
+extension on AudioEncoder {
+  String get fileExtension {
+    switch (this) {
+      case AudioEncoder.aacLc:
+      case AudioEncoder.aacEld:
+      case AudioEncoder.aacHe:
+        return 'm4a';
+      case AudioEncoder.opus:
+        return 'ogg';
+      case AudioEncoder.wav:
+        return 'wav';
+      case AudioEncoder.amrNb:
+      case AudioEncoder.amrWb:
+      case AudioEncoder.flac:
+      case AudioEncoder.pcm16bits:
+        throw UnsupportedError('Not yet used');
+    }
+  }
 }
