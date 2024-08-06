@@ -8,12 +8,14 @@ class MessageSelectionOverlay extends StatelessWidget {
   final Function closeToolbar;
   final Widget toolbar;
   final Widget overlayMessage;
+  final bool ownMessage;
 
   const MessageSelectionOverlay({
     required this.controller,
     required this.closeToolbar,
     required this.toolbar,
     required this.overlayMessage,
+    required this.ownMessage,
     super.key,
   });
 
@@ -22,6 +24,8 @@ class MessageSelectionOverlay extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment:
+          ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         OverlayHeader(
           controller: controller,
@@ -33,7 +37,8 @@ class MessageSelectionOverlay extends StatelessWidget {
         Flexible(
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment:
+                ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
             children: [
               toolbar,
               const SizedBox(height: 9),

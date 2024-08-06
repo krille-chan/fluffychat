@@ -5,6 +5,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
@@ -74,6 +75,36 @@ class ToolbarDisplayController {
     }
     focusNode.requestFocus();
 
+    final LayerLinkAndKey layerLinkAndKey =
+        MatrixState.pAnyState.layerLinkAndKey(targetId);
+    final targetRenderBox =
+        layerLinkAndKey.key.currentContext?.findRenderObject();
+    if (targetRenderBox != null) {
+      final Size transformTargetSize = (targetRenderBox as RenderBox).size;
+      messageWidth = transformTargetSize.width;
+      final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
+
+      final double minValue =
+          controller.scrollController.position.minScrollExtent;
+      final double maxValue =
+          controller.scrollController.position.maxScrollExtent;
+      final double middlePoint = controller.scrollController.offset -
+          targetOffset.dy +
+          MediaQuery.of(context).size.height / 2 +
+          37;
+
+      // Scroll so message is right under half point of screen
+      controller.scrollController.animateTo(
+        middlePoint < minValue
+            ? minValue
+            : middlePoint > maxValue
+                ? maxValue
+                : middlePoint,
+        duration: FluffyThemes.animationDuration,
+        curve: FluffyThemes.animationCurve,
+      );
+    }
+
     final Widget overlayMessage = OverlayMessage(
       pangeaMessageEvent.event,
       timeline: pangeaMessageEvent.timeline,
@@ -97,6 +128,7 @@ class ToolbarDisplayController {
         closeToolbar: closeToolbar,
         toolbar: toolbar!,
         overlayMessage: overlayMessage,
+        ownMessage: pangeaMessageEvent.ownMessage,
       );
     } catch (err) {
       debugger(when: kDebugMode);
@@ -129,7 +161,6 @@ class ToolbarDisplayController {
         () => toolbarModeStream.add(mode),
       );
     }
-    // });
   }
 
   bool get highlighted {
