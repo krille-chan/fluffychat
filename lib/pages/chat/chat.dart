@@ -639,6 +639,7 @@ class ChatController extends State<ChatPageWithRoom>
           pangeaController.myAnalytics.setState(
             data: {
               'eventID': msgEventId,
+              'eventType': EventTypes.Message,
               'roomID': room.id,
               'originalSent': originalSent,
               'tokensSent': tokensSent,

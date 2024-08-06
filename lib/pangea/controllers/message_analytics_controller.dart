@@ -156,14 +156,6 @@ class AnalyticsController extends BaseController {
             ?.cast<ConstructAnalyticsEvent>();
     final List<ConstructAnalyticsEvent> allConstructs = roomEvents ?? [];
 
-    final List<String> adminSpaceRooms =
-        await _pangeaController.matrixState.client.teacherRoomIds;
-    for (final construct in allConstructs) {
-      construct.content.uses.removeWhere(
-        (use) => adminSpaceRooms.contains(use.chatId),
-      );
-    }
-
     return allConstructs
         .where((construct) => construct.content.uses.isNotEmpty)
         .toList();

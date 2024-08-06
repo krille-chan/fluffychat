@@ -91,15 +91,22 @@ Future<void> pLanguageDialog(
                             context: context,
                             future: () async {
                               try {
-                                pangeaController.userController
-                                    .updateProfile((profile) {
-                                  profile.userSettings.sourceLanguage =
-                                      selectedSourceLanguage.langCode;
-                                  profile.userSettings.targetLanguage =
-                                      selectedTargetLanguage.langCode;
-                                  return profile;
+                                pangeaController.userController.updateProfile(
+                                  (profile) {
+                                    profile.userSettings.sourceLanguage =
+                                        selectedSourceLanguage.langCode;
+                                    profile.userSettings.targetLanguage =
+                                        selectedTargetLanguage.langCode;
+                                    return profile;
+                                  },
+                                  waitForDataInSync: true,
+                                ).then((_) {
+                                  // if the profile update is successful, reset cached analytics
+                                  // data, since analytics data corresponds to the user's L2
+                                  pangeaController.myAnalytics.clearCache();
+                                  pangeaController.analytics.clearCache();
+                                  Navigator.pop(context);
                                 });
-                                Navigator.pop(context);
                               } catch (err, s) {
                                 debugger(when: kDebugMode);
                                 ErrorHandler.logError(e: err, s: s);

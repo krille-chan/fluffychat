@@ -140,33 +140,17 @@ extension AnalyticsRoomExtension on Room {
     );
   }
 
-  Future<ConstructAnalyticsEvent?> _getLastAnalyticsEvent(
-    String userId,
-  ) async {
-    final List<Event> events = await getEventsBySender(
-      type: PangeaEventTypes.construct,
-      sender: userId,
-      count: 10,
-    );
-    if (events.isEmpty) return null;
-    final Event event = events.first;
-    return ConstructAnalyticsEvent(event: event);
-  }
-
   Future<DateTime?> _analyticsLastUpdated(String userId) async {
-    final lastEvent = await _getLastAnalyticsEvent(userId);
-    return lastEvent?.event.originServerTs;
+    final List<Event> events = await getRoomAnalyticsEvents(count: 1);
+    if (events.isEmpty) return null;
+    return events.first.originServerTs;
   }
 
   Future<List<ConstructAnalyticsEvent>?> _getAnalyticsEvents({
     required String userId,
     DateTime? since,
   }) async {
-    final List<Event> events = await getEventsBySender(
-      type: PangeaEventTypes.construct,
-      sender: userId,
-      since: since,
-    );
+    final events = await getRoomAnalyticsEvents();
     final List<ConstructAnalyticsEvent> analyticsEvents = [];
     for (final Event event in events) {
       analyticsEvents.add(ConstructAnalyticsEvent(event: event));
@@ -192,7 +176,7 @@ extension AnalyticsRoomExtension on Room {
   /// The [uses] parameter is a list of [OneConstructUse] objects representing the
   /// constructs to be sent. To prevent hitting the maximum event size, the events
   /// are chunked into smaller lists. Each chunk is sent as a separate event.
-  Future<void> sendConstructsEvent(
+  Future<void> _sendConstructsEvent(
     List<OneConstructUse> uses,
   ) async {
     // It's possible that the user has no info to send yet, but to prevent trying

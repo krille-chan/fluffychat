@@ -42,10 +42,14 @@ class LearningProgressIndicatorsState
   /// Grammar constructs model
   ConstructListModel? errors;
 
+  bool loading = true;
+
   @override
   void initState() {
     super.initState();
-    updateAnalyticsData();
+    updateAnalyticsData().then((_) {
+      setState(() => loading = false);
+    });
     // listen for changes to analytics data and update the UI
     _onAnalyticsUpdate = _pangeaController
         .myAnalytics.analyticsUpdateStream.stream
@@ -77,6 +81,7 @@ class LearningProgressIndicatorsState
         type: ConstructTypeEnum.grammar,
         uses: localUses,
       );
+      setState(() {});
       return;
     }
 
@@ -93,7 +98,8 @@ class LearningProgressIndicatorsState
       type: ConstructTypeEnum.grammar,
       uses: allConstructs,
     );
-    setState(() {});
+
+    if (mounted) setState(() {});
   }
 
   /// Get the number of points for a given progress indicator
@@ -136,6 +142,10 @@ class LearningProgressIndicatorsState
 
   @override
   Widget build(BuildContext context) {
+    if (Matrix.of(context).client.userID == null) {
+      return const SizedBox();
+    }
+
     final levelBar = Container(
       height: 20,
       width: levelBarWidth,
@@ -214,6 +224,7 @@ class LearningProgressIndicatorsState
                         points: getProgressPoints(indicator),
                         onTap: () {},
                         progressIndicator: indicator,
+                        loading: loading,
                       ),
                     )
                     .toList(),
@@ -222,9 +233,6 @@ class LearningProgressIndicatorsState
           ),
         ),
         Container(
-          // decoration: BoxDecoration(
-          //   border: Border.all(color: Colors.green),
-          // ),
           height: 36,
           padding: const EdgeInsets.symmetric(horizontal: 32),
           child: Stack(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/match_rule_ids.dart';
@@ -25,16 +27,13 @@ class GetAnalyticsController {
 
   Client get client => _pangeaController.matrixState.client;
 
-  // A local cache of eventIds and construct uses for messages sent since the last update
+  /// A local cache of eventIds and construct uses for messages sent since the last update
   Map<String, List<OneConstructUse>> get messagesSinceUpdate {
     try {
       final dynamic locallySaved = _pangeaController.pStoreService.read(
         PLocalKey.messagesSinceUpdate,
       );
-      if (locallySaved == null) {
-        _pangeaController.myAnalytics.setMessagesSinceUpdate({});
-        return {};
-      }
+      if (locallySaved == null) return {};
       try {
         // try to get the local cache of messages and format them as OneConstructUses
         final Map<String, List<dynamic>> cache =
@@ -47,7 +46,7 @@ class GetAnalyticsController {
         return formattedCache;
       } catch (err) {
         // if something goes wrong while trying to format the local data, clear it
-        _pangeaController.myAnalytics.setMessagesSinceUpdate({});
+        _pangeaController.myAnalytics.clearMessagesSinceUpdate();
         return {};
       }
     } catch (exception, stackTrace) {
@@ -70,13 +69,24 @@ class GetAnalyticsController {
     debugPrint("getting constructs");
     await client.roomsLoading;
 
-    // first, try to get a cached list of all uses, if it exists and is valid
-    final DateTime? lastUpdated = await myAnalyticsLastUpdated();
+    // don't try to get constructs until last updated time has been loaded
+    await _pangeaController.myAnalytics.lastUpdatedCompleter.future;
+
+    // if forcing a refreshing, clear the cache
+    if (forceUpdate) clearCache();
+
+    // get the last time the user updated their analytics for their current l2
+    // then try to get local cache of construct uses. lastUpdate time is used to
+    // determine if cached data is still valid.
+    final DateTime? lastUpdated = _pangeaController.myAnalytics.lastUpdated ??
+        await myAnalyticsLastUpdated();
+
     final List<OneConstructUse>? local = getConstructsLocal(
       constructType: constructType,
       lastUpdated: lastUpdated,
     );
-    if (local != null && !forceUpdate) {
+
+    if (local != null) {
       debugPrint("returning local constructs");
       return local;
     }
@@ -111,13 +121,41 @@ class GetAnalyticsController {
 
   /// Get the last time the user updated their analytics for their current l2
   Future<DateTime?> myAnalyticsLastUpdated() async {
-    if (l2Code == null) return null;
+    // this function gets called soon after login, so first
+    // make sure that the user's l2 is loaded, if the user has set their l2
+    if (client.userID != null && l2Code == null) {
+      await _pangeaController.matrixState.client.waitForAccountData();
+      if (l2Code == null) return null;
+    }
     final Room? analyticsRoom = client.analyticsRoomLocal(l2Code!);
     if (analyticsRoom == null) return null;
     final DateTime? lastUpdated = await analyticsRoom.analyticsLastUpdated(
       client.userID!,
     );
     return lastUpdated;
+  }
+
+  /// Get all the construct analytics events for the logged in user
+  Future<List<ConstructAnalyticsEvent>> allMyConstructs() async {
+    if (l2Code == null) return [];
+    final Room? analyticsRoom = client.analyticsRoomLocal(l2Code!);
+    if (analyticsRoom == null) return [];
+    return await analyticsRoom.getAnalyticsEvents(userId: client.userID!) ?? [];
+  }
+
+  /// Filter out constructs that are not relevant to the user, specifically those from
+  /// rooms in which the user is a teacher and those that are interative translation span constructs
+  Future<List<OneConstructUse>> filterConstructs({
+    required List<OneConstructUse> unfilteredConstructs,
+  }) async {
+    return unfilteredConstructs
+        .where(
+          (use) =>
+              use.lemma != "Try interactive translation" &&
+                  use.lemma != "itStart" ||
+              use.lemma != MatchRuleIds.interactiveTranslation,
+        )
+        .toList();
   }
 
   /// Get the cached construct uses for the current user, if it exists
@@ -140,28 +178,6 @@ class GetAnalyticsController {
     return null;
   }
 
-  /// Get all the construct analytics events for the logged in user
-  Future<List<ConstructAnalyticsEvent>> allMyConstructs() async {
-    if (l2Code == null) return [];
-    final Room? analyticsRoom = client.analyticsRoomLocal(l2Code!);
-    if (analyticsRoom == null) return [];
-    return await analyticsRoom.getAnalyticsEvents(userId: client.userID!) ?? [];
-  }
-
-  /// Filter out constructs that are not relevant to the user, specifically those from
-  /// rooms in which the user is a teacher and those that are interative translation span constructs
-  Future<List<OneConstructUse>> filterConstructs({
-    required List<OneConstructUse> unfilteredConstructs,
-  }) async {
-    final List<String> adminSpaceRooms = await client.teacherRoomIds;
-    return unfilteredConstructs.where((use) {
-      if (adminSpaceRooms.contains(use.chatId)) return false;
-      return use.lemma != "Try interactive translation" &&
-              use.lemma != "itStart" ||
-          use.lemma != MatchRuleIds.interactiveTranslation;
-    }).toList();
-  }
-
   /// Cache the construct uses for the current user
   void cacheConstructs({
     required List<OneConstructUse> uses,
@@ -174,6 +190,11 @@ class GetAnalyticsController {
       langCode: l2Code!,
     );
     _cache.add(entry);
+  }
+
+  /// Clear all cached analytics data.
+  void clearCache() {
+    _cache.clear();
   }
 }
 

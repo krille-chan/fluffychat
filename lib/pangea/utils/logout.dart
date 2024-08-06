@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-
-import 'package:fluffychat/widgets/matrix.dart';
 
 void pLogoutAction(BuildContext context, {bool? isDestructiveAction}) async {
   if (await showOkCancelAlertDialog(
@@ -20,6 +18,14 @@ void pLogoutAction(BuildContext context, {bool? isDestructiveAction}) async {
     return;
   }
   final matrix = Matrix.of(context);
+
+  // before wiping out locally cached construct data, save it to the server
+  await MatrixState.pangeaController.myAnalytics.updateAnalytics();
+
+  // Reset cached analytics data
+  MatrixState.pangeaController.myAnalytics.clearCache();
+  MatrixState.pangeaController.analytics.clearCache();
+
   await showFutureLoadingDialog(
     context: context,
     future: () => matrix.client.logout(),

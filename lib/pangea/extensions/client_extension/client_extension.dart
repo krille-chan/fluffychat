@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
@@ -39,14 +38,9 @@ extension PangeaClient on Client {
   /// and set up those rooms to be joined by other users.
   void migrateAnalyticsRooms() => _migrateAnalyticsRooms();
 
-  Future<Map<String, DateTime?>> allAnalyticsRoomsLastUpdated() async =>
-      await _allAnalyticsRoomsLastUpdated();
-
   // spaces
 
   List<Room> get spacesImTeaching => _spacesImTeaching;
-
-  Future<List<Room>> get chatsImAStudentIn async => await _chatsImAStudentIn;
 
   List<Room> get spacesImAStudentIn => _spacesImStudyingIn;
 
@@ -55,8 +49,6 @@ extension PangeaClient on Client {
   PangeaRoomRules? get lastUpdatedRoomRules => _lastUpdatedRoomRules;
 
 // general_info
-
-  Future<List<String>> get teacherRoomIds async => await _teacherRoomIds;
 
   Future<List<User>> get myTeachers async => await _myTeachers;
 

@@ -1,4 +1,5 @@
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
@@ -102,6 +103,20 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         },
       );
       return null;
+    }).then((event) {
+      // The record event is processed into construct uses for learning analytics, so if the
+      // event went through without error, send it to analytics to be processed
+      if (event != null && currentActivity != null) {
+        MatrixState.pangeaController.myAnalytics.setState(
+          data: {
+            'eventID': widget.pangeaMessageEvent.eventId,
+            'eventType': PangeaEventTypes.activityRecord,
+            'roomID': event.room.id,
+            'practiceActivity': currentActivity!,
+            'recordModel': currentRecordModel!,
+          },
+        );
+      }
     }).whenComplete(() => setState(() => sending = false));
   }
 

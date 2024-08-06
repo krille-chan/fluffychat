@@ -90,6 +90,16 @@ extension PangeaRoom on Room {
 
   bool isMadeForLang(String langCode) => _isMadeForLang(langCode);
 
+  /// Sends construct events to the server.
+  ///
+  /// The [uses] parameter is a list of [OneConstructUse] objects representing the
+  /// constructs to be sent. To prevent hitting the maximum event size, the events
+  /// are chunked into smaller lists. Each chunk is sent as a separate event.
+  Future<void> sendConstructsEvent(
+    List<OneConstructUse> uses,
+  ) async =>
+      await _sendConstructsEvent(uses);
+
   // children_and_parents
 
   List<Room> get joinedChildren => _joinedChildren;
