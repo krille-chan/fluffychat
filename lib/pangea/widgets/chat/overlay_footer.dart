@@ -42,7 +42,7 @@ class OverlayFooter extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: FluffyThemes.isColumnMode(context) ? 23.0 : 15.0,
+            height: FluffyThemes.isColumnMode(context) ? 25.0 : 18.0,
           ),
         ],
       ),

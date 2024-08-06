@@ -7,7 +7,6 @@ import 'package:fluffychat/pages/chat/chat_emoji_picker.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
-import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
@@ -500,7 +499,6 @@ class ChatView extends StatelessWidget {
                                       ITBar(
                                         choreographer: controller.choreographer,
                                       ),
-                                      ReactionsPicker(controller),
                                       ReplyDisplay(controller),
                                       ChatInputRow(controller),
                                       ChatEmojiPicker(controller),
