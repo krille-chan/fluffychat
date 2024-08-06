@@ -1,21 +1,18 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
-import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_dynamic_zone.dart';
-import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_select.dart';
-import 'package:fluffychat/pangea/widgets/space/language_level_dropdown.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
-
-import '../../../widgets/matrix.dart';
-import '../../constants/pangea_event_types.dart';
-import '../../extensions/pangea_room_extension/pangea_room_extension.dart';
-import '../../utils/error_handler.dart';
 
 class ConversationBotSettingsChatDetails extends StatefulWidget {
   final Room? room;
@@ -60,6 +57,21 @@ class ConversationBotSettingsChatDetailsState
         : null;
   }
 
+  Future<void> setBotOption() async {
+    if (widget.room == null) return;
+    try {
+      await Matrix.of(context).client.setRoomStateWithKey(
+            widget.room!.id,
+            PangeaEventTypes.botOptions,
+            '',
+            botOptions.toJson(),
+          );
+    } catch (err, stack) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: err, s: stack);
+    }
+  }
+
   Future<void> updateBotOption(void Function() makeLocalChange) async {
     makeLocalChange();
     await showFutureLoadingDialog(
@@ -74,21 +86,6 @@ class ConversationBotSettingsChatDetailsState
         setState(() {});
       },
     );
-  }
-
-  Future<void> setBotOption() async {
-    if (widget.room == null) return;
-    try {
-      await Matrix.of(context).client.setRoomStateWithKey(
-            widget.room!.id,
-            PangeaEventTypes.botOptions,
-            '',
-            botOptions.toJson(),
-          );
-    } catch (err, stack) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: stack);
-    }
   }
 
   @override
@@ -160,68 +157,9 @@ class ConversationBotSettingsChatDetailsState
                                         Radius.circular(10),
                                       ),
                                     ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Text(
-                                            L10n.of(context)!
-                                                .conversationLanguageLevel,
-                                            style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                        ),
-                                        LanguageLevelDropdown(
-                                          initialLevel:
-                                              botOptions.languageLevel,
-                                          onChanged: (int? newValue) => {
-                                            setState(() {
-                                              botOptions.languageLevel =
-                                                  newValue!;
-                                            }),
-                                          },
-                                        ),
-                                        Text(
-                                          L10n.of(context)!
-                                              .conversationBotModeSelectDescription,
-                                          style: TextStyle(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .secondary,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                        ConversationBotModeSelect(
-                                          initialMode: botOptions.mode,
-                                          onChanged: (String? mode) => {
-                                            setState(() {
-                                              botOptions.mode =
-                                                  mode ?? "discussion";
-                                            }),
-                                          },
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(12),
-                                          child: ConversationBotModeDynamicZone(
-                                            initialBotOptions: botOptions,
-                                            onChanged:
-                                                (BotOptionsModel? newOptions) {
-                                              if (newOptions != null) {
-                                                setState(() {
-                                                  botOptions = newOptions;
-                                                });
-                                              }
-                                            },
-                                          ),
-                                        ),
-                                      ],
+                                    child: ConversationBotSettings(
+                                      room: widget.room,
+                                      botOptions: botOptions,
                                     ),
                                   ),
                                 ),
