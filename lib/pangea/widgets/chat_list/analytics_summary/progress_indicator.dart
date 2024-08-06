@@ -1,4 +1,3 @@
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:flutter/material.dart';
 
@@ -36,8 +35,8 @@ class ProgressIndicatorBadge extends StatelessWidget {
                 ),
                 const SizedBox(width: 5),
                 !loading
-                    ? AnimatedCount(
-                        count: points ?? 0,
+                    ? Text(
+                        points?.toString() ?? '0',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -56,49 +55,5 @@ class ProgressIndicatorBadge extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class AnimatedCount extends ImplicitlyAnimatedWidget {
-  const AnimatedCount({
-    super.key,
-    required this.count,
-    this.style,
-    super.duration = const Duration(seconds: 1),
-    super.curve = FluffyThemes.animationCurve,
-  });
-
-  final int count;
-  final TextStyle? style;
-
-  @override
-  ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() {
-    return _AnimatedCountState();
-  }
-}
-
-class _AnimatedCountState extends AnimatedWidgetBaseState<AnimatedCount> {
-  IntTween _intCount = IntTween(begin: 0, end: 1);
-
-  @override
-  void initState() {
-    super.initState();
-    _intCount = IntTween(begin: 0, end: widget.count.toInt());
-    controller.forward();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final String text = _intCount.evaluate(animation).toString();
-    return Text(text, style: widget.style);
-  }
-
-  @override
-  void forEachTween(TweenVisitor<dynamic> visitor) {
-    _intCount = visitor(
-      _intCount,
-      widget.count,
-      (dynamic value) => IntTween(begin: value),
-    ) as IntTween;
   }
 }

@@ -50,9 +50,13 @@ class MyAnalyticsController extends BaseController {
 
     // Wait for the next sync in the stream to ensure that the pangea controller
     // is fully initialized. It will throw an error if it is not.
-    _pangeaController.matrixState.client.onSync.stream.first.then((_) {
+    if (_pangeaController.matrixState.client.prevBatch == null) {
+      _pangeaController.matrixState.client.onSync.stream.first.then(
+        (_) => _refreshAnalyticsIfOutdated(),
+      );
+    } else {
       _refreshAnalyticsIfOutdated();
-    });
+    }
 
     // Listen to a stream that provides the eventIDs
     // of new messages sent by the logged in user
