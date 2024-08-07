@@ -18,6 +18,7 @@ class ConversationBotTextAdventureZone extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 12),
         Text(
           L10n.of(context)!.conversationBotTextAdventureZone_title,
           style: TextStyle(
