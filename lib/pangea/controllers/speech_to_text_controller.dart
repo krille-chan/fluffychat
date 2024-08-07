@@ -53,7 +53,7 @@ class SpeechToTextController {
       return _cache[cacheKey]!.data;
     } else {
       final Future<SpeechToTextModel> response = _fetchResponse(
-        accessToken: await _pangeaController.userController.accessToken,
+        accessToken: _pangeaController.userController.accessToken,
         requestModel: requestModel,
       );
       _cache[cacheKey] = _SpeechToTextCacheItem(data: response);

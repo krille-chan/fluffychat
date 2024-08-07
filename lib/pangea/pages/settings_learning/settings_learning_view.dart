@@ -1,4 +1,3 @@
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/country_picker_tile.dart';
@@ -32,15 +31,15 @@ class SettingsLearningView extends StatelessWidget {
               const SizedBox(height: 8),
               const Divider(height: 1),
               const SizedBox(height: 8),
-              if (controller.pangeaController.permissionsController.isUser18())
-                SwitchListTile.adaptive(
-                  activeColor: AppConfig.activeToggleColor,
-                  title: Text(L10n.of(context)!.publicProfileTitle),
-                  subtitle: Text(L10n.of(context)!.publicProfileDesc),
-                  value: controller.pangeaController.userController.isPublic,
-                  onChanged: (bool isPublicProfile) =>
-                      controller.setPublicProfile(isPublicProfile),
-                ),
+              // if (controller.pangeaController.permissionsController.isUser18())
+              //   SwitchListTile.adaptive(
+              //     activeColor: AppConfig.activeToggleColor,
+              //     title: Text(L10n.of(context)!.publicProfileTitle),
+              //     subtitle: Text(L10n.of(context)!.publicProfileDesc),
+              //     value: controller.pangeaController.userController.isPublic,
+              //     onChanged: (bool isPublicProfile) =>
+              //         controller.setPublicProfile(isPublicProfile),
+              //   ),
               ListTile(
                 subtitle: Text(L10n.of(context)!.toggleToolSettingsDescription),
               ),

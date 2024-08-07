@@ -49,7 +49,7 @@ extension GeneralInfoClientExtension on Client {
     final Event? originalEvent = await room!.getEventById(edittedEventId);
     if (originalEvent == null) return [];
 
-    final Timeline timeline = await room.getTimeline();
+    final Timeline timeline = room.timeline ?? await room.getTimeline();
     final List<Event> editEvents = originalEvent
         .aggregatedEvents(
           timeline,

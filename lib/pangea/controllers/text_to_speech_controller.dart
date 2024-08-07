@@ -100,7 +100,7 @@ class TextToSpeechController {
       return _cache[params]!.data;
     } else {
       final Future<TextToSpeechResponse> response = _fetchResponse(
-        await _pangeaController.userController.accessToken,
+        _pangeaController.userController.accessToken,
         params,
       );
       _cache[params] = _TextToSpeechCacheItem(data: response);

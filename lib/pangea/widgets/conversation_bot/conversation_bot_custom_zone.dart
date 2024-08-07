@@ -1,5 +1,7 @@
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_custom_system_prompt_input.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_dynamic_zone_label.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_dynamic_zone_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -16,35 +18,14 @@ class ConversationBotCustomZone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(initialBotOptions.toJson());
     return Column(
       children: [
-        const SizedBox(height: 12),
-        Text(
-          L10n.of(context)!.conversationBotCustomZone_title,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.secondary,
-            fontWeight: FontWeight.bold,
-          ),
+        ConversationBotDynamicZoneTitle(
+          title: L10n.of(context)!.conversationBotCustomZone_title,
         ),
-        const Divider(
-          color: Colors.grey,
-          thickness: 1,
-        ),
-        const SizedBox(height: 12),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-            child: Text(
-              L10n.of(context)!
-                  .conversationBotCustomZone_customSystemPromptLabel,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.secondary,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+        ConversationBotDynamicZoneLabel(
+          label: L10n.of(context)!
+              .conversationBotCustomZone_customSystemPromptLabel,
         ),
         Padding(
           padding: const EdgeInsets.all(8),
