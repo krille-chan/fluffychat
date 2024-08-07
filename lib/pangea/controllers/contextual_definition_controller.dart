@@ -51,7 +51,7 @@ class ContextualDefinitionController {
     try {
       final ContextualDefinitionResponseModel res =
           await _ContextualDefinitionRepo.define(
-        await _pangeaController.userController.accessToken,
+        _pangeaController.userController.accessToken,
         request,
       );
       return res;

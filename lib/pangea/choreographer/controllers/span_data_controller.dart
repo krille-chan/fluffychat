@@ -65,7 +65,7 @@ class SpanDataController {
       response = _cache[cacheKey]!.data;
     } else {
       response = SpanDataRepo.getSpanDetails(
-        await choreographer.accessToken,
+        choreographer.accessToken,
         request: SpanDetailsRepoReqAndRes(
           userL1: choreographer.l1LangCode!,
           userL2: choreographer.l2LangCode!,

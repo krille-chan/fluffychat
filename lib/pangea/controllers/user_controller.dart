@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
 
-import '../constants/local.key.dart';
 import '../models/user_model.dart';
 import '../repo/user_repo.dart';
 
@@ -83,15 +82,6 @@ class UserController extends BaseController {
       createdAt: DateTime.now(),
     );
     final newProfile = Profile(userSettings: userSettings);
-
-    // we don't use the pangea profile anymore, but we still need
-    // it to get access token for the choreographer, so create one
-    await PUserRepo.repoCreatePangeaUser(
-      userID: userId!,
-      dob: dob.toIso8601String(),
-      fullName: fullname!,
-      matrixAccessToken: _matrixAccessToken!,
-    );
     await newProfile.saveProfileData(waitForDataInSync: true);
   }
 
@@ -157,41 +147,13 @@ class UserController extends BaseController {
   /// Returns a boolean value indicating whether a new JWT (JSON Web Token) is needed.
   bool needNewJWT(String token) => Jwt.isExpired(token);
 
-  /// Retrieves the access token for the user. Looks for it locally,
-  /// and if it's not found or expired, fetches it from the server.
-  Future<String> get accessToken async {
-    final localAccessToken =
-        _pangeaController.pStoreService.read(PLocalKey.access);
-
-    if (localAccessToken == null || needNewJWT(localAccessToken)) {
-      PangeaProfileResponse? userModel = await PUserRepo.fetchPangeaUserInfo(
-        userID: userId!,
-        matrixAccessToken: _matrixAccessToken!,
-      );
-      // Oops, some accounts were made without creating pangea profiles, so they
-      // don't have access to an access token yet. In that case, create a pangea profile.
-      if (userModel?.access == null) {
-        final dob = profile.userSettings.dateOfBirth;
-        if (dob != null) {
-          userModel = await PUserRepo.repoCreatePangeaUser(
-            userID: userId!,
-            dob: dob.toIso8601String(),
-            fullName: fullname!,
-            matrixAccessToken: _matrixAccessToken!,
-          );
-          if (userModel?.access == null) {
-            throw ("Trying to get accessToken with null userModel");
-          }
-        }
-      }
-      _pangeaController.pStoreService.save(
-        PLocalKey.access,
-        userModel!.access,
-      );
-      return userModel.access;
+  /// Retrieves matrix access token.
+  String get accessToken {
+    final token = _pangeaController.matrixState.client.accessToken;
+    if (token == null) {
+      throw ("Trying to get accessToken with null token. User is not logged in.");
     }
-
-    return localAccessToken;
+    return token;
   }
 
   /// Returns the full name of the user.

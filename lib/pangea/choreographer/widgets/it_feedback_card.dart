@@ -73,7 +73,7 @@ class ITFeedbackCardController extends State<ITFeedbackCard> {
       isTranslating = true;
     });
     FullTextTranslationRepo.translate(
-      accessToken: await controller.userController.accessToken,
+      accessToken: controller.userController.accessToken,
       request: FullTextTranslationRequestModel(
         text: res!.text,
         tgtLang: controller.languageController.userL1?.langCode ??

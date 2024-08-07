@@ -42,7 +42,7 @@ class MessageDataController extends BaseController {
   Future<PangeaMessageTokens?> _getTokens(
     TokensRequestModel req,
   ) async {
-    final accessToken = await _pangeaController.userController.accessToken;
+    final accessToken = _pangeaController.userController.accessToken;
 
     final TokensResponseModel igcTextData =
         await TokensRepo.tokenize(accessToken, req);
@@ -195,7 +195,7 @@ class MessageDataController extends BaseController {
     try {
       final FullTextTranslationResponseModel res =
           await FullTextTranslationRepo.translate(
-        accessToken: await _pangeaController.userController.accessToken,
+        accessToken: _pangeaController.userController.accessToken,
         request: req,
       );
 
