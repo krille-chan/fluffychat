@@ -44,6 +44,9 @@ class LearningProgressIndicatorsState
 
   bool loading = true;
 
+  /// The previous number of XP points, used to determine when to animate the level bar
+  int? previousXP;
+
   @override
   void initState() {
     super.initState();
@@ -65,6 +68,8 @@ class LearningProgressIndicatorsState
   /// Update the analytics data shown in the UI. This comes from a
   /// combination of stored events and locally cached data.
   Future<void> updateAnalyticsData() async {
+    previousXP = xpPoints;
+
     final List<OneConstructUse> storedUses =
         await _pangeaController.analytics.getConstructs();
     final List<OneConstructUse> localUses = [];
@@ -114,17 +119,21 @@ class LearningProgressIndicatorsState
     }
   }
 
-  /// Get the total number of xp points, based on the point values of use types
-  int get xpPoints {
-    return (words?.points ?? 0) + (errors?.points ?? 0);
+  /// Get the total number of xp points, based on the point values of use types.
+  /// Null if niether words nor error constructs are available.
+  int? get xpPoints {
+    if (words == null && errors == null) return null;
+    if (words == null) return errors!.points;
+    if (errors == null) return words!.points;
+    return words!.points + errors!.points;
   }
 
   /// Get the current level based on the number of xp points
-  int get level => xpPoints ~/ 500;
+  int get level => (xpPoints ?? 0) ~/ 500;
 
   double get levelBarWidth => FluffyThemes.columnWidth - (32 * 2) - 25;
   double get pointsBarWidth {
-    final percent = (xpPoints % 500) / 500;
+    final percent = ((xpPoints ?? 0) % 500) / 500;
     return levelBarWidth * percent;
   }
 
@@ -139,6 +148,12 @@ class LearningProgressIndicatorsState
     ];
     return colors[level % colors.length];
   }
+
+  /// Whether to animate the level bar increase. Prevents this bar from seeming to
+  /// reload each time the user navigates to a different space or back to the chat list.
+  /// PreviousXP would be null if this widget just mounted. Also handles case of rebuilds
+  /// without any change in XP points.
+  bool get animate => previousXP != null && previousXP != xpPoints;
 
   @override
   Widget build(BuildContext context) {
@@ -162,18 +177,26 @@ class LearningProgressIndicatorsState
       ),
     );
 
-    final xpBar = AnimatedContainer(
-      duration: FluffyThemes.animationDuration,
-      height: 16,
-      width: pointsBarWidth,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(AppConfig.borderRadius),
-          bottomRight: Radius.circular(AppConfig.borderRadius),
-        ),
-        color: Theme.of(context).colorScheme.primary,
+    final xpBarDecoration = BoxDecoration(
+      borderRadius: const BorderRadius.only(
+        topRight: Radius.circular(AppConfig.borderRadius),
+        bottomRight: Radius.circular(AppConfig.borderRadius),
       ),
+      color: Theme.of(context).colorScheme.primary,
     );
+
+    final xpBar = animate
+        ? AnimatedContainer(
+            duration: FluffyThemes.animationDuration,
+            height: 16,
+            width: pointsBarWidth,
+            decoration: xpBarDecoration,
+          )
+        : Container(
+            height: 16,
+            width: pointsBarWidth,
+            decoration: xpBarDecoration,
+          );
 
     final levelBadge = Container(
       width: 32,
