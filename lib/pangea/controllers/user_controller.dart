@@ -83,6 +83,15 @@ class UserController extends BaseController {
       createdAt: DateTime.now(),
     );
     final newProfile = Profile(userSettings: userSettings);
+
+    // we don't use the pangea profile anymore, but we still need
+    // it to get access token for the choreographer, so create one
+    await PUserRepo.repoCreatePangeaUser(
+      userID: userId!,
+      dob: dob.toIso8601String(),
+      fullName: fullname!,
+      matrixAccessToken: _matrixAccessToken!,
+    );
     await newProfile.saveProfileData(waitForDataInSync: true);
   }
 
@@ -155,13 +164,25 @@ class UserController extends BaseController {
         _pangeaController.pStoreService.read(PLocalKey.access);
 
     if (localAccessToken == null || needNewJWT(localAccessToken)) {
-      final PangeaProfileResponse? userModel =
-          await PUserRepo.fetchPangeaUserInfo(
+      PangeaProfileResponse? userModel = await PUserRepo.fetchPangeaUserInfo(
         userID: userId!,
         matrixAccessToken: _matrixAccessToken!,
       );
+      // Oops, some accounts were made without creating pangea profiles, so they
+      // don't have access to an access token yet. In that case, create a pangea profile.
       if (userModel?.access == null) {
-        throw ("Trying to get accessToken with null userModel");
+        final dob = profile.userSettings.dateOfBirth;
+        if (dob != null) {
+          userModel = await PUserRepo.repoCreatePangeaUser(
+            userID: userId!,
+            dob: dob.toIso8601String(),
+            fullName: fullname!,
+            matrixAccessToken: _matrixAccessToken!,
+          );
+          if (userModel?.access == null) {
+            throw ("Trying to get accessToken with null userModel");
+          }
+        }
       }
       _pangeaController.pStoreService.save(
         PLocalKey.access,

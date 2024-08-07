@@ -863,7 +863,7 @@ class ChatListController extends State<ChatList>
 
         if (space.canSendDefaultStates) {
           for (final roomId in selectedRoomIds) {
-            await space.pangeaSetSpaceChild(roomId);
+            await space.pangeaSetSpaceChild(roomId, suggested: true);
           }
         }
         // Pangea#
@@ -911,11 +911,12 @@ class ChatListController extends State<ChatList>
     await client.roomsLoading;
     await client.accountDataLoading;
     await client.userDeviceKeysLoading;
-    if (client.prevBatch == null) {
+    // #Pangea
+    // See here for explanation of this change: https://github.com/pangeachat/client/pull/539
+    // if (client.prevBatch == null) {
+    if (client.onSync.value?.nextBatch == null) {
+      // Pangea#
       await client.onSync.stream.first;
-      // #Pangea
-      pangeaController.startChatWithBotIfNotPresent();
-      //Pangea#
 
       // Display first login bootstrap if enabled
       // #Pangea
@@ -930,9 +931,19 @@ class ChatListController extends State<ChatList>
     }
 
     // #Pangea
+    await _initPangeaControllers(client);
+    // Pangea#
+    if (!mounted) return;
+    setState(() {
+      waitForFirstSync = true;
+    });
+  }
+
+  // #Pangea
+  Future<void> _initPangeaControllers(Client client) async {
     if (mounted) {
-      // TODO try not to await so much
       GoogleAnalytics.analyticsUserUpdate(client.userID);
+      pangeaController.startChatWithBotIfNotPresent();
       await pangeaController.subscriptionController.initialize();
       await pangeaController.myAnalytics.initialize();
       pangeaController.afterSyncAndFirstLoginInitialization(context);
@@ -943,14 +954,9 @@ class ChatListController extends State<ChatList>
       ErrorHandler.logError(
         m: "didn't run afterSyncAndFirstLoginInitialization because not mounted",
       );
-      // debugger(when: kDebugMode);
     }
-    // Pangea#
-    if (!mounted) return;
-    setState(() {
-      waitForFirstSync = true;
-    });
   }
+  // Pangea#
 
   void cancelAction() {
     if (selectMode == SelectMode.share) {

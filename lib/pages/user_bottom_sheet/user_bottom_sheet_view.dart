@@ -370,15 +370,17 @@ class UserBottomSheetView extends StatelessWidget {
                     onTap: () => controller
                         .participantAction(UserBottomSheetAction.unban),
                   ),
-                if (user != null && user.id != client.userID)
-                  ListTile(
-                    textColor: Theme.of(context).colorScheme.onErrorContainer,
-                    iconColor: Theme.of(context).colorScheme.onErrorContainer,
-                    title: Text(L10n.of(context)!.reportUser),
-                    leading: const Icon(Icons.report_outlined),
-                    onTap: () => controller
-                        .participantAction(UserBottomSheetAction.report),
-                  ),
+                // #Pangea
+                // if (user != null && user.id != client.userID)
+                //   ListTile(
+                //     textColor: Theme.of(context).colorScheme.onErrorContainer,
+                //     iconColor: Theme.of(context).colorScheme.onErrorContainer,
+                //     title: Text(L10n.of(context)!.reportUser),
+                //     leading: const Icon(Icons.report_outlined),
+                //     onTap: () => controller
+                //         .participantAction(UserBottomSheetAction.report),
+                //   ),
+                // Pangea#
                 if (profileSearchError != null)
                   ListTile(
                     leading: const Icon(

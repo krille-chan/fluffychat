@@ -233,11 +233,11 @@ class MyAnalyticsController {
     if (userL2 == null || _client.userID == null) return;
 
     // analytics room for the user and current target language
-    final Room analyticsRoom = await _client.getMyAnalyticsRoom(userL2!);
+    final Room? analyticsRoom = await _client.getMyAnalyticsRoom(userL2!);
 
     // get the last time analytics were updated for this room
     final DateTime? l2AnalyticsLastUpdated =
-        await analyticsRoom.analyticsLastUpdated(
+        await analyticsRoom?.analyticsLastUpdated(
       PangeaEventTypes.summaryAnalytics,
       _client.userID!,
     );
@@ -311,7 +311,7 @@ class MyAnalyticsController {
     // if there's new content to be sent, or if lastUpdated hasn't been
     // set yet for this room, send the analytics events
     if (summaryContent.isNotEmpty || l2AnalyticsLastUpdated == null) {
-      await analyticsRoom.sendSummaryAnalyticsEvent(
+      await analyticsRoom?.sendSummaryAnalyticsEvent(
         summaryContent,
       );
     }
@@ -351,7 +351,7 @@ class MyAnalyticsController {
     //     );
 
     if (recentConstructUses.isNotEmpty) {
-      await analyticsRoom.sendConstructsEvent(
+      await analyticsRoom?.sendConstructsEvent(
         recentConstructUses,
       );
     }
