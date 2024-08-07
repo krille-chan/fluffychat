@@ -2313,7 +2313,7 @@
   "@replace": {},
   "report": "rapporteer",
   "@report": {},
-  "reportErrorDescription": "Oh nee. Er is iets misgegaan. Probeer het later nog eens. Als je wilt, kun je de bug rapporteren aan de ontwikkelaars.",
+  "reportErrorDescription": "😭 Oh nee. Er is iets misgegaan. Probeer het later nog eens. Als je wilt, kun je de bug rapporteren aan de ontwikkelaars.",
   "@reportErrorDescription": {},
   "sendTypingNotifications": "Typemeldingen verzenden",
   "@sendTypingNotifications": {},
@@ -2349,7 +2349,7 @@
   "@inviteContactToGroupQuestion": {},
   "optionalRedactReason": "(Optioneel) Reden voor aanpassing van dit bericht...",
   "@optionalRedactReason": {},
-  "addChatDescription": "Voeg een chatbeschrijving toe",
+  "addChatDescription": "Voeg een chatbeschrijving toe...",
   "@addChatDescription": {},
   "invalidServerName": "Foute servernaam",
   "@invalidServerName": {},
@@ -2422,18 +2422,18 @@
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
-  "joinSpace": "Deelname aan ruimte",
+  "joinSpace": "Deelname aan space",
   "@joinSpace": {},
   "block": "Blokkeren",
   "@block": {},
-  "blockedUsers": "Geblokkeerde gebruikers",
+  "blockedUsers": "Geblokkeerde personen",
   "@blockedUsers": {},
   "presenceStyle": "Aanwezigheid:",
   "@presenceStyle": {
     "type": "text",
     "placeholders": {}
   },
-  "searchChatsRooms": "Zoek naar #chats, @gebruikers...",
+  "searchChatsRooms": "Zoek naar #chats, @personen...",
   "@searchChatsRooms": {},
   "swipeRightToLeftToReply": "Veeg van rechts naar links om te reageren",
   "@swipeRightToLeftToReply": {},
@@ -2465,11 +2465,11 @@
   "@overview": {},
   "hidePresences": "Verberg Status Lijst?",
   "@hidePresences": {},
-  "noOneCanJoin": "Niemand kan meedoen",
+  "noOneCanJoin": "Niemand kan deelnemen",
   "@noOneCanJoin": {},
   "yourGlobalUserIdIs": "Je globale gebruikers-ID is: ",
   "@yourGlobalUserIdIs": {},
-  "appLockDescription": "Vergendel de app wanneer het niet gebruikt wordt met een pin code",
+  "appLockDescription": "Vergendel de app wanneer het niet gebruikt wordt met een pincode",
   "@appLockDescription": {},
   "globalChatId": "Globale chat ID",
   "@globalChatId": {},
@@ -2481,7 +2481,7 @@
       "user": {}
     }
   },
-  "publicSpaces": "Publieke ruimtes",
+  "publicSpaces": "Publieke spaces",
   "@publicSpaces": {},
   "blockUsername": "Negeer gebruikersnaam",
   "@blockUsername": {},
@@ -2503,10 +2503,93 @@
   "@joinedChats": {},
   "knocking": "Kloppen",
   "@knocking": {},
-  "space": "Ruimte",
+  "space": "Space",
   "@space": {},
-  "spaces": "Ruimtes",
+  "spaces": "Spaces",
   "@spaces": {},
   "unread": "Zet als ongelezen",
-  "@unread": {}
+  "@unread": {},
+  "databaseBuildErrorBody": "Het aanmaken van de SQlite database is mislukt. De app probeert nu een traditionele database te gebruiken. Meldt alsjeblieft deze fout aan de ontwikkelaars via deze {url}. De foutmelding is: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "groupName": "Groepsnaam",
+  "@groupName": {},
+  "changeGeneralChatSettings": "Wijzig algemene chat instellingen",
+  "@changeGeneralChatSettings": {},
+  "restricted": "Beperkt",
+  "@restricted": {},
+  "searchForUsers": "Zoek naar @personen...",
+  "@searchForUsers": {},
+  "searchMore": "Zoek meer...",
+  "@searchMore": {},
+  "noPublicLinkHasBeenCreatedYet": "Publieke link is nog niet gecreëerd",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "groupCanBeFoundViaSearch": "Groep kan gevonden worden via zoeken",
+  "@groupCanBeFoundViaSearch": {},
+  "searchIn": "Zoek in chat \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "files": "Bestanden",
+  "@files": {},
+  "unreadChatsInApp": "{appname}: {unread} ongelezen chats",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "noDatabaseEncryption": "Database versleuteling is niet ondersteund op dit platform",
+  "@noDatabaseEncryption": {},
+  "thereAreCountUsersBlocked": "Nu zijn er {count} personen geblokkeerd.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "markAsUnread": "Markeer als ongelezen",
+  "@markAsUnread": {},
+  "userLevel": "{level} - Persoon",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Administrator",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "stickers": "Stickers",
+  "@stickers": {},
+  "nothingFound": "Niets gevonden...",
+  "@nothingFound": {},
+  "gallery": "Gallerij",
+  "@gallery": {},
+  "transparent": "Transparant",
+  "@transparent": {},
+  "incomingMessages": "Inkomende berichten",
+  "@incomingMessages": {},
+  "discover": "Ontdek",
+  "@discover": {},
+  "commandHint_ignore": "Negeer de gegeven matrix ID",
+  "@commandHint_ignore": {}
 }
