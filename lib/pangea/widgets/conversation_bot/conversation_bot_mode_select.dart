@@ -19,8 +19,8 @@ class ConversationBotModeSelect extends StatelessWidget {
       "custom": L10n.of(context)!.conversationBotModeSelectOption_custom,
       // "conversation":
       //     L10n.of(context)!.conversationBotModeSelectOption_conversation,
-      // "text_adventure":
-      //     L10n.of(context)!.conversationBotModeSelectOption_textAdventure,
+      "text_adventure":
+          L10n.of(context)!.conversationBotModeSelectOption_textAdventure,
     };
 
     return Padding(

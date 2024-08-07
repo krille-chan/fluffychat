@@ -1,5 +1,6 @@
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_custom_zone.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_text_adventure_zone.dart';
 import 'package:flutter/material.dart';
 
 import 'conversation_bot_discussion_zone.dart';
@@ -26,7 +27,10 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
         onChanged: onChanged,
       ),
       // "conversation": const ConversationBotConversationZone(),
-      // "text_adventure": const ConversationBotTextAdventureZone(),
+      "text_adventure": ConversationBotTextAdventureZone(
+        initialBotOptions: initialBotOptions,
+        onChanged: onChanged,
+      ),
     };
     return Container(
       decoration: BoxDecoration(
