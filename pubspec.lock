@@ -1210,10 +1210,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: a27c2f73d28ea292e0f67f3d36396fb8acd7cfc97a07901dc7b22f46e082c3d6
+      sha256: d1955846aaf5a5c6d353a90ce4133b9c99581cd64f4fe9e389e5f8b95157ca3b
       url: "https://pub.dev"
     source: hosted
-    version: "0.30.0"
+    version: "0.31.0"
   meta:
     dependency: transitive
     description:
@@ -1278,6 +1278,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  opus_caf_converter_dart:
+    dependency: "direct main"
+    description:
+      name: opus_caf_converter_dart
+      sha256: e08156066916f790a54df305e103d6dec4d853ec23147e6a02eda3c06f67ba1a
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   package_config:
     dependency: transitive
     description:
@@ -2364,13 +2372,13 @@ packages:
     source: hosted
     version: "1.2.0"
   win32:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: win32
-      sha256: a79dbe579cb51ecd6d30b17e0cae4e0ea15e2c0e66f69ad4198f22a6789e94f4
+      sha256: "0eaf06e3446824099858367950a813472af675116bf63f008a4c2a75ae13e9cb"
       url: "https://pub.dev"
     source: hosted
-    version: "5.5.1"
+    version: "5.5.0"
   win32_registry:
     dependency: transitive
     description:

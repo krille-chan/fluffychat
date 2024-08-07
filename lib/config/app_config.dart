@@ -12,7 +12,7 @@ abstract class AppConfig {
   static double fontSizeFactor = 1;
   static const Color chatColor = primaryColor;
   static Color? colorSchemeSeed = primaryColor;
-  static const double messageFontSize = 15.75;
+  static const double messageFontSize = 16.0;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
   static const Color primaryColor = Color(0xFF5625BA);
@@ -35,6 +35,8 @@ abstract class AppConfig {
       'https://github.com/krille-chan/fluffychat';
   static const String supportUrl =
       'https://github.com/krille-chan/fluffychat/issues';
+  static const String changelogUrl =
+      'https://github.com/krille-chan/fluffychat/blob/main/CHANGELOG.md';
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',

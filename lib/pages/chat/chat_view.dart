@@ -158,15 +158,15 @@ class ChatView extends StatelessWidget {
           builder: (BuildContext context, snapshot) {
             var appbarBottomHeight = 0.0;
             if (controller.room.pinnedEventIds.isNotEmpty) {
-              appbarBottomHeight += 42;
+              appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             if (scrollUpBannerEventId != null) {
-              appbarBottomHeight += 42;
+              appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             final tombstoneEvent =
                 controller.room.getState(EventTypes.RoomTombstone);
             if (tombstoneEvent != null) {
-              appbarBottomHeight += 42;
+              appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             return Scaffold(
               appBar: AppBar(
@@ -182,10 +182,17 @@ class ChatView extends StatelessWidget {
                         tooltip: L10n.of(context)!.close,
                         color: Theme.of(context).colorScheme.primary,
                       )
-                    : UnreadRoomsBadge(
-                        filter: (r) => r.id != controller.roomId,
-                        badgePosition: BadgePosition.topEnd(end: 8, top: 4),
-                        child: const Center(child: BackButton()),
+                    : StreamBuilder<Object>(
+                        stream: Matrix.of(context)
+                            .client
+                            .onSync
+                            .stream
+                            .where((syncUpdate) => syncUpdate.hasRoomUpdate),
+                        builder: (context, _) => UnreadRoomsBadge(
+                          filter: (r) => r.id != controller.roomId,
+                          badgePosition: BadgePosition.topEnd(end: 8, top: 4),
+                          child: const Center(child: BackButton()),
+                        ),
                       ),
                 titleSpacing: 0,
                 title: ChatAppBarTitle(controller),

@@ -68,7 +68,9 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      PopupMenuItem(
+      // Currently disabled because of:
+      // https://github.com/matrix-org/matrix-react-sdk/pull/12286
+      /*PopupMenuItem(
         value: SettingsAction.archive,
         child: Row(
           children: [
@@ -77,7 +79,7 @@ class ClientChooserButton extends StatelessWidget {
             Text(L10n.of(context)!.archive),
           ],
         ),
-      ),
+      ),*/
       PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(

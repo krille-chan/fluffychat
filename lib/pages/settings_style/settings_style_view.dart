@@ -136,7 +136,6 @@ class SettingsStyleView extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Divider(
-              height: 1,
               color: Theme.of(context).dividerColor,
             ),
             ListTile(
@@ -167,7 +166,6 @@ class SettingsStyleView extends StatelessWidget {
               onChanged: controller.switchTheme,
             ),
             Divider(
-              height: 1,
               color: Theme.of(context).dividerColor,
             ),
             ListTile(
@@ -192,7 +190,6 @@ class SettingsStyleView extends StatelessWidget {
               defaultValue: AppConfig.separateChatTypes,
             ),
             Divider(
-              height: 1,
               color: Theme.of(context).dividerColor,
             ),
             ListTile(

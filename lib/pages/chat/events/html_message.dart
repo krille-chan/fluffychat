@@ -280,7 +280,6 @@ class ImageExtension extends HtmlExtension {
           uri: mxcUrl,
           width: width ?? height ?? defaultDimension,
           height: height ?? width ?? defaultDimension,
-          cacheKey: mxcUrl.toString(),
         ),
       ),
     );

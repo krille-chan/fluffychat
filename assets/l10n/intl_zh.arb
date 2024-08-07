@@ -537,7 +537,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "默认权限级别",
+  "defaultPermissionLevel": "新用户默认权限级别",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2709,8 +2709,68 @@
   "@restricted": {},
   "swipeRightToLeftToReply": "从右向左滑动进行回复",
   "@swipeRightToLeftToReply": {},
-  "alwaysUse24HourFormat": "否",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "noMoreChatsFound": "找不到更多聊天…",
+  "@noMoreChatsFound": {},
+  "joinedChats": "已加入的聊天",
+  "@joinedChats": {},
+  "space": "空间",
+  "@space": {},
+  "spaces": "空间",
+  "@spaces": {},
+  "goToSpace": "转到空间：{space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "标为未读",
+  "@markAsUnread": {},
+  "countChatsAndCountParticipants": "{chats} 个聊天和 {participants} 名参与者",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "unread": "未读",
+  "@unread": {},
+  "userLevel": "{level} - 用户",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - 主持人",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - 管理员",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "inviteOtherUsers": "邀请其他用户到这个聊天",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "更改聊天权限",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "更改聊天历史的可见性",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "更改主公共聊天地址",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "发送通知聊天室所有人的通知",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "更改聊天描述",
+  "@changeTheDescriptionOfTheGroup": {},
+  "changeGeneralChatSettings": "更改常规聊天设置",
+  "@changeGeneralChatSettings": {}
 }

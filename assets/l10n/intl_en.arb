@@ -196,6 +196,19 @@
       "supportedVersions": {}
     }
   },
+  "countChatsAndCountParticipants": "{chats} chats and {participants} participants",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "No more chats found...",
+  "joinedChats": "Joined chats",
+  "unread": "Unread",
+  "space": "Space",
+  "spaces": "Spaces",
   "banFromChat": "Ban from chat",
   "@banFromChat": {
     "type": "text",
@@ -660,7 +673,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Default permission level",
+  "defaultPermissionLevel": "Default permission level for new users",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2266,6 +2279,12 @@
       "user": {}
     }
   },
+  "invitedBy": "📩 Invited by {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
   "youInvitedUser": "📩 You invited {user}",
   "@youInvitedUser": {
     "placeholders": {
@@ -2692,5 +2711,48 @@
   "restricted": "Restricted",
   "@restricted": {},
   "knockRestricted": "Knock restricted",
-  "@knockRestricted": {}
+  "@knockRestricted": {},
+  "goToSpace": "Go to space: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Mark as unread",
+  "userLevel": "{level} - User",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Admin",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Change general chat settings",
+  "inviteOtherUsers": "Invite other users to this chat",
+  "changeTheChatPermissions": "Change the chat permissions",
+  "changeTheVisibilityOfChatHistory": "Change the visibility of the chat history",
+  "changeTheCanonicalRoomAlias": "Change the main public chat address",
+  "sendRoomNotifications": "Send a @room notifications",
+  "changeTheDescriptionOfTheGroup": "Change the description of the chat",
+  "chatPermissionsDescription": "Define which power level is necessary for certain actions in this chat. The power levels 0, 50 and 100 are usually representing users, moderators and admins, but any gradation is possible.",
+  "updateInstalled": "🎉 Update {version} installed!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Changelog"
 }

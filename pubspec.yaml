@@ -64,8 +64,9 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix: ^0.30.0
+  matrix: ^0.31.0
   native_imaging: ^0.1.1
+  opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^6.0.0
   pasteboard: ^0.2.0
   path: ^1.9.0
@@ -160,3 +161,4 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
+  win32: 5.5.0

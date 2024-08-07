@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +8,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/size_string.dart';
 import '../../utils/resize_image.dart';
 
@@ -42,19 +44,20 @@ class SendFileDialogState extends State<SendFileDialog> {
           },
         );
       }
-      final scaffoldMessenger = ScaffoldMessenger.of(context);
-      widget.room
-          .sendFileEvent(
-        file,
-        thumbnail: thumbnail,
-        shrinkImageMaxDimension: origImage ? null : 1600,
-      )
-          .catchError((e) {
-        scaffoldMessenger.showSnackBar(
-          SnackBar(content: Text((e as Object).toLocalizedString(context))),
+      try {
+        await widget.room.sendFileEvent(
+          file,
+          thumbnail: thumbnail,
+          shrinkImageMaxDimension: origImage ? null : 1600,
         );
-        return null;
-      });
+      } on IOException catch (_) {
+      } on FileTooBigMatrixException catch (_) {
+      } catch (e, s) {
+        if (mounted) {
+          ErrorReporter(context, 'Unable to send file').onErrorCallback(e, s);
+        }
+        rethrow;
+      }
     }
     Navigator.of(context, rootNavigator: false).pop();
 

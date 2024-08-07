@@ -31,54 +31,35 @@ class NewGroupView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  InkWell(
-                    borderRadius: BorderRadius.circular(90),
-                    onTap: controller.loading ? null : controller.selectPhoto,
-                    child: CircleAvatar(
-                      radius: Avatar.defaultSize / 2,
-                      child: avatar == null
-                          ? const Icon(Icons.camera_alt_outlined)
-                          : ClipRRect(
-                              borderRadius: BorderRadius.circular(90),
-                              child: Image.memory(
-                                avatar,
-                                width: Avatar.defaultSize,
-                                height: Avatar.defaultSize,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: TextField(
-                      controller: controller.nameController,
-                      autocorrect: false,
-                      readOnly: controller.loading,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.people_outlined),
-                        hintText: L10n.of(context)!.groupName,
+            InkWell(
+              borderRadius: BorderRadius.circular(90),
+              onTap: controller.loading ? null : controller.selectPhoto,
+              child: CircleAvatar(
+                radius: Avatar.defaultSize,
+                child: avatar == null
+                    ? const Icon(Icons.add_a_photo_outlined)
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(90),
+                        child: Image.memory(
+                          avatar,
+                          width: Avatar.defaultSize,
+                          height: Avatar.defaultSize,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                  ),
-                ],
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 32),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: TextField(
-                controller: controller.topicController,
-                minLines: 4,
-                maxLines: 4,
-                maxLength: 255,
+                autofocus: true,
+                controller: controller.nameController,
+                autocorrect: false,
                 readOnly: controller.loading,
                 decoration: InputDecoration(
-                  hintText: L10n.of(context)!.addChatDescription,
+                  prefixIcon: const Icon(Icons.people_outlined),
+                  hintText: L10n.of(context)!.groupName,
                 ),
               ),
             ),
@@ -121,10 +102,6 @@ class NewGroupView extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                  ),
                   onPressed:
                       controller.loading ? null : controller.submitAction,
                   child: controller.loading

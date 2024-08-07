@@ -563,7 +563,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Öntanımlı izin seviyesi",
+  "defaultPermissionLevel": "Yeni kullanıcılar içi öntanımlı izin seviyesi",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2709,8 +2709,68 @@
   "@restricted": {},
   "swipeRightToLeftToReply": "Yanıtlamak için sağdan sola kaydır",
   "@swipeRightToLeftToReply": {},
-  "alwaysUse24HourFormat": "yanlış",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "countChatsAndCountParticipants": "{chats} sohbet ve {participants} katılımcı",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "Başka sohbet bulunamadı...",
+  "@noMoreChatsFound": {},
+  "goToSpace": "Alana git: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "joinedChats": "Katılınan sohbetler",
+  "@joinedChats": {},
+  "unread": "Okunmadı",
+  "@unread": {},
+  "markAsUnread": "Okunmadı olarak işaretle",
+  "@markAsUnread": {},
+  "space": "Alan",
+  "@space": {},
+  "spaces": "Alanlar",
+  "@spaces": {},
+  "inviteOtherUsers": "Diğer kullanıcıları bu sohbete davet et",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Sohbet izinlerini değiştir",
+  "@changeTheChatPermissions": {},
+  "changeTheCanonicalRoomAlias": "Ana herkese açık sohbet adresini değiştir",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "@oda bildirimleri gönder",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Sohbetin açıklamasını değiştir",
+  "@changeTheDescriptionOfTheGroup": {},
+  "userLevel": "{level} - Kullanıcı",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderatör",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Yönetici",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Genel sohbet ayarlarını değiştir",
+  "@changeGeneralChatSettings": {},
+  "changeTheVisibilityOfChatHistory": "Sohbet geçmişinin görünürlüğünü değiştir",
+  "@changeTheVisibilityOfChatHistory": {}
 }

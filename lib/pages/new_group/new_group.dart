@@ -19,8 +19,6 @@ class NewGroup extends StatefulWidget {
 class NewGroupController extends State<NewGroup> {
   TextEditingController nameController = TextEditingController();
 
-  TextEditingController topicController = TextEditingController();
-
   bool publicGroup = false;
   bool groupCanBeFound = true;
 
@@ -71,11 +69,6 @@ class NewGroupController extends State<NewGroup> {
             : sdk.CreateRoomPreset.privateChat,
         groupName: nameController.text.isNotEmpty ? nameController.text : null,
         initialState: [
-          if (topicController.text.isNotEmpty)
-            sdk.StateEvent(
-              type: sdk.EventTypes.RoomTopic,
-              content: {'topic': topicController.text},
-            ),
           if (avatar != null)
             sdk.StateEvent(
               type: sdk.EventTypes.RoomAvatar,
