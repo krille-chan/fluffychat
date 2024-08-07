@@ -5,7 +5,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
@@ -14,10 +13,10 @@ import 'package:fluffychat/pangea/widgets/chat/message_speech_to_text_card.dart'
 import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
-import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -75,47 +74,6 @@ class ToolbarDisplayController {
     }
     focusNode.requestFocus();
 
-    final LayerLinkAndKey layerLinkAndKey =
-        MatrixState.pAnyState.layerLinkAndKey(targetId);
-    final targetRenderBox =
-        layerLinkAndKey.key.currentContext?.findRenderObject();
-    if (targetRenderBox != null) {
-      final Size transformTargetSize = (targetRenderBox as RenderBox).size;
-      messageWidth = transformTargetSize.width;
-      final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
-
-      final double minValue =
-          controller.scrollController.position.minScrollExtent;
-      final double maxValue =
-          controller.scrollController.position.maxScrollExtent;
-      final double middlePoint = controller.scrollController.offset -
-          targetOffset.dy +
-          MediaQuery.of(context).size.height / 2 +
-          37;
-
-      // Scroll so message is right under half point of screen
-      controller.scrollController.animateTo(
-        middlePoint < minValue
-            ? minValue
-            : middlePoint > maxValue
-                ? maxValue
-                : middlePoint,
-        duration: FluffyThemes.animationDuration,
-        curve: FluffyThemes.animationCurve,
-      );
-    }
-
-    final Widget overlayMessage = OverlayMessage(
-      pangeaMessageEvent.event,
-      timeline: pangeaMessageEvent.timeline,
-      immersionMode: immersionMode,
-      ownMessage: pangeaMessageEvent.ownMessage,
-      toolbarController: this,
-      width: 300,
-      nextEvent: nextEvent,
-      previousEvent: previousEvent,
-    );
-
     // I'm not sure why I put this here, but it causes the toolbar
     // not to open immediately after clicking (user has to scroll or move their cursor)
     // so I'm commenting it out for now
@@ -127,8 +85,11 @@ class ToolbarDisplayController {
         controller: controller,
         closeToolbar: closeToolbar,
         toolbar: toolbar!,
-        overlayMessage: overlayMessage,
+        pangeaMessageEvent: pangeaMessageEvent,
+        immersionMode: immersionMode,
         ownMessage: pangeaMessageEvent.ownMessage,
+        targetId: targetId,
+        toolbarController: this,
       );
     } catch (err) {
       debugger(when: kDebugMode);
@@ -372,6 +333,10 @@ class MessageToolbarState extends State<MessageToolbar> {
 
   @override
   Widget build(BuildContext context) {
+    final double maxHeight = (MediaQuery.of(context).size.height -
+            (PlatformInfos.isIOS ? 254 : 232)) /
+        2;
+
     return Material(
       type: MaterialType.transparency,
       child: Container(
@@ -386,18 +351,18 @@ class MessageToolbarState extends State<MessageToolbar> {
             Radius.circular(25),
           ),
         ),
-        constraints: const BoxConstraints(
-          maxWidth: 300,
-          minWidth: 300,
-          maxHeight: 300,
+        constraints: BoxConstraints(
+          maxWidth: 290,
+          minWidth: 290,
+          maxHeight: maxHeight,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              constraints: const BoxConstraints(
-                minWidth: 300,
-                maxHeight: 228,
+              constraints: BoxConstraints(
+                minWidth: 290,
+                maxHeight: maxHeight - 72,
               ),
               child: SingleChildScrollView(
                 child: AnimatedSize(

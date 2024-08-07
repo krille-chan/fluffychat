@@ -4,6 +4,7 @@ import 'package:fluffychat/pangea/enum/use_type.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -11,8 +12,6 @@ import '../../../config/app_config.dart';
 
 class OverlayMessage extends StatelessWidget {
   final Event event;
-  final Event? nextEvent;
-  final Event? previousEvent;
   final bool selected;
   final Timeline timeline;
   // final LanguageModel? selectedDisplayLang;
@@ -21,16 +20,16 @@ class OverlayMessage extends StatelessWidget {
   final bool ownMessage;
   final ToolbarDisplayController toolbarController;
   final double? width;
+  final bool showDown;
 
   const OverlayMessage(
     this.event, {
-    this.nextEvent,
-    this.previousEvent,
     this.selected = false,
     required this.timeline,
     required this.immersionMode,
     required this.ownMessage,
     required this.toolbarController,
+    required this.showDown,
     this.width,
     super.key,
   });
@@ -49,9 +48,13 @@ class OverlayMessage extends StatelessWidget {
         ? Theme.of(context).colorScheme.onPrimary
         : Theme.of(context).colorScheme.onSurface;
 
+    const hardCorner = Radius.circular(4);
     const roundedCorner = Radius.circular(AppConfig.borderRadius);
-    const borderRadius = BorderRadius.all(
-      roundedCorner,
+    final borderRadius = BorderRadius.only(
+      topLeft: !showDown && !ownMessage ? hardCorner : roundedCorner,
+      topRight: !showDown && ownMessage ? hardCorner : roundedCorner,
+      bottomLeft: showDown && !ownMessage ? hardCorner : roundedCorner,
+      bottomRight: showDown && ownMessage ? hardCorner : roundedCorner,
     );
 
     final noBubble = {
@@ -83,93 +86,95 @@ class OverlayMessage extends StatelessWidget {
           : (color.blue * lightness).round(),
     );
 
+    final double maxHeight = (MediaQuery.of(context).size.height -
+            (PlatformInfos.isIOS ? 254 : 232)) /
+        2;
+
     final pangeaMessageEvent = PangeaMessageEvent(
       event: event,
       timeline: timeline,
       ownMessage: ownMessage,
     );
 
-    return Flexible(
-      // Make overlay message scrollable so long messages don't run offscreen
-      child: SingleChildScrollView(
-        child: Material(
-          color: noBubble ? Colors.transparent : color,
-          clipBehavior: Clip.antiAlias,
-          shape: const RoundedRectangleBorder(
-            borderRadius: borderRadius,
+    return SingleChildScrollView(
+      child: Material(
+        color: noBubble ? Colors.transparent : color,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: borderRadius,
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              AppConfig.borderRadius,
+            ),
           ),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                AppConfig.borderRadius,
+          padding: noBubble || noPadding
+              ? EdgeInsets.zero
+              : const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+          constraints: BoxConstraints(
+            maxWidth: width ?? FluffyThemes.columnWidth * 1.25,
+            maxHeight: maxHeight,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                child: MessageContent(
+                  event.getDisplayEvent(timeline),
+                  textColor: textColor,
+                  borderRadius: borderRadius,
+                  selected: selected,
+                  pangeaMessageEvent: pangeaMessageEvent,
+                  immersionMode: immersionMode,
+                  toolbarController: toolbarController,
+                  isOverlay: true,
+                ),
               ),
-            ),
-            padding: noBubble || noPadding
-                ? EdgeInsets.zero
-                : const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
+              if (event.hasAggregatedEvents(
+                    timeline,
+                    RelationshipTypes.edit,
+                  ) ||
+                  (pangeaMessageEvent.showUseType))
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 4.0,
                   ),
-            constraints: BoxConstraints(
-              maxWidth: width ?? FluffyThemes.columnWidth * 1.25,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                  child: MessageContent(
-                    event.getDisplayEvent(timeline),
-                    textColor: textColor,
-                    borderRadius: borderRadius,
-                    selected: selected,
-                    pangeaMessageEvent: pangeaMessageEvent,
-                    immersionMode: immersionMode,
-                    toolbarController: toolbarController,
-                    isOverlay: true,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (pangeaMessageEvent.showUseType) ...[
+                        pangeaMessageEvent.msgUseType.iconView(
+                          context,
+                          textColor.withAlpha(164),
+                        ),
+                        const SizedBox(width: 4),
+                      ],
+                      if (event.hasAggregatedEvents(
+                        timeline,
+                        RelationshipTypes.edit,
+                      )) ...[
+                        Icon(
+                          Icons.edit_outlined,
+                          color: textColor.withAlpha(164),
+                          size: 14,
+                        ),
+                        Text(
+                          ' - ${event.getDisplayEvent(timeline).originServerTs.localizedTimeShort(context)}',
+                          style: TextStyle(
+                            color: textColor.withAlpha(164),
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
                 ),
-                if (event.hasAggregatedEvents(
-                      timeline,
-                      RelationshipTypes.edit,
-                    ) ||
-                    (pangeaMessageEvent.showUseType))
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 4.0,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (pangeaMessageEvent.showUseType) ...[
-                          pangeaMessageEvent.msgUseType.iconView(
-                            context,
-                            textColor.withAlpha(164),
-                          ),
-                          const SizedBox(width: 4),
-                        ],
-                        if (event.hasAggregatedEvents(
-                          timeline,
-                          RelationshipTypes.edit,
-                        )) ...[
-                          Icon(
-                            Icons.edit_outlined,
-                            color: textColor.withAlpha(164),
-                            size: 14,
-                          ),
-                          Text(
-                            ' - ${event.getDisplayEvent(timeline).originServerTs.localizedTimeShort(context)}',
-                            style: TextStyle(
-                              color: textColor.withAlpha(164),
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
-              ],
-            ),
+            ],
           ),
         ),
       ),
