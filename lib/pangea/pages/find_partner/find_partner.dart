@@ -107,8 +107,7 @@ class FindPartnerController extends State<FindPartner> {
 
     UserProfileSearchResponse response;
     try {
-      final String accessToken =
-          await pangeaController.userController.accessToken;
+      final String accessToken = pangeaController.userController.accessToken;
       response = await PUserRepo.searchUserProfiles(
         accessToken: accessToken,
         targetLanguage: targetLanguageSearch.langCode,

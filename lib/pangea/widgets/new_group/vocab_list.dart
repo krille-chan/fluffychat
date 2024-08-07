@@ -312,7 +312,7 @@ class GenerateVocabButtonState extends State<GenerateVocabButton> {
 
   Future<List<Lemma>> _getWords() async {
     final ChatTopic topic = await TopicDataRepo.generate(
-      await _pangeaController.userController.accessToken,
+      _pangeaController.userController.accessToken,
       request: TopicDataRequest(
         topicInfo: widget.topic,
         numWords: 10,
@@ -514,7 +514,7 @@ class PromptsFieldState extends State<PromptsField> {
 
   Future<List<DiscussionPrompt>> _getPrompts() async {
     final ChatTopic res = await TopicDataRepo.generate(
-      await _pangeaController.userController.accessToken,
+      _pangeaController.userController.accessToken,
       request: TopicDataRequest(
         topicInfo: widget.topic,
         numPrompts: 10,

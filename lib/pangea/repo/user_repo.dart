@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:http/http.dart';
 
 import '../models/user_model.dart';
@@ -11,33 +10,33 @@ import '../network/requests.dart';
 import '../network/urls.dart';
 
 class PUserRepo {
-  static Future<PangeaProfileResponse?> repoCreatePangeaUser({
-    required String userID,
-    required String dob,
-    required fullName,
-    required String matrixAccessToken,
-  }) async {
-    try {
-      final Requests req = Requests(
-        baseUrl: PApiUrls.baseAPI,
-        matrixAccessToken: matrixAccessToken,
-      );
+  // static Future<PangeaProfileResponse?> repoCreatePangeaUser({
+  //   required String userID,
+  //   required String dob,
+  //   required fullName,
+  //   required String matrixAccessToken,
+  // }) async {
+  //   try {
+  //     final Requests req = Requests(
+  //       baseUrl: PApiUrls.baseAPI,
+  //       matrixAccessToken: matrixAccessToken,
+  //     );
 
-      final Map<String, dynamic> body = {
-        ModelKey.userFullName: fullName,
-        ModelKey.userPangeaUserId: userID,
-        ModelKey.userDateOfBirth: dob,
-      };
-      final resp = await req.post(
-        url: PApiUrls.createUser,
-        body: body,
-      );
-      return PangeaProfileResponse.fromJson(jsonDecode(resp.body));
-    } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
-      return null;
-    }
-  }
+  //     final Map<String, dynamic> body = {
+  //       ModelKey.userFullName: fullName,
+  //       ModelKey.userPangeaUserId: userID,
+  //       ModelKey.userDateOfBirth: dob,
+  //     };
+  //     final resp = await req.post(
+  //       url: PApiUrls.createUser,
+  //       body: body,
+  //     );
+  //     return PangeaProfileResponse.fromJson(jsonDecode(resp.body));
+  //   } catch (err, s) {
+  //     ErrorHandler.logError(e: err, s: s);
+  //     return null;
+  //   }
+  // }
 
   static Future<PangeaProfileResponse?> fetchPangeaUserInfo({
     required String userID,

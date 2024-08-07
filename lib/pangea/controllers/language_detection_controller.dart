@@ -145,7 +145,7 @@ class LanguageDetectionController {
       return _cache[params]!.data;
     } else {
       final Future<LanguageDetectionResponse> response = _fetchResponse(
-        await _pangeaController.userController.accessToken,
+        _pangeaController.userController.accessToken,
         params,
       );
       _cache[params] = _LanguageDetectionCacheItem(data: response);

@@ -54,7 +54,7 @@ class WordController extends BaseController {
     if (local != null) return local;
 
     final WordData remote = await WordRepo.getWordNetData(
-      accessToken: await _pangeaController.userController.accessToken,
+      accessToken: _pangeaController.userController.accessToken,
       fullText: fullText,
       word: word,
       userL1: userL1,
