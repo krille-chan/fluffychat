@@ -1,4 +1,6 @@
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_dynamic_zone_label.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_dynamic_zone_title.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_text_adventure_game_master_instruction_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -18,32 +20,12 @@ class ConversationBotTextAdventureZone extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 12),
-        Text(
-          L10n.of(context)!.conversationBotTextAdventureZone_title,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.secondary,
-            fontWeight: FontWeight.bold,
-          ),
+        ConversationBotDynamicZoneTitle(
+          title: L10n.of(context)!.conversationBotTextAdventureZone_title,
         ),
-        const Divider(
-          color: Colors.grey,
-          thickness: 1,
-        ),
-        const SizedBox(height: 12),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-            child: Text(
-              L10n.of(context)!
-                  .conversationBotTextAdventureZone_instructionLabel,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.secondary,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+        ConversationBotDynamicZoneLabel(
+          label: L10n.of(context)!
+              .conversationBotTextAdventureZone_instructionLabel,
         ),
         Padding(
           padding: const EdgeInsets.all(8),
