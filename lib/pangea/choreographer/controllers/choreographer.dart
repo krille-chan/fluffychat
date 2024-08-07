@@ -42,7 +42,6 @@ class Choreographer {
 
   bool isFetching = false;
   Timer? debounceTimer;
-  String? _roomId;
   ChoreoRecord choreoRecord = ChoreoRecord.newRecord;
   // last checked by IGC or translation
   String? _lastChecked;
@@ -464,10 +463,7 @@ class Choreographer {
     setState();
   }
 
-  get roomId => _roomId;
-  void setRoomId(String? roomId) {
-    _roomId = roomId ?? '';
-  }
+  get roomId => chatController.roomId;
 
   bool get _useCustomInput => [
         EditType.keyboard,
