@@ -27,7 +27,7 @@ class PangeaTextController extends TextEditingController {
   }
 
   static const int maxLength = 1000;
-  bool get isMaxLength => text.length == 1000;
+  bool get exceededMaxLength => text.length >= maxLength;
 
   bool forceKeepOpen = false;
 
