@@ -3,7 +3,7 @@ part of "client_extension.dart";
 extension GeneralInfoClientExtension on Client {
   Future<List<String>> get _teacherRoomIds async {
     final List<String> adminRoomIds = [];
-    for (final Room adminSpace in (await _spacesImTeaching)) {
+    for (final Room adminSpace in (_spacesImTeaching)) {
       adminRoomIds.add(adminSpace.id);
       final List<String> adminSpaceRooms = adminSpace.allSpaceChildRoomIds;
       adminRoomIds.addAll(adminSpaceRooms);
@@ -59,7 +59,7 @@ extension GeneralInfoClientExtension on Client {
     final Event? originalEvent = await room!.getEventById(edittedEventId);
     if (originalEvent == null) return [];
 
-    final Timeline timeline = await room.getTimeline();
+    final Timeline timeline = room.timeline ?? await room.getTimeline();
     final List<Event> editEvents = originalEvent
         .aggregatedEvents(
           timeline,
