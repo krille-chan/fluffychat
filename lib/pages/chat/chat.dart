@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:collection/collection.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
@@ -216,15 +217,13 @@ class ChatController extends State<ChatPageWithRoom>
   EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
 
   void requestHistory([_]) async {
-    if (!timeline!.canRequestHistory) return;
     Logs().v('Requesting history...');
-    await timeline!.requestHistory(historyCount: _loadHistoryCount);
+    await timeline?.requestHistory(historyCount: _loadHistoryCount);
   }
 
   void requestFuture() async {
     final timeline = this.timeline;
     if (timeline == null) return;
-    if (!timeline.canRequestFuture) return;
     Logs().v('Requesting future...');
     final mostRecentEventId = timeline.events.first.eventId;
     await timeline.requestFuture(historyCount: _loadHistoryCount);
@@ -343,6 +342,7 @@ class ChatController extends State<ChatPageWithRoom>
       eventContextId = null;
     }
     try {
+      timeline?.cancelSubscriptions();
       timeline = await room.getTimeline(
         onUpdate: updateView,
         eventContextId: eventContextId,
@@ -905,10 +905,16 @@ class ChatController extends State<ChatPageWithRoom>
     String eventId, {
     bool highlightEvent = true,
   }) async {
-    final eventIndex = timeline!.events
-        .where((event) => event.isVisibleInGui)
-        .toList()
-        .indexWhere((e) => e.eventId == eventId);
+    final foundEvent =
+        timeline!.events.firstWhereOrNull((event) => event.eventId == eventId);
+
+    final eventIndex = foundEvent == null
+        ? -1
+        : timeline!.events
+            .where((event) => event.isVisibleInGui || event.eventId == eventId)
+            .toList()
+            .indexOf(foundEvent);
+
     if (eventIndex == -1) {
       setState(() {
         timeline = null;
