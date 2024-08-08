@@ -43,9 +43,9 @@ class MessageSelectionOverlay extends StatelessWidget {
     bool showDown = false;
     final double footerSize = PlatformInfos.isMobile
         ? PlatformInfos.isIOS
-            ? 138
-            : 140
-        : 154;
+            ? 128
+            : 130
+        : 144;
     final double headerSize = PlatformInfos.isMobile
         ? PlatformInfos.isIOS
             ? 122
