@@ -87,8 +87,9 @@ class OverlayMessage extends StatelessWidget {
     );
 
     final double maxHeight = (MediaQuery.of(context).size.height -
-            (PlatformInfos.isIOS ? 244 : 222)) /
-        2;
+                (PlatformInfos.isIOS ? 256 : 198)) /
+            2 -
+        30;
 
     final pangeaMessageEvent = PangeaMessageEvent(
       event: event,

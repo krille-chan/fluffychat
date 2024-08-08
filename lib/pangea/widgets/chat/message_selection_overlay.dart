@@ -43,14 +43,14 @@ class MessageSelectionOverlay extends StatelessWidget {
     bool showDown = false;
     final double footerSize = PlatformInfos.isMobile
         ? PlatformInfos.isIOS
-            ? 128
-            : 130
-        : 144;
+            ? 127
+            : 106
+        : 143;
     final double headerSize = PlatformInfos.isMobile
         ? PlatformInfos.isIOS
-            ? 122
-            : 86
-        : 80;
+            ? 121
+            : 84
+        : 79;
     final double stackSize =
         MediaQuery.of(context).size.height - footerSize - headerSize;
 
@@ -77,10 +77,10 @@ class MessageSelectionOverlay extends StatelessWidget {
       // If message is too long, or awkwardly positioned,
       // center to avoid hitting edges of stack
       if (transformTargetSize.height >= stackSize / 2 - 3 ||
-          (targetOffset.dy < headerSize + stackSize / 2 &&
+          (targetOffset.dy < headerSize + stackSize / 2 + 30 &&
               targetOffset.dy + transformTargetSize.height >
-                  headerSize + stackSize / 2)) {
-        center = stackSize / 2;
+                  headerSize + stackSize / 2 - 30)) {
+        center = stackSize / 2 + (showDown ? -30 : 30);
       }
     }
 
@@ -104,8 +104,8 @@ class MessageSelectionOverlay extends StatelessWidget {
           controller: controller,
           closeToolbar: closeToolbar,
         ),
-        const SizedBox(
-          height: 7,
+        SizedBox(
+          height: PlatformInfos.isAndroid ? 3 : 6,
         ),
         Flexible(
           child: Stack(
@@ -133,8 +133,8 @@ class MessageSelectionOverlay extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(
-          height: 7,
+        SizedBox(
+          height: PlatformInfos.isAndroid ? 3 : 6,
         ),
         OverlayFooter(controller: controller),
       ],

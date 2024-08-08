@@ -334,8 +334,9 @@ class MessageToolbarState extends State<MessageToolbar> {
   @override
   Widget build(BuildContext context) {
     final double maxHeight = (MediaQuery.of(context).size.height -
-            (PlatformInfos.isIOS ? 254 : 222)) /
-        2;
+                (PlatformInfos.isIOS ? 256 : 198)) /
+            2 +
+        30;
 
     return Material(
       type: MaterialType.transparency,
