@@ -64,7 +64,10 @@ class ToolbarDisplayController {
 
   void showToolbar(BuildContext context, {MessageMode? mode}) {
     // Close keyboard, if open
-    FocusManager.instance.primaryFocus?.unfocus();
+    if (controller.inputFocus.hasFocus) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      return;
+    }
     // Close emoji picker, if open
     controller.showEmojiPicker = false;
     if (highlighted) return;
@@ -334,7 +337,11 @@ class MessageToolbarState extends State<MessageToolbar> {
   @override
   Widget build(BuildContext context) {
     final double maxHeight = (MediaQuery.of(context).size.height -
-                (PlatformInfos.isIOS ? 256 : 198)) /
+                (PlatformInfos.isWeb
+                    ? 211
+                    : PlatformInfos.isIOS
+                        ? 256
+                        : 198)) /
             2 +
         30;
 

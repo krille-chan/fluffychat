@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
@@ -57,7 +58,7 @@ class MessageSelectionOverlay extends StatelessWidget {
     if (targetRenderBox != null) {
       final Size transformTargetSize = (targetRenderBox as RenderBox).size;
       final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
-      left = targetOffset.dx;
+      left = targetOffset.dx - (FluffyThemes.isColumnMode(context) ? 424 : 0);
       showDown = targetOffset.dy + transformTargetSize.height <=
           headerSize + stackSize / 2;
 
