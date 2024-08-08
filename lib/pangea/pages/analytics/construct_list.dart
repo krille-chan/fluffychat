@@ -166,7 +166,7 @@ class ConstructListViewState extends State<ConstructListView> {
     if (_timelinesCache.containsKey(use.chatId)) {
       timeline = _timelinesCache[use.chatId];
     } else {
-      timeline = await msgRoom.getTimeline();
+      timeline = msgRoom.timeline ?? await msgRoom.getTimeline();
       _timelinesCache[use.chatId] = timeline;
     }
 

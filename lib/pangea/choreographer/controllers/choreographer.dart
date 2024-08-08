@@ -42,7 +42,6 @@ class Choreographer {
 
   bool isFetching = false;
   Timer? debounceTimer;
-  String? _roomId;
   ChoreoRecord choreoRecord = ChoreoRecord.newRecord;
   // last checked by IGC or translation
   String? _lastChecked;
@@ -403,7 +402,7 @@ class Choreographer {
 
   PangeaTextController get textController => _textController;
 
-  Future<String> get accessToken => pangeaController.userController.accessToken;
+  String get accessToken => pangeaController.userController.accessToken;
 
   clear() {
     choreoMode = ChoreoMode.igc;
@@ -464,10 +463,7 @@ class Choreographer {
     setState();
   }
 
-  get roomId => _roomId;
-  void setRoomId(String? roomId) {
-    _roomId = roomId ?? '';
-  }
+  get roomId => chatController.roomId;
 
   bool get _useCustomInput => [
         EditType.keyboard,

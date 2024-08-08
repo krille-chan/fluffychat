@@ -2,12 +2,12 @@ import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class ConversationBotCustomSystemPromptInput extends StatelessWidget {
+class ConversationBotGameMasterInstructionsInput extends StatelessWidget {
   final BotOptionsModel initialBotOptions;
   // call this to update propagate changes to parents
   final void Function(BotOptionsModel) onChanged;
 
-  const ConversationBotCustomSystemPromptInput({
+  const ConversationBotGameMasterInstructionsInput({
     super.key,
     required this.initialBotOptions,
     required this.onChanged,
@@ -15,24 +15,26 @@ class ConversationBotCustomSystemPromptInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String customSystemPrompt = initialBotOptions.customSystemPrompt ?? "";
+    String gameMasterInstructions =
+        initialBotOptions.textAdventureGameMasterInstructions ?? "";
 
     final TextEditingController textFieldController =
-        TextEditingController(text: customSystemPrompt);
+        TextEditingController(text: gameMasterInstructions);
 
-    final GlobalKey<FormState> customSystemPromptFormKey =
+    final GlobalKey<FormState> gameMasterInstructionsFormKey =
         GlobalKey<FormState>();
 
-    void setBotCustomSystemPromptAction() async {
+    void setBotTextAdventureGameMasterInstructionsAction() async {
       showDialog(
         context: context,
         useRootNavigator: false,
         builder: (BuildContext context) => AlertDialog(
           title: Text(
-            L10n.of(context)!.conversationBotCustomZone_customSystemPromptLabel,
+            L10n.of(context)!
+                .conversationBotTextAdventureZone_instructionPlaceholder,
           ),
           content: Form(
-            key: customSystemPromptFormKey,
+            key: gameMasterInstructionsFormKey,
             child: TextFormField(
               minLines: 1,
               maxLines: 10,
@@ -40,7 +42,7 @@ class ConversationBotCustomSystemPromptInput extends StatelessWidget {
               controller: textFieldController,
               onChanged: (value) {
                 if (value.isNotEmpty) {
-                  customSystemPrompt = value;
+                  gameMasterInstructions = value;
                 }
               },
               validator: (value) {
@@ -61,10 +63,11 @@ class ConversationBotCustomSystemPromptInput extends StatelessWidget {
             TextButton(
               child: Text(L10n.of(context)!.ok),
               onPressed: () {
-                if (customSystemPromptFormKey.currentState!.validate()) {
-                  if (customSystemPrompt !=
-                      initialBotOptions.customSystemPrompt) {
-                    initialBotOptions.customSystemPrompt = customSystemPrompt;
+                if (gameMasterInstructionsFormKey.currentState!.validate()) {
+                  if (gameMasterInstructions !=
+                      initialBotOptions.textAdventureGameMasterInstructions) {
+                    initialBotOptions.textAdventureGameMasterInstructions =
+                        gameMasterInstructions;
                     onChanged.call(initialBotOptions);
                   }
                   Navigator.of(context).pop();
@@ -77,19 +80,12 @@ class ConversationBotCustomSystemPromptInput extends StatelessWidget {
     }
 
     return ListTile(
-      onTap: setBotCustomSystemPromptAction,
+      onTap: setBotTextAdventureGameMasterInstructionsAction,
       title: Text(
-        initialBotOptions.customSystemPrompt ??
+        initialBotOptions.textAdventureGameMasterInstructions ??
             L10n.of(context)!
-                .conversationBotCustomZone_customSystemPromptPlaceholder,
+                .conversationBotTextAdventureZone_instructionPlaceholder,
       ),
-      subtitle: customSystemPrompt.isEmpty
-          ? Text(
-              L10n.of(context)!
-                  .conversationBotCustomZone_customSystemPromptEmptyError,
-              style: const TextStyle(color: Colors.red),
-            )
-          : null,
     );
   }
 }

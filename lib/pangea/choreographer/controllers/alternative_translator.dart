@@ -91,7 +91,7 @@ class AlternativeTranslator {
 
       final FullTextTranslationResponseModel results =
           await FullTextTranslationRepo.translate(
-        accessToken: await choreographer.accessToken,
+        accessToken: choreographer.accessToken,
         request: FullTextTranslationRequestModel(
           text: choreographer.itController.sourceText!,
           tgtLang: choreographer.l2LangCode!,
@@ -117,7 +117,7 @@ class AlternativeTranslator {
       }
 
       similarityResponse = await SimilarityRepo.get(
-        accessToken: await choreographer.accessToken,
+        accessToken: choreographer.accessToken,
         request: SimilarityRequestModel(
           benchmark: results.bestTranslation,
           toCompare: [userTranslation!],

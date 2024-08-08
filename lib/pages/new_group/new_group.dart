@@ -105,6 +105,34 @@ class NewGroupController extends State<NewGroup> {
 
       if (!mounted) return;
 
+      // #Pangea
+      // validate init bot options
+      final addBot = addConversationBotKey.currentState?.addBot ?? false;
+      if (addBot) {
+        final botOptions = addConversationBotKey.currentState!.botOptions;
+        if (botOptions.mode == "custom") {
+          if (botOptions.customSystemPrompt == null ||
+              botOptions.customSystemPrompt!.isEmpty) {
+            setState(() {
+              error = L10n.of(context)!
+                  .conversationBotCustomZone_customSystemPromptEmptyError;
+              loading = false;
+            });
+            return;
+          }
+        } else if (botOptions.mode == "text_adventure") {
+          if (botOptions.textAdventureGameMasterInstructions == null ||
+              botOptions.textAdventureGameMasterInstructions!.isEmpty) {
+            setState(() {
+              error = L10n.of(context)!
+                  .conversationBotCustomZone_instructionSystemPromptEmptyError;
+              loading = false;
+            });
+            return;
+          }
+        }
+      }
+
       final roomId = await client.createGroupChat(
         // #Pangea
         // visibility:

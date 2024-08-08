@@ -463,7 +463,7 @@ class InputBar extends StatelessWidget {
             debounceDuration: const Duration(milliseconds: 50),
             // show suggestions after 50ms idle time (default is 300)
             // #Pangea
-            key: controller!.choreographer.inputLayerLinkAndKey.key,
+            key: controller?.choreographer.inputLayerLinkAndKey.key,
             // builder: (context, controller, focusNode) => TextField(
             builder: (context, _, focusNode) => TextField(
               // Pangea#
@@ -504,11 +504,11 @@ class InputBar extends StatelessWidget {
                 onSubmitted!(text);
               },
               // #Pangea
-              style: controller?.isMaxLength ?? false
+              style: controller?.exceededMaxLength ?? false
                   ? const TextStyle(color: Colors.red)
                   : null,
               onTap: () {
-                controller!.onInputTap(
+                controller?.onInputTap(
                   context,
                   fNode: focusNode,
                 );
