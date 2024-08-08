@@ -15,24 +15,21 @@ class ChoreographerHasErrorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 56.0),
-      child: FloatingActionButton(
-        onPressed: () {
-          if (error.type == ChoreoErrorType.unknown) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                duration: const Duration(seconds: 5),
-                content: Text(
-                  "${error.title(context)} ${error.description(context)}",
-                ),
+    return FloatingActionButton(
+      onPressed: () {
+        if (error.type == ChoreoErrorType.unknown) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              duration: const Duration(seconds: 5),
+              content: Text(
+                "${error.title(context)} ${error.description(context)}",
               ),
-            );
-          }
-        },
-        mini: true,
-        child: Icon(error.icon),
-      ),
+            ),
+          );
+        }
+      },
+      mini: true,
+      child: Icon(error.icon),
     );
   }
 }
