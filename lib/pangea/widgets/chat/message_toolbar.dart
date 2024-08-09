@@ -338,7 +338,7 @@ class MessageToolbarState extends State<MessageToolbar> {
   Widget build(BuildContext context) {
     final double maxHeight = (MediaQuery.of(context).size.height -
                 (PlatformInfos.isWeb
-                    ? 211
+                    ? 214
                     : PlatformInfos.isIOS
                         ? 256
                         : 198)) /

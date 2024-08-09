@@ -88,7 +88,7 @@ class OverlayMessage extends StatelessWidget {
 
     final double maxHeight = (MediaQuery.of(context).size.height -
                 (PlatformInfos.isWeb
-                    ? 225
+                    ? 228
                     : PlatformInfos.isIOS
                         ? 256
                         : 198)) /

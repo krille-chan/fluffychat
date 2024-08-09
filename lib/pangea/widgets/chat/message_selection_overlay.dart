@@ -40,7 +40,8 @@ class MessageSelectionOverlay extends StatelessWidget {
         layerLinkAndKey.key.currentContext?.findRenderObject();
 
     double center = 290;
-    double left = 0;
+    double? left;
+    double? right;
     bool showDown = false;
     final double footerSize = PlatformInfos.isMobile
         ? PlatformInfos.isIOS
@@ -58,7 +59,13 @@ class MessageSelectionOverlay extends StatelessWidget {
     if (targetRenderBox != null) {
       final Size transformTargetSize = (targetRenderBox as RenderBox).size;
       final Offset targetOffset = (targetRenderBox).localToGlobal(Offset.zero);
-      left = targetOffset.dx - (FluffyThemes.isColumnMode(context) ? 424 : 0);
+      if (ownMessage) {
+        right = MediaQuery.of(context).size.width -
+            targetOffset.dx -
+            transformTargetSize.width;
+      } else {
+        left = targetOffset.dx - (FluffyThemes.isColumnMode(context) ? 425 : 1);
+      }
       showDown = targetOffset.dy + transformTargetSize.height <=
           headerSize + stackSize / 2;
 
@@ -112,22 +119,14 @@ class MessageSelectionOverlay extends StatelessWidget {
           child: Stack(
             children: [
               Positioned(
-                left: ownMessage ? null : left,
-                right: ownMessage
-                    ? PlatformInfos.isMobile
-                        ? 8
-                        : 16
-                    : null,
+                left: left,
+                right: right,
                 bottom: stackSize - center + 3,
                 child: showDown ? overlayMessage : toolbar,
               ),
               Positioned(
-                left: ownMessage ? null : left,
-                right: ownMessage
-                    ? PlatformInfos.isMobile
-                        ? 8
-                        : 16
-                    : null,
+                left: left,
+                right: right,
                 top: center + 3,
                 child: showDown ? toolbar : overlayMessage,
               ),
