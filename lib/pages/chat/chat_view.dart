@@ -447,7 +447,7 @@ class ChatView extends StatelessWidget {
                         Positioned(
                           left: 0,
                           right: 0,
-                          bottom: 16,
+                          bottom: controller.showEmojiPicker ? 0 : 16,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -501,7 +501,9 @@ class ChatView extends StatelessWidget {
                                       ),
                                       ReplyDisplay(controller),
                                       ChatInputRow(controller),
-                                      ChatEmojiPicker(controller),
+                                      if (controller.emojiPickerType !=
+                                          EmojiPickerType.reaction)
+                                        ChatEmojiPicker(controller),
                                     ],
                                   ),
                                 ),

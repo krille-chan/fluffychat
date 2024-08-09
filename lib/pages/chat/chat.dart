@@ -841,13 +841,22 @@ class ChatController extends State<ChatPageWithRoom>
     });
   }
 
-  void hideEmojiPicker() {
-    // #Pangea
-    MatrixState.pAnyState.closeAllOverlays();
-    clearSelectedEvents();
-    // Pangea
+  // #Pangea
+  // void hideEmojiPicker() {
+  void hideEmojiPicker({bool closeOverlay = false}) {
+    if (closeOverlay) {
+      MatrixState.pAnyState.closeOverlay();
+    }
+    // Pangea#
     setState(() => showEmojiPicker = false);
   }
+
+  // #Pangea
+  void hideOverlayEmojiPicker() {
+    MatrixState.pAnyState.closeOverlay();
+    setState(() => showEmojiPicker = false);
+  }
+  // Pangea
 
   void emojiPickerAction() {
     if (showEmojiPicker) {
