@@ -66,6 +66,8 @@ class SendFileDialogState extends State<SendFileDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     var sendStr = L10n.of(context)!.sendFile;
     final allFilesAreImages =
         widget.files.every((file) => file is MatrixImageFile);
@@ -91,9 +93,8 @@ class SendFileDialogState extends State<SendFileDialog> {
           Flexible(
             child: Material(
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-              elevation:
-                  Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
-              shadowColor: Theme.of(context).appBarTheme.shadowColor,
+              elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
+              shadowColor: theme.appBarTheme.shadowColor,
               clipBehavior: Clip.hardEdge,
               child: Image.memory(
                 widget.files.first.bytes,

@@ -15,6 +15,8 @@ class NewGroupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final avatar = controller.avatar;
     final error = controller.error;
     return Scaffold(
@@ -86,12 +88,12 @@ class NewGroupView extends StatelessWidget {
             SwitchListTile.adaptive(
               secondary: Icon(
                 Icons.lock_outlined,
-                color: Theme.of(context).colorScheme.onSurface,
+                color: theme.colorScheme.onSurface,
               ),
               title: Text(
                 L10n.of(context)!.enableEncryption,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: theme.colorScheme.onSurface,
                 ),
               ),
               value: !controller.publicGroup,
@@ -126,12 +128,12 @@ class NewGroupView extends StatelessWidget {
                   : ListTile(
                       leading: Icon(
                         Icons.warning_outlined,
-                        color: Theme.of(context).colorScheme.error,
+                        color: theme.colorScheme.error,
                       ),
                       title: Text(
                         error.toLocalizedString(context),
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.error,
+                          color: theme.colorScheme.error,
                         ),
                       ),
                     ),

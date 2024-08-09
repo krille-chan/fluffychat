@@ -218,6 +218,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final statusText = this.statusText ??= _durationString ?? '00:00';
     final audioPlayer = this.audioPlayer;
     return Padding(
@@ -304,8 +306,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                 : Text(
                     '${audioPlayer.speed.toString()}x',
                   ),
-            backgroundColor: Theme.of(context).colorScheme.secondary,
-            textColor: Theme.of(context).colorScheme.onSecondary,
+            backgroundColor: theme.colorScheme.secondary,
+            textColor: theme.colorScheme.onSecondary,
             child: InkWell(
               splashColor: widget.color.withAlpha(128),
               borderRadius: BorderRadius.circular(64),

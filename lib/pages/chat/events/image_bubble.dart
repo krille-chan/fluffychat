@@ -67,6 +67,8 @@ class ImageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final borderRadius =
         this.borderRadius ?? BorderRadius.circular(AppConfig.borderRadius);
     return Material(
@@ -77,7 +79,7 @@ class ImageBubble extends StatelessWidget {
         side: BorderSide(
           color: event.messageType == MessageTypes.Sticker
               ? Colors.transparent
-              : Theme.of(context).dividerColor,
+              : theme.dividerColor,
         ),
       ),
       child: InkWell(

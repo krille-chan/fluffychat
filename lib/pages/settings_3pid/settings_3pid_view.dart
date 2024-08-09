@@ -14,6 +14,8 @@ class Settings3PidView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     controller.request ??= Matrix.of(context).client.getAccount3PIDs();
     return Scaffold(
       appBar: AppBar(
@@ -53,7 +55,7 @@ class Settings3PidView extends StatelessWidget {
               children: [
                 ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    backgroundColor: theme.scaffoldBackgroundColor,
                     foregroundColor:
                         identifier.isEmpty ? Colors.orange : Colors.grey,
                     child: Icon(
@@ -75,8 +77,7 @@ class Settings3PidView extends StatelessWidget {
                     itemCount: identifier.length,
                     itemBuilder: (BuildContext context, int i) => ListTile(
                       leading: CircleAvatar(
-                        backgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
+                        backgroundColor: theme.scaffoldBackgroundColor,
                         foregroundColor: Colors.grey,
                         child: Icon(identifier[i].iconData),
                       ),

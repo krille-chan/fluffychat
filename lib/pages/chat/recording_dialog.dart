@@ -131,6 +131,8 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     const maxDecibalWidth = 64.0;
     final time =
         '${_duration.inMinutes.toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}';
@@ -159,7 +161,7 @@ class RecordingDialogState extends State<RecordingDialog> {
                           margin: const EdgeInsets.only(left: 2),
                           width: 4,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.primary,
+                            color: theme.colorScheme.primary,
                             borderRadius:
                                 BorderRadius.circular(AppConfig.borderRadius),
                           ),
@@ -185,11 +187,7 @@ class RecordingDialogState extends State<RecordingDialog> {
             child: Text(
               L10n.of(context)!.cancel.toUpperCase(),
               style: TextStyle(
-                color: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.color
-                    ?.withAlpha(150),
+                color: theme.textTheme.bodyMedium?.color?.withAlpha(150),
               ),
             ),
           ),
@@ -209,8 +207,7 @@ class RecordingDialogState extends State<RecordingDialog> {
           child: Text(
             L10n.of(context)!.cancel.toUpperCase(),
             style: TextStyle(
-              color:
-                  Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(150),
+              color: theme.textTheme.bodyMedium?.color?.withAlpha(150),
             ),
           ),
         ),
