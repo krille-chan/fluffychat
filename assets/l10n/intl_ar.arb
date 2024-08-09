@@ -2772,5 +2772,22 @@
   "sendRoomNotifications": "إرسال إشعارات @room",
   "@sendRoomNotifications": {},
   "changeTheDescriptionOfTheGroup": "تغيير وصف الدردشة",
-  "@changeTheDescriptionOfTheGroup": {}
+  "@changeTheDescriptionOfTheGroup": {},
+  "invitedBy": "📩 تمت دعوته من قبل {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "chatPermissionsDescription": "‪حدد مستوى الصلاحية الضروري لإجراءات معينة في هذه الدردشة. عادة ما تمثل مستويات الصلاحية 0 و 50 و 100 المستخدمين والمشرفين ولكن أي تدرج ممكن.",
+  "@chatPermissionsDescription": {},
+  "changelog": "سجل التغييرات",
+  "@changelog": {},
+  "updateInstalled": "تم تثبيت🎉 تحديث {version}!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  }
 }
