@@ -3065,7 +3065,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleToolSettingsDescription": "Here you can toggle your individual language tool settings. For chats within a space, the space settings will take precedence and may override these settings.",
+  "toggleToolSettingsDescription": "Here you can toggle your individual language tool settings.",
   "connectedToStaging": "You are connected to the staging server.",
   "@connectedToStaging": {
     "type": "text",
