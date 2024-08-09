@@ -90,7 +90,7 @@ class OverlayMessage extends StatelessWidget {
                 (PlatformInfos.isWeb
                     ? 228
                     : PlatformInfos.isIOS
-                        ? 256
+                        ? 258
                         : 198)) /
             2 -
         30;

@@ -45,14 +45,14 @@ class MessageSelectionOverlay extends StatelessWidget {
     bool showDown = false;
     final double footerSize = PlatformInfos.isMobile
         ? PlatformInfos.isIOS
-            ? 127
-            : 106
+            ? 128
+            : 108
         : 143;
     final double headerSize = PlatformInfos.isMobile
         ? PlatformInfos.isIOS
             ? 121
             : 84
-        : 79;
+        : 77;
     final double stackSize =
         MediaQuery.of(context).size.height - footerSize - headerSize;
 
@@ -66,6 +66,7 @@ class MessageSelectionOverlay extends StatelessWidget {
       } else {
         left = targetOffset.dx - (FluffyThemes.isColumnMode(context) ? 425 : 1);
       }
+
       showDown = targetOffset.dy + transformTargetSize.height <=
           headerSize + stackSize / 2;
 
@@ -82,13 +83,52 @@ class MessageSelectionOverlay extends StatelessWidget {
           headerSize + stackSize) {
         center = stackSize - transformTargetSize.height - 3;
       }
-      // If message is too long, or awkwardly positioned,
-      // center to avoid hitting edges of stack
-      if (transformTargetSize.height >= stackSize / 2 - 3 ||
-          (targetOffset.dy < headerSize + stackSize / 2 + 30 &&
-              targetOffset.dy + transformTargetSize.height >
-                  headerSize + stackSize / 2 - 30)) {
+      final double midpoint = headerSize + stackSize / 2;
+      // If message is too long,
+      // use default location to make full use of screen
+      if (transformTargetSize.height >= stackSize / 2 - 30) {
         center = stackSize / 2 + (showDown ? -30 : 30);
+      }
+      // If message is normal size but too close
+      // to center of screen, scroll closer to edges
+      else if (targetOffset.dy > midpoint - 30 &&
+          targetOffset.dy + transformTargetSize.height < midpoint + 30) {
+        final double scrollUp =
+            midpoint + 30 - (targetOffset.dy + transformTargetSize.height);
+        final double scrollDown = targetOffset.dy - (midpoint - 30);
+        final double minScroll =
+            controller.scrollController.position.minScrollExtent;
+        final double maxScroll =
+            controller.scrollController.position.maxScrollExtent;
+        final double currentOffset = controller.scrollController.offset;
+
+        // If can scroll up, scroll up
+        if (currentOffset + scrollUp < maxScroll) {
+          controller.scrollController.animateTo(
+            currentOffset + scrollUp,
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+          );
+          showDown = false;
+          center = stackSize / 2 - 12;
+        }
+
+        // Else if can scroll down, scroll down
+        else if (currentOffset - scrollDown > minScroll) {
+          controller.scrollController.animateTo(
+            currentOffset - scrollDown,
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+          );
+          showDown = true;
+          center = stackSize / 2 + 12;
+        }
+
+        // Neither scrolling works; leave message as-is,
+        // and use default toolbar location
+        else {
+          center = stackSize / 2 + (showDown ? -30 : 30);
+        }
       }
     }
 
