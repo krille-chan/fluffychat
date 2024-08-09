@@ -2754,5 +2754,6 @@
       "version": {}
     }
   },
-  "changelog": "Changelog"
+  "changelog": "Changelog",
+  "sendCanceled": "Sending canceled"
 }
