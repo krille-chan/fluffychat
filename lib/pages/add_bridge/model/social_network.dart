@@ -152,7 +152,8 @@ class SocialNetworkManager {
     if (matrixId == null) return false;
 
     return socialNetworks.any(
-      (network) => matrixId.startsWith(network.chatBot),
+      (network) =>
+          network.chatBot.isNotEmpty && matrixId.startsWith(network.chatBot),
     );
   }
 }

@@ -237,7 +237,7 @@ class ChatListController extends State<ChatList>
     }
   }
 
-  // Method to identify and remove duplicate rooms
+  // Method to identify and remove duplicate bot rooms
   Future<void> identifyAndRemoveDuplicates(List<Room> rooms) async {
     final Map<String, List<Room>> roomMap = {};
 
