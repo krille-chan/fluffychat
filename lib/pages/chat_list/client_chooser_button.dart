@@ -19,14 +19,7 @@ class ClientChooserButton extends StatelessWidget {
 
   List<PopupMenuEntry<Object>> _bundleMenuItems(BuildContext context) {
     final matrix = Matrix.of(context);
-    final bundles = matrix.accountBundles.keys.toList()
-      ..sort(
-        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
-            ? 0
-            : a.isValidMatrixId && !b.isValidMatrixId
-                ? -1
-                : 1,
-      );
+
     return <PopupMenuEntry<Object>>[
       PopupMenuItem(
         value: SettingsAction.newGroup,
@@ -91,65 +84,88 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       const PopupMenuDivider(),
-      for (final bundle in bundles) ...[
-        if (matrix.accountBundles[bundle]!.length != 1 ||
-            matrix.accountBundles[bundle]!.single!.userID != bundle)
-          PopupMenuItem(
-            value: null,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  bundle!,
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.titleMedium!.color,
-                    fontSize: 14,
+      PopupMenuItem(
+        value: null,
+        child: StreamBuilder<SyncUpdate>(
+          stream: Matrix.of(context).client.onSync.stream,
+          builder: (context, setState) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (final bundle in matrix.accountBundles.keys.toList()
+                ..sort(
+                  (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
+                      ? 0
+                      : a.isValidMatrixId && !b.isValidMatrixId
+                          ? -1
+                          : 1,
+                )) ...[
+                if (matrix.accountBundles[bundle]!.length != 1 ||
+                    matrix.accountBundles[bundle]!.single!.userID != bundle)
+                  PopupMenuItem(
+                    value: null,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          bundle!,
+                          style: TextStyle(
+                            color:
+                                Theme.of(context).textTheme.titleMedium!.color,
+                            fontSize: 14,
+                          ),
+                        ),
+                        const Divider(height: 1),
+                      ],
+                    ),
+                  ),
+                ...matrix.accountBundles[bundle]!.map(
+                  (client) => PopupMenuItem(
+                    value: client,
+                    child: FutureBuilder<Profile?>(
+                      // analyzer does not understand this type cast for error
+                      // handling
+                      //
+                      // ignore: unnecessary_cast
+                      future: (client!.fetchOwnProfile() as Future<Profile?>)
+                          .onError((e, s) => null),
+                      builder: (context, snapshot) => Row(
+                        children: [
+                          Avatar(
+                            mxContent: snapshot.data?.avatarUrl,
+                            name: snapshot.data?.displayName ??
+                                client.userID!.localpart,
+                            size: 32,
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              snapshot.data?.displayName ??
+                                  client.userID!.localpart!,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          IconButton(
+                            icon: const Icon(Icons.edit_outlined),
+                            onPressed: () async {
+                              await controller.editBundlesForAccount(
+                                client.userID,
+                                bundle,
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-                const Divider(height: 1),
               ],
-            ),
-          ),
-        ...matrix.accountBundles[bundle]!.map(
-          (client) => PopupMenuItem(
-            value: client,
-            child: FutureBuilder<Profile?>(
-              // analyzer does not understand this type cast for error
-              // handling
-              //
-              // ignore: unnecessary_cast
-              future: (client!.fetchOwnProfile() as Future<Profile?>)
-                  .onError((e, s) => null),
-              builder: (context, snapshot) => Row(
-                children: [
-                  Avatar(
-                    mxContent: snapshot.data?.avatarUrl,
-                    name:
-                        snapshot.data?.displayName ?? client.userID!.localpart,
-                    size: 32,
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      snapshot.data?.displayName ?? client.userID!.localpart!,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  IconButton(
-                    icon: const Icon(Icons.edit_outlined),
-                    onPressed: () => controller.editBundlesForAccount(
-                      client.userID,
-                      bundle,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            ],
           ),
         ),
-      ],
+      ),
       PopupMenuItem(
         value: SettingsAction.addAccount,
         child: Row(
