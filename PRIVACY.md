@@ -3,31 +3,29 @@
 FluffyChat is available on Android, iOS and as a web version. Desktop versions for Windows, Linux and macOS may follow.
 
 *   [Matrix](#matrix)
-*   Sentry
 *   [Database](#database)
 *   [Encryption](#encryption)
 *   [App Permissions](#app-permissions)
 *   [Push Notifications](#push-notifications)
-*   [Stories](#stories)
 
 ## Matrix<a id="matrix"/>
 FluffyChat uses the Matrix protocol. This means that FluffyChat is just a client that can be connected to any compatible matrix server. The respective data protection agreement of the server selected by the user then applies.
 
 For convenience, one or more servers are set as default that the FluffyChat developers consider trustworthy. The developers of FluffyChat do not guarantee their trustworthiness. Before the first communication, users are informed which server they are connecting to.
 
-FluffyChat only communicates with the selected server, with sentry.io if enabled and with [OpenStreetMap](https://openstreetmap.org) to display maps.
+FluffyChat only communicates with the selected server and with [OpenStreetMap](https://openstreetmap.org) to display maps.
 
 More information is available at: [https://matrix.org](https://matrix.org)
 
 ## Database<a id="database"/>
-FluffyChat caches some data received from the server in a local database on the device of the user.
+FluffyChat caches some data received from the server in a local sqflite database on the device of the user. On web indexedDB is used. FluffyChat always tries to encrypt the database by using SQLCipher and stores the encryption key in the [Secure Storage](https://pub.dev/packages/flutter_secure_storage) of the device.
 
-More information is available at: [https://pub.dev/packages/hive](https://pub.dev/packages/hive)
+More information is available at: [https://pub.dev/packages/sqflite](https://pub.dev/packages/sqflite) and [https://pub.dev/packages/sqlcipher_flutter_libs](https://pub.dev/packages/sqlcipher_flutter_libs)
 
 ## Encryption<a id="encryption"/>
 All communication of substantive content between Fluffychat and any server is done in secure way, using transport encryption to protect it.
 
-FluffyChat is able to use End-To-End-Encryption as a tech preview.
+FluffyChat also uses End-To-End-Encryption by using [libolm](https://gitlab.matrix.org/matrix-org/olm) and enables it by default for private chats.
 
 ## App Permissions<a id="app-permissions"/>
 
@@ -94,23 +92,3 @@ A typical push notification could look like this:
 ```
 
 FluffyChat sets the `event_id_only` flag at the Matrix Server. This server is then responsible to send the correct data.
-
-## Stories<a id="stories"/>
-
-FluffyChat supports stories which is a feature similar to WhatsApp status or Instagram stories. However it is just a different GUI for the same room-related communication. More information about the feature can be found here:
-
-https://github.com/krillefear/matrix-doc/blob/main/proposals/3588-stories-as-rooms.md
-
-Stories are basically:
-
-- End to end encrypted rooms
-- Read-only rooms with only one admin who can post stuff (while there is no technical limitation to have multiple admins)
-
-By default:
-
-- The user has to invite all contacts manually to a story room
-- The user can only invite contacts (matrix users the user shares a DM room with) to the story room
-- The story room is created when the first story is posted
-- User can mute and leave story rooms
-
-The user is informed in the app that in theory all contacts can see each other in the story room. The user must give consent here. However the user is at any time able to create a group chat and invite all of their contacts to this chat in any matrix client which has the same result.
