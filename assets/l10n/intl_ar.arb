@@ -2789,5 +2789,7 @@
     "placeholders": {
       "version": {}
     }
-  }
+  },
+  "sendCanceled": "تم إلغاء الإرسال",
+  "@sendCanceled": {}
 }
