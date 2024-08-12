@@ -2791,5 +2791,7 @@
     }
   },
   "sendCanceled": "Gönderme iptal edildi",
-  "@sendCanceled": {}
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Burada henüz sohbet bulunamadı. Aşağıdaki düğmeyi kullanarak biriyle yeni bir sohbet başlatın. ⤵️",
+  "@noChatsFoundHere": {}
 }
