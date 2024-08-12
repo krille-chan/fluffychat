@@ -1,14 +1,12 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 extension EventInfoDialogExtension on Event {
   void showInfoDialog(BuildContext context) => showAdaptiveBottomSheet(
@@ -49,15 +47,16 @@ class EventInfoDialog extends StatelessWidget {
         children: [
           ListTile(
             leading: Avatar(
-              mxContent: event.senderFromMemoryOrFallback.avatarUrl,
-              name: event.senderFromMemoryOrFallback.calcDisplayname(),
+              // mxContent: event.senderFromMemoryOrFallback.avatarUrl,
+              // name: event.senderFromMemoryOrFallback.calcDisplayname(),
+              name: "?",
               client: event.room.client,
-              presenceUserId: event.senderId,
+              // presenceUserId: event.senderId,
             ),
             title: Text(L10n.of(context)!.sender),
-            subtitle: Text(
-              '${event.senderFromMemoryOrFallback.calcDisplayname()} [${event.senderId}]',
-            ),
+            // subtitle: Text(
+            //   '${event.senderFromMemoryOrFallback.calcDisplayname()} [${event.senderId}]',
+            // ),
           ),
           ListTile(
             title: Text(L10n.of(context)!.time),

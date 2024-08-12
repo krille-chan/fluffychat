@@ -37,9 +37,10 @@ class SeenByRow extends StatelessWidget {
                     ? seenByUsers.sublist(0, maxAvatars)
                     : seenByUsers)
                 .map(
-              (user) => Avatar(
-                mxContent: user.avatarUrl,
-                name: user.calcDisplayname(),
+              (user) => const Avatar(
+                // mxContent: user.avatarUrl,
+                // name: user.calcDisplayname(),
+                name: "?",
                 size: 16,
               ),
             ),
