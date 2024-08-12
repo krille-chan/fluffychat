@@ -59,8 +59,12 @@ class ToolbarDisplayController {
   }
 
   void showToolbar(BuildContext context, {MessageMode? mode}) {
-    // Close keyboard, if open
-    FocusManager.instance.primaryFocus?.unfocus();
+    // Don't show toolbar if keyboard open
+    if (controller.inputFocus.hasFocus) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      return;
+    }
+
     bool toolbarUp = true;
     if (highlighted) return;
     if (controller.selectMode) {
@@ -86,13 +90,12 @@ class ToolbarDisplayController {
       if (targetOffset.dy < 320) {
         final spaceBeneath = MediaQuery.of(context).size.height -
             (targetOffset.dy + transformTargetSize.height);
-        // If toolbar is open, opening toolbar beneath without scrolling can cause issues
-        // if (spaceBeneath >= 320) {
-        //   toolbarUp = false;
-        // }
+        if (spaceBeneath >= 320) {
+          toolbarUp = false;
+        }
 
         // See if it's possible to scroll up to make space
-        if (controller.scrollController.offset - targetOffset.dy + 320 >=
+        else if (controller.scrollController.offset - targetOffset.dy + 320 >=
                 controller.scrollController.position.minScrollExtent &&
             controller.scrollController.offset - targetOffset.dy + 320 <=
                 controller.scrollController.position.maxScrollExtent) {
