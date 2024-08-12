@@ -1,9 +1,11 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/utils/get_chat_list_item_subtitle.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -238,52 +240,51 @@ class ChatListItem extends StatelessWidget {
                             softWrap: false,
                           )
                         // #Pangea
-                        : const SizedBox(),
-                    // FutureBuilder<String>(
-                    //     future: room.lastEvent != null
-                    //         ? GetChatListItemSubtitle().getSubtitle(
-                    //             L10n.of(context)!,
-                    //             room.lastEvent,
-                    //             MatrixState.pangeaController,
-                    //           )
-                    //         : Future.value(L10n.of(context)!.emptyChat),
-                    //     builder: (context, snapshot) {
-                    //       // Pangea#
-                    //       return Text(
-                    //         room.membership == Membership.invite
-                    //             ? isDirectChat
-                    //                 ? L10n.of(context)!.invitePrivateChat
-                    //                 : L10n.of(context)!.inviteGroupChat
-                    //             // #Pangea
-                    //             : snapshot.data ??
-                    //                 // Pangea#
-                    //                 room.lastEvent
-                    //                     ?.calcLocalizedBodyFallback(
-                    //                   MatrixLocals(L10n.of(context)!),
-                    //                   hideReply: true,
-                    //                   hideEdit: true,
-                    //                   plaintextBody: true,
-                    //                   removeMarkdown: true,
-                    //                   withSenderNamePrefix: !isDirectChat ||
-                    //                       directChatMatrixId !=
-                    //                           room.lastEvent?.senderId,
-                    //                 ) ??
-                    //                 L10n.of(context)!.emptyChat,
-                    //         softWrap: false,
-                    //         maxLines: 1,
-                    //         overflow: TextOverflow.ellipsis,
-                    //         style: TextStyle(
-                    //           fontWeight: unread || room.hasNewMessages
-                    //               ? FontWeight.bold
-                    //               : null,
-                    //           color: theme.colorScheme.onSurfaceVariant,
-                    //           decoration: room.lastEvent?.redacted == true
-                    //               ? TextDecoration.lineThrough
-                    //               : null,
-                    //         ),
-                    //       );
-                    //     },
-                    //   ),
+                        : FutureBuilder<String>(
+                            future: room.lastEvent != null
+                                ? GetChatListItemSubtitle().getSubtitle(
+                                    L10n.of(context)!,
+                                    room.lastEvent,
+                                    MatrixState.pangeaController,
+                                  )
+                                : Future.value(L10n.of(context)!.emptyChat),
+                            builder: (context, snapshot) {
+                              // Pangea#
+                              return Text(
+                                room.membership == Membership.invite
+                                    ? isDirectChat
+                                        ? L10n.of(context)!.invitePrivateChat
+                                        : L10n.of(context)!.inviteGroupChat
+                                    // #Pangea
+                                    : snapshot.data ??
+                                        // Pangea#
+                                        room.lastEvent
+                                            ?.calcLocalizedBodyFallback(
+                                          MatrixLocals(L10n.of(context)!),
+                                          hideReply: true,
+                                          hideEdit: true,
+                                          plaintextBody: true,
+                                          removeMarkdown: true,
+                                          withSenderNamePrefix: !isDirectChat ||
+                                              directChatMatrixId !=
+                                                  room.lastEvent?.senderId,
+                                        ) ??
+                                        L10n.of(context)!.emptyChat,
+                                softWrap: false,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: unread || room.hasNewMessages
+                                      ? FontWeight.bold
+                                      : null,
+                                  color: theme.colorScheme.onSurfaceVariant,
+                                  decoration: room.lastEvent?.redacted == true
+                                      ? TextDecoration.lineThrough
+                                      : null,
+                                ),
+                              );
+                            },
+                          ),
                   ),
                   const SizedBox(width: 8),
                   // #Pangea
