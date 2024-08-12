@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 class ChatSearchMessageTab extends StatelessWidget {
   final String searchQuery;
@@ -98,9 +96,10 @@ class ChatSearchMessageTab extends StatelessWidget {
               }
               final event = events[i];
               final sender = event.senderFromMemoryOrFallback;
-              final displayname = sender.calcDisplayname(
-                i18n: MatrixLocals(L10n.of(context)!),
-              );
+              // final displayname = sender.calcDisplayname(
+              //   i18n: MatrixLocals(L10n.of(context)!),
+              // );
+              const displayname = "?";
               return _MessageSearchResultListTile(
                 sender: sender,
                 displayname: displayname,
