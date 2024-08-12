@@ -21,6 +21,7 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
+import 'package:fluffychat/pangea/pages/games/story_game/round_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/utils/report_message.dart';
@@ -112,9 +113,10 @@ class ChatController extends State<ChatPageWithRoom>
     with WidgetsBindingObserver {
   // #Pangea
   final PangeaController pangeaController = MatrixState.pangeaController;
-
   late Choreographer choreographer = Choreographer(pangeaController, this);
+  final List<GameRoundModel> gameRounds = [];
   // Pangea#
+
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
   late Client sendingClient;
@@ -309,6 +311,7 @@ class ChatController extends State<ChatPageWithRoom>
     sendingClient = Matrix.of(context).client;
     WidgetsBinding.instance.addObserver(this);
     // #Pangea
+    gameRounds.add(GameRoundModel(controller: this));
     if (!mounted) return;
     Future.delayed(const Duration(seconds: 1), () async {
       if (!mounted) return;
@@ -533,6 +536,9 @@ class ChatController extends State<ChatPageWithRoom>
     //#Pangea
     choreographer.stateListener.close();
     choreographer.dispose();
+    for (final round in gameRounds) {
+      round.timer?.cancel();
+    }
     //Pangea#
     super.dispose();
   }
