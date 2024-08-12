@@ -81,7 +81,7 @@ class ToolbarDisplayController {
     // not to open immediately after clicking (user has to scroll or move their cursor)
     // so I'm commenting it out for now
     // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    Widget overlayEntry;
+    Widget? overlayEntry;
     if (toolbar == null) return;
     try {
       overlayEntry = MessageSelectionOverlay(
@@ -338,7 +338,7 @@ class MessageToolbarState extends State<MessageToolbar> {
   Widget build(BuildContext context) {
     final double maxHeight = (MediaQuery.of(context).size.height -
                 (PlatformInfos.isWeb
-                    ? 214
+                    ? 217
                     : PlatformInfos.isIOS
                         ? 262
                         : 198)) /

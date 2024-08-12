@@ -68,7 +68,11 @@ class OverlayUtil {
                             position == OverlayEnum.centered)
                         ? 0
                         : null,
-                left: (position == OverlayEnum.bottom) ? 0 : null,
+                left: (position == OverlayEnum.bottom)
+                    ? 0
+                    : (position == OverlayEnum.centered)
+                        ? 0
+                        : null,
                 bottom: (position == OverlayEnum.bottom ||
                         position == OverlayEnum.centered)
                     ? 0
