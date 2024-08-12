@@ -75,6 +75,14 @@ class RoundTimerState extends State<RoundTimer> {
   }
 
   @override
+  void dispose() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Material(
       color: const Color.fromARGB(255, 126, 22, 14),

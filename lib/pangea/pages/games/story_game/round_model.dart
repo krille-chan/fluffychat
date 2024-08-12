@@ -27,6 +27,7 @@ class GameRoundModel {
     required this.timer,
   }) {
     createdAt = DateTime.now();
+    debugPrint("timeline: ${controller.room.timeline}");
     syncSubscription ??= client.onSync.stream.listen((update) {
       final newMessages = update.messages(controller.room);
       final botMessages = newMessages
@@ -43,6 +44,7 @@ class GameRoundModel {
           startRound();
         } else if (state == RoundState.inProgress) {
           endRound();
+          return;
         }
       }
 
