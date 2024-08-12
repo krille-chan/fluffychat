@@ -39,9 +39,10 @@ class ParticipantListItem extends StatelessWidget {
         ),
         title: Row(
           children: <Widget>[
-            Expanded(
+            const Expanded(
               child: Text(
-                user.calcDisplayname(),
+                // user.calcDisplayname(),
+                "?",
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -88,8 +89,9 @@ class ParticipantListItem extends StatelessWidget {
         subtitle: Text(user.id),
         leading: Avatar(
           mxContent: user.avatarUrl,
-          name: user.calcDisplayname(),
-          presenceUserId: user.stateKey,
+          // name: user.calcDisplayname(),
+          // presenceUserId: user.stateKey,
+          name: "?",
         ),
       ),
     );
