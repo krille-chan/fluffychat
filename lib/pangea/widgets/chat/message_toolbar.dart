@@ -340,7 +340,7 @@ class MessageToolbarState extends State<MessageToolbar> {
                 (PlatformInfos.isWeb
                     ? 214
                     : PlatformInfos.isIOS
-                        ? 256
+                        ? 262
                         : 198)) /
             2 +
         30;

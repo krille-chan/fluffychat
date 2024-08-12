@@ -89,13 +89,13 @@ class MessageSelectionOverlay extends StatelessWidget {
       if (transformTargetSize.height >= stackSize / 2 - 30) {
         center = stackSize / 2 + (showDown ? -30 : 30);
       }
-      // If message is normal size but too close
+      // If message is not too long, but too close
       // to center of screen, scroll closer to edges
-      else if (targetOffset.dy > midpoint - 30 &&
-          targetOffset.dy + transformTargetSize.height < midpoint + 30) {
-        final double scrollUp =
-            midpoint + 30 - (targetOffset.dy + transformTargetSize.height);
-        final double scrollDown = targetOffset.dy - (midpoint - 30);
+      if (targetOffset.dy + transformTargetSize.height > midpoint - 30 &&
+          targetOffset.dy < midpoint + 30) {
+        final double scrollUp = midpoint + 30 - targetOffset.dy;
+        final double scrollDown =
+            targetOffset.dy + transformTargetSize.height - (midpoint - 30);
         final double minScroll =
             controller.scrollController.position.minScrollExtent;
         final double maxScroll =
@@ -110,7 +110,7 @@ class MessageSelectionOverlay extends StatelessWidget {
             curve: FluffyThemes.animationCurve,
           );
           showDown = false;
-          center = stackSize / 2 - 12;
+          center = stackSize / 2 + 27;
         }
 
         // Else if can scroll down, scroll down
@@ -121,11 +121,11 @@ class MessageSelectionOverlay extends StatelessWidget {
             curve: FluffyThemes.animationCurve,
           );
           showDown = true;
-          center = stackSize / 2 + 12;
+          center = stackSize / 2 - 27;
         }
 
         // Neither scrolling works; leave message as-is,
-        // and use default toolbar location
+        // and use centered toolbar location
         else {
           center = stackSize / 2 + (showDown ? -30 : 30);
         }
@@ -142,42 +142,48 @@ class MessageSelectionOverlay extends StatelessWidget {
       showDown: showDown,
     );
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment:
-          ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-      children: [
-        OverlayHeader(
-          controller: controller,
-          closeToolbar: closeToolbar,
-        ),
-        SizedBox(
-          height: PlatformInfos.isAndroid ? 3 : 6,
-        ),
-        Flexible(
-          child: Stack(
-            children: [
-              Positioned(
-                left: left,
-                right: right,
-                bottom: stackSize - center + 3,
-                child: showDown ? overlayMessage : toolbar,
-              ),
-              Positioned(
-                left: left,
-                right: right,
-                top: center + 3,
-                child: showDown ? toolbar : overlayMessage,
-              ),
-            ],
+    return Container(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width -
+            (FluffyThemes.isColumnMode(context) ? 425 : 0),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment:
+            ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          OverlayHeader(
+            controller: controller,
+            closeToolbar: closeToolbar,
           ),
-        ),
-        SizedBox(
-          height: PlatformInfos.isAndroid ? 3 : 6,
-        ),
-        OverlayFooter(controller: controller),
-      ],
+          SizedBox(
+            height: PlatformInfos.isAndroid ? 3 : 6,
+          ),
+          Flexible(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: left,
+                  right: right,
+                  bottom: stackSize - center + 3,
+                  child: showDown ? overlayMessage : toolbar,
+                ),
+                Positioned(
+                  left: left,
+                  right: right,
+                  top: center + 3,
+                  child: showDown ? toolbar : overlayMessage,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: PlatformInfos.isAndroid ? 3 : 6,
+          ),
+          OverlayFooter(controller: controller),
+        ],
+      ),
     );
   }
 }

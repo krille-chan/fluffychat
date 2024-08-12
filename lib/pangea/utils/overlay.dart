@@ -57,22 +57,26 @@ class OverlayUtil {
                     ? FluffyThemes.isColumnMode(context)
                         ? 20
                         : 65
-                    : null,
+                    : (position == OverlayEnum.centered)
+                        ? 0
+                        : null,
                 right: (position == OverlayEnum.topRight)
                     ? FluffyThemes.isColumnMode(context)
                         ? 20
                         : 15
-                    : (position == OverlayEnum.bottom)
+                    : (position == OverlayEnum.bottom ||
+                            position == OverlayEnum.centered)
                         ? 0
                         : null,
                 left: (position == OverlayEnum.bottom) ? 0 : null,
-                bottom: (position == OverlayEnum.bottom) ? 0 : null,
+                bottom: (position == OverlayEnum.bottom ||
+                        position == OverlayEnum.centered)
+                    ? 0
+                    : null,
                 width: width,
                 height: height,
                 child: (position != OverlayEnum.transform)
-                    ? (position == OverlayEnum.centered)
-                        ? Center(child: child)
-                        : child
+                    ? child
                     : CompositedTransformFollower(
                         targetAnchor: targetAnchor ?? Alignment.topLeft,
                         followerAnchor: followerAnchor ?? Alignment.topLeft,
