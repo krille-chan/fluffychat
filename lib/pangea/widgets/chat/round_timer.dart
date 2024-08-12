@@ -27,8 +27,10 @@ class RoundTimerState extends State<RoundTimer> {
     });
   }
 
+  int get remainingTime => widget.timerMaxSeconds - currentSeconds;
+
   String get timerText =>
-      '${((widget.timerMaxSeconds - currentSeconds) ~/ 60).toString().padLeft(2, '0')}: ${((widget.timerMaxSeconds - currentSeconds) % 60).toString().padLeft(2, '0')}';
+      '${(remainingTime ~/ 60).toString().padLeft(2, '0')}: ${(remainingTime % 60).toString().padLeft(2, '0')}';
 
   startTimeout([int milliseconds = 1000]) {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
