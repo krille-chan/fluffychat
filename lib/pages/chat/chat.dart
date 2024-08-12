@@ -296,6 +296,17 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
+  // #Pangea
+  void addRound() {
+    debugPrint("ADDING A ROUND. Rounds so far: ${gameRounds.length}");
+    final newRound = GameRoundModel(controller: this);
+    gameRounds.add(newRound);
+    newRound.roundCompleter.future.then((_) {
+      if (mounted) addRound();
+    });
+  }
+  // Pangea#
+
   @override
   void initState() {
     scrollController.addListener(_updateScrollController);
@@ -311,7 +322,7 @@ class ChatController extends State<ChatPageWithRoom>
     sendingClient = Matrix.of(context).client;
     WidgetsBinding.instance.addObserver(this);
     // #Pangea
-    gameRounds.add(GameRoundModel(controller: this));
+    addRound();
     if (!mounted) return;
     Future.delayed(const Duration(seconds: 1), () async {
       if (!mounted) return;

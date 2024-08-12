@@ -8,9 +8,10 @@ import 'package:matrix/matrix.dart';
 enum RoundState { notStarted, inProgress, completed }
 
 class GameRoundModel {
-  static const Duration roundLength = Duration(minutes: 3);
+  static const Duration roundLength = Duration(seconds: 10);
 
   final ChatController controller;
+  final Completer<void> roundCompleter = Completer<void>();
   Timer? timer;
   DateTime? startTime;
   DateTime? endTime;
@@ -41,6 +42,7 @@ class GameRoundModel {
     endTime = DateTime.now();
     state = RoundState.completed;
     timer?.cancel();
+    roundCompleter.complete();
   }
 
   void dispose() {}
