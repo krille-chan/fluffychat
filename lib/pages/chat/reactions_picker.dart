@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:emoji_proposal/emoji_proposal.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -33,14 +32,7 @@ class ReactionsPicker extends StatelessWidget {
             if (!display) {
               return const SizedBox.shrink();
             }
-            final proposals = proposeEmojis(
-              controller.selectedEvents.first.plaintextBody,
-              number: 25,
-              languageCodes: EmojiProposalLanguageCodes.values.toSet(),
-            );
-            final emojis = proposals.isNotEmpty
-                ? proposals.map((e) => e.char).toList()
-                : List<String>.from(AppEmojis.emojis);
+            final emojis = List<String>.from(AppEmojis.emojis);
             final allReactionEvents = controller.selectedEvents.first
                 .aggregatedEvents(
                   controller.timeline!,

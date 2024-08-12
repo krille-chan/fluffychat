@@ -337,14 +337,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
-  emoji_proposal:
-    dependency: "direct main"
-    description:
-      name: emoji_proposal
-      sha256: e931bc42b54a65397b3df7915bb58ee7dcbd3ed81c3b8c256b9a5b210e94ea63
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.1"
   emojis:
     dependency: "direct main"
     description:
@@ -1670,14 +1662,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3"
-  remove_emoji:
-    dependency: transitive
-    description:
-      name: remove_emoji
-      sha256: ed9e8463e8c9ca05b86fcddd4c0dbd2c2605a50d267f4ffa05496607924809e3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.10"
   retry:
     dependency: transitive
     description:
@@ -1718,14 +1702,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.2"
-  sentiment_dart:
-    dependency: transitive
-    description:
-      name: sentiment_dart
-      sha256: ddac8742cf5141f531eb1510b074ce715b9958cb02a763a4cc0a918768e4a0c8
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.5"
   share_plus:
     dependency: "direct main"
     description:
