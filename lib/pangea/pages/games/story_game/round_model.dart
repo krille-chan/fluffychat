@@ -67,13 +67,14 @@ class GameRoundModel {
     controller.roundTimerStateKey.currentState?.resetTimer(
       roundLength: timerMaxSeconds,
     );
+    controller.roundTimerStateKey.currentState?.startTimer();
   }
 
   void endRound() {
     debugPrint("ending round, message IDs: $messageIDs");
     endTime = DateTime.now();
     state = RoundState.completed;
-    controller.roundTimerStateKey.currentState?.stopTimeout();
+    controller.roundTimerStateKey.currentState?.resetTimer();
     syncSubscription?.cancel();
     roundCompleter.complete();
   }

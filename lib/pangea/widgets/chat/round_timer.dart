@@ -8,7 +8,7 @@ class RoundTimer extends StatefulWidget {
   final int timerMaxSeconds;
   final Duration roundDuration;
 
-  RoundTimer({
+  const RoundTimer({
     super.key,
     this.timerMaxSeconds = 180,
     this.roundDuration = const Duration(seconds: 1),
@@ -28,6 +28,7 @@ class RoundTimerState extends State<RoundTimer> {
   void resetTimer({Duration? roundDuration, int? roundLength}) {
     if (_timer != null) {
       _timer!.cancel();
+      isTiming = false;
     }
     if (roundDuration != null) {
       duration = roundDuration;
@@ -35,8 +36,9 @@ class RoundTimerState extends State<RoundTimer> {
     if (roundLength != null) {
       timerMaxSeconds = roundLength;
     }
-    currentSeconds = 0;
-    startTimeout();
+    setState(() {
+      currentSeconds = 0;
+    });
   }
 
   int get remainingTime => timerMaxSeconds - currentSeconds;
@@ -44,7 +46,7 @@ class RoundTimerState extends State<RoundTimer> {
   String get timerText =>
       '${(remainingTime ~/ 60).toString().padLeft(2, '0')}: ${(remainingTime % 60).toString().padLeft(2, '0')}';
 
-  startTimeout() {
+  startTimer() {
     _timer = Timer.periodic(duration ?? widget.roundDuration, (timer) {
       setState(() {
         currentSeconds++;
@@ -56,7 +58,7 @@ class RoundTimerState extends State<RoundTimer> {
     });
   }
 
-  stopTimeout() {
+  stopTimer() {
     if (_timer != null) {
       _timer!.cancel();
     }
@@ -69,7 +71,6 @@ class RoundTimerState extends State<RoundTimer> {
   void initState() {
     duration = widget.roundDuration;
     timerMaxSeconds = widget.timerMaxSeconds;
-    startTimeout();
     super.initState();
   }
 
