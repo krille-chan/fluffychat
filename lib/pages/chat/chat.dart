@@ -115,10 +115,17 @@ class ChatController extends State<ChatPageWithRoom>
   // #Pangea
   final PangeaController pangeaController = MatrixState.pangeaController;
   late Choreographer choreographer = Choreographer(pangeaController, this);
-  final List<GameRoundModel> gameRounds = [];
   final GlobalKey<RoundTimerState> roundTimerStateKey =
       GlobalKey<RoundTimerState>();
   RoundTimer? timer;
+
+  final List<GameRoundModel> gameRounds = [];
+
+  List<String> get completedRoundEventIds => gameRounds
+      .where((round) => round.isCompleted)
+      .map((round) => round.messageIDs)
+      .expand((x) => x)
+      .toList();
   // Pangea#
 
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
@@ -414,7 +421,8 @@ class ChatController extends State<ChatPageWithRoom>
   List<Event> get visibleEvents =>
       timeline?.events
           .where(
-            (x) => x.isVisibleInGui,
+            (x) =>
+                x.isVisibleInGui && !completedRoundEventIds.contains(x.eventId),
           )
           .toList() ??
       <Event>[];
@@ -552,7 +560,6 @@ class ChatController extends State<ChatPageWithRoom>
     //#Pangea
     choreographer.stateListener.close();
     choreographer.dispose();
-    roundTimerStateKey.currentState?.stopTimeout();
     //Pangea#
     super.dispose();
   }

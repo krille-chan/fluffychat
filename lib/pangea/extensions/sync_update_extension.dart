@@ -1,26 +1,18 @@
-import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:matrix/matrix.dart';
 
 extension MembershipUpdate on SyncUpdate {
-  List<String> botMessages(String roomID) {
+  List<Event> messages(Room chat) {
     if (rooms?.join == null ||
-        !rooms!.join!.containsKey(roomID) ||
-        rooms!.join![roomID]!.timeline?.events == null) {
+        !rooms!.join!.containsKey(chat.id) ||
+        rooms!.join![chat.id]!.timeline?.events == null) {
       return [];
     }
 
-    final messageEvents = rooms!.join![roomID]!.timeline!.events!
+    return rooms!.join![chat.id]!.timeline!.events!
         .where(
           (event) => event.type == EventTypes.Message,
         )
-        .toList();
-    if (messageEvents.isEmpty) {
-      return [];
-    }
-
-    return messageEvents
-        .where((event) => event.senderId == BotName.byEnvironment)
-        .map((event) => event.eventId)
+        .map((event) => Event.fromMatrixEvent(event, chat))
         .toList();
   }
 }
