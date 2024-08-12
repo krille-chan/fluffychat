@@ -2789,5 +2789,7 @@
   "joinedChats": "Приєднані чати",
   "@joinedChats": {},
   "unread": "Непрочитані",
-  "@unread": {}
+  "@unread": {},
+  "sendCanceled": "Надсилання скасовано",
+  "@sendCanceled": {}
 }
