@@ -2,17 +2,18 @@ import 'dart:async';
 
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/extensions/sync_update_extension.dart';
+import 'package:fluffychat/pangea/widgets/chat/round_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 enum RoundState { notStarted, inProgress, completed }
 
 class GameRoundModel {
-  static const Duration roundLength = Duration(seconds: 10);
+  static const int timerMaxSeconds = 180;
 
   final ChatController controller;
   final Completer<void> roundCompleter = Completer<void>();
-  Timer? timer;
+  RoundTimer timer;
   DateTime? startTime;
   DateTime? endTime;
   RoundState state = RoundState.notStarted;
@@ -21,6 +22,7 @@ class GameRoundModel {
 
   GameRoundModel({
     required this.controller,
+    required this.timer,
   }) {
     client.onSync.stream.firstWhere((update) {
       final botEventIDs = update.botMessages(controller.roomId);
@@ -34,14 +36,16 @@ class GameRoundModel {
     debugPrint("starting round");
     state = RoundState.inProgress;
     startTime = DateTime.now();
-    timer = Timer(roundLength, () => endRound());
+    controller.roundTimerStateKey.currentState?.resetTimer(
+      roundLength: timerMaxSeconds,
+    );
   }
 
   void endRound() {
     debugPrint("ending round");
     endTime = DateTime.now();
     state = RoundState.completed;
-    timer?.cancel();
+    controller.roundTimerStateKey.currentState?.stopTimeout();
     roundCompleter.complete();
   }
 

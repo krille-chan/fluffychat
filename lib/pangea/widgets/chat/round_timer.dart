@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 /// Default duration is 180 seconds
 class RoundTimer extends StatefulWidget {
   final int timerMaxSeconds;
+  final Duration roundDuration;
 
-  const RoundTimer({
+  RoundTimer({
     super.key,
     this.timerMaxSeconds = 180,
+    this.roundDuration = const Duration(seconds: 1),
   });
 
   @override
@@ -20,23 +22,33 @@ class RoundTimerState extends State<RoundTimer> {
   int currentSeconds = 0;
   Timer? _timer;
   bool isTiming = false;
+  Duration? duration;
+  int timerMaxSeconds = 180;
 
-  void resetTimer() {
-    setState(() {
-      currentSeconds = 0;
-    });
+  void resetTimer({Duration? roundDuration, int? roundLength}) {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    if (roundDuration != null) {
+      duration = roundDuration;
+    }
+    if (roundLength != null) {
+      timerMaxSeconds = roundLength;
+    }
+    currentSeconds = 0;
+    startTimeout();
   }
 
-  int get remainingTime => widget.timerMaxSeconds - currentSeconds;
+  int get remainingTime => timerMaxSeconds - currentSeconds;
 
   String get timerText =>
       '${(remainingTime ~/ 60).toString().padLeft(2, '0')}: ${(remainingTime % 60).toString().padLeft(2, '0')}';
 
-  startTimeout([int milliseconds = 1000]) {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+  startTimeout() {
+    _timer = Timer.periodic(duration ?? widget.roundDuration, (timer) {
       setState(() {
         currentSeconds++;
-        if (currentSeconds >= widget.timerMaxSeconds) timer.cancel();
+        if (currentSeconds >= timerMaxSeconds) timer.cancel();
       });
     });
     setState(() {
@@ -55,6 +67,8 @@ class RoundTimerState extends State<RoundTimer> {
 
   @override
   void initState() {
+    duration = widget.roundDuration;
+    timerMaxSeconds = widget.timerMaxSeconds;
     startTimeout();
     super.initState();
   }

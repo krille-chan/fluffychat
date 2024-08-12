@@ -120,7 +120,7 @@ class ChatView extends StatelessWidget {
       // #Pangea
     } else {
       return [
-        const RoundTimer(),
+        controller.timer ?? const SizedBox(),
         const SizedBox(
           width: 10,
         ),
