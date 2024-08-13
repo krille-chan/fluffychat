@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
@@ -20,17 +19,21 @@ extension RoomStatusExtension on Room {
     } else if (typingUsers.length == 1) {
       typingText = L10n.of(context)!.isTyping;
       if (typingUsers.first.id != directChatMatrixID) {
-        typingText =
-            L10n.of(context)!.userIsTyping(typingUsers.first.calcDisplayname());
+        typingText = L10n.of(context)!.userIsTyping(
+          // typingUsers.first.calcDisplayname(),
+          "?",
+        );
       }
     } else if (typingUsers.length == 2) {
       typingText = L10n.of(context)!.userAndUserAreTyping(
-        typingUsers.first.calcDisplayname(),
-        typingUsers[1].calcDisplayname(),
+        // typingUsers.first.calcDisplayname(),
+        // typingUsers[1].calcDisplayname(),
+        "?", "?",
       );
     } else if (typingUsers.length > 2) {
       typingText = L10n.of(context)!.userAndOthersAreTyping(
-        typingUsers.first.calcDisplayname(),
+        // typingUsers.first.calcDisplayname(),
+        "?",
         (typingUsers.length - 1).toString(),
       );
     }

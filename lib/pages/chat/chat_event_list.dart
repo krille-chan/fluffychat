@@ -27,7 +27,15 @@ class ChatEventList extends StatelessWidget {
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
     final events = controller.timeline!.events
-        .where((event) => event.isVisibleInGui)
+        .where(
+          (event) =>
+              event.isVisibleInGui
+              // #Pangea
+              &&
+              !controller.completedRoundEventIds.contains(event.eventId)
+          // Pangea#
+          ,
+        )
         .toList();
     final animateInEventIndex = controller.animateInEventIndex;
 

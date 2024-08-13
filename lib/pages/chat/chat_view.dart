@@ -118,6 +118,10 @@ class ChatView extends StatelessWidget {
       // #Pangea
     } else {
       return [
+        controller.timer ?? const SizedBox(),
+        const SizedBox(
+          width: 10,
+        ),
         ChatSettingsPopupMenu(
           controller.room,
           (!controller.room.isDirectChat && !controller.room.isArchived),
