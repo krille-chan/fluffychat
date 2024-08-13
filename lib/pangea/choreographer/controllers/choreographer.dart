@@ -19,6 +19,7 @@ import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/widgets/igc/paywall_card.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
@@ -71,38 +72,47 @@ class Choreographer {
 
   List<PreviousMessage> prevMessages() {
     const int howFarBack = 5;
-    final List<Event> events = chatController.timeline?.events
+    final List<Event> eventList = chatController.timeline?.events
             .where(
               (e) =>
-                  e.messageType == MessageTypes.Text ||
-                  e.messageType == MessageTypes.Audio,
+                  e.isVisibleInGui &&
+                  (e.messageType == MessageTypes.Text ||
+                      e.messageType == MessageTypes.Audio) &&
+                  e.status.isSent &&
+                  e.type.equals('m.room.message'),
             )
             .toList() ??
         [];
-    // Sort from most recent to least
-    events.sort(
-      (a, b) => b.originServerTs.compareTo(a.originServerTs),
-    );
     final List<PreviousMessage> messages = [];
-    for (final Event event in events) {
-      final Map<String, Object?>? content =
-          (event.messageType == MessageTypes.Text)
-              ? event.content
-              : (event as PangeaMessageEvent)
-                  .getSpeechToTextLocalOnly(l1LangCode, l2LangCode)
-                  ?.toJson();
-      if (content != null) {
-        messages.add(
-          PreviousMessage(
-            content: event.content,
-            sender: event.senderId,
-            timestamp: event.originServerTs,
-          ),
-        );
-        if (messages.length >= howFarBack) {
-          return messages;
+    try {
+      for (final Event event in eventList) {
+        final String? content = (event.messageType == MessageTypes.Text)
+            ? event.content.toString()
+            : PangeaMessageEvent(
+                event: event,
+                // eventList will be empty if the timeline is null
+                timeline: chatController.timeline!,
+                ownMessage: event.senderId ==
+                    pangeaController.matrixState.client.userID,
+              )
+                .getSpeechToTextLocalOnly(l1LangCode, l2LangCode)
+                ?.transcript
+                .text;
+        if (content != null) {
+          messages.add(
+            PreviousMessage(
+              content: content,
+              sender: event.senderId,
+              timestamp: event.originServerTs,
+            ),
+          );
+          if (messages.length >= howFarBack) {
+            return messages;
+          }
         }
       }
+    } catch (err, stack) {
+      ErrorHandler.logError(e: err, s: stack);
     }
     return messages;
   }

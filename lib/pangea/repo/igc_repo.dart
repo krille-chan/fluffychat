@@ -98,7 +98,7 @@ class IgcRepo {
 /// Previous text/audio message sent in chat
 /// Contain message content, sender, and timestamp
 class PreviousMessage {
-  Map<String, Object?> content;
+  String content;
   String sender;
   DateTime timestamp;
 
@@ -110,7 +110,7 @@ class PreviousMessage {
 
   factory PreviousMessage.fromJson(Map<String, dynamic> json) =>
       PreviousMessage(
-        content: jsonDecode(json[ModelKey.prevContent]) ?? <String, Object?>{},
+        content: json[ModelKey.prevContent] ?? "",
         sender: json[ModelKey.prevSender] ?? "",
         timestamp: json[ModelKey.prevTimestamp] == null
             ? DateTime.now()
@@ -118,7 +118,7 @@ class PreviousMessage {
       );
 
   Map<String, dynamic> toJson() => {
-        ModelKey.prevContent: jsonEncode(content),
+        ModelKey.prevContent: content,
         ModelKey.prevSender: sender,
         ModelKey.prevTimestamp: timestamp.toIso8601String(),
       };
