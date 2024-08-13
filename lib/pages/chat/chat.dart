@@ -123,7 +123,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   List<String> get completedRoundEventIds => gameRounds
       .where((round) => round.isCompleted)
-      .map((round) => round.messageIDs)
+      .map((round) => round.userMessageIDs)
       .expand((x) => x)
       .toList();
   // Pangea#
