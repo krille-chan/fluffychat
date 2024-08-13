@@ -136,6 +136,8 @@ class MessageSelectionOverlay extends StatelessWidget {
         }
       }
     } catch (err) {
+      controller.showEmojiPicker = false;
+      controller.selectedEvents.clear();
       MatrixState.pAnyState.closeAllOverlays();
       ErrorHandler.logError(e: err, s: StackTrace.current);
       // throw L10n.of(context)!.toolbarError;
