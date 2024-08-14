@@ -10,6 +10,16 @@ env:
   WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
   
 jobs:
+  switch-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout main branch
+      uses: actions/checkout@v3
+
+    - name: Checkout different branch
+      run: git checkout development
+
   build_web:
     runs-on: ubuntu-latest
     environment: staging
