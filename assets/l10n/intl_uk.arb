@@ -2791,5 +2791,7 @@
   "unread": "Непрочитані",
   "@unread": {},
   "sendCanceled": "Надсилання скасовано",
-  "@sendCanceled": {}
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Бесід ще немає. Розпочніть спілкування натиснувши кнопку нижче. ⤵️",
+  "@noChatsFoundHere": {}
 }
