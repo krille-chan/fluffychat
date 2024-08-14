@@ -16,10 +16,12 @@ import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
+import 'package:fluffychat/pangea/models/game_state_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/pages/games/story_game/round_model.dart';
@@ -28,7 +30,6 @@ import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/utils/report_message.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
-import 'package:fluffychat/pangea/widgets/chat/round_timer.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
@@ -117,17 +118,9 @@ class ChatController extends State<ChatPageWithRoom>
   // #Pangea
   final PangeaController pangeaController = MatrixState.pangeaController;
   late Choreographer choreographer = Choreographer(pangeaController, this);
-  final GlobalKey<RoundTimerState> roundTimerStateKey =
-      GlobalKey<RoundTimerState>();
-  RoundTimer? timer;
 
-  final List<GameRoundModel> gameRounds = [];
-
-  List<String> get completedRoundEventIds => gameRounds
-      .where((round) => round.isCompleted)
-      .map((round) => round.userMessageIDs)
-      .expand((x) => x)
-      .toList();
+  /// Model of the current story game round
+  GameRoundModel? currentRound;
   // Pangea#
 
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
@@ -310,12 +303,22 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   // #Pangea
-  void addRound() {
-    debugPrint("ADDING A ROUND. Rounds so far: ${gameRounds.length}");
-    final newRound = GameRoundModel(controller: this, timer: timer!);
-    gameRounds.add(newRound);
-    newRound.roundCompleter.future.then((_) {
-      if (mounted) addRound();
+  /// Recursive function that sets the current round, waits for it to
+  /// finish, sets it, etc. until the chat view is no longer mounted.
+  void setRound() {
+    currentRound?.dispose();
+    currentRound = GameRoundModel(room: room);
+    room.client.onRoomState.stream.firstWhere((update) {
+      if (update.roomId != roomId) return false;
+      if (update.state is! Event) return false;
+      if ((update.state as Event).type != PangeaEventTypes.storyGame) {
+        return false;
+      }
+
+      final game = GameModel.fromJson((update.state as Event).content);
+      return game.previousRoundEndTime != null;
+    }).then((_) {
+      if (mounted) setRound();
     });
   }
   // Pangea#
@@ -335,8 +338,7 @@ class ChatController extends State<ChatPageWithRoom>
     sendingClient = Matrix.of(context).client;
     WidgetsBinding.instance.addObserver(this);
     // #Pangea
-    timer = RoundTimer(key: roundTimerStateKey);
-    addRound();
+    setRound();
     if (!mounted) return;
     Future.delayed(const Duration(seconds: 1), () async {
       if (!mounted) return;
@@ -423,8 +425,7 @@ class ChatController extends State<ChatPageWithRoom>
   List<Event> get visibleEvents =>
       timeline?.events
           .where(
-            (x) =>
-                x.isVisibleInGui && !completedRoundEventIds.contains(x.eventId),
+            (x) => x.isVisibleInGui,
           )
           .toList() ??
       <Event>[];
@@ -562,6 +563,7 @@ class ChatController extends State<ChatPageWithRoom>
     //#Pangea
     choreographer.stateListener.close();
     choreographer.dispose();
+    currentRound?.dispose();
     //Pangea#
     super.dispose();
   }

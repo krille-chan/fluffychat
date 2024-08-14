@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/widgets/chat/chat_floating_action_button.dart';
+import 'package:fluffychat/pangea/widgets/chat/round_timer.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
@@ -118,7 +119,7 @@ class ChatView extends StatelessWidget {
       // #Pangea
     } else {
       return [
-        controller.timer ?? const SizedBox(),
+        RoundTimer(controller: controller),
         const SizedBox(
           width: 10,
         ),

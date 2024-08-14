@@ -1,62 +1,84 @@
 import 'dart:async';
 
-import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pangea/constants/game_constants.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/sync_update_extension.dart';
+import 'package:fluffychat/pangea/models/game_state_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
-import 'package:fluffychat/pangea/widgets/chat/round_timer.dart';
-import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
-enum RoundState { notStarted, inProgress, completed }
-
+/// A model of a game round. Manages the round's state and duration.
 class GameRoundModel {
-  static const int timerMaxSeconds = 180;
-  final String adminName = BotName.byEnvironment;
+  final Duration roundDuration = const Duration(
+    seconds: GameConstants.timerMaxSeconds,
+  );
 
-  final ChatController controller;
-  final Completer<void> roundCompleter = Completer<void>();
+  final Room room;
+
+  // All the below state variables are used for sending and managing
+  // round start and end times. Once the bot starts doing that, they should be removed.
   late DateTime createdAt;
-  RoundTimer timer;
-  DateTime? startTime;
-  DateTime? endTime;
-  RoundState state = RoundState.notStarted;
+  Timer? timer;
   StreamSubscription? syncSubscription;
   final List<String> userMessageIDs = [];
   final List<String> botMessageIDs = [];
 
   GameRoundModel({
-    required this.controller,
-    required this.timer,
+    required this.room,
   }) {
     createdAt = DateTime.now();
-    syncSubscription ??= client.onSync.stream.listen(_handleSync);
+
+    // if, on creation, the current round is already ongoing,
+    // start the timer (or reset it if the round went over)
+    if (currentRoundStart != null) {
+      final currentRoundDuration = DateTime.now().difference(
+        currentRoundStart!,
+      );
+      final roundFinished = currentRoundDuration > roundDuration;
+
+      if (roundFinished) {
+        endRound();
+      }
+    }
+
+    // listen to syncs for new bot messages to start and stop rounds
+    syncSubscription ??= room.client.onSync.stream.listen(_handleSync);
   }
+
+  GameModel get gameState => GameModel.fromJson(
+        room.getState(PangeaEventTypes.storyGame)?.content ?? {},
+      );
+
+  DateTime? get currentRoundStart => gameState.currentRoundStartTime;
+  DateTime? get previousRoundEnd => gameState.previousRoundEndTime;
 
   void _handleSync(SyncUpdate update) {
     final newMessages = update
-        .messages(controller.room)
+        .messages(room)
         .where((msg) => msg.originServerTs.isAfter(createdAt))
         .toList();
 
-    final botMessages =
-        newMessages.where((msg) => msg.senderId == adminName).toList();
-    final userMessages =
-        newMessages.where((msg) => msg.senderId != adminName).toList();
+    final botMessages = newMessages
+        .where((msg) => msg.senderId == BotName.byEnvironment)
+        .toList();
+    final userMessages = newMessages
+        .where((msg) => msg.senderId != BotName.byEnvironment)
+        .toList();
 
     final hasNewBotMessage = botMessages.any(
       (msg) => !botMessageIDs.contains(msg.eventId),
     );
 
     if (hasNewBotMessage) {
-      if (state == RoundState.notStarted) {
+      if (currentRoundStart == null) {
         startRound();
-      } else if (state == RoundState.inProgress) {
+      } else {
         endRound();
         return;
       }
     }
 
-    if (state == RoundState.inProgress) {
+    if (currentRoundStart != null) {
       for (final message in botMessages) {
         if (!botMessageIDs.contains(message.eventId)) {
           botMessageIDs.add(message.eventId);
@@ -71,32 +93,53 @@ class GameRoundModel {
     }
   }
 
-  Client get client => controller.pangeaController.matrixState.client;
-
-  bool get isCompleted => roundCompleter.isCompleted;
-
-  void startRound() {
-    debugPrint("starting round");
-    state = RoundState.inProgress;
-    startTime = DateTime.now();
-    controller.roundTimerStateKey.currentState?.resetTimer(
-      roundLength: timerMaxSeconds,
+  /// Set the start and end times of the current and previous rounds.
+  Future<void> setRoundTimes({
+    DateTime? currentRoundStart,
+    DateTime? previousRoundEnd,
+  }) async {
+    final game = GameModel.fromJson(
+      room.getState(PangeaEventTypes.storyGame)?.content ?? {},
     );
-    controller.roundTimerStateKey.currentState?.startTimer();
+
+    game.currentRoundStartTime = currentRoundStart;
+    game.previousRoundEndTime = previousRoundEnd;
+
+    await room.client.setRoomStateWithKey(
+      room.id,
+      PangeaEventTypes.storyGame,
+      '',
+      game.toJson(),
+    );
   }
 
+  /// Start a new round.
+  void startRound() {
+    setRoundTimes(
+      currentRoundStart: DateTime.now(),
+      previousRoundEnd: null,
+    ).then((_) => timer = Timer(roundDuration, endRound));
+  }
+
+  /// End and cleanup after the current round.
   void endRound() {
-    debugPrint(
-      "ending round, user message IDs: $userMessageIDs, bot message IDs: $botMessageIDs",
-    );
-    endTime = DateTime.now();
-    state = RoundState.completed;
-    controller.roundTimerStateKey.currentState?.resetTimer();
     syncSubscription?.cancel();
-    roundCompleter.complete();
+    syncSubscription = null;
+
+    timer?.cancel();
+    timer = null;
+
+    setRoundTimes(
+      currentRoundStart: null,
+      previousRoundEnd: DateTime.now(),
+    );
   }
 
   void dispose() {
     syncSubscription?.cancel();
+    syncSubscription = null;
+
+    timer?.cancel();
+    timer = null;
   }
 }
