@@ -101,29 +101,29 @@ class OverlayMessage extends StatelessWidget {
       ownMessage: ownMessage,
     );
 
-    return SingleChildScrollView(
-      child: Material(
-        color: noBubble ? Colors.transparent : color,
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: borderRadius,
+    return Material(
+      color: noBubble ? Colors.transparent : color,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: borderRadius,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            AppConfig.borderRadius,
+          ),
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              AppConfig.borderRadius,
-            ),
-          ),
-          padding: noBubble || noPadding
-              ? EdgeInsets.zero
-              : const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-          constraints: BoxConstraints(
-            maxWidth: width ?? FluffyThemes.columnWidth * 1.25,
-            maxHeight: maxHeight,
-          ),
+        padding: noBubble || noPadding
+            ? EdgeInsets.zero
+            : const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
+              ),
+        constraints: BoxConstraints(
+          maxWidth: width ?? FluffyThemes.columnWidth * 1.25,
+          maxHeight: maxHeight,
+        ),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
