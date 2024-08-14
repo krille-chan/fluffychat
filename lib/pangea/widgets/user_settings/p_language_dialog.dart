@@ -91,20 +91,28 @@ Future<void> pLanguageDialog(
                             context: context,
                             future: () async {
                               try {
-                                pangeaController.userController.updateProfile(
-                                  (profile) {
-                                    profile.userSettings.sourceLanguage =
-                                        selectedSourceLanguage.langCode;
-                                    profile.userSettings.targetLanguage =
-                                        selectedTargetLanguage.langCode;
-                                    return profile;
-                                  },
-                                  waitForDataInSync: true,
-                                ).then((_) {
+                                pangeaController.myAnalytics
+                                    .updateAnalytics()
+                                    .then((_) {
+                                  pangeaController.userController.updateProfile(
+                                    (profile) {
+                                      profile.userSettings.sourceLanguage =
+                                          selectedSourceLanguage.langCode;
+                                      profile.userSettings.targetLanguage =
+                                          selectedTargetLanguage.langCode;
+                                      return profile;
+                                    },
+                                    waitForDataInSync: true,
+                                  );
+                                }).then((_) {
                                   // if the profile update is successful, reset cached analytics
                                   // data, since analytics data corresponds to the user's L2
-                                  pangeaController.myAnalytics.clearCache();
-                                  pangeaController.analytics.clearCache();
+                                  pangeaController.myAnalytics.dispose();
+                                  pangeaController.analytics.dispose();
+
+                                  pangeaController.myAnalytics.initialize();
+                                  pangeaController.analytics.initialize();
+
                                   Navigator.pop(context);
                                 });
                               } catch (err, s) {

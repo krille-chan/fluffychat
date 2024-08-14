@@ -1,33 +1,122 @@
 import 'dart:async';
 
+import 'package:fluffychat/pangea/constants/analytics_constants.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/match_rule_ids.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
+import 'package:matrix/src/utils/cached_stream_controller.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// A minimized version of AnalyticsController that get the logged in user's analytics
 class GetAnalyticsController {
   late PangeaController _pangeaController;
   final List<AnalyticsCacheEntry> _cache = [];
+  StreamSubscription<AnalyticsUpdateType>? _analyticsUpdateSubscription;
+  CachedStreamController<List<OneConstructUse>> analyticsStream =
+      CachedStreamController<List<OneConstructUse>>();
+
+  /// The previous XP points of the user, before the last update.
+  /// Used for animating analytics updates.
+  int? prevXP;
 
   GetAnalyticsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
   }
 
   String? get l2Code => _pangeaController.languageController.userL2?.langCode;
-
   Client get client => _pangeaController.matrixState.client;
 
-  /// A local cache of eventIds and construct uses for messages sent since the last update
+  int get currentXP => calcXP(allConstructUses);
+  int get localXP => calcXP(locallyCachedConstructs);
+  int get serverXP => currentXP - localXP;
+
+  /// Get the current level based on the number of xp points
+  int get level => currentXP ~/ AnalyticsConstants.xpPerLevel;
+
+  void initialize() {
+    _analyticsUpdateSubscription ??= _pangeaController
+        .myAnalytics.analyticsUpdateStream.stream
+        .listen(onAnalyticsUpdate);
+
+    _pangeaController.myAnalytics.lastUpdatedCompleter.future.then((_) {
+      getConstructs().then((_) => updateAnalyticsStream());
+    });
+  }
+
+  /// Clear all cached analytics data.
+  void dispose() {
+    _analyticsUpdateSubscription?.cancel();
+    _analyticsUpdateSubscription = null;
+    _cache.clear();
+  }
+
+  Future<void> onAnalyticsUpdate(AnalyticsUpdateType type) async {
+    if (type == AnalyticsUpdateType.server) {
+      await getConstructs(forceUpdate: true);
+    }
+    updateAnalyticsStream();
+  }
+
+  void updateAnalyticsStream() {
+    // if there are no construct uses, or if the last update in this
+    //  stream has the same length as this update, don't update the stream
+    if (allConstructUses.isEmpty ||
+        allConstructUses.length == analyticsStream.value?.length) {
+      return;
+    }
+
+    // set the previous XP to the currentXP
+    if (analyticsStream.value != null) {
+      prevXP = calcXP(analyticsStream.value!);
+    }
+
+    // finally, add to the stream
+    analyticsStream.add(allConstructUses);
+  }
+
+  /// Calculates the user's xpPoints for their current L2,
+  /// based on matrix analytics event and locally cached data.
+  /// Has to be async because cached matrix events may be out of date,
+  /// and updating those is async.
+  int calcXP(List<OneConstructUse> constructs) {
+    final words = ConstructListModel(
+      uses: constructs,
+      type: ConstructTypeEnum.vocab,
+    );
+    final errors = ConstructListModel(
+      uses: constructs,
+      type: ConstructTypeEnum.grammar,
+    );
+    return words.points + errors.points;
+  }
+
+  List<OneConstructUse> get allConstructUses {
+    final List<OneConstructUse> storedUses = getConstructsLocal() ?? [];
+    final List<OneConstructUse> localUses = locallyCachedConstructs;
+
+    final List<OneConstructUse> allConstructs = [
+      ...storedUses,
+      ...localUses,
+    ];
+
+    return allConstructs;
+  }
+
+  /// A local cache of eventIds and construct uses for messages sent since the last update.
+  /// It's a map of eventIDs to a list of OneConstructUses. Not just a list of OneConstructUses
+  /// because, with practice activity constructs, we might need to add to the list for a given
+  /// eventID.
   Map<String, List<OneConstructUse>> get messagesSinceUpdate {
     try {
       final dynamic locallySaved = _pangeaController.pStoreService.read(
@@ -61,29 +150,34 @@ class GetAnalyticsController {
     }
   }
 
+  /// A flat list of all locally cached construct uses
+  List<OneConstructUse> get locallyCachedConstructs =>
+      messagesSinceUpdate.values.expand((e) => e).toList();
+
+  /// A flat list of all locally cached construct uses that are not drafts
+  List<OneConstructUse> get locallyCachedSentConstructs =>
+      messagesSinceUpdate.entries
+          .where((entry) => !entry.key.startsWith('draft'))
+          .expand((e) => e.value)
+          .toList();
+
   /// Get a list of all constructs used by the logged in user in their current L2
   Future<List<OneConstructUse>> getConstructs({
     bool forceUpdate = false,
     ConstructTypeEnum? constructType,
   }) async {
-    debugPrint("getting constructs");
+    // if the user isn't logged in, return an empty list
+    if (client.userID == null) return [];
     await client.roomsLoading;
 
     // don't try to get constructs until last updated time has been loaded
     await _pangeaController.myAnalytics.lastUpdatedCompleter.future;
 
     // if forcing a refreshing, clear the cache
-    if (forceUpdate) clearCache();
-
-    // get the last time the user updated their analytics for their current l2
-    // then try to get local cache of construct uses. lastUpdate time is used to
-    // determine if cached data is still valid.
-    final DateTime? lastUpdated = _pangeaController.myAnalytics.lastUpdated ??
-        await myAnalyticsLastUpdated();
+    if (forceUpdate) _cache.clear();
 
     final List<OneConstructUse>? local = getConstructsLocal(
       constructType: constructType,
-      lastUpdated: lastUpdated,
     );
 
     if (local != null) {
@@ -160,7 +254,6 @@ class GetAnalyticsController {
 
   /// Get the cached construct uses for the current user, if it exists
   List<OneConstructUse>? getConstructsLocal({
-    DateTime? lastUpdated,
     ConstructTypeEnum? constructType,
   }) {
     final index = _cache.indexWhere(
@@ -168,6 +261,7 @@ class GetAnalyticsController {
     );
 
     if (index > -1) {
+      final DateTime? lastUpdated = _pangeaController.myAnalytics.lastUpdated;
       if (_cache[index].needsUpdate(lastUpdated)) {
         _cache.removeAt(index);
         return null;
@@ -190,11 +284,6 @@ class GetAnalyticsController {
       langCode: l2Code!,
     );
     _cache.add(entry);
-  }
-
-  /// Clear all cached analytics data.
-  void clearCache() {
-    _cache.clear();
   }
 }
 

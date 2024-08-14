@@ -22,10 +22,6 @@ void pLogoutAction(BuildContext context, {bool? isDestructiveAction}) async {
   // before wiping out locally cached construct data, save it to the server
   await MatrixState.pangeaController.myAnalytics.updateAnalytics();
 
-  // Reset cached analytics data
-  MatrixState.pangeaController.myAnalytics.clearCache();
-  MatrixState.pangeaController.analytics.clearCache();
-
   await showFutureLoadingDialog(
     context: context,
     future: () => matrix.client.logout(),

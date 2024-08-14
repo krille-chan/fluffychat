@@ -931,6 +931,8 @@ class ChatListController extends State<ChatList>
     }
 
     // #Pangea
+    MatrixState.pangeaController.myAnalytics.initialize();
+    MatrixState.pangeaController.analytics.initialize();
     await _initPangeaControllers(client);
     // Pangea#
     if (!mounted) return;

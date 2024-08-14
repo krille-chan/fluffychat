@@ -82,20 +82,27 @@ class ConstructListModel {
 
   /// The total number of points for all uses of this construct type
   int get points {
-    double totalPoints = 0;
+    // double totalPoints = 0;
+    return typedConstructs.fold<int>(
+      0,
+      (total, typedConstruct) =>
+          total +
+          typedConstruct.useType.pointValue * typedConstruct.uses.length,
+    );
+    // Commenting this out for now
     // Minimize the amount of points given for repeated uses of the same lemma.
     // i.e., if a lemma is used 4 times without assistance, the point value for
     // a use without assistance is 3. So the points would be
     // 3/1 + 3/2 + 3/3 + 3/4 = 3 + 1.5 + 1 + 0.75 = 5.25 (instead of 12)
-    for (final typedConstruct in typedConstructs) {
-      final pointValue = typedConstruct.useType.pointValue;
-      double calc = 0.0;
-      for (int k = 1; k <= typedConstruct.uses.length; k++) {
-        calc += pointValue / k;
-      }
-      totalPoints += calc;
-    }
-    return totalPoints.round();
+    // for (final typedConstruct in typedConstructs) {
+    //   final pointValue = typedConstruct.useType.pointValue;
+    //   double calc = 0.0;
+    //   for (int k = 1; k <= typedConstruct.uses.length; k++) {
+    //     calc += pointValue / k;
+    //   }
+    //   totalPoints += calc;
+    // }
+    // return totalPoints.round();
   }
 }
 

@@ -141,6 +141,19 @@ class PangeaController {
 
   /// check user information if not found then redirect to Date of birth page
   _handleLoginStateChange(LoginState state) {
+    switch (state) {
+      case LoginState.loggedOut:
+      case LoginState.softLoggedOut:
+        // Reset cached analytics data
+        MatrixState.pangeaController.myAnalytics.dispose();
+        MatrixState.pangeaController.analytics.dispose();
+        break;
+      case LoginState.loggedIn:
+        // Initialize analytics data
+        MatrixState.pangeaController.myAnalytics.initialize();
+        MatrixState.pangeaController.analytics.initialize();
+        break;
+    }
     if (state != LoginState.loggedIn) {
       _logOutfromPangea();
     }

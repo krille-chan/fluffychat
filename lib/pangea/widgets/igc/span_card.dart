@@ -20,8 +20,6 @@ import '../common/bot_face_svg.dart';
 import 'card_header.dart';
 import 'why_button.dart';
 
-const wordMatchResultsCount = 5;
-
 //switch for definition vs correction vs practice
 
 //always show a title
@@ -32,12 +30,12 @@ const wordMatchResultsCount = 5;
 class SpanCard extends StatefulWidget {
   final PangeaController pangeaController = MatrixState.pangeaController;
   final SpanCardModel scm;
-  final String? roomId;
+  final String roomId;
 
   SpanCard({
     super.key,
     required this.scm,
-    this.roomId,
+    required this.roomId,
   });
 
   @override
@@ -62,12 +60,16 @@ class SpanCardState extends State<SpanCard> {
 
   //get selected choice
   SpanChoice? get selectedChoice {
-    if (selectedChoiceIndex == null ||
-        widget.scm.pangeaMatch?.match.choices == null ||
-        widget.scm.pangeaMatch!.match.choices!.length <= selectedChoiceIndex!) {
+    if (selectedChoiceIndex == null) return null;
+    return choiceByIndex(selectedChoiceIndex!);
+  }
+
+  SpanChoice? choiceByIndex(int index) {
+    if (widget.scm.pangeaMatch?.match.choices == null ||
+        widget.scm.pangeaMatch!.match.choices!.length <= index) {
       return null;
     }
-    return widget.scm.pangeaMatch?.match.choices?[selectedChoiceIndex!];
+    return widget.scm.pangeaMatch?.match.choices?[index];
   }
 
   void fetchSelected() {
@@ -76,8 +78,9 @@ class SpanCardState extends State<SpanCard> {
     }
     if (selectedChoiceIndex == null) {
       DateTime? mostRecent;
-      for (int i = 0; i < widget.scm.pangeaMatch!.match.choices!.length; i++) {
-        final choice = widget.scm.pangeaMatch?.match.choices![i];
+      final numChoices = widget.scm.pangeaMatch!.match.choices!.length;
+      for (int i = 0; i < numChoices; i++) {
+        final choice = choiceByIndex(i);
         if (choice!.timestamp != null &&
             (mostRecent == null || choice.timestamp!.isAfter(mostRecent))) {
           mostRecent = choice.timestamp;
@@ -114,6 +117,58 @@ class SpanCardState extends State<SpanCard> {
     }
   }
 
+  Future<void> onChoiceSelect(int index) async {
+    selectedChoiceIndex = index;
+    if (selectedChoice != null) {
+      selectedChoice!.timestamp = DateTime.now();
+      selectedChoice!.selected = true;
+      setState(
+        () => (selectedChoice!.isBestCorrection
+            ? BotExpression.gold
+            : BotExpression.surprised),
+      );
+    }
+  }
+
+  void onReplaceSelected() {
+    if (selectedChoice != null) {
+      final tokens = widget.scm.choreographer.igc.igcTextData
+              ?.matchTokens(widget.scm.matchIndex) ??
+          [];
+      MatrixState.pangeaController.myAnalytics.onReplacementSelected(
+        tokens,
+        widget.roomId,
+        selectedChoice!.isBestCorrection,
+      );
+    }
+
+    widget.scm
+        .onReplacementSelect(
+      matchIndex: widget.scm.matchIndex,
+      choiceIndex: selectedChoiceIndex!,
+    )
+        .then((value) {
+      setState(() {});
+    });
+  }
+
+  void onIgnoreMatch() {
+    MatrixState.pAnyState.closeOverlay();
+    Future.delayed(
+      Duration.zero,
+      () {
+        widget.scm.onIgnore();
+        final tokens = widget.scm.choreographer.igc.igcTextData
+                ?.matchTokens(widget.scm.matchIndex) ??
+            [];
+        MatrixState.pangeaController.myAnalytics.onIgnoreMatch(
+          tokens,
+          widget.roomId,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return WordMatchContent(controller: this);
@@ -128,61 +183,6 @@ class WordMatchContent extends StatelessWidget {
     required this.controller,
     super.key,
   });
-
-  Future<void> onChoiceSelect(int index) async {
-    controller.selectedChoiceIndex = index;
-    controller
-        .widget
-        .scm
-        .choreographer
-        .igc
-        .igcTextData
-        ?.matches[controller.widget.scm.matchIndex]
-        .match
-        .choices?[index]
-        .timestamp = DateTime.now();
-    controller
-        .widget
-        .scm
-        .choreographer
-        .igc
-        .igcTextData
-        ?.matches[controller.widget.scm.matchIndex]
-        .match
-        .choices?[index]
-        .selected = true;
-
-    controller.setState(
-      () => (controller.currentExpression = controller
-              .widget
-              .scm
-              .choreographer
-              .igc
-              .igcTextData!
-              .matches[controller.widget.scm.matchIndex]
-              .match
-              .choices![index]
-              .isBestCorrection
-          ? BotExpression.gold
-          : BotExpression.surprised),
-    );
-    // if (controller.widget.scm.pangeaMatch.match.choices![index].type ==
-    //     SpanChoiceType.distractor) {
-    //   await controller.getSpanDetails();
-    // }
-    // controller.setState(() {});
-  }
-
-  void onReplaceSelected() {
-    controller.widget.scm
-        .onReplacementSelect(
-      matchIndex: controller.widget.scm.matchIndex,
-      choiceIndex: controller.selectedChoiceIndex!,
-    )
-        .then((value) {
-      controller.setState(() {});
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -248,7 +248,7 @@ class WordMatchContent extends StatelessWidget {
                                   ),
                                 )
                                 .toList(),
-                        onPressed: onChoiceSelect,
+                        onPressed: controller.onChoiceSelect,
                         uniqueKeyForLayerLink: (int index) => "wordMatch$index",
                         selectedChoiceIndex: controller.selectedChoiceIndex,
                       ),
@@ -272,13 +272,7 @@ class WordMatchContent extends StatelessWidget {
                         AppConfig.primaryColor.withOpacity(0.1),
                       ),
                     ),
-                    onPressed: () {
-                      MatrixState.pAnyState.closeOverlay();
-                      Future.delayed(
-                        Duration.zero,
-                        () => controller.widget.scm.onIgnore(),
-                      );
-                    },
+                    onPressed: controller.onIgnoreMatch,
                     child: Center(
                       child: Text(L10n.of(context)!.ignoreInThisText),
                     ),
@@ -292,7 +286,7 @@ class WordMatchContent extends StatelessWidget {
                     opacity: controller.selectedChoiceIndex != null ? 1.0 : 0.5,
                     child: TextButton(
                       onPressed: controller.selectedChoiceIndex != null
-                          ? onReplaceSelected
+                          ? controller.onReplaceSelected
                           : null,
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -352,7 +346,6 @@ class WordMatchContent extends StatelessWidget {
     } on Exception catch (e) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: StackTrace.current);
-      print(e);
       rethrow;
     }
   }

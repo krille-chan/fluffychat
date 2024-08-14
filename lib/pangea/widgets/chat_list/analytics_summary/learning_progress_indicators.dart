@@ -1,12 +1,15 @@
 import 'dart:async';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pangea/constants/analytics_constants.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
+import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
+import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar.dart';
+import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar_details.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/progress_indicator.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -34,7 +37,7 @@ class LearningProgressIndicatorsState
 
   /// A stream subscription to listen for updates to
   /// the analytics data, either locally or from events
-  StreamSubscription? _onAnalyticsUpdate;
+  StreamSubscription<List<OneConstructUse>>? _analyticsUpdateSubscription;
 
   /// Vocabulary constructs model
   ConstructListModel? words;
@@ -44,66 +47,39 @@ class LearningProgressIndicatorsState
 
   bool loading = true;
 
-  /// The previous number of XP points, used to determine when to animate the level bar
-  int? previousXP;
+  int get serverXP => _pangeaController.analytics.serverXP;
+  int get totalXP => _pangeaController.analytics.currentXP;
+  int get level => _pangeaController.analytics.level;
 
   @override
   void initState() {
     super.initState();
-    updateAnalyticsData().then((_) {
-      setState(() => loading = false);
-    });
-    // listen for changes to analytics data and update the UI
-    _onAnalyticsUpdate = _pangeaController
-        .myAnalytics.analyticsUpdateStream.stream
-        .listen((_) => updateAnalyticsData());
+    updateAnalyticsData(
+      _pangeaController.analytics.analyticsStream.value ?? [],
+    );
+    _pangeaController.analytics.analyticsStream.stream
+        .listen(updateAnalyticsData);
   }
 
   @override
   void dispose() {
-    _onAnalyticsUpdate?.cancel();
+    _analyticsUpdateSubscription?.cancel();
     super.dispose();
   }
 
   /// Update the analytics data shown in the UI. This comes from a
   /// combination of stored events and locally cached data.
-  Future<void> updateAnalyticsData() async {
-    previousXP = xpPoints;
-
-    final List<OneConstructUse> storedUses =
-        await _pangeaController.analytics.getConstructs();
-    final List<OneConstructUse> localUses = [];
-    for (final uses in _pangeaController.analytics.messagesSinceUpdate.values) {
-      localUses.addAll(uses);
-    }
-
-    if (storedUses.isEmpty) {
-      words = ConstructListModel(
-        type: ConstructTypeEnum.vocab,
-        uses: localUses,
-      );
-      errors = ConstructListModel(
-        type: ConstructTypeEnum.grammar,
-        uses: localUses,
-      );
-      setState(() {});
-      return;
-    }
-
-    final List<OneConstructUse> allConstructs = [
-      ...storedUses,
-      ...localUses,
-    ];
-
+  Future<void> updateAnalyticsData(List<OneConstructUse> constructs) async {
     words = ConstructListModel(
       type: ConstructTypeEnum.vocab,
-      uses: allConstructs,
+      uses: constructs,
     );
     errors = ConstructListModel(
       type: ConstructTypeEnum.grammar,
-      uses: allConstructs,
+      uses: constructs,
     );
 
+    if (loading) loading = false;
     if (mounted) setState(() {});
   }
 
@@ -119,21 +95,10 @@ class LearningProgressIndicatorsState
     }
   }
 
-  /// Get the total number of xp points, based on the point values of use types.
-  /// Null if niether words nor error constructs are available.
-  int? get xpPoints {
-    if (words == null && errors == null) return null;
-    if (words == null) return errors!.points;
-    if (errors == null) return words!.points;
-    return words!.points + errors!.points;
-  }
-
-  /// Get the current level based on the number of xp points
-  int get level => (xpPoints ?? 0) ~/ 500;
-
   double get levelBarWidth => FluffyThemes.columnWidth - (32 * 2) - 25;
   double get pointsBarWidth {
-    final percent = ((xpPoints ?? 0) % 500) / 500;
+    final percent = (totalXP % AnalyticsConstants.xpPerLevel) /
+        AnalyticsConstants.xpPerLevel;
     return levelBarWidth * percent;
   }
 
@@ -149,54 +114,28 @@ class LearningProgressIndicatorsState
     return colors[level % colors.length];
   }
 
-  /// Whether to animate the level bar increase. Prevents this bar from seeming to
-  /// reload each time the user navigates to a different space or back to the chat list.
-  /// PreviousXP would be null if this widget just mounted. Also handles case of rebuilds
-  /// without any change in XP points.
-  bool get animate => previousXP != null && previousXP != xpPoints;
-
   @override
   Widget build(BuildContext context) {
     if (Matrix.of(context).client.userID == null) {
       return const SizedBox();
     }
 
-    final levelBar = Container(
-      height: 20,
-      width: levelBarWidth,
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-          width: 2,
+    final progressBar = ProgressBar(
+      levelBars: [
+        LevelBarDetails(
+          fillColor: const Color.fromARGB(255, 0, 190, 83),
+          currentPoints: totalXP,
         ),
-        borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(AppConfig.borderRadius),
-          bottomRight: Radius.circular(AppConfig.borderRadius),
+        LevelBarDetails(
+          fillColor: Theme.of(context).colorScheme.primary,
+          currentPoints: serverXP,
         ),
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+      ],
+      progressBarDetails: ProgressBarDetails(
+        totalWidth: levelBarWidth,
+        borderColor: Theme.of(context).colorScheme.primary.withOpacity(0.5),
       ),
     );
-
-    final xpBarDecoration = BoxDecoration(
-      borderRadius: const BorderRadius.only(
-        topRight: Radius.circular(AppConfig.borderRadius),
-        bottomRight: Radius.circular(AppConfig.borderRadius),
-      ),
-      color: Theme.of(context).colorScheme.primary,
-    );
-
-    final xpBar = animate
-        ? AnimatedContainer(
-            duration: FluffyThemes.animationDuration,
-            height: 16,
-            width: pointsBarWidth,
-            decoration: xpBarDecoration,
-          )
-        : Container(
-            height: 16,
-            width: pointsBarWidth,
-            decoration: xpBarDecoration,
-          );
 
     final levelBadge = Container(
       width: 32,
@@ -204,6 +143,13 @@ class LearningProgressIndicatorsState
       decoration: BoxDecoration(
         color: levelColor(level),
         borderRadius: BorderRadius.circular(32),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 5,
+            offset: const Offset(5, 0),
+          ),
+        ],
       ),
       child: Center(
         child: Text(
@@ -213,61 +159,71 @@ class LearningProgressIndicatorsState
       ),
     );
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+    return Stack(
+      alignment: Alignment.topCenter,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(46, 0, 32, 4),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              FutureBuilder(
-                future:
-                    _pangeaController.matrixState.client.getProfileFromUserId(
-                  _pangeaController.matrixState.client.userID!,
-                ),
-                builder: (context, snapshot) {
-                  final mxid = Matrix.of(context).client.userID ??
-                      L10n.of(context)!.user;
-                  return Avatar(
-                    name: snapshot.data?.displayName ?? mxid.localpart ?? mxid,
-                    mxContent: snapshot.data?.avatarUrl,
-                    size: 40,
-                  );
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: ProgressIndicatorEnum.values
-                    .where(
-                      (indicator) => indicator != ProgressIndicatorEnum.level,
-                    )
-                    .map(
-                      (indicator) => ProgressIndicatorBadge(
-                        points: getProgressPoints(indicator),
-                        onTap: () {},
-                        progressIndicator: indicator,
-                        loading: loading,
-                      ),
-                    )
-                    .toList(),
-              ),
-            ],
-          ),
+        const Positioned(
+          child: PointsGainedAnimation(),
         ),
-        Container(
-          height: 36,
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Positioned(left: 16, right: 0, child: levelBar),
-              Positioned(left: 16, child: xpBar),
-              Positioned(left: 0, child: levelBadge),
-            ],
-          ),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(46, 0, 32, 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FutureBuilder(
+                    future: _pangeaController.matrixState.client
+                        .getProfileFromUserId(
+                      _pangeaController.matrixState.client.userID!,
+                    ),
+                    builder: (context, snapshot) {
+                      final mxid = Matrix.of(context).client.userID ??
+                          L10n.of(context)!.user;
+                      return Avatar(
+                        name: snapshot.data?.displayName ??
+                            mxid.localpart ??
+                            mxid,
+                        mxContent: snapshot.data?.avatarUrl,
+                        size: 40,
+                      );
+                    },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: ProgressIndicatorEnum.values
+                        .where(
+                          (indicator) =>
+                              indicator != ProgressIndicatorEnum.level,
+                        )
+                        .map(
+                          (indicator) => ProgressIndicatorBadge(
+                            points: getProgressPoints(indicator),
+                            onTap: () {},
+                            progressIndicator: indicator,
+                            loading: loading,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: 36,
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Positioned(left: 16, right: 0, child: progressBar),
+                  Positioned(left: 0, child: levelBadge),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
         ),
-        const SizedBox(height: 16),
       ],
     );
   }

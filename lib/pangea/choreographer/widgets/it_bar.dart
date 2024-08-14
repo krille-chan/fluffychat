@@ -318,6 +318,26 @@ class ITChoices extends StatelessWidget {
     );
   }
 
+  void selectContinuance(int index, BuildContext context) {
+    final Continuance continuance =
+        controller.currentITStep!.continuances[index];
+    if (continuance.level == 1 || continuance.wasClicked) {
+      Future.delayed(
+        const Duration(milliseconds: 500),
+        () => controller.selectTranslation(index),
+      );
+    } else {
+      showCard(
+        context,
+        index,
+        continuance.level == 2 ? ChoreoConstants.yellow : ChoreoConstants.red,
+        continuance.feedbackText(context),
+      );
+    }
+    controller.currentITStep!.continuances[index].wasClicked = true;
+    controller.choreographer.setState();
+  }
+
   @override
   Widget build(BuildContext context) {
     try {
@@ -342,31 +362,8 @@ class ITChoices extends StatelessWidget {
             return Choice(text: "error", color: Colors.red);
           }
         }).toList(),
-        onPressed: (int index) {
-          final Continuance continuance =
-              controller.currentITStep!.continuances[index];
-          debugPrint("is gold? ${continuance.gold}");
-          if (continuance.level == 1 || continuance.wasClicked) {
-            Future.delayed(
-              const Duration(milliseconds: 500),
-              () => controller.selectTranslation(index),
-            );
-          } else {
-            showCard(
-              context,
-              index,
-              continuance.level == 2
-                  ? ChoreoConstants.yellow
-                  : ChoreoConstants.red,
-              continuance.feedbackText(context),
-            );
-          }
-          controller.currentITStep!.continuances[index].wasClicked = true;
-          controller.choreographer.setState();
-        },
-        onLongPress: (int index) {
-          showCard(context, index);
-        },
+        onPressed: (int index) => selectContinuance(index, context),
+        onLongPress: (int index) => showCard(context, index),
         uniqueKeyForLayerLink: (int index) => "itChoices$index",
         selectedChoiceIndex: null,
       );
