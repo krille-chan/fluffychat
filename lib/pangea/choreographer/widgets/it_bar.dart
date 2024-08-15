@@ -305,7 +305,11 @@ class ITChoices extends StatelessWidget {
                 chosenContinuance:
                     controller.currentITStep!.continuances[index].text,
                 bestContinuance: controller.currentITStep!.best.text,
-                feedbackLang: controller.targetLangCode,
+                // TODO: we want this to eventually switch between target and source lang,
+                // based on the learner's proficiency - maybe with the words involved in the translation
+                // maybe overall. For now, we'll just use the source lang.
+                feedbackLang: controller.choreographer.l1Lang?.langCode ??
+                    controller.sourceLangCode,
                 sourceTextLang: controller.sourceLangCode,
                 targetLang: controller.targetLangCode,
               ),

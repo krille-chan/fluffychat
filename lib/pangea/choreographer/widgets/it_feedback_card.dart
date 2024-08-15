@@ -146,8 +146,11 @@ class ITFeedbackCardView extends StatelessWidget {
                 controller.res!.text,
                 style: BotStyle.text(context),
               ),
-            // if res is not null, show a button to translate the text
-            if (controller.res != null && controller.translatedFeedback == null)
+            // if res is not null and feedback not in the userL1, show a button to translate the text
+            if (controller.res != null &&
+                controller.translatedFeedback == null &&
+                controller.widget.req.feedbackLang !=
+                    controller.controller.languageController.userL1?.langCode)
               Column(
                 children: [
                   const SizedBox(height: 10),
