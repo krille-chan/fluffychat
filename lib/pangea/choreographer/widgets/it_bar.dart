@@ -7,7 +7,9 @@ import 'package:fluffychat/pangea/choreographer/widgets/it_bar_buttons.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/translation_finished_flow.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -137,6 +139,24 @@ class ITBarState extends State<ITBar> {
                                                 ),
                                 ),
                               ),
+                            ),
+                            if (!widget
+                                .choreographer.pangeaController.instructions
+                                .wereInstructionsTurnedOff(
+                              InlineInstructions.translationChoices.toString(),
+                            ))
+                              Container(
+                                constraints: const BoxConstraints(
+                                  maxWidth: 180,
+                                ),
+                                child: InlineTooltip(
+                                  body: InlineInstructions.translationChoices
+                                      .body(context),
+                                  onClose: itController.closeHint,
+                                ),
+                              ),
+                            const SizedBox(
+                              height: 10,
                             ),
                           ],
                         ),

@@ -4127,5 +4127,6 @@
   "createSpace": "Create space",
   "createChat": "Create chat",
   "error520Title": "Please try again.",
-  "error520Desc": "Sorry, we could not understand your message..."
+  "error520Desc": "Sorry, we could not understand your message...", 
+  "translationChoicesBody": "Click and hold an option for a hint."
 }

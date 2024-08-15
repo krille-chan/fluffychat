@@ -58,6 +58,7 @@ extension InstructionsEnumExtension on InstructionsEnum {
 enum InlineInstructions {
   speechToText,
   l1Translation,
+  translationChoices,
 }
 
 extension InlineInstructionsExtension on InlineInstructions {
@@ -67,6 +68,8 @@ extension InlineInstructionsExtension on InlineInstructions {
         return L10n.of(context)!.speechToTextBody;
       case InlineInstructions.l1Translation:
         return L10n.of(context)!.l1TranslationBody;
+      case InlineInstructions.translationChoices:
+        return L10n.of(context)!.translationChoicesBody;
     }
   }
 }

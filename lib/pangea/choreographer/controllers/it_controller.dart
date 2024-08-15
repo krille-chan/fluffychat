@@ -3,7 +3,9 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -51,6 +53,17 @@ class ITController {
     choreographer.altTranslator.clear();
     choreographer.errorService.resetError();
     choreographer.choreoMode = ChoreoMode.igc;
+    choreographer.setState();
+  }
+
+  void closeHint() {
+    MatrixState.pangeaController.instructions.turnOffInstruction(
+      InlineInstructions.translationChoices.toString(),
+    );
+    MatrixState.pangeaController.instructions.updateEnableInstructions(
+      InlineInstructions.translationChoices.toString(),
+      true,
+    );
     choreographer.setState();
   }
 

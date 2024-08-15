@@ -29,7 +29,7 @@ class InlineTooltip extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).colorScheme.primary.withAlpha(20),
+          color: Theme.of(context).colorScheme.primary.withAlpha(40),
         ),
         child: Padding(
           padding: const EdgeInsets.all(10),
