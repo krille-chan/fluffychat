@@ -2486,7 +2486,7 @@
   "@thisDevice": {},
   "decline": "Baztertu",
   "@decline": {},
-  "databaseBuildErrorBody": "Ezin izan da SQlite datu-basea eraiki. Aplikazioa aurreko datu-basea erabiltzen saiatuko da oraingoz. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
+  "databaseBuildErrorBody": "Ezin da SQlite datu-basea eraiki. Aplikazioa aurreko datu-basea erabiltzen saiatuko da oraingoz. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
   "@databaseBuildErrorBody": {
     "type": "text",
     "placeholders": {
