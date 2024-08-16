@@ -93,7 +93,7 @@ jobs:
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
       - name : Reclaim space with apt clean
-        run: apt clean
+        run: sudo apt clean
       - run: flutter build apk --release
       - name: Upload to release
         uses: actions/upload-release-asset@v1
@@ -163,7 +163,7 @@ jobs:
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
       - name : Reclaim space with apt clean
-        run: apt clean
+        run: sudo apt clean
       - name: Build Android Release
         run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
       - name: Get Tag Name
