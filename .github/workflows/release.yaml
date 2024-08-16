@@ -145,12 +145,6 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
-          bundler-cache: false
-      - name: Setup fastlane
-        id: set_up_fastlane
-        run: |
-          gem install bundler -v 2.4.22
-          bundle config path vendor/bundle
       - name: Install Fastlane
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
