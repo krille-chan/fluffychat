@@ -34,9 +34,8 @@ abstract class FluffyShare {
     final client = Matrix.of(context).client;
     final ownProfile = await client.fetchOwnProfile();
     await FluffyShare.share(
-      L10n.of(context)!.inviteTextTawkie(
-          ownProfile.displayName ?? client.userID!
-      ),
+      L10n.of(context)!
+          .inviteTextTawkie(ownProfile.displayName ?? client.userID!),
       context,
     );
   }

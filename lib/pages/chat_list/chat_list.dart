@@ -360,8 +360,8 @@ class ChatListController extends State<ChatList>
       if (roomList.length > 1) {
         // Sort by the timestamp of the last event (ascending order)
         roomList.sort((a, b) =>
-        a.lastEvent?.originServerTs
-            .compareTo(b.lastEvent!.originServerTs) ??
+            a.lastEvent?.originServerTs
+                .compareTo(b.lastEvent!.originServerTs) ??
             0);
 
         // Keep the room with the oldest event and remove all others
@@ -616,7 +616,7 @@ class ChatListController extends State<ChatList>
           );
     }
   }
-  
+
   @override
   void initState() {
     super.initState();
@@ -629,7 +629,8 @@ class ChatListController extends State<ChatList>
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
-        searchServer = Matrix.of(context).store.getString(_serverStoreNamespace);
+        searchServer =
+            Matrix.of(context).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
         UpdateNotifier.showUpdateSnackBar(context);
       }

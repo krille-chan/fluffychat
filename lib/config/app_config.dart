@@ -77,10 +77,14 @@ abstract class AppConfig {
   static String tawkieSubscriptionIdentifier = 'Tawkie subscription';
 
   // URLs for Beta Join
-  static const String testflightAppUrl = 'https://apps.apple.com/us/app/testflight/id899247664';
-  static const String appleBetaUrl = 'https://testflight.apple.com/join/daXe0NfW';
-  static const String playStoreUrl = 'https://play.google.com/store/apps/details?id=fr.tawkie.app';
-  static const String androidBetaUrl = 'https://play.google.com/apps/testing/fr.tawkie.app';
+  static const String testflightAppUrl =
+      'https://apps.apple.com/us/app/testflight/id899247664';
+  static const String appleBetaUrl =
+      'https://testflight.apple.com/join/daXe0NfW';
+  static const String playStoreUrl =
+      'https://play.google.com/store/apps/details?id=fr.tawkie.app';
+  static const String androidBetaUrl =
+      'https://play.google.com/apps/testing/fr.tawkie.app';
 
   static const String iosUrl = 'itms-apps://itunes.apple.com/app/id899247664';
   static const String androidUrl = 'market://details?id=fr.tawkie.app';
@@ -90,7 +94,8 @@ abstract class AppConfig {
   static const String betaAlias = kDebugMode ? testBetaAlias : prodBetaAlias;
   static const String serverStagingUrl = ':staging.tawkie.fr';
   static const String serverProductionUrl = ':alpha.tawkie.fr';
-  static const String server = kDebugMode ? serverStagingUrl : serverProductionUrl;
+  static const String server =
+      kDebugMode ? serverStagingUrl : serverProductionUrl;
   static const String roomAlias = '#$betaAlias$server';
 
   static void loadFromJson(Map<String, dynamic> json) {

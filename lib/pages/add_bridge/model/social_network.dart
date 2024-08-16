@@ -144,7 +144,7 @@ class SocialNetworkManager {
 
   static SocialNetwork? fromName(String name) {
     return socialNetworks.firstWhere(
-          (network) => network.name == name,
+      (network) => network.name == name,
     );
   }
 

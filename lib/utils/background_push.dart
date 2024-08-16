@@ -73,16 +73,19 @@ class BackgroundPush {
       onMessage: (message) {
         Logs().v('[FCM] onMessage', message);
         // Workaround to support Sygnal push notifications
-        message['devices'] = [{'app_id': AppConfig.pushNotificationsAppId, 'pushkey': 'bogus'}];
+        message['devices'] = [
+          {'app_id': AppConfig.pushNotificationsAppId, 'pushkey': 'bogus'}
+        ];
         return pushHelper(
-        PushNotification.fromJson(
-          Map<String, dynamic>.from(message['data'] ?? message),
-        ),
-        client: client,
-        l10n: l10n,
-        activeRoomId: matrix?.activeRoomId,
-        onSelectNotification: goToRoom,
-      );},
+          PushNotification.fromJson(
+            Map<String, dynamic>.from(message['data'] ?? message),
+          ),
+          client: client,
+          l10n: l10n,
+          activeRoomId: matrix?.activeRoomId,
+          onSelectNotification: goToRoom,
+        );
+      },
     );
     if (Platform.isAndroid) {
       UnifiedPush.initialize(
@@ -293,7 +296,7 @@ class BackgroundPush {
     if (_fcmToken?.isEmpty ?? true) {
       try {
         _fcmToken = await firebase?.getToken();
-        
+
         if (_fcmToken == null) throw ('PushToken is null');
       } catch (e, s) {
         Logs().w('[Push] cannot get token', e, e is String ? null : s);

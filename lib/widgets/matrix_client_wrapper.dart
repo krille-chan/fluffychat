@@ -21,7 +21,8 @@ class MatrixClientWrapper {
     }
 
     await _client.init(
-      waitForFirstSync: true, // Ensure that the first synchronization is complete
+      waitForFirstSync:
+          true, // Ensure that the first synchronization is complete
     );
     _isInitialized = true;
     print('Matrix client initialized');
@@ -29,7 +30,8 @@ class MatrixClientWrapper {
 
   /// Waits for the first synchronization to complete.
   Future<void> synchronize() async {
-    await _client.firstSyncReceived; // Wait for the first synchronization to be received
+    await _client
+        .firstSyncReceived; // Wait for the first synchronization to be received
     _isSyncComplete = true;
     print('Matrix client synchronized');
   }
@@ -39,7 +41,8 @@ class MatrixClientWrapper {
   /// and waits until both are true.
   Future<void> ensureInitializationComplete() async {
     while (!_isInitialized || !_isSyncComplete) {
-      await Future.delayed(const Duration(milliseconds: 100)); // Wait until client is fully initialized
+      await Future.delayed(const Duration(
+          milliseconds: 100)); // Wait until client is fully initialized
     }
   }
 

@@ -29,10 +29,11 @@ class _BotChatListPageState extends State<BotChatListPage> {
     setState(() {
       _roomsFuture = Future.delayed(
         Duration.zero,
-            () => Matrix.of(context)
+        () => Matrix.of(context)
             .client
             .rooms
-            .where((room) => widget.botUserIds.contains(room.directChatMatrixID))
+            .where(
+                (room) => widget.botUserIds.contains(room.directChatMatrixID))
             .toList(),
       );
     });
@@ -51,8 +52,7 @@ class _BotChatListPageState extends State<BotChatListPage> {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(
-                child: Text('${L10n.of(context)!.err_} ${snapshot.error}')
-            );
+                child: Text('${L10n.of(context)!.err_} ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(child: Text(L10n.of(context)!.chatBotRoomsNotFound));
           } else {
@@ -63,12 +63,12 @@ class _BotChatListPageState extends State<BotChatListPage> {
                 final room = rooms[i];
                 return ChatListItem(rooms[i],
                     key: Key('chat_list_item_${rooms[i].id}'), onTap: () {
-                      // Handle tap on a bot conversation
-                      openChatRoom(room, context);
-                    }, onLongPress: (context) {
-                      // Handle long press to delete the room
-                      _onChatLongPress(room, context);
-                    });
+                  // Handle tap on a bot conversation
+                  openChatRoom(room, context);
+                }, onLongPress: (context) {
+                  // Handle long press to delete the room
+                  _onChatLongPress(room, context);
+                });
               },
             );
           }
@@ -82,8 +82,7 @@ class _BotChatListPageState extends State<BotChatListPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) =>
-              ChatPage(
+          builder: (context) => ChatPage(
                 roomId: room.id,
               )),
     );
@@ -139,8 +138,7 @@ class _BotChatListPageState extends State<BotChatListPage> {
       }
       scaffoldMessenger.showSnackBar(
         SnackBar(
-          content:
-          Text(L10n.of(context)!.tryAgain),
+          content: Text(L10n.of(context)!.tryAgain),
         ),
       );
     }

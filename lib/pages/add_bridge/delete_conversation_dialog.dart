@@ -35,7 +35,6 @@ Future<void> deleteConversationDialog(BuildContext context,
               await showCustomLoadingDialog(
                 context: context,
                 future: () async {
-
                   await controller.deleteConversation(
                       context, network.chatBot, connectionStateModel);
                 },

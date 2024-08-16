@@ -21,11 +21,11 @@ class ClientChooserButton extends StatelessWidget {
     final matrix = Matrix.of(context);
     final bundles = matrix.accountBundles.keys.toList()
       ..sort(
-            (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
+        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
             ? 0
             : a.isValidMatrixId && !b.isValidMatrixId
-            ? -1
-            : 1,
+                ? -1
+                : 1,
       );
     return <PopupMenuEntry<Object>>[
       PopupMenuItem(
@@ -203,7 +203,7 @@ class ClientChooserButton extends StatelessWidget {
         children: [
           ...List.generate(
             clientCount,
-                (index) => KeyBoardShortcuts(
+            (index) => KeyBoardShortcuts(
               keysToPress: _buildKeyboardShortcut(index + 1),
               helpLabel: L10n.of(context)!.switchToAccount(index + 1),
               onKeysPressed: () => _handleKeyboardShortcut(
@@ -264,9 +264,9 @@ class ClientChooserButton extends StatelessWidget {
   }
 
   void _clientSelected(
-      Object object,
-      BuildContext context,
-      ) async {
+    Object object,
+    BuildContext context,
+  ) async {
     if (object is Client) {
       controller.setActiveClient(object);
     } else if (object is String) {
@@ -302,7 +302,7 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.joinBeta:
           context.go('/rooms/settings/joinBeta');
           break;
-      // Redirect to bot social network connection page
+        // Redirect to bot social network connection page
         case SettingsAction.addBridgeBot:
           context.go('/rooms/settings/addbridgebot');
           break;
@@ -313,17 +313,17 @@ class ClientChooserButton extends StatelessWidget {
   }
 
   void _handleKeyboardShortcut(
-      MatrixState matrix,
-      int index,
-      BuildContext context,
-      ) {
+    MatrixState matrix,
+    int index,
+    BuildContext context,
+  ) {
     final bundles = matrix.accountBundles.keys.toList()
       ..sort(
-            (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
+        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
             ? 0
             : a.isValidMatrixId && !b.isValidMatrixId
-            ? -1
-            : 1,
+                ? -1
+                : 1,
       );
     // beginning from end if negative
     if (index < 0) {
@@ -351,11 +351,11 @@ class ClientChooserButton extends StatelessWidget {
 
     final bundles = matrix.accountBundles.keys.toList()
       ..sort(
-            (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
+        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
             ? 0
             : a.isValidMatrixId && !b.isValidMatrixId
-            ? -1
-            : 1,
+                ? -1
+                : 1,
       );
     for (final bundleName in bundles) {
       final bundle = matrix.accountBundles[bundleName];
