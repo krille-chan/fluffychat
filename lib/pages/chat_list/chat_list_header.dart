@@ -54,6 +54,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 globalSearch: globalSearch,
               ),
               decoration: InputDecoration(
+                filled: true,
                 fillColor: theme.colorScheme.secondaryContainer,
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,

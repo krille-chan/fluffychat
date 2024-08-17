@@ -91,11 +91,10 @@ abstract class FluffyThemes {
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
         contentPadding: const EdgeInsets.all(12),
-        filled: true,
+        filled: false,
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: FluffyThemes.isColumnMode(context) ? 72 : 56,
@@ -112,13 +111,6 @@ abstract class FluffyThemes {
           statusBarBrightness: brightness,
           systemNavigationBarIconBrightness: brightness.reversed,
           systemNavigationBarColor: colorScheme.surface,
-        ),
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-          ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -145,9 +137,6 @@ abstract class FluffyThemes {
           elevation: 0,
           padding: const EdgeInsets.all(16),
           textStyle: const TextStyle(fontSize: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          ),
         ),
       ),
     );

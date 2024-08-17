@@ -160,4 +160,4 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
-  win32: 5.5.0
+  win32: 5.5.3
