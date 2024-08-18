@@ -315,10 +315,10 @@ class ChatListController extends State<ChatList>
     final containsBot = userIds.any((id) =>
         id.contains('bot', 1) && SocialNetworkManager.isBridgeBotId(id));
 
-    final result = containsCurrentUser && containsBot;
+    final isBotRoom = containsCurrentUser && containsBot;
     // update cache
-    _roomBotCheckCache[room.id] = !result; // true => displayed
-    return result;
+    _roomBotCheckCache[room.id] = !isBotRoom; // true => displayed
+    return isBotRoom;
   }
 
   Future<void> preloadRoomBotChecks(List<Room> rooms) async {
