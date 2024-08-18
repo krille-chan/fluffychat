@@ -334,7 +334,9 @@ class ChatListController extends State<ChatList>
 
     for (final room in rooms) {
       // cache should be fully populated by now
-      if (_roomBotCheckCache[room.id] ?? false) {
+      final isBotRoom = _roomBotCheckCache[room.id] == false;
+
+      if (isBotRoom) {
         final botId = room.directChatMatrixID ??
             room
                 .getParticipants()
