@@ -1,48 +1,23 @@
 import 'dart:async';
-import 'dart:typed_data';
 
-import 'package:fluffychat/pages/chat/input_bar.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
 
-class InputBarWrapper extends StatefulWidget {
-  final Room room;
-  final int? minLines;
-  final int? maxLines;
-  final TextInputType? keyboardType;
-  final TextInputAction? textInputAction;
-  final ValueChanged<String>? onSubmitted;
-  final ValueChanged<Uint8List?>? onSubmitImage;
-  final FocusNode? focusNode;
-  final PangeaTextController? controller;
-  final InputDecoration? decoration;
-  final ValueChanged<String>? onChanged;
-  final bool? autofocus;
-  final bool readOnly;
+class ChatInputRowWrapper extends StatefulWidget {
+  final ChatController controller;
 
-  const InputBarWrapper({
-    required this.room,
-    this.minLines,
-    this.maxLines,
-    this.keyboardType,
-    this.onSubmitted,
-    this.onSubmitImage,
-    this.focusNode,
-    this.controller,
-    this.decoration,
-    this.onChanged,
-    this.autofocus,
-    this.textInputAction,
-    this.readOnly = false,
+  const ChatInputRowWrapper({
+    required this.controller,
     super.key,
   });
 
   @override
-  State<InputBarWrapper> createState() => InputBarWrapperState();
+  State<ChatInputRowWrapper> createState() => ChatInputRowWrapperState();
 }
 
-class InputBarWrapperState extends State<InputBarWrapper> {
+class ChatInputRowWrapperState extends State<ChatInputRowWrapper> {
   StreamSubscription? _choreoSub;
   String _currentText = '';
 
@@ -50,7 +25,7 @@ class InputBarWrapperState extends State<InputBarWrapper> {
   void initState() {
     // Rebuild the widget each time there's an update from choreo
     _choreoSub =
-        widget.controller?.choreographer.stateListener.stream.listen((_) {
+        widget.controller.choreographer.stateListener.stream.listen((_) {
       setState(() {});
     });
     super.initState();
@@ -63,10 +38,6 @@ class InputBarWrapperState extends State<InputBarWrapper> {
   }
 
   void refreshOnChange(String text) {
-    if (widget.onChanged != null) {
-      widget.onChanged!(text);
-    }
-
     final bool decreasedFromMaxLength =
         _currentText.length >= PangeaTextController.maxLength &&
             text.length < PangeaTextController.maxLength;
@@ -81,21 +52,5 @@ class InputBarWrapperState extends State<InputBarWrapper> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return InputBar(
-      room: widget.room,
-      minLines: widget.minLines,
-      maxLines: widget.maxLines,
-      keyboardType: widget.keyboardType,
-      onSubmitted: widget.onSubmitted,
-      onSubmitImage: widget.onSubmitImage,
-      focusNode: widget.focusNode,
-      controller: widget.controller,
-      decoration: widget.decoration,
-      onChanged: refreshOnChange,
-      autofocus: widget.autofocus,
-      textInputAction: widget.textInputAction,
-      readOnly: widget.readOnly,
-    );
-  }
+  Widget build(BuildContext context) => ChatInputRow(widget.controller);
 }
