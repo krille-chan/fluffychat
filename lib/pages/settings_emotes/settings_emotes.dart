@@ -330,8 +330,11 @@ class EmotesSettingsController extends State<EmotesSettings> {
         for (final entry in pack.images.entries) {
           final emote = entry.value;
           final name = entry.key;
-          final url = emote.url.getDownloadLink(client);
-          final response = await get(url);
+          final url = await emote.url.getDownloadUri(client);
+          final response = await get(
+            url,
+            headers: {'authorization': 'Bearer ${client.accessToken}'},
+          );
 
           archive.addFile(
             ArchiveFile(
