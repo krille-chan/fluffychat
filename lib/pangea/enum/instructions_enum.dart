@@ -72,4 +72,17 @@ extension InlineInstructionsExtension on InlineInstructions {
         return L10n.of(context)!.translationChoicesBody;
     }
   }
+
+  bool get toggledOff {
+    final instructionSettings =
+        MatrixState.pangeaController.userController.profile.instructionSettings;
+    switch (this) {
+      case InlineInstructions.speechToText:
+        return instructionSettings.showedSpeechToTextTooltip;
+      case InlineInstructions.l1Translation:
+        return instructionSettings.showedL1TranslationTooltip;
+      case InlineInstructions.translationChoices:
+        return instructionSettings.showedTranslationChoicesTooltip;
+    }
+  }
 }
