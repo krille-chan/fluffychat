@@ -5,7 +5,6 @@ import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -56,15 +55,21 @@ class ITController {
     choreographer.setState();
   }
 
+  bool _closingHint = false;
+  Duration get animationSpeed => (_closingHint || !_willOpen)
+      ? const Duration(milliseconds: 500)
+      : const Duration(milliseconds: 2000);
+
   void closeHint() {
-    MatrixState.pangeaController.instructions.turnOffInstruction(
-      InlineInstructions.translationChoices.toString(),
-    );
-    MatrixState.pangeaController.instructions.updateEnableInstructions(
-      InlineInstructions.translationChoices.toString(),
-      true,
-    );
+    _closingHint = true;
+    final String hintKey = InlineInstructions.translationChoices.toString();
+    final instructionsController = choreographer.pangeaController.instructions;
+    instructionsController.turnOffInstruction(hintKey);
+    instructionsController.updateEnableInstructions(hintKey, true);
     choreographer.setState();
+    Future.delayed(const Duration(milliseconds: 500), () {
+      _closingHint = false;
+    });
   }
 
   Future<void> initializeIT(ITStartData itStartData) async {
