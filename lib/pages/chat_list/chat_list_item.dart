@@ -151,7 +151,7 @@ class ChatListItem extends StatelessWidget {
                                 : null,
                             mxContent: room.avatar,
                             size: space != null
-                                ? Avatar.defaultSize * 0.75
+                                ? Avatar.defaultSize
                                 : Avatar.defaultSize,
                             name: displayname,
                             presenceUserId: directChatMatrixId,
