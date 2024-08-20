@@ -269,7 +269,7 @@ class PangeaMessageEvent {
             null;
       }).toSet();
 
-  SpeechToTextModel? getSpeechToTextLocalOnly(
+  SpeechToTextModel? getSpeechToTextLocal(
     String? l1Code,
     String? l2Code,
   ) {

@@ -5,7 +5,6 @@ import 'package:fluffychat/pangea/controllers/language_detection_controller.dart
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/span_card_model.dart';
-import 'package:fluffychat/pangea/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +26,6 @@ class IGCTextData {
   bool enableIT;
   bool enableIGC;
   bool loading = false;
-  List<PreviousMessage> prevMessages;
 
   IGCTextData({
     required this.detections,
@@ -39,7 +37,6 @@ class IGCTextData {
     required this.userL2,
     required this.enableIT,
     required this.enableIGC,
-    required this.prevMessages,
   });
 
   factory IGCTextData.fromJson(Map<String, dynamic> json) {
@@ -79,7 +76,6 @@ class IGCTextData {
       userL2: json[ModelKey.userL2],
       enableIT: json["enable_it"],
       enableIGC: json["enable_igc"],
-      prevMessages: json["prev_messages"],
     );
   }
 
@@ -97,7 +93,6 @@ class IGCTextData {
         ModelKey.userL2: userL2,
         "enable_it": enableIT,
         "enable_igc": enableIGC,
-        "prev_messages": prevMessages,
       };
 
   /// if we haven't run IGC or IT or there are no matches, we use the highest validated detection

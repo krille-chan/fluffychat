@@ -88,7 +88,6 @@ class IgcRepo {
       userL2: "en",
       enableIT: true,
       enableIGC: true,
-      prevMessages: [],
     );
 
     return igcTextData;
