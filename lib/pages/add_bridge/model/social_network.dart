@@ -14,6 +14,7 @@ class SocialNetwork {
       displayNameSuffix; // The `(Network)` suffix to remove from displayname)
   final String? urlLogin;
   final String? urlRedirect;
+  final RegExp? urlRedirectPattern;
   bool loading; // To find out if state is loading
   bool connected; // To find out if state is disconnected
   bool error; // Bool to indicate if there is an error
@@ -29,6 +30,7 @@ class SocialNetwork {
     this.displayNameSuffix = "",
     this.urlLogin,
     this.urlRedirect,
+    this.urlRedirectPattern,
     this.loading = true, // Default value true for loading
     this.connected = false, // Default value false for connected
     this.error = false, // Défaut à false
@@ -77,6 +79,7 @@ class SocialNetworkManager {
       mxidPrefix: "@messenger2_",
       urlLogin: "https://www.messenger.com/login/",
       urlRedirect: "https://www.messenger.com/t/",
+      urlRedirectPattern: RegExp(r'^https:\/\/www\.messenger\.com\/.*\/t\/.*$'),
     ),
     SocialNetwork(
       logo: Logo(Logos.instagram),
@@ -89,6 +92,7 @@ class SocialNetworkManager {
       mxidPrefix: "@instagram2_",
       urlLogin: "https://www.instagram.com/accounts/login/",
       urlRedirect: "https://www.instagram.com/",
+      urlRedirectPattern: RegExp(r'^https:\/\/www\.instagram\.com\/.*$'),
     ),
     SocialNetwork(
       logo: Logo(Logos.whatsapp),
@@ -111,6 +115,7 @@ class SocialNetworkManager {
       mxidPrefix: "@linkedin_",
       urlLogin: "https://www.linkedin.com/login/",
       urlRedirect: "https://www.linkedin.com/feed/",
+      urlRedirectPattern: RegExp(r'^https:\/\/www\.linkedin\.com\/feed\/.*$'),
     ),
     SocialNetwork(
       logo: Container(),
