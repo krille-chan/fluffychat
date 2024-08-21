@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:matrix/matrix.dart';
 
 import 'it_step.dart';
@@ -151,65 +149,6 @@ class ChoreoRecord {
             metadata: metadata,
           ),
         );
-      }
-    }
-    return uses;
-  }
-
-  /// Returns a list of [OneConstructUse] from itSteps for which the continuance
-  /// was selected or ignored. Correct selections are considered in the tokens
-  /// flow. Once all continuances have lemmas, we can do both correct and incorrect
-  /// in this flow. It actually doesn't do anything at all right now, because the
-  /// choregrapher is not returning lemmas for continuances. This is a TODO.
-  /// So currently only the lemmas can be gotten from the tokens for choices that
-  /// are actually in the final message.
-  List<OneConstructUse> itStepsToConstructUses({
-    Event? event,
-    ConstructUseMetaData? metadata,
-  }) {
-    final List<OneConstructUse> uses = [];
-    if (event == null && metadata == null) {
-      return uses;
-    }
-
-    metadata ??= ConstructUseMetaData(
-      roomId: event!.roomId!,
-      eventId: event.eventId,
-      timeStamp: event.originServerTs,
-    );
-
-    for (final itStep in itSteps) {
-      for (final continuance in itStep.continuances) {
-        final List<PangeaToken> tokensToSave =
-            continuance.tokens.where((t) => t.lemma.saveVocab).toList();
-
-        if (finalMessage.contains(continuance.text)) {
-          continue;
-        }
-        if (continuance.wasClicked) {
-          //PTODO - account for end of flow score
-          if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
-            for (final token in tokensToSave) {
-              uses.add(
-                token.lemma.toVocabUse(
-                  ConstructUseTypeEnum.incIt,
-                  metadata,
-                ),
-              );
-            }
-          }
-        } else {
-          if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
-            for (final token in tokensToSave) {
-              uses.add(
-                token.lemma.toVocabUse(
-                  ConstructUseTypeEnum.ignIt,
-                  metadata,
-                ),
-              );
-            }
-          }
-        }
       }
     }
     return uses;

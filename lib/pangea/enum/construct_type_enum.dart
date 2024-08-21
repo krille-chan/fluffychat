@@ -1,6 +1,7 @@
 enum ConstructTypeEnum {
   grammar,
   vocab,
+  morph,
 }
 
 extension ConstructExtension on ConstructTypeEnum {
@@ -10,6 +11,8 @@ extension ConstructExtension on ConstructTypeEnum {
         return 'grammar';
       case ConstructTypeEnum.vocab:
         return 'vocab';
+      case ConstructTypeEnum.morph:
+        return 'morph';
     }
   }
 }
@@ -23,6 +26,9 @@ class ConstructTypeUtil {
       case 'v':
       case 'vocab':
         return ConstructTypeEnum.vocab;
+      case 'm':
+      case 'morph':
+        return ConstructTypeEnum.morph;
       default:
         return ConstructTypeEnum.vocab;
     }

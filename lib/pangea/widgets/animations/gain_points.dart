@@ -6,8 +6,13 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
 class PointsGainedAnimation extends StatefulWidget {
-  final Color? color;
-  const PointsGainedAnimation({super.key, this.color});
+  final Color? gainColor;
+  final Color? loseColor;
+  const PointsGainedAnimation({
+    super.key,
+    this.gainColor,
+    this.loseColor = Colors.red,
+  });
 
   @override
   PointsGainedAnimationState createState() => PointsGainedAnimationState();
@@ -66,7 +71,7 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
 
   void _showPointsGained(List<OneConstructUse> constructs) {
     setState(() => _addedPoints = (_currentXP ?? 0) - (_prevXP ?? 0));
-    if (_prevXP != _currentXP && !_controller.isAnimating) {
+    if (_prevXP != _currentXP) {
       _controller.reset();
       _controller.forward();
     }
@@ -82,18 +87,20 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
   Widget build(BuildContext context) {
     if (!animate) return const SizedBox();
 
+    final textColor = _addedPoints! > 0 ? widget.gainColor : widget.loseColor;
+
     return SlideTransition(
       position: _offsetAnimation,
       child: FadeTransition(
         opacity: _fadeAnimation,
         child: Text(
-          '+$_addedPoints',
+          '${_addedPoints! > 0 ? '+' : ''}$_addedPoints',
           style: BotStyle.text(
             context,
             big: true,
-            setColor: widget.color == null,
+            setColor: textColor == null,
             existingStyle: TextStyle(
-              color: widget.color,
+              color: textColor,
             ),
           ),
         ),

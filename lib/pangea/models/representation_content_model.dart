@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
@@ -118,8 +119,8 @@ class PangeaRepresentation {
     final tokensToSave =
         tokens.where((token) => token.lemma.saveVocab).toList();
     for (final token in tokensToSave) {
-      uses.add(
-        getVocabUseForToken(
+      uses.addAll(
+        getUsesForToken(
           token,
           metadata,
           choreo: choreo,
@@ -137,21 +138,38 @@ class PangeaRepresentation {
   /// If the [token] is in the [choreo.acceptedOrIgnoredMatch], it is considered to be a [ConstructUseTypeEnum.ga].
   /// If the [token] is in the [choreo.acceptedOrIgnoredMatch.choices], it is considered to be a [ConstructUseTypeEnum.corIt].
   /// If the [token] is not included in any choreoStep, it is considered to be a [ConstructUseTypeEnum.wa].
-  OneConstructUse getVocabUseForToken(
+  List<OneConstructUse> getUsesForToken(
     PangeaToken token,
     ConstructUseMetaData metadata, {
     ChoreoRecord? choreo,
   }) {
+    final List<OneConstructUse> uses = [];
     final lemma = token.lemma;
     final content = token.text.content;
+    final morphs = token.morph.values.toList();
 
     if (choreo == null) {
       final bool inUserL2 = langCode ==
           MatrixState.pangeaController.languageController.activeL2Code();
-      return lemma.toVocabUse(
-        inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk,
-        metadata,
+      final useType =
+          inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk;
+      uses.addAll(
+        morphs.map(
+          (morph) => OneConstructUse(
+            useType: useType,
+            lemma: morph,
+            constructType: ConstructTypeEnum.morph,
+            metadata: metadata,
+          ),
+        ),
       );
+      uses.add(
+        lemma.toVocabUse(
+          inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk,
+          metadata,
+        ),
+      );
+      return uses;
     }
 
     for (final step in choreo.choreoSteps) {
@@ -174,10 +192,7 @@ class PangeaRepresentation {
               step.text.contains(choice.value),
         );
         if (stepContainedToken) {
-          return lemma.toVocabUse(
-            ConstructUseTypeEnum.ga,
-            metadata,
-          );
+          return [];
         }
       }
 
@@ -185,16 +200,27 @@ class PangeaRepresentation {
         final bool pickedThroughIT =
             step.itStep!.chosenContinuance!.text.contains(content);
         if (pickedThroughIT) {
-          return lemma.toVocabUse(
-            ConstructUseTypeEnum.corIt,
-            metadata,
-          );
+          return [];
         }
       }
     }
-    return lemma.toVocabUse(
-      ConstructUseTypeEnum.wa,
-      metadata,
+
+    uses.addAll(
+      morphs.map(
+        (morph) => OneConstructUse(
+          useType: ConstructUseTypeEnum.wa,
+          lemma: morph,
+          constructType: ConstructTypeEnum.morph,
+          metadata: metadata,
+        ),
+      ),
     );
+    uses.add(
+      lemma.toVocabUse(
+        ConstructUseTypeEnum.wa,
+        metadata,
+      ),
+    );
+    return uses;
   }
 }

@@ -665,12 +665,10 @@ class PangeaMessageEvent {
       l2Code == null ? [] : practiceActivitiesByLangCode(l2Code!);
 
   /// all construct uses for the message, including vocab and grammar
-  List<OneConstructUse> get allConstructUses =>
-      [..._grammarConstructUses, ..._vocabUses, ..._itStepsToConstructUses];
-
-  /// Returns a list of [OneConstructUse] from itSteps
-  List<OneConstructUse> get _itStepsToConstructUses =>
-      originalSent?.choreo?.itStepsToConstructUses(event: event) ?? [];
+  List<OneConstructUse> get allConstructUses => [
+        ..._grammarConstructUses,
+        ..._vocabUses,
+      ];
 
   /// get construct uses of type vocab for the message
   List<OneConstructUse> get _vocabUses {

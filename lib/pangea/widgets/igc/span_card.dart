@@ -1,11 +1,14 @@
 import 'dart:developer';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/match_copy.dart';
+import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -120,6 +123,16 @@ class SpanCardState extends State<SpanCard> {
   Future<void> onChoiceSelect(int index) async {
     selectedChoiceIndex = index;
     if (selectedChoice != null) {
+      if (!selectedChoice!.selected) {
+        MatrixState.pangeaController.myAnalytics.addDraftUses(
+          selectedChoice!.tokens,
+          widget.roomId,
+          selectedChoice!.isBestCorrection
+              ? ConstructUseTypeEnum.corIGC
+              : ConstructUseTypeEnum.incIGC,
+        );
+      }
+
       selectedChoice!.timestamp = DateTime.now();
       selectedChoice!.selected = true;
       setState(
@@ -130,41 +143,44 @@ class SpanCardState extends State<SpanCard> {
     }
   }
 
-  void onReplaceSelected() {
-    if (selectedChoice != null) {
-      final tokens = widget.scm.choreographer.igc.igcTextData
-              ?.matchTokens(widget.scm.matchIndex) ??
-          [];
-      MatrixState.pangeaController.myAnalytics.onReplacementSelected(
-        tokens,
-        widget.roomId,
-        selectedChoice!.isBestCorrection,
-      );
-    }
+  /// Returns the list of choices that are not selected
+  List<SpanChoice>? get ignoredMatches => widget.scm.pangeaMatch?.match.choices
+      ?.where((choice) => !choice.selected)
+      .toList();
 
+  /// Returns the list of tokens from choices that are not selected
+  List<PangeaToken>? get ignoredTokens => ignoredMatches
+      ?.expand((choice) => choice.tokens)
+      .toList()
+      .cast<PangeaToken>();
+
+  /// Adds the ignored tokens to locally cached analytics
+  void addIgnoredTokenUses() {
+    MatrixState.pangeaController.myAnalytics.addDraftUses(
+      ignoredTokens ?? [],
+      widget.roomId,
+      ConstructUseTypeEnum.ignIGC,
+    );
+  }
+
+  void onReplaceSelected() {
+    addIgnoredTokenUses();
     widget.scm
         .onReplacementSelect(
-      matchIndex: widget.scm.matchIndex,
-      choiceIndex: selectedChoiceIndex!,
-    )
-        .then((value) {
-      setState(() {});
-    });
+          matchIndex: widget.scm.matchIndex,
+          choiceIndex: selectedChoiceIndex!,
+        )
+        .then((value) => setState(() {}));
   }
 
   void onIgnoreMatch() {
     MatrixState.pAnyState.closeOverlay();
+    addIgnoredTokenUses();
+
     Future.delayed(
       Duration.zero,
       () {
         widget.scm.onIgnore();
-        final tokens = widget.scm.choreographer.igc.igcTextData
-                ?.matchTokens(widget.scm.matchIndex) ??
-            [];
-        MatrixState.pangeaController.myAnalytics.onIgnoreMatch(
-          tokens,
-          widget.roomId,
-        );
       },
     );
   }
@@ -205,142 +221,153 @@ class WordMatchContent extends StatelessWidget {
     final ScrollController scrollController = ScrollController();
 
     try {
-      return Column(
+      return Stack(
+        alignment: Alignment.topCenter,
         children: [
-          // if (!controller.widget.scm.pangeaMatch!.isITStart)
-          CardHeader(
-            text: controller.error?.toString() ?? matchCopy.title,
-            botExpression: controller.error == null
-                ? controller.currentExpression
-                : BotExpression.addled,
+          const Positioned(
+            top: 40,
+            child: PointsGainedAnimation(),
           ),
-          Expanded(
-            child: Scrollbar(
-              controller: scrollController,
-              thumbVisibility: true,
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // const SizedBox(height: 10.0),
-                    // if (matchCopy.description != null)
-                    //   Padding(
-                    //     padding: const EdgeInsets.only(),
-                    //     child: Text(
-                    //       matchCopy.description!,
-                    //       style: BotStyle.text(context),
-                    //     ),
-                    //   ),
-                    const SizedBox(height: 8),
-                    if (!controller.widget.scm.pangeaMatch!.isITStart)
-                      ChoicesArray(
-                        originalSpan:
-                            controller.widget.scm.pangeaMatch!.matchContent,
-                        isLoading: controller.fetchingData,
-                        choices:
-                            controller.widget.scm.pangeaMatch!.match.choices
-                                ?.map(
-                                  (e) => Choice(
-                                    text: e.value,
-                                    color: e.selected ? e.type.color : null,
-                                    isGold: e.type.name == 'bestCorrection',
-                                  ),
-                                )
-                                .toList(),
-                        onPressed: controller.onChoiceSelect,
-                        uniqueKeyForLayerLink: (int index) => "wordMatch$index",
-                        selectedChoiceIndex: controller.selectedChoiceIndex,
-                      ),
-                    const SizedBox(height: 12),
-                    PromptAndFeedback(controller: controller),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Column(
             children: [
-              const SizedBox(width: 10),
+              // if (!controller.widget.scm.pangeaMatch!.isITStart)
+              CardHeader(
+                text: controller.error?.toString() ?? matchCopy.title,
+                botExpression: controller.error == null
+                    ? controller.currentExpression
+                    : BotExpression.addled,
+              ),
               Expanded(
-                child: Opacity(
-                  opacity: 0.8,
-                  child: TextButton(
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all<Color>(
-                        AppConfig.primaryColor.withOpacity(0.1),
-                      ),
-                    ),
-                    onPressed: controller.onIgnoreMatch,
-                    child: Center(
-                      child: Text(L10n.of(context)!.ignoreInThisText),
+                child: Scrollbar(
+                  controller: scrollController,
+                  thumbVisibility: true,
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // const SizedBox(height: 10.0),
+                        // if (matchCopy.description != null)
+                        //   Padding(
+                        //     padding: const EdgeInsets.only(),
+                        //     child: Text(
+                        //       matchCopy.description!,
+                        //       style: BotStyle.text(context),
+                        //     ),
+                        //   ),
+                        const SizedBox(height: 8),
+                        if (!controller.widget.scm.pangeaMatch!.isITStart)
+                          ChoicesArray(
+                            originalSpan:
+                                controller.widget.scm.pangeaMatch!.matchContent,
+                            isLoading: controller.fetchingData,
+                            choices:
+                                controller.widget.scm.pangeaMatch!.match.choices
+                                    ?.map(
+                                      (e) => Choice(
+                                        text: e.value,
+                                        color: e.selected ? e.type.color : null,
+                                        isGold: e.type.name == 'bestCorrection',
+                                      ),
+                                    )
+                                    .toList(),
+                            onPressed: controller.onChoiceSelect,
+                            uniqueKeyForLayerLink: (int index) =>
+                                "wordMatch$index",
+                            selectedChoiceIndex: controller.selectedChoiceIndex,
+                          ),
+                        const SizedBox(height: 12),
+                        PromptAndFeedback(controller: controller),
+                      ],
                     ),
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
-              if (!controller.widget.scm.pangeaMatch!.isITStart)
-                Expanded(
-                  child: Opacity(
-                    opacity: controller.selectedChoiceIndex != null ? 1.0 : 0.5,
-                    child: TextButton(
-                      onPressed: controller.selectedChoiceIndex != null
-                          ? controller.onReplaceSelected
-                          : null,
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                          (controller.selectedChoice != null
-                                  ? controller.selectedChoice!.color
-                                  : AppConfig.primaryColor)
-                              .withOpacity(0.2),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Opacity(
+                      opacity: 0.8,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                            AppConfig.primaryColor.withOpacity(0.1),
+                          ),
                         ),
-                        // Outline if Replace button enabled
-                        side: controller.selectedChoice != null
-                            ? WidgetStateProperty.all(
-                                BorderSide(
-                                  color: controller.selectedChoice!.color,
-                                  style: BorderStyle.solid,
-                                  width: 2.0,
-                                ),
-                              )
-                            : null,
+                        onPressed: controller.onIgnoreMatch,
+                        child: Center(
+                          child: Text(L10n.of(context)!.ignoreInThisText),
+                        ),
                       ),
-                      child: Text(L10n.of(context)!.replace),
                     ),
                   ),
-                ),
-              const SizedBox(width: 10),
+                  const SizedBox(width: 10),
+                  if (!controller.widget.scm.pangeaMatch!.isITStart)
+                    Expanded(
+                      child: Opacity(
+                        opacity:
+                            controller.selectedChoiceIndex != null ? 1.0 : 0.5,
+                        child: TextButton(
+                          onPressed: controller.selectedChoiceIndex != null
+                              ? controller.onReplaceSelected
+                              : null,
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                              (controller.selectedChoice != null
+                                      ? controller.selectedChoice!.color
+                                      : AppConfig.primaryColor)
+                                  .withOpacity(0.2),
+                            ),
+                            // Outline if Replace button enabled
+                            side: controller.selectedChoice != null
+                                ? WidgetStateProperty.all(
+                                    BorderSide(
+                                      color: controller.selectedChoice!.color,
+                                      style: BorderStyle.solid,
+                                      width: 2.0,
+                                    ),
+                                  )
+                                : null,
+                          ),
+                          child: Text(L10n.of(context)!.replace),
+                        ),
+                      ),
+                    ),
+                  const SizedBox(width: 10),
+                  if (controller.widget.scm.pangeaMatch!.isITStart)
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () {
+                          MatrixState.pAnyState.closeOverlay();
+                          Future.delayed(
+                            Duration.zero,
+                            () => controller.widget.scm.onITStart(),
+                          );
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                            (AppConfig.primaryColor).withOpacity(0.1),
+                          ),
+                        ),
+                        child: Text(L10n.of(context)!.helpMeTranslate),
+                      ),
+                    ),
+                ],
+              ),
               if (controller.widget.scm.pangeaMatch!.isITStart)
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      MatrixState.pAnyState.closeOverlay();
-                      Future.delayed(
-                        Duration.zero,
-                        () => controller.widget.scm.onITStart(),
-                      );
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all<Color>(
-                        (AppConfig.primaryColor).withOpacity(0.1),
-                      ),
-                    ),
-                    child: Text(L10n.of(context)!.helpMeTranslate),
-                  ),
+                DontShowSwitchListTile(
+                  controller: pangeaController,
+                  onSwitch: (bool value) {
+                    pangeaController.userController.updateProfile((profile) {
+                      profile.userSettings.itAutoPlay = value;
+                      return profile;
+                    });
+                  },
                 ),
             ],
           ),
-          if (controller.widget.scm.pangeaMatch!.isITStart)
-            DontShowSwitchListTile(
-              controller: pangeaController,
-              onSwitch: (bool value) {
-                pangeaController.userController.updateProfile((profile) {
-                  profile.userSettings.itAutoPlay = value;
-                  return profile;
-                });
-              },
-            ),
         ],
       );
     } on Exception catch (e) {

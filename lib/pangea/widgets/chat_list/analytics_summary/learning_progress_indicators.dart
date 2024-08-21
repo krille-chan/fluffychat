@@ -45,6 +45,9 @@ class LearningProgressIndicatorsState
   /// Grammar constructs model
   ConstructListModel? errors;
 
+  /// Morph constructs model
+  ConstructListModel? morphs;
+
   bool loading = true;
 
   int get serverXP => _pangeaController.analytics.serverXP;
@@ -78,6 +81,10 @@ class LearningProgressIndicatorsState
       type: ConstructTypeEnum.grammar,
       uses: constructs,
     );
+    morphs = ConstructListModel(
+      type: ConstructTypeEnum.morph,
+      uses: constructs,
+    );
 
     if (loading) loading = false;
     if (mounted) setState(() {});
@@ -90,6 +97,8 @@ class LearningProgressIndicatorsState
         return words?.lemmas.length;
       case ProgressIndicatorEnum.errorTypes:
         return errors?.lemmas.length;
+      case ProgressIndicatorEnum.morphsUsed:
+        return morphs?.lemmas.length;
       case ProgressIndicatorEnum.level:
         return level;
     }

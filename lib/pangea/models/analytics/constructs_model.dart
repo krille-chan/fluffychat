@@ -82,9 +82,9 @@ class OneConstructUse {
   OneConstructUse({
     required this.useType,
     required this.lemma,
-    required this.form,
     required this.constructType,
     required this.metadata,
+    this.form,
     this.id,
   });
 

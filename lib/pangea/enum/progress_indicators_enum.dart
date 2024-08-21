@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 enum ProgressIndicatorEnum {
   level,
   wordsUsed,
   errorTypes,
+  morphsUsed,
 }
 
 extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
@@ -14,6 +16,8 @@ extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
         return Icons.text_fields_outlined;
       case ProgressIndicatorEnum.errorTypes:
         return Icons.error_outline;
+      case ProgressIndicatorEnum.morphsUsed:
+        return Symbols.toys_and_games;
       case ProgressIndicatorEnum.level:
         return Icons.star;
     }
@@ -36,8 +40,10 @@ extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
         return Theme.of(context).brightness == Brightness.dark
             ? const Color.fromARGB(255, 250, 220, 129)
             : const Color.fromARGB(255, 255, 208, 67);
-      default:
-        return Theme.of(context).textTheme.bodyLarge!.color ?? Colors.blueGrey;
+      case ProgressIndicatorEnum.morphsUsed:
+        return Theme.of(context).brightness == Brightness.dark
+            ? const Color.fromARGB(255, 169, 183, 237)
+            : const Color.fromARGB(255, 38, 59, 141);
     }
   }
 
@@ -49,6 +55,8 @@ extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
         return L10n.of(context)!.errorTypes;
       case ProgressIndicatorEnum.level:
         return L10n.of(context)!.level;
+      case ProgressIndicatorEnum.morphsUsed:
+        return L10n.of(context)!.morphsUsed;
     }
   }
 }

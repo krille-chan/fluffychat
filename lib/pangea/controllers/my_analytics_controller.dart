@@ -112,7 +112,6 @@ class MyAnalyticsController extends BaseController {
   void onMessageSent(Map<String, dynamic> data) {
     // cancel the last timer that was set on message event and
     // reset it to fire after _minutesBeforeUpdate minutes
-    debugPrint("ONE MESSAGE SENT");
     _updateTimer?.cancel();
     _updateTimer = Timer(Duration(minutes: _minutesBeforeUpdate), () {
       debugPrint("timer fired, updating analytics");
@@ -138,12 +137,11 @@ class MyAnalyticsController extends BaseController {
       timeStamp: DateTime.now(),
     );
 
-    final List<OneConstructUse> constructs = [];
+    final List<OneConstructUse> constructs = getDraftUses(roomID);
 
     if (eventType == EventTypes.Message) {
       final grammarConstructs =
           choreo?.grammarConstructUses(metadata: metadata);
-      final itConstructs = choreo?.itStepsToConstructUses(metadata: metadata);
       final vocabUses = tokensSent != null
           ? originalSent?.vocabUses(
               choreo: choreo,
@@ -153,7 +151,6 @@ class MyAnalyticsController extends BaseController {
           : null;
       constructs.addAll([
         ...(grammarConstructs ?? []),
-        ...(itConstructs ?? []),
         ...(vocabUses ?? []),
       ]);
     }
@@ -171,35 +168,18 @@ class MyAnalyticsController extends BaseController {
         .filterConstructs(unfilteredConstructs: constructs)
         .then((filtered) {
       if (filtered.isEmpty) return;
+      filtered.addAll(getDraftUses(roomID));
       final level = _pangeaController.analytics.level;
       addLocalMessage(eventID, filtered).then(
-        (_) => afterAddLocalMessages(level),
+        (_) {
+          clearDraftUses(roomID);
+          afterAddLocalMessages(level);
+        },
       );
     });
   }
 
-  /// Called when the user selects a replacement during IGC
-  void onReplacementSelected(
-    List<PangeaToken> tokens,
-    String roomID,
-    bool isBestCorrection,
-  ) {
-    final useType = isBestCorrection
-        ? ConstructUseTypeEnum.corIGC
-        : ConstructUseTypeEnum.incIGC;
-    setDraftConstructUses(tokens, roomID, useType);
-  }
-
-  /// Called when the user ignores a match during IGC
-  void onIgnoreMatch(
-    List<PangeaToken> tokens,
-    String roomID,
-  ) {
-    const useType = ConstructUseTypeEnum.ignIGC;
-    setDraftConstructUses(tokens, roomID, useType);
-  }
-
-  void setDraftConstructUses(
+  void addDraftUses(
     List<PangeaToken> tokens,
     String roomID,
     ConstructUseTypeEnum useType,
@@ -220,18 +200,40 @@ class MyAnalyticsController extends BaseController {
           ),
         )
         .toList();
-    addLocalMessage('draft$roomID', uses);
+
+    final List<String> morphs = tokens
+        .map((t) => t.morph.values)
+        .expand((m) => m)
+        .cast<String>()
+        .toList();
+
+    uses.addAll(
+      morphs.map(
+        (morph) => OneConstructUse(
+          useType: useType,
+          lemma: morph,
+          constructType: ConstructTypeEnum.morph,
+          metadata: metadata,
+        ),
+      ),
+    );
+
+    final level = _pangeaController.analytics.level;
+    addLocalMessage('draft$roomID', uses).then(
+      (_) => afterAddLocalMessages(level),
+    );
   }
 
-  void clearDraftConstructUses(String roomID) {
+  List<OneConstructUse> getDraftUses(String roomID) {
+    final currentCache = _pangeaController.analytics.messagesSinceUpdate;
+    return currentCache['draft$roomID'] ?? [];
+  }
+
+  void clearDraftUses(String roomID) {
     final currentCache = _pangeaController.analytics.messagesSinceUpdate;
     currentCache.remove('draft$roomID');
     setMessagesSinceUpdate(currentCache);
   }
-
-  /// Called when the user selects a continuance during IT
-  /// TODO implement
-  void onSelectContinuance() {}
 
   /// Add a list of construct uses for a new message to the local
   /// cache of recently sent messages
