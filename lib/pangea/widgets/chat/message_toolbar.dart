@@ -65,7 +65,7 @@ class ToolbarDisplayController {
   void showToolbar(BuildContext context, {MessageMode? mode}) {
     // Close keyboard, if open
     if (controller.inputFocus.hasFocus) {
-      FocusManager.instance.primaryFocus?.unfocus();
+      controller.inputFocus.unfocus();
       return;
     }
     // Close emoji picker, if open

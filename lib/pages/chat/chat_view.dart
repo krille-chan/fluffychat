@@ -7,6 +7,7 @@ import 'package:fluffychat/pages/chat/chat_emoji_picker.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
+import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
@@ -200,27 +201,23 @@ class ChatView extends StatelessWidget {
                       ? null
                       : Theme.of(context).colorScheme.primary,
                 ),
-                leading:
-                    // #Pangea
-                    // controller.selectMode
-                    // ? IconButton(
-                    //     icon: const Icon(Icons.close),
-                    //     onPressed: controller.clearSelectedEvents,
-                    //     tooltip: L10n.of(context)!.close,
-                    //     color: Theme.of(context).colorScheme.primary,
-                    //   )
-                    // :
-                    // Pangea#
-                    UnreadRoomsBadge(
-                  filter: (r) =>
-                      r.id != controller.roomId
-                      // #Pangea
-                      &&
-                      !r.isAnalyticsRoom,
-                  // Pangea#
-                  badgePosition: BadgePosition.topEnd(end: 8, top: 4),
-                  child: const Center(child: BackButton()),
-                ),
+                leading: controller.selectMode
+                    ? IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: controller.clearSelectedEvents,
+                        tooltip: L10n.of(context)!.close,
+                        color: Theme.of(context).colorScheme.primary,
+                      )
+                    : UnreadRoomsBadge(
+                        filter: (r) =>
+                            r.id != controller.roomId
+                            // #Pangea
+                            &&
+                            !r.isAnalyticsRoom,
+                        // Pangea#
+                        badgePosition: BadgePosition.topEnd(end: 8, top: 4),
+                        child: const Center(child: BackButton()),
+                      ),
                 titleSpacing: 0,
                 title: ChatAppBarTitle(controller),
                 actions: _appBarActions(context),
@@ -452,7 +449,7 @@ class ChatView extends StatelessWidget {
                         Positioned(
                           left: 0,
                           right: 0,
-                          bottom: controller.showEmojiPicker ? 0 : 16,
+                          bottom: 16,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -504,11 +501,10 @@ class ChatView extends StatelessWidget {
                                       ITBar(
                                         choreographer: controller.choreographer,
                                       ),
+                                      ReactionsPicker(controller),
                                       ReplyDisplay(controller),
                                       ChatInputRow(controller),
-                                      if (controller.emojiPickerType !=
-                                          EmojiPickerType.reaction)
-                                        ChatEmojiPicker(controller),
+                                      ChatEmojiPicker(controller),
                                     ],
                                   ),
                                 ),

@@ -15,15 +15,10 @@ class ReactionsPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (controller.showEmojiPicker) return const SizedBox.shrink();
-    final display =
-        // #Pangea
-        // Even if a message is being edited/replied to,
-        // the reactions picker should show in selection overlay
-        // controller.editEvent == null &&
-        //     controller.replyEvent == null &&
-        // Pangea#
+    final display = controller.editEvent == null &&
+        controller.replyEvent == null &&
         controller.room.canSendDefaultMessages &&
-            controller.selectedEvents.isNotEmpty;
+        controller.selectedEvents.isNotEmpty;
     return AnimatedContainer(
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
