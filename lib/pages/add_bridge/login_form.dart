@@ -107,11 +107,21 @@ class WhatsAppLoginForm extends StatelessWidget {
           Text(L10n.of(context)!.enterYourDetails),
           const SizedBox(height: 5),
           IntlPhoneField(
+            disableLengthCheck: true,
             initialCountryCode:
                 Localizations.localeOf(context).languageCode.toUpperCase(),
             onChanged: (PhoneNumber phoneNumberField) {
-              controller.text = phoneNumberField.completeNumber;
+              String localNumber = phoneNumberField.number;
+
+              // If the local number begins with '0', it is removed
+              if (localNumber.startsWith('0')) {
+                localNumber = localNumber.substring(1);
+              }
+
+              // Reconstruct the complete number with the country code
+              controller.text = '${phoneNumberField.countryCode}$localNumber';
             },
+
             // Initial country code via language used in Locale currentLocale
             languageCode: Localizations.localeOf(context).languageCode,
             onCountryChanged: (country) {},
