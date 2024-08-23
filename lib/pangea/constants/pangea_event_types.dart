@@ -35,6 +35,4 @@ class PangeaEventTypes {
   /// A record of completion of an activity. There
   /// can be one per user per activity.
   static const activityRecord = "pangea.activity_completion";
-
-  static const storyGame = "p.game.story";
 }
