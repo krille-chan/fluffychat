@@ -6,6 +6,7 @@ import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/chat/locked_chat_message.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
@@ -27,7 +28,21 @@ class ChatEventList extends StatelessWidget {
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
     final events = controller.timeline!.events
-        .where((event) => event.isVisibleInGui)
+        .where(
+          (event) =>
+              event.isVisibleInGui
+              // #Pangea
+              &&
+              // In story game, hide messages sent by non-bot users in previous round
+              (event.type != EventTypes.Message ||
+                  event.senderId == BotName.byEnvironment ||
+                  controller.currentRound?.previousRoundEnd == null ||
+                  event.originServerTs.isAfter(
+                    controller.currentRound!.previousRoundEnd!,
+                  ))
+          // Pangea#
+          ,
+        )
         .toList();
     final animateInEventIndex = controller.animateInEventIndex;
 
