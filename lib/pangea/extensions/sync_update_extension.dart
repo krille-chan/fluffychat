@@ -10,9 +10,7 @@ extension MembershipUpdate on SyncUpdate {
 
     return rooms!.join![chat.id]!.timeline!.events!
         .where(
-          (event) =>
-              event.type == EventTypes.Message &&
-              !event.eventId.startsWith("Pangea Chat"),
+          (event) => event.type == EventTypes.Message,
         )
         .map((event) => Event.fromMatrixEvent(event, chat))
         .toList();

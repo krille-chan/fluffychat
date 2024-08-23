@@ -11,7 +11,6 @@ enum RoundState { notStarted, inProgress, completed }
 
 class GameRoundModel {
   static const int timerMaxSeconds = 180;
-  final String adminName = BotName.byEnvironment;
 
   final ChatController controller;
   final Completer<void> roundCompleter = Completer<void>();
@@ -21,54 +20,42 @@ class GameRoundModel {
   DateTime? endTime;
   RoundState state = RoundState.notStarted;
   StreamSubscription? syncSubscription;
-  final List<String> userMessageIDs = [];
-  final List<String> botMessageIDs = [];
+  final Set<String> messageIDs = {};
 
   GameRoundModel({
     required this.controller,
     required this.timer,
   }) {
     createdAt = DateTime.now();
-    syncSubscription ??= client.onSync.stream.listen(_handleSync);
-  }
+    debugPrint("timeline: ${controller.room.timeline}");
+    syncSubscription ??= client.onSync.stream.listen((update) {
+      final newMessages = update.messages(controller.room);
+      final botMessages = newMessages
+          .where((msg) => msg.senderId == BotName.byEnvironment)
+          .toList();
 
-  void _handleSync(SyncUpdate update) {
-    final newMessages = update
-        .messages(controller.room)
-        .where((msg) => msg.originServerTs.isAfter(createdAt))
-        .toList();
-
-    final botMessages =
-        newMessages.where((msg) => msg.senderId == adminName).toList();
-    final userMessages =
-        newMessages.where((msg) => msg.senderId != adminName).toList();
-
-    final hasNewBotMessage = botMessages.any(
-      (msg) => !botMessageIDs.contains(msg.eventId),
-    );
-
-    if (hasNewBotMessage) {
-      if (state == RoundState.notStarted) {
-        startRound();
-      } else if (state == RoundState.inProgress) {
-        endRound();
-        return;
-      }
-    }
-
-    if (state == RoundState.inProgress) {
-      for (final message in botMessages) {
-        if (!botMessageIDs.contains(message.eventId)) {
-          botMessageIDs.add(message.eventId);
+      if (botMessages.isNotEmpty &&
+          botMessages.any(
+            (msg) =>
+                msg.originServerTs.isAfter(createdAt) &&
+                !messageIDs.contains(msg.eventId),
+          )) {
+        if (state == RoundState.notStarted) {
+          startRound();
+        } else if (state == RoundState.inProgress) {
+          endRound();
+          return;
         }
       }
 
-      for (final message in userMessages) {
-        if (!userMessageIDs.contains(message.eventId)) {
-          userMessageIDs.add(message.eventId);
+      for (final message in newMessages) {
+        if (message.originServerTs.isAfter(createdAt) &&
+            !messageIDs.contains(message.eventId) &&
+            !message.eventId.startsWith("Pangea Chat")) {
+          messageIDs.add(message.eventId);
         }
       }
-    }
+    });
   }
 
   Client get client => controller.pangeaController.matrixState.client;
@@ -86,9 +73,7 @@ class GameRoundModel {
   }
 
   void endRound() {
-    debugPrint(
-      "ending round, user message IDs: $userMessageIDs, bot message IDs: $botMessageIDs",
-    );
+    debugPrint("ending round, message IDs: $messageIDs");
     endTime = DateTime.now();
     state = RoundState.completed;
     controller.roundTimerStateKey.currentState?.resetTimer();
