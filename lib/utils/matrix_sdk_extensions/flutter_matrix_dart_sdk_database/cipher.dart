@@ -14,9 +14,25 @@ Future<String?> getDatabaseCipher() async {
   String? password;
 
   try {
-    const secureStorage = FlutterSecureStorage();
+    // #Pangea
+    // mogol/flutter_secure_storage#532
+    // mogol/flutter_secure_storage#524
+    // Pangea#
+    const secureStorage = FlutterSecureStorage(
+      // #Pangea
+      iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
+      // Pangea#
+    );
+    // #Pangea
+    await secureStorage.read(key: _passwordStorageKey);
+    // Pangea#
     final containsEncryptionKey =
         await secureStorage.read(key: _passwordStorageKey) != null;
+    // #Pangea
+    Sentry.addBreadcrumb(
+      Breadcrumb(message: 'containsEncryptionKey: $containsEncryptionKey'),
+    );
+    // Pangea#
     if (!containsEncryptionKey) {
       final rng = Random.secure();
       final list = Uint8List(32);
@@ -29,18 +45,41 @@ Future<String?> getDatabaseCipher() async {
     }
     // workaround for if we just wrote to the key and it still doesn't exist
     password = await secureStorage.read(key: _passwordStorageKey);
-    if (password == null) throw MissingPluginException();
+    if (password == null) {
+      throw MissingPluginException(
+        // #Pangea
+        "password is null after storing new password",
+        // Pangea#
+      );
+    }
   } on MissingPluginException catch (e) {
     const FlutterSecureStorage()
         .delete(key: _passwordStorageKey)
         .catchError((_) {});
     Logs().w('Database encryption is not supported on this platform', e);
+    // #Pangea
+    Sentry.addBreadcrumb(
+      Breadcrumb(
+        message:
+            'Database encryption is not supported on this platform. Error message: ${e.message}',
+        data: {'exception': e},
+      ),
+    );
+    // Pangea#
     _sendNoEncryptionWarning(e);
   } catch (e, s) {
     const FlutterSecureStorage()
         .delete(key: _passwordStorageKey)
         .catchError((_) {});
     Logs().w('Unable to init database encryption', e, s);
+    // #Pangea
+    Sentry.addBreadcrumb(
+      Breadcrumb(
+        message: 'Unable to init database encryption',
+        data: {'exception': e, 'stackTrace': s},
+      ),
+    );
+    // Pangea#
     _sendNoEncryptionWarning(e);
   }
 
