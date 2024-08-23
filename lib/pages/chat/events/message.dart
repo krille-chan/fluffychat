@@ -263,10 +263,9 @@ class Message extends StatelessWidget {
                               final user = snapshot.data ??
                                   event.senderFromMemoryOrFallback;
                               return Avatar(
-                                // mxContent: user.avatarUrl,
-                                // name: user.calcDisplayname(),
-                                // presenceUserId: user.stateKey,
-                                name: "?",
+                                mxContent: user.avatarUrl,
+                                name: user.calcDisplayname(),
+                                presenceUserId: user.stateKey,
                                 presenceBackgroundColor:
                                     avatarPresenceBackgroundColor,
                                 onTap: () => onAvatarTab(event),
@@ -289,11 +288,10 @@ class Message extends StatelessWidget {
                                       : FutureBuilder<User?>(
                                           future: event.fetchSenderUser(),
                                           builder: (context, snapshot) {
-                                            // final displayname = snapshot.data
-                                            //         ?.calcDisplayname() ??
-                                            //     event.senderFromMemoryOrFallback
-                                            //         .calcDisplayname();
-                                            const displayname = "?";
+                                            final displayname = snapshot.data
+                                                    ?.calcDisplayname() ??
+                                                event.senderFromMemoryOrFallback
+                                                    .calcDisplayname();
                                             return Text(
                                               displayname,
                                               style: TextStyle(

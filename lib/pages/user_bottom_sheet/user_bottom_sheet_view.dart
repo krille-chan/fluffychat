@@ -22,10 +22,9 @@ class UserBottomSheetView extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = controller.widget.user;
     final userId = (user?.id ?? controller.widget.profile?.userId)!;
-    // final displayname = (user?.calcDisplayname() ??
-    //     controller.widget.profile?.displayName ??
-    //     controller.widget.profile?.userId.localpart)!;
-    const displayname = "?";
+    final displayname = (user?.calcDisplayname() ??
+        controller.widget.profile?.displayName ??
+        controller.widget.profile?.userId.localpart)!;
     final avatarUrl = user?.avatarUrl ?? controller.widget.profile?.avatarUrl;
 
     final client = Matrix.of(controller.widget.outerContext).client;
@@ -40,7 +39,7 @@ class UserBottomSheetView extends StatelessWidget {
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(displayname),
+              Text(displayname),
               PresenceBuilder(
                 userId: userId,
                 client: client,
@@ -214,7 +213,7 @@ class UserBottomSheetView extends StatelessWidget {
                               foregroundColor:
                                   Theme.of(context).colorScheme.onSurface,
                             ),
-                            label: const Text(
+                            label: Text(
                               displayname,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
