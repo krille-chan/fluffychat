@@ -2303,6 +2303,12 @@
       "user": {}
     }
   },
+  "invitedBy": "📩 Invited by {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
   "youInvitedUser": "📩 You invited {user}",
   "@youInvitedUser": {
     "placeholders": {
@@ -4017,7 +4023,7 @@
   "conversationBotTextAdventureZone_title": "Text Adventure",
   "conversationBotTextAdventureZone_instructionLabel": "Game Master Instructions",
   "conversationBotTextAdventureZone_instructionPlaceholder": "Set game master instructions",
-    "conversationBotCustomZone_instructionSystemPromptEmptyError": "Missing game master instructions",
+  "conversationBotCustomZone_instructionSystemPromptEmptyError": "Missing game master instructions",
   "studentAnalyticsNotAvailable": "Student data not currently available",
   "roomDataMissing": "Some data may be missing from rooms in which you are not a member.",
   "updatePhoneOS": "You may need to update your device's OS version.",
