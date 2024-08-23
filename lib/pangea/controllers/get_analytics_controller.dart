@@ -59,6 +59,8 @@ class GetAnalyticsController {
     _analyticsUpdateSubscription?.cancel();
     _analyticsUpdateSubscription = null;
     _cache.clear();
+    analyticsStream.add([]);
+    prevXP = null;
   }
 
   Future<void> onAnalyticsUpdate(AnalyticsUpdateType type) async {
@@ -77,7 +79,7 @@ class GetAnalyticsController {
     }
 
     // set the previous XP to the currentXP
-    if (analyticsStream.value != null) {
+    if (analyticsStream.value != null && analyticsStream.value!.isNotEmpty) {
       prevXP = calcXP(analyticsStream.value!);
     }
 

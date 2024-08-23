@@ -7,7 +7,6 @@ import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
-import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar_details.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/progress_indicator.dart';
@@ -50,9 +49,19 @@ class LearningProgressIndicatorsState
 
   bool loading = true;
 
-  int get serverXP => _pangeaController.analytics.serverXP;
-  int get totalXP => _pangeaController.analytics.currentXP;
-  int get level => _pangeaController.analytics.level;
+  // Some buggy stuff is happening with this data not being updated at login, so switching
+  // to stateful variables for now. Will switch this back later when I have more time to
+  // figure out why it's now working.
+  // int get serverXP => _pangeaController.analytics.serverXP;
+  // int get totalXP => _pangeaController.analytics.currentXP;
+  // int get level => _pangeaController.analytics.level;
+  List<OneConstructUse> currentConstructs = [];
+  int get currentXP => _pangeaController.analytics.calcXP(currentConstructs);
+  int get localXP => _pangeaController.analytics.calcXP(
+        _pangeaController.analytics.locallyCachedConstructs,
+      );
+  int get serverXP => currentXP - localXP;
+  int get level => currentXP ~/ AnalyticsConstants.xpPerLevel;
 
   @override
   void initState() {
@@ -60,7 +69,8 @@ class LearningProgressIndicatorsState
     updateAnalyticsData(
       _pangeaController.analytics.analyticsStream.value ?? [],
     );
-    _pangeaController.analytics.analyticsStream.stream
+    _analyticsUpdateSubscription = _pangeaController
+        .analytics.analyticsStream.stream
         .listen(updateAnalyticsData);
   }
 
@@ -86,6 +96,7 @@ class LearningProgressIndicatorsState
       uses: constructs,
     );
 
+    currentConstructs = constructs;
     if (loading) loading = false;
     if (mounted) setState(() {});
   }
@@ -105,11 +116,6 @@ class LearningProgressIndicatorsState
   }
 
   double get levelBarWidth => FluffyThemes.columnWidth - (32 * 2) - 25;
-  double get pointsBarWidth {
-    final percent = (totalXP % AnalyticsConstants.xpPerLevel) /
-        AnalyticsConstants.xpPerLevel;
-    return levelBarWidth * percent;
-  }
 
   Color levelColor(int level) {
     final colors = [
@@ -133,7 +139,7 @@ class LearningProgressIndicatorsState
       levelBars: [
         LevelBarDetails(
           fillColor: const Color.fromARGB(255, 0, 190, 83),
-          currentPoints: totalXP,
+          currentPoints: currentXP,
         ),
         LevelBarDetails(
           fillColor: Theme.of(context).colorScheme.primary,
@@ -171,9 +177,9 @@ class LearningProgressIndicatorsState
     return Stack(
       alignment: Alignment.topCenter,
       children: [
-        const Positioned(
-          child: PointsGainedAnimation(),
-        ),
+        // const Positioned(
+        //   child: PointsGainedAnimation(),
+        // ),
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
