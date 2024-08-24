@@ -2789,5 +2789,9 @@
     }
   },
   "changelog": "Muudatuste logi",
-  "@changelog": {}
+  "@changelog": {},
+  "sendCanceled": "Saatmine on katkestatud",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Siin ei leidu veel ühtegi vestlust. Alusta uut vestlust klõpsides allpool asuvat nuppu. ⤵️",
+  "@noChatsFoundHere": {}
 }

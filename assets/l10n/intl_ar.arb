@@ -2791,5 +2791,7 @@
     }
   },
   "sendCanceled": "تم إلغاء الإرسال",
-  "@sendCanceled": {}
+  "@sendCanceled": {},
+  "noChatsFoundHere": "لم يتم العثور على دردشات هنا حتى الآن. ابدأ محادثة جديدة مع شخص ما باستخدام الزر أدناه. ⤵️",
+  "@noChatsFoundHere": {}
 }

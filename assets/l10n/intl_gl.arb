@@ -2789,5 +2789,9 @@
     "placeholders": {
       "version": {}
     }
-  }
+  },
+  "sendCanceled": "Cancelouse o envío",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Ningún chat por aquí. Comeza unha nova conversa con alguén premendo no botón de abaixo. ⤵️",
+  "@noChatsFoundHere": {}
 }
