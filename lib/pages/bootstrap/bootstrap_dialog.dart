@@ -264,7 +264,9 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                         hintStyle: TextStyle(
                           fontFamily: theme.textTheme.bodyLarge?.fontFamily,
                         ),
-                        hintText: L10n.of(context)!.recoveryKey,
+                        prefixIcon: const Icon(Icons.key_outlined),
+                        labelText: L10n.of(context)!.recoveryKey,
+                        hintText: 'Es** **** **** ****',
                         errorText: _recoveryKeyInputError,
                         errorMaxLines: 2,
                       ),

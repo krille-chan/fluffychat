@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../config/themes.dart';
-import '../../widgets/mxc_image.dart';
-import 'homeserver_app_bar.dart';
 import 'homeserver_picker.dart';
 
 class HomeserverPickerView extends StatelessWidget {
@@ -21,22 +19,14 @@ class HomeserverPickerView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final identityProviders = controller.identityProviders;
-    final errorText = controller.error;
-    final publicHomeserver = controller.cachedHomeservers?.singleWhereOrNull(
-      (homeserver) =>
-          homeserver.name ==
-          controller.homeserverController.text.trim().toLowerCase(),
-    );
-    final regLink = publicHomeserver?.regLink;
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
-      appBar: AppBar(
-        titleSpacing: 12,
-        automaticallyImplyLeading: false,
-        surfaceTintColor: theme.colorScheme.surface,
-        title: HomeserverAppBar(controller: controller),
-      ),
+      appBar: controller.widget.addMultiAccount
+          ? AppBar(
+              centerTitle: true,
+              title: Text(L10n.of(context)!.addAccount),
+            )
+          : null,
       body: Column(
         children: [
           // display a prominent banner to import session for TOR browser
@@ -62,163 +52,132 @@ class HomeserverPickerView extends StatelessWidget {
               ),
             ),
           ),
+          Image.asset(
+            'assets/banner_transparent.png',
+          ),
           Expanded(
-            child: controller.isLoading
-                ? const Center(child: CircularProgressIndicator.adaptive())
-                : ListView(
-                    children: [
-                      if (errorText != null) ...[
-                        const SizedBox(height: 12),
-                        const Center(
-                          child: Icon(
-                            Icons.error_outline,
-                            size: 48,
-                            color: Colors.orange,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Center(
-                          child: Text(
-                            errorText,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: theme.colorScheme.error,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                        Center(
-                          child: Text(
-                            L10n.of(context)!
-                                .pleaseTryAgainLaterOrChooseDifferentServer,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: theme.colorScheme.error,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 36),
-                      ] else
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 0.0,
-                            right: 8.0,
-                            left: 8.0,
-                            bottom: 16.0,
-                          ),
-                          child: Image.asset(
-                            'assets/banner_transparent.png',
-                          ),
-                        ),
-                      if (identityProviders != null) ...[
-                        ...identityProviders.map(
-                          (provider) => _LoginButton(
-                            icon: provider.icon == null
-                                ? const Icon(
-                                    Icons.open_in_new_outlined,
-                                    size: 16,
-                                  )
-                                : Material(
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
-                                    clipBehavior: Clip.hardEdge,
-                                    child: MxcImage(
-                                      placeholder: (_) => const Icon(
-                                        Icons.open_in_new_outlined,
-                                        size: 16,
-                                      ),
-                                      uri: Uri.parse(provider.icon!),
-                                      width: 24,
-                                      height: 24,
-                                      isThumbnail: false,
-                                      //isThumbnail: false,
-                                    ),
-                                  ),
-                            label: L10n.of(context)!.signInWith(
-                              provider.name ??
-                                  provider.brand ??
-                                  L10n.of(context)!.singlesignon,
-                            ),
-                            onPressed: () =>
-                                controller.ssoLoginAction(provider.id),
-                          ),
-                        ),
-                      ],
-                      if (controller.supportsPasswordLogin)
-                        _LoginButton(
-                          onPressed: controller.login,
-                          label: L10n.of(context)!.signInWithPassword,
-                          icon: const Icon(Icons.lock_open_outlined, size: 16),
-                        ),
-                      if (regLink != null)
-                        _LoginButton(
-                          onPressed: () => launchUrlString(regLink),
-                          icon: const Icon(
-                            Icons.open_in_new_outlined,
-                            size: 16,
-                          ),
-                          label: L10n.of(context)!.register,
-                        ),
-                      _LoginButton(
-                        onPressed: controller.restoreBackup,
-                        label: L10n.of(context)!.hydrate,
-                        withBorder: false,
+            child: ListView(
+              padding: const EdgeInsets.only(
+                top: 16.0,
+                right: 8.0,
+                left: 8.0,
+                bottom: 16.0,
+              ),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextField(
+                    onChanged: controller.tryCheckHomeserverActionWithCooldown,
+                    onEditingComplete:
+                        controller.tryCheckHomeserverActionWithoutCooldown,
+                    onSubmitted:
+                        controller.tryCheckHomeserverActionWithoutCooldown,
+                    onTap: controller.tryCheckHomeserverActionWithCooldown,
+                    controller: controller.homeserverController,
+                    decoration: InputDecoration(
+                      prefixIcon: controller.isLoading
+                          ? Container(
+                              width: 16,
+                              height: 16,
+                              alignment: Alignment.center,
+                              child: const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator.adaptive(
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                            )
+                          : const Icon(Icons.search_outlined),
+                      filled: false,
+                      border: OutlineInputBorder(
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius),
                       ),
-                      const SizedBox(height: 16),
-                    ],
+                      hintText: AppConfig.defaultHomeserver,
+                      labelText: L10n.of(context)!.homeserver,
+                      errorText: controller.error,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog.adaptive(
+                              title: Text(L10n.of(context)!.whatIsAHomeserver),
+                              content: Linkify(
+                                text: L10n.of(context)!.homeserverDescription,
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => launchUrl(
+                                    Uri.https('servers.joinmatrix.org'),
+                                  ),
+                                  child: Text(
+                                    L10n.of(context)!.discoverHomeservers,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: Navigator.of(context).pop,
+                                  child: Text(L10n.of(context)!.close),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.info_outlined),
+                      ),
+                    ),
                   ),
+                ),
+                if (controller.supportsPasswordLogin || controller.supportsSso)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 8.0,
+                    ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: theme.colorScheme.primary,
+                        foregroundColor: theme.colorScheme.onPrimary,
+                      ),
+                      onPressed: controller.isLoggingIn || controller.isLoading
+                          ? null
+                          : controller.supportsSso
+                              ? controller.ssoLoginAction
+                              : controller.login,
+                      child: Text(L10n.of(context)!.connect),
+                    ),
+                  ),
+                if (controller.supportsPasswordLogin && controller.supportsSso)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: theme.colorScheme.secondary,
+                        textStyle: theme.textTheme.labelMedium,
+                      ),
+                      onPressed: controller.isLoggingIn || controller.isLoading
+                          ? null
+                          : controller.login,
+                      child: Text(L10n.of(context)!.loginWithMatrixId),
+                    ),
+                  ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      textStyle: theme.textTheme.labelMedium,
+                      foregroundColor: theme.colorScheme.secondary,
+                    ),
+                    onPressed: controller.isLoggingIn || controller.isLoading
+                        ? null
+                        : controller.restoreBackup,
+                    child: Text(L10n.of(context)!.hydrate),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _LoginButton extends StatelessWidget {
-  final Widget? icon;
-  final String label;
-  final void Function() onPressed;
-  final bool withBorder;
-
-  const _LoginButton({
-    this.icon,
-    required this.label,
-    required this.onPressed,
-    this.withBorder = true,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    final icon = this.icon;
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      alignment: Alignment.center,
-      child: SizedBox(
-        width: double.infinity,
-        child: OutlinedButton.icon(
-          style: OutlinedButton.styleFrom(
-            side: FluffyThemes.isColumnMode(context)
-                ? BorderSide.none
-                : BorderSide(
-                    color: theme.colorScheme.outlineVariant,
-                    width: 1,
-                  ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(99),
-            ),
-            foregroundColor: theme.colorScheme.onSurface,
-            backgroundColor:
-                withBorder ? theme.colorScheme.surface : Colors.transparent,
-          ),
-          onPressed: onPressed,
-          label: Text(label),
-          icon: icon ?? const SizedBox.shrink(),
-        ),
       ),
     );
   }
