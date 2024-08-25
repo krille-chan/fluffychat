@@ -2789,5 +2789,9 @@
     }
   },
   "changelog": "Änderungsprotokoll",
-  "@changelog": {}
+  "@changelog": {},
+  "sendCanceled": "Senden abgebrochen",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Hier wurden noch keine Chats gefunden. Starten Sie einen neuen Chat mit jemandem, indem Sie die Schaltfläche unten verwenden. ⤵️",
+  "@noChatsFoundHere": {}
 }
