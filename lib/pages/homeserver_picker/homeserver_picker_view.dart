@@ -27,7 +27,7 @@ class HomeserverPickerView extends StatelessWidget {
               title: Text(L10n.of(context)!.addAccount),
             )
           : null,
-      body: Column(
+      body: ListView(
         children: [
           // display a prominent banner to import session for TOR browser
           // users. This feature is just some UX sugar as TOR users are
@@ -55,14 +55,16 @@ class HomeserverPickerView extends StatelessWidget {
           Image.asset(
             'assets/banner_transparent.png',
           ),
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.only(
-                top: 16.0,
-                right: 8.0,
-                left: 8.0,
-                bottom: 16.0,
-              ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 16.0,
+              right: 8.0,
+              left: 8.0,
+              bottom: 16.0,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16.0),

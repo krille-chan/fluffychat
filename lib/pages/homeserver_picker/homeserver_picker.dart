@@ -75,6 +75,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   tryCheckHomeserverActionWithoutCooldown([_]) {
     _checkHomeserverCooldown?.cancel();
+    _lastCheckedUrl = null;
     checkHomeserverAction();
   }
 
