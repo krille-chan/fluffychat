@@ -2793,5 +2793,13 @@
   "sendCanceled": "Bidalketa bertan behera utzi da",
   "@sendCanceled": {},
   "noChatsFoundHere": "Ez da txatik aurkitu. Hasi norbaitekin txateatzen beheko botoia erabiliz. ⤵️",
-  "@noChatsFoundHere": {}
+  "@noChatsFoundHere": {},
+  "homeserverDescription": "Zerbitzariak datuak gordetzen ditu, ePosta hornitzaileek mezuak gordetzen dituzten bezala. Nahi duzun zerbitzaria aukeratu dezakezu eta, hala ere, besteetako edonorekin hitz egin. Ikasi gehiago https://matrix.org webgunean.",
+  "@homeserverDescription": {},
+  "loginWithMatrixId": "Hasi saioa Matrix IDarekin",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Arakatu zerbitzariak",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Zer da zerbitzari bat?",
+  "@whatIsAHomeserver": {}
 }
