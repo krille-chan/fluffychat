@@ -158,9 +158,9 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                 const SizedBox(height: 16),
                 ListTile(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  leading: Icon(Icons.content_copy), // Optional icon to represent the copy action
                   title: Text(L10n.of(context)!.copyToClipboard),
                   subtitle: Text(L10n.of(context)!.saveKeyManuallyDescription),
+                  trailing: Icon(Icons.content_copy), // Move icon to the right
                   onTap: () {
                     FluffyShare.share(key!, context);
                     setState(() => _recoveryKeyCopied = true);
