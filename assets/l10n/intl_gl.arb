@@ -2793,5 +2793,13 @@
   "sendCanceled": "Cancelouse o envío",
   "@sendCanceled": {},
   "noChatsFoundHere": "Ningún chat por aquí. Comeza unha nova conversa con alguén premendo no botón de abaixo. ⤵️",
-  "@noChatsFoundHere": {}
+  "@noChatsFoundHere": {},
+  "discoverHomeservers": "Atopar servidores",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Que é un servidor de inicio?",
+  "@whatIsAHomeserver": {},
+  "loginWithMatrixId": "Acceder co ID-Matrix",
+  "@loginWithMatrixId": {},
+  "homeserverDescription": "Todos os teus datos quedan gardados no servidor de inicio, igual que co teu provedor de correo electrónico. Podes elexir o servidor que queres usar e poderás comunicarte con todos os demais. Aprende máis en https://matrix.org.",
+  "@homeserverDescription": {}
 }
