@@ -2,24 +2,23 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 
 class OverlayFooter extends StatelessWidget {
-  ChatController controller;
+  final ChatController controller;
 
-  OverlayFooter({
+  const OverlayFooter({
     required this.controller,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 18.0 : 10.0;
+    final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
 
     return Container(
       margin: EdgeInsets.only(
-        bottom: PlatformInfos.isAndroid ? 0 : bottomSheetPadding,
+        bottom: bottomSheetPadding,
         left: bottomSheetPadding,
         right: bottomSheetPadding,
       ),
@@ -41,13 +40,6 @@ class OverlayFooter extends StatelessWidget {
                 ChatInputRow(controller),
               ],
             ),
-          ),
-          SizedBox(
-            height: FluffyThemes.isColumnMode(context)
-                ? 15.0
-                : PlatformInfos.isAndroid
-                    ? 0
-                    : 8.0,
           ),
         ],
       ),

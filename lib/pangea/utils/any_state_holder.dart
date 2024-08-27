@@ -83,6 +83,9 @@ class PangeaAnyState {
   // String chatViewTargetKey(String? roomId) => "chatViewKey$roomId";
   // LayerLinkAndKey chatViewLinkAndKey(String? roomId) =>
   //     layerLinkAndKey(chatViewTargetKey(roomId));
+
+  RenderBox? getRenderBox(String key) =>
+      layerLinkAndKey(key).key.currentContext?.findRenderObject() as RenderBox?;
 }
 
 class LayerLinkAndKey {

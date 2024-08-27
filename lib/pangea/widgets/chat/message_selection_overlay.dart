@@ -1,195 +1,220 @@
+import 'dart:async';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat/events/message.dart';
+import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/utils/any_state_holder.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_header.dart';
-import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
-class MessageSelectionOverlay extends StatelessWidget {
+class MessageSelectionOverlay extends StatefulWidget {
   final ChatController controller;
-  final ToolbarDisplayController toolbarController;
-  final Function closeToolbar;
-  final Widget toolbar;
+  final Event event;
   final PangeaMessageEvent pangeaMessageEvent;
-  final bool ownMessage;
-  final bool immersionMode;
-  final String targetId;
+  final MessageMode? initialMode;
+  final MessageTextSelection textSelection;
 
   const MessageSelectionOverlay({
     required this.controller,
-    required this.closeToolbar,
-    required this.toolbar,
+    required this.event,
     required this.pangeaMessageEvent,
-    required this.immersionMode,
-    required this.ownMessage,
-    required this.targetId,
-    required this.toolbarController,
+    required this.textSelection,
+    this.initialMode,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    final LayerLinkAndKey layerLinkAndKey =
-        MatrixState.pAnyState.layerLinkAndKey(targetId);
-    final targetRenderBox =
-        layerLinkAndKey.key.currentContext?.findRenderObject();
+  MessageSelectionOverlayState createState() => MessageSelectionOverlayState();
+}
 
-    double center = 290;
-    double? left;
-    double? right;
-    bool showDown = false;
-    final double footerSize = PlatformInfos.isMobile
-        ? PlatformInfos.isIOS
-            ? 128
-            : 108
-        : 143;
-    final double headerSize = PlatformInfos.isMobile
-        ? PlatformInfos.isIOS
-            ? 121
-            : 84
-        : 77;
-    final double stackSize =
-        MediaQuery.of(context).size.height - footerSize - headerSize;
+class MessageSelectionOverlayState extends State<MessageSelectionOverlay> {
+  double overlayBottomOffset = -1;
+  double adjustedOverlayBottomOffset = -1;
+  Size? messageSize;
+  Offset? messageOffset;
 
+  final StreamController _completeAnimationStream =
+      StreamController.broadcast();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // position the overlay directly over the underlying message
+    setOverlayBottomOffset();
+
+    // wait for the toolbar to animate to full height
+    _completeAnimationStream.stream.first.then((_) {
+      if (toolbarHeight == null ||
+          messageSize == null ||
+          messageOffset == null) {
+        return;
+      }
+
+      // Once the toolbar has fully expanded, adjust
+      // the overlay's position if there's an overflow
+      final overlayTopOffset = messageOffset!.dy - toolbarHeight!;
+
+      final bool hasHeaderOverflow = overlayTopOffset < headerHeight;
+      final bool hasFooterOverflow = overlayBottomOffset < footerHeight;
+
+      if (hasHeaderOverflow) {
+        final overlayHeight = toolbarHeight! + messageSize!.height;
+        adjustedOverlayBottomOffset = screenHeight -
+            overlayHeight -
+            footerHeight -
+            MediaQuery.of(context).padding.bottom;
+      } else if (hasFooterOverflow) {
+        adjustedOverlayBottomOffset = footerHeight;
+      }
+
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _completeAnimationStream.close();
+    super.dispose();
+  }
+
+  void setOverlayBottomOffset() {
+    // Try to get the offset and size of the original message bubble.
+    // If it fails, return an empty SizedBox. For instance, this can fail if
+    // you change the screen size while the overlay is open.
     try {
-      if (targetRenderBox != null) {
-        final Size transformTargetSize = (targetRenderBox as RenderBox).size;
-        final Offset targetOffset =
-            (targetRenderBox).localToGlobal(Offset.zero);
-        if (ownMessage) {
-          right = MediaQuery.of(context).size.width -
-              targetOffset.dx -
-              transformTargetSize.width;
-        } else {
-          left =
-              targetOffset.dx - (FluffyThemes.isColumnMode(context) ? 425 : 1);
-        }
-
-        showDown = targetOffset.dy + transformTargetSize.height / 2 <=
-            headerSize + stackSize / 2;
-
-        center = targetOffset.dy -
-            headerSize +
-            (showDown ? transformTargetSize.height + 3 : (-3));
-        // If top of selected message extends below header
-        if (targetOffset.dy <= headerSize) {
-          center = transformTargetSize.height + 3;
-          showDown = true;
-        }
-        // If bottom of selected message extends below footer
-        else if (targetOffset.dy + transformTargetSize.height >=
-            headerSize + stackSize) {
-          center = stackSize - transformTargetSize.height - 3;
-        }
-        final double midpoint = headerSize + stackSize / 2;
-        // If message is too long,
-        // use default location to make full use of screen
-        if (transformTargetSize.height >= stackSize / 2 - 30) {
-          center = stackSize / 2 + (showDown ? -30 : 30);
-        }
-        // If message is not too long, but too close
-        // to center of screen, scroll closer to edges
-        else if (targetOffset.dy + transformTargetSize.height > midpoint - 30 &&
-            targetOffset.dy < midpoint + 30) {
-          final double scrollUp = midpoint + 30 - targetOffset.dy;
-          final double scrollDown =
-              targetOffset.dy + transformTargetSize.height - (midpoint - 30);
-          final double minScroll =
-              controller.scrollController.position.minScrollExtent;
-          final double maxScroll =
-              controller.scrollController.position.maxScrollExtent;
-          final double currentOffset = controller.scrollController.offset;
-
-          // If can scroll up, scroll up
-          if (currentOffset + scrollUp < maxScroll) {
-            controller.scrollController.animateTo(
-              currentOffset + scrollUp,
-              duration: FluffyThemes.animationDuration,
-              curve: FluffyThemes.animationCurve,
-            );
-            showDown = false;
-            center = stackSize / 2 + 27;
-          }
-
-          // Else if can scroll down, scroll down
-          else if (currentOffset - scrollDown > minScroll) {
-            controller.scrollController.animateTo(
-              currentOffset - scrollDown,
-              duration: FluffyThemes.animationDuration,
-              curve: FluffyThemes.animationCurve,
-            );
-            showDown = true;
-            center = stackSize / 2 - 27;
-          }
-
-          // Neither scrolling works; leave message as-is,
-          // and use centered toolbar location
-          else {
-            center = stackSize / 2 + (showDown ? -30 : 30);
-          }
-        }
+      final messageRenderBox = MatrixState.pAnyState.getRenderBox(
+        widget.event.eventId,
+      );
+      if (messageRenderBox != null && messageRenderBox.hasSize) {
+        messageSize = messageRenderBox.size;
+        messageOffset = messageRenderBox.localToGlobal(Offset.zero);
+        final messageTopOffset = messageOffset!.dy;
+        overlayBottomOffset =
+            screenHeight - messageTopOffset - messageSize!.height;
       }
     } catch (err) {
-      controller.showEmojiPicker = false;
-      controller.selectedEvents.clear();
-      MatrixState.pAnyState.closeAllOverlays();
-      ErrorHandler.logError(e: err, s: StackTrace.current);
-      // throw L10n.of(context)!.toolbarError;
-      return const SizedBox();
+      overlayBottomOffset = adjustedOverlayBottomOffset = -1;
+    } finally {
+      setState(() {});
+    }
+  }
+
+  // height of the reply/forward bar + the reaction picker + contextual padding
+  double get footerHeight =>
+      48 + 56 + (FluffyThemes.isColumnMode(context) ? 16.0 : 8.0);
+
+  double get headerHeight =>
+      (Theme.of(context).appBarTheme.toolbarHeight ?? 56) +
+      MediaQuery.of(context).padding.top;
+
+  double get screenHeight => MediaQuery.of(context).size.height;
+
+  double? get toolbarHeight {
+    try {
+      final toolbarRenderBox = MatrixState.pAnyState.getRenderBox(
+        '${widget.pangeaMessageEvent.eventId}-toolbar',
+      );
+
+      return toolbarRenderBox?.size.height;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (overlayBottomOffset == -1) {
+      return const SizedBox.shrink();
     }
 
-    final Widget overlayMessage = OverlayMessage(
-      pangeaMessageEvent.event,
-      timeline: pangeaMessageEvent.timeline,
-      immersionMode: immersionMode,
-      ownMessage: pangeaMessageEvent.ownMessage,
-      toolbarController: toolbarController,
-      width: 290,
-      showDown: showDown,
-    );
-
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment:
-            ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        children: [
-          OverlayHeader(
-            controller: controller,
-            closeToolbar: closeToolbar,
-          ),
-          SizedBox(
-            height: PlatformInfos.isAndroid ? 3 : 6,
-          ),
-          Flexible(
-            child: Stack(
+    final overlayMessage = ConstrainedBox(
+      constraints: const BoxConstraints(
+        maxWidth: FluffyThemes.columnWidth * 2.5,
+      ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: widget.pangeaMessageEvent.ownMessage
+                  ? MainAxisAlignment.end
+                  : MainAxisAlignment.start,
               children: [
-                Positioned(
-                  left: left,
-                  right: right,
-                  bottom: stackSize - center + 3,
-                  child: showDown ? overlayMessage : toolbar,
-                ),
-                Positioned(
-                  left: left,
-                  right: right,
-                  top: center + 3,
-                  child: showDown ? toolbar : overlayMessage,
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: widget.pangeaMessageEvent.ownMessage
+                        ? 0
+                        : Avatar.defaultSize + 16,
+                    right: widget.pangeaMessageEvent.ownMessage ? 8 : 0,
+                  ),
+                  child: MessageToolbar(
+                    pangeaMessageEvent: widget.pangeaMessageEvent,
+                    controller: widget.controller,
+                    textSelection: widget.textSelection,
+                    completeAnimationStream: _completeAnimationStream,
+                    initialMode: widget.initialMode,
+                  ),
                 ),
               ],
             ),
+            Message(
+              widget.event,
+              onSwipe: () => {},
+              onInfoTab: (_) => {},
+              onAvatarTab: (_) => {},
+              scrollToEventId: (_) => {},
+              immersionMode: widget.controller.choreographer.immersionMode,
+              controller: widget.controller,
+              timeline: widget.controller.timeline!,
+              isOverlay: true,
+              animateIn: false,
+            ),
+          ],
+        ),
+      ),
+    );
+
+    return Expanded(
+      child: Stack(
+        children: [
+          AnimatedPositioned(
+            duration: FluffyThemes.animationDuration,
+            left: 0,
+            right: 0,
+            bottom: adjustedOverlayBottomOffset == -1
+                ? overlayBottomOffset
+                : adjustedOverlayBottomOffset,
+            child: Align(
+              alignment: Alignment.center,
+              child: overlayMessage,
+            ),
           ),
-          SizedBox(
-            height: PlatformInfos.isAndroid ? 3 : 6,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                OverlayFooter(controller: widget.controller),
+              ],
+            ),
           ),
-          OverlayFooter(controller: controller),
+          Material(
+            child: OverlayHeader(controller: widget.controller),
+          ),
         ],
       ),
     );

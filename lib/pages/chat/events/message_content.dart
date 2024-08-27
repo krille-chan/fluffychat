@@ -1,16 +1,15 @@
 import 'dart:math';
 
+import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
-import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
@@ -37,8 +36,8 @@ class MessageContent extends StatelessWidget {
   //here rather than passing the choreographer? pangea rich text, a widget
   //further down in the chain is also using pangeaController so its not constant
   final bool immersionMode;
-  final ToolbarDisplayController? toolbarController;
   final bool isOverlay;
+  final ChatController controller;
   // Pangea#
 
   const MessageContent(
@@ -50,8 +49,8 @@ class MessageContent extends StatelessWidget {
     required this.selected,
     this.pangeaMessageEvent,
     required this.immersionMode,
-    required this.toolbarController,
     this.isOverlay = false,
+    required this.controller,
     // Pangea#
     required this.borderRadius,
   });
@@ -306,45 +305,34 @@ class MessageContent extends StatelessWidget {
                   style: messageTextStyle,
                   pangeaMessageEvent: pangeaMessageEvent!,
                   immersionMode: immersionMode,
-                  toolbarController: toolbarController,
+                  isOverlay: isOverlay,
+                  controller: controller,
                 ),
               );
-            } else if (pangeaMessageEvent != null) {
-              toolbarController?.toolbar?.textSelection.setMessageText(
-                (event.getDisplayEvent(pangeaMessageEvent!.timeline).body),
+            }
+
+            if (isOverlay) {
+              controller.textSelection.setMessageText(
+                event.calcLocalizedBodyFallback(
+                  MatrixLocals(L10n.of(context)!),
+                  hideReply: true,
+                ),
               );
             }
 
             return SelectableLinkify(
               onSelectionChanged: (selection, cause) {
-                if (cause == SelectionChangedCause.longPress &&
-                    toolbarController != null &&
-                    pangeaMessageEvent != null &&
-                    !(toolbarController!.highlighted) &&
-                    !selected) {
-                  return;
+                if (isOverlay) {
+                  controller.textSelection.onTextSelection(selection);
                 }
-                toolbarController?.toolbar?.textSelection
-                    .onTextSelection(selection);
               },
-              onTap: () => toolbarController?.showToolbar(context),
-              contextMenuBuilder: (context, state) =>
-                  (toolbarController?.highlighted ?? false)
-                      ? const SizedBox.shrink()
-                      : MessageContextMenu.contextMenuOverride(
-                          context: context,
-                          textSelection: state,
-                          onDefine: () => toolbarController?.showToolbar(
-                            context,
-                            mode: MessageMode.definition,
-                          ),
-                          onListen: () => toolbarController?.showToolbar(
-                            context,
-                            mode: MessageMode.textToSpeech,
-                          ),
-                        ),
-              enableInteractiveSelection:
-                  toolbarController?.highlighted ?? false,
+              onTap: () {
+                if (pangeaMessageEvent != null && !isOverlay) {
+                  HapticFeedback.mediumImpact();
+                  controller.showToolbar(pangeaMessageEvent!);
+                }
+              },
+              enableInteractiveSelection: isOverlay,
               // Pangea#
               text: event.calcLocalizedBodyFallback(
                 MatrixLocals(L10n.of(context)!),

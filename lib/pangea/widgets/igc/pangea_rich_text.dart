@@ -2,31 +2,31 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../enum/message_mode_enum.dart';
 import '../../models/pangea_match_model.dart';
 
 class PangeaRichText extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final bool immersionMode;
-  final ToolbarDisplayController? toolbarController;
   final TextStyle? style;
+  final bool isOverlay;
+  final ChatController controller;
 
   const PangeaRichText({
     super.key,
     required this.pangeaMessageEvent,
     required this.immersionMode,
-    required this.toolbarController,
+    required this.isOverlay,
+    required this.controller,
     this.style,
   });
 
@@ -59,12 +59,11 @@ class PangeaRichTextState extends State<PangeaRichText> {
   void _setTextSpan(String newTextSpan) {
     try {
       if (!mounted) return; // Early exit if the widget is no longer in the tree
-
-      widget.toolbarController?.toolbar?.textSelection.setMessageText(
-        newTextSpan,
-      );
       setState(() {
         textSpan = newTextSpan;
+        if (widget.isOverlay) {
+          widget.controller.textSelection.setMessageText(textSpan);
+        }
       });
     } catch (error, stackTrace) {
       ErrorHandler.logError(
@@ -137,35 +136,16 @@ class PangeaRichTextState extends State<PangeaRichText> {
     //TODO - take out of build function of every message
     final Widget richText = SelectableText.rich(
       onSelectionChanged: (selection, cause) {
-        if (cause == SelectionChangedCause.longPress &&
-            !(widget.toolbarController?.highlighted ?? false) &&
-            !(widget.toolbarController?.controller.selectedEvents.any(
-                  (e) => e.eventId == widget.pangeaMessageEvent.eventId,
-                ) ??
-                false)) {
-          return;
+        if (widget.isOverlay) {
+          widget.controller.textSelection.onTextSelection(selection);
         }
-        widget.toolbarController?.toolbar?.textSelection
-            .onTextSelection(selection);
       },
-      onTap: () => widget.toolbarController?.showToolbar(context),
-      enableInteractiveSelection:
-          widget.toolbarController?.highlighted ?? false,
-      contextMenuBuilder: (context, state) =>
-          widget.toolbarController?.highlighted ?? true
-              ? const SizedBox.shrink()
-              : MessageContextMenu.contextMenuOverride(
-                  context: context,
-                  textSelection: state,
-                  onDefine: () => widget.toolbarController?.showToolbar(
-                    context,
-                    mode: MessageMode.definition,
-                  ),
-                  onListen: () => widget.toolbarController?.showToolbar(
-                    context,
-                    mode: MessageMode.textToSpeech,
-                  ),
-                ),
+      onTap: () {
+        if (!widget.isOverlay) {
+          widget.controller.showToolbar(widget.pangeaMessageEvent);
+        }
+      },
+      enableInteractiveSelection: widget.isOverlay,
       TextSpan(
         text: textSpan,
         style: widget.style,
