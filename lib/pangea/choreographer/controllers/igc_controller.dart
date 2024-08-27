@@ -41,6 +41,7 @@ class IgcController {
 
       final IGCRequestBody reqBody = IGCRequestBody(
         fullText: choreographer.currentText,
+        userId: choreographer.pangeaController.userController.userId!,
         userL1: choreographer.l1LangCode!,
         userL2: choreographer.l2LangCode!,
         enableIGC: choreographer.igcEnabled && !onlyTokensAndLanguageDetection,
