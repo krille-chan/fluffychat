@@ -1,6 +1,5 @@
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -24,10 +23,7 @@ class OverlayHeader extends StatelessWidget {
           ),
           leading: IconButton(
             icon: const Icon(Icons.close),
-            onPressed: () {
-              controller.clearSelectedEvents();
-              MatrixState.pAnyState.closeAllOverlays();
-            },
+            onPressed: controller.clearSelectedEvents,
             tooltip: L10n.of(context)!.close,
             color: Theme.of(context).colorScheme.primary,
           ),

@@ -1579,6 +1579,9 @@ class ChatController extends State<ChatPageWithRoom>
     PangeaMessageEvent pangeaMessageEvent, {
     MessageMode? mode,
   }) {
+    // select the message
+    onSelectMessage(pangeaMessageEvent.event);
+
     // Close keyboard, if open
     if (inputFocus.hasFocus && PlatformInfos.isMobile) {
       inputFocus.unfocus();

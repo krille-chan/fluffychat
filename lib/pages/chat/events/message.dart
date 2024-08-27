@@ -215,7 +215,7 @@ class Message extends StatelessWidget {
                         right: 0,
                         child: InkWell(
                           // #Pangea
-                          onTap: () => MatrixState.pAnyState.closeOverlay(),
+                          onTap: controller.clearSelectedEvents,
                           // onTap: () => onSelect(event),
                           // onLongPress: () => onSelect(event),
                           // Pangea#
