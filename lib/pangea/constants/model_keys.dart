@@ -119,8 +119,4 @@ class ModelKey {
 
   static const String prevEventId = "prev_event_id";
   static const String prevLastUpdated = "prev_last_updated";
-
-  static const String gameState = "game_state";
-  static const String currentRoundStartTime = "start_time";
-  static const String previousRoundEndTime = "message_visible_from";
 }

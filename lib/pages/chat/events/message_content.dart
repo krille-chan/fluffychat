@@ -95,16 +95,12 @@ class MessageContent extends StatelessWidget {
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 leading: Avatar(
-                  // mxContent: sender.avatarUrl,
-                  // name: sender.calcDisplayname(),
-                  // presenceUserId: sender.stateKey,
-                  name: "?",
+                  mxContent: sender.avatarUrl,
+                  name: sender.calcDisplayname(),
+                  presenceUserId: sender.stateKey,
                   client: event.room.client,
                 ),
-                title: const Text(
-                  // sender.calcDisplayname(),
-                  "?",
-                ),
+                title: Text(sender.calcDisplayname()),
                 subtitle: Text(event.originServerTs.localizedTime(context)),
                 trailing: const Icon(Icons.lock_outlined),
               ),
@@ -268,10 +264,9 @@ class MessageContent extends StatelessWidget {
                 builder: (context, snapshot) {
                   final reason =
                       event.redactedBecause?.content.tryGet<String>('reason');
-                  // final redactedBy = snapshot.data?.calcDisplayname() ??
-                  //     event.redactedBecause?.senderId.localpart ??
-                  //     L10n.of(context)!.user;
-                  const redactedBy = "?";
+                  final redactedBy = snapshot.data?.calcDisplayname() ??
+                      event.redactedBecause?.senderId.localpart ??
+                      L10n.of(context)!.user;
                   return _ButtonContent(
                     label: reason == null
                         ? L10n.of(context)!.redactedBy(redactedBy)
@@ -375,9 +370,8 @@ class MessageContent extends StatelessWidget {
           builder: (context, snapshot) {
             return _ButtonContent(
               label: L10n.of(context)!.userSentUnknownEvent(
-                // snapshot.data?.calcDisplayname() ??
-                //     event.senderFromMemoryOrFallback.calcDisplayname(),
-                "?",
+                snapshot.data?.calcDisplayname() ??
+                    event.senderFromMemoryOrFallback.calcDisplayname(),
                 event.type,
               ),
               icon: 'ℹ️',

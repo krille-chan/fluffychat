@@ -184,9 +184,9 @@ class MatrixLocals extends MatrixLocalizations {
   @override
   String redactedAnEvent(Event redactedEvent) {
     return l10n.redactedAnEvent(
-      // redactedEvent.redactedBecause?.senderFromMemoryOrFallback
-      //         .calcDisplayname() ??
-      l10n.user,
+      redactedEvent.redactedBecause?.senderFromMemoryOrFallback
+              .calcDisplayname() ??
+          l10n.user,
     );
   }
 
@@ -198,8 +198,7 @@ class MatrixLocals extends MatrixLocalizations {
   @override
   String removedBy(Event redactedEvent) {
     return l10n.redactedBy(
-      // redactedEvent.senderFromMemoryOrFallback.calcDisplayname(),
-      "?",
+      redactedEvent.senderFromMemoryOrFallback.calcDisplayname(),
     );
   }
 
@@ -347,8 +346,5 @@ class MatrixLocals extends MatrixLocalizations {
       l10n.startedKeyVerification(senderName);
 
   @override
-  String invitedBy(String senderName) {
-    // TODO: implement invitedBy
-    throw UnimplementedError();
-  }
+  String invitedBy(String senderName) => l10n.invitedBy(senderName);
 }
