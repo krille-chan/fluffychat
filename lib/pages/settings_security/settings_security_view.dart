@@ -87,9 +87,7 @@ class SettingsSecurityView extends StatelessWidget {
                         onTap: controller.setAppLockAction,
                       ),
                   },
-                  Divider(
-                    color: theme.dividerColor,
-                  ),
+                  Divider(color: theme.dividerColor),
                   ListTile(
                     title: Text(
                       L10n.of(context)!.account,
@@ -118,13 +116,14 @@ class SettingsSecurityView extends StatelessWidget {
                     ),
                   ListTile(
                     iconColor: Colors.orange,
-                    leading: const Icon(Icons.tap_and_play),
+                    leading: const Icon(Icons.delete_sweep_outlined),
                     title: Text(
                       L10n.of(context)!.dehydrate,
                       style: const TextStyle(color: Colors.orange),
                     ),
                     onTap: controller.dehydrateAction,
                   ),
+                  Divider(color: theme.dividerColor),
                   ListTile(
                     iconColor: Colors.red,
                     leading: const Icon(Icons.delete_outlined),

@@ -46,7 +46,7 @@ class SettingsIgnoreListView extends StatelessWidget {
                       labelText: L10n.of(context)!.blockUsername,
                       suffixIcon: IconButton(
                         tooltip: L10n.of(context)!.block,
-                        icon: const Icon(Icons.send_outlined),
+                        icon: const Icon(Icons.add),
                         onPressed: () => controller.ignoreUser(context),
                       ),
                     ),

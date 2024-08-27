@@ -61,12 +61,13 @@ class NewGroupView extends StatelessWidget {
                 readOnly: controller.loading,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.people_outlined),
-                  hintText: L10n.of(context)!.groupName,
+                  labelText: L10n.of(context)!.groupName,
                 ),
               ),
             ),
             const SizedBox(height: 16),
             SwitchListTile.adaptive(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 32),
               secondary: const Icon(Icons.public_outlined),
               title: Text(L10n.of(context)!.groupIsPublic),
               value: controller.publicGroup,
@@ -76,6 +77,8 @@ class NewGroupView extends StatelessWidget {
               duration: FluffyThemes.animationDuration,
               child: controller.publicGroup
                   ? SwitchListTile.adaptive(
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 32),
                       secondary: const Icon(Icons.search_outlined),
                       title: Text(L10n.of(context)!.groupCanBeFoundViaSearch),
                       value: controller.groupCanBeFound,
@@ -86,6 +89,7 @@ class NewGroupView extends StatelessWidget {
                   : const SizedBox.shrink(),
             ),
             SwitchListTile.adaptive(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 32),
               secondary: Icon(
                 Icons.lock_outlined,
                 color: theme.colorScheme.onSurface,
@@ -108,16 +112,7 @@ class NewGroupView extends StatelessWidget {
                       controller.loading ? null : controller.submitAction,
                   child: controller.loading
                       ? const LinearProgressIndicator()
-                      : Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                L10n.of(context)!.createGroupAndInviteUsers,
-                              ),
-                            ),
-                            Icon(Icons.adaptive.arrow_forward_outlined),
-                          ],
-                        ),
+                      : Text(L10n.of(context)!.createGroupAndInviteUsers),
                 ),
               ),
             ),

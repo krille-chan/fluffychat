@@ -86,7 +86,17 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   Future<void> checkHomeserverAction([_]) async {
     homeserverController.text =
         homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
-    if (homeserverController.text == _lastCheckedUrl) return;
+
+    if (homeserverController.text.isEmpty) {
+      setState(() {
+        error = loginFlows = null;
+        isLoading = false;
+        Matrix.of(context).getLoginClient().homeserver = null;
+      });
+      return;
+    }
+    if (_lastCheckedUrl == homeserverController.text) return;
+
     _lastCheckedUrl = homeserverController.text;
     setState(() {
       error = loginFlows = null;
@@ -102,7 +112,12 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       final (_, _, loginFlows) = await client.checkHomeserver(homeserver);
       this.loginFlows = loginFlows;
     } catch (e) {
-      setState(() => error = (e).toLocalizedString(context));
+      setState(
+        () => error = (e).toLocalizedString(
+          context,
+          ExceptionContext.checkHomeserver,
+        ),
+      );
     } finally {
       if (mounted) {
         setState(() => isLoading = false);

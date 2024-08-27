@@ -76,6 +76,8 @@ class HomeserverPickerView extends StatelessWidget {
                         controller.tryCheckHomeserverActionWithoutCooldown,
                     onTap: controller.tryCheckHomeserverActionWithCooldown,
                     controller: controller.homeserverController,
+                    autocorrect: false,
+                    keyboardType: TextInputType.url,
                     decoration: InputDecoration(
                       prefixIcon: controller.isLoading
                           ? Container(
