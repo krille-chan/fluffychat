@@ -2793,5 +2793,13 @@
   "sendCanceled": "发送被取消",
   "@sendCanceled": {},
   "noChatsFoundHere": "此处尚未找到聊天。使用下方按钮 ⤵️ 开始和某人的新聊天",
-  "@noChatsFoundHere": {}
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "使用 Matrix-ID 登录",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "发现主服务器",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "什么是主服务器？",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "主服务器上就像电子邮件提供商，你的所有数据都存储在上面。你可以选择你想使用哪个主服务器。在 https://matrix.org 上了解更多信息。",
+  "@homeserverDescription": {}
 }
