@@ -332,6 +332,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void updateView() {
     if (!mounted) return;
+    setReadMarker();
     setState(() {});
   }
 
@@ -340,16 +341,8 @@ class ChatController extends State<ChatPageWithRoom>
   int? animateInEventIndex;
 
   void onInsert(int i) {
-    onChange(i);
     // setState will be called by updateView() anyway
     animateInEventIndex = i;
-  }
-
-  void onChange(int i) {
-    if (timeline?.events[i].status == EventStatus.synced) {
-      final index = timeline!.events.firstIndexWhereNotError;
-      if (i == index) setReadMarker(eventId: timeline?.events[i].eventId);
-    }
   }
 
   Future<void> _getTimeline({
@@ -367,7 +360,6 @@ class ChatController extends State<ChatPageWithRoom>
         onUpdate: updateView,
         eventContextId: eventContextId,
         onInsert: onInsert,
-        onChange: onChange,
       );
     } catch (e, s) {
       Logs().w('Unable to load timeline on event ID $eventContextId', e, s);
@@ -375,7 +367,6 @@ class ChatController extends State<ChatPageWithRoom>
       timeline = await room.getTimeline(
         onUpdate: updateView,
         onInsert: onInsert,
-        onChange: onChange,
       );
       if (!mounted) return;
       if (e is TimeoutException || e is IOException) {
@@ -1385,12 +1376,3 @@ class ChatController extends State<ChatPageWithRoom>
 }
 
 enum EmojiPickerType { reaction, keyboard }
-
-extension on List<Event> {
-  int get firstIndexWhereNotError {
-    if (isEmpty) return 0;
-    final index = indexWhere((event) => !event.status.isError);
-    if (index == -1) return length;
-    return index;
-  }
-}
