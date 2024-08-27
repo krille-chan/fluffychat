@@ -2801,5 +2801,7 @@
   "whatIsAHomeserver": "Ana sunucu nedir?",
   "@whatIsAHomeserver": {},
   "homeserverDescription": "Tüm verileriniz tıpkı bir e-posta sağlayıcısı gibi ana sunucuda saklanır. Hangi ana sunucuyu kullanmak istediğinizi seçebilir ve herkesle iletişim kurmaya devam edebilirsiniz. https://matrix.org adresinden daha fazla bilgi edinin.",
-  "@homeserverDescription": {}
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "Uyumlu bir ana sunucu gibi görünmüyor. Yanlış URL mi?",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }
