@@ -36,8 +36,8 @@ class Message extends StatelessWidget {
   final bool highlightMarker;
   final bool animateIn;
   final void Function()? resetAnimateIn;
+  final void Function(Event) onSelect;
   // #Pangea
-  // final void Function(Event) onSelect;
   final bool immersionMode;
   final ChatController controller;
   final bool isOverlay;
@@ -50,9 +50,7 @@ class Message extends StatelessWidget {
     this.previousEvent,
     this.displayReadMarker = false,
     this.longPressSelect = false,
-    // #Pangea
-    // required this.onSelect,
-    // Pangea#
+    required this.onSelect,
     required this.onInfoTab,
     required this.onAvatarTab,
     required this.scrollToEventId,

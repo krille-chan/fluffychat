@@ -177,6 +177,7 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay> {
               onInfoTab: (_) => {},
               onAvatarTab: (_) => {},
               scrollToEventId: (_) => {},
+              onSelect: (_) => {},
               immersionMode: widget.controller.choreographer.immersionMode,
               controller: widget.controller,
               timeline: widget.controller.timeline!,
