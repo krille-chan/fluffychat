@@ -2801,5 +2801,7 @@
   "whatIsAHomeserver": "ما هو خادم المنزل ؟",
   "@whatIsAHomeserver": {},
   "homeserverDescription": "يتم تخزين جميع بياناتك على خادم المنزل، تمامًا مثل مزود خدمة البريد الإلكتروني. يمكنك اختيار خادم البيت الذي تريد استخدامه، بينما لا يزال بإمكانك التواصل مع الجميع. اعرف المزيد على https://matrix.org.",
-  "@homeserverDescription": {}
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "لا يبدو أنه خادم منزلي متوافق. عنوان URL غير صحيح ؟",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }
