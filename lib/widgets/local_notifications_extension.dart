@@ -50,26 +50,35 @@ extension LocalNotificationsExtension on MatrixState {
 
     if (kIsWeb) {
       final avatarUrl = event.senderFromMemoryOrFallback.avatarUrl;
+      Uri? thumbnailUri;
 
-      final iconBytes = avatarUrl == null
-          ? null
-          : await client.downloadMxcCached(
-              avatarUrl,
-              width: 64,
-              height: 64,
-              thumbnailMethod: ThumbnailMethod.crop,
-              isThumbnail: true,
-              animated: false,
-            );
+      if (avatarUrl != null) {
+        const size = 64;
+        const thumbnailMethod = ThumbnailMethod.crop;
+        // Pre-cache so that we can later just set the thumbnail uri as icon:
+        await client.downloadMxcCached(
+          avatarUrl,
+          width: size,
+          height: size,
+          thumbnailMethod: thumbnailMethod,
+          isThumbnail: true,
+        );
+
+        thumbnailUri =
+            await event.senderFromMemoryOrFallback.avatarUrl?.getThumbnailUri(
+          client,
+          width: size,
+          height: size,
+          method: thumbnailMethod,
+        );
+      }
 
       _audioPlayer.play();
 
       html.Notification(
         title,
         body: body,
-        icon: iconBytes == null
-            ? null
-            : html.Url.createObjectUrl(html.Blob(iconBytes)),
+        icon: thumbnailUri?.toString(),
         tag: event.room.id,
       );
     } else if (Platform.isLinux) {
