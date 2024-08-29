@@ -1581,6 +1581,7 @@ class ChatController extends State<ChatPageWithRoom>
   }) {
     // select the message
     onSelectMessage(pangeaMessageEvent.event);
+    HapticFeedback.mediumImpact();
 
     // Close keyboard, if open
     if (inputFocus.hasFocus && PlatformInfos.isMobile) {
