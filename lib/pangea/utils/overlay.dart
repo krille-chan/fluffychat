@@ -11,11 +11,9 @@ import '../../config/themes.dart';
 import '../../widgets/matrix.dart';
 import 'error_handler.dart';
 
-enum OverlayEnum {
+enum OverlayPositionEnum {
   transform,
   centered,
-  topRight,
-  bottom,
 }
 
 class OverlayUtil {
@@ -34,7 +32,7 @@ class OverlayUtil {
     Alignment? followerAnchor,
     bool closePrevOverlay = true,
     Function? onDismiss,
-    OverlayEnum position = OverlayEnum.transform,
+    OverlayPositionEnum position = OverlayPositionEnum.transform,
   }) {
     try {
       if (closePrevOverlay) {
@@ -53,33 +51,13 @@ class OverlayUtil {
                   onDismiss: onDismiss,
                 ),
               Positioned(
-                top: (position == OverlayEnum.topRight)
-                    ? FluffyThemes.isColumnMode(context)
-                        ? 20
-                        : 65
-                    : (position == OverlayEnum.centered)
-                        ? 0
-                        : null,
-                right: (position == OverlayEnum.topRight)
-                    ? FluffyThemes.isColumnMode(context)
-                        ? 20
-                        : 15
-                    : (position == OverlayEnum.bottom ||
-                            position == OverlayEnum.centered)
-                        ? 0
-                        : null,
-                left: (position == OverlayEnum.bottom)
-                    ? 0
-                    : (position == OverlayEnum.centered)
-                        ? 0
-                        : null,
-                bottom: (position == OverlayEnum.bottom ||
-                        position == OverlayEnum.centered)
-                    ? 0
-                    : null,
+                top: (position == OverlayPositionEnum.centered) ? 0 : null,
+                right: (position == OverlayPositionEnum.centered) ? 0 : null,
+                left: (position == OverlayPositionEnum.centered) ? 0 : null,
+                bottom: (position == OverlayPositionEnum.centered) ? 0 : null,
                 width: width,
                 height: height,
-                child: (position != OverlayEnum.transform)
+                child: (position != OverlayPositionEnum.transform)
                     ? child
                     : CompositedTransformFollower(
                         targetAnchor: targetAnchor ?? Alignment.topLeft,

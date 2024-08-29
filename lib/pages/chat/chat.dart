@@ -1617,7 +1617,7 @@ class ChatController extends State<ChatPageWithRoom>
       backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(200),
       closePrevOverlay:
           MatrixState.pangeaController.subscriptionController.isSubscribed,
-      position: OverlayEnum.centered,
+      position: OverlayPositionEnum.centered,
       onDismiss: clearSelectedEvents,
     );
   }
