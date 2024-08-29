@@ -63,8 +63,7 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix: # Until 0.32.3 is released
-    git: https://github.com/famedly/matrix-dart-sdk.git
+  matrix: ^0.32.3
   native_imaging: ^0.1.1
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^6.0.0
