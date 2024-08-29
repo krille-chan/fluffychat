@@ -2801,5 +2801,7 @@
   "discoverHomeservers": "Arakatu zerbitzariak",
   "@discoverHomeservers": {},
   "whatIsAHomeserver": "Zer da zerbitzari bat?",
-  "@whatIsAHomeserver": {}
+  "@whatIsAHomeserver": {},
+  "doesNotSeemToBeAValidHomeserver": "Ez dirudi zerbitzaria bateragarria denik. Zuzena da URLa?",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }
