@@ -2141,7 +2141,7 @@
   },
   "unlockOldMessages": "Desbloquear mensaxes antigas",
   "@unlockOldMessages": {},
-  "dehydrateTorLong": "Para usuarias de TOR, é recomendable exportar a sesión antes de pechar a ventál.",
+  "dehydrateTorLong": "Para usuarias de TOR, é recomendable exportar a sesión antes de pechar a xanela.",
   "@dehydrateTorLong": {},
   "hydrateTor": "Usuarias TOR: Importar a sesión exportada",
   "@hydrateTor": {},
@@ -2530,7 +2530,7 @@
   "@verifyOtherDevice": {},
   "verifyOtherUser": "🔐 Verificar outra usuaria",
   "@verifyOtherUser": {},
-  "verifyOtherDeviceDescription": "Ao verificar outro dispositivo estás compartindo as chaves, aumentando a túa seguridade 💪. Ao iniciar a verificación aparecerá unha ventá emerxente nos dous dispositivos. Nesa ventá verás varios emojis ou números que tes que comparar entre eles. O mellor xeito de facelo é ter os dous dispositivos contigo cando inicias o proceso de verificación. 🤳",
+  "verifyOtherDeviceDescription": "Ao verificar outro dispositivo estás compartindo as chaves, aumentando a túa seguridade 💪. Ao iniciar a verificación aparecerá unha xanela emerxente nos dous dispositivos. Nesa xanela verás varios emojis ou números que tes que comparar entre eles. O mellor xeito de facelo é ter os dous dispositivos contigo cando inicias o proceso de verificación. 🤳",
   "@verifyOtherDeviceDescription": {},
   "canceledKeyVerification": "{sender} desbotou a verificación da chave",
   "@canceledKeyVerification": {
@@ -2557,7 +2557,7 @@
   "@sendTypingNotificationsDescription": {},
   "formattedMessagesDescription": "Mostrar texto enriquecido nas mensaxes como letra grosa usando markdown.",
   "@formattedMessagesDescription": {},
-  "verifyOtherUserDescription": "Se verificas a outra usuaria, podes ter a certeza de que sabes con quen estás a conversar. 💪\n\nAo iniciar a verificación, ti mais a outra usuaria veredes unha ventá emerxente na app onde aparecerán varios emojis ou números que teredes que comparar entre vós.\n\nO mellor xeito de facelo é en persoa o cunha chamada de vídeo. 👭",
+  "verifyOtherUserDescription": "Se verificas a outra usuaria, podes ter a certeza de que sabes con quen estás a conversar. 💪\n\nAo iniciar a verificación, ti mais a outra usuaria veredes unha xanela emerxente na app onde aparecerán varios emojis ou números que teredes que comparar entre vós.\n\nO mellor xeito de facelo é en persoa o cunha chamada de vídeo. 👭",
   "@verifyOtherUserDescription": {},
   "requestedKeyVerification": "{sender} solicitou verificar a chave",
   "@requestedKeyVerification": {
