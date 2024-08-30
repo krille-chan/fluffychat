@@ -50,7 +50,10 @@ class StartIGCButtonState extends State<StartIGCButton>
       _controller?.stop();
       _controller?.reverse();
     }
-    setState(() => prevState = assistanceState);
+
+    if (mounted) {
+      setState(() => prevState = assistanceState);
+    }
   }
 
   bool get itEnabled => widget.controller.choreographer.itEnabled;

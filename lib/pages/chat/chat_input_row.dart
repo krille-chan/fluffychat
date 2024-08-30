@@ -1,9 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
+import 'package:fluffychat/pages/chat/input_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
-import 'package:fluffychat/pangea/widgets/chat/input_bar_wrapper.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -34,7 +33,7 @@ class ChatInputRow extends StatelessWidget {
         controller.pangeaController.languageController.activeL2Model();
 
     String hintText() {
-      if (controller.choreographer.choreoMode == ChoreoMode.it) {
+      if (controller.choreographer.itController.willOpen) {
         return L10n.of(context)!.buildTranslation;
       }
       return activel1 != null &&
@@ -322,10 +321,7 @@ class ChatInputRow extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 0.0),
-                      // #Pangea
-                      // child: InputBar(
-                      child: InputBarWrapper(
-                        // Pangea#
+                      child: InputBar(
                         room: controller.room,
                         minLines: 1,
                         maxLines: 8,

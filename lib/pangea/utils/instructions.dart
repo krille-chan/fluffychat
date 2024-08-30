@@ -25,9 +25,15 @@ class InstructionsController {
   final Map<String, bool> _instructionsShown = {};
 
   /// Returns true if the user requested this popup not be shown again
-  bool? toggledOff(String key) => InstructionsEnum.values
-      .firstWhereOrNull((value) => value.toString() == key)
-      ?.toggledOff;
+  bool? toggledOff(String key) {
+    final bool? instruction = InstructionsEnum.values
+        .firstWhereOrNull((value) => value.toString() == key)
+        ?.toggledOff;
+    final bool? tooltip = InlineInstructions.values
+        .firstWhereOrNull((value) => value.toString() == key)
+        ?.toggledOff;
+    return instruction ?? tooltip;
+  }
 
   InstructionsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
@@ -57,6 +63,15 @@ class InstructionsController {
       }
       if (key == InstructionsEnum.tooltipInstructions.toString()) {
         profile.instructionSettings.showedTooltipInstructions = value;
+      }
+      if (key == InlineInstructions.speechToText.toString()) {
+        profile.instructionSettings.showedSpeechToTextTooltip = value;
+      }
+      if (key == InlineInstructions.l1Translation.toString()) {
+        profile.instructionSettings.showedL1TranslationTooltip = value;
+      }
+      if (key == InlineInstructions.translationChoices.toString()) {
+        profile.instructionSettings.showedTranslationChoicesTooltip = value;
       }
       return profile;
     });

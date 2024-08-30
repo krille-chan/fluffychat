@@ -1,9 +1,13 @@
 import 'package:emojis/emoji.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/chat/command_hints.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
 import 'package:pasteboard/pasteboard.dart';
@@ -225,106 +229,117 @@ class InputBar extends StatelessWidget {
     Map<String, String?> suggestion,
     Client? client,
   ) {
+    const size = 30.0;
     // #Pangea
-    // const size = 30.0;
     // const padding = EdgeInsets.all(4.0);
-    // if (suggestion['type'] == 'command') {
-    //   final command = suggestion['name']!;
-    //   final hint = commandHint(L10n.of(context)!, command);
-    //   return Tooltip(
-    //     message: hint,
-    //     waitDuration: const Duration(days: 1), // don't show on hover
-    //     child: Container(
-    //       padding: padding,
-    //       child: Column(
-    //         crossAxisAlignment: CrossAxisAlignment.start,
-    //         children: [
-    //           Text(
-    //             commandExample(command),
-    //             style: const TextStyle(fontFamily: 'monospace'),
-    //           ),
-    //           Text(
-    //             hint,
-    //             maxLines: 1,
-    //             overflow: TextOverflow.ellipsis,
-    //             style: Theme.of(context).textTheme.bodySmall,
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //   );
-    // }
-    // if (suggestion['type'] == 'emoji') {
-    //   final label = suggestion['label']!;
-    //   return Tooltip(
-    //     message: label,
-    //     waitDuration: const Duration(days: 1), // don't show on hover
-    //     child: Container(
-    //       padding: padding,
-    //       child: Text(label, style: const TextStyle(fontFamily: 'monospace')),
-    //     ),
-    //   );
-    // }
-    // if (suggestion['type'] == 'emote') {
-    //   return Container(
-    //     padding: padding,
-    //     child: Row(
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: <Widget>[
-    //         MxcImage(
-    //           // ensure proper ordering ...
-    //           key: ValueKey(suggestion['name']),
-    //           uri: suggestion['mxc'] is String
-    //               ? Uri.parse(suggestion['mxc'] ?? '')
-    //               : null,
-    //           width: size,
-    //           height: size,
-    //         ),
-    //         const SizedBox(width: 6),
-    //         Text(suggestion['name']!),
-    //         Expanded(
-    //           child: Align(
-    //             alignment: Alignment.centerRight,
-    //             child: Opacity(
-    //               opacity: suggestion['pack_avatar_url'] != null ? 0.8 : 0.5,
-    //               child: suggestion['pack_avatar_url'] != null
-    //                   ? Avatar(
-    //                       mxContent: Uri.tryParse(
-    //                         suggestion.tryGet<String>('pack_avatar_url') ?? '',
-    //                       ),
-    //                       name: suggestion.tryGet<String>('pack_display_name'),
-    //                       size: size * 0.9,
-    //                       client: client,
-    //                     )
-    //                   : Text(suggestion['pack_display_name']!),
-    //             ),
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   );
-    // }
-    // if (suggestion['type'] == 'user' || suggestion['type'] == 'room') {
-    //   final url = Uri.parse(suggestion['avatar_url'] ?? '');
-    //   return Container(
-    //     padding: padding,
-    //     child: Row(
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: <Widget>[
-    //         Avatar(
-    //           mxContent: url,
-    //           name: suggestion.tryGet<String>('displayname') ??
-    //               suggestion.tryGet<String>('mxid'),
-    //           size: size,
-    //           client: client,
-    //         ),
-    //         const SizedBox(width: 6),
-    //         Text(suggestion['displayname'] ?? suggestion['mxid']!),
-    //       ],
-    //     ),
-    //   );
-    // }
+    const padding = EdgeInsets.all(8.0);
     // Pangea#
+    if (suggestion['type'] == 'command') {
+      final command = suggestion['name']!;
+      final hint = commandHint(L10n.of(context)!, command);
+      return Tooltip(
+        message: hint,
+        waitDuration: const Duration(days: 1), // don't show on hover
+        child: Container(
+          padding: padding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                commandExample(command),
+                style: const TextStyle(fontFamily: 'monospace'),
+              ),
+              Text(
+                hint,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    if (suggestion['type'] == 'emoji') {
+      final label = suggestion['label']!;
+      return Tooltip(
+        message: label,
+        waitDuration: const Duration(days: 1), // don't show on hover
+        child: Container(
+          padding: padding,
+          child: Text(label, style: const TextStyle(fontFamily: 'monospace')),
+        ),
+      );
+    }
+    if (suggestion['type'] == 'emote') {
+      return Container(
+        padding: padding,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            MxcImage(
+              // ensure proper ordering ...
+              key: ValueKey(suggestion['name']),
+              uri: suggestion['mxc'] is String
+                  ? Uri.parse(suggestion['mxc'] ?? '')
+                  : null,
+              width: size,
+              height: size,
+            ),
+            const SizedBox(width: 6),
+            Text(suggestion['name']!),
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Opacity(
+                  opacity: suggestion['pack_avatar_url'] != null ? 0.8 : 0.5,
+                  child: suggestion['pack_avatar_url'] != null
+                      ? Avatar(
+                          mxContent: Uri.tryParse(
+                            suggestion.tryGet<String>('pack_avatar_url') ?? '',
+                          ),
+                          name: suggestion.tryGet<String>('pack_display_name'),
+                          size: size * 0.9,
+                          client: client,
+                        )
+                      : Text(suggestion['pack_display_name']!),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+    if (suggestion['type'] == 'user' || suggestion['type'] == 'room') {
+      final url = Uri.parse(suggestion['avatar_url'] ?? '');
+      return Container(
+        padding: padding,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Avatar(
+              mxContent: url,
+              name: suggestion.tryGet<String>('displayname') ??
+                  suggestion.tryGet<String>('mxid'),
+              size: size,
+              client: client,
+            ),
+            const SizedBox(width: 6),
+            // #Pangea
+            Flexible(
+              child:
+                  // Pangea#
+                  Text(
+                suggestion['displayname'] ?? suggestion['mxid']!,
+                // #Pangea
+                overflow: TextOverflow.ellipsis,
+                // Pangea#
+              ),
+            ),
+          ],
+        ),
+      );
+    }
     return const SizedBox.shrink();
   }
 
@@ -533,6 +548,15 @@ class InputBar extends StatelessWidget {
             // fix loading briefly flickering a dark box
             emptyBuilder: (BuildContext context) => const SizedBox
                 .shrink(), // fix loading briefly showing no suggestions
+            // #Pangea
+            // If we ever want to change the suggestion background color
+            // here is the code for it
+            // decorationBuilder: (context, child) => Material(
+            //   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            //   color: Theme.of(context).colorScheme.surfaceContainerHigh,
+            //   child: child,
+            // ),
+            // Pangea#
           ),
         ),
       ),

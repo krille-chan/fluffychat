@@ -69,6 +69,10 @@ class ModelKey {
   static const String permissions = "permissions";
   static const String enableIGC = "enable_igc";
   static const String enableIT = "enable_it";
+  static const String prevMessages = "prev_messages";
+  static const String prevContent = "prev_content";
+  static const String prevSender = "prev_sender";
+  static const String prevTimestamp = "prev_timestamp";
 
   static const String originalSent = "original_sent";
   static const String originalWritten = "original_written";
