@@ -11,6 +11,11 @@ import '../../config/themes.dart';
 import '../../widgets/matrix.dart';
 import 'error_handler.dart';
 
+enum OverlayPositionEnum {
+  transform,
+  centered,
+}
+
 class OverlayUtil {
   static showOverlay({
     required BuildContext context,
@@ -26,13 +31,13 @@ class OverlayUtil {
     Alignment? targetAnchor,
     Alignment? followerAnchor,
     bool closePrevOverlay = true,
+    Function? onDismiss,
+    OverlayPositionEnum position = OverlayPositionEnum.transform,
   }) {
     try {
       if (closePrevOverlay) {
         MatrixState.pAnyState.closeOverlay();
       }
-      final LayerLinkAndKey layerLinkAndKey =
-          MatrixState.pAnyState.layerLinkAndKey(transformTargetId);
 
       final OverlayEntry entry = OverlayEntry(
         builder: (context) => AnimatedContainer(
@@ -43,18 +48,27 @@ class OverlayUtil {
               if (backDropToDismiss)
                 TransparentBackdrop(
                   backgroundColor: backgroundColor,
+                  onDismiss: onDismiss,
                 ),
               Positioned(
+                top: (position == OverlayPositionEnum.centered) ? 0 : null,
+                right: (position == OverlayPositionEnum.centered) ? 0 : null,
+                left: (position == OverlayPositionEnum.centered) ? 0 : null,
+                bottom: (position == OverlayPositionEnum.centered) ? 0 : null,
                 width: width,
                 height: height,
-                child: CompositedTransformFollower(
-                  targetAnchor: targetAnchor ?? Alignment.topLeft,
-                  followerAnchor: followerAnchor ?? Alignment.topLeft,
-                  link: layerLinkAndKey.link,
-                  showWhenUnlinked: false,
-                  offset: offset ?? Offset.zero,
-                  child: child,
-                ),
+                child: (position != OverlayPositionEnum.transform)
+                    ? child
+                    : CompositedTransformFollower(
+                        targetAnchor: targetAnchor ?? Alignment.topLeft,
+                        followerAnchor: followerAnchor ?? Alignment.topLeft,
+                        link: MatrixState.pAnyState
+                            .layerLinkAndKey(transformTargetId)
+                            .link,
+                        showWhenUnlinked: false,
+                        offset: offset ?? Offset.zero,
+                        child: child,
+                      ),
               ),
             ],
           ),
@@ -191,8 +205,10 @@ class OverlayUtil {
 
 class TransparentBackdrop extends StatelessWidget {
   final Color? backgroundColor;
+  final Function? onDismiss;
   const TransparentBackdrop({
     super.key,
+    this.onDismiss,
     this.backgroundColor,
   });
 
@@ -208,6 +224,9 @@ class TransparentBackdrop extends StatelessWidget {
         focusColor: Colors.transparent,
         highlightColor: Colors.transparent,
         onTap: () {
+          if (onDismiss != null) {
+            onDismiss!();
+          }
           MatrixState.pAnyState.closeOverlay();
         },
         child: Container(
