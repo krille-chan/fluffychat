@@ -1,7 +1,6 @@
-import 'dart:async';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -11,13 +10,13 @@ import '../../enum/message_mode_enum.dart';
 class MessageUnsubscribedCard extends StatelessWidget {
   final String languageTool;
   final MessageMode mode;
-  final StreamController<MessageMode> toolbarModeStream;
+  final MessageToolbarState controller;
 
   const MessageUnsubscribedCard({
     super.key,
     required this.languageTool,
     required this.mode,
-    required this.toolbarModeStream,
+    required this.controller,
   });
 
   @override
@@ -29,7 +28,7 @@ class MessageUnsubscribedCard extends StatelessWidget {
       if (inTrialWindow) {
         MatrixState.pangeaController.subscriptionController
             .activateNewUserTrial();
-        toolbarModeStream.add(mode);
+        controller.updateMode(mode);
       } else {
         MatrixState.pangeaController.subscriptionController
             .showPaywall(context);
@@ -49,7 +48,7 @@ class MessageUnsubscribedCard extends StatelessWidget {
           child: TextButton(
             onPressed: onButtonPress,
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
+              backgroundColor: WidgetStateProperty.all<Color>(
                 (AppConfig.primaryColor).withOpacity(0.1),
               ),
             ),
