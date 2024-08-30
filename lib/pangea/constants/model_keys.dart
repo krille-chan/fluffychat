@@ -69,6 +69,10 @@ class ModelKey {
   static const String permissions = "permissions";
   static const String enableIGC = "enable_igc";
   static const String enableIT = "enable_it";
+  static const String prevMessages = "prev_messages";
+  static const String prevContent = "prev_content";
+  static const String prevSender = "prev_sender";
+  static const String prevTimestamp = "prev_timestamp";
 
   static const String originalSent = "original_sent";
   static const String originalWritten = "original_written";
@@ -119,8 +123,4 @@ class ModelKey {
 
   static const String prevEventId = "prev_event_id";
   static const String prevLastUpdated = "prev_last_updated";
-
-  static const String gameState = "game_state";
-  static const String currentRoundStartTime = "start_time";
-  static const String previousRoundEndTime = "message_visible_from";
 }

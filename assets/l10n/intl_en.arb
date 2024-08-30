@@ -2303,6 +2303,12 @@
       "user": {}
     }
   },
+  "invitedBy": "📩 Invited by {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
   "youInvitedUser": "📩 You invited {user}",
   "@youInvitedUser": {
     "placeholders": {
@@ -4126,5 +4132,6 @@
   "errorTypes": "Error Types",
   "level": "Level",
   "canceledSend": "Canceled send",
-  "morphsUsed": "Morphs Used"
+  "morphsUsed": "Morphs Used",
+  "translationChoicesBody": "Click and hold an option for a hint."
 }

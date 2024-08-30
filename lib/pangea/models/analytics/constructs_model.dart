@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -95,7 +96,8 @@ class OneConstructUse {
   factory OneConstructUse.fromJson(Map<String, dynamic> json) {
     return OneConstructUse(
       useType: ConstructUseTypeEnum.values
-          .firstWhere((e) => e.string == json['useType']),
+              .firstWhereOrNull((e) => e.string == json['useType']) ??
+          ConstructUseTypeEnum.unk,
       lemma: json['lemma'],
       form: json['form'],
       constructType: json['constructType'] != null

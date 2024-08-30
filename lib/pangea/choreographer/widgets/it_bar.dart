@@ -8,7 +8,9 @@ import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/translation_finished_flow.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -47,12 +49,16 @@ class ITBarState extends State<ITBar> {
     super.dispose();
   }
 
+  bool get instructionsTurnedOff =>
+      widget.choreographer.pangeaController.instructions
+          .wereInstructionsTurnedOff(
+        InlineInstructions.translationChoices.toString(),
+      );
+
   @override
   Widget build(BuildContext context) {
     return AnimatedSize(
-      duration: itController.willOpen
-          ? const Duration(milliseconds: 2000)
-          : const Duration(milliseconds: 500),
+      duration: itController.animationSpeed,
       curve: Curves.fastOutSlowIn,
       clipBehavior: Clip.none,
       child: !itController.willOpen
@@ -60,9 +66,7 @@ class ITBarState extends State<ITBar> {
           : CompositedTransformTarget(
               link: widget.choreographer.itBarLinkAndKey.link,
               child: AnimatedOpacity(
-                duration: itController.willOpen
-                    ? const Duration(milliseconds: 2000)
-                    : const Duration(milliseconds: 500),
+                duration: itController.animationSpeed,
                 opacity: itController.willOpen ? 1.0 : 0.0,
                 child: Container(
                   key: widget.choreographer.itBarLinkAndKey.key,
@@ -116,6 +120,12 @@ class ITBarState extends State<ITBar> {
                             // const SizedBox(height: 40.0),
                             OriginalText(controller: itController),
                             const SizedBox(height: 7.0),
+                            if (!instructionsTurnedOff)
+                              InlineTooltip(
+                                body: InlineInstructions.translationChoices
+                                    .body(context),
+                                onClose: itController.closeHint,
+                              ),
                             IntrinsicHeight(
                               child: Container(
                                 constraints:
@@ -158,6 +168,7 @@ class ITBarState extends State<ITBar> {
                   ),
                 ),
               ),
+              // ),
             ),
     );
   }
@@ -312,7 +323,11 @@ class ITChoices extends StatelessWidget {
                 chosenContinuance:
                     controller.currentITStep!.continuances[index].text,
                 bestContinuance: controller.currentITStep!.best.text,
-                feedbackLang: controller.targetLangCode,
+                // TODO: we want this to eventually switch between target and source lang,
+                // based on the learner's proficiency - maybe with the words involved in the translation
+                // maybe overall. For now, we'll just use the source lang.
+                feedbackLang: controller.choreographer.l1Lang?.langCode ??
+                    controller.sourceLangCode,
                 sourceTextLang: controller.sourceLangCode,
                 targetLang: controller.targetLangCode,
               ),

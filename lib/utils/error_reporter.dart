@@ -21,13 +21,18 @@ class ErrorReporter {
       // Exits early to prevent further execution
       return;
     }
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          l10n.oopsSomethingWentWrong, // Use the non-null L10n instance to get the error message
+
+    try {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            l10n.oopsSomethingWentWrong, // Use the non-null L10n instance to get the error message
+          ),
         ),
-      ),
-    );
+      );
+    } catch (err) {
+      debugPrint("Failed to show error snackbar.");
+    }
   }
   // final text = '$error\n${stackTrace ?? ''}';
   // await showAdaptiveDialog(
