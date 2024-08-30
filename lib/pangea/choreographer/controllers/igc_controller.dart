@@ -4,12 +4,14 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/span_data_controller.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/igc_text_data_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 import '../../models/span_card_model.dart';
 import '../../utils/error_handler.dart';
@@ -43,6 +45,7 @@ class IgcController {
         userL2: choreographer.l2LangCode!,
         enableIGC: choreographer.igcEnabled && !onlyTokensAndLanguageDetection,
         enableIT: choreographer.itEnabled && !onlyTokensAndLanguageDetection,
+        prevMessages: prevMessages(),
       );
 
       final IGCTextData igcTextDataResponse = await IgcRepo.getIGC(
@@ -123,6 +126,49 @@ class IgcController {
       cardSize: match.isITStart ? const Size(350, 260) : const Size(350, 400),
       transformTargetId: choreographer.inputTransformTargetKey,
     );
+  }
+
+  /// Get the content of previous text and audio messages in chat.
+  /// Passed to IGC request to add context.
+  List<PreviousMessage> prevMessages({int numMessages = 5}) {
+    final List<Event> events = choreographer.chatController.visibleEvents
+        .where(
+          (e) =>
+              e.type == EventTypes.Message &&
+              (e.messageType == MessageTypes.Text ||
+                  e.messageType == MessageTypes.Audio),
+        )
+        .toList();
+
+    final List<PreviousMessage> messages = [];
+    for (final Event event in events) {
+      final String? content = event.messageType == MessageTypes.Text
+          ? event.content.toString()
+          : PangeaMessageEvent(
+              event: event,
+              timeline: choreographer.chatController.timeline!,
+              ownMessage: event.senderId ==
+                  choreographer.pangeaController.matrixState.client.userID,
+            )
+              .getSpeechToTextLocal(
+                choreographer.l1LangCode,
+                choreographer.l2LangCode,
+              )
+              ?.transcript
+              .text;
+      if (content == null) continue;
+      messages.add(
+        PreviousMessage(
+          content: content,
+          sender: event.senderId,
+          timestamp: event.originServerTs,
+        ),
+      );
+      if (messages.length >= numMessages) {
+        return messages;
+      }
+    }
+    return messages;
   }
 
   bool get hasRelevantIGCTextData {
