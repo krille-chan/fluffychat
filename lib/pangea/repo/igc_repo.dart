@@ -129,6 +129,7 @@ class IGCRequestBody {
   String userL2;
   bool enableIT;
   bool enableIGC;
+  String userId;
   List<PreviousMessage> prevMessages;
 
   IGCRequestBody({
@@ -137,6 +138,7 @@ class IGCRequestBody {
     required this.userL2,
     required this.enableIGC,
     required this.enableIT,
+    required this.userId,
     required this.prevMessages,
   });
 
@@ -146,6 +148,7 @@ class IGCRequestBody {
         ModelKey.userL2: userL2,
         "enable_it": enableIT,
         "enable_igc": enableIGC,
+        ModelKey.userId: userId,
         ModelKey.prevMessages:
             jsonEncode(prevMessages.map((x) => x.toJson()).toList()),
       };

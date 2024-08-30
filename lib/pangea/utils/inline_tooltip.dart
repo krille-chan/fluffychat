@@ -26,7 +26,7 @@ class InlineTooltip extends StatelessWidget {
           onPressed: onClose,
         ),
       ),
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).colorScheme.primary.withAlpha(20),
