@@ -32,7 +32,7 @@ class ChatListView extends StatelessWidget {
           canPop: controller.selectMode == SelectMode.normal &&
               !controller.isSearchMode &&
               controller.activeSpaceId == null,
-          onPopInvoked: (pop) {
+          onPopInvokedWithResult: (pop, _) {
             if (pop) return;
             if (controller.activeSpaceId != null) {
               controller.clearActiveSpace();
