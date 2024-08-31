@@ -2793,5 +2793,15 @@
   "sendCanceled": "Надсилання скасовано",
   "@sendCanceled": {},
   "noChatsFoundHere": "Бесід ще немає. Розпочніть спілкування натиснувши кнопку нижче. ⤵️",
-  "@noChatsFoundHere": {}
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "Увійти за допомогою Matrix-ID",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Знайти домашні сервери",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Що таке домашній сервер?",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Усі ваші дані зберігаються на домашньому сервері, так само як у постачальника послуг електронної пошти. Ви можете вибрати, який домашній сервер ви хочете використовувати, водночас ви можете спілкуватися з усіма. Докладніше на https://matrix.org.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "Здається, це несумісний домашній сервер. Неправильна URL-адреса?",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }

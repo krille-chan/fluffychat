@@ -2793,5 +2793,15 @@
   "sendCanceled": "تم إلغاء الإرسال",
   "@sendCanceled": {},
   "noChatsFoundHere": "لم يتم العثور على دردشات هنا حتى الآن. ابدأ محادثة جديدة مع شخص ما باستخدام الزر أدناه. ⤵️",
-  "@noChatsFoundHere": {}
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "تسجيل الدخول باستخدام معرف ماتريكس",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "اكتشف الخوادم المنزلية",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "ما هو خادم المنزل ؟",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "يتم تخزين جميع بياناتك على خادم المنزل، تمامًا مثل مزود خدمة البريد الإلكتروني. يمكنك اختيار خادم البيت الذي تريد استخدامه، بينما لا يزال بإمكانك التواصل مع الجميع. اعرف المزيد على https://matrix.org.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "لا يبدو أنه خادم منزلي متوافق. عنوان URL غير صحيح ؟",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }
