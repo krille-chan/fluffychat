@@ -190,40 +190,51 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay> {
       ),
     );
 
-    final bool showDetails = Matrix.of(context)
-            .store
-            .getBool(SettingKeys.displayChatDetailsColumn) ??
-        false;
+    final bool showDetails = (Matrix.of(context)
+                .store
+                .getBool(SettingKeys.displayChatDetailsColumn) ??
+            false) &&
+        FluffyThemes.isThreeColumnMode(context) &&
+        widget.controller.room.membership == Membership.join;
 
-    return Expanded(
-      child: Stack(
-        children: [
-          AnimatedPositioned(
-            duration: FluffyThemes.animationDuration,
-            left: 0,
-            right: showDetails ? FluffyThemes.columnWidth : 0,
-            bottom: adjustedOverlayBottomOffset == -1
-                ? overlayBottomOffset
-                : adjustedOverlayBottomOffset,
-            child: Align(
-              alignment: Alignment.center,
-              child: overlayMessage,
-            ),
+    return Stack(
+      children: [
+        AnimatedPositioned(
+          duration: FluffyThemes.animationDuration,
+          left: 0,
+          right: showDetails ? FluffyThemes.columnWidth : 0,
+          bottom: adjustedOverlayBottomOffset == -1
+              ? overlayBottomOffset
+              : adjustedOverlayBottomOffset,
+          child: Align(
+            alignment: Alignment.center,
+            child: overlayMessage,
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                OverlayFooter(controller: widget.controller),
-              ],
-            ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    OverlayFooter(controller: widget.controller),
+                  ],
+                ),
+              ),
+              if (showDetails)
+                const SizedBox(
+                  width: FluffyThemes.columnWidth,
+                ),
+            ],
           ),
-          Material(
-            child: OverlayHeader(controller: widget.controller),
-          ),
-        ],
-      ),
+        ),
+        Material(
+          child: OverlayHeader(controller: widget.controller),
+        ),
+      ],
     );
   }
 }
