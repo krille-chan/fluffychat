@@ -190,10 +190,12 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay> {
       ),
     );
 
-    final bool showDetails = Matrix.of(context)
-            .store
-            .getBool(SettingKeys.displayChatDetailsColumn) ??
-        false;
+    final bool showDetails = (Matrix.of(context)
+                .store
+                .getBool(SettingKeys.displayChatDetailsColumn) ??
+            false) &&
+        FluffyThemes.isThreeColumnMode(context) &&
+        widget.controller.room.membership == Membership.join;
 
     return Expanded(
       child: Stack(
@@ -212,10 +214,21 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Column(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                OverlayFooter(controller: widget.controller),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      OverlayFooter(controller: widget.controller),
+                    ],
+                  ),
+                ),
+                if (showDetails)
+                  const SizedBox(
+                    width: FluffyThemes.columnWidth,
+                  ),
               ],
             ),
           ),
