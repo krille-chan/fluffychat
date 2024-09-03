@@ -1,8 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
-
 class MessageTextSelection {
   String? selectedText;
   String messageText = "";
@@ -13,23 +10,17 @@ class MessageTextSelection {
     messageText = text;
   }
 
-  void onTextSelection(TextSelection selection) => selection.isCollapsed == true
+  void onSelection(String? text) => text == null || text.isEmpty
       ? clearTextSelection()
-      : setTextSelection(selection);
+      : setTextSelection(text);
 
-  void setTextSelection(TextSelection selection) {
-    selectedText = selection.textInside(messageText);
-    if (BrowserContextMenu.enabled && kIsWeb) {
-      BrowserContextMenu.disableContextMenu();
-    }
+  void setTextSelection(String selection) {
+    selectedText = selection;
     selectionStream.add(selectedText);
   }
 
   void clearTextSelection() {
     selectedText = null;
-    if (kIsWeb && !BrowserContextMenu.enabled) {
-      BrowserContextMenu.enableContextMenu();
-    }
     selectionStream.add(selectedText);
   }
 

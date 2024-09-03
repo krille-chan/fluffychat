@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class MessageToolbar extends StatefulWidget {
   final MessageTextSelection textSelection;
@@ -272,6 +273,38 @@ class MessageToolbarState extends State<MessageToolbar> {
             buttonRow,
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ToolbarSelectionArea extends StatelessWidget {
+  final ChatController controller;
+  final PangeaMessageEvent? pangeaMessageEvent;
+  final bool isOverlay;
+  final Widget child;
+
+  const ToolbarSelectionArea({
+    required this.controller,
+    this.pangeaMessageEvent,
+    this.isOverlay = false,
+    required this.child,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SelectionArea(
+      onSelectionChanged: (SelectedContent? selection) {
+        controller.textSelection.onSelection(selection?.plainText);
+      },
+      child: GestureDetector(
+        onTap: () {
+          if (pangeaMessageEvent != null && !isOverlay) {
+            controller.showToolbar(pangeaMessageEvent!);
+          }
+        },
+        child: child,
       ),
     );
   }
