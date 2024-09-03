@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
@@ -189,13 +190,18 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay> {
       ),
     );
 
+    final bool showDetails = Matrix.of(context)
+            .store
+            .getBool(SettingKeys.displayChatDetailsColumn) ??
+        false;
+
     return Expanded(
       child: Stack(
         children: [
           AnimatedPositioned(
             duration: FluffyThemes.animationDuration,
             left: 0,
-            right: 0,
+            right: showDetails ? FluffyThemes.columnWidth : 0,
             bottom: adjustedOverlayBottomOffset == -1
                 ? overlayBottomOffset
                 : adjustedOverlayBottomOffset,
