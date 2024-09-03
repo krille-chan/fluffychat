@@ -12,7 +12,7 @@ class PApiUrls {
   static String baseAPI = Environment.baseAPI;
 
   ///   ---------------------- Languages --------------------------------------
-  static String getLanguages = "/languages";
+  static String getLanguages = "${Environment.choreoApi}/choreo/languages";
 
   ///   ---------------------- Users --------------------------------------
   static String createUser = "/account/create";
@@ -56,11 +56,9 @@ class PApiUrls {
       "${Environment.choreoApi}/practice/message";
 
   ///-------------------------------- revenue cat --------------------------
-  static String rcApiV1 = "https://api.revenuecat.com/v1";
-  static String rcApiV2 =
-      "https://api.revenuecat.com/v2/projects/${Environment.rcProjectId}";
 
-  static String rcApps = "$rcApiV2/apps";
-  static String rcProducts = "$rcApiV2/offerings?expand=items.package.product";
-  static String rcSubscribers = "$rcApiV1/subscribers";
-}
+  static String rcAppsChoreo = "${Environment.choreoApi}/revenue/app_ids";
+  static String rcProductsChoreo =
+      "${Environment.choreoApi}/revenue/all_products";
+  static String rcSubscriptionChoreo =
+      "${Environment.choreoApi}/revenue/subscription";

@@ -31,8 +31,9 @@ class MobileSubscriptionInfo extends SubscriptionInfo {
       );
       return;
     }
-    await setAppIds();
-    await setAllProducts();
+    const accessToken = "";
+    await setAppIds(accessToken);
+    await setAllProducts(accessToken);
     await setCustomerInfo();
     await setMobilePackages();
     if (allProducts != null && appIds != null) {

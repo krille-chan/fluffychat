@@ -8,8 +8,9 @@ class WebSubscriptionInfo extends SubscriptionInfo {
 
   @override
   Future<void> configure() async {
-    await setAppIds();
-    await setAllProducts();
+    const accessToken = "";
+    await setAppIds(accessToken);
+    await setAllProducts(accessToken);
     await setCustomerInfo();
 
     if (allProducts == null || appIds == null) {

@@ -22,24 +22,11 @@ class SubscriptionAppIds {
     return null;
   }
 
-  factory SubscriptionAppIds.fromJson(json) {
-    final SubscriptionAppIds appIds = SubscriptionAppIds();
-    for (final appInfo in (json['items'] as List<dynamic>)) {
-      final String platform = appInfo['type'];
-      final String appId = appInfo['id'];
-      switch (platform) {
-        case 'stripe':
-          appIds.stripeId = appId;
-          continue;
-        case 'app_store':
-          appIds.appleId = appId;
-          continue;
-        case 'play_store':
-          appIds.androidId = appId;
-          continue;
-      }
-    }
-    return appIds;
+  factory SubscriptionAppIds.fromJson(Map<String, dynamic> json) {
+    return SubscriptionAppIds()
+      ..stripeId = json['stripe_id']
+      ..androidId = json['android_id']
+      ..appleId = json['apple_id'];
   }
 }
 
