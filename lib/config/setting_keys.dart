@@ -4,6 +4,7 @@ abstract class SettingKeys {
   static const String hideUnknownEvents = 'chat.fluffy.hideUnknownEvents';
   static const String hideUnimportantStateEvents =
       'chat.fluffy.hideUnimportantStateEvents';
+  static const String separateChatTypes = 'chat.fluffy.separateChatTypes';
   static const String sentry = 'sentry';
   static const String theme = 'theme';
   static const String amoledEnabled = 'amoled_enabled';

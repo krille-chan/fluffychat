@@ -147,9 +147,14 @@ class ChatListView extends StatelessWidget {
                         //   child:
                         // Pangea#
                         selectMode == SelectMode.normal &&
-                                !controller.isSearchMode
+                                !controller.isSearchMode &&
+                                controller.activeSpaceId == null
                             ? FloatingActionButton.extended(
-                                onPressed: controller.addChatAction,
+                                // #Pangea
+                                // onPressed: () =>
+                                //     context.go('/rooms/newprivatechat'),
+                                onPressed: () => context.go('/rooms/newgroup'),
+                                // Pangea#
                                 icon: const Icon(Icons.add_outlined),
                                 label: Text(
                                   L10n.of(context)!.chat,

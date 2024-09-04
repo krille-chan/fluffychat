@@ -45,14 +45,16 @@ class Avatar extends StatelessWidget {
     final noPic = mxContent == null ||
         mxContent.toString().isEmpty ||
         mxContent.toString() == 'null';
+    final textColor = name?.lightColorAvatar;
     final textWidget = Container(
-      color: name?.lightColorAvatar,
+      color: textColor,
       alignment: Alignment.center,
       child: Text(
         fallbackLetters,
         style: TextStyle(
           color: Colors.white,
-          fontSize: (size / 2.5).roundToDouble(),
+          fontWeight: FontWeight.bold,
+          fontSize: (size / 3).roundToDouble(),
         ),
       ),
     );
@@ -64,7 +66,9 @@ class Avatar extends StatelessWidget {
           width: size,
           height: size,
           child: Material(
-            color: Theme.of(context).colorScheme.surfaceContainerLowest,
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : Colors.black,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadius,
               side: border ?? BorderSide.none,
@@ -79,7 +83,13 @@ class Avatar extends StatelessWidget {
                     fit: BoxFit.cover,
                     width: size,
                     height: size,
-                    placeholder: (_) => textWidget,
+                    placeholder: (_) => Center(
+                      child: Icon(
+                        Icons.person_2,
+                        color: Theme.of(context).colorScheme.tertiary,
+                        size: size / 1.5,
+                      ),
+                    ),
                   ),
           ),
         ),

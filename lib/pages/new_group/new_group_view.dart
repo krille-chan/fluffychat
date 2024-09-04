@@ -41,61 +41,43 @@ class NewGroupView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const SizedBox(height: 16),
+            InkWell(
+              borderRadius: BorderRadius.circular(90),
+              onTap: controller.loading ? null : controller.selectPhoto,
+              child: CircleAvatar(
+                radius: Avatar.defaultSize,
+                child: avatar == null
+                    ? const Icon(Icons.add_a_photo_outlined)
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(90),
+                        child: Image.memory(
+                          avatar,
+                          width: Avatar.defaultSize,
+                          height: Avatar.defaultSize,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+              ),
+            ),
+            const SizedBox(height: 32),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  InkWell(
-                    borderRadius: BorderRadius.circular(90),
-                    onTap: controller.loading ? null : controller.selectPhoto,
-                    child: CircleAvatar(
-                      radius: Avatar.defaultSize / 2,
-                      child: avatar == null
-                          ? const Icon(Icons.camera_alt_outlined)
-                          : ClipRRect(
-                              borderRadius: BorderRadius.circular(90),
-                              child: Image.memory(
-                                avatar,
-                                width: Avatar.defaultSize,
-                                height: Avatar.defaultSize,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: TextField(
-                      // #Pangea
-                      maxLength: 64,
-                      // Pangea#
-                      controller: controller.nameController,
-                      autocorrect: false,
-                      readOnly: controller.loading,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.people_outlined),
-                        hintText: L10n.of(context)!.groupName,
-                      ),
-                    ),
-                  ),
-                ],
+              child: TextField(
+                // #Pangea
+                maxLength: 64,
+                // Pangea#
+                autofocus: true,
+                controller: controller.nameController,
+                autocorrect: false,
+                readOnly: controller.loading,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.people_outlined),
+                  hintText: L10n.of(context)!.groupName,
+                ),
               ),
             ),
             const SizedBox(height: 16),
             // #Pangea
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            //   child: TextField(
-            //     controller: controller.topicController,
-            //     minLines: 4,
-            //     maxLines: 4,
-            //     maxLength: 255,
-            //     readOnly: controller.loading,
-            //     decoration: InputDecoration(
-            //       hintText: L10n.of(context)!.addChatDescription,
-            //     ),
-            //   ),
-            // ),
             RoomCapacityButton(
               key: controller.addCapacityKey,
             ),
@@ -109,7 +91,6 @@ class NewGroupView extends StatelessWidget {
               startOpen: true,
               activeSpaceId: controller.activeSpaceId,
             ),
-            // const SizedBox(height: 16),
             // SwitchListTile.adaptive(
             //   secondary: const Icon(Icons.public_outlined),
             //   title: Text(L10n.of(context)!.groupIsPublic),
@@ -154,18 +135,18 @@ class NewGroupView extends StatelessWidget {
             //       ),
             //       onPressed:
             //           controller.loading ? null : controller.submitAction,
-            // child: controller.loading
-            //     ? const LinearProgressIndicator()
-            //     : Row(
-            //         children: [
-            //           Expanded(
-            //             child: Text(
-            //               L10n.of(context)!.createGroupAndInviteUsers,
+            //       child: controller.loading
+            //           ? const LinearProgressIndicator()
+            //           : Row(
+            //               children: [
+            //                 Expanded(
+            //                   child: Text(
+            //                     L10n.of(context)!.createGroupAndInviteUsers,
+            //                   ),
+            //                 ),
+            //                 Icon(Icons.adaptive.arrow_forward_outlined),
+            //               ],
             //             ),
-            //           ),
-            //           Icon(Icons.adaptive.arrow_forward_outlined),
-            //         ],
-            //       ),
             //     ),
             //   ),
             // ),

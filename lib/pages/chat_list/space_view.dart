@@ -11,7 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
+
+enum AddRoomType { chat, subspace }
 
 class SpaceView extends StatefulWidget {
   final String spaceId;
@@ -156,6 +159,95 @@ class _SpaceViewState extends State<SpaceView> {
         if (success.error != null) return;
         widget.onBack();
     }
+  }
+
+  void _addChatOrSubspace() async {
+    final roomType = await showConfirmationDialog(
+      context: context,
+      title: L10n.of(context)!.addChatOrSubSpace,
+      actions: [
+        AlertDialogAction(
+          key: AddRoomType.subspace,
+          label: L10n.of(context)!.createNewSpace,
+        ),
+        AlertDialogAction(
+          key: AddRoomType.chat,
+          label: L10n.of(context)!.createGroup,
+        ),
+      ],
+    );
+    if (roomType == null) return;
+
+    final names = await showTextInputDialog(
+      context: context,
+      title: roomType == AddRoomType.subspace
+          ? L10n.of(context)!.createNewSpace
+          : L10n.of(context)!.createGroup,
+      textFields: [
+        DialogTextField(
+          hintText: roomType == AddRoomType.subspace
+              ? L10n.of(context)!.spaceName
+              : L10n.of(context)!.groupName,
+          minLines: 1,
+          maxLines: 1,
+          maxLength: 64,
+          validator: (text) {
+            if (text == null || text.isEmpty) {
+              return L10n.of(context)!.pleaseChoose;
+            }
+            return null;
+          },
+        ),
+        DialogTextField(
+          hintText: L10n.of(context)!.chatDescription,
+          minLines: 4,
+          maxLines: 8,
+          maxLength: 255,
+        ),
+      ],
+      okLabel: L10n.of(context)!.create,
+      cancelLabel: L10n.of(context)!.cancel,
+    );
+    if (names == null) return;
+    final client = Matrix.of(context).client;
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        late final String roomId;
+        final activeSpace = client.getRoomById(widget.spaceId)!;
+        await activeSpace.postLoad();
+
+        if (roomType == AddRoomType.subspace) {
+          roomId = await client.createSpace(
+            name: names.first,
+            topic: names.last.isEmpty ? null : names.last,
+            visibility: activeSpace.joinRules == JoinRules.public
+                ? sdk.Visibility.public
+                : sdk.Visibility.private,
+          );
+        } else {
+          roomId = await client.createGroupChat(
+            groupName: names.first,
+            preset: activeSpace.joinRules == JoinRules.public
+                ? CreateRoomPreset.publicChat
+                : CreateRoomPreset.privateChat,
+            visibility: activeSpace.joinRules == JoinRules.public
+                ? sdk.Visibility.public
+                : sdk.Visibility.private,
+            initialState: names.length > 1 && names.last.isNotEmpty
+                ? [
+                    StateEvent(
+                      type: EventTypes.RoomTopic,
+                      content: {'topic': names.last},
+                    ),
+                  ]
+                : null,
+          );
+        }
+        await activeSpace.setSpaceChild(roomId);
+      },
+    );
+    if (result.error != null) return;
   }
 
   @override
@@ -350,22 +442,55 @@ class _SpaceViewState extends State<SpaceView> {
                       itemCount: joinedRooms.length + 1,
                       itemBuilder: (context, i) {
                         if (i == 0) {
-                          return SearchTitle(
-                            title: L10n.of(context)!.joinedChats,
-                            icon: const Icon(Icons.chat_outlined),
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (room.canChangeStateEvent(
+                                    EventTypes.SpaceChild,
+                                  ) &&
+                                  filter.isEmpty) ...[
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 1,
+                                  ),
+                                  child: Material(
+                                    borderRadius: BorderRadius.circular(
+                                      AppConfig.borderRadius,
+                                    ),
+                                    clipBehavior: Clip.hardEdge,
+                                    child: ListTile(
+                                      onTap: _addChatOrSubspace,
+                                      leading: const CircleAvatar(
+                                        radius: Avatar.defaultSize / 2,
+                                        child: Icon(Icons.add_outlined),
+                                      ),
+                                      title: Text(
+                                        L10n.of(context)!.addChatOrSubSpace,
+                                        style: const TextStyle(fontSize: 14),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              SearchTitle(
+                                title: L10n.of(context)!.joinedChats,
+                                icon: const Icon(Icons.chat_outlined),
+                              ),
+                            ],
                           );
                         }
                         i--;
-                        final room = joinedRooms[i];
+                        final joinedRoom = joinedRooms[i];
                         return ChatListItem(
-                          room,
+                          joinedRoom,
                           filter: filter,
-                          onTap: () => widget.onChatTab(room),
+                          onTap: () => widget.onChatTab(joinedRoom),
                           onLongPress: (context) => widget.onChatContext(
-                            room,
+                            joinedRoom,
                             context,
                           ),
-                          activeChat: widget.activeChat == room.id,
+                          activeChat: widget.activeChat == joinedRoom.id,
                         );
                       },
                     ),
