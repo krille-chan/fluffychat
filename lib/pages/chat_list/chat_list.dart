@@ -678,6 +678,15 @@ class ChatListController extends State<ChatList>
     final displayname =
         room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
 
+    final spacesWithPowerLevels = room.client.rooms
+        .where(
+          (space) =>
+              space.isSpace &&
+              space.canChangeStateEvent(EventTypes.SpaceChild) &&
+              !space.spaceChildren.any((c) => c.roomId == room.id),
+        )
+        .toList();
+
     final action = await showMenu<ChatContextAction>(
       context: posContext,
       position: position,
@@ -776,6 +785,18 @@ class ChatListController extends State<ChatList>
             ],
           ),
         ),
+        if (spacesWithPowerLevels.isNotEmpty)
+          PopupMenuItem(
+            value: ChatContextAction.addToSpace,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.group_work_outlined),
+                const SizedBox(width: 12),
+                Text(L10n.of(context)!.addToSpace),
+              ],
+            ),
+          ),
         PopupMenuItem(
           value: ChatContextAction.leave,
           child: Row(
@@ -838,6 +859,25 @@ class ChatListController extends State<ChatList>
         await showFutureLoadingDialog(context: context, future: room.leave);
 
         return;
+      case ChatContextAction.addToSpace:
+        final space = await showConfirmationDialog(
+          context: context,
+          title: L10n.of(context)!.space,
+          actions: spacesWithPowerLevels
+              .map(
+                (space) => AlertDialogAction(
+                  key: space,
+                  label: space
+                      .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+                ),
+              )
+              .toList(),
+        );
+        if (space == null) return;
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => space.setSpaceChild(room.id),
+        );
     }
   }
 
@@ -1072,6 +1112,7 @@ enum ChatContextAction {
   markUnread,
   mute,
   leave,
+  addToSpace,
 }
 
 
