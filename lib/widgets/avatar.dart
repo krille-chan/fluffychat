@@ -45,26 +45,26 @@ class Avatar extends StatelessWidget {
     final noPic = mxContent == null ||
         mxContent.toString().isEmpty ||
         mxContent.toString() == 'null';
-    final textWidget = Center(
+    final textWidget = Container(
+      color: name?.lightColorAvatar,
+      alignment: Alignment.center,
       child: Text(
         fallbackLetters,
         style: TextStyle(
-          color: noPic ? Colors.white : null,
+          color: Colors.white,
           fontSize: (size / 2.5).roundToDouble(),
         ),
       ),
     );
     final borderRadius = this.borderRadius ?? BorderRadius.circular(size / 2);
     final presenceUserId = this.presenceUserId;
-    final color =
-        noPic ? name?.lightColorAvatar : Theme.of(context).secondaryHeaderColor;
     final container = Stack(
       children: [
         SizedBox(
           width: size,
           height: size,
           child: Material(
-            color: color,
+            color: Theme.of(context).colorScheme.surfaceContainerLowest,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadius,
               side: border ?? BorderSide.none,
@@ -73,13 +73,13 @@ class Avatar extends StatelessWidget {
             child: noPic
                 ? textWidget
                 : MxcImage(
-                    key: Key(mxContent.toString()),
+                    key: ValueKey(mxContent.toString()),
+                    cacheKey: '${mxContent}_$size',
                     uri: mxContent,
                     fit: BoxFit.cover,
                     width: size,
                     height: size,
                     placeholder: (_) => textWidget,
-                    cacheKey: mxContent.toString(),
                   ),
           ),
         ),

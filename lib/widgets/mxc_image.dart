@@ -48,10 +48,10 @@ class MxcImage extends StatefulWidget {
 class _MxcImageState extends State<MxcImage> {
   static final Map<String, Uint8List> _imageDataCache = {};
   Uint8List? _imageDataNoCache;
-  Uint8List? get _imageData {
-    final cacheKey = widget.cacheKey;
-    return cacheKey == null ? _imageDataNoCache : _imageDataCache[cacheKey];
-  }
+
+  Uint8List? get _imageData => widget.cacheKey == null
+      ? _imageDataNoCache
+      : _imageDataCache[widget.cacheKey];
 
   set _imageData(Uint8List? data) {
     if (data == null) return;

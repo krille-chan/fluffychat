@@ -163,315 +163,310 @@ class _SpaceViewState extends State<SpaceView> {
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
     final displayname =
         room?.getLocalizedDisplayname() ?? L10n.of(context)!.nothingFound;
-    return PopScope(
-      canPop: false,
-      onPopInvoked: (_) => widget.onBack(),
-      child: Scaffold(
-        appBar: AppBar(
-          leading: Center(
-            child: CloseButton(
-              onPressed: widget.onBack,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: Center(
+          child: CloseButton(
+            onPressed: widget.onBack,
           ),
-          titleSpacing: 0,
-          title: ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Avatar(
-              mxContent: room?.avatar,
-              name: displayname,
-              borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-            ),
-            title: Text(
-              displayname,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            subtitle: room == null
-                ? null
-                : Text(
-                    L10n.of(context)!.countChatsAndCountParticipants(
-                      room.spaceChildren.length,
-                      room.summary.mJoinedMemberCount ?? 1,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-          ),
-          actions: [
-            PopupMenuButton<SpaceActions>(
-              onSelected: _onSpaceAction,
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: SpaceActions.settings,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.settings_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context)!.settings),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: SpaceActions.invite,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.person_add_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context)!.invite),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: SpaceActions.leave,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.delete_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context)!.leave),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ],
         ),
-        body: room == null
-            ? const Center(
-                child: Icon(
-                  Icons.search_outlined,
-                  size: 80,
+        titleSpacing: 0,
+        title: ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: Avatar(
+            mxContent: room?.avatar,
+            name: displayname,
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+          ),
+          title: Text(
+            displayname,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: room == null
+              ? null
+              : Text(
+                  L10n.of(context)!.countChatsAndCountParticipants(
+                    room.spaceChildren.length,
+                    room.summary.mJoinedMemberCount ?? 1,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              )
-            : StreamBuilder(
-                stream: room.client.onSync.stream
-                    .where((s) => s.hasRoomUpdate)
-                    .rateLimit(const Duration(seconds: 1)),
-                builder: (context, snapshot) {
-                  final childrenIds = room.spaceChildren
-                      .map((c) => c.roomId)
-                      .whereType<String>()
-                      .toSet();
+        ),
+        actions: [
+          PopupMenuButton<SpaceActions>(
+            onSelected: _onSpaceAction,
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: SpaceActions.settings,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.settings_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.settings),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: SpaceActions.invite,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.person_add_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.invite),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: SpaceActions.leave,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.delete_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.leave),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      body: room == null
+          ? const Center(
+              child: Icon(
+                Icons.search_outlined,
+                size: 80,
+              ),
+            )
+          : StreamBuilder(
+              stream: room.client.onSync.stream
+                  .where((s) => s.hasRoomUpdate)
+                  .rateLimit(const Duration(seconds: 1)),
+              builder: (context, snapshot) {
+                final childrenIds = room.spaceChildren
+                    .map((c) => c.roomId)
+                    .whereType<String>()
+                    .toSet();
 
-                  final joinedRooms = room.client.rooms
-                      .where((room) => childrenIds.remove(room.id))
-                      .toList();
+                final joinedRooms = room.client.rooms
+                    .where((room) => childrenIds.remove(room.id))
+                    .toList();
 
-                  final joinedParents = room.spaceParents
-                      .map((parent) {
-                        final roomId = parent.roomId;
-                        if (roomId == null) return null;
-                        return room.client.getRoomById(roomId);
-                      })
-                      .whereType<Room>()
-                      .toList();
-                  final filter = _filterController.text.trim().toLowerCase();
-                  return CustomScrollView(
-                    slivers: [
-                      SliverAppBar(
-                        floating: true,
-                        toolbarHeight: 72,
-                        scrolledUnderElevation: 0,
-                        backgroundColor: Colors.transparent,
-                        automaticallyImplyLeading: false,
-                        title: TextField(
-                          controller: _filterController,
-                          onChanged: (_) => setState(() {}),
-                          textInputAction: TextInputAction.search,
-                          decoration: InputDecoration(
-                            fillColor: Theme.of(context)
+                final joinedParents = room.spaceParents
+                    .map((parent) {
+                      final roomId = parent.roomId;
+                      if (roomId == null) return null;
+                      return room.client.getRoomById(roomId);
+                    })
+                    .whereType<Room>()
+                    .toList();
+                final filter = _filterController.text.trim().toLowerCase();
+                return CustomScrollView(
+                  slivers: [
+                    SliverAppBar(
+                      floating: true,
+                      toolbarHeight: 72,
+                      scrolledUnderElevation: 0,
+                      backgroundColor: Colors.transparent,
+                      automaticallyImplyLeading: false,
+                      title: TextField(
+                        controller: _filterController,
+                        onChanged: (_) => setState(() {}),
+                        textInputAction: TextInputAction.search,
+                        decoration: InputDecoration(
+                          fillColor:
+                              Theme.of(context).colorScheme.secondaryContainer,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(99),
+                          ),
+                          contentPadding: EdgeInsets.zero,
+                          hintText: L10n.of(context)!.search,
+                          hintStyle: TextStyle(
+                            color: Theme.of(context)
                                 .colorScheme
-                                .secondaryContainer,
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(99),
-                            ),
-                            contentPadding: EdgeInsets.zero,
-                            hintText: L10n.of(context)!.search,
-                            hintStyle: TextStyle(
+                                .onPrimaryContainer,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          prefixIcon: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.search_outlined,
                               color: Theme.of(context)
                                   .colorScheme
                                   .onPrimaryContainer,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            prefixIcon: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.search_outlined,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onPrimaryContainer,
-                              ),
                             ),
                           ),
                         ),
                       ),
-                      SliverList.builder(
-                        itemCount: joinedParents.length,
-                        itemBuilder: (context, i) {
-                          final displayname =
-                              joinedParents[i].getLocalizedDisplayname();
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 1,
-                            ),
-                            child: Material(
-                              borderRadius:
-                                  BorderRadius.circular(AppConfig.borderRadius),
-                              clipBehavior: Clip.hardEdge,
-                              child: ListTile(
-                                minVerticalPadding: 0,
-                                leading: Icon(
-                                  Icons.adaptive.arrow_back_outlined,
-                                  size: 16,
-                                ),
-                                title: Row(
-                                  children: [
-                                    Avatar(
-                                      mxContent: joinedParents[i].avatar,
-                                      name: displayname,
-                                      size: Avatar.defaultSize / 2,
-                                      borderRadius: BorderRadius.circular(
-                                        AppConfig.borderRadius / 4,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Expanded(child: Text(displayname)),
-                                  ],
-                                ),
-                                onTap: () =>
-                                    widget.toParentSpace(joinedParents[i].id),
+                    ),
+                    SliverList.builder(
+                      itemCount: joinedParents.length,
+                      itemBuilder: (context, i) {
+                        final displayname =
+                            joinedParents[i].getLocalizedDisplayname();
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 1,
+                          ),
+                          child: Material(
+                            borderRadius:
+                                BorderRadius.circular(AppConfig.borderRadius),
+                            clipBehavior: Clip.hardEdge,
+                            child: ListTile(
+                              minVerticalPadding: 0,
+                              leading: Icon(
+                                Icons.adaptive.arrow_back_outlined,
+                                size: 16,
                               ),
-                            ),
-                          );
-                        },
-                      ),
-                      SliverList.builder(
-                        itemCount: joinedRooms.length + 1,
-                        itemBuilder: (context, i) {
-                          if (i == 0) {
-                            return SearchTitle(
-                              title: L10n.of(context)!.joinedChats,
-                              icon: const Icon(Icons.chat_outlined),
-                            );
-                          }
-                          i--;
-                          final room = joinedRooms[i];
-                          return ChatListItem(
-                            room,
-                            filter: filter,
-                            onTap: () => widget.onChatTab(room),
-                            onLongPress: (context) => widget.onChatContext(
-                              room,
-                              context,
-                            ),
-                            activeChat: widget.activeChat == room.id,
-                          );
-                        },
-                      ),
-                      SliverList.builder(
-                        itemCount: _discoveredChildren.length + 2,
-                        itemBuilder: (context, i) {
-                          if (i == 0) {
-                            return SearchTitle(
-                              title: L10n.of(context)!.discover,
-                              icon: const Icon(Icons.explore_outlined),
-                            );
-                          }
-                          i--;
-                          if (i == _discoveredChildren.length) {
-                            if (_noMoreRooms) {
-                              return Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Center(
-                                  child: Text(
-                                    L10n.of(context)!.noMoreChatsFound,
-                                    style: const TextStyle(fontSize: 13),
+                              title: Row(
+                                children: [
+                                  Avatar(
+                                    mxContent: joinedParents[i].avatar,
+                                    name: displayname,
+                                    size: Avatar.defaultSize / 2,
+                                    borderRadius: BorderRadius.circular(
+                                      AppConfig.borderRadius / 4,
+                                    ),
                                   ),
-                                ),
-                              );
-                            }
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12.0,
-                                vertical: 2.0,
+                                  const SizedBox(width: 8),
+                                  Expanded(child: Text(displayname)),
+                                ],
                               ),
-                              child: TextButton(
-                                onPressed: _isLoading ? null : _loadHierarchy,
-                                child: _isLoading
-                                    ? LinearProgressIndicator(
-                                        borderRadius: BorderRadius.circular(
-                                          AppConfig.borderRadius,
-                                        ),
-                                      )
-                                    : Text(L10n.of(context)!.loadMore),
+                              onTap: () =>
+                                  widget.toParentSpace(joinedParents[i].id),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    SliverList.builder(
+                      itemCount: joinedRooms.length + 1,
+                      itemBuilder: (context, i) {
+                        if (i == 0) {
+                          return SearchTitle(
+                            title: L10n.of(context)!.joinedChats,
+                            icon: const Icon(Icons.chat_outlined),
+                          );
+                        }
+                        i--;
+                        final room = joinedRooms[i];
+                        return ChatListItem(
+                          room,
+                          filter: filter,
+                          onTap: () => widget.onChatTab(room),
+                          onLongPress: (context) => widget.onChatContext(
+                            room,
+                            context,
+                          ),
+                          activeChat: widget.activeChat == room.id,
+                        );
+                      },
+                    ),
+                    SliverList.builder(
+                      itemCount: _discoveredChildren.length + 2,
+                      itemBuilder: (context, i) {
+                        if (i == 0) {
+                          return SearchTitle(
+                            title: L10n.of(context)!.discover,
+                            icon: const Icon(Icons.explore_outlined),
+                          );
+                        }
+                        i--;
+                        if (i == _discoveredChildren.length) {
+                          if (_noMoreRooms) {
+                            return Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Center(
+                                child: Text(
+                                  L10n.of(context)!.noMoreChatsFound,
+                                  style: const TextStyle(fontSize: 13),
+                                ),
                               ),
                             );
                           }
-                          final item = _discoveredChildren[i];
-                          final displayname = item.name ??
-                              item.canonicalAlias ??
-                              L10n.of(context)!.emptyChat;
-                          if (!displayname.toLowerCase().contains(filter)) {
-                            return const SizedBox.shrink();
-                          }
                           return Padding(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 1,
+                              horizontal: 12.0,
+                              vertical: 2.0,
                             ),
-                            child: Material(
-                              borderRadius:
-                                  BorderRadius.circular(AppConfig.borderRadius),
-                              clipBehavior: Clip.hardEdge,
-                              child: ListTile(
-                                onTap: () => _joinChildRoom(item),
-                                leading: Avatar(
-                                  mxContent: item.avatarUrl,
-                                  name: displayname,
-                                  borderRadius: item.roomType == 'm.space'
-                                      ? BorderRadius.circular(
-                                          AppConfig.borderRadius / 2,
-                                        )
-                                      : null,
-                                ),
-                                title: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        displayname,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
+                            child: TextButton(
+                              onPressed: _isLoading ? null : _loadHierarchy,
+                              child: _isLoading
+                                  ? LinearProgressIndicator(
+                                      borderRadius: BorderRadius.circular(
+                                        AppConfig.borderRadius,
                                       ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Icon(
-                                      Icons.add_circle_outline_outlined,
-                                    ),
-                                  ],
-                                ),
-                                subtitle: Text(
-                                  item.topic ??
-                                      L10n.of(context)!.countParticipants(
-                                        item.numJoinedMembers,
-                                      ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
+                                    )
+                                  : Text(L10n.of(context)!.loadMore),
                             ),
                           );
-                        },
-                      ),
-                    ],
-                  );
-                },
-              ),
-      ),
+                        }
+                        final item = _discoveredChildren[i];
+                        final displayname = item.name ??
+                            item.canonicalAlias ??
+                            L10n.of(context)!.emptyChat;
+                        if (!displayname.toLowerCase().contains(filter)) {
+                          return const SizedBox.shrink();
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 1,
+                          ),
+                          child: Material(
+                            borderRadius:
+                                BorderRadius.circular(AppConfig.borderRadius),
+                            clipBehavior: Clip.hardEdge,
+                            child: ListTile(
+                              onTap: () => _joinChildRoom(item),
+                              leading: Avatar(
+                                mxContent: item.avatarUrl,
+                                name: displayname,
+                                borderRadius: item.roomType == 'm.space'
+                                    ? BorderRadius.circular(
+                                        AppConfig.borderRadius / 2,
+                                      )
+                                    : null,
+                              ),
+                              title: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      displayname,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  const Icon(
+                                    Icons.add_circle_outline_outlined,
+                                  ),
+                                ],
+                              ),
+                              subtitle: Text(
+                                item.topic ??
+                                    L10n.of(context)!.countParticipants(
+                                      item.numJoinedMembers,
+                                    ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                );
+              },
+            ),
     );
   }
 }
