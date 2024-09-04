@@ -28,10 +28,7 @@ abstract class PlatformInfos {
 
   static bool get usesTouchscreen => !isMobile;
 
-  // #Pangea
-  // static bool get platformCanRecord => (isMobile || isMacOS);
-  static bool get platformCanRecord => (isMobile || isMacOS || kIsWeb);
-  // Pangea#
+  static bool get platformCanRecord => (isMobile || isMacOS || isWeb);
 
   static String get clientName =>
       '${AppConfig.applicationName} ${isWeb ? 'web' : Platform.operatingSystem}${kReleaseMode ? '' : 'Debug'}';

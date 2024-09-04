@@ -421,9 +421,9 @@ class ChatController extends State<ChatPageWithRoom>
       );
       // #Pangea
       if (visibleEvents.length < 10 && timeline != null) {
-        int prevNumEvents = timeline!.events.length;
+        var prevNumEvents = timeline!.events.length;
         await requestHistory();
-        int numRequests = 0;
+        var numRequests = 0;
         while (timeline!.events.length > prevNumEvents &&
             visibleEvents.length < 10 &&
             numRequests <= 5) {
@@ -800,18 +800,11 @@ class ChatController extends State<ChatPageWithRoom>
       builder: (c) => const RecordingDialog(),
     );
     if (result == null) return;
-    // #Pangea
-    // enable web recording
-    // final audioFile = File(result.path);
-    // final file = MatrixAudioFile(
-    //   bytes: audioFile.readAsBytesSync(),
-    //   name: audioFile.path,
-    // );
+    final audioFile = XFile(result.path);
     final file = MatrixAudioFile(
-      bytes: result.bytes,
-      name: result.path,
+      bytes: await audioFile.readAsBytes(),
+      name: result.fileName ?? audioFile.path,
     );
-    // Pangea#
     await room.sendFileEvent(
       file,
       inReplyTo: replyEvent,
