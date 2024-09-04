@@ -2547,7 +2547,7 @@
       "sender": {}
     }
   },
-  "sendReadReceiptsDescription": "Txateko beste kideek mezu bat irakurri duzula ikus dezakete.",
+  "sendReadReceiptsDescription": "Txateko beste partaideek mezu bat irakurri duzula ikus dezakete.",
   "@sendReadReceiptsDescription": {},
   "forwardMessageTo": "Birbidali mezua {roomName}(e)ra?",
   "@forwardMessageTo": {
@@ -2576,7 +2576,7 @@
   "@verifyOtherUserDescription": {},
   "formattedMessagesDescription": "Erakutsi mezu aberatsen edukia markdown erabiliz, testu lodia esaterako.",
   "@formattedMessagesDescription": {},
-  "sendTypingNotificationsDescription": "Txateko beste kideek mezu berri bat idazten ari zarela ikus dezakete.",
+  "sendTypingNotificationsDescription": "Txateko beste partaideek mezu berri bat idazten ari zarela ikus dezakete.",
   "@sendTypingNotificationsDescription": {},
   "verifyOtherUser": "🔐 Egiaztatu beste erabiltzaile bat",
   "@verifyOtherUser": {},
@@ -2712,5 +2712,30 @@
   "alwaysUse24HourFormat": "ez",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "noMoreChatsFound": "Ez da beste txatik aurkitu...",
+  "@noMoreChatsFound": {},
+  "unread": "Irakurri gabe",
+  "@unread": {},
+  "space": "Gunea",
+  "@space": {},
+  "joinedChats": "Batu zaren txatak",
+  "@joinedChats": {},
+  "goToSpace": "Joan {space} gunera",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Markatu irakurri gabetzat",
+  "@markAsUnread": {},
+  "countChatsAndCountParticipants": "{chats} txat eta {participants} partaide",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "spaces": "Guneak",
+  "@spaces": {}
 }

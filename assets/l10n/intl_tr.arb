@@ -2712,5 +2712,30 @@
   "alwaysUse24HourFormat": "yanlış",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "countChatsAndCountParticipants": "{chats} sohbet ve {participants} katılımcı",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "Başka sohbet bulunamadı...",
+  "@noMoreChatsFound": {},
+  "goToSpace": "Alana git: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "joinedChats": "Katılınan sohbetler",
+  "@joinedChats": {},
+  "unread": "Okunmadı",
+  "@unread": {},
+  "markAsUnread": "Okunmadı olarak işaretle",
+  "@markAsUnread": {},
+  "space": "Alan",
+  "@space": {},
+  "spaces": "Alanlar",
+  "@spaces": {}
 }
