@@ -52,7 +52,8 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   Future<void> translateSelection() async {
     if (widget.selection.selectedText == null ||
         l1Code == null ||
-        l2Code == null) {
+        l2Code == null ||
+        widget.selection.messageText == null) {
       selectionTranslation = null;
       return;
     }
@@ -64,7 +65,7 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     final resp = await FullTextTranslationRepo.translate(
       accessToken: accessToken,
       request: FullTextTranslationRequestModel(
-        text: widget.selection.messageText,
+        text: widget.selection.messageText!,
         tgtLang: l1Code!,
         userL1: l1Code!,
         userL2: l2Code!,

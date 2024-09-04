@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -134,37 +135,31 @@ class PangeaRichTextState extends State<PangeaRichText> {
     }
 
     //TODO - take out of build function of every message
-    final Widget richText = SelectableText.rich(
-      onSelectionChanged: (selection, cause) {
-        if (widget.isOverlay) {
-          widget.controller.textSelection.onTextSelection(selection);
-        }
-      },
-      onTap: () {
-        if (!widget.isOverlay) {
-          widget.controller.showToolbar(widget.pangeaMessageEvent);
-        }
-      },
-      enableInteractiveSelection: widget.isOverlay,
-      TextSpan(
-        text: textSpan,
-        style: widget.style,
-        children: [
-          if (_fetchingRepresentation)
-            const WidgetSpan(
-              child: Padding(
-                padding: EdgeInsets.only(left: 5.0),
-                child: SizedBox(
-                  height: 14,
-                  width: 14,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2.0,
-                    color: AppConfig.secondaryColor,
+    final Widget richText = ToolbarSelectionArea(
+      isOverlay: widget.isOverlay,
+      pangeaMessageEvent: widget.pangeaMessageEvent,
+      controller: widget.controller,
+      child: RichText(
+        text: TextSpan(
+          text: textSpan,
+          style: widget.style,
+          children: [
+            if (_fetchingRepresentation)
+              const WidgetSpan(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 5.0),
+                  child: SizedBox(
+                    height: 14,
+                    width: 14,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.0,
+                      color: AppConfig.secondaryColor,
+                    ),
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
 

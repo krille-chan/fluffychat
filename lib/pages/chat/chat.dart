@@ -1266,7 +1266,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void pickEmojiReactionAction(Iterable<Event> allReactionEvents) async {
     // #Pangea
-    MatrixState.pAnyState.closeAllOverlays();
+    closeSelectionOverlay();
     // Pangea#
     _allReactionEvents = allReactionEvents;
     emojiPickerType = EmojiPickerType.reaction;
@@ -1287,9 +1287,19 @@ class ChatController extends State<ChatPageWithRoom>
     // Pangea#
   }
 
+  // #Pangea
+  /// Close the combined selection view overlay and clear the message
+  /// text and selection stored for the text in that overlay
+  void closeSelectionOverlay() {
+    MatrixState.pAnyState.closeAllOverlays();
+    textSelection.clearMessageText();
+    textSelection.onSelection(null);
+  }
+  // Pangea#
+
   void clearSelectedEvents() => setState(() {
         // #Pangea
-        MatrixState.pAnyState.closeAllOverlays();
+        closeSelectionOverlay();
         // Pangea#
         selectedEvents.clear();
         showEmojiPicker = false;
