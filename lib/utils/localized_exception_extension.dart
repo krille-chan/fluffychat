@@ -66,7 +66,9 @@ extension LocalizedExceptionExtension on Object {
         supportedVersions,
       );
     }
-    if (this is SocketException || this is SyncConnectionException) {
+    if (this is IOException ||
+        this is SocketException ||
+        this is SyncConnectionException) {
       return L10n.of(context)!.noConnectionToTheServer;
     }
     if (this is String) return toString();

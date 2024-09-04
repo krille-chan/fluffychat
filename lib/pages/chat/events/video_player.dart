@@ -70,7 +70,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
           autoInitialize: true,
         );
       }
-    } on Exception catch (e) {
+    } on IOException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(e.toLocalizedString(context)),
