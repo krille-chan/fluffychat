@@ -2708,5 +2708,9 @@
   "files": "Failid",
   "@files": {},
   "swipeRightToLeftToReply": "Vastamiseks viipa paremalt vasakule",
-  "@swipeRightToLeftToReply": {}
+  "@swipeRightToLeftToReply": {},
+  "alwaysUse24HourFormat": "vale",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  }
 }

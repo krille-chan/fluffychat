@@ -324,7 +324,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "edit": "Edit",
+  "edit": "Sunting",
   "@edit": {
     "type": "text",
     "placeholders": {}
@@ -2323,7 +2323,7 @@
   "@sendTypingNotifications": {},
   "createGroup": "Buat grup",
   "@createGroup": {},
-  "inviteContactToGroupQuestion": "Apakah kamu ingin mengundang {contact} ke chat \"{groupName}\"?",
+  "inviteContactToGroupQuestion": "Apakah kamu ingin mengundang {contact} ke obrolan \"{groupName}\"?",
   "@inviteContactToGroupQuestion": {},
   "tryAgain": "Coba ulang",
   "@tryAgain": {},
@@ -2335,15 +2335,15 @@
   "@setTheme": {},
   "invalidServerName": "Nama server tidak valid",
   "@invalidServerName": {},
-  "addChatDescription": "Tambahkan deskripsi chat...",
+  "addChatDescription": "Tambahkan deskripsi obrolan...",
   "@addChatDescription": {},
-  "chatPermissions": "Perizinan chat",
+  "chatPermissions": "Perizinan obrolan",
   "@chatPermissions": {},
-  "chatDescription": "Deskripsi chat",
+  "chatDescription": "Deskripsi obrolan",
   "@chatDescription": {},
-  "chatDescriptionHasBeenChanged": "Deskripsi chat diubah",
+  "chatDescriptionHasBeenChanged": "Deskripsi obrolan diubah",
   "@chatDescriptionHasBeenChanged": {},
-  "noChatDescriptionYet": "Deskripsi chat belum dibuat.",
+  "noChatDescriptionYet": "Deskripsi obrolan belum dibuat.",
   "@noChatDescriptionYet": {},
   "redactMessageDescription": "Pesan akan dihilangkan untuk semua anggota dalam percakapan ini. Ini tidak dapat diurungkan.",
   "@redactMessageDescription": {},
@@ -2366,7 +2366,7 @@
       "reason": {}
     }
   },
-  "setChatDescription": "Lihat deskripsi chat",
+  "setChatDescription": "Lihat deskripsi obrolan",
   "@setChatDescription": {},
   "profileNotFound": "Pengguna ini tidak dapat ditemukan di server. Mungkin ada masalah koneksi atau penggunanya tidak ada.",
   "@profileNotFound": {},
@@ -2688,5 +2688,28 @@
     "placeholders": {
       "level": {}
     }
+  },
+  "swipeRightToLeftToReply": "Usap dari kanan ke kiri untuk membalas",
+  "@swipeRightToLeftToReply": {},
+  "searchMore": "Cari lebih banyak...",
+  "@searchMore": {},
+  "gallery": "Galeri",
+  "@gallery": {},
+  "searchIn": "Cari dalam obrolan \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "files": "Berkas",
+  "@files": {},
+  "restricted": "Dibatasi",
+  "@restricted": {},
+  "knockRestricted": "Ketukan dibatasi",
+  "@knockRestricted": {},
+  "alwaysUse24HourFormat": "tidak",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
   }
 }
