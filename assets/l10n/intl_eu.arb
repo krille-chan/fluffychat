@@ -2161,7 +2161,7 @@
   "@hydrateTor": {},
   "saveKeyManuallyDescription": "Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz.",
   "@saveKeyManuallyDescription": {},
-  "indexedDbErrorTitle": "Arazoak modu pribatuan",
+  "indexedDbErrorTitle": "Arazoak modu pribatuarekin",
   "@indexedDbErrorTitle": {},
   "confirmMatrixId": "Baieztatu zure Matrix IDa kontua ezabatu ahal izateko.",
   "@confirmMatrixId": {},
@@ -2202,7 +2202,7 @@
   },
   "hideUnimportantStateEvents": "Ezkutatu garrantzirik gabeko gertaerak",
   "@hideUnimportantStateEvents": {},
-  "noKeyForThisMessage": "Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irakiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula.",
+  "noKeyForThisMessage": "Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula.",
   "@noKeyForThisMessage": {},
   "supposedMxid": "Hau {mxid} izan behar da",
   "@supposedMxid": {
@@ -2704,5 +2704,9 @@
   "searchMore": "Bilatu gehiago...",
   "@searchMore": {},
   "restricted": "Mugatuta",
-  "@restricted": {}
+  "@restricted": {},
+  "knockRestricted": "Eskatu baimena sarrera mugatua duen txatean",
+  "@knockRestricted": {},
+  "swipeRightToLeftToReply": "Herrestatu eskuin-ezker erantzuteko",
+  "@swipeRightToLeftToReply": {}
 }

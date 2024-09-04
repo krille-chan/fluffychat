@@ -740,10 +740,6 @@
   },
   "signInWithPassword": "Pieteikties ar paroli",
   "@signInWithPassword": {},
-  "@ignoredUsers": {
-    "type": "text",
-    "placeholders": {}
-  },
   "lastActiveAgo": "Pēdējoreiz redzēts: {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "text",
@@ -840,10 +836,6 @@
   },
   "editBundlesForAccount": "Labot šī konta komplektus",
   "@editBundlesForAccount": {},
-  "@renderRichContent": {
-    "type": "text",
-    "placeholders": {}
-  },
   "enableEncryption": "Iespējot šifrēšanu",
   "@enableEncryption": {
     "type": "text",
@@ -1113,10 +1105,6 @@
       "username": {},
       "joinRules": {}
     }
-  },
-  "@ignore": {
-    "type": "text",
-    "placeholders": {}
   },
   "recording": "Ieraksta",
   "@recording": {
@@ -1534,10 +1522,6 @@
   },
   "chooseAStrongPassword": "Jāizvēlas spēcīga parole",
   "@chooseAStrongPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
   },
@@ -2683,5 +2667,24 @@
     "count": {}
   },
   "verifyOtherDeviceDescription": "Kad apliecini citu ierīci, šīs ierīces var apmainīt atslēgas, palielinot vispārējo drošību. 💪 Kad uzsāc apliecināšanu, abās ierīcēs lietotnē parādīsies uznirstošais logs. Tajā būs redzamas dažādas emocijzīmes vai skaitļi, kas jāsalīdzina abās ierīcēs. Vislabāk, ja abas ierīces ir pieejams, pirms tiek uzsākta apliecināšana. 🤳",
-  "@verifyOtherDeviceDescription": {}
+  "@verifyOtherDeviceDescription": {},
+  "swipeRightToLeftToReply": "Pavilkt pa labi, lai atbildētu",
+  "@swipeRightToLeftToReply": {},
+  "searchIn": "Meklēt tērzēšanā \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Meklēt vairāk...",
+  "@searchMore": {},
+  "gallery": "Galerija",
+  "@gallery": {},
+  "files": "Datnes",
+  "@files": {},
+  "restricted": "Ierobežots",
+  "@restricted": {},
+  "knockRestricted": "Pieklauvēt ierobežotajiem",
+  "@knockRestricted": {}
 }

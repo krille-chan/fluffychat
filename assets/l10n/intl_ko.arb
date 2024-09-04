@@ -369,12 +369,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsUserName": "유저 이름 포함",
+  "containsUserName": "내 아이디 포함",
   "@containsUserName": {
     "type": "text",
     "placeholders": {}
   },
-  "containsDisplayName": "표시 이름 포함",
+  "containsDisplayName": "내 닉네임 포함",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
@@ -808,7 +808,7 @@
       "targetName": {}
     }
   },
-  "guestsAreForbidden": "게스트는 금지되어 있습니다",
+  "guestsAreForbidden": "게스트가 들어올 수 없음",
   "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
@@ -1723,7 +1723,7 @@
       "username": {}
     }
   },
-  "isTyping": "가 입력 중…",
+  "isTyping": "입력 중…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -1736,7 +1736,7 @@
       "link": {}
     }
   },
-  "inviteForMe": "나를 위해 초대",
+  "inviteForMe": "초대됨",
   "@inviteForMe": {
     "type": "text",
     "placeholders": {}
@@ -2092,7 +2092,7 @@
   "@user": {},
   "youAcceptedTheInvitation": "👍 초대를 수락했습니다",
   "@youAcceptedTheInvitation": {},
-  "youInvitedBy": "📩 {user}에 의해 초대되었습니다",
+  "youInvitedBy": "📩 {user}님에 의해 초대되었습니다",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
@@ -2111,7 +2111,7 @@
   },
   "tryAgain": "다시 시도하기",
   "@tryAgain": {},
-  "youKickedAndBanned": "🙅 {user}를 영구 추방했습니다",
+  "youKickedAndBanned": "🙅 {user}님을 영구 추방했습니다",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2237,7 +2237,7 @@
       "reason": {}
     }
   },
-  "youHaveWithdrawnTheInvitationFor": "{user}에 대한 초대를 철회함",
+  "youHaveWithdrawnTheInvitationFor": "{user}님에 대한 초대를 철회함",
   "@youHaveWithdrawnTheInvitationFor": {
     "placeholders": {
       "user": {}
@@ -2247,7 +2247,7 @@
   "@appearOnTopDetails": {},
   "enterRoom": "방에 입장",
   "@enterRoom": {},
-  "youInvitedUser": "📩 {user}를 초대했습니다",
+  "youInvitedUser": "📩 {user}님을 초대했습니다",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
@@ -2278,7 +2278,7 @@
   "@screenSharingTitle": {},
   "widgetCustom": "사용자 정의",
   "@widgetCustom": {},
-  "youBannedUser": "{user}을 영구 추방함",
+  "youBannedUser": "{user}님을 영구 추방함",
   "@youBannedUser": {
     "placeholders": {
       "user": {}
@@ -2286,7 +2286,7 @@
   },
   "addChatDescription": "채팅 설명 추가하기...",
   "@addChatDescription": {},
-  "hasKnocked": "🚪 {user}가 참가를 요청했습니다",
+  "hasKnocked": "🚪 {user}님이 참가를 요청했습니다",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2342,7 +2342,7 @@
   "@roomUpgradeDescription": {},
   "pleaseEnterANumber": "0보다 큰 숫자를 입력하세요",
   "@pleaseEnterANumber": {},
-  "youKicked": "👞 {user}를 추방했습니다",
+  "youKicked": "👞 {user}님을 추방했습니다",
   "@youKicked": {
     "placeholders": {
       "user": {}
@@ -2386,7 +2386,7 @@
   "@commandHint_hug": {},
   "replace": "대체",
   "@replace": {},
-  "youUnbannedUser": "{user}의 영구 추방을 해제했습니다",
+  "youUnbannedUser": "{user}님의 영구 추방을 해제했습니다",
   "@youUnbannedUser": {
     "placeholders": {
       "user": {}
@@ -2644,7 +2644,7 @@
   "@passwordRecoverySettings": {},
   "hideMemberChangesInPublicChats": "공개 채팅에서의 참가자 변화 숨김",
   "@hideMemberChangesInPublicChats": {},
-  "userWouldLikeToChangeTheChat": "{user}가 참가를 희망합니다.",
+  "userWouldLikeToChangeTheChat": "{user}님이 참가를 희망합니다.",
   "@userWouldLikeToChangeTheChat": {
     "placeholders": {
       "user": {}
@@ -2667,7 +2667,7 @@
   },
   "noOneCanJoin": "아무도 들어올 수 없음",
   "@noOneCanJoin": {},
-  "thereAreCountUsersBlocked": "여기 {count}명의 차단된 유저가 있습니다.",
+  "thereAreCountUsersBlocked": "{count}명의 차단된 유저가 있습니다.",
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
