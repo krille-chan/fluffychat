@@ -152,10 +152,10 @@ abstract class AppConfig {
       _defaultHomeserver = json['default_homeserver'];
     }
     if (json['privacy_url'] is String) {
-      _webBaseUrl = json['privacy_url'];
+      _privacyUrl = json['privacy_url'];
     }
     if (json['web_base_url'] is String) {
-      _privacyUrl = json['web_base_url'];
+      _webBaseUrl = json['web_base_url'];
     }
     if (json['render_html'] is bool) {
       // #Pangea
