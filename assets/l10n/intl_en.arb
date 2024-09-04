@@ -201,6 +201,19 @@
       "supportedVersions": {}
     }
   },
+  "countChatsAndCountParticipants": "{chats} chats and {participants} participants",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "No more chats found...",
+  "joinedChats": "Joined chats",
+  "unread": "Unread",
+  "space": "Space",
+  "spaces": "Spaces",
   "banFromChat": "Ban from chat",
   "@banFromChat": {
     "type": "text",

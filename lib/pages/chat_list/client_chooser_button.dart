@@ -392,13 +392,13 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.joinWithClassCode:
           SpaceCodeUtil.joinWithSpaceCodeDialog(
             context,
-            controller.pangeaController,
+            MatrixState.pangeaController,
           );
           break;
         case SettingsAction.findAConversationPartner:
           findConversationPartnerDialog(
             context,
-            controller.pangeaController,
+            MatrixState.pangeaController,
           );
           break;
         // case SettingsAction.spaceAnalytics:

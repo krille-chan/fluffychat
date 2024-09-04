@@ -1,5 +1,6 @@
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:fluffychat/widgets/presence_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -12,9 +13,8 @@ class Avatar extends StatelessWidget {
   final Client? client;
   final String? presenceUserId;
   final Color? presenceBackgroundColor;
-  //#Pangea
-  final IconData? littleIcon;
-  // Pangea#
+  final BorderRadius? borderRadius;
+  final IconData? icon;
 
   const Avatar({
     this.mxContent,
@@ -24,9 +24,8 @@ class Avatar extends StatelessWidget {
     this.client,
     this.presenceUserId,
     this.presenceBackgroundColor,
-    //#Pangea
-    this.littleIcon,
-    // Pangea#
+    this.borderRadius,
+    this.icon,
     super.key,
   });
 
@@ -53,18 +52,25 @@ class Avatar extends StatelessWidget {
         ),
       ),
     );
-    final borderRadius = BorderRadius.circular(size / 2);
+    final borderRadius = this.borderRadius ?? BorderRadius.circular(size / 2);
     final presenceUserId = this.presenceUserId;
     final color =
         noPic ? name?.lightColorAvatar : Theme.of(context).secondaryHeaderColor;
     final container = Stack(
       children: [
-        ClipRRect(
-          borderRadius: borderRadius,
-          child: Container(
-            width: size,
-            height: size,
+        SizedBox(
+          width: size,
+          height: size,
+          child: Material(
             color: color,
+            shape: RoundedRectangleBorder(
+              borderRadius: borderRadius,
+              side: BorderSide(
+                width: 0,
+                color: Theme.of(context).dividerColor,
+              ),
+            ),
+            clipBehavior: Clip.hardEdge,
             child: noPic
                 ? textWidget
                 : MxcImage(
@@ -78,71 +84,49 @@ class Avatar extends StatelessWidget {
                   ),
           ),
         ),
-        // #Pangea
-        if (littleIcon != null)
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: ClipRRect(
-              borderRadius: borderRadius,
-              child: Container(
-                height: 16,
-                width: 16,
-                color: Colors.white,
-                child: Icon(
-                  littleIcon,
-                  color: noPic
-                      ? name?.lightColorAvatar
-                      : Theme.of(context).secondaryHeaderColor,
-                  size: 14,
+        if (presenceUserId != null)
+          PresenceBuilder(
+            client: client,
+            userId: presenceUserId,
+            builder: (context, presence) {
+              if (presence == null ||
+                  (presence.presence == PresenceType.offline &&
+                      presence.lastActiveTimestamp == null)) {
+                return const SizedBox.shrink();
+              }
+              final dotColor = presence.presence.isOnline
+                  ? Colors.green
+                  : presence.presence.isUnavailable
+                      ? Colors.orange
+                      : Colors.grey;
+              return Positioned(
+                bottom: -3,
+                right: -3,
+                child: Container(
+                  width: 16,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    color: presenceBackgroundColor ??
+                        Theme.of(context).colorScheme.surface,
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: dotColor,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        width: 1,
+                        color: Theme.of(context).colorScheme.surface,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
-        // #Pangea
-        // PresenceBuilder(
-        //   client: client,
-        //   userId: presenceUserId,
-        //   builder: (context, presence) {
-        //     if (presence == null ||
-        //         (presence.presence == PresenceType.offline &&
-        //             presence.lastActiveTimestamp == null)) {
-        //       return const SizedBox.shrink();
-        //     }
-        //     final dotColor = presence.presence.isOnline
-        //         ? Colors.green
-        //         : presence.presence.isUnavailable
-        //             ? Colors.orange
-        //             : Colors.grey;
-        //     return Positioned(
-        //       bottom: -3,
-        //       right: -3,
-        //       child: Container(
-        //         width: 16,
-        //         height: 16,
-        //         decoration: BoxDecoration(
-        //           color: presenceBackgroundColor ??
-        //               Theme.of(context).colorScheme.surface,
-        //           borderRadius: BorderRadius.circular(32),
-        //         ),
-        //         alignment: Alignment.center,
-        //         child: Container(
-        //           width: 10,
-        //           height: 10,
-        //           decoration: BoxDecoration(
-        //             color: dotColor,
-        //             borderRadius: BorderRadius.circular(16),
-        //             border: Border.all(
-        //               width: 1,
-        //               color: Theme.of(context).colorScheme.surface,
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
-        // Pangea#
       ],
     );
     if (onTap == null) return container;

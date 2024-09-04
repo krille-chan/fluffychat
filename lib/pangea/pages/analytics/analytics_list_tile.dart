@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
 
 import '../../../../utils/date_time_extension.dart';
 import '../../../widgets/avatar.dart';
@@ -84,8 +82,7 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
 
   @override
   Widget build(BuildContext context) {
-    final Room? room =
-        Matrix.of(context).client.getRoomById(widget.selected.id);
+    final room = Matrix.of(context).client.getRoomById(widget.selected.id);
     return Material(
       color: widget.isSelected
           ? Theme.of(context).colorScheme.secondaryContainer
@@ -101,7 +98,6 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
             : Avatar(
                 mxContent: widget.avatar,
                 name: widget.selected.displayName,
-                littleIcon: room?.roomTypeIcon,
               ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

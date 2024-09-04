@@ -485,10 +485,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         store.getBool(SettingKeys.hideUnimportantStateEvents) ??
             AppConfig.hideUnimportantStateEvents;
 
-    AppConfig.separateChatTypes =
-        store.getBool(SettingKeys.separateChatTypes) ??
-            AppConfig.separateChatTypes;
-
     AppConfig.autoplayImages =
         store.getBool(SettingKeys.autoplayImages) ?? AppConfig.autoplayImages;
 
