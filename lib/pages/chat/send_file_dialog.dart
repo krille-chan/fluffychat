@@ -64,7 +64,7 @@ class SendFileDialogState extends State<SendFileDialog> {
   @override
   Widget build(BuildContext context) {
     var sendStr = L10n.of(context)!.sendFile;
-    final bool allFilesAreImages =
+    final allFilesAreImages =
         widget.files.every((file) => file is MatrixImageFile);
     final sizeString = widget.files
         .fold<double>(0, (p, file) => p + file.bytes.length)

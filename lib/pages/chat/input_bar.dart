@@ -51,9 +51,6 @@ class InputBar extends StatelessWidget {
   });
 
   List<Map<String, String?>> getSuggestions(String text) {
-    // #Pangea
-    final List<Map<String, String?>> ret = <Map<String, String?>>[];
-    // Pangea#
     if (controller!.selection.baseOffset !=
             controller!.selection.extentOffset ||
         controller!.selection.baseOffset < 0) {
@@ -61,9 +58,7 @@ class InputBar extends StatelessWidget {
     }
     final searchText =
         controller!.text.substring(0, controller!.selection.baseOffset);
-    // #Pangea
-    // final List<Map<String, String?>> ret = <Map<String, String?>>[];
-    // Pangea#
+    final ret = <Map<String, String?>>[];
     const maxResults = 30;
 
     final commandMatch = RegExp(r'^/(\w*)$').firstMatch(searchText);

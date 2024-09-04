@@ -28,8 +28,8 @@ class EventInfoDialog extends StatelessWidget {
   });
 
   String get prettyJson {
-    const JsonDecoder decoder = JsonDecoder();
-    const JsonEncoder encoder = JsonEncoder.withIndent('    ');
+    const decoder = JsonDecoder();
+    const encoder = JsonEncoder.withIndent('    ');
     final object = decoder.convert(jsonEncode(event.toJson()));
     return encoder.convert(object);
   }
