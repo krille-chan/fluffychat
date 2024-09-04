@@ -71,6 +71,9 @@ class HtmlMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // #Pangea
+    controller.textSelection.setMessageText(html);
+    // Pangea#
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
 
     final linkColor = textColor.withAlpha(150);

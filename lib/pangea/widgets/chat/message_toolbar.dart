@@ -141,6 +141,7 @@ class MessageToolbarState extends State<MessageToolbar> {
   void showDefinition() {
     debugPrint("show definition");
     if (widget.textSelection.selectedText == null ||
+        widget.textSelection.messageText == null ||
         widget.textSelection.selectedText!.isEmpty) {
       toolbarContent = const SelectToDefine();
       return;
@@ -149,7 +150,7 @@ class MessageToolbarState extends State<MessageToolbar> {
     toolbarContent = WordDataCard(
       word: widget.textSelection.selectedText!,
       wordLang: widget.pangeaMessageEvent.messageDisplayLangCode,
-      fullText: widget.textSelection.messageText,
+      fullText: widget.textSelection.messageText!,
       fullTextLang: widget.pangeaMessageEvent.messageDisplayLangCode,
       hasInfo: true,
       room: widget.controller.room,
