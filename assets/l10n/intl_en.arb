@@ -677,7 +677,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Default permission level",
+  "defaultPermissionLevel": "Default permission level for new users",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -4152,5 +4152,33 @@
     "type": "text",
     "space": {}
   },
-  "markAsUnread": "Mark as unread"
+  "markAsUnread": "Mark as unread",
+  "userLevel": "{level} - User",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Admin",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Change general chat settings",
+  "inviteOtherUsers": "Invite other users to this chat",
+  "changeTheChatPermissions": "Change the chat permissions",
+  "changeTheVisibilityOfChatHistory": "Change the visibility of the chat history",
+  "changeTheCanonicalRoomAlias": "Change the main public chat address",
+  "sendRoomNotifications": "Send a @room notifications",
+  "changeTheDescriptionOfTheGroup": "Change the description of the chat"
 }

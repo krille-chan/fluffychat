@@ -1,6 +1,4 @@
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -29,7 +27,7 @@ class PermissionsListTile extends StatelessWidget {
         case 'events_default':
           return L10n.of(context)!.sendMessages;
         case 'state_default':
-          return L10n.of(context)!.configureChat;
+          return L10n.of(context)!.changeGeneralChatSettings;
         case 'ban':
           return L10n.of(context)!.banFromChat;
         case 'kick':
@@ -37,23 +35,25 @@ class PermissionsListTile extends StatelessWidget {
         case 'redact':
           return L10n.of(context)!.deleteMessage;
         case 'invite':
-          return L10n.of(context)!.inviteContact;
+          return L10n.of(context)!.inviteOtherUsers;
       }
     } else if (category == 'notifications') {
       switch (permissionKey) {
         case 'rooms':
-          return L10n.of(context)!.notifications;
+          return L10n.of(context)!.sendRoomNotifications;
       }
     } else if (category == 'events') {
       switch (permissionKey) {
         case EventTypes.RoomName:
           return L10n.of(context)!.changeTheNameOfTheGroup;
+        case EventTypes.RoomTopic:
+          return L10n.of(context)!.changeTheDescriptionOfTheGroup;
         case EventTypes.RoomPowerLevels:
-          return L10n.of(context)!.chatPermissions;
+          return L10n.of(context)!.changeTheChatPermissions;
         case EventTypes.HistoryVisibility:
-          return L10n.of(context)!.visibilityOfTheChatHistory;
+          return L10n.of(context)!.changeTheVisibilityOfChatHistory;
         case EventTypes.RoomCanonicalAlias:
-          return L10n.of(context)!.setInvitationLink;
+          return L10n.of(context)!.changeTheCanonicalRoomAlias;
         case EventTypes.RoomAvatar:
           return L10n.of(context)!.editRoomAvatar;
         case EventTypes.RoomTombstone:
@@ -69,41 +69,40 @@ class PermissionsListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = permission >= 100
+        ? Colors.orangeAccent
+        : permission >= 50
+            ? Colors.blueAccent
+            : Colors.greenAccent;
     return ListTile(
-      title: Text(getLocalizedPowerLevelString(context)),
-      subtitle: Text(
-        // #Pangea
-        // L10n.of(context)!.minimumPowerLevel(permission.toString()),
-        L10n.of(context)!.minimumPowerLevel(
-          Matrix.of(context).client.powerLevelName(
-                    permission,
-                    L10n.of(context)!,
-                  ) ??
-              permission.toString(),
-        ),
-        // Pangea#
+      title: Text(
+        getLocalizedPowerLevelString(context),
+        style: Theme.of(context).textTheme.titleSmall,
       ),
       trailing: Material(
-        borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-        color: Theme.of(context).colorScheme.onInverseSurface,
+        color: color.withAlpha(64),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+          side: BorderSide(color: color),
+        ),
         child: DropdownButton<int>(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           underline: const SizedBox.shrink(),
           onChanged: canEdit ? onChanged : null,
-          value: {0, 50, 100}.contains(permission) ? permission : null,
+          value: permission,
           items: [
             DropdownMenuItem(
-              value: 0,
-              child: Text(L10n.of(context)!.user),
+              value: permission < 50 ? permission : 0,
+              child: Text(L10n.of(context)!.userLevel(permission)),
             ),
             DropdownMenuItem(
-              value: 50,
-              child: Text(L10n.of(context)!.moderator),
+              value: permission < 100 && permission >= 50 ? permission : 50,
+              child: Text(L10n.of(context)!.moderatorLevel(permission)),
             ),
             DropdownMenuItem(
-              value: 100,
-              child: Text(L10n.of(context)!.admin),
+              value: permission >= 100 ? permission : 100,
+              child: Text(L10n.of(context)!.adminLevel(permission)),
             ),
             DropdownMenuItem(
               value: null,

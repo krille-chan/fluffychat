@@ -66,7 +66,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                     ),
                   ),
                 ),
-                for (final joinRule in JoinRules.values)
+                for (final joinRule in controller.availableJoinRules)
                   if (joinRule != JoinRules.private)
                     RadioListTile<JoinRules>.adaptive(
                       title: Text(
