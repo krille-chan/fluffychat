@@ -78,6 +78,7 @@ dependencies:
   # matrix: ^0.31.0
   # Pangea#
   native_imaging: ^0.1.1
+  opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^6.0.0
   pasteboard: ^0.2.0
   path: ^1.9.0

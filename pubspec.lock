@@ -1510,6 +1510,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.2"
+  opus_caf_converter_dart:
+    dependency: "direct main"
+    description:
+      name: opus_caf_converter_dart
+      sha256: e08156066916f790a54df305e103d6dec4d853ec23147e6a02eda3c06f67ba1a
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   package_config:
     dependency: transitive
     description:

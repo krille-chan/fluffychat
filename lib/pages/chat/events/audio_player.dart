@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
+import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../utils/matrix_sdk_extensions/event_extension.dart';
@@ -95,7 +96,18 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           // Pangea#
         );
         file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
+
         await file.writeAsBytes(matrixFile.bytes);
+
+        if (Platform.isIOS &&
+            matrixFile.mimeType.toLowerCase() == 'audio/ogg') {
+          Logs().v('Convert ogg audio file for iOS...');
+          final convertedFile = File('${file.path}.caf');
+          if (await convertedFile.exists() == false) {
+            OpusCaf().convertOpusToCaf(file.path, convertedFile.path);
+          }
+          file = convertedFile;
+        }
       }
 
       setState(() {

@@ -16,7 +16,6 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
-  static const String recordingFileType = 'wav';
   const RecordingDialog({
     super.key,
   });
@@ -44,12 +43,15 @@ class RecordingDialogState extends State<RecordingDialog> {
     try {
       // #Pangea
       // enable recording on web
+      // final useOpus =
+      //     await _audioRecorder.isEncoderSupported(AudioEncoder.opus);
       // final tempDir = await getTemporaryDirectory();
       // final path = _recordedPath =
-      //     '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
-      final tempDirPath = kIsWeb ? "." : (await getTemporaryDirectory()).path;
-      _recordedPath =
-          '$tempDirPath/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
+      //     '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${useOpus ? 'ogg' : 'm4a'}';
+      final tempDir = kIsWeb ? "." : (await getTemporaryDirectory()).path;
+
+      final path = _recordedPath =
+          '$tempDir/recording${DateTime.now().microsecondsSinceEpoch}.wav';
       // Pangea#
 
       final result = await _audioRecorder.hasPermission();
@@ -59,7 +61,7 @@ class RecordingDialogState extends State<RecordingDialog> {
       }
       await WakelockPlus.enable();
       // #Pangea
-      final bool isNotError = await showUpdateVersionDialog(
+      final isNotError = await showUpdateVersionDialog(
         future: () =>
             // Pangea#
             _audioRecorder.start(
