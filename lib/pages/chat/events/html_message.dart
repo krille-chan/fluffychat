@@ -1,8 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_highlighter/flutter_highlighter.dart';
 import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -18,12 +21,22 @@ class HtmlMessage extends StatelessWidget {
   final String html;
   final Room room;
   final Color textColor;
+  // #Pangea
+  final bool isOverlay;
+  final PangeaMessageEvent? pangeaMessageEvent;
+  final ChatController controller;
+  // Pangea#
 
   const HtmlMessage({
     super.key,
     required this.html,
     required this.room,
     this.textColor = Colors.black,
+    // #Pangea
+    required this.isOverlay,
+    this.pangeaMessageEvent,
+    required this.controller,
+    // Pangea#
   });
 
   dom.Node _linkifyHtml(dom.Node element) {
@@ -58,6 +71,9 @@ class HtmlMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // #Pangea
+    controller.textSelection.setMessageText(html);
+    // Pangea#
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
 
     final linkColor = textColor.withAlpha(150);
@@ -76,21 +92,16 @@ class HtmlMessage extends StatelessWidget {
 
     // there is no need to pre-validate the html, as we validate it while rendering
     // #Pangea
-    return MouseRegion(
-      // onHover: messageToolbar?.onMouseRegionUpdate,
-      child: SelectionArea(
-        // onSelectionChanged: (SelectedContent? selection) =>
-        //     messageToolbar?.onTextSelection(
-        //   selectedContent: selection,
-        //   context: context,
-        // ),
-        // focusNode: messageToolbar?.focusNode,
-        // contextMenuBuilder: (context, state) =>
-        //     messageToolbar?.contextMenuOverride(
-        //       context: context,
-        //       contentSelection: state,
-        //     ) ??
-        //     const SizedBox(),
+    return SelectionArea(
+      onSelectionChanged: (SelectedContent? selection) {
+        controller.textSelection.onSelection(selection?.plainText);
+      },
+      child: GestureDetector(
+        onTap: () {
+          if (pangeaMessageEvent != null && !isOverlay) {
+            controller.showToolbar(pangeaMessageEvent!);
+          }
+        },
         // Pangea#
         child: Html.fromElement(
           documentElement: element as dom.Element,
@@ -173,11 +184,6 @@ class HtmlMessage extends StatelessWidget {
         ),
       ),
     );
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 
   static const Set<String> fallbackTextTags = {'tg-forward'};
@@ -303,7 +309,6 @@ class ImageExtension extends HtmlExtension {
           uri: mxcUrl,
           width: width ?? height ?? defaultDimension,
           height: height ?? width ?? defaultDimension,
-          cacheKey: mxcUrl.toString(),
         ),
       ),
     );
