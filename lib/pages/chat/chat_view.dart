@@ -178,15 +178,15 @@ class ChatView extends StatelessWidget {
           builder: (BuildContext context, snapshot) {
             var appbarBottomHeight = 0.0;
             if (controller.room.pinnedEventIds.isNotEmpty) {
-              appbarBottomHeight += 42;
+              appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             if (scrollUpBannerEventId != null) {
-              appbarBottomHeight += 42;
+              appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             final tombstoneEvent =
                 controller.room.getState(EventTypes.RoomTombstone);
             if (tombstoneEvent != null) {
-              appbarBottomHeight += 42;
+              appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             return Scaffold(
               appBar: AppBar(

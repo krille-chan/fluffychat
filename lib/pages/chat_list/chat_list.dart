@@ -831,9 +831,10 @@ class ChatListController extends State<ChatList>
           isDestructiveAction: true,
         );
         if (confirmed == OkCancelResult.cancel) return;
-        if (!mounted) {
-          await showFutureLoadingDialog(context: context, future: room.leave);
-        }
+        if (!mounted) return;
+
+        await showFutureLoadingDialog(context: context, future: room.leave);
+
         return;
     }
   }

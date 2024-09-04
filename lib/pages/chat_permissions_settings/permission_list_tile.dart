@@ -80,11 +80,8 @@ class PermissionsListTile extends StatelessWidget {
         style: Theme.of(context).textTheme.titleSmall,
       ),
       trailing: Material(
-        color: color.withAlpha(64),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-          side: BorderSide(color: color),
-        ),
+        color: color.withAlpha(32),
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         child: DropdownButton<int>(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
@@ -94,15 +91,24 @@ class PermissionsListTile extends StatelessWidget {
           items: [
             DropdownMenuItem(
               value: permission < 50 ? permission : 0,
-              child: Text(L10n.of(context)!.userLevel(permission)),
+              child: Text(
+                L10n.of(context)!.userLevel(permission < 50 ? permission : 0),
+              ),
             ),
             DropdownMenuItem(
               value: permission < 100 && permission >= 50 ? permission : 50,
-              child: Text(L10n.of(context)!.moderatorLevel(permission)),
+              child: Text(
+                L10n.of(context)!.moderatorLevel(
+                  permission < 100 && permission >= 50 ? permission : 50,
+                ),
+              ),
             ),
             DropdownMenuItem(
               value: permission >= 100 ? permission : 100,
-              child: Text(L10n.of(context)!.adminLevel(permission)),
+              child: Text(
+                L10n.of(context)!
+                    .adminLevel(permission >= 100 ? permission : 100),
+              ),
             ),
             DropdownMenuItem(
               value: null,

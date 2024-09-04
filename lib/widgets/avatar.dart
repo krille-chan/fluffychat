@@ -77,6 +77,7 @@ class Avatar extends StatelessWidget {
             child: noPic
                 ? textWidget
                 : MxcImage(
+                    client: client,
                     key: ValueKey(mxContent.toString()),
                     cacheKey: '${mxContent}_$size',
                     uri: mxContent,

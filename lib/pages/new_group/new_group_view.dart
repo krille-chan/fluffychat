@@ -129,10 +129,6 @@ class NewGroupView extends StatelessWidget {
             //   child: SizedBox(
             //     width: double.infinity,
             //     child: ElevatedButton(
-            //       style: ElevatedButton.styleFrom(
-            //         foregroundColor: Theme.of(context).colorScheme.onPrimary,
-            //         backgroundColor: Theme.of(context).colorScheme.primary,
-            //       ),
             //       onPressed:
             //           controller.loading ? null : controller.submitAction,
             //       child: controller.loading

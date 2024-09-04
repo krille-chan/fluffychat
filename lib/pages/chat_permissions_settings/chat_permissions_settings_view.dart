@@ -57,6 +57,22 @@ class ChatPermissionsSettingsView extends StatelessWidget {
             // Pangea#
             return Column(
               children: [
+                ListTile(
+                  leading: const Icon(Icons.info_outlined),
+                  subtitle: Text(
+                    L10n.of(context)!.chatPermissionsDescription,
+                  ),
+                ),
+                Divider(color: Theme.of(context).dividerColor),
+                ListTile(
+                  title: Text(
+                    L10n.of(context)!.chatPermissions,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

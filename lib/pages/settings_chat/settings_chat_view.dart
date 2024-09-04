@@ -71,10 +71,7 @@ class SettingsChatView extends StatelessWidget {
                 defaultValue: AppConfig.swipeRightToLeftToReply,
               ),
               // #Pangea
-              // Divider(
-              //   height: 1,
-              //   color: Theme.of(context).dividerColor,
-              // ),
+              // Divider(color: Theme.of(context).dividerColor),
               // ListTile(
               //   title: Text(
               //     L10n.of(context)!.customEmojisAndStickers,
@@ -93,10 +90,7 @@ class SettingsChatView extends StatelessWidget {
               //     child: Icon(Icons.chevron_right_outlined),
               //   ),
               // ),
-              // Divider(
-              //   height: 1,
-              //   color: Theme.of(context).dividerColor,
-              // ),
+              // Divider(color: Theme.of(context).dividerColor),
               // ListTile(
               //   title: Text(
               //     L10n.of(context)!.calls,
