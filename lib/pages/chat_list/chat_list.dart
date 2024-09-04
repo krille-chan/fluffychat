@@ -733,6 +733,10 @@ class ChatListController extends State<ChatList>
     BuildContext posContext, [
     Room? space,
   ]) async {
+    if (room.membership == Membership.invite) {
+      return onChatTap(room);
+    }
+
     final overlay =
         Overlay.of(posContext).context.findRenderObject() as RenderBox;
 
@@ -757,7 +761,7 @@ class ChatListController extends State<ChatList>
       position: position,
       items: [
         PopupMenuItem(
-          enabled: false,
+          value: ChatContextAction.open,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -867,46 +871,51 @@ class ChatListController extends State<ChatList>
     if (action == null) return;
     if (!mounted) return;
 
-    if (action == ChatContextAction.goToSpace) {
-      setActiveSpace(space!.id);
-      return;
-    }
-
-    if (action == ChatContextAction.leave) {
-      final confirmed = await showOkCancelAlertDialog(
-        useRootNavigator: false,
-        context: context,
-        title: L10n.of(context)!.areYouSure,
-        okLabel: L10n.of(context)!.leave,
-        cancelLabel: L10n.of(context)!.no,
-        message: L10n.of(context)!.archiveRoomDescription,
-        isDestructiveAction: true,
-      );
-      if (confirmed == OkCancelResult.cancel) return;
-    }
-    if (!mounted) return;
-
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        switch (action) {
-          case ChatContextAction.goToSpace:
-            return;
-          case ChatContextAction.favorite:
-            return room.setFavourite(!room.isFavourite);
-          case ChatContextAction.markUnread:
-            return room.markUnread(!room.markedUnread);
-          case ChatContextAction.mute:
-            return room.setPushRuleState(
-              room.pushRuleState == PushRuleState.notify
-                  ? PushRuleState.mentionsOnly
-                  : PushRuleState.notify,
-            );
-          case ChatContextAction.leave:
-            return room.leave();
+    switch (action) {
+      case ChatContextAction.open:
+        onChatTap(room);
+        return;
+      case ChatContextAction.goToSpace:
+        setActiveSpace(space!.id);
+        return;
+      case ChatContextAction.favorite:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room.setFavourite(!room.isFavourite),
+        );
+        return;
+      case ChatContextAction.markUnread:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room.markUnread(!room.markedUnread),
+        );
+        return;
+      case ChatContextAction.mute:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room.setPushRuleState(
+            room.pushRuleState == PushRuleState.notify
+                ? PushRuleState.mentionsOnly
+                : PushRuleState.notify,
+          ),
+        );
+        return;
+      case ChatContextAction.leave:
+        final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
+          context: context,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.leave,
+          cancelLabel: L10n.of(context)!.no,
+          message: L10n.of(context)!.archiveRoomDescription,
+          isDestructiveAction: true,
+        );
+        if (confirmed == OkCancelResult.cancel) return;
+        if (!mounted) {
+          await showFutureLoadingDialog(context: context, future: room.leave);
         }
-      },
-    );
+        return;
+    }
   }
 
   void dismissStatusList() async {
@@ -1136,6 +1145,7 @@ enum InviteActions {
 enum AddRoomType { chat, subspace }
 
 enum ChatContextAction {
+  open,
   goToSpace,
   favorite,
   markUnread,
