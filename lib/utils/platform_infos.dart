@@ -28,7 +28,8 @@ abstract class PlatformInfos {
 
   static bool get usesTouchscreen => !isMobile;
 
-  static bool get platformCanRecord => (isMobile || isMacOS || isWeb);
+  /// Web could also record in theory but currently only wav which is too large
+  static bool get platformCanRecord => (isMobile || isMacOS);
 
   static String get clientName =>
       '${AppConfig.applicationName} ${isWeb ? 'web' : Platform.operatingSystem}${kReleaseMode ? '' : 'Debug'}';

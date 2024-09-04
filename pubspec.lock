@@ -349,18 +349,10 @@ packages:
     dependency: "direct main"
     description:
       name: emoji_picker_flutter
-      sha256: "7c6681783e06710608df27be0e38aa4ba73ca1ccac370bb0e7a1320723ae4bca"
+      sha256: "839200a2bd1af9a65d71133a5a246dbf5b24f7e4f6f4c5390130c2e0ed5f85af"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
-  emoji_proposal:
-    dependency: "direct main"
-    description:
-      name: emoji_proposal
-      sha256: e931bc42b54a65397b3df7915bb58ee7dcbd3ed81c3b8c256b9a5b210e94ea63
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.1"
+    version: "2.2.0"
   emojis:
     dependency: "direct main"
     description:
@@ -1918,14 +1910,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3"
-  remove_emoji:
-    dependency: transitive
-    description:
-      name: remove_emoji
-      sha256: ed9e8463e8c9ca05b86fcddd4c0dbd2c2605a50d267f4ffa05496607924809e3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.10"
   retry:
     dependency: transitive
     description:
@@ -1982,22 +1966,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.2"
-  sentiment_dart:
-    dependency: transitive
-    description:
-      name: sentiment_dart
-      sha256: ddac8742cf5141f531eb1510b074ce715b9958cb02a763a4cc0a918768e4a0c8
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.5"
   sentry:
     dependency: transitive
     description:
       name: sentry
-      sha256: fd1fbfe860c05f5c52820ec4dbf2b6473789e83ead26cfc18bca4fe80bf3f008
+      sha256: "1af8308298977259430d118ab25be8e1dda626cdefa1e6ce869073d530d39271"
       url: "https://pub.dev"
     source: hosted
-    version: "8.2.0"
+    version: "8.8.0"
   sentry_dart_plugin:
     dependency: "direct dev"
     description:
@@ -2010,10 +1986,10 @@ packages:
     dependency: "direct main"
     description:
       name: sentry_flutter
-      sha256: c64f0aec5332bec87083b61514d1b6b29e435b9045d03ce1575861192b9a5680
+      sha256: "18fe4d125c2d529bd6127200f0d2895768266a8c60b4fb50b2086fd97e1a4ab2"
       url: "https://pub.dev"
     source: hosted
-    version: "8.2.0"
+    version: "8.8.0"
   share_plus:
     dependency: "direct main"
     description:
