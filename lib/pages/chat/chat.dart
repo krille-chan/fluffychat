@@ -125,7 +125,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   Timeline? timeline;
 
-  String? readMarkerEventId;
+  late final String readMarkerEventId;
 
   String get roomId => widget.room.id;
 
@@ -310,6 +310,7 @@ class ChatController extends State<ChatPageWithRoom>
     );
 
     sendingClient = Matrix.of(context).client;
+    readMarkerEventId = room.hasNewMessages ? room.fullyRead : '';
     WidgetsBinding.instance.addObserver(this);
     // #Pangea
     if (!mounted) return;
@@ -346,19 +347,22 @@ class ChatController extends State<ChatPageWithRoom>
       await loadTimelineFuture;
       if (initialEventId != null) scrollToEventId(initialEventId);
 
-      final fullyRead = room.fullyRead;
-      if (fullyRead.isEmpty) {
-        setReadMarker();
+      final readMarkerEventIndex = readMarkerEventId.isEmpty
+          ? -1
+          : timeline!.events
+              .where((e) => e.isVisibleInGui)
+              .toList()
+              .indexWhere((e) => e.eventId == readMarkerEventId);
+
+      if (readMarkerEventIndex > 1) {
+        Logs().v('Scroll up to visible event', readMarkerEventId);
+        scrollToEventId(readMarkerEventId, highlightEvent: false);
         return;
+      } else if (readMarkerEventId.isNotEmpty && readMarkerEventIndex == -1) {
+        showScrollUpMaterialBanner(readMarkerEventId);
       }
-      if (timeline?.events.any((event) => event.eventId == fullyRead) ??
-          false) {
-        Logs().v('Scroll up to visible event', fullyRead);
-        scrollToEventId(fullyRead, highlightEvent: false);
-        return;
-      }
+
       if (!mounted) return;
-      showScrollUpMaterialBanner(fullyRead);
     } catch (e, s) {
       ErrorReporter(context, 'Unable to load timeline').onErrorCallback(e, s);
       rethrow;
@@ -385,13 +389,16 @@ class ChatController extends State<ChatPageWithRoom>
   int? animateInEventIndex;
 
   void onInsert(int i) {
+    onChange(i);
+    // setState will be called by updateView() anyway
+    animateInEventIndex = i;
+  }
+
+  void onChange(int i) {
     if (timeline?.events[i].status == EventStatus.synced) {
       final index = timeline!.events.firstIndexWhereNotError;
       if (i == index) setReadMarker(eventId: timeline?.events[i].eventId);
     }
-
-    // setState will be called by updateView() anyway
-    animateInEventIndex = i;
   }
 
   // #Pangea
@@ -419,6 +426,7 @@ class ChatController extends State<ChatPageWithRoom>
         onUpdate: updateView,
         eventContextId: eventContextId,
         onInsert: onInsert,
+        onChange: onChange,
       );
       // #Pangea
       if (visibleEvents.length < 10 && timeline != null) {
@@ -440,6 +448,7 @@ class ChatController extends State<ChatPageWithRoom>
       timeline = await room.getTimeline(
         onUpdate: updateView,
         onInsert: onInsert,
+        onChange: onChange,
       );
       if (!mounted) return;
       if (e is TimeoutException || e is IOException) {
@@ -466,6 +475,7 @@ class ChatController extends State<ChatPageWithRoom>
     if (setReadMarkerFuture != null) return;
     if (_scrolledUp) return;
     if (scrollUpBannerEventId != null) return;
+
     if (eventId == null &&
         !room.hasNewMessages &&
         room.notificationCount == 0) {

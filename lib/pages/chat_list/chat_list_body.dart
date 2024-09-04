@@ -2,15 +2,16 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_header.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
+import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/pangea/widgets/chat_list/chat_list_body_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -59,8 +60,6 @@ class ChatListViewBody extends StatelessWidget {
         .toList();
     final userSearchResult = controller.userSearchResult;
     const dummyChatCount = 4;
-    final titleColor = theme.textTheme.bodyLarge!.color!.withAlpha(100);
-    final subtitleColor = theme.textTheme.bodyLarge!.color!.withAlpha(50);
     final filter = controller.searchController.text.toLowerCase();
     return StreamBuilder(
       key: ValueKey(
@@ -238,11 +237,46 @@ class ChatListViewBody extends StatelessWidget {
                     if (client.prevBatch != null &&
                         rooms.isEmpty &&
                         !controller.isSearchMode) ...[
-                      // #Pangea
-                      Center(
-                        child: ChatListBodyStartText(
-                          controller: controller,
-                        ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              const Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  DummyChatListItem(
+                                    opacity: 0.5,
+                                    animate: false,
+                                  ),
+                                  DummyChatListItem(
+                                    opacity: 0.3,
+                                    animate: false,
+                                  ),
+                                ],
+                              ),
+                              Icon(
+                                CupertinoIcons.chat_bubble_text_fill,
+                                size: 128,
+                                color: theme.colorScheme.secondary,
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                              client.rooms.isEmpty
+                                  ? L10n.of(context)!.noChatsFoundHere
+                                  : L10n.of(context)!.noMoreChatsFound,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: theme.colorScheme.secondary,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       // Padding(
                       //   padding: const EdgeInsets.all(32.0),
@@ -260,56 +294,9 @@ class ChatListViewBody extends StatelessWidget {
               if (client.prevBatch == null)
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (context, i) => Opacity(
+                    (context, i) => DummyChatListItem(
                       opacity: (dummyChatCount - i) / dummyChatCount,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: titleColor,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 1,
-                            color: theme.textTheme.bodyLarge!.color,
-                          ),
-                        ),
-                        title: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                height: 14,
-                                decoration: BoxDecoration(
-                                  color: titleColor,
-                                  borderRadius: BorderRadius.circular(3),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 36),
-                            Container(
-                              height: 14,
-                              width: 14,
-                              decoration: BoxDecoration(
-                                color: subtitleColor,
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Container(
-                              height: 14,
-                              width: 14,
-                              decoration: BoxDecoration(
-                                color: subtitleColor,
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                          ],
-                        ),
-                        subtitle: Container(
-                          decoration: BoxDecoration(
-                            color: subtitleColor,
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                          height: 12,
-                          margin: const EdgeInsets.only(right: 22),
-                        ),
-                      ),
+                      animate: true,
                     ),
                     childCount: dummyChatCount,
                   ),
