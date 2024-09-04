@@ -2402,12 +2402,5 @@
   "importNow": "Tuo nyt",
   "@importNow": {},
   "invite": "Kutsu",
-  "@invite": {},
-  "@banUserDescription": {},
-  "@removeDevicesDescription": {},
-  "@unbanUserDescription": {},
-  "@pushNotificationsNotAvailable": {},
-  "@makeAdminDescription": {},
-  "@learnMore": {},
-  "@kickUserDescription": {}
+  "@invite": {}
 }

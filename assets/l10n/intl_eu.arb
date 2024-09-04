@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "🔐 {username}(e)k ertzetik ertzerako zifraketa gaitu du",
+  "activatedEndToEndEncryption": "🔐 {username}(e)k ertzetik ertzerako zifratzea gaitu du",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -226,7 +226,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "channelCorruptedDecryptError": "Zifraketa hondatu egin da",
+  "channelCorruptedDecryptError": "Zifratzea hondatu egin da",
   "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
@@ -412,17 +412,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Ezingo duzu zifraketa ezgaitu. Ziur zaude?",
+  "enableEncryptionWarning": "Ezingo duzu zifratzea ezgaitu. Ziur zaude?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "encryption": "Zifraketa",
+  "encryption": "Zifratzea",
   "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "Zifraketa ez dago gaituta",
+  "encryptionNotEnabled": "Zifratzea ez dago gaituta",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -666,7 +666,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "Kontuan izan oraingoz Pantalaimon behar duzula puntuz puntuko zifraketarako.",
+  "needPantalaimonWarning": "Kontuan izan oraingoz Pantalaimon behar duzula ertzetik ertzerako zifratzerako.",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
@@ -1036,7 +1036,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEncryptionAlgorithm": "Zifraketa-algoritmo ezezaguna",
+  "unknownEncryptionAlgorithm": "Zifratze-algoritmo ezezaguna",
   "@unknownEncryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
@@ -1560,7 +1560,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contentHasBeenReported": "Edukia zerbitzariko administrariei jakinarazi zaie",
+  "contentHasBeenReported": "Edukia zerbitzariko administratzaileei jakinarazi zaie",
   "@contentHasBeenReported": {
     "type": "text",
     "placeholders": {}
@@ -1649,7 +1649,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryption": "Gaitu zifraketa",
+  "enableEncryption": "Gaitu zifratzea",
   "@enableEncryption": {
     "type": "text",
     "placeholders": {}
@@ -1781,7 +1781,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Defektuzko botere-maila",
+  "defaultPermissionLevel": "Erabiltzaile berrien defektuzko botere-maila",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -1841,7 +1841,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Zifraketa aktiba dezakezu soilik gelak publikoa izateari utzi badio.",
+  "noEncryptionForPublicRooms": "Zifratzea aktiba dezakezu soilik gelak publikoa izateari utzi badio.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -2238,7 +2238,7 @@
   "@startFirstChat": {},
   "newSpaceDescription": "Guneek txatak taldekatzea ahalbidetzen dute eta komunitate pribatu edo publikoak osatzea.",
   "@newSpaceDescription": {},
-  "disableEncryptionWarning": "Segurtasun arrazoiak direla-eta, ezin duzu lehendik zifratuta zegoen txat bateko zifraketa ezgaitu.",
+  "disableEncryptionWarning": "Segurtasun arrazoiak direla-eta, ezin duzu lehendik zifratuta zegoen txat bateko zifratzea ezgaitu.",
   "@disableEncryptionWarning": {},
   "encryptThisChat": "Zifratu txata",
   "@encryptThisChat": {},
@@ -2357,7 +2357,7 @@
   },
   "redactMessageDescription": "Mezua elkarrizketa honetako partaide guztientzat botako da atzera. Ezin da desegin.",
   "@redactMessageDescription": {},
-  "addChatDescription": "Gehitu txat honen deskribapena…",
+  "addChatDescription": "Gehitu txataren deskribapena…",
   "@addChatDescription": {},
   "directChat": "Banakako txata",
   "@directChat": {},
@@ -2520,7 +2520,7 @@
   },
   "transparent": "Gardena",
   "@transparent": {},
-  "sendReadReceipts": "Bidali irakurri izanaren adierazlea",
+  "sendReadReceipts": "Bidali irakurri izanaren agiria",
   "@sendReadReceipts": {},
   "formattedMessages": "Formatua duten mezuak",
   "@formattedMessages": {},
@@ -2709,7 +2709,7 @@
   "@knockRestricted": {},
   "swipeRightToLeftToReply": "Herrestatu eskuin-ezker erantzuteko",
   "@swipeRightToLeftToReply": {},
-  "alwaysUse24HourFormat": "ez",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
@@ -2737,5 +2737,40 @@
     }
   },
   "spaces": "Guneak",
-  "@spaces": {}
+  "@spaces": {},
+  "adminLevel": "{level} - Administratzailea",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheChatPermissions": "Aldatu txataren baimenak",
+  "@changeTheChatPermissions": {},
+  "inviteOtherUsers": "Gonbidatu beste erabiltzaileak txat honetara",
+  "@inviteOtherUsers": {},
+  "userLevel": "{level} - Erabiltzailea",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderatzailea",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "sendRoomNotifications": "Bidali @gela jakinarazpena",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Aldatu txataren deskribapena",
+  "@changeTheDescriptionOfTheGroup": {},
+  "changeGeneralChatSettings": "Aldatu txataren ezarpen orokorrak",
+  "@changeGeneralChatSettings": {},
+  "changeTheVisibilityOfChatHistory": "Aldatu txataren historiaren ikusgaitasuna",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Aldatu txataren helbide publiko nagusia",
+  "@changeTheCanonicalRoomAlias": {}
 }

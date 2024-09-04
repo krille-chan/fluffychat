@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Nivel de permisos por omisión",
+  "defaultPermissionLevel": "Nivel de permisos por defecto para novas usuarias",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2712,5 +2712,65 @@
   "alwaysUse24HourFormat": "falso",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "noMoreChatsFound": "Non se atopan máis chats…",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Chats nos que participas",
+  "@joinedChats": {},
+  "countChatsAndCountParticipants": "{chats} chats e {participants} participantes",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "unread": "Sen ler",
+  "@unread": {},
+  "space": "Espazo",
+  "@space": {},
+  "spaces": "Espazos",
+  "@spaces": {},
+  "goToSpace": "Ir ao espazo: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Marcar como non lido",
+  "@markAsUnread": {},
+  "userLevel": "{level} - Usuaria",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderadora",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Administradora",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Cambiar os axustes xerais do chat",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "Convidar a outras usuarias a este chat",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Cambiar os permisos no chat",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "Cambiar a visibilidade do historial do chat",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Cambiar o enderezo público principal do chat",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "Enviar notificacións a @room",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Cambiar a descrición do chat",
+  "@changeTheDescriptionOfTheGroup": {}
 }

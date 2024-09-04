@@ -98,7 +98,7 @@
       "username": {}
     }
   },
-  "badServerLoginTypesException": "目前伺服器支援的登入類型：\n {serverVersions} \n但本應用程式僅支援：\n {supportedVersions}",
+  "badServerLoginTypesException": "目前伺服器支援的登入類型：\n{serverVersions}\n但本應用程式僅支援：\n{supportedVersions}",
   "@badServerLoginTypesException": {
     "type": "text",
     "placeholders": {
@@ -106,7 +106,7 @@
       "supportedVersions": {}
     }
   },
-  "badServerVersionsException": "目前伺服器支援的Spec版本：\n {serverVersions} \n但本應用程式僅支援 {supportedVersions}",
+  "badServerVersionsException": "目前伺服器支援的協議版本：\n{serverVersions}\n但本應用程式僅支援 {supportedVersions}",
   "@badServerVersionsException": {
     "type": "text",
     "placeholders": {
@@ -164,7 +164,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} 變更了聊天室介紹為：「 {description} 」",
+  "changedTheChatDescriptionTo": "{username} 變更了聊天室介紹為：「{description}」",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -172,7 +172,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} 變更了聊天室名稱為：「 {chatname} 」",
+  "changedTheChatNameTo": "{username} 變更了聊天室名稱為：「{chatname}」",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -187,7 +187,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} 變更了顯示名稱為：「 {displayname} 」",
+  "changedTheDisplaynameTo": "{username} 變更了顯示名稱為：「{displayname}」",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -562,7 +562,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "encrypted": "加密的",
+  "encrypted": "已加密的",
   "@encrypted": {
     "type": "text",
     "placeholders": {}
@@ -764,7 +764,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} 邀請您使用 FluffyChat\n1. 安裝 FluffyChat：https://fluffychat.im\n2. 登入或註冊\n3. 打開該邀請網址：\n {link}",
+  "inviteText": "{username} 邀請您使用 FluffyChat\n1. 安裝 FluffyChat：https://fluffychat.im\n2. 登入或註冊\n3. 打開該邀請網址：\n{link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -896,12 +896,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "請注意您需要Pantalaimon才能使用點對點加密功能。",
+  "needPantalaimonWarning": "請注意您需要 Pantalaimon 才能使用點對點加密功能。",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "新聊天室",
+  "newChat": "新聊天",
   "@newChat": {
     "type": "text",
     "placeholders": {}
@@ -941,7 +941,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "看起來您手機上沒有Google服務框架。這對於保護您的隱私而言是個好決定！但為了收到 FluffyChat 的推播通知，我們推薦您使用 https://microg.org/ 或 https://unifiedpush.org/。",
+  "noGoogleServicesWarning": "您手機上沒有安裝 Google 服務框架。這或許對於保護您的隱私而言是個好事！但為了收到 FluffyChat 的推播通知，我們建議您使用 https://microg.org 或 https://unifiedpush.org。",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1176,7 +1176,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "解禁聊天室",
+  "unbanFromChat": "解封聊天室",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1320,7 +1320,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setPermissionsLevel": "設定權限級別",
+  "setPermissionsLevel": "設定權限等級",
   "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
@@ -1415,7 +1415,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleUnread": "標記為已讀/未讀",
+  "toggleUnread": "標示為已讀/未讀",
   "@toggleUnread": {
     "type": "text",
     "placeholders": {}
@@ -1463,7 +1463,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "未知事件「 {type} 」",
+  "unknownEvent": "未知事件「{type}」",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1625,7 +1625,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "要清除您的聊天室記錄備份以建立新的安全金鑰嗎？",
+  "wipeChatBackup": "是否清除您的聊天室記錄備份以建立新的安全金鑰嗎？",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -1742,7 +1742,7 @@
   },
   "addToSpace": "加入空間",
   "@addToSpace": {},
-  "cantOpenUri": "無法打開URI {uri}",
+  "cantOpenUri": "無法打開 URI {uri}",
   "@cantOpenUri": {
     "type": "text",
     "placeholders": {
@@ -1758,7 +1758,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_myroomavatar": "設置您的聊天室頭貼（通過 mxc-uri）",
+  "commandHint_myroomavatar": "設定您的聊天室頭貼（通過 mxc-uri）",
   "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
@@ -1773,7 +1773,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "sendOnEnter": "按 Enter 鍵發送",
+  "sendOnEnter": "按 Enter 鍵傳送",
   "@sendOnEnter": {},
   "changeYourAvatar": "更改您的大頭貼",
   "@changeYourAvatar": {
@@ -1791,7 +1791,7 @@
       "senderName": {}
     }
   },
-  "commandHint_cuddle": "發送一個摟抱表情",
+  "commandHint_cuddle": "傳送一個摟抱表情",
   "@commandHint_cuddle": {},
   "supposedMxid": "此處應爲 {mxid}",
   "@supposedMxid": {
@@ -1820,7 +1820,7 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "googlyEyesContent": "{senderName} 向您發送了瞪眼表情",
+  "googlyEyesContent": "{senderName} 向您傳送了瞪眼表情",
   "@googlyEyesContent": {
     "type": "text",
     "placeholders": {
@@ -1833,7 +1833,7 @@
   "@sendTypingNotifications": {},
   "importEmojis": "匯入表情包",
   "@importEmojis": {},
-  "confirmMatrixId": "如需要刪除你的帳戶，請確認你的 Matrix ID。",
+  "confirmMatrixId": "如需刪除你的帳戶，請確認你的 Matrix ID。",
   "@confirmMatrixId": {},
   "notAnImage": "不是圖片檔案。",
   "@notAnImage": {},
@@ -1844,11 +1844,11 @@
       "senderName": {}
     }
   },
-  "commandHint_hug": "發送一個擁抱表情",
+  "commandHint_hug": "傳送一個擁抱表情",
   "@commandHint_hug": {},
   "replace": "取代",
   "@replace": {},
-  "commandHint_googly": "發送一些瞪眼表情",
+  "commandHint_googly": "傳送一些瞪眼表情",
   "@commandHint_googly": {},
   "importNow": "立即匯入",
   "@importNow": {},
@@ -1860,35 +1860,35 @@
   "@block": {},
   "discover": "發現",
   "@discover": {},
-  "alwaysUse24HourFormat": "否",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
-  "sender": "發送者",
+  "sender": "傳送者",
   "@sender": {},
   "voiceCall": "語音通話",
   "@voiceCall": {},
-  "blockUsername": "忽略使用者名稱",
+  "blockUsername": "無視使用者名稱",
   "@blockUsername": {},
   "noBackupWarning": "警告！如果不啟用聊天室備份，您將失去對加密訊息的訪問。強烈建議在登出前先啟用聊天室備份。",
   "@noBackupWarning": {},
   "addChatOrSubSpace": "新增聊天室或子空間",
   "@addChatOrSubSpace": {},
-  "thisDevice": "這個設備：",
+  "thisDevice": "這個裝置：",
   "@thisDevice": {},
   "separateChatTypes": "分開私訊和群組",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_markasdm": "將給定的 Matrix ID 標記為直接訊息房間",
+  "commandHint_markasdm": "將給定的 Matrix ID 標示為直接訊息房間",
   "@commandHint_markasdm": {},
-  "commandHint_html": "發送 HTML 格式的文字",
+  "commandHint_html": "傳送 HTML 格式的文字",
   "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHint_send": "發送文字",
+  "commandHint_send": "傳送文字",
   "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
@@ -1904,7 +1904,7 @@
   "@optionalRedactReason": {},
   "dehydrateWarning": "此操作不能反悔。請確保安全地存儲備份文件。",
   "@dehydrateWarning": {},
-  "hydrateTorLong": "上次在 TOR 上匯出會話了嗎？快速匯入它並繼續聊天室。",
+  "hydrateTorLong": "上次在 TOR 上匯出會話了嗎？快速匯入它已繼續使用聊天室。",
   "@hydrateTorLong": {},
   "hydrate": "從備份文件恢復",
   "@hydrate": {},
@@ -1930,7 +1930,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedByBecause": "由 {username} 編輯，原因：\"{reason}\"",
+  "redactedByBecause": "由 {username} 編輯，原因：「{reason}」",
   "@redactedByBecause": {
     "type": "text",
     "placeholders": {
@@ -1955,9 +1955,9 @@
   "@unlockOldMessages": {},
   "callingAccountDetails": "允許 FluffyChat 使用原生 Android 撥號應用程式。",
   "@callingAccountDetails": {},
-  "noOtherDevicesFound": "未找到其他設備",
+  "noOtherDevicesFound": "未找到其他裝置",
   "@noOtherDevicesFound": {},
-  "noUsersFoundWithQuery": "很遺憾，找不到與「 {query} 」相符的使用者。請檢查是否有打錯字。",
+  "noUsersFoundWithQuery": "很遺憾，找不到與「{query}」相符的使用者。請檢查是否有打錯字。",
   "@noUsersFoundWithQuery": {
     "type": "text",
     "placeholders": {
@@ -1982,7 +1982,7 @@
   "@experimentalVideoCalls": {},
   "youAcceptedTheInvitation": "👍 您接受了邀請",
   "@youAcceptedTheInvitation": {},
-  "storeSecurlyOnThisDevice": "在此設備上安全存儲",
+  "storeSecurlyOnThisDevice": "在此裝置上安全存儲",
   "@storeSecurlyOnThisDevice": {},
   "countFiles": "{count} 個文件",
   "@countFiles": {
@@ -2001,13 +2001,13 @@
   },
   "archiveRoomDescription": "聊天室將被移動到存檔中。其他使用者將能看到您已離開聊天室。",
   "@archiveRoomDescription": {},
-  "banUserDescription": "該使用者將被禁止進入聊天室，直到他們被解禁之前都無法再次進入聊天室。",
+  "banUserDescription": "該使用者將被禁止進入聊天室，直到他們被解封之前都無法再次進入聊天室。",
   "@banUserDescription": {},
   "searchChatsRooms": "搜尋 #chats, @users...",
   "@searchChatsRooms": {},
   "decline": "拒絕",
   "@decline": {},
-  "sendReadReceipts": "發送已讀回條",
+  "sendReadReceipts": "傳送已讀回條",
   "@sendReadReceipts": {},
   "formattedMessagesDescription": "使用 markdown 顯示豐富的訊息內容，如粗體文字。",
   "@formattedMessagesDescription": {},
@@ -2040,7 +2040,7 @@
   "@enterRoom": {},
   "allSpaces": "所有空間",
   "@allSpaces": {},
-  "indexedDbErrorLong": "預設情況下，私密模式不啟用消息存儲。\n請訪問\n - about:config\n - 將 dom.indexedDB.privateBrowsing.enabled 設置為 true\n否則，無法運行 FluffyChat。",
+  "indexedDbErrorLong": "預設情況下，私密模式不啟用消息存儲。\n請訪問\n - about:config\n - 將 dom.indexedDB.privateBrowsing.enabled 設定為 true\n否則，無法運行 FluffyChat。",
   "@indexedDbErrorLong": {},
   "youKickedAndBanned": "🙅 您踢出並封鎖了 {user}",
   "@youKickedAndBanned": {
@@ -2087,21 +2087,21 @@
   "@widgetName": {},
   "jump": "跳轉",
   "@jump": {},
-  "commandHint_unignore": "取消忽略已提供的 Matrix ID",
+  "commandHint_unignore": "取消無視已提供的 Matrix ID",
   "@commandHint_unignore": {},
-  "commandHint_markasgroup": "標記為群組",
+  "commandHint_markasgroup": "標示為群組",
   "@commandHint_markasgroup": {},
   "commandHint_me": "描述自己",
   "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHint_plain": "發送未格式化的文字",
+  "commandHint_plain": "傳送未格式化的文字",
   "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHint_react": "以反應的形式發送回覆",
+  "commandHint_react": "以反應的形式傳送回覆",
   "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
@@ -2133,7 +2133,7 @@
   "@hideInvalidOrUnknownMessageFormats": {},
   "dehydrateTorLong": "對 TOR 使用者，建議在關閉窗口前匯出會話。",
   "@dehydrateTorLong": {},
-  "hydrateTor": "TOR 使用者：匯入會話匯出",
+  "hydrateTor": "TOR 使用者：匯入會話",
   "@hydrateTor": {},
   "messagesStyle": "訊息樣式：",
   "@messagesStyle": {},
@@ -2250,7 +2250,7 @@
       "user": {}
     }
   },
-  "youInvitedToBy": "📩 您通過網址被邀請至：\n {alias}",
+  "youInvitedToBy": "📩 您通過網址被邀請至：\n{alias}",
   "@youInvitedToBy": {
     "placeholders": {
       "alias": {}
@@ -2287,7 +2287,7 @@
   "@invite": {},
   "invitePrivateChat": "📨 邀請私人聊天室",
   "@invitePrivateChat": {},
-  "removeDevicesDescription": "您將從這個設備登出，並將不再能夠接收消息。",
+  "removeDevicesDescription": "您將從這個裝置登出，並將不再能夠接收消息。",
   "@removeDevicesDescription": {},
   "unbanUserDescription": "如果該使用者嘗試，他們將能夠再次進入聊天室。",
   "@unbanUserDescription": {},
@@ -2324,7 +2324,7 @@
   "@select": {},
   "files": "文件",
   "@files": {},
-  "forwardMessageTo": "將訊息轉發至 {roomName} ？",
+  "forwardMessageTo": "將訊息轉發至 {roomName}？",
   "@forwardMessageTo": {
     "type": "text",
     "placeholders": {
@@ -2405,7 +2405,7 @@
   "@setTheme": {},
   "knocking": "敲門",
   "@knocking": {},
-  "sessionLostBody": "您的會話已丟失。請將此錯誤報告給開發人員，網址為 {url} 。錯誤訊息為：{error}",
+  "sessionLostBody": "您的會話已丟失。請將此錯誤報告給開發人員，網址為 {url}。錯誤訊息為：{error}",
   "@sessionLostBody": {
     "type": "text",
     "placeholders": {
@@ -2504,11 +2504,11 @@
   },
   "otherCallingPermissions": "麥克風、相機和其他 FluffyChat 權限",
   "@otherCallingPermissions": {},
-  "disableEncryptionWarning": "出於安全原因，您不能在之前已啟用加密的聊天室中停用加密。",
+  "disableEncryptionWarning": "出於安全原因，您不能在之前已加密的聊天室中停用加密。",
   "@disableEncryptionWarning": {},
-  "deviceKeys": "設備密鑰：",
+  "deviceKeys": "裝置密鑰：",
   "@deviceKeys": {},
-  "fileIsTooBigForServer": "伺服器報告該文件太大，無法發送。",
+  "fileIsTooBigForServer": "伺服器報告該文件太大，無法傳送。",
   "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "文件已保存在 {path}",
   "@fileHasBeenSavedAt": {
@@ -2529,7 +2529,7 @@
   "@report": {},
   "pleaseEnterANumber": "請輸入大於 0 的數字",
   "@pleaseEnterANumber": {},
-  "roomUpgradeDescription": "然後，聊天室將使用新的房間版本重新建立。所有參與者將被通知他們需要切換到新的聊天室。您可以在 https://spec.matrix.org/latest/rooms/ 了解更多關於房間版本的信息。",
+  "roomUpgradeDescription": "將使用新版本聊天室來重新建立聊天室。所有本聊天室的參與者都會收到通知，他們都需要換到新的聊天室裡。若您想知道有關新版本的更多資訊，請前往 https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
   "wrongRecoveryKey": "抱歉......這似乎不是正確的恢復密鑰。",
   "@wrongRecoveryKey": {},
@@ -2561,7 +2561,7 @@
   "@incomingMessages": {},
   "databaseMigrationTitle": "資料庫已最佳化",
   "@databaseMigrationTitle": {},
-  "restoreSessionBody": "應用程式現在嘗試從備份中恢復您的會話。請將此錯誤報告給開發人員，網址為 {url} 。錯誤訊息為：{error}",
+  "restoreSessionBody": "應用程式現在嘗試從備份中恢復您的會話。請將此錯誤報告給開發人員，網址為 {url}。錯誤訊息為：{error}",
   "@restoreSessionBody": {
     "type": "text",
     "placeholders": {
@@ -2587,7 +2587,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroupQuestion": "您想邀請 {contact} 加入 \"{groupName}\" 聊天室嗎？",
+  "inviteContactToGroupQuestion": "您想邀請 {contact} 加入 「{groupName}」 聊天室嗎？",
   "@inviteContactToGroupQuestion": {},
   "enableMultiAccounts": "（實驗性功能）在此裝置上啟用多個帳號",
   "@enableMultiAccounts": {},
@@ -2595,11 +2595,11 @@
   "@hideMemberChangesInPublicChats": {},
   "recoveryKeyLost": "遺失恢復金鑰？",
   "@recoveryKeyLost": {},
-  "sendAsText": "以文字發送",
+  "sendAsText": "以文字傳送",
   "@sendAsText": {
     "type": "text"
   },
-  "sendSticker": "發送貼圖",
+  "sendSticker": "傳送貼圖",
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
@@ -2615,13 +2615,13 @@
       "server": {}
     }
   },
-  "commandHint_sendraw": "發送原始 json",
+  "commandHint_sendraw": "傳送原始 json",
   "@commandHint_sendraw": {},
   "newPassword": "新密碼",
   "@newPassword": {},
   "createNewAddress": "建立新地址",
   "@createNewAddress": {},
-  "searchIn": "在聊天室「 {chat} 」中搜尋......",
+  "searchIn": "在聊天室「{chat}」中搜尋......",
   "@searchIn": {
     "type": "text",
     "placeholders": {
@@ -2632,7 +2632,7 @@
   "@searchMore": {},
   "gallery": "畫廊",
   "@gallery": {},
-  "databaseBuildErrorBody": "無法建立 SQLite 資料庫。應用程式目前嘗試使用遺留資料庫。請將此錯誤報告給開發人員，網址為 {url} 。錯誤訊息為：{error}",
+  "databaseBuildErrorBody": "無法建立 SQLite 資料庫。應用程式目前嘗試使用遺留資料庫。請將此錯誤報告給開發人員，網址為 {url}。錯誤訊息為：{error}",
   "@databaseBuildErrorBody": {
     "type": "text",
     "placeholders": {
@@ -2651,7 +2651,7 @@
     "type": "text",
     "space": {}
   },
-  "markAsUnread": "標記為未讀",
+  "markAsUnread": "標示為未讀",
   "@markAsUnread": {},
   "noDatabaseEncryption": "此平台不支援資料庫加密",
   "@noDatabaseEncryption": {},
@@ -2659,11 +2659,11 @@
   "@messageType": {},
   "openGallery": "開啟畫廊",
   "@openGallery": {},
-  "markAsRead": "標記為已讀",
+  "markAsRead": "標示為已讀",
   "@markAsRead": {},
   "reportUser": "舉報使用者",
   "@reportUser": {},
-  "unsupportedAndroidVersionLong": "此功能需要較新的Android版本。請檢查更新或Lineage OS支持。",
+  "unsupportedAndroidVersionLong": "此功能需要較新的 Android 版本。請檢查更新或 Lineage OS 支持。",
   "@unsupportedAndroidVersionLong": {},
   "emailOrUsername": "電子郵件或使用者名",
   "@emailOrUsername": {},
@@ -2675,13 +2675,13 @@
   "@usersMustKnock": {},
   "knock": "敲門",
   "@knock": {},
-  "storeInSecureStorageDescription": "將恢復密鑰存儲在此設備的安全存儲中。",
+  "storeInSecureStorageDescription": "將恢復密鑰存儲在此裝置的安全存儲中。",
   "@storeInSecureStorageDescription": {},
   "appearOnTopDetails": "允許應用程式顯示在最上層（如果您已將 Fluffychat 設定為通話帳戶則不需要）",
   "@appearOnTopDetails": {},
   "whyIsThisMessageEncrypted": "為什麼這條訊息無法讀取？",
   "@whyIsThisMessageEncrypted": {},
-  "noKeyForThisMessage": "如果訊息是在您登入此設備之前發送的，就可能會發生這種情況。\n\n也有可能是發送者已經封鎖了您的設備，或者網絡連接出了問題。\n\n如果您能在另一個會話中讀取該訊息，那麼您可以從中轉移訊息！前往設定 > 設備，並確保您的設備已相互驗證。當您下次打開房間且兩個會話都在前景時，密鑰將自動傳輸。\n\n不想在登出或切換設備時丟失密鑰？請確保您已在設定中啟用了聊天室備份。",
+  "noKeyForThisMessage": "如果訊息是在您登入此裝置之前傳送的，就可能會發生這種情況。\n\n也有可能是傳送者已經封鎖了您的裝置，或者網絡連接出了問題。\n\n如果您能在另一個會話中讀取該訊息，那麼您可以從中轉移訊息！前往設定 > 裝置，並確保您的裝置已相互驗證。當您下次打開房間且兩個會話都在前景時，密鑰將自動傳輸。\n\n不想在登出或切換裝置時丟失密鑰？請確保您已在設定中啟用了聊天室備份。",
   "@noKeyForThisMessage": {},
   "newSpaceDescription": "空間允許您整合您的聊天室並建立私人或公開社群。",
   "@newSpaceDescription": {},
@@ -2707,7 +2707,7 @@
       "sender": {}
     }
   },
-  "commandHint_ignore": "忽略已提供的 Matrix ID",
+  "commandHint_ignore": "無視已提供的 Matrix ID",
   "@commandHint_ignore": {},
   "countChatsAndCountParticipants": "{chats} 個聊天室和 {participants} 位參與者",
   "@countChatsAndCountParticipants": {

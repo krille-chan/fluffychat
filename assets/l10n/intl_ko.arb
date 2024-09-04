@@ -2707,5 +2707,34 @@
   "knockRestricted": "스페이스 멤버만 참가 요청 가능",
   "@knockRestricted": {},
   "swipeRightToLeftToReply": "오른쪽에서 왼쪽으로 스와이프해서 답장",
-  "@swipeRightToLeftToReply": {}
+  "@swipeRightToLeftToReply": {},
+  "alwaysUse24HourFormat": "false",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "unread": "읽지 않은",
+  "@unread": {},
+  "space": "스페이스",
+  "@space": {},
+  "spaces": "스페이스",
+  "@spaces": {},
+  "goToSpace": "스페이스로: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "읽지 않음으로 표시",
+  "@markAsUnread": {},
+  "countChatsAndCountParticipants": "{chats} 채팅과 {participants} 참여자",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "joinedChats": "참여한 채팅",
+  "@joinedChats": {},
+  "noMoreChatsFound": "채팅을 찾을 수 없습니다...",
+  "@noMoreChatsFound": {}
 }
