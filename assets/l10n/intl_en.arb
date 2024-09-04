@@ -4133,5 +4133,6 @@
   "level": "Level",
   "canceledSend": "Canceled send",
   "morphsUsed": "Morphs Used",
-  "translationChoicesBody": "Click and hold an option for a hint."
+  "translationChoicesBody": "Click and hold an option for a hint.",
+  "sendCanceled": "Sending canceled"
 }
