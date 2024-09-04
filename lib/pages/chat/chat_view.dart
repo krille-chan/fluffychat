@@ -202,15 +202,17 @@ class ChatView extends StatelessWidget {
                         tooltip: L10n.of(context)!.close,
                         color: Theme.of(context).colorScheme.primary,
                       )
-                    : UnreadRoomsBadge(
-                        filter: (r) =>
-                            r.id != controller.roomId
-                            // #Pangea
-                            &&
-                            !r.isAnalyticsRoom,
-                        // Pangea#
-                        badgePosition: BadgePosition.topEnd(end: 8, top: 4),
-                        child: const Center(child: BackButton()),
+                    : StreamBuilder<Object>(
+                        stream: Matrix.of(context)
+                            .client
+                            .onSync
+                            .stream
+                            .where((syncUpdate) => syncUpdate.hasRoomUpdate),
+                        builder: (context, _) => UnreadRoomsBadge(
+                          filter: (r) => r.id != controller.roomId,
+                          badgePosition: BadgePosition.topEnd(end: 8, top: 4),
+                          child: const Center(child: BackButton()),
+                        ),
                       ),
                 titleSpacing: 0,
                 title: ChatAppBarTitle(controller),

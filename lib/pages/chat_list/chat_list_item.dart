@@ -19,9 +19,9 @@ enum ArchivedRoomAction { delete, rejoin }
 
 class ChatListItem extends StatelessWidget {
   final Room room;
-  final Room? lastEventRoom;
+  final Room? space;
   final bool activeChat;
-  final void Function()? onLongPress;
+  final void Function(BuildContext context)? onLongPress;
   final void Function()? onForget;
   final void Function() onTap;
   final String? filter;
@@ -33,7 +33,7 @@ class ChatListItem extends StatelessWidget {
     this.onLongPress,
     this.onForget,
     this.filter,
-    this.lastEventRoom,
+    this.space,
     super.key,
   });
 
@@ -66,21 +66,19 @@ class ChatListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMuted = room.pushRuleState != PushRuleState.notify;
-    final lastEventRoom = this.lastEventRoom ?? room;
-    final typingText = lastEventRoom.getLocalizedTypingText(context);
-    final lastEvent = lastEventRoom.lastEvent;
+    final typingText = room.getLocalizedTypingText(context);
+    final lastEvent = room.lastEvent;
     final ownMessage = lastEvent?.senderId == room.client.userID;
-    final unread =
-        lastEventRoom.isUnread || lastEventRoom.membership == Membership.invite;
+    final unread = room.isUnread || room.membership == Membership.invite;
     final theme = Theme.of(context);
     final directChatMatrixId = room.directChatMatrixID;
     final isDirectChat = directChatMatrixId != null;
-    final unreadBubbleSize = unread || lastEventRoom.hasNewMessages
-        ? lastEventRoom.notificationCount > 0
+    final unreadBubbleSize = unread || room.hasNewMessages
+        ? room.notificationCount > 0
             ? 20.0
             : 14.0
         : 0.0;
-    final hasNotifications = lastEventRoom.notificationCount > 0;
+    final hasNotifications = room.notificationCount > 0;
     final backgroundColor =
         activeChat ? theme.colorScheme.secondaryContainer : null;
     final displayname = room.getLocalizedDisplayname(
@@ -94,6 +92,7 @@ class ChatListItem extends StatelessWidget {
     final needLastEventSender = lastEvent == null
         ? false
         : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
+    final space = this.space;
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -107,48 +106,93 @@ class ChatListItem extends StatelessWidget {
         child: FutureBuilder(
           future: room.loadHeroUsers(),
           builder: (context, snapshot) => HoverBuilder(
-            builder: (context, hovered) => ListTile(
+            builder: (context, listTileHovered) => ListTile(
               visualDensity: const VisualDensity(vertical: -0.5),
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-              onLongPress: onLongPress,
-              leading: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  HoverBuilder(
-                    builder: (context, hovered) => AnimatedScale(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      scale: hovered ? 1.1 : 1.0,
-                      child: Avatar(
-                        borderRadius: room.isSpace
-                            ? BorderRadius.circular(AppConfig.borderRadius / 3)
-                            : null,
-                        mxContent: room.avatar,
-                        name: displayname,
-                        presenceUserId: directChatMatrixId,
-                        presenceBackgroundColor: backgroundColor,
-                        onTap: onLongPress,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: -2,
-                    right: -2,
-                    child: AnimatedScale(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      scale: (hovered) ? 1.0 : 0.0,
-                      child: Material(
-                        color: backgroundColor,
-                        borderRadius: BorderRadius.circular(16),
-                        child: const Icon(
-                          Icons.check_circle_outlined,
-                          size: 18,
+              onLongPress: () => onLongPress?.call(context),
+              leading: HoverBuilder(
+                builder: (context, hovered) => AnimatedScale(
+                  duration: FluffyThemes.animationDuration,
+                  curve: FluffyThemes.animationCurve,
+                  scale: hovered ? 1.1 : 1.0,
+                  child: SizedBox(
+                    width: Avatar.defaultSize,
+                    height: Avatar.defaultSize,
+                    child: Stack(
+                      children: [
+                        if (space != null)
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            child: Avatar(
+                              border: BorderSide(
+                                width: 2,
+                                color: backgroundColor ??
+                                    Theme.of(context).colorScheme.surface,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.borderRadius / 4,
+                              ),
+                              mxContent: space.avatar,
+                              size: Avatar.defaultSize * 0.75,
+                              name: space.getLocalizedDisplayname(),
+                              onTap: () => onLongPress?.call(context),
+                            ),
+                          ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Avatar(
+                            border: space == null
+                                ? room.isSpace
+                                    ? BorderSide(
+                                        width: 0,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline,
+                                      )
+                                    : null
+                                : BorderSide(
+                                    width: 2,
+                                    color: backgroundColor ??
+                                        Theme.of(context).colorScheme.surface,
+                                  ),
+                            borderRadius: room.isSpace
+                                ? BorderRadius.circular(
+                                    AppConfig.borderRadius / 4,
+                                  )
+                                : null,
+                            mxContent: room.avatar,
+                            size: space != null
+                                ? Avatar.defaultSize * 0.75
+                                : Avatar.defaultSize,
+                            name: displayname,
+                            presenceUserId: directChatMatrixId,
+                            presenceBackgroundColor: backgroundColor,
+                            onTap: () => onLongPress?.call(context),
+                          ),
                         ),
-                      ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: AnimatedScale(
+                            duration: FluffyThemes.animationDuration,
+                            curve: FluffyThemes.animationCurve,
+                            scale: listTileHovered ? 1.0 : 0.0,
+                            child: Material(
+                              color: backgroundColor,
+                              borderRadius: BorderRadius.circular(16),
+                              child: const Icon(
+                                Icons.arrow_drop_down_circle_outlined,
+                                size: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
               title: Row(
                 children: <Widget>[
@@ -207,20 +251,6 @@ class ChatListItem extends StatelessWidget {
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  if (room.isSpace) ...[
-                    room.id != lastEventRoom.id &&
-                            lastEventRoom.isUnreadOrInvited
-                        ? Avatar(
-                            mxContent: lastEventRoom.avatar,
-                            name: lastEventRoom.name,
-                            size: 18,
-                          )
-                        : const Icon(
-                            Icons.workspaces_outlined,
-                            size: 18,
-                          ),
-                    const SizedBox(width: 4),
-                  ],
                   if (typingText.isEmpty &&
                       ownMessage &&
                       room.lastEvent!.status.isSending) ...[
@@ -245,7 +275,7 @@ class ChatListItem extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: room.isSpace && !lastEventRoom.isUnreadOrInvited
+                    child: room.isSpace && room.membership == Membership.join
                         ? Text(
                             L10n.of(context)!.countChatsAndCountParticipants(
                               room.spaceChildren.length.toString(),
@@ -308,10 +338,9 @@ class ChatListItem extends StatelessWidget {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                    fontWeight:
-                                        unread || lastEventRoom.hasNewMessages
-                                            ? FontWeight.bold
-                                            : null,
+                                    fontWeight: unread || room.hasNewMessages
+                                        ? FontWeight.bold
+                                        : null,
                                     color: theme.colorScheme.onSurfaceVariant,
                                     decoration: room.lastEvent?.redacted == true
                                         ? TextDecoration.lineThrough
@@ -339,9 +368,7 @@ class ChatListItem extends StatelessWidget {
                     width: !hasNotifications && !unread && !room.hasNewMessages
                         ? 0
                         : (unreadBubbleSize - 9) *
-                                lastEventRoom.notificationCount
-                                    .toString()
-                                    .length +
+                                room.notificationCount.toString().length +
                             9,
                     decoration: BoxDecoration(
                       color: room.highlightCount > 0 ||
@@ -356,7 +383,7 @@ class ChatListItem extends StatelessWidget {
                     child: Center(
                       child: hasNotifications
                           ? Text(
-                              lastEventRoom.notificationCount.toString(),
+                              room.notificationCount.toString(),
                               style: TextStyle(
                                 color: room.highlightCount > 0
                                     ? Colors.white

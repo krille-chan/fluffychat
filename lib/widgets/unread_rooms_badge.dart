@@ -30,12 +30,6 @@ class UnreadRoomsBadge extends StatelessWidget {
       // Pangea#
       builder: (context, _) {
         // #Pangea
-        // final unreadCount = Matrix.of(context)
-        //     .client
-        //     .rooms
-        //     .where(filter)
-        //     .where((r) => (r.isUnread || r.membership == Membership.invite))
-        //     .length;
         final unreadCounts = Matrix.of(context)
             .client
             .rooms
@@ -44,6 +38,12 @@ class UnreadRoomsBadge extends StatelessWidget {
             .map((r) => r.notificationCount);
         final unreadCount =
             unreadCounts.isEmpty ? 0 : unreadCounts.reduce((a, b) => a + b);
+        // final unreadCount = Matrix.of(context)
+        //     .client
+        //     .rooms
+        //     .where(filter)
+        //     .where((r) => (r.isUnread || r.membership == Membership.invite))
+        //     .length;
         // Pangea#
         return b.Badge(
           badgeStyle: b.BadgeStyle(

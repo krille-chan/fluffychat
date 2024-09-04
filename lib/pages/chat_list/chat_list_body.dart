@@ -9,6 +9,7 @@ import 'package:fluffychat/pangea/widgets/chat_list/chat_list_body_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -25,17 +26,29 @@ class ChatListViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final client = Matrix.of(context).client;
     final activeSpace = controller.activeSpaceId;
     if (activeSpace != null) {
       return SpaceView(
         spaceId: activeSpace,
         onBack: controller.clearActiveSpace,
-        onChatTab: (room) => controller.onChatTap(room, context),
-        onChatContext: (room) => controller.chatContextAction(room),
+        onChatTab: (room) => controller.onChatTap(room),
+        onChatContext: (room, context) =>
+            controller.chatContextAction(room, context),
         activeChat: controller.activeChat,
         toParentSpace: controller.setActiveSpace,
       );
     }
+    final spaces = client.rooms.where((r) => r.isSpace);
+    final spaceDelegateCandidates = <String, Room>{};
+    for (final space in spaces) {
+      for (final spaceChild in space.spaceChildren) {
+        final roomId = spaceChild.roomId;
+        if (roomId == null) continue;
+        spaceDelegateCandidates[roomId] = space;
+      }
+    }
+
     final publicRooms = controller.roomSearchResult?.chunk
         .where((room) => room.roomType != 'm.space')
         .toList();
@@ -43,7 +56,6 @@ class ChatListViewBody extends StatelessWidget {
         .where((room) => room.roomType == 'm.space')
         .toList();
     final userSearchResult = controller.userSearchResult;
-    final client = Matrix.of(context).client;
     const dummyChatCount = 4;
     final titleColor =
         Theme.of(context).textTheme.bodyLarge!.color!.withAlpha(100);
@@ -59,18 +71,6 @@ class ChatListViewBody extends StatelessWidget {
           .rateLimit(const Duration(seconds: 1)),
       builder: (context, _) {
         final rooms = controller.filteredRooms;
-
-        final spaces = rooms.where((r) => r.isSpace);
-        final spaceDelegateCandidates = <String, Room>{};
-        for (final space in spaces) {
-          spaceDelegateCandidates[space.id] = space;
-          for (final spaceChild in space.spaceChildren) {
-            final roomId = spaceChild.roomId;
-            if (roomId == null) continue;
-            spaceDelegateCandidates[roomId] = space;
-          }
-        }
-        final spaceDelegates = <String>{};
 
         return SafeArea(
           child: CustomScrollView(
@@ -164,50 +164,66 @@ class ChatListViewBody extends StatelessWidget {
                           ),
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
-                          children: ActiveFilter.values
+                          children: [
+                            ActiveFilter.allChats,
+                            ActiveFilter.unread,
+                            ActiveFilter.groups,
+                            if (spaceDelegateCandidates.isNotEmpty &&
+                                !controller.widget.displayNavigationRail)
+                              ActiveFilter.spaces,
+                          ]
                               .map(
                                 (filter) => Padding(
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 4),
-                                  child: InkWell(
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
-                                    onTap: () =>
-                                        controller.setActiveFilter(filter),
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 6,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: filter == controller.activeFilter
-                                            ? Theme.of(context)
-                                                .colorScheme
-                                                .primary
-                                            : Theme.of(context)
-                                                .colorScheme
-                                                .secondaryContainer,
+                                  child: HoverBuilder(
+                                    builder: (context, hovered) =>
+                                        AnimatedScale(
+                                      duration: FluffyThemes.animationDuration,
+                                      curve: FluffyThemes.animationCurve,
+                                      scale: hovered ? 1.1 : 1.0,
+                                      child: InkWell(
                                         borderRadius: BorderRadius.circular(
                                           AppConfig.borderRadius,
                                         ),
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        filter.toLocalizedString(context),
-                                        style: TextStyle(
-                                          fontWeight:
-                                              filter == controller.activeFilter
+                                        onTap: () =>
+                                            controller.setActiveFilter(filter),
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 12,
+                                            vertical: 6,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: filter ==
+                                                    controller.activeFilter
+                                                ? Theme.of(context)
+                                                    .colorScheme
+                                                    .primary
+                                                : Theme.of(context)
+                                                    .colorScheme
+                                                    .secondaryContainer,
+                                            borderRadius: BorderRadius.circular(
+                                              AppConfig.borderRadius,
+                                            ),
+                                          ),
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            filter.toLocalizedString(context),
+                                            style: TextStyle(
+                                              fontWeight: filter ==
+                                                      controller.activeFilter
                                                   ? FontWeight.bold
                                                   : FontWeight.normal,
-                                          color:
-                                              filter == controller.activeFilter
+                                              color: filter ==
+                                                      controller.activeFilter
                                                   ? Theme.of(context)
                                                       .colorScheme
                                                       .onPrimary
                                                   : Theme.of(context)
                                                       .colorScheme
                                                       .onSecondaryContainer,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -305,27 +321,16 @@ class ChatListViewBody extends StatelessWidget {
                 SliverList.builder(
                   itemCount: rooms.length,
                   itemBuilder: (BuildContext context, int i) {
-                    var room = rooms[i];
-                    if (controller.activeFilter != ActiveFilter.groups) {
-                      final parent = room.isSpace
-                          ? room
-                          : spaceDelegateCandidates[room.id];
-                      if (parent != null) {
-                        if (spaceDelegates.contains(parent.id)) {
-                          return const SizedBox.shrink();
-                        }
-                        spaceDelegates.add(parent.id);
-                        room = parent;
-                      }
-                    }
-
+                    final room = rooms[i];
+                    final space = spaceDelegateCandidates[room.id];
                     return ChatListItem(
                       room,
-                      lastEventRoom: rooms[i],
+                      space: space,
                       key: Key('chat_list_item_${room.id}'),
                       filter: filter,
-                      onTap: () => controller.onChatTap(room, context),
-                      onLongPress: () => controller.chatContextAction(room),
+                      onTap: () => controller.onChatTap(room),
+                      onLongPress: (context) =>
+                          controller.chatContextAction(room, context, space),
                       activeChat: controller.activeChat == room.id,
                     );
                   },

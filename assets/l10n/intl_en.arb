@@ -2,8 +2,8 @@
   "@@locale": "en",
   "@@last_modified": "2021-08-14 12:38:37.885451",
   "alwaysUse24HourFormat": "false",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
   },
   "repeatPassword": "Repeat password",
   "@repeatPassword": {},
@@ -4146,5 +4146,11 @@
   "error520Title": "Please try again.",
   "error520Desc": "Sorry, we could not understand your message...",
   "translationChoicesBody": "Click and hold an option for a hint.",
-  "sendCanceled": "Sending canceled"
+  "sendCanceled": "Sending canceled",
+  "goToSpace": "Go to space: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Mark as unread"
 }

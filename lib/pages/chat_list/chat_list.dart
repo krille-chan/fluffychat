@@ -17,6 +17,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -76,10 +77,12 @@ extension LocalizedActiveFilter on ActiveFilter {
 class ChatList extends StatefulWidget {
   static BuildContext? contextForVoip;
   final String? activeChat;
+  final bool displayNavigationRail;
 
   const ChatList({
     super.key,
     required this.activeChat,
+    this.displayNavigationRail = false,
   });
 
   @override
@@ -207,11 +210,7 @@ class ChatListController extends State<ChatList>
     if (result.error != null) return;
   }
 
-  void onChatTap(Room room, BuildContext context) async {
-    if (room.isSpace) {
-      setActiveSpace(room.id);
-      return;
-    }
+  void onChatTap(Room room) async {
     if (room.membership == Membership.invite) {
       final inviterId =
           room.getState(EventTypes.RoomMember, room.client.userID!)?.senderId;
@@ -282,6 +281,10 @@ class ChatListController extends State<ChatList>
       return;
     }
 
+    if (room.isSpace) {
+      setActiveSpace(room.id);
+      return;
+    }
     // Share content into this room
     final shareContent = Matrix.of(context).shareContent;
     if (shareContent != null) {
@@ -725,41 +728,138 @@ class ChatListController extends State<ChatList>
     super.dispose();
   }
 
-  void chatContextAction(Room room) async {
-    final action = await showModalActionSheet<ChatContextAction>(
-      context: context,
-      title: room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-      actions: [
-        SheetAction(
-          key: ChatContextAction.markUnread,
-          icon: room.markedUnread
-              ? Icons.mark_as_unread
-              : Icons.mark_as_unread_outlined,
-          label: room.markedUnread
-              ? L10n.of(context)!.markAsRead
-              : L10n.of(context)!.unread,
+  void chatContextAction(
+    Room room,
+    BuildContext posContext, [
+    Room? space,
+  ]) async {
+    final overlay =
+        Overlay.of(posContext).context.findRenderObject() as RenderBox;
+
+    final button = posContext.findRenderObject() as RenderBox;
+
+    final position = RelativeRect.fromRect(
+      Rect.fromPoints(
+        button.localToGlobal(const Offset(0, -65), ancestor: overlay),
+        button.localToGlobal(
+          button.size.bottomRight(Offset.zero) + const Offset(-50, 0),
+          ancestor: overlay,
         ),
-        SheetAction(
-          key: ChatContextAction.favorite,
-          icon: room.isFavourite ? Icons.pin : Icons.pin_outlined,
-          label: room.isFavourite
-              ? L10n.of(context)!.unpin
-              : L10n.of(context)!.pin,
+      ),
+      Offset.zero & overlay.size,
+    );
+
+    final displayname =
+        room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
+
+    final action = await showMenu<ChatContextAction>(
+      context: posContext,
+      position: position,
+      items: [
+        PopupMenuItem(
+          enabled: false,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Avatar(
+                mxContent: room.avatar,
+                size: Avatar.defaultSize / 2,
+                name: displayname,
+              ),
+              const SizedBox(width: 12),
+              Text(
+                displayname,
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              ),
+            ],
+          ),
         ),
-        SheetAction(
-          key: ChatContextAction.mute,
-          icon: room.pushRuleState == PushRuleState.notify
-              ? Icons.notifications_off_outlined
-              : Icons.notifications,
-          label: room.pushRuleState == PushRuleState.notify
-              ? L10n.of(context)!.muteChat
-              : L10n.of(context)!.unmuteChat,
+        const PopupMenuDivider(),
+        if (space != null)
+          PopupMenuItem(
+            value: ChatContextAction.goToSpace,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Avatar(
+                  mxContent: space.avatar,
+                  size: Avatar.defaultSize / 2,
+                  name: space.getLocalizedDisplayname(),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    L10n.of(context)!
+                        .goToSpace(space.getLocalizedDisplayname()),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        PopupMenuItem(
+          value: ChatContextAction.mute,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                room.pushRuleState == PushRuleState.notify
+                    ? Icons.notifications_off_outlined
+                    : Icons.notifications_off,
+              ),
+              const SizedBox(width: 12),
+              Text(
+                room.pushRuleState == PushRuleState.notify
+                    ? L10n.of(context)!.muteChat
+                    : L10n.of(context)!.unmuteChat,
+              ),
+            ],
+          ),
         ),
-        SheetAction(
-          isDestructiveAction: true,
-          key: ChatContextAction.leave,
-          icon: Icons.delete_outlined,
-          label: L10n.of(context)!.leave,
+        PopupMenuItem(
+          value: ChatContextAction.markUnread,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                room.markedUnread
+                    ? Icons.mark_as_unread
+                    : Icons.mark_as_unread_outlined,
+              ),
+              const SizedBox(width: 12),
+              Text(
+                room.markedUnread
+                    ? L10n.of(context)!.markAsRead
+                    : L10n.of(context)!.markAsUnread,
+              ),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: ChatContextAction.favorite,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(room.isFavourite ? Icons.push_pin : Icons.push_pin_outlined),
+              const SizedBox(width: 12),
+              Text(
+                room.isFavourite
+                    ? L10n.of(context)!.unpin
+                    : L10n.of(context)!.pin,
+              ),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: ChatContextAction.leave,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.delete_outlined),
+              const SizedBox(width: 12),
+              Text(L10n.of(context)!.leave),
+            ],
+          ),
         ),
       ],
     );
@@ -767,10 +867,31 @@ class ChatListController extends State<ChatList>
     if (action == null) return;
     if (!mounted) return;
 
+    if (action == ChatContextAction.goToSpace) {
+      setActiveSpace(space!.id);
+      return;
+    }
+
+    if (action == ChatContextAction.leave) {
+      final confirmed = await showOkCancelAlertDialog(
+        useRootNavigator: false,
+        context: context,
+        title: L10n.of(context)!.areYouSure,
+        okLabel: L10n.of(context)!.leave,
+        cancelLabel: L10n.of(context)!.no,
+        message: L10n.of(context)!.archiveRoomDescription,
+        isDestructiveAction: true,
+      );
+      if (confirmed == OkCancelResult.cancel) return;
+    }
+    if (!mounted) return;
+
     await showFutureLoadingDialog(
       context: context,
-      future: () {
+      future: () async {
         switch (action) {
+          case ChatContextAction.goToSpace:
+            return;
           case ChatContextAction.favorite:
             return room.setFavourite(!room.isFavourite);
           case ChatContextAction.markUnread:
@@ -1015,6 +1136,7 @@ enum InviteActions {
 enum AddRoomType { chat, subspace }
 
 enum ChatContextAction {
+  goToSpace,
   favorite,
   markUnread,
   mute,
