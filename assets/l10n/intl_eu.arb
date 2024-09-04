@@ -2486,7 +2486,7 @@
   "@thisDevice": {},
   "decline": "Baztertu",
   "@decline": {},
-  "databaseBuildErrorBody": "Ezin izan da SQlite datu-basea eraiki. Aplikazioa aurreko datu-basea erabiltzen saiatuko da oraingoz. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
+  "databaseBuildErrorBody": "Ezin da SQlite datu-basea eraiki. Aplikazioa aurreko datu-basea erabiltzen saiatuko da oraingoz. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
   "@databaseBuildErrorBody": {
     "type": "text",
     "placeholders": {
@@ -2791,5 +2791,7 @@
   "chatPermissionsDescription": "Definitu zer botere-maila behar den txat honetako ekintza jakinetarako. 0, 50 eta 100 botere-mailek erabiltzaileak, moderatzaileak eta administratzaileak ordezkatzen dituzte, baina edozein graduazio posible da.",
   "@chatPermissionsDescription": {},
   "sendCanceled": "Bidalketa bertan behera utzi da",
-  "@sendCanceled": {}
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Ez da txatik aurkitu. Hasi norbaitekin txateatzen beheko botoia erabiliz. ⤵️",
+  "@noChatsFoundHere": {}
 }

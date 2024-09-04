@@ -2789,5 +2789,9 @@
     "placeholders": {
       "version": {}
     }
-  }
+  },
+  "sendCanceled": "发送被取消",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "此处尚未找到聊天。使用下方按钮 ⤵️ 开始和某人的新聊天",
+  "@noChatsFoundHere": {}
 }
