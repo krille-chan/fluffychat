@@ -303,7 +303,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "기본 권한 레벨",
+  "defaultPermissionLevel": "새로 참가하는 유저들의 기본 권한 레벨",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2736,5 +2736,32 @@
   "joinedChats": "참여한 채팅",
   "@joinedChats": {},
   "noMoreChatsFound": "채팅을 찾을 수 없습니다...",
-  "@noMoreChatsFound": {}
+  "@noMoreChatsFound": {},
+  "moderatorLevel": "{level} - 관리자",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - 운영자",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "invitedBy": "📩 {user}님이 나를 초대함",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "userLevel": "{level} - 유저",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  }
 }
