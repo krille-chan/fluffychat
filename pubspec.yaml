@@ -70,10 +70,13 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.9.1
   linkify: ^5.0.0
+  # #Pangea
   matrix:
     git:
       url: https://github.com/pangeachat/matrix-dart-sdk.git # repo
       ref: main # branch
+  # matrix: ^0.29.13
+  # Pangea#
   native_imaging: ^0.1.1
   package_info_plus: ^6.0.0
   pasteboard: ^0.2.0

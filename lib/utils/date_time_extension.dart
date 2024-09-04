@@ -34,14 +34,8 @@ extension DateTimeExtension on DateTime {
   }
 
   /// Returns a simple time String.
-  /// TODO: Add localization
-  String localizedTimeOfDay(BuildContext context) {
-    if (MediaQuery.of(context).alwaysUse24HourFormat) {
-      return '${_z(hour)}:${_z(minute)}';
-    } else {
-      return '${_z(hour % 12 == 0 ? 12 : hour % 12)}:${_z(minute)} ${hour > 11 ? "pm" : "am"}';
-    }
-  }
+  String localizedTimeOfDay(BuildContext context) =>
+      DateFormat.Hm(L10n.of(context)!.localeName).format(this);
 
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
   /// day if the ChatTime is this week and a date string else.
@@ -91,6 +85,4 @@ extension DateTimeExtension on DateTime {
       localizedTimeOfDay(context),
     );
   }
-
-  static String _z(int i) => i < 10 ? '0${i.toString()}' : i.toString();
 }

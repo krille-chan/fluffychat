@@ -239,8 +239,11 @@ class ChatListItem extends StatelessWidget {
                             maxLines: 1,
                             softWrap: false,
                           )
-                        // #Pangea
-                        : FutureBuilder<String>(
+                        : FutureBuilder(
+                            key: ValueKey(
+                              '${lastEvent?.eventId}_${lastEvent?.type}',
+                            ),
+                            // #Pangea
                             future: room.lastEvent != null
                                 ? GetChatListItemSubtitle().getSubtitle(
                                     L10n.of(context)!,
@@ -248,42 +251,49 @@ class ChatListItem extends StatelessWidget {
                                     MatrixState.pangeaController,
                                   )
                                 : Future.value(L10n.of(context)!.emptyChat),
-                            builder: (context, snapshot) {
-                              // Pangea#
-                              return Text(
-                                room.membership == Membership.invite
-                                    ? isDirectChat
-                                        ? L10n.of(context)!.invitePrivateChat
-                                        : L10n.of(context)!.inviteGroupChat
-                                    // #Pangea
-                                    : snapshot.data ??
-                                        // Pangea#
-                                        room.lastEvent
-                                            ?.calcLocalizedBodyFallback(
-                                          MatrixLocals(L10n.of(context)!),
-                                          hideReply: true,
-                                          hideEdit: true,
-                                          plaintextBody: true,
-                                          removeMarkdown: true,
-                                          withSenderNamePrefix: !isDirectChat ||
-                                              directChatMatrixId !=
-                                                  room.lastEvent?.senderId,
-                                        ) ??
-                                        L10n.of(context)!.emptyChat,
-                                softWrap: false,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontWeight: unread || room.hasNewMessages
-                                      ? FontWeight.bold
-                                      : null,
-                                  color: theme.colorScheme.onSurfaceVariant,
-                                  decoration: room.lastEvent?.redacted == true
-                                      ? TextDecoration.lineThrough
-                                      : null,
-                                ),
-                              );
-                            },
+                            // future: needLastEventSender
+                            //     ? lastEvent.calcLocalizedBody(
+                            //         MatrixLocals(L10n.of(context)!),
+                            //         hideReply: true,
+                            //         hideEdit: true,
+                            //         plaintextBody: true,
+                            //         removeMarkdown: true,
+                            //         withSenderNamePrefix: !isDirectChat ||
+                            //             directChatMatrixId !=
+                            //                 room.lastEvent?.senderId,
+                            //       )
+                            //     : null,
+                            // Pangea#
+                            initialData: lastEvent?.calcLocalizedBodyFallback(
+                              MatrixLocals(L10n.of(context)!),
+                              hideReply: true,
+                              hideEdit: true,
+                              plaintextBody: true,
+                              removeMarkdown: true,
+                              withSenderNamePrefix: !isDirectChat ||
+                                  directChatMatrixId !=
+                                      room.lastEvent?.senderId,
+                            ),
+                            builder: (context, snapshot) => Text(
+                              room.membership == Membership.invite
+                                  ? isDirectChat
+                                      ? L10n.of(context)!.invitePrivateChat
+                                      : L10n.of(context)!.inviteGroupChat
+                                  : snapshot.data ??
+                                      L10n.of(context)!.emptyChat,
+                              softWrap: false,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontWeight: unread || room.hasNewMessages
+                                    ? FontWeight.bold
+                                    : null,
+                                color: theme.colorScheme.onSurfaceVariant,
+                                decoration: room.lastEvent?.redacted == true
+                                    ? TextDecoration.lineThrough
+                                    : null,
+                              ),
+                            ),
                           ),
                   ),
                   const SizedBox(width: 8),
