@@ -2706,5 +2706,7 @@
   "knockRestricted": "“请求加入”请求受限",
   "@knockRestricted": {},
   "restricted": "受限",
-  "@restricted": {}
+  "@restricted": {},
+  "swipeRightToLeftToReply": "从右向左滑动进行回复",
+  "@swipeRightToLeftToReply": {}
 }

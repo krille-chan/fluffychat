@@ -99,17 +99,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "groups": "그룹",
+  "groups": "그룹 채팅",
   "@groups": {
     "type": "text",
     "placeholders": {}
   },
-  "groupIsPublic": "그룹 공개됨",
+  "groupIsPublic": "그룹 채팅 공개됨",
   "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
   },
-  "group": "그룹",
+  "group": "그룹 채팅",
   "@group": {
     "type": "text",
     "placeholders": {}
@@ -379,7 +379,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contactHasBeenInvitedToTheGroup": "연락처가 그룹에 초대되었습니다",
+  "contactHasBeenInvitedToTheGroup": "연락처가 채팅에 초대되었습니다",
   "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -495,7 +495,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheNameOfTheGroup": "그룹의 이름 바꾸기",
+  "changeTheNameOfTheGroup": "채팅의 이름 바꾸기",
   "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -727,7 +727,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "{senderName} 가 전화에 응답했습니다",
+  "answeredTheCall": "{senderName}님이 전화에 응답했습니다",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
@@ -813,7 +813,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "{displayname} 과의 그룹",
+  "groupWith": "{displayname}님과의 그룹",
   "@groupWith": {
     "type": "text",
     "placeholders": {
@@ -892,7 +892,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "누가 이 그룹에 들어오도록 허용할지",
+  "whoIsAllowedToJoinThisGroup": "누가 이 그룹 채팅에 들어오도록 허용할지",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
@@ -1759,7 +1759,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroup": "연락처 {groupName} 에 초대",
+  "inviteContactToGroup": "연락처를 {groupName}에 초대",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
@@ -1975,7 +1975,7 @@
     "type": "text",
     "description": "Usage hint for the command /clearcache"
   },
-  "commandHint_create": "빈 그룹 채팅을 생성\t\n--no-encryption을 사용해 암호화를 비활성화",
+  "commandHint_create": "빈 그룹 채팅을 생성\n--no-encryption을 사용해 암호화를 비활성화",
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
@@ -2041,7 +2041,7 @@
       "senderName": {}
     }
   },
-  "commandHint_markasgroup": "그룹으로 만들기",
+  "commandHint_markasgroup": "그룹 채팅으로 만들기",
   "@commandHint_markasgroup": {},
   "dehydrate": "세션을 내보내고 기기 초기화 하기",
   "@dehydrate": {},
@@ -2104,7 +2104,7 @@
   "@widgetEtherpad": {},
   "removeDevicesDescription": "이 기기에서 로그아웃되며 더 이상 메시지를 받을 수 없습니다.",
   "@removeDevicesDescription": {},
-  "separateChatTypes": "다이렉트 채팅 및 그룹 분리",
+  "separateChatTypes": "다이렉트 채팅과 그룹 채팅 분리",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2334,7 +2334,7 @@
   "@users": {},
   "chatDescriptionHasBeenChanged": "채팅 설명 변경됨",
   "@chatDescriptionHasBeenChanged": {},
-  "newGroup": "새 그룹",
+  "newGroup": "새 그룹 채팅",
   "@newGroup": {},
   "dehydrateTor": "TOR 사용자: 세션 내보내기",
   "@dehydrateTor": {},
@@ -2396,11 +2396,11 @@
   "@newSpace": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "나중에 다시 시도하거나 다른 서버를 선택하십시오.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "createGroup": "그룹 만들기",
+  "createGroup": "새 그룹 채팅",
   "@createGroup": {},
   "hydrateTorLong": "지난 TOR 이용에서 세션을 내보내셨나요? 빠르게 불러오고 채팅을 계속하세요.",
   "@hydrateTorLong": {},
-  "custom": "개인화",
+  "custom": "커스텀",
   "@custom": {},
   "noBackupWarning": "경고! 채팅 백업을 켜지 않을경우, 당신은 암호화된 메시지에대한 접근권한을 잃을것입니다. 로그아웃 하기 전에 채팅을 백업하는것이 강력히 권장됩니다.",
   "@noBackupWarning": {},
@@ -2424,7 +2424,7 @@
   "@block": {},
   "blockedUsers": "차단된 유저",
   "@blockedUsers": {},
-  "groupName": "그룹 이름",
+  "groupName": "그룹 채팅 이름",
   "@groupName": {},
   "commandHint_sendraw": "raw json 전송",
   "@commandHint_sendraw": {},
@@ -2464,7 +2464,7 @@
       "sender": {}
     }
   },
-  "createGroupAndInviteUsers": "그룹을 생성하고 유저를 초대",
+  "createGroupAndInviteUsers": "그룹 채팅을 생성하고 유저를 초대",
   "@createGroupAndInviteUsers": {},
   "passwordsDoNotMatch": "비밀번호가 일치하지 않습니다",
   "@passwordsDoNotMatch": {},
@@ -2484,7 +2484,7 @@
   "@hidePresences": {},
   "searchChatsRooms": "#chats, @users 검색...",
   "@searchChatsRooms": {},
-  "groupCanBeFoundViaSearch": "검색으로 그룹을 찾을 수 있음",
+  "groupCanBeFoundViaSearch": "검색으로 그룹 채팅을 찾을 수 있음",
   "@groupCanBeFoundViaSearch": {},
   "restoreSessionBody": "앱이 백업에서 세션을 복원하려 시도중입니다. {url} 에서 개발자에게 오류를 신고하세요. 오류 메시지는 다음과 같습니다: {error}",
   "@restoreSessionBody": {
@@ -2622,13 +2622,13 @@
   "@calls": {},
   "globalChatId": "글로벌 채팅 ID",
   "@globalChatId": {},
-  "customEmojisAndStickers": "개인 이모지와 스티커",
+  "customEmojisAndStickers": "커스텀 이모지와 스티커",
   "@customEmojisAndStickers": {},
-  "accessAndVisibilityDescription": "채팅에 참여하거나 찾을 수 있는 사람을 설정합니다.",
+  "accessAndVisibilityDescription": "채팅에 참여 할 수 있는 사람과 채팅을 볼 수 있는 범위",
   "@accessAndVisibilityDescription": {},
-  "accessAndVisibility": "방 가입과 대화 기록",
+  "accessAndVisibility": "채팅 가입과 대화 기록",
   "@accessAndVisibility": {},
-  "customEmojisAndStickersBody": "모든 채팅에서 사용할 수있는 개인 이모지와 스티커를 추가하거나 공유합니다.",
+  "customEmojisAndStickersBody": "모든 채팅에서 사용할 수있는 커스텀 이모지와 스티커를 추가하거나 공유합니다.",
   "@customEmojisAndStickersBody": {},
   "hideRedactedMessages": "삭제된 메시지 숨기기",
   "@hideRedactedMessages": {},
@@ -2701,5 +2701,11 @@
     }
   },
   "gallery": "갤러리",
-  "@gallery": {}
+  "@gallery": {},
+  "restricted": "스페이스 멤버로 제한",
+  "@restricted": {},
+  "knockRestricted": "스페이스 멤버만 참가 요청 가능",
+  "@knockRestricted": {},
+  "swipeRightToLeftToReply": "오른쪽에서 왼쪽으로 스와이프해서 답장",
+  "@swipeRightToLeftToReply": {}
 }

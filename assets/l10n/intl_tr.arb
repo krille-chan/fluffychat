@@ -2706,5 +2706,7 @@
   "knockRestricted": "Tıklatma kısıtlı",
   "@knockRestricted": {},
   "restricted": "Kısıtlı",
-  "@restricted": {}
+  "@restricted": {},
+  "swipeRightToLeftToReply": "Yanıtlamak için sağdan sola kaydır",
+  "@swipeRightToLeftToReply": {}
 }

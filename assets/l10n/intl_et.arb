@@ -2706,5 +2706,7 @@
   "gallery": "Galerii",
   "@gallery": {},
   "files": "Failid",
-  "@files": {}
+  "@files": {},
+  "swipeRightToLeftToReply": "Vastamiseks viipa paremalt vasakule",
+  "@swipeRightToLeftToReply": {}
 }
