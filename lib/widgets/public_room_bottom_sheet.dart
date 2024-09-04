@@ -118,6 +118,8 @@ class PublicRoomBottomSheet extends StatelessWidget {
         body: FutureBuilder<PublicRoomsChunk>(
           future: _search(),
           builder: (context, snapshot) {
+            final theme = Theme.of(context);
+
             final profile = snapshot.data;
             return ListView(
               padding: EdgeInsets.zero,
@@ -155,8 +157,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                               size: 14,
                             ),
                             style: TextButton.styleFrom(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.onSurface,
+                              foregroundColor: theme.colorScheme.onSurface,
                             ),
                             label: Text(
                               roomLink ?? '...',
@@ -171,8 +172,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                               size: 14,
                             ),
                             style: TextButton.styleFrom(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.onSurface,
+                              foregroundColor: theme.colorScheme.onSurface,
                             ),
                             label: Text(
                               L10n.of(context)!.countParticipants(
@@ -216,7 +216,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                       ),
                       style: TextStyle(
                         fontSize: 14,
-                        color: Theme.of(context).textTheme.bodyMedium!.color,
+                        color: theme.textTheme.bodyMedium!.color,
                       ),
                       options: const LinkifyOptions(humanize: false),
                       onOpen: (url) =>

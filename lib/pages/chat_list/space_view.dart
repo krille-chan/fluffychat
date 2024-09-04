@@ -239,6 +239,8 @@ class _SpaceViewState extends State<SpaceView> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
     final displayname =
         room?.getLocalizedDisplayname() ?? L10n.of(context)!.nothingFound;
@@ -357,8 +359,7 @@ class _SpaceViewState extends State<SpaceView> {
                         onChanged: (_) => setState(() {}),
                         textInputAction: TextInputAction.search,
                         decoration: InputDecoration(
-                          fillColor:
-                              Theme.of(context).colorScheme.secondaryContainer,
+                          fillColor: theme.colorScheme.secondaryContainer,
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(99),
@@ -366,9 +367,7 @@ class _SpaceViewState extends State<SpaceView> {
                           contentPadding: EdgeInsets.zero,
                           hintText: L10n.of(context)!.search,
                           hintStyle: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimaryContainer,
+                            color: theme.colorScheme.onPrimaryContainer,
                             fontWeight: FontWeight.normal,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -376,9 +375,7 @@ class _SpaceViewState extends State<SpaceView> {
                             onPressed: () {},
                             icon: Icon(
                               Icons.search_outlined,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onPrimaryContainer,
+                              color: theme.colorScheme.onPrimaryContainer,
                             ),
                           ),
                         ),

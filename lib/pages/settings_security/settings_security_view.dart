@@ -17,10 +17,12 @@ class SettingsSecurityView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(title: Text(L10n.of(context)!.security)),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onSurface,
+        iconColor: theme.colorScheme.onSurface,
         child: MaxWidthBody(
           child: FutureBuilder(
             future: Matrix.of(context)
@@ -44,7 +46,7 @@ class SettingsSecurityView extends StatelessWidget {
                     title: Text(
                       L10n.of(context)!.privacy,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -85,13 +87,13 @@ class SettingsSecurityView extends StatelessWidget {
                       ),
                   },
                   Divider(
-                    color: Theme.of(context).dividerColor,
+                    color: theme.dividerColor,
                   ),
                   ListTile(
                     title: Text(
                       L10n.of(context)!.account,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

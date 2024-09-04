@@ -33,6 +33,8 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     var fallbackLetters = '@';
     final name = this.name;
     if (name != null) {
@@ -66,7 +68,7 @@ class Avatar extends StatelessWidget {
           width: size,
           height: size,
           child: Material(
-            color: Theme.of(context).brightness == Brightness.light
+            color: theme.brightness == Brightness.light
                 ? Colors.white
                 : Colors.black,
             shape: RoundedRectangleBorder(
@@ -87,7 +89,7 @@ class Avatar extends StatelessWidget {
                     placeholder: (_) => Center(
                       child: Icon(
                         Icons.person_2,
-                        color: Theme.of(context).colorScheme.tertiary,
+                        color: theme.colorScheme.tertiary,
                         size: size / 1.5,
                       ),
                     ),
@@ -116,8 +118,7 @@ class Avatar extends StatelessWidget {
                   width: 16,
                   height: 16,
                   decoration: BoxDecoration(
-                    color: presenceBackgroundColor ??
-                        Theme.of(context).colorScheme.surface,
+                    color: presenceBackgroundColor ?? theme.colorScheme.surface,
                     borderRadius: BorderRadius.circular(32),
                   ),
                   alignment: Alignment.center,
@@ -129,7 +130,7 @@ class Avatar extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
                         width: 1,
-                        color: Theme.of(context).colorScheme.surface,
+                        color: theme.colorScheme.surface,
                       ),
                     ),
                   ),

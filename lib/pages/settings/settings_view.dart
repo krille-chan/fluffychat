@@ -28,6 +28,7 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final showChatBackupBanner = controller.showChatBackupBanner;
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +40,7 @@ class SettingsView extends StatelessWidget {
         title: Text(L10n.of(context)!.settings),
       ),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onSurface,
+        iconColor: theme.colorScheme.onSurface,
         child: ListView(
           key: const Key('SettingsListViewContent'),
           children: <Widget>[
@@ -88,8 +89,7 @@ class SettingsView extends StatelessWidget {
                               size: 16,
                             ),
                             style: TextButton.styleFrom(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.onSurface,
+                              foregroundColor: theme.colorScheme.onSurface,
                             ),
                             label: Text(
                               displayname,
@@ -107,8 +107,7 @@ class SettingsView extends StatelessWidget {
                               size: 14,
                             ),
                             style: TextButton.styleFrom(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.secondary,
+                              foregroundColor: theme.colorScheme.secondary,
                             ),
                             label: Text(
                               mxid,
@@ -125,7 +124,7 @@ class SettingsView extends StatelessWidget {
               },
             ),
             // #Pangea
-            // Divider(color: Theme.of(context).dividerColor),
+            // Divider(color: theme.dividerColor),
             // if (showChatBackupBanner == null)
             //   ListTile(
             //     leading: const Icon(Icons.backup_outlined),
@@ -141,7 +140,7 @@ class SettingsView extends StatelessWidget {
             //     onChanged: controller.firstRunBootstrapAction,
             //   ),
             // Divider(
-            //   color: Theme.of(context).dividerColor,
+            //   color: theme.dividerColor,
             // ),
             // Pangea#
             ListTile(
@@ -181,7 +180,7 @@ class SettingsView extends StatelessWidget {
               title: Text(L10n.of(context)!.security),
               onTap: () => context.go('/rooms/settings/security'),
             ),
-            Divider(color: Theme.of(context).dividerColor),
+            Divider(color: theme.dividerColor),
             ListTile(
               leading: const Icon(Icons.help_outline_outlined),
               title: Text(L10n.of(context)!.help),
@@ -249,7 +248,7 @@ class SettingsView extends StatelessWidget {
                 title: Text(L10n.of(context)!.connectedToStaging),
               ),
             // Pangea#
-            Divider(color: Theme.of(context).dividerColor),
+            Divider(color: theme.dividerColor),
             ListTile(
               leading: const Icon(Icons.logout_outlined),
               title: Text(L10n.of(context)!.logout),

@@ -14,6 +14,8 @@ class ChatAccessSettingsPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final room = controller.room;
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +40,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   title: Text(
                     L10n.of(context)!.visibilityOfTheChatHistory,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: theme.colorScheme.secondary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -56,12 +58,12 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                         ? null
                         : controller.setHistoryVisibility,
                   ),
-                Divider(color: Theme.of(context).dividerColor),
+                Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
                     L10n.of(context)!.whoIsAllowedToJoinThisGroup,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: theme.colorScheme.secondary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -79,14 +81,14 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                           ? null
                           : controller.setJoinRule,
                     ),
-                Divider(color: Theme.of(context).dividerColor),
+                Divider(color: theme.dividerColor),
                 if ({JoinRules.public, JoinRules.knock}
                     .contains(room.joinRules)) ...[
                   ListTile(
                     title: Text(
                       L10n.of(context)!.areGuestsAllowedToJoin,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -105,12 +107,12 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                           ? null
                           : controller.setGuestAccess,
                     ),
-                  Divider(color: Theme.of(context).dividerColor),
+                  Divider(color: theme.dividerColor),
                   ListTile(
                     title: Text(
                       L10n.of(context)!.publicChatAddresses,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -163,7 +165,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                       );
                     },
                   ),
-                  Divider(color: Theme.of(context).dividerColor),
+                  Divider(color: theme.dividerColor),
                   FutureBuilder(
                     future: room.client.getRoomVisibilityOnDirectory(room.id),
                     builder: (context, snapshot) => SwitchListTile.adaptive(
@@ -225,6 +227,8 @@ class _AliasListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return ListTile(
       leading: isCanonicalAlias
           ? const Icon(Icons.star)
@@ -238,15 +242,15 @@ class _AliasListTile extends StatelessWidget {
           'https://matrix.to/#/$alias',
           style: TextStyle(
             decoration: TextDecoration.underline,
-            decorationColor: Theme.of(context).colorScheme.primary,
-            color: Theme.of(context).colorScheme.primary,
+            decorationColor: theme.colorScheme.primary,
+            color: theme.colorScheme.primary,
             fontSize: 14,
           ),
         ),
       ),
       trailing: onDelete != null
           ? IconButton(
-              color: Theme.of(context).colorScheme.error,
+              color: theme.colorScheme.error,
               icon: const Icon(Icons.delete_outlined),
               onPressed: onDelete,
             )

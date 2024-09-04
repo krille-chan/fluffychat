@@ -69,6 +69,8 @@ class PermissionsListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final color = permission >= 100
         ? Colors.orangeAccent
         : permission >= 50
@@ -77,7 +79,7 @@ class PermissionsListTile extends StatelessWidget {
     return ListTile(
       title: Text(
         getLocalizedPowerLevelString(context),
-        style: Theme.of(context).textTheme.titleSmall,
+        style: theme.textTheme.titleSmall,
       ),
       trailing: Material(
         color: color.withAlpha(32),

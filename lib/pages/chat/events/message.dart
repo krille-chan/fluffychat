@@ -95,6 +95,8 @@ class Message extends StatelessWidget {
       }
     });
     // Pangea#
+    final theme = Theme.of(context);
+
     if (!{
       EventTypes.Message,
       EventTypes.Sticker,
@@ -116,7 +118,7 @@ class Message extends StatelessWidget {
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
     // ignore: deprecated_member_use
-    var color = Theme.of(context).colorScheme.surfaceVariant;
+    var color = theme.colorScheme.surfaceVariant;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -138,9 +140,8 @@ class Message extends StatelessWidget {
         previousEvent!.senderId == event.senderId &&
         previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
-    final textColor = ownMessage
-        ? Theme.of(context).colorScheme.onPrimary
-        : Theme.of(context).colorScheme.onSurface;
+    final textColor =
+        ownMessage ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
@@ -169,7 +170,7 @@ class Message extends StatelessWidget {
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent
-          : Theme.of(context).colorScheme.primary;
+          : theme.colorScheme.primary;
     }
 
     final resetAnimateIn = this.resetAnimateIn;
@@ -209,14 +210,10 @@ class Message extends StatelessWidget {
                           borderRadius:
                               BorderRadius.circular(AppConfig.borderRadius / 2),
                           color: selected
-                              ? Theme.of(context)
-                                  .colorScheme
-                                  .secondaryContainer
+                              ? theme.colorScheme.secondaryContainer
                                   .withAlpha(100)
                               : highlightMarker
-                                  ? Theme.of(context)
-                                      .colorScheme
-                                      .tertiaryContainer
+                                  ? theme.colorScheme.tertiaryContainer
                                       .withAlpha(100)
                                   : Colors.transparent,
                         ),
@@ -300,8 +297,7 @@ class Message extends StatelessWidget {
                                               displayname,
                                               style: TextStyle(
                                                 fontSize: 12,
-                                                color: (Theme.of(context)
-                                                            .brightness ==
+                                                color: (theme.brightness ==
                                                         Brightness.light
                                                     ? displayname.color
                                                     : displayname
@@ -564,10 +560,10 @@ class Message extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12 * AppConfig.fontSizeFactor,
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: theme.colorScheme.secondary,
                       shadows: [
                         Shadow(
-                          color: Theme.of(context).colorScheme.surface,
+                          color: theme.colorScheme.surface,
                           blurRadius: 3,
                         ),
                       ],
@@ -614,14 +610,14 @@ class Message extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Divider(color: Theme.of(context).colorScheme.primary),
+                  child: Divider(color: theme.colorScheme.primary),
                 ),
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Theme.of(context).colorScheme.primary,
+                      color: theme.colorScheme.primary,
                     ),
-                    color: Theme.of(context).colorScheme.primaryContainer,
+                    color: theme.colorScheme.primaryContainer,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   margin: const EdgeInsets.all(8.0),
@@ -630,12 +626,11 @@ class Message extends StatelessWidget {
                   ),
                   child: Text(
                     L10n.of(context)!.readUpToHere,
-                    style:
-                        TextStyle(color: Theme.of(context).colorScheme.primary),
+                    style: TextStyle(color: theme.colorScheme.primary),
                   ),
                 ),
                 Expanded(
-                  child: Divider(color: Theme.of(context).colorScheme.primary),
+                  child: Divider(color: theme.colorScheme.primary),
                 ),
               ],
             ),

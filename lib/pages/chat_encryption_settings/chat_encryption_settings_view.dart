@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ChatEncryptionSettingsView extends StatelessWidget {
   final ChatEncryptionSettingsController controller;
@@ -17,6 +15,8 @@ class ChatEncryptionSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final room = controller.room;
     return StreamBuilder<Object>(
       stream: room.client.onSync.stream.where(
@@ -42,10 +42,8 @@ class ChatEncryptionSettingsView extends StatelessWidget {
             children: [
               SwitchListTile(
                 secondary: CircleAvatar(
-                  foregroundColor:
-                      Theme.of(context).colorScheme.onPrimaryContainer,
-                  backgroundColor:
-                      Theme.of(context).colorScheme.primaryContainer,
+                  foregroundColor: theme.colorScheme.onPrimaryContainer,
+                  backgroundColor: theme.colorScheme.primaryContainer,
                   child: const Icon(Icons.lock_outlined),
                 ),
                 title: Text(L10n.of(context)!.encryptThisChat),
@@ -56,7 +54,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
               // Icon(
               //   CupertinoIcons.lock_shield,
               //   size: 128,
-              //   color: Theme.of(context).colorScheme.onInverseSurface,
+              //   color: theme.colorScheme.onInverseSurface,
               // ),
               // Pangea#
               const Divider(),
@@ -145,13 +143,10 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                       AppConfig.borderRadius,
                                     ),
                                     side: BorderSide(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
+                                      color: theme.colorScheme.primary,
                                     ),
                                   ),
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .primaryContainer,
+                                  color: theme.colorScheme.primaryContainer,
                                   child: Padding(
                                     padding: const EdgeInsets.all(4.0),
                                     child: Text(
@@ -159,9 +154,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
+                                        color: theme.colorScheme.primary,
                                         fontSize: 12,
                                         fontStyle: FontStyle.italic,
                                       ),
@@ -176,7 +169,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                 L10n.of(context)!.unknownEncryptionAlgorithm,
                             style: TextStyle(
                               fontFamily: 'RobotoMono',
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: theme.colorScheme.secondary,
                             ),
                           ),
                         ),

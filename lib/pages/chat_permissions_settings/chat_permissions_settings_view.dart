@@ -13,6 +13,8 @@ class ChatPermissionsSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
@@ -63,12 +65,12 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                     L10n.of(context)!.chatPermissionsDescription,
                   ),
                 ),
-                Divider(color: Theme.of(context).dividerColor),
+                Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
                     L10n.of(context)!.chatPermissions,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
+                      color: theme.colorScheme.primary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -89,13 +91,12 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         canEdit: room.canChangePowerLevel,
                       ),
                     // #Pangea
-                    // Why would teacher need to stop students from seeing notifications?
-                    // Divider(color: Theme.of(context).dividerColor),
+                    // Divider(color: theme.dividerColor),
                     // ListTile(
                     //   title: Text(
                     //     L10n.of(context)!.notifications,
                     //     style: TextStyle(
-                    //       color: Theme.of(context).colorScheme.primary,
+                    //       color: theme.colorScheme.primary,
                     //       fontWeight: FontWeight.bold,
                     //     ),
                     //   ),
@@ -125,22 +126,17 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                     //     );
                     //   },
                     // ),
-                    // Only show if there are actually items in this category
-                    if (eventsPowerLevels.isNotEmpty)
-                      // Pangea#
-                      Divider(color: Theme.of(context).dividerColor),
-                    // #Pangea
-                    if (eventsPowerLevels.isNotEmpty)
-                      // Pangea#
-                      ListTile(
-                        title: Text(
-                          L10n.of(context)!.configureChat,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    // Pangea#
+                    Divider(color: theme.dividerColor),
+                    ListTile(
+                      title: Text(
+                        L10n.of(context)!.configureChat,
+                        style: TextStyle(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
+                    ),
                     for (final entry in eventsPowerLevels.entries)
                       PermissionsListTile(
                         permissionKey: entry.key,

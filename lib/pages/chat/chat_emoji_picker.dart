@@ -42,9 +42,8 @@ class ChatEmojiPicker extends StatelessWidget {
                           config: Config(
                             emojiViewConfig: EmojiViewConfig(
                               noRecents: const NoRecent(),
-                              backgroundColor: Theme.of(context)
-                                  .colorScheme
-                                  .onInverseSurface,
+                              backgroundColor:
+                                  theme.colorScheme.onInverseSurface,
                             ),
                             bottomActionBarConfig: const BottomActionBarConfig(
                               enabled: false,

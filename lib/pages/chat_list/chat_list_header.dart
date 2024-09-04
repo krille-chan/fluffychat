@@ -16,6 +16,8 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final selectMode = controller.selectMode;
 
     return SliverAppBar(
@@ -33,7 +35,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
               tooltip: L10n.of(context)!.cancel,
               icon: const Icon(Icons.close_outlined),
               onPressed: controller.cancelAction,
-              color: Theme.of(context).colorScheme.primary,
+              color: theme.colorScheme.primary,
             ),
       title: selectMode == SelectMode.share
           ? Text(
@@ -51,7 +53,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       //       globalSearch: globalSearch,
       //     ),
       //     decoration: InputDecoration(
-      //       fillColor: Theme.of(context).colorScheme.secondaryContainer,
+      //       fillColor: theme.colorScheme.secondaryContainer,
       //       border: OutlineInputBorder(
       //         borderSide: BorderSide.none,
       //         borderRadius: BorderRadius.circular(99),
@@ -59,7 +61,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       //       contentPadding: EdgeInsets.zero,
       //       hintText: L10n.of(context)!.searchChatsRooms,
       //       hintStyle: TextStyle(
-      //         color: Theme.of(context).colorScheme.onPrimaryContainer,
+      //         color: theme.colorScheme.onPrimaryContainer,
       //         fontWeight: FontWeight.normal,
       //       ),
       //       floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -68,14 +70,13 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       //               tooltip: L10n.of(context)!.cancel,
       //               icon: const Icon(Icons.close_outlined),
       //               onPressed: controller.cancelSearch,
-      //               color: Theme.of(context).colorScheme.onPrimaryContainer,
+      //               color: theme.colorScheme.onPrimaryContainer,
       //             )
       //           : IconButton(
       //               onPressed: controller.startSearch,
       //               icon: Icon(
       //                 Icons.search_outlined,
-      //                 color:
-      //                     Theme.of(context).colorScheme.onPrimaryContainer,
+      //                 color: theme.colorScheme.onPrimaryContainer,
       //               ),
       //             ),
       //       suffixIcon: controller.isSearchMode && globalSearch

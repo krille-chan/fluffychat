@@ -11,6 +11,8 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     // #Pangea
     // final homeserver = Matrix.of(context)
     //     .getLoginClient()
@@ -21,8 +23,9 @@ class LoginView extends StatelessWidget {
     // final titleParts = title.split(homeserver);
 
     // final textFieldFillColor = FluffyThemes.isColumnMode(context)
-    //     ? Theme.of(context).colorScheme.background
-    //     : Theme.of(context).colorScheme.surfaceVariant;
+    //     ? theme.colorScheme.surface
+    //     // ignore: deprecated_member_use
+    //     : theme.colorScheme.surfaceVariant;
     // Pangea#
 
     return LoginScaffold(
@@ -100,18 +103,13 @@ class LoginView extends StatelessWidget {
                       // #Pangea
                       // errorStyle: const TextStyle(color: Colors.orange),
                       errorStyle: TextStyle(
-                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                        color: theme.textTheme.bodyMedium?.color,
                         fontSize: 14,
                       ),
+                      // fillColor: textFieldFillColor,
+                      fillColor: theme.colorScheme.surface.withOpacity(0.75),
                       // Pangea#
                       hintText: L10n.of(context)!.emailOrUsername,
-                      // #Pangea
-                      // fillColor: textFieldFillColor,
-                      fillColor: Theme.of(context)
-                          .colorScheme
-                          .surface
-                          .withOpacity(0.75),
-                      // Pangea#
                     ),
                   ),
                 ),
@@ -133,10 +131,11 @@ class LoginView extends StatelessWidget {
                       // #Pangea
                       // errorStyle: const TextStyle(color: Colors.orange),
                       errorStyle: TextStyle(
-                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                        color: theme.textTheme.bodyMedium?.color,
                         fontSize: 14,
                       ),
                       // fillColor: textFieldFillColor,
+                      fillColor: theme.colorScheme.surface.withOpacity(0.75),
                       // prevent enter key from clicking show password button
                       suffixIcon: MouseRegion(
                         cursor: SystemMouseCursors.click,
@@ -162,12 +161,6 @@ class LoginView extends StatelessWidget {
                       // ),
                       // Pangea#
                       hintText: L10n.of(context)!.password,
-                      // #Pangea
-                      fillColor: Theme.of(context)
-                          .colorScheme
-                          .surface
-                          .withOpacity(0.75),
-                      // Pangea#
                     ),
                   ),
                 ),
@@ -184,8 +177,8 @@ class LoginView extends StatelessWidget {
                   ),
                   // child: ElevatedButton.icon(
                   //   style: ElevatedButton.styleFrom(
-                  //     backgroundColor: Theme.of(context).colorScheme.primary,
-                  //     foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  //     backgroundColor: theme.colorScheme.primary,
+                  //     foregroundColor: theme.colorScheme.onPrimary,
                   //   ),
                   //   onPressed: controller.loading ? null : controller.login,
                   //   icon: const Icon(Icons.login_outlined),
@@ -240,7 +233,7 @@ class LoginView extends StatelessWidget {
                   //       ? () {}
                   //       : controller.passwordForgotten,
                   //   style: TextButton.styleFrom(
-                  //     foregroundColor: Theme.of(context).colorScheme.error,
+                  //     foregroundColor: theme.colorScheme.error,
                   //   ),
                   //   icon: const Icon(Icons.safety_check_outlined),
                   //   label: Text(L10n.of(context)!.passwordForgotten),

@@ -19,8 +19,12 @@ class LoginScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobileMode =
-        enforceMobileMode || !FluffyThemes.isColumnMode(context);
+    // #Pangea
+    // final theme = Theme.of(context);
+
+    // final isMobileMode =
+    //     enforceMobileMode || !FluffyThemes.isColumnMode(context);
+    // Pangea#
     final scaffold = Scaffold(
       key: const Key('LoginScaffold'),
       // Pangea#
@@ -56,13 +60,12 @@ class LoginScaffold extends StatelessWidget {
           child: body,
         ),
       ),
-      // backgroundColor: isMobileMode
-      //     ? null
-      //     : Theme.of(context).colorScheme.surface.withOpacity(0.8),
+      // backgroundColor:
+      //     isMobileMode ? null : theme.colorScheme.surface.withOpacity(0.8),
       // bottomNavigationBar: isMobileMode
       //     ? Material(
       //         elevation: 4,
-      //         shadowColor: Theme.of(context).colorScheme.onSurface,
+      //         shadowColor: theme.colorScheme.onSurface,
       //         child: const _PrivacyButtons(
       //           mainAxisAlignment: MainAxisAlignment.center,
       //         ),
@@ -91,9 +94,8 @@ class LoginScaffold extends StatelessWidget {
     //               color: Colors.transparent,
     //               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
     //               clipBehavior: Clip.hardEdge,
-    //               elevation:
-    //                   Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
-    //               shadowColor: Theme.of(context).appBarTheme.shadowColor,
+    //               elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
+    //               shadowColor: theme.appBarTheme.shadowColor,
     //               child: ConstrainedBox(
     //                 constraints: isMobileMode
     //                     ? const BoxConstraints()

@@ -224,6 +224,7 @@ class InputBar extends StatelessWidget {
     Map<String, String?> suggestion,
     Client? client,
   ) {
+    final theme = Theme.of(context);
     const size = 30.0;
     // #Pangea
     // const padding = EdgeInsets.all(4.0);
@@ -248,7 +249,7 @@ class InputBar extends StatelessWidget {
                 hint,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodySmall,
+                style: theme.textTheme.bodySmall,
               ),
             ],
           ),
