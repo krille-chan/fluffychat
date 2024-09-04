@@ -15,6 +15,7 @@ import 'package:fluffychat/pangea/widgets/subscription/subscription_snackbar.dar
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/show_update_snackbar.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -541,6 +542,7 @@ class ChatListController extends State<ChatList>
         searchServer =
             Matrix.of(context).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
+        UpdateNotifier.showUpdateSnackBar(context);
       }
 
       // Workaround for system UI overlay style not applied on app start

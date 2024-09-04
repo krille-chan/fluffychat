@@ -56,6 +56,8 @@ abstract class AppConfig {
   static const String supportUrl = 'https://www.pangeachat.com/faqs';
   static const String termsOfServiceUrl =
       'https://www.pangeachat.com/terms-of-service';
+  // static const String changelogUrl =
+  //     'https://github.com/krille-chan/fluffychat/blob/main/CHANGELOG.md';
   //Pangea#
   static final Uri newIssueUrl = Uri(
     scheme: 'https',

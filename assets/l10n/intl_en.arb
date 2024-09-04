@@ -4181,5 +4181,13 @@
   "changeTheCanonicalRoomAlias": "Change the main public chat address",
   "sendRoomNotifications": "Send a @room notifications",
   "changeTheDescriptionOfTheGroup": "Change the description of the chat",
-  "chatPermissionsDescription": "Define which power level is necessary for certain actions in this chat. The power levels 0, 50 and 100 are usually representing users, moderators and admins, but any gradation is possible."
+  "chatPermissionsDescription": "Define which power level is necessary for certain actions in this chat. The power levels 0, 50 and 100 are usually representing users, moderators and admins, but any gradation is possible.",
+  "updateInstalled": "🎉 Update {version} installed!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Changelog"
 }

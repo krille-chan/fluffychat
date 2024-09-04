@@ -78,9 +78,6 @@ abstract class FluffyThemes {
               ? Typography.material2018().black.merge(fallbackTextTheme)
               : Typography.material2018().white.merge(fallbackTextTheme)
           : null,
-      snackBarTheme: const SnackBarThemeData(
-        behavior: SnackBarBehavior.floating,
-      ),
       dividerColor: brightness == Brightness.light
           ? Colors.blueGrey.shade50
           : Colors.blueGrey.shade900,

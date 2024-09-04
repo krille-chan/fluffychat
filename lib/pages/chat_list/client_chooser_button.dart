@@ -32,16 +32,6 @@ class ClientChooserButton extends StatelessWidget {
     // Pangea#
     return <PopupMenuEntry<Object>>[
       // #Pangea
-      // PopupMenuItem(
-      //   value: SettingsAction.newGroup,
-      //   child: Row(
-      //     children: [
-      //       const Icon(Icons.group_add_outlined),
-      //       const SizedBox(width: 18),
-      //       Text(L10n.of(context)!.createGroup),
-      //     ],
-      //   ),
-      // ),
       PopupMenuItem(
         value: SettingsAction.joinWithClassCode,
         child: Row(
@@ -52,21 +42,6 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      // PopupMenuItem(
-      //   enabled: matrix.client.rooms.any(
-      //     (room) =>
-      //         room.isSpace &&
-      //         room.ownPowerLevel >= ClassDefaultValues.powerLevelOfAdmin,
-      //   ),
-      //   value: SettingsAction.spaceAnalytics,
-      //   child: Row(
-      //     children: [
-      //       const Icon(Icons.analytics_outlined),
-      //       const SizedBox(width: 18),
-      //       Expanded(child: Text(L10n.of(context)!.spaceAnalytics)),
-      //     ],
-      //   ),
-      // ),
       PopupMenuItem(
         enabled: matrix.client.rooms.any(
           (room) => !room.isSpace && !room.isArchived && !room.isAnalyticsRoom,
@@ -80,37 +55,31 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      PopupMenuItem(
-        value: SettingsAction.newClass,
-        child: Row(
-          children: [
-            const Icon(Icons.school),
-            const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.createNewSpace)),
-          ],
-        ),
-      ),
       // PopupMenuItem(
-      //   value: SettingsAction.newSpace,
+      //   value: SettingsAction.newGroup,
       //   child: Row(
       //     children: [
-      //       const Icon(Icons.workspaces_outlined),
+      //       const Icon(Icons.group_add_outlined),
       //       const SizedBox(width: 18),
-      //       Text(L10n.of(context)!.createNewSpace),
+      //       Text(L10n.of(context)!.createGroup),
       //     ],
       //   ),
       // ),
-      // if (controller.pangeaController.permissionsController.isUser18())
-      //   PopupMenuItem(
-      //     value: SettingsAction.findAConversationPartner,
-      //     child: Row(
-      //       children: [
-      //         const Icon(Icons.add_circle_outline),
-      //         const SizedBox(width: 18),
-      //         Expanded(child: Text(L10n.of(context)!.findALanguagePartner)),
-      //       ],
-      //     ),
-      //   ),
+      // Pangea#
+      PopupMenuItem(
+        value: SettingsAction.newSpace,
+        child: Row(
+          children: [
+            const Icon(Icons.workspaces_outlined),
+            const SizedBox(width: 18),
+            // #Pangea
+            Expanded(child: Text(L10n.of(context)!.createNewSpace)),
+            // Text(L10n.of(context)!.createNewSpace),
+            // Pangea#
+          ],
+        ),
+      ),
+      // #Pangea
       // PopupMenuItem(
       //   value: SettingsAction.setStatus,
       //   child: Row(
@@ -132,19 +101,18 @@ class ClientChooserButton extends StatelessWidget {
       //   ),
       // ),
       // Pangea#
-      PopupMenuItem(
+      // Currently disabled because of:
+      // https://github.com/matrix-org/matrix-react-sdk/pull/12286
+      /*PopupMenuItem(
         value: SettingsAction.archive,
         child: Row(
           children: [
             const Icon(Icons.archive_outlined),
             const SizedBox(width: 18),
-            // #Pangea
-            // Text(L10n.of(context)!.archive),
-            Expanded(child: Text(L10n.of(context)!.viewArchive)),
-            // Pangea#
+            Text(L10n.of(context)!.archive),
           ],
         ),
-      ),
+      ),*/
       // #Pangea
       PopupMenuItem(
         value: SettingsAction.learning,

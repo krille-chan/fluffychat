@@ -222,8 +222,6 @@ class SettingsController extends State<Settings> {
     final client = Matrix.of(context).client;
     profileFuture ??= client.getProfileFromUserId(
       client.userID!,
-      cache: !profileUpdated,
-      getFromRooms: !profileUpdated,
     );
     return SettingsView(this);
   }
