@@ -804,6 +804,26 @@ class ChatListController extends State<ChatList>
               ],
             ),
           ),
+        // #Pangea
+        // if the room has a parent for which the user has a high enough power level
+        // to set parent's space child events, show option to remove the room from the space
+        if (room.spaceParents.isNotEmpty &&
+            room.pangeaSpaceParents.any(
+              (r) => r.canChangeStateEvent(EventTypes.SpaceChild),
+            ) &&
+            activeSpaceId != null)
+          PopupMenuItem(
+            value: ChatContextAction.removeFromSpace,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.delete_sweep_outlined),
+                const SizedBox(width: 12),
+                Text(L10n.of(context)!.removeFromSpace),
+              ],
+            ),
+          ),
+        // Pangea#
         PopupMenuItem(
           value: ChatContextAction.leave,
           child: Row(
@@ -885,8 +905,38 @@ class ChatListController extends State<ChatList>
           context: context,
           future: () => space.setSpaceChild(room.id),
         );
+        // #Pangea
+        return;
+      case ChatContextAction.removeFromSpace:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () async {
+            final futures = room.pangeaSpaceParents
+                .where((r) => r.canChangeStateEvent(EventTypes.SpaceChild))
+                .map((space) => removeSpaceChild(space, room.id));
+            await Future.wait(futures);
+          },
+        );
+        return;
+      // Pangea#
     }
   }
+
+  // #Pangea
+  // Remove a room from a space. Often, the user will have permission to set
+  // the SpaceChild event for the parent space, but not the SpaceParent event.
+  // This would cause a permissions error, but the child will still be removed
+  // via the SpaceChild event. If that's the case, silence the error.
+  Future<void> removeSpaceChild(Room space, String roomId) async {
+    try {
+      await space.removeSpaceChild(roomId);
+    } catch (err) {
+      if ((err as MatrixException).error != MatrixError.M_FORBIDDEN) {
+        rethrow;
+      }
+    }
+  }
+  // Pangea#
 
   void dismissStatusList() async {
     final result = await showOkCancelAlertDialog(
@@ -1120,121 +1170,123 @@ enum ChatContextAction {
   mute,
   leave,
   addToSpace,
+  // #Pangea
+  removeFromSpace,
+  // Pangea#
 }
 
-
 // TODO re-integrate this logic
-  // // #Pangea
-  // Future<void> leaveAction() async {
-  //   final onlyAdmin = await Matrix.of(context)
-  //           .client
-  //           .getRoomById(selectedRoomIds.first)
-  //           ?.isOnlyAdmin() ??
-  //       false;
-  //   final confirmed = await showOkCancelAlertDialog(
-  //         useRootNavigator: false,
-  //         context: context,
-  //         title: L10n.of(context)!.areYouSure,
-  //         okLabel: L10n.of(context)!.yes,
-  //         cancelLabel: L10n.of(context)!.cancel,
-  //         message: onlyAdmin && selectedRoomIds.length == 1
-  //             ? L10n.of(context)!.onlyAdminDescription
-  //             : L10n.of(context)!.leaveRoomDescription,
-  //       ) ==
-  //       OkCancelResult.ok;
-  //   if (!confirmed) return;
-  //   final leftActiveRoom =
-  //       selectedRoomIds.contains(Matrix.of(context).activeRoomId);
-  //   await showFutureLoadingDialog(
-  //     context: context,
-  //     future: () => _leaveSelectedRooms(onlyAdmin),
-  //   );
-  //   if (leftActiveRoom) {
-  //     context.go('/rooms');
-  //   }
-  // }
-  // // Pangea#
+// // #Pangea
+// Future<void> leaveAction() async {
+//   final onlyAdmin = await Matrix.of(context)
+//           .client
+//           .getRoomById(selectedRoomIds.first)
+//           ?.isOnlyAdmin() ??
+//       false;
+//   final confirmed = await showOkCancelAlertDialog(
+//         useRootNavigator: false,
+//         context: context,
+//         title: L10n.of(context)!.areYouSure,
+//         okLabel: L10n.of(context)!.yes,
+//         cancelLabel: L10n.of(context)!.cancel,
+//         message: onlyAdmin && selectedRoomIds.length == 1
+//             ? L10n.of(context)!.onlyAdminDescription
+//             : L10n.of(context)!.leaveRoomDescription,
+//       ) ==
+//       OkCancelResult.ok;
+//   if (!confirmed) return;
+//   final leftActiveRoom =
+//       selectedRoomIds.contains(Matrix.of(context).activeRoomId);
+//   await showFutureLoadingDialog(
+//     context: context,
+//     future: () => _leaveSelectedRooms(onlyAdmin),
+//   );
+//   if (leftActiveRoom) {
+//     context.go('/rooms');
+//   }
+// }
+// // Pangea#
 
-  //   Future<void> addToSpace() async {
-  //   // #Pangea
-  //   final firstSelectedRoom =
-  //       Matrix.of(context).client.getRoomById(selectedRoomIds.toList().first);
-  //   // Pangea#
-  //   final selectedSpace = await showConfirmationDialog<String>(
-  //     context: context,
-  //     title: L10n.of(context)!.addToSpace,
-  //     // #Pangea
-  //     // message: L10n.of(context)!.addToSpaceDescription,
-  //     message: L10n.of(context)!.addSpaceToSpaceDescription,
-  //     // Pangea#
-  //     fullyCapitalizedForMaterial: false,
-  //     actions: Matrix.of(context)
-  //         .client
-  //         .rooms
-  //         .where(
-  //           (r) =>
-  //               r.isSpace
-  //               // #Pangea
-  //               &&
-  //               selectedRoomIds
-  //                   .map((id) => Matrix.of(context).client.getRoomById(id))
-  //                   // Only show non-recursion-causing spaces
-  //                   // Performs a few other checks as well
-  //                   .every((e) => r.canAddAsParentOf(e)),
-  //           //Pangea#
-  //         )
-  //         .map(
-  //           (space) => AlertDialogAction(
-  //             key: space.id,
-  //             // #Pangea
-  //             // label: space
-  //             //     .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-  //             label: space.nameIncludingParents(context),
-  //             // If user is not admin of space, button is grayed out
-  //             textStyle: TextStyle(
-  //               color: (firstSelectedRoom == null)
-  //                   ? Theme.of(context).colorScheme.outline
-  //                   : Theme.of(context).colorScheme.surfaceTint,
-  //             ),
-  //             // Pangea#
-  //           ),
-  //         )
-  //         .toList(),
-  //   );
-  //   if (selectedSpace == null) return;
-  //   final result = await showFutureLoadingDialog(
-  //     context: context,
-  //     future: () async {
-  //       final space = Matrix.of(context).client.getRoomById(selectedSpace)!;
-  //       // #Pangea
-  //       if (firstSelectedRoom == null) {
-  //         throw L10n.of(context)!.nonexistentSelection;
-  //       }
+//   Future<void> addToSpace() async {
+//   // #Pangea
+//   final firstSelectedRoom =
+//       Matrix.of(context).client.getRoomById(selectedRoomIds.toList().first);
+//   // Pangea#
+//   final selectedSpace = await showConfirmationDialog<String>(
+//     context: context,
+//     title: L10n.of(context)!.addToSpace,
+//     // #Pangea
+//     // message: L10n.of(context)!.addToSpaceDescription,
+//     message: L10n.of(context)!.addSpaceToSpaceDescription,
+//     // Pangea#
+//     fullyCapitalizedForMaterial: false,
+//     actions: Matrix.of(context)
+//         .client
+//         .rooms
+//         .where(
+//           (r) =>
+//               r.isSpace
+//               // #Pangea
+//               &&
+//               selectedRoomIds
+//                   .map((id) => Matrix.of(context).client.getRoomById(id))
+//                   // Only show non-recursion-causing spaces
+//                   // Performs a few other checks as well
+//                   .every((e) => r.canAddAsParentOf(e)),
+//           //Pangea#
+//         )
+//         .map(
+//           (space) => AlertDialogAction(
+//             key: space.id,
+//             // #Pangea
+//             // label: space
+//             //     .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+//             label: space.nameIncludingParents(context),
+//             // If user is not admin of space, button is grayed out
+//             textStyle: TextStyle(
+//               color: (firstSelectedRoom == null)
+//                   ? Theme.of(context).colorScheme.outline
+//                   : Theme.of(context).colorScheme.surfaceTint,
+//             ),
+//             // Pangea#
+//           ),
+//         )
+//         .toList(),
+//   );
+//   if (selectedSpace == null) return;
+//   final result = await showFutureLoadingDialog(
+//     context: context,
+//     future: () async {
+//       final space = Matrix.of(context).client.getRoomById(selectedSpace)!;
+//       // #Pangea
+//       if (firstSelectedRoom == null) {
+//         throw L10n.of(context)!.nonexistentSelection;
+//       }
 
-  //       if (space.canSendDefaultStates) {
-  //         for (final roomId in selectedRoomIds) {
-  //           await space.pangeaSetSpaceChild(roomId, suggested: true);
-  //         }
-  //       }
-  //       // Pangea#
-  //     },
-  //   );
-  //   if (result.error == null) {
-  //     if (!mounted) return;
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(
-  //         // #Pangea
-  //         // content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
-  //         content: Text(L10n.of(context)!.roomAddedToSpace),
-  //         // Pangea#
-  //       ),
-  //     );
-  //   }
+//       if (space.canSendDefaultStates) {
+//         for (final roomId in selectedRoomIds) {
+//           await space.pangeaSetSpaceChild(roomId, suggested: true);
+//         }
+//       }
+//       // Pangea#
+//     },
+//   );
+//   if (result.error == null) {
+//     if (!mounted) return;
+//     ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(
+//         // #Pangea
+//         // content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
+//         content: Text(L10n.of(context)!.roomAddedToSpace),
+//         // Pangea#
+//       ),
+//     );
+//   }
 
-  //   // #Pangea
-  //   // setState(() => selectedRoomIds.clear());
-  //   if (firstSelectedRoom != null) {
-  //     toggleSelection(firstSelectedRoom.id);
-  //   }
-  //   // Pangea#
-  // }
+//   // #Pangea
+//   // setState(() => selectedRoomIds.clear());
+//   if (firstSelectedRoom != null) {
+//     toggleSelection(firstSelectedRoom.id);
+//   }
+//   // Pangea#
+// }
