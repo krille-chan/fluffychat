@@ -62,14 +62,13 @@ extension LocalNotificationsExtension on MatrixState {
           isThumbnail: true,
         );
 
-        // TODO replace after upgrading matrix SDK
-        // thumbnailUri =
-        //     await event.senderFromMemoryOrFallback.avatarUrl?.getThumbnailUri(
-        //   client,
-        //   width: size,
-        //   height: size,
-        //   method: thumbnailMethod,
-        // );
+        thumbnailUri =
+            await event.senderFromMemoryOrFallback.avatarUrl?.getThumbnailUri(
+          client,
+          width: size,
+          height: size,
+          method: thumbnailMethod,
+        );
       }
 
       _audioPlayer.play();
@@ -77,7 +76,7 @@ extension LocalNotificationsExtension on MatrixState {
       html.Notification(
         title,
         body: body,
-        // icon: thumbnailUri?.toString(),
+        icon: thumbnailUri?.toString(),
         tag: event.room.id,
       );
     } else if (Platform.isLinux) {

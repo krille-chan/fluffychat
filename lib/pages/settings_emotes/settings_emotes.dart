@@ -6,11 +6,14 @@ import 'package:archive/archive.dart'
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' hide Client;
 import 'package:matrix/matrix.dart';
 
 import '../../widgets/matrix.dart';
@@ -315,42 +318,41 @@ class EmotesSettingsController extends State<EmotesSettings> {
   }
 
   Future<void> exportAsZip() async {
-    // TODO update matrix SDK to support this
-    // final client = Matrix.of(context).client;
+    final client = Matrix.of(context).client;
 
-    // await showFutureLoadingDialog(
-    //   context: context,
-    //   future: () async {
-    //     final pack = _getPack();
-    //     final archive = Archive();
-    //     for (final entry in pack.images.entries) {
-    //       final emote = entry.value;
-    //       final name = entry.key;
-    //       final url = await emote.url.getDownloadUri(client);
-    //       final response = await get(
-    //         url,
-    //         headers: {'authorization': 'Bearer ${client.accessToken}'},
-    //       );
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        final pack = _getPack();
+        final archive = Archive();
+        for (final entry in pack.images.entries) {
+          final emote = entry.value;
+          final name = entry.key;
+          final url = await emote.url.getDownloadUri(client);
+          final response = await get(
+            url,
+            headers: {'authorization': 'Bearer ${client.accessToken}'},
+          );
 
-    //       archive.addFile(
-    //         ArchiveFile(
-    //           name,
-    //           response.bodyBytes.length,
-    //           response.bodyBytes,
-    //         ),
-    //       );
-    //     }
-    //     final fileName =
-    //         '${pack.pack.displayName ?? client.userID?.localpart ?? 'emotes'}.zip';
-    //     final output = ZipEncoder().encode(archive);
+          archive.addFile(
+            ArchiveFile(
+              name,
+              response.bodyBytes.length,
+              response.bodyBytes,
+            ),
+          );
+        }
+        final fileName =
+            '${pack.pack.displayName ?? client.userID?.localpart ?? 'emotes'}.zip';
+        final output = ZipEncoder().encode(archive);
 
-    //     if (output == null) return;
+        if (output == null) return;
 
-    //     MatrixFile(
-    //       name: fileName,
-    //       bytes: Uint8List.fromList(output),
-    //     ).save(context);
-    //   },
-    // );
+        MatrixFile(
+          name: fileName,
+          bytes: Uint8List.fromList(output),
+        ).save(context);
+      },
+    );
   }
 }
