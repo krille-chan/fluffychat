@@ -120,7 +120,6 @@ class _SpaceViewState extends State<SpaceView> {
   }
 
   Future<void> loadHierarchy({hasUpdate = false}) async {
-    debugPrint("loading hierarchy. hasUpdate: $hasUpdate");
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
     if (room == null) return;
 
@@ -564,7 +563,6 @@ class _SpaceViewState extends State<SpaceView> {
                   .where((s) => s.hasRoomUpdate)
                   .rateLimit(const Duration(seconds: 1)),
               builder: (context, snapshot) {
-                debugPrint("build on room update");
                 final childrenIds = room.spaceChildren
                     .map((c) => c.roomId)
                     .whereType<String>()
