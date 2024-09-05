@@ -41,7 +41,10 @@ android {
     }
 
     defaultConfig {
-        applicationId "chat.fluffy.fluffychat"
+        // #Pangea
+        // applicationId "chat.fluffy.fluffychat"
+        applicationId "com.talktolearn.chat"
+        // Pangea#
         minSdkVersion 21
         targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
