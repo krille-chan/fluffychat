@@ -2793,5 +2793,11 @@
   "sendCanceled": "Saatmine on katkestatud",
   "@sendCanceled": {},
   "noChatsFoundHere": "Siin ei leidu veel ühtegi vestlust. Alusta uut vestlust klõpsides allpool asuvat nuppu. ⤵️",
-  "@noChatsFoundHere": {}
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "Logi sisse Matrix-ID alusel",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Leia koduservereid",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Mis on koduserver?",
+  "@whatIsAHomeserver": {}
 }

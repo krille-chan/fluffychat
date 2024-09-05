@@ -2232,7 +2232,7 @@
   },
   "commandHint_cuddle": "Отправить улыбку",
   "@commandHint_cuddle": {},
-  "readUpToHere": "Дочитать до сюда",
+  "readUpToHere": "Непрочитанное",
   "@readUpToHere": {},
   "commandHint_hug": "Отправить обнимашки",
   "@commandHint_hug": {},
