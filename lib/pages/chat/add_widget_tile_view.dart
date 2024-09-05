@@ -59,7 +59,7 @@ class AddWidgetTileView extends StatelessWidget {
             ),
           ),
         ),
-        ButtonBar(
+        OverflowBar(
           children: [
             TextButton(
               onPressed: controller.addWidget,

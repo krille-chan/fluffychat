@@ -999,6 +999,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  handy_window:
+    dependency: "direct main"
+    description:
+      name: handy_window
+      sha256: "56b813e58a68b0ee2ab22051400b8b1f1b5cfe88b8cd32288623defb3926245a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0"
   highlighter:
     dependency: transitive
     description:
