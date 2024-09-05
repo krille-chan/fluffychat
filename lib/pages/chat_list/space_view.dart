@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
+import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
@@ -25,6 +30,9 @@ class SpaceView extends StatefulWidget {
   final void Function(Room room) onChatTab;
   final void Function(Room room, BuildContext context) onChatContext;
   final String? activeChat;
+  // #Pangea
+  final ChatListController controller;
+  // Pangea#
 
   const SpaceView({
     required this.spaceId,
@@ -33,6 +41,9 @@ class SpaceView extends StatefulWidget {
     required this.activeChat,
     required this.toParentSpace,
     required this.onChatContext,
+    // #Pangea
+    required this.controller,
+    // Pangea#
     super.key,
   });
 
@@ -41,7 +52,11 @@ class SpaceView extends StatefulWidget {
 }
 
 class _SpaceViewState extends State<SpaceView> {
-  final List<SpaceRoomsChunk> _discoveredChildren = [];
+  // #Pangea
+  // final List<SpaceRoomsChunk> _discoveredChildren = [];
+  List<SpaceRoomsChunk>? _discoveredChildren;
+  StreamSubscription? _roomSubscription;
+  // Pangea#
   final TextEditingController _filterController = TextEditingController();
   String? _nextBatch;
   bool _noMoreRooms = false;
@@ -49,11 +64,63 @@ class _SpaceViewState extends State<SpaceView> {
 
   @override
   void initState() {
-    _loadHierarchy();
+    // #Pangea
+    // loadHierarchy();
+
+    // If, on launch, this room has had updates to its children,
+    // ensure the hierarchy is properly reloaded
+    final bool hasUpdate = widget.controller.hasUpdates.contains(
+      widget.spaceId,
+    );
+
+    loadHierarchy(hasUpdate: hasUpdate).then(
+      // remove this space ID from the set of space IDs with updates
+      (_) => widget.controller.hasUpdates.remove(
+        widget.controller.activeSpaceId,
+      ),
+    );
+
+    // Listen for changes to the activeSpace's hierarchy,
+    // and reload the hierarchy when they come through
+    final client = Matrix.of(context).client;
+    _roomSubscription ??= client.onSync.stream
+        .where(hasHierarchyUpdate)
+        .listen((update) => loadHierarchy(hasUpdate: true));
+    // Pangea#
     super.initState();
   }
 
-  void _loadHierarchy() async {
+  // #Pangea
+  @override
+  void didUpdateWidget(covariant SpaceView oldWidget) {
+    // initState doesn't re-run when navigating between spaces
+    // via the navigation rail, so this accounts for that
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.spaceId != widget.spaceId) {
+      _discoveredChildren = null;
+      _nextBatch = null;
+      _noMoreRooms = false;
+
+      loadHierarchy(hasUpdate: true).then(
+          // remove this space ID from the set of space IDs with updates
+          (_) {
+        if (widget.controller.hasUpdates.contains(widget.spaceId)) {
+          widget.controller.hasUpdates.remove(
+            widget.controller.activeSpaceId,
+          );
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _roomSubscription?.cancel();
+    super.dispose();
+  }
+
+  Future<void> loadHierarchy({hasUpdate = false}) async {
+    debugPrint("loading hierarchy. hasUpdate: $hasUpdate");
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
     if (room == null) return;
 
@@ -62,34 +129,128 @@ class _SpaceViewState extends State<SpaceView> {
     });
 
     try {
-      final hierarchy = await room.client.getSpaceHierarchy(
-        widget.spaceId,
-        suggestedOnly: false,
-        maxDepth: 2,
-        from: _nextBatch,
-      );
-      if (!mounted) return;
-      setState(() {
-        _nextBatch = hierarchy.nextBatch;
-        if (hierarchy.nextBatch == null) {
-          _noMoreRooms = true;
-        }
-        _discoveredChildren.addAll(
-          hierarchy.rooms
-              .where((c) => room.client.getRoomById(c.roomId) == null),
-        );
-        _isLoading = false;
-      });
+      await _loadHierarchy(activeSpace: room, hasUpdate: hasUpdate);
     } catch (e, s) {
       Logs().w('Unable to load hierarchy', e, s);
       if (!mounted) return;
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+    } finally {
       setState(() {
         _isLoading = false;
       });
     }
   }
+
+  /// Internal logic of loadHierarchy. It will load the hierarchy of
+  /// the active space id (or specified spaceId).
+  Future<void> _loadHierarchy({
+    required Room activeSpace,
+    bool hasUpdate = false,
+  }) async {
+    // Load all of the space's state events. Space Child events
+    // are used to filtering out unsuggested, unjoined rooms.
+    await activeSpace.postLoad();
+
+    // The current number of rooms loaded for this space that are visible in the UI
+    final int prevLength = !hasUpdate ? (_discoveredChildren?.length ?? 0) : 0;
+
+    // Failsafe to prevent too many calls to the server in a row
+    int callsToServer = 0;
+
+    List<SpaceRoomsChunk>? currentHierarchy =
+        _discoveredChildren == null || hasUpdate
+            ? null
+            : List.from(_discoveredChildren!);
+    String? currentNextBatch = hasUpdate ? null : _nextBatch;
+
+    // Makes repeated calls to the server until 10 new visible rooms have
+    // been loaded, or there are no rooms left to load. Using a loop here,
+    // rather than one single call to the endpoint, because some spaces have
+    // so many invisible rooms (analytics rooms) that it might look like
+    // pressing the 'load more' button does nothing (Because the only rooms
+    // coming through from those calls are analytics rooms).
+    while (callsToServer < 5) {
+      // if this space has been loaded and there are no more rooms to load, break
+      if (currentHierarchy != null && currentNextBatch == null) {
+        break;
+      }
+
+      // if this space has been loaded and 10 new rooms have been loaded, break
+      final int currentLength = currentHierarchy?.length ?? 0;
+      if (currentLength - prevLength >= 10) {
+        break;
+      }
+
+      // make the call to the server
+      final response = await Matrix.of(context).client.getSpaceHierarchy(
+            widget.spaceId,
+            maxDepth: 1,
+            from: currentNextBatch,
+            limit: 100,
+          );
+      callsToServer++;
+
+      if (response.nextBatch == null) {
+        _noMoreRooms = true;
+      }
+
+      // if rooms have earlier been loaded for this space, add those
+      // previously loaded rooms to the front of the response list
+      response.rooms.insertAll(
+        0,
+        currentHierarchy ?? [],
+      );
+
+      // finally, set the response to the last response for this space
+      // and set the current next batch token
+      currentHierarchy = filterHierarchyResponse(activeSpace, response.rooms);
+      currentNextBatch = response.nextBatch;
+    }
+
+    _discoveredChildren = currentHierarchy;
+    _discoveredChildren?.sort(sortSpaceChildren);
+    _nextBatch = currentNextBatch;
+  }
+
+  // void _loadHierarchy() async {
+  //   final room = Matrix.of(context).client.getRoomById(widget.spaceId);
+  //   if (room == null) return;
+
+  //   setState(() {
+  //     _isLoading = true;
+  //   });
+
+  //   try {
+  //     final hierarchy = await room.client.getSpaceHierarchy(
+  //       widget.spaceId,
+  //       suggestedOnly: false,
+  //       maxDepth: 2,
+  //       from: _nextBatch,
+  //     );
+  //     if (!mounted) return;
+  //     setState(() {
+  //       _nextBatch = hierarchy.nextBatch;
+  // if (hierarchy.nextBatch == null) {
+  //   _noMoreRooms = true;
+  // }
+  //       _discoveredChildren.addAll(
+  //         hierarchy.rooms
+  //             .where((c) => room.client.getRoomById(c.roomId) == null),
+  //       );
+  //       _isLoading = false;
+  //     });
+  //   } catch (e, s) {
+  //     Logs().w('Unable to load hierarchy', e, s);
+  //     if (!mounted) return;
+  //     ScaffoldMessenger.of(context)
+  //         .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //   }
+  // }
+  // Pangea#
 
   void _joinChildRoom(SpaceRoomsChunk item) async {
     final client = Matrix.of(context).client;
@@ -109,7 +270,7 @@ class _SpaceViewState extends State<SpaceView> {
     );
     if (mounted && joined == true) {
       setState(() {
-        _discoveredChildren.remove(item);
+        _discoveredChildren?.remove(item);
       });
     }
   }
@@ -237,6 +398,81 @@ class _SpaceViewState extends State<SpaceView> {
     if (result.error != null) return;
   }
 
+  // #Pangea
+  bool includeSpaceChild(
+    Room space,
+    SpaceRoomsChunk hierarchyMember,
+  ) {
+    if (!mounted) return false;
+    final bool isAnalyticsRoom =
+        hierarchyMember.roomType == PangeaRoomTypes.analytics;
+
+    final bool isMember = [Membership.join, Membership.invite].contains(
+      Matrix.of(context).client.getRoomById(hierarchyMember.roomId)?.membership,
+    );
+
+    final bool isSuggested =
+        space.spaceChildSuggestionStatus[hierarchyMember.roomId] ?? true;
+
+    return !isAnalyticsRoom && (isMember || isSuggested);
+  }
+
+  List<SpaceRoomsChunk> filterHierarchyResponse(
+    Room space,
+    List<SpaceRoomsChunk> hierarchyResponse,
+  ) {
+    final List<SpaceRoomsChunk> filteredChildren = [];
+    for (final child in hierarchyResponse) {
+      if (child.roomId == widget.spaceId ||
+          Matrix.of(context).client.getRoomById(child.roomId) != null) {
+        continue;
+      }
+
+      final isDuplicate = filteredChildren.any(
+        (filtered) => filtered.roomId == child.roomId,
+      );
+      if (isDuplicate) continue;
+
+      if (includeSpaceChild(space, child)) {
+        filteredChildren.add(child);
+      }
+    }
+    return filteredChildren;
+  }
+
+  /// Used to filter out sync updates with hierarchy updates for the active
+  /// space so that the view can be auto-reloaded in the room subscription
+  bool hasHierarchyUpdate(SyncUpdate update) {
+    final joinTimeline = update.rooms?.join?[widget.spaceId]?.timeline;
+    final leaveTimeline = update.rooms?.leave?[widget.spaceId]?.timeline;
+    if (joinTimeline == null && leaveTimeline == null) return false;
+    final bool hasJoinUpdate = joinTimeline?.events?.any(
+          (event) => event.type == EventTypes.SpaceChild,
+        ) ??
+        false;
+    final bool hasLeaveUpdate = leaveTimeline?.events?.any(
+          (event) => event.type == EventTypes.SpaceChild,
+        ) ??
+        false;
+    return hasJoinUpdate || hasLeaveUpdate;
+  }
+
+  int sortSpaceChildren(
+    SpaceRoomsChunk a,
+    SpaceRoomsChunk b,
+  ) {
+    final bool aIsSpace = a.roomType == 'm.space';
+    final bool bIsSpace = b.roomType == 'm.space';
+
+    if (aIsSpace && !bIsSpace) {
+      return -1;
+    } else if (!aIsSpace && bIsSpace) {
+      return 1;
+    }
+    return 0;
+  }
+  // Pangea#
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -328,6 +564,7 @@ class _SpaceViewState extends State<SpaceView> {
                   .where((s) => s.hasRoomUpdate)
                   .rateLimit(const Duration(seconds: 1)),
               builder: (context, snapshot) {
+                debugPrint("build on room update");
                 final childrenIds = room.spaceChildren
                     .map((c) => c.roomId)
                     .whereType<String>()
@@ -335,6 +572,9 @@ class _SpaceViewState extends State<SpaceView> {
 
                 final joinedRooms = room.client.rooms
                     .where((room) => childrenIds.remove(room.id))
+                    // #Pangea
+                    .where((room) => !room.isAnalyticsRoom)
+                    // Pangea#
                     .toList();
 
                 final joinedParents = room.spaceParents
@@ -480,7 +720,7 @@ class _SpaceViewState extends State<SpaceView> {
                       },
                     ),
                     SliverList.builder(
-                      itemCount: _discoveredChildren.length + 2,
+                      itemCount: (_discoveredChildren?.length ?? 0) + 2,
                       itemBuilder: (context, i) {
                         if (i == 0) {
                           return SearchTitle(
@@ -489,7 +729,7 @@ class _SpaceViewState extends State<SpaceView> {
                           );
                         }
                         i--;
-                        if (i == _discoveredChildren.length) {
+                        if (i == (_discoveredChildren?.length ?? 0)) {
                           if (_noMoreRooms) {
                             return Padding(
                               padding: const EdgeInsets.all(12.0),
@@ -507,7 +747,7 @@ class _SpaceViewState extends State<SpaceView> {
                               vertical: 2.0,
                             ),
                             child: TextButton(
-                              onPressed: _isLoading ? null : _loadHierarchy,
+                              onPressed: _isLoading ? null : loadHierarchy,
                               child: _isLoading
                                   ? LinearProgressIndicator(
                                       borderRadius: BorderRadius.circular(
@@ -518,7 +758,7 @@ class _SpaceViewState extends State<SpaceView> {
                             ),
                           );
                         }
-                        final item = _discoveredChildren[i];
+                        final item = _discoveredChildren![i];
                         final displayname = item.name ??
                             item.canonicalAlias ??
                             L10n.of(context)!.emptyChat;

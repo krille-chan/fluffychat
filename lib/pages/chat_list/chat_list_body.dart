@@ -40,6 +40,9 @@ class ChatListViewBody extends StatelessWidget {
             controller.chatContextAction(room, context),
         activeChat: controller.activeChat,
         toParentSpace: controller.setActiveSpace,
+        // #Pangea
+        controller: controller,
+        // Pangea#
       );
     }
     final spaces = client.rooms.where((r) => r.isSpace);
