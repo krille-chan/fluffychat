@@ -19,12 +19,10 @@ class LoginScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // #Pangea
-    // final theme = Theme.of(context);
+    final theme = Theme.of(context);
 
-    // final isMobileMode =
-    //     enforceMobileMode || !FluffyThemes.isColumnMode(context);
-    // Pangea#
+    final isMobileMode =
+        enforceMobileMode || !FluffyThemes.isColumnMode(context);
     final scaffold = Scaffold(
       key: const Key('LoginScaffold'),
       // Pangea#
@@ -99,7 +97,7 @@ class LoginScaffold extends StatelessWidget {
     //               child: ConstrainedBox(
     //                 constraints: isMobileMode
     //                     ? const BoxConstraints()
-    //                     : const BoxConstraints(maxWidth: 480, maxHeight: 720),
+    //                     : const BoxConstraints(maxWidth: 480, maxHeight: 640),
     //                 child: BackdropFilter(
     //                   filter: ImageFilter.blur(
     //                     sigmaX: 10.0,

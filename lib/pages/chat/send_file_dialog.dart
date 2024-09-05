@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +31,8 @@ class SendFileDialogState extends State<SendFileDialog> {
   static const int minSizeToCompress = 20 * 1024;
 
   Future<void> _send() async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final l10n = L10n.of(context)!;
     for (var file in widget.files) {
       MatrixImageFile? thumbnail;
       if (file is MatrixVideoFile && file.bytes.length > minSizeToCompress) {
@@ -44,20 +44,24 @@ class SendFileDialogState extends State<SendFileDialog> {
           },
         );
       }
-      try {
-        await widget.room.sendFileEvent(
-          file,
-          thumbnail: thumbnail,
-          shrinkImageMaxDimension: origImage ? null : 1600,
-        );
-      } on IOException catch (_) {
-      } on FileTooBigMatrixException catch (_) {
-      } catch (e, s) {
-        if (mounted) {
+      widget.room
+          .sendFileEvent(
+        file,
+        thumbnail: thumbnail,
+        shrinkImageMaxDimension: origImage ? null : 1600,
+      )
+          .catchError(
+        (e, s) {
+          if (e is FileTooBigMatrixException) {
+            scaffoldMessenger.showSnackBar(
+              SnackBar(content: Text(l10n.fileIsTooBigForServer)),
+            );
+            return null;
+          }
           ErrorReporter(context, 'Unable to send file').onErrorCallback(e, s);
-        }
-        rethrow;
-      }
+          return null;
+        },
+      );
     }
     Navigator.of(context, rootNavigator: false).pop();
 

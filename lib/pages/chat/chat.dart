@@ -347,12 +347,22 @@ class ChatController extends State<ChatPageWithRoom>
       await loadTimelineFuture;
       if (initialEventId != null) scrollToEventId(initialEventId);
 
-      final readMarkerEventIndex = readMarkerEventId.isEmpty
+      var readMarkerEventIndex = readMarkerEventId.isEmpty
           ? -1
           : timeline!.events
-              .where((e) => e.isVisibleInGui)
+              .where((e) => e.isVisibleInGui || e.eventId == readMarkerEventId)
               .toList()
               .indexWhere((e) => e.eventId == readMarkerEventId);
+
+      // Read marker is existing but not found in first events. Try a single
+      // requestHistory call before opening timeline on event context:
+      if (readMarkerEventId.isNotEmpty && readMarkerEventIndex == -1) {
+        await timeline?.requestHistory(historyCount: _loadHistoryCount);
+        readMarkerEventIndex = timeline!.events
+            .where((e) => e.isVisibleInGui || e.eventId == readMarkerEventId)
+            .toList()
+            .indexWhere((e) => e.eventId == readMarkerEventId);
+      }
 
       if (readMarkerEventIndex > 1) {
         Logs().v('Scroll up to visible event', readMarkerEventId);
@@ -361,6 +371,9 @@ class ChatController extends State<ChatPageWithRoom>
       } else if (readMarkerEventId.isNotEmpty && readMarkerEventIndex == -1) {
         showScrollUpMaterialBanner(readMarkerEventId);
       }
+
+      // Mark room as read on first visit if requirements are fulfilled
+      setReadMarker();
 
       if (!mounted) return;
     } catch (e, s) {

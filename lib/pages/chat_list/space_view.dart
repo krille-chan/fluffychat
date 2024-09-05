@@ -359,6 +359,7 @@ class _SpaceViewState extends State<SpaceView> {
                         onChanged: (_) => setState(() {}),
                         textInputAction: TextInputAction.search,
                         decoration: InputDecoration(
+                          filled: true,
                           fillColor: theme.colorScheme.secondaryContainer,
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,

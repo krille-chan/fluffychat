@@ -35,7 +35,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
-  flutter_cache_manager: ^3.3.1
+  flutter_cache_manager: ^3.4.1
   flutter_foreground_task: ^6.1.3
   flutter_highlighter: ^0.1.1
   flutter_html: ^3.0.0-beta.2
@@ -216,4 +216,4 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
-  win32: 5.5.0
+  win32: 5.5.3

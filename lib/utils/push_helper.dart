@@ -1,16 +1,15 @@
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_shortcuts/flutter_shortcuts.dart';
@@ -179,28 +178,25 @@ Future<void> _tryPushHelper(
         );
 
   // The person object for the android message style notification
-  final avatar = event.room.avatar
-      ?.getThumbnail(
-        client,
-        width: 256,
-        height: 256,
-      )
-      .toString();
+  final avatar = event.room.avatar;
   final senderAvatar = event.room.isDirectChat
       ? avatar
-      : event.senderFromMemoryOrFallback.avatarUrl
-          ?.getThumbnail(
-            client,
-            width: 256,
-            height: 256,
-          )
-          .toString();
+      : event.senderFromMemoryOrFallback.avatarUrl;
 
-  File? roomAvatarFile, senderAvatarFile;
+  Uint8List? roomAvatarFile, senderAvatarFile;
   try {
     roomAvatarFile = avatar == null
         ? null
-        : await DefaultCacheManager().getSingleFile(avatar);
+        : await client
+            .downloadMxcCached(
+              avatar,
+              thumbnailMethod: ThumbnailMethod.scale,
+              width: 256,
+              height: 256,
+              animated: false,
+              isThumbnail: true,
+            )
+            .timeout(const Duration(seconds: 3));
   } catch (e, s) {
     Logs().e('Unable to get avatar picture', e, s);
     // #Pangea
@@ -212,7 +208,16 @@ Future<void> _tryPushHelper(
         ? roomAvatarFile
         : senderAvatar == null
             ? null
-            : await DefaultCacheManager().getSingleFile(senderAvatar);
+            : await client
+                .downloadMxcCached(
+                  senderAvatar,
+                  thumbnailMethod: ThumbnailMethod.scale,
+                  width: 256,
+                  height: 256,
+                  animated: false,
+                  isThumbnail: true,
+                )
+                .timeout(const Duration(seconds: 3));
   } catch (e, s) {
     Logs().e('Unable to get avatar picture', e, s);
   }
@@ -230,7 +235,7 @@ Future<void> _tryPushHelper(
       name: event.senderFromMemoryOrFallback.calcDisplayname(),
       icon: senderAvatarFile == null
           ? null
-          : BitmapFilePathAndroidIcon(senderAvatarFile.path),
+          : ByteArrayAndroidIcon(senderAvatarFile),
     ),
   );
 
@@ -277,7 +282,7 @@ Future<void> _tryPushHelper(
             name: event.senderFromMemoryOrFallback.calcDisplayname(),
             icon: roomAvatarFile == null
                 ? null
-                : BitmapFilePathAndroidIcon(roomAvatarFile.path),
+                : ByteArrayAndroidIcon(roomAvatarFile),
             key: event.roomId,
             important: event.room.isFavourite,
           ),
@@ -326,7 +331,7 @@ Future<void> _setShortcut(
   Event event,
   L10n l10n,
   String title,
-  File? avatarFile,
+  Uint8List? avatarFile,
 ) async {
   final flutterShortcuts = FlutterShortcuts();
   await flutterShortcuts.initialize(debug: !kReleaseMode);
@@ -338,8 +343,7 @@ Future<void> _setShortcut(
       conversationShortcut: true,
       icon: avatarFile == null
           ? null
-          : ShortcutMemoryIcon(jpegImage: await avatarFile.readAsBytes())
-              .toString(),
+          : ShortcutMemoryIcon(jpegImage: avatarFile).toString(),
       shortcutIconAsset: avatarFile == null
           ? ShortcutIconAsset.androidAsset
           : ShortcutIconAsset.memoryAsset,

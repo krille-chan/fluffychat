@@ -2,6 +2,9 @@
 
 FluffyChat v1.22.0 brings a new design for spaces, replaces the bottom navigation bar with filter chips and makes it finally possible to play ogg audio messages on iOS. A lot of other fixes and improvements have also been added to this release.
 
+FluffyChat also now uses the new authenticated media endpoints if the server supports Matrix v1.11 or
+mentions the msc with the key `org.matrix.msc3916.stable` in the `unstable_features`.
+
 - build: (deps): bump docker/build-push-action from 5 to 6 (dependabot[bot])
 - build(deps): bump rexml from 3.2.8 to 3.3.3 in /ios (dependabot[bot])
 - build: Remove permissions for screensharing until it is fixed (Krille)
@@ -24,6 +27,7 @@ FluffyChat v1.22.0 brings a new design for spaces, replaces the bottom navigatio
 - chore: Sligthly improve chat permissions page design (krille-chan)
 - design: Add snackbar with link to changelog on new version (Krille)
 - docs: Update privacy policy (krille-chan)
+- feat: Support for matrix auth media endpoints
 - feat: Convert opus to aac on iOS before playing (Krille)
 - feat: New spaces and chat list design (krille-chan)
 - feat: Record voice message with opus/ogg if supported (Krille)
