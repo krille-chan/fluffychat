@@ -82,56 +82,6 @@ class ChatEmojiPicker extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        EmojiPicker(
-                          onEmojiSelected: controller.onEmojiSelected,
-                          onBackspacePressed: controller.emojiPickerBackspace,
-                          config: Config(
-                            emojiViewConfig: EmojiViewConfig(
-                              noRecents: const NoRecent(),
-                              backgroundColor: Theme.of(context)
-                                  .colorScheme
-                                  .onInverseSurface,
-                            ),
-                            bottomActionBarConfig: const BottomActionBarConfig(
-                              enabled: false,
-                            ),
-                            categoryViewConfig: CategoryViewConfig(
-                              backspaceColor: theme.colorScheme.primary,
-                              iconColor:
-                                  theme.colorScheme.primary.withOpacity(0.5),
-                              iconColorSelected: theme.colorScheme.primary,
-                              indicatorColor: theme.colorScheme.primary,
-                            ),
-                            skinToneConfig: SkinToneConfig(
-                              dialogBackgroundColor: Color.lerp(
-                                theme.colorScheme.surface,
-                                theme.colorScheme.primaryContainer,
-                                0.75,
-                              )!,
-                              indicatorColor: theme.colorScheme.onSurface,
-                            ),
-                          ),
-                        ),
-                        StickerPickerDialog(
-                          room: controller.room,
-                          onSelected: (sticker) {
-                            controller.room.sendEvent(
-                              {
-                                'body': sticker.body,
-                                'info': sticker.info ?? {},
-                                'url': sticker.url.toString(),
-                              },
-                              type: EventTypes.Sticker,
-                            );
-                            controller.hideEmojiPicker();
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
                   // #Pangea
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),

@@ -849,12 +849,9 @@ class ChatController extends State<ChatPageWithRoom>
     });
   }
 
-  // #Pangea
-  // void hideEmojiPicker() {
-  void hideEmojiPicker({bool closeOverlay = false}) {
-    if (closeOverlay) {
-      MatrixState.pAnyState.closeOverlay();
-    }
+  void hideEmojiPicker() {
+    // #Pangea
+    clearSelectedEvents();
     // Pangea#
     setState(() => showEmojiPicker = false);
   }
@@ -1221,7 +1218,7 @@ class ChatController extends State<ChatPageWithRoom>
     setState(() => showEmojiPicker = false);
     if (emoji == null) return;
     // make sure we don't send the same emoji twice
-    if (allReactionEvents.any(
+    if (_allReactionEvents.any(
       (e) => e.content.tryGetMap('m.relates_to')?['key'] == emoji.emoji,
     )) {
       return;
@@ -1245,7 +1242,7 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
-  late Iterable<Event> allReactionEvents;
+  late Iterable<Event> _allReactionEvents;
 
   void emojiPickerBackspace() {
     switch (emojiPickerType) {
@@ -1266,7 +1263,7 @@ class ChatController extends State<ChatPageWithRoom>
     // #Pangea
     closeSelectionOverlay();
     // Pangea#
-    allReactionEvents = allReactionEvents;
+    _allReactionEvents = allReactionEvents;
     emojiPickerType = EmojiPickerType.reaction;
     setState(() => showEmojiPicker = true);
   }
