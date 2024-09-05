@@ -118,6 +118,10 @@ class ChatListController extends State<ChatList>
     setState(() {
       _activeSpaceId = spaceId;
     });
+
+    // #Pangea
+    context.go('/rooms/$spaceId/details');
+    // Pangea#
   }
 
   void clearActiveSpace() => setState(() {
