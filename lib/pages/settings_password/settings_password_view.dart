@@ -17,12 +17,6 @@ class SettingsPasswordView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(L10n.of(context)!.changePassword),
-        actions: [
-          TextButton(
-            child: Text(L10n.of(context)!.passwordRecoverySettings),
-            onPressed: () => context.go('/rooms/settings/security/3pid'),
-          ),
-        ],
       ),
       body: ListTileTheme(
         iconColor: theme.colorScheme.onSurface,
@@ -31,13 +25,6 @@ class SettingsPasswordView extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                Center(
-                  child: Icon(
-                    Icons.key_outlined,
-                    color: theme.dividerColor,
-                    size: 80,
-                  ),
-                ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: controller.oldPasswordController,
@@ -46,18 +33,22 @@ class SettingsPasswordView extends StatelessWidget {
                   autofocus: true,
                   readOnly: controller.loading,
                   decoration: InputDecoration(
-                    hintText: L10n.of(context)!.pleaseEnterYourCurrentPassword,
+                    prefixIcon: const Icon(Icons.lock_outlined),
+                    hintText: '********',
+                    labelText: L10n.of(context)!.pleaseEnterYourCurrentPassword,
                     errorText: controller.oldPasswordError,
                   ),
                 ),
-                const Divider(height: 32),
+                const Divider(height: 64),
                 TextField(
                   controller: controller.newPassword1Controller,
                   obscureText: true,
                   autocorrect: false,
                   readOnly: controller.loading,
                   decoration: InputDecoration(
-                    hintText: L10n.of(context)!.newPassword,
+                    prefixIcon: const Icon(Icons.lock_reset_outlined),
+                    hintText: '********',
+                    labelText: L10n.of(context)!.newPassword,
                     errorText: controller.newPassword1Error,
                   ),
                 ),
@@ -68,21 +59,27 @@ class SettingsPasswordView extends StatelessWidget {
                   autocorrect: false,
                   readOnly: controller.loading,
                   decoration: InputDecoration(
-                    hintText: L10n.of(context)!.repeatPassword,
+                    prefixIcon: const Icon(Icons.repeat_outlined),
+                    hintText: '********',
+                    labelText: L10n.of(context)!.repeatPassword,
                     errorText: controller.newPassword2Error,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 32),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton.icon(
+                  child: ElevatedButton(
                     onPressed:
                         controller.loading ? null : controller.changePassword,
-                    icon: const Icon(Icons.send_outlined),
-                    label: controller.loading
+                    child: controller.loading
                         ? const LinearProgressIndicator()
                         : Text(L10n.of(context)!.changePassword),
                   ),
+                ),
+                const SizedBox(height: 16),
+                TextButton(
+                  child: Text(L10n.of(context)!.passwordRecoverySettings),
+                  onPressed: () => context.go('/rooms/settings/security/3pid'),
                 ),
               ],
             ),

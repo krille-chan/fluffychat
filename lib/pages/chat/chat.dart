@@ -342,7 +342,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void tryLoadTimeline() async {
     final initialEventId = widget.eventId;
-    loadTimelineFuture = getTimeline();
+    loadTimelineFuture = _getTimeline();
     try {
       await loadTimelineFuture;
       if (initialEventId != null) scrollToEventId(initialEventId);
@@ -394,6 +394,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void updateView() {
     if (!mounted) return;
+    setReadMarker();
     setState(() {});
   }
 
@@ -402,16 +403,8 @@ class ChatController extends State<ChatPageWithRoom>
   int? animateInEventIndex;
 
   void onInsert(int i) {
-    onChange(i);
     // setState will be called by updateView() anyway
     animateInEventIndex = i;
-  }
-
-  void onChange(int i) {
-    if (timeline?.events[i].status == EventStatus.synced) {
-      final index = timeline!.events.firstIndexWhereNotError;
-      if (i == index) setReadMarker(eventId: timeline?.events[i].eventId);
-    }
   }
 
   // #Pangea
@@ -424,7 +417,7 @@ class ChatController extends State<ChatPageWithRoom>
       <Event>[];
   // Pangea#
 
-  Future<void> getTimeline({
+  Future<void> _getTimeline({
     String? eventContextId,
   }) async {
     await Matrix.of(context).client.roomsLoading;
@@ -439,7 +432,6 @@ class ChatController extends State<ChatPageWithRoom>
         onUpdate: updateView,
         eventContextId: eventContextId,
         onInsert: onInsert,
-        onChange: onChange,
       );
       // #Pangea
       if (visibleEvents.length < 10 && timeline != null) {
@@ -461,7 +453,6 @@ class ChatController extends State<ChatPageWithRoom>
       timeline = await room.getTimeline(
         onUpdate: updateView,
         onInsert: onInsert,
-        onChange: onChange,
       );
       if (!mounted) return;
       if (e is TimeoutException || e is IOException) {
@@ -580,7 +571,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
     // then cancel the old timeline
     // fixes bug with read reciepts and quick switching
-    loadTimelineFuture = getTimeline(eventContextId: room.fullyRead).onError(
+    loadTimelineFuture = _getTimeline(eventContextId: room.fullyRead).onError(
       ErrorReporter(
         context,
         'Unable to load timeline after changing sending Client',
@@ -1175,7 +1166,7 @@ class ChatController extends State<ChatPageWithRoom>
       setState(() {
         timeline = null;
         _scrolledUp = false;
-        loadTimelineFuture = getTimeline(eventContextId: eventId).onError(
+        loadTimelineFuture = _getTimeline(eventContextId: eventId).onError(
           ErrorReporter(context, 'Unable to load timeline after scroll to ID')
               .onErrorCallback,
         );
@@ -1204,7 +1195,7 @@ class ChatController extends State<ChatPageWithRoom>
       setState(() {
         timeline = null;
         _scrolledUp = false;
-        loadTimelineFuture = getTimeline().onError(
+        loadTimelineFuture = _getTimeline().onError(
           ErrorReporter(context, 'Unable to load timeline after scroll down')
               .onErrorCallback,
         );
@@ -1717,12 +1708,3 @@ class ChatController extends State<ChatPageWithRoom>
 }
 
 enum EmojiPickerType { reaction, keyboard }
-
-extension on List<Event> {
-  int get firstIndexWhereNotError {
-    if (isEmpty) return 0;
-    final index = indexWhere((event) => !event.status.isError);
-    if (index == -1) return length;
-    return index;
-  }
-}

@@ -61,7 +61,7 @@ class NewSpaceView extends StatelessWidget {
                 readOnly: controller.loading,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.people_outlined),
-                  hintText: L10n.of(context)!.spaceName,
+                  labelText: L10n.of(context)!.spaceName,
                   // #Pangea
                   // errorText: controller.nameError,
                   // Pangea#
