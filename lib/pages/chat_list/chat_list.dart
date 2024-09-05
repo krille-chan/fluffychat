@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/send_file_dialog.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
@@ -120,7 +121,9 @@ class ChatListController extends State<ChatList>
     });
 
     // #Pangea
-    context.go('/rooms/$spaceId/details');
+    if (FluffyThemes.isColumnMode(context)) {
+      context.go('/rooms/$spaceId/details');
+    }
     // Pangea#
   }
 
