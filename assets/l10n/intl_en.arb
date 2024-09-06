@@ -4134,5 +4134,6 @@
   "canceledSend": "Canceled send",
   "morphsUsed": "Morphs Used",
   "translationChoicesBody": "Click and hold an option for a hint.",
-  "sendCanceled": "Sending canceled"
+  "sendCanceled": "Sending canceled",
+  "grammar": "Grammar"
 }

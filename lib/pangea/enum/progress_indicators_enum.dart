@@ -5,7 +5,6 @@ import 'package:material_symbols_icons/symbols.dart';
 enum ProgressIndicatorEnum {
   level,
   wordsUsed,
-  errorTypes,
   morphsUsed,
 }
 
@@ -14,8 +13,6 @@ extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
     switch (this) {
       case ProgressIndicatorEnum.wordsUsed:
         return Icons.text_fields_outlined;
-      case ProgressIndicatorEnum.errorTypes:
-        return Icons.error_outline;
       case ProgressIndicatorEnum.morphsUsed:
         return Symbols.toys_and_games;
       case ProgressIndicatorEnum.level:
@@ -32,10 +29,10 @@ extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
         return Theme.of(context).brightness == Brightness.dark
             ? const Color.fromARGB(255, 169, 183, 237)
             : const Color.fromARGB(255, 38, 59, 141);
-      case ProgressIndicatorEnum.errorTypes:
-        return Theme.of(context).brightness == Brightness.dark
-            ? const Color.fromARGB(255, 212, 144, 216)
-            : const Color.fromARGB(255, 163, 39, 169);
+      // case ProgressIndicatorEnum.errorTypes:
+      //   return Theme.of(context).brightness == Brightness.dark
+      //       ? const Color.fromARGB(255, 212, 144, 216)
+      //       : const Color.fromARGB(255, 163, 39, 169);
       case ProgressIndicatorEnum.level:
         return Theme.of(context).brightness == Brightness.dark
             ? const Color.fromARGB(255, 250, 220, 129)
@@ -50,13 +47,11 @@ extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
   String tooltip(BuildContext context) {
     switch (this) {
       case ProgressIndicatorEnum.wordsUsed:
-        return L10n.of(context)!.wordsUsed;
-      case ProgressIndicatorEnum.errorTypes:
-        return L10n.of(context)!.errorTypes;
+        return L10n.of(context)!.vocab;
       case ProgressIndicatorEnum.level:
         return L10n.of(context)!.level;
       case ProgressIndicatorEnum.morphsUsed:
-        return L10n.of(context)!.morphsUsed;
+        return L10n.of(context)!.grammar;
     }
   }
 }
