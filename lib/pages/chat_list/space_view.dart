@@ -11,7 +11,6 @@ import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/learning_progress_indicators.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/chat_list_header_wrapper.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/chat_list_item_wrapper.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -734,11 +733,6 @@ class _SpaceViewState extends State<SpaceView> {
             // #Pangea
             // ChatListHeader(controller: widget.controller),
             ChatListHeaderWrapper(controller: widget.controller),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [const LearningProgressIndicators()],
-              ),
-            ),
             // Pangea#
             SliverList(
               delegate: SliverChildBuilderDelegate(
@@ -824,11 +818,6 @@ class _SpaceViewState extends State<SpaceView> {
             ChatListHeaderWrapper(
               controller: widget.controller,
               globalSearch: false,
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [const LearningProgressIndicators()],
-              ),
             ),
             // Pangea#
             SliverAppBar(
