@@ -26,8 +26,10 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       pinned:
           FluffyThemes.isColumnMode(context) || selectMode != SelectMode.normal,
       scrolledUnderElevation: selectMode == SelectMode.normal ? 0 : null,
-      backgroundColor:
-          selectMode == SelectMode.normal ? Colors.transparent : null,
+      // #Pangea
+      // backgroundColor:
+      //     selectMode == SelectMode.normal ? Colors.transparent : null,
+      // Pangea#
       automaticallyImplyLeading: false,
       leading: selectMode == SelectMode.normal
           ? null
@@ -37,18 +39,24 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
               onPressed: controller.cancelAction,
               color: Theme.of(context).colorScheme.primary,
             ),
-      title: selectMode == SelectMode.share
-          ? Text(
-              L10n.of(context)!.share,
-              key: const ValueKey(SelectMode.share),
-            )
-          : selectMode == SelectMode.select
-              ? Text(
-                  controller.selectedRoomIds.length.toString(),
-                  key: const ValueKey(SelectMode.select),
-                )
-              // #Pangea
-              : ClientChooserButton(controller),
+      title:
+          // #Pangea
+          Material(
+        child:
+            // Pangea#
+            selectMode == SelectMode.share
+                ? Text(
+                    L10n.of(context)!.share,
+                    key: const ValueKey(SelectMode.share),
+                  )
+                : selectMode == SelectMode.select
+                    ? Text(
+                        controller.selectedRoomIds.length.toString(),
+                        key: const ValueKey(SelectMode.select),
+                      )
+                    // #Pangea
+                    : ClientChooserButton(controller),
+      ),
       // : TextField(
       //     controller: controller.searchController,
       //     focusNode: controller.searchFocusNode,
