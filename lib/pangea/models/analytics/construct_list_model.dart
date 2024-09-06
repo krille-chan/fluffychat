@@ -117,6 +117,14 @@ class ConstructUses {
     required this.constructType,
     required this.lemma,
   });
+
+  // Total points for all uses of this lemma
+  int get points {
+    return uses.fold<int>(
+      0,
+      (total, use) => total + use.useType.pointValue,
+    );
+  }
 }
 
 /// One lemma, a use type, and a list of uses
