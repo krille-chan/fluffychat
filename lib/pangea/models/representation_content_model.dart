@@ -163,12 +163,15 @@ class PangeaRepresentation {
           ),
         );
       }
-      uses.add(
-        lemma.toVocabUse(
-          inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk,
-          metadata,
-        ),
-      );
+
+      if (lemma.saveVocab) {
+        uses.add(
+          lemma.toVocabUse(
+            inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk,
+            metadata,
+          ),
+        );
+      }
       return uses;
     }
 
@@ -216,12 +219,14 @@ class PangeaRepresentation {
         ),
       );
     }
-    uses.add(
-      lemma.toVocabUse(
-        ConstructUseTypeEnum.wa,
-        metadata,
-      ),
-    );
+    if (lemma.saveVocab) {
+      uses.add(
+        lemma.toVocabUse(
+          ConstructUseTypeEnum.wa,
+          metadata,
+        ),
+      );
+    }
     return uses;
   }
 }

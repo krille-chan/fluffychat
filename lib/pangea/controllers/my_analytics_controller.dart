@@ -190,6 +190,7 @@ class MyAnalyticsController extends BaseController {
     );
 
     final uses = tokens
+        .where((token) => token.lemma.saveVocab)
         .map(
           (token) => OneConstructUse(
             useType: useType,
