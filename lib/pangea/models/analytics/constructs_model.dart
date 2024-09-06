@@ -74,8 +74,9 @@ class ConstructAnalyticsModel {
 
 class OneConstructUse {
   String? lemma;
-  ConstructTypeEnum? constructType;
   String? form;
+  List<String> categories;
+  ConstructTypeEnum? constructType;
   ConstructUseTypeEnum useType;
   String? id;
   ConstructUseMetaData metadata;
@@ -85,6 +86,7 @@ class OneConstructUse {
     required this.lemma,
     required this.constructType,
     required this.metadata,
+    this.categories = const [],
     this.form,
     this.id,
   });
@@ -100,6 +102,9 @@ class OneConstructUse {
           ConstructUseTypeEnum.unk,
       lemma: json['lemma'],
       form: json['form'],
+      categories: json['categories'] != null
+          ? List<String>.from(json['categories'])
+          : [],
       constructType: json['constructType'] != null
           ? ConstructTypeUtil.fromString(json['constructType'])
           : null,
@@ -113,7 +118,7 @@ class OneConstructUse {
   }
 
   Map<String, dynamic> toJson([bool condensed = false]) {
-    final Map<String, String?> data = {
+    final Map<String, dynamic> data = {
       'useType': useType.string,
       'chatId': metadata.roomId,
       'timeStamp': metadata.timeStamp.toIso8601String(),
@@ -125,7 +130,7 @@ class OneConstructUse {
       data['constructType'] = constructType!.string;
     }
     if (id != null) data['id'] = id;
-
+    data['categories'] = categories;
     return data;
   }
 

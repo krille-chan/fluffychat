@@ -201,22 +201,19 @@ class MyAnalyticsController extends BaseController {
         )
         .toList();
 
-    final List<String> morphs = tokens
-        .map((t) => t.morph.values)
-        .expand((m) => m)
-        .cast<String>()
-        .toList();
-
-    uses.addAll(
-      morphs.map(
-        (morph) => OneConstructUse(
-          useType: useType,
-          lemma: morph,
-          constructType: ConstructTypeEnum.morph,
-          metadata: metadata,
-        ),
-      ),
-    );
+    for (final token in tokens) {
+      for (final entry in token.morph.entries) {
+        uses.add(
+          OneConstructUse(
+            useType: useType,
+            lemma: entry.value,
+            categories: [entry.key],
+            constructType: ConstructTypeEnum.morph,
+            metadata: metadata,
+          ),
+        );
+      }
+    }
 
     final level = _pangeaController.analytics.level;
     addLocalMessage('draft$roomID', uses).then(
