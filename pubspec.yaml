@@ -14,7 +14,7 @@ environment:
 dependencies:
   adaptive_dialog: ^2.1.0
   animations: ^2.0.11
-  archive: ^3.4.10
+  archive: ^3.6.1
   async: ^2.11.0
   badges: ^3.1.2
   blurhash_dart: ^1.2.1
