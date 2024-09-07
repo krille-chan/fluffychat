@@ -165,22 +165,26 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   }
 
   List<IdentityProvider>? get identityProviders {
+
     final loginTypes = _rawLoginTypes;
     if (loginTypes == null) return null;
-    final List? rawProviders =
-        loginTypes.tryGetList('flows')?.singleWhereOrNull(
+    final List? rawProviders = loginTypes.tryGetList('flows')?.singleWhereOrNull(
                   (flow) => flow['type'] == AuthenticationTypes.sso,
                 )['identity_providers'] ??
             [
               {'id': null},
             ];
     if (rawProviders == null) return null;
-    final list =
-        rawProviders.map((json) => IdentityProvider.fromJson(json)).toList();
+
+    final providers = rawProviders.map((json) => IdentityProvider.fromJson(json)).toList();
+    List<String> brandsToRemove = ['github', 'gitlab'];
+
+    providers.removeWhere((provider) => brandsToRemove.contains(provider.brand));
+
     if (PlatformInfos.isCupertinoStyle) {
-      list.sort((a, b) => a.brand == 'apple' ? -1 : 1);
+      providers.sort((a, b) => a.brand == 'apple' ? -1 : 1);
     }
-    return list;
+    return providers;
   }
 
   List<PublicHomeserver>? cachedHomeservers;

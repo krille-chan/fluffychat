@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
-  static String _applicationName = 'FluffyChat';
+  static String _applicationName = 'SaLas';
   static String get applicationName => _applicationName;
   static String? _applicationWelcomeMessage;
   static String? get applicationWelcomeMessage => _applicationWelcomeMessage;

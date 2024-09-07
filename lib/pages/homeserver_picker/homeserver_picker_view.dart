@@ -103,10 +103,10 @@ class HomeserverPickerView extends StatelessWidget {
                             top: 0.0,
                             right: 8.0,
                             left: 8.0,
-                            bottom: 16.0,
+                            bottom: 0.0,
                           ),
                           child: Image.asset(
-                            'assets/banner_transparent.png',
+                            'assets/salas_transparent.png',
                           ),
                         ),
                       if (identityProviders != null) ...[
