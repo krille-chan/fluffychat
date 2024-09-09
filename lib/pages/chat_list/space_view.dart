@@ -1,3 +1,5 @@
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/pages/chat_list/chat_list_item_space.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -7,6 +9,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
+import 'package:pair/pair.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
@@ -150,6 +153,18 @@ class _SpaceViewState extends State<SpaceView> {
     }
   }
 
+  void _onSpaceViewOptions(String roomId, SpaceViewOptions option) async {
+    AppConfig.spaceViewOptions.update(roomId, (value) => option.index, ifAbsent: () => option.index);
+    await Matrix.of(context).store.setStringList(
+      SettingKeys.spaceViewOptions,
+      AppConfig.spaceViewOptions.entries
+        .map((entry) => [entry.key, entry.value.toString()])
+        .expand((pair) => pair)
+        .toList(),
+    );
+    setState(() {});
+  }
+
   void _addChatOrSubspace() async {
     final roomType = await showConfirmationDialog(
       context: context,
@@ -239,6 +254,230 @@ class _SpaceViewState extends State<SpaceView> {
     if (result.error != null) return;
   }
 
+  void _toggleCollapse(String roomId) async {
+    AppConfig.collapsedSpace.contains(roomId) ? AppConfig.collapsedSpace.remove(roomId) : AppConfig.collapsedSpace.add(roomId);
+    await Matrix.of(context).store.setStringList(
+      SettingKeys.collapsedSpace,
+      AppConfig.collapsedSpace.toList(),
+    );
+    setState(() { });
+  }
+
+  SliverList _buildChildrenList(Room room, String filter) {
+    final childrenRooms = room.spaceChildren
+        .map((c) => Pair(c, room.client.rooms.firstWhereOrNull((r) => r.id == c.roomId)))
+        .where((p) => p.value != null)
+        .toList();
+
+    List<Room> mixedRooms;
+    if (AppConfig.spaceViewOptions.tryGet(room.id) == SpaceViewOptions.roomTop.index || AppConfig.spaceViewOptions.tryGet(room.id) == SpaceViewOptions.categorized.index) {
+      final actualRooms = childrenRooms.where((pair) => !pair.value!.isSpace).toList();
+      final subspaces = childrenRooms.where((pair) => pair.value!.isSpace).toList();
+
+      final sortedRooms = actualRooms
+          .where((pair) => pair.key.order.isNotEmpty)
+          .sorted((a, b) => a.key.order.compareTo(b.key.order))
+          .map((pair) => pair.value)
+          .toList();
+      final unsortedRooms = actualRooms
+          .where((pair) => pair.key.order.isEmpty)
+          .map((pair) => pair.value)
+          .toList();
+
+      final sortedSpaces = subspaces
+          .where((pair) => pair.key.order.isNotEmpty)
+          .sorted((a, b) => a.key.order.compareTo(b.key.order))
+          .map((pair) => pair.value)
+          .toList();
+      final unsortedSpaces = subspaces
+          .where((pair) => pair.key.order.isEmpty)
+          .map((pair) => pair.value)
+          .toList();
+
+      mixedRooms = (sortedRooms + unsortedRooms + sortedSpaces + unsortedSpaces).nonNulls.toList();
+
+      if (AppConfig.spaceViewOptions.tryGet(room.id) == SpaceViewOptions.categorized.index) {
+        var catMixedRooms = sortedRooms.nonNulls.map((room) => Pair("", room)).toList() + unsortedRooms.nonNulls.map((room) => Pair("", room)).toList();
+        for (final pair in subspaces) {
+          catMixedRooms += [Pair("", pair.value!)];
+          if (AppConfig.collapsedSpace.contains(pair.key.roomId)) continue;
+          final childrenRooms = pair.value!.spaceChildren
+            .map((c) => Pair(c, room.client.rooms.firstWhereOrNull((r) => r.id == c.roomId)))
+            .where((p) => p.value != null)
+            .toList();
+
+          final actualRooms = childrenRooms.where((pair) => !pair.value!.isSpace).toList();
+          final subspaces = childrenRooms.where((pair) => pair.value!.isSpace).toList();
+
+          final sortedRooms = actualRooms
+              .where((pair) => pair.key.order.isNotEmpty)
+              .sorted((a, b) => a.key.order.compareTo(b.key.order))
+              .map((pair) => Pair(pair.key.roomId!, pair.value!))
+              .toList();
+          final unsortedRooms = actualRooms
+              .where((pair) => pair.key.order.isEmpty)
+              .map((pair) => Pair(pair.key.roomId!, pair.value!))
+              .toList();
+
+          final sortedSpaces = subspaces
+              .where((pair) => pair.key.order.isNotEmpty)
+              .sorted((a, b) => a.key.order.compareTo(b.key.order))
+              .map((pair) => Pair(pair.key.roomId!, pair.value!))
+              .toList();
+          final unsortedSpaces = subspaces
+              .where((pair) => pair.key.order.isEmpty)
+              .map((pair) => Pair(pair.key.roomId!, pair.value!))
+              .toList();
+
+          catMixedRooms += sortedRooms + unsortedRooms + sortedSpaces + unsortedSpaces;
+        }
+
+        return SliverList.builder(
+          itemCount: catMixedRooms.length + 1,
+          itemBuilder: (context, i) {
+            if (i == 0) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (room.canChangeStateEvent(
+                        EventTypes.SpaceChild,
+                      ) &&
+                      filter.isEmpty) ...[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 1,
+                      ),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(
+                          AppConfig.borderRadius,
+                        ),
+                        clipBehavior: Clip.hardEdge,
+                        child: ListTile(
+                          onTap: _addChatOrSubspace,
+                          leading: const CircleAvatar(
+                            radius: Avatar.defaultSize / 2,
+                            child: Icon(Icons.add_outlined),
+                          ),
+                          title: Text(
+                            L10n.of(context)!.addChatOrSubSpace,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                  SearchTitle(
+                    title: L10n.of(context)!.joinedChats,
+                    icon: const Icon(Icons.chat_outlined),
+                  ),
+                ],
+              );
+            }
+            i--;
+            final pair = catMixedRooms[i];
+            final parentId = pair.key;
+            final catMixedRoom = pair.value;
+            if (parentId.isEmpty && catMixedRoom.isSpace) {
+              /*return SearchTitle(
+                title: mixedRoom.name,
+                icon: const Icon(Icons.chat_outlined),
+              );*/
+              return ChatListSpaceItem(
+                catMixedRoom,
+                filter: filter,
+                onTap: () => _toggleCollapse(catMixedRoom.id),
+                onLongPress: (context) => widget.onChatContext(
+                  catMixedRoom,
+                  context,
+                ),
+                activeChat: widget.activeChat == catMixedRoom.id,
+              );
+            }
+            return ChatListItem(
+              catMixedRoom,
+              filter: filter,
+              onTap: () => widget.onChatTab(catMixedRoom),
+              onLongPress: (context) => widget.onChatContext(
+                catMixedRoom,
+                context,
+              ),
+              activeChat: widget.activeChat == catMixedRoom.id,
+            );
+          },
+        );
+      }
+    } else {
+      final sortedRooms = childrenRooms
+          .where((pair) => pair.key.order.isNotEmpty)
+          .sorted((a, b) => a.key.order.compareTo(b.key.order))
+          .map((pair) => pair.value)
+          .toList();
+      final unsortedRooms = childrenRooms
+          .where((pair) => pair.key.order.isEmpty)
+          .map((pair) => pair.value)
+          .toList();
+      mixedRooms = (sortedRooms + unsortedRooms).nonNulls.toList();
+    }
+
+    return SliverList.builder(
+      itemCount: mixedRooms.length + 1,
+      itemBuilder: (context, i) {
+        if (i == 0) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (room.canChangeStateEvent(
+                    EventTypes.SpaceChild,
+                  ) &&
+                  filter.isEmpty) ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 1,
+                  ),
+                  child: Material(
+                    borderRadius: BorderRadius.circular(
+                      AppConfig.borderRadius,
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                    child: ListTile(
+                      onTap: _addChatOrSubspace,
+                      leading: const CircleAvatar(
+                        radius: Avatar.defaultSize / 2,
+                        child: Icon(Icons.add_outlined),
+                      ),
+                      title: Text(
+                        L10n.of(context)!.addChatOrSubSpace,
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+              SearchTitle(
+                title: L10n.of(context)!.joinedChats,
+                icon: const Icon(Icons.chat_outlined),
+              ),
+            ],
+          );
+        }
+        i--;
+        final mixedRoom = mixedRooms[i];
+        return ChatListItem(
+          mixedRoom,
+          filter: filter,
+          onTap: () => widget.onChatTab(mixedRoom),
+          onLongPress: (context) => widget.onChatContext(
+            mixedRoom,
+            context,
+          ),
+          activeChat: widget.activeChat == mixedRoom.id,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -278,6 +517,45 @@ class _SpaceViewState extends State<SpaceView> {
                 ),
         ),
         actions: [
+          PopupMenuButton<SpaceViewOptions>(
+            onSelected: (option) => _onSpaceViewOptions(room!.id, option),
+            icon: Icon((SpaceViewOptions.values.firstWhereOrNull((value) => value.index == AppConfig.spaceViewOptions[room!.id]) ?? SpaceViewOptions.normal).icon),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: SpaceViewOptions.normal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(SpaceViewOptions.normal.icon),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.spaceViewNormal),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: SpaceViewOptions.roomTop,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(SpaceViewOptions.roomTop.icon),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.spaceViewRoomTop),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: SpaceViewOptions.categorized,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(SpaceViewOptions.categorized.icon),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.spaceViewCategorized),
+                  ],
+                ),
+              ),
+            ],
+          ),
           PopupMenuButton<SpaceActions>(
             onSelected: _onSpaceAction,
             itemBuilder: (context) => [
@@ -316,7 +594,7 @@ class _SpaceViewState extends State<SpaceView> {
               ),
             ],
           ),
-        ],
+          ],
       ),
       body: room == null
           ? const Center(
@@ -330,15 +608,6 @@ class _SpaceViewState extends State<SpaceView> {
                   .where((s) => s.hasRoomUpdate)
                   .rateLimit(const Duration(seconds: 1)),
               builder: (context, snapshot) {
-                final childrenIds = room.spaceChildren
-                    .map((c) => c.roomId)
-                    .whereType<String>()
-                    .toSet();
-
-                final joinedRooms = room.client.rooms
-                    .where((room) => childrenIds.remove(room.id))
-                    .toList();
-
                 final joinedParents = room.spaceParents
                     .map((parent) {
                       final roomId = parent.roomId;
@@ -425,62 +694,7 @@ class _SpaceViewState extends State<SpaceView> {
                         );
                       },
                     ),
-                    SliverList.builder(
-                      itemCount: joinedRooms.length + 1,
-                      itemBuilder: (context, i) {
-                        if (i == 0) {
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              if (room.canChangeStateEvent(
-                                    EventTypes.SpaceChild,
-                                  ) &&
-                                  filter.isEmpty) ...[
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 1,
-                                  ),
-                                  child: Material(
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
-                                    clipBehavior: Clip.hardEdge,
-                                    child: ListTile(
-                                      onTap: _addChatOrSubspace,
-                                      leading: const CircleAvatar(
-                                        radius: Avatar.defaultSize / 2,
-                                        child: Icon(Icons.add_outlined),
-                                      ),
-                                      title: Text(
-                                        L10n.of(context)!.addChatOrSubSpace,
-                                        style: const TextStyle(fontSize: 14),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              SearchTitle(
-                                title: L10n.of(context)!.joinedChats,
-                                icon: const Icon(Icons.chat_outlined),
-                              ),
-                            ],
-                          );
-                        }
-                        i--;
-                        final joinedRoom = joinedRooms[i];
-                        return ChatListItem(
-                          joinedRoom,
-                          filter: filter,
-                          onTap: () => widget.onChatTab(joinedRoom),
-                          onLongPress: (context) => widget.onChatContext(
-                            joinedRoom,
-                            context,
-                          ),
-                          activeChat: widget.activeChat == joinedRoom.id,
-                        );
-                      },
-                    ),
+                    _buildChildrenList(room, filter),
                     SliverList.builder(
                       itemCount: _discoveredChildren.length + 2,
                       itemBuilder: (context, i) {
@@ -587,4 +801,16 @@ enum SpaceActions {
   settings,
   invite,
   leave,
+}
+
+enum SpaceViewOptions {
+  normal(icon: Icons.sort),
+  roomTop(icon: Icons.vertical_align_top),
+  categorized(icon: Icons.category);
+
+  const SpaceViewOptions({
+    required this.icon,
+  });
+
+  final IconData icon;
 }

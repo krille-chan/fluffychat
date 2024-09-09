@@ -34,4 +34,6 @@ abstract class SettingKeys {
       'chat.fluffy.display_chat_details_column';
   static const String noEncryptionWarningShown =
       'chat.fluffy.no_encryption_warning_shown';
+  static const String spaceViewOptions = 'chat.fluffy.space_view_options';
+  static const String collapsedSpace = 'chat.fluffy.collapsed_space';
 }

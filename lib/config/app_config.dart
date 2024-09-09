@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:ui';
 
 import 'package:matrix/matrix.dart';
@@ -54,6 +55,8 @@ abstract class AppConfig {
   static bool? sendOnEnter;
   static bool showPresences = true;
   static bool experimentalVoip = false;
+  static Map<String, int> spaceViewOptions = {};
+  static Set<String> collapsedSpace = HashSet();
   static const bool hideTypingUsernames = false;
   static const bool hideAllStateEvents = false;
   static const String inviteLinkPrefix = 'https://matrix.to/#/';
