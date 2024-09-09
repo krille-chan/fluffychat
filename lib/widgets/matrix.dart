@@ -461,12 +461,15 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     if (spaceViewOptions != null) {
       AppConfig.spaceViewOptions = {};
       for (var ii = 0; ii < spaceViewOptions.length; ii += 2) {
-        AppConfig.spaceViewOptions.update(spaceViewOptions[ii], (x) => int.parse(spaceViewOptions[ii+1]), ifAbsent: () => int.parse(spaceViewOptions[ii+1]));
+        AppConfig.spaceViewOptions.update(
+            spaceViewOptions[ii], (x) => int.parse(spaceViewOptions[ii + 1]),
+            ifAbsent: () => int.parse(spaceViewOptions[ii + 1]));
       }
     }
- 
+
     AppConfig.collapsedSpace =
-        store.getStringList(SettingKeys.collapsedSpace)?.toSet() ?? AppConfig.collapsedSpace;
+        store.getStringList(SettingKeys.collapsedSpace)?.toSet() ??
+            AppConfig.collapsedSpace;
   }
 
   @override

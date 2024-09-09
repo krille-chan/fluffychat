@@ -154,14 +154,15 @@ class _SpaceViewState extends State<SpaceView> {
   }
 
   void _onSpaceViewOptions(String roomId, SpaceViewOptions option) async {
-    AppConfig.spaceViewOptions.update(roomId, (value) => option.index, ifAbsent: () => option.index);
+    AppConfig.spaceViewOptions
+        .update(roomId, (value) => option.index, ifAbsent: () => option.index);
     await Matrix.of(context).store.setStringList(
-      SettingKeys.spaceViewOptions,
-      AppConfig.spaceViewOptions.entries
-        .map((entry) => [entry.key, entry.value.toString()])
-        .expand((pair) => pair)
-        .toList(),
-    );
+          SettingKeys.spaceViewOptions,
+          AppConfig.spaceViewOptions.entries
+              .map((entry) => [entry.key, entry.value.toString()])
+              .expand((pair) => pair)
+              .toList(),
+        );
     setState(() {});
   }
 
@@ -255,24 +256,32 @@ class _SpaceViewState extends State<SpaceView> {
   }
 
   void _toggleCollapse(String roomId) async {
-    AppConfig.collapsedSpace.contains(roomId) ? AppConfig.collapsedSpace.remove(roomId) : AppConfig.collapsedSpace.add(roomId);
+    AppConfig.collapsedSpace.contains(roomId)
+        ? AppConfig.collapsedSpace.remove(roomId)
+        : AppConfig.collapsedSpace.add(roomId);
     await Matrix.of(context).store.setStringList(
-      SettingKeys.collapsedSpace,
-      AppConfig.collapsedSpace.toList(),
-    );
-    setState(() { });
+          SettingKeys.collapsedSpace,
+          AppConfig.collapsedSpace.toList(),
+        );
+    setState(() {});
   }
 
   SliverList _buildChildrenList(Room room, String filter) {
     final childrenRooms = room.spaceChildren
-        .map((c) => Pair(c, room.client.rooms.firstWhereOrNull((r) => r.id == c.roomId)))
+        .map((c) => Pair(
+            c, room.client.rooms.firstWhereOrNull((r) => r.id == c.roomId)))
         .where((p) => p.value != null)
         .toList();
 
     List<Room> mixedRooms;
-    if (AppConfig.spaceViewOptions.tryGet(room.id) == SpaceViewOptions.roomTop.index || AppConfig.spaceViewOptions.tryGet(room.id) == SpaceViewOptions.categorized.index) {
-      final actualRooms = childrenRooms.where((pair) => !pair.value!.isSpace).toList();
-      final subspaces = childrenRooms.where((pair) => pair.value!.isSpace).toList();
+    if (AppConfig.spaceViewOptions.tryGet(room.id) ==
+            SpaceViewOptions.roomTop.index ||
+        AppConfig.spaceViewOptions.tryGet(room.id) ==
+            SpaceViewOptions.categorized.index) {
+      final actualRooms =
+          childrenRooms.where((pair) => !pair.value!.isSpace).toList();
+      final subspaces =
+          childrenRooms.where((pair) => pair.value!.isSpace).toList();
 
       final sortedRooms = actualRooms
           .where((pair) => pair.key.order.isNotEmpty)
@@ -294,20 +303,28 @@ class _SpaceViewState extends State<SpaceView> {
           .map((pair) => pair.value)
           .toList();
 
-      mixedRooms = (sortedRooms + unsortedRooms + sortedSpaces + unsortedSpaces).nonNulls.toList();
+      mixedRooms = (sortedRooms + unsortedRooms + sortedSpaces + unsortedSpaces)
+          .nonNulls
+          .toList();
 
-      if (AppConfig.spaceViewOptions.tryGet(room.id) == SpaceViewOptions.categorized.index) {
-        var catMixedRooms = sortedRooms.nonNulls.map((room) => Pair("", room)).toList() + unsortedRooms.nonNulls.map((room) => Pair("", room)).toList();
+      if (AppConfig.spaceViewOptions.tryGet(room.id) ==
+          SpaceViewOptions.categorized.index) {
+        var catMixedRooms =
+            sortedRooms.nonNulls.map((room) => Pair("", room)).toList() +
+                unsortedRooms.nonNulls.map((room) => Pair("", room)).toList();
         for (final pair in subspaces) {
           catMixedRooms += [Pair("", pair.value!)];
           if (AppConfig.collapsedSpace.contains(pair.key.roomId)) continue;
           final childrenRooms = pair.value!.spaceChildren
-            .map((c) => Pair(c, room.client.rooms.firstWhereOrNull((r) => r.id == c.roomId)))
-            .where((p) => p.value != null)
-            .toList();
+              .map((c) => Pair(c,
+                  room.client.rooms.firstWhereOrNull((r) => r.id == c.roomId)))
+              .where((p) => p.value != null)
+              .toList();
 
-          final actualRooms = childrenRooms.where((pair) => !pair.value!.isSpace).toList();
-          final subspaces = childrenRooms.where((pair) => pair.value!.isSpace).toList();
+          final actualRooms =
+              childrenRooms.where((pair) => !pair.value!.isSpace).toList();
+          final subspaces =
+              childrenRooms.where((pair) => pair.value!.isSpace).toList();
 
           final sortedRooms = actualRooms
               .where((pair) => pair.key.order.isNotEmpty)
@@ -329,7 +346,8 @@ class _SpaceViewState extends State<SpaceView> {
               .map((pair) => Pair(pair.key.roomId!, pair.value!))
               .toList();
 
-          catMixedRooms += sortedRooms + unsortedRooms + sortedSpaces + unsortedSpaces;
+          catMixedRooms +=
+              sortedRooms + unsortedRooms + sortedSpaces + unsortedSpaces;
         }
 
         return SliverList.builder(
@@ -519,7 +537,10 @@ class _SpaceViewState extends State<SpaceView> {
         actions: [
           PopupMenuButton<SpaceViewOptions>(
             onSelected: (option) => _onSpaceViewOptions(room!.id, option),
-            icon: Icon((SpaceViewOptions.values.firstWhereOrNull((value) => value.index == AppConfig.spaceViewOptions[room!.id]) ?? SpaceViewOptions.normal).icon),
+            icon: Icon((SpaceViewOptions.values.firstWhereOrNull((value) =>
+                        value.index == AppConfig.spaceViewOptions[room!.id]) ??
+                    SpaceViewOptions.normal)
+                .icon),
             itemBuilder: (context) => [
               PopupMenuItem(
                 value: SpaceViewOptions.normal,
@@ -594,7 +615,7 @@ class _SpaceViewState extends State<SpaceView> {
               ),
             ],
           ),
-          ],
+        ],
       ),
       body: room == null
           ? const Center(

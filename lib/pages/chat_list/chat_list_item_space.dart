@@ -158,7 +158,8 @@ class ChatListSpaceItem extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                   ),
                   if (isMuted)
@@ -181,7 +182,9 @@ class ChatListSpaceItem extends StatelessWidget {
                       ),
                     ),
                   Icon(
-                    AppConfig.collapsedSpace.contains(room.id) ? Icons.arrow_circle_right_outlined : Icons.arrow_circle_down_outlined,
+                    AppConfig.collapsedSpace.contains(room.id)
+                        ? Icons.arrow_circle_right_outlined
+                        : Icons.arrow_circle_down_outlined,
                     size: 18,
                   ),
                 ],
