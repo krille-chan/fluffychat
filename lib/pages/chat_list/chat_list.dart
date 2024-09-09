@@ -903,7 +903,10 @@ class ChatListController extends State<ChatList>
         if (space == null) return;
         await showFutureLoadingDialog(
           context: context,
-          future: () => space.setSpaceChild(room.id),
+          // #Pangea
+          // future: () => space.setSpaceChild(room.id),
+          future: () => space.pangeaSetSpaceChild(room.id),
+          // Pangea#
         );
         // #Pangea
         return;
