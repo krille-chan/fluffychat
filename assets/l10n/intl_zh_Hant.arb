@@ -2763,5 +2763,8 @@
     "placeholders": {
       "user": {}
     }
-  }
+  },
+  "spaceViewNormal": "正常",
+  "spaceViewRoomTop": "聊天室置頂",
+  "spaceViewCategorized": "分類"
 }

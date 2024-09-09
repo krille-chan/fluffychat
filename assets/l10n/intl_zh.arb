@@ -2803,5 +2803,8 @@
   "homeserverDescription": "主服务器上就像电子邮件提供商，你的所有数据都存储在上面。你可以选择你想使用哪个主服务器。在 https://matrix.org 上了解更多信息。",
   "@homeserverDescription": {},
   "doesNotSeemToBeAValidHomeserver": "似乎不是兼容的主服务器。URL 不正确？",
-  "@doesNotSeemToBeAValidHomeserver": {}
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "spaceViewNormal": "正常",
+  "spaceViewRoomTop": "聊天室置顶",
+  "spaceViewCategorized": "分类"
 }
