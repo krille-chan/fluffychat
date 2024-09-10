@@ -413,7 +413,7 @@ class _SpaceViewState extends State<SpaceView> {
                 onExpansionChanged: (expanded) =>
                     _setCollapsed(mixedRoom.id, expanded),
                 defaultExpanded:
-                    AppConfig.collapsedSpace.contains(mixedRoom.id),
+                    !AppConfig.collapsedSpace.contains(mixedRoom.id),
                 activeChat: widget.activeChat,
               );
             }
