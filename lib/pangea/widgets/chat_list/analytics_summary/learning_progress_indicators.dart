@@ -173,7 +173,7 @@ class LearningProgressIndicatorsState
       child: Center(
         child: Text(
           "$level",
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),
     );
