@@ -257,8 +257,8 @@ class _SpaceViewState extends State<SpaceView> {
 
   void _setCollapsed(String roomId, bool expanded) async {
     if (expanded
-        ? AppConfig.collapsedSpace.add(roomId)
-        : AppConfig.collapsedSpace.remove(roomId)) {
+        ? AppConfig.collapsedSpace.remove(roomId)
+        : AppConfig.collapsedSpace.add(roomId)) {
       await Matrix.of(context).store.setStringList(
             SettingKeys.collapsedSpace,
             AppConfig.collapsedSpace.toList(),
