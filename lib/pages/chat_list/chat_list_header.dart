@@ -26,8 +26,10 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       pinned:
           FluffyThemes.isColumnMode(context) || selectMode != SelectMode.normal,
       scrolledUnderElevation: selectMode == SelectMode.normal ? 0 : null,
-      backgroundColor:
-          selectMode == SelectMode.normal ? Colors.transparent : null,
+      // #Pangea
+      // backgroundColor:
+      //     selectMode == SelectMode.normal ? Colors.transparent : null,
+      // Pangea#
       automaticallyImplyLeading: false,
       leading: selectMode == SelectMode.normal
           ? null

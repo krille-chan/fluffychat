@@ -1600,10 +1600,6 @@ class ChatController extends State<ChatPageWithRoom>
     PangeaMessageEvent pangeaMessageEvent, {
     MessageMode? mode,
   }) {
-    // select the message
-    onSelectMessage(pangeaMessageEvent.event);
-    HapticFeedback.mediumImpact();
-
     // Close keyboard, if open
     if (inputFocus.hasFocus && PlatformInfos.isMobile) {
       inputFocus.unfocus();
@@ -1636,12 +1632,16 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       child: overlayEntry,
       transformTargetId: "",
-      backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(200),
+      backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
       closePrevOverlay:
           MatrixState.pangeaController.subscriptionController.isSubscribed,
       position: OverlayPositionEnum.centered,
       onDismiss: clearSelectedEvents,
     );
+
+    // select the message
+    onSelectMessage(pangeaMessageEvent.event);
+    HapticFeedback.mediumImpact();
   }
   // Pangea#
 
