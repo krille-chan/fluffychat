@@ -305,6 +305,11 @@ class ToolbarSelectionArea extends StatelessWidget {
             controller.showToolbar(pangeaMessageEvent!);
           }
         },
+        onLongPress: () {
+          if (pangeaMessageEvent != null && !isOverlay) {
+            controller.showToolbar(pangeaMessageEvent!);
+          }
+        },
         child: child,
       ),
     );
