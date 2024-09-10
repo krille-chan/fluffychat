@@ -319,8 +319,6 @@ class Message extends StatelessWidget {
                                 child: GestureDetector(
                                   // #Pangea
                                   onTap: () => showToolbar(pangeaMessageEvent),
-                                  onDoubleTap: () =>
-                                      showToolbar(pangeaMessageEvent),
                                   onLongPress: () =>
                                       showToolbar(pangeaMessageEvent),
                                   // onLongPress: longPressSelect
@@ -605,7 +603,10 @@ class Message extends StatelessWidget {
                             controller: controller,
                             pangeaMessageEvent: pangeaMessageEvent!,
                           ),
-                        MessageReactions(event, timeline),
+                        // #Pangea
+                        if (!isOverlay)
+                          // Pangea#
+                          MessageReactions(event, timeline),
                       ],
                     ),
                     // child: MessageReactions(event, timeline),

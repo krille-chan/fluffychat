@@ -128,7 +128,7 @@ class UserToolSettings {
     this.interactiveGrammar = true,
     this.immersionMode = false,
     this.definitions = true,
-    this.autoIGC = false,
+    this.autoIGC = true,
   });
 
   factory UserToolSettings.fromJson(Map<String, dynamic> json) =>
@@ -139,7 +139,7 @@ class UserToolSettings {
             json[ToolSetting.interactiveGrammar.toString()] ?? true,
         immersionMode: json[ToolSetting.immersionMode.toString()] ?? false,
         definitions: json[ToolSetting.definitions.toString()] ?? true,
-        autoIGC: json[ToolSetting.autoIGC.toString()] ?? false,
+        autoIGC: json[ToolSetting.autoIGC.toString()] ?? true,
       );
 
   Map<String, dynamic> toJson() {
@@ -174,7 +174,7 @@ class UserToolSettings {
           true,
       autoIGC: (accountData[ToolSetting.autoIGC.toString()]
               ?.content[ToolSetting.autoIGC.toString()] as bool?) ??
-          false,
+          true,
     );
   }
 }
