@@ -2795,5 +2795,13 @@
   "noChatsFoundHere": "Hier wurden noch keine Chats gefunden. Starten Sie einen neuen Chat mit jemandem, indem Sie die Schaltfläche unten verwenden. ⤵️",
   "@noChatsFoundHere": {},
   "whatIsAHomeserver": "Was ist ein Homeserver?",
-  "@whatIsAHomeserver": {}
+  "@whatIsAHomeserver": {},
+  "doesNotSeemToBeAValidHomeserver": "Scheint kein kompatibler Homeserver zu sein. Falsche URL?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "loginWithMatrixId": "Mit Matrix-ID anmelden",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Server suchen",
+  "@discoverHomeservers": {},
+  "homeserverDescription": "Alle deine Daten werden auf dem Homeserver gespeichert, so wie bei einem Email Anbieter. Du kannst aussuchen, welchen Homeserver du benutzen willst und kannst trotzdem mit allen kommunizieren. Erfahre mehr auf https:/matrix.org.",
+  "@homeserverDescription": {}
 }
