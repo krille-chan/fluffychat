@@ -1665,7 +1665,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourChatBackupHasBeenSetUp": "Резервне копіювання бесіди налаштовано.",
+  "yourChatBackupHasBeenSetUp": "Рез. копію чату налаштовано.",
   "@yourChatBackupHasBeenSetUp": {},
   "clearArchive": "Очистити архів",
   "@clearArchive": {},

@@ -2799,5 +2799,9 @@
   "discoverHomeservers": "Leia koduservereid",
   "@discoverHomeservers": {},
   "whatIsAHomeserver": "Mis on koduserver?",
-  "@whatIsAHomeserver": {}
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Sarnaselt e-postiteenuse pakkujale on kõik sinu sõnumid salvestatud koduserveris. Sa võid valida sellise koduserveri, nagu sulle meeldib ja nad kõik suudavad teiste koduserveritega suhelda. Lisateavet leiad veebisaidist https://matrix.org.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "Ei tundu olema ühilduv koduserver. Kas võrguaadress on ikka õige?",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }
