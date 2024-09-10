@@ -2794,6 +2794,6 @@
   "@sendCanceled": {},
   "noChatsFoundHere": "Hier wurden noch keine Chats gefunden. Starten Sie einen neuen Chat mit jemandem, indem Sie die Schaltfläche unten verwenden. ⤵️",
   "@noChatsFoundHere": {},
-  "whatIsAHomeserver": "Was ist ein Heimserver?",
+  "whatIsAHomeserver": "Was ist ein Homeserver?",
   "@whatIsAHomeserver": {}
 }
