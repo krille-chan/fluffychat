@@ -4,9 +4,10 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
-import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
+import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
@@ -22,7 +23,7 @@ class ConstructList extends StatefulWidget {
   final ConstructTypeEnum constructType;
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? selected;
-  final BaseAnalyticsController controller;
+  final TimeSpan timeSpan;
   final PangeaController pangeaController;
   final StreamController refreshStream;
 
@@ -30,9 +31,9 @@ class ConstructList extends StatefulWidget {
     super.key,
     required this.constructType,
     required this.defaultSelected,
-    required this.controller,
     required this.pangeaController,
     required this.refreshStream,
+    required this.timeSpan,
     this.selected,
   });
 
@@ -53,11 +54,11 @@ class ConstructListState extends State<ConstructList> {
         : Column(
             children: [
               ConstructListView(
-                controller: widget.controller,
                 pangeaController: widget.pangeaController,
                 defaultSelected: widget.defaultSelected,
                 selected: widget.selected,
                 refreshStream: widget.refreshStream,
+                timeSpan: widget.timeSpan,
               ),
             ],
           );
@@ -74,17 +75,17 @@ class ConstructListState extends State<ConstructList> {
 //    subtitle = total uses, equal to construct.content.uses.length
 // list has a fixed height of 400 and is scrollable
 class ConstructListView extends StatefulWidget {
-  final BaseAnalyticsController controller;
   final PangeaController pangeaController;
   final AnalyticsSelected defaultSelected;
+  final TimeSpan timeSpan;
   final AnalyticsSelected? selected;
   final StreamController refreshStream;
 
   const ConstructListView({
     super.key,
-    required this.controller,
     required this.pangeaController,
     required this.defaultSelected,
+    required this.timeSpan,
     required this.refreshStream,
     this.selected,
   });
@@ -101,6 +102,7 @@ class ConstructListViewState extends State<ConstructListView> {
   bool fetchingConstructs = true;
   bool fetchingUses = false;
   StreamSubscription? refreshSubscription;
+  String? currentLemma;
 
   @override
   void initState() {
@@ -108,13 +110,17 @@ class ConstructListViewState extends State<ConstructListView> {
     widget.pangeaController.analytics
         .getConstructs(
           constructType: constructType,
-          removeIT: true,
-          defaultSelected: widget.defaultSelected,
-          selected: widget.selected,
           forceUpdate: true,
         )
         .whenComplete(() => setState(() => fetchingConstructs = false))
-        .then((value) => setState(() => _constructs = value));
+        .then(
+          (value) => setState(
+            () => constructs = ConstructListModel(
+              type: constructType,
+              uses: value,
+            ),
+          ),
+        );
 
     refreshSubscription = widget.refreshStream.stream.listen((forceUpdate) {
       // postframe callback to let widget rebuild with the new selected parameter
@@ -123,14 +129,14 @@ class ConstructListViewState extends State<ConstructListView> {
         widget.pangeaController.analytics
             .getConstructs(
               constructType: constructType,
-              removeIT: true,
-              defaultSelected: widget.defaultSelected,
-              selected: widget.selected,
               forceUpdate: true,
             )
             .then(
               (value) => setState(() {
-                _constructs = value;
+                ConstructListModel(
+                  type: constructType,
+                  uses: value,
+                );
               }),
             );
       });
@@ -143,22 +149,21 @@ class ConstructListViewState extends State<ConstructListView> {
     super.dispose();
   }
 
-  int get lemmaIndex =>
-      constructs?.indexWhere(
-        (element) => element.lemma == widget.controller.currentLemma,
-      ) ??
-      -1;
+  void setCurrentLemma(String? lemma) {
+    currentLemma = lemma;
+    setState(() {});
+  }
 
   Future<PangeaMessageEvent?> getMessageEvent(
     OneConstructUse use,
   ) async {
     final Client client = Matrix.of(context).client;
     PangeaMessageEvent msgEvent;
-    if (_msgEventCache.containsKey(use.msgId!)) {
-      return _msgEventCache[use.msgId!]!;
+    if (_msgEventCache.containsKey(use.msgId)) {
+      return _msgEventCache[use.msgId]!;
     }
     final Room? msgRoom = use.getRoom(client);
-    if (msgRoom == null || use.msgId == null) {
+    if (msgRoom == null) {
       return null;
     }
 
@@ -180,20 +185,25 @@ class ConstructListViewState extends State<ConstructListView> {
       timeline: timeline,
       ownMessage: event.senderId == client.userID,
     );
-    _msgEventCache[use.msgId!] = msgEvent;
+    _msgEventCache[use.msgId] = msgEvent;
     return msgEvent;
   }
 
   Future<void> fetchUses() async {
     if (fetchingUses) return;
-    if (currentConstruct == null) {
+    if (currentLemma == null) {
       setState(() => _msgEvents.clear());
       return;
     }
 
     setState(() => fetchingUses = true);
     try {
-      final List<OneConstructUse> uses = currentConstruct!.uses;
+      final List<OneConstructUse> uses = constructs?.constructs
+              .firstWhereOrNull(
+                (element) => element.lemma == currentLemma,
+              )
+              ?.uses ??
+          [];
       _msgEvents.clear();
 
       for (final OneConstructUse use in uses) {
@@ -212,61 +222,19 @@ class ConstructListViewState extends State<ConstructListView> {
       ErrorHandler.logError(
         e: err,
         s: s,
-        m: "Failed to fetch uses for current construct ${currentConstruct?.lemma}",
+        m: "Failed to fetch uses for current construct $currentLemma",
       );
     }
   }
 
-  List<ConstructAnalyticsEvent>? _constructs;
-
-  List<ConstructUses>? get constructs {
-    if (_constructs == null) {
-      return null;
-    }
-
-    final List<OneConstructUse> filtered = List.from(_constructs!)
-        .map((event) => event.content.uses)
-        .expand((uses) => uses)
-        .cast<OneConstructUse>()
-        .where((use) => use.constructType == constructType)
-        .toList();
-
-    final Map<String, List<OneConstructUse>> lemmaToUses = {};
-    for (final use in filtered) {
-      if (use.lemma == null) continue;
-      lemmaToUses[use.lemma!] ??= [];
-      lemmaToUses[use.lemma!]!.add(use);
-    }
-
-    final constructUses = lemmaToUses.entries
-        .map(
-          (entry) => ConstructUses(
-            lemma: entry.key,
-            uses: entry.value,
-            constructType: constructType,
-          ),
-        )
-        .toList();
-
-    constructUses.sort((a, b) {
-      final comp = b.uses.length.compareTo(a.uses.length);
-      if (comp != 0) return comp;
-      return a.lemma.compareTo(b.lemma);
-    });
-
-    return constructUses;
-  }
-
-  ConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
-        (element) => element.lemma == widget.controller.currentLemma,
-      );
+  ConstructListModel? constructs;
 
   // given the current lemma and list of message events, return a list of
   // MessageEventMatch objects, which contain one PangeaMessageEvent to one PangeaMatch
   // this is because some message events may have has more than one PangeaMatch of a
   // given lemma type.
   List<MessageEventMatch> getMessageEventMatches() {
-    if (widget.controller.currentLemma == null) return [];
+    if (currentLemma == null) return [];
     final List<MessageEventMatch> allMsgErrorSteps = [];
 
     for (final msgEvent in _msgEvents) {
@@ -277,7 +245,7 @@ class ConstructListViewState extends State<ConstructListView> {
       }
       // get all the pangea matches in that message which have that lemma
       final List<PangeaMatch>? msgErrorSteps = msgEvent.errorSteps(
-        widget.controller.currentLemma!,
+        currentLemma!,
       );
       if (msgErrorSteps == null) continue;
 
@@ -308,7 +276,7 @@ class ConstructListViewState extends State<ConstructListView> {
       );
     }
 
-    if (constructs?.isEmpty ?? true) {
+    if (constructs?.constructs.isEmpty ?? true) {
       return Expanded(
         child: Center(child: Text(L10n.of(context)!.noDataFound)),
       );
@@ -316,18 +284,18 @@ class ConstructListViewState extends State<ConstructListView> {
 
     return Expanded(
       child: ListView.builder(
-        itemCount: constructs!.length,
+        itemCount: constructs!.constructs.length,
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(
-              constructs![index].lemma,
+              constructs!.constructs[index].lemma,
             ),
             subtitle: Text(
-              '${L10n.of(context)!.total} ${constructs![index].uses.length}',
+              '${L10n.of(context)!.total} ${constructs!.constructs[index].uses.length}',
             ),
             onTap: () async {
-              final String lemma = constructs![index].lemma;
-              widget.controller.setCurrentLemma(lemma);
+              final String lemma = constructs!.constructs[index].lemma;
+              setCurrentLemma(lemma);
               fetchUses().then((_) => showConstructMessagesDialog());
             },
           );
@@ -346,20 +314,20 @@ class ConstructMessagesDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.widget.controller.currentLemma == null ||
-        controller.constructs == null ||
-        controller.lemmaIndex < 0 ||
-        controller.lemmaIndex >= controller.constructs!.length) {
+    if (controller.currentLemma == null || controller.constructs == null) {
       return const AlertDialog(content: CircularProgressIndicator.adaptive());
     }
 
     final msgEventMatches = controller.getMessageEventMatches();
 
-    final noData = controller.constructs![controller.lemmaIndex].uses.length >
-        controller._msgEvents.length;
+    final currentConstruct = controller.constructs!.constructs.firstWhereOrNull(
+      (construct) => construct.lemma == controller.currentLemma,
+    );
+    final noData = currentConstruct == null ||
+        currentConstruct.uses.length > controller._msgEvents.length;
 
     return AlertDialog(
-      title: Center(child: Text(controller.widget.controller.currentLemma!)),
+      title: Center(child: Text(controller.currentLemma!)),
       content: SizedBox(
         height: noData ? 90 : 250,
         width: noData ? 200 : 400,
@@ -380,7 +348,7 @@ class ConstructMessagesDialog extends StatelessWidget {
                       children: [
                         ConstructMessage(
                           msgEvent: event.msgEvent,
-                          lemma: controller.widget.controller.currentLemma!,
+                          lemma: controller.currentLemma!,
                           errorMessage: event.lemmaMatch,
                         ),
                         if (index < msgEventMatches.length - 1)
@@ -528,42 +496,37 @@ class ConstructMessageBubble extends StatelessWidget {
             vertical: 8,
           ),
           child: RichText(
-            text: (end == null)
-                ? TextSpan(
-                    text: errorText,
-                    style: defaultStyle,
-                  )
-                : TextSpan(
-                    children: [
-                      TextSpan(
-                        text: errorText.substring(0, start),
-                        style: defaultStyle,
-                      ),
-                      TextSpan(
-                        text: errorText.substring(start, end),
-                        style: defaultStyle.merge(
-                          TextStyle(
-                            backgroundColor: Colors.red.withOpacity(0.25),
-                            decoration: TextDecoration.lineThrough,
-                            decorationThickness: 2.5,
-                          ),
-                        ),
-                      ),
-                      const TextSpan(text: " "),
-                      TextSpan(
-                        text: replacementText,
-                        style: defaultStyle.merge(
-                          TextStyle(
-                            backgroundColor: Colors.green.withOpacity(0.25),
-                          ),
-                        ),
-                      ),
-                      TextSpan(
-                        text: errorText.substring(end),
-                        style: defaultStyle,
-                      ),
-                    ],
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: errorText.substring(0, start),
+                  style: defaultStyle,
+                ),
+                TextSpan(
+                  text: errorText.substring(start, end),
+                  style: defaultStyle.merge(
+                    TextStyle(
+                      backgroundColor: Colors.red.withOpacity(0.25),
+                      decoration: TextDecoration.lineThrough,
+                      decorationThickness: 2.5,
+                    ),
                   ),
+                ),
+                const TextSpan(text: " "),
+                TextSpan(
+                  text: replacementText,
+                  style: defaultStyle.merge(
+                    TextStyle(
+                      backgroundColor: Colors.green.withOpacity(0.25),
+                    ),
+                  ),
+                ),
+                TextSpan(
+                  text: errorText.substring(end),
+                  style: defaultStyle,
+                ),
+              ],
+            ),
           ),
         ),
       ),

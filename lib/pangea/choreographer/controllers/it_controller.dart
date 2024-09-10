@@ -3,7 +3,9 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -302,6 +304,20 @@ class ITController {
     completedITSteps.add(itStep);
 
     showChoiceFeedback = true;
+
+    // Get a list of the choices that the user did not click
+    final List<PangeaToken>? ignoredTokens = currentITStep?.continuances
+        .where((e) => !e.wasClicked)
+        .map((e) => e.tokens)
+        .expand((e) => e)
+        .toList();
+
+    // Save those choices' tokens to local construct analytics as ignored tokens
+    choreographer.pangeaController.myAnalytics.addDraftUses(
+      ignoredTokens ?? [],
+      choreographer.roomId,
+      ConstructUseTypeEnum.ignIt,
+    );
 
     Future.delayed(
       const Duration(

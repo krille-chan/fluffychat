@@ -2,20 +2,15 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
-import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
-import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
-import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
-import 'package:fluffychat/pangea/models/lemma.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
@@ -685,161 +680,26 @@ class PangeaMessageEvent {
       l2Code == null ? [] : practiceActivitiesByLangCode(l2Code!);
 
   /// all construct uses for the message, including vocab and grammar
-  List<OneConstructUse> get allConstructUses =>
-      [..._grammarConstructUses, ..._vocabUses, ..._itStepsToConstructUses];
-
-  /// Returns a list of [OneConstructUse] from itSteps for which the continuance
-  /// was selected or ignored. Correct selections are considered in the tokens
-  /// flow. Once all continuances have lemmas, we can do both correct and incorrect
-  /// in this flow. It actually doesn't do anything at all right now, because the
-  /// choregrapher is not returning lemmas for continuances. This is a TODO.
-  /// So currently only the lemmas can be gotten from the tokens for choices that
-  /// are actually in the final message.
-  List<OneConstructUse> get _itStepsToConstructUses {
-    final List<OneConstructUse> uses = [];
-    if (originalSent?.choreo == null) return uses;
-
-    for (final itStep in originalSent!.choreo!.itSteps) {
-      for (final continuance in itStep.continuances) {
-        final List<PangeaToken> tokensToSave =
-            continuance.tokens.where((t) => t.lemma.saveVocab).toList();
-
-        if (originalSent!.choreo!.finalMessage.contains(continuance.text)) {
-          continue;
-        }
-        if (continuance.wasClicked) {
-          //PTODO - account for end of flow score
-          if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
-            for (final token in tokensToSave) {
-              uses.add(
-                _lemmaToVocabUse(
-                  token.lemma,
-                  ConstructUseTypeEnum.incIt,
-                ),
-              );
-            }
-          }
-        } else {
-          if (continuance.level != ChoreoConstants.levelThresholdForGreen) {
-            for (final token in tokensToSave) {
-              uses.add(
-                _lemmaToVocabUse(
-                  token.lemma,
-                  ConstructUseTypeEnum.ignIt,
-                ),
-              );
-            }
-          }
-        }
-      }
-    }
-    return uses;
-  }
+  List<OneConstructUse> get allConstructUses => [
+        ..._grammarConstructUses,
+        ..._vocabUses,
+      ];
 
   /// get construct uses of type vocab for the message
   List<OneConstructUse> get _vocabUses {
-    final List<OneConstructUse> uses = [];
-
-    // missing vital info so return
-    if (event.roomId == null || originalSent?.tokens == null) {
-      // debugger(when: kDebugMode);
-      return uses;
-    }
-
-    // for each token, record whether selected in ga, ta, or wa
-    for (final token in originalSent!.tokens!
-        .where((token) => token.lemma.saveVocab)
-        .toList()) {
-      uses.add(_getVocabUseForToken(token));
-    }
-
-    return uses;
-  }
-
-  /// Returns a [OneConstructUse] for the given [token]
-  /// If there is no [originalSent] or [originalSent.choreo], the [token] is
-  /// considered to be a [ConstructUseTypeEnum.wa] as long as it matches the target language.
-  /// Later on, we may want to consider putting it in some category of like 'pending'
-  /// If the [token] is in the [originalSent.choreo.acceptedOrIgnoredMatch],
-  /// it is considered to be a [ConstructUseTypeEnum.ga].
-  /// If the [token] is in the [originalSent.choreo.acceptedOrIgnoredMatch.choices],
-  /// it is considered to be a [ConstructUseTypeEnum.corIt].
-  /// If the [token] is not included in any choreoStep, it is considered to be a [ConstructUseTypeEnum.wa].
-  OneConstructUse _getVocabUseForToken(PangeaToken token) {
-    if (originalSent?.choreo == null) {
-      final bool inUserL2 = originalSent?.langCode == l2Code;
-      return _lemmaToVocabUse(
-        token.lemma,
-        inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk,
+    if (originalSent?.tokens != null) {
+      return originalSent!.content.vocabUses(
+        event: event,
+        choreo: originalSent!.choreo,
+        tokens: originalSent!.tokens!,
       );
     }
-
-    for (final step in originalSent!.choreo!.choreoSteps) {
-      /// if 1) accepted match 2) token is in the replacement and 3) replacement
-      /// is in the overall step text, then token was a ga
-      if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted &&
-          (step.acceptedOrIgnoredMatch!.match.choices?.any(
-                (r) =>
-                    r.value.contains(token.text.content) &&
-                    step.text.contains(r.value),
-              ) ??
-              false)) {
-        return _lemmaToVocabUse(token.lemma, ConstructUseTypeEnum.ga);
-      }
-      if (step.itStep != null) {
-        final bool pickedThroughIT =
-            step.itStep!.chosenContinuance?.text.contains(token.text.content) ??
-                false;
-        if (pickedThroughIT) {
-          return _lemmaToVocabUse(token.lemma, ConstructUseTypeEnum.corIt);
-          //PTODO - check if added via custom input in IT flow
-        }
-      }
-    }
-    return _lemmaToVocabUse(token.lemma, ConstructUseTypeEnum.wa);
+    return [];
   }
-
-  OneConstructUse _lemmaToVocabUse(
-    Lemma lemma,
-    ConstructUseTypeEnum type,
-  ) =>
-      OneConstructUse(
-        useType: type,
-        chatId: event.roomId!,
-        timeStamp: event.originServerTs,
-        lemma: lemma.text,
-        form: lemma.form,
-        msgId: event.eventId,
-        constructType: ConstructTypeEnum.vocab,
-      );
 
   /// get construct uses of type grammar for the message
-  List<OneConstructUse> get _grammarConstructUses {
-    final List<OneConstructUse> uses = [];
-
-    if (originalSent?.choreo == null || event.roomId == null) return uses;
-
-    for (final step in originalSent!.choreo!.choreoSteps) {
-      if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted) {
-        final String name = step.acceptedOrIgnoredMatch!.match.rule?.id ??
-            step.acceptedOrIgnoredMatch!.match.shortMessage ??
-            step.acceptedOrIgnoredMatch!.match.type.typeName.name;
-        uses.add(
-          OneConstructUse(
-            useType: ConstructUseTypeEnum.ga,
-            chatId: event.roomId!,
-            timeStamp: event.originServerTs,
-            lemma: name,
-            form: name,
-            msgId: event.eventId,
-            constructType: ConstructTypeEnum.grammar,
-            id: "${event.eventId}_${step.acceptedOrIgnoredMatch!.match.offset}_${step.acceptedOrIgnoredMatch!.match.length}",
-          ),
-        );
-      }
-    }
-    return uses;
-  }
+  List<OneConstructUse> get _grammarConstructUses =>
+      originalSent?.choreo?.grammarConstructUses(event: event) ?? [];
 }
 
 class URLFinder {

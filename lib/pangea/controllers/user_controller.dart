@@ -70,9 +70,12 @@ class UserController extends BaseController {
   }
 
   /// Updates the user's profile with the given [update] function and saves it.
-  void updateProfile(Profile Function(Profile) update) {
+  Future<void> updateProfile(
+    Profile Function(Profile) update, {
+    waitForDataInSync = false,
+  }) async {
     final Profile updatedProfile = update(profile);
-    updatedProfile.saveProfileData();
+    await updatedProfile.saveProfileData(waitForDataInSync: waitForDataInSync);
   }
 
   /// Creates a new profile for the user with the given date of birth.

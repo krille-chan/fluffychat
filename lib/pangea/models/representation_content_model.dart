@@ -1,4 +1,11 @@
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
+import 'package:fluffychat/pangea/models/choreo_record.dart';
+import 'package:fluffychat/pangea/models/pangea_match_model.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:matrix/matrix.dart';
 
 /// this class is contained within a [RepresentationEvent]
@@ -80,5 +87,146 @@ class PangeaRepresentation {
       data[_speechToTextKey] = speechToText!.toJson();
     }
     return data;
+  }
+
+  /// Get construct uses of type vocab for the message.
+  /// Takes a list of tokens and a choreo record, which is searched
+  /// through for each token for its construct use type.
+  /// Also takes either an event (typically when the Representation itself is
+  /// available) or construct use metadata (when the event is not available,
+  /// i.e. immediately after message send) to create the construct use.
+  List<OneConstructUse> vocabUses({
+    required List<PangeaToken> tokens,
+    Event? event,
+    ConstructUseMetaData? metadata,
+    ChoreoRecord? choreo,
+  }) {
+    final List<OneConstructUse> uses = [];
+
+    // missing vital info so return
+    if (event?.roomId == null && metadata?.roomId == null) {
+      // debugger(when: kDebugMode);
+      return uses;
+    }
+
+    metadata ??= ConstructUseMetaData(
+      roomId: event!.roomId!,
+      eventId: event.eventId,
+      timeStamp: event.originServerTs,
+    );
+
+    // for each token, record whether selected in ga, ta, or wa
+    final tokensToSave =
+        tokens.where((token) => token.lemma.saveVocab).toList();
+    for (final token in tokensToSave) {
+      uses.addAll(
+        getUsesForToken(
+          token,
+          metadata,
+          choreo: choreo,
+        ),
+      );
+    }
+
+    return uses;
+  }
+
+  /// Returns a [OneConstructUse] for the given [token]
+  /// If there is no [choreo], the [token] is
+  /// considered to be a [ConstructUseTypeEnum.wa] as long as it matches the target language.
+  /// Later on, we may want to consider putting it in some category of like 'pending'
+  /// If the [token] is in the [choreo.acceptedOrIgnoredMatch], it is considered to be a [ConstructUseTypeEnum.ga].
+  /// If the [token] is in the [choreo.acceptedOrIgnoredMatch.choices], it is considered to be a [ConstructUseTypeEnum.corIt].
+  /// If the [token] is not included in any choreoStep, it is considered to be a [ConstructUseTypeEnum.wa].
+  List<OneConstructUse> getUsesForToken(
+    PangeaToken token,
+    ConstructUseMetaData metadata, {
+    ChoreoRecord? choreo,
+  }) {
+    final List<OneConstructUse> uses = [];
+    final lemma = token.lemma;
+    final content = token.text.content;
+
+    if (choreo == null) {
+      final bool inUserL2 = langCode ==
+          MatrixState.pangeaController.languageController.activeL2Code();
+      final useType =
+          inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk;
+      for (final entry in token.morph.entries) {
+        uses.add(
+          OneConstructUse(
+            useType: useType,
+            lemma: entry.value,
+            categories: [entry.key],
+            constructType: ConstructTypeEnum.morph,
+            metadata: metadata,
+          ),
+        );
+      }
+
+      if (lemma.saveVocab) {
+        uses.add(
+          lemma.toVocabUse(
+            inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk,
+            metadata,
+          ),
+        );
+      }
+      return uses;
+    }
+
+    for (final step in choreo.choreoSteps) {
+      /// if 1) accepted match 2) token is in the replacement and 3) replacement
+      /// is in the overall step text, then token was a ga
+      final bool isAcceptedMatch =
+          step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted;
+      final bool isITStep = step.itStep != null;
+      if (!isAcceptedMatch && !isITStep) continue;
+
+      if (isAcceptedMatch &&
+          step.acceptedOrIgnoredMatch?.match.choices != null) {
+        final choices = step.acceptedOrIgnoredMatch!.match.choices!;
+        final bool stepContainedToken = choices.any(
+          (choice) =>
+              // if this choice contains the token's content
+              choice.value.contains(content) &&
+              // if the complete input text after this step
+              // contains the choice (why is this here?)
+              step.text.contains(choice.value),
+        );
+        if (stepContainedToken) {
+          return [];
+        }
+      }
+
+      if (isITStep && step.itStep?.chosenContinuance != null) {
+        final bool pickedThroughIT =
+            step.itStep!.chosenContinuance!.text.contains(content);
+        if (pickedThroughIT) {
+          return [];
+        }
+      }
+    }
+
+    for (final entry in token.morph.entries) {
+      uses.add(
+        OneConstructUse(
+          useType: ConstructUseTypeEnum.wa,
+          lemma: entry.value,
+          categories: [entry.key],
+          constructType: ConstructTypeEnum.morph,
+          metadata: metadata,
+        ),
+      );
+    }
+    if (lemma.saveVocab) {
+      uses.add(
+        lemma.toVocabUse(
+          ConstructUseTypeEnum.wa,
+          metadata,
+        ),
+      );
+    }
+    return uses;
   }
 }

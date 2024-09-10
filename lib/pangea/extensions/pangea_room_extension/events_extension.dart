@@ -282,83 +282,6 @@ extension EventsRoomExtension on Room {
     );
   }
 
-  Future<List<RecentMessageRecord>> get _messageListForAllChildChats async {
-    try {
-      if (!isSpace) return [];
-      final List<Room> spaceChats = spaceChildren
-          .where((e) => e.roomId != null)
-          .map((e) => client.getRoomById(e.roomId!))
-          .where((element) => element != null)
-          .cast<Room>()
-          .where((element) => !element.isSpace)
-          .toList();
-
-      final List<Future<List<RecentMessageRecord>>> msgListFutures = [];
-      for (final chat in spaceChats) {
-        msgListFutures.add(chat._messageListForChat);
-      }
-      final List<List<RecentMessageRecord>> msgLists =
-          await Future.wait(msgListFutures);
-
-      final List<RecentMessageRecord> joined = [];
-      for (final msgList in msgLists) {
-        joined.addAll(msgList);
-      }
-      return joined;
-    } catch (err) {
-      // debugger(when: kDebugMode);
-      rethrow;
-    }
-  }
-
-  Future<List<RecentMessageRecord>> get _messageListForChat async {
-    try {
-      int numberOfSearches = 0;
-
-      if (isSpace) {
-        throw Exception(
-          "In messageListForChat with room that is not a chat",
-        );
-      }
-      final Timeline timeline = this.timeline ?? await getTimeline();
-
-      while (timeline.canRequestHistory && numberOfSearches < 50) {
-        await timeline.requestHistory(historyCount: 100);
-        numberOfSearches += 1;
-      }
-      if (timeline.canRequestHistory) {
-        debugger(when: kDebugMode);
-      }
-
-      final List<RecentMessageRecord> msgs = [];
-      for (final event in timeline.events) {
-        if (event.senderId == client.userID &&
-            event.type == EventTypes.Message &&
-            event.content['msgtype'] == MessageTypes.Text) {
-          final PangeaMessageEvent pMsgEvent = PangeaMessageEvent(
-            event: event,
-            timeline: timeline,
-            ownMessage: true,
-          );
-          msgs.add(
-            RecentMessageRecord(
-              eventId: event.eventId,
-              chatId: id,
-              useType: pMsgEvent.msgUseType,
-              time: event.originServerTs,
-            ),
-          );
-        }
-      }
-      return msgs;
-    } catch (err, s) {
-      if (kDebugMode) rethrow;
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s);
-      return [];
-    }
-  }
-
   // ConstructEvent? _vocabEventLocal(String lemma) {
   //   if (!isAnalyticsRoom) throw Exception("not an analytics room");
 
@@ -423,69 +346,51 @@ extension EventsRoomExtension on Room {
   //   }
   // }
 
-  // fetch event of a certain type by a certain sender
-  // since a certain time or up to a certain amount
-  Future<List<Event>> getEventsBySender({
-    required String type,
-    required String sender,
-    DateTime? since,
+  /// Get a list of events in the room that are of type [PangeaEventTypes.construct]
+  /// and have the sender as [userID]. If [count] is provided, the function will
+  /// return at most [count] events.
+  Future<List<Event>> getRoomAnalyticsEvents({
+    String? userID,
     int? count,
   }) async {
-    try {
-      int numberOfSearches = 0;
-      final Timeline timeline = this.timeline ?? await getTimeline();
+    userID ??= client.userID;
+    if (userID == null) return [];
+    GetRoomEventsResponse resp = await client.getRoomEvents(
+      id,
+      Direction.b,
+      limit: count ?? 100,
+      filter: jsonEncode(
+        StateFilter(
+          types: [
+            PangeaEventTypes.construct,
+          ],
+          senders: [userID],
+        ),
+      ),
+    );
 
-      List<Event> relevantEvents() => timeline.events
-          .where((event) => event.senderId == sender && event.type == type)
-          .toList();
-
-      bool reachedEnd() {
-        if (since != null) {
-          return relevantEvents().any(
-            (event) => event.originServerTs.isBefore(since),
-          );
-        }
-        if (count != null) {
-          return relevantEvents().length >= count;
-        }
-        return false;
-      }
-
-      while (timeline.canRequestHistory &&
-          !reachedEnd() &&
-          numberOfSearches < 10) {
-        await timeline.requestHistory(historyCount: 100);
-        numberOfSearches += 1;
-        if (reachedEnd()) {
-          break;
-        }
-      }
-
-      final List<Event> fetchedEvents = timeline.events
-          .where((event) => event.senderId == sender && event.type == type)
-          .toList();
-
-      if (since != null) {
-        fetchedEvents.removeWhere(
-          (event) => event.originServerTs.isBefore(since),
-        );
-      }
-
-      final List<Event> events = [];
-      for (Event event in fetchedEvents) {
-        if (event.relationshipType == RelationshipTypes.edit) continue;
-        if (event.hasAggregatedEvents(timeline, RelationshipTypes.edit)) {
-          event = event.getDisplayEvent(timeline);
-        }
-        events.add(event);
-      }
-
-      return events;
-    } catch (err, s) {
-      if (kDebugMode) rethrow;
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s);
-      return [];
+    int numSearches = 0;
+    while (numSearches < 10 && resp.end != null) {
+      if (count != null && resp.chunk.length <= count) break;
+      final nextResp = await client.getRoomEvents(
+        id,
+        Direction.b,
+        limit: count ?? 100,
+        filter: jsonEncode(
+          StateFilter(
+            types: [
+              PangeaEventTypes.construct,
+            ],
+            senders: [userID],
+          ),
+        ),
+        from: resp.end,
+      );
+      nextResp.chunk.addAll(resp.chunk);
+      resp = nextResp;
+      numSearches += 1;
     }
+
+    return resp.chunk.map((e) => Event.fromMatrixEvent(e, this)).toList();
   }
 }

@@ -3,11 +3,16 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
+import 'package:fluffychat/pages/chat/chat_emoji_picker.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
+import 'package:fluffychat/pangea/widgets/chat/chat_floating_action_button.dart';
+import 'package:fluffychat/pangea/widgets/chat/input_bar_wrapper.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
@@ -21,8 +26,6 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../utils/stream_extension.dart';
-import 'chat_emoji_picker.dart';
-import 'chat_input_row.dart';
 
 enum _EventContextAction { info, report }
 
@@ -385,26 +388,115 @@ class ChatView extends StatelessWidget {
                                             ),
                                           ],
                                         )
-                                      : Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const ConnectionStatusHeader(),
-                                            // #Pangea
-                                            ITBar(
-                                              choreographer:
-                                                  controller.choreographer,
-                                            ),
-                                            // ReactionsPicker(controller),
-                                            // Pangea#
-                                            ReplyDisplay(controller),
-                                            ChatInputRow(controller),
-                                            ChatEmojiPicker(controller),
-                                          ],
-                                        ),
+                                      :
+                                      // #Pangea
+                                      null,
+                                  // Column(
+                                  //     mainAxisSize: MainAxisSize.min,
+                                  //     children: [
+                                  //       const ConnectionStatusHeader(),
+                                  //       // #Pangea
+                                  //       ITBar(
+                                  //         choreographer:
+                                  //             controller.choreographer,
+                                  //       ),
+                                  //       // ReactionsPicker(controller),
+                                  //       // Pangea#
+                                  //       ReplyDisplay(controller),
+                                  //       ChatInputRow(controller),
+                                  // Pangea#
+                                  //       ChatEmojiPicker(controller),
+                                  //     ],
+                                  //   ),
                                 ),
                               ),
+                            // #Pangea
+                            // Keep messages above minimum input bar height
+                            const SizedBox(
+                              height: 60,
+                            ),
+                            // Pangea#
                           ],
                         ),
+                        // #Pangea
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 16,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              if (!controller.selectMode)
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    bottom: 10,
+                                    left: bottomSheetPadding,
+                                    right: bottomSheetPadding,
+                                  ),
+                                  constraints: const BoxConstraints(
+                                    maxWidth: FluffyThemes.columnWidth * 2.4,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      StartIGCButton(
+                                        controller: controller,
+                                      ),
+                                      Row(
+                                        children: [
+                                          PointsGainedAnimation(
+                                            gainColor: Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary,
+                                          ),
+                                          const SizedBox(width: 100),
+                                          ChatFloatingActionButton(
+                                            controller: controller,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              Container(
+                                margin: EdgeInsets.only(
+                                  bottom: bottomSheetPadding,
+                                  left: bottomSheetPadding,
+                                  right: bottomSheetPadding,
+                                ),
+                                constraints: const BoxConstraints(
+                                  maxWidth: FluffyThemes.columnWidth * 2.5,
+                                ),
+                                alignment: Alignment.center,
+                                child: Material(
+                                  clipBehavior: Clip.hardEdge,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceContainerHighest,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(24),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      const ConnectionStatusHeader(),
+                                      ITBar(
+                                        choreographer: controller.choreographer,
+                                      ),
+                                      ReplyDisplay(controller),
+                                      ChatInputRowWrapper(
+                                        controller: controller,
+                                      ),
+                                      ChatEmojiPicker(controller),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Pangea#
                       ],
                     ),
                   ),

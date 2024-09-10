@@ -4,18 +4,6 @@ extension SpaceClientExtension on Client {
   List<Room> get _spacesImTeaching =>
       rooms.where((e) => e.isSpace && e.isRoomAdmin).toList();
 
-  Future<List<Room>> get _chatsImAStudentIn async {
-    final List<String> nowteacherRoomIds = await teacherRoomIds;
-    return rooms
-        .where(
-          (r) =>
-              !r.isSpace &&
-              !r.isAnalyticsRoom &&
-              !nowteacherRoomIds.contains(r.id),
-        )
-        .toList();
-  }
-
   List<Room> get _spacesImStudyingIn =>
       rooms.where((e) => e.isSpace && !e.isRoomAdmin).toList();
 

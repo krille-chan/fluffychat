@@ -227,37 +227,6 @@ class IGCTextData {
         decorationThickness: 5,
       );
 
-  List<MatchToken> getMatchTokens() {
-    final List<MatchToken> matchTokens = [];
-    int? endTokenIndex;
-    PangeaMatch? topMatch;
-    for (final (i, token) in tokens.indexed) {
-      if (endTokenIndex != null) {
-        if (i <= endTokenIndex) {
-          matchTokens.add(
-            MatchToken(
-              token: token,
-              match: topMatch,
-            ),
-          );
-          continue;
-        }
-        endTokenIndex = null;
-      }
-      topMatch = getTopMatchForToken(token);
-      if (topMatch != null) {
-        endTokenIndex = tokens.indexWhere((e) => e.end >= topMatch!.end, i);
-      }
-      matchTokens.add(
-        MatchToken(
-          token: token,
-          match: topMatch,
-        ),
-      );
-    }
-    return matchTokens;
-  }
-
   TextSpan getSpanItem({
     required int start,
     required int end,
@@ -347,11 +316,19 @@ class IGCTextData {
 
     return items;
   }
-}
 
-class MatchToken {
-  final PangeaToken token;
-  final PangeaMatch? match;
+  List<PangeaToken> matchTokens(int matchIndex) {
+    if (matchIndex >= matches.length) {
+      return [];
+    }
 
-  MatchToken({required this.token, this.match});
+    final PangeaMatch match = matches[matchIndex];
+    final List<PangeaToken> tokensForMatch = [];
+    for (final token in tokens) {
+      if (match.isOffsetInMatchSpan(token.text.offset)) {
+        tokensForMatch.add(token);
+      }
+    }
+    return tokensForMatch;
+  }
 }

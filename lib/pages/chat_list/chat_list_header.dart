@@ -1,6 +1,7 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/learning_progress_indicators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -22,7 +23,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
 
     return SliverAppBar(
       floating: true,
-      toolbarHeight: 72,
+      toolbarHeight: 175,
       pinned:
           FluffyThemes.isColumnMode(context) || selectMode != SelectMode.normal,
       scrolledUnderElevation: selectMode == SelectMode.normal ? 0 : null,
@@ -45,7 +46,12 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
               key: const ValueKey(SelectMode.share),
             )
           // #Pangea
-          : ClientChooserButton(controller),
+          : Column(
+              children: [
+                ClientChooserButton(controller),
+                const LearningProgressIndicators(),
+              ],
+            ),
       // : TextField(
       //     controller: controller.searchController,
       //     focusNode: controller.searchFocusNode,

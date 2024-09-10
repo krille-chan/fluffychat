@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/class_controller.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
+import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
@@ -35,7 +36,6 @@ import '../../config/app_config.dart';
 import '../utils/firebase_analytics.dart';
 import '../utils/p_store.dart';
 import 'it_feedback_controller.dart';
-import 'message_analytics_controller.dart';
 
 class PangeaController {
   ///pangeaControllers
@@ -43,7 +43,8 @@ class PangeaController {
   late LanguageController languageController;
   late ClassController classController;
   late PermissionsController permissionsController;
-  late AnalyticsController analytics;
+  // late AnalyticsController analytics;
+  late GetAnalyticsController analytics;
   late MyAnalyticsController myAnalytics;
   late WordController wordNet;
   late MessageDataController messageData;
@@ -91,7 +92,8 @@ class PangeaController {
     languageController = LanguageController(this);
     classController = ClassController(this);
     permissionsController = PermissionsController(this);
-    analytics = AnalyticsController(this);
+    // analytics = AnalyticsController(this);
+    analytics = GetAnalyticsController(this);
     myAnalytics = MyAnalyticsController(this);
     messageData = MessageDataController(this);
     wordNet = WordController(this);
@@ -139,6 +141,19 @@ class PangeaController {
 
   /// check user information if not found then redirect to Date of birth page
   _handleLoginStateChange(LoginState state) {
+    switch (state) {
+      case LoginState.loggedOut:
+      case LoginState.softLoggedOut:
+        // Reset cached analytics data
+        MatrixState.pangeaController.myAnalytics.dispose();
+        MatrixState.pangeaController.analytics.dispose();
+        break;
+      case LoginState.loggedIn:
+        // Initialize analytics data
+        MatrixState.pangeaController.myAnalytics.initialize();
+        MatrixState.pangeaController.analytics.initialize();
+        break;
+    }
     if (state != LoginState.loggedIn) {
       _logOutfromPangea();
     }

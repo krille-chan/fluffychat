@@ -492,7 +492,7 @@ class ChatController extends State<ChatPageWithRoom>
       // Pangea#
       if (kIsWeb && !Matrix.of(context).webHasFocus) return;
       // #Pangea
-    } catch (err, s) {
+    } catch (err) {
       return;
     }
     // Pangea#
@@ -649,6 +649,22 @@ class ChatController extends State<ChatPageWithRoom>
         .then(
       (String? msgEventId) async {
         // #Pangea
+        // There's a listen in my_analytics_controller that decides when to auto-update
+        // analytics based on when / how many messages the logged in user send. This
+        // stream sends the data for newly sent messages.
+        if (msgEventId != null) {
+          pangeaController.myAnalytics.setState(
+            data: {
+              'eventID': msgEventId,
+              'eventType': EventTypes.Message,
+              'roomID': room.id,
+              'originalSent': originalSent,
+              'tokensSent': tokensSent,
+              'choreo': choreo,
+            },
+          );
+        }
+
         if (previousEdit != null) {
           pangeaEditingEvent = previousEdit;
         }

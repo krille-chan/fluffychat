@@ -1,16 +1,6 @@
 part of "client_extension.dart";
 
 extension GeneralInfoClientExtension on Client {
-  Future<List<String>> get _teacherRoomIds async {
-    final List<String> adminRoomIds = [];
-    for (final Room adminSpace in (_spacesImTeaching)) {
-      adminRoomIds.add(adminSpace.id);
-      final List<String> adminSpaceRooms = adminSpace.allSpaceChildRoomIds;
-      adminRoomIds.addAll(adminSpaceRooms);
-    }
-    return adminRoomIds;
-  }
-
   Future<List<User>> get _myTeachers async {
     final List<User> teachers = [];
     for (final classRoom in spacesImIn) {

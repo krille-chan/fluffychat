@@ -1,5 +1,4 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/find_conversation_partner_dialog.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
 import 'package:fluffychat/pangea/utils/space_code.dart';
@@ -42,16 +41,41 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
+      // PopupMenuItem(
+      //   enabled: matrix.client.rooms.any(
+      //     (room) =>
+      //         room.isSpace &&
+      //         room.ownPowerLevel >= ClassDefaultValues.powerLevelOfAdmin,
+      //   ),
+      //   value: SettingsAction.spaceAnalytics,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.analytics_outlined),
+      //       const SizedBox(width: 18),
+      //       Expanded(child: Text(L10n.of(context)!.spaceAnalytics)),
+      //     ],
+      //   ),
+      // ),
+      // PopupMenuItem(
+      //   enabled: matrix.client.rooms.any(
+      //     (room) => !room.isSpace && !room.isArchived && !room.isAnalyticsRoom,
+      //   ),
+      //   value: SettingsAction.myAnalytics,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.analytics_outlined),
+      //       const SizedBox(width: 18),
+      //       Expanded(child: Text(L10n.of(context)!.myLearning)),
+      //     ],
+      //   ),
+      // ),
       PopupMenuItem(
-        enabled: matrix.client.rooms.any(
-          (room) => !room.isSpace && !room.isArchived && !room.isAnalyticsRoom,
-        ),
-        value: SettingsAction.myAnalytics,
+        value: SettingsAction.newClass,
         child: Row(
           children: [
-            const Icon(Icons.analytics_outlined),
+            const Icon(Icons.school),
             const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.myLearning)),
+            Expanded(child: Text(L10n.of(context)!.createNewSpace)),
           ],
         ),
       ),
@@ -372,9 +396,9 @@ class ClientChooserButton extends StatelessWidget {
         // case SettingsAction.spaceAnalytics:
         //   context.go('/rooms/analytics');
         //   break;
-        case SettingsAction.myAnalytics:
-          context.go('/rooms/mylearning');
-          break;
+        // case SettingsAction.myAnalytics:
+        //   context.go('/rooms/mylearning');
+        //   break;
         case SettingsAction.logout:
           pLogoutAction(context);
           break;
@@ -465,7 +489,7 @@ enum SettingsAction {
   learning,
   joinWithClassCode,
   // spaceAnalytics,
-  myAnalytics,
+  // myAnalytics,
   findAConversationPartner,
   logout,
   newClass,

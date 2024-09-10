@@ -4146,6 +4146,11 @@
   "createChat": "Create chat",
   "error520Title": "Please try again.",
   "error520Desc": "Sorry, we could not understand your message...",
+  "wordsUsed": "Words Used",
+  "errorTypes": "Error Types",
+  "level": "Level",
+  "canceledSend": "Canceled send",
+  "morphsUsed": "Morphs Used",
   "translationChoicesBody": "Click and hold an option for a hint.",
   "sendCanceled": "Sending canceled",
   "goToSpace": "Go to space: {space}",
@@ -4195,5 +4200,6 @@
   "discoverHomeservers": "Discover homeservers",
   "whatIsAHomeserver": "What is a homeserver?",
   "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
-  "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?"
+  "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
+  "grammar": "Grammar"
 }

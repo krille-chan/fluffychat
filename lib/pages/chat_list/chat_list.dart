@@ -7,6 +7,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/send_file_dialog.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
@@ -1012,6 +1013,8 @@ class ChatListController extends State<ChatList>
     }
 
     // #Pangea
+    MatrixState.pangeaController.myAnalytics.initialize();
+    MatrixState.pangeaController.analytics.initialize();
     await _initPangeaControllers(client);
     // Pangea#
     if (!mounted) return;
@@ -1023,14 +1026,13 @@ class ChatListController extends State<ChatList>
   // #Pangea
   Future<void> _initPangeaControllers(Client client) async {
     if (mounted) {
+      final PangeaController pangeaController = MatrixState.pangeaController;
       GoogleAnalytics.analyticsUserUpdate(client.userID);
-      MatrixState.pangeaController.startChatWithBotIfNotPresent();
-      await MatrixState.pangeaController.subscriptionController.initialize();
-      await MatrixState.pangeaController.myAnalytics.initialize();
-      MatrixState.pangeaController
-          .afterSyncAndFirstLoginInitialization(context);
-      await MatrixState.pangeaController.inviteBotToExistingSpaces();
-      await MatrixState.pangeaController.setPangeaPushRules();
+      pangeaController.startChatWithBotIfNotPresent();
+      await pangeaController.subscriptionController.initialize();
+      pangeaController.afterSyncAndFirstLoginInitialization(context);
+      await pangeaController.inviteBotToExistingSpaces();
+      await pangeaController.setPangeaPushRules();
       client.migrateAnalyticsRooms();
     } else {
       ErrorHandler.logError(
