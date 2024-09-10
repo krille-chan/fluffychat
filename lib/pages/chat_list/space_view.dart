@@ -256,15 +256,14 @@ class _SpaceViewState extends State<SpaceView> {
   }
 
   void _setCollapsed(String roomId, bool expanded) async {
-    if (expanded)
-      AppConfig.collapsedSpace.add(roomId);
-    else
-      AppConfig.collapsedSpace.remove(roomId);
-    await Matrix.of(context).store.setStringList(
-          SettingKeys.collapsedSpace,
-          AppConfig.collapsedSpace.toList(),
-        );
-    setState(() {});
+    if (expanded
+        ? AppConfig.collapsedSpace.add(roomId)
+        : AppConfig.collapsedSpace.remove(roomId)) {
+      await Matrix.of(context).store.setStringList(
+            SettingKeys.collapsedSpace,
+            AppConfig.collapsedSpace.toList(),
+          );
+    }
   }
 
   SliverList _buildChildrenList(Room room, String filter) {
