@@ -3,6 +3,7 @@ import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class AnalyticsPopup extends StatelessWidget {
   final ProgressIndicatorEnum indicator;
@@ -34,30 +35,36 @@ class AnalyticsPopup extends StatelessWidget {
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: ListView.builder(
-                itemCount: constructsModel.constructs.length,
-                itemBuilder: (context, index) {
-                  return Tooltip(
-                    message:
-                        "${constructsModel.constructs[index].points} / ${constructsModel.type.maxXPPerLemma}",
-                    child: ListTile(
-                      onTap: () {},
-                      title: Text(constructsModel.constructs[index].lemma),
-                      subtitle: LinearProgressIndicator(
-                        value: constructsModel.constructs[index].points /
-                            constructsModel.type.maxXPPerLemma,
-                        minHeight: 20,
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(AppConfig.borderRadius),
-                        ),
-                        color: indicator.color(context),
-                      ),
-                      contentPadding:
-                          const EdgeInsets.symmetric(horizontal: 20),
+              child: constructsModel.constructs.isEmpty
+                  ? Center(
+                      child: Text(L10n.of(context)!.noDataFound),
+                    )
+                  : ListView.builder(
+                      itemCount: constructsModel.constructs.length,
+                      itemBuilder: (context, index) {
+                        return Tooltip(
+                          message:
+                              "${constructsModel.constructs[index].points} / ${constructsModel.type.maxXPPerLemma}",
+                          child: ListTile(
+                            onTap: () {},
+                            title: Text(
+                              constructsModel.constructs[index].lemma,
+                            ),
+                            subtitle: LinearProgressIndicator(
+                              value: constructsModel.constructs[index].points /
+                                  constructsModel.type.maxXPPerLemma,
+                              minHeight: 20,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(AppConfig.borderRadius),
+                              ),
+                              color: indicator.color(context),
+                            ),
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 20),
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
             ),
           ),
         ),
