@@ -2,21 +2,28 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class MessageButtons extends StatelessWidget {
   final ChatController controller;
   final PangeaMessageEvent pangeaMessageEvent;
+  final Event? nextEvent;
+  final Event? prevEvent;
 
   const MessageButtons({
     super.key,
     required this.controller,
     required this.pangeaMessageEvent,
+    this.nextEvent,
+    this.prevEvent,
   });
 
   void showActivity(BuildContext context) {
     controller.showToolbar(
       pangeaMessageEvent,
       mode: MessageMode.practiceActivity,
+      nextEvent: nextEvent,
+      prevEvent: prevEvent,
     );
   }
 
