@@ -4113,11 +4113,11 @@
     "placeholders": {}
   },
   "addChatToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
-  "addSpaceToSpaceDesc": "Adding a space to another space will make the child space appear within the parent space for students and give them access.",
+  "addSpaceToSpaceDesc": "Adding a sub space to space will make the sub space appear in the main space's chat list.",
   "spaceAnalytics": "Space Analytics",
   "changeAnalyticsLanguage": "Change Analytics Language",
   "suggestToSpace": "Suggest this space",
-  "suggestToSpaceDesc": "Suggested spaces will appear in the chat lists for their parent spaces",
+  "suggestToSpaceDesc": "Suggested sub spaces will appear in their main space's chat list",
   "practice": "Practice",
   "noLanguagesSet": "No languages set",
   "noActivitiesFound": "No practice activities found for this message",
