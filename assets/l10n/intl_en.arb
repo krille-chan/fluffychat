@@ -3903,7 +3903,7 @@
   "define": "Define",
   "listen": "Listen",
   "addConversationBot": "Enable Conversation Bot",
-  "addConversationBotDesc": "Add a bot to this group chat",
+  "addConversationBotDesc": "Add a bot to this chat",
   "convoBotSettingsTitle": "Conversation Bot Settings",
   "convoBotSettingsDescription": "Edit conversation topic and difficulty",
   "enterAConversationTopic": "Enter a conversation topic",
@@ -4059,14 +4059,38 @@
   "tooltipInstructionsMobileBody": "Press and hold items to view tooltips.",
   "tooltipInstructionsBrowserBody": "Hover over items to view tooltips.",
   "addSpaceToSpaceDescription": "Select a space to add as a parent",
-  "roomCapacity": "Room Capacity",
+  "roomCapacity": "{roomType} Capacity",
+  "@roomCapacity": {
+    "type": "text",
+    "placeholders": {
+      "roomType": {}
+    }
+  },
   "roomFull": "This room is already at capacity.",
   "topicNotSet": "The topic has not been set.",
   "capacityNotSet": "This room has no capacity limit.",
-  "roomCapacityHasBeenChanged": "Room capacity changed",
+  "roomCapacityHasBeenChanged": "{roomType} capacity changed",
+  "@roomCapacityHasBeenChanged": {
+    "type": "text",
+    "placeholders": {
+      "roomType": {}
+    }
+  },
   "roomExceedsCapacity": "Room exceeds capacity. Consider removing students from the room, or raising the capacity.",
-  "capacitySetTooLow": "Room capacity cannot be set below the current number of non-admins.",
-  "roomCapacityExplanation": "Room capacity limits the number of non-admins allowed in a room.",
+  "capacitySetTooLow": "{roomType} capacity cannot be set below the current number of non-admins.",
+  "@capacitySetTooLow": {
+    "type": "text",
+    "placeholders": {
+      "roomType": {}
+    }
+  },
+  "roomCapacityExplanation": "{roomType} capacity limits the number of non-admins allowed in a room.",
+  "@roomCapacityExplanation": {
+    "type": "text",
+    "placeholders": {
+      "roomType": {}
+    }
+  },
   "enterNumber": "Please enter a whole number value.",
   "buildTranslation": "Build your translation from the choices above",
   "noDatabaseEncryption": "Database encryption is not supported on this platform",
@@ -4201,5 +4225,8 @@
   "whatIsAHomeserver": "What is a homeserver?",
   "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
   "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
-  "grammar": "Grammar"
+  "grammar": "Grammar",
+  "contactHasBeenInvitedToTheChat": "Contact has been invited to the chat",
+  "inviteChat": "📨 Invite chat",
+  "chatName": "Chat name"
 }

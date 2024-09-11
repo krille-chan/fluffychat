@@ -328,7 +328,10 @@ class ChatListItem extends StatelessWidget {
                                   room.membership == Membership.invite
                                       ? isDirectChat
                                           ? L10n.of(context)!.invitePrivateChat
-                                          : L10n.of(context)!.inviteGroupChat
+                                          // #Pangea
+                                          // : L10n.of(context)!.inviteGroupChat
+                                          : L10n.of(context)!.inviteChat
+                                      // Pangea#
                                       : snapshot.data ??
                                           L10n.of(context)!.emptyChat,
                                   softWrap: false,

@@ -139,8 +139,11 @@ class ChatListController extends State<ChatList>
       final inviteAction = await showModalActionSheet<InviteActions>(
         context: context,
         message: room.isDirectChat
+            // #Pangea
             ? L10n.of(context)!.invitePrivateChat
-            : L10n.of(context)!.inviteGroupChat,
+            // : L10n.of(context)!.inviteGroupChat,
+            : L10n.of(context)!.inviteChat,
+        // Pangea#
         title: room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
         actions: [
           SheetAction(

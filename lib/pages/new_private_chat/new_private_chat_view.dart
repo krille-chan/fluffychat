@@ -140,7 +140,10 @@ class NewPrivateChatView extends StatelessWidget {
                         foregroundColor: theme.colorScheme.onTertiaryContainer,
                         child: const Icon(Icons.group_add_outlined),
                       ),
-                      title: Text(L10n.of(context)!.createGroup),
+                      // #Pangea
+                      // title: Text(L10n.of(context)!.createGroup),
+                      title: Text(L10n.of(context)!.createChat),
+                      // Pangea#
                       onTap: () => context.go('/rooms/newgroup'),
                     ),
                     if (PlatformInfos.isMobile)
