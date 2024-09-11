@@ -33,7 +33,7 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   String? oldSelectedText;
   bool _fetchingRepresentation = false;
 
-  Future<void> fetchRepresentation(BuildContext context) async {
+  Future<void> fetchRepresentation() async {
     if (l1Code == null) return;
 
     repEvent = widget.messageEvent
@@ -102,15 +102,13 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   @override
   void initState() {
     super.initState();
-    if (mounted) {
-      setState(() {});
-    }
-
     loadTranslation(() async {
+      final List<Future> futures = [];
+      futures.add(fetchRepresentation());
       if (widget.selection.selectedText != null) {
-        await translateSelection();
+        futures.add(translateSelection());
       }
-      await fetchRepresentation(context);
+      await Future.wait(futures);
     });
   }
 
