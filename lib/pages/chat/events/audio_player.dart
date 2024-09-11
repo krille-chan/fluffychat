@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -244,6 +245,11 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         body.isNotEmpty &&
         widget.event.content['org.matrix.msc1767.audio'] == null;
 
+    final wavePosition =
+        (currentPosition / maxPosition) * AudioPlayerWidget.wavesCount;
+
+    final fontSize = 12 * AppConfig.fontSizeFactor;
+
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(
@@ -300,8 +306,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                                       horizontal: 1,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: widget.color.withAlpha(96),
-                                      borderRadius: BorderRadius.circular(32),
+                                      color: i < wavePosition
+                                          ? theme.colorScheme.onPrimaryContainer
+                                          : widget.color.withAlpha(64),
+                                      borderRadius: BorderRadius.circular(64),
                                     ),
                                     height: 32 * (waveform[i] / 1024),
                                   ),
@@ -366,22 +374,24 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
               ],
             ),
           ),
-          if (displayBody)
+          if (displayBody) ...[
+            const SizedBox(height: 8),
             Linkify(
               text: body,
               style: TextStyle(
                 color: widget.color,
-                fontSize: widget.fontSize,
+                fontSize: fontSize,
               ),
               options: const LinkifyOptions(humanize: false),
               linkStyle: TextStyle(
                 color: widget.color.withAlpha(150),
-                fontSize: widget.fontSize,
+                fontSize: fontSize,
                 decoration: TextDecoration.underline,
                 decorationColor: widget.color.withAlpha(150),
               ),
               onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             ),
+          ],
         ],
       ),
     );
