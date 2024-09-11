@@ -74,13 +74,20 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
     double scrollOffset = 0;
     double animationEndOffset = 0;
 
+    final midpoint = (headerBottomOffset + footerBottomOffset) / 2;
     if (hasHeaderOverflow) {
-      final midpoint = (headerBottomOffset + footerBottomOffset) / 2;
       animationEndOffset = midpoint - messageSize!.height;
       scrollOffset = animationEndOffset - currentBottomOffset;
     } else if (hasFooterOverflow) {
       scrollOffset = footerHeight - currentBottomOffset;
-      animationEndOffset = currentBottomOffset + scrollOffset;
+      animationEndOffset = footerHeight;
+
+      final bottomOffsetDifference = footerHeight - currentBottomOffset;
+      final newTopOffset = messageOffset!.dy - bottomOffsetDifference;
+      if (newTopOffset < (headerHeight + AppConfig.toolbarMaxHeight)) {
+        animationEndOffset = midpoint - messageSize!.height;
+        scrollOffset = animationEndOffset - currentBottomOffset;
+      }
     }
 
     _overlayPositionAnimation = Tween<double>(
