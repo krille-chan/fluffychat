@@ -151,6 +151,7 @@ class MessageContent extends StatelessWidget {
               return AudioPlayerWidget(
                 event,
                 color: textColor,
+                fontSize: fontSize,
               );
             }
             return MessageDownloadContent(event, textColor);
