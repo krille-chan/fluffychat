@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
@@ -105,9 +106,19 @@ class ChatEventList extends StatelessWidget {
             // Request history button or progress indicator:
             if (i == events.length + 1) {
               if (controller.timeline!.isRequestingHistory) {
-                return const Center(
-                  child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                // #Pangea
+                // return const Center(
+                //   child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                // );
+                return const Column(
+                  children: [
+                    SizedBox(height: AppConfig.toolbarMaxHeight),
+                    Center(
+                      child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                    ),
+                  ],
                 );
+                // Pangea#
               }
               if (controller.timeline!.canRequestHistory) {
                 return Builder(
@@ -117,17 +128,31 @@ class ChatEventList extends StatelessWidget {
                         .addPostFrameCallback((_) => controller.requestHistory);
                     // WidgetsBinding.instance
                     //     .addPostFrameCallback(controller.requestHistory);
-                    // Pangea#
-                    return Center(
-                      child: IconButton(
-                        onPressed: controller.requestHistory,
-                        icon: const Icon(Icons.refresh_outlined),
-                      ),
+                    return Column(
+                      children: [
+                        const SizedBox(height: AppConfig.toolbarMaxHeight),
+                        Center(
+                          child: IconButton(
+                            onPressed: controller.requestHistory,
+                            icon: const Icon(Icons.refresh_outlined),
+                          ),
+                        ),
+                      ],
                     );
+                    // return Center(
+                    //   child: IconButton(
+                    //     onPressed: controller.requestHistory,
+                    //     icon: const Icon(Icons.refresh_outlined),
+                    //   ),
+                    // );
+                    // Pangea#
                   },
                 );
               }
-              return const SizedBox.shrink();
+              // #Pangea
+              // return const SizedBox.shrink();
+              return const SizedBox(height: AppConfig.toolbarMaxHeight);
+              // Pangea#
             }
             // #Pangea
             // i--;

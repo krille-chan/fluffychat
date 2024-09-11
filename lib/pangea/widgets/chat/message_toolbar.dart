@@ -15,6 +15,7 @@ import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_ca
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:matrix/matrix.dart';
 
 class MessageToolbar extends StatefulWidget {
   final MessageTextSelection textSelection;
@@ -22,14 +23,11 @@ class MessageToolbar extends StatefulWidget {
   final ChatController controller;
   final MessageMode? initialMode;
 
-  final StreamController completeAnimationStream;
-
   const MessageToolbar({
     super.key,
     required this.textSelection,
     required this.pangeaMessageEvent,
     required this.controller,
-    required this.completeAnimationStream,
     this.initialMode,
   });
 
@@ -267,7 +265,6 @@ class MessageToolbarState extends State<MessageToolbar> {
                   child: AnimatedSize(
                     duration: FluffyThemes.animationDuration,
                     child: toolbarContent,
-                    onEnd: () => widget.completeAnimationStream.add(null),
                   ),
                 ),
               ),
@@ -284,12 +281,16 @@ class ToolbarSelectionArea extends StatelessWidget {
   final PangeaMessageEvent? pangeaMessageEvent;
   final bool isOverlay;
   final Widget child;
+  final Event? nextEvent;
+  final Event? prevEvent;
 
   const ToolbarSelectionArea({
     required this.controller,
     this.pangeaMessageEvent,
     this.isOverlay = false,
     required this.child,
+    this.nextEvent,
+    this.prevEvent,
     super.key,
   });
 
@@ -302,12 +303,20 @@ class ToolbarSelectionArea extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           if (pangeaMessageEvent != null && !isOverlay) {
-            controller.showToolbar(pangeaMessageEvent!);
+            controller.showToolbar(
+              pangeaMessageEvent!,
+              nextEvent: nextEvent,
+              prevEvent: prevEvent,
+            );
           }
         },
         onLongPress: () {
           if (pangeaMessageEvent != null && !isOverlay) {
-            controller.showToolbar(pangeaMessageEvent!);
+            controller.showToolbar(
+              pangeaMessageEvent!,
+              nextEvent: nextEvent,
+              prevEvent: prevEvent,
+            );
           }
         },
         child: child,
