@@ -25,6 +25,8 @@ class HtmlMessage extends StatelessWidget {
   final bool isOverlay;
   final PangeaMessageEvent? pangeaMessageEvent;
   final ChatController controller;
+  final Event? nextEvent;
+  final Event? prevEvent;
   // Pangea#
 
   const HtmlMessage({
@@ -36,6 +38,8 @@ class HtmlMessage extends StatelessWidget {
     required this.isOverlay,
     this.pangeaMessageEvent,
     required this.controller,
+    this.nextEvent,
+    this.prevEvent,
     // Pangea#
   });
 
@@ -99,7 +103,11 @@ class HtmlMessage extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           if (pangeaMessageEvent != null && !isOverlay) {
-            controller.showToolbar(pangeaMessageEvent!);
+            controller.showToolbar(
+              pangeaMessageEvent!,
+              nextEvent: nextEvent,
+              prevEvent: prevEvent,
+            );
           }
         },
         // Pangea#

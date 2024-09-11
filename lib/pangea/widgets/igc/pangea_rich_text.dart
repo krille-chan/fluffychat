@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 import '../../models/pangea_match_model.dart';
 
@@ -21,6 +22,8 @@ class PangeaRichText extends StatefulWidget {
   final TextStyle? style;
   final bool isOverlay;
   final ChatController controller;
+  final Event? nextEvent;
+  final Event? prevEvent;
 
   const PangeaRichText({
     super.key,
@@ -28,6 +31,8 @@ class PangeaRichText extends StatefulWidget {
     required this.immersionMode,
     required this.isOverlay,
     required this.controller,
+    this.nextEvent,
+    this.prevEvent,
     this.style,
   });
 
@@ -139,6 +144,8 @@ class PangeaRichTextState extends State<PangeaRichText> {
       isOverlay: widget.isOverlay,
       pangeaMessageEvent: widget.pangeaMessageEvent,
       controller: widget.controller,
+      nextEvent: widget.nextEvent,
+      prevEvent: widget.prevEvent,
       child: RichText(
         text: TextSpan(
           text: textSpan,
