@@ -319,7 +319,10 @@ class _SpaceViewState extends State<SpaceView> {
         ),
         AlertDialogAction(
           key: AddRoomType.chat,
-          label: L10n.of(context)!.createGroup,
+          // #Pangea
+          // label: L10n.of(context)!.createGroup,
+          label: L10n.of(context)!.createChat,
+          // Pangea#
         ),
       ],
     );
@@ -329,12 +332,18 @@ class _SpaceViewState extends State<SpaceView> {
       context: context,
       title: roomType == AddRoomType.subspace
           ? L10n.of(context)!.createNewSpace
-          : L10n.of(context)!.createGroup,
+          // #Pangea
+          // : L10n.of(context)!.createGroup,
+          : L10n.of(context)!.createChat,
+      // Pangea#
       textFields: [
         DialogTextField(
           hintText: roomType == AddRoomType.subspace
               ? L10n.of(context)!.spaceName
-              : L10n.of(context)!.groupName,
+              // #Pangea
+              // : L10n.of(context)!.groupName,
+              : L10n.of(context)!.chatName,
+          // Pangea#
           minLines: 1,
           maxLines: 1,
           maxLength: 64,

@@ -3903,7 +3903,7 @@
   "define": "Define",
   "listen": "Listen",
   "addConversationBot": "Enable Conversation Bot",
-  "addConversationBotDesc": "Add a bot to this group chat",
+  "addConversationBotDesc": "Add a bot to this chat",
   "convoBotSettingsTitle": "Conversation Bot Settings",
   "convoBotSettingsDescription": "Edit conversation topic and difficulty",
   "enterAConversationTopic": "Enter a conversation topic",
@@ -4195,5 +4195,9 @@
   "discoverHomeservers": "Discover homeservers",
   "whatIsAHomeserver": "What is a homeserver?",
   "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
-  "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?"
+  "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
+  "grammar": "Grammar",
+  "contactHasBeenInvitedToTheChat": "Contact has been invited to the chat",
+  "inviteChat": "📨 Invite chat",
+  "chatName": "Chat name"
 }
