@@ -9,10 +9,13 @@ import 'package:matrix/matrix.dart';
 class RoomCapacityButton extends StatefulWidget {
   final Room? room;
   final ChatDetailsController? controller;
+  final bool spaceMode;
+
   const RoomCapacityButton({
     super.key,
     this.room,
     this.controller,
+    this.spaceMode = false,
   });
 
   @override
@@ -66,6 +69,15 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
     }
   }
 
+  String get roomType {
+    final String chat = L10n.of(context)!.chat;
+    final String space = L10n.of(context)!.space;
+    if (widget.room != null) {
+      return widget.room!.isSpace ? space : chat;
+    }
+    return widget.spaceMode ? space : chat;
+  }
+
   @override
   Widget build(BuildContext context) {
     final iconColor = Theme.of(context).textTheme.bodyLarge!.color;
@@ -86,7 +98,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
                     : '$capacity',
           ),
           title: Text(
-            L10n.of(context)!.roomCapacity,
+            L10n.of(context)!.roomCapacity(roomType),
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
@@ -104,8 +116,8 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
   Future<void> setRoomCapacity() async {
     final input = await showTextInputDialog(
       context: context,
-      title: L10n.of(context)!.roomCapacity,
-      message: L10n.of(context)!.roomCapacityExplanation,
+      title: L10n.of(context)!.roomCapacity(roomType),
+      message: L10n.of(context)!.roomCapacityExplanation(roomType),
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
       textFields: [
@@ -121,7 +133,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
               return L10n.of(context)!.enterNumber;
             }
             if (nonAdmins != null && int.parse(value) < int.parse(nonAdmins!)) {
-              return L10n.of(context)!.capacitySetTooLow;
+              return L10n.of(context)!.capacitySetTooLow(roomType);
             }
             return null;
           },
@@ -147,7 +159,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            L10n.of(context)!.roomCapacityHasBeenChanged,
+            L10n.of(context)!.roomCapacityHasBeenChanged(roomType),
           ),
         ),
       );

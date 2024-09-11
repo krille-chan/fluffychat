@@ -115,6 +115,7 @@ class NewSpaceView extends StatelessWidget {
 
             RoomCapacityButton(
               key: controller.addCapacityKey,
+              spaceMode: true,
             ),
             // commenting out language settings in spaces for now
             // LanguageSettings(

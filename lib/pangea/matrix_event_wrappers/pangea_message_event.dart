@@ -477,28 +477,10 @@ class PangeaMessageEvent {
     return representationByLanguage(langCode)?.text ?? body;
   }
 
-  bool get isNew =>
-      DateTime.now().difference(originServerTs.toLocal()).inSeconds < 8;
-
-  Future<RepresentationEvent?> _repLocal(String langCode) async {
-    int tries = 0;
-
-    RepresentationEvent? rep = representationByLanguage(langCode);
-
-    while ((isNew || eventId.contains("web")) && tries < 20) {
-      if (rep != null) return rep;
-      await Future.delayed(const Duration(milliseconds: 500));
-      rep = representationByLanguage(langCode);
-      tries += 1;
-    }
-    return rep;
-  }
-
   Future<PangeaRepresentation?> representationByLanguageGlobal({
     required String langCode,
   }) async {
-    // try {
-    final RepresentationEvent? repLocal = await _repLocal(langCode);
+    final RepresentationEvent? repLocal = representationByLanguage(langCode);
 
     if (repLocal != null ||
         langCode == LanguageKeys.unknownLanguage ||
@@ -519,11 +501,7 @@ class PangeaMessageEvent {
       target: langCode,
       room: _latestEdit.room,
     );
-
-    if (pangeaRep == null ||
-        await _latestEdit.room.getEventById(_latestEdit.eventId) == null) {
-      return null;
-    }
+    if (pangeaRep == null) return null;
 
     MatrixState.pangeaController.messageData
         .sendRepresentationMatrixEvent(
