@@ -72,6 +72,7 @@ class NewSpaceView extends StatelessWidget {
             // #Pangea
             RoomCapacityButton(
               key: controller.addCapacityKey,
+              spaceMode: true,
             ),
             AddToSpaceToggles(
               key: controller.addToSpaceKey,
