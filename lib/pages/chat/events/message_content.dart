@@ -30,7 +30,6 @@ class MessageContent extends StatelessWidget {
   final void Function(Event)? onInfoTab;
   final BorderRadius borderRadius;
   // #Pangea
-  final bool selected;
   final PangeaMessageEvent? pangeaMessageEvent;
   //question: are there any performance benefits to using booleans
   //here rather than passing the choreographer? pangea rich text, a widget
@@ -38,6 +37,8 @@ class MessageContent extends StatelessWidget {
   final bool immersionMode;
   final bool isOverlay;
   final ChatController controller;
+  final Event? nextEvent;
+  final Event? prevEvent;
   // Pangea#
 
   const MessageContent(
@@ -46,11 +47,12 @@ class MessageContent extends StatelessWidget {
     super.key,
     required this.textColor,
     // #Pangea
-    required this.selected,
     this.pangeaMessageEvent,
     required this.immersionMode,
     this.isOverlay = false,
     required this.controller,
+    this.nextEvent,
+    this.prevEvent,
     // Pangea#
     required this.borderRadius,
   });
@@ -209,6 +211,8 @@ class MessageContent extends StatelessWidget {
                 isOverlay: isOverlay,
                 controller: controller,
                 pangeaMessageEvent: pangeaMessageEvent,
+                nextEvent: nextEvent,
+                prevEvent: prevEvent,
                 // Pangea#
               );
             }
@@ -327,6 +331,8 @@ class MessageContent extends StatelessWidget {
               controller: controller,
               pangeaMessageEvent: pangeaMessageEvent,
               isOverlay: isOverlay,
+              nextEvent: nextEvent,
+              prevEvent: prevEvent,
               child:
                   // Pangea#
                   Linkify(

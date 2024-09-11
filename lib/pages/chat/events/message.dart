@@ -71,7 +71,11 @@ class Message extends StatelessWidget {
   // #Pangea
   void showToolbar(PangeaMessageEvent? pangeaMessageEvent) {
     if (pangeaMessageEvent != null && !isOverlay) {
-      controller.showToolbar(pangeaMessageEvent);
+      controller.showToolbar(
+        pangeaMessageEvent,
+        nextEvent: nextEvent,
+        prevEvent: previousEvent,
+      );
     }
   }
   // Pangea#
@@ -441,12 +445,13 @@ class Message extends StatelessWidget {
                                                 onInfoTab: onInfoTab,
                                                 borderRadius: borderRadius,
                                                 // #Pangea
-                                                selected: selected,
                                                 pangeaMessageEvent:
                                                     pangeaMessageEvent,
                                                 immersionMode: immersionMode,
                                                 isOverlay: isOverlay,
                                                 controller: controller,
+                                                nextEvent: nextEvent,
+                                                prevEvent: previousEvent,
                                                 // Pangea#
                                               ),
                                               if (event.hasAggregatedEvents(
@@ -531,21 +536,18 @@ class Message extends StatelessWidget {
         event.hasAggregatedEvents(timeline, RelationshipTypes.reaction);
     // #Pangea
     // if (showReceiptsRow || displayTime || selected || displayReadMarker) {
-    if (showReceiptsRow ||
-        displayTime ||
-        selected ||
-        displayReadMarker ||
-        (pangeaMessageEvent?.showMessageButtons ?? false)) {
+    if (!isOverlay &&
+        (showReceiptsRow ||
+            displayTime ||
+            displayReadMarker ||
+            (pangeaMessageEvent?.showMessageButtons ?? false))) {
       // Pangea#
       container = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          // #Pangea
-          // if (displayTime || selected)
-          if ((displayTime || selected) && !isOverlay)
-            // Pangea#
+          if (displayTime || selected)
             Padding(
               padding: displayTime
                   ? const EdgeInsets.symmetric(vertical: 8.0)
@@ -575,8 +577,9 @@ class Message extends StatelessWidget {
             duration: FluffyThemes.animationDuration,
             curve: FluffyThemes.animationCurve,
             // #Pangea
-            child: !showReceiptsRow &&
-                    !(pangeaMessageEvent?.showMessageButtons ?? false)
+            child: isOverlay ||
+                    (!showReceiptsRow &&
+                        !(pangeaMessageEvent?.showMessageButtons ?? false))
                 // child: !showReceiptsRow
                 // Pangea#
                 ? const SizedBox.shrink()
@@ -596,11 +599,10 @@ class Message extends StatelessWidget {
                           MessageButtons(
                             controller: controller,
                             pangeaMessageEvent: pangeaMessageEvent!,
+                            nextEvent: nextEvent,
+                            prevEvent: previousEvent,
                           ),
-                        // #Pangea
-                        if (!isOverlay)
-                          // Pangea#
-                          MessageReactions(event, timeline),
+                        MessageReactions(event, timeline),
                       ],
                     ),
                     // child: MessageReactions(event, timeline),
@@ -666,7 +668,15 @@ class Message extends StatelessWidget {
             left: 8.0,
             right: 8.0,
             top: nextEventSameSender ? 1.0 : 4.0,
-            bottom: previousEventSameSender ? 1.0 : 4.0,
+            bottom:
+                // #Pangea
+                isOverlay
+                    ? 0
+                    :
+                    // Pangea#
+                    previousEventSameSender
+                        ? 1.0
+                        : 4.0,
           ),
           child: container,
         ),

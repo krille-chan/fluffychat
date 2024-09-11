@@ -1,5 +1,4 @@
-import 'dart:async';
-
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -18,6 +17,8 @@ import 'package:matrix/matrix.dart';
 class MessageSelectionOverlay extends StatefulWidget {
   final ChatController controller;
   final Event event;
+  final Event? nextEvent;
+  final Event? prevEvent;
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageMode? initialMode;
   final MessageTextSelection textSelection;
@@ -28,6 +29,8 @@ class MessageSelectionOverlay extends StatefulWidget {
     required this.pangeaMessageEvent,
     required this.textSelection,
     this.initialMode,
+    this.nextEvent,
+    this.prevEvent,
     super.key,
   });
 
@@ -35,83 +38,81 @@ class MessageSelectionOverlay extends StatefulWidget {
   MessageSelectionOverlayState createState() => MessageSelectionOverlayState();
 }
 
-class MessageSelectionOverlayState extends State<MessageSelectionOverlay> {
-  double overlayBottomOffset = -1;
-  double adjustedOverlayBottomOffset = -1;
-  Size? messageSize;
-  Offset? messageOffset;
-
-  final StreamController _completeAnimationStream =
-      StreamController.broadcast();
+class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  Animation<double>? _overlayPositionAnimation;
 
   @override
   void initState() {
     super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: FluffyThemes.animationDuration,
+    );
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    if (messageSize == null || messageOffset == null) {
+      return;
+    }
 
     // position the overlay directly over the underlying message
-    setOverlayBottomOffset();
+    final headerBottomOffset = screenHeight - headerHeight;
+    final footerBottomOffset = footerHeight;
+    final currentBottomOffset =
+        screenHeight - messageOffset!.dy - messageSize!.height;
 
-    // wait for the toolbar to animate to full height
-    _completeAnimationStream.stream.first.then((_) {
-      if (toolbarHeight == null ||
-          messageSize == null ||
-          messageOffset == null) {
-        return;
-      }
+    final bool hasHeaderOverflow =
+        messageOffset!.dy < AppConfig.toolbarMaxHeight;
+    final bool hasFooterOverflow = footerHeight > currentBottomOffset;
 
-      // Once the toolbar has fully expanded, adjust
-      // the overlay's position if there's an overflow
-      final overlayTopOffset = messageOffset!.dy - toolbarHeight!;
+    if (!hasHeaderOverflow && !hasFooterOverflow) return;
 
-      final bool hasHeaderOverflow = overlayTopOffset < headerHeight;
-      final bool hasFooterOverflow = overlayBottomOffset < footerHeight;
+    double scrollOffset = 0;
+    double animationEndOffset = 0;
 
-      if (hasHeaderOverflow) {
-        final overlayHeight = toolbarHeight! + messageSize!.height;
-        adjustedOverlayBottomOffset = screenHeight -
-            overlayHeight -
-            footerHeight -
-            MediaQuery.of(context).padding.bottom;
-      } else if (hasFooterOverflow) {
-        adjustedOverlayBottomOffset = footerHeight;
-      }
+    if (hasHeaderOverflow) {
+      final midpoint = (headerBottomOffset + footerBottomOffset) / 2;
+      animationEndOffset = midpoint - messageSize!.height;
+      scrollOffset = animationEndOffset - currentBottomOffset;
+    } else if (hasFooterOverflow) {
+      scrollOffset = footerHeight - currentBottomOffset;
+      animationEndOffset = currentBottomOffset + scrollOffset;
+    }
 
-      setState(() {});
-    });
+    _overlayPositionAnimation = Tween<double>(
+      begin: currentBottomOffset,
+      end: animationEndOffset,
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: FluffyThemes.animationCurve,
+      ),
+    );
+
+    widget.controller.scrollController.animateTo(
+      widget.controller.scrollController.offset - scrollOffset,
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
+    );
+    _animationController.forward();
   }
 
   @override
   void dispose() {
-    _completeAnimationStream.close();
+    _animationController.dispose();
     super.dispose();
   }
 
-  void setOverlayBottomOffset() {
-    // Try to get the offset and size of the original message bubble.
-    // If it fails, return an empty SizedBox. For instance, this can fail if
-    // you change the screen size while the overlay is open.
-    try {
-      final messageRenderBox = MatrixState.pAnyState.getRenderBox(
+  RenderBox? get messageRenderBox => MatrixState.pAnyState.getRenderBox(
         widget.event.eventId,
       );
-      if (messageRenderBox != null && messageRenderBox.hasSize) {
-        messageSize = messageRenderBox.size;
-        messageOffset = messageRenderBox.localToGlobal(Offset.zero);
-        final messageTopOffset = messageOffset!.dy;
-        overlayBottomOffset =
-            screenHeight - messageTopOffset - messageSize!.height;
-      }
-    } catch (err) {
-      overlayBottomOffset = adjustedOverlayBottomOffset = -1;
-    } finally {
-      setState(() {});
-    }
-  }
+
+  Size? get messageSize => messageRenderBox?.size;
+  Offset? get messageOffset => messageRenderBox?.localToGlobal(Offset.zero);
 
   // height of the reply/forward bar + the reaction picker + contextual padding
   double get footerHeight =>
@@ -123,23 +124,14 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay> {
 
   double get screenHeight => MediaQuery.of(context).size.height;
 
-  double? get toolbarHeight {
-    try {
-      final toolbarRenderBox = MatrixState.pAnyState.getRenderBox(
-        '${widget.pangeaMessageEvent.eventId}-toolbar',
-      );
-
-      return toolbarRenderBox?.size.height;
-    } catch (e) {
-      return null;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (overlayBottomOffset == -1) {
-      return const SizedBox.shrink();
-    }
+    final bool showDetails = (Matrix.of(context)
+                .store
+                .getBool(SettingKeys.displayChatDetailsColumn) ??
+            false) &&
+        FluffyThemes.isThreeColumnMode(context) &&
+        widget.controller.room.membership == Membership.join;
 
     final overlayMessage = ConstrainedBox(
       constraints: const BoxConstraints(
@@ -166,7 +158,6 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay> {
                     pangeaMessageEvent: widget.pangeaMessageEvent,
                     controller: widget.controller,
                     textSelection: widget.textSelection,
-                    completeAnimationStream: _completeAnimationStream,
                     initialMode: widget.initialMode,
                   ),
                 ),
@@ -184,57 +175,72 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay> {
               timeline: widget.controller.timeline!,
               isOverlay: true,
               animateIn: false,
+              nextEvent: widget.nextEvent,
+              previousEvent: widget.prevEvent,
             ),
           ],
         ),
       ),
     );
 
-    final bool showDetails = (Matrix.of(context)
-                .store
-                .getBool(SettingKeys.displayChatDetailsColumn) ??
-            false) &&
-        FluffyThemes.isThreeColumnMode(context) &&
-        widget.controller.room.membership == Membership.join;
+    final positionedOverlayMessage = _overlayPositionAnimation == null
+        ? Positioned(
+            left: 0,
+            right: showDetails ? FluffyThemes.columnWidth : 0,
+            bottom: screenHeight - messageOffset!.dy - messageSize!.height,
+            child: Align(
+              alignment: Alignment.center,
+              child: overlayMessage,
+            ),
+          )
+        : AnimatedBuilder(
+            animation: _overlayPositionAnimation!,
+            builder: (context, child) {
+              return Positioned(
+                left: 0,
+                right: showDetails ? FluffyThemes.columnWidth : 0,
+                bottom: _overlayPositionAnimation!.value,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: overlayMessage,
+                ),
+              );
+            },
+          );
 
-    return Stack(
-      children: [
-        AnimatedPositioned(
-          duration: FluffyThemes.animationDuration,
-          left: 0,
-          right: showDetails ? FluffyThemes.columnWidth : 0,
-          bottom: adjustedOverlayBottomOffset == -1
-              ? overlayBottomOffset
-              : adjustedOverlayBottomOffset,
-          child: Align(
-            alignment: Alignment.center,
-            child: overlayMessage,
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    OverlayFooter(controller: widget.controller),
-                  ],
+    return Padding(
+      padding: EdgeInsets.only(
+        left: FluffyThemes.isColumnMode(context) ? 8.0 : 0.0,
+        right: FluffyThemes.isColumnMode(context) ? 8.0 : 0.0,
+      ),
+      child: Stack(
+        children: [
+          positionedOverlayMessage,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      OverlayFooter(controller: widget.controller),
+                    ],
+                  ),
                 ),
-              ),
-              if (showDetails)
-                const SizedBox(
-                  width: FluffyThemes.columnWidth,
-                ),
-            ],
+                if (showDetails)
+                  const SizedBox(
+                    width: FluffyThemes.columnWidth,
+                  ),
+              ],
+            ),
           ),
-        ),
-        Material(
-          child: OverlayHeader(controller: widget.controller),
-        ),
-      ],
+          Material(
+            child: OverlayHeader(controller: widget.controller),
+          ),
+        ],
+      ),
     );
   }
 }
