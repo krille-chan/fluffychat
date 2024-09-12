@@ -69,16 +69,6 @@ class ClientChooserButton extends StatelessWidget {
       //     ],
       //   ),
       // ),
-      PopupMenuItem(
-        value: SettingsAction.newClass,
-        child: Row(
-          children: [
-            const Icon(Icons.school),
-            const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.createNewSpace)),
-          ],
-        ),
-      ),
       // PopupMenuItem(
       //   value: SettingsAction.newGroup,
       //   child: Row(
