@@ -1619,9 +1619,10 @@ class ChatController extends State<ChatPageWithRoom>
     Event? prevEvent,
   }) {
     if (![
-      MessageTypes.Text,
-      MessageTypes.Audio,
-    ].contains(pangeaMessageEvent.event.messageType)) {
+          MessageTypes.Text,
+          MessageTypes.Audio,
+        ].contains(pangeaMessageEvent.event.messageType) ||
+        pangeaMessageEvent.event.redacted) {
       return;
     }
 
