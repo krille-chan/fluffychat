@@ -52,7 +52,6 @@ class ITController {
     payLoadIds = [];
 
     choreographer.altTranslator.clear();
-    choreographer.errorService.resetError();
     choreographer.choreoMode = ChoreoMode.igc;
     choreographer.setState();
   }
