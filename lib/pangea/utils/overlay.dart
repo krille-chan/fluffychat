@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
@@ -229,10 +230,13 @@ class TransparentBackdrop extends StatelessWidget {
           }
           MatrixState.pAnyState.closeOverlay();
         },
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          color: Colors.transparent,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            color: Colors.transparent,
+          ),
         ),
       ),
     );
