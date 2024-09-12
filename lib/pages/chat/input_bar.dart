@@ -477,6 +477,7 @@ class InputBar extends StatelessWidget {
             key: controller?.choreographer.inputLayerLinkAndKey.key,
             // builder: (context, controller, focusNode) => TextField(
             builder: (context, _, focusNode) => TextField(
+              enableSuggestions: false,
               // Pangea#
               controller: controller,
               focusNode: focusNode,
