@@ -58,7 +58,9 @@ class BotOptionsModel {
       //////////////////////////////////////////////////////////////////////////
       // General Bot Options
       //////////////////////////////////////////////////////////////////////////
-      languageLevel: json[ModelKey.languageLevel],
+      languageLevel: json[ModelKey.languageLevel] is int
+          ? json[ModelKey.languageLevel]
+          : null,
       safetyModeration: json[ModelKey.safetyModeration] ?? true,
       mode: json[ModelKey.mode] ?? "discussion",
 
