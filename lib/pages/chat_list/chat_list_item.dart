@@ -114,25 +114,25 @@ class ChatListItem extends StatelessWidget {
                     height: Avatar.defaultSize,
                     child: Stack(
                       children: [
-                        if (space != null)
-                          Positioned(
-                            top: 0,
-                            left: 0,
-                            child: Avatar(
-                              border: BorderSide(
-                                width: 2,
-                                color: backgroundColor ??
-                                    Theme.of(context).colorScheme.surface,
-                              ),
-                              borderRadius: BorderRadius.circular(
-                                AppConfig.borderRadius / 4,
-                              ),
-                              mxContent: space.avatar,
-                              size: Avatar.defaultSize * 0.75,
-                              name: space.getLocalizedDisplayname(),
-                              onTap: () => onLongPress?.call(context),
-                            ),
-                          ),
+                        // if (space != null)
+                        //   Positioned(
+                        //     top: 0,
+                        //     left: 0,
+                        //     child: Avatar(
+                        //       border: BorderSide(
+                        //         width: 2,
+                        //         color: backgroundColor ??
+                        //             Theme.of(context).colorScheme.surface,
+                        //       ),
+                        //       borderRadius: BorderRadius.circular(
+                        //         AppConfig.borderRadius / 4,
+                        //       ),
+                        //       mxContent: space.avatar,
+                        //       size: Avatar.defaultSize * 0.75,
+                        //       name: space.getLocalizedDisplayname(),
+                        //       onTap: () => onLongPress?.call(context),
+                        //     ),
+                        //   ),
                         Positioned(
                           bottom: 0,
                           right: 0,
@@ -151,7 +151,7 @@ class ChatListItem extends StatelessWidget {
                                 : null,
                             mxContent: room.avatar,
                             size: space != null
-                                ? Avatar.defaultSize * 0.75
+                                ? Avatar.defaultSize
                                 : Avatar.defaultSize,
                             name: displayname,
                             presenceUserId: directChatMatrixId,
