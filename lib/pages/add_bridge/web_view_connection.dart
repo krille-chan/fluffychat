@@ -108,13 +108,14 @@ class _WebViewConnectionState extends State<WebViewConnection> {
           _webViewController = controller;
         },
         onLoadStop: (InAppWebViewController controller, Uri? url) async {
+          final urlString = url?.toString();
           // Check the URL when the page finishes loading
           switch (widget.network.name) {
             case "Facebook Messenger":
               final successfullyRedirected = !_facebookBridgeCreated &&
                   url != null &&
-                  url.toString() != widget.network.urlLogin! &&
-                  url.toString().contains(widget.network.urlRedirect!);
+                  urlString != widget.network.urlLogin! &&
+                  widget.network.urlRedirectPattern?.hasMatch(urlString!) == true;
 
               if (successfullyRedirected) {
                 await _closeWebView();
@@ -138,8 +139,8 @@ class _WebViewConnectionState extends State<WebViewConnection> {
             case "Instagram":
               if (!_instagramBridgeCreated &&
                   url != null &&
-                  url.toString() != widget.network.urlLogin! &&
-                  url.toString().contains(widget.network.urlRedirect!)) {
+                  urlString != widget.network.urlLogin! &&
+                  widget.network.urlRedirectPattern?.hasMatch(urlString!) == true) {
                 // Close the WebView
                 await _closeWebView();
                 await showCustomLoadingDialog(
@@ -158,7 +159,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
             case "Linkedin":
               if (!_linkedinBridgeCreated &&
                   url != null &&
-                  url.toString().contains(widget.network.urlRedirect!)) {
+                  widget.network.urlRedirectPattern?.hasMatch(urlString!) == true) {
                 // Close the WebView
                 await _closeWebView();
                 await showCustomLoadingDialog(
