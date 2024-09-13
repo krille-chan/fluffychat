@@ -66,7 +66,7 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
         screenHeight - messageOffset!.dy - messageSize!.height;
 
     final bool hasHeaderOverflow =
-        messageOffset!.dy < AppConfig.toolbarMaxHeight;
+        messageOffset!.dy < (AppConfig.toolbarMaxHeight + headerHeight);
     final bool hasFooterOverflow = footerHeight > currentBottomOffset;
 
     if (!hasHeaderOverflow && !hasFooterOverflow) return;
@@ -75,19 +75,27 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
     double animationEndOffset = 0;
 
     final midpoint = (headerBottomOffset + footerBottomOffset) / 2;
-    if (hasHeaderOverflow) {
+
+    // if the overlay would have a footer overflow for this message,
+    // check if shifting the overlay up could cause a header overflow
+    final bottomOffsetDifference = footerHeight - currentBottomOffset;
+    final newTopOffset = messageOffset!.dy - bottomOffsetDifference;
+    final bool upshiftCausesHeaderOverflow = hasFooterOverflow &&
+        newTopOffset < (headerHeight + AppConfig.toolbarMaxHeight);
+
+    if (hasHeaderOverflow || upshiftCausesHeaderOverflow) {
       animationEndOffset = midpoint - messageSize!.height;
+      final totalTopOffset =
+          animationEndOffset + messageSize!.height + AppConfig.toolbarMaxHeight;
+      final remainingSpace = screenHeight - totalTopOffset;
+      if (remainingSpace < headerHeight) {
+        // the overlay could run over the header, so it needs to be shifted down
+        animationEndOffset -= (headerHeight - remainingSpace);
+      }
       scrollOffset = animationEndOffset - currentBottomOffset;
     } else if (hasFooterOverflow) {
       scrollOffset = footerHeight - currentBottomOffset;
       animationEndOffset = footerHeight;
-
-      final bottomOffsetDifference = footerHeight - currentBottomOffset;
-      final newTopOffset = messageOffset!.dy - bottomOffsetDifference;
-      if (newTopOffset < (headerHeight + AppConfig.toolbarMaxHeight)) {
-        animationEndOffset = midpoint - messageSize!.height;
-        scrollOffset = animationEndOffset - currentBottomOffset;
-      }
     }
 
     _overlayPositionAnimation = Tween<double>(
