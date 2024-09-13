@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
@@ -239,7 +240,12 @@ class MessageToolbarState extends State<MessageToolbar> {
           .key,
       type: MaterialType.transparency,
       child: Container(
-        padding: const EdgeInsets.all(10),
+        constraints: const BoxConstraints(
+          maxHeight: AppConfig.toolbarMaxHeight,
+          maxWidth: 275,
+          minWidth: 275,
+        ),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           border: Border.all(
@@ -254,13 +260,7 @@ class MessageToolbarState extends State<MessageToolbar> {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (toolbarContent != null)
-              Container(
-                padding: const EdgeInsets.fromLTRB(8, 8, 8, 16),
-                constraints: const BoxConstraints(
-                  maxWidth: 275,
-                  minWidth: 275,
-                  maxHeight: 250,
-                ),
+              Flexible(
                 child: SingleChildScrollView(
                   child: AnimatedSize(
                     duration: FluffyThemes.animationDuration,

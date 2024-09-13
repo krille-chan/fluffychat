@@ -22,7 +22,7 @@ abstract class AppConfig {
   static const double messageFontSize = 16.0;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
-  static const double toolbarMaxHeight = 315.0;
+  static const double toolbarMaxHeight = 300.0;
   // #Pangea
   // static const Color primaryColor = Color(0xFF5625BA);
   // static const Color primaryColorLight = Color(0xFFCCBDEA);
