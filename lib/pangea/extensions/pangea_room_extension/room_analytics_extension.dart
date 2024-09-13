@@ -140,52 +140,20 @@ extension AnalyticsRoomExtension on Room {
     );
   }
 
-  Future<AnalyticsEvent?> _getLastAnalyticsEvent(
-    String type,
-    String userId,
-  ) async {
-    final List<Event> events = await getEventsBySender(
-      type: type,
-      sender: userId,
-      count: 10,
-    );
+  Future<DateTime?> _analyticsLastUpdated(String userId) async {
+    final List<Event> events = await getRoomAnalyticsEvents(count: 1);
     if (events.isEmpty) return null;
-    final Event event = events.first;
-    AnalyticsEvent? analyticsEvent;
-    switch (type) {
-      case PangeaEventTypes.summaryAnalytics:
-        analyticsEvent = SummaryAnalyticsEvent(event: event);
-      case PangeaEventTypes.construct:
-        analyticsEvent = ConstructAnalyticsEvent(event: event);
-    }
-    return analyticsEvent;
+    return events.first.originServerTs;
   }
 
-  Future<DateTime?> _analyticsLastUpdated(String type, String userId) async {
-    final lastEvent = await _getLastAnalyticsEvent(type, userId);
-    return lastEvent?.event.originServerTs;
-  }
-
-  Future<List<AnalyticsEvent>?> _getAnalyticsEvents({
-    required String type,
+  Future<List<ConstructAnalyticsEvent>?> _getAnalyticsEvents({
     required String userId,
     DateTime? since,
   }) async {
-    final List<Event> events = await getEventsBySender(
-      type: type,
-      sender: userId,
-      since: since,
-    );
-    final List<AnalyticsEvent> analyticsEvents = [];
+    final events = await getRoomAnalyticsEvents();
+    final List<ConstructAnalyticsEvent> analyticsEvents = [];
     for (final Event event in events) {
-      switch (type) {
-        case PangeaEventTypes.summaryAnalytics:
-          analyticsEvents.add(SummaryAnalyticsEvent(event: event));
-          break;
-        case PangeaEventTypes.construct:
-          analyticsEvents.add(ConstructAnalyticsEvent(event: event));
-          break;
-      }
+      analyticsEvents.add(ConstructAnalyticsEvent(event: event));
     }
 
     return analyticsEvents;
@@ -203,26 +171,26 @@ extension AnalyticsRoomExtension on Room {
         creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
   }
 
-  Future<void> sendSummaryAnalyticsEvent(
-    List<RecentMessageRecord> records,
-  ) async {
-    final SummaryAnalyticsModel analyticsModel = SummaryAnalyticsModel(
-      messages: records,
-    );
-    await sendEvent(
-      analyticsModel.toJson(),
-      type: PangeaEventTypes.summaryAnalytics,
-    );
-  }
-
   /// Sends construct events to the server.
   ///
   /// The [uses] parameter is a list of [OneConstructUse] objects representing the
   /// constructs to be sent. To prevent hitting the maximum event size, the events
   /// are chunked into smaller lists. Each chunk is sent as a separate event.
-  Future<void> sendConstructsEvent(
+  Future<void> _sendConstructsEvent(
     List<OneConstructUse> uses,
   ) async {
+    // It's possible that the user has no info to send yet, but to prevent trying
+    // to load the data over and over again, we'll sometimes send an empty event to
+    // indicate that we have checked and there was no data.
+    if (uses.isEmpty) {
+      final constructsModel = ConstructAnalyticsModel(uses: []);
+      await sendEvent(
+        constructsModel.toJson(),
+        type: PangeaEventTypes.construct,
+      );
+      return;
+    }
+
     // these events can get big, so we chunk them to prevent hitting the max event size.
     // go through each of the uses being sent and add them to the current chunk until
     // the size (in bytes) of the current chunk is greater than the max event size, then

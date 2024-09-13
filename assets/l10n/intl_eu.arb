@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "🔐 {username}(e)k ertzetik ertzerako zifraketa gaitu du",
+  "activatedEndToEndEncryption": "🔐 {username}(e)k ertzetik ertzerako zifratzea gaitu du",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -226,7 +226,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "channelCorruptedDecryptError": "Zifraketa hondatu egin da",
+  "channelCorruptedDecryptError": "Zifratzea hondatu egin da",
   "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
@@ -412,17 +412,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Ezingo duzu zifraketa ezgaitu. Ziur zaude?",
+  "enableEncryptionWarning": "Ezingo duzu zifratzea ezgaitu. Ziur zaude?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "encryption": "Zifraketa",
+  "encryption": "Zifratzea",
   "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "Zifraketa ez dago gaituta",
+  "encryptionNotEnabled": "Zifratzea ez dago gaituta",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -666,7 +666,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "Kontuan izan oraingoz Pantalaimon behar duzula puntuz puntuko zifraketarako.",
+  "needPantalaimonWarning": "Kontuan izan oraingoz Pantalaimon behar duzula ertzetik ertzerako zifratzerako.",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
@@ -1036,7 +1036,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEncryptionAlgorithm": "Zifraketa-algoritmo ezezaguna",
+  "unknownEncryptionAlgorithm": "Zifratze-algoritmo ezezaguna",
   "@unknownEncryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
@@ -1560,7 +1560,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contentHasBeenReported": "Edukia zerbitzariko administrariei jakinarazi zaie",
+  "contentHasBeenReported": "Edukia zerbitzariko administratzaileei jakinarazi zaie",
   "@contentHasBeenReported": {
     "type": "text",
     "placeholders": {}
@@ -1649,7 +1649,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryption": "Gaitu zifraketa",
+  "enableEncryption": "Gaitu zifratzea",
   "@enableEncryption": {
     "type": "text",
     "placeholders": {}
@@ -1781,7 +1781,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Defektuzko botere-maila",
+  "defaultPermissionLevel": "Erabiltzaile berrien defektuzko botere-maila",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -1841,7 +1841,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Zifraketa aktiba dezakezu soilik gelak publikoa izateari utzi badio.",
+  "noEncryptionForPublicRooms": "Zifratzea aktiba dezakezu soilik gelak publikoa izateari utzi badio.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -2161,7 +2161,7 @@
   "@hydrateTor": {},
   "saveKeyManuallyDescription": "Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz.",
   "@saveKeyManuallyDescription": {},
-  "indexedDbErrorTitle": "Arazoak modu pribatuan",
+  "indexedDbErrorTitle": "Arazoak modu pribatuarekin",
   "@indexedDbErrorTitle": {},
   "confirmMatrixId": "Baieztatu zure Matrix IDa kontua ezabatu ahal izateko.",
   "@confirmMatrixId": {},
@@ -2202,7 +2202,7 @@
   },
   "hideUnimportantStateEvents": "Ezkutatu garrantzirik gabeko gertaerak",
   "@hideUnimportantStateEvents": {},
-  "noKeyForThisMessage": "Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irakiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula.",
+  "noKeyForThisMessage": "Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula.",
   "@noKeyForThisMessage": {},
   "supposedMxid": "Hau {mxid} izan behar da",
   "@supposedMxid": {
@@ -2238,7 +2238,7 @@
   "@startFirstChat": {},
   "newSpaceDescription": "Guneek txatak taldekatzea ahalbidetzen dute eta komunitate pribatu edo publikoak osatzea.",
   "@newSpaceDescription": {},
-  "disableEncryptionWarning": "Segurtasun arrazoiak direla-eta, ezin duzu lehendik zifratuta zegoen txat bateko zifraketa ezgaitu.",
+  "disableEncryptionWarning": "Segurtasun arrazoiak direla-eta, ezin duzu lehendik zifratuta zegoen txat bateko zifratzea ezgaitu.",
   "@disableEncryptionWarning": {},
   "encryptThisChat": "Zifratu txata",
   "@encryptThisChat": {},
@@ -2357,7 +2357,7 @@
   },
   "redactMessageDescription": "Mezua elkarrizketa honetako partaide guztientzat botako da atzera. Ezin da desegin.",
   "@redactMessageDescription": {},
-  "addChatDescription": "Gehitu txat honen deskribapena…",
+  "addChatDescription": "Gehitu txataren deskribapena…",
   "@addChatDescription": {},
   "directChat": "Banakako txata",
   "@directChat": {},
@@ -2486,7 +2486,7 @@
   "@thisDevice": {},
   "decline": "Baztertu",
   "@decline": {},
-  "databaseBuildErrorBody": "Ezin izan da SQlite datu-basea eraiki. Aplikazioa aurreko datu-basea erabiltzen saiatuko da oraingoz. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
+  "databaseBuildErrorBody": "Ezin da SQlite datu-basea eraiki. Aplikazioa aurreko datu-basea erabiltzen saiatuko da oraingoz. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
   "@databaseBuildErrorBody": {
     "type": "text",
     "placeholders": {
@@ -2520,7 +2520,7 @@
   },
   "transparent": "Gardena",
   "@transparent": {},
-  "sendReadReceipts": "Bidali irakurri izanaren adierazlea",
+  "sendReadReceipts": "Bidali irakurri izanaren agiria",
   "@sendReadReceipts": {},
   "formattedMessages": "Formatua duten mezuak",
   "@formattedMessages": {},
@@ -2547,7 +2547,7 @@
       "sender": {}
     }
   },
-  "sendReadReceiptsDescription": "Txateko beste kideek mezu bat irakurri duzula ikus dezakete.",
+  "sendReadReceiptsDescription": "Txateko beste partaideek mezu bat irakurri duzula ikus dezakete.",
   "@sendReadReceiptsDescription": {},
   "forwardMessageTo": "Birbidali mezua {roomName}(e)ra?",
   "@forwardMessageTo": {
@@ -2576,7 +2576,7 @@
   "@verifyOtherUserDescription": {},
   "formattedMessagesDescription": "Erakutsi mezu aberatsen edukia markdown erabiliz, testu lodia esaterako.",
   "@formattedMessagesDescription": {},
-  "sendTypingNotificationsDescription": "Txateko beste kideek mezu berri bat idazten ari zarela ikus dezakete.",
+  "sendTypingNotificationsDescription": "Txateko beste partaideek mezu berri bat idazten ari zarela ikus dezakete.",
   "@sendTypingNotificationsDescription": {},
   "verifyOtherUser": "🔐 Egiaztatu beste erabiltzaile bat",
   "@verifyOtherUser": {},
@@ -2679,7 +2679,7 @@
   "@noPublicLinkHasBeenCreatedYet": {},
   "userRole": "Erabiltzailearen rola",
   "@userRole": {},
-  "minimumPowerLevel": "{level} da gutxieneko botere maila.",
+  "minimumPowerLevel": "{level} da gutxieneko botere-maila.",
   "@minimumPowerLevel": {
     "type": "text",
     "placeholders": {
@@ -2694,7 +2694,7 @@
   "@files": {},
   "gallery": "Galeria",
   "@gallery": {},
-  "searchIn": "Bilatu {chat}ean...",
+  "searchIn": "Bilatu {chat} txatean...",
   "@searchIn": {
     "type": "text",
     "placeholders": {
@@ -2702,5 +2702,106 @@
     }
   },
   "searchMore": "Bilatu gehiago...",
-  "@searchMore": {}
+  "@searchMore": {},
+  "restricted": "Mugatuta",
+  "@restricted": {},
+  "knockRestricted": "Eskatu baimena sarrera mugatua duen txatean",
+  "@knockRestricted": {},
+  "swipeRightToLeftToReply": "Herrestatu eskuin-ezker erantzuteko",
+  "@swipeRightToLeftToReply": {},
+  "alwaysUse24HourFormat": "false",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "noMoreChatsFound": "Ez da beste txatik aurkitu...",
+  "@noMoreChatsFound": {},
+  "unread": "Irakurri gabe",
+  "@unread": {},
+  "space": "Gunea",
+  "@space": {},
+  "joinedChats": "Batu zaren txatak",
+  "@joinedChats": {},
+  "goToSpace": "Joan {space} gunera",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Markatu irakurri gabetzat",
+  "@markAsUnread": {},
+  "countChatsAndCountParticipants": "{chats} txat eta {participants} partaide",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "spaces": "Guneak",
+  "@spaces": {},
+  "adminLevel": "{level} - Administratzailea",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheChatPermissions": "Aldatu txataren baimenak",
+  "@changeTheChatPermissions": {},
+  "inviteOtherUsers": "Gonbidatu beste erabiltzaileak txat honetara",
+  "@inviteOtherUsers": {},
+  "userLevel": "{level} - Erabiltzailea",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderatzailea",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "sendRoomNotifications": "Bidali @gela jakinarazpena",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Aldatu txataren deskribapena",
+  "@changeTheDescriptionOfTheGroup": {},
+  "changeGeneralChatSettings": "Aldatu txataren ezarpen orokorrak",
+  "@changeGeneralChatSettings": {},
+  "changeTheVisibilityOfChatHistory": "Aldatu txataren historiaren ikusgaitasuna",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Aldatu txataren helbide publiko nagusia",
+  "@changeTheCanonicalRoomAlias": {},
+  "invitedBy": "📩 {user}(e)k gonbidatua",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "updateInstalled": "🎉 {version} bertsioa instalatu da!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Aldaketak",
+  "@changelog": {},
+  "chatPermissionsDescription": "Definitu zer botere-maila behar den txat honetako ekintza jakinetarako. 0, 50 eta 100 botere-mailek erabiltzaileak, moderatzaileak eta administratzaileak ordezkatzen dituzte, baina edozein graduazio posible da.",
+  "@chatPermissionsDescription": {},
+  "sendCanceled": "Bidalketa bertan behera utzi da",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Ez da txatik aurkitu. Hasi norbaitekin txateatzen beheko botoia erabiliz. ⤵️",
+  "@noChatsFoundHere": {},
+  "homeserverDescription": "Zerbitzariak datuak gordetzen ditu, ePosta hornitzaileek mezuak gordetzen dituzten bezala. Nahi duzun zerbitzaria aukeratu dezakezu eta, hala ere, besteetako edonorekin hitz egin. Ikasi gehiago https://matrix.org webgunean.",
+  "@homeserverDescription": {},
+  "loginWithMatrixId": "Hasi saioa Matrix IDarekin",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Arakatu zerbitzariak",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Zer da zerbitzari bat?",
+  "@whatIsAHomeserver": {},
+  "doesNotSeemToBeAValidHomeserver": "Ez dirudi zerbitzaria bateragarria denik. Zuzena da URLa?",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }

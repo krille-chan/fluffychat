@@ -11,6 +11,8 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     // #Pangea
     // final homeserver = Matrix.of(context)
     //     .getLoginClient()
@@ -19,10 +21,6 @@ class LoginView extends StatelessWidget {
     //     .replaceFirst('https://', '');
     // final title = L10n.of(context)!.logInTo(homeserver);
     // final titleParts = title.split(homeserver);
-
-    // final textFieldFillColor = FluffyThemes.isColumnMode(context)
-    //     ? Theme.of(context).colorScheme.background
-    //     : Theme.of(context).colorScheme.surfaceVariant;
     // Pangea#
 
     return LoginScaffold(
@@ -99,19 +97,14 @@ class LoginView extends StatelessWidget {
                       errorText: controller.usernameError,
                       // #Pangea
                       // errorStyle: const TextStyle(color: Colors.orange),
+                      // hintText: '@username:localpart',
                       errorStyle: TextStyle(
                         color: Theme.of(context).textTheme.bodyMedium?.color,
                         fontSize: 14,
                       ),
-                      // Pangea#
                       hintText: L10n.of(context)!.emailOrUsername,
-                      // #Pangea
-                      // fillColor: textFieldFillColor,
-                      fillColor: Theme.of(context)
-                          .colorScheme
-                          .surface
-                          .withOpacity(0.75),
                       // Pangea#
+                      labelText: L10n.of(context)!.emailOrUsername,
                     ),
                   ),
                 ),
@@ -131,13 +124,10 @@ class LoginView extends StatelessWidget {
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.passwordError,
                       // #Pangea
-                      // errorStyle: const TextStyle(color: Colors.orange),
                       errorStyle: TextStyle(
                         color: Theme.of(context).textTheme.bodyMedium?.color,
                         fontSize: 14,
                       ),
-                      // fillColor: textFieldFillColor,
-                      // prevent enter key from clicking show password button
                       suffixIcon: MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: GestureDetector(
@@ -151,6 +141,7 @@ class LoginView extends StatelessWidget {
                           ),
                         ),
                       ),
+                      // errorStyle: const TextStyle(color: Colors.orange),
                       // suffixIcon: IconButton(
                       //   onPressed: controller.toggleShowPassword,
                       //   icon: Icon(
@@ -161,13 +152,8 @@ class LoginView extends StatelessWidget {
                       //   ),
                       // ),
                       // Pangea#
-                      hintText: L10n.of(context)!.password,
-                      // #Pangea
-                      fillColor: Theme.of(context)
-                          .colorScheme
-                          .surface
-                          .withOpacity(0.75),
-                      // Pangea#
+                      hintText: '******',
+                      labelText: L10n.of(context)!.password,
                     ),
                   ),
                 ),
@@ -182,14 +168,13 @@ class LoginView extends StatelessWidget {
                         ? const LinearProgressIndicator()
                         : Text(L10n.of(context)!.login),
                   ),
-                  // child: ElevatedButton.icon(
+                  // child: ElevatedButton(
                   //   style: ElevatedButton.styleFrom(
-                  //     backgroundColor: Theme.of(context).colorScheme.primary,
-                  //     foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  //     backgroundColor: theme.colorScheme.primary,
+                  //     foregroundColor: theme.colorScheme.onPrimary,
                   //   ),
                   //   onPressed: controller.loading ? null : controller.login,
-                  //   icon: const Icon(Icons.login_outlined),
-                  //   label: controller.loading
+                  //   child: controller.loading
                   //       ? const LinearProgressIndicator()
                   //       : Text(L10n.of(context)!.login),
                   // ),
@@ -235,15 +220,14 @@ class LoginView extends StatelessWidget {
                         ElevatedButton.styleFrom(foregroundColor: Colors.red),
                     child: Text(L10n.of(context)!.passwordForgotten),
                   ),
-                  // child: TextButton.icon(
+                  // child: TextButton(
                   //   onPressed: controller.loading
                   //       ? () {}
                   //       : controller.passwordForgotten,
                   //   style: TextButton.styleFrom(
-                  //     foregroundColor: Theme.of(context).colorScheme.error,
+                  //     foregroundColor: theme.colorScheme.error,
                   //   ),
-                  //   icon: const Icon(Icons.safety_check_outlined),
-                  //   label: Text(L10n.of(context)!.passwordForgotten),
+                  //   child: Text(L10n.of(context)!.passwordForgotten),
                   // ),
                   // Pangea#
                 ),

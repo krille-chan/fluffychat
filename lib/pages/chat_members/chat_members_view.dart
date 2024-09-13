@@ -34,6 +34,7 @@ class ChatMembersView extends StatelessWidget {
         (room.summary.mInvitedMemberCount ?? 0);
 
     final error = controller.error;
+    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -90,6 +91,16 @@ class ChatMembersView extends StatelessWidget {
                               controller: controller.filterController,
                               onChanged: controller.setFilter,
                               decoration: InputDecoration(
+                                filled: true,
+                                fillColor: theme.colorScheme.secondaryContainer,
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(99),
+                                ),
+                                hintStyle: TextStyle(
+                                  color: theme.colorScheme.onPrimaryContainer,
+                                  fontWeight: FontWeight.normal,
+                                ),
                                 prefixIcon: const Icon(Icons.search_outlined),
                                 hintText: L10n.of(context)!.search,
                               ),

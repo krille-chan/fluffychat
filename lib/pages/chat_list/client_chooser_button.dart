@@ -1,5 +1,4 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/find_conversation_partner_dialog.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
 import 'package:fluffychat/pangea/utils/space_code.dart';
@@ -32,16 +31,6 @@ class ClientChooserButton extends StatelessWidget {
     // Pangea#
     return <PopupMenuEntry<Object>>[
       // #Pangea
-      // PopupMenuItem(
-      //   value: SettingsAction.newGroup,
-      //   child: Row(
-      //     children: [
-      //       const Icon(Icons.group_add_outlined),
-      //       const SizedBox(width: 18),
-      //       Text(L10n.of(context)!.createGroup),
-      //     ],
-      //   ),
-      // ),
       PopupMenuItem(
         value: SettingsAction.joinWithClassCode,
         child: Row(
@@ -67,50 +56,44 @@ class ClientChooserButton extends StatelessWidget {
       //     ],
       //   ),
       // ),
-      PopupMenuItem(
-        enabled: matrix.client.rooms.any(
-          (room) => !room.isSpace && !room.isArchived && !room.isAnalyticsRoom,
-        ),
-        value: SettingsAction.myAnalytics,
-        child: Row(
-          children: [
-            const Icon(Icons.analytics_outlined),
-            const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.myLearning)),
-          ],
-        ),
-      ),
-      PopupMenuItem(
-        value: SettingsAction.newClass,
-        child: Row(
-          children: [
-            const Icon(Icons.school),
-            const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.createNewSpace)),
-          ],
-        ),
-      ),
       // PopupMenuItem(
-      //   value: SettingsAction.newSpace,
+      //   enabled: matrix.client.rooms.any(
+      //     (room) => !room.isSpace && !room.isArchived && !room.isAnalyticsRoom,
+      //   ),
+      //   value: SettingsAction.myAnalytics,
       //   child: Row(
       //     children: [
-      //       const Icon(Icons.workspaces_outlined),
+      //       const Icon(Icons.analytics_outlined),
       //       const SizedBox(width: 18),
-      //       Text(L10n.of(context)!.createNewSpace),
+      //       Expanded(child: Text(L10n.of(context)!.myLearning)),
       //     ],
       //   ),
       // ),
-      // if (controller.pangeaController.permissionsController.isUser18())
-      //   PopupMenuItem(
-      //     value: SettingsAction.findAConversationPartner,
-      //     child: Row(
-      //       children: [
-      //         const Icon(Icons.add_circle_outline),
-      //         const SizedBox(width: 18),
-      //         Expanded(child: Text(L10n.of(context)!.findALanguagePartner)),
-      //       ],
-      //     ),
+      // PopupMenuItem(
+      //   value: SettingsAction.newGroup,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.group_add_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context)!.createGroup),
+      //     ],
       //   ),
+      // ),
+      // Pangea#
+      PopupMenuItem(
+        value: SettingsAction.newSpace,
+        child: Row(
+          children: [
+            const Icon(Icons.workspaces_outlined),
+            const SizedBox(width: 18),
+            // #Pangea
+            Expanded(child: Text(L10n.of(context)!.createNewSpace)),
+            // Text(L10n.of(context)!.createNewSpace),
+            // Pangea#
+          ],
+        ),
+      ),
+      // #Pangea
       // PopupMenuItem(
       //   value: SettingsAction.setStatus,
       //   child: Row(
@@ -132,19 +115,18 @@ class ClientChooserButton extends StatelessWidget {
       //   ),
       // ),
       // Pangea#
-      PopupMenuItem(
+      // Currently disabled because of:
+      // https://github.com/matrix-org/matrix-react-sdk/pull/12286
+      /*PopupMenuItem(
         value: SettingsAction.archive,
         child: Row(
           children: [
             const Icon(Icons.archive_outlined),
             const SizedBox(width: 18),
-            // #Pangea
-            // Text(L10n.of(context)!.archive),
-            Expanded(child: Text(L10n.of(context)!.viewArchive)),
-            // Pangea#
+            Text(L10n.of(context)!.archive),
           ],
         ),
-      ),
+      ),*/
       // #Pangea
       PopupMenuItem(
         value: SettingsAction.learning,
@@ -259,7 +241,7 @@ class ClientChooserButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final matrix = Matrix.of(context);
 
-    int clientCount = 0;
+    var clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
     return FutureBuilder<Profile>(
       future: matrix.client.fetchOwnProfile(),
@@ -392,21 +374,21 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.joinWithClassCode:
           SpaceCodeUtil.joinWithSpaceCodeDialog(
             context,
-            controller.pangeaController,
+            MatrixState.pangeaController,
           );
           break;
         case SettingsAction.findAConversationPartner:
           findConversationPartnerDialog(
             context,
-            controller.pangeaController,
+            MatrixState.pangeaController,
           );
           break;
         // case SettingsAction.spaceAnalytics:
         //   context.go('/rooms/analytics');
         //   break;
-        case SettingsAction.myAnalytics:
-          context.go('/rooms/mylearning');
-          break;
+        // case SettingsAction.myAnalytics:
+        //   context.go('/rooms/mylearning');
+        //   break;
         case SettingsAction.logout:
           pLogoutAction(context);
           break;
@@ -430,7 +412,7 @@ class ClientChooserButton extends StatelessWidget {
       );
     // beginning from end if negative
     if (index < 0) {
-      int clientCount = 0;
+      var clientCount = 0;
       matrix.accountBundles
           .forEach((key, value) => clientCount += value.length);
       _handleKeyboardShortcut(matrix, clientCount, context);
@@ -450,7 +432,7 @@ class ClientChooserButton extends StatelessWidget {
   }
 
   int? _shortcutIndexOfClient(MatrixState matrix, Client client) {
-    int index = 0;
+    var index = 0;
 
     final bundles = matrix.accountBundles.keys.toList()
       ..sort(
@@ -497,7 +479,7 @@ enum SettingsAction {
   learning,
   joinWithClassCode,
   // spaceAnalytics,
-  myAnalytics,
+  // myAnalytics,
   findAConversationPartner,
   logout,
   newClass,

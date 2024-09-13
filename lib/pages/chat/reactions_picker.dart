@@ -1,4 +1,3 @@
-import 'package:emoji_proposal/emoji_proposal.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -14,6 +13,8 @@ class ReactionsPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     if (controller.showEmojiPicker) return const SizedBox.shrink();
     final display = controller.editEvent == null &&
         controller.replyEvent == null &&
@@ -30,14 +31,7 @@ class ReactionsPicker extends StatelessWidget {
             if (!display) {
               return const SizedBox.shrink();
             }
-            final proposals = proposeEmojis(
-              controller.selectedEvents.first.plaintextBody,
-              number: 25,
-              languageCodes: EmojiProposalLanguageCodes.values.toSet(),
-            );
-            final emojis = proposals.isNotEmpty
-                ? proposals.map((e) => e.char).toList()
-                : List<String>.from(AppEmojis.emojis);
+            final emojis = List<String>.from(AppEmojis.emojis);
             final allReactionEvents = controller.selectedEvents.first
                 .aggregatedEvents(
                   controller.timeline!,
@@ -59,7 +53,7 @@ class ReactionsPicker extends StatelessWidget {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.onInverseSurface,
+                      color: theme.colorScheme.onInverseSurface,
                       borderRadius: const BorderRadius.only(
                         bottomRight: Radius.circular(AppConfig.borderRadius),
                       ),
@@ -91,7 +85,7 @@ class ReactionsPicker extends StatelessWidget {
                     width: 36,
                     height: 56,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.onInverseSurface,
+                      color: theme.colorScheme.onInverseSurface,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.add_outlined),

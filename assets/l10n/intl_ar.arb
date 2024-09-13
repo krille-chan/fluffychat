@@ -736,7 +736,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "عذراً، هناك خطأ ما…",
+  "oopsSomethingWentWrong": "عفوًا، حدث خطأ ما…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1821,7 +1821,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "مستوى الأذونات الإفتراضي",
+  "defaultPermissionLevel": "مستوى الأذونات الافتراضية للمستخدمين الجدد",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2260,7 +2260,7 @@
   },
   "jump": "قفز",
   "@jump": {},
-  "report": "التقرير",
+  "report": "تقرير",
   "@report": {},
   "noKeyForThisMessage": "يمكن أن يحدث هذا إذا تم إرسال الرسالة قبل تسجيل الدخول إلى حسابك على هذا الجهاز.\n\nمن الممكن أيضا أن يكون المرسل قد حظر جهازك أو حدث خطأ ما في الاتصال بالإنترنت.\n\nهل يمكنك قراءة الرسالة في جلسة أخرى؟ ثم يمكنك نقل الرسالة منه! انتقل إلى الإعدادات > الأجهزة وتأكد من أن أجهزتك قد تحققت من بعضها البعض. عندما تفتح الغرفة في المرة التالية وتكون كلتا الجلستين في المقدمة ، سيتم إرسال المفاتيح تلقائيا.\n\nألا تريد أن تفقد المفاتيح عند تسجيل الخروج أو تبديل الأجهزة؟ تأكد من تمكين النسخ الاحتياطي للدردشة في الإعدادات.",
   "@noKeyForThisMessage": {},
@@ -2706,5 +2706,102 @@
   "searchMore": "ابحث أكثر...",
   "@searchMore": {},
   "gallery": "المعرض",
-  "@gallery": {}
+  "@gallery": {},
+  "swipeRightToLeftToReply": "اسحب من اليمين إلى اليسار للرد",
+  "@swipeRightToLeftToReply": {},
+  "alwaysUse24HourFormat": "false",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "countChatsAndCountParticipants": "{chats} دردشات و {participants} مشاركين",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "لم يتم العثور على دردشات...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "انضم إلى الدردشة",
+  "@joinedChats": {},
+  "unread": "غير المقروءة",
+  "@unread": {},
+  "space": "المساحة",
+  "@space": {},
+  "spaces": "المساحات",
+  "@spaces": {},
+  "markAsUnread": "تحديد كغير مقروء",
+  "@markAsUnread": {},
+  "goToSpace": "انتقل إلى المساحة: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "userLevel": "{level} - مستخدم",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - مشرف",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - مدير",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "تغيير إعدادات الدردشة العامة",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "دعوة مستخدمين آخرين إلى هذه الدردشة",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "تغيير أذونات الدردشة",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "تغيير رؤية سجل الدردشة",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "تغيير عنوان الدردشة العامة الرئيسي",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "إرسال إشعارات @room",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "تغيير وصف الدردشة",
+  "@changeTheDescriptionOfTheGroup": {},
+  "invitedBy": "📩 تمت دعوته من قبل {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "chatPermissionsDescription": "‪حدد مستوى الصلاحية الضروري لإجراءات معينة في هذه الدردشة. عادة ما تمثل مستويات الصلاحية 0 و 50 و 100 المستخدمين والمشرفين ولكن أي تدرج ممكن.",
+  "@chatPermissionsDescription": {},
+  "changelog": "سجل التغييرات",
+  "@changelog": {},
+  "updateInstalled": "تم تثبيت🎉 تحديث {version}!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "sendCanceled": "تم إلغاء الإرسال",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "لم يتم العثور على دردشات هنا حتى الآن. ابدأ محادثة جديدة مع شخص ما باستخدام الزر أدناه. ⤵️",
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "تسجيل الدخول باستخدام معرف ماتريكس",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "اكتشف الخوادم المنزلية",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "ما هو خادم المنزل ؟",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "يتم تخزين جميع بياناتك على خادم المنزل، تمامًا مثل مزود خدمة البريد الإلكتروني. يمكنك اختيار خادم البيت الذي تريد استخدامه، بينما لا يزال بإمكانك التواصل مع الجميع. اعرف المزيد على https://matrix.org.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "لا يبدو أنه خادم منزلي متوافق. عنوان URL غير صحيح ؟",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }

@@ -2349,48 +2349,11 @@
       "count": {}
     }
   },
-  "@reportErrorDescription": {},
-  "@banUserDescription": {},
-  "@removeDevicesDescription": {},
-  "@unbanUserDescription": {},
-  "@pushNotificationsNotAvailable": {},
-  "@makeAdminDescription": {},
-  "@archiveRoomDescription": {},
-  "@invalidInput": {},
-  "@report": {},
-  "@hasKnocked": {
-    "placeholders": {
-      "user": {}
-    }
-  },
-  "@wrongPinEntered": {
-    "type": "text",
-    "placeholders": {
-      "seconds": {}
-    }
-  },
-  "@inviteGroupChat": {},
-  "@invitePrivateChat": {},
-  "@learnMore": {},
-  "@roomUpgradeDescription": {},
-  "@pleaseEnterANumber": {},
   "emoteKeyboardNoRecents": "Naposledy použité emoce se zobrazí zde...",
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
   },
-  "@kickUserDescription": {},
-  "@invite": {},
-  "@indexedDbErrorLong": {},
-  "@callingAccount": {},
-  "@enterSpace": {},
-  "@noKeyForThisMessage": {},
-  "@readUpToHere": {},
-  "@appearOnTopDetails": {},
-  "@enterRoom": {},
-  "@hideUnimportantStateEvents": {},
-  "@noBackupWarning": {},
-  "@indexedDbErrorTitle": {},
   "appLockDescription": "Zamknout aplikaci pomocí PIN kódu když není používána",
   "@appLockDescription": {},
   "globalChatId": "Globální ID chatu",
@@ -2404,5 +2367,17 @@
   "accessAndVisibilityDescription": "Kdo se může připojit a najít tuto konverzaci.",
   "@accessAndVisibilityDescription": {},
   "customEmojisAndStickersBody": "Přidat nebo sdílet vlastní emoji nebo nálepky, které mohou být použité v konverzaci.",
-  "@customEmojisAndStickersBody": {}
+  "@customEmojisAndStickersBody": {},
+  "swipeRightToLeftToReply": "Potáhněte z prava do leva pro odpověď",
+  "@swipeRightToLeftToReply": {},
+  "countChatsAndCountParticipants": "{chats} konverzaci a {participants} účastníci",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "Žádné další konverzace nalezeny...",
+  "@noMoreChatsFound": {}
 }

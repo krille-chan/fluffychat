@@ -182,7 +182,10 @@ class InvitationSelectionController extends State<InvitationSelection> {
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(L10n.of(context)!.contactHasBeenInvitedToTheGroup),
+          // #Pangea
+          // content: Text(L10n.of(context)!.contactHasBeenInvitedToTheGroup),
+          content: Text(L10n.of(context)!.contactHasBeenInvitedToTheChat),
+          // Pangea#
         ),
       );
     }

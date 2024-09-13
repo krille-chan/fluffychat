@@ -70,7 +70,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
           autoInitialize: true,
         );
       }
-    } on Exception catch (e) {
+    } on IOException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(e.toLocalizedString(context)),
@@ -95,6 +95,8 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final hasThumbnail = widget.event.hasThumbnail;
     final blurHash = (widget.event.infoMap as Map<String, dynamic>)
             .tryGet<String>('xyz.amorgan.blurhash') ??
@@ -122,7 +124,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
                   Center(
                     child: IconButton(
                       style: IconButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.surface,
+                        backgroundColor: theme.colorScheme.surface,
                       ),
                       icon: _isDownloading
                           ? const SizedBox(

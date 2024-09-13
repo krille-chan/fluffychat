@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/update_version_dialog.dart';
@@ -8,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
@@ -16,7 +15,6 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
-  static const String recordingFileType = 'wav';
   const RecordingDialog({
     super.key,
   });
@@ -30,9 +28,11 @@ class RecordingDialogState extends State<RecordingDialog> {
   Duration _duration = Duration.zero;
 
   bool error = false;
-  String? _recordedPath;
+
   final _audioRecorder = AudioRecorder();
   final List<double> amplitudeTimeline = [];
+
+  String? fileName;
 
   static const int bitRate = 64000;
   // #Pangea
@@ -43,14 +43,23 @@ class RecordingDialogState extends State<RecordingDialog> {
   Future<void> startRecording() async {
     try {
       // #Pangea
-      // enable recording on web
-      // final tempDir = await getTemporaryDirectory();
-      // final path = _recordedPath =
-      //     '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
-      final tempDirPath = kIsWeb ? "." : (await getTemporaryDirectory()).path;
-      _recordedPath =
-          '$tempDirPath/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
+      // final codec = kIsWeb
+      //     // Web seems to create webm instead of ogg when using opus encoder
+      //     // which does not play on iOS right now. So we use wav for now:
+      //     ? AudioEncoder.wav
+      //     // Everywhere else we use opus if supported by the platform:
+      //     : await _audioRecorder.isEncoderSupported(AudioEncoder.opus)
+      //         ? AudioEncoder.opus
+      //         : AudioEncoder.aacLc;
+      const codec = AudioEncoder.wav;
       // Pangea#
+      fileName =
+          'recording${DateTime.now().microsecondsSinceEpoch}.${codec.fileExtension}';
+      String? path;
+      if (!kIsWeb) {
+        final tempDir = await getTemporaryDirectory();
+        path = path_lib.join(tempDir.path, fileName);
+      }
 
       final result = await _audioRecorder.hasPermission();
       if (result != true) {
@@ -58,12 +67,13 @@ class RecordingDialogState extends State<RecordingDialog> {
         return;
       }
       await WakelockPlus.enable();
+
       // #Pangea
-      final bool isNotError = await showUpdateVersionDialog(
+      final isNotError = await showUpdateVersionDialog(
         future: () =>
             // Pangea#
+
             _audioRecorder.start(
-          path: _recordedPath!,
           const RecordConfig(
             bitRate: bitRate,
             sampleRate: samplingRate,
@@ -71,10 +81,9 @@ class RecordingDialogState extends State<RecordingDialog> {
             autoGain: true,
             echoCancel: true,
             noiseSuppress: true,
-            // #Pangea
-            encoder: AudioEncoder.wav,
-            // Pangea#
+            encoder: codec,
           ),
+          path: path ?? '',
         ),
         // #Pangea
         context: context,
@@ -119,25 +128,9 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   void _stopAndSend() async {
     _recorderSubscription?.cancel();
-    // #Pangea
-    // await _audioRecorder.stop();
-    final outputPath = await _audioRecorder.stop();
-    // Pangea#
-    final path = _recordedPath;
+    final path = await _audioRecorder.stop();
+
     if (path == null) throw ('Recording failed!');
-
-    // #Pangea
-    Uint8List bytes;
-    if (kIsWeb) {
-      if (outputPath == null) throw ('Recording failed!');
-      final response = await http.get(Uri.parse(outputPath));
-      bytes = response.bodyBytes;
-    } else {
-      final audioFile = File(path);
-      bytes = audioFile.readAsBytesSync();
-    }
-    // Pangea#
-
     const waveCount = AudioPlayerWidget.wavesCount;
     final step = amplitudeTimeline.length < waveCount
         ? 1
@@ -151,15 +144,15 @@ class RecordingDialogState extends State<RecordingDialog> {
         path: path,
         duration: _duration.inMilliseconds,
         waveform: waveform,
-        // #Pangea
-        bytes: bytes,
-        // Pangea#
+        fileName: fileName,
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     const maxDecibalWidth = 64.0;
     final time =
         '${_duration.inMinutes.toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}';
@@ -188,7 +181,7 @@ class RecordingDialogState extends State<RecordingDialog> {
                           margin: const EdgeInsets.only(left: 2),
                           width: 4,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.primary,
+                            color: theme.colorScheme.primary,
                             borderRadius:
                                 BorderRadius.circular(AppConfig.borderRadius),
                           ),
@@ -214,11 +207,7 @@ class RecordingDialogState extends State<RecordingDialog> {
             child: Text(
               L10n.of(context)!.cancel.toUpperCase(),
               style: TextStyle(
-                color: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.color
-                    ?.withAlpha(150),
+                color: theme.textTheme.bodyMedium?.color?.withAlpha(150),
               ),
             ),
           ),
@@ -238,8 +227,7 @@ class RecordingDialogState extends State<RecordingDialog> {
           child: Text(
             L10n.of(context)!.cancel.toUpperCase(),
             style: TextStyle(
-              color:
-                  Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(150),
+              color: theme.textTheme.bodyMedium?.color?.withAlpha(150),
             ),
           ),
         ),
@@ -264,35 +252,32 @@ class RecordingResult {
   final String path;
   final int duration;
   final List<int> waveform;
-  // #Pangea
-  final Uint8List bytes;
-  // Pangea#
+  final String? fileName;
 
   const RecordingResult({
     required this.path,
     required this.duration,
     required this.waveform,
-    // #Pangea
-    required this.bytes,
-    // Pangea#
+    required this.fileName,
   });
+}
 
-  factory RecordingResult.fromJson(Map<String, dynamic> json) =>
-      RecordingResult(
-        path: json['path'],
-        duration: json['duration'],
-        waveform: List<int>.from(json['waveform']),
-        // #Pangea
-        bytes: Uint8List.fromList(json['bytes']),
-        // Pangea#
-      );
-
-  Map<String, dynamic> toJson() => {
-        'path': path,
-        'duration': duration,
-        'waveform': waveform,
-        // #Pangea
-        'bytes': bytes,
-        // Pangea#
-      };
+extension on AudioEncoder {
+  String get fileExtension {
+    switch (this) {
+      case AudioEncoder.aacLc:
+      case AudioEncoder.aacEld:
+      case AudioEncoder.aacHe:
+        return 'm4a';
+      case AudioEncoder.opus:
+        return 'ogg';
+      case AudioEncoder.wav:
+        return 'wav';
+      case AudioEncoder.amrNb:
+      case AudioEncoder.amrWb:
+      case AudioEncoder.flac:
+      case AudioEncoder.pcm16bits:
+        throw UnsupportedError('Not yet used');
+    }
+  }
 }

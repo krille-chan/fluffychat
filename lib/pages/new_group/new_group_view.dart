@@ -16,6 +16,8 @@ class NewGroupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final avatar = controller.avatar;
     final error = controller.error;
     return Scaffold(
@@ -25,7 +27,10 @@ class NewGroupView extends StatelessWidget {
             onPressed: controller.loading ? null : Navigator.of(context).pop,
           ),
         ),
-        title: Text(L10n.of(context)!.createGroup),
+        // #Pangea
+        // title: Text(L10n.of(context)!.createGroup),
+        title: Text(L10n.of(context)!.createChat),
+        // Pangea#
       ),
       // #Pangea
       floatingActionButton: FloatingActionButton.extended(
@@ -41,61 +46,46 @@ class NewGroupView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const SizedBox(height: 16),
+            InkWell(
+              borderRadius: BorderRadius.circular(90),
+              onTap: controller.loading ? null : controller.selectPhoto,
+              child: CircleAvatar(
+                radius: Avatar.defaultSize,
+                child: avatar == null
+                    ? const Icon(Icons.add_a_photo_outlined)
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(90),
+                        child: Image.memory(
+                          avatar,
+                          width: Avatar.defaultSize,
+                          height: Avatar.defaultSize,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+              ),
+            ),
+            const SizedBox(height: 32),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  InkWell(
-                    borderRadius: BorderRadius.circular(90),
-                    onTap: controller.loading ? null : controller.selectPhoto,
-                    child: CircleAvatar(
-                      radius: Avatar.defaultSize / 2,
-                      child: avatar == null
-                          ? const Icon(Icons.camera_alt_outlined)
-                          : ClipRRect(
-                              borderRadius: BorderRadius.circular(90),
-                              child: Image.memory(
-                                avatar,
-                                width: Avatar.defaultSize,
-                                height: Avatar.defaultSize,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: TextField(
-                      // #Pangea
-                      maxLength: 64,
-                      // Pangea#
-                      controller: controller.nameController,
-                      autocorrect: false,
-                      readOnly: controller.loading,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.people_outlined),
-                        hintText: L10n.of(context)!.groupName,
-                      ),
-                    ),
-                  ),
-                ],
+              child: TextField(
+                // #Pangea
+                maxLength: 64,
+                // Pangea#
+                autofocus: true,
+                controller: controller.nameController,
+                autocorrect: false,
+                readOnly: controller.loading,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.people_outlined),
+                  // #Pangea
+                  // labelText: L10n.of(context)!.groupName,
+                  labelText: L10n.of(context)!.chatName,
+                  // Pangea#
+                ),
               ),
             ),
             const SizedBox(height: 16),
             // #Pangea
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            //   child: TextField(
-            //     controller: controller.topicController,
-            //     minLines: 4,
-            //     maxLines: 4,
-            //     maxLength: 255,
-            //     readOnly: controller.loading,
-            //     decoration: InputDecoration(
-            //       hintText: L10n.of(context)!.addChatDescription,
-            //     ),
-            //   ),
-            // ),
             RoomCapacityButton(
               key: controller.addCapacityKey,
             ),
@@ -109,7 +99,6 @@ class NewGroupView extends StatelessWidget {
               startOpen: true,
               activeSpaceId: controller.activeSpaceId,
             ),
-            // const SizedBox(height: 16),
             // SwitchListTile.adaptive(
             //   secondary: const Icon(Icons.public_outlined),
             //   title: Text(L10n.of(context)!.groupIsPublic),
@@ -132,12 +121,12 @@ class NewGroupView extends StatelessWidget {
             // SwitchListTile.adaptive(
             //   secondary: Icon(
             //     Icons.lock_outlined,
-            //     color: Theme.of(context).colorScheme.onSurface,
+            //     color: theme.colorScheme.onSurface,
             //   ),
             //   title: Text(
             //     L10n.of(context)!.enableEncryption,
             //     style: TextStyle(
-            //       color: Theme.of(context).colorScheme.onSurface,
+            //       color: theme.colorScheme.onSurface,
             //     ),
             //   ),
             //   value: !controller.publicGroup,
@@ -148,24 +137,20 @@ class NewGroupView extends StatelessWidget {
             //   child: SizedBox(
             //     width: double.infinity,
             //     child: ElevatedButton(
-            //       style: ElevatedButton.styleFrom(
-            //         foregroundColor: Theme.of(context).colorScheme.onPrimary,
-            //         backgroundColor: Theme.of(context).colorScheme.primary,
-            //       ),
             //       onPressed:
             //           controller.loading ? null : controller.submitAction,
-            // child: controller.loading
-            //     ? const LinearProgressIndicator()
-            //     : Row(
-            //         children: [
-            //           Expanded(
-            //             child: Text(
-            //               L10n.of(context)!.createGroupAndInviteUsers,
+            //       child: controller.loading
+            //           ? const LinearProgressIndicator()
+            //           : Row(
+            //               children: [
+            //                 Expanded(
+            //                   child: Text(
+            //                     L10n.of(context)!.createGroupAndInviteUsers,
+            //                   ),
+            //                 ),
+            //                 Icon(Icons.adaptive.arrow_forward_outlined),
+            //               ],
             //             ),
-            //           ),
-            //           Icon(Icons.adaptive.arrow_forward_outlined),
-            //         ],
-            //       ),
             //     ),
             //   ),
             // ),
@@ -177,12 +162,12 @@ class NewGroupView extends StatelessWidget {
                   : ListTile(
                       leading: Icon(
                         Icons.warning_outlined,
-                        color: Theme.of(context).colorScheme.error,
+                        color: theme.colorScheme.error,
                       ),
                       title: Text(
                         error.toLocalizedString(context),
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.error,
+                          color: theme.colorScheme.error,
                         ),
                       ),
                     ),

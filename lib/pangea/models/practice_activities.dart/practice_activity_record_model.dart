@@ -3,9 +3,14 @@
 // the user might have selected multiple options before
 // finding the answer
 import 'dart:developer';
-import 'dart:typed_data';
 
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
 
 class PracticeActivityRecordModel {
   final String? question;
@@ -76,6 +81,56 @@ class PracticeActivityRecordModel {
       );
     } catch (e) {
       debugger();
+    }
+  }
+
+  /// Returns a list of [OneConstructUse] objects representing the uses of the practice activity.
+  ///
+  /// The [practiceActivity] parameter is the parent event, representing the activity itself.
+  /// The [event] parameter is the record event, if available.
+  /// The [metadata] parameter is the metadata for the construct use, used if the record event isn't available.
+  ///
+  /// If [event] and [metadata] are both null, an empty list is returned.
+  ///
+  /// The method iterates over the [tgtConstructs] of the [practiceActivity] and creates a [OneConstructUse] object for each construct.
+  List<OneConstructUse> uses(
+    PracticeActivityEvent practiceActivity, {
+    Event? event,
+    ConstructUseMetaData? metadata,
+  }) {
+    try {
+      if (event == null && metadata == null) {
+        debugger(when: kDebugMode);
+        return [];
+      }
+
+      final List<OneConstructUse> uses = [];
+      final List<ConstructIdentifier> constructIds =
+          practiceActivity.practiceActivity.tgtConstructs;
+
+      for (final construct in constructIds) {
+        uses.add(
+          OneConstructUse(
+            lemma: construct.lemma,
+            constructType: construct.type,
+            useType: useType,
+            //TODO - find form of construct within the message
+            //this is related to the feature of highlighting the target construct in the message
+            form: construct.lemma,
+            metadata: ConstructUseMetaData(
+              roomId: event?.roomId ?? metadata!.roomId,
+              eventId: practiceActivity.parentMessageId,
+              timeStamp: event?.originServerTs ?? metadata!.timeStamp,
+            ),
+          ),
+        );
+      }
+
+      return uses;
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: e, s: s, data: event?.toJson());
+      rethrow;
     }
   }
 

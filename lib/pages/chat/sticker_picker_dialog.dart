@@ -25,6 +25,8 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final stickerPacks = widget.room.getImagePacks(ImagePackUsage.sticker);
     final packSlugs = stickerPacks.keys.toList();
 
@@ -98,7 +100,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
     };
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
+      backgroundColor: theme.colorScheme.onInverseSurface,
       body: SizedBox(
         width: double.maxFinite,
         child: CustomScrollView(

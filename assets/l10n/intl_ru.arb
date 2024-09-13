@@ -2232,7 +2232,7 @@
   },
   "commandHint_cuddle": "Отправить улыбку",
   "@commandHint_cuddle": {},
-  "readUpToHere": "Дочитать до сюда",
+  "readUpToHere": "Непрочитанное",
   "@readUpToHere": {},
   "commandHint_hug": "Отправить обнимашки",
   "@commandHint_hug": {},
@@ -2369,7 +2369,7 @@
       "reason": {}
     }
   },
-  "setChatDescription": "Изменить описание чата",
+  "setChatDescription": "Установить описание чата",
   "@setChatDescription": {},
   "setColorTheme": "Цветовая тема:",
   "@setColorTheme": {},
@@ -2689,5 +2689,76 @@
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
+  },
+  "restricted": "Запрещено",
+  "@restricted": {},
+  "knockRestricted": "Стук запрещен",
+  "@knockRestricted": {},
+  "searchIn": "Поиск в чате \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Найти еще...",
+  "@searchMore": {},
+  "gallery": "Галерея",
+  "@gallery": {},
+  "files": "Файлы",
+  "@files": {},
+  "swipeRightToLeftToReply": "Для ответа проведите с права на лево",
+  "@swipeRightToLeftToReply": {},
+  "userLevel": "{level} - Пользователь",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Модератор",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Администратор",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Изменить общие настройки чата",
+  "@changeGeneralChatSettings": {},
+  "changeTheChatPermissions": "Изменить права доступа к чату",
+  "@changeTheChatPermissions": {},
+  "changeTheDescriptionOfTheGroup": "Изменить описание чата",
+  "@changeTheDescriptionOfTheGroup": {},
+  "inviteOtherUsers": "Пригласить других пользователей в этот чат",
+  "@inviteOtherUsers": {},
+  "changeTheVisibilityOfChatHistory": "Изменить видимость истории чата",
+  "@changeTheVisibilityOfChatHistory": {},
+  "countChatsAndCountParticipants": "{chats} чатов и {participants} участников",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "unread": "Непрочитанные",
+  "@unread": {},
+  "space": "Пространство",
+  "@space": {},
+  "spaces": "Пространства",
+  "@spaces": {},
+  "markAsUnread": "Отметить как непрочитанное",
+  "@markAsUnread": {},
+  "goToSpace": "Перейти к пространству: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
   }
 }

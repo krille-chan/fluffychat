@@ -1,6 +1,10 @@
 {
   "@@locale": "de",
   "@@last_modified": "2021-08-14 12:41:10.119255",
+  "alwaysUse24HourFormat": "true",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
   "about": "Über",
   "@about": {
     "type": "text",
@@ -356,7 +360,7 @@
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_join": "Betrete den ausgewählten Raum",
+  "commandHint_join": "Betritt den ausgewählten Raum",
   "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
@@ -554,7 +558,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Standardberechtigungsstufe",
+  "defaultPermissionLevel": "Standardberechtigungsstufe für neue Benutzer",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -1080,7 +1084,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Firebase Cloud Messaging scheint auf deinem Gerät nicht verfügbar zu sein. Um trotzdem Push-Benachrichtigungen zu erhalten, empfehlen wir die Installation von ntfy. Mit ntfy oder einem anderen Unified Push Anbieter kannst du Push-Benachrichtigungen datensicher empfangen. Du kannst ntfy im PlayStore oder bei F-Droid herunterladen.",
+  "noGoogleServicesWarning": "Firebase Cloud Messaging scheint auf deinem Gerät nicht verfügbar zu sein. Um trotzdem Push-Benachrichtigungen zu erhalten, empfehlen wir die Installation von ntfy. Mit ntfy oder einem anderen Unified-Push-Anbieter kannst du Push-Benachrichtigungen datensicher empfangen. Du kannst ntfy im PlayStore oder bei F-Droid herunterladen.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1663,7 +1667,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tryToSendAgain": "Nochmal versuchen zu senden",
+  "tryToSendAgain": "Noch mal versuchen zu senden",
   "@tryToSendAgain": {
     "type": "text",
     "placeholders": {}
@@ -1708,7 +1712,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unpin": "Abpinnen",
+  "unpin": "Nicht mehr anpinnen",
   "@unpin": {
     "type": "text",
     "placeholders": {}
@@ -1961,7 +1965,7 @@
   "@start": {},
   "repeatPassword": "Passwort wiederholen",
   "@repeatPassword": {},
-  "commandHint_dm": "Starte einen direkten Chat\nBenutze --no-encryption um die Verschlüsselung auszuschalten",
+  "commandHint_dm": "Starte einen direkten Chat\nBenutze --no-encryption, um die Verschlüsselung auszuschalten",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -1976,7 +1980,7 @@
     "type": "text",
     "description": "Usage hint for the command /clearcache"
   },
-  "commandHint_create": "Erstelle ein leeren Gruppenchat\nBenutze --no-encryption um die Verschlüsselung auszuschalten",
+  "commandHint_create": "Erstelle ein leeren Gruppenchat\nBenutze --no-encryption, um die Verschlüsselung auszuschalten",
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
@@ -2009,7 +2013,7 @@
   "@videoCallsBetaWarning": {},
   "emailOrUsername": "E-Mail oder Benutzername",
   "@emailOrUsername": {},
-  "unsupportedAndroidVersionLong": "Diese Funktion erfordert eine neuere Android-Version. Bitte suche nach Updates oder Lineage OS-Unterstützung.",
+  "unsupportedAndroidVersionLong": "Diese Funktion erfordert eine neuere Android-Version. Bitte suche nach Updates oder prüfe die Lineage-OS-Unterstützung.",
   "@unsupportedAndroidVersionLong": {},
   "experimentalVideoCalls": "Experimentelle Videoanrufe",
   "@experimentalVideoCalls": {},
@@ -2147,7 +2151,7 @@
   "@saveKeyManuallyDescription": {},
   "hydrateTorLong": "Hast du deine Sitzung das letzte Mal auf TOR exportiert? Importiere sie schnell und chatte weiter.",
   "@hydrateTorLong": {},
-  "pleaseEnterRecoveryKey": "Bitte gebe deinen Wiederherstellungsschlüssel ein:",
+  "pleaseEnterRecoveryKey": "Bitte gib deinen Wiederherstellungsschlüssel ein:",
   "@pleaseEnterRecoveryKey": {},
   "countFiles": "{count} Dateien",
   "@countFiles": {
@@ -2261,7 +2265,7 @@
       "senderName": {}
     }
   },
-  "commandHint_googly": "Googly Eyes senden",
+  "commandHint_googly": "Glupschaugen senden",
   "@commandHint_googly": {},
   "disableEncryptionWarning": "Aus Sicherheitsgründen können Sie die Verschlüsselung in einem Chat nicht deaktivieren, wo sie zuvor aktiviert wurde.",
   "@disableEncryptionWarning": {},
@@ -2269,7 +2273,7 @@
   "@reopenChat": {},
   "fileIsTooBigForServer": "Der Server meldet, dass die Datei zu groß ist für eine Übermittlung ist.",
   "@fileIsTooBigForServer": {},
-  "noBackupWarning": "Achtung! Ohne Aktivierung des Chat-Backups verlierst du den Zugriff auf deine verschlüsselten Nachrichten. Vor dem Ausloggen wird dringend empfohlen den Chat-Backup zu aktivieren.",
+  "noBackupWarning": "Achtung! Ohne Aktivierung des Chat-Backups verlierst du den Zugriff auf deine verschlüsselten Nachrichten. Vor dem Ausloggen wird dringend empfohlen, das Chat-Backup zu aktivieren.",
   "@noBackupWarning": {},
   "noOtherDevicesFound": "Keine anderen Geräte anwesend",
   "@noOtherDevicesFound": {},
@@ -2585,7 +2589,7 @@
       "sender": {}
     }
   },
-  "verifyOtherDeviceDescription": "Wenn Sie ein anderes Gerät verifizieren, können diese Geräteschlüssel austauschen, was Ihre Sicherheit insgesamt erhöht. 💪 Wenn Sie eine Verifizierung starten, erscheint ein Pop-up in der App auf beiden Geräten. Dort sehen Sie dann eine Reihe von Emojis oder Zahlen, die Sie miteinander vergleichen müssen. Am besten hältst du beide Geräte bereit, bevor du die Verifizierung startest. 🤳",
+  "verifyOtherDeviceDescription": "Wenn Sie ein anderes Gerät verifizieren, können diese Geräteschlüssel austauschen, was Ihre Sicherheit insgesamt erhöht. 💪 Wenn Sie eine Verifizierung starten, erscheint ein Pop-up in der App auf beiden Geräten. Dort sehen Sie dann eine Reihe von Emojis oder Zahlen, die Sie miteinander vergleichen müssen. Am besten halten Sie beide Geräte bereit, bevor Sie die Verifizierung starten. 🤳",
   "@verifyOtherDeviceDescription": {},
   "presenceStyle": "Statusmeldungen:",
   "@presenceStyle": {
@@ -2706,5 +2710,88 @@
     }
   },
   "searchMore": "Weiter suchen ...",
-  "@searchMore": {}
+  "@searchMore": {},
+  "unread": "Ungelesen",
+  "@unread": {},
+  "noMoreChatsFound": "Keine weiteren Chats gefunden ...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Beigetretene Chats",
+  "@joinedChats": {},
+  "space": "Space",
+  "@space": {},
+  "spaces": "Spaces",
+  "@spaces": {},
+  "goToSpace": "Geh zum Space: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Als ungelesen markieren",
+  "@markAsUnread": {},
+  "swipeRightToLeftToReply": "Wische von rechts nach links zum Antworten",
+  "@swipeRightToLeftToReply": {},
+  "countChatsAndCountParticipants": "{chats} Chats und {participants} Teilnehmer",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "changeGeneralChatSettings": "Allgemeine Chat-Einstellungen ändern",
+  "@changeGeneralChatSettings": {},
+  "userLevel": "{level} - Benutzer",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheChatPermissions": "Ändere die Chat-Berechtigungen",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "Wechsele die Sichtbarkeit der Chat-Historie",
+  "@changeTheVisibilityOfChatHistory": {},
+  "chatPermissionsDescription": "Definieren Sie, welche Befugnisstufe für bestimmte Aktionen in diesem Chat erforderlich ist. Die Befugnisstufen 0, 50 und 100 stehen üblicherweise für Benutzer, Moderatoren und Admins, aber jede Abstufung ist möglich.",
+  "@chatPermissionsDescription": {},
+  "invitedBy": "📩 Eingeladen von {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "adminLevel": "{level} - Administrator",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "inviteOtherUsers": "Lade andere Benutzer in diesen Chat ein",
+  "@inviteOtherUsers": {},
+  "changeTheCanonicalRoomAlias": "Ändern der Hauptadresse für den öffentlichen Chat",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "Senden Sie eine @room-Benachrichtigung",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Ändern Sie die Beschreibung des Chats",
+  "@changeTheDescriptionOfTheGroup": {},
+  "updateInstalled": "🎉 Update {version} installiert!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Änderungsprotokoll",
+  "@changelog": {},
+  "sendCanceled": "Senden abgebrochen",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Hier wurden noch keine Chats gefunden. Starten Sie einen neuen Chat mit jemandem, indem Sie die Schaltfläche unten verwenden. ⤵️",
+  "@noChatsFoundHere": {}
 }

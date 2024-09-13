@@ -13,6 +13,8 @@ class ParticipantListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final membershipBatch = switch (user.membership) {
       Membership.ban => L10n.of(context)!.banned,
       Membership.invite => L10n.of(context)!.invited,
@@ -54,11 +56,13 @@ class ParticipantListItem extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
                   // #Pangea
-                  // color: Theme.of(context).colorScheme.primaryContainer,
-                  color: Theme.of(context).secondaryHeaderColor,
+                  // color: theme.colorScheme.primaryContainer,
+                  color: theme.secondaryHeaderColor,
+                  // Pangea#
                   borderRadius: BorderRadius.circular(8),
+                  // #Pangea
                   // border: Border.all(
-                  //   color: Theme.of(context).colorScheme.primary,
+                  //   color: theme.colorScheme.primary,
                   // ),
                   // Pangea#
                 ),
@@ -67,7 +71,7 @@ class ParticipantListItem extends StatelessWidget {
                   // #Pangea
                   // style: TextStyle(
                   //   fontSize: 14,
-                  //   color: Theme.of(context).colorScheme.primary,
+                  //   color: theme.colorScheme.primary,
                   // ),
                   // Pangea#
                 ),
@@ -78,7 +82,7 @@ class ParticipantListItem extends StatelessWidget {
                     padding: const EdgeInsets.all(4),
                     margin: const EdgeInsets.symmetric(horizontal: 8),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).secondaryHeaderColor,
+                      color: theme.secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(child: Text(membershipBatch)),

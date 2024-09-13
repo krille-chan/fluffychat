@@ -1,3 +1,7 @@
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
+
 /// Represents a lemma object
 class Lemma {
   /// [text] ex "ir" - text of the lemma of the word
@@ -35,4 +39,18 @@ class Lemma {
 
   static Lemma create(String form) =>
       Lemma(text: '', saveVocab: true, form: form);
+
+  /// Given a [type] and [metadata], returns a [OneConstructUse] for this lemma
+  OneConstructUse toVocabUse(
+    ConstructUseTypeEnum type,
+    ConstructUseMetaData metadata,
+  ) {
+    return OneConstructUse(
+      useType: type,
+      lemma: text,
+      form: form,
+      constructType: ConstructTypeEnum.vocab,
+      metadata: metadata,
+    );
+  }
 }

@@ -19,6 +19,8 @@ class EmotesSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final client = Matrix.of(context).client;
     final imageKeys = controller.pack!.images.keys.toList();
     return Scaffold(
@@ -73,7 +75,7 @@ class EmotesSettingsView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      color: Theme.of(context).secondaryHeaderColor,
+                      color: theme.secondaryHeaderColor,
                     ),
                     child: TextField(
                       controller: controller.newImageCodeController,
@@ -85,11 +87,11 @@ class EmotesSettingsView extends StatelessWidget {
                         prefixText: ': ',
                         suffixText: ':',
                         prefixStyle: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: theme.colorScheme.secondary,
                           fontWeight: FontWeight.bold,
                         ),
                         suffixStyle: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: theme.colorScheme.secondary,
                           fontWeight: FontWeight.bold,
                         ),
                         border: InputBorder.none,
@@ -117,7 +119,7 @@ class EmotesSettingsView extends StatelessWidget {
                 onChanged: controller.setIsGloballyActive,
               ),
             if (!controller.readonly || controller.room != null)
-              const Divider(thickness: 1),
+              const Divider(),
             imageKeys.isEmpty
                 ? Center(
                     child: Padding(
@@ -152,7 +154,7 @@ class EmotesSettingsView extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
-                            color: Theme.of(context).secondaryHeaderColor,
+                            color: theme.secondaryHeaderColor,
                           ),
                           child: Shortcuts(
                             shortcuts: !useShortCuts
@@ -188,13 +190,11 @@ class EmotesSettingsView extends StatelessWidget {
                                   prefixText: ': ',
                                   suffixText: ':',
                                   prefixStyle: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
+                                    color: theme.colorScheme.secondary,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   suffixStyle: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
+                                    color: theme.colorScheme.secondary,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   border: InputBorder.none,

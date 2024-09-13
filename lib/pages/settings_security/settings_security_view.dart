@@ -17,10 +17,12 @@ class SettingsSecurityView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(title: Text(L10n.of(context)!.security)),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onSurface,
+        iconColor: theme.colorScheme.onSurface,
         child: MaxWidthBody(
           child: FutureBuilder(
             future: Matrix.of(context)
@@ -44,7 +46,7 @@ class SettingsSecurityView extends StatelessWidget {
                     title: Text(
                       L10n.of(context)!.privacy,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -84,15 +86,12 @@ class SettingsSecurityView extends StatelessWidget {
                         onTap: controller.setAppLockAction,
                       ),
                   },
-                  Divider(
-                    height: 1,
-                    color: Theme.of(context).dividerColor,
-                  ),
+                  Divider(color: theme.dividerColor),
                   ListTile(
                     title: Text(
                       L10n.of(context)!.account,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -116,13 +115,14 @@ class SettingsSecurityView extends StatelessWidget {
                     ),
                   ListTile(
                     iconColor: Colors.orange,
-                    leading: const Icon(Icons.tap_and_play),
+                    leading: const Icon(Icons.delete_sweep_outlined),
                     title: Text(
                       L10n.of(context)!.dehydrate,
                       style: const TextStyle(color: Colors.orange),
                     ),
                     onTap: controller.dehydrateAction,
                   ),
+                  Divider(color: theme.dividerColor),
                   ListTile(
                     iconColor: Colors.red,
                     leading: const Icon(Icons.delete_outlined),

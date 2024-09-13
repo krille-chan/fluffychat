@@ -1,6 +1,10 @@
 import 'dart:convert';
 
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
+import 'package:matrix/matrix.dart';
 
 import 'it_step.dart';
 
@@ -111,6 +115,44 @@ class ChoreoRecord {
 
   String get finalMessage =>
       choreoSteps.isNotEmpty ? choreoSteps.last.text : "";
+
+  /// Get construct uses of type grammar for the message from this ChoreoRecord.
+  /// Takes either an event (typically when the Representation itself is
+  /// available) or construct use metadata (when the event is not available,
+  /// i.e. immediately after message send) to create the construct uses.
+  List<OneConstructUse> grammarConstructUses({
+    Event? event,
+    ConstructUseMetaData? metadata,
+  }) {
+    final List<OneConstructUse> uses = [];
+    if (event?.roomId == null && metadata?.roomId == null) {
+      return uses;
+    }
+    metadata ??= ConstructUseMetaData(
+      roomId: event!.roomId!,
+      eventId: event.eventId,
+      timeStamp: event.originServerTs,
+    );
+
+    for (final step in choreoSteps) {
+      if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted) {
+        final String name = step.acceptedOrIgnoredMatch!.match.rule?.id ??
+            step.acceptedOrIgnoredMatch!.match.shortMessage ??
+            step.acceptedOrIgnoredMatch!.match.type.typeName.name;
+        uses.add(
+          OneConstructUse(
+            useType: ConstructUseTypeEnum.ga,
+            lemma: name,
+            form: name,
+            constructType: ConstructTypeEnum.grammar,
+            id: "${metadata.eventId}_${step.acceptedOrIgnoredMatch!.match.offset}_${step.acceptedOrIgnoredMatch!.match.length}",
+            metadata: metadata,
+          ),
+        );
+      }
+    }
+    return uses;
+  }
 }
 
 /// A new ChoreoRecordStep is saved in the following cases:

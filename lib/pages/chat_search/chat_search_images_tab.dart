@@ -28,6 +28,7 @@ class ChatSearchImagesTab extends StatelessWidget {
     return StreamBuilder(
       stream: searchStream,
       builder: (context, snapshot) {
+        final theme = Theme.of(context);
         final events = snapshot.data?.$1;
         if (searchStream == null || events == null) {
           return Column(
@@ -91,10 +92,8 @@ class ChatSearchImagesTab extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: TextButton.icon(
                     style: TextButton.styleFrom(
-                      backgroundColor:
-                          Theme.of(context).colorScheme.secondaryContainer,
-                      foregroundColor:
-                          Theme.of(context).colorScheme.onSecondaryContainer,
+                      backgroundColor: theme.colorScheme.secondaryContainer,
+                      foregroundColor: theme.colorScheme.onSecondaryContainer,
                     ),
                     onPressed: () => startSearch(
                       prevBatch: nextBatch,
@@ -119,7 +118,7 @@ class ChatSearchImagesTab extends StatelessWidget {
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Theme.of(context).dividerColor,
+                        color: theme.dividerColor,
                       ),
                     ),
                     Padding(
@@ -128,14 +127,14 @@ class ChatSearchImagesTab extends StatelessWidget {
                         DateFormat.yMMMM(
                           Localizations.localeOf(context).languageCode,
                         ).format(eventsByMonthList[i].key),
-                        style: Theme.of(context).textTheme.labelSmall,
+                        style: theme.textTheme.labelSmall,
                         textAlign: TextAlign.center,
                       ),
                     ),
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Theme.of(context).dividerColor,
+                        color: theme.dividerColor,
                       ),
                     ),
                   ],

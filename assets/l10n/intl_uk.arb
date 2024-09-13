@@ -1557,7 +1557,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Типовий рівень дозволів",
+  "defaultPermissionLevel": "Типовий рівень дозволів для нових користувачів",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -1913,12 +1913,12 @@
   },
   "unverified": "Неперевірений",
   "@unverified": {},
-  "locationDisabledNotice": "Служби визначення місцеположення вимкнені. Увімкніть їх, щоб могти надавати доступ до вашого місцеположення.",
+  "locationDisabledNotice": "Служби визначення розташування вимкнені. Увімкніть їх, щоб мати змогу ділитися своїм розташуванням.",
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "locationPermissionDeniedNotice": "Дозвіл на розташування відхилено. Надайте можливість ділитися своїм місцеперебуванням.",
+  "locationPermissionDeniedNotice": "Дозвіл на розташування відхилено. Надайте можливість ділитися своїм розташуванням.",
   "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
@@ -2405,7 +2405,7 @@
   "@makeAdminDescription": {},
   "archiveRoomDescription": "Бесіду буде переміщено до архіву. Інші користувачі зможуть побачити, що ви вийшли з неї.",
   "@archiveRoomDescription": {},
-  "hasKnocked": "{user} стукає до вас",
+  "hasKnocked": "🚪{user} стукає до вас",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2436,7 +2436,7 @@
       "query": {}
     }
   },
-  "block": "блокування",
+  "block": "Заблокувати",
   "@block": {},
   "yourGlobalUserIdIs": "Ваш глобальний ID користувача: ",
   "@yourGlobalUserIdIs": {},
@@ -2604,5 +2604,204 @@
   "discover": "Огляд",
   "@discover": {},
   "stickers": "Наліпки",
-  "@stickers": {}
+  "@stickers": {},
+  "searchIn": "Пошук у бесіді \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "commandHint_ignore": "Ігнорувати цей Matrix ID",
+  "@commandHint_ignore": {},
+  "restricted": "Обмежено",
+  "@restricted": {},
+  "swipeRightToLeftToReply": "Посунути праворуч або ліворуч, щоб відповісти",
+  "@swipeRightToLeftToReply": {},
+  "globalChatId": "Глобальний ID бесіди",
+  "@globalChatId": {},
+  "accessAndVisibility": "Доступ і видимість",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Хто може приєднатися до цієї бесіди і як її можна знайти.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Виклики",
+  "@calls": {},
+  "customEmojisAndStickers": "Власні емоджі та наліпки",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Додавайте або діліться власними емоджі або наліпками, які можна використовувати в будь-якій бесіді.",
+  "@customEmojisAndStickersBody": {},
+  "createNewAddress": "Створити нову адресу",
+  "@createNewAddress": {},
+  "userRole": "Роль користувача",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} — це найнижчий рівень повноважень.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "commandHint_unignore": "Не ігнорувати цей Matrix ID",
+  "@commandHint_unignore": {},
+  "knockRestricted": "Стук обмежено",
+  "@knockRestricted": {},
+  "appLockDescription": "Блокувати застосунок, коли не використовується ПІН-код",
+  "@appLockDescription": {},
+  "hideRedactedMessages": "Сховати змінені повідомлення",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Якщо хтось змінить повідомлення, його більше не буде видно в бесіді.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Сховати недійсні або невідомі формати повідомлень",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hideMemberChangesInPublicChats": "Сховати зміни користувачів у загальнодоступних бесідах",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "Не показувати в хронології бесіди, якщо хтось приєднується до загальнодоступної бесіди або виходить з неї, щоб покращити її читабельність.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "overview": "Огляд",
+  "@overview": {},
+  "notifyMeFor": "Сповіщати мене про",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Налаштування відновлення пароля",
+  "@passwordRecoverySettings": {},
+  "userWouldLikeToChangeTheChat": "{user} хоче приєднатися до бесіди.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Загальнодоступне посилання ще не створено",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "Постукатись",
+  "@knock": {},
+  "knocking": "Стукаються",
+  "@knocking": {},
+  "noDatabaseEncryption": "Шифрування бази даних не підтримується на цій платформі",
+  "@noDatabaseEncryption": {},
+  "usersMustKnock": "Користувачі повинні постукатись",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "Ніхто не може приєднатись",
+  "@noOneCanJoin": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Бесіду можна знайти за допомогою пошуку на {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "publicChatAddresses": "Адреси загальнодоступної бесіди",
+  "@publicChatAddresses": {},
+  "searchMore": "Шукати ще...",
+  "@searchMore": {},
+  "gallery": "Галерея",
+  "@gallery": {},
+  "files": "Файли",
+  "@files": {},
+  "unreadChatsInApp": "{appname}: {unread} непрочитаних бесід",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "thereAreCountUsersBlocked": "Наразі заблоковано {count} користувачів.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "moderatorLevel": "{level} - Модератор",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Адміністратор",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "userLevel": "{level} - Користувач",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Змінити загальні налаштування чату",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "Запросити інших користувачів до цього чату",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Змінити права доступу до чату",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "Змінити видимість історії чату",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Змінити основну адресу загальнодоступного чату",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "Надсилати сповіщення @room",
+  "@sendRoomNotifications": {},
+  "space": "Простір",
+  "@space": {},
+  "spaces": "Простори",
+  "@spaces": {},
+  "goToSpace": "Перейти до простору: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Позначити непрочитаним",
+  "@markAsUnread": {},
+  "alwaysUse24HourFormat": "ні",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "invitedBy": "📩 Запрошений {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "changeTheDescriptionOfTheGroup": "Змінити опис чату",
+  "@changeTheDescriptionOfTheGroup": {},
+  "updateInstalled": "🎉 Оновлення {version} встановлено!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Зміни",
+  "@changelog": {},
+  "chatPermissionsDescription": "Визначте, який рівень повноважень необхідний для певних дій у цьому чаті. Рівні повноважень 0, 50 і 100 зазвичай представляють користувачів, модераторів та адміністраторів, але можливі будь-які градації.",
+  "@chatPermissionsDescription": {},
+  "countChatsAndCountParticipants": "{chats} чати та {participants} учасників",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "Більше чатів не знайдено...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Приєднані чати",
+  "@joinedChats": {},
+  "unread": "Непрочитані",
+  "@unread": {},
+  "sendCanceled": "Надсилання скасовано",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Бесід ще немає. Розпочніть спілкування натиснувши кнопку нижче. ⤵️",
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "Увійти за допомогою Matrix-ID",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Знайти домашні сервери",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Що таке домашній сервер?",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Усі ваші дані зберігаються на домашньому сервері, так само як у постачальника послуг електронної пошти. Ви можете вибрати, який домашній сервер ви хочете використовувати, водночас ви можете спілкуватися з усіма. Докладніше на https://matrix.org.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "Здається, це несумісний домашній сервер. Неправильна URL-адреса?",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }

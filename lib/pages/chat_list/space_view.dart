@@ -2,19 +2,18 @@ import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
-import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
+import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
-import 'package:fluffychat/pages/chat_list/utils/on_chat_tap.dart';
-import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/widgets/chat_list/chat_list_header_wrapper.dart';
-import 'package:fluffychat/pangea/widgets/chat_list/chat_list_item_wrapper.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -22,16 +21,30 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
-import '../../utils/localized_exception_extension.dart';
-import '../../widgets/matrix.dart';
+enum AddRoomType { chat, subspace }
 
 class SpaceView extends StatefulWidget {
+  final String spaceId;
+  final void Function() onBack;
+  final void Function(String spaceId) toParentSpace;
+  final void Function(Room room) onChatTab;
+  final void Function(Room room, BuildContext context) onChatContext;
+  final String? activeChat;
+  // #Pangea
   final ChatListController controller;
-  final ScrollController scrollController;
-  const SpaceView(
-    this.controller, {
+  // Pangea#
+
+  const SpaceView({
+    required this.spaceId,
+    required this.onBack,
+    required this.onChatTab,
+    required this.activeChat,
+    required this.toParentSpace,
+    required this.onChatContext,
+    // #Pangea
+    required this.controller,
+    // Pangea#
     super.key,
-    required this.scrollController,
   });
 
   @override
@@ -39,40 +52,15 @@ class SpaceView extends StatefulWidget {
 }
 
 class _SpaceViewState extends State<SpaceView> {
-  static final Map<String, GetSpaceHierarchyResponse> _lastResponse = {};
-
-  String? prevBatch;
-  Object? error;
-  bool loading = false;
   // #Pangea
-  bool refreshing = false;
+  // final List<SpaceRoomsChunk> _discoveredChildren = [];
+  List<SpaceRoomsChunk>? _discoveredChildren;
   StreamSubscription? _roomSubscription;
-
-  final String _chatCountsKey = 'chatCounts';
-  Map<String, int> get chatCounts => Map.from(
-        widget.controller.pangeaController.pStoreService.read(_chatCountsKey) ??
-            {},
-      );
-
-  /// Used to filter out sync updates with hierarchy updates for the active
-  /// space so that the view can be auto-reloaded in the room subscription
-  bool hasHierarchyUpdate(SyncUpdate update) {
-    final joinTimeline =
-        update.rooms?.join?[widget.controller.activeSpaceId]?.timeline;
-    final leaveTimeline =
-        update.rooms?.leave?[widget.controller.activeSpaceId]?.timeline;
-    if (joinTimeline == null && leaveTimeline == null) return false;
-    final bool hasJoinUpdate = joinTimeline?.events?.any(
-          (event) => event.type == EventTypes.SpaceChild,
-        ) ??
-        false;
-    final bool hasLeaveUpdate = leaveTimeline?.events?.any(
-          (event) => event.type == EventTypes.SpaceChild,
-        ) ??
-        false;
-    return hasJoinUpdate || hasLeaveUpdate;
-  }
   // Pangea#
+  final TextEditingController _filterController = TextEditingController();
+  String? _nextBatch;
+  bool _noMoreRooms = false;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -82,7 +70,7 @@ class _SpaceViewState extends State<SpaceView> {
     // If, on launch, this room has had updates to its children,
     // ensure the hierarchy is properly reloaded
     final bool hasUpdate = widget.controller.hasUpdates.contains(
-      widget.controller.activeSpaceId,
+      widget.spaceId,
     );
 
     loadHierarchy(hasUpdate: hasUpdate).then(
@@ -91,8 +79,6 @@ class _SpaceViewState extends State<SpaceView> {
         widget.controller.activeSpaceId,
       ),
     );
-
-    loadChatCounts();
 
     // Listen for changes to the activeSpace's hierarchy,
     // and reload the hierarchy when they come through
@@ -106,131 +92,76 @@ class _SpaceViewState extends State<SpaceView> {
 
   // #Pangea
   @override
+  void didUpdateWidget(covariant SpaceView oldWidget) {
+    // initState doesn't re-run when navigating between spaces
+    // via the navigation rail, so this accounts for that
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.spaceId != widget.spaceId) {
+      _discoveredChildren = null;
+      _nextBatch = null;
+      _noMoreRooms = false;
+
+      loadHierarchy(hasUpdate: true).then(
+          // remove this space ID from the set of space IDs with updates
+          (_) {
+        if (widget.controller.hasUpdates.contains(widget.spaceId)) {
+          widget.controller.hasUpdates.remove(
+            widget.controller.activeSpaceId,
+          );
+        }
+      });
+    }
+  }
+
+  @override
   void dispose() {
     _roomSubscription?.cancel();
     super.dispose();
   }
-  // Pangea#
 
-  void _refresh() {
-    // #Pangea
-    // _lastResponse.remove(widget.controller.activseSpaceId);
-    // loadHierarchy();
-    if (mounted) setState(() => refreshing = true);
-    loadHierarchy(hasUpdate: true).whenComplete(() {
-      if (mounted) setState(() => refreshing = false);
+  Future<void> loadHierarchy({hasUpdate = false}) async {
+    final room = Matrix.of(context).client.getRoomById(widget.spaceId);
+    if (room == null) return;
+
+    setState(() {
+      _isLoading = true;
     });
-    // Pangea#
-  }
-
-  // #Pangea
-  // Future<GetSpaceHierarchyResponse?> loadHierarchy([String? prevBatch]) async {
-  //   final activeSpaceId = widget.controller.activeSpaceId;
-  //   if (activeSpaceId == null) return null;
-  //   final client = Matrix.of(context).client;
-
-  //   final activeSpace = client.getRoomById(activeSpaceId);
-  //   await activeSpace?.postLoad();
-
-  //   setState(() {
-  //     error = null;
-  //     loading = true;
-  //   });
-
-  //   try {
-  //     final response = await client.getSpaceHierarchy(
-  //       activeSpaceId,
-  //       maxDepth: 1,
-  //       from: prevBatch,
-  //     );
-
-  //     if (prevBatch != null) {
-  //       response.rooms.insertAll(0, _lastResponse[activeSpaceId]?.rooms ?? []);
-  //     }
-  //     setState(() {
-  //       _lastResponse[activeSpaceId] = response;
-  //     });
-  //     return _lastResponse[activeSpaceId]!;
-  //   } catch (e) {
-  //     setState(() {
-  //       error = e;
-  //     });
-  //     rethrow;
-  //   } finally {
-  //     setState(() {
-  //       loading = false;
-  //     });
-  //   }
-  // }
-
-  /// Loads the hierarchy of the active space (or the given spaceId) and stores
-  /// it in _lastResponse map. If there's already a response in that map for the
-  /// spaceId, it will try to load the next batch and add the new rooms to the
-  /// already loaded ones. Displays a loading indicator while loading, and an error
-  /// message if an error occurs.
-  /// If hasUpdate is true, it will force the hierarchy to be reloaded.
-  Future<void> loadHierarchy({
-    String? spaceId,
-    bool hasUpdate = false,
-  }) async {
-    if ((widget.controller.activeSpaceId == null && spaceId == null) ||
-        loading) {
-      return;
-    }
-
-    loading = true;
-    error = null;
-    setState(() {});
 
     try {
-      await _loadHierarchy(spaceId: spaceId, hasUpdate: hasUpdate);
+      await _loadHierarchy(activeSpace: room, hasUpdate: hasUpdate);
     } catch (e, s) {
-      if (mounted) {
-        setState(() => error = e);
-      }
-      ErrorHandler.logError(e: e, s: s);
+      Logs().w('Unable to load hierarchy', e, s);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
     } finally {
-      if (mounted) {
-        setState(() => loading = false);
-      }
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
   /// Internal logic of loadHierarchy. It will load the hierarchy of
   /// the active space id (or specified spaceId).
   Future<void> _loadHierarchy({
-    String? spaceId,
+    required Room activeSpace,
     bool hasUpdate = false,
   }) async {
-    final client = Matrix.of(context).client;
-    final activeSpaceId = (widget.controller.activeSpaceId ?? spaceId)!;
-    final activeSpace = client.getRoomById(activeSpaceId);
-
-    if (activeSpace == null) {
-      ErrorHandler.logError(
-        e: Exception('Space not found in loadHierarchy'),
-        data: {'spaceId': activeSpaceId},
-      );
-      return;
-    }
-
     // Load all of the space's state events. Space Child events
     // are used to filtering out unsuggested, unjoined rooms.
     await activeSpace.postLoad();
 
     // The current number of rooms loaded for this space that are visible in the UI
-    final int prevLength = _lastResponse[activeSpaceId] != null && !hasUpdate
-        ? filterHierarchyResponse(
-            activeSpace,
-            _lastResponse[activeSpaceId]!.rooms,
-          ).length
-        : 0;
+    final int prevLength = !hasUpdate ? (_discoveredChildren?.length ?? 0) : 0;
 
     // Failsafe to prevent too many calls to the server in a row
     int callsToServer = 0;
 
-    GetSpaceHierarchyResponse? currentHierarchy =
-        hasUpdate ? null : _lastResponse[activeSpaceId];
+    List<SpaceRoomsChunk>? currentHierarchy =
+        _discoveredChildren == null || hasUpdate
+            ? null
+            : List.from(_discoveredChildren!);
+    String? currentNextBatch = hasUpdate ? null : _nextBatch;
 
     // Makes repeated calls to the server until 10 new visible rooms have
     // been loaded, or there are no rooms left to load. Using a loop here,
@@ -240,268 +171,144 @@ class _SpaceViewState extends State<SpaceView> {
     // coming through from those calls are analytics rooms).
     while (callsToServer < 5) {
       // if this space has been loaded and there are no more rooms to load, break
-      if (currentHierarchy != null && currentHierarchy.nextBatch == null) {
+      if (currentHierarchy != null && currentNextBatch == null) {
         break;
       }
 
       // if this space has been loaded and 10 new rooms have been loaded, break
-      if (currentHierarchy != null) {
-        final int currentLength = filterHierarchyResponse(
-          activeSpace,
-          currentHierarchy.rooms,
-        ).length;
-
-        if (currentLength - prevLength >= 10) {
-          break;
-        }
+      final int currentLength = currentHierarchy?.length ?? 0;
+      if (currentLength - prevLength >= 10) {
+        break;
       }
 
       // make the call to the server
-      final response = await client.getSpaceHierarchy(
-        activeSpaceId,
-        maxDepth: 1,
-        from: currentHierarchy?.nextBatch,
-        limit: 100,
-      );
+      final response = await Matrix.of(context).client.getSpaceHierarchy(
+            widget.spaceId,
+            maxDepth: 1,
+            from: currentNextBatch,
+            limit: 100,
+          );
       callsToServer++;
+
+      if (response.nextBatch == null) {
+        _noMoreRooms = true;
+      }
 
       // if rooms have earlier been loaded for this space, add those
       // previously loaded rooms to the front of the response list
-      if (currentHierarchy != null) {
-        response.rooms.insertAll(
-          0,
-          currentHierarchy.rooms,
-        );
-      }
+      response.rooms.insertAll(
+        0,
+        currentHierarchy ?? [],
+      );
 
       // finally, set the response to the last response for this space
-      currentHierarchy = response;
+      // and set the current next batch token
+      currentHierarchy = filterHierarchyResponse(activeSpace, response.rooms);
+      currentNextBatch = response.nextBatch;
     }
 
-    if (currentHierarchy != null) {
-      _lastResponse[activeSpaceId] = currentHierarchy;
-    }
-
-    // After making those calls to the server, set the chat count for
-    // this space. Used for the UI of the 'All Spaces' view
-    setChatCount(
-      activeSpace,
-      _lastResponse[activeSpaceId] ??
-          GetSpaceHierarchyResponse(
-            rooms: [],
-          ),
-    );
+    _discoveredChildren = currentHierarchy;
+    _discoveredChildren?.sort(sortSpaceChildren);
+    _nextBatch = currentNextBatch;
   }
+
+  // void _loadHierarchy() async {
+  //   final room = Matrix.of(context).client.getRoomById(widget.spaceId);
+  //   if (room == null) return;
+
+  //   setState(() {
+  //     _isLoading = true;
+  //   });
+
+  //   try {
+  //     final hierarchy = await room.client.getSpaceHierarchy(
+  //       widget.spaceId,
+  //       suggestedOnly: false,
+  //       maxDepth: 2,
+  //       from: _nextBatch,
+  //     );
+  //     if (!mounted) return;
+  //     setState(() {
+  //       _nextBatch = hierarchy.nextBatch;
+  // if (hierarchy.nextBatch == null) {
+  //   _noMoreRooms = true;
+  // }
+  //       _discoveredChildren.addAll(
+  //         hierarchy.rooms
+  //             .where((c) => room.client.getRoomById(c.roomId) == null),
+  //       );
+  //       _isLoading = false;
+  //     });
+  //   } catch (e, s) {
+  //     Logs().w('Unable to load hierarchy', e, s);
+  //     if (!mounted) return;
+  //     ScaffoldMessenger.of(context)
+  //         .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //   }
+  // }
   // Pangea#
 
-  void _onJoinSpaceChild(SpaceRoomsChunk spaceChild) async {
+  void _joinChildRoom(SpaceRoomsChunk item) async {
     final client = Matrix.of(context).client;
-    final space = client.getRoomById(widget.controller.activeSpaceId!);
-    if (client.getRoomById(spaceChild.roomId) == null) {
-      final result = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          await client.joinRoom(
-            spaceChild.roomId,
-            serverName: space?.spaceChildren
-                .firstWhereOrNull(
-                  (child) => child.roomId == spaceChild.roomId,
-                )
-                ?.via,
-          );
-          if (client.getRoomById(spaceChild.roomId) == null) {
-            // Wait for room actually appears in sync
-            await client.waitForRoomInSync(spaceChild.roomId, join: true);
-          }
-          // #Pangea
-          final room = client.getRoomById(spaceChild.roomId);
-          if (room != null && (await room.leaveIfFull())) {
-            throw L10n.of(context)!.roomFull;
-          }
-          // Pangea#
-        },
-      );
-      if (result.error != null) return;
-      _refresh();
+    final space = client.getRoomById(widget.spaceId);
+
+    final joined = await showAdaptiveBottomSheet<bool>(
+      context: context,
+      builder: (_) => PublicRoomBottomSheet(
+        outerContext: context,
+        chunk: item,
+        via: space?.spaceChildren
+            .firstWhereOrNull(
+              (child) => child.roomId == item.roomId,
+            )
+            ?.via,
+      ),
+    );
+    if (mounted && joined == true) {
+      setState(() {
+        _discoveredChildren?.remove(item);
+      });
     }
-    // #Pangea
-    else {
-      final room = client.getRoomById(spaceChild.roomId)!;
-      if (room.membership != Membership.leave) return;
-      final joinResult = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final waitForRoom = room.client.waitForRoomInSync(
-            room.id,
-            join: true,
-          );
-          await room.join();
-          await waitForRoom;
-          if (await room.leaveIfFull()) {
-            throw L10n.of(context)!.roomFull;
-          }
-        },
-      );
-      if (joinResult.error != null) return;
-    }
-    // Pangea#
-    if (spaceChild.roomType == 'm.space') {
-      if (spaceChild.roomId == widget.controller.activeSpaceId) {
-        // #Pangea
-        // context.go('/rooms/${spaceChild.roomId}');
-        context.go('/rooms/${spaceChild.roomId}/details');
-        // Pangea#
-      } else {
-        widget.controller.setActiveSpace(spaceChild.roomId);
-      }
-      return;
-    }
-    context.go('/rooms/${spaceChild.roomId}');
   }
 
-  void _onSpaceChildContextMenu([
-    SpaceRoomsChunk? spaceChild,
-    Room? room,
-  ]) async {
-    final client = Matrix.of(context).client;
-    final activeSpaceId = widget.controller.activeSpaceId;
-    final activeSpace =
-        activeSpaceId == null ? null : client.getRoomById(activeSpaceId);
-    final action = await showModalActionSheet<SpaceChildContextAction>(
-      context: context,
-      title: spaceChild?.name ??
-          room?.getLocalizedDisplayname(
-            MatrixLocals(L10n.of(context)!),
-          ),
-      // #Pangea
-      // message: spaceChild?.topic ?? room?.topic,
-      // Pangea#
-      actions: [
-        // #Pangea
-        // if (room == null)
-        if (room == null || room.membership == Membership.leave)
-          // Pangea#
-          SheetAction(
-            key: SpaceChildContextAction.join,
-            label: L10n.of(context)!.joinRoom,
-            icon: Icons.send_outlined,
-          ),
-        if (spaceChild != null &&
-            // #Pangea
-            room != null &&
-            room.ownPowerLevel >= ClassDefaultValues.powerLevelOfAdmin &&
-            // Pangea#
-            (activeSpace?.canChangeStateEvent(EventTypes.SpaceChild) ?? false))
-          SheetAction(
-            key: SpaceChildContextAction.removeFromSpace,
-            label: L10n.of(context)!.removeFromSpace,
-            icon: Icons.delete_sweep_outlined,
-          ),
-        // #Pangea
-        if (room != null &&
-            room.ownPowerLevel >= ClassDefaultValues.powerLevelOfAdmin)
-          SheetAction(
-            key: SpaceChildContextAction.addToSpace,
-            label: L10n.of(context)!.addToSpace,
-            icon: Icons.workspaces_outlined,
-          ),
-        if (room != null &&
-            room.isRoomAdmin &&
-            room.membership != Membership.leave)
-          SheetAction(
-            key: SpaceChildContextAction.archive,
-            label: room.isSpace
-                ? L10n.of(context)!.archiveSpace
-                : L10n.of(context)!.archive,
-            icon: Icons.architecture_outlined,
-            isDestructiveAction: true,
-          ),
-        // if (room != null)
-        if (room != null && room.membership != Membership.leave)
-          // Pangea#
-          SheetAction(
-            key: SpaceChildContextAction.leave,
-            label: L10n.of(context)!.leave,
-            // #Pangea
-            // icon: Icons.delete_outlined,
-            icon: Icons.arrow_forward,
-            // Pangea#
-            isDestructiveAction: true,
-          ),
-      ],
-    );
-    if (action == null) return;
+  void _onSpaceAction(SpaceActions action) async {
+    final space = Matrix.of(context).client.getRoomById(widget.spaceId);
 
     switch (action) {
-      case SpaceChildContextAction.join:
-        _onJoinSpaceChild(spaceChild!);
+      case SpaceActions.settings:
+        await space?.postLoad();
+        context.push('/rooms/${widget.spaceId}/details');
         break;
-      case SpaceChildContextAction.leave:
-        // #Pangea
-        widget.controller.cancelAction();
-        if (room == null) return;
-        if (room.isSpace) {
-          await room.isOnlyAdmin()
-              ? await room.archiveSpace(
-                  context,
-                  Matrix.of(context).client,
-                  onlyAdmin: true,
-                )
-              : await room.leaveSpace(
-                  context,
-                  Matrix.of(context).client,
-                );
-        } else {
-          widget.controller.toggleSelection(room.id);
-          await widget.controller.leaveAction();
-        }
-        _refresh();
+      case SpaceActions.invite:
+        await space?.postLoad();
+        context.push('/rooms/${widget.spaceId}/invite');
         break;
-      // await showFutureLoadingDialog(
-      //   context: context,
-      //   future: room!.leave,
-      // );
-      // break;
-      // Pangea#
-      case SpaceChildContextAction.removeFromSpace:
-        await showFutureLoadingDialog(
+      case SpaceActions.leave:
+        final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
-          future: () => activeSpace!.removeSpaceChild(spaceChild!.roomId),
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.ok,
+          cancelLabel: L10n.of(context)!.cancel,
+          message: L10n.of(context)!.archiveRoomDescription,
         );
-        break;
-      // #Pangea
-      case SpaceChildContextAction.archive:
-        widget.controller.cancelAction();
-        // #Pangea
-        if (room == null || room.membership == Membership.leave) return;
-        if (room.isSpace) {
-          await room.archiveSpace(
-            context,
-            Matrix.of(context).client,
-            onlyAdmin: false,
-          );
-        } else {
-          widget.controller.toggleSelection(room.id);
-          await widget.controller.archiveAction();
-        }
-        // Pangea#
-        _refresh();
-        break;
-      case SpaceChildContextAction.addToSpace:
-        widget.controller.cancelAction();
-        // #Pangea
-        if (room == null || room.membership == Membership.leave) return;
-        // Pangea#
-        widget.controller.toggleSelection(room.id);
-        await widget.controller.addToSpace();
-        // #Pangea
-        setState(() => widget.controller.selectedRoomIds.clear());
-        // Pangea#
-        break;
+        if (!mounted) return;
+        if (confirmed != OkCancelResult.ok) return;
+
+        final success = await showFutureLoadingDialog(
+          context: context,
+          future: () async => await space?.leave(),
+        );
+        if (!mounted) return;
+        if (success.error != null) return;
+        widget.onBack();
     }
   }
 
-  void _addChatOrSubSpace() async {
+  void _addChatOrSubspace() async {
     final roomType = await showConfirmationDialog(
       context: context,
       title: L10n.of(context)!.addChatOrSubSpace,
@@ -512,7 +319,10 @@ class _SpaceViewState extends State<SpaceView> {
         ),
         AlertDialogAction(
           key: AddRoomType.chat,
-          label: L10n.of(context)!.createGroup,
+          // #Pangea
+          // label: L10n.of(context)!.createGroup,
+          label: L10n.of(context)!.createChat,
+          // Pangea#
         ),
       ],
     );
@@ -522,12 +332,18 @@ class _SpaceViewState extends State<SpaceView> {
       context: context,
       title: roomType == AddRoomType.subspace
           ? L10n.of(context)!.createNewSpace
-          : L10n.of(context)!.createGroup,
+          // #Pangea
+          // : L10n.of(context)!.createGroup,
+          : L10n.of(context)!.createChat,
+      // Pangea#
       textFields: [
         DialogTextField(
           hintText: roomType == AddRoomType.subspace
               ? L10n.of(context)!.spaceName
-              : L10n.of(context)!.groupName,
+              // #Pangea
+              // : L10n.of(context)!.groupName,
+              : L10n.of(context)!.chatName,
+          // Pangea#
           minLines: 1,
           maxLines: 1,
           maxLength: 64,
@@ -554,9 +370,8 @@ class _SpaceViewState extends State<SpaceView> {
       context: context,
       future: () async {
         late final String roomId;
-        final activeSpace = client.getRoomById(
-          widget.controller.activeSpaceId!,
-        )!;
+        final activeSpace = client.getRoomById(widget.spaceId)!;
+        await activeSpace.postLoad();
 
         if (roomType == AddRoomType.subspace) {
           roomId = await client.createSpace(
@@ -569,50 +384,29 @@ class _SpaceViewState extends State<SpaceView> {
         } else {
           roomId = await client.createGroupChat(
             groupName: names.first,
+            preset: activeSpace.joinRules == JoinRules.public
+                ? CreateRoomPreset.publicChat
+                : CreateRoomPreset.privateChat,
+            visibility: activeSpace.joinRules == JoinRules.public
+                ? sdk.Visibility.public
+                : sdk.Visibility.private,
             initialState: names.length > 1 && names.last.isNotEmpty
                 ? [
-                    sdk.StateEvent(
-                      type: sdk.EventTypes.RoomTopic,
+                    StateEvent(
+                      type: EventTypes.RoomTopic,
                       content: {'topic': names.last},
                     ),
                   ]
                 : null,
           );
         }
-        await activeSpace.setSpaceChild(
-          roomId,
-          // #Pangea
-          suggested: true,
-          // Pangea#
-        );
+        await activeSpace.setSpaceChild(roomId);
       },
     );
     if (result.error != null) return;
-    _refresh();
   }
 
   // #Pangea
-  Future<void> loadChatCounts() async {
-    // if not in the call spaces view, don't load chat count yet
-    if (widget.controller.activeSpaceId != null) return;
-
-    final List<Room> allSpaces =
-        Matrix.of(context).client.rooms.where((room) => room.isSpace).toList();
-
-    for (final Room space in allSpaces) {
-      // check if the space is visible in the all spaces list
-      final bool isRootSpace = !allSpaces.any(
-        (parentSpace) =>
-            parentSpace.spaceChildren.any((child) => child.roomId == space.id),
-      );
-
-      // if it's visible, and it hasn't been loaded yet, load chat count
-      if (isRootSpace && !chatCounts.containsKey(space.id)) {
-        loadHierarchy(spaceId: space.id);
-      }
-    }
-  }
-
   bool includeSpaceChild(
     Room space,
     SpaceRoomsChunk hierarchyMember,
@@ -637,6 +431,11 @@ class _SpaceViewState extends State<SpaceView> {
   ) {
     final List<SpaceRoomsChunk> filteredChildren = [];
     for (final child in hierarchyResponse) {
+      if (child.roomId == widget.spaceId ||
+          Matrix.of(context).client.getRoomById(child.roomId) != null) {
+        continue;
+      }
+
       final isDuplicate = filteredChildren.any(
         (filtered) => filtered.roomId == child.roomId,
       );
@@ -647,6 +446,23 @@ class _SpaceViewState extends State<SpaceView> {
       }
     }
     return filteredChildren;
+  }
+
+  /// Used to filter out sync updates with hierarchy updates for the active
+  /// space so that the view can be auto-reloaded in the room subscription
+  bool hasHierarchyUpdate(SyncUpdate update) {
+    final joinTimeline = update.rooms?.join?[widget.spaceId]?.timeline;
+    final leaveTimeline = update.rooms?.leave?[widget.spaceId]?.timeline;
+    if (joinTimeline == null && leaveTimeline == null) return false;
+    final bool hasJoinUpdate = joinTimeline?.events?.any(
+          (event) => event.type == EventTypes.SpaceChild,
+        ) ??
+        false;
+    final bool hasLeaveUpdate = leaveTimeline?.events?.any(
+          (event) => event.type == EventTypes.SpaceChild,
+        ) ??
+        false;
+    return hasJoinUpdate || hasLeaveUpdate;
   }
 
   int sortSpaceChildren(
@@ -663,454 +479,357 @@ class _SpaceViewState extends State<SpaceView> {
     }
     return 0;
   }
-
-  Future<void> setChatCount(
-    Room space,
-    GetSpaceHierarchyResponse? response,
-  ) async {
-    final Map<String, int> updatedChatCounts = Map.from(chatCounts);
-    final List<SpaceRoomsChunk> spaceChildren = response?.rooms ?? [];
-    final filteredChildren = filterHierarchyResponse(space, spaceChildren)
-        .where((sc) => sc.roomId != space.id)
-        .toList();
-    updatedChatCounts[space.id] = filteredChildren.length;
-
-    await widget.controller.pangeaController.pStoreService.save(
-      _chatCountsKey,
-      updatedChatCounts,
-    );
-  }
-
-  bool roomCountLoading(Room space) =>
-      space.membership == Membership.join && !chatCounts.containsKey(space.id);
-
-  Widget spaceSubtitle(Room space) {
-    if (roomCountLoading(space)) {
-      return const CircularProgressIndicator.adaptive();
-    }
-
-    return Text(
-      space.membership == Membership.join
-          ? L10n.of(context)!.numChats(
-              chatCounts[space.id].toString(),
-            )
-          : L10n.of(context)!.youreInvited,
-    );
-  }
   // Pangea#
 
   @override
   Widget build(BuildContext context) {
-    final client = Matrix.of(context).client;
-    final activeSpaceId = widget.controller.activeSpaceId;
-    final activeSpace = activeSpaceId == null
-        ? null
-        : client.getRoomById(
-            activeSpaceId,
-          );
-    final allSpaces = client.rooms.where((room) => room.isSpace);
-    if (activeSpaceId == null) {
-      final rootSpaces = allSpaces
-          .where(
-            (space) =>
-                !allSpaces.any(
-                  (parentSpace) => parentSpace.spaceChildren
-                      .any((child) => child.roomId == space.id),
-                ) &&
-                space
-                    .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))
-                    .toLowerCase()
-                    .contains(
-                      widget.controller.searchController.text.toLowerCase(),
-                    ),
-          )
-          .toList();
+    final theme = Theme.of(context);
 
-      return SafeArea(
-        child: CustomScrollView(
-          controller: widget.scrollController,
-          slivers: [
-            // #Pangea
-            // ChatListHeader(controller: widget.controller),
-            ChatListHeaderWrapper(controller: widget.controller),
-            // Pangea#
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, i) {
-                  final rootSpace = rootSpaces[i];
-                  final displayname = rootSpace.getLocalizedDisplayname(
-                    MatrixLocals(L10n.of(context)!),
-                  );
-                  return Material(
-                    color: Theme.of(context).colorScheme.surface,
-                    child: ListTile(
-                      leading: Avatar(
-                        mxContent: rootSpace.avatar,
-                        name: displayname,
-                        // #Pangea
-                        littleIcon: rootSpace.roomTypeIcon,
-                        // Pangea#
+    final room = Matrix.of(context).client.getRoomById(widget.spaceId);
+    final displayname =
+        room?.getLocalizedDisplayname() ?? L10n.of(context)!.nothingFound;
+    return Scaffold(
+      appBar: AppBar(
+        leading: Center(
+          child: CloseButton(
+            onPressed: widget.onBack,
+          ),
+        ),
+        titleSpacing: 0,
+        title: ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: Avatar(
+            mxContent: room?.avatar,
+            name: displayname,
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+          ),
+          title: Text(
+            displayname,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: room == null
+              ? null
+              : Text(
+                  L10n.of(context)!.countChatsAndCountParticipants(
+                    room.spaceChildren.length,
+                    room.summary.mJoinedMemberCount ?? 1,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+        ),
+        actions: [
+          PopupMenuButton<SpaceActions>(
+            onSelected: _onSpaceAction,
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: SpaceActions.settings,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.settings_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.settings),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: SpaceActions.invite,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.person_add_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.invite),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: SpaceActions.leave,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.delete_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.leave),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      body: room == null
+          ? const Center(
+              child: Icon(
+                Icons.search_outlined,
+                size: 80,
+              ),
+            )
+          : StreamBuilder(
+              stream: room.client.onSync.stream
+                  .where((s) => s.hasRoomUpdate)
+                  .rateLimit(const Duration(seconds: 1)),
+              builder: (context, snapshot) {
+                final childrenIds = room.spaceChildren
+                    .map((c) => c.roomId)
+                    .whereType<String>()
+                    .toSet();
+
+                final joinedRooms = room.client.rooms
+                    .where((room) => childrenIds.remove(room.id))
+                    // #Pangea
+                    .where((room) => !room.isAnalyticsRoom)
+                    // Pangea#
+                    .toList();
+
+                final joinedParents = room.spaceParents
+                    .map((parent) {
+                      final roomId = parent.roomId;
+                      if (roomId == null) return null;
+                      return room.client.getRoomById(roomId);
+                    })
+                    .whereType<Room>()
+                    .toList();
+                final filter = _filterController.text.trim().toLowerCase();
+                return CustomScrollView(
+                  slivers: [
+                    SliverAppBar(
+                      floating: true,
+                      toolbarHeight: 72,
+                      scrolledUnderElevation: 0,
+                      backgroundColor: Colors.transparent,
+                      automaticallyImplyLeading: false,
+                      title: TextField(
+                        controller: _filterController,
+                        onChanged: (_) => setState(() {}),
+                        textInputAction: TextInputAction.search,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: theme.colorScheme.secondaryContainer,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(99),
+                          ),
+                          contentPadding: EdgeInsets.zero,
+                          hintText: L10n.of(context)!.search,
+                          hintStyle: TextStyle(
+                            color: theme.colorScheme.onPrimaryContainer,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          prefixIcon: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.search_outlined,
+                              color: theme.colorScheme.onPrimaryContainer,
+                            ),
+                          ),
+                        ),
                       ),
-                      title: Text(
-                        displayname,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      // #Pangea
-                      subtitle: Row(
-                        children: [
-                          spaceSubtitle(rootSpace),
-                          if (rootSpace.isLocked)
-                            const Padding(
-                              padding: EdgeInsets.only(left: 4.0),
-                              child: Icon(
-                                Icons.lock_outlined,
+                    ),
+                    SliverList.builder(
+                      itemCount: joinedParents.length,
+                      itemBuilder: (context, i) {
+                        final displayname =
+                            joinedParents[i].getLocalizedDisplayname();
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 1,
+                          ),
+                          child: Material(
+                            borderRadius:
+                                BorderRadius.circular(AppConfig.borderRadius),
+                            clipBehavior: Clip.hardEdge,
+                            child: ListTile(
+                              minVerticalPadding: 0,
+                              leading: Icon(
+                                Icons.adaptive.arrow_back_outlined,
                                 size: 16,
                               ),
-                            ),
-                        ],
-                      ),
-                      onTap: () => chatListHandleSpaceTap(
-                        context,
-                        widget.controller,
-                        rootSpaces[i],
-                      ),
-                      // subtitle: Text(
-                      //   L10n.of(context)!.numChats(
-                      //     rootSpace.spaceChildren.length.toString(),
-                      //   ),
-                      // ),
-                      // onTap: () =>
-                      //     widget.controller.setActiveSpace(rootSpace.id),
-                      // Pangea#
-                      onLongPress: () =>
-                          _onSpaceChildContextMenu(null, rootSpace),
-                      trailing: const Icon(Icons.chevron_right_outlined),
-                    ),
-                  );
-                },
-                childCount: rootSpaces.length,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    final parentSpace = allSpaces.firstWhereOrNull(
-      (space) =>
-          space.spaceChildren.any((child) => child.roomId == activeSpaceId),
-    );
-    return PopScope(
-      canPop: parentSpace == null,
-      onPopInvoked: (pop) async {
-        if (pop) return;
-        if (parentSpace != null) {
-          widget.controller.setActiveSpace(parentSpace.id);
-        }
-      },
-      child: SafeArea(
-        child: CustomScrollView(
-          controller: widget.scrollController,
-          slivers: [
-            // #Pangea
-            // ChatListHeader(controller: widget.controller, globalSearch: false),
-            ChatListHeaderWrapper(
-              controller: widget.controller,
-              globalSearch: false,
-            ),
-            // Pangea#
-            SliverAppBar(
-              automaticallyImplyLeading: false,
-              primary: false,
-              titleSpacing: 0,
-              title: ListTile(
-                leading: BackButton(
-                  // #Pangea
-                  onPressed: () {
-                    !FluffyThemes.isColumnMode(context) ||
-                            parentSpace?.id != null
-                        ? widget.controller.setActiveSpace(parentSpace?.id)
-                        : widget.controller.onDestinationSelected(0);
-                  },
-                  // onPressed: () =>
-                  //     widget.controller.setActiveSpace(parentSpace?.id),
-                  // Pangea#
-                ),
-                title: Text(
-                  parentSpace == null
-                      // #Pangea
-                      // ? L10n.of(context)!.allSpaces
-                      ? !FluffyThemes.isColumnMode(context)
-                          ? L10n.of(context)!.allSpaces
-                          : L10n.of(context)!.allChats
-                      // Pangea#
-                      : parentSpace.getLocalizedDisplayname(
-                          MatrixLocals(L10n.of(context)!),
-                        ),
-                ),
-                // #Pangea
-                // trailing: IconButton(
-                //   icon: loading
-                //       ? const CircularProgressIndicator.adaptive(strokeWidth: 2)
-                //       : const Icon(Icons.refresh_outlined),
-                //   onPressed: loading ? null : _refresh,
-                // ),
-                trailing: Tooltip(
-                  message: L10n.of(context)!.refresh,
-                  child: IconButton(
-                    icon: loading
-                        ? const CircularProgressIndicator.adaptive(
-                            strokeWidth: 2,
-                          )
-                        : const Icon(Icons.refresh_outlined),
-                    onPressed: loading ? null : _refresh,
-                  ),
-                ),
-                // Pangea#
-              ),
-            ),
-            Builder(
-              builder: (context) {
-                final response = _lastResponse[activeSpaceId];
-                final error = this.error;
-                if (error != null) {
-                  return SliverFillRemaining(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(error.toLocalizedString(context)),
-                        ),
-                        IconButton(
-                          onPressed: _refresh,
-                          icon: const Icon(Icons.refresh_outlined),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-                if (response == null) {
-                  return SliverFillRemaining(
-                    child: Center(
-                      child: Text(L10n.of(context)!.loadingPleaseWait),
-                    ),
-                  );
-                }
-                // #Pangea
-                // final spaceChildren = response.rooms;
-                List<SpaceRoomsChunk> spaceChildren = response.rooms;
-                final space =
-                    Matrix.of(context).client.getRoomById(activeSpaceId);
-                if (space != null) {
-                  spaceChildren = filterHierarchyResponse(space, spaceChildren);
-                }
-                spaceChildren.sort(sortSpaceChildren);
-                // Pangea#
-                final canLoadMore = response.nextBatch != null;
-                return SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, i) {
-                      if (canLoadMore && i == spaceChildren.length) {
-                        return Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: OutlinedButton.icon(
-                            label: loading
-                                ? const LinearProgressIndicator()
-                                : Text(L10n.of(context)!.loadMore),
-                            icon: const Icon(Icons.chevron_right_outlined),
-                            onPressed: loading
-                                ? null
-                                : () {
-                                    // #Pangea
-                                    // loadHierarchy(response.nextBatch);
-                                    loadHierarchy();
-                                    // Pangea#
-                                  },
-                          ),
-                        );
-                      }
-                      final spaceChild = spaceChildren[i];
-                      final room = client.getRoomById(spaceChild.roomId);
-                      if (room != null &&
-                              !room.isSpace
-                              // #Pangea
-                              &&
-                              room.membership != Membership.leave
-                          // Pangea#
-                          ) {
-                        // #Pangea
-                        // return ChatListItem(
-                        return ChatListItemWrapper(
-                          controller: widget.controller,
-                          // Pangea#
-                          room,
-                          onLongPress: () =>
-                              _onSpaceChildContextMenu(spaceChild, room),
-                          activeChat: widget.controller.activeChat == room.id,
-                          onTap: () => onChatTap(room, context),
-                        );
-                      }
-                      final isSpace = spaceChild.roomType == 'm.space';
-                      final topic = spaceChild.topic?.isEmpty ?? true
-                          ? null
-                          : spaceChild.topic;
-                      if (spaceChild.roomId == activeSpaceId) {
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SearchTitle(
-                              title: spaceChild.name ??
-                                  spaceChild.canonicalAlias ??
-                                  'Space',
-                              icon: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10.0,
-                                ),
-                                child: Avatar(
-                                  size: 24,
-                                  mxContent: spaceChild.avatarUrl,
-                                  name: spaceChild.name,
-                                ),
-                              ),
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .secondaryContainer
-                                  .withAlpha(128),
-                              trailing: const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                // #Pangea
-                                // child: Icon(Icons.edit_outlined),
-                                child: Icon(Icons.settings_outlined),
-                                // Pangea#
-                              ),
-                              // #Pangea
-                              // onTap: () => _onJoinSpaceChild(spaceChild),
-                              onTap: () => context.go(
-                                '/rooms/${spaceChild.roomId}/details',
-                              ),
-                              // Pangea#
-                            ),
-                            if (activeSpace?.canChangeStateEvent(
-                                  EventTypes.SpaceChild,
-                                ) ==
-                                true)
-                              Material(
-                                child: ListTile(
-                                  leading: const CircleAvatar(
-                                    child: Icon(Icons.group_add_outlined),
+                              title: Row(
+                                children: [
+                                  Avatar(
+                                    mxContent: joinedParents[i].avatar,
+                                    name: displayname,
+                                    size: Avatar.defaultSize / 2,
+                                    borderRadius: BorderRadius.circular(
+                                      AppConfig.borderRadius / 4,
+                                    ),
                                   ),
-                                  title:
-                                      Text(L10n.of(context)!.addChatOrSubSpace),
-                                  trailing:
-                                      const Icon(Icons.chevron_right_outlined),
-                                  onTap: _addChatOrSubSpace,
-                                ),
+                                  const SizedBox(width: 8),
+                                  Expanded(child: Text(displayname)),
+                                ],
                               ),
-                          ],
-                        );
-                      }
-                      final name = spaceChild.name ??
-                          spaceChild.canonicalAlias ??
-                          L10n.of(context)!.chat;
-                      if (widget.controller.isSearchMode &&
-                          !name.toLowerCase().contains(
-                                widget.controller.searchController.text
-                                    .toLowerCase(),
-                              )) {
-                        return const SizedBox.shrink();
-                      }
-                      return Material(
-                        child: ListTile(
-                          leading: Avatar(
-                            mxContent: spaceChild.avatarUrl,
-                            name: spaceChild.name,
-                            //#Pangea
-                            littleIcon: room?.roomTypeIcon,
-                            //Pangea#
+                              onTap: () =>
+                                  widget.toParentSpace(joinedParents[i].id),
+                            ),
                           ),
-                          title: Row(
+                        );
+                      },
+                    ),
+                    SliverList.builder(
+                      itemCount: joinedRooms.length + 1,
+                      itemBuilder: (context, i) {
+                        if (i == 0) {
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              // #Pangea
-                              // Expanded(
-                              //   child:
-                              // Pangea#
-                              Text(
-                                name,
-                                maxLines: 1,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              // #Pangea
-                              // ),
-                              // Pangea#
-                              if (!isSpace) ...[
-                                const Icon(
-                                  Icons.people_outline,
-                                  size: 16,
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  spaceChild.numJoinedMembers.toString(),
-                                  style: const TextStyle(fontSize: 14),
+                              if (room.canChangeStateEvent(
+                                    EventTypes.SpaceChild,
+                                  ) &&
+                                  filter.isEmpty) ...[
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 1,
+                                  ),
+                                  child: Material(
+                                    borderRadius: BorderRadius.circular(
+                                      AppConfig.borderRadius,
+                                    ),
+                                    clipBehavior: Clip.hardEdge,
+                                    child: ListTile(
+                                      onTap: _addChatOrSubspace,
+                                      leading: const CircleAvatar(
+                                        radius: Avatar.defaultSize / 2,
+                                        child: Icon(Icons.add_outlined),
+                                      ),
+                                      title: Text(
+                                        L10n.of(context)!.addChatOrSubSpace,
+                                        style: const TextStyle(fontSize: 14),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ],
+                              SearchTitle(
+                                title: L10n.of(context)!.joinedChats,
+                                icon: const Icon(Icons.chat_outlined),
+                              ),
                             ],
+                          );
+                        }
+                        i--;
+                        final joinedRoom = joinedRooms[i];
+                        return ChatListItem(
+                          joinedRoom,
+                          filter: filter,
+                          onTap: () => widget.onChatTab(joinedRoom),
+                          onLongPress: (context) => widget.onChatContext(
+                            joinedRoom,
+                            context,
                           ),
-                          // #Pangea
-                          // onTap: () => room?.isSpace == true
-                          //     ? widget.controller.setActiveSpace(room!.id)
-                          //     : _onSpaceChildContextMenu(spaceChild, room),
-                          onTap: room?.isSpace ?? false
-                              ? () => chatListHandleSpaceTap(
-                                    context,
-                                    widget.controller,
-                                    room!,
-                                  )
-                              : () => _onJoinSpaceChild(spaceChild),
-                          // Pangea#
-                          onLongPress: () =>
-                              _onSpaceChildContextMenu(spaceChild, room),
-                          subtitle: Text(
-                            topic ??
-                                (isSpace
-                                    ? L10n.of(context)!.enterSpace
-                                    : L10n.of(context)!.enterRoom),
-                            maxLines: 1,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
+                          activeChat: widget.activeChat == joinedRoom.id,
+                        );
+                      },
+                    ),
+                    SliverList.builder(
+                      itemCount: (_discoveredChildren?.length ?? 0) + 2,
+                      itemBuilder: (context, i) {
+                        if (i == 0) {
+                          return SearchTitle(
+                            title: L10n.of(context)!.discover,
+                            icon: const Icon(Icons.explore_outlined),
+                          );
+                        }
+                        i--;
+                        if (i == (_discoveredChildren?.length ?? 0)) {
+                          if (_noMoreRooms) {
+                            return Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Center(
+                                child: Text(
+                                  L10n.of(context)!.noMoreChatsFound,
+                                  style: const TextStyle(fontSize: 13),
+                                ),
+                              ),
+                            );
+                          }
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12.0,
+                              vertical: 2.0,
+                            ),
+                            child: TextButton(
+                              onPressed: _isLoading ? null : loadHierarchy,
+                              child: _isLoading
+                                  ? LinearProgressIndicator(
+                                      borderRadius: BorderRadius.circular(
+                                        AppConfig.borderRadius,
+                                      ),
+                                    )
+                                  : Text(L10n.of(context)!.loadMore),
+                            ),
+                          );
+                        }
+                        final item = _discoveredChildren![i];
+                        final displayname = item.name ??
+                            item.canonicalAlias ??
+                            L10n.of(context)!.emptyChat;
+                        if (!displayname.toLowerCase().contains(filter)) {
+                          return const SizedBox.shrink();
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 1,
+                          ),
+                          child: Material(
+                            borderRadius:
+                                BorderRadius.circular(AppConfig.borderRadius),
+                            clipBehavior: Clip.hardEdge,
+                            child: ListTile(
+                              onTap: () => _joinChildRoom(item),
+                              leading: Avatar(
+                                mxContent: item.avatarUrl,
+                                name: displayname,
+                                borderRadius: item.roomType == 'm.space'
+                                    ? BorderRadius.circular(
+                                        AppConfig.borderRadius / 2,
+                                      )
+                                    : null,
+                              ),
+                              title: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      displayname,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  const Icon(
+                                    Icons.add_circle_outline_outlined,
+                                  ),
+                                ],
+                              ),
+                              subtitle: Text(
+                                item.topic ??
+                                    L10n.of(context)!.countParticipants(
+                                      item.numJoinedMembers,
+                                    ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ),
-                          trailing: isSpace
-                              ? const Icon(Icons.chevron_right_outlined)
-                              : null,
-                        ),
-                      );
-                    },
-                    childCount: spaceChildren.length + (canLoadMore ? 1 : 0),
-                  ),
+                        );
+                      },
+                    ),
+                  ],
                 );
               },
             ),
-          ],
-        ),
-      ),
     );
   }
 }
 
-enum SpaceChildContextAction {
-  join,
+enum SpaceActions {
+  settings,
+  invite,
   leave,
-  removeFromSpace,
-  // #Pangea
-  // deleteChat,
-  archive,
-  addToSpace
-  // Pangea#
 }
-
-enum AddRoomType { chat, subspace }

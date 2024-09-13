@@ -35,8 +35,6 @@ class NewGroup extends StatefulWidget {
 class NewGroupController extends State<NewGroup> {
   TextEditingController nameController = TextEditingController();
 
-  TextEditingController topicController = TextEditingController();
-
   bool publicGroup = false;
   bool groupCanBeFound = true;
 
@@ -132,6 +130,7 @@ class NewGroupController extends State<NewGroup> {
           }
         }
       }
+      // Pangea#
 
       final roomId = await client.createGroupChat(
         // #Pangea
@@ -140,24 +139,6 @@ class NewGroupController extends State<NewGroup> {
         // preset: publicGroup
         //     ? sdk.CreateRoomPreset.publicChat
         //     : sdk.CreateRoomPreset.privateChat,
-        // groupName: nameController.text.isNotEmpty ? nameController.text : null,
-        // initialState: [
-        //   if (topicController.text.isNotEmpty)
-        //     sdk.StateEvent(
-        //       type: sdk.EventTypes.RoomTopic,
-        //       content: {'topic': topicController.text},
-        //     ),
-        //   if (avatar != null)
-        //     sdk.StateEvent(
-        //       type: sdk.EventTypes.RoomAvatar,
-        //       content: {'url': avatarUrl.toString()},
-        //     ),
-        // ],
-        initialState: [
-          if (addConversationBotKey.currentState?.addBot ?? false)
-            addConversationBotKey.currentState!.botOptions.toStateEvent,
-        ],
-        groupName: nameController.text,
         preset: sdk.CreateRoomPreset.publicChat,
         powerLevelContentOverride:
             await ClassChatPowerLevels.powerLevelOverrideForClassChat(
@@ -169,6 +150,18 @@ class NewGroupController extends State<NewGroup> {
             BotName.byEnvironment,
         ],
         // Pangea#
+        groupName: nameController.text.isNotEmpty ? nameController.text : null,
+        initialState: [
+          if (avatar != null)
+            sdk.StateEvent(
+              type: sdk.EventTypes.RoomAvatar,
+              content: {'url': avatarUrl.toString()},
+            ),
+          // #Pangea
+          if (addConversationBotKey.currentState?.addBot ?? false)
+            addConversationBotKey.currentState!.botOptions.toStateEvent,
+          // Pangea#
+        ],
       );
       if (!mounted) return;
       if (publicGroup && groupCanBeFound) {

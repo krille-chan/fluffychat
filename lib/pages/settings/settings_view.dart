@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:package_info_plus/package_info_plus.dart'; //adding to check app version
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'settings.dart';
@@ -20,7 +20,7 @@ class SettingsView extends StatelessWidget {
 
   // #Pangea
   Future<String> getAppVersion(BuildContext context) async {
-    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    final packageInfo = await PackageInfo.fromPlatform();
     return L10n.of(context)!
         .versionText(packageInfo.version, packageInfo.buildNumber);
   }
@@ -28,9 +28,8 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // #Pangea
-    // final showChatBackupBanner = controller.showChatBackupBanner;
-    // Pangea#
+    final theme = Theme.of(context);
+    final showChatBackupBanner = controller.showChatBackupBanner;
     return Scaffold(
       appBar: AppBar(
         leading: Center(
@@ -39,16 +38,9 @@ class SettingsView extends StatelessWidget {
           ),
         ),
         title: Text(L10n.of(context)!.settings),
-        actions: [
-          TextButton.icon(
-            onPressed: controller.logoutAction,
-            label: Text(L10n.of(context)!.logout),
-            icon: const Icon(Icons.logout_outlined),
-          ),
-        ],
       ),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onSurface,
+        iconColor: theme.colorScheme.onSurface,
         child: ListView(
           key: const Key('SettingsListViewContent'),
           children: <Widget>[
@@ -66,32 +58,17 @@ class SettingsView extends StatelessWidget {
                       padding: const EdgeInsets.all(32.0),
                       child: Stack(
                         children: [
-                          Material(
-                            elevation: Theme.of(context)
-                                    .appBarTheme
-                                    .scrolledUnderElevation ??
-                                4,
-                            shadowColor:
-                                Theme.of(context).appBarTheme.shadowColor,
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                color: Theme.of(context).dividerColor,
-                              ),
-                              borderRadius: BorderRadius.circular(
-                                Avatar.defaultSize * 2.5,
-                              ),
-                            ),
-                            child: Avatar(
-                              mxContent: profile?.avatarUrl,
-                              name: displayname,
-                              size: Avatar.defaultSize * 2.5,
-                            ),
+                          Avatar(
+                            mxContent: profile?.avatarUrl,
+                            name: displayname,
+                            size: Avatar.defaultSize * 2.5,
                           ),
                           if (profile != null)
                             Positioned(
                               bottom: 0,
                               right: 0,
                               child: FloatingActionButton.small(
+                                elevation: 2,
                                 onPressed: controller.setAvatarAction,
                                 heroTag: null,
                                 child: const Icon(Icons.camera_alt_outlined),
@@ -112,14 +89,15 @@ class SettingsView extends StatelessWidget {
                               size: 16,
                             ),
                             style: TextButton.styleFrom(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.onSurface,
+                              foregroundColor: theme.colorScheme.onSurface,
                             ),
                             label: Text(
                               displayname,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              //  style: const TextStyle(fontSize: 18),
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
                             ),
                           ),
                           TextButton.icon(
@@ -129,8 +107,7 @@ class SettingsView extends StatelessWidget {
                               size: 14,
                             ),
                             style: TextButton.styleFrom(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.secondary,
+                              foregroundColor: theme.colorScheme.secondary,
                             ),
                             label: Text(
                               mxid,
@@ -147,10 +124,7 @@ class SettingsView extends StatelessWidget {
               },
             ),
             // #Pangea
-            // Divider(
-            //   height: 1,
-            //   color: Theme.of(context).dividerColor,
-            // ),
+            // Divider(color: theme.dividerColor),
             // if (showChatBackupBanner == null)
             //   ListTile(
             //     leading: const Icon(Icons.backup_outlined),
@@ -166,60 +140,47 @@ class SettingsView extends StatelessWidget {
             //     onChanged: controller.firstRunBootstrapAction,
             //   ),
             // Divider(
-            //   height: 1,
-            //   color: Theme.of(context).dividerColor,
+            //   color: theme.dividerColor,
             // ),
             // Pangea#
             ListTile(
               leading: const Icon(Icons.format_paint_outlined),
               title: Text(L10n.of(context)!.changeTheme),
               onTap: () => context.go('/rooms/settings/style'),
-              trailing: const Icon(Icons.chevron_right_outlined),
             ),
             ListTile(
               leading: const Icon(Icons.notifications_outlined),
               title: Text(L10n.of(context)!.notifications),
               onTap: () => context.go('/rooms/settings/notifications'),
-              trailing: const Icon(Icons.chevron_right_outlined),
             ),
             ListTile(
               leading: const Icon(Icons.devices_outlined),
               title: Text(L10n.of(context)!.devices),
               onTap: () => context.go('/rooms/settings/devices'),
-              trailing: const Icon(Icons.chevron_right_outlined),
             ),
             ListTile(
               leading: const Icon(Icons.forum_outlined),
               title: Text(L10n.of(context)!.chat),
               onTap: () => context.go('/rooms/settings/chat'),
-              trailing: const Icon(Icons.chevron_right_outlined),
             ),
             // #Pangea
             ListTile(
               leading: const Icon(Icons.account_circle_outlined),
               title: Text(L10n.of(context)!.subscriptionManagement),
               onTap: () => context.go('/rooms/settings/subscription'),
-              trailing: const Icon(
-                Icons.chevron_right_outlined,
-              ),
             ),
             ListTile(
               leading: const Icon(Icons.psychology_outlined),
               title: Text(L10n.of(context)!.learningSettings),
               onTap: () => context.go('/rooms/settings/learning'),
-              trailing: const Icon(Icons.chevron_right_outlined),
             ),
             // Pangea#
             ListTile(
               leading: const Icon(Icons.shield_outlined),
               title: Text(L10n.of(context)!.security),
               onTap: () => context.go('/rooms/settings/security'),
-              trailing: const Icon(Icons.chevron_right_outlined),
             ),
-            Divider(
-              height: 1,
-              color: Theme.of(context).dividerColor,
-            ),
+            Divider(color: theme.dividerColor),
             ListTile(
               leading: const Icon(Icons.help_outline_outlined),
               title: Text(L10n.of(context)!.help),
@@ -229,7 +190,7 @@ class SettingsView extends StatelessWidget {
                 await showFutureLoadingDialog(
                   context: context,
                   future: () async {
-                    final String roomId =
+                    final roomId =
                         await Matrix.of(context).client.startDirectChat(
                               Environment.supportUserId,
                               enableEncryption: false,
@@ -239,20 +200,17 @@ class SettingsView extends StatelessWidget {
                 );
               },
               // Pangea#
-              trailing: const Icon(Icons.open_in_new_outlined),
             ),
             ListTile(
               leading: const Icon(Icons.shield_sharp),
               title: Text(L10n.of(context)!.privacy),
               onTap: () => launchUrlString(AppConfig.privacyUrl),
-              trailing: const Icon(Icons.open_in_new_outlined),
             ),
             // #Pangea
             // ListTile(
             //   leading: const Icon(Icons.info_outline_rounded),
             //   title: Text(L10n.of(context)!.about),
             //   onTap: () => PlatformInfos.showDialog(context),
-            //   trailing: const Icon(Icons.chevron_right_outlined),
             // ),
             ListTile(
               leading: const Icon(Icons.shield_outlined),
@@ -290,6 +248,12 @@ class SettingsView extends StatelessWidget {
                 title: Text(L10n.of(context)!.connectedToStaging),
               ),
             // Pangea#
+            Divider(color: theme.dividerColor),
+            ListTile(
+              leading: const Icon(Icons.logout_outlined),
+              title: Text(L10n.of(context)!.logout),
+              onTap: controller.logoutAction,
+            ),
           ],
         ),
       ),

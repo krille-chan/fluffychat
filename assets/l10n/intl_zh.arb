@@ -537,7 +537,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "默认权限级别",
+  "defaultPermissionLevel": "新用户默认权限级别",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2706,5 +2706,102 @@
   "knockRestricted": "“请求加入”请求受限",
   "@knockRestricted": {},
   "restricted": "受限",
-  "@restricted": {}
+  "@restricted": {},
+  "swipeRightToLeftToReply": "从右向左滑动进行回复",
+  "@swipeRightToLeftToReply": {},
+  "alwaysUse24HourFormat": "false",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "noMoreChatsFound": "找不到更多聊天…",
+  "@noMoreChatsFound": {},
+  "joinedChats": "已加入的聊天",
+  "@joinedChats": {},
+  "space": "空间",
+  "@space": {},
+  "spaces": "空间",
+  "@spaces": {},
+  "goToSpace": "转到空间：{space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "标为未读",
+  "@markAsUnread": {},
+  "countChatsAndCountParticipants": "{chats} 个聊天和 {participants} 名参与者",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "unread": "未读",
+  "@unread": {},
+  "userLevel": "{level} - 用户",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - 主持人",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - 管理员",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "inviteOtherUsers": "邀请其他用户到这个聊天",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "更改聊天权限",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "更改聊天历史的可见性",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "更改主公共聊天地址",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "发送通知聊天室所有人的通知",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "更改聊天描述",
+  "@changeTheDescriptionOfTheGroup": {},
+  "changeGeneralChatSettings": "更改常规聊天设置",
+  "@changeGeneralChatSettings": {},
+  "invitedBy": "📩 邀请人 {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "chatPermissionsDescription": "定义此聊天中哪个权限等级对特定操作是必需的。权限等级 0、50 和 100 通常代表用户、主持人和管理员，但你可以自定义任何等级。",
+  "@chatPermissionsDescription": {},
+  "changelog": "更新记录",
+  "@changelog": {},
+  "updateInstalled": "🎉 已安装更新 {version} ！",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "sendCanceled": "发送被取消",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "此处尚未找到聊天。使用下方按钮 ⤵️ 开始和某人的新聊天",
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "使用 Matrix-ID 登录",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "发现主服务器",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "什么是主服务器？",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "主服务器上就像电子邮件提供商，你的所有数据都存储在上面。你可以选择你想使用哪个主服务器。在 https://matrix.org 上了解更多信息。",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "似乎不是兼容的主服务器。URL 不正确？",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }

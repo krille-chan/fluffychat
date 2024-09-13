@@ -31,6 +31,8 @@ class ChatDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final room = Matrix.of(context).client.getRoomById(controller.roomId!);
     // #Pangea
     if (room == null || room.membership == Membership.leave) {
@@ -56,37 +58,26 @@ class ChatDetailsView extends StatelessWidget {
         final actualMembersCount = (room.summary.mInvitedMemberCount ?? 0) +
             (room.summary.mJoinedMemberCount ?? 0);
         final canRequestMoreMembers = members.length < actualMembersCount;
-        final iconColor = Theme.of(context).textTheme.bodyLarge!.color;
+        final iconColor = theme.textTheme.bodyLarge!.color;
         final displayname = room.getLocalizedDisplayname(
           MatrixLocals(L10n.of(context)!),
         );
         return Scaffold(
           appBar: AppBar(
-            leading:
-                // #Pangea
-                !room.isSpace
-                    ?
-                    // Pangea#
-                    controller.widget.embeddedCloseButton ??
-                        const Center(child: BackButton())
-                    // #Pangea
-                    : BackButton(
-                        onPressed: () => context.go("/rooms"),
-                      )
-            // Pangea#
-            ,
-            elevation: Theme.of(context).appBarTheme.elevation,
+            leading: controller.widget.embeddedCloseButton ??
+                const Center(child: BackButton()),
+            elevation: theme.appBarTheme.elevation,
             actions: <Widget>[
               // #Pangea
               // if (room.canonicalAlias.isNotEmpty)
-              // IconButton(
-              //   tooltip: L10n.of(context)!.share,
-              //   icon: Icon(Icons.adaptive.share_outlined),
-              //   onPressed: () => FluffyShare.share(
-              //     AppConfig.inviteLinkPrefix + room.canonicalAlias,
-              //     context,
+              //   IconButton(
+              //     tooltip: L10n.of(context)!.share,
+              //     icon: Icon(Icons.adaptive.share_outlined),
+              //     onPressed: () => FluffyShare.share(
+              //       AppConfig.inviteLinkPrefix + room.canonicalAlias,
+              //       context,
+              //     ),
               //   ),
-              // ),
               // Pangea#
               if (controller.widget.embeddedCloseButton == null)
                 ChatSettingsPopupMenu(room, false),
@@ -98,7 +89,7 @@ class ChatDetailsView extends StatelessWidget {
             ),
             // title: Text(L10n.of(context)!.chatDetails),
             // Pangea#
-            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            backgroundColor: theme.appBarTheme.backgroundColor,
           ),
           body: MaxWidthBody(
             // #Pangea
@@ -122,32 +113,12 @@ class ChatDetailsView extends StatelessWidget {
                                 padding: const EdgeInsets.all(32.0),
                                 child: Stack(
                                   children: [
-                                    Material(
-                                      elevation: Theme.of(context)
-                                              .appBarTheme
-                                              .scrolledUnderElevation ??
-                                          4,
-                                      shadowColor: Theme.of(context)
-                                          .appBarTheme
-                                          .shadowColor,
-                                      shape: RoundedRectangleBorder(
-                                        side: BorderSide(
-                                          color: Theme.of(context).dividerColor,
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                          Avatar.defaultSize * 2.5,
-                                        ),
-                                      ),
-                                      // #Pangea
-                                      // Hero animation is causing weird visual glitch
-                                      // Probably not worth keeping
-                                      // child: Hero(
-                                      //   tag: controller.widget
-                                      //               .embeddedCloseButton !=
-                                      //           null
-                                      //       ? 'embedded_content_banner'
-                                      //       : 'content_banner',
-                                      // Pangea#
+                                    Hero(
+                                      tag: controller
+                                                  .widget.embeddedCloseButton !=
+                                              null
+                                          ? 'embedded_content_banner'
+                                          : 'content_banner',
                                       child: Avatar(
                                         mxContent: room.avatar,
                                         name: displayname,
@@ -201,9 +172,8 @@ class ChatDetailsView extends StatelessWidget {
                                         size: 16,
                                       ),
                                       style: TextButton.styleFrom(
-                                        foregroundColor: Theme.of(context)
-                                            .colorScheme
-                                            .onSurface,
+                                        foregroundColor:
+                                            theme.colorScheme.onSurface,
                                       ),
                                       label: Text(
                                         room.isDirectChat
@@ -211,7 +181,7 @@ class ChatDetailsView extends StatelessWidget {
                                             : displayname,
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
-                                        //  style: const TextStyle(fontSize: 18),
+                                        style: const TextStyle(fontSize: 18),
                                       ),
                                     ),
                                     TextButton.icon(
@@ -225,9 +195,8 @@ class ChatDetailsView extends StatelessWidget {
                                         size: 14,
                                       ),
                                       style: TextButton.styleFrom(
-                                        foregroundColor: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
+                                        foregroundColor:
+                                            theme.colorScheme.secondary,
                                       ),
                                       label: Text(
                                         L10n.of(context)!.countParticipants(
@@ -243,13 +212,9 @@ class ChatDetailsView extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Divider(
-                            height: 1,
-                            color: Theme.of(context).dividerColor,
-                          ),
-                          // if (room.canSendEvent('m.room.name'))
+                          Divider(color: theme.dividerColor),
+                          // #Pangea
                           if (room.isRoomAdmin)
-                            // #Pangea
                             ClassNameButton(
                               room: room,
                               controller: controller,
@@ -259,32 +224,16 @@ class ChatDetailsView extends StatelessWidget {
                               room: room,
                               controller: controller,
                             ),
-                          // #Pangea
                           RoomCapacityButton(
                             room: room,
                             controller: controller,
                           ),
-                          // Pangea#
-                          // commenting out language settings in spaces for now
-                          // if (room.languageSettings != null && room.isRoomAdmin)
-                          //   LanguageSettings(
-                          //     roomId: controller.roomId,
-                          //     startOpen: false,
-                          //   ),
-
-                          // Commenting out pangea room rules for now
-                          // if (room.pangeaRoomRules != null)
-                          //   RoomRulesEditor(
-                          //     roomId: controller.roomId,
-                          //     startOpen: false,
-                          //   ),
-
                           // if (!room.canChangeStateEvent(EventTypes.RoomTopic))
                           //   ListTile(
                           //     title: Text(
                           //       L10n.of(context)!.chatDescription,
                           //       style: TextStyle(
-                          //         color: Theme.of(context).colorScheme.secondary,
+                          //         color: theme.colorScheme.secondary,
                           //         fontWeight: FontWeight.bold,
                           //       ),
                           //     ),
@@ -294,15 +243,14 @@ class ChatDetailsView extends StatelessWidget {
                           //     padding: const EdgeInsets.all(16.0),
                           //     child: TextButton.icon(
                           //       onPressed: controller.setTopicAction,
-                          //       label: Text(L10n.of(context)!.setChatDescription),
+                          //       label:
+                          //           Text(L10n.of(context)!.setChatDescription),
                           //       icon: const Icon(Icons.edit_outlined),
                           //       style: TextButton.styleFrom(
-                          //         backgroundColor: Theme.of(context)
-                          //             .colorScheme
-                          //             .secondaryContainer,
-                          //         foregroundColor: Theme.of(context)
-                          //             .colorScheme
-                          //             .onSecondaryContainer,
+                          //         backgroundColor:
+                          //             theme.colorScheme.secondaryContainer,
+                          //         foregroundColor:
+                          //             theme.colorScheme.onSecondaryContainer,
                           //       ),
                           //     ),
                           //   ),
@@ -324,24 +272,19 @@ class ChatDetailsView extends StatelessWidget {
                           //       fontStyle: room.topic.isEmpty
                           //           ? FontStyle.italic
                           //           : FontStyle.normal,
-                          //       color:
-                          //           Theme.of(context).textTheme.bodyMedium!.color,
+                          //       color: theme.textTheme.bodyMedium!.color,
                           //       decorationColor:
-                          //           Theme.of(context).textTheme.bodyMedium!.color,
+                          //           theme.textTheme.bodyMedium!.color,
                           //     ),
                           //     onOpen: (url) =>
                           //         UrlLauncher(context, url.url).launchUrl(),
                           //   ),
                           // ),
                           // const SizedBox(height: 16),
-                          // Divider(
-                          //   height: 1,
-                          //   color: Theme.of(context).dividerColor,
-                          // ),
+                          // Divider(color: theme.dividerColor),
                           // ListTile(
                           //   leading: CircleAvatar(
-                          //     backgroundColor:
-                          //         Theme.of(context).scaffoldBackgroundColor,
+                          //     backgroundColor: theme.scaffoldBackgroundColor,
                           //     foregroundColor: iconColor,
                           //     child: const Icon(
                           //       Icons.insert_emoticon_outlined,
@@ -354,23 +297,24 @@ class ChatDetailsView extends StatelessWidget {
                           //   trailing: const Icon(Icons.chevron_right_outlined),
                           // ),
                           // if (!room.isDirectChat)
-                          // ListTile(
-                          //   leading: CircleAvatar(
-                          //     backgroundColor:
-                          //         Theme.of(context).scaffoldBackgroundColor,
-                          //     foregroundColor: iconColor,
-                          //     child: const Icon(Icons.shield_outlined),
+                          //   ListTile(
+                          //     leading: CircleAvatar(
+                          //       backgroundColor: theme.scaffoldBackgroundColor,
+                          //       foregroundColor: iconColor,
+                          //       child: const Icon(Icons.shield_outlined),
+                          //     ),
+                          //     title: Text(
+                          //       L10n.of(context)!.accessAndVisibility,
+                          //     ),
+                          //     subtitle: Text(
+                          //       L10n.of(context)!
+                          //           .accessAndVisibilityDescription,
+                          //     ),
+                          //     onTap: () => context
+                          //         .push('/rooms/${room.id}/details/access'),
+                          //     trailing:
+                          //         const Icon(Icons.chevron_right_outlined),
                           //   ),
-                          //   title: Text(
-                          //     L10n.of(context)!.accessAndVisibility,
-                          //   ),
-                          //   subtitle: Text(
-                          //     L10n.of(context)!.accessAndVisibilityDescription,
-                          //   ),
-                          //   onTap: () => context
-                          //       .push('/rooms/${room.id}/details/access'),
-                          //   trailing: const Icon(Icons.chevron_right_outlined),
-                          // ),
                           // if (!room.isDirectChat)
                           if (!room.isDirectChat &&
                               !room.isSpace &&
@@ -382,8 +326,7 @@ class ChatDetailsView extends StatelessWidget {
                               title: Text(
                                 L10n.of(context)!.editChatPermissions,
                                 style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
+                                  color: theme.colorScheme.secondary,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -392,24 +335,19 @@ class ChatDetailsView extends StatelessWidget {
                                 L10n.of(context)!.whoCanPerformWhichAction,
                               ),
                               leading: CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).scaffoldBackgroundColor,
+                                backgroundColor: theme.scaffoldBackgroundColor,
                                 foregroundColor: iconColor,
                                 child: const Icon(
                                   Icons.edit_attributes_outlined,
                                 ),
                               ),
-                              // #Pangea
-                              // trailing: const Icon(Icons.chevron_right_outlined),
-                              // Pangea#
+                              trailing:
+                                  const Icon(Icons.chevron_right_outlined),
                               onTap: () => context.push(
                                 '/rooms/${room.id}/details/permissions',
                               ),
                             ),
-                          Divider(
-                            height: 1,
-                            color: Theme.of(context).dividerColor,
-                          ),
+                          Divider(color: theme.dividerColor),
                           // #Pangea
                           if (room.canInvite &&
                               !room.isDirectChat &&
@@ -486,8 +424,8 @@ class ChatDetailsView extends StatelessWidget {
                                   ),
                                 ),
                                 onTap: () async {
-                                  OkCancelResult confirmed = OkCancelResult.ok;
-                                  bool shouldGo = false;
+                                  var confirmed = OkCancelResult.ok;
+                                  var shouldGo = false;
                                   // archiveSpace has its own popup; only show if not space
                                   if (!room.isSpace) {
                                     confirmed = await showOkCancelAlertDialog(
@@ -539,10 +477,10 @@ class ChatDetailsView extends StatelessWidget {
                               ),
                             ),
                             onTap: () async {
-                              OkCancelResult confirmed = OkCancelResult.ok;
-                              bool shouldGo = false;
+                              var confirmed = OkCancelResult.ok;
+                              var shouldGo = false;
                               // If user is only admin, room will be archived
-                              final bool onlyAdmin = await room.isOnlyAdmin();
+                              final onlyAdmin = await room.isOnlyAdmin();
                               // archiveSpace has its own popup; only show if not space
                               if (!room.isSpace) {
                                 confirmed = await showOkCancelAlertDialog(
@@ -630,7 +568,7 @@ class ChatDetailsView extends StatelessWidget {
                                 actualMembersCount.toString(),
                               ),
                               style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary,
+                                color: theme.colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -640,17 +578,17 @@ class ChatDetailsView extends StatelessWidget {
                           //   ListTile(
                           //     title: Text(L10n.of(context)!.inviteContact),
                           //     leading: CircleAvatar(
-                          //       backgroundColor: Theme.of(context)
-                          //           .colorScheme
-                          //           .primaryContainer,
-                          //       foregroundColor: Theme.of(context)
-                          //           .colorScheme
-                          //           .onPrimaryContainer,
+                          //       backgroundColor:
+                          //           theme.colorScheme.primaryContainer,
+                          //       foregroundColor:
+                          //           theme.colorScheme.onPrimaryContainer,
                           //       radius: Avatar.defaultSize / 2,
                           //       child: const Icon(Icons.add_outlined),
                           //     ),
-                          //     trailing: const Icon(Icons.chevron_right_outlined),
-                          //     onTap: () => context.go('/rooms/${room.id}/invite'),
+                          //     trailing:
+                          //         const Icon(Icons.chevron_right_outlined),
+                          //     onTap: () =>
+                          //         context.go('/rooms/${room.id}/invite'),
                           //   ),
                           // Pangea#
                         ],
@@ -665,8 +603,7 @@ class ChatDetailsView extends StatelessWidget {
                               ),
                             ),
                             leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
+                              backgroundColor: theme.scaffoldBackgroundColor,
                               child: const Icon(
                                 Icons.group_outlined,
                                 color: Colors.grey,

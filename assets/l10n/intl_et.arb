@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Vaikimisi õigused",
+  "defaultPermissionLevel": "Vaikimisi õigused uutele kasutajatele",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -1085,7 +1085,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Tundub, et sinu nutiseadmes pole Firebase Cloud Messaging teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad ntfy liidestust. Kasutades ntfy'd või mõnda muud Unified Push standardil põhinevat liidestust saad tõuketeavitusi turvalisel moel. Ntfy rakendus on saadaval nii PlayStore kui F-Droid'i rakendusepoodides.",
+  "noGoogleServicesWarning": "Tundub, et sinu nutiseadmes pole Firebase Cloud Messaging teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChatis näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad ntfy liidestust. Kasutades ntfyd või mõnda muud Unified Push standardil põhinevat liidestust saad tõuketeavitusi turvalisel moel. Ntfy rakendus on saadaval nii PlayStore kui F-Droidi rakendusepoodides.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1150,7 +1150,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "sobib",
+  "ok": "Sobib",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -2020,7 +2020,7 @@
   "@emailOrUsername": {},
   "experimentalVideoCalls": "Katselised videokõned",
   "@experimentalVideoCalls": {},
-  "unsupportedAndroidVersionLong": "See funktsionaalsus eeldab uuemat Androidi versiooni. Palun kontrolli, kas sinu nutiseadmele leidub süsteemiuuendusi või saaks seal Lineage OS'i kasutada.",
+  "unsupportedAndroidVersionLong": "See funktsionaalsus eeldab uuemat Androidi versiooni. Palun kontrolli, kas sinu nutiseadmele leidub süsteemiuuendusi või saaks seal Lineage OSi kasutada.",
   "@unsupportedAndroidVersionLong": {},
   "nextAccount": "Järgmine kasutajakonto",
   "@nextAccount": {},
@@ -2206,7 +2206,7 @@
   "@foregroundServiceRunning": {},
   "allSpaces": "Kõik kogukonnad",
   "@allSpaces": {},
-  "screenSharingDetail": "Sa jagad oma ekraani FuffyChat'i vahendusel",
+  "screenSharingDetail": "Sa jagad oma ekraani FuffyChati vahendusel",
   "@screenSharingDetail": {},
   "numChats": "{number} vestlust",
   "@numChats": {
@@ -2706,5 +2706,98 @@
   "gallery": "Galerii",
   "@gallery": {},
   "files": "Failid",
-  "@files": {}
+  "@files": {},
+  "swipeRightToLeftToReply": "Vastamiseks viipa paremalt vasakule",
+  "@swipeRightToLeftToReply": {},
+  "alwaysUse24HourFormat": "false",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "noMoreChatsFound": "Rohkem vestlusi ei leidu...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Vestlusi, millega oled liitunud",
+  "@joinedChats": {},
+  "unread": "Lugemata",
+  "@unread": {},
+  "space": "Kogukond",
+  "@space": {},
+  "spaces": "Kogukonnad",
+  "@spaces": {},
+  "goToSpace": "Ava kogukond: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Märgi mitteloetuks",
+  "@markAsUnread": {},
+  "countChatsAndCountParticipants": "{chats} vestlust ja {participants} osalejat",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "userLevel": "{level} - kasutaja",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - moderaator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - peakasutaja",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheVisibilityOfChatHistory": "Muuda vestluse ajaloo nähtavust",
+  "@changeTheVisibilityOfChatHistory": {},
+  "sendRoomNotifications": "Saada @jututuba teavitusi",
+  "@sendRoomNotifications": {},
+  "changeTheCanonicalRoomAlias": "Muuda vestluse põhilist avalikult nähtavat aadressi",
+  "@changeTheCanonicalRoomAlias": {},
+  "changeGeneralChatSettings": "Muuda vestluse üldiseid seadistusi",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "Kutsu teisi osalejaid sellesse vestlusesse",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Muuda vestluse õigusi",
+  "@changeTheChatPermissions": {},
+  "changeTheDescriptionOfTheGroup": "Muuda vestluse kirjeldust",
+  "@changeTheDescriptionOfTheGroup": {},
+  "chatPermissionsDescription": "Määra erinevatele kasutajatele selles vestluses vajalikud õigused. Tüüpiliselt on need 0, 50 ja 100 (vastavalt kasutajad, moderaatorid ja peakasutajad), kuid igasugused vahepealsed variatsioonid on ka võimalikud.",
+  "@chatPermissionsDescription": {},
+  "invitedBy": "📩 Kutsujaks {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "updateInstalled": "🎉 Versiooniuuendus {version} on paigaldatud!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Muudatuste logi",
+  "@changelog": {},
+  "sendCanceled": "Saatmine on katkestatud",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Siin ei leidu veel ühtegi vestlust. Alusta uut vestlust klõpsides allpool asuvat nuppu. ⤵️",
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "Logi sisse Matrix-ID alusel",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Leia koduservereid",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Mis on koduserver?",
+  "@whatIsAHomeserver": {}
 }

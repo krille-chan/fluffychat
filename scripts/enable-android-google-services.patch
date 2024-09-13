@@ -1,32 +1,24 @@
 diff --git a/android/app/build.gradle b/android/app/build.gradle
-index bf972f30..46cebdc6 100644
+index 7520ff2a..ae376d9d 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
-@@ -70,6 +70,10 @@
-         }
-         release {
-             signingConfig signingConfigs.release
-+            minifyEnabled false
-+            shrinkResources false
-+
-+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-         }
-     }
-     // https://stackoverflow.com/a/77494454/8222484
-@@ -78,8 +82,11 @@ flutter {
- 
- dependencies {
-     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
--    //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
-+    implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
-+    testImplementation 'junit:junit:4.12'
-+    androidTestImplementation 'androidx.test:runner:1.1.1'
-+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-     implementation 'androidx.multidex:multidex:2.0.1'
+@@ -2,7 +2,7 @@ plugins {
+     id "com.android.application"
+     id "kotlin-android"
+     id "dev.flutter.flutter-gradle-plugin"
+-    //id "com.google.gms.google-services"
++    id "com.google.gms.google-services"
  }
  
--//apply plugin: 'com.google.gms.google-services'
-+apply plugin: 'com.google.gms.google-services'
+ def localProperties = new Properties()
+@@ -83,6 +83,6 @@ flutter {
+ }
+ 
+ dependencies {
+-    //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
++    implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
+     implementation 'androidx.multidex:multidex:2.0.1'
+ }
 diff --git a/android/app/proguard-rules.pro b/android/app/proguard-rules.pro
 index d0e0fbc9..0a546da0 100644
 --- a/android/app/proguard-rules.pro
@@ -93,42 +85,25 @@ index d9930f55..510e9845 100644
  }
 -*/
 \ No newline at end of file
-diff --git a/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt b/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
-index 1afc4606..894d1571 100644
---- a/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
-+++ b/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
-@@ -7,13 +7,11 @@ import android.content.Context
- import androidx.multidex.MultiDex
- 
- class MainActivity : FlutterActivity() {
--
-     override fun attachBaseContext(base: Context) {
-         super.attachBaseContext(base)
-         MultiDex.install(this)
-     }
- 
--
-     override fun provideFlutterEngine(context: Context): FlutterEngine? {
-         return provideEngine(this)
-     }
-diff --git a/android/build.gradle b/android/build.gradle
-index bd394967..2e9d54de 100644
---- a/android/build.gradle
-+++ b/android/build.gradle
-@@ -8,7 +8,7 @@ buildscript {
-     dependencies {
-         classpath 'com.android.tools.build:gradle:7.1.2'
-         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
--        //classpath 'com.google.gms:google-services:4.3.8'
-+        classpath 'com.google.gms:google-services:4.3.8'
-     }
+diff --git a/android/settings.gradle b/android/settings.gradle
+index b2fd960a..fdb01a4d 100644
+--- a/android/settings.gradle
++++ b/android/settings.gradle
+@@ -20,7 +20,7 @@ plugins {
+     id "dev.flutter.flutter-plugin-loader" version "1.0.0"
+     id "com.android.application" version "7.1.2" apply false
+     id "org.jetbrains.kotlin.android" version "1.8.0" apply false
+-    // id "com.google.gms.google-services" version "4.3.8" apply false
++    id "com.google.gms.google-services" version "4.3.8" apply false
  }
  
+ include ":app"
+\ No newline at end of file
 diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
-index 8e67ae92..da4da5c3 100644
+index 039dde89..1cefdd71 100644
 --- a/lib/utils/background_push.dart
 +++ b/lib/utils/background_push.dart
-@@ -39,7 +39,7 @@ import '../config/setting_keys.dart';
+@@ -38,7 +38,7 @@ import '../config/setting_keys.dart';
  import '../widgets/matrix.dart';
  import 'platform_infos.dart';
  
@@ -137,7 +112,7 @@ index 8e67ae92..da4da5c3 100644
  
  class NoTokenException implements Exception {
    String get cause => 'Cannot get firebase token';
-@@ -64,7 +64,7 @@ class BackgroundPush {
+@@ -63,7 +63,7 @@ class BackgroundPush {
  
    final pendingTests = <String, Completer<void>>{};
  
@@ -147,15 +122,15 @@ index 8e67ae92..da4da5c3 100644
    DateTime? lastReceivedPush;
  
 diff --git a/pubspec.yaml b/pubspec.yaml
-index 193e6ed6..f70e48d4 100644
+index 69c80d6e..efd32d89 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
-@@ -26,7 +26,7 @@ dependencies:
+@@ -25,7 +25,7 @@ dependencies:
+   dynamic_color: ^1.7.0
    emoji_picker_flutter: ^2.1.1
-   emoji_proposal: ^0.0.1
    emojis: ^0.9.9
 -  #fcm_shared_isolate: ^0.1.0
 +  fcm_shared_isolate: ^0.1.0
-   file_picker: ^8.0.1
+   file_picker: ^8.0.6
    flutter:
      sdk: flutter

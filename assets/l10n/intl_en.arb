@@ -1,6 +1,10 @@
 {
   "@@locale": "en",
   "@@last_modified": "2021-08-14 12:38:37.885451",
+  "alwaysUse24HourFormat": "false",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
   "repeatPassword": "Repeat password",
   "@repeatPassword": {},
   "notAnImage": "Not an image file.",
@@ -197,6 +201,20 @@
       "supportedVersions": {}
     }
   },
+  "countChatsAndCountParticipants": "{chats} chats and {participants} participants",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "No more chats found...",
+  "noChatsFoundHere": "No chats found here yet. Start a new chat with someone by using the button below. ⤵️",
+  "joinedChats": "Joined chats",
+  "unread": "Unread",
+  "space": "Space",
+  "spaces": "Spaces",
   "banFromChat": "Ban from chat",
   "@banFromChat": {
     "type": "text",
@@ -660,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Default permission level",
+  "defaultPermissionLevel": "Default permission level for new users",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -3885,7 +3903,7 @@
   "define": "Define",
   "listen": "Listen",
   "addConversationBot": "Enable Conversation Bot",
-  "addConversationBotDesc": "Add a bot to this group chat",
+  "addConversationBotDesc": "Add a bot to this chat",
   "convoBotSettingsTitle": "Conversation Bot Settings",
   "convoBotSettingsDescription": "Edit conversation topic and difficulty",
   "enterAConversationTopic": "Enter a conversation topic",
@@ -3950,7 +3968,7 @@
   "seeOptions": "See options",
   "continuedWithoutSubscription": "Continue without subscribing",
   "trialPeriodExpired": "Your trial period has expired",
-  "selectToDefine": "Double click a word to see its definition!",
+  "selectToDefine": "Highlight a word or phrase to see its definition!",
   "translations": "translations",
   "messageAudio": "message audio",
   "definitions": "definitions",
@@ -4095,11 +4113,11 @@
     "placeholders": {}
   },
   "addChatToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
-  "addSpaceToSpaceDesc": "Adding a space to another space will make the child space appear within the parent space for students and give them access.",
+  "addSpaceToSpaceDesc": "Adding a sub space to space will make the sub space appear in the main space's chat list.",
   "spaceAnalytics": "Space Analytics",
   "changeAnalyticsLanguage": "Change Analytics Language",
   "suggestToSpace": "Suggest this space",
-  "suggestToSpaceDesc": "Suggested spaces will appear in the chat lists for their parent spaces",
+  "suggestToSpaceDesc": "Suggested sub spaces will appear in their main space's chat list",
   "practice": "Practice",
   "noLanguagesSet": "No languages set",
   "noActivitiesFound": "No practice activities found for this message",
@@ -4152,7 +4170,63 @@
   "createChat": "Create chat",
   "error520Title": "Please try again.",
   "error520Desc": "Sorry, we could not understand your message...",
+  "wordsUsed": "Words Used",
+  "errorTypes": "Error Types",
+  "level": "Level",
+  "canceledSend": "Canceled send",
+  "morphsUsed": "Morphs Used",
   "translationChoicesBody": "Click and hold an option for a hint.",
   "sendCanceled": "Sending canceled",
-  "space": "Space"
+  "goToSpace": "Go to space: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Mark as unread",
+  "userLevel": "{level} - User",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Admin",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Change general chat settings",
+  "inviteOtherUsers": "Invite other users to this chat",
+  "changeTheChatPermissions": "Change the chat permissions",
+  "changeTheVisibilityOfChatHistory": "Change the visibility of the chat history",
+  "changeTheCanonicalRoomAlias": "Change the main public chat address",
+  "sendRoomNotifications": "Send a @room notifications",
+  "changeTheDescriptionOfTheGroup": "Change the description of the chat",
+  "chatPermissionsDescription": "Define which power level is necessary for certain actions in this chat. The power levels 0, 50 and 100 are usually representing users, moderators and admins, but any gradation is possible.",
+  "updateInstalled": "🎉 Update {version} installed!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Changelog",
+  "loginWithMatrixId": "Login with Matrix-ID",
+  "discoverHomeservers": "Discover homeservers",
+  "whatIsAHomeserver": "What is a homeserver?",
+  "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
+  "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
+  "grammar": "Grammar",
+  "contactHasBeenInvitedToTheChat": "Contact has been invited to the chat",
+  "inviteChat": "📨 Invite chat",
+  "chatName": "Chat name"
 }

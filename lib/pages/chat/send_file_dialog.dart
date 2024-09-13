@@ -6,7 +6,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/size_string.dart';
 import '../../utils/resize_image.dart';
 
@@ -31,6 +31,8 @@ class SendFileDialogState extends State<SendFileDialog> {
   static const int minSizeToCompress = 20 * 1024;
 
   Future<void> _send() async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final l10n = L10n.of(context)!;
     for (var file in widget.files) {
       MatrixImageFile? thumbnail;
       if (file is MatrixVideoFile && file.bytes.length > minSizeToCompress) {
@@ -42,19 +44,24 @@ class SendFileDialogState extends State<SendFileDialog> {
           },
         );
       }
-      final scaffoldMessenger = ScaffoldMessenger.of(context);
       widget.room
           .sendFileEvent(
         file,
         thumbnail: thumbnail,
         shrinkImageMaxDimension: origImage ? null : 1600,
       )
-          .catchError((e) {
-        scaffoldMessenger.showSnackBar(
-          SnackBar(content: Text((e as Object).toLocalizedString(context))),
-        );
-        return null;
-      });
+          .catchError(
+        (e, s) {
+          if (e is FileTooBigMatrixException) {
+            scaffoldMessenger.showSnackBar(
+              SnackBar(content: Text(l10n.fileIsTooBigForServer)),
+            );
+            return null;
+          }
+          ErrorReporter(context, 'Unable to send file').onErrorCallback(e, s);
+          return null;
+        },
+      );
     }
     Navigator.of(context, rootNavigator: false).pop();
 
@@ -63,8 +70,10 @@ class SendFileDialogState extends State<SendFileDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     var sendStr = L10n.of(context)!.sendFile;
-    final bool allFilesAreImages =
+    final allFilesAreImages =
         widget.files.every((file) => file is MatrixImageFile);
     final sizeString = widget.files
         .fold<double>(0, (p, file) => p + file.bytes.length)
@@ -88,9 +97,8 @@ class SendFileDialogState extends State<SendFileDialog> {
           Flexible(
             child: Material(
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-              elevation:
-                  Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
-              shadowColor: Theme.of(context).appBarTheme.shadowColor,
+              elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
+              shadowColor: theme.appBarTheme.shadowColor,
               clipBehavior: Clip.hardEdge,
               child: Image.memory(
                 widget.files.first.bytes,

@@ -28,9 +28,10 @@ abstract class PlatformInfos {
 
   static bool get usesTouchscreen => !isMobile;
 
-  // #Pangea
+  /// Web could also record in theory but currently only wav which is too large
+  /// #Pangea
   // static bool get platformCanRecord => (isMobile || isMacOS);
-  static bool get platformCanRecord => (isMobile || isMacOS || kIsWeb);
+  static bool get platformCanRecord => (isMobile || isMacOS || isWeb);
   // Pangea#
 
   static String get clientName =>

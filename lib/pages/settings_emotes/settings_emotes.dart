@@ -1,26 +1,24 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:archive/archive.dart'
+    if (dart.library.io) 'package:archive/archive_io.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' hide Client;
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
 import '../../widgets/matrix.dart';
 import 'import_archive_dialog.dart';
 import 'settings_emotes_view.dart';
-
-import 'package:archive/archive.dart'
-    if (dart.library.io) 'package:archive/archive_io.dart';
 
 class EmotesSettings extends StatefulWidget {
   const EmotesSettings({super.key});
@@ -330,8 +328,11 @@ class EmotesSettingsController extends State<EmotesSettings> {
         for (final entry in pack.images.entries) {
           final emote = entry.value;
           final name = entry.key;
-          final url = emote.url.getDownloadLink(client);
-          final response = await get(url);
+          final url = await emote.url.getDownloadUri(client);
+          final response = await get(
+            url,
+            headers: {'authorization': 'Bearer ${client.accessToken}'},
+          );
 
           archive.addFile(
             ArchiveFile(

@@ -1,20 +1,17 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
-import 'package:matrix/matrix.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:universal_html/html.dart' as html;
-
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+import 'package:universal_html/html.dart' as html;
 
 extension LocalNotificationsExtension on MatrixState {
   static final html.AudioElement _audioPlayer = html.AudioElement()
@@ -48,50 +45,47 @@ extension LocalNotificationsExtension on MatrixState {
       hideEdit: true,
       removeMarkdown: true,
     );
-    final icon = event.senderFromMemoryOrFallback.avatarUrl?.getThumbnail(
-          client,
-          width: 64,
-          height: 64,
-          method: ThumbnailMethod.crop,
-        ) ??
-        room.avatar?.getThumbnail(
-          client,
-          width: 64,
-          height: 64,
-          method: ThumbnailMethod.crop,
-        );
+
     if (kIsWeb) {
+      final avatarUrl = event.senderFromMemoryOrFallback.avatarUrl;
+      Uri? thumbnailUri;
+
+      if (avatarUrl != null) {
+        const size = 64;
+        const thumbnailMethod = ThumbnailMethod.crop;
+        // Pre-cache so that we can later just set the thumbnail uri as icon:
+        await client.downloadMxcCached(
+          avatarUrl,
+          width: size,
+          height: size,
+          thumbnailMethod: thumbnailMethod,
+          isThumbnail: true,
+        );
+
+        thumbnailUri =
+            await event.senderFromMemoryOrFallback.avatarUrl?.getThumbnailUri(
+          client,
+          width: size,
+          height: size,
+          method: thumbnailMethod,
+        );
+      }
+
       _audioPlayer.play();
+
       html.Notification(
         title,
         body: body,
-        icon: icon.toString(),
+        icon: thumbnailUri?.toString(),
+        tag: event.room.id,
       );
     } else if (Platform.isLinux) {
-      final appIconUrl = room.avatar?.getThumbnail(
-        room.client,
-        width: 56,
-        height: 56,
-      );
-      File? appIconFile;
-      if (appIconUrl != null) {
-        final tempDirectory = await getApplicationSupportDirectory();
-        final avatarDirectory =
-            await Directory('${tempDirectory.path}/notiavatars/').create();
-        appIconFile = File(
-          '${avatarDirectory.path}/${Uri.encodeComponent(appIconUrl.toString())}',
-        );
-        if (await appIconFile.exists() == false) {
-          final response = await http.get(appIconUrl);
-          await appIconFile.writeAsBytes(response.bodyBytes);
-        }
-      }
       final notification = await linuxNotifications!.notify(
         title,
         body: body,
         replacesId: linuxNotificationIds[roomId] ?? 0,
         appName: AppConfig.applicationName,
-        appIcon: appIconFile?.path ?? '',
+        appIcon: 'fluffychat',
         actions: [
           NotificationAction(
             DesktopNotificationActions.openChat.name,

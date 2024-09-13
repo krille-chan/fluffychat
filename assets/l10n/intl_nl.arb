@@ -562,7 +562,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Standaardmachtigingsniveau",
+  "defaultPermissionLevel": "Standaard machtigingsniveau voor nieuwe personen",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2313,7 +2313,7 @@
   "@replace": {},
   "report": "rapporteer",
   "@report": {},
-  "reportErrorDescription": "Oh nee. Er is iets misgegaan. Probeer het later nog eens. Als je wilt, kun je de bug rapporteren aan de ontwikkelaars.",
+  "reportErrorDescription": "😭 Oh nee. Er is iets misgegaan. Probeer het later nog eens. Als je wilt, kun je de bug rapporteren aan de ontwikkelaars.",
   "@reportErrorDescription": {},
   "sendTypingNotifications": "Typemeldingen verzenden",
   "@sendTypingNotifications": {},
@@ -2349,7 +2349,7 @@
   "@inviteContactToGroupQuestion": {},
   "optionalRedactReason": "(Optioneel) Reden voor aanpassing van dit bericht...",
   "@optionalRedactReason": {},
-  "addChatDescription": "Voeg een chatbeschrijving toe",
+  "addChatDescription": "Voeg een chatbeschrijving toe...",
   "@addChatDescription": {},
   "invalidServerName": "Foute servernaam",
   "@invalidServerName": {},
@@ -2404,7 +2404,7 @@
   "@makeAdminDescription": {},
   "archiveRoomDescription": "De chat zal naar het archief worden verplaatst. Andere personen zullen in staat zijn te zien dat je de chat hebt verlaten.",
   "@archiveRoomDescription": {},
-  "hasKnocked": "{user} heeft geklopt",
+  "hasKnocked": "🚪 {user} heeft geklopt",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2417,5 +2417,179 @@
   "pleaseEnterANumber": "Vul een getal in groter dan 0",
   "@pleaseEnterANumber": {},
   "kickUserDescription": "De persoon is verwijderd uit de chat, maar is niet verbannen. In publieke chats kan de persoon op elk moment opnieuw deelnemen.",
-  "@kickUserDescription": {}
+  "@kickUserDescription": {},
+  "alwaysUse24HourFormat": "true",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "joinSpace": "Deelname aan space",
+  "@joinSpace": {},
+  "block": "Blokkeren",
+  "@block": {},
+  "blockedUsers": "Geblokkeerde personen",
+  "@blockedUsers": {},
+  "presenceStyle": "Aanwezigheid:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchChatsRooms": "Zoek naar #chats, @personen...",
+  "@searchChatsRooms": {},
+  "swipeRightToLeftToReply": "Veeg van rechts naar links om te reageren",
+  "@swipeRightToLeftToReply": {},
+  "calls": "Gesprekken",
+  "@calls": {},
+  "customEmojisAndStickers": "Aangepaste emojis and stickers",
+  "@customEmojisAndStickers": {},
+  "accessAndVisibilityDescription": "Wie mag meedoen in deze chat en hoe de chat ontdekt kan worden.",
+  "@accessAndVisibilityDescription": {},
+  "customEmojisAndStickersBody": "Voeg toe of deel aangepaste emojis of stickers die gebruikt kunnen worden in elke chat.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "Verberg verwijderde berichten",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Als iemand een bericht verwijdert, is dit bericht niet meer zichtbaar in de chat.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Verberg ongeldige of onbekende berichtformaten",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "passwordRecoverySettings": "Wachtwoord herstel instellingen",
+  "@passwordRecoverySettings": {},
+  "youInvitedToBy": "📩 Je bent uitgenodigd via een link voor:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "knock": "Kloppen",
+  "@knock": {},
+  "overview": "Overzicht",
+  "@overview": {},
+  "hidePresences": "Verberg Status Lijst?",
+  "@hidePresences": {},
+  "noOneCanJoin": "Niemand kan deelnemen",
+  "@noOneCanJoin": {},
+  "yourGlobalUserIdIs": "Je globale gebruikers-ID is: ",
+  "@yourGlobalUserIdIs": {},
+  "appLockDescription": "Vergendel de app wanneer het niet gebruikt wordt met een pincode",
+  "@appLockDescription": {},
+  "globalChatId": "Globale chat ID",
+  "@globalChatId": {},
+  "accessAndVisibility": "Toegang en zichtbaarheid",
+  "@accessAndVisibility": {},
+  "invitedBy": "📩 Uitgenodigd door: {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "publicSpaces": "Publieke spaces",
+  "@publicSpaces": {},
+  "blockUsername": "Negeer gebruikersnaam",
+  "@blockUsername": {},
+  "publicChatAddresses": "Publieke chat adressen",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Creëer nieuw adres",
+  "@createNewAddress": {},
+  "countChatsAndCountParticipants": "{chats} chats en {participants} deelnemers",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "Geen chats gevonden...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Deelnemende chats",
+  "@joinedChats": {},
+  "knocking": "Kloppen",
+  "@knocking": {},
+  "space": "Space",
+  "@space": {},
+  "spaces": "Spaces",
+  "@spaces": {},
+  "unread": "Zet als ongelezen",
+  "@unread": {},
+  "databaseBuildErrorBody": "Het aanmaken van de SQlite database is mislukt. De app probeert nu een traditionele database te gebruiken. Meldt alsjeblieft deze fout aan de ontwikkelaars via deze {url}. De foutmelding is: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "groupName": "Groepsnaam",
+  "@groupName": {},
+  "changeGeneralChatSettings": "Wijzig algemene chat instellingen",
+  "@changeGeneralChatSettings": {},
+  "restricted": "Beperkt",
+  "@restricted": {},
+  "searchForUsers": "Zoek naar @personen...",
+  "@searchForUsers": {},
+  "searchMore": "Zoek meer...",
+  "@searchMore": {},
+  "noPublicLinkHasBeenCreatedYet": "Publieke link is nog niet gecreëerd",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "groupCanBeFoundViaSearch": "Groep kan gevonden worden via zoeken",
+  "@groupCanBeFoundViaSearch": {},
+  "searchIn": "Zoek in chat \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "files": "Bestanden",
+  "@files": {},
+  "unreadChatsInApp": "{appname}: {unread} ongelezen chats",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "noDatabaseEncryption": "Database versleuteling is niet ondersteund op dit platform",
+  "@noDatabaseEncryption": {},
+  "thereAreCountUsersBlocked": "Nu zijn er {count} personen geblokkeerd.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "markAsUnread": "Markeer als ongelezen",
+  "@markAsUnread": {},
+  "userLevel": "{level} - Persoon",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Administrator",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "stickers": "Stickers",
+  "@stickers": {},
+  "nothingFound": "Niets gevonden...",
+  "@nothingFound": {},
+  "gallery": "Gallerij",
+  "@gallery": {},
+  "transparent": "Transparant",
+  "@transparent": {},
+  "incomingMessages": "Inkomende berichten",
+  "@incomingMessages": {},
+  "discover": "Ontdek",
+  "@discover": {},
+  "commandHint_ignore": "Negeer de gegeven matrix ID",
+  "@commandHint_ignore": {}
 }

@@ -30,6 +30,7 @@ class InvitationSelectionView extends StatelessWidget {
     // #Pangea
     // final groupName = room.name.isEmpty ? L10n.of(context)!.group : room.name;
     // Pangea#
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         // #Pangea
@@ -52,6 +53,16 @@ class InvitationSelectionView extends StatelessWidget {
               child: TextField(
                 textInputAction: TextInputAction.search,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: theme.colorScheme.secondaryContainer,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(99),
+                  ),
+                  hintStyle: TextStyle(
+                    color: theme.colorScheme.onPrimaryContainer,
+                    fontWeight: FontWeight.normal,
+                  ),
                   // #Pangea
                   hintText: controller.mode == InvitationSelectionMode.admin
                       ? L10n.of(context)!.inviteUsersFromPangea
@@ -189,6 +200,8 @@ class _InviteContactListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Opacity(
       opacity: isMember ? 0.5 : 1,
       child: ListTile(
@@ -207,7 +220,7 @@ class _InviteContactListTile extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.secondary,
+            color: theme.colorScheme.secondary,
           ),
         ),
         onTap: isMember ? null : onTap,

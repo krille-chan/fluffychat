@@ -1,100 +1,22 @@
-import 'package:badges/badges.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/navi_rail_item.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../widgets/matrix.dart';
 import 'chat_list_body.dart';
-import 'start_chat_fab.dart';
 
 class ChatListView extends StatelessWidget {
   final ChatListController controller;
 
   const ChatListView(this.controller, {super.key});
-
-  List<NavigationDestination> getNavigationDestinations(BuildContext context) {
-    final badgePosition = BadgePosition.topEnd(top: -12, end: -8);
-    return [
-      if (AppConfig.separateChatTypes) ...[
-        NavigationDestination(
-          icon: UnreadRoomsBadge(
-            badgePosition: badgePosition,
-            filter:
-                controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
-            child: const Icon(Icons.chat_outlined),
-          ),
-          selectedIcon: UnreadRoomsBadge(
-            badgePosition: badgePosition,
-            filter:
-                controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
-            child: const Icon(Icons.chat),
-          ),
-          //#Pangea
-          // label: L10n.of(context)!.messages,
-          label: L10n.of(context)!.directChats,
-          //Pangea#
-        ),
-        NavigationDestination(
-          icon: UnreadRoomsBadge(
-            badgePosition: badgePosition,
-            filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
-            child: const Icon(Icons.group_outlined),
-          ),
-          selectedIcon: UnreadRoomsBadge(
-            badgePosition: badgePosition,
-            filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
-            child: const Icon(Icons.group),
-          ),
-          label: L10n.of(context)!.groups,
-        ),
-      ] else
-        NavigationDestination(
-          icon: UnreadRoomsBadge(
-            badgePosition: badgePosition,
-            filter:
-                controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
-            child: const Icon(Icons.chat_outlined),
-          ),
-          selectedIcon: UnreadRoomsBadge(
-            badgePosition: badgePosition,
-            filter:
-                controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
-            child: const Icon(Icons.chat),
-          ),
-          // #Pangea
-          // label: L10n.of(context)!.chats,
-          label: L10n.of(context)!.allChats,
-          // Pangea#
-        ),
-      if (controller.spaces.isNotEmpty
-              // #Pangea
-              &&
-              !FluffyThemes.isColumnMode(context)
-          // Pangea#
-          )
-        // #Pangea
-        // const NavigationDestination(
-        //   icon: Icon(Icons.workspaces_outlined),
-        //   selectedIcon: Icon(Icons.workspaces),
-        //   label: 'Spaces',
-        // ),
-        NavigationDestination(
-          icon: const Icon(Icons.workspaces_outlined),
-          selectedIcon: const Icon(Icons.workspaces),
-          label: L10n.of(context)!.allSpaces,
-        ),
-      // Pangea#
-    ];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,12 +28,13 @@ class ChatListView extends StatelessWidget {
         return PopScope(
           canPop: controller.selectMode == SelectMode.normal &&
               !controller.isSearchMode &&
-              controller.activeFilter ==
-                  (AppConfig.separateChatTypes
-                      ? ActiveFilter.messages
-                      : ActiveFilter.allChats),
-          onPopInvoked: (pop) async {
+              controller.activeSpaceId == null,
+          onPopInvokedWithResult: (pop, _) {
             if (pop) return;
+            if (controller.activeSpaceId != null) {
+              controller.clearActiveSpace();
+              return;
+            }
             final selMode = controller.selectMode;
             if (controller.isSearchMode) {
               controller.cancelSearch();
@@ -121,23 +44,23 @@ class ChatListView extends StatelessWidget {
               controller.cancelAction();
               return;
             }
-            if (controller.activeFilter !=
-                (AppConfig.separateChatTypes
-                    ? ActiveFilter.messages
-                    : ActiveFilter.allChats)) {
-              controller
-                  .onDestinationSelected(AppConfig.separateChatTypes ? 1 : 0);
-              return;
-            }
           },
           child: Row(
             children: [
               if (FluffyThemes.isColumnMode(context) &&
                   controller.widget.displayNavigationRail) ...[
-                Builder(
-                  builder: (context) {
-                    final allSpaces =
-                        client.rooms.where((room) => room.isSpace);
+                StreamBuilder(
+                  key: ValueKey(
+                    client.userID.toString(),
+                  ),
+                  stream: client.onSync.stream
+                      .where((s) => s.hasRoomUpdate)
+                      .rateLimit(const Duration(seconds: 1)),
+                  builder: (context, _) {
+                    final allSpaces = Matrix.of(context)
+                        .client
+                        .rooms
+                        .where((room) => room.isSpace);
                     final rootSpaces = allSpaces
                         .where(
                           (space) => !allSpaces.any(
@@ -146,58 +69,53 @@ class ChatListView extends StatelessWidget {
                           ),
                         )
                         .toList();
-                    final destinations = getNavigationDestinations(context);
 
                     return SizedBox(
                       width: FluffyThemes.navRailWidth,
                       child: ListView.builder(
                         scrollDirection: Axis.vertical,
-                        itemCount: rootSpaces.length + destinations.length,
+                        itemCount: rootSpaces.length + 2,
                         itemBuilder: (context, i) {
-                          if (i < destinations.length) {
+                          if (i == 0) {
                             return NaviRailItem(
-                              // #Pangea
-                              // isSelected: i == controller.selectedIndex,
-                              isSelected: controller.isSelected(i),
-                              // Pangea#
-                              onTap: () => controller.onDestinationSelected(i),
-                              icon: destinations[i].icon,
-                              selectedIcon: destinations[i].selectedIcon,
-                              toolTip: destinations[i].label,
+                              isSelected: controller.activeSpaceId == null,
+                              onTap: controller.clearActiveSpace,
+                              icon: const Icon(Icons.forum_outlined),
+                              selectedIcon: const Icon(Icons.forum),
+                              toolTip: L10n.of(context)!.chats,
+                              unreadBadgeFilter: (room) => true,
                             );
                           }
-                          i -= destinations.length;
-                          final isSelected =
-                              controller.activeFilter == ActiveFilter.spaces &&
-                                  rootSpaces[i].id == controller.activeSpaceId;
-                          //#Pangea
-                          final Room? room = Matrix.of(context)
-                              .client
-                              .getRoomById(rootSpaces[i].id);
-                          // Pangea#
+                          i--;
+                          if (i == rootSpaces.length) {
+                            return NaviRailItem(
+                              isSelected: false,
+                              onTap: () => context.go('/rooms/newspace'),
+                              icon: const Icon(Icons.add),
+                              toolTip: L10n.of(context)!.createNewSpace,
+                            );
+                          }
+                          final space = rootSpaces[i];
+                          final displayname =
+                              rootSpaces[i].getLocalizedDisplayname(
+                            MatrixLocals(L10n.of(context)!),
+                          );
+                          final spaceChildrenIds =
+                              space.spaceChildren.map((c) => c.roomId).toSet();
                           return NaviRailItem(
-                            toolTip: rootSpaces[i].getLocalizedDisplayname(
-                              MatrixLocals(L10n.of(context)!),
-                            ),
-                            isSelected: isSelected,
-                            // #Pangea
-                            // onTap: () =>
-                            //     controller.setActiveSpace(rootSpaces[i].id),
-                            onTap: () => chatListHandleSpaceTap(
-                              context,
-                              controller,
-                              rootSpaces[i],
-                            ),
-                            // Pangea#
+                            toolTip: displayname,
+                            isSelected: controller.activeSpaceId == space.id,
+                            onTap: () =>
+                                controller.setActiveSpace(rootSpaces[i].id),
+                            unreadBadgeFilter: (room) =>
+                                spaceChildrenIds.contains(room.id),
                             icon: Avatar(
                               mxContent: rootSpaces[i].avatar,
-                              name: rootSpaces[i].getLocalizedDisplayname(
-                                MatrixLocals(L10n.of(context)!),
-                              ),
+                              name: displayname,
                               size: 32,
-                              // #Pangea
-                              littleIcon: room?.roomTypeIcon,
-                              // Pangea#
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.borderRadius / 4,
+                              ),
                             ),
                           );
                         },
@@ -217,51 +135,33 @@ class ChatListView extends StatelessWidget {
                   behavior: HitTestBehavior.translucent,
                   child: Scaffold(
                     body: ChatListViewBody(controller),
-                    bottomNavigationBar: controller.displayNavigationBar
-                        ? NavigationBar(
-                            elevation: 4,
-                            labelBehavior:
-                                NavigationDestinationLabelBehavior.alwaysShow,
-                            shadowColor:
-                                Theme.of(context).colorScheme.onSurface,
-                            backgroundColor:
-                                Theme.of(context).colorScheme.surface,
-                            surfaceTintColor:
-                                Theme.of(context).colorScheme.surface,
-                            selectedIndex: controller.selectedIndex,
-                            onDestinationSelected:
-                                controller.onDestinationSelected,
-                            destinations: getNavigationDestinations(context),
-                          )
-                        : null,
-                    // #Pangea
-                    // floatingActionButton: KeyBoardShortcuts(
-                    //   keysToPress: {
-                    //     LogicalKeyboardKey.controlLeft,
-                    //     LogicalKeyboardKey.keyN,
-                    //   },
-                    //   onKeysPressed: () => context.go('/rooms/newprivatechat'),
-                    //   helpLabel: L10n.of(context)!.newChat,
-                    //   child: selectMode == SelectMode.normal &&
-                    //           !controller.isSearchMode
-                    //       ? StartChatFloatingActionButton(
-                    //           activeFilter: controller.activeFilter,
-                    //           roomsIsEmpty: false,
-                    //           scrolledToTop: controller.scrolledToTop,
-                    //           createNewSpace: controller.createNewSpace,
-                    //         )
-                    //       : const SizedBox.shrink(),
-                    // ),
-                    floatingActionButton: selectMode == SelectMode.normal
-                        ? StartChatFloatingActionButton(
-                            activeFilter: controller.activeFilter,
-                            roomsIsEmpty: false,
-                            scrolledToTop: controller.scrolledToTop,
-                            controller: controller,
-                            createNewSpace: () {},
-                          )
-                        : null,
-                    // Pangea#
+                    floatingActionButton:
+                        // #Pangea
+                        // KeyBoardShortcuts(
+                        //   keysToPress: {
+                        //     LogicalKeyboardKey.controlLeft,
+                        //     LogicalKeyboardKey.keyN,
+                        //   },
+                        //   onKeysPressed: () => context.go('/rooms/newprivatechat'),
+                        //   helpLabel: L10n.of(context)!.newChat,
+                        //   child:
+                        // Pangea#
+                        selectMode == SelectMode.normal &&
+                                !controller.isSearchMode &&
+                                controller.activeSpaceId == null
+                            ? FloatingActionButton.extended(
+                                // #Pangea
+                                // onPressed: () =>
+                                //     context.go('/rooms/newprivatechat'),
+                                onPressed: () => context.go('/rooms/newgroup'),
+                                // Pangea#
+                                icon: const Icon(Icons.add_outlined),
+                                label: Text(
+                                  L10n.of(context)!.chat,
+                                  overflow: TextOverflow.fade,
+                                ),
+                              )
+                            : const SizedBox.shrink(),
                   ),
                 ),
               ),

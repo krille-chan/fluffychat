@@ -34,14 +34,10 @@ extension DateTimeExtension on DateTime {
   }
 
   /// Returns a simple time String.
-  /// TODO: Add localization
-  String localizedTimeOfDay(BuildContext context) {
-    if (MediaQuery.of(context).alwaysUse24HourFormat) {
-      return '${_z(hour)}:${_z(minute)}';
-    } else {
-      return '${_z(hour % 12 == 0 ? 12 : hour % 12)}:${_z(minute)} ${hour > 11 ? "pm" : "am"}';
-    }
-  }
+  String localizedTimeOfDay(BuildContext context) =>
+      L10n.of(context)!.alwaysUse24HourFormat == 'true'
+          ? DateFormat('HH:mm', L10n.of(context)!.localeName).format(this)
+          : DateFormat('h:mm a', L10n.of(context)!.localeName).format(this);
 
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
   /// day if the ChatTime is this week and a date string else.
@@ -60,19 +56,14 @@ extension DateTimeExtension on DateTime {
     if (sameDay) {
       return localizedTimeOfDay(context);
     } else if (sameWeek) {
-      return DateFormat.EEEE(Localizations.localeOf(context).languageCode)
+      return DateFormat.E(Localizations.localeOf(context).languageCode)
           .format(this);
     } else if (sameYear) {
-      return L10n.of(context)!.dateWithoutYear(
-        month.toString().padLeft(2, '0'),
-        day.toString().padLeft(2, '0'),
-      );
+      return DateFormat.MMMd(Localizations.localeOf(context).languageCode)
+          .format(this);
     }
-    return L10n.of(context)!.dateWithYear(
-      year.toString(),
-      month.toString().padLeft(2, '0'),
-      day.toString().padLeft(2, '0'),
-    );
+    return DateFormat.yMMMd(Localizations.localeOf(context).languageCode)
+        .format(this);
   }
 
   /// If the DateTime is today, this returns [localizedTimeOfDay()], if not it also
@@ -91,6 +82,4 @@ extension DateTimeExtension on DateTime {
       localizedTimeOfDay(context),
     );
   }
-
-  static String _z(int i) => i < 10 ? '0${i.toString()}' : i.toString();
 }
