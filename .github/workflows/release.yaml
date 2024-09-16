@@ -38,7 +38,7 @@ jobs:
       - name: Create archive
         run: tar -czf pangeachat-web.tar.gz build/web/
       - name: Upload Web Build
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Web Build
           path: pangeachat-web.tar.gz
