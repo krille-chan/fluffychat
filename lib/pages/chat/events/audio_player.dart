@@ -307,8 +307,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                                     ),
                                     decoration: BoxDecoration(
                                       color: i < wavePosition
-                                          ? theme.colorScheme.onPrimaryContainer
-                                          : widget.color.withAlpha(64),
+                                          ? widget.color
+                                          : widget.color.withAlpha(128),
                                       borderRadius: BorderRadius.circular(64),
                                     ),
                                     height: 32 * (waveform[i] / 1024),
