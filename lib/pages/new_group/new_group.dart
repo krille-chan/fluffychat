@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
+import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/chat_topic_model.dart';
@@ -108,7 +109,7 @@ class NewGroupController extends State<NewGroup> {
       final addBot = addConversationBotKey.currentState?.addBot ?? false;
       if (addBot) {
         final botOptions = addConversationBotKey.currentState!.botOptions;
-        if (botOptions.mode == "custom") {
+        if (botOptions.mode == BotMode.custom) {
           if (botOptions.customSystemPrompt == null ||
               botOptions.customSystemPrompt!.isEmpty) {
             setState(() {
@@ -118,7 +119,7 @@ class NewGroupController extends State<NewGroup> {
             });
             return;
           }
-        } else if (botOptions.mode == "text_adventure") {
+        } else if (botOptions.mode == BotMode.textAdventure) {
           if (botOptions.textAdventureGameMasterInstructions == null ||
               botOptions.textAdventureGameMasterInstructions!.isEmpty) {
             setState(() {
