@@ -2196,7 +2196,7 @@
   "@callingPermissions": {},
   "callingAccount": "Conta que chama",
   "@callingAccount": {},
-  "callingAccountDetails": "Permítelle a FluffyChat usar a app marcador nativa de android.",
+  "callingAccountDetails": "Permítelle a FluffyChat usar a app de telefonía nativa de android.",
   "@callingAccountDetails": {},
   "appearOnTopDetails": "Permítelle á app aparecer por enriba (non é preciso se xa configuraches FluffyChat como unha conta para chamadas)",
   "@appearOnTopDetails": {},
@@ -2690,7 +2690,7 @@
       "level": {}
     }
   },
-  "searchIn": "Buscar na charla \"{chat}\"...",
+  "searchIn": "Buscar na conversa \"{chat}\"...",
   "@searchIn": {
     "type": "text",
     "placeholders": {
