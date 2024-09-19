@@ -323,6 +323,8 @@ class BackgroundPush {
   }
 
   Future<void> setupUp() async {
+    // Blocked by https://codeberg.org/UnifiedPush/flutter-connector/issues/2
+    // ignore: deprecated_member_use
     await UnifiedPush.registerAppWithDialog(matrix!.context);
   }
 
