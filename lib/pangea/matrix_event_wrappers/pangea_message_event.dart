@@ -5,7 +5,6 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
@@ -15,7 +14,6 @@ import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
-import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -547,13 +545,14 @@ class PangeaMessageEvent {
     }
   }
 
-  bool get showUseType =>
-      !ownMessage &&
-      _event.room.isSpaceAdmin &&
-      _event.senderId != BotName.byEnvironment &&
-      !room.isUserSpaceAdmin(_event.senderId) &&
-      _event.messageType != PangeaEventTypes.report &&
-      _event.messageType == MessageTypes.Text;
+  bool get showUseType => false;
+  // *note* turning this feature off but leave code here to bring back (if need)
+  // !ownMessage &&
+  // _event.room.isSpaceAdmin &&
+  // _event.senderId != BotName.byEnvironment &&
+  // !room.isUserSpaceAdmin(_event.senderId) &&
+  // _event.messageType != PangeaEventTypes.report &&
+  // _event.messageType == MessageTypes.Text;
 
   // this is just showActivityIcon now but will include
   // logic for showing
