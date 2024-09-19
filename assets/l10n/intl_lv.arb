@@ -1827,7 +1827,7 @@
   },
   "noChatDescriptionYet": "Vēl nav izveidots tērzēšanas apraksts.",
   "@noChatDescriptionYet": {},
-  "defaultPermissionLevel": "Noklusējuma atļauju līmenis",
+  "defaultPermissionLevel": "Noklusējuma atļauju līmenis jauniem lietotājiem",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2686,5 +2686,100 @@
   "restricted": "Ierobežots",
   "@restricted": {},
   "knockRestricted": "Pieklauvēt ierobežotajiem",
-  "@knockRestricted": {}
+  "@knockRestricted": {},
+  "sendCanceled": "Sūtīšana atcelta",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Šeit vēl nav tērzēšanu. Jauna saruna ar kādu ir uzsākama ar zemāk esošo pogu. ⤵️",
+  "@noChatsFoundHere": {},
+  "invitedBy": "📩 {user} uzaicināja",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderators",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Pārvaldītājs",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheVisibilityOfChatHistory": "Mainīt tērzēšanas vēstures redzamību",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Mainīt tērzēšanas galveno publisko adresi",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "Sūtīt @istaba paziņojumus",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Mainīt tērzēšanas aprakstu",
+  "@changeTheDescriptionOfTheGroup": {},
+  "alwaysUse24HourFormat": "nē",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "userLevel": "{level} - Lietotājs",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "goToSpace": "Doties uz vietu: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "changeGeneralChatSettings": "Mainīt vispārējos tērzēšanas iestatījumus",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "Uzaicināt šajā tērzēšanā citus lietotājus",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Mainīt tērzēšanas atļaujas",
+  "@changeTheChatPermissions": {},
+  "chatPermissionsDescription": "Noteikt, kurš spēka līmenis ir nepieciešams noteiktām darbībām šajā tērzēšanā. Spēka līmeņi 0, 50 un 100 parasti atbilst lietotājiem, moderatoriem un pārvaldītājiem, bet ir iespējams jebkāds iedalījums.",
+  "@chatPermissionsDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "Neizskatās pēc saderīga mājasservera. Nepareizs URL?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "loginWithMatrixId": "Pieteikties ar Matrix-Id",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Atklāt mājasserverus",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Kas ir mājasserveris?",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Visi lietotāja dati tiek glabāti mājasserverī, gluži kā ar e-pasta nodrošinātāju. Ir iespējams izvēlēties, kuru mājasserveri izmantot, saglabājot iespēju sazināties ar ikvienu. Vairāk var uzzināt https://matrix.org.",
+  "@homeserverDescription": {},
+  "updateInstalled": "🎉 Atjauninājums {version} uzstādīts.",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Izmaiņu žurnāls",
+  "@changelog": {},
+  "countChatsAndCountParticipants": "{chats} tērzēšanas un {participants} dalībnieki",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "Vairs nav tērzēšanu...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Tērzēšanas, kurās piedalos",
+  "@joinedChats": {},
+  "unread": "Nelasītas",
+  "@unread": {},
+  "space": "Vieta",
+  "@space": {},
+  "spaces": "Vietas",
+  "@spaces": {},
+  "markAsUnread": "Atzīmēt kā nelasītu",
+  "@markAsUnread": {}
 }
