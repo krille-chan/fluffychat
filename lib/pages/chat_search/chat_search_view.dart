@@ -31,6 +31,8 @@ class ChatSearchView extends StatelessWidget {
       );
     }
 
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
@@ -59,6 +61,16 @@ class ChatSearchView extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: L10n.of(context)!.search,
                   suffixIcon: const Icon(Icons.search_outlined),
+                  filled: true,
+                  fillColor: theme.colorScheme.secondaryContainer,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(99),
+                  ),
+                  hintStyle: TextStyle(
+                    color: theme.colorScheme.onPrimaryContainer,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
               ),
             ),

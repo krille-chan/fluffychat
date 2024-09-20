@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
@@ -69,8 +70,13 @@ extension LocalizedExceptionExtension on Object {
     }
     if (this is IOException ||
         this is SocketException ||
-        this is SyncConnectionException) {
+        this is SyncConnectionException ||
+        this is ClientException) {
       return L10n.of(context)!.noConnectionToTheServer;
+    }
+    if (this is FormatException &&
+        exceptionContext == ExceptionContext.checkHomeserver) {
+      return L10n.of(context)!.doesNotSeemToBeAValidHomeserver;
     }
     if (this is String) return toString();
     if (this is UiaException) return toString();
@@ -81,4 +87,5 @@ extension LocalizedExceptionExtension on Object {
 
 enum ExceptionContext {
   changePassword,
+  checkHomeserver,
 }

@@ -190,7 +190,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} mudou o nome da conversa a: '{chatname}'",
+  "changedTheChatNameTo": "{username} mudou o nome da charla a: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -1931,7 +1931,7 @@
   "@oneClientLoggedOut": {},
   "link": "Ligazón",
   "@link": {},
-  "yourChatBackupHasBeenSetUp": "Configurouse a copia de apoio do chat.",
+  "yourChatBackupHasBeenSetUp": "Configurouse a copia de apoio da charla.",
   "@yourChatBackupHasBeenSetUp": {},
   "unverified": "Sen verificar",
   "@unverified": {},
@@ -1968,7 +1968,7 @@
     "type": "text",
     "description": "Usage hint for the command /clearcache"
   },
-  "commandHint_dm": "Iniciar un chat directo\nUsa --no-encryption para desactivar a cifraxe",
+  "commandHint_dm": "Iniciar unha charla directa\nUsa --no-encryption para desactivar a cifraxe",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -2141,7 +2141,7 @@
   },
   "unlockOldMessages": "Desbloquear mensaxes antigas",
   "@unlockOldMessages": {},
-  "dehydrateTorLong": "Para usuarias de TOR, é recomendable exportar a sesión antes de pechar a ventál.",
+  "dehydrateTorLong": "Para usuarias de TOR, é recomendable exportar a sesión antes de pechar a xanela.",
   "@dehydrateTorLong": {},
   "hydrateTor": "Usuarias TOR: Importar a sesión exportada",
   "@hydrateTor": {},
@@ -2198,7 +2198,7 @@
   "@callingAccount": {},
   "callingAccountDetails": "Permítelle a FluffyChat usar a app marcador nativa de android.",
   "@callingAccountDetails": {},
-  "appearOnTopDetails": "Permítelle á app aparecer por enrriba (non é preciso se xa configuraches FluffyChat como unha conta para chamadas)",
+  "appearOnTopDetails": "Permítelle á app aparecer por enriba (non é preciso se xa configuraches FluffyChat como unha conta para chamadas)",
   "@appearOnTopDetails": {},
   "enterSpace": "Entrar no espazo",
   "@enterSpace": {},
@@ -2206,7 +2206,7 @@
   "@enterRoom": {},
   "allSpaces": "Todos os espazos",
   "@allSpaces": {},
-  "screenSharingDetail": "Estás compartindo a túa pantalla en FluffyChat",
+  "screenSharingDetail": "Estás a compartir a túa pantalla en FluffyChat",
   "@screenSharingDetail": {},
   "numChats": "{number} conversas",
   "@numChats": {
@@ -2394,7 +2394,7 @@
   "@pushNotificationsNotAvailable": {},
   "makeAdminDescription": "Cando convirtas a esta usuaria en admin non poderás desfacer a acción xa que terá os mesmos permisos ca ti.",
   "@makeAdminDescription": {},
-  "archiveRoomDescription": "Vaise mover o chat ao arquivo. Outras usuarias poderán ver que saíches da conversa.",
+  "archiveRoomDescription": "Vaise mover a charla ao arquivo. Outras usuarias poderán ver que saíches da conversa.",
   "@archiveRoomDescription": {},
   "invalidInput": "Contido non válido!",
   "@invalidInput": {},
@@ -2413,7 +2413,7 @@
   },
   "learnMore": "Saber máis",
   "@learnMore": {},
-  "roomUpgradeDescription": "Vaise recrear o chat coa nova versión da sala. Todas as participantes recibirán unha notificación para que cambien ao novo chat. Podes ler máis información acerca das versións das salas en https://spec.matrix.org/latest/rooms/",
+  "roomUpgradeDescription": "Vaise recrear a charla coa nova versión da sala. Todas as participantes recibirán unha notificación para que cambien á nova charla. Podes ler máis información acerca das versións das salas en https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
   "pleaseEnterANumber": "Escribe un número maior de cero",
   "@pleaseEnterANumber": {},
@@ -2474,7 +2474,7 @@
   "@select": {},
   "pleaseChooseAStrongPassword": "Elixe un contrasinal forte",
   "@pleaseChooseAStrongPassword": {},
-  "addChatOrSubSpace": "Engadir chat ou sub espazo",
+  "addChatOrSubSpace": "Engadir charla ou sub espazo",
   "@addChatOrSubSpace": {},
   "leaveEmptyToClearStatus": "Deixa baleiro para limpar o teu estado.",
   "@leaveEmptyToClearStatus": {},
@@ -2530,7 +2530,7 @@
   "@verifyOtherDevice": {},
   "verifyOtherUser": "🔐 Verificar outra usuaria",
   "@verifyOtherUser": {},
-  "verifyOtherDeviceDescription": "Ao verificar outro dispositivo estás compartindo as chaves, aumentando a túa seguridade 💪. Ao iniciar a verificación aparecerá unha ventá emerxente nos dous dispositivos. Nesa ventá verás varios emojis ou números que tes que comparar entre eles. O mellor xeito de facelo é ter os dous dispositivos contigo cando inicias o proceso de verificación. 🤳",
+  "verifyOtherDeviceDescription": "Ao verificar outro dispositivo estás compartindo as chaves, aumentando a túa seguridade 💪. Ao iniciar a verificación aparecerá unha xanela emerxente nos dous dispositivos. Nesa xanela verás varios emojis ou números que tes que comparar entre eles. O mellor xeito de facelo é ter os dous dispositivos contigo cando inicias o proceso de verificación. 🤳",
   "@verifyOtherDeviceDescription": {},
   "canceledKeyVerification": "{sender} desbotou a verificación da chave",
   "@canceledKeyVerification": {
@@ -2557,7 +2557,7 @@
   "@sendTypingNotificationsDescription": {},
   "formattedMessagesDescription": "Mostrar texto enriquecido nas mensaxes como letra grosa usando markdown.",
   "@formattedMessagesDescription": {},
-  "verifyOtherUserDescription": "Se verificas a outra usuaria, podes ter a certeza de que sabes con quen estás a conversar. 💪\n\nAo iniciar a verificación, ti mais a outra usuaria veredes unha ventá emerxente na app onde aparecerán varios emojis ou números que teredes que comparar entre vós.\n\nO mellor xeito de facelo é en persoa o cunha chamada de vídeo. 👭",
+  "verifyOtherUserDescription": "Se verificas a outra usuaria, podes ter a certeza de que sabes con quen estás a conversar. 💪\n\nAo iniciar a verificación, ti mais a outra usuaria veredes unha xanela emerxente na app onde aparecerán varios emojis ou números que teredes que comparar entre vós.\n\nO mellor xeito de facelo é en persoa o cunha chamada de vídeo. 👭",
   "@verifyOtherUserDescription": {},
   "requestedKeyVerification": "{sender} solicitou verificar a chave",
   "@requestedKeyVerification": {
@@ -2609,7 +2609,7 @@
   "@commandHint_ignore": {},
   "commandHint_unignore": "Non ignorar o ID matrix indicado",
   "@commandHint_unignore": {},
-  "unreadChatsInApp": "{appname}: {unread} chats sen ler",
+  "unreadChatsInApp": "{appname}: {unread} charlas sen ler",
   "@unreadChatsInApp": {
     "type": "text",
     "placeholders": {
@@ -2621,7 +2621,7 @@
   "@noDatabaseEncryption": {},
   "accessAndVisibility": "Acceso e Visibilidade",
   "@accessAndVisibility": {},
-  "accessAndVisibilityDescription": "Quen pode unirse a este chat de que xeito pode ser atopado.",
+  "accessAndVisibilityDescription": "Quen pode unirse a esta charla e de que xeito e como poden atopala.",
   "@accessAndVisibilityDescription": {},
   "customEmojisAndStickers": "Emojis personais e adhesivos",
   "@customEmojisAndStickers": {},
@@ -2629,19 +2629,19 @@
   "@calls": {},
   "hideRedactedMessages": "Agochar mensaxes editadas",
   "@hideRedactedMessages": {},
-  "hideRedactedMessagesBody": "Se alguén corrixe unha mensaxe entón esta xa non será visible no chat.",
+  "hideRedactedMessagesBody": "Se alguén corrixe unha mensaxe entón esta xa non será visible na charla.",
   "@hideRedactedMessagesBody": {},
   "hideInvalidOrUnknownMessageFormats": "Agochar formatos de mensaxe non válidos ou descoñecidos",
   "@hideInvalidOrUnknownMessageFormats": {},
-  "hideMemberChangesInPublicChats": "Agochar cambios dos membros nos chats públicos",
+  "hideMemberChangesInPublicChats": "Agochar cambios dos membros nas charlas públicas",
   "@hideMemberChangesInPublicChats": {},
   "notifyMeFor": "Notificarme sobre",
   "@notifyMeFor": {},
-  "hideMemberChangesInPublicChatsBody": "Non mostrar na cronoloxía se alguén se une ou deixa un chat público, para mellorar a lexibilidade.",
+  "hideMemberChangesInPublicChatsBody": "Non mostrar na cronoloxía se alguén se une ou deixa unha conversa pública, para mellorar a lexibilidade.",
   "@hideMemberChangesInPublicChatsBody": {},
   "usersMustKnock": "As usuarias teñen que pedir entrar",
   "@usersMustKnock": {},
-  "userWouldLikeToChangeTheChat": "{user} quere unirse ao chat.",
+  "userWouldLikeToChangeTheChat": "{user} quere unirse á charla.",
   "@userWouldLikeToChangeTheChat": {
     "placeholders": {
       "user": {}
@@ -2649,7 +2649,7 @@
   },
   "knocking": "A solicitar",
   "@knocking": {},
-  "chatCanBeDiscoveredViaSearchOnServer": "O chat pode ser atopado ao buscar en {server}",
+  "chatCanBeDiscoveredViaSearchOnServer": "A charla pode ser atopada ao buscar en {server}",
   "@chatCanBeDiscoveredViaSearchOnServer": {
     "type": "text",
     "placeholders": {
@@ -2660,9 +2660,9 @@
   "@createNewAddress": {},
   "appLockDescription": "Bloquear a app cun código PIN cando non a uses",
   "@appLockDescription": {},
-  "globalChatId": "ID Global do chat",
+  "globalChatId": "ID Global da charla",
   "@globalChatId": {},
-  "customEmojisAndStickersBody": "Engade ou comparte emojis personais e adhesivos que poden usarse nos chats.",
+  "customEmojisAndStickersBody": "Engade ou comparte emojis personais e adhesivos que poden usarse nas charlas.",
   "@customEmojisAndStickersBody": {},
   "overview": "Vista xeral",
   "@overview": {},
@@ -2679,7 +2679,7 @@
     "type": "text",
     "count": {}
   },
-  "publicChatAddresses": "Enderezos públicos do chat",
+  "publicChatAddresses": "Enderezos públicos da charla",
   "@publicChatAddresses": {},
   "userRole": "Rol da usuaria",
   "@userRole": {},
@@ -2690,7 +2690,7 @@
       "level": {}
     }
   },
-  "searchIn": "Buscar no chat \"{chat}\"...",
+  "searchIn": "Buscar na charla \"{chat}\"...",
   "@searchIn": {
     "type": "text",
     "placeholders": {
@@ -2713,11 +2713,11 @@
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
-  "noMoreChatsFound": "Non se atopan máis chats…",
+  "noMoreChatsFound": "Non se atopan máis charlas…",
   "@noMoreChatsFound": {},
-  "joinedChats": "Chats nos que participas",
+  "joinedChats": "Charlas nas que participas",
   "@joinedChats": {},
-  "countChatsAndCountParticipants": "{chats} chats e {participants} participantes",
+  "countChatsAndCountParticipants": "{chats} charlas e {participants} participantes",
   "@countChatsAndCountParticipants": {
     "type": "text",
     "placeholders": {
@@ -2759,18 +2759,49 @@
       "level": {}
     }
   },
-  "changeGeneralChatSettings": "Cambiar os axustes xerais do chat",
+  "changeGeneralChatSettings": "Cambiar os axustes xerais da charla",
   "@changeGeneralChatSettings": {},
-  "inviteOtherUsers": "Convidar a outras usuarias a este chat",
+  "inviteOtherUsers": "Convidar a outras usuarias a esta charla",
   "@inviteOtherUsers": {},
-  "changeTheChatPermissions": "Cambiar os permisos no chat",
+  "changeTheChatPermissions": "Cambiar os permisos na charla",
   "@changeTheChatPermissions": {},
-  "changeTheVisibilityOfChatHistory": "Cambiar a visibilidade do historial do chat",
+  "changeTheVisibilityOfChatHistory": "Cambiar a visibilidade do historial da charla",
   "@changeTheVisibilityOfChatHistory": {},
-  "changeTheCanonicalRoomAlias": "Cambiar o enderezo público principal do chat",
+  "changeTheCanonicalRoomAlias": "Cambiar o enderezo público principal da charla",
   "@changeTheCanonicalRoomAlias": {},
   "sendRoomNotifications": "Enviar notificacións a @room",
   "@sendRoomNotifications": {},
-  "changeTheDescriptionOfTheGroup": "Cambiar a descrición do chat",
-  "@changeTheDescriptionOfTheGroup": {}
+  "changeTheDescriptionOfTheGroup": "Cambiar a descrición da charla",
+  "@changeTheDescriptionOfTheGroup": {},
+  "invitedBy": "📩 Convidada por {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "changelog": "Novidades na versión",
+  "@changelog": {},
+  "chatPermissionsDescription": "Define que nivel de permisos son necesarios para realizar certas accións nesta charla. Os niveis de permiso 0, 50 e 100 normalmente representan, usuarias, moderadoras e administradoras, pero son posibles outras escalas.",
+  "@chatPermissionsDescription": {},
+  "updateInstalled": "🎉 Instalouse a actualización a {version}!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "sendCanceled": "Cancelouse o envío",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Sen charlas por aquí. Comeza unha nova conversa con alguén premendo no botón de abaixo. ⤵️",
+  "@noChatsFoundHere": {},
+  "discoverHomeservers": "Atopar servidores",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Que é un servidor de inicio?",
+  "@whatIsAHomeserver": {},
+  "loginWithMatrixId": "Acceder co ID-Matrix",
+  "@loginWithMatrixId": {},
+  "homeserverDescription": "Todos os teus datos quedan gardados no servidor de inicio, igual que co teu provedor de correo electrónico. Podes elexir o servidor que queres usar e poderás comunicarte con todos os demais. Aprende máis en https://matrix.org.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "Non semella ser un servidor de inicio compatible. É o URL correcto?",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }

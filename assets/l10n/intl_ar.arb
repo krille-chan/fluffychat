@@ -2772,5 +2772,36 @@
   "sendRoomNotifications": "إرسال إشعارات @room",
   "@sendRoomNotifications": {},
   "changeTheDescriptionOfTheGroup": "تغيير وصف الدردشة",
-  "@changeTheDescriptionOfTheGroup": {}
+  "@changeTheDescriptionOfTheGroup": {},
+  "invitedBy": "📩 تمت دعوته من قبل {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "chatPermissionsDescription": "‪حدد مستوى الصلاحية الضروري لإجراءات معينة في هذه الدردشة. عادة ما تمثل مستويات الصلاحية 0 و 50 و 100 المستخدمين والمشرفين ولكن أي تدرج ممكن.",
+  "@chatPermissionsDescription": {},
+  "changelog": "سجل التغييرات",
+  "@changelog": {},
+  "updateInstalled": "تم تثبيت🎉 تحديث {version}!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "sendCanceled": "تم إلغاء الإرسال",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "لم يتم العثور على دردشات هنا حتى الآن. ابدأ محادثة جديدة مع شخص ما باستخدام الزر أدناه. ⤵️",
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "تسجيل الدخول باستخدام معرف ماتريكس",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "اكتشف الخوادم المنزلية",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "ما هو خادم المنزل ؟",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "يتم تخزين جميع بياناتك على خادم المنزل، تمامًا مثل مزود خدمة البريد الإلكتروني. يمكنك اختيار خادم البيت الذي تريد استخدامه، بينما لا يزال بإمكانك التواصل مع الجميع. اعرف المزيد على https://matrix.org.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "لا يبدو أنه خادم منزلي متوافق. عنوان URL غير صحيح ؟",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }

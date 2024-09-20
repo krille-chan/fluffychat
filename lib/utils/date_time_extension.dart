@@ -56,19 +56,14 @@ extension DateTimeExtension on DateTime {
     if (sameDay) {
       return localizedTimeOfDay(context);
     } else if (sameWeek) {
-      return DateFormat.EEEE(Localizations.localeOf(context).languageCode)
+      return DateFormat.E(Localizations.localeOf(context).languageCode)
           .format(this);
     } else if (sameYear) {
-      return L10n.of(context)!.dateWithoutYear(
-        month.toString().padLeft(2, '0'),
-        day.toString().padLeft(2, '0'),
-      );
+      return DateFormat.MMMd(Localizations.localeOf(context).languageCode)
+          .format(this);
     }
-    return L10n.of(context)!.dateWithYear(
-      year.toString(),
-      month.toString().padLeft(2, '0'),
-      day.toString().padLeft(2, '0'),
-    );
+    return DateFormat.yMMMd(Localizations.localeOf(context).languageCode)
+        .format(this);
   }
 
   /// If the DateTime is today, this returns [localizedTimeOfDay()], if not it also

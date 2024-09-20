@@ -2736,5 +2736,32 @@
       "appname": {},
       "unread": {}
     }
+  },
+  "adminLevel": "{level} - 管理員",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "userLevel": "{level} - 用戶",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - 管理員",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "invitedBy": "📩 由 {user} 邀請",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
   }
 }

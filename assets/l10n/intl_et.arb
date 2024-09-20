@@ -2772,5 +2772,32 @@
   "changeTheChatPermissions": "Muuda vestluse õigusi",
   "@changeTheChatPermissions": {},
   "changeTheDescriptionOfTheGroup": "Muuda vestluse kirjeldust",
-  "@changeTheDescriptionOfTheGroup": {}
+  "@changeTheDescriptionOfTheGroup": {},
+  "chatPermissionsDescription": "Määra erinevatele kasutajatele selles vestluses vajalikud õigused. Tüüpiliselt on need 0, 50 ja 100 (vastavalt kasutajad, moderaatorid ja peakasutajad), kuid igasugused vahepealsed variatsioonid on ka võimalikud.",
+  "@chatPermissionsDescription": {},
+  "invitedBy": "📩 Kutsujaks {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "updateInstalled": "🎉 Versiooniuuendus {version} on paigaldatud!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Muudatuste logi",
+  "@changelog": {},
+  "sendCanceled": "Saatmine on katkestatud",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Siin ei leidu veel ühtegi vestlust. Alusta uut vestlust klõpsides allpool asuvat nuppu. ⤵️",
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "Logi sisse Matrix-ID alusel",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Leia koduservereid",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Mis on koduserver?",
+  "@whatIsAHomeserver": {}
 }

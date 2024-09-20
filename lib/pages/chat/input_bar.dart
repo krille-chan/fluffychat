@@ -222,6 +222,7 @@ class InputBar extends StatelessWidget {
     Map<String, String?> suggestion,
     Client? client,
   ) {
+    final theme = Theme.of(context);
     const size = 30.0;
     const padding = EdgeInsets.all(4.0);
     if (suggestion['type'] == 'command') {
@@ -243,7 +244,7 @@ class InputBar extends StatelessWidget {
                 hint,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodySmall,
+                style: theme.textTheme.bodySmall,
               ),
             ],
           ),
