@@ -18,10 +18,12 @@ class SettingsChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(title: Text(L10n.of(context)!.chat)),
       body: ListTileTheme(
-        iconColor: Theme.of(context).textTheme.bodyLarge!.color,
+        iconColor: theme.textTheme.bodyLarge!.color,
         child: MaxWidthBody(
           child: Column(
             children: [
@@ -71,12 +73,12 @@ class SettingsChatView extends StatelessWidget {
                 storeKey: SettingKeys.swipeRightToLeftToReply,
                 defaultValue: AppConfig.swipeRightToLeftToReply,
               ),
-              Divider(color: Theme.of(context).dividerColor),
+              Divider(color: theme.dividerColor),
               ListTile(
                 title: Text(
                   L10n.of(context)!.customEmojisAndStickers,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: theme.colorScheme.secondary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -90,12 +92,12 @@ class SettingsChatView extends StatelessWidget {
                   child: Icon(Icons.chevron_right_outlined),
                 ),
               ),
-              Divider(color: Theme.of(context).dividerColor),
+              Divider(color: theme.dividerColor),
               ListTile(
                 title: Text(
                   L10n.of(context)!.calls,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: theme.colorScheme.secondary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

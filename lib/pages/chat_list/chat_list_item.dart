@@ -60,12 +60,13 @@ class ChatListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final isMuted = room.pushRuleState != PushRuleState.notify;
     final typingText = room.getLocalizedTypingText(context);
     final lastEvent = room.lastEvent;
     final ownMessage = lastEvent?.senderId == room.client.userID;
     final unread = room.isUnread || room.membership == Membership.invite;
-    final theme = Theme.of(context);
     final directChatMatrixId = room.directChatMatrixID;
     final isDirectChat = directChatMatrixId != null;
     final unreadBubbleSize = (unread || room.hasNewMessages)
@@ -142,7 +143,7 @@ class ChatListItem extends StatelessWidget {
                                 : BorderSide(
                                     width: 2,
                                     color: backgroundColor ??
-                                        Theme.of(context).colorScheme.surface,
+                                        theme.colorScheme.surface,
                                   ),
                             borderRadius: room.isSpace
                                 ? BorderRadius.circular(

@@ -36,6 +36,7 @@ class EventInfoDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(L10n.of(context)!.messageInfo),
@@ -72,14 +73,14 @@ class EventInfoDialog extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: Material(
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-              color: Theme.of(context).colorScheme.inverseSurface,
+              color: theme.colorScheme.inverseSurface,
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(8),
                 scrollDirection: Axis.horizontal,
                 child: SelectableText(
                   prettyJson,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onInverseSurface,
+                    color: theme.colorScheme.onInverseSurface,
                   ),
                 ),
               ),

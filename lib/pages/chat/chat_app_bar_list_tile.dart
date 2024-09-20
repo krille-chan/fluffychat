@@ -23,6 +23,7 @@ class ChatAppBarListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final leading = this.leading;
     final trailing = this.trailing;
     return SizedBox(
@@ -41,16 +42,15 @@ class ChatAppBarListTile extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    color: theme.colorScheme.onSurfaceVariant,
                     overflow: TextOverflow.ellipsis,
                     fontSize: 14,
                   ),
                   linkStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    color: theme.colorScheme.onSurfaceVariant,
                     fontSize: 14,
                     decoration: TextDecoration.underline,
-                    decorationColor:
-                        Theme.of(context).colorScheme.onSurfaceVariant,
+                    decorationColor: theme.colorScheme.onSurfaceVariant,
                   ),
                   onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
                 ),

@@ -102,7 +102,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   Timeline? timeline;
 
-  String? readMarkerEventId;
+  late final String readMarkerEventId;
 
   String get roomId => widget.room.id;
 
@@ -219,15 +219,13 @@ class ChatController extends State<ChatPageWithRoom>
   EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
 
   void requestHistory([_]) async {
-    if (!timeline!.canRequestHistory) return;
     Logs().v('Requesting history...');
-    await timeline!.requestHistory(historyCount: _loadHistoryCount);
+    await timeline?.requestHistory(historyCount: _loadHistoryCount);
   }
 
   void requestFuture() async {
     final timeline = this.timeline;
     if (timeline == null) return;
-    if (!timeline.canRequestFuture) return;
     Logs().v('Requesting future...');
     final mostRecentEventId = timeline.events.first.eventId;
     await timeline.requestFuture(historyCount: _loadHistoryCount);
@@ -274,6 +272,7 @@ class ChatController extends State<ChatPageWithRoom>
     );
 
     sendingClient = Matrix.of(context).client;
+    readMarkerEventId = room.hasNewMessages ? room.fullyRead : '';
     WidgetsBinding.instance.addObserver(this);
     _tryLoadTimeline();
     if (kIsWeb) {
@@ -288,19 +287,35 @@ class ChatController extends State<ChatPageWithRoom>
       await loadTimelineFuture;
       if (initialEventId != null) scrollToEventId(initialEventId);
 
-      final fullyRead = room.fullyRead;
-      if (fullyRead.isEmpty) {
-        setReadMarker();
-        return;
+      var readMarkerEventIndex = readMarkerEventId.isEmpty
+          ? -1
+          : timeline!.events
+              .where((e) => e.isVisibleInGui || e.eventId == readMarkerEventId)
+              .toList()
+              .indexWhere((e) => e.eventId == readMarkerEventId);
+
+      // Read marker is existing but not found in first events. Try a single
+      // requestHistory call before opening timeline on event context:
+      if (readMarkerEventId.isNotEmpty && readMarkerEventIndex == -1) {
+        await timeline?.requestHistory(historyCount: _loadHistoryCount);
+        readMarkerEventIndex = timeline!.events
+            .where((e) => e.isVisibleInGui || e.eventId == readMarkerEventId)
+            .toList()
+            .indexWhere((e) => e.eventId == readMarkerEventId);
       }
-      if (timeline?.events.any((event) => event.eventId == fullyRead) ??
-          false) {
-        Logs().v('Scroll up to visible event', fullyRead);
-        scrollToEventId(fullyRead, highlightEvent: false);
+
+      if (readMarkerEventIndex > 1) {
+        Logs().v('Scroll up to visible event', readMarkerEventId);
+        scrollToEventId(readMarkerEventId, highlightEvent: false);
         return;
+      } else if (readMarkerEventId.isNotEmpty && readMarkerEventIndex == -1) {
+        _showScrollUpMaterialBanner(readMarkerEventId);
       }
+
+      // Mark room as read on first visit if requirements are fulfilled
+      setReadMarker();
+
       if (!mounted) return;
-      _showScrollUpMaterialBanner(fullyRead);
     } catch (e, s) {
       ErrorReporter(context, 'Unable to load timeline').onErrorCallback(e, s);
       rethrow;
@@ -319,6 +334,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void updateView() {
     if (!mounted) return;
+    setReadMarker();
     setState(() {});
   }
 
@@ -327,11 +343,6 @@ class ChatController extends State<ChatPageWithRoom>
   int? animateInEventIndex;
 
   void onInsert(int i) {
-    if (timeline?.events[i].status == EventStatus.synced) {
-      final index = timeline!.events.firstIndexWhereNotError;
-      if (i == index) setReadMarker(eventId: timeline?.events[i].eventId);
-    }
-
     // setState will be called by updateView() anyway
     animateInEventIndex = i;
   }
@@ -346,6 +357,7 @@ class ChatController extends State<ChatPageWithRoom>
       eventContextId = null;
     }
     try {
+      timeline?.cancelSubscriptions();
       timeline = await room.getTimeline(
         onUpdate: updateView,
         eventContextId: eventContextId,
@@ -383,6 +395,7 @@ class ChatController extends State<ChatPageWithRoom>
     if (_setReadMarkerFuture != null) return;
     if (_scrolledUp) return;
     if (scrollUpBannerEventId != null) return;
+
     if (eventId == null &&
         !room.hasNewMessages &&
         room.notificationCount == 0) {
@@ -624,10 +637,10 @@ class ChatController extends State<ChatPageWithRoom>
       builder: (c) => const RecordingDialog(),
     );
     if (result == null) return;
-    final audioFile = File(result.path);
+    final audioFile = XFile(result.path);
     final file = MatrixAudioFile(
-      bytes: audioFile.readAsBytesSync(),
-      name: audioFile.path,
+      bytes: await audioFile.readAsBytes(),
+      name: result.fileName ?? audioFile.path,
     );
     await room.sendFileEvent(
       file,
@@ -908,10 +921,16 @@ class ChatController extends State<ChatPageWithRoom>
     String eventId, {
     bool highlightEvent = true,
   }) async {
-    final eventIndex = timeline!.events
-        .where((event) => event.isVisibleInGui)
-        .toList()
-        .indexWhere((e) => e.eventId == eventId);
+    final foundEvent =
+        timeline!.events.firstWhereOrNull((event) => event.eventId == eventId);
+
+    final eventIndex = foundEvent == null
+        ? -1
+        : timeline!.events
+            .where((event) => event.isVisibleInGui || event.eventId == eventId)
+            .toList()
+            .indexOf(foundEvent);
+
     if (eventIndex == -1) {
       setState(() {
         timeline = null;
@@ -1350,58 +1369,52 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   @override
-  Widget build(BuildContext context) => Row(
-        children: [
-          Expanded(
-            child: ChatView(this),
-          ),
-          AnimatedSize(
-            duration: FluffyThemes.animationDuration,
-            curve: FluffyThemes.animationCurve,
-            child: ValueListenableBuilder(
-              valueListenable: _displayChatDetailsColumn,
-              builder: (context, displayChatDetailsColumn, _) {
-                if (!FluffyThemes.isThreeColumnMode(context) ||
-                    room.membership != Membership.join ||
-                    !displayChatDetailsColumn) {
-                  return const SizedBox(
-                    height: double.infinity,
-                    width: 0,
-                  );
-                }
-                return Container(
-                  width: FluffyThemes.columnWidth,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      left: BorderSide(
-                        width: 1,
-                        color: Theme.of(context).dividerColor,
-                      ),
-                    ),
-                  ),
-                  child: ChatDetails(
-                    roomId: roomId,
-                    embeddedCloseButton: IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: toggleDisplayChatDetailsColumn,
-                    ),
-                  ),
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      children: [
+        Expanded(
+          child: ChatView(this),
+        ),
+        AnimatedSize(
+          duration: FluffyThemes.animationDuration,
+          curve: FluffyThemes.animationCurve,
+          child: ValueListenableBuilder(
+            valueListenable: _displayChatDetailsColumn,
+            builder: (context, displayChatDetailsColumn, _) {
+              if (!FluffyThemes.isThreeColumnMode(context) ||
+                  room.membership != Membership.join ||
+                  !displayChatDetailsColumn) {
+                return const SizedBox(
+                  height: double.infinity,
+                  width: 0,
                 );
-              },
-            ),
+              }
+              return Container(
+                width: FluffyThemes.columnWidth,
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  border: Border(
+                    left: BorderSide(
+                      width: 1,
+                      color: theme.dividerColor,
+                    ),
+                  ),
+                ),
+                child: ChatDetails(
+                  roomId: roomId,
+                  embeddedCloseButton: IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: toggleDisplayChatDetailsColumn,
+                  ),
+                ),
+              );
+            },
           ),
-        ],
-      );
+        ),
+      ],
+    );
+  }
 }
 
 enum EmojiPickerType { reaction, keyboard }
-
-extension on List<Event> {
-  int get firstIndexWhereNotError {
-    if (isEmpty) return 0;
-    final index = indexWhere((event) => !event.status.isError);
-    if (index == -1) return length;
-    return index;
-  }
-}

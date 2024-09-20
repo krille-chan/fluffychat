@@ -26,6 +26,8 @@ class NaviRailItem extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final borderRadius = BorderRadius.circular(AppConfig.borderRadius);
     final icon = isSelected ? selectedIcon ?? this.icon : this.icon;
     final unreadBadgeFilter = this.unreadBadgeFilter;
@@ -45,7 +47,7 @@ class NaviRailItem extends StatelessWidget {
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: theme.colorScheme.primary,
                     borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(90),
                       bottomRight: Radius.circular(90),
@@ -61,8 +63,8 @@ class NaviRailItem extends StatelessWidget {
                   child: Material(
                     borderRadius: borderRadius,
                     color: isSelected
-                        ? Theme.of(context).colorScheme.primaryContainer
-                        : Theme.of(context).colorScheme.surface,
+                        ? theme.colorScheme.primaryContainer
+                        : theme.colorScheme.surface,
                     child: Tooltip(
                       message: toolTip,
                       child: InkWell(

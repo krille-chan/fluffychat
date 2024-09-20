@@ -28,6 +28,7 @@ class ChatSearchFilesTab extends StatelessWidget {
     return StreamBuilder(
       stream: searchStream,
       builder: (context, snapshot) {
+        final theme = Theme.of(context);
         final events = snapshot.data?.$1;
         if (searchStream == null || events == null) {
           return Column(
@@ -82,10 +83,8 @@ class ChatSearchFilesTab extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: TextButton.icon(
                       style: TextButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondaryContainer,
-                        foregroundColor:
-                            Theme.of(context).colorScheme.onSecondaryContainer,
+                        backgroundColor: theme.colorScheme.secondaryContainer,
+                        foregroundColor: theme.colorScheme.onSecondaryContainer,
                       ),
                       onPressed: () => startSearch(
                         prevBatch: nextBatch,
@@ -127,21 +126,21 @@ class ChatSearchFilesTab extends StatelessWidget {
                           Expanded(
                             child: Container(
                               height: 1,
-                              color: Theme.of(context).dividerColor,
+                              color: theme.dividerColor,
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               event.originServerTs.localizedTime(context),
-                              style: Theme.of(context).textTheme.labelSmall,
+                              style: theme.textTheme.labelSmall,
                               textAlign: TextAlign.center,
                             ),
                           ),
                           Expanded(
                             child: Container(
                               height: 1,
-                              color: Theme.of(context).dividerColor,
+                              color: theme.dividerColor,
                             ),
                           ),
                         ],
@@ -151,7 +150,7 @@ class ChatSearchFilesTab extends StatelessWidget {
                     Material(
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
-                      color: Theme.of(context).colorScheme.onInverseSurface,
+                      color: theme.colorScheme.onInverseSurface,
                       clipBehavior: Clip.hardEdge,
                       child: ListTile(
                         leading: const Icon(Icons.file_present_outlined),
