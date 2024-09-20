@@ -260,6 +260,46 @@ jobs:
           SIGNING_KEY_PASSWORD: ${{ secrets.IOS_DIST_SIGNING_KEY_PASSWORD }}
           SIGNING_KEY_FILE_PATH: signing-cert.p12
 
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        # Checks and downloads project source code from GitHub repository
+
+      - name: Setup environment variables
+        run: cat .github/workflows/versions.env >> $GITHUB_ENV
+        # Load environment variables from versions.env file
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+        # Installs Flutter and configures the build environment
+
+      - name: Get Flutter dependencies
+        run: flutter pub get
+      - name: Build Windows Release
+        run: flutter build windows --release
+        # Compiles the release version of Flutter for Windows
+
+      - name: Create Archive for Release
+        run: tar -czf tawkie-windows-release.tar.gz -C build/windows/runner/Release/ .
+        # Creates a compressed archive of the compiled Windows executable
+
+      - name: Upload Windows Release to GitHub
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: tawkie-windows-release.tar.gz
+          asset_name: tawkie-windows-release.tar.gz
+          asset_content_type: application/gzip
+        # Download the archive from the GitHub releases page as an asset
+
+
   # promote_snapcraft:
   #   runs-on: ubuntu-latest
   #   env:
