@@ -64,7 +64,7 @@ jobs:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
-          cname: fluffychat.im
+          cname: tawkie.im
 
   build_apk:
     runs-on: ubuntu-latest
