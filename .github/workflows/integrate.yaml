@@ -88,3 +88,35 @@ jobs:
       - run: brew install sqlcipher
       - run: flutter pub get
       - run: flutter build ios --no-codesign
+
+  build_debug_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        # Check source code from GitHub repository
+
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+        # Load Flutter version-specific environment variables from versions.env
+
+      - name: Prepare Windows environment
+        run: ./scripts/prepare-windows.ps1
+        shell: pwsh
+        # Run PowerShell script to prepare Windows environment if necessary
+
+      - name: Build OLM library for Windows
+        run: ./scripts/build-olm-windows.sh
+        shell: bash
+        # Run the Olm compiler script for cryptography if the application uses Matrix
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+        # Installing Flutter in the construction environment
+      - run: flutter pub get
+      - name: Build Windows Debug Version
+        run: flutter build windows --debug
+      - name: Post-build Windows operations
+        run: ./scripts/build-windows.ps1
+        shell: pwsh
+        # Run the post-compilation script to finalize the build
