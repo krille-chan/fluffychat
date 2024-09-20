@@ -16,6 +16,8 @@ class SettingsIgnoreListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final client = Matrix.of(context).client;
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +46,7 @@ class SettingsIgnoreListView extends StatelessWidget {
                       labelText: L10n.of(context)!.blockUsername,
                       suffixIcon: IconButton(
                         tooltip: L10n.of(context)!.block,
-                        icon: const Icon(Icons.send_outlined),
+                        icon: const Icon(Icons.add),
                         onPressed: () => controller.ignoreUser(context),
                       ),
                     ),
@@ -58,7 +60,7 @@ class SettingsIgnoreListView extends StatelessWidget {
               ),
             ),
             Divider(
-              color: Theme.of(context).dividerColor,
+              color: theme.dividerColor,
             ),
             Expanded(
               child: StreamBuilder<Object>(

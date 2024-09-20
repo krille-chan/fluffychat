@@ -19,6 +19,8 @@ class UnreadRoomsBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final unreadCount = Matrix.of(context)
         .client
         .rooms
@@ -27,17 +29,17 @@ class UnreadRoomsBadge extends StatelessWidget {
         .length;
     return b.Badge(
       badgeStyle: b.BadgeStyle(
-        badgeColor: Theme.of(context).colorScheme.primary,
+        badgeColor: theme.colorScheme.primary,
         elevation: 4,
         borderSide: BorderSide(
-          color: Theme.of(context).colorScheme.surface,
+          color: theme.colorScheme.surface,
           width: 2,
         ),
       ),
       badgeContent: Text(
         unreadCount.toString(),
         style: TextStyle(
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: theme.colorScheme.onPrimary,
           fontSize: 12,
         ),
       ),

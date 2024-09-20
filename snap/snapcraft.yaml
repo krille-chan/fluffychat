@@ -44,9 +44,11 @@ description: |
 grade: stable
 confinement: strict
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
+platforms:
+  amd64:
+    build-on: amd64
+  arm64:
+    build-on: arm64
 
 parts:
   olm:
@@ -64,40 +66,13 @@ parts:
     stage-snaps:
       - zenity-integration
 
-  flutter-git:
-    source: https://github.com/flutter/flutter.git
-    source-tag: 3.19.6
-    source-depth: 1
-    plugin: nil
-    override-build: |
-      mkdir -p $CRAFT_PART_INSTALL/usr/bin
-      mkdir -p $CRAFT_PART_INSTALL/usr/libexec
-      cp -r $CRAFT_PART_SRC $CRAFT_PART_INSTALL/usr/libexec/flutter
-      ln -s $CRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $CRAFT_PART_INSTALL/usr/bin/flutter
-      ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/dart $SNAPCRAFT_PART_INSTALL/usr/bin/dart
-      $CRAFT_PART_INSTALL/usr/bin/flutter doctor
-    build-packages:
-      - clang
-      - cmake
-      - curl
-      - libgtk-3-dev
-      - ninja-build
-      - unzip
-      - xz-utils
-      - zip
-    override-prime: ''
-
   fluffychat:
-    after: [flutter-git]
-    plugin: nil
+    plugin: flutter
     source: .
     override-build: |
       # Workaround for Flutter build error:
       rm -rf build
-
-      flutter build linux --release -v
-      mkdir -p $CRAFT_PART_INSTALL/bin/
-      cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
+      craftctl default
     build-packages:
       - libjsoncpp-dev
       - curl
@@ -114,7 +89,7 @@ slots:
 
 apps:
   fluffychat:
-    command: bin/fluffychat
+    command: fluffychat
     extensions: [ gnome ]
     plugs:
       - audio-playback
@@ -136,4 +111,3 @@ apps:
       XDG_DATA_HOME: $SNAP_USER_DATA
       XDG_DATA_DIRS: $SNAP/usr/share
       GDK_GL: gles
-      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/lib:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET"

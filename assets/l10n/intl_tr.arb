@@ -2772,5 +2772,36 @@
   "changeGeneralChatSettings": "Genel sohbet ayarlarını değiştir",
   "@changeGeneralChatSettings": {},
   "changeTheVisibilityOfChatHistory": "Sohbet geçmişinin görünürlüğünü değiştir",
-  "@changeTheVisibilityOfChatHistory": {}
+  "@changeTheVisibilityOfChatHistory": {},
+  "invitedBy": "📩 {user} davet etti",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "chatPermissionsDescription": "Bu sohbette belirli eylemler için hangi güç düzeyinin gerekli olduğunu tanımlayın. 0, 50 ve 100 güç düzeyleri genellikle kullanıcıları, moderatörleri ve yöneticileri temsil eder, ancak herhangi bir derecelendirme mümkündür.",
+  "@chatPermissionsDescription": {},
+  "changelog": "Değişiklik günlüğü",
+  "@changelog": {},
+  "updateInstalled": "🎉 Güncelleme {version} kuruldu!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "sendCanceled": "Gönderme iptal edildi",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Burada henüz sohbet bulunamadı. Aşağıdaki düğmeyi kullanarak biriyle yeni bir sohbet başlatın. ⤵️",
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "Matrix kimliği ile oturum aç",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Ana sunucuları keşfet",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Ana sunucu nedir?",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Tüm verileriniz tıpkı bir e-posta sağlayıcısı gibi ana sunucuda saklanır. Hangi ana sunucuyu kullanmak istediğinizi seçebilir ve herkesle iletişim kurmaya devam edebilirsiniz. https://matrix.org adresinden daha fazla bilgi edinin.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "Uyumlu bir ana sunucu gibi görünmüyor. Yanlış URL mi?",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }

@@ -145,8 +145,7 @@ class ChatEventList extends StatelessWidget {
                 onTabInfo: controller.tabInfoEvent == event ? true : false,
                 timeline: controller.timeline!,
                 displayReadMarker:
-                    controller.readMarkerEventId == event.eventId &&
-                        controller.timeline?.allowNewEvent == false,
+                    i > 0 && controller.readMarkerEventId == event.eventId,
                 nextEvent: i + 1 < events.length ? events[i + 1] : null,
                 previousEvent: i > 0 ? events[i - 1] : null,
                 avatarPresenceBackgroundColor:

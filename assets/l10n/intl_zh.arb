@@ -2772,5 +2772,36 @@
   "changeTheDescriptionOfTheGroup": "更改聊天描述",
   "@changeTheDescriptionOfTheGroup": {},
   "changeGeneralChatSettings": "更改常规聊天设置",
-  "@changeGeneralChatSettings": {}
+  "@changeGeneralChatSettings": {},
+  "invitedBy": "📩 邀请人 {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "chatPermissionsDescription": "定义此聊天中哪个权限等级对特定操作是必需的。权限等级 0、50 和 100 通常代表用户、主持人和管理员，但你可以自定义任何等级。",
+  "@chatPermissionsDescription": {},
+  "changelog": "更新记录",
+  "@changelog": {},
+  "updateInstalled": "🎉 已安装更新 {version} ！",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "sendCanceled": "发送被取消",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "此处尚未找到聊天。使用下方按钮 ⤵️ 开始和某人的新聊天",
+  "@noChatsFoundHere": {},
+  "loginWithMatrixId": "使用 Matrix-ID 登录",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "发现主服务器",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "什么是主服务器？",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "主服务器上就像电子邮件提供商，你的所有数据都存储在上面。你可以选择你想使用哪个主服务器。在 https://matrix.org 上了解更多信息。",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "似乎不是兼容的主服务器。URL 不正确？",
+  "@doesNotSeemToBeAValidHomeserver": {}
 }
