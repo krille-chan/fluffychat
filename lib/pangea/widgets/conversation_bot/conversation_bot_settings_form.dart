@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_dynamic_zone.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_select.dart';
@@ -65,7 +66,7 @@ class ConversationBotSettingsFormState
           initialMode: botOptions.mode,
           onChanged: (String? mode) => {
             setState(() {
-              botOptions.mode = mode ?? "discussion";
+              botOptions.mode = mode ?? BotMode.discussion;
             }),
           },
         ),

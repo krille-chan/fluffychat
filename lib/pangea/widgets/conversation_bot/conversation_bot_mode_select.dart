@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -14,13 +15,13 @@ class ConversationBotModeSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, String> options = {
-      "discussion":
+      BotMode.discussion:
           L10n.of(context)!.conversationBotModeSelectOption_discussion,
-      "custom": L10n.of(context)!.conversationBotModeSelectOption_custom,
-      // "conversation":
-      //     L10n.of(context)!.conversationBotModeSelectOption_conversation,
-      "text_adventure":
-          L10n.of(context)!.conversationBotModeSelectOption_textAdventure,
+      BotMode.custom: L10n.of(context)!.conversationBotModeSelectOption_custom,
+      // BotMode.textAdventure:
+      //     L10n.of(context)!.conversationBotModeSelectOption_textAdventure,
+      // BotMode.storyGame:
+      //     L10n.of(context)!.conversationBotModeSelectOption_storyGame,
     };
 
     return Padding(
@@ -38,7 +39,7 @@ class ConversationBotModeSelect extends StatelessWidget {
           hint: Padding(
             padding: const EdgeInsets.only(left: 15),
             child: Text(
-              options[initialMode ?? "discussion"]!,
+              options[initialMode ?? BotMode.discussion]!,
               style: const TextStyle().copyWith(
                 color: Theme.of(context).textTheme.bodyLarge!.color,
                 fontSize: 14,

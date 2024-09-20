@@ -4014,6 +4014,7 @@
   "conversationBotModeSelectOption_custom": "Custom",
   "conversationBotModeSelectOption_conversation": "Conversation",
   "conversationBotModeSelectOption_textAdventure": "Text Adventure",
+  "conversationBotModeSelectOption_storyGame": "Story Game",
   "conversationBotDiscussionZone_title": "Discussion Settings",
   "conversationBotDiscussionZone_discussionTopicLabel": "Discussion Topic",
   "conversationBotDiscussionZone_discussionTopicPlaceholder": "Set Discussion Topic",
