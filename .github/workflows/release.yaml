@@ -271,23 +271,33 @@ jobs:
         run: cat .github/workflows/versions.env >> $GITHUB_ENV
         # Load environment variables from versions.env file
 
+      - name: Prepare Windows environment
+        run: ./scripts/prepare-windows.ps1
+        shell: pwsh
+        # Executes PowerShell script to prepare Windows environment
+
+      - name: Build OLM library for Windows
+        run: ./scripts/build-olm-windows.sh
+        shell: bash
+        # Run the Olm compiler script for cryptography if use Matrix
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-        # Installs Flutter and configures the build environment
-
       - name: Get Flutter dependencies
         run: flutter pub get
       - name: Build Windows Release
         run: flutter build windows --release
-        # Compiles the release version of Flutter for Windows
-
+        # Compiles the Flutter application in release mode for Windows
+      - name: Post-build Windows operations
+        run: ./scripts/build-windows.ps1
+        shell: pwsh
+        # Executes PowerShell script for all post-compilation steps
       - name: Create Archive for Release
         run: tar -czf tawkie-windows-release.tar.gz -C build/windows/runner/Release/ .
-        # Creates a compressed archive of the compiled Windows executable
-
+        # Creates a compressed archive containing the compiled Windows executable
       - name: Upload Windows Release to GitHub
         uses: actions/upload-release-asset@v1
         env:
@@ -297,7 +307,7 @@ jobs:
           asset_path: tawkie-windows-release.tar.gz
           asset_name: tawkie-windows-release.tar.gz
           asset_content_type: application/gzip
-        # Download the archive from the GitHub releases page as an asset
+        # Download the archive on the GitHub releases page as an asset
 
 
   # promote_snapcraft:
