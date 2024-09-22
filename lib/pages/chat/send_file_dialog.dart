@@ -85,7 +85,7 @@ class SendFileDialogState extends State<SendFileDialog> {
             ),
           );
         } else {
-          scaffoldMessenger.showLoadingSnackBar(l10n.sendingAttachment);
+          scaffoldMessenger.clearSnackBars();
         }
 
         try {
