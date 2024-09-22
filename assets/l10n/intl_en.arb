@@ -2761,5 +2761,6 @@
   "discoverHomeservers": "Discover homeservers",
   "whatIsAHomeserver": "What is a homeserver?",
   "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
-  "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?"
+  "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
+  "calculatingFileSize": "Calculating file size..."
 }
