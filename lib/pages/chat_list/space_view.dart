@@ -830,9 +830,9 @@ enum SpaceActions {
 }
 
 enum SpaceViewOptions {
-  normal(icon: Icons.sort),
-  roomTop(icon: Icons.vertical_align_top),
-  categorized(icon: Icons.category);
+  normal(icon: Icons.sort_outlined),
+  roomTop(icon: Icons.vertical_align_top_outlined),
+  categorized(icon: Icons.category_outlined);
 
   const SpaceViewOptions({
     required this.icon,
