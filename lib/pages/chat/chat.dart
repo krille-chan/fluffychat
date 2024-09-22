@@ -37,7 +37,6 @@ import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
-import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
 
@@ -123,36 +122,11 @@ class ChatController extends State<ChatPageWithRoom>
   void onDragDone(DropDoneDetails details) async {
     setState(() => dragging = false);
     if (details.files.isEmpty) return;
-    final result = await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        final clientConfig = await room.client.getConfig();
-        final maxUploadSize = clientConfig.mUploadSize ?? 100 * 1024 * 1024;
-        final matrixFiles = await Future.wait(
-          details.files.map(
-            (xfile) async {
-              final length = await xfile.length();
-              if (length > maxUploadSize) {
-                throw FileTooBigMatrixException(length, maxUploadSize);
-              }
-              return MatrixFile(
-                bytes: await xfile.readAsBytes(),
-                name: xfile.name,
-                mimeType: xfile.mimeType,
-              ).detectFileType;
-            },
-          ),
-        );
-        return matrixFiles;
-      },
-    );
-    final matrixFiles = result.result;
-    if (matrixFiles == null || matrixFiles.isEmpty) return;
 
     await showAdaptiveDialog(
       context: context,
       builder: (c) => SendFileDialog(
-        files: matrixFiles,
+        files: details.files,
         room: room,
       ),
     );
@@ -510,36 +484,24 @@ class ChatController extends State<ChatPageWithRoom>
       FilePicker.platform.pickFiles(
         compressionQuality: 0,
         allowMultiple: false,
-        withData: true,
       ),
     );
     if (result == null || result.files.isEmpty) return;
     await showAdaptiveDialog(
       context: context,
       builder: (c) => SendFileDialog(
-        files: result.files
-            .map(
-              (xfile) => MatrixFile(
-                bytes: xfile.bytes!,
-                name: xfile.name,
-              ).detectFileType,
-            )
-            .toList(),
+        files: result.xFiles,
         room: room,
       ),
     );
   }
 
   void sendImageFromClipBoard(Uint8List? image) async {
+    if (image == null) return;
     await showAdaptiveDialog(
       context: context,
       builder: (c) => SendFileDialog(
-        files: [
-          MatrixFile(
-            bytes: image!,
-            name: "image from Clipboard",
-          ).detectFileType,
-        ],
+        files: [XFile.fromData(image)],
         room: room,
       ),
     );
@@ -550,7 +512,6 @@ class ChatController extends State<ChatPageWithRoom>
       FilePicker.platform.pickFiles(
         compressionQuality: 0,
         type: FileType.image,
-        withData: true,
         allowMultiple: false,
       ),
     );
@@ -559,14 +520,7 @@ class ChatController extends State<ChatPageWithRoom>
     await showAdaptiveDialog(
       context: context,
       builder: (c) => SendFileDialog(
-        files: result.files
-            .map(
-              (xfile) => MatrixFile(
-                bytes: xfile.bytes!,
-                name: xfile.name,
-              ).detectFileType,
-            )
-            .toList(),
+        files: result.xFiles,
         room: room,
       ),
     );
@@ -577,16 +531,11 @@ class ChatController extends State<ChatPageWithRoom>
     FocusScope.of(context).requestFocus(FocusNode());
     final file = await ImagePicker().pickImage(source: ImageSource.camera);
     if (file == null) return;
-    final bytes = await file.readAsBytes();
+
     await showAdaptiveDialog(
       context: context,
       builder: (c) => SendFileDialog(
-        files: [
-          MatrixImageFile(
-            bytes: bytes,
-            name: file.path,
-          ),
-        ],
+        files: [file],
         room: room,
       ),
     );
@@ -600,16 +549,11 @@ class ChatController extends State<ChatPageWithRoom>
       maxDuration: const Duration(minutes: 1),
     );
     if (file == null) return;
-    final bytes = await file.readAsBytes();
+
     await showAdaptiveDialog(
       context: context,
       builder: (c) => SendFileDialog(
-        files: [
-          MatrixVideoFile(
-            bytes: bytes,
-            name: file.path,
-          ),
-        ],
+        files: [file],
         room: room,
       ),
     );

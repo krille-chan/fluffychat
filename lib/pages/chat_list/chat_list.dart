@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:cross_file/cross_file.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -205,7 +206,13 @@ class ChatListController extends State<ChatList>
           context: context,
           useRootNavigator: false,
           builder: (c) => SendFileDialog(
-            files: [shareFile],
+            files: [
+              XFile.fromData(
+                shareFile.bytes,
+                name: shareFile.name,
+                mimeType: shareFile.mimeType,
+              ),
+            ],
             room: room,
           ),
         );
