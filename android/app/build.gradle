@@ -47,7 +47,6 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
     }
 
     signingConfigs {
@@ -80,9 +79,4 @@ android {
 
 flutter {
     source '../..'
-}
-
-dependencies {
-    //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
-    implementation 'androidx.multidex:multidex:2.0.1'
 }
