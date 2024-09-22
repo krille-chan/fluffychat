@@ -120,6 +120,7 @@ class SendFileDialogState extends State<SendFileDialog> {
           );
         }
       }
+      scaffoldMessenger.clearSnackBars();
     } catch (e) {
       scaffoldMessenger.clearSnackBars();
       scaffoldMessenger.showSnackBar(
