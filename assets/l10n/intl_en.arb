@@ -2422,8 +2422,13 @@
   "@noBackupWarning": {},
   "noOtherDevicesFound": "No other devices found",
   "@noOtherDevicesFound": {},
-  "fileIsTooBigForServer": "The server reports that the file is too large to be sent.",
-  "@fileIsTooBigForServer": {},
+  "fileIsTooBigForServer": "Unable to send! The server only supports attachments up to {max}.",
+  "@fileIsTooBigForServer": {
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
   "fileHasBeenSavedAt": "File has been saved at {path}",
   "@fileHasBeenSavedAt": {
     "type": "text",
@@ -2762,5 +2767,24 @@
   "whatIsAHomeserver": "What is a homeserver?",
   "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
   "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
-  "calculatingFileSize": "Calculating file size..."
+  "calculatingFileSize": "Calculating file size...",
+  "prepareSendingAttachment": "Prepare sending attachment...",
+  "sendingAttachment": "Sending attachment...",
+  "generatingVideoThumbnail": "Generating video thumbnail...",
+  "compressVideo": "Compressing video...",
+  "sendingAttachmentCountOfCount": "Sending attachment {index} of {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "Server limit reached! Waiting {seconds} seconds...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  }
 }

@@ -2271,8 +2271,6 @@
   "@disableEncryptionWarning": {},
   "reopenChat": "Chat wieder eröffnen",
   "@reopenChat": {},
-  "fileIsTooBigForServer": "Der Server meldet, dass die Datei zu groß ist für eine Übermittlung ist.",
-  "@fileIsTooBigForServer": {},
   "noBackupWarning": "Achtung! Ohne Aktivierung des Chat-Backups verlierst du den Zugriff auf deine verschlüsselten Nachrichten. Vor dem Ausloggen wird dringend empfohlen, das Chat-Backup zu aktivieren.",
   "@noBackupWarning": {},
   "noOtherDevicesFound": "Keine anderen Geräte anwesend",
