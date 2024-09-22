@@ -131,6 +131,6 @@ index 69c80d6e..efd32d89 100644
    emojis: ^0.9.9
 -  #fcm_shared_isolate: ^0.1.0
 +  fcm_shared_isolate: ^0.1.0
-   file_picker: ^8.0.6
+   file_picker: ^8.1.2
    flutter:
      sdk: flutter
