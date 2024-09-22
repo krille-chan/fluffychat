@@ -14,38 +14,55 @@ class ImageViewerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black.withOpacity(0.5),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
+          style: IconButton.styleFrom(
+            backgroundColor: Colors.black.withOpacity(0.5),
+          ),
           icon: const Icon(Icons.close),
           onPressed: Navigator.of(context).pop,
           color: Colors.white,
           tooltip: L10n.of(context)!.close,
         ),
-        backgroundColor: const Color(0x44000000),
+        backgroundColor: Colors.transparent,
         actions: [
           IconButton(
+            style: IconButton.styleFrom(
+              backgroundColor: Colors.black.withOpacity(0.5),
+            ),
             icon: const Icon(Icons.reply_outlined),
             onPressed: controller.forwardAction,
             color: Colors.white,
             tooltip: L10n.of(context)!.share,
           ),
+          const SizedBox(width: 8),
           IconButton(
+            style: IconButton.styleFrom(
+              backgroundColor: Colors.black.withOpacity(0.5),
+            ),
             icon: const Icon(Icons.download_outlined),
             onPressed: () => controller.saveFileAction(context),
             color: Colors.white,
             tooltip: L10n.of(context)!.downloadFile,
           ),
+          const SizedBox(width: 8),
           if (PlatformInfos.isMobile)
             // Use builder context to correctly position the share dialog on iPad
-            Builder(
-              builder: (context) => IconButton(
-                onPressed: () => controller.shareFileAction(context),
-                tooltip: L10n.of(context)!.share,
-                color: Colors.white,
-                icon: Icon(Icons.adaptive.share_outlined),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Builder(
+                builder: (context) => IconButton(
+                  style: IconButton.styleFrom(
+                    backgroundColor: Colors.black.withOpacity(0.5),
+                  ),
+                  onPressed: () => controller.shareFileAction(context),
+                  tooltip: L10n.of(context)!.share,
+                  color: Colors.white,
+                  icon: Icon(Icons.adaptive.share_outlined),
+                ),
               ),
             ),
         ],

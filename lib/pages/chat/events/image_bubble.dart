@@ -60,7 +60,6 @@ class ImageBubble extends StatelessWidget {
     if (!tapToView) return;
     showDialog(
       context: context,
-      useRootNavigator: false,
       builder: (_) => ImageViewer(event),
     );
   }
