@@ -292,23 +292,17 @@ jobs:
 
       - name: Build Windows Release
         run: flutter build windows --release
-      - name: Get Tag Name as Version
-        id: version_extraction
-        run: |
-          if [[ "${{ github.ref }}" =~ ^refs/tags/v([0-9]+\.[0-9]+\.[0-9]+) ]]; then
-            echo "version=${BASH_REMATCH[1]}" >> $GITHUB_ENV
-          else
-            echo "Error: No valid version tag found. The workflow will stop."
-            exit 1
-          fi
-        # Capture the version from the release tag or branch name
+
+      - name: Get tag
+        id: tag
+        run: echo "::set-output name=tag::`git describe --tags`"
 
       - name: Post-build Windows operations
         run: ./scripts/build-windows.ps1
         shell: pwsh
 
       - name: Create Archive for Release
-        run: tar -czf "tawkie-windows-${{ env.version }}.tar.gz" -C build/windows/runner/Release/ .
+        run: tar -czf "tawkie-windows.tar.gz" -C build/windows/runner/Release/ .
         # Create an archive for the release and include the version in the filename
       - name: Upload Windows Release to GitHub
         uses: actions/upload-release-asset@v1
@@ -316,8 +310,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: "tawkie-windows-${{ env.version }}.tar.gz"
-          asset_name: "tawkie-windows-${{ env.version }}.tar.gz"
+          asset_path: "tawkie-windows.tar.gz"
+          asset_name: "tawkie-windows-${{ steps.tag.outputs.tag }}.tar.gz"
           asset_content_type: application/gzip
         # Upload the archive on the GitHub release page as an asset
 
