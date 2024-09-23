@@ -46,8 +46,8 @@ class LoginRegex {
   static final RegExp facebookSuccessMatch = RegExp(r".*Successfully logged");
   static final RegExp facebookAlreadyConnectedMatch =
       RegExp(r"You're already logged in");
-  static final RegExp facebookPasteCookies =
-      RegExp(r'^.*Paste your cookies here.*');
+
+  static final RegExp loginUrlMetaMatch = RegExp(r'^Login URL:');
 
   // Linkedin
   static final RegExp linkedinSuccessMatch = RegExp(r"Successfully logged in");

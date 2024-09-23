@@ -630,7 +630,7 @@ class BotController extends State<AddBridge> {
 
     final RegExp successMatch = LoginRegex.facebookSuccessMatch;
     final RegExp alreadyConnected = LoginRegex.facebookAlreadyConnectedMatch;
-    final RegExp pasteCookie = LoginRegex.facebookPasteCookies;
+    final RegExp pasteCookie = LoginRegex.loginUrlMetaMatch;
 
     final String? directChat = await _getOrCreateDirectChat(botUserId);
     if (directChat == null) {
@@ -670,7 +670,7 @@ class BotController extends State<AddBridge> {
     });
 
     try {
-      await roomBot.sendTextEvent("login $formattedCookieString");
+      await roomBot.sendTextEvent("login");
 
       Future.microtask(() {
         connectionState
