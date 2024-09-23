@@ -269,12 +269,12 @@ class BotController extends State<AddBridge> {
     }
   }
 
-  void _onNewPingMessage(
+  Future<void> _onNewPingMessage(
     Room roomBot,
     SocialNetwork socialNetwork,
     RegExpPingPatterns patterns,
     Completer<void> completer,
-  ) {
+  ) async {
     if (kDebugMode) {
       print("social network: $socialNetwork");
     }
@@ -300,6 +300,20 @@ class BotController extends State<AddBridge> {
       }
     } else if (shouldReconnect(patterns.mQTTNotMatch, lastEvent)) {
       roomBot.sendTextEvent("reconnect");
+    } else  // For Instagram/Facebook Messenger cases
+    if (socialNetwork.name == "Instagram" || socialNetwork.name == "Facebook Messenger") {
+      if (hasUserInfoPattern(lastEvent)){
+        _updateNetworkStatus(socialNetwork, true, false);
+      }else{
+        Logs().v('Not connected to ${socialNetwork.name}');
+        _updateNetworkStatus(socialNetwork, false, false);
+        if (!completer.isCompleted) {
+          completer.complete();
+        }
+      }
+      if (!completer.isCompleted) {
+        completer.complete();
+      }
     }
   }
 

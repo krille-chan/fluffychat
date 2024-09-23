@@ -51,6 +51,13 @@ bool isOnline(RegExp onlineMatch, String latestMessage) {
   return isMatch;
 }
 
+bool hasUserInfoPattern(String latestMessage) {
+  final RegExp userInfoPattern = RegExp(r"`(\d+)`\s\(([\w\s]+)\)");
+  final isMatch = userInfoPattern.hasMatch(latestMessage);
+  Logs().v('Checking user info pattern: $latestMessage - Match: $isMatch');
+  return isMatch;
+}
+
 /// Check if the latest message indicates not logged in status
 bool isNotLogged(RegExp notLoggedMatch, String message,
     [RegExp? notLoggedAnymoreMatch]) {
@@ -136,32 +143,38 @@ Map<String, RegExp> getLogoutNetworkPatterns(SocialNetworkEnum network) {
 }
 
 Future<void> storeUserInfoMetaInSecureStorage(String message, String networkName) async {
-  // Define a regex to capture the name and ID
   final RegExp userInfoRegex = RegExp(r"Logged in as ([\w\s]+) \((\d+)\)");
-
-  // Check if the message matches the pattern
   final match = userInfoRegex.firstMatch(message);
 
   if (match != null) {
-    // Extract the name and ID
     final userName = match.group(1);
     final userId = match.group(2);
-
-    // Combine user ID and name into a single JSON object
-    final Map<String, String> userInfo = {
+    final Map<String, String> newUserInfo = {
       'userId': userId!,
       'userName': userName!,
     };
 
-    // Serialize the map to JSON string
-    final userInfoJson = jsonEncode(userInfo);
-
-    // Store the combined data in SecureStorage
     final secureStorage = FlutterSecureStorage();
-    await secureStorage.write(key: '${networkName}_userInfo', value: userInfoJson);
+    final existingUserInfoJson = await secureStorage.read(key: '${networkName}_userInfo');
+
+    if (existingUserInfoJson != null) {
+      final existingUserInfo = jsonDecode(existingUserInfoJson) as Map<String, String>;
+
+      // Compare new data with existing data
+      if (existingUserInfo['userId'] == newUserInfo['userId'] && existingUserInfo['userName'] == newUserInfo['userName']) {
+        if (kDebugMode) {
+          print("User info already exists, skipping save.");
+        }
+        return; // Avoid saving duplicate data
+      }
+    }
+
+    // Serialize the map to JSON string and save
+    final newUserInfoJson = jsonEncode(newUserInfo);
+    await secureStorage.write(key: '${networkName}_userInfo', value: newUserInfoJson);
 
     if (kDebugMode) {
-      print("Stored $networkName user info: $userInfoJson");
+      print("Stored $networkName user info: $newUserInfoJson");
     }
   } else {
     if (kDebugMode) {
@@ -170,3 +183,28 @@ Future<void> storeUserInfoMetaInSecureStorage(String message, String networkName
   }
 }
 
+Future<String?> getStoredUserName(String userId, String networkName) async {
+  final secureStorage = FlutterSecureStorage();
+  final userInfoJson = await secureStorage.read(key: '${networkName}_userInfo_$userId');
+
+  if (userInfoJson != null) {
+    final userInfo = jsonDecode(userInfoJson) as Map<String, dynamic>;
+    return userInfo['userName'] as String?;
+  }
+  return null;
+}
+
+Future<void> storeUserInfo(String userId, String userName, String networkName) async {
+  final Map<String, String> userInfo = {
+    'userId': userId,
+    'userName': userName,
+  };
+
+  final userInfoJson = jsonEncode(userInfo);
+  final secureStorage = FlutterSecureStorage();
+  await secureStorage.write(key: '${networkName}_userInfo_$userId', value: userInfoJson);
+
+  if (kDebugMode) {
+    print("Stored user info for $networkName: $userName ($userId)");
+  }
+}
