@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io' as io;
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
@@ -132,3 +134,39 @@ Map<String, RegExp> getLogoutNetworkPatterns(SocialNetworkEnum network) {
       throw ArgumentError('Unsupported network: $network');
   }
 }
+
+Future<void> storeUserInfoMetaInSecureStorage(String message, String networkName) async {
+  // Define a regex to capture the name and ID
+  final RegExp userInfoRegex = RegExp(r"Logged in as ([\w\s]+) \((\d+)\)");
+
+  // Check if the message matches the pattern
+  final match = userInfoRegex.firstMatch(message);
+
+  if (match != null) {
+    // Extract the name and ID
+    final userName = match.group(1);
+    final userId = match.group(2);
+
+    // Combine user ID and name into a single JSON object
+    final Map<String, String> userInfo = {
+      'userId': userId!,
+      'userName': userName!,
+    };
+
+    // Serialize the map to JSON string
+    final userInfoJson = jsonEncode(userInfo);
+
+    // Store the combined data in SecureStorage
+    final secureStorage = FlutterSecureStorage();
+    await secureStorage.write(key: '${networkName}_userInfo', value: userInfoJson);
+
+    if (kDebugMode) {
+      print("Stored $networkName user info: $userInfoJson");
+    }
+  } else {
+    if (kDebugMode) {
+      print("No user info found in message.");
+    }
+  }
+}
+

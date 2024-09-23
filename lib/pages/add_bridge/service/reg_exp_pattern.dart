@@ -27,11 +27,9 @@ class PingPatterns {
 // For login response
 class LoginRegex {
   // Instagram
-  static final RegExp instagramSuccessMatch = RegExp(r".*Successfully logged");
+  static final RegExp instagramSuccessMatch = RegExp(r"Logged in as ([\w\s]+) \((\d+)\)");
   static final RegExp instagramAlreadySuccessMatch =
       RegExp(r"You're already logged in");
-  static final RegExp instagramPasteCookieMatch =
-      RegExp(r'^.*Paste your cookies here.*');
 
   // WhatsApp
   static final RegExp whatsAppSuccessMatch = RegExp(r"Successfully logged");
@@ -43,7 +41,7 @@ class LoginRegex {
       RegExp(r"Login timed out. Please restart the login");
 
   // Facebook
-  static final RegExp facebookSuccessMatch = RegExp(r".*Successfully logged");
+  static final RegExp facebookSuccessMatch = RegExp(r"Logged in as ([\w\s]+) \((\d+)\)");
   static final RegExp facebookAlreadyConnectedMatch =
       RegExp(r"You're already logged in");
 

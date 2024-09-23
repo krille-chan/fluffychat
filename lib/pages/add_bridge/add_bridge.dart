@@ -725,6 +725,12 @@ class BotController extends State<AddBridge> {
         Logs().v("You're logged to ${network.name}");
 
         setState(() => network.updateConnectionResult(true));
+
+        // Store user info in secure storage if it's Instagram or Facebook Messenger
+        if (network.name == "Instagram" || network.name == "Facebook Messenger") {
+          storeUserInfoMetaInSecureStorage(lastMessage, network.name);
+        }
+
         connectionState.updateConnectionTitle(L10n.of(context)!.connected);
         connectionState.updateLoading(false);
         connectionState.reset();
