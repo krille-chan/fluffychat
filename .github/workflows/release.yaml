@@ -290,24 +290,27 @@ jobs:
         run: flutter pub get
       - name: Build Windows Release
         run: flutter build windows --release
-        # Compiles the Flutter application in release mode for Windows
+      - name: Get Release Version
+        id: get_version
+        run: echo "version=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+        # Capture the version from the release tag or branch name
+
       - name: Post-build Windows operations
         run: ./scripts/build-windows.ps1
         shell: pwsh
-        # Executes PowerShell script for all post-compilation steps
       - name: Create Archive for Release
-        run: tar -czf tawkie-windows-release.tar.gz -C build/windows/runner/Release/ .
-        # Creates a compressed archive containing the compiled Windows executable
+        run: tar -czf "tawkie-windows-${{ env.version }}.tar.gz" -C build/windows/runner/Release/ .
+        # Create an archive for the release and include the version in the filename
       - name: Upload Windows Release to GitHub
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: tawkie-windows-release.tar.gz
-          asset_name: tawkie-windows-release.tar.gz
+          asset_path: "tawkie-windows-${{ env.version }}.tar.gz"
+          asset_name: "tawkie-windows-${{ env.version }}.tar.gz"
           asset_content_type: application/gzip
-        # Download the archive on the GitHub releases page as an asset
+        # Upload the archive on the GitHub release page as an asset
 
 
   # promote_snapcraft:
