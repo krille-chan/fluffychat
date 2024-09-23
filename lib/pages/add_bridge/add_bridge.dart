@@ -694,6 +694,8 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  bool cookiesSent = false;
+
   String? _onNewMessage(
       Room roomBot,
       String botUserId,
@@ -708,8 +710,9 @@ class BotController extends State<AddBridge> {
     final lastMessage = lastEvent?.text;
 
     if (lastEvent != null && lastEvent.senderId == botUserId) {
-      if (pasteCookie.hasMatch(lastMessage!)) {
+      if (pasteCookie.hasMatch(lastMessage!) && !cookiesSent) {
         roomBot.sendTextEvent(formattedCookieString);
+        cookiesSent = true;
       } else if (alreadyConnected.hasMatch(lastMessage)) {
         Logs().v("Already Connected to ${network.name}");
 
@@ -729,6 +732,8 @@ class BotController extends State<AddBridge> {
         // Store user info in secure storage if it's Instagram or Facebook Messenger
         if (network.name == "Instagram" || network.name == "Facebook Messenger") {
           storeUserInfoMetaInSecureStorage(lastMessage, network.name);
+
+          cookiesSent = false;
         }
 
         connectionState.updateConnectionTitle(L10n.of(context)!.connected);
