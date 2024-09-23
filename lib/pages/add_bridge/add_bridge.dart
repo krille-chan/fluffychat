@@ -422,9 +422,6 @@ class BotController extends State<AddBridge> {
   /// Get the event name for logout based on the social network
   String _getEventName(String networkName) {
     switch (networkName) {
-      case 'Instagram':
-      case 'Facebook Messenger':
-        return 'delete-session';
       default:
         return 'logout';
     }
@@ -452,30 +449,44 @@ class BotController extends State<AddBridge> {
     const int maxIterations = 5;
     int currentIteration = 0;
 
+    bool sentLogoutMessage = false;  // To check if we've already sent the logout message (For Meta)
+
     while (currentIteration < maxIterations) {
       try {
         final GetRoomEventsResponse response =
-            await client.getRoomEvents(directChat, Direction.b, limit: 1);
+        await client.getRoomEvents(directChat, Direction.b, limit: 1);
         final List<MatrixEvent> latestMessages = response.chunk ?? [];
 
         if (latestMessages.isNotEmpty) {
           final MatrixEvent latestEvent = latestMessages.first;
-          final String latestMessage =
-              latestEvent.content['body'].toString() ?? '';
+          final String latestMessage = latestEvent.content['body'].toString() ?? '';
           final String sender = latestEvent.senderId;
           final String botUserId = '${network.chatBot}$hostname';
 
           if (sender == botUserId) {
+            // Check for user ID pattern in logout message for Instagram or Facebook Messenger
+            if (!sentLogoutMessage && (network.name == "Instagram" || network.name == "Facebook Messenger")) {
+              final userId = extractUserId(latestMessage);
+              if (userId != null) {
+                final room = client.getRoomById(directChat);
+                room?.sendTextEvent("logout $userId");
+                Logs().v("Sent logout message for user $userId on ${network.name}");
+                sentLogoutMessage = true;  // Set the flag to prevent sending the message again
+                await Future.delayed(const Duration(seconds: 3));
+                continue;  // Skip the rest of the loop to re-check the connection status
+              }
+            }
+
+            print("latestMessage: $latestMessage");
+
+            // Check if still connected
             if (isStillConnected(latestMessage, patterns)) {
               Logs().v("You're still connected to ${network.name}");
               setState(() => network.updateConnectionResult(true));
               return;
-            }
-
-            if (!isStillConnected(latestMessage, patterns)) {
+            } else {
               Logs().v("You're disconnected from ${network.name}");
-              connectionState.updateConnectionTitle(
-                  L10n.of(context)!.loadingDisconnectionSuccess);
+              connectionState.updateConnectionTitle(L10n.of(context)!.loadingDisconnectionSuccess);
               connectionState.updateLoading(false);
               await Future.delayed(const Duration(seconds: 1));
               connectionState.reset();

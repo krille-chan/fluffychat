@@ -208,3 +208,13 @@ Future<void> storeUserInfo(String userId, String userName, String networkName) a
     print("Stored user info for $networkName: $userName ($userId)");
   }
 }
+
+String? extractUserId(String message) {
+  final RegExp userInfoRegex = RegExp(r"`(\d+)`\s\(([\w\s]+)\)");
+  final match = userInfoRegex.firstMatch(message);
+
+  if (match != null) {
+    return match.group(1); // Return the user ID
+  }
+  return null;
+}
