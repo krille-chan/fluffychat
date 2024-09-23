@@ -308,6 +308,10 @@ class BotController extends State<AddBridge> {
       Room roomBot, SocialNetwork socialNetwork) async {
     try {
       switch (socialNetwork.name) {
+        case "Instagram":
+        case "Facebook Messenger":
+          await roomBot.sendTextEvent("list-logins");
+          break;
         case "Linkedin":
           await roomBot.sendTextEvent("whoami");
           break;
