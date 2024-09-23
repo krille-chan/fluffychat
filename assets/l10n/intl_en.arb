@@ -2619,15 +2619,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "addStudents": "Add students",
+  "addStudents": "Add users",
   "@addStudents": {
     "type": "text",
     "placeholders": {}
   },
   "copyClassLink": "Copy invite link",
-  "copyClassLinkDesc": "Clicking this link will take students to the app, direct them to make an account and they will automatically join this space.",
+  "copyClassLinkDesc": "Clicking this link will take users to the app, direct them to make an account and they will automatically join this space.",
   "copyClassCode": "Copy invite code",
-  "inviteStudentByUserName": "Invite student by username",
+  "inviteStudentByUserName": "Invite users by username",
   "@inviteStudentByUserName": {
     "type": "text",
     "placeholders": {}
@@ -3196,7 +3196,7 @@
   "inviteAllStudents": "Invite All Students",
   "inviteAllStudentsConfirmation": "Are you sure you want to invite all students?",
   "inviteStudentsFromOtherClasses": "Invite students from other spaces",
-  "inviteUsersFromPangea": "Add teachers",
+  "inviteUsersFromPangea": "Add admins",
   "redeemPromoCode": "Redeem Promo Code",
   "enterPromoCode": "Enter Promo Code",
   "downloadTxtFile": "Download Text File",
@@ -3654,7 +3654,7 @@
   "pay": "Pay",
   "allPrivateChats": "Direct chats",
   "unknownPrivateChat": "Unknown private chat",
-  "copyClassCodeDesc": "Students who are already in the app can 'Join space' via the main menu.",
+  "copyClassCodeDesc": "Users who are already in the app can 'Join space' via the main menu.",
   "addToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
   "@addToSpaceDesc": {
     "placeholders": {
