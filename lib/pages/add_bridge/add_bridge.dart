@@ -245,8 +245,9 @@ class BotController extends State<AddBridge> {
       }
     });
 
-    await Future.wait(
-        socialNetworks.map((network) => pingSocialNetwork(network)));
+    await Future.wait(socialNetworks
+        .where((network) => network.available)
+        .map((network) => pingSocialNetwork(network)));
   }
 
   /// Process the ping response from a social network
@@ -269,12 +270,12 @@ class BotController extends State<AddBridge> {
     }
   }
 
-  void _onNewPingMessage(
+  Future<void> _onNewPingMessage(
     Room roomBot,
     SocialNetwork socialNetwork,
     RegExpPingPatterns patterns,
     Completer<void> completer,
-  ) {
+  ) async {
     if (kDebugMode) {
       print("social network: $socialNetwork");
     }
@@ -300,6 +301,20 @@ class BotController extends State<AddBridge> {
       }
     } else if (shouldReconnect(patterns.mQTTNotMatch, lastEvent)) {
       roomBot.sendTextEvent("reconnect");
+    } else  // For Instagram/Facebook Messenger cases
+    if (socialNetwork.name == "Instagram" || socialNetwork.name == "Facebook Messenger") {
+      if (hasUserInfoPattern(lastEvent)){
+        _updateNetworkStatus(socialNetwork, true, false);
+      }else{
+        Logs().v('Not connected to ${socialNetwork.name}');
+        _updateNetworkStatus(socialNetwork, false, false);
+        if (!completer.isCompleted) {
+          completer.complete();
+        }
+      }
+      if (!completer.isCompleted) {
+        completer.complete();
+      }
     }
   }
 
@@ -308,6 +323,10 @@ class BotController extends State<AddBridge> {
       Room roomBot, SocialNetwork socialNetwork) async {
     try {
       switch (socialNetwork.name) {
+        case "Instagram":
+        case "Facebook Messenger":
+          await roomBot.sendTextEvent("list-logins");
+          break;
         case "Linkedin":
           await roomBot.sendTextEvent("whoami");
           break;
@@ -404,9 +423,6 @@ class BotController extends State<AddBridge> {
   /// Get the event name for logout based on the social network
   String _getEventName(String networkName) {
     switch (networkName) {
-      case 'Instagram':
-      case 'Facebook Messenger':
-        return 'delete-session';
       default:
         return 'logout';
     }
@@ -434,30 +450,44 @@ class BotController extends State<AddBridge> {
     const int maxIterations = 5;
     int currentIteration = 0;
 
+    bool sentLogoutMessage = false;  // To check if we've already sent the logout message (For Meta)
+
     while (currentIteration < maxIterations) {
       try {
         final GetRoomEventsResponse response =
-            await client.getRoomEvents(directChat, Direction.b, limit: 1);
+        await client.getRoomEvents(directChat, Direction.b, limit: 1);
         final List<MatrixEvent> latestMessages = response.chunk ?? [];
 
         if (latestMessages.isNotEmpty) {
           final MatrixEvent latestEvent = latestMessages.first;
-          final String latestMessage =
-              latestEvent.content['body'].toString() ?? '';
+          final String latestMessage = latestEvent.content['body'].toString() ?? '';
           final String sender = latestEvent.senderId;
           final String botUserId = '${network.chatBot}$hostname';
 
           if (sender == botUserId) {
+            // Check for user ID pattern in logout message for Instagram or Facebook Messenger
+            if (!sentLogoutMessage && (network.name == "Instagram" || network.name == "Facebook Messenger")) {
+              final userId = extractUserId(latestMessage);
+              if (userId != null) {
+                final room = client.getRoomById(directChat);
+                room?.sendTextEvent("logout $userId");
+                Logs().v("Sent logout message for user $userId on ${network.name}");
+                sentLogoutMessage = true;  // Set the flag to prevent sending the message again
+                await Future.delayed(const Duration(seconds: 3));
+                continue;  // Skip the rest of the loop to re-check the connection status
+              }
+            }
+
+            print("latestMessage: $latestMessage");
+
+            // Check if still connected
             if (isStillConnected(latestMessage, patterns)) {
               Logs().v("You're still connected to ${network.name}");
               setState(() => network.updateConnectionResult(true));
               return;
-            }
-
-            if (!isStillConnected(latestMessage, patterns)) {
+            } else {
               Logs().v("You're disconnected from ${network.name}");
-              connectionState.updateConnectionTitle(
-                  L10n.of(context)!.loadingDisconnectionSuccess);
+              connectionState.updateConnectionTitle(L10n.of(context)!.loadingDisconnectionSuccess);
               connectionState.updateLoading(false);
               await Future.delayed(const Duration(seconds: 1));
               connectionState.reset();
@@ -626,7 +656,7 @@ class BotController extends State<AddBridge> {
 
     final RegExp successMatch = LoginRegex.facebookSuccessMatch;
     final RegExp alreadyConnected = LoginRegex.facebookAlreadyConnectedMatch;
-    final RegExp pasteCookie = LoginRegex.facebookPasteCookies;
+    final RegExp pasteCookie = LoginRegex.loginUrlMetaMatch;
 
     final String? directChat = await _getOrCreateDirectChat(botUserId);
     if (directChat == null) {
@@ -666,7 +696,7 @@ class BotController extends State<AddBridge> {
     });
 
     try {
-      await roomBot.sendTextEvent("login $formattedCookieString");
+      await roomBot.sendTextEvent("login");
 
       Future.microtask(() {
         connectionState
@@ -690,6 +720,8 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  bool cookiesSent = false;
+
   String? _onNewMessage(
       Room roomBot,
       String botUserId,
@@ -704,8 +736,9 @@ class BotController extends State<AddBridge> {
     final lastMessage = lastEvent?.text;
 
     if (lastEvent != null && lastEvent.senderId == botUserId) {
-      if (pasteCookie.hasMatch(lastMessage!)) {
+      if (pasteCookie.hasMatch(lastMessage!) && !cookiesSent) {
         roomBot.sendTextEvent(formattedCookieString);
+        cookiesSent = true;
       } else if (alreadyConnected.hasMatch(lastMessage)) {
         Logs().v("Already Connected to ${network.name}");
 
@@ -720,7 +753,10 @@ class BotController extends State<AddBridge> {
       } else if (successMatch.hasMatch(lastMessage)) {
         Logs().v("You're logged to ${network.name}");
 
+        cookiesSent = false;
+
         setState(() => network.updateConnectionResult(true));
+
         connectionState.updateConnectionTitle(L10n.of(context)!.connected);
         connectionState.updateLoading(false);
         connectionState.reset();

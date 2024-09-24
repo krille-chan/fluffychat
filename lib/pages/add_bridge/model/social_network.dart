@@ -79,7 +79,7 @@ class SocialNetworkManager {
       mxidPrefix: "@messenger2_",
       urlLogin: "https://www.messenger.com/login/",
       urlRedirect: "https://www.messenger.com/t/",
-      urlRedirectPattern: RegExp(r'^https:\/\/www\.messenger\.com\/.*\/t\/.*$'),
+      urlRedirectPattern: RegExp(r'^https:\/\/www\.messenger\.com\/.*t\/.*$'),
     ),
     SocialNetwork(
       logo: Logo(Logos.instagram),

@@ -27,11 +27,9 @@ class PingPatterns {
 // For login response
 class LoginRegex {
   // Instagram
-  static final RegExp instagramSuccessMatch = RegExp(r".*Successfully logged");
+  static final RegExp instagramSuccessMatch = RegExp(r"Logged in as ([\w\s]+) \((\d+)\)");
   static final RegExp instagramAlreadySuccessMatch =
       RegExp(r"You're already logged in");
-  static final RegExp instagramPasteCookieMatch =
-      RegExp(r'^.*Paste your cookies here.*');
 
   // WhatsApp
   static final RegExp whatsAppSuccessMatch = RegExp(r"Successfully logged");
@@ -43,11 +41,11 @@ class LoginRegex {
       RegExp(r"Login timed out. Please restart the login");
 
   // Facebook
-  static final RegExp facebookSuccessMatch = RegExp(r".*Successfully logged");
+  static final RegExp facebookSuccessMatch = RegExp(r"Logged in as ([\w\s]+) \((\d+)\)");
   static final RegExp facebookAlreadyConnectedMatch =
       RegExp(r"You're already logged in");
-  static final RegExp facebookPasteCookies =
-      RegExp(r'^.*Paste your cookies here.*');
+
+  static final RegExp loginUrlMetaMatch = RegExp(r'^Login URL:');
 
   // Linkedin
   static final RegExp linkedinSuccessMatch = RegExp(r"Successfully logged in");
@@ -61,7 +59,7 @@ class LoginRegex {
 class LogoutRegex {
   // Instagram
   static final RegExp instagramSuccessMatch =
-      RegExp(r"Disconnected and deleted session");
+      RegExp(r"Logged out");
   static final RegExp instagramAlreadyLogoutMatch =
       RegExp(r"You weren't logged in, but deleted session anyway");
 
@@ -73,7 +71,7 @@ class LogoutRegex {
 
   // Facebook Messenger
   static final RegExp facebookSuccessMatch =
-      RegExp(r"Disconnected and deleted session");
+      RegExp(r"Logged out");
   static final RegExp facebookAlreadyLogoutMatch =
       RegExp(r"You weren't logged in, but deleted session anyway");
 

@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io' as io;
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
@@ -46,6 +48,13 @@ String formatCookiesToJsonString(
 bool isOnline(RegExp onlineMatch, String latestMessage) {
   final isMatch = onlineMatch.hasMatch(latestMessage);
   Logs().v('Checking online status: $latestMessage - Match: $isMatch');
+  return isMatch;
+}
+
+bool hasUserInfoPattern(String latestMessage) {
+  final RegExp userInfoPattern = RegExp(r"`(\d+)`\s\(([\w\s]+)\)");
+  final isMatch = userInfoPattern.hasMatch(latestMessage);
+  Logs().v('Checking user info pattern: $latestMessage - Match: $isMatch');
   return isMatch;
 }
 
@@ -131,4 +140,81 @@ Map<String, RegExp> getLogoutNetworkPatterns(SocialNetworkEnum network) {
     default:
       throw ArgumentError('Unsupported network: $network');
   }
+}
+
+Future<void> storeUserInfoMetaInSecureStorage(String message, String networkName) async {
+  final RegExp userInfoRegex = RegExp(r"Logged in as ([\w\s]+) \((\d+)\)");
+  final match = userInfoRegex.firstMatch(message);
+
+  if (match != null) {
+    final userName = match.group(1);
+    final userId = match.group(2);
+    final Map<String, String> newUserInfo = {
+      'userId': userId!,
+      'userName': userName!,
+    };
+
+    final secureStorage = FlutterSecureStorage();
+    final existingUserInfoJson = await secureStorage.read(key: '${networkName}_userInfo');
+
+    if (existingUserInfoJson != null) {
+      final existingUserInfo = jsonDecode(existingUserInfoJson) as Map<String, String>;
+
+      // Compare new data with existing data
+      if (existingUserInfo['userId'] == newUserInfo['userId'] && existingUserInfo['userName'] == newUserInfo['userName']) {
+        if (kDebugMode) {
+          print("User info already exists, skipping save.");
+        }
+        return; // Avoid saving duplicate data
+      }
+    }
+
+    // Serialize the map to JSON string and save
+    final newUserInfoJson = jsonEncode(newUserInfo);
+    await secureStorage.write(key: '${networkName}_userInfo', value: newUserInfoJson);
+
+    if (kDebugMode) {
+      print("Stored $networkName user info: $newUserInfoJson");
+    }
+  } else {
+    if (kDebugMode) {
+      print("No user info found in message.");
+    }
+  }
+}
+
+Future<String?> getStoredUserName(String userId, String networkName) async {
+  final secureStorage = FlutterSecureStorage();
+  final userInfoJson = await secureStorage.read(key: '${networkName}_userInfo_$userId');
+
+  if (userInfoJson != null) {
+    final userInfo = jsonDecode(userInfoJson) as Map<String, dynamic>;
+    return userInfo['userName'] as String?;
+  }
+  return null;
+}
+
+Future<void> storeUserInfo(String userId, String userName, String networkName) async {
+  final Map<String, String> userInfo = {
+    'userId': userId,
+    'userName': userName,
+  };
+
+  final userInfoJson = jsonEncode(userInfo);
+  final secureStorage = FlutterSecureStorage();
+  await secureStorage.write(key: '${networkName}_userInfo_$userId', value: userInfoJson);
+
+  if (kDebugMode) {
+    print("Stored user info for $networkName: $userName ($userId)");
+  }
+}
+
+String? extractUserId(String message) {
+  final RegExp userInfoRegex = RegExp(r"`(\d+)`\s\(([\w\s]+)\)");
+  final match = userInfoRegex.firstMatch(message);
+
+  if (match != null) {
+    return match.group(1); // Return the user ID
+  }
+  return null;
 }
