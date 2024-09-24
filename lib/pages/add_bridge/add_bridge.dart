@@ -245,8 +245,9 @@ class BotController extends State<AddBridge> {
       }
     });
 
-    await Future.wait(
-        socialNetworks.map((network) => pingSocialNetwork(network)));
+    await Future.wait(socialNetworks
+        .where((network) => network.available)
+        .map((network) => pingSocialNetwork(network)));
   }
 
   /// Process the ping response from a social network
