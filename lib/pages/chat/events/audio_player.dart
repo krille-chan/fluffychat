@@ -393,7 +393,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           const SizedBox(width: 5),
           // Pangea#
           SizedBox(
-            width: 36,
+            width: 40, //was 36 before
             child: Text(
               statusText,
               style: TextStyle(
