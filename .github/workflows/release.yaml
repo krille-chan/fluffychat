@@ -295,7 +295,9 @@ jobs:
 
       - name: Get tag
         id: tag
-        run: echo "::set-output name=tag::`git describe --tags`"
+        run: |
+          echo "TAG=$(git describe --tags)" >> $GITHUB_ENV
+        shell: bash
 
       - name: Post-build Windows operations
         run: ./scripts/build-windows.ps1
