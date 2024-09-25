@@ -145,6 +145,7 @@ class ChoreoRecord {
             lemma: name,
             form: name,
             constructType: ConstructTypeEnum.grammar,
+            // @ggurdin what is this used for?
             id: "${metadata.eventId}_${step.acceptedOrIgnoredMatch!.match.offset}_${step.acceptedOrIgnoredMatch!.match.length}",
             metadata: metadata,
           ),

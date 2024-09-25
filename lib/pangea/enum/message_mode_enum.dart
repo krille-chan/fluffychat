@@ -1,15 +1,14 @@
-import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
 enum MessageMode {
-  translation,
-  definition,
-  speechToText,
+  practiceActivity,
   textToSpeech,
-  practiceActivity
+  definition,
+  translation,
+  speechToText,
 }
 
 extension MessageModeExtension on MessageMode {
@@ -80,28 +79,37 @@ extension MessageModeExtension on MessageMode {
     }
   }
 
-  Color? iconColor(
-    PangeaMessageEvent event,
-    MessageMode? currentMode,
+  bool isUnlocked(
+    int index,
+    int numActivitiesCompleted,
+  ) =>
+      numActivitiesCompleted >= index;
+
+  Color iconButtonColor(
     BuildContext context,
+    int index,
+    MessageMode currentMode,
+    int numActivitiesCompleted,
   ) {
-    final bool isPracticeActivity = this == MessageMode.practiceActivity;
-    final bool practicing = currentMode == MessageMode.practiceActivity;
-    final bool practiceEnabled = event.hasUncompletedActivity;
-
-    // if this is the practice activity icon, and there's no practice activities available,
-    // and the current mode is not practice, return lower opacity color.
-    if (isPracticeActivity && !practicing && !practiceEnabled) {
-      return Theme.of(context).iconTheme.color?.withOpacity(0.5);
+    //locked
+    if (!isUnlocked(index, numActivitiesCompleted)) {
+      return barAndLockedButtonColor(context);
     }
 
-    // if this is not a practice activity icon, and practice activities are available,
-    // then return lower opacity color if the current mode is practice.
-    if (!isPracticeActivity && practicing && practiceEnabled) {
-      return Theme.of(context).iconTheme.color?.withOpacity(0.5);
+    //unlocked and active
+    if (this == currentMode) {
+      return Theme.of(context).brightness == Brightness.dark
+          ? Theme.of(context).colorScheme.primary
+          : Theme.of(context).colorScheme.primary;
     }
 
-    // if this is the current mode, return primary color.
-    return currentMode == this ? Theme.of(context).colorScheme.primary : null;
+    //unlocked and inactive
+    return Theme.of(context).colorScheme.primaryContainer;
+  }
+
+  static Color barAndLockedButtonColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? Colors.grey[800]!
+        : Colors.grey[200]!;
   }
 }

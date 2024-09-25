@@ -1,5 +1,9 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:flutter/foundation.dart';
 
 import '../constants/model_keys.dart';
@@ -23,6 +27,43 @@ class PangeaToken {
     required this.pos,
     required this.morph,
   });
+
+  static String reconstructText(
+    List<PangeaToken> tokens, [
+    int startTokenIndex = 0,
+    int endTokenIndex = -1,
+  ]) {
+    if (endTokenIndex == -1) {
+      endTokenIndex = tokens.length - 1;
+    }
+
+    final List<PangeaToken> subset =
+        tokens.whereIndexed((int index, PangeaToken token) {
+      return index >= startTokenIndex && index <= endTokenIndex;
+    }).toList();
+
+    if (subset.isEmpty) {
+      debugger(when: kDebugMode);
+      return '';
+    }
+
+    if (subset.length == 1) {
+      return subset.first.text.content;
+    }
+
+    String reconstruction = subset.first.text.content;
+    for (int i = 1; i < subset.length - 1; i++) {
+      int whitespace = subset[i].text.offset -
+          (subset[i - 1].text.offset + subset[i - 1].text.length);
+      if (whitespace < 0) {
+        debugger(when: kDebugMode);
+        whitespace = 0;
+      }
+      reconstruction += ' ' * whitespace + subset[i].text.content;
+    }
+
+    return reconstruction;
+  }
 
   static Lemma _getLemmas(String text, dynamic json) {
     if (json != null) {
@@ -67,7 +108,45 @@ class PangeaToken {
         'morph': morph,
       };
 
+  /// alias for the offset
+  int get start => text.offset;
+
+  /// alias for the end of the token ie offset + length
   int get end => text.offset + text.length;
+
+  /// create an empty tokenWithXP object
+  TokenWithXP get emptyTokenWithXP {
+    final List<ConstructWithXP> constructs = [];
+
+    constructs.add(
+      ConstructWithXP(
+        id: ConstructIdentifier(
+          lemma: lemma.text,
+          type: ConstructTypeEnum.vocab,
+        ),
+        xp: 0,
+        lastUsed: null,
+      ),
+    );
+
+    for (final morph in morph.entries) {
+      constructs.add(
+        ConstructWithXP(
+          id: ConstructIdentifier(
+            lemma: morph.key,
+            type: ConstructTypeEnum.morph,
+          ),
+          xp: 0,
+          lastUsed: null,
+        ),
+      );
+    }
+
+    return TokenWithXP(
+      token: this,
+      constructs: constructs,
+    );
+  }
 }
 
 class PangeaTokenText {
@@ -96,4 +175,18 @@ class PangeaTokenText {
 
   Map<String, dynamic> toJson() =>
       {_offsetKey: offset, _contentKey: content, _lengthKey: length};
+
+  //override equals and hashcode
+  @override
+  bool operator ==(Object other) {
+    if (other is PangeaTokenText) {
+      return other.offset == offset &&
+          other.content == content &&
+          other.length == length;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => offset.hashCode ^ content.hashCode ^ length.hashCode;
 }

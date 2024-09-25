@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class MultipleChoice {
@@ -12,10 +15,18 @@ class MultipleChoice {
     required this.question,
     required this.choices,
     required this.answer,
-    this.spanDisplayDetails,
+    required this.spanDisplayDetails,
   });
 
-  bool isCorrect(int index) => index == correctAnswerIndex;
+  /// we've had some bugs where the index is not expected
+  /// so we're going to check if the index or the value is correct
+  /// and if not, we'll investigate
+  bool isCorrect(String value, int index) {
+    if (value != choices[index]) {
+      debugger(when: kDebugMode);
+    }
+    return value == answer || index == correctAnswerIndex;
+  }
 
   bool get isValidQuestion => choices.contains(answer);
 
@@ -27,13 +38,15 @@ class MultipleChoice {
       index == correctAnswerIndex ? AppConfig.success : AppConfig.warning;
 
   factory MultipleChoice.fromJson(Map<String, dynamic> json) {
+    final spanDisplay = json['span_display_details'] != null &&
+            json['span_display_details'] is Map
+        ? RelevantSpanDisplayDetails.fromJson(json['span_display_details'])
+        : null;
     return MultipleChoice(
       question: json['question'] as String,
       choices: (json['choices'] as List).map((e) => e as String).toList(),
       answer: json['answer'] ?? json['correct_answer'] as String,
-      spanDisplayDetails: json['span_display_details'] != null
-          ? RelevantSpanDisplayDetails.fromJson(json['span_display_details'])
-          : null,
+      spanDisplayDetails: spanDisplay,
     );
   }
 
@@ -42,7 +55,7 @@ class MultipleChoice {
       'question': question,
       'choices': choices,
       'answer': answer,
-      'span_display_details': spanDisplayDetails,
+      'span_display_details': spanDisplayDetails?.toJson(),
     };
   }
 }

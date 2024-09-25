@@ -76,6 +76,7 @@ class WordDataCardController extends State<WordDataCard> {
 
   @override
   void didUpdateWidget(covariant WordDataCard oldWidget) {
+    // debugger(when: kDebugMode);
     if (oldWidget.word != widget.word) {
       if (!widget.hasInfo) {
         getContextualDefinition();

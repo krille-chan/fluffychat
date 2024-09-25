@@ -1,25 +1,39 @@
-import 'package:fluffychat/config/app_config.dart';
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
+import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_content.dart';
+import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 /// The wrapper for practice activity content.
-/// Handles the activities assosiated with a message,
+/// Handles the activities associated with a message,
 /// their navigation, and the management of completion records
 class PracticeActivityCard extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
+  final MessageOverlayController overlayController;
 
   const PracticeActivityCard({
     super.key,
     required this.pangeaMessageEvent,
+    required this.overlayController,
   });
 
   @override
@@ -29,8 +43,10 @@ class PracticeActivityCard extends StatefulWidget {
 
 class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   PracticeActivityEvent? currentActivity;
-  PracticeActivityRecordModel? currentRecordModel;
-  bool sending = false;
+  PracticeActivityRecordModel? currentCompletionRecord;
+  bool fetchingActivity = false;
+
+  List<TokenWithXP> targetTokens = [];
 
   List<PracticeActivityEvent> get practiceActivities =>
       widget.pangeaMessageEvent.practiceActivities;
@@ -39,148 +55,327 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         (activity) => activity.event.eventId == currentActivity?.event.eventId,
       );
 
-  bool get isPrevEnabled =>
-      practiceEventIndex > 0 &&
-      practiceActivities.length > (practiceEventIndex - 1);
-
-  bool get isNextEnabled =>
-      practiceEventIndex >= 0 &&
-      practiceEventIndex < practiceActivities.length - 1;
+  /// TODO - @ggurdin - how can we start our processes (saving results and getting an activity)
+  /// immediately after a correct choice but wait to display until x milliseconds after the choice is made AND
+  /// we've received the new activity?
+  Duration appropriateTimeForJoy = const Duration(milliseconds: 500);
+  bool savoringTheJoy = false;
+  Timer? joyTimer;
 
   @override
   void initState() {
     super.initState();
-    setCurrentActivity();
+    initialize();
   }
 
-  /// Initalizes the current activity.
-  /// If the current activity hasn't been set yet, show the first
-  /// uncompleted activity if there is one.
-  /// If not, show the first activity
-  void setCurrentActivity() {
-    if (practiceActivities.isEmpty) return;
+  void updateFetchingActivity(bool value) {
+    if (fetchingActivity == value) return;
+    setState(() => fetchingActivity = value);
+  }
+
+  /// Get an activity to display.
+  /// Show an uncompleted activity if there is one.
+  /// If not, get a new activity from the server.
+  Future<void> initialize() async {
+    targetTokens = await getTargetTokens();
+
+    currentActivity = _fetchExistingActivity() ?? await _fetchNewActivity();
+
+    currentActivity == null
+        ? widget.overlayController.exitPracticeFlow()
+        : widget.overlayController
+            .onNewActivity(currentActivity!.practiceActivity);
+  }
+
+  // TODO - do more of a check for whether we have an appropropriate activity
+  // if the user did the activity before but awhile ago and we don't have any
+  // more target tokens, maybe we should give them the same activity again
+  PracticeActivityEvent? _fetchExistingActivity() {
     final List<PracticeActivityEvent> incompleteActivities =
         practiceActivities.where((element) => !element.isComplete).toList();
-    currentActivity ??= incompleteActivities.isNotEmpty
-        ? incompleteActivities.first
-        : practiceActivities.first;
-    setState(() {});
+
+    final PracticeActivityEvent? existingActivity =
+        incompleteActivities.isNotEmpty ? incompleteActivities.first : null;
+
+    return existingActivity != null &&
+            existingActivity.practiceActivity !=
+                currentActivity?.practiceActivity
+        ? existingActivity
+        : null;
   }
 
-  void setCurrentModel(PracticeActivityRecordModel? recordModel) {
-    currentRecordModel = recordModel;
-  }
+  Future<PracticeActivityEvent?> _fetchNewActivity() async {
+    updateFetchingActivity(true);
 
-  /// Sets the current acitivity based on the given [direction].
-  void navigateActivities(Direction direction) {
-    final bool enableNavigation = (direction == Direction.f && isNextEnabled) ||
-        (direction == Direction.b && isPrevEnabled);
-    if (enableNavigation) {
-      currentActivity = practiceActivities[direction == Direction.f
-          ? practiceEventIndex + 1
-          : practiceEventIndex - 1];
-      setState(() {});
+    if (targetTokens.isEmpty ||
+        !pangeaController.languageController.languagesSet) {
+      debugger(when: kDebugMode);
+      return null;
     }
+
+    final ourNewActivity =
+        await pangeaController.practiceGenerationController.getPracticeActivity(
+      MessageActivityRequest(
+        userL1: pangeaController.languageController.userL1!.langCode,
+        userL2: pangeaController.languageController.userL2!.langCode,
+        messageText: representation!.text,
+        tokensWithXP: targetTokens,
+        messageId: widget.pangeaMessageEvent.eventId,
+      ),
+      widget.pangeaMessageEvent,
+    );
+
+    /// Removes the target tokens of the new activity from the target tokens list.
+    /// This avoids getting activities for the same token again, at least
+    /// until the user exists the toolbar and re-enters it. By then, the
+    /// analytics stream will have updated and the user will be able to get
+    /// activity data for previously targeted tokens. This should then exclude
+    /// the tokens that were targeted in previous activities based on xp and lastUsed.
+    if (ourNewActivity?.practiceActivity.relevantSpanDisplayDetails != null) {
+      targetTokens.removeWhere((token) {
+        final RelevantSpanDisplayDetails span =
+            ourNewActivity!.practiceActivity.relevantSpanDisplayDetails!;
+        return token.token.text.offset >= span.offset &&
+            token.token.text.offset + token.token.text.length <=
+                span.offset + span.length;
+      });
+    }
+
+    updateFetchingActivity(false);
+
+    return ourNewActivity;
+  }
+
+  RepresentationEvent? get representation =>
+      widget.pangeaMessageEvent.originalSent;
+
+  String get messsageText => representation!.text;
+
+  PangeaController get pangeaController => MatrixState.pangeaController;
+
+  /// From the tokens in the message, do a preliminary filtering of which to target
+  /// Then get the construct uses for those tokens
+  Future<List<TokenWithXP>> getTargetTokens() async {
+    if (!mounted) {
+      ErrorHandler.logError(
+        m: 'getTargetTokens called when not mounted',
+        s: StackTrace.current,
+      );
+      return [];
+    }
+
+    // we're just going to set this once per session
+    // we remove the target tokens when we get a new activity
+    if (targetTokens.isNotEmpty) return targetTokens;
+
+    if (representation == null) {
+      debugger(when: kDebugMode);
+      return [];
+    }
+    final tokens = await representation?.tokensGlobal(context);
+
+    if (tokens == null || tokens.isEmpty) {
+      debugger(when: kDebugMode);
+      return [];
+    }
+
+    var constructUses =
+        MatrixState.pangeaController.analytics.analyticsStream.value;
+
+    if (constructUses == null || constructUses.isEmpty) {
+      constructUses = [];
+      //@gurdin - this is happening for me with a brand-new user. however, in this case, constructUses should be empty list
+      debugger(when: kDebugMode);
+    }
+
+    final ConstructListModel constructList = ConstructListModel(
+      uses: constructUses,
+      type: null,
+    );
+
+    final List<TokenWithXP> tokenCounts = [];
+
+    // TODO - add morph constructs to this list as well
+    for (int i = 0; i < tokens.length; i++) {
+      //don't bother with tokens that we don't save to vocab
+      if (!tokens[i].lemma.saveVocab) {
+        continue;
+      }
+
+      tokenCounts.add(tokens[i].emptyTokenWithXP);
+
+      for (final construct in tokenCounts.last.constructs) {
+        final constructUseModel = constructList.getConstructUses(
+          construct.id.lemma,
+          construct.id.type,
+        );
+        if (constructUseModel != null) {
+          construct.xp = constructUseModel.points;
+        }
+      }
+    }
+
+    tokenCounts.sort((a, b) => a.xp.compareTo(b.xp));
+
+    return tokenCounts;
+  }
+
+  void setCompletionRecord(PracticeActivityRecordModel? recordModel) {
+    currentCompletionRecord = recordModel;
+  }
+
+  /// future that simply waits for the appropriate time to savor the joy
+  Future<void> savorTheJoy() async {
+    if (savoringTheJoy) return;
+    savoringTheJoy = true;
+    joyTimer = Timer(appropriateTimeForJoy, () {
+      savoringTheJoy = false;
+      joyTimer?.cancel();
+    });
   }
 
   /// Sends the current record model and activity to the server.
   /// If either the currentRecordModel or currentActivity is null, the method returns early.
-  /// Sets the [sending] flag to true before sending the record and activity.
-  /// Logs any errors that occur during the send operation.
-  /// Sets the [sending] flag to false when the send operation is complete.
-  void sendRecord() {
-    if (currentRecordModel == null || currentActivity == null) return;
-    setState(() => sending = true);
-    MatrixState.pangeaController.activityRecordController
-        .send(currentRecordModel!, currentActivity!)
-        .catchError((error) {
+  /// If the currentActivity is the last activity, the method sets the appropriate flag to true.
+  /// If the currentActivity is not the last activity, the method fetches a new activity.
+  void onActivityFinish() async {
+    try {
+      if (currentCompletionRecord == null || currentActivity == null) {
+        debugger(when: kDebugMode);
+        return;
+      }
+
+      joyTimer?.cancel();
+      savoringTheJoy = true;
+      joyTimer = Timer(appropriateTimeForJoy, () {
+        if (!mounted) return;
+        savoringTheJoy = false;
+        joyTimer?.cancel();
+      });
+
+      // if this is the last activity, set the flag to true
+      // so we can give them some kudos
+      if (widget.overlayController.activitiesLeftToComplete == 1) {
+        widget.overlayController.finishedActivitiesThisSession = true;
+      }
+
+      final Event? event = await MatrixState
+          .pangeaController.activityRecordController
+          .send(currentCompletionRecord!, currentActivity!);
+
+      MatrixState.pangeaController.myAnalytics.setState(
+        AnalyticsStream(
+          eventId: widget.pangeaMessageEvent.eventId,
+          eventType: PangeaEventTypes.activityRecord,
+          roomId: event!.room.id,
+          practiceActivity: currentActivity!,
+          recordModel: currentCompletionRecord!,
+        ),
+      );
+
+      if (!widget.overlayController.finishedActivitiesThisSession) {
+        currentActivity = await _fetchNewActivity();
+
+        currentActivity == null
+            ? widget.overlayController.exitPracticeFlow()
+            : widget.overlayController
+                .onNewActivity(currentActivity!.practiceActivity);
+      } else {
+        updateFetchingActivity(false);
+        widget.overlayController.setState(() {});
+      }
+    } catch (e, s) {
+      debugger(when: kDebugMode);
       ErrorHandler.logError(
-        e: error,
-        s: StackTrace.current,
+        e: e,
+        s: s,
+        m: 'Failed to send record for activity',
         data: {
-          'recordModel': currentRecordModel?.toJson(),
-          'practiceEvent': currentActivity?.event.toJson(),
+          'activity': currentActivity,
+          'record': currentCompletionRecord,
         },
       );
-      return null;
-    }).then((event) {
-      // The record event is processed into construct uses for learning analytics, so if the
-      // event went through without error, send it to analytics to be processed
-      if (event != null && currentActivity != null) {
-        MatrixState.pangeaController.myAnalytics.setState(
+      widget.overlayController.exitPracticeFlow();
+    }
+  }
+
+  Widget get activityWidget {
+    if (currentActivity == null) {
+      // return sizedbox with height of 80
+      return const SizedBox(height: 80);
+    }
+    switch (currentActivity!.practiceActivity.activityType) {
+      case ActivityTypeEnum.multipleChoice:
+        return MultipleChoiceActivity(
+          practiceCardController: this,
+          currentActivity: currentActivity,
+        );
+      default:
+        ErrorHandler.logError(
+          e: Exception('Unknown activity type'),
+          m: 'Unknown activity type',
           data: {
-            'eventID': widget.pangeaMessageEvent.eventId,
-            'eventType': PangeaEventTypes.activityRecord,
-            'roomID': event.room.id,
-            'practiceActivity': currentActivity!,
-            'recordModel': currentRecordModel!,
+            'activityType': currentActivity!.practiceActivity.activityType,
           },
         );
-      }
-    }).whenComplete(() => setState(() => sending = false));
+        return Text(
+          L10n.of(context)!.oopsSomethingWentWrong,
+          style: BotStyle.text(context),
+        );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final Widget navigationButtons = Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Opacity(
-          opacity: isPrevEnabled ? 1.0 : 0,
-          child: IconButton(
-            onPressed:
-                isPrevEnabled ? () => navigateActivities(Direction.b) : null,
-            icon: const Icon(Icons.keyboard_arrow_left_outlined),
-            tooltip: L10n.of(context)!.previous,
-          ),
-        ),
-        Expanded(
-          child: Opacity(
-            opacity: currentActivity?.userRecord == null ? 1.0 : 0.5,
-            child: sending
-                ? const CircularProgressIndicator.adaptive()
-                : TextButton(
-                    onPressed:
-                        currentActivity?.userRecord == null ? sendRecord : null,
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all<Color>(
-                        AppConfig.primaryColor,
-                      ),
-                    ),
-                    child: Text(L10n.of(context)!.submit),
-                  ),
-          ),
-        ),
-        Opacity(
-          opacity: isNextEnabled ? 1.0 : 0,
-          child: IconButton(
-            onPressed:
-                isNextEnabled ? () => navigateActivities(Direction.f) : null,
-            icon: const Icon(Icons.keyboard_arrow_right_outlined),
-            tooltip: L10n.of(context)!.next,
-          ),
-        ),
-      ],
-    );
-
-    if (currentActivity == null || practiceActivities.isEmpty) {
-      return Text(
-        L10n.of(context)!.noActivitiesFound,
-        style: BotStyle.text(context),
-      );
-      // return GeneratePracticeActivityButton(
-      //   pangeaMessageEvent: widget.pangeaMessageEvent,
-      //   onActivityGenerated: updatePracticeActivity,
-      // );
+    String? userMessage;
+    if (widget.overlayController.finishedActivitiesThisSession) {
+      userMessage = "Boom! Tools unlocked!";
+    } else if (!fetchingActivity && currentActivity == null) {
+      userMessage = L10n.of(context)!.noActivitiesFound;
     }
-    return Column(
-      children: [
-        PracticeActivity(
-          practiceEvent: currentActivity!,
-          controller: this,
+
+    if (userMessage != null) {
+      return Center(
+        child: Container(
+          constraints: const BoxConstraints(
+            minHeight: 80,
+          ),
+          child: Text(
+            userMessage,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
-        navigationButtons,
+      );
+    }
+
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        // Main content
+        const Positioned(
+          top: 40,
+          child: PointsGainedAnimation(),
+        ),
+        Column(
+          children: [
+            activityWidget,
+            // navigationButtons,
+          ],
+        ),
+        // Conditionally show the darkening and progress indicator based on the loading state
+        if (!savoringTheJoy && fetchingActivity) ...[
+          // Semi-transparent overlay
+          Container(
+            color: Colors.black.withOpacity(0.5), // Darkening effect
+          ),
+          // Circular progress indicator in the center
+          const Center(
+            child: CircularProgressIndicator(),
+          ),
+        ],
       ],
     );
   }

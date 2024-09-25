@@ -198,7 +198,7 @@ class ConstructListViewState extends State<ConstructListView> {
 
     setState(() => fetchingUses = true);
     try {
-      final List<OneConstructUse> uses = constructs?.constructs
+      final List<OneConstructUse> uses = constructs?.constructList
               .firstWhereOrNull(
                 (element) => element.lemma == currentLemma,
               )
@@ -276,7 +276,7 @@ class ConstructListViewState extends State<ConstructListView> {
       );
     }
 
-    if (constructs?.constructs.isEmpty ?? true) {
+    if (constructs?.constructList.isEmpty ?? true) {
       return Expanded(
         child: Center(child: Text(L10n.of(context)!.noDataFound)),
       );
@@ -284,17 +284,17 @@ class ConstructListViewState extends State<ConstructListView> {
 
     return Expanded(
       child: ListView.builder(
-        itemCount: constructs!.constructs.length,
+        itemCount: constructs!.constructList.length,
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(
-              constructs!.constructs[index].lemma,
+              constructs!.constructList[index].lemma,
             ),
             subtitle: Text(
-              '${L10n.of(context)!.total} ${constructs!.constructs[index].uses.length}',
+              '${L10n.of(context)!.total} ${constructs!.constructList[index].uses.length}',
             ),
             onTap: () async {
-              final String lemma = constructs!.constructs[index].lemma;
+              final String lemma = constructs!.constructList[index].lemma;
               setCurrentLemma(lemma);
               fetchUses().then((_) => showConstructMessagesDialog());
             },
@@ -320,7 +320,8 @@ class ConstructMessagesDialog extends StatelessWidget {
 
     final msgEventMatches = controller.getMessageEventMatches();
 
-    final currentConstruct = controller.constructs!.constructs.firstWhereOrNull(
+    final currentConstruct =
+        controller.constructs!.constructList.firstWhereOrNull(
       (construct) => construct.lemma == controller.currentLemma,
     );
     final noData = currentConstruct == null ||

@@ -1,17 +1,16 @@
 import 'dart:convert';
 
+import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../config/environment.dart';
 import '../models/pangea_token_model.dart';
 import '../network/requests.dart';
 import '../network/urls.dart';
 
 class ContextualizationTranslationRepo {
-  //Question for Jordan - is this for an individual token or could it be a span?
   static Future<ContextTranslationResponseModel> translate({
     required String accessToken,
     required ContextualTranslationRequestModel request,

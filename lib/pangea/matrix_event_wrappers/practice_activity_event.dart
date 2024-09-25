@@ -35,8 +35,14 @@ class PracticeActivityEvent {
   }
 
   PracticeActivityModel get practiceActivity {
-    _content ??= event.getPangeaContent<PracticeActivityModel>();
-    return _content!;
+    try {
+      _content ??= event.getPangeaContent<PracticeActivityModel>();
+      return _content!;
+    } catch (e, s) {
+      final contentMap = event.content;
+      debugger(when: kDebugMode);
+      rethrow;
+    }
   }
 
   /// All completion records assosiated with this activity

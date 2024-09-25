@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -8,16 +9,18 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../utils/bot_style.dart';
 import 'it_shimmer.dart';
 
+typedef ChoiceCallback = void Function(String value, int index);
+
 class ChoicesArray extends StatefulWidget {
   final bool isLoading;
   final List<Choice>? choices;
-  final void Function(int) onPressed;
-  final void Function(int)? onLongPress;
+  final ChoiceCallback onPressed;
+  final ChoiceCallback? onLongPress;
   final int? selectedChoiceIndex;
   final String originalSpan;
   final String Function(int) uniqueKeyForLayerLink;
 
-  /// some uses of this widget want to disable the choices
+  /// some uses of this widget want to disable clicking of the choices
   final bool isActive;
 
   const ChoicesArray({
@@ -63,20 +66,22 @@ class ChoicesArrayState extends State<ChoicesArray> {
         ? ItShimmer(originalSpan: widget.originalSpan)
         : Wrap(
             alignment: WrapAlignment.center,
-            children: widget.choices
-                    ?.asMap()
-                    .entries
-                    .map(
-                      (entry) => ChoiceItem(
+            children: widget.choices!
+                    .mapIndexed(
+                      (index, entry) => ChoiceItem(
                         theme: theme,
                         onLongPress:
                             widget.isActive ? widget.onLongPress : null,
-                        onPressed: widget.isActive ? widget.onPressed : (_) {},
-                        entry: entry,
+                        onPressed: widget.isActive
+                            ? widget.onPressed
+                            : (String value, int index) {
+                                debugger(when: kDebugMode);
+                              },
+                        entry: MapEntry(index, entry),
                         interactionDisabled: interactionDisabled,
                         enableInteraction: enableInteractions,
                         disableInteraction: disableInteraction,
-                        isSelected: widget.selectedChoiceIndex == entry.key,
+                        isSelected: widget.selectedChoiceIndex == index,
                       ),
                     )
                     .toList() ??
@@ -112,8 +117,8 @@ class ChoiceItem extends StatelessWidget {
 
   final MapEntry<int, Choice> entry;
   final ThemeData theme;
-  final void Function(int p1)? onLongPress;
-  final void Function(int p1) onPressed;
+  final ChoiceCallback? onLongPress;
+  final ChoiceCallback onPressed;
   final bool isSelected;
   final bool interactionDisabled;
   final VoidCallback enableInteraction;
@@ -136,27 +141,28 @@ class ChoiceItem extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.all(2),
             padding: EdgeInsets.zero,
-            decoration: isSelected
-                ? BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(
-                      color: entry.value.color ?? theme.colorScheme.primary,
-                      style: BorderStyle.solid,
-                      width: 2.0,
-                    ),
-                  )
-                : null,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              border: Border.all(
+                color: isSelected
+                    ? entry.value.color ?? theme.colorScheme.primary
+                    : Colors.transparent,
+                style: BorderStyle.solid,
+                width: 2.0,
+              ),
+            ),
             child: TextButton(
               style: ButtonStyle(
                 padding: WidgetStateProperty.all(
                   const EdgeInsets.symmetric(horizontal: 7),
                 ),
                 //if index is selected, then give the background a slight primary color
-                backgroundColor: WidgetStateProperty.all<Color>(
-                  entry.value.color != null
-                      ? entry.value.color!.withOpacity(0.2)
-                      : theme.colorScheme.primary.withOpacity(0.1),
-                ),
+                backgroundColor: entry.value.color != null
+                    ? WidgetStateProperty.all<Color>(
+                        entry.value.color!.withOpacity(0.2),
+                      )
+                    // : theme.colorScheme.primaryFixed,
+                    : null,
                 textStyle: WidgetStateProperty.all(
                   BotStyle.text(context),
                 ),
@@ -167,10 +173,11 @@ class ChoiceItem extends StatelessWidget {
                 ),
               ),
               onLongPress: onLongPress != null && !interactionDisabled
-                  ? () => onLongPress!(entry.key)
+                  ? () => onLongPress!(entry.value.text, entry.key)
                   : null,
-              onPressed:
-                  interactionDisabled ? null : () => onPressed(entry.key),
+              onPressed: interactionDisabled
+                  ? null
+                  : () => onPressed(entry.value.text, entry.key),
               child: Text(
                 entry.value.text,
                 style: BotStyle.text(context),

@@ -45,7 +45,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       audioFile =
           await widget.messageEvent.getMatrixAudioFile(langCode, context);
       if (mounted) setState(() => _isLoading = false);
-    } catch (e, _) {
+    } catch (e, s) {
       debugPrint(StackTrace.current.toString());
       if (!mounted) return;
       setState(() => _isLoading = false);
@@ -56,7 +56,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       );
       ErrorHandler.logError(
         e: Exception(),
-        s: StackTrace.current,
+        s: s,
         m: 'something wrong getting audio in MessageAudioCardState',
         data: {
           'widget.messageEvent.messageDisplayLangCode':

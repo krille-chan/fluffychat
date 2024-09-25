@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
@@ -8,12 +9,12 @@ import 'package:flutter/material.dart';
 
 /// The multiple choice activity view
 class MultipleChoiceActivity extends StatefulWidget {
-  final MessagePracticeActivityCardState controller;
+  final MessagePracticeActivityCardState practiceCardController;
   final PracticeActivityEvent? currentActivity;
 
   const MultipleChoiceActivity({
     super.key,
-    required this.controller,
+    required this.practiceCardController,
     required this.currentActivity,
   });
 
@@ -25,7 +26,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   int? selectedChoiceIndex;
 
   PracticeActivityRecordModel? get currentRecordModel =>
-      widget.controller.currentRecordModel;
+      widget.practiceCardController.currentCompletionRecord;
 
   bool get isSubmitted =>
       widget.currentActivity?.userRecord?.record.latestResponse != null;
@@ -52,7 +53,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   /// determines the selected choice index.
   void setCompletionRecord() {
     if (widget.currentActivity?.userRecord?.record == null) {
-      widget.controller.setCurrentModel(
+      widget.practiceCardController.setCompletionRecord(
         PracticeActivityRecordModel(
           question:
               widget.currentActivity?.practiceActivity.multipleChoice!.question,
@@ -60,8 +61,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       );
       selectedChoiceIndex = null;
     } else {
-      widget.controller
-          .setCurrentModel(widget.currentActivity!.userRecord!.record);
+      widget.practiceCardController
+          .setCompletionRecord(widget.currentActivity!.userRecord!.record);
       selectedChoiceIndex = widget
           .currentActivity?.practiceActivity.multipleChoice!
           .choiceIndex(currentRecordModel!.latestResponse!.text!);
@@ -69,16 +70,41 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     setState(() {});
   }
 
-  void updateChoice(int index) {
+  void updateChoice(String value, int index) {
+    if (currentRecordModel?.hasTextResponse(value) ?? false) {
+      return;
+    }
+
+    final bool isCorrect = widget
+        .currentActivity!.practiceActivity.multipleChoice!
+        .isCorrect(value, index);
+
+    final ConstructUseTypeEnum useType =
+        isCorrect ? ConstructUseTypeEnum.corPA : ConstructUseTypeEnum.incPA;
+
     currentRecordModel?.addResponse(
-      text: widget.controller.currentActivity!.practiceActivity.multipleChoice!
-          .choices[index],
-      score: widget.controller.currentActivity!.practiceActivity.multipleChoice!
-              .isCorrect(index)
-          ? 1
-          : 0,
+      text: value,
+      score: isCorrect ? 1 : 0,
     );
-    setState(() => selectedChoiceIndex = index);
+
+    // TODO - add draft uses
+    // activities currently pass around tgtConstructs but not the token
+    // either we change addDraftUses to take constructs or we get and pass the token
+    // MatrixState.pangeaController.myAnalytics.addDraftUses(
+    //     widget.currentActivity.practiceActivity.tg,
+    //     widget.practiceCardController.widget.pangeaMessageEvent.room.id,
+    //     useType,
+    //   );
+
+    // If the selected choice is correct, send the record and get the next activity
+    if (widget.currentActivity!.practiceActivity.multipleChoice!
+        .isCorrect(value, index)) {
+      widget.practiceCardController.onActivityFinish();
+    }
+
+    setState(
+      () => selectedChoiceIndex = index,
+    );
   }
 
   @override
@@ -112,10 +138,11 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
                 .mapIndexed(
                   (index, value) => Choice(
                     text: value,
-                    color: selectedChoiceIndex == index
+                    color: currentRecordModel?.hasTextResponse(value) ?? false
                         ? practiceActivity.multipleChoice!.choiceColor(index)
                         : null,
-                    isGold: practiceActivity.multipleChoice!.isCorrect(index),
+                    isGold: practiceActivity.multipleChoice!
+                        .isCorrect(value, index),
                   ),
                 )
                 .toList(),
