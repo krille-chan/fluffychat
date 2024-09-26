@@ -295,7 +295,9 @@ jobs:
 
       - name: Get tag
         id: tag
-        run: echo "::set-output name=tag::`git describe --tags`"
+        run: |
+          echo "TAG=$(git describe --tags)" >> $GITHUB_ENV
+        shell: bash
 
       # Check if Chocolatey is already installed
       - name: Check if Chocolatey is installed
@@ -329,7 +331,7 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: "tawkie-windows.tar.gz"
-          asset_name: "tawkie-windows-${{ steps.tag.outputs.tag }}.tar.gz"
+          asset_name: "tawkie-windows-${{ env.TAG }}.tar.gz"
           asset_content_type: application/gzip
         # Upload the archive on the GitHub release page as an asset
 
