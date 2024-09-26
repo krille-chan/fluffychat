@@ -82,17 +82,19 @@ extension MessageModeExtension on MessageMode {
   bool isUnlocked(
     int index,
     int numActivitiesCompleted,
+    bool totallyDone,
   ) =>
-      numActivitiesCompleted >= index;
+      numActivitiesCompleted >= index || totallyDone;
 
   Color iconButtonColor(
     BuildContext context,
     int index,
     MessageMode currentMode,
     int numActivitiesCompleted,
+    bool totallyDone,
   ) {
     //locked
-    if (!isUnlocked(index, numActivitiesCompleted)) {
+    if (!isUnlocked(index, numActivitiesCompleted, totallyDone)) {
       return barAndLockedButtonColor(context);
     }
 

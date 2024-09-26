@@ -76,7 +76,7 @@ class PracticeGenerationController {
     );
   }
 
-  Future<PracticeActivityModel> _fetch({
+  Future<MessageActivityResponse> _fetch({
     required String accessToken,
     required MessageActivityRequest requestModel,
   }) async {
@@ -92,7 +92,7 @@ class PracticeGenerationController {
     if (res.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(utf8.decode(res.bodyBytes));
 
-      final response = PracticeActivityModel.fromJson(json);
+      final response = MessageActivityResponse.fromJson(json);
 
       return response;
     } else {
@@ -101,6 +101,8 @@ class PracticeGenerationController {
     }
   }
 
+  //TODO - allow return of activity content before sending the event
+  // this requires some downstream changes to the way the event is handled
   Future<PracticeActivityEvent?> getPracticeActivity(
     MessageActivityRequest req,
     PangeaMessageEvent event,
@@ -112,13 +114,17 @@ class PracticeGenerationController {
     } else {
       //TODO - send request to server/bot, either via API or via event of type pangeaActivityReq
       // for now, just make and send the event from the client
-      final PracticeActivityModel activity = await _fetch(
+      final MessageActivityResponse res = await _fetch(
         accessToken: _pangeaController.userController.accessToken,
         requestModel: req,
       );
 
+      if (res.activity == null) {
+        return null;
+      }
+
       final Future<PracticeActivityEvent?> eventFuture =
-          _sendAndPackageEvent(activity, event);
+          _sendAndPackageEvent(res.activity!, event);
 
       _cache[cacheKey] =
           _RequestCacheItem(req: req, practiceActivityEvent: eventFuture);

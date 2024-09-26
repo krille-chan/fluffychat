@@ -52,6 +52,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   PangeaTokenText? _selectedSpan;
 
   /// The number of activities that need to be completed before the toolbar is unlocked
+  /// If we don't have any good activities for them, we'll decrease this number
   int needed = 3;
 
   /// Whether the user has completed the activities needed to unlock the toolbar
@@ -73,6 +74,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   int get activitiesLeftToComplete =>
       needed - widget._pangeaMessageEvent.numberOfActivitiesCompleted;
 
+  bool get isPracticeComplete => activitiesLeftToComplete <= 0;
+
   /// In some cases, we need to exit the practice flow and let the user
   /// interact with the toolbar without completing activities
   void exitPracticeFlow() {
@@ -82,13 +85,13 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   }
 
   Future<void> setInitialToolbarMode() async {
-    if (activitiesLeftToComplete > 0) {
-      toolbarMode = MessageMode.practiceActivity;
+    if (widget._pangeaMessageEvent.isAudioMessage) {
+      toolbarMode = MessageMode.speechToText;
       return;
     }
 
-    if (widget._pangeaMessageEvent.isAudioMessage) {
-      toolbarMode = MessageMode.speechToText;
+    if (activitiesLeftToComplete > 0) {
+      toolbarMode = MessageMode.practiceActivity;
       return;
     }
 
@@ -97,6 +100,9 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       toolbarMode = MessageMode.textToSpeech;
       return;
     }
+
+    toolbarMode = MessageMode.translation;
+
     setState(() {});
   }
 

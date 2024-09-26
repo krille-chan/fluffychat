@@ -148,3 +148,31 @@ class MessageActivityRequest {
     return messageId.hashCode ^ const ListEquality().hash(tokensWithXP);
   }
 }
+
+class MessageActivityResponse {
+  final PracticeActivityModel? activity;
+  final bool finished;
+
+  MessageActivityResponse({
+    required this.activity,
+    required this.finished,
+  });
+
+  factory MessageActivityResponse.fromJson(Map<String, dynamic> json) {
+    return MessageActivityResponse(
+      activity: json['activity'] != null
+          ? PracticeActivityModel.fromJson(
+              json['activity'] as Map<String, dynamic>,
+            )
+          : null,
+      finished: json['finished'] as bool,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'activity': activity?.toJson(),
+      'finished': finished,
+    };
+  }
+}

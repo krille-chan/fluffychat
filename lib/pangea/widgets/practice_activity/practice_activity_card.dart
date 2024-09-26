@@ -110,6 +110,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     if (targetTokens.isEmpty ||
         !pangeaController.languageController.languagesSet) {
       debugger(when: kDebugMode);
+      updateFetchingActivity(false);
       return null;
     }
 
@@ -145,13 +146,6 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
     return ourNewActivity;
   }
-
-  RepresentationEvent? get representation =>
-      widget.pangeaMessageEvent.originalSent;
-
-  String get messsageText => representation!.text;
-
-  PangeaController get pangeaController => MatrixState.pangeaController;
 
   /// From the tokens in the message, do a preliminary filtering of which to target
   /// Then get the construct uses for those tokens
@@ -226,6 +220,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
   /// future that simply waits for the appropriate time to savor the joy
   Future<void> savorTheJoy() async {
+    joyTimer?.cancel();
     if (savoringTheJoy) return;
     savoringTheJoy = true;
     joyTimer = Timer(appropriateTimeForJoy, () {
@@ -245,13 +240,8 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         return;
       }
 
-      joyTimer?.cancel();
-      savoringTheJoy = true;
-      joyTimer = Timer(appropriateTimeForJoy, () {
-        if (!mounted) return;
-        savoringTheJoy = false;
-        joyTimer?.cancel();
-      });
+      // start joy timer
+      savorTheJoy();
 
       // if this is the last activity, set the flag to true
       // so we can give them some kudos
@@ -299,6 +289,17 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     }
   }
 
+  RepresentationEvent? get representation =>
+      widget.pangeaMessageEvent.originalSent;
+
+  String get messsageText => representation!.text;
+
+  PangeaController get pangeaController => MatrixState.pangeaController;
+
+  /// The widget that displays the current activity.
+  /// If there is no current activity, the widget returns a sizedbox with a height of 80.
+  /// If the activity type is multiple choice, the widget returns a MultipleChoiceActivity.
+  /// If the activity type is unknown, the widget logs an error and returns a text widget with an error message.
   Widget get activityWidget {
     if (currentActivity == null) {
       // return sizedbox with height of 80
@@ -325,15 +326,20 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     }
   }
 
+  String? get userMessage {
+    // if the user has finished all the activities to unlock the toolbar in this session
+    if (widget.overlayController.finishedActivitiesThisSession) {
+      return "Boom! Tools unlocked!";
+
+      // if we have no activities to show
+    } else if (!fetchingActivity && currentActivity == null) {
+      return L10n.of(context)!.noActivitiesFound;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
-    String? userMessage;
-    if (widget.overlayController.finishedActivitiesThisSession) {
-      userMessage = "Boom! Tools unlocked!";
-    } else if (!fetchingActivity && currentActivity == null) {
-      userMessage = L10n.of(context)!.noActivitiesFound;
-    }
-
     if (userMessage != null) {
       return Center(
         child: Container(
@@ -341,7 +347,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
             minHeight: 80,
           ),
           child: Text(
-            userMessage,
+            userMessage!,
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -352,11 +358,10 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     }
 
     return Stack(
-      alignment: Alignment.topCenter,
+      alignment: Alignment.center,
       children: [
         // Main content
         const Positioned(
-          top: 40,
           child: PointsGainedAnimation(),
         ),
         Column(

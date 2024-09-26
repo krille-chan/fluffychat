@@ -144,14 +144,29 @@ class IGCTextData {
           pangeaMatch.match.offset + pangeaMatch.match.length,
         ) +
         1;
-    //    replace the tokens in the list
-    tokens.replaceRange(startIndex, endIndex, replacement.tokens);
 
-    //for all tokens after the replacement, update their offsets
+    // for all tokens after the replacement, update their offsets
     for (int i = endIndex; i < tokens.length; i++) {
       final PangeaToken token = tokens[i];
       token.text.offset += replacement.value.length - pangeaMatch.match.length;
     }
+
+    // clone the list for debugging purposes
+    final List<PangeaToken> newTokens = List.from(tokens);
+
+    // replace the tokens in the list
+    newTokens.replaceRange(startIndex, endIndex, replacement.tokens);
+
+    final String newFullText = PangeaToken.reconstructText(newTokens);
+
+    if (newFullText != originalInput) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        m: "reconstructed text does not match original input",
+      );
+    }
+
+    tokens = newTokens;
 
     //update offsets in existing matches to reflect the change
     //Question - remove matches that overlap with the accepted one?

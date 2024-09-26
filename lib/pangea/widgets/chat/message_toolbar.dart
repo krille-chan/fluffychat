@@ -250,7 +250,10 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
       .toList();
 
   static const double iconWidth = 36.0;
-  double get progressWidth => widget.width / modes.length;
+  double get progressWidth => widget.width / overlayController.needed;
+
+  MessageOverlayController get overlayController =>
+      widget.messageToolbarController.widget.overLayController;
 
   // @ggurdin - maybe this can be stateless now?
   @override
@@ -260,6 +263,11 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget
+        .messageToolbarController.widget.pangeaMessageEvent.isAudioMessage) {
+      return const SizedBox();
+    }
+
     return SizedBox(
       width: widget.width,
       child: Stack(
@@ -313,12 +321,15 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
                             widget.messageToolbarController.widget
                                 .overLayController.toolbarMode,
                             pangeaMessageEvent.numberOfActivitiesCompleted,
+                            widget.messageToolbarController.widget
+                                .overLayController.isPracticeComplete,
                           ),
                         ),
                       ),
                       onPressed: mode.isUnlocked(
                         index,
                         pangeaMessageEvent.numberOfActivitiesCompleted,
+                        overlayController.isPracticeComplete,
                       )
                           ? () => widget
                               .messageToolbarController.widget.overLayController
