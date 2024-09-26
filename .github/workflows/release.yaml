@@ -297,6 +297,19 @@ jobs:
         id: tag
         run: echo "::set-output name=tag::`git describe --tags`"
 
+      # Check if Chocolatey is already installed
+      - name: Check if Chocolatey is installed
+        run: |
+          if (!(Test-Path "$Env:ProgramData\chocolatey")) {
+            Write-Host "Chocolatey not found. Installing Chocolatey."
+            Set-ExecutionPolicy Bypass -Scope Process -Force; `
+            [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+            iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+          } else {
+            Write-Host "Chocolatey is already installed."
+          }
+        shell: pwsh
+
       - name: Post-build Windows operations
         run: ./scripts/build-windows.ps1
         shell: pwsh
