@@ -310,6 +310,11 @@ jobs:
           }
         shell: pwsh
 
+      # Install Inno Setup via Chocolatey
+      - name: Install Inno Setup
+        run: choco install innosetup --confirm
+        shell: cmd
+
       - name: Post-build Windows operations
         run: ./scripts/build-windows.ps1
         shell: pwsh
