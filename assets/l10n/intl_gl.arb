@@ -2271,7 +2271,7 @@
   "@noOtherDevicesFound": {},
   "noBackupWarning": "Aviso! Se non activas a copia de apoio da conversa, perderás o acceso ás túas mensaxes cifradas. É moi recomendable activar a copia de apoio da conversa antes de pechar a sesión.",
   "@noBackupWarning": {},
-  "fileIsTooBigForServer": "O servidor informa de que o ficheiro é demasiado grande para envialo.",
+  "fileIsTooBigForServer": "Non se puido enviar! O servidor só permite anexos que non superen {max}.",
   "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "Gardouse o ficheiro en {path}",
   "@fileHasBeenSavedAt": {
@@ -2803,5 +2803,30 @@
   "homeserverDescription": "Todos os teus datos quedan gardados no servidor de inicio, igual que co teu provedor de correo electrónico. Podes elexir o servidor que queres usar e poderás comunicarte con todos os demais. Aprende máis en https://matrix.org.",
   "@homeserverDescription": {},
   "doesNotSeemToBeAValidHomeserver": "Non semella ser un servidor de inicio compatible. É o URL correcto?",
-  "@doesNotSeemToBeAValidHomeserver": {}
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "calculatingFileSize": "Calculando o tamaño do ficheiro…",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Preparando o envío…",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "Enviando o anexo…",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Creando miniatura do vídeo…",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "Comprimindo o vídeo…",
+  "@compressVideo": {},
+  "serverLimitReached": "Acadouse o límite do servidor! Agarda {seconds} segundos…",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "sendingAttachmentCountOfCount": "Enviando o anexo {index} de {length}…",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  }
 }
