@@ -2291,7 +2291,7 @@
   "@noBackupWarning": {},
   "noOtherDevicesFound": "لم يتم العثور على أجهزة أخرى",
   "@noOtherDevicesFound": {},
-  "fileIsTooBigForServer": "أبلغ الخادم أن الملف كبير جدًا بحيث لا يمكن إرساله.",
+  "fileIsTooBigForServer": "تعذر الإرسال! لا يدعم الخادم سوى المرفقات التي تصل إلى {max}.",
   "@fileIsTooBigForServer": {},
   "jumpToLastReadMessage": "الانتقال إلى آخر رسالة مقروءة",
   "@jumpToLastReadMessage": {},
@@ -2803,5 +2803,30 @@
   "homeserverDescription": "يتم تخزين جميع بياناتك على خادم المنزل، تمامًا مثل مزود خدمة البريد الإلكتروني. يمكنك اختيار خادم البيت الذي تريد استخدامه، بينما لا يزال بإمكانك التواصل مع الجميع. اعرف المزيد على https://matrix.org.",
   "@homeserverDescription": {},
   "doesNotSeemToBeAValidHomeserver": "لا يبدو أنه خادم منزلي متوافق. عنوان URL غير صحيح ؟",
-  "@doesNotSeemToBeAValidHomeserver": {}
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "calculatingFileSize": "جارٍ حساب حجم الملف...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "إعداد مرفق الإرسال...",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "جارٍ إرسال المرفق...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "جارٍ إنشاء صورة مصغرة للفيديو...",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "جارٍ ضغط الفيديو...",
+  "@compressVideo": {},
+  "sendingAttachmentCountOfCount": "جارٍ إرسال المرفق {index} من {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "تم الوصول إلى حد الخادم! انتظر {seconds} ثانية...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  }
 }
