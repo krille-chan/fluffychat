@@ -58,6 +58,20 @@ class TokensRequestModel {
         ModelKey.userL1: userL1,
         ModelKey.userL2: userL2,
       };
+
+  // override equals and hashcode
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is TokensRequestModel &&
+        other.fullText == fullText &&
+        other.userL1 == userL1 &&
+        other.userL2 == userL2;
+  }
+
+  @override
+  int get hashCode => fullText.hashCode ^ userL1.hashCode ^ userL2.hashCode;
 }
 
 class TokensResponseModel {

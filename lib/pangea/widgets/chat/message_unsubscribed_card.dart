@@ -28,7 +28,7 @@ class MessageUnsubscribedCard extends StatelessWidget {
       if (inTrialWindow) {
         MatrixState.pangeaController.subscriptionController
             .activateNewUserTrial();
-        controller.updateMode(mode);
+        controller.widget.overLayController.updateToolbarMode(mode);
       } else {
         MatrixState.pangeaController.subscriptionController
             .showPaywall(context);

@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
+import 'package:fluffychat/pangea/widgets/chat/overlay_message_text.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -35,7 +37,7 @@ class MessageContent extends StatelessWidget {
   //here rather than passing the choreographer? pangea rich text, a widget
   //further down in the chain is also using pangeaController so its not constant
   final bool immersionMode;
-  final bool isOverlay;
+  final MessageOverlayController? overlayController;
   final ChatController controller;
   final Event? nextEvent;
   final Event? prevEvent;
@@ -49,7 +51,7 @@ class MessageContent extends StatelessWidget {
     // #Pangea
     this.pangeaMessageEvent,
     required this.immersionMode,
-    this.isOverlay = false,
+    this.overlayController,
     required this.controller,
     this.nextEvent,
     this.prevEvent,
@@ -121,6 +123,7 @@ class MessageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // debugger(when: overlayController != null);
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
     final buttonTextColor = textColor;
     switch (event.type) {
@@ -208,7 +211,7 @@ class MessageContent extends StatelessWidget {
                 textColor: textColor,
                 room: event.room,
                 // #Pangea
-                isOverlay: isOverlay,
+                isOverlay: overlayController != null,
                 controller: controller,
                 pangeaMessageEvent: pangeaMessageEvent,
                 nextEvent: nextEvent,
@@ -303,23 +306,23 @@ class MessageContent extends StatelessWidget {
               decoration: event.redacted ? TextDecoration.lineThrough : null,
               height: 1.3,
             );
+
+            // debugger(when: overlayController != null);
+            if (overlayController != null && pangeaMessageEvent != null) {
+              return OverlayMessageText(
+                pangeaMessageEvent: pangeaMessageEvent!,
+                overlayController: overlayController!,
+              );
+            }
+
             if (immersionMode && pangeaMessageEvent != null) {
               return Flexible(
                 child: PangeaRichText(
                   style: messageTextStyle,
                   pangeaMessageEvent: pangeaMessageEvent!,
                   immersionMode: immersionMode,
-                  isOverlay: isOverlay,
+                  isOverlay: overlayController != null,
                   controller: controller,
-                ),
-              );
-            }
-
-            if (isOverlay) {
-              controller.textSelection.setMessageText(
-                event.calcLocalizedBodyFallback(
-                  MatrixLocals(L10n.of(context)!),
-                  hideReply: true,
                 ),
               );
             }
@@ -330,7 +333,7 @@ class MessageContent extends StatelessWidget {
                 ToolbarSelectionArea(
               controller: controller,
               pangeaMessageEvent: pangeaMessageEvent,
-              isOverlay: isOverlay,
+              isOverlay: overlayController != null,
               nextEvent: nextEvent,
               prevEvent: prevEvent,
               child:

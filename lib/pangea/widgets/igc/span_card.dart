@@ -120,7 +120,7 @@ class SpanCardState extends State<SpanCard> {
     }
   }
 
-  Future<void> onChoiceSelect(int index) async {
+  Future<void> onChoiceSelect(String value, int index) async {
     selectedChoiceIndex = index;
     if (selectedChoice != null) {
       if (!selectedChoice!.selected) {

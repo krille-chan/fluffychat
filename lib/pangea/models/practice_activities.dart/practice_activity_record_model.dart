@@ -63,6 +63,10 @@ class PracticeActivityRecordModel {
           : ConstructUseTypeEnum.incPA)
       : ConstructUseTypeEnum.unk;
 
+  bool hasTextResponse(String text) {
+    return responses.any((element) => element.text == text);
+  }
+
   void addResponse({
     String? text,
     Uint8List? audioBytes,
@@ -80,7 +84,7 @@ class PracticeActivityRecordModel {
         ),
       );
     } catch (e) {
-      debugger();
+      debugger(when: kDebugMode);
     }
   }
 

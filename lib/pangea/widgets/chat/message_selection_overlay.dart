@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -5,43 +7,58 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_header.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 class MessageSelectionOverlay extends StatefulWidget {
-  final ChatController controller;
-  final Event event;
-  final Event? nextEvent;
-  final Event? prevEvent;
-  final PangeaMessageEvent pangeaMessageEvent;
-  final MessageMode? initialMode;
-  final MessageTextSelection textSelection;
+  final ChatController chatController;
+  late final Event _event;
+  late final Event? _nextEvent;
+  late final Event? _prevEvent;
+  late final PangeaMessageEvent _pangeaMessageEvent;
 
-  const MessageSelectionOverlay({
-    required this.controller,
-    required this.event,
-    required this.pangeaMessageEvent,
-    required this.textSelection,
-    this.initialMode,
-    this.nextEvent,
-    this.prevEvent,
+  MessageSelectionOverlay({
+    required this.chatController,
+    required Event event,
+    required PangeaMessageEvent pangeaMessageEvent,
+    required Event? nextEvent,
+    required Event? prevEvent,
     super.key,
-  });
+  }) {
+    _pangeaMessageEvent = pangeaMessageEvent;
+    _nextEvent = nextEvent;
+    _prevEvent = prevEvent;
+    _event = event;
+  }
 
   @override
-  MessageSelectionOverlayState createState() => MessageSelectionOverlayState();
+  MessageOverlayController createState() => MessageOverlayController();
 }
 
-class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
+class MessageOverlayController extends State<MessageSelectionOverlay>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   Animation<double>? _overlayPositionAnimation;
+
+  MessageMode toolbarMode = MessageMode.translation;
+  PangeaTokenText? _selectedSpan;
+
+  /// The number of activities that need to be completed before the toolbar is unlocked
+  /// If we don't have any good activities for them, we'll decrease this number
+  int needed = 3;
+
+  /// Whether the user has completed the activities needed to unlock the toolbar
+  /// within this overlay 'session'. if they click out and come back in then
+  /// we can give them some more activities to complete
+  bool finishedActivitiesThisSession = false;
 
   @override
   void initState() {
@@ -50,7 +67,118 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
       vsync: this,
       duration: FluffyThemes.animationDuration,
     );
+
+    setInitialToolbarMode();
   }
+
+  int get activitiesLeftToComplete =>
+      needed - widget._pangeaMessageEvent.numberOfActivitiesCompleted;
+
+  bool get isPracticeComplete => activitiesLeftToComplete <= 0;
+
+  /// In some cases, we need to exit the practice flow and let the user
+  /// interact with the toolbar without completing activities
+  void exitPracticeFlow() {
+    needed = 0;
+    setInitialToolbarMode();
+    setState(() {});
+  }
+
+  Future<void> setInitialToolbarMode() async {
+    if (widget._pangeaMessageEvent.isAudioMessage) {
+      toolbarMode = MessageMode.speechToText;
+      return;
+    }
+
+    if (activitiesLeftToComplete > 0) {
+      toolbarMode = MessageMode.practiceActivity;
+      return;
+    }
+
+    if (MatrixState.pangeaController.userController.profile.userSettings
+        .autoPlayMessages) {
+      toolbarMode = MessageMode.textToSpeech;
+      return;
+    }
+
+    toolbarMode = MessageMode.translation;
+
+    setState(() {});
+  }
+
+  updateToolbarMode(MessageMode mode) {
+    setState(() {
+      toolbarMode = mode;
+    });
+  }
+
+  /// The text that the toolbar should target
+  /// If there is no selectedSpan, then the whole message is the target
+  /// If there is a selectedSpan, then the target is the selected text
+  String get targetText {
+    if (_selectedSpan == null) {
+      return widget._pangeaMessageEvent.messageDisplayText;
+    }
+
+    return widget._pangeaMessageEvent.messageDisplayText.substring(
+      _selectedSpan!.offset,
+      _selectedSpan!.offset + _selectedSpan!.length,
+    );
+  }
+
+  void onClickOverlayMessageToken(
+    PangeaToken token,
+  ) {
+    // if there's no selected span, then select the token
+    if (_selectedSpan == null) {
+      _selectedSpan = token.text;
+    } else {
+      // if there is a selected span, then deselect the token if it's the same
+      if (isTokenSelected(token)) {
+        _selectedSpan = null;
+      } else {
+        // if there is a selected span but it is not the same, then select the token
+        _selectedSpan = token.text;
+      }
+    }
+
+    setState(() {});
+  }
+
+  void clearSelection() {
+    _selectedSpan = null;
+    setState(() {});
+  }
+
+  void onNewActivity(PracticeActivityModel activity) {
+    final RelevantSpanDisplayDetails? span =
+        activity.multipleChoice?.spanDisplayDetails;
+
+    if (span == null) {
+      debugger(when: kDebugMode);
+      return;
+    }
+
+    _selectedSpan = PangeaTokenText(
+      offset: span.offset,
+      length: span.length,
+      content: widget._pangeaMessageEvent.messageDisplayText
+          .substring(span.offset, span.offset + span.length),
+    );
+
+    setState(() {});
+  }
+
+  /// Whether the given token is currently selected
+  bool isTokenSelected(PangeaToken token) {
+    return _selectedSpan?.offset == token.text.offset &&
+        _selectedSpan?.length == token.text.length;
+  }
+
+  /// Whether the overlay is currently displaying a selection
+  bool get isSelection => _selectedSpan != null;
+
+  PangeaTokenText? get selectedSpan => _selectedSpan;
 
   @override
   void didChangeDependencies() {
@@ -108,8 +236,8 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
       ),
     );
 
-    widget.controller.scrollController.animateTo(
-      widget.controller.scrollController.offset - scrollOffset,
+    widget.chatController.scrollController.animateTo(
+      widget.chatController.scrollController.offset - scrollOffset,
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
     );
@@ -123,7 +251,7 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
   }
 
   RenderBox? get messageRenderBox => MatrixState.pAnyState.getRenderBox(
-        widget.event.eventId,
+        widget._event.eventId,
       );
 
   Size? get messageSize => messageRenderBox?.size;
@@ -146,7 +274,7 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
                 .getBool(SettingKeys.displayChatDetailsColumn) ??
             false) &&
         FluffyThemes.isThreeColumnMode(context) &&
-        widget.controller.room.membership == Membership.join;
+        widget.chatController.room.membership == Membership.join;
 
     final overlayMessage = ConstrainedBox(
       constraints: const BoxConstraints(
@@ -158,40 +286,38 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              mainAxisAlignment: widget.pangeaMessageEvent.ownMessage
+              mainAxisAlignment: widget._pangeaMessageEvent.ownMessage
                   ? MainAxisAlignment.end
                   : MainAxisAlignment.start,
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                    left: widget.pangeaMessageEvent.ownMessage
+                    left: widget._pangeaMessageEvent.ownMessage
                         ? 0
                         : Avatar.defaultSize + 16,
-                    right: widget.pangeaMessageEvent.ownMessage ? 8 : 0,
+                    right: widget._pangeaMessageEvent.ownMessage ? 8 : 0,
                   ),
                   child: MessageToolbar(
-                    pangeaMessageEvent: widget.pangeaMessageEvent,
-                    controller: widget.controller,
-                    textSelection: widget.textSelection,
-                    initialMode: widget.initialMode,
+                    pangeaMessageEvent: widget._pangeaMessageEvent,
+                    overLayController: this,
                   ),
                 ),
               ],
             ),
             Message(
-              widget.event,
+              widget._event,
               onSwipe: () => {},
               onInfoTab: (_) => {},
               onAvatarTab: (_) => {},
               scrollToEventId: (_) => {},
               onSelect: (_) => {},
-              immersionMode: widget.controller.choreographer.immersionMode,
-              controller: widget.controller,
-              timeline: widget.controller.timeline!,
-              isOverlay: true,
+              immersionMode: widget.chatController.choreographer.immersionMode,
+              controller: widget.chatController,
+              timeline: widget.chatController.timeline!,
+              overlayController: this,
               animateIn: false,
-              nextEvent: widget.nextEvent,
-              previousEvent: widget.prevEvent,
+              nextEvent: widget._nextEvent,
+              previousEvent: widget._prevEvent,
             ),
           ],
         ),
@@ -240,7 +366,7 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      OverlayFooter(controller: widget.controller),
+                      OverlayFooter(controller: widget.chatController),
                     ],
                   ),
                 ),
@@ -252,7 +378,7 @@ class MessageSelectionOverlayState extends State<MessageSelectionOverlay>
             ),
           ),
           Material(
-            child: OverlayHeader(controller: widget.controller),
+            child: OverlayHeader(controller: widget.chatController),
           ),
         ],
       ),

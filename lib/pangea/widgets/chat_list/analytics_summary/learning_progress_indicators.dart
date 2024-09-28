@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/analytics_
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/progress_indicator.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -142,7 +143,9 @@ class LearningProgressIndicatorsState
     final progressBar = ProgressBar(
       levelBars: [
         LevelBarDetails(
-          fillColor: const Color.fromARGB(255, 0, 190, 83),
+          fillColor: kDebugMode
+              ? const Color.fromARGB(255, 0, 190, 83)
+              : Theme.of(context).colorScheme.primary,
           currentPoints: currentXP,
         ),
         LevelBarDetails(

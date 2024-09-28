@@ -393,8 +393,8 @@ class ITChoices extends StatelessWidget {
             return Choice(text: "error", color: Colors.red);
           }
         }).toList(),
-        onPressed: (int index) => selectContinuance(index, context),
-        onLongPress: (int index) => showCard(context, index),
+        onPressed: (value, index) => selectContinuance(index, context),
+        onLongPress: (value, index) => showCard(context, index),
         uniqueKeyForLayerLink: (int index) => "itChoices$index",
         selectedChoiceIndex: null,
       );

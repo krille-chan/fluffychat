@@ -106,7 +106,7 @@ class SubscriptionController extends BaseController {
           }
         }
       }
-      setState();
+      setState(null);
     } catch (e, s) {
       debugPrint("Failed to initialize subscription controller");
       ErrorHandler.logError(e: e, s: s);
@@ -140,7 +140,7 @@ class SubscriptionController extends BaseController {
           PLocalKey.beganWebPayment,
           true,
         );
-        setState();
+        setState(null);
         launchUrlString(
           paymentLink,
           webOnlyWindowName: "_self",
@@ -224,7 +224,7 @@ class SubscriptionController extends BaseController {
       return;
     }
     await subscription!.setCustomerInfo();
-    setState();
+    setState(null);
   }
 
   CanSendStatus get canSendStatus => isSubscribed

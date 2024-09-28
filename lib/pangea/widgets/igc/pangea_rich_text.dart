@@ -67,9 +67,6 @@ class PangeaRichTextState extends State<PangeaRichText> {
       if (!mounted) return; // Early exit if the widget is no longer in the tree
       setState(() {
         textSpan = newTextSpan;
-        if (widget.isOverlay) {
-          widget.controller.textSelection.setMessageText(textSpan);
-        }
       });
     } catch (error, stackTrace) {
       ErrorHandler.logError(

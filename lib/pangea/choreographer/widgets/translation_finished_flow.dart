@@ -75,7 +75,7 @@ class AlternativeTranslations extends StatelessWidget {
         Choice(text: controller.choreographer.altTranslator.translations.first),
       ],
       // choices: controller.choreographer.altTranslator.translations,
-      onPressed: (int index) {
+      onPressed: (String value, int index) {
         controller.choreographer.onSelectAlternativeTranslation(
           controller.choreographer.altTranslator.translations[index],
         );

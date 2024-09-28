@@ -33,45 +33,6 @@ class AlternativeTranslator {
     similarityResponse = null;
   }
 
-  // void onSeeAlternativeTranslationsTap() {
-  //   if (choreographer.itController.sourceText == null) {
-  //     ErrorHandler.logError(
-  //       m: "sourceText null in onSeeAlternativeTranslationsTap",
-  //       s: StackTrace.current,
-  //     );
-  //     choreographer.itController.closeIT();
-  //     return;
-  //   }
-  //   showAlternativeTranslations = true;
-  //   loadingAlternativeTranslations = true;
-  //   translate(choreographer.itController.sourceText!);
-  //   choreographer.setState();
-  // }
-
-  // Future<void> translate(String text) async {
-  //   throw Exception('disabled translaations');
-  //   try {
-  //     final FullTextTranslationResponseModel results =
-  //         await FullTextTranslationRepo.translate(
-  //       accessToken: await choreographer.accessToken,
-  //       request: FullTextTranslationRequestModel(
-  //         text: text,
-  //         tgtLang: choreographer.l2LangCode!,
-  //         userL2: choreographer.l2LangCode!,
-  //         userL1: choreographer.l1LangCode!,
-  //       ),
-  //     );
-  //     // translations = results.translations;
-  //   } catch (err, stack) {
-  //     showAlternativeTranslations = false;
-  //     debugger(when: kDebugMode);
-  //     ErrorHandler.logError(e: err, s: stack);
-  //   } finally {
-  //     loadingAlternativeTranslations = false;
-  //     choreographer.setState();
-  //   }
-  // }
-
   Future<void> setTranslationFeedback() async {
     try {
       choreographer.startLoading();
@@ -155,20 +116,20 @@ class AlternativeTranslator {
     }
     switch (translationFeedbackKey) {
       case FeedbackKey.allCorrect:
-        return "Score: 100%\n${L10n.of(context)!.allCorrect}";
+        return "Match: 100%\n${L10n.of(context)!.allCorrect}";
       case FeedbackKey.newWayAllGood:
-        return "Score: 100%\n${L10n.of(context)!.newWayAllGood}";
+        return "Match: 100%\n${L10n.of(context)!.newWayAllGood}";
       case FeedbackKey.othersAreBetter:
         final num userScore =
             (similarityResponse!.userScore(userTranslation!) * 100).round();
         final String displayScore = userScore.toString();
         if (userScore > 90) {
-          return "Score: $displayScore%\n${L10n.of(context)!.almostPerfect}";
+          return "Match: $displayScore%\n${L10n.of(context)!.almostPerfect}";
         }
         if (userScore > 80) {
-          return "Score: $displayScore%\n${L10n.of(context)!.prettyGood}";
+          return "Match: $displayScore%\n${L10n.of(context)!.prettyGood}";
         }
-        return "Score: $displayScore%\n${L10n.of(context)!.othersAreBetter}";
+        return "Match: $displayScore%\n${L10n.of(context)!.othersAreBetter}";
       // case FeedbackKey.commonalityFeedback:
       //     final int count = controller.completedITSteps
       //   .where((element) => element.isCorrect)

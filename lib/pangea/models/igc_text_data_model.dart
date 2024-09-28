@@ -5,6 +5,7 @@ import 'package:fluffychat/pangea/controllers/language_detection_controller.dart
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/span_card_model.dart';
+import 'package:fluffychat/pangea/models/span_data.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -126,13 +127,46 @@ class IGCTextData {
       return;
     }
 
-    final String replacement = pangeaMatch.match.choices![choiceIndex].value;
+    final SpanChoice replacement = pangeaMatch.match.choices![choiceIndex];
 
     originalInput = originalInput.replaceRange(
       pangeaMatch.match.offset,
       pangeaMatch.match.offset + pangeaMatch.match.length,
-      replacement,
+      replacement.value,
     );
+
+    // replace the tokens that are part of the match
+    // with the tokens in the replacement
+    //    start is inclusive
+    final startIndex = tokenIndexByOffset(pangeaMatch.match.offset);
+    //    end is exclusive, hence the +1
+    final endIndex = tokenIndexByOffset(
+          pangeaMatch.match.offset + pangeaMatch.match.length,
+        ) +
+        1;
+
+    // for all tokens after the replacement, update their offsets
+    for (int i = endIndex; i < tokens.length; i++) {
+      final PangeaToken token = tokens[i];
+      token.text.offset += replacement.value.length - pangeaMatch.match.length;
+    }
+
+    // clone the list for debugging purposes
+    final List<PangeaToken> newTokens = List.from(tokens);
+
+    // replace the tokens in the list
+    newTokens.replaceRange(startIndex, endIndex, replacement.tokens);
+
+    final String newFullText = PangeaToken.reconstructText(newTokens);
+
+    if (newFullText != originalInput) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        m: "reconstructed text does not match original input",
+      );
+    }
+
+    tokens = newTokens;
 
     //update offsets in existing matches to reflect the change
     //Question - remove matches that overlap with the accepted one?
@@ -142,18 +176,10 @@ class IGCTextData {
     for (final match in matches) {
       match.match.fullText = originalInput;
       if (match.match.offset > pangeaMatch.match.offset) {
-        match.match.offset += replacement.length - pangeaMatch.match.length;
+        match.match.offset +=
+            replacement.value.length - pangeaMatch.match.length;
       }
     }
-    //quiero ver un fix
-    //match offset zero and length of full text or 16
-    //fix is repplaced by arreglo and now the length needs to be 20
-    //if the accepted span is within another span, then the length of that span needs
-    //needs to be increased by the difference between the new and old length
-    //if the two spans are overlapping, what happens?
-    //------
-    //   ----- -> ---
-    //if there is any overlap, maybe igc needs to run again?
   }
 
   void removeMatchByOffset(int offset) {
@@ -163,9 +189,8 @@ class IGCTextData {
     }
   }
 
-  int tokenIndexByOffset(cursorOffset) => tokens.indexWhere(
-        (token) =>
-            token.text.offset <= cursorOffset && cursorOffset <= token.end,
+  int tokenIndexByOffset(int cursorOffset) => tokens.indexWhere(
+        (token) => token.start <= cursorOffset && cursorOffset <= token.end,
       );
 
   List<int> matchIndicesByOffset(int offset) {

@@ -28,7 +28,7 @@ class ClassController extends BaseController {
   }
 
   setActiveSpaceIdInChatListController(String? classId) {
-    setState(data: {"activeSpaceId": classId});
+    setState({"activeSpaceId": classId});
   }
 
   /// For all the spaces that the user is teaching, set the power levels

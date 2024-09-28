@@ -1,11 +1,11 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
-
-import '../constants/pangea_event_types.dart';
 
 class BotOptionsModel {
   int? languageLevel;
@@ -30,7 +30,7 @@ class BotOptionsModel {
     this.topic = "General Conversation",
     this.keywords = const [],
     this.safetyModeration = true,
-    this.mode = "discussion",
+    this.mode = BotMode.discussion,
 
     ////////////////////////////////////////////////////////////////////////////
     // Discussion Mode Options
@@ -62,7 +62,7 @@ class BotOptionsModel {
           ? json[ModelKey.languageLevel]
           : null,
       safetyModeration: json[ModelKey.safetyModeration] ?? true,
-      mode: json[ModelKey.mode] ?? "discussion",
+      mode: json[ModelKey.mode] ?? BotMode.discussion,
 
       //////////////////////////////////////////////////////////////////////////
       // Discussion Mode Options

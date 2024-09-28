@@ -54,6 +54,9 @@ class PApiUrls {
   static String textToSpeech = "${Environment.choreoApi}/text_to_speech";
   static String speechToText = "${Environment.choreoApi}/speech_to_text";
 
+  static String messageActivityGeneration =
+      "${Environment.choreoApi}/practice/message";
+
   ///-------------------------------- revenue cat --------------------------
   static String rcApiV1 = "https://api.revenuecat.com/v1";
   static String rcApiV2 =

@@ -17,7 +17,6 @@ import '../constants/pangea_event_types.dart';
 import '../models/choreo_record.dart';
 import '../models/representation_content_model.dart';
 import '../utils/error_handler.dart';
-import 'pangea_tokens_event.dart';
 
 class RepresentationEvent {
   Event? _event;
@@ -25,9 +24,11 @@ class RepresentationEvent {
   PangeaMessageTokens? _tokens;
   ChoreoRecord? _choreo;
   Timeline timeline;
+  Event parentMessageEvent;
 
   RepresentationEvent({
     required this.timeline,
+    required this.parentMessageEvent,
     Event? event,
     PangeaRepresentation? content,
     PangeaMessageTokens? tokens,
@@ -102,23 +103,23 @@ class RepresentationEvent {
     return _tokens?.tokens;
   }
 
-  Future<List<PangeaToken>?> tokensGlobal(BuildContext context) async {
+  Future<List<PangeaToken>> tokensGlobal(BuildContext context) async {
     if (tokens != null) return tokens!;
 
     if (_event == null) {
-      // debugger(when: kDebugMode);
-      // ErrorHandler.logError(
-      //   m: '_event and _tokens both null',
-      //   s: StackTrace.current,
-      // );
-      return null;
+      ErrorHandler.logError(
+        m: 'representation with no _event and no tokens got tokens directly. This means an original_sent with no tokens. This should not happen in messages sent after September 25',
+        s: StackTrace.current,
+        data: {
+          'content': content.toJson(),
+          'event': _event?.toJson(),
+        },
+      );
     }
-
-    final Event? tokensEvent =
-        await MatrixState.pangeaController.messageData.getTokenEvent(
-      context: context,
-      repEventId: _event!.eventId,
-      room: _event!.room,
+    final List<PangeaToken> res =
+        await MatrixState.pangeaController.messageData.getTokens(
+      repEventId: _event?.eventId,
+      room: _event?.room ?? parentMessageEvent.room,
       // Jordan - for just tokens, it's not clear which languages to pass
       req: TokensRequestModel(
         fullText: text,
@@ -129,11 +130,7 @@ class RepresentationEvent {
       ),
     );
 
-    if (tokensEvent == null) return null;
-
-    _tokens = TokensEvent(event: tokensEvent).tokens;
-
-    return _tokens?.tokens;
+    return res;
   }
 
   ChoreoRecord? get choreo {
