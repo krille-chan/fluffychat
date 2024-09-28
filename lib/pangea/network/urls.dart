@@ -15,10 +15,12 @@ class PApiUrls {
   static String getLanguages = "${Environment.choreoApi}/choreo/languages";
 
   ///   ---------------------- Users --------------------------------------
-  static String createUser = "/account/create";
-  static String userDetails = "/account/get_user_access_token?pangea_user_id=";
-  static String updateUserProfile = "/account/update";
   static String paymentLink = "/account/payment_link";
+  static String userDetails = "/account/get_user_access_token?pangea_user_id=";
+  
+  // USED ??
+  static String createUser = "/account/create";
+  static String updateUserProfile = "/account/update";
   static String subscriptionExpiration = "/account/premium_expires_date";
 
   ///   ---------------------- Conversation Partner -------------------------
