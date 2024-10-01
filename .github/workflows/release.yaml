@@ -271,6 +271,12 @@ jobs:
         run: cat .github/workflows/versions.env >> $GITHUB_ENV
         # Load environment variables from versions.env file
 
+      - name: Get tag
+        id: tag
+        run: |
+          echo "TAG=$(git describe --tags)" >> $GITHUB_ENV
+        shell: bash
+
       - name: Prepare Windows environment
         run: ./scripts/prepare-windows.ps1
         shell: pwsh
@@ -293,11 +299,6 @@ jobs:
       - name: Build Windows Release
         run: flutter build windows --release
 
-      - name: Get tag
-        id: tag
-        run: |
-          echo "TAG=$(git describe --tags)" >> $GITHUB_ENV
-        shell: bash
       # Install Inno Setup via Chocolatey
       - name: Install Inno Setup
         run: choco install innosetup --confirm
