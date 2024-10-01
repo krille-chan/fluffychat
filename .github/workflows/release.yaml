@@ -313,15 +313,15 @@ jobs:
         run: tar -czf "tawkie-windows-${{ env.TAG }}.tar.gz" -C Output TawkieInstaller.exe
 
       # Upload archive to GitHub release page
-      - name: Upload Windows Release to GitHub
+      - name: Upload Windows Installer to GitHub
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: "tawkie-windows-${{ env.TAG }}.tar.gz"
-          asset_name: "tawkie-windows-${{ env.TAG }}.tar.gz"
-          asset_content_type: application/gzip
+          asset_path: "build/windows/x64/runner/Release/TawkieInstaller.exe"
+          asset_name: "TawkieInstaller-${{ env.TAG }}.exe"
+          asset_content_type: application/vnd.microsoft.portable-executable
 
   # promote_snapcraft:
   #   runs-on: ubuntu-latest
