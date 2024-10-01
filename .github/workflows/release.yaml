@@ -290,10 +290,12 @@ jobs:
       - name: Get Flutter dependencies
         run: |
           "C:\\tools\\flutter\\bin\\flutter" pub get
+        shell: cmd
 
       - name: Build Windows Release
         run: |
           "C:\\tools\\flutter\\bin\\flutter" build windows --release
+        shell: cmd
 
       # Install Inno Setup via Chocolatey
       - name: Install Inno Setup
