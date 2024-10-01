@@ -288,10 +288,12 @@ jobs:
         # Run the Olm compiler script for cryptography if use Matrix
 
       - name: Get Flutter dependencies
-        run: flutter pub get
+        run: |
+          "C:\\tools\\flutter\\bin\\flutter" pub get
 
       - name: Build Windows Release
-        run: flutter build windows --release
+        run: |
+          "C:\\tools\\flutter\\bin\\flutter" build windows --release
 
       # Install Inno Setup via Chocolatey
       - name: Install Inno Setup
