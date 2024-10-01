@@ -30,6 +30,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
+import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
@@ -323,9 +324,8 @@ class BackgroundPush {
   }
 
   Future<void> setupUp() async {
-    // Blocked by https://codeberg.org/UnifiedPush/flutter-connector/issues/2
-    // ignore: deprecated_member_use
-    await UnifiedPush.registerAppWithDialog(matrix!.context);
+    await UnifiedPushUi(matrix!.context, ["default"], UPFunctions())
+        .registerAppWithDialog();
   }
 
   Future<void> _newUpEndpoint(String newEndpoint, String i) async {
@@ -401,5 +401,28 @@ class BackgroundPush {
       l10n: l10n,
       activeRoomId: matrix?.activeRoomId,
     );
+  }
+}
+
+class UPFunctions extends UnifiedPushFunctions {
+  final List<String> features = [/*list of features*/];
+  @override
+  Future<String?> getDistributor() async {
+    return await UnifiedPush.getDistributor();
+  }
+
+  @override
+  Future<List<String>> getDistributors() async {
+    return await UnifiedPush.getDistributors(features);
+  }
+
+  @override
+  Future<void> registerApp(String instance) async {
+    await UnifiedPush.registerApp(instance, features);
+  }
+
+  @override
+  Future<void> saveDistributor(String distributor) async {
+    await UnifiedPush.saveDistributor(distributor);
   }
 }
