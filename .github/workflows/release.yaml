@@ -287,12 +287,6 @@ jobs:
         shell: bash
         # Run the Olm compiler script for cryptography if use Matrix
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
-
       - name: Get Flutter dependencies
         run: flutter pub get
 
