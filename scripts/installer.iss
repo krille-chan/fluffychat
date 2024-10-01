@@ -1,6 +1,6 @@
 [Setup]
 AppName=Tawkie
-AppVersion={#GetVersion()}
+AppVersion={#MyAppVersion}
 DefaultDirName={pf}\Tawkie
 DefaultGroupName=Tawkie
 OutputDir=Output
