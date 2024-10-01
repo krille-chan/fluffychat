@@ -295,25 +295,47 @@ jobs:
 
       - name: Get tag
         id: tag
-        run: echo "::set-output name=tag::`git describe --tags`"
+        run: |
+          echo "TAG=$(git describe --tags)" >> $GITHUB_ENV
+        shell: bash
 
-      - name: Post-build Windows operations
-        run: ./scripts/build-windows.ps1
+      # Check if Chocolatey is already installed
+      - name: Check if Chocolatey is installed
+        run: |
+          if (!(Test-Path "$Env:ProgramData\chocolatey")) {
+            Write-Host "Chocolatey not found. Installing Chocolatey."
+            Set-ExecutionPolicy Bypass -Scope Process -Force; `
+            [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+            iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+          } else {
+            Write-Host "Chocolatey is already installed."
+          }
         shell: pwsh
 
+      # Install Inno Setup via Chocolatey
+      - name: Install Inno Setup
+        run: choco install innosetup --confirm
+        shell: cmd
+
+      # Use the Inno Setup script to create the installer
+      - name: Create Installer
+        run: "C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe" scripts/installer.iss
+        shell: cmd
+
+      # Generated installer
       - name: Create Archive for Release
-        run: tar -czf "tawkie-windows.tar.gz" -C build/windows/runner/Release/ .
-        # Create an archive for the release and include the version in the filename
+        run: tar -czf "tawkie-windows-${{ env.TAG }}.tar.gz" -C Output TawkieInstaller.exe
+
+      # Upload archive to GitHub release page
       - name: Upload Windows Release to GitHub
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: "tawkie-windows.tar.gz"
-          asset_name: "tawkie-windows-${{ steps.tag.outputs.tag }}.tar.gz"
+          asset_path: "tawkie-windows-${{ env.TAG }}.tar.gz"
+          asset_name: "tawkie-windows-${{ env.TAG }}.tar.gz"
           asset_content_type: application/gzip
-        # Upload the archive on the GitHub release page as an asset
 
   # promote_snapcraft:
   #   runs-on: ubuntu-latest
