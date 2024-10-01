@@ -305,7 +305,7 @@ jobs:
       # Use the Inno Setup script to create the installer
       - name: Create Installer
         run: |
-          "C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe" scripts/installer.iss
+          "C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe" /dMyAppVersion=${{ env.TAG }} scripts/installer.iss
         shell: cmd
 
       # Generated installer
