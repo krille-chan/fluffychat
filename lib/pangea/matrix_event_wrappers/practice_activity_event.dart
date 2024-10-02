@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_record_event.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
@@ -62,24 +63,34 @@ class PracticeActivityEvent {
 
   /// Completion record assosiated with this activity
   /// for the logged in user, null if there is none
-  PracticeActivityRecordEvent? get userRecord {
-    final List<PracticeActivityRecordEvent> records = allRecords
-        .where(
-          (recordEvent) =>
-              recordEvent.event.senderId ==
-              recordEvent.event.room.client.userID,
-        )
-        .toList();
-    if (records.length > 1) {
-      debugPrint("There should only be one record per user per activity");
-      debugger(when: kDebugMode);
-    }
-    return records.firstOrNull;
+  List<PracticeActivityRecordEvent> get allUserRecords => allRecords
+      .where(
+        (recordEvent) =>
+            recordEvent.event.senderId == recordEvent.event.room.client.userID,
+      )
+      .toList();
+
+  /// Get the most recent user record for this activity
+  PracticeActivityRecordEvent? get latestUserRecord {
+    final List<PracticeActivityRecordEvent> userRecords = allUserRecords;
+    if (userRecords.isEmpty) return null;
+    return userRecords.reduce(
+      (a, b) => a.event.originServerTs.isAfter(b.event.originServerTs) ? a : b,
+    );
   }
+
+  DateTime? get lastCompletedAt => latestUserRecord?.event.originServerTs;
 
   String get parentMessageId => event.relationshipEventId!;
 
   /// Checks if there are any user records in the list for this activity,
   /// and, if so, then the activity is complete
-  bool get isComplete => userRecord != null;
+  bool get isComplete => latestUserRecord != null;
+
+  ExistingActivityMetaData get activityRequestMetaData =>
+      ExistingActivityMetaData(
+        activityEventId: event.eventId,
+        tgtConstructs: practiceActivity.tgtConstructs,
+        activityType: practiceActivity.activityType,
+      );
 }

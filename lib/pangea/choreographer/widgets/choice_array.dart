@@ -67,25 +67,23 @@ class ChoicesArrayState extends State<ChoicesArray> {
         : Wrap(
             alignment: WrapAlignment.center,
             children: widget.choices!
-                    .mapIndexed(
-                      (index, entry) => ChoiceItem(
-                        theme: theme,
-                        onLongPress:
-                            widget.isActive ? widget.onLongPress : null,
-                        onPressed: widget.isActive
-                            ? widget.onPressed
-                            : (String value, int index) {
-                                debugger(when: kDebugMode);
-                              },
-                        entry: MapEntry(index, entry),
-                        interactionDisabled: interactionDisabled,
-                        enableInteraction: enableInteractions,
-                        disableInteraction: disableInteraction,
-                        isSelected: widget.selectedChoiceIndex == index,
-                      ),
-                    )
-                    .toList() ??
-                [],
+                .mapIndexed(
+                  (index, entry) => ChoiceItem(
+                    theme: theme,
+                    onLongPress: widget.isActive ? widget.onLongPress : null,
+                    onPressed: widget.isActive
+                        ? widget.onPressed
+                        : (String value, int index) {
+                            debugger(when: kDebugMode);
+                          },
+                    entry: MapEntry(index, entry),
+                    interactionDisabled: interactionDisabled,
+                    enableInteraction: enableInteractions,
+                    disableInteraction: disableInteraction,
+                    isSelected: widget.selectedChoiceIndex == index,
+                  ),
+                )
+                .toList(),
           );
   }
 }

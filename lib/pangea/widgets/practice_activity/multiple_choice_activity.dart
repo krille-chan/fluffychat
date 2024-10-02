@@ -29,7 +29,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       widget.practiceCardController.currentCompletionRecord;
 
   bool get isSubmitted =>
-      widget.currentActivity?.userRecord?.record.latestResponse != null;
+      widget.currentActivity?.latestUserRecord?.record.latestResponse != null;
 
   @override
   void initState() {
@@ -52,7 +52,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   /// Otherwise, it sets the current model to the user record's record and
   /// determines the selected choice index.
   void setCompletionRecord() {
-    if (widget.currentActivity?.userRecord?.record == null) {
+    if (widget.currentActivity?.latestUserRecord?.record == null) {
       widget.practiceCardController.setCompletionRecord(
         PracticeActivityRecordModel(
           question:
@@ -61,8 +61,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       );
       selectedChoiceIndex = null;
     } else {
-      widget.practiceCardController
-          .setCompletionRecord(widget.currentActivity!.userRecord!.record);
+      widget.practiceCardController.setCompletionRecord(
+          widget.currentActivity!.latestUserRecord!.record);
       selectedChoiceIndex = widget
           .currentActivity?.practiceActivity.multipleChoice!
           .choiceIndex(currentRecordModel!.latestResponse!.text!);

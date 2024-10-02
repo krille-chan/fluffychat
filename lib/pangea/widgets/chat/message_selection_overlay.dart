@@ -58,7 +58,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// Whether the user has completed the activities needed to unlock the toolbar
   /// within this overlay 'session'. if they click out and come back in then
   /// we can give them some more activities to complete
-  bool finishedActivitiesThisSession = false;
+  int completedThisSession = 0;
+
+  bool get finishedActivitiesThisSession => completedThisSession >= needed;
+
+  late int activitiesLeftToComplete = needed;
 
   @override
   void initState() {
@@ -68,17 +72,29 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       duration: FluffyThemes.animationDuration,
     );
 
+    activitiesLeftToComplete =
+        needed - widget._pangeaMessageEvent.numberOfActivitiesCompleted;
+
     setInitialToolbarMode();
   }
 
-  int get activitiesLeftToComplete =>
-      needed - widget._pangeaMessageEvent.numberOfActivitiesCompleted;
-
   bool get isPracticeComplete => activitiesLeftToComplete <= 0;
+
+  /// When an activity is completed, we need to update the state
+  /// and check if the toolbar should be unlocked
+  void onActivityFinish() {
+    if (!mounted) return;
+    completedThisSession += 1;
+    activitiesLeftToComplete -= 1;
+    clearSelection();
+    setState(() {});
+  }
 
   /// In some cases, we need to exit the practice flow and let the user
   /// interact with the toolbar without completing activities
   void exitPracticeFlow() {
+    debugPrint('Exiting practice flow');
+    clearSelection();
     needed = 0;
     setInitialToolbarMode();
     setState(() {});
@@ -129,6 +145,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void onClickOverlayMessageToken(
     PangeaToken token,
   ) {
+    if (toolbarMode == MessageMode.practiceActivity) {
+      return;
+    }
+
     // if there's no selected span, then select the token
     if (_selectedSpan == null) {
       _selectedSpan = token.text;
@@ -150,7 +170,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     setState(() {});
   }
 
-  void onNewActivity(PracticeActivityModel activity) {
+  void setSelectedSpan(PracticeActivityModel activity) {
     final RelevantSpanDisplayDetails? span =
         activity.multipleChoice?.spanDisplayDetails;
 

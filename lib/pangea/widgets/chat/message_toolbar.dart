@@ -250,7 +250,6 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
       .toList();
 
   static const double iconWidth = 36.0;
-  double get progressWidth => widget.width / overlayController.needed;
 
   MessageOverlayController get overlayController =>
       widget.messageToolbarController.widget.overLayController;
@@ -263,6 +262,8 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
 
   @override
   Widget build(BuildContext context) {
+    final double barWidth = widget.width - iconWidth;
+
     if (widget
         .messageToolbarController.widget.pangeaMessageEvent.isAudioMessage) {
       return const SizedBox();
@@ -286,11 +287,13 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
               AnimatedContainer(
                 duration: FluffyThemes.animationDuration,
                 height: 12,
-                width: min(
-                  widget.width,
-                  progressWidth *
-                      pangeaMessageEvent.numberOfActivitiesCompleted,
-                ),
+                width: overlayController.isPracticeComplete
+                    ? barWidth
+                    : min(
+                        barWidth,
+                        (barWidth / 3) *
+                            pangeaMessageEvent.numberOfActivitiesCompleted,
+                      ),
                 color: AppConfig.success,
                 margin: const EdgeInsets.symmetric(horizontal: iconWidth / 2),
               ),

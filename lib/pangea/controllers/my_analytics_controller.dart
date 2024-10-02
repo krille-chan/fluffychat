@@ -1,20 +1,14 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/constants/local.key.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
-import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
-import 'package:fluffychat/pangea/models/representation_content_model.dart';
-import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
@@ -29,7 +23,7 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
   late PangeaController _pangeaController;
   CachedStreamController<AnalyticsUpdateType> analyticsUpdateStream =
       CachedStreamController<AnalyticsUpdateType>();
-  StreamSubscription<AnalyticsStream>? _messageSendSubscription;
+  StreamSubscription<AnalyticsStream>? _analyticsStream;
   Timer? _updateTimer;
 
   Client get _client => _pangeaController.matrixState.client;
@@ -60,7 +54,7 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
   void initialize() {
     // Listen to a stream that provides the eventIDs
     // of new messages sent by the logged in user
-    _messageSendSubscription ??=
+    _analyticsStream ??=
         stateStream.listen((data) => _onNewAnalyticsData(data));
 
     _refreshAnalyticsIfOutdated();
@@ -72,8 +66,8 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
     _updateTimer?.cancel();
     lastUpdated = null;
     lastUpdatedCompleter = Completer<DateTime?>();
-    _messageSendSubscription?.cancel();
-    _messageSendSubscription = null;
+    _analyticsStream?.cancel();
+    _analyticsStream = null;
     _refreshAnalyticsIfOutdated();
     clearMessagesSinceUpdate();
   }
@@ -109,34 +103,9 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
   /// Given the data from a newly sent message, format and cache
   /// the message's construct data locally and reset the update timer
   void _onNewAnalyticsData(AnalyticsStream data) {
-    // convert that data into construct uses and add it to the cache
-    final metadata = ConstructUseMetaData(
-      roomId: data.roomId,
-      eventId: data.eventId,
-      timeStamp: DateTime.now(),
-    );
-
     final List<OneConstructUse> constructs = _getDraftUses(data.roomId);
 
-    if (data.eventType == EventTypes.Message) {
-      constructs.addAll([
-        ...(data.choreo!.grammarConstructUses(metadata: metadata)),
-        ...(data.originalSent!.vocabUses(
-          choreo: data.choreo,
-          tokens: data.tokensSent!.tokens,
-          metadata: metadata,
-        )),
-      ]);
-    } else if (data.eventType == PangeaEventTypes.activityRecord &&
-        data.practiceActivity != null) {
-      final activityConstructs = data.recordModel!.uses(
-        data.practiceActivity!,
-        metadata: metadata,
-      );
-      constructs.addAll(activityConstructs);
-    } else {
-      throw PangeaWarningError("Invalid event type for analytics stream");
-    }
+    constructs.addAll(data.constructs);
 
     final String eventID = data.eventId;
     final String roomID = data.roomId;
@@ -342,43 +311,13 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
 
 class AnalyticsStream {
   final String eventId;
-  final String eventType;
   final String roomId;
 
-  /// if the event is a message, the original message sent
-  final PangeaRepresentation? originalSent;
-
-  /// if the event is a message, the tokens sent
-  final PangeaMessageTokens? tokensSent;
-
-  /// if the event is a message, the choreo record
-  final ChoreoRecord? choreo;
-
-  /// if the event is a practice activity, the practice activity event
-  final PracticeActivityEvent? practiceActivity;
-
-  /// if the event is a practice activity, the record model
-  final PracticeActivityRecordModel? recordModel;
+  final List<OneConstructUse> constructs;
 
   AnalyticsStream({
     required this.eventId,
-    required this.eventType,
     required this.roomId,
-    this.originalSent,
-    this.tokensSent,
-    this.choreo,
-    this.practiceActivity,
-    this.recordModel,
-  }) {
-    assert(
-      (originalSent != null && tokensSent != null && choreo != null) ||
-          (practiceActivity != null && recordModel != null),
-      "Either a message or a practice activity must be provided",
-    );
-
-    assert(
-      eventType == EventTypes.Message ||
-          eventType == PangeaEventTypes.activityRecord,
-    );
-  }
+    required this.constructs,
+  });
 }

@@ -119,9 +119,27 @@ class PracticeGenerationController {
         requestModel: req,
       );
 
+      // if the server points to an existing event, return that event
+      if (res.existingActivityEventId != null) {
+        debugPrint(
+          'Existing activity event found: ${res.existingActivityEventId}',
+        );
+        final Event? existingEvent =
+            await event.room.getEventById(res.existingActivityEventId!);
+        if (existingEvent != null) {
+          return PracticeActivityEvent(
+            event: existingEvent,
+            timeline: event.timeline,
+          );
+        }
+      }
+
       if (res.activity == null) {
+        debugPrint('No activity generated');
         return null;
       }
+
+      debugPrint('Activity generated: ${res.activity!.toJson()}');
 
       final Future<PracticeActivityEvent?> eventFuture =
           _sendAndPackageEvent(res.activity!, event);

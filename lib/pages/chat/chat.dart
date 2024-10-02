@@ -20,6 +20,7 @@ import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
@@ -652,15 +653,25 @@ class ChatController extends State<ChatPageWithRoom>
         // There's a listen in my_analytics_controller that decides when to auto-update
         // analytics based on when / how many messages the logged in user send. This
         // stream sends the data for newly sent messages.
+        final metadata = ConstructUseMetaData(
+          roomId: roomId,
+          timeStamp: DateTime.now(),
+          eventId: msgEventId,
+        );
+
         if (msgEventId != null) {
           pangeaController.myAnalytics.setState(
             AnalyticsStream(
               eventId: msgEventId,
-              eventType: EventTypes.Message,
               roomId: room.id,
-              originalSent: originalSent,
-              tokensSent: tokensSent,
-              choreo: choreo,
+              constructs: [
+                ...(choreo!.grammarConstructUses(metadata: metadata)),
+                ...(originalSent!.vocabUses(
+                  choreo: choreo,
+                  tokens: tokensSent!.tokens,
+                  metadata: metadata,
+                )),
+              ],
             ),
           );
         }

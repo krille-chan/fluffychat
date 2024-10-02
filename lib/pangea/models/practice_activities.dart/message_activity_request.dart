@@ -1,11 +1,12 @@
 import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 
 class ConstructWithXP {
   final ConstructIdentifier id;
   int xp;
-  final DateTime? lastUsed;
+  DateTime? lastUsed;
 
   ConstructWithXP({
     required this.id,
@@ -94,12 +95,51 @@ class TokenWithXP {
   }
 }
 
+class ExistingActivityMetaData {
+  final String activityEventId;
+  final List<ConstructIdentifier> tgtConstructs;
+  final ActivityTypeEnum activityType;
+
+  ExistingActivityMetaData({
+    required this.activityEventId,
+    required this.tgtConstructs,
+    required this.activityType,
+  });
+
+  factory ExistingActivityMetaData.fromJson(Map<String, dynamic> json) {
+    return ExistingActivityMetaData(
+      activityEventId: json['activity_event_id'] as String,
+      tgtConstructs: (json['tgt_constructs'] as List)
+          .map((e) => ConstructIdentifier.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      activityType: ActivityTypeEnum.values.firstWhere(
+        (element) =>
+            element.string == json['activity_type'] as String ||
+            element.string.split('.').last == json['activity_type'] as String,
+      ),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'activity_event_id': activityEventId,
+      'tgt_constructs': tgtConstructs.map((e) => e.toJson()).toList(),
+      'activity_type': activityType.string,
+    };
+  }
+}
+
 class MessageActivityRequest {
   final String userL1;
   final String userL2;
 
   final String messageText;
+
+  /// tokens with their associated constructs and xp
   final List<TokenWithXP> tokensWithXP;
+
+  /// make the server aware of existing activities for potential reuse
+  final List<ExistingActivityMetaData> existingActivities;
 
   final String messageId;
 
@@ -109,6 +149,7 @@ class MessageActivityRequest {
     required this.messageText,
     required this.tokensWithXP,
     required this.messageId,
+    required this.existingActivities,
   });
 
   factory MessageActivityRequest.fromJson(Map<String, dynamic> json) {
@@ -120,6 +161,11 @@ class MessageActivityRequest {
           .map((e) => TokenWithXP.fromJson(e as Map<String, dynamic>))
           .toList(),
       messageId: json['message_id'] as String,
+      existingActivities: (json['existing_activities'] as List)
+          .map(
+            (e) => ExistingActivityMetaData.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
     );
   }
 
@@ -130,6 +176,7 @@ class MessageActivityRequest {
       'message_text': messageText,
       'tokens_with_xp': tokensWithXP.map((e) => e.toJson()).toList(),
       'message_id': messageId,
+      'existing_activities': existingActivities.map((e) => e.toJson()).toList(),
     };
   }
 
@@ -152,10 +199,12 @@ class MessageActivityRequest {
 class MessageActivityResponse {
   final PracticeActivityModel? activity;
   final bool finished;
+  final String? existingActivityEventId;
 
   MessageActivityResponse({
     required this.activity,
     required this.finished,
+    required this.existingActivityEventId,
   });
 
   factory MessageActivityResponse.fromJson(Map<String, dynamic> json) {
@@ -166,6 +215,7 @@ class MessageActivityResponse {
             )
           : null,
       finished: json['finished'] as bool,
+      existingActivityEventId: json['existing_activity_event_id'] as String?,
     );
   }
 
@@ -173,6 +223,7 @@ class MessageActivityResponse {
     return {
       'activity': activity?.toJson(),
       'finished': finished,
+      'existing_activity_event_id': existingActivityEventId,
     };
   }
 }

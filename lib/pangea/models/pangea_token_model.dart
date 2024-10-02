@@ -34,13 +34,11 @@ class PangeaToken {
     int endTokenIndex = -1,
   ]) {
     if (endTokenIndex == -1) {
-      endTokenIndex = tokens.length - 1;
+      endTokenIndex = tokens.length;
     }
 
     final List<PangeaToken> subset =
-        tokens.whereIndexed((int index, PangeaToken token) {
-      return index >= startTokenIndex && index <= endTokenIndex;
-    }).toList();
+        tokens.sublist(startTokenIndex, endTokenIndex);
 
     if (subset.isEmpty) {
       debugger(when: kDebugMode);
@@ -51,10 +49,11 @@ class PangeaToken {
       return subset.first.text.content;
     }
 
-    String reconstruction = subset.first.text.content;
-    for (int i = 1; i < subset.length - 1; i++) {
+    String reconstruction = "";
+    for (int i = 0; i < subset.length; i++) {
       int whitespace = subset[i].text.offset -
-          (subset[i - 1].text.offset + subset[i - 1].text.length);
+          (i > 0 ? (subset[i - 1].text.offset + subset[i - 1].text.length) : 0);
+
       if (whitespace < 0) {
         debugger(when: kDebugMode);
         whitespace = 0;

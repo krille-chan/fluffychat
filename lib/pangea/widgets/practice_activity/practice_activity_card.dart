@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
@@ -9,8 +8,8 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -21,7 +20,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
 
 /// The wrapper for practice activity content.
 /// Handles the activities associated with a message,
@@ -46,18 +44,14 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   PracticeActivityRecordModel? currentCompletionRecord;
   bool fetchingActivity = false;
 
-  List<TokenWithXP> targetTokens = [];
+  TargetTokensController targetTokensController = TargetTokensController();
 
   List<PracticeActivityEvent> get practiceActivities =>
       widget.pangeaMessageEvent.practiceActivities;
 
-  int get practiceEventIndex => practiceActivities.indexWhere(
-        (activity) => activity.event.eventId == currentActivity?.event.eventId,
-      );
-
-  /// TODO - @ggurdin - how can we start our processes (saving results and getting an activity)
-  /// immediately after a correct choice but wait to display until x milliseconds after the choice is made AND
-  /// we've received the new activity?
+  // Used to show an animation when the user completes an activity
+  // while simultaneously fetching a new activity and not showing the loading spinner
+  // until the appropriate time has passed to 'savor the joy'
   Duration appropriateTimeForJoy = const Duration(milliseconds: 500);
   bool savoringTheJoy = false;
   Timer? joyTimer;
@@ -68,150 +62,100 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     initialize();
   }
 
-  void updateFetchingActivity(bool value) {
+  @override
+  void dispose() {
+    joyTimer?.cancel();
+    super.dispose();
+  }
+
+  void _updateFetchingActivity(bool value) {
     if (fetchingActivity == value) return;
     setState(() => fetchingActivity = value);
   }
 
-  /// Get an activity to display.
-  /// Show an uncompleted activity if there is one.
+  /// Set target tokens.
+  /// Get an existing activity if there is one.
   /// If not, get a new activity from the server.
   Future<void> initialize() async {
-    targetTokens = await getTargetTokens();
-
-    currentActivity = _fetchExistingActivity() ?? await _fetchNewActivity();
+    currentActivity =
+        _fetchExistingIncompleteActivity() ?? await _fetchNewActivity();
 
     currentActivity == null
         ? widget.overlayController.exitPracticeFlow()
         : widget.overlayController
-            .onNewActivity(currentActivity!.practiceActivity);
+            .setSelectedSpan(currentActivity!.practiceActivity);
   }
 
-  // TODO - do more of a check for whether we have an appropropriate activity
   // if the user did the activity before but awhile ago and we don't have any
   // more target tokens, maybe we should give them the same activity again
-  PracticeActivityEvent? _fetchExistingActivity() {
-    final List<PracticeActivityEvent> incompleteActivities =
-        practiceActivities.where((element) => !element.isComplete).toList();
-
-    final PracticeActivityEvent? existingActivity =
-        incompleteActivities.isNotEmpty ? incompleteActivities.first : null;
-
-    return existingActivity != null &&
-            existingActivity.practiceActivity !=
-                currentActivity?.practiceActivity
-        ? existingActivity
-        : null;
-  }
-
-  Future<PracticeActivityEvent?> _fetchNewActivity() async {
-    updateFetchingActivity(true);
-
-    if (targetTokens.isEmpty ||
-        !pangeaController.languageController.languagesSet) {
-      debugger(when: kDebugMode);
-      updateFetchingActivity(false);
+  PracticeActivityEvent? _fetchExistingIncompleteActivity() {
+    if (practiceActivities.isEmpty) {
       return null;
     }
 
-    final ourNewActivity =
-        await pangeaController.practiceGenerationController.getPracticeActivity(
-      MessageActivityRequest(
-        userL1: pangeaController.languageController.userL1!.langCode,
-        userL2: pangeaController.languageController.userL2!.langCode,
-        messageText: representation!.text,
-        tokensWithXP: targetTokens,
-        messageId: widget.pangeaMessageEvent.eventId,
-      ),
-      widget.pangeaMessageEvent,
-    );
+    final List<PracticeActivityEvent> incompleteActivities =
+        practiceActivities.where((element) => !element.isComplete).toList();
 
-    /// Removes the target tokens of the new activity from the target tokens list.
-    /// This avoids getting activities for the same token again, at least
-    /// until the user exists the toolbar and re-enters it. By then, the
-    /// analytics stream will have updated and the user will be able to get
-    /// activity data for previously targeted tokens. This should then exclude
-    /// the tokens that were targeted in previous activities based on xp and lastUsed.
-    if (ourNewActivity?.practiceActivity.relevantSpanDisplayDetails != null) {
-      targetTokens.removeWhere((token) {
-        final RelevantSpanDisplayDetails span =
-            ourNewActivity!.practiceActivity.relevantSpanDisplayDetails!;
-        return token.token.text.offset >= span.offset &&
-            token.token.text.offset + token.token.text.length <=
-                span.offset + span.length;
-      });
-    }
-
-    updateFetchingActivity(false);
-
-    return ourNewActivity;
+    // TODO - maybe check the user's xp for the tgtConstructs and decide if its relevant for them
+    // however, maybe we'd like to go ahead and give them the activity to get some data on our xp?
+    return incompleteActivities.firstOrNull;
   }
 
-  /// From the tokens in the message, do a preliminary filtering of which to target
-  /// Then get the construct uses for those tokens
-  Future<List<TokenWithXP>> getTargetTokens() async {
-    if (!mounted) {
-      ErrorHandler.logError(
-        m: 'getTargetTokens called when not mounted',
-        s: StackTrace.current,
+  Future<PracticeActivityEvent?> _fetchNewActivity() async {
+    try {
+      debugPrint('Fetching new activity');
+
+      _updateFetchingActivity(true);
+
+      // target tokens can be empty if activities have been completed for each
+      // it's set on initialization and then removed when each activity is completed
+      if (!pangeaController.languageController.languagesSet) {
+        debugger(when: kDebugMode);
+        _updateFetchingActivity(false);
+        return null;
+      }
+
+      if (!mounted) {
+        debugger(when: kDebugMode);
+        _updateFetchingActivity(false);
+        return null;
+      }
+
+      final PracticeActivityEvent? ourNewActivity = await pangeaController
+          .practiceGenerationController
+          .getPracticeActivity(
+        MessageActivityRequest(
+          userL1: pangeaController.languageController.userL1!.langCode,
+          userL2: pangeaController.languageController.userL2!.langCode,
+          messageText: representation!.text,
+          tokensWithXP: await targetTokensController.targetTokens(
+            context,
+            widget.pangeaMessageEvent,
+          ),
+          messageId: widget.pangeaMessageEvent.eventId,
+          existingActivities: practiceActivities
+              .map((activity) => activity.activityRequestMetaData)
+              .toList(),
+        ),
+        widget.pangeaMessageEvent,
       );
-      return [];
-    }
 
-    // we're just going to set this once per session
-    // we remove the target tokens when we get a new activity
-    if (targetTokens.isNotEmpty) return targetTokens;
+      _updateFetchingActivity(false);
 
-    if (representation == null) {
+      return ourNewActivity;
+    } catch (e, s) {
       debugger(when: kDebugMode);
-      return [];
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        m: 'Failed to get new activity',
+        data: {
+          'activity': currentActivity,
+          'record': currentCompletionRecord,
+        },
+      );
+      return null;
     }
-    final tokens = await representation?.tokensGlobal(context);
-
-    if (tokens == null || tokens.isEmpty) {
-      debugger(when: kDebugMode);
-      return [];
-    }
-
-    var constructUses =
-        MatrixState.pangeaController.analytics.analyticsStream.value;
-
-    if (constructUses == null || constructUses.isEmpty) {
-      constructUses = [];
-      //@gurdin - this is happening for me with a brand-new user. however, in this case, constructUses should be empty list
-      debugger(when: kDebugMode);
-    }
-
-    final ConstructListModel constructList = ConstructListModel(
-      uses: constructUses,
-      type: null,
-    );
-
-    final List<TokenWithXP> tokenCounts = [];
-
-    // TODO - add morph constructs to this list as well
-    for (int i = 0; i < tokens.length; i++) {
-      //don't bother with tokens that we don't save to vocab
-      if (!tokens[i].lemma.saveVocab) {
-        continue;
-      }
-
-      tokenCounts.add(tokens[i].emptyTokenWithXP);
-
-      for (final construct in tokenCounts.last.constructs) {
-        final constructUseModel = constructList.getConstructUses(
-          construct.id.lemma,
-          construct.id.type,
-        );
-        if (constructUseModel != null) {
-          construct.xp = constructUseModel.points;
-        }
-      }
-    }
-
-    tokenCounts.sort((a, b) => a.xp.compareTo(b.xp));
-
-    return tokenCounts;
   }
 
   void setCompletionRecord(PracticeActivityRecordModel? recordModel) {
@@ -219,7 +163,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   }
 
   /// future that simply waits for the appropriate time to savor the joy
-  Future<void> savorTheJoy() async {
+  Future<void> _savorTheJoy() async {
     joyTimer?.cancel();
     if (savoringTheJoy) return;
     savoringTheJoy = true;
@@ -229,10 +173,10 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     });
   }
 
-  /// Sends the current record model and activity to the server.
-  /// If either the currentRecordModel or currentActivity is null, the method returns early.
-  /// If the currentActivity is the last activity, the method sets the appropriate flag to true.
-  /// If the currentActivity is not the last activity, the method fetches a new activity.
+  /// Called when the user finishes an activity.
+  /// Saves the completion record and sends it to the server.
+  /// Fetches a new activity if there are any left to complete.
+  /// Exits the practice flow if there are no more activities.
   void onActivityFinish() async {
     try {
       if (currentCompletionRecord == null || currentActivity == null) {
@@ -241,45 +185,63 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       }
 
       // start joy timer
-      savorTheJoy();
+      _savorTheJoy();
 
-      // if this is the last activity, set the flag to true
-      // so we can give them some kudos
-      if (widget.overlayController.activitiesLeftToComplete == 1) {
-        widget.overlayController.finishedActivitiesThisSession = true;
-      }
-
-      final Event? event = await MatrixState
-          .pangeaController.activityRecordController
-          .send(currentCompletionRecord!, currentActivity!);
-
-      MatrixState.pangeaController.myAnalytics.setState(
-        AnalyticsStream(
-          eventId: widget.pangeaMessageEvent.eventId,
-          eventType: PangeaEventTypes.activityRecord,
-          roomId: event!.room.id,
-          practiceActivity: currentActivity!,
-          recordModel: currentCompletionRecord!,
+      final uses = currentCompletionRecord!.uses(
+        currentActivity!.practiceActivity,
+        ConstructUseMetaData(
+          roomId: widget.pangeaMessageEvent.room.id,
+          timeStamp: DateTime.now(),
         ),
       );
 
-      if (!widget.overlayController.finishedActivitiesThisSession) {
-        currentActivity = await _fetchNewActivity();
+      // update the target tokens with the new construct uses
+      targetTokensController.updateTokensWithConstructs(
+        uses,
+        context,
+        widget.pangeaMessageEvent,
+      );
 
-        currentActivity == null
-            ? widget.overlayController.exitPracticeFlow()
-            : widget.overlayController
-                .onNewActivity(currentActivity!.practiceActivity);
-      } else {
-        updateFetchingActivity(false);
-        widget.overlayController.setState(() {});
-      }
+      MatrixState.pangeaController.myAnalytics.setState(
+        AnalyticsStream(
+          // note - this maybe should be the activity event id
+          eventId: widget.pangeaMessageEvent.eventId,
+          roomId: widget.pangeaMessageEvent.room.id,
+          constructs: uses,
+        ),
+      );
+
+      // save the record without awaiting to avoid blocking the UI
+      // send a copy of the activity record to make sure its not overwritten by
+      // the new activity
+      MatrixState.pangeaController.activityRecordController
+          .send(currentCompletionRecord!, currentActivity!)
+          .catchError(
+            (e, s) => ErrorHandler.logError(
+              e: e,
+              s: s,
+              m: 'Failed to save record',
+              data: {
+                'record': currentCompletionRecord?.toJson(),
+                'activity': currentActivity?.practiceActivity.toJson(),
+              },
+            ),
+          );
+
+      widget.overlayController.onActivityFinish();
+
+      currentActivity = await _fetchNewActivity();
+
+      currentActivity == null
+          ? widget.overlayController.exitPracticeFlow()
+          : widget.overlayController
+              .setSelectedSpan(currentActivity!.practiceActivity);
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
         e: e,
         s: s,
-        m: 'Failed to send record for activity',
+        m: 'Failed to get new activity',
         data: {
           'activity': currentActivity,
           'record': currentCompletionRecord,
@@ -340,6 +302,9 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(
+      'Building practice activity card with ${widget.overlayController.activitiesLeftToComplete} activities left to complete',
+    );
     if (userMessage != null) {
       return Center(
         child: Container(
@@ -383,5 +348,94 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         ],
       ],
     );
+  }
+}
+
+/// Seperated out the target tokens from the practice activity card
+/// in order to control the state of the target tokens
+class TargetTokensController {
+  List<TokenWithXP>? _targetTokens;
+
+  TargetTokensController();
+
+  /// From the tokens in the message, do a preliminary filtering of which to target
+  /// Then get the construct uses for those tokens
+  Future<List<TokenWithXP>> targetTokens(
+    BuildContext context,
+    PangeaMessageEvent pangeaMessageEvent,
+  ) async {
+    if (_targetTokens != null) {
+      return _targetTokens!;
+    }
+
+    _targetTokens = await _initialize(context, pangeaMessageEvent);
+
+    await updateTokensWithConstructs(
+      MatrixState.pangeaController.analytics.analyticsStream.value ?? [],
+      context,
+      pangeaMessageEvent,
+    );
+
+    return _targetTokens!;
+  }
+
+  Future<List<TokenWithXP>> _initialize(
+    BuildContext context,
+    PangeaMessageEvent pangeaMessageEvent,
+  ) async {
+    if (!context.mounted) {
+      ErrorHandler.logError(
+        m: 'getTargetTokens called when not mounted',
+        s: StackTrace.current,
+      );
+      return _targetTokens = [];
+    }
+
+    final tokens = await pangeaMessageEvent
+        .representationByLanguage(pangeaMessageEvent.messageDisplayLangCode)
+        ?.tokensGlobal(context);
+
+    if (tokens == null || tokens.isEmpty) {
+      debugger(when: kDebugMode);
+      return _targetTokens = [];
+    }
+
+    _targetTokens = [];
+    for (int i = 0; i < tokens.length; i++) {
+      //don't bother with tokens that we don't save to vocab
+      if (!tokens[i].lemma.saveVocab) {
+        continue;
+      }
+
+      _targetTokens!.add(tokens[i].emptyTokenWithXP);
+    }
+
+    return _targetTokens!;
+  }
+
+  Future<void> updateTokensWithConstructs(
+    List<OneConstructUse> constructUses,
+    context,
+    pangeaMessageEvent,
+  ) async {
+    final ConstructListModel constructList = ConstructListModel(
+      uses: constructUses,
+      type: null,
+    );
+
+    _targetTokens ??= await _initialize(context, pangeaMessageEvent);
+
+    for (final token in _targetTokens!) {
+      for (final construct in token.constructs) {
+        final constructUseModel = constructList.getConstructUses(
+          construct.id.lemma,
+          construct.id.type,
+        );
+        if (constructUseModel != null) {
+          construct.xp = constructUseModel.points;
+          construct.lastUsed = constructUseModel.lastUsed;
+        }
+      }
+    }
   }
 }
