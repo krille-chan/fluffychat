@@ -121,11 +121,12 @@ class PracticeGenerationController {
 
       // if the server points to an existing event, return that event
       if (res.existingActivityEventId != null) {
-        debugPrint(
-          'Existing activity event found: ${res.existingActivityEventId}',
-        );
         final Event? existingEvent =
             await event.room.getEventById(res.existingActivityEventId!);
+
+        debugPrint(
+          'Existing activity event found: ${existingEvent?.content}',
+        );
         if (existingEvent != null) {
           return PracticeActivityEvent(
             event: existingEvent,

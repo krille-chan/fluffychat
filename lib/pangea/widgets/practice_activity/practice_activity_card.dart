@@ -73,17 +73,27 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     setState(() => fetchingActivity = value);
   }
 
-  /// Set target tokens.
+  void _setPracticeActivity(PracticeActivityEvent? activity) {
+    if (activity == null) {
+      widget.overlayController.exitPracticeFlow();
+      return;
+    }
+
+    currentActivity = activity;
+
+    currentCompletionRecord = PracticeActivityRecordModel(
+      question: activity.practiceActivity.question,
+    );
+
+    widget.overlayController.setSelectedSpan(currentActivity!.practiceActivity);
+  }
+
   /// Get an existing activity if there is one.
   /// If not, get a new activity from the server.
   Future<void> initialize() async {
-    currentActivity =
-        _fetchExistingIncompleteActivity() ?? await _fetchNewActivity();
-
-    currentActivity == null
-        ? widget.overlayController.exitPracticeFlow()
-        : widget.overlayController
-            .setSelectedSpan(currentActivity!.practiceActivity);
+    _setPracticeActivity(
+      _fetchExistingIncompleteActivity() ?? await _fetchNewActivity(),
+    );
   }
 
   // if the user did the activity before but awhile ago and we don't have any
@@ -178,77 +188,73 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   /// Fetches a new activity if there are any left to complete.
   /// Exits the practice flow if there are no more activities.
   void onActivityFinish() async {
-    try {
-      if (currentCompletionRecord == null || currentActivity == null) {
-        debugger(when: kDebugMode);
-        return;
-      }
-
-      // start joy timer
-      _savorTheJoy();
-
-      final uses = currentCompletionRecord!.uses(
-        currentActivity!.practiceActivity,
-        ConstructUseMetaData(
-          roomId: widget.pangeaMessageEvent.room.id,
-          timeStamp: DateTime.now(),
-        ),
-      );
-
-      // update the target tokens with the new construct uses
-      targetTokensController.updateTokensWithConstructs(
-        uses,
-        context,
-        widget.pangeaMessageEvent,
-      );
-
-      MatrixState.pangeaController.myAnalytics.setState(
-        AnalyticsStream(
-          // note - this maybe should be the activity event id
-          eventId: widget.pangeaMessageEvent.eventId,
-          roomId: widget.pangeaMessageEvent.room.id,
-          constructs: uses,
-        ),
-      );
-
-      // save the record without awaiting to avoid blocking the UI
-      // send a copy of the activity record to make sure its not overwritten by
-      // the new activity
-      MatrixState.pangeaController.activityRecordController
-          .send(currentCompletionRecord!, currentActivity!)
-          .catchError(
-            (e, s) => ErrorHandler.logError(
-              e: e,
-              s: s,
-              m: 'Failed to save record',
-              data: {
-                'record': currentCompletionRecord?.toJson(),
-                'activity': currentActivity?.practiceActivity.toJson(),
-              },
-            ),
-          );
-
-      widget.overlayController.onActivityFinish();
-
-      currentActivity = await _fetchNewActivity();
-
-      currentActivity == null
-          ? widget.overlayController.exitPracticeFlow()
-          : widget.overlayController
-              .setSelectedSpan(currentActivity!.practiceActivity);
-    } catch (e, s) {
+    // try {
+    if (currentCompletionRecord == null || currentActivity == null) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        m: 'Failed to get new activity',
-        data: {
-          'activity': currentActivity,
-          'record': currentCompletionRecord,
-        },
-      );
-      widget.overlayController.exitPracticeFlow();
+      return;
     }
+
+    // start joy timer
+    _savorTheJoy();
+
+    final uses = currentCompletionRecord!.uses(
+      currentActivity!.practiceActivity,
+      ConstructUseMetaData(
+        roomId: widget.pangeaMessageEvent.room.id,
+        timeStamp: DateTime.now(),
+      ),
+    );
+
+    // update the target tokens with the new construct uses
+    await targetTokensController.updateTokensWithConstructs(
+      uses,
+      context,
+      widget.pangeaMessageEvent,
+    );
+
+    MatrixState.pangeaController.myAnalytics.setState(
+      AnalyticsStream(
+        // note - this maybe should be the activity event id
+        eventId: widget.pangeaMessageEvent.eventId,
+        roomId: widget.pangeaMessageEvent.room.id,
+        constructs: uses,
+      ),
+    );
+
+    // save the record without awaiting to avoid blocking the UI
+    // send a copy of the activity record to make sure its not overwritten by
+    // the new activity
+    MatrixState.pangeaController.activityRecordController
+        .send(currentCompletionRecord!, currentActivity!)
+        .catchError(
+          (e, s) => ErrorHandler.logError(
+            e: e,
+            s: s,
+            m: 'Failed to save record',
+            data: {
+              'record': currentCompletionRecord?.toJson(),
+              'activity': currentActivity?.practiceActivity.toJson(),
+            },
+          ),
+        );
+
+    widget.overlayController.onActivityFinish();
+
+    _setPracticeActivity(await _fetchNewActivity());
+
+    // } catch (e, s) {
+    //   debugger(when: kDebugMode);
+    //   ErrorHandler.logError(
+    //     e: e,
+    //     s: s,
+    //     m: 'Failed to get new activity',
+    //     data: {
+    //       'activity': currentActivity,
+    //       'record': currentCompletionRecord,
+    //     },
+    //   );
+    //   widget.overlayController.exitPracticeFlow();
+    // }
   }
 
   RepresentationEvent? get representation =>

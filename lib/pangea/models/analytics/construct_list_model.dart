@@ -21,7 +21,7 @@ class ConstructListModel {
   }) : _uses = uses;
 
   List<OneConstructUse> get uses =>
-      _uses.where((use) => use.constructType == type).toList();
+      _uses.where((use) => use.constructType == type || type == null).toList();
 
   /// All unique lemmas used in the construct events
   List<String> get lemmas => constructList.map((e) => e.lemma).toSet().toList();
@@ -38,7 +38,7 @@ class ConstructListModel {
 
     _constructMap = lemmaToUses.map(
       (key, value) => MapEntry(
-        key + value.first.constructType.string,
+        key,
         ConstructUses(
           uses: value,
           constructType: value.first.constructType,

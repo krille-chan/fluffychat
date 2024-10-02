@@ -253,6 +253,21 @@ class PracticeActivityModel {
     this.freeResponse,
   });
 
+  String get question {
+    switch (activityType) {
+      case ActivityTypeEnum.multipleChoice:
+        return multipleChoice!.question;
+      case ActivityTypeEnum.listening:
+        return listening!.text;
+      case ActivityTypeEnum.speaking:
+        return speaking!.text;
+      case ActivityTypeEnum.freeResponse:
+        return freeResponse!.question;
+      default:
+        return '';
+    }
+  }
+
   factory PracticeActivityModel.fromJson(Map<String, dynamic> json) {
     return PracticeActivityModel(
       tgtConstructs: (json['tgt_constructs'] as List)

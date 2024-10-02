@@ -27,11 +27,12 @@ class ConstructWithXP {
   }
 
   Map<String, dynamic> toJson() {
-    return {
+    final json = {
       'construct_id': id.toJson(),
       'xp': xp,
       'last_used': lastUsed?.toIso8601String(),
     };
+    return json;
   }
 }
 

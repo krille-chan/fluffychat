@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
-import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
@@ -28,21 +27,22 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   PracticeActivityRecordModel? get currentRecordModel =>
       widget.practiceCardController.currentCompletionRecord;
 
-  bool get isSubmitted =>
-      widget.currentActivity?.latestUserRecord?.record.latestResponse != null;
+  // bool get isSubmitted =>
+  //     widget.currentActivity?.latestUserRecord?.record.latestResponse != null;
 
   @override
   void initState() {
     super.initState();
-    setCompletionRecord();
+    // setCompletionRecord();
   }
 
   @override
   void didUpdateWidget(covariant MultipleChoiceActivity oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.currentActivity?.event.eventId !=
-        widget.currentActivity?.event.eventId) {
-      setCompletionRecord();
+    if (widget.practiceCardController.currentCompletionRecord?.responses
+            .isEmpty ??
+        false) {
+      selectedChoiceIndex = null;
     }
   }
 
@@ -52,21 +52,21 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   /// Otherwise, it sets the current model to the user record's record and
   /// determines the selected choice index.
   void setCompletionRecord() {
-    if (widget.currentActivity?.latestUserRecord?.record == null) {
-      widget.practiceCardController.setCompletionRecord(
-        PracticeActivityRecordModel(
-          question:
-              widget.currentActivity?.practiceActivity.multipleChoice!.question,
-        ),
-      );
-      selectedChoiceIndex = null;
-    } else {
-      widget.practiceCardController.setCompletionRecord(
-          widget.currentActivity!.latestUserRecord!.record);
-      selectedChoiceIndex = widget
-          .currentActivity?.practiceActivity.multipleChoice!
-          .choiceIndex(currentRecordModel!.latestResponse!.text!);
-    }
+    // if (widget.currentActivity?.latestUserRecord?.record == null) {
+    widget.practiceCardController.setCompletionRecord(
+      PracticeActivityRecordModel(
+        question:
+            widget.currentActivity?.practiceActivity.multipleChoice!.question,
+      ),
+    );
+    selectedChoiceIndex = null;
+    // } else {
+    //   widget.practiceCardController.setCompletionRecord(
+    //       widget.currentActivity!.latestUserRecord!.record);
+    //   selectedChoiceIndex = widget
+    //       .currentActivity?.practiceActivity.multipleChoice!
+    //       .choiceIndex(currentRecordModel!.latestResponse!.text!);
+    // }
     setState(() {});
   }
 
@@ -79,8 +79,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
         .currentActivity!.practiceActivity.multipleChoice!
         .isCorrect(value, index);
 
-    final ConstructUseTypeEnum useType =
-        isCorrect ? ConstructUseTypeEnum.corPA : ConstructUseTypeEnum.incPA;
+    // final ConstructUseTypeEnum useType =
+    //     isCorrect ? ConstructUseTypeEnum.corPA : ConstructUseTypeEnum.incPA;
 
     currentRecordModel?.addResponse(
       text: value,
@@ -146,7 +146,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
                   ),
                 )
                 .toList(),
-            isActive: !isSubmitted,
+            isActive: true,
           ),
         ],
       ),
