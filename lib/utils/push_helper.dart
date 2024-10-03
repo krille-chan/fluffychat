@@ -22,7 +22,7 @@ Future<void> pushHelper(
   Client? client,
   L10n? l10n,
   String? activeRoomId,
-  void Function(NotificationResponse?)? onSelectNotification,
+  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
 }) async {
   try {
     await _tryPushHelper(
@@ -30,21 +30,10 @@ Future<void> pushHelper(
       client: client,
       l10n: l10n,
       activeRoomId: activeRoomId,
-      onSelectNotification: onSelectNotification,
+      flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
     );
   } catch (e, s) {
     Logs().v('Push Helper has crashed!', e, s);
-
-    // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    await flutterLocalNotificationsPlugin.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('notifications_icon'),
-        iOS: DarwinInitializationSettings(),
-      ),
-      onDidReceiveNotificationResponse: onSelectNotification,
-      onDidReceiveBackgroundNotificationResponse: onSelectNotification,
-    );
 
     l10n ??= lookupL10n(const Locale('en'));
     flutterLocalNotificationsPlugin.show(
@@ -76,7 +65,7 @@ Future<void> _tryPushHelper(
   Client? client,
   L10n? l10n,
   String? activeRoomId,
-  void Function(NotificationResponse?)? onSelectNotification,
+  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
 }) async {
   final isBackgroundMessage = client == null;
   Logs().v(
@@ -90,17 +79,6 @@ Future<void> _tryPushHelper(
     Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }
-
-  // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-  final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  await flutterLocalNotificationsPlugin.initialize(
-    const InitializationSettings(
-      android: AndroidInitializationSettings('notifications_icon'),
-      iOS: DarwinInitializationSettings(),
-    ),
-    onDidReceiveNotificationResponse: onSelectNotification,
-    //onDidReceiveBackgroundNotificationResponse: onSelectNotification,
-  );
 
   client ??= (await ClientManager.getClients(
     initialize: false,

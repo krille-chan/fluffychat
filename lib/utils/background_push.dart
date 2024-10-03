@@ -70,31 +70,46 @@ class BackgroundPush {
 
   bool upAction = false;
 
-  BackgroundPush._(this.client) {
-    firebase?.setListeners(
-      onMessage: (message) => pushHelper(
-        PushNotification.fromJson(
-          Map<String, dynamic>.from(message['data'] ?? message),
+  void _init() async {
+    try {
+      await _flutterLocalNotificationsPlugin.initialize(
+        const InitializationSettings(
+          android: AndroidInitializationSettings('notifications_icon'),
+          iOS: DarwinInitializationSettings(),
         ),
-        client: client,
-        l10n: l10n,
-        activeRoomId: matrix?.activeRoomId,
-        onSelectNotification: goToRoom,
-      ),
-    );
-    if (Platform.isAndroid) {
-      UnifiedPush.initialize(
-        onNewEndpoint: _newUpEndpoint,
-        onRegistrationFailed: _upUnregistered,
-        onUnregistered: _upUnregistered,
-        onMessage: _onUpMessage,
+        onDidReceiveNotificationResponse: goToRoom,
       );
+      Logs().v('Flutter Local Notifications initialized');
+      firebase?.setListeners(
+        onMessage: (message) => pushHelper(
+          PushNotification.fromJson(
+            Map<String, dynamic>.from(message['data'] ?? message),
+          ),
+          client: client,
+          l10n: l10n,
+          activeRoomId: matrix?.activeRoomId,
+          flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
+        ),
+      );
+      if (Platform.isAndroid) {
+        await UnifiedPush.initialize(
+          onNewEndpoint: _newUpEndpoint,
+          onRegistrationFailed: _upUnregistered,
+          onUnregistered: _upUnregistered,
+          onMessage: _onUpMessage,
+        );
+      }
+    } catch (e, s) {
+      Logs().e('Unable to initialize Flutter local notifications', e, s);
     }
   }
 
+  BackgroundPush._(this.client) {
+    _init();
+  }
+
   factory BackgroundPush.clientOnly(Client client) {
-    _instance ??= BackgroundPush._(client);
-    return _instance!;
+    return _instance ??= BackgroundPush._(client);
   }
 
   factory BackgroundPush(
@@ -110,7 +125,7 @@ class BackgroundPush {
 
   Future<void> cancelNotification(String roomId) async {
     Logs().v('Cancel notification for room', roomId);
-    await FlutterLocalNotificationsPlugin().cancel(roomId.hashCode);
+    await _flutterLocalNotificationsPlugin.cancel(roomId.hashCode);
 
     // Workaround for app icon badge not updating
     if (Platform.isIOS) {
@@ -400,6 +415,7 @@ class BackgroundPush {
       client: client,
       l10n: l10n,
       activeRoomId: matrix?.activeRoomId,
+      flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
     );
   }
 }
