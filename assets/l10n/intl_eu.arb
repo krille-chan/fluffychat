@@ -2230,7 +2230,7 @@
   "@noBackupWarning": {},
   "doNotShowAgain": "Ez erakutsi berriro",
   "@doNotShowAgain": {},
-  "fileIsTooBigForServer": "Zerbitzariak dio fitxategia handiegia dela bidali ahal izateko.",
+  "fileIsTooBigForServer": "Ezin da bidali! Zerbitzariak gehienez {max}-ko eranskinak onartzen ditu.",
   "@fileIsTooBigForServer": {},
   "noOtherDevicesFound": "Ez da beste gailurik aurkitu",
   "@noOtherDevicesFound": {},
@@ -2803,5 +2803,30 @@
   "whatIsAHomeserver": "Zer da zerbitzari bat?",
   "@whatIsAHomeserver": {},
   "doesNotSeemToBeAValidHomeserver": "Ez dirudi zerbitzaria bateragarria denik. Zuzena da URLa?",
-  "@doesNotSeemToBeAValidHomeserver": {}
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "calculatingFileSize": "Fitxategiaren tamaina kalkulatzen…",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Eranskinaren bidalketa prestatzen…",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "Eranskina bidaltzen…",
+  "@sendingAttachment": {},
+  "compressVideo": "Bideoa konprimatzen…",
+  "@compressVideo": {},
+  "generatingVideoThumbnail": "Bideoaren iruditxoa sortzen…",
+  "@generatingVideoThumbnail": {},
+  "serverLimitReached": "Zerbitzariaren muga gainditu da! Itxaron {seconds} segundo…",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "sendingAttachmentCountOfCount": "{index}. eranskina bidaltzen ({length} guztira)…",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  }
 }

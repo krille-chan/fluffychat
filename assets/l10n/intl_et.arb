@@ -2271,7 +2271,7 @@
   "@noOtherDevicesFound": {},
   "noBackupWarning": "Hoiatus! Kui sa ei lülita sisse vestluse varundust, siis sul puudub hiljem ligipääs krüptitud sõnumitele. Me tungivalt soovitame, et palun lülita vestluse varundamine sisse enne väljalogimist.",
   "@noBackupWarning": {},
-  "fileIsTooBigForServer": "Serveri seadistuste alusel on see fail saatmiseks liiga suur.",
+  "fileIsTooBigForServer": "Saatmine ei õnnestu! Serveri vaid kuni {max} suurusega manuseid.",
   "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "Fail on salvestatud kausta: {path}",
   "@fileHasBeenSavedAt": {
@@ -2803,5 +2803,30 @@
   "homeserverDescription": "Sarnaselt e-postiteenuse pakkujale on kõik sinu sõnumid salvestatud koduserveris. Sa võid valida sellise koduserveri, nagu sulle meeldib ja nad kõik suudavad teiste koduserveritega suhelda. Lisateavet leiad veebisaidist https://matrix.org.",
   "@homeserverDescription": {},
   "doesNotSeemToBeAValidHomeserver": "Ei tundu olema ühilduv koduserver. Kas võrguaadress on ikka õige?",
-  "@doesNotSeemToBeAValidHomeserver": {}
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "prepareSendingAttachment": "Valmistume manuse saatmiseks...",
+  "@prepareSendingAttachment": {},
+  "generatingVideoThumbnail": "Loome video pisipilti...",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "Pakime videot väiksemaks...",
+  "@compressVideo": {},
+  "sendingAttachmentCountOfCount": "Saadame manust: {index} pikkusega {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "Serveri poolt lubatud ülempiir on käes. Ootame {seconds} sekundit...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "sendingAttachment": "Saadame manust...",
+  "@sendingAttachment": {},
+  "calculatingFileSize": "Arvutame faili suurust...",
+  "@calculatingFileSize": {}
 }

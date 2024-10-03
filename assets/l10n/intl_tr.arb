@@ -2271,7 +2271,7 @@
   "@noBackupWarning": {},
   "noOtherDevicesFound": "Başka aygıt bulunamadı",
   "@noOtherDevicesFound": {},
-  "fileIsTooBigForServer": "Sunucu, dosyanın gönderilemeyecek kadar büyük olduğunu bildiriyor.",
+  "fileIsTooBigForServer": "Gönderilemiyor! Sunucu yalnızca {max} değerine kadar olan ekleri destekliyor.",
   "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "Dosya {path} konumuna kaydedildi",
   "@fileHasBeenSavedAt": {
@@ -2803,5 +2803,30 @@
   "homeserverDescription": "Tüm verileriniz tıpkı bir e-posta sağlayıcısı gibi ana sunucuda saklanır. Hangi ana sunucuyu kullanmak istediğinizi seçebilir ve herkesle iletişim kurmaya devam edebilirsiniz. https://matrix.org adresinden daha fazla bilgi edinin.",
   "@homeserverDescription": {},
   "doesNotSeemToBeAValidHomeserver": "Uyumlu bir ana sunucu gibi görünmüyor. Yanlış URL mi?",
-  "@doesNotSeemToBeAValidHomeserver": {}
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "prepareSendingAttachment": "Ek gönderilmeye hazırlanıyor...",
+  "@prepareSendingAttachment": {},
+  "serverLimitReached": "Sunucu sınırına ulaşıldı! {seconds} saniye bekleniyor...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "calculatingFileSize": "Dosya boyutu hesaplanıyor...",
+  "@calculatingFileSize": {},
+  "sendingAttachmentCountOfCount": "Ek {index} / {length} gönderiliyor...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "sendingAttachment": "Ek gönderiliyor...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Video küçük resmi oluşturuluyor...",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "Video sıkıştırılıyor...",
+  "@compressVideo": {}
 }

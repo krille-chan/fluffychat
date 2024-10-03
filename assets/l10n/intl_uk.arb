@@ -2271,7 +2271,7 @@
   "@noOtherDevicesFound": {},
   "noBackupWarning": "Увага! Якщо ви не ввімкнете резервне копіювання бесіди, ви втратите доступ до своїх зашифрованих повідомлень. Наполегливо радимо ввімкнути резервне копіювання бесіди перед виходом.",
   "@noBackupWarning": {},
-  "fileIsTooBigForServer": "Сервер повідомляє, що файл завеликий для надсилання.",
+  "fileIsTooBigForServer": "Не вдалося надіслати! Сервер підтримує вкладення розміром до {max}.",
   "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "Файл збережено в {path}",
   "@fileHasBeenSavedAt": {
@@ -2803,5 +2803,30 @@
   "homeserverDescription": "Усі ваші дані зберігаються на домашньому сервері, так само як у постачальника послуг електронної пошти. Ви можете вибрати, який домашній сервер ви хочете використовувати, водночас ви можете спілкуватися з усіма. Докладніше на https://matrix.org.",
   "@homeserverDescription": {},
   "doesNotSeemToBeAValidHomeserver": "Здається, це несумісний домашній сервер. Неправильна URL-адреса?",
-  "@doesNotSeemToBeAValidHomeserver": {}
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "calculatingFileSize": "Обчислення розміру файлу...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Підготовка до відправлення вкладення...",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "Відправлення вкладення...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Генерування мініатюри відео...",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "Стискання відео...",
+  "@compressVideo": {},
+  "sendingAttachmentCountOfCount": "Відправлення вкладення {index} з {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "Досягнуто ліміт сервера! Очікування {seconds} секунд...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  }
 }

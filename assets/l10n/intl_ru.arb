@@ -284,12 +284,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheHomeserver": "Изменить сервер Matrix",
+  "changeTheHomeserver": "Изменить домашний сервер",
   "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "changeTheme": "Тема",
+  "changeTheme": "Персонализация",
   "@changeTheme": {
     "type": "text",
     "placeholders": {}
@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Уровень разрешений по умолчанию",
+  "defaultPermissionLevel": "Уровень разрешений по умолчанию для новых пользователей",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -711,7 +711,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterYourHomeserver": "Введите адрес вашего сервера Matrix",
+  "enterYourHomeserver": "Введите адрес вашего домашнего сервера",
   "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -1919,7 +1919,7 @@
   "@scanQrCode": {},
   "sendOnEnter": "Отправлять по Enter",
   "@sendOnEnter": {},
-  "homeserver": "Сервер Matrix",
+  "homeserver": "Домашний сервер",
   "@homeserver": {},
   "serverRequiresEmail": "Этот сервер должен подтвердить ваш адрес электронной почты для регистрации.",
   "@serverRequiresEmail": {},
@@ -2760,5 +2760,28 @@
   "@goToSpace": {
     "type": "text",
     "space": {}
-  }
+  },
+  "sendCanceled": "Отправка отменена",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Не было найдено ни одного чата. Начать с кем-нибудь новый чат можно, нажав кнопку ниже. ⤵️",
+  "@noChatsFoundHere": {},
+  "updateInstalled": "🎉 Обновление {version} успешно установлено!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Список изменений",
+  "@changelog": {},
+  "invitedBy": "📩 Приглашен(а) {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "doesNotSeemToBeAValidHomeserver": "Этот домашний сервер выглядит несовместимым. Нет ли в ссылке опечаток?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "noMoreChatsFound": "Больше чатов не обнаружено...",
+  "@noMoreChatsFound": {}
 }

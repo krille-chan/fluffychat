@@ -1002,7 +1002,7 @@
       "username": {}
     }
   },
-  "fileIsTooBigForServer": "Serveris ziņo, ka datne ir pārāk liela, lai to nosūtītu.",
+  "fileIsTooBigForServer": "Nevar nosūtīt. Serveris nodrošina pielikums līdz {max}.",
   "@fileIsTooBigForServer": {},
   "homeserver": "Mājasserveris",
   "@homeserver": {},
@@ -2781,5 +2781,30 @@
   "spaces": "Vietas",
   "@spaces": {},
   "markAsUnread": "Atzīmēt kā nelasītu",
-  "@markAsUnread": {}
+  "@markAsUnread": {},
+  "sendingAttachment": "Nosūta pielikumu...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Izveido video sīktēlu...",
+  "@generatingVideoThumbnail": {},
+  "sendingAttachmentCountOfCount": "Nosūta {index}. pielikumu no {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "Sasniegts servera ierobežojums. Gaida {seconds} sekundes...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "calculatingFileSize": "Aprēķina datnes lielumu...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Sagatavo pielikuma nosūtīšanu...",
+  "@prepareSendingAttachment": {},
+  "compressVideo": "Saspiež video...",
+  "@compressVideo": {}
 }

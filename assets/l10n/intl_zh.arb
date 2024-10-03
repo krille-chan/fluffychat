@@ -2267,7 +2267,7 @@
   "@deviceKeys": {},
   "report": "举报",
   "@report": {},
-  "fileIsTooBigForServer": "服务器报告文件过大，无法发送。",
+  "fileIsTooBigForServer": "无法发送！服务器只支持最大 {max} 的文件。",
   "@fileIsTooBigForServer": {},
   "noOtherDevicesFound": "未找到其它设备",
   "@noOtherDevicesFound": {},
@@ -2803,5 +2803,30 @@
   "homeserverDescription": "主服务器上就像电子邮件提供商，你的所有数据都存储在上面。你可以选择你想使用哪个主服务器。在 https://matrix.org 上了解更多信息。",
   "@homeserverDescription": {},
   "doesNotSeemToBeAValidHomeserver": "似乎不是兼容的主服务器。URL 不正确？",
-  "@doesNotSeemToBeAValidHomeserver": {}
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "prepareSendingAttachment": "准备发送附件…",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "发送附件中…",
+  "@sendingAttachment": {},
+  "calculatingFileSize": "计算文件尺寸中…",
+  "@calculatingFileSize": {},
+  "generatingVideoThumbnail": "生成视频缩略图中…",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "压缩视频中…",
+  "@compressVideo": {},
+  "sendingAttachmentCountOfCount": "正在发送附件 {index}，共 {length} 个附件…",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "达到了服务器限制！等待 {seconds} 秒…",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  }
 }
