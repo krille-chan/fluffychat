@@ -15,6 +15,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
 const notificationAvatarDimension = 128;
@@ -277,6 +278,19 @@ Future<void> _tryPushHelper(
     importance: Importance.high,
     priority: Priority.max,
     groupKey: event.room.spaceParents.firstOrNull?.roomId ?? 'rooms',
+    actions: <AndroidNotificationAction>[
+      AndroidNotificationAction(
+        FluffyChatNotificationActions.markAsRead.name,
+        l10n.markAsRead,
+      ),
+      AndroidNotificationAction(
+        FluffyChatNotificationActions.reply.name,
+        l10n.reply,
+        inputs: [
+          const AndroidNotificationActionInput(),
+        ],
+      ),
+    ],
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(
