@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
@@ -16,6 +15,7 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_card.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -52,20 +52,13 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   // Used to show an animation when the user completes an activity
   // while simultaneously fetching a new activity and not showing the loading spinner
   // until the appropriate time has passed to 'savor the joy'
-  Duration appropriateTimeForJoy = const Duration(milliseconds: 500);
+  Duration appropriateTimeForJoy = const Duration(milliseconds: 1000);
   bool savoringTheJoy = false;
-  Timer? joyTimer;
 
   @override
   void initState() {
     super.initState();
     initialize();
-  }
-
-  @override
-  void dispose() {
-    joyTimer?.cancel();
-    super.dispose();
   }
 
   void _updateFetchingActivity(bool value) {
@@ -74,18 +67,22 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   }
 
   void _setPracticeActivity(PracticeActivityEvent? activity) {
+    //set elsewhere but just in case
+    fetchingActivity = false;
+
+    currentActivity = activity;
+
     if (activity == null) {
       widget.overlayController.exitPracticeFlow();
       return;
     }
 
-    currentActivity = activity;
-
+    //make new completion record
     currentCompletionRecord = PracticeActivityRecordModel(
       question: activity.practiceActivity.question,
     );
 
-    widget.overlayController.setSelectedSpan(currentActivity!.practiceActivity);
+    widget.overlayController.setSelectedSpan(activity.practiceActivity);
   }
 
   /// Get an existing activity if there is one.
@@ -168,19 +165,26 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     }
   }
 
-  void setCompletionRecord(PracticeActivityRecordModel? recordModel) {
-    currentCompletionRecord = recordModel;
-  }
+  ConstructUseMetaData get metadata => ConstructUseMetaData(
+        eventId: widget.pangeaMessageEvent.eventId,
+        roomId: widget.pangeaMessageEvent.room.id,
+        timeStamp: DateTime.now(),
+      );
 
-  /// future that simply waits for the appropriate time to savor the joy
   Future<void> _savorTheJoy() async {
-    joyTimer?.cancel();
-    if (savoringTheJoy) return;
+    if (savoringTheJoy) {
+      //should not happen
+      debugger(when: kDebugMode);
+    }
     savoringTheJoy = true;
-    joyTimer = Timer(appropriateTimeForJoy, () {
-      savoringTheJoy = false;
-      joyTimer?.cancel();
-    });
+
+    debugPrint('Savoring the joy');
+
+    await Future.delayed(appropriateTimeForJoy);
+
+    savoringTheJoy = false;
+
+    debugPrint('Savoring the joy is over');
   }
 
   /// Called when the user finishes an activity.
@@ -194,31 +198,15 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       return;
     }
 
-    // start joy timer
-    _savorTheJoy();
-
-    final uses = currentCompletionRecord!.uses(
-      currentActivity!.practiceActivity,
-      ConstructUseMetaData(
-        roomId: widget.pangeaMessageEvent.room.id,
-        timeStamp: DateTime.now(),
-      ),
-    );
-
     // update the target tokens with the new construct uses
+    // NOTE - multiple choice activity is handling adding these to analytics
     await targetTokensController.updateTokensWithConstructs(
-      uses,
+      currentCompletionRecord!.usesForAllResponses(
+        currentActivity!.practiceActivity,
+        metadata,
+      ),
       context,
       widget.pangeaMessageEvent,
-    );
-
-    MatrixState.pangeaController.myAnalytics.setState(
-      AnalyticsStream(
-        // note - this maybe should be the activity event id
-        eventId: widget.pangeaMessageEvent.eventId,
-        roomId: widget.pangeaMessageEvent.room.id,
-        constructs: uses,
-      ),
     );
 
     // save the record without awaiting to avoid blocking the UI
@@ -240,7 +228,12 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
     widget.overlayController.onActivityFinish();
 
-    _setPracticeActivity(await _fetchNewActivity());
+    final Iterable<dynamic> result = await Future.wait([
+      _savorTheJoy(),
+      _fetchNewActivity(),
+    ]);
+
+    _setPracticeActivity(result.last as PracticeActivityEvent?);
 
     // } catch (e, s) {
     //   debugger(when: kDebugMode);
@@ -295,12 +288,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   }
 
   String? get userMessage {
-    // if the user has finished all the activities to unlock the toolbar in this session
-    if (widget.overlayController.finishedActivitiesThisSession) {
-      return "Boom! Tools unlocked!";
-
-      // if we have no activities to show
-    } else if (!fetchingActivity && currentActivity == null) {
+    if (!fetchingActivity && currentActivity == null) {
       return L10n.of(context)!.noActivitiesFound;
     }
     return null;
@@ -309,20 +297,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   @override
   Widget build(BuildContext context) {
     if (userMessage != null) {
-      return Center(
-        child: Container(
-          constraints: const BoxConstraints(
-            minHeight: 80,
-          ),
-          child: Text(
-            userMessage!,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      );
+      return GamifiedTextWidget(userMessage: userMessage!);
     }
 
     return Stack(
@@ -435,7 +410,7 @@ class TargetTokensController {
           construct.id.type,
         );
         if (constructUseModel != null) {
-          construct.xp = constructUseModel.points;
+          construct.xp += constructUseModel.points;
           construct.lastUsed = constructUseModel.lastUsed;
         }
       }

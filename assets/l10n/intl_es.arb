@@ -4513,6 +4513,7 @@
   "autoPlayTitle": "Reproducción automática de mensajes",
   "autoPlayDesc": "Cuando está activado, el audio de texto a voz de los mensajes se reproducirá automáticamente cuando se seleccione.",
   "presenceStyle": "Presencia:",
+  "noActivitiesFound": "¡Ya has practicado por ahora! Vuelve más tarde para ver más.",
   "presencesToggle": "Mostrar mensajes de estado de otros usuarios",
   "writeAMessageFlag": "Escribe un mensaje en {l1flag} o {l2flag}",
   "@writeAMessageFlag": {

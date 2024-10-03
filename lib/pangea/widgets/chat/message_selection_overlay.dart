@@ -53,16 +53,9 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   /// The number of activities that need to be completed before the toolbar is unlocked
   /// If we don't have any good activities for them, we'll decrease this number
-  int needed = 3;
+  static const int neededActivities = 3;
 
-  /// Whether the user has completed the activities needed to unlock the toolbar
-  /// within this overlay 'session'. if they click out and come back in then
-  /// we can give them some more activities to complete
-  int completedThisSession = 0;
-
-  bool get finishedActivitiesThisSession => completedThisSession >= needed;
-
-  late int activitiesLeftToComplete = needed;
+  int activitiesLeftToComplete = neededActivities;
 
   @override
   void initState() {
@@ -72,8 +65,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       duration: FluffyThemes.animationDuration,
     );
 
-    activitiesLeftToComplete =
-        needed - widget._pangeaMessageEvent.numberOfActivitiesCompleted;
+    activitiesLeftToComplete = activitiesLeftToComplete -
+        widget._pangeaMessageEvent.numberOfActivitiesCompleted;
 
     setInitialToolbarMode();
   }
@@ -84,7 +77,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// and check if the toolbar should be unlocked
   void onActivityFinish() {
     if (!mounted) return;
-    completedThisSession += 1;
     activitiesLeftToComplete -= 1;
     clearSelection();
     setState(() {});
@@ -95,8 +87,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void exitPracticeFlow() {
     debugPrint('Exiting practice flow');
     clearSelection();
-    needed = 0;
-    setInitialToolbarMode();
+    activitiesLeftToComplete = 0;
     setState(() {});
   }
 

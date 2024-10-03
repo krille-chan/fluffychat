@@ -7,7 +7,6 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 
 class PracticeActivityRecordModel {
@@ -85,50 +84,17 @@ class PracticeActivityRecordModel {
   /// The [practiceActivity] parameter is the parent event, representing the activity itself.
   /// The [metadata] parameter is the metadata for the construct use, used if the record event isn't available.
   ///
-  /// The method iterates over the [tgtConstructs] of the [practiceActivity] and creates a [OneConstructUse] object for each construct and useType.
-  List<OneConstructUse> uses(
+  /// The method iterates over the [responses] to get [OneConstructUse] objects for each
+  List<OneConstructUse> usesForAllResponses(
     PracticeActivityModel practiceActivity,
     ConstructUseMetaData metadata,
-  ) {
-    try {
-      final List<OneConstructUse> uses = [];
-
-      final uniqueResponses = responses.toSet();
-
-      final List<ConstructUseTypeEnum> useTypes =
-          uniqueResponses.map((response) => response.useType).toList();
-
-      for (final construct in practiceActivity.tgtConstructs) {
-        for (final useType in useTypes) {
-          uses.add(
-            OneConstructUse(
-              lemma: construct.lemma,
-              constructType: construct.type,
-              useType: useType,
-              //TODO - find form of construct within the message
-              //this is related to the feature of highlighting the target construct in the message
-              form: construct.lemma,
-              metadata: metadata,
-            ),
-          );
-        }
-      }
-
-      return uses;
-    } catch (e, s) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          'recordModel': toJson(),
-          'practiceActivity': practiceActivity,
-          'metadata': metadata,
-        },
-      );
-      return [];
-    }
-  }
+  ) =>
+      responses
+          .toSet()
+          .expand(
+            (response) => response.toUses(practiceActivity, metadata),
+          )
+          .toList();
 
   @override
   bool operator ==(Object other) {
@@ -164,8 +130,25 @@ class ActivityRecordResponse {
     required this.timestamp,
   });
 
+  //TODO - differentiate into different activity types
   ConstructUseTypeEnum get useType =>
       score > 0 ? ConstructUseTypeEnum.corPA : ConstructUseTypeEnum.incPA;
+
+  // for each target construct create a OneConstructUse object
+  List<OneConstructUse> toUses(
+    PracticeActivityModel practiceActivity,
+    ConstructUseMetaData metadata,
+  ) =>
+      practiceActivity.tgtConstructs
+          .map(
+            (construct) => OneConstructUse(
+              lemma: construct.lemma,
+              constructType: construct.type,
+              useType: useType,
+              metadata: metadata,
+            ),
+          )
+          .toList();
 
   factory ActivityRecordResponse.fromJson(Map<String, dynamic> json) {
     return ActivityRecordResponse(
