@@ -1,16 +1,14 @@
 import 'dart:developer';
-import 'dart:math';
 
-import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_speech_to_text_card.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar_buttons.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
@@ -18,7 +16,6 @@ import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_ca
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
 
 class MessageToolbar extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
@@ -35,33 +32,9 @@ class MessageToolbar extends StatefulWidget {
 }
 
 class MessageToolbarState extends State<MessageToolbar> {
-  bool updatingMode = false;
-
   @override
   void initState() {
     super.initState();
-
-    // why can't this just be initstate or the build mode?
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   //determine the starting mode
-    //   //   if (widget.pangeaMessageEvent.isAudioMessage) {
-    //   //     updateMode(MessageMode.speechToText);
-    //   //     return;
-    //   //   }
-
-    //   //   if (widget.initialMode != null) {
-    //   //     updateMode(widget.initialMode!);
-    //   //   } else {
-    //   //     MatrixState.pangeaController.userController.profile.userSettings
-    //   //             .autoPlayMessages
-    //   //         ? updateMode(MessageMode.textToSpeech)
-    //   //         : updateMode(MessageMode.translation);
-    //   //   }
-    //   // });
-
-    //   // just set mode based on messageSelectionOverlay mode which is now handling the state
-    //   updateMode(widget.overLayController.toolbarMode);
-    // });
   }
 
   Widget get toolbarContent {
@@ -141,208 +114,50 @@ class MessageToolbarState extends State<MessageToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("building toolbar");
     return Material(
       key: MatrixState.pAnyState
           .layerLinkAndKey('${widget.pangeaMessageEvent.eventId}-toolbar')
           .key,
       type: MaterialType.transparency,
-      child: Container(
-        constraints: const BoxConstraints(
-          maxHeight: AppConfig.toolbarMaxHeight,
-          maxWidth: 275,
-          minWidth: 275,
-        ),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          border: Border.all(
-            width: 2,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(25),
-          ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Flexible(
-              child: SingleChildScrollView(
-                child: AnimatedSize(
-                  duration: FluffyThemes.animationDuration,
-                  child: toolbarContent,
-                ),
+      child: Column(
+        children: [
+          Container(
+            constraints: const BoxConstraints(
+              maxHeight: AppConfig.toolbarMaxHeight,
+              maxWidth: 350,
+              minWidth: 350,
+            ),
+            padding: const EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              border: Border.all(
+                width: 2,
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(AppConfig.borderRadius),
               ),
             ),
-            ToolbarButtons(messageToolbarController: this, width: 250),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ToolbarSelectionArea extends StatelessWidget {
-  final ChatController controller;
-  final PangeaMessageEvent? pangeaMessageEvent;
-  final bool isOverlay;
-  final Widget child;
-  final Event? nextEvent;
-  final Event? prevEvent;
-
-  const ToolbarSelectionArea({
-    required this.controller,
-    this.pangeaMessageEvent,
-    this.isOverlay = false,
-    required this.child,
-    this.nextEvent,
-    this.prevEvent,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (pangeaMessageEvent != null && !isOverlay) {
-          controller.showToolbar(
-            pangeaMessageEvent!,
-            nextEvent: nextEvent,
-            prevEvent: prevEvent,
-          );
-        }
-      },
-      onLongPress: () {
-        if (pangeaMessageEvent != null && !isOverlay) {
-          controller.showToolbar(
-            pangeaMessageEvent!,
-            nextEvent: nextEvent,
-            prevEvent: prevEvent,
-          );
-        }
-      },
-      child: child,
-    );
-  }
-}
-
-class ToolbarButtons extends StatefulWidget {
-  final MessageToolbarState messageToolbarController;
-  final double width;
-
-  const ToolbarButtons({
-    required this.messageToolbarController,
-    required this.width,
-    super.key,
-  });
-
-  @override
-  ToolbarButtonsState createState() => ToolbarButtonsState();
-}
-
-class ToolbarButtonsState extends State<ToolbarButtons> {
-  PangeaMessageEvent get pangeaMessageEvent =>
-      widget.messageToolbarController.widget.pangeaMessageEvent;
-
-  List<MessageMode> get modes => MessageMode.values
-      .where((mode) => mode.isValidMode(pangeaMessageEvent.event))
-      .toList();
-
-  static const double iconWidth = 36.0;
-
-  MessageOverlayController get overlayController =>
-      widget.messageToolbarController.widget.overLayController;
-
-  // @ggurdin - maybe this can be stateless now?
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final double barWidth = widget.width - iconWidth;
-
-    if (widget
-        .messageToolbarController.widget.pangeaMessageEvent.isAudioMessage) {
-      return const SizedBox();
-    }
-
-    return SizedBox(
-      width: widget.width,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Stack(
-            children: [
-              Container(
-                width: widget.width,
-                height: 12,
-                decoration: BoxDecoration(
-                  color: MessageModeExtension.barAndLockedButtonColor(context),
-                ),
-                margin: const EdgeInsets.symmetric(horizontal: iconWidth / 2),
-              ),
-              AnimatedContainer(
-                duration: FluffyThemes.animationDuration,
-                height: 12,
-                width: overlayController.isPracticeComplete
-                    ? barWidth
-                    : min(
-                        barWidth,
-                        (barWidth / 3) *
-                            pangeaMessageEvent.numberOfActivitiesCompleted,
-                      ),
-                color: AppConfig.success,
-                margin: const EdgeInsets.symmetric(horizontal: iconWidth / 2),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: modes
-                .mapIndexed(
-                  (index, mode) => Tooltip(
-                    message: mode.tooltip(context),
-                    child: IconButton(
-                      iconSize: 20,
-                      icon: Icon(mode.icon),
-                      color: mode ==
-                              widget.messageToolbarController.widget
-                                  .overLayController.toolbarMode
-                          ? Colors.white
-                          : null,
-                      isSelected: mode ==
-                          widget.messageToolbarController.widget
-                              .overLayController.toolbarMode,
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(
-                          mode.iconButtonColor(
-                            context,
-                            index,
-                            widget.messageToolbarController.widget
-                                .overLayController.toolbarMode,
-                            pangeaMessageEvent.numberOfActivitiesCompleted,
-                            widget.messageToolbarController.widget
-                                .overLayController.isPracticeComplete,
-                          ),
-                        ),
-                      ),
-                      onPressed: mode.isUnlocked(
-                        index,
-                        pangeaMessageEvent.numberOfActivitiesCompleted,
-                        overlayController.isPracticeComplete,
-                      )
-                          ? () => widget
-                              .messageToolbarController.widget.overLayController
-                              .updateToolbarMode(mode)
-                          : null,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: AnimatedSize(
+                      duration: FluffyThemes.animationDuration,
+                      child: toolbarContent,
                     ),
                   ),
-                )
-                .toList(),
+                ),
+              ],
+            ),
           ),
+          const SizedBox(height: 6),
+          ToolbarButtons(
+            overlayController: widget.overLayController,
+            width: 250,
+          ),
+          const SizedBox(height: 6),
         ],
       ),
     );

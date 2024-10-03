@@ -81,6 +81,7 @@ class GamifiedTextWidget extends StatelessWidget {
             constraints: const BoxConstraints(
               minHeight: 80,
             ),
+            padding: const EdgeInsets.all(8),
             child: Text(
               userMessage,
               style: const TextStyle(

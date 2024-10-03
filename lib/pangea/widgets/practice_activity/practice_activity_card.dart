@@ -6,7 +6,6 @@ import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
-import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
@@ -16,6 +15,7 @@ import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_card.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/target_tokens_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +44,8 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   PracticeActivityRecordModel? currentCompletionRecord;
   bool fetchingActivity = false;
 
+  // tracks the target tokens for the current message
+  // in a separate controller to manage the state
   TargetTokensController targetTokensController = TargetTokensController();
 
   List<PracticeActivityEvent> get practiceActivities =>
@@ -108,7 +110,9 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     return incompleteActivities.firstOrNull;
   }
 
-  Future<PracticeActivityEvent?> _fetchNewActivity() async {
+  Future<PracticeActivityEvent?> _fetchNewActivity([
+    ActivityQualityFeedback? activityFeedback,
+  ]) async {
     try {
       debugPrint('Fetching new activity');
 
@@ -143,6 +147,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
           existingActivities: practiceActivities
               .map((activity) => activity.activityRequestMetaData)
               .toList(),
+          activityQualityFeedback: activityFeedback,
         ),
         widget.pangeaMessageEvent,
       );
@@ -192,62 +197,138 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   /// Fetches a new activity if there are any left to complete.
   /// Exits the practice flow if there are no more activities.
   void onActivityFinish() async {
-    // try {
-    if (currentCompletionRecord == null || currentActivity == null) {
+    try {
+      if (currentCompletionRecord == null || currentActivity == null) {
+        debugger(when: kDebugMode);
+        return;
+      }
+
+      // update the target tokens with the new construct uses
+      // NOTE - multiple choice activity is handling adding these to analytics
+      await targetTokensController.updateTokensWithConstructs(
+        currentCompletionRecord!.usesForAllResponses(
+          currentActivity!.practiceActivity,
+          metadata,
+        ),
+        context,
+        widget.pangeaMessageEvent,
+      );
+
+      // save the record without awaiting to avoid blocking the UI
+      // send a copy of the activity record to make sure its not overwritten by
+      // the new activity
+      MatrixState.pangeaController.activityRecordController
+          .send(currentCompletionRecord!, currentActivity!)
+          .catchError(
+            (e, s) => ErrorHandler.logError(
+              e: e,
+              s: s,
+              m: 'Failed to save record',
+              data: {
+                'record': currentCompletionRecord?.toJson(),
+                'activity': currentActivity?.practiceActivity.toJson(),
+              },
+            ),
+          );
+
+      widget.overlayController.onActivityFinish();
+
+      final Iterable<dynamic> result = await Future.wait([
+        _savorTheJoy(),
+        _fetchNewActivity(),
+      ]);
+
+      _setPracticeActivity(result.last as PracticeActivityEvent?);
+    } catch (e, s) {
+      _setPracticeActivity(null);
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        m: 'Failed to get new activity',
+        data: {
+          'activity': currentActivity,
+          'record': currentCompletionRecord,
+        },
+      );
+    }
+  }
+
+  void onFlagClick(BuildContext context) {
+    final TextEditingController feedbackController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(L10n.of(context)!.reportContentIssueTitle),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(L10n.of(context)!.reportContentIssueDescription),
+              const SizedBox(height: 10),
+              TextField(
+                controller: feedbackController,
+                decoration: InputDecoration(
+                  labelText: L10n.of(context)!.feedback,
+                  border: const OutlineInputBorder(),
+                ),
+                maxLines: 3,
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text(L10n.of(context)!.cancel),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Call the additional callback function
+                submitFeedback(feedbackController.text);
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text(L10n.of(context)!.submit),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  /// clear the current activity, record, and selection
+  /// fetch a new activity, including the offending activity in the request
+  void submitFeedback(String feedback) {
+    if (currentActivity == null) {
       debugger(when: kDebugMode);
       return;
     }
 
-    // update the target tokens with the new construct uses
-    // NOTE - multiple choice activity is handling adding these to analytics
-    await targetTokensController.updateTokensWithConstructs(
-      currentCompletionRecord!.usesForAllResponses(
-        currentActivity!.practiceActivity,
-        metadata,
+    _fetchNewActivity(
+      ActivityQualityFeedback(
+        feedbackText: feedback,
+        badActivity: currentActivity!.practiceActivity,
       ),
-      context,
-      widget.pangeaMessageEvent,
-    );
+    ).then((activity) {
+      _setPracticeActivity(activity);
+    }).catchError((onError) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        e: onError,
+        m: 'Failed to get new activity',
+        data: {
+          'activity': currentActivity,
+          'record': currentCompletionRecord,
+        },
+      );
+      widget.overlayController.exitPracticeFlow();
+    });
 
-    // save the record without awaiting to avoid blocking the UI
-    // send a copy of the activity record to make sure its not overwritten by
-    // the new activity
-    MatrixState.pangeaController.activityRecordController
-        .send(currentCompletionRecord!, currentActivity!)
-        .catchError(
-          (e, s) => ErrorHandler.logError(
-            e: e,
-            s: s,
-            m: 'Failed to save record',
-            data: {
-              'record': currentCompletionRecord?.toJson(),
-              'activity': currentActivity?.practiceActivity.toJson(),
-            },
-          ),
-        );
-
-    widget.overlayController.onActivityFinish();
-
-    final Iterable<dynamic> result = await Future.wait([
-      _savorTheJoy(),
-      _fetchNewActivity(),
-    ]);
-
-    _setPracticeActivity(result.last as PracticeActivityEvent?);
-
-    // } catch (e, s) {
-    //   debugger(when: kDebugMode);
-    //   ErrorHandler.logError(
-    //     e: e,
-    //     s: s,
-    //     m: 'Failed to get new activity',
-    //     data: {
-    //       'activity': currentActivity,
-    //       'record': currentCompletionRecord,
-    //     },
-    //   );
-    //   widget.overlayController.exitPracticeFlow();
-    // }
+    // clear the current activity and record
+    currentActivity = null;
+    currentCompletionRecord = null;
   }
 
   RepresentationEvent? get representation =>
@@ -300,120 +381,52 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       return GamifiedTextWidget(userMessage: userMessage!);
     }
 
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        // Main content
-        const Positioned(
-          child: PointsGainedAnimation(),
-        ),
-        Column(
-          children: [
-            activityWidget,
-            // navigationButtons,
-          ],
-        ),
-        // Conditionally show the darkening and progress indicator based on the loading state
-        if (!savoringTheJoy && fetchingActivity) ...[
-          // Semi-transparent overlay
-          Container(
-            color: Colors.black.withOpacity(0.5), // Darkening effect
+    return Container(
+      constraints: const BoxConstraints(
+        maxWidth: 350,
+        minWidth: 350,
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Main content
+          const Positioned(
+            child: PointsGainedAnimation(),
           ),
-          // Circular progress indicator in the center
-          const Center(
-            child: CircularProgressIndicator(),
+          Container(
+            padding: const EdgeInsets.all(8),
+            child: activityWidget,
+          ),
+          // Conditionally show the darkening and progress indicator based on the loading state
+          if (!savoringTheJoy && fetchingActivity) ...[
+            // Semi-transparent overlay
+            Container(
+              color: Colors.black.withOpacity(0.5), // Darkening effect
+            ),
+            // Circular progress indicator in the center
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ],
+          // Flag button in the top right corner
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Opacity(
+              opacity: 0.8, // Slight opacity
+              child: Tooltip(
+                message: L10n.of(context)!.reportContentIssueTitle,
+                child: IconButton(
+                  icon: const Icon(Icons.flag),
+                  iconSize: 16,
+                  onPressed: () =>
+                      currentActivity == null ? null : onFlagClick(context),
+                ),
+              ),
+            ),
           ),
         ],
-      ],
+      ),
     );
-  }
-}
-
-/// Seperated out the target tokens from the practice activity card
-/// in order to control the state of the target tokens
-class TargetTokensController {
-  List<TokenWithXP>? _targetTokens;
-
-  TargetTokensController();
-
-  /// From the tokens in the message, do a preliminary filtering of which to target
-  /// Then get the construct uses for those tokens
-  Future<List<TokenWithXP>> targetTokens(
-    BuildContext context,
-    PangeaMessageEvent pangeaMessageEvent,
-  ) async {
-    if (_targetTokens != null) {
-      return _targetTokens!;
-    }
-
-    _targetTokens = await _initialize(context, pangeaMessageEvent);
-
-    await updateTokensWithConstructs(
-      MatrixState.pangeaController.analytics.analyticsStream.value ?? [],
-      context,
-      pangeaMessageEvent,
-    );
-
-    return _targetTokens!;
-  }
-
-  Future<List<TokenWithXP>> _initialize(
-    BuildContext context,
-    PangeaMessageEvent pangeaMessageEvent,
-  ) async {
-    if (!context.mounted) {
-      ErrorHandler.logError(
-        m: 'getTargetTokens called when not mounted',
-        s: StackTrace.current,
-      );
-      return _targetTokens = [];
-    }
-
-    final tokens = await pangeaMessageEvent
-        .representationByLanguage(pangeaMessageEvent.messageDisplayLangCode)
-        ?.tokensGlobal(context);
-
-    if (tokens == null || tokens.isEmpty) {
-      debugger(when: kDebugMode);
-      return _targetTokens = [];
-    }
-
-    _targetTokens = [];
-    for (int i = 0; i < tokens.length; i++) {
-      //don't bother with tokens that we don't save to vocab
-      if (!tokens[i].lemma.saveVocab) {
-        continue;
-      }
-
-      _targetTokens!.add(tokens[i].emptyTokenWithXP);
-    }
-
-    return _targetTokens!;
-  }
-
-  Future<void> updateTokensWithConstructs(
-    List<OneConstructUse> constructUses,
-    context,
-    pangeaMessageEvent,
-  ) async {
-    final ConstructListModel constructList = ConstructListModel(
-      uses: constructUses,
-      type: null,
-    );
-
-    _targetTokens ??= await _initialize(context, pangeaMessageEvent);
-
-    for (final token in _targetTokens!) {
-      for (final construct in token.constructs) {
-        final constructUseModel = constructList.getConstructUses(
-          construct.id.lemma,
-          construct.id.type,
-        );
-        if (constructUseModel != null) {
-          construct.xp += constructUseModel.points;
-          construct.lastUsed = constructUseModel.lastUsed;
-        }
-      }
-    }
   }
 }

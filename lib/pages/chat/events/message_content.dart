@@ -4,7 +4,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar_selection_area.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message_text.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
