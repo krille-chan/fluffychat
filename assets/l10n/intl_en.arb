@@ -4121,7 +4121,7 @@
   "suggestToSpaceDesc": "Suggested sub spaces will appear in their main space's chat list",
   "practice": "Practice",
   "noLanguagesSet": "No languages set",
-  "noActivitiesFound": "No practice activities found for this message",
+  "noActivitiesFound": "You're all practiced for now! Come back later for more.",
   "hintTitle": "Hint:",
   "speechToTextBody": "See how well you did by looking at your Accuracy and Words Per Minute scores",
   "previous": "Previous",
