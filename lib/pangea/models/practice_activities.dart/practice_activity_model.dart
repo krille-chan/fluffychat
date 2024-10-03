@@ -270,7 +270,8 @@ class PracticeActivityModel {
 
   factory PracticeActivityModel.fromJson(Map<String, dynamic> json) {
     return PracticeActivityModel(
-      tgtConstructs: (json['tgt_constructs'] as List)
+      tgtConstructs: ((json['tgt_constructs'] ?? json['target_constructs'])
+              as List)
           .map((e) => ConstructIdentifier.fromJson(e as Map<String, dynamic>))
           .toList(),
       langCode: json['lang_code'] as String,
@@ -278,7 +279,9 @@ class PracticeActivityModel {
       activityType: json['activity_type'] == "multipleChoice"
           ? ActivityTypeEnum.multipleChoice
           : ActivityTypeEnum.values.firstWhere(
-              (e) => e.string == json['activity_type'],
+              (e) =>
+                  e.string == json['activity_type'] as String ||
+                  e.string.split('.').last == json['activity_type'] as String,
             ),
       multipleChoice: json['multiple_choice'] != null
           ? MultipleChoice.fromJson(
@@ -301,12 +304,13 @@ class PracticeActivityModel {
 
   RelevantSpanDisplayDetails? get relevantSpanDisplayDetails =>
       multipleChoice?.spanDisplayDetails;
+
   Map<String, dynamic> toJson() {
     return {
-      'tgt_constructs': tgtConstructs.map((e) => e.toJson()).toList(),
+      'target_constructs': tgtConstructs.map((e) => e.toJson()).toList(),
       'lang_code': langCode,
       'msg_id': msgId,
-      'activity_type': activityType.toString().split('.').last,
+      'activity_type': activityType.string,
       'multiple_choice': multipleChoice?.toJson(),
       'listening': listening?.toJson(),
       'speaking': speaking?.toJson(),

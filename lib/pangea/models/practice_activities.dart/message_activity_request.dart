@@ -110,7 +110,8 @@ class ExistingActivityMetaData {
   factory ExistingActivityMetaData.fromJson(Map<String, dynamic> json) {
     return ExistingActivityMetaData(
       activityEventId: json['activity_event_id'] as String,
-      tgtConstructs: (json['tgt_constructs'] as List)
+      tgtConstructs: ((json['tgt_constructs'] ?? json['target_constructs'])
+              as List)
           .map((e) => ConstructIdentifier.fromJson(e as Map<String, dynamic>))
           .toList(),
       activityType: ActivityTypeEnum.values.firstWhere(
@@ -124,8 +125,35 @@ class ExistingActivityMetaData {
   Map<String, dynamic> toJson() {
     return {
       'activity_event_id': activityEventId,
-      'tgt_constructs': tgtConstructs.map((e) => e.toJson()).toList(),
+      'target_constructs': tgtConstructs.map((e) => e.toJson()).toList(),
       'activity_type': activityType.string,
+    };
+  }
+}
+
+// includes feedback text and the bad activity model
+class ActivityQualityFeedback {
+  final String feedbackText;
+  final PracticeActivityModel badActivity;
+
+  ActivityQualityFeedback({
+    required this.feedbackText,
+    required this.badActivity,
+  });
+
+  factory ActivityQualityFeedback.fromJson(Map<String, dynamic> json) {
+    return ActivityQualityFeedback(
+      feedbackText: json['feedback_text'] as String,
+      badActivity: PracticeActivityModel.fromJson(
+        json['bad_activity'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'feedback_text': feedbackText,
+      'bad_activity': badActivity.toJson(),
     };
   }
 }
@@ -135,6 +163,8 @@ class MessageActivityRequest {
   final String userL2;
 
   final String messageText;
+
+  final ActivityQualityFeedback? activityQualityFeedback;
 
   /// tokens with their associated constructs and xp
   final List<TokenWithXP> tokensWithXP;
@@ -151,6 +181,7 @@ class MessageActivityRequest {
     required this.tokensWithXP,
     required this.messageId,
     required this.existingActivities,
+    required this.activityQualityFeedback,
   });
 
   factory MessageActivityRequest.fromJson(Map<String, dynamic> json) {
@@ -167,6 +198,11 @@ class MessageActivityRequest {
             (e) => ExistingActivityMetaData.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
+      activityQualityFeedback: json['activity_quality_feedback'] != null
+          ? ActivityQualityFeedback.fromJson(
+              json['activity_quality_feedback'] as Map<String, dynamic>,
+            )
+          : null,
     );
   }
 
@@ -178,6 +214,7 @@ class MessageActivityRequest {
       'tokens_with_xp': tokensWithXP.map((e) => e.toJson()).toList(),
       'message_id': messageId,
       'existing_activities': existingActivities.map((e) => e.toJson()).toList(),
+      'activity_quality_feedback': activityQualityFeedback?.toJson(),
     };
   }
 

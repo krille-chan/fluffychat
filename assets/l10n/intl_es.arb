@@ -4737,5 +4737,6 @@
     }
   },
   "commandHint_googly": "Enviar unos ojos saltones",
-  "@commandHint_googly": {}
+  "@commandHint_googly": {},
+  "reportContentIssue": "Problema de contenido"
 }

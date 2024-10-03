@@ -4121,7 +4121,7 @@
   "suggestToSpaceDesc": "Suggested sub spaces will appear in their main space's chat list",
   "practice": "Practice",
   "noLanguagesSet": "No languages set",
-  "noActivitiesFound": "You're all practiced for now! Come back later for more.",
+  "noActivitiesFound": "That's enough on this for now! Come back later for more.",
   "hintTitle": "Hint:",
   "speechToTextBody": "See how well you did by looking at your Accuracy and Words Per Minute scores",
   "previous": "Previous",
@@ -4229,5 +4229,8 @@
   "grammar": "Grammar",
   "contactHasBeenInvitedToTheChat": "Contact has been invited to the chat",
   "inviteChat": "📨 Invite chat",
-  "chatName": "Chat name"
+  "chatName": "Chat name",
+  "reportContentIssueTitle": "Report content issue",
+  "feedback": "Your feedback (optional)",
+  "reportContentIssueDescription": "Sorry! AI can make personalized experiences but also may have issues. Please provide any feedback you have and we'll generate a new activity."
 }

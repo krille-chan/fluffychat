@@ -5,6 +5,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
+import 'package:fluffychat/pages/chat/events/message_reactions.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -330,6 +331,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               nextEvent: widget._nextEvent,
               previousEvent: widget._prevEvent,
             ),
+            MessageReactions(widget._event, widget.chatController.timeline!),
           ],
         ),
       ),
