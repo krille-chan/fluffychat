@@ -63,7 +63,7 @@ class NewGroupController extends State<NewGroup> {
 
       final roomId = await client.createGroupChat(
         visibility:
-            publicGroup ? sdk.Visibility.public : sdk.Visibility.private,
+            groupCanBeFound ? sdk.Visibility.public : sdk.Visibility.private,
         preset: publicGroup
             ? sdk.CreateRoomPreset.publicChat
             : sdk.CreateRoomPreset.privateChat,
@@ -77,12 +77,6 @@ class NewGroupController extends State<NewGroup> {
         ],
       );
       if (!mounted) return;
-      if (publicGroup && groupCanBeFound) {
-        await client.setRoomVisibilityOnDirectory(
-          roomId,
-          visibility: sdk.Visibility.public,
-        );
-      }
       context.go('/rooms/$roomId/invite');
     } catch (e, s) {
       sdk.Logs().d('Unable to create group', e, s);
