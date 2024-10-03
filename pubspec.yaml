@@ -90,6 +90,7 @@ dependencies:
   tor_detector_web: ^1.1.0
   uni_links: ^0.5.1
   unifiedpush: ^5.0.1
+  unifiedpush_ui: ^0.1.0
   universal_html: ^2.2.4
   url_launcher: ^6.2.5
   video_compress: ^3.1.3
