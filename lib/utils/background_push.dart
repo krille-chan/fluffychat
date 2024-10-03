@@ -20,6 +20,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -73,6 +75,27 @@ class BackgroundPush {
 
   void _init() async {
     try {
+      if (PlatformInfos.isAndroid) {
+        final port = ReceivePort();
+        IsolateNameServer.removePortNameMapping('background_tab_port');
+        IsolateNameServer.registerPortWithName(
+          port.sendPort,
+          'background_tab_port',
+        );
+        port.listen(
+          (message) async {
+            try {
+              await notificationTap(
+                NotificationResponseJson.fromJsonString(message),
+                client: client,
+                router: FluffyChatApp.router,
+              );
+            } catch (e, s) {
+              Logs().wtf('Main Notification Tap crashed', e, s);
+            }
+          },
+        );
+      }
       await _flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
           android: AndroidInitializationSettings('notifications_icon'),

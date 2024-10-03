@@ -280,15 +280,19 @@ Future<void> _tryPushHelper(
     groupKey: event.room.spaceParents.firstOrNull?.roomId ?? 'rooms',
     actions: <AndroidNotificationAction>[
       AndroidNotificationAction(
-        FluffyChatNotificationActions.markAsRead.name,
-        l10n.markAsRead,
-      ),
-      AndroidNotificationAction(
         FluffyChatNotificationActions.reply.name,
         l10n.reply,
         inputs: [
-          const AndroidNotificationActionInput(),
+          AndroidNotificationActionInput(
+            label: l10n.writeAMessage,
+          ),
         ],
+        cancelNotification: false,
+        allowGeneratedReplies: true,
+      ),
+      AndroidNotificationAction(
+        FluffyChatNotificationActions.markAsRead.name,
+        l10n.markAsRead,
       ),
     ],
   );
