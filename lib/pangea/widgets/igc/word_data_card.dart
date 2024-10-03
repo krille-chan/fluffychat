@@ -174,56 +174,59 @@ class WordDataCardView extends StatelessWidget {
 
     final ScrollController scrollController = ScrollController();
 
-    return Scrollbar(
-      thumbVisibility: true,
-      controller: scrollController,
-      child: SingleChildScrollView(
+    return Container(
+      padding: const EdgeInsets.all(8),
+      child: Scrollbar(
+        thumbVisibility: true,
         controller: scrollController,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (controller.widget.choiceFeedback != null)
-              Text(
-                controller.widget.choiceFeedback!,
-                style: BotStyle.text(context),
-              ),
-            const SizedBox(height: 5.0),
-            if (controller.wordData != null &&
-                controller.wordNetError == null &&
-                controller.activeL1 != null &&
-                controller.activeL2 != null)
-              WordNetInfo(
-                wordData: controller.wordData!,
-                activeL1: controller.activeL1!,
-                activeL2: controller.activeL2!,
-              ),
-            if (controller.isLoadingWordNet) const PCircular(),
-            const SizedBox(height: 5.0),
-            // if (controller.widget.hasInfo &&
-            //     !controller.isLoadingContextualDefinition &&
-            //     controller.contextualDefinitionRes == null)
-            //   Material(
-            //     type: MaterialType.transparency,
-            //     child: ListTile(
-            //       leading: const BotFace(
-            //           width: 40, expression: BotExpression.surprised),
-            //       title: Text(L10n.of(context)!.askPangeaBot),
-            //       onTap: controller.handleGetDefinitionButtonPress,
-            //     ),
-            //   ),
-            if (controller.isLoadingContextualDefinition) const PCircular(),
-            if (controller.contextualDefinitionRes != null)
-              Text(
-                controller.contextualDefinitionRes!.text,
-                style: BotStyle.text(context),
-              ),
-            if (controller.definitionError != null)
-              Text(
-                L10n.of(context)!.sorryNoResults,
-                style: BotStyle.text(context),
-              ),
-          ],
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (controller.widget.choiceFeedback != null)
+                Text(
+                  controller.widget.choiceFeedback!,
+                  style: BotStyle.text(context),
+                ),
+              const SizedBox(height: 5.0),
+              if (controller.wordData != null &&
+                  controller.wordNetError == null &&
+                  controller.activeL1 != null &&
+                  controller.activeL2 != null)
+                WordNetInfo(
+                  wordData: controller.wordData!,
+                  activeL1: controller.activeL1!,
+                  activeL2: controller.activeL2!,
+                ),
+              if (controller.isLoadingWordNet) const PCircular(),
+              const SizedBox(height: 5.0),
+              // if (controller.widget.hasInfo &&
+              //     !controller.isLoadingContextualDefinition &&
+              //     controller.contextualDefinitionRes == null)
+              //   Material(
+              //     type: MaterialType.transparency,
+              //     child: ListTile(
+              //       leading: const BotFace(
+              //           width: 40, expression: BotExpression.surprised),
+              //       title: Text(L10n.of(context)!.askPangeaBot),
+              //       onTap: controller.handleGetDefinitionButtonPress,
+              //     ),
+              //   ),
+              if (controller.isLoadingContextualDefinition) const PCircular(),
+              if (controller.contextualDefinitionRes != null)
+                Text(
+                  controller.contextualDefinitionRes!.text,
+                  style: BotStyle.text(context),
+                ),
+              if (controller.definitionError != null)
+                Text(
+                  L10n.of(context)!.sorryNoResults,
+                  style: BotStyle.text(context),
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -405,11 +408,17 @@ class SelectToDefine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Text(
-        L10n.of(context)!.selectToDefine,
-        style: BotStyle.text(context),
+    return Center(
+      child: Container(
+        height: 80,
+        width: 200,
+        padding: const EdgeInsets.all(8),
+        child: Center(
+          child: Text(
+            L10n.of(context)!.selectToDefine,
+            style: BotStyle.text(context),
+          ),
+        ),
       ),
     );
   }

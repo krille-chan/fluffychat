@@ -114,7 +114,6 @@ class MessageToolbarState extends State<MessageToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("building toolbar");
     return Material(
       key: MatrixState.pAnyState
           .layerLinkAndKey('${widget.pangeaMessageEvent.eventId}-toolbar')
@@ -125,10 +124,10 @@ class MessageToolbarState extends State<MessageToolbar> {
           Container(
             constraints: const BoxConstraints(
               maxHeight: AppConfig.toolbarMaxHeight,
-              maxWidth: 275,
-              minWidth: 275,
+              maxWidth: 350,
+              minWidth: 350,
             ),
-            padding: const EdgeInsets.all(4),
+            padding: const EdgeInsets.all(0),
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
               border: Border.all(
@@ -136,7 +135,7 @@ class MessageToolbarState extends State<MessageToolbar> {
                 color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
               ),
               borderRadius: const BorderRadius.all(
-                Radius.circular(25),
+                Radius.circular(AppConfig.borderRadius),
               ),
             ),
             child: Column(
@@ -154,7 +153,10 @@ class MessageToolbarState extends State<MessageToolbar> {
             ),
           ),
           const SizedBox(height: 6),
-          ToolbarButtons(messageToolbarController: this, width: 250),
+          ToolbarButtons(
+            overlayController: widget.overLayController,
+            width: 250,
+          ),
           const SizedBox(height: 6),
         ],
       ),

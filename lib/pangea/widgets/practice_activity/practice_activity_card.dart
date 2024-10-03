@@ -381,47 +381,52 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       return GamifiedTextWidget(userMessage: userMessage!);
     }
 
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        // Main content
-        const Positioned(
-          child: PointsGainedAnimation(),
-        ),
-        Column(
-          children: [
-            activityWidget,
-            // navigationButtons,
-          ],
-        ),
-        // Conditionally show the darkening and progress indicator based on the loading state
-        if (!savoringTheJoy && fetchingActivity) ...[
-          // Semi-transparent overlay
+    return Container(
+      constraints: const BoxConstraints(
+        maxWidth: 350,
+        minWidth: 350,
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Main content
+          const Positioned(
+            child: PointsGainedAnimation(),
+          ),
           Container(
-            color: Colors.black.withOpacity(0.5), // Darkening effect
+            padding: const EdgeInsets.all(8),
+            child: activityWidget,
           ),
-          // Circular progress indicator in the center
-          const Center(
-            child: CircularProgressIndicator(),
-          ),
-        ],
-        // Flag button in the top right corner
-        Positioned(
-          top: 0,
-          right: 0,
-          child: Opacity(
-            opacity: 0.8, // Slight opacity
-            child: Tooltip(
-              message: L10n.of(context)!.reportContentIssueTitle,
-              child: IconButton(
-                icon: const Icon(Icons.flag),
-                onPressed: () =>
-                    currentActivity == null ? null : onFlagClick(context),
+          // Conditionally show the darkening and progress indicator based on the loading state
+          if (!savoringTheJoy && fetchingActivity) ...[
+            // Semi-transparent overlay
+            Container(
+              color: Colors.black.withOpacity(0.5), // Darkening effect
+            ),
+            // Circular progress indicator in the center
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ],
+          // Flag button in the top right corner
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Opacity(
+              opacity: 0.8, // Slight opacity
+              child: Tooltip(
+                message: L10n.of(context)!.reportContentIssueTitle,
+                child: IconButton(
+                  icon: const Icon(Icons.flag),
+                  iconSize: 16,
+                  onPressed: () =>
+                      currentActivity == null ? null : onFlagClick(context),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

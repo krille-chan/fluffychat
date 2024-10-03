@@ -6,15 +6,14 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:flutter/material.dart';
 
 class ToolbarButtons extends StatefulWidget {
-  final MessageToolbarState messageToolbarController;
+  final MessageOverlayController overlayController;
   final double width;
 
   const ToolbarButtons({
-    required this.messageToolbarController,
+    required this.overlayController,
     required this.width,
     super.key,
   });
@@ -25,7 +24,7 @@ class ToolbarButtons extends StatefulWidget {
 
 class ToolbarButtonsState extends State<ToolbarButtons> {
   PangeaMessageEvent get pangeaMessageEvent =>
-      widget.messageToolbarController.widget.pangeaMessageEvent;
+      widget.overlayController.pangeaMessageEvent;
 
   List<MessageMode> get modes => MessageMode.values
       .where((mode) => mode.isValidMode(pangeaMessageEvent.event))
@@ -33,8 +32,7 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
 
   static const double iconWidth = 36.0;
 
-  MessageOverlayController get overlayController =>
-      widget.messageToolbarController.widget.overLayController;
+  MessageOverlayController get overlayController => widget.overlayController;
 
   // @ggurdin - maybe this can be stateless now?
   @override
@@ -46,8 +44,7 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
   Widget build(BuildContext context) {
     final double barWidth = widget.width - iconWidth;
 
-    if (widget
-        .messageToolbarController.widget.pangeaMessageEvent.isAudioMessage) {
+    if (widget.overlayController.pangeaMessageEvent.isAudioMessage) {
       return const SizedBox();
     }
 
@@ -90,24 +87,18 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
                     child: IconButton(
                       iconSize: 20,
                       icon: Icon(mode.icon),
-                      color: mode ==
-                              widget.messageToolbarController.widget
-                                  .overLayController.toolbarMode
+                      color: mode == widget.overlayController.toolbarMode
                           ? Colors.white
                           : null,
-                      isSelected: mode ==
-                          widget.messageToolbarController.widget
-                              .overLayController.toolbarMode,
+                      isSelected: mode == widget.overlayController.toolbarMode,
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(
                           mode.iconButtonColor(
                             context,
                             index,
-                            widget.messageToolbarController.widget
-                                .overLayController.toolbarMode,
+                            widget.overlayController.toolbarMode,
                             pangeaMessageEvent.numberOfActivitiesCompleted,
-                            widget.messageToolbarController.widget
-                                .overLayController.isPracticeComplete,
+                            widget.overlayController.isPracticeComplete,
                           ),
                         ),
                       ),
@@ -116,9 +107,8 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
                         pangeaMessageEvent.numberOfActivitiesCompleted,
                         overlayController.isPracticeComplete,
                       )
-                          ? () => widget
-                              .messageToolbarController.widget.overLayController
-                              .updateToolbarMode(mode)
+                          ? () =>
+                              widget.overlayController.updateToolbarMode(mode)
                           : null,
                     ),
                   ),

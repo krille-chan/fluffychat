@@ -151,6 +151,7 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     }
 
     return Container(
+      padding: const EdgeInsets.all(8),
       child: _fetchingTranslation
           ? const ToolbarContentLoadingIndicator()
           : Column(
@@ -170,6 +171,7 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
                     body: InlineInstructions.l1Translation.body(context),
                     onClose: closeHint,
                   ),
+                // if (widget.selection != null)
               ],
             ),
     );

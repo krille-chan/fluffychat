@@ -76,6 +76,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(8),
       child: _isLoading
           ? const ToolbarContentLoadingIndicator()
           : localAudioEvent != null || audioFile != null

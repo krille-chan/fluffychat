@@ -5,7 +5,6 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
-import 'package:fluffychat/pages/chat/events/message_reactions.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -57,6 +56,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   static const int neededActivities = 3;
 
   int activitiesLeftToComplete = neededActivities;
+
+  PangeaMessageEvent get pangeaMessageEvent => widget._pangeaMessageEvent;
 
   @override
   void initState() {
@@ -302,13 +303,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                   ? MainAxisAlignment.end
                   : MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: widget._pangeaMessageEvent.ownMessage
-                        ? 0
-                        : Avatar.defaultSize + 16,
-                    right: widget._pangeaMessageEvent.ownMessage ? 8 : 0,
-                  ),
+                MessagePadding(
+                  pangeaMessageEvent: pangeaMessageEvent,
                   child: MessageToolbar(
                     pangeaMessageEvent: widget._pangeaMessageEvent,
                     overLayController: this,
@@ -331,7 +327,13 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               nextEvent: widget._nextEvent,
               previousEvent: widget._prevEvent,
             ),
-            MessageReactions(widget._event, widget.chatController.timeline!),
+            // TODO for @ggurdin - move reactions and toolbar here
+            // MessageReactions(widget._event, widget.chatController.timeline!),
+            // const SizedBox(height: 6),
+            // MessagePadding(
+            //   pangeaMessageEvent: pangeaMessageEvent,
+            //   child: ToolbarButtons(overlayController: this, width: 250),
+            // ),
           ],
         ),
       ),
@@ -395,6 +397,28 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           ),
         ],
       ),
+    );
+  }
+}
+
+class MessagePadding extends StatelessWidget {
+  const MessagePadding({
+    super.key,
+    required this.child,
+    required this.pangeaMessageEvent,
+  });
+
+  final Widget child;
+  final PangeaMessageEvent pangeaMessageEvent;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        left: pangeaMessageEvent.ownMessage ? 0 : Avatar.defaultSize + 16,
+        right: pangeaMessageEvent.ownMessage ? 8 : 0,
+      ),
+      child: child,
     );
   }
 }
