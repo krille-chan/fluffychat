@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:go_router/go_router.dart';
@@ -15,8 +14,8 @@ import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
+import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
@@ -201,10 +200,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   Widget build(BuildContext context) => HomeserverPickerView(this);
 
   Future<void> restoreBackup() async {
-    final picked = await AppLock.of(context).pauseWhile(
-      FilePicker.platform.pickFiles(withData: true),
-    );
-    final file = picked?.files.firstOrNull;
+    final picked = await selectFiles(context);
+    final file = picked.firstOrNull;
     if (file == null) return;
     setState(() {
       error = null;
@@ -212,7 +209,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     });
     try {
       final client = Matrix.of(context).getLoginClient();
-      await client.importDump(String.fromCharCodes(file.bytes!));
+      await client.importDump(String.fromCharCodes(await file.readAsBytes()));
       Matrix.of(context).initMatrix();
     } catch (e) {
       setState(() {

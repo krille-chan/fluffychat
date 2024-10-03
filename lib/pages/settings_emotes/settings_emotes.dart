@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -13,8 +12,8 @@ import 'package:http/http.dart' hide Client;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
 import '../../widgets/matrix.dart';
 import 'import_archive_dialog.dart';
 import 'settings_emotes_view.dart';
@@ -222,16 +221,11 @@ class EmotesSettingsController extends State<EmotesSettings> {
   void imagePickerAction(
     ValueNotifier<ImagePackImageContent?> controller,
   ) async {
-    final result = await AppLock.of(context).pauseWhile(
-      FilePicker.platform.pickFiles(
-        type: FileType.image,
-        withData: true,
-      ),
-    );
-    final pickedFile = result?.files.firstOrNull;
+    final result = await selectFiles(context, extensions: imageExtensions);
+    final pickedFile = result.firstOrNull;
     if (pickedFile == null) return;
     var file = MatrixImageFile(
-      bytes: pickedFile.bytes!,
+      bytes: await pickedFile.readAsBytes(),
       name: pickedFile.name,
     );
     try {
@@ -282,21 +276,17 @@ class EmotesSettingsController extends State<EmotesSettings> {
     final result = await showFutureLoadingDialog<Archive?>(
       context: context,
       future: () async {
-        final result = await AppLock.of(context).pauseWhile(
-          FilePicker.platform.pickFiles(
-            type: FileType.custom,
-            allowedExtensions: [
-              'zip',
-              // TODO: add further encoders
-            ],
-            // TODO: migrate to stream, currently brrrr because of `archive_io`.
-            withData: true,
-          ),
+        final result = await selectFiles(
+          context,
+          extensions: [
+            'zip',
+            // TODO: add further encoders
+          ],
         );
 
-        if (result == null) return null;
+        if (result.isEmpty) return null;
 
-        final buffer = InputStream(result.files.single.bytes);
+        final buffer = InputStream(await result.first.readAsBytes());
 
         final archive = ZipDecoder().decodeBuffer(buffer);
 

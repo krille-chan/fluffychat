@@ -10,7 +10,6 @@ import 'package:collection/collection.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -29,11 +28,11 @@ import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
+import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -481,17 +480,12 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void sendFileAction() async {
-    final result = await AppLock.of(context).pauseWhile(
-      FilePicker.platform.pickFiles(
-        compressionQuality: 0,
-        allowMultiple: true,
-      ),
-    );
-    if (result == null || result.files.isEmpty) return;
+    final files = await selectFiles(context, allowMultiple: true);
+    if (files.isEmpty) return;
     await showAdaptiveDialog(
       context: context,
       builder: (c) => SendFileDialog(
-        files: result.xFiles,
+        files: files,
         room: room,
         outerContext: context,
       ),
@@ -511,19 +505,17 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void sendImageAction() async {
-    final result = await AppLock.of(context).pauseWhile(
-      FilePicker.platform.pickFiles(
-        compressionQuality: 0,
-        type: FileType.image,
-        allowMultiple: true,
-      ),
+    final files = await selectFiles(
+      context,
+      allowMultiple: true,
+      extensions: imageExtensions,
     );
-    if (result == null || result.files.isEmpty) return;
+    if (files.isEmpty) return;
 
     await showAdaptiveDialog(
       context: context,
       builder: (c) => SendFileDialog(
-        files: result.xFiles,
+        files: files,
         room: room,
         outerContext: context,
       ),

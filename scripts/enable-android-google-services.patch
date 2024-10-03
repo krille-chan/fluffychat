@@ -132,5 +132,5 @@ index 69c80d6e..efd32d89 100644
 -  #fcm_shared_isolate: ^0.1.0
 +  fcm_shared_isolate: ^0.1.0
    file_picker: ^8.1.2
+   file_selector: ^1.0.3
    flutter:
-     sdk: flutter
