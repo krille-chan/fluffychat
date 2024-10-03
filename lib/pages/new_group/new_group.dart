@@ -2,11 +2,11 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
+import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewGroup extends StatefulWidget {
@@ -35,15 +35,16 @@ class NewGroupController extends State<NewGroup> {
   void setGroupCanBeFound(bool b) => setState(() => groupCanBeFound = b);
 
   void selectPhoto() async {
-    final photo = await FilePicker.platform.pickFiles(
-      type: FileType.image,
+    final photo = await selectFiles(
+      context,
+      extensions: imageExtensions,
       allowMultiple: false,
-      withData: true,
     );
+    final bytes = await photo.singleOrNull?.readAsBytes();
 
     setState(() {
       avatarUrl = null;
-      avatar = photo?.files.singleOrNull?.bytes;
+      avatar = bytes;
     });
   }
 
