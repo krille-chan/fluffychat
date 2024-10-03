@@ -308,9 +308,6 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(
-      'Building practice activity card with ${widget.overlayController.activitiesLeftToComplete} activities left to complete',
-    );
     if (userMessage != null) {
       return Center(
         child: Container(
