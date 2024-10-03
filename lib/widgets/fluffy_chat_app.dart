@@ -54,14 +54,10 @@ class FluffyChatApp extends StatelessWidget {
           clients: clients,
           // Need a navigator above the Matrix widget for
           // displaying dialogs
-          child: Navigator(
-            onGenerateRoute: (_) => MaterialPageRoute(
-              builder: (_) => Matrix(
-                clients: clients,
-                store: store,
-                child: testWidget ?? child,
-              ),
-            ),
+          child: Matrix(
+            clients: clients,
+            store: store,
+            child: testWidget ?? child,
           ),
         ),
       ),
