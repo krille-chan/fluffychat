@@ -308,10 +308,6 @@ jobs:
           "C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe" /dMyAppVersion=${{ env.TAG }} scripts/installer.iss
         shell: cmd
 
-      # Generated installer
-      - name: Create Archive for Release
-        run: tar -czf "tawkie-windows-${{ env.TAG }}.tar.gz" -C Output TawkieInstaller.exe
-
       # Upload archive to GitHub release page
       - name: Upload Windows Installer to GitHub
         uses: actions/upload-release-asset@v1
