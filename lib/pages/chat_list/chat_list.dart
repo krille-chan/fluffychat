@@ -957,7 +957,7 @@ class ChatListController extends State<ChatList>
     isTorBrowser = isTor;
   }
 
-  Future<void> dehydrate() => Matrix.of(context).dehydrateAction();
+  Future<void> dehydrate() => Matrix.of(context).dehydrateAction(context);
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }

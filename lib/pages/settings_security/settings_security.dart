@@ -118,7 +118,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     ).show(context);
   }
 
-  Future<void> dehydrateAction() => Matrix.of(context).dehydrateAction();
+  Future<void> dehydrateAction() => Matrix.of(context).dehydrateAction(context);
 
   @override
   Widget build(BuildContext context) => SettingsSecurityView(this);

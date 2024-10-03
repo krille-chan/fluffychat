@@ -287,13 +287,16 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         if (!hidPopup &&
             {KeyVerificationState.done, KeyVerificationState.error}
                 .contains(request.state)) {
-          Navigator.of(context).pop('dialog');
+          FluffyChatApp.router.pop('dialog');
         }
         hidPopup = true;
       };
       request.onUpdate = null;
       hidPopup = true;
-      await KeyVerificationDialog(request: request).show(context);
+      await KeyVerificationDialog(request: request).show(
+        FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+            context,
+      );
     });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
       final loggedInWithMultipleClients = widget.clients.length > 1;
@@ -304,7 +307,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
         ClientManager.removeClientNameFromStore(c.clientName, store);
-        ScaffoldMessenger.of(context).showSnackBar(
+        ScaffoldMessenger.of(
+          FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+              context,
+        ).showSnackBar(
           SnackBar(
             content: Text(L10n.of(context)!.oneClientLoggedOut),
           ),
@@ -362,7 +368,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
             barrierDismissible: true,
-            context: context,
+            context: FluffyChatApp
+                    .router.routerDelegate.navigatorKey.currentContext ??
+                context,
             title: L10n.of(context)!.pushNotificationsNotAvailable,
             message: errorMsg,
             fullyCapitalizedForMaterial: false,
@@ -483,7 +491,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     );
   }
 
-  Future<void> dehydrateAction() async {
+  Future<void> dehydrateAction(BuildContext context) async {
     final response = await showOkCancelAlertDialog(
       context: context,
       isDestructiveAction: true,
