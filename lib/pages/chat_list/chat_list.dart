@@ -879,7 +879,10 @@ class ChatListController extends State<ChatList>
     });
   }
 
-  void editBundlesForAccount(String? userId, String? activeBundle) async {
+  Future<void> editBundlesForAccount(
+    String? userId,
+    String? activeBundle,
+  ) async {
     final l10n = L10n.of(context)!;
     final client = Matrix.of(context)
         .widget
