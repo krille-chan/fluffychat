@@ -18,7 +18,9 @@ Future<List<XFile>> selectFiles(
         compressionQuality: 0,
         allowMultiple: allowMultiple,
         type: type.filePickerType,
-        allowedExtensions: type.extensions?.toList(),
+        allowedExtensions: type.filePickerType == FileType.custom
+            ? type.extensions?.toList()
+            : null,
       ),
     );
     return result?.xFiles ?? [];
