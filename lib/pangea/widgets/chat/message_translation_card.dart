@@ -32,14 +32,13 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
 
   @override
   void initState() {
-    print('MessageTranslationCard initState');
+    debugPrint('MessageTranslationCard initState');
     super.initState();
     loadTranslation();
   }
 
   @override
   void didUpdateWidget(covariant MessageTranslationCard oldWidget) {
-    // debugger(when: kDebugMode);
     if (oldWidget.selection != widget.selection) {
       debugPrint('selection changed');
       loadTranslation();
@@ -48,7 +47,6 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   }
 
   Future<void> fetchRepresentationText() async {
-    // debugger(when: kDebugMode);
     if (l1Code == null) return;
 
     repEvent = widget.messageEvent
@@ -114,36 +112,21 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   String? get l2Code =>
       MatrixState.pangeaController.languageController.activeL2Code();
 
-  void closeHint() {
-    MatrixState.pangeaController.instructions.turnOffInstruction(
-      InlineInstructions.l1Translation.toString(),
-    );
-    MatrixState.pangeaController.instructions.updateEnableInstructions(
-      InlineInstructions.l1Translation.toString(),
-      true,
-    );
-    setState(() {});
-  }
-
   /// Show warning if message's language code is user's L1
   /// or if translated text is same as original text.
   /// Warning does not show if was previously closed
-  bool get showWarning {
-    if (MatrixState.pangeaController.instructions.wereInstructionsTurnedOff(
-      InlineInstructions.l1Translation.toString(),
-    )) return false;
-
+  bool get notGoingToTranslate {
     final bool isWrittenInL1 =
         l1Code != null && widget.messageEvent.originalSent?.langCode == l1Code;
     final bool isTextIdentical = selectionTranslation != null &&
         widget.messageEvent.originalSent?.text == selectionTranslation;
 
-    return (isWrittenInL1 || isTextIdentical) && widget.messageEvent.ownMessage;
+    return (isWrittenInL1 || isTextIdentical);
   }
 
   @override
   Widget build(BuildContext context) {
-    print('MessageTranslationCard build');
+    debugPrint('MessageTranslationCard build');
     if (!_fetchingTranslation &&
         repEvent == null &&
         selectionTranslation == null) {
@@ -165,11 +148,15 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
                         repEvent!.text,
                         style: BotStyle.text(context),
                       ),
-                const SizedBox(height: 10),
-                if (showWarning)
+                if (notGoingToTranslate && widget.selection == null)
                   InlineTooltip(
-                    body: InlineInstructions.l1Translation.body(context),
-                    onClose: closeHint,
+                    instructionsEnum: InstructionsEnum.l1Translation,
+                    onClose: () => setState(() {}),
+                  ),
+                if (widget.selection != null)
+                  InlineTooltip(
+                    instructionsEnum: InstructionsEnum.clickAgainToDeselect,
+                    onClose: () => setState(() {}),
                   ),
                 // if (widget.selection != null)
               ],

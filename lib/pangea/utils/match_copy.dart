@@ -91,7 +91,7 @@ class MatchCopy {
       }
       final String afterColon = splits.join();
 
-      print("grammar rule ${match.match.rule!.id}");
+      debugPrint("grammar rule ${match.match.rule!.id}");
 
       switch (afterColon) {
         case MatchRuleIds.interactiveTranslation:

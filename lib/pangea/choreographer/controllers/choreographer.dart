@@ -109,9 +109,14 @@ class Choreographer {
     // if not, let's get the tokens again and log an error
     if (igc.igcTextData?.tokens != null &&
         PangeaToken.reconstructText(igc.igcTextData!.tokens) != currentText) {
-      debugger(when: kDebugMode);
+      if (kDebugMode) {
+        PangeaToken.reconstructText(
+          igc.igcTextData!.tokens,
+          debugWalkThrough: true,
+        );
+      }
       ErrorHandler.logError(
-        m: "reconstructed text does not match current text",
+        m: "reconstructed text not working",
         s: StackTrace.current,
         data: {
           "igcTextData": igc.igcTextData?.toJson(),

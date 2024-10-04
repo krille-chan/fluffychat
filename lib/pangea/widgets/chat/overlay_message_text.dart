@@ -98,7 +98,7 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
             return TextSpan(
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  print(
+                  debugPrint(
                     'tokenPosition.tokenIndex: ${tokenPosition.tokenIndex}',
                   );
                   widget.overlayController.onClickOverlayMessageToken(

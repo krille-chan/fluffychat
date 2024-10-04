@@ -411,7 +411,6 @@ class SelectToDefine extends StatelessWidget {
     return Center(
       child: Container(
         height: 80,
-        width: 200,
         padding: const EdgeInsets.all(8),
         child: Center(
           child: Text(

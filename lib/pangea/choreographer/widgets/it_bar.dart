@@ -49,12 +49,6 @@ class ITBarState extends State<ITBar> {
     super.dispose();
   }
 
-  bool get instructionsTurnedOff =>
-      widget.choreographer.pangeaController.instructions
-          .wereInstructionsTurnedOff(
-        InlineInstructions.translationChoices.toString(),
-      );
-
   @override
   Widget build(BuildContext context) {
     return AnimatedSize(
@@ -120,11 +114,12 @@ class ITBarState extends State<ITBar> {
                             // const SizedBox(height: 40.0),
                             OriginalText(controller: itController),
                             const SizedBox(height: 7.0),
-                            if (!instructionsTurnedOff)
+                            if (!InstructionsEnum.translationChoices
+                                .toggledOff(context))
                               InlineTooltip(
-                                body: InlineInstructions.translationChoices
-                                    .body(context),
-                                onClose: itController.closeHint,
+                                instructionsEnum:
+                                    InstructionsEnum.translationChoices,
+                                onClose: () => setState(() {}),
                               ),
                             IntrinsicHeight(
                               child: Container(

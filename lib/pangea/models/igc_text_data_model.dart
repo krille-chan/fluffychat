@@ -117,6 +117,7 @@ class IGCTextData {
   ) async {
     //should be already added to choreoRecord
     //TODO - that should be done in the same function to avoid error potential
+
     final PangeaMatch pangeaMatch = matches[matchIndex];
 
     if (pangeaMatch.match.choices == null) {
@@ -147,8 +148,8 @@ class IGCTextData {
 
     // for all tokens after the replacement, update their offsets
     for (int i = endIndex; i < tokens.length; i++) {
-      final PangeaToken token = tokens[i];
-      token.text.offset += replacement.value.length - pangeaMatch.match.length;
+      tokens[i].text.offset +=
+          replacement.value.length - pangeaMatch.match.length;
     }
 
     // clone the list for debugging purposes
@@ -159,10 +160,16 @@ class IGCTextData {
 
     final String newFullText = PangeaToken.reconstructText(newTokens);
 
-    if (newFullText != originalInput) {
-      debugger(when: kDebugMode);
+    if (newFullText != originalInput && kDebugMode) {
+      PangeaToken.reconstructText(newTokens, debugWalkThrough: true);
       ErrorHandler.logError(
-        m: "reconstructed text does not match original input",
+        m: "reconstructed text not working",
+        s: StackTrace.current,
+        data: {
+          "originalInput": originalInput,
+          "newFullText": newFullText,
+          "match": pangeaMatch.match.toJson(),
+        },
       );
     }
 

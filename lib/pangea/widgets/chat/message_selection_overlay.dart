@@ -87,7 +87,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// In some cases, we need to exit the practice flow and let the user
   /// interact with the toolbar without completing activities
   void exitPracticeFlow() {
-    debugPrint('Exiting practice flow');
     clearSelection();
     activitiesLeftToComplete = 0;
     setState(() {});

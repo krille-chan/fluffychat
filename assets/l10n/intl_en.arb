@@ -3149,7 +3149,7 @@
   "generateVocabulary": "Generate vocabulary from title and description",
   "generatePrompts": "Generate prompts",
   "subscribe": "Subscribe",
-  "getAccess": "Unlock learning tools",
+  "getAccess": "Subscribe now!",
   "subscriptionDesc": "Messaging is free! Subscribe to unlock interactive translation, grammar checking and learning analytics.",
   "subscriptionManagement": "Subscription Management",
   "currentSubscription": "Current Subscription",
@@ -3788,7 +3788,7 @@
     }
   },
   "freeTrialDesc": "New users recieve a one week free trial of Pangea Chat",
-  "activateTrial": "Activate Free Trial",
+  "activateTrial": "Free 7-Day Trial",
   "inNoSpaces": "You are not a member of any spaces",
   "successfullySubscribed": "You have successfully subscribed!",
   "clickToManageSubscription": "Click here to manage your subscription.",
@@ -3968,11 +3968,11 @@
   "seeOptions": "See options",
   "continuedWithoutSubscription": "Continue without subscribing",
   "trialPeriodExpired": "Your trial period has expired",
-  "selectToDefine": "Click a word to see its definition!",
+  "selectToDefine": "Click any word to see its definition!",
   "translations": "translations",
   "messageAudio": "message audio",
   "definitions": "definitions",
-  "subscribedToUnlockTools": "Subscribe to unlock language tools, including",
+  "subscribedToUnlockTools": "Subscribe to unlock interactive translation and grammar checking, audio playback, personalized practice activities, and learning analytics!",
   "more": "More",
   "translationTooltip": "Translate",
   "audioTooltip": "Play Audio",
@@ -4162,7 +4162,7 @@
     "placeholders": {}
   },
   "changeAnalyticsView": "Change Analytics View",
-  "l1TranslationBody": "Oops! It looks like this message wasn't sent in your target language. Messages not sent in your target language will not be translated.",
+  "l1TranslationBody": "Messages in your base language will not be translated.",
   "continueText": "Continue",
   "deleteSubscriptionWarningTitle": "You have an active subscription",
   "deleteSubscriptionWarningBody": "Deleting your account will not automatically cancel your subscription.",
@@ -4232,5 +4232,6 @@
   "chatName": "Chat name",
   "reportContentIssueTitle": "Report content issue",
   "feedback": "Your feedback (optional)",
-  "reportContentIssueDescription": "Sorry! AI can make personalized experiences but also may have issues. Please provide any feedback you have and we'll generate a new activity."
+  "reportContentIssueDescription": "Sorry! AI can make personalized experiences but also may have issues. Please provide any feedback you have and we'll generate a new activity.",
+  "clickTheWordAgainToDeselect": "Click the selected word to deselect it."
 }

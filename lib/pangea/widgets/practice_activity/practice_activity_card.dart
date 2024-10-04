@@ -413,10 +413,11 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
             top: 0,
             right: 0,
             child: Opacity(
-              opacity: 0.8, // Slight opacity
+              opacity: 0.65, // Slight opacity
               child: Tooltip(
                 message: L10n.of(context)!.reportContentIssueTitle,
                 child: IconButton(
+                  padding: const EdgeInsets.all(2),
                   icon: const Icon(Icons.flag),
                   iconSize: 16,
                   onPressed: () =>

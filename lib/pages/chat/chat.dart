@@ -552,6 +552,7 @@ class ChatController extends State<ChatPageWithRoom>
     //#Pangea
     choreographer.stateListener.close();
     choreographer.dispose();
+    MatrixState.pAnyState.closeOverlay();
     //Pangea#
     super.dispose();
   }

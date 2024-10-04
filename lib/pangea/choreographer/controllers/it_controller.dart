@@ -56,22 +56,9 @@ class ITController {
     choreographer.setState();
   }
 
-  bool _closingHint = false;
-  Duration get animationSpeed => (_closingHint || !_willOpen)
+  Duration get animationSpeed => (!_willOpen)
       ? const Duration(milliseconds: 500)
       : const Duration(milliseconds: 2000);
-
-  void closeHint() {
-    _closingHint = true;
-    final String hintKey = InlineInstructions.translationChoices.toString();
-    final instructionsController = choreographer.pangeaController.instructions;
-    instructionsController.turnOffInstruction(hintKey);
-    instructionsController.updateEnableInstructions(hintKey, true);
-    choreographer.setState();
-    Future.delayed(const Duration(milliseconds: 500), () {
-      _closingHint = false;
-    });
-  }
 
   Future<void> initializeIT(ITStartData itStartData) async {
     _willOpen = true;

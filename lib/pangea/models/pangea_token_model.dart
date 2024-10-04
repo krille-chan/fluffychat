@@ -28,11 +28,17 @@ class PangeaToken {
     required this.morph,
   });
 
+  /// reconstructs the text from the tokens
+  /// [tokens] - the tokens to reconstruct
+  /// [debugWalkThrough] - if true, will start the debugger
   static String reconstructText(
-    List<PangeaToken> tokens, [
+    List<PangeaToken> tokens, {
+    bool debugWalkThrough = false,
     int startTokenIndex = 0,
     int endTokenIndex = -1,
-  ]) {
+  }) {
+    debugger(when: kDebugMode && debugWalkThrough);
+
     if (endTokenIndex == -1) {
       endTokenIndex = tokens.length;
     }
@@ -55,7 +61,6 @@ class PangeaToken {
           (i > 0 ? (subset[i - 1].text.offset + subset[i - 1].text.length) : 0);
 
       if (whitespace < 0) {
-        debugger(when: kDebugMode);
         whitespace = 0;
       }
       reconstruction += ' ' * whitespace + subset[i].text.content;

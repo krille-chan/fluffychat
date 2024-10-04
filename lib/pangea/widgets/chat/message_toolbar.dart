@@ -43,9 +43,7 @@ class MessageToolbarState extends State<MessageToolbar> {
 
     if (!subscribed) {
       return MessageUnsubscribedCard(
-        languageTool: widget.overLayController.toolbarMode.title(context),
-        mode: widget.overLayController.toolbarMode,
-        controller: this,
+        controller: widget.overLayController,
       );
     }
 
@@ -58,6 +56,7 @@ class MessageToolbarState extends State<MessageToolbar> {
       case MessageMode.textToSpeech:
         return MessageAudioCard(
           messageEvent: widget.pangeaMessageEvent,
+          overlayController: widget.overLayController,
         );
       case MessageMode.speechToText:
         return MessageSpeechToTextCard(
