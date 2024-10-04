@@ -508,7 +508,7 @@ class ChatController extends State<ChatPageWithRoom>
     final files = await selectFiles(
       context,
       allowMultiple: true,
-      extensions: imageExtensions,
+      type: FileSelectorType.images,
     );
     if (files.isEmpty) return;
 

@@ -37,7 +37,7 @@ class NewGroupController extends State<NewGroup> {
   void selectPhoto() async {
     final photo = await selectFiles(
       context,
-      extensions: imageExtensions,
+      type: FileSelectorType.images,
       allowMultiple: false,
     );
     final bytes = await photo.singleOrNull?.readAsBytes();

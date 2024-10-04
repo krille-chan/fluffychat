@@ -9,7 +9,7 @@ import 'package:fluffychat/widgets/app_lock.dart';
 Future<List<XFile>> selectFiles(
   BuildContext context, {
   String? title,
-  List<String>? extensions,
+  FileSelectorType type = FileSelectorType.any,
   bool allowMultiple = false,
 }) async {
   if (!PlatformInfos.isLinux) {
@@ -17,7 +17,8 @@ Future<List<XFile>> selectFiles(
       FilePicker.platform.pickFiles(
         compressionQuality: 0,
         allowMultiple: allowMultiple,
-        allowedExtensions: extensions,
+        type: type.filePickerType,
+        allowedExtensions: type.extensions?.toList(),
       ),
     );
     return result?.xFiles ?? [];
@@ -28,7 +29,8 @@ Future<List<XFile>> selectFiles(
       openFiles(
         confirmButtonText: title,
         acceptedTypeGroups: [
-          if (extensions != null) XTypeGroup(extensions: extensions),
+          if (type != FileSelectorType.any)
+            XTypeGroup(extensions: type.extensions?.toList()),
         ],
       ),
     );
@@ -37,7 +39,8 @@ Future<List<XFile>> selectFiles(
     openFile(
       confirmButtonText: title,
       acceptedTypeGroups: [
-        if (extensions != null) XTypeGroup(extensions: extensions),
+        if (type != FileSelectorType.any)
+          XTypeGroup(extensions: type.extensions?.toList()),
       ],
     ),
   );
@@ -45,13 +48,15 @@ Future<List<XFile>> selectFiles(
   return [file];
 }
 
-const imageExtensions = [
-  'png',
-  'PNG',
-  'jpg',
-  'JPG',
-  'jpeg',
-  'JPEG',
-  'webp',
-  'WebP',
-];
+enum FileSelectorType {
+  any(null, FileType.any),
+  images(
+    {'png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG', 'webp', 'WebP'},
+    FileType.image,
+  ),
+  zip({'zip', 'ZIP'}, FileType.custom);
+
+  const FileSelectorType(this.extensions, this.filePickerType);
+  final Set<String>? extensions;
+  final FileType filePickerType;
+}

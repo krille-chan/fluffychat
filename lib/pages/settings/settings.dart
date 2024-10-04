@@ -135,7 +135,10 @@ class SettingsController extends State<Settings> {
         name: result.path,
       );
     } else {
-      final result = await selectFiles(context, extensions: imageExtensions);
+      final result = await selectFiles(
+        context,
+        type: FileSelectorType.images,
+      );
       final pickedFile = result.firstOrNull;
       if (pickedFile == null) return;
       file = MatrixFile(

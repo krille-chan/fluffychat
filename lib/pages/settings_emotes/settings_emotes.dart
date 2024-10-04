@@ -221,7 +221,10 @@ class EmotesSettingsController extends State<EmotesSettings> {
   void imagePickerAction(
     ValueNotifier<ImagePackImageContent?> controller,
   ) async {
-    final result = await selectFiles(context, extensions: imageExtensions);
+    final result = await selectFiles(
+      context,
+      type: FileSelectorType.images,
+    );
     final pickedFile = result.firstOrNull;
     if (pickedFile == null) return;
     var file = MatrixImageFile(
@@ -278,10 +281,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
       future: () async {
         final result = await selectFiles(
           context,
-          extensions: [
-            'zip',
-            // TODO: add further encoders
-          ],
+          type: FileSelectorType.zip,
         );
 
         if (result.isEmpty) return null;

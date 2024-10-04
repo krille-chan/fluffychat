@@ -167,7 +167,7 @@ class ChatDetailsController extends State<ChatDetails> {
       final picked = await selectFiles(
         context,
         allowMultiple: false,
-        extensions: imageExtensions,
+        type: FileSelectorType.images,
       );
       final pickedFile = picked.firstOrNull;
       if (pickedFile == null) return;

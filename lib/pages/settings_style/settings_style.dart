@@ -25,7 +25,10 @@ class SettingsStyleController extends State<SettingsStyle> {
 
   void setWallpaper() async {
     final client = Matrix.of(context).client;
-    final picked = await selectFiles(context, extensions: imageExtensions);
+    final picked = await selectFiles(
+      context,
+      type: FileSelectorType.images,
+    );
     final pickedFile = picked.firstOrNull;
     if (pickedFile == null) return;
 
