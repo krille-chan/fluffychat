@@ -18,9 +18,7 @@ Future<List<XFile>> selectFiles(
         compressionQuality: 0,
         allowMultiple: allowMultiple,
         type: type.filePickerType,
-        allowedExtensions: type.filePickerType == FileType.custom
-            ? type.extensions?.toList()
-            : null,
+        allowedExtensions: type.extensions,
       ),
     );
     return result?.xFiles ?? [];
@@ -30,20 +28,14 @@ Future<List<XFile>> selectFiles(
     return await AppLock.of(context).pauseWhile(
       openFiles(
         confirmButtonText: title,
-        acceptedTypeGroups: [
-          if (type != FileSelectorType.any)
-            XTypeGroup(extensions: type.extensions?.toList()),
-        ],
+        acceptedTypeGroups: type.groups,
       ),
     );
   }
   final file = await AppLock.of(context).pauseWhile(
     openFile(
       confirmButtonText: title,
-      acceptedTypeGroups: [
-        if (type != FileSelectorType.any)
-          XTypeGroup(extensions: type.extensions?.toList()),
-      ],
+      acceptedTypeGroups: type.groups,
     ),
   );
   if (file == null) return [];
@@ -51,14 +43,38 @@ Future<List<XFile>> selectFiles(
 }
 
 enum FileSelectorType {
-  any(null, FileType.any),
+  any([], FileType.any, null),
   images(
-    {'png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG', 'webp', 'WebP'},
+    [
+      XTypeGroup(
+        label: 'JPG',
+        extensions: <String>['jpg', 'JPG', 'jpeg', 'JPEG'],
+      ),
+      XTypeGroup(
+        label: 'PNGs',
+        extensions: <String>['png', 'PNG'],
+      ),
+      XTypeGroup(
+        label: 'WEBP',
+        extensions: <String>['WebP', 'WEBP'],
+      ),
+    ],
     FileType.image,
+    null,
   ),
-  zip({'zip', 'ZIP'}, FileType.custom);
+  zip(
+    [
+      XTypeGroup(
+        label: 'ZIP',
+        extensions: <String>['zip', 'ZIP'],
+      ),
+    ],
+    FileType.custom,
+    ['zip', 'ZIP'],
+  );
 
-  const FileSelectorType(this.extensions, this.filePickerType);
-  final Set<String>? extensions;
+  const FileSelectorType(this.groups, this.filePickerType, this.extensions);
+  final List<XTypeGroup> groups;
   final FileType filePickerType;
+  final List<String>? extensions;
 }
