@@ -156,16 +156,15 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                         Text(L10n.of(context)!.storeInSecureStorageDescription),
                   ),
                 const SizedBox(height: 16),
-                CheckboxListTile.adaptive(
+                ListTile(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  value: _recoveryKeyCopied,
-                  activeColor: theme.colorScheme.primary,
-                  onChanged: (b) {
+                  title: Text(L10n.of(context)!.copyToClipboard),
+                  subtitle: Text(L10n.of(context)!.saveKeyManuallyDescription),
+                  trailing: Icon(Icons.content_copy), // Move icon to the right
+                  onTap: () {
                     FluffyShare.share(key!, context);
                     setState(() => _recoveryKeyCopied = true);
                   },
-                  title: Text(L10n.of(context)!.copyToClipboard),
-                  subtitle: Text(L10n.of(context)!.saveKeyManuallyDescription),
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton.icon(
