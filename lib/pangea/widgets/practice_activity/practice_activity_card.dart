@@ -13,6 +13,8 @@ import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
+import 'package:fluffychat/pangea/widgets/content_issue_button.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/target_tokens_controller.dart';
@@ -54,7 +56,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   // Used to show an animation when the user completes an activity
   // while simultaneously fetching a new activity and not showing the loading spinner
   // until the appropriate time has passed to 'savor the joy'
-  Duration appropriateTimeForJoy = const Duration(milliseconds: 1000);
+  Duration appropriateTimeForJoy = const Duration(milliseconds: 1500);
   bool savoringTheJoy = false;
 
   @override
@@ -65,7 +67,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
   void _updateFetchingActivity(bool value) {
     if (fetchingActivity == value) return;
-    setState(() => fetchingActivity = value);
+    if (mounted) setState(() => fetchingActivity = value);
   }
 
   void _setPracticeActivity(PracticeActivityEvent? activity) {
@@ -177,19 +179,13 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       );
 
   Future<void> _savorTheJoy() async {
-    if (savoringTheJoy) {
-      //should not happen
-      debugger(when: kDebugMode);
-    }
-    savoringTheJoy = true;
+    debugger(when: savoringTheJoy && kDebugMode);
 
-    debugPrint('Savoring the joy');
+    setState(() => savoringTheJoy = true);
 
     await Future.delayed(appropriateTimeForJoy);
 
-    savoringTheJoy = false;
-
-    debugPrint('Savoring the joy is over');
+    if (mounted) setState(() => savoringTheJoy = false);
   }
 
   /// Called when the user finishes an activity.
@@ -233,6 +229,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
       widget.overlayController.onActivityFinish();
 
+      //
       final Iterable<dynamic> result = await Future.wait([
         _savorTheJoy(),
         _fetchNewActivity(),
@@ -252,50 +249,6 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         },
       );
     }
-  }
-
-  void onFlagClick(BuildContext context) {
-    final TextEditingController feedbackController = TextEditingController();
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(L10n.of(context)!.reportContentIssueTitle),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(L10n.of(context)!.reportContentIssueDescription),
-              const SizedBox(height: 10),
-              TextField(
-                controller: feedbackController,
-                decoration: InputDecoration(
-                  labelText: L10n.of(context)!.feedback,
-                  border: const OutlineInputBorder(),
-                ),
-                maxLines: 3,
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: Text(L10n.of(context)!.cancel),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Call the additional callback function
-                submitFeedback(feedbackController.text);
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: Text(L10n.of(context)!.submit),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   /// clear the current activity, record, and selection
@@ -385,6 +338,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       constraints: const BoxConstraints(
         maxWidth: 350,
         minWidth: 350,
+        minHeight: minCardHeight,
       ),
       child: Stack(
         alignment: Alignment.center,
@@ -412,18 +366,9 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
           Positioned(
             top: 0,
             right: 0,
-            child: Opacity(
-              opacity: 0.65, // Slight opacity
-              child: Tooltip(
-                message: L10n.of(context)!.reportContentIssueTitle,
-                child: IconButton(
-                  padding: const EdgeInsets.all(2),
-                  icon: const Icon(Icons.flag),
-                  iconSize: 16,
-                  onPressed: () =>
-                      currentActivity == null ? null : onFlagClick(context),
-                ),
-              ),
+            child: ContentIssueButton(
+              isActive: currentActivity != null,
+              submitFeedback: submitFeedback,
             ),
           ),
         ],

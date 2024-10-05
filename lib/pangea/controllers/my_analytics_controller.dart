@@ -113,6 +113,11 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
     _pangeaController.analytics
         .filterConstructs(unfilteredConstructs: constructs)
         .then((filtered) {
+      for (final use in filtered) {
+        debugPrint(
+          "_onNewAnalyticsData filtered use: ${use.constructType.string} ${use.useType.string} ${use.lemma} ${use.useType.pointValue}",
+        );
+      }
       if (filtered.isEmpty) return;
 
       // @ggurdin - are we sure this isn't happening twice? it's also above
@@ -166,6 +171,14 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
       }
     }
 
+    if (kDebugMode) {
+      for (final use in uses) {
+        debugPrint(
+          "Draft use: ${use.constructType.string} ${use.useType.string} ${use.lemma} ${use.useType.pointValue}",
+        );
+      }
+    }
+
     // @ggurdin - if the point of draft uses is that we don't want to send them twice,
     // then, if this is triggered here, couldn't that make a problem?
     final level = _pangeaController.analytics.level;
@@ -189,6 +202,7 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
   /// cache of recently sent messages
   Future<void> _addLocalMessage(
     String eventID,
+    // @ggurdin - why is this an eventID and not a roomID?
     List<OneConstructUse> constructs,
   ) async {
     try {

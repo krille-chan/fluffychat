@@ -2,6 +2,7 @@ import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:flutter/material.dart';
@@ -86,6 +87,8 @@ class MessageAudioCardState extends State<MessageAudioCard> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8),
+      constraints: const BoxConstraints(minHeight: minCardHeight),
+      alignment: Alignment.center,
       child: _isLoading
           ? const ToolbarContentLoadingIndicator()
           : localAudioEvent != null || audioFile != null

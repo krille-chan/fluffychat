@@ -13,9 +13,12 @@ import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
+import 'package:fluffychat/pangea/widgets/select_to_define.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+const double minCardHeight = 70;
 
 class MessageToolbar extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;

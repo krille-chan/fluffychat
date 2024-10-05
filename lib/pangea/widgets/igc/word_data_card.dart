@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/common/p_circular_loader.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -176,6 +177,8 @@ class WordDataCardView extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.all(8),
+      constraints: const BoxConstraints(minHeight: minCardHeight),
+      alignment: Alignment.center,
       child: Scrollbar(
         thumbVisibility: true,
         controller: scrollController,
@@ -396,28 +399,6 @@ class PartOfSpeechBlock extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class SelectToDefine extends StatelessWidget {
-  const SelectToDefine({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: 80,
-        padding: const EdgeInsets.all(8),
-        child: Center(
-          child: Text(
-            L10n.of(context)!.selectToDefine,
-            style: BotStyle.text(context),
-          ),
-        ),
       ),
     );
   }

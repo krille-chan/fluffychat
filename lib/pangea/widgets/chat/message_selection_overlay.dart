@@ -16,6 +16,7 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:matrix/matrix.dart';
 
 class MessageSelectionOverlay extends StatefulWidget {
@@ -71,6 +72,26 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         widget._pangeaMessageEvent.numberOfActivitiesCompleted;
 
     setInitialToolbarMode();
+  }
+
+  /// We need to check if the setState call is safe to call immediately
+  /// Kept getting the error: setState() or markNeedsBuild() called during build.
+  /// This is a workaround to prevent that error
+  @override
+  void setState(VoidCallback fn) {
+    if (SchedulerBinding.instance.schedulerPhase == SchedulerPhase.idle ||
+        SchedulerBinding.instance.schedulerPhase ==
+            SchedulerPhase.postFrameCallbacks) {
+      // It's safe to call setState immediately
+      super.setState(fn);
+    } else {
+      // Defer the setState call to after the current frame
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          super.setState(fn);
+        }
+      });
+    }
   }
 
   bool get isPracticeComplete => activitiesLeftToComplete <= 0;
@@ -137,7 +158,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void onClickOverlayMessageToken(
     PangeaToken token,
   ) {
-    if (toolbarMode == MessageMode.practiceActivity) {
+    if ([MessageMode.practiceActivity, MessageMode.textToSpeech]
+        .contains(toolbarMode)) {
       return;
     }
 

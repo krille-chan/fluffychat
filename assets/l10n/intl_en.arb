@@ -4231,7 +4231,7 @@
   "inviteChat": "📨 Invite chat",
   "chatName": "Chat name",
   "reportContentIssueTitle": "Report content issue",
-  "feedback": "Your feedback (optional)",
-  "reportContentIssueDescription": "Sorry! AI can make personalized experiences but also may have issues. Please provide any feedback you have and we'll generate a new activity.",
+  "feedback": "Optional feedback",
+  "reportContentIssueDescription": "Uh oh! AI can faciliate personalized learning experiences but... also hallucinates. Please provide any feedback you have and we'll try again.",
   "clickTheWordAgainToDeselect": "Click the selected word to deselect it."
 }

@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -135,6 +136,8 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
 
     return Container(
       padding: const EdgeInsets.all(8),
+      constraints: const BoxConstraints(minHeight: minCardHeight),
+      alignment: Alignment.center,
       child: _fetchingTranslation
           ? const ToolbarContentLoadingIndicator()
           : Column(

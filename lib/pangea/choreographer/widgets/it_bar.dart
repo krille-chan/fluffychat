@@ -225,6 +225,7 @@ class OriginalText extends StatelessWidget {
             controller.sourceText != null
                 ? Flexible(child: Text(controller.sourceText!))
                 : const LinearProgressIndicator(),
+          const SizedBox(width: 4),
           if (controller.isEditingSourceText)
             Expanded(
               child: TextField(
@@ -243,7 +244,7 @@ class OriginalText extends StatelessWidget {
           if (!controller.isEditingSourceText && controller.sourceText != null)
             AnimatedOpacity(
               duration: const Duration(milliseconds: 500),
-              opacity: controller.nextITStep != null ? 1.0 : 0.0,
+              opacity: controller.nextITStep != null ? 0.7 : 0.0,
               child: IconButton(
                 onPressed: () => {
                   if (controller.nextITStep != null)
@@ -252,6 +253,7 @@ class OriginalText extends StatelessWidget {
                     },
                 },
                 icon: const Icon(Icons.edit_outlined),
+                iconSize: 20,
               ),
             ),
         ],
