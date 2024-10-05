@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Výchozí úroveň oprávnění",
+  "defaultPermissionLevel": "Výchozí úroveň oprávnění nových uživatelů",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -1085,7 +1085,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Zdá se, že v telefonu nemáte žádné služby Google. To je dobré rozhodnutí pro vaše soukromí! Chcete-li dostávat push oznámení ve FluffyChat, doporučujeme použít: https://microg.org/ nebo https://unifiedpush.org/.",
+  "noGoogleServicesWarning": "Zdá se, že služba Firebase Cloud Messaging není ve vašem zařízení k dispozici. Chcete-li i nadále přijímat push oznámení, doporučujeme nainstalovat ntfy. Pomocí ntfy nebo jiného poskytovatele Unified Push můžete přijímat oznámení push zabezpečeným způsobem přenosu dat. Aplikaci ntfy si můžete stáhnout z obchodu PlayStore nebo z webu F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2379,5 +2379,63 @@
     }
   },
   "noMoreChatsFound": "Žádné další konverzace nalezeny...",
-  "@noMoreChatsFound": {}
+  "@noMoreChatsFound": {},
+  "hideRedactedMessages": "Skrýt upravené zprávy",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Pokud někdo zprávu zrediguje, nebude tato zpráva v chatu již viditelná.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Skrytí nesprávných nebo neznámých formátů zpráv",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "blockUsername": "Ignorovat uživatelské jméno",
+  "@blockUsername": {},
+  "hideMemberChangesInPublicChats": "Skrýt změny členů ve veřejných chatech",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "Nezobrazovat na časové ose chatu, pokud se někdo připojí nebo opustí veřejný chat, aby se zlepšila čitelnost.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "overview": "Přehled",
+  "@overview": {},
+  "notifyMeFor": "Upozorněte mě na",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Nastavení obnovení hesla",
+  "@passwordRecoverySettings": {},
+  "presenceStyle": "Dostupnost:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "block": "Blokovat",
+  "@block": {},
+  "indexedDbErrorLong": "Ukládání zpráv bohužel není ve výchozím nastavení v soukromém režimu povoleno.\nNavštivte prosím\n - about:config\n - nastavte dom.indexedDB.privateBrowsing.enabled na true\nV opačném případě nebude možné FluffyChat spustit.",
+  "@indexedDbErrorLong": {},
+  "youInvitedToBy": "📩 Prostřednictvím odkazu jste byli pozváni na:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "indexedDbErrorTitle": "Problémy privátního prostředí",
+  "@indexedDbErrorTitle": {},
+  "blockListDescription": "Můžete blokovat uživatele, kteří vás obtěžují. Od uživatelů na vašem osobním seznamu blokovaných uživatelů nebudete moci přijímat žádné zprávy ani pozvánky do místnosti.",
+  "@blockListDescription": {},
+  "blockedUsers": "Zablokování uživatelé",
+  "@blockedUsers": {},
+  "alwaysUse24HourFormat": "Vypnuto",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "noChatsFoundHere": "Nejsou zde žádné chaty. Začněte nový chat s někým, použitím níže uvedeného tlačítka. ⤵️",
+  "@noChatsFoundHere": {},
+  "joinedChats": "Připojené chaty",
+  "@joinedChats": {},
+  "unread": "Nepřečtené",
+  "@unread": {},
+  "space": "Prostor",
+  "@space": {},
+  "spaces": "Prostory",
+  "@spaces": {},
+  "presencesToggle": "Zobrazení stavových zpráv od jiných uživatelů",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
