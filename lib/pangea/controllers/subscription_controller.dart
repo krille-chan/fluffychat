@@ -254,7 +254,7 @@ class SubscriptionController extends BaseController {
         !isSubscribed &&
         (_lastDismissedPaywall == null ||
             DateTime.now().difference(_lastDismissedPaywall!).inHours >
-                (24 * (_paywallBackoff ?? 1)));
+                (1 * (_paywallBackoff ?? 1)));
   }
 
   void dismissPaywall() async {

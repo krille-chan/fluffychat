@@ -4490,7 +4490,6 @@
   "messageAudio": "mensaje de audio",
   "definitions": "definiciones",
   "clickMessageTitle": "¿Necesitas ayuda?",
-  "clickMessageBody": "¡Lame un mensaje para obtener ayuda con el idioma! Haz clic y mantén presionado para reaccionar 😀",
   "more": "Más",
   "translationTooltip": "Traducir",
   "audioTooltip": "Reproducir audio",

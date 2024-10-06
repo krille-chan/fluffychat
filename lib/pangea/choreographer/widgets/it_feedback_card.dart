@@ -131,11 +131,11 @@ class ITFeedbackCardView extends StatelessWidget {
               text: controller.widget.req.chosenContinuance,
               botExpression: BotExpression.nonGold,
             ),
-            Text(
-              controller.widget.choiceFeedback,
-              style: BotStyle.text(context),
-            ),
-            const SizedBox(height: 20),
+            // Text(
+            //   controller.widget.choiceFeedback,
+            //   style: BotStyle.text(context),
+            // ),
+            const SizedBox(height: 10),
             if (controller.res == null)
               WhyButton(
                 onPress: controller.handleGetExplanationButtonPress,
