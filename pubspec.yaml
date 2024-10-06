@@ -100,7 +100,7 @@ dependencies:
   webrtc_interface: ^1.0.13
 
 dev_dependencies:
-  flutter_lints: ^3.0.0
+  flutter_lints: ^5.0.0
   flutter_native_splash: ^2.0.3+1
   flutter_test:
     sdk: flutter
