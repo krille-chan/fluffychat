@@ -32,11 +32,12 @@ import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
-import '../config/app_config.dart';
-import '../config/setting_keys.dart';
-import '../widgets/matrix.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'platform_infos.dart';
 
 //import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
@@ -46,13 +47,13 @@ class NoTokenException implements Exception {
 }
 
 class BackgroundPush {
-  static BackgroundPush? _instance;
+  static final _instances = <Client, BackgroundPush>{};
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   Client client;
-  MatrixState? matrix;
+  static MatrixState? matrix;
   String? _fcmToken;
-  void Function(String errorMsg, {Uri? link})? onFcmError;
+  static void Function(String errorMsg, {Uri? link})? onFcmError;
   L10n? l10n;
 
   Future<void> loadLocale() async {
@@ -104,23 +105,26 @@ class BackgroundPush {
     }
   }
 
+  static void initInstancesClientsOnly(List<Client> clients) async {
+    for (final c in clients) {
+      _instances[c] ??= BackgroundPush._(c);
+    }
+  }
+
   BackgroundPush._(this.client) {
+    Logs().d("Creating BackgroundPush for ${client.userID}");
     _init();
   }
 
-  factory BackgroundPush.clientOnly(Client client) {
-    return _instance ??= BackgroundPush._(client);
-  }
-
-  factory BackgroundPush(
-    MatrixState matrix, {
+  static void initInstances(
+    MatrixState matrix,
+    List<Client> clients, {
     final void Function(String errorMsg, {Uri? link})? onFcmError,
   }) {
-    final instance = BackgroundPush.clientOnly(matrix.client);
-    instance.matrix = matrix;
+    BackgroundPush.initInstancesClientsOnly(clients);
+    BackgroundPush.matrix = matrix;
     // ignore: prefer_initializing_formals
-    instance.onFcmError = onFcmError;
-    return instance;
+    BackgroundPush.onFcmError = onFcmError;
   }
 
   Future<void> cancelNotification(String roomId) async {
@@ -141,7 +145,7 @@ class BackgroundPush {
     }
   }
 
-  Future<void> setupPusher({
+  Future<void> _setupPusher({
     String? gatewayUrl,
     String? token,
     Set<String?>? oldTokens,
@@ -246,8 +250,18 @@ class BackgroundPush {
 
   static bool _wentToRoomOnStartup = false;
 
-  Future<void> setupPush() async {
-    Logs().d("SetupPush");
+  static Future<void> setupPush() async {
+    _instances.forEach((_, bp) {
+      bp._setupPush();
+    });
+  }
+
+  static BackgroundPush? getInstance(Client client) {
+    return _instances[client];
+  }
+
+  Future<void> _setupPush() async {
+    Logs().d("SetupPush for ${client.userID}");
     if (client.onLoginStateChanged.value != LoginState.loggedIn ||
         !PlatformInfos.isMobile ||
         matrix == null) {
@@ -260,9 +274,9 @@ class BackgroundPush {
     }
     if (!PlatformInfos.isIOS &&
         (await UnifiedPush.getDistributors()).isNotEmpty) {
-      await setupUp();
+      await _setupUp();
     } else {
-      await setupFirebase();
+      await _setupFirebase();
     }
 
     // ignore: unawaited_futures
@@ -301,7 +315,7 @@ class BackgroundPush {
     });
   }
 
-  Future<void> setupFirebase() async {
+  Future<void> _setupFirebase() async {
     Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
       try {
@@ -313,7 +327,7 @@ class BackgroundPush {
         return;
       }
     }
-    await setupPusher(
+    await _setupPusher(
       gatewayUrl: AppConfig.pushNotificationsGatewayUrl,
       token: _fcmToken,
     );
@@ -338,8 +352,9 @@ class BackgroundPush {
     }
   }
 
-  Future<void> setupUp() async {
-    await UnifiedPushUi(matrix!.context, ["default"], UPFunctions())
+  Future<void> _setupUp() async {
+    final id = client.userID ?? "default";
+    await UnifiedPushUi(matrix!.context, [id], UPFunctions())
         .registerAppWithDialog();
   }
 
@@ -378,26 +393,33 @@ class BackgroundPush {
       final fcmToken = await firebase?.getToken();
       oldTokens.add(fcmToken);
     } catch (_) {}
-    await setupPusher(
+    await _setupPusher(
       gatewayUrl: endpoint,
       token: newEndpoint,
       oldTokens: oldTokens,
       useDeviceSpecificAppId: true,
     );
-    await matrix?.store.setString(SettingKeys.unifiedPushEndpoint, newEndpoint);
-    await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, true);
+    await client.updateApplicationAccountConfig(
+      ApplicationAccountConfig(
+        unifiedPushEndpoint: newEndpoint,
+        unifiedPushRegistered: true,
+      ),
+    );
   }
 
   Future<void> _upUnregistered(String i) async {
     upAction = true;
     Logs().i('[Push] Removing UnifiedPush endpoint...');
-    final oldEndpoint =
-        matrix?.store.getString(SettingKeys.unifiedPushEndpoint);
-    await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, false);
-    await matrix?.store.remove(SettingKeys.unifiedPushEndpoint);
+    final oldEndpoint = client.applicationAccountConfig.unifiedPushEndpoint;
+    await client.updateApplicationAccountConfig(
+      const ApplicationAccountConfig(
+        unifiedPushEndpoint: "",
+        unifiedPushRegistered: false,
+      ),
+    );
     if (oldEndpoint?.isNotEmpty ?? false) {
       // remove the old pusher
-      await setupPusher(
+      await _setupPusher(
         oldTokens: {oldEndpoint},
       );
     }

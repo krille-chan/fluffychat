@@ -71,8 +71,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   String? loginUsername;
   bool? loginRegistrationSupported;
 
-  BackgroundPush? backgroundPush;
-
   Client get client {
     if (widget.clients.isEmpty) {
       widget.clients.add(getLoginClient());
@@ -363,8 +361,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
 
     if (PlatformInfos.isMobile) {
-      backgroundPush = BackgroundPush(
+      BackgroundPush.initInstances(
         this,
+        widget.clients,
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
             barrierDismissible: true,
@@ -517,6 +516,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
     final file = MatrixFile(bytes: exportBytes, name: exportFileName);
     file.save(context);
+  }
+
+  List<Client> getClientsInRoom(String id) {
+    return widget.clients.where((client) {
+      return client.getRoomById(id) != null;
+    }).toList();
   }
 }
 

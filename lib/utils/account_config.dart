@@ -1,5 +1,7 @@
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/setting_keys.dart';
+
 extension ApplicationAccountConfigExtension on Client {
   static const String accountDataKey = 'im.fluffychat.account_config';
 
@@ -29,6 +31,10 @@ extension ApplicationAccountConfigExtension on Client {
         wallpaperUrl: config.wallpaperUrl ?? currentConfig.wallpaperUrl,
         wallpaperOpacity:
             config.wallpaperOpacity ?? currentConfig.wallpaperOpacity,
+        unifiedPushEndpoint:
+            config.unifiedPushEndpoint ?? currentConfig.unifiedPushEndpoint,
+        unifiedPushRegistered:
+            config.unifiedPushRegistered ?? currentConfig.unifiedPushRegistered,
       ).toJson(),
     );
   }
@@ -37,10 +43,14 @@ extension ApplicationAccountConfigExtension on Client {
 class ApplicationAccountConfig {
   final Uri? wallpaperUrl;
   final double? wallpaperOpacity;
+  final String? unifiedPushEndpoint;
+  final bool? unifiedPushRegistered;
 
   const ApplicationAccountConfig({
     this.wallpaperUrl,
     this.wallpaperOpacity,
+    this.unifiedPushEndpoint,
+    this.unifiedPushRegistered,
   });
 
   static double _sanitizedOpacity(double? opacity) {
@@ -56,10 +66,17 @@ class ApplicationAccountConfig {
             : null,
         wallpaperOpacity:
             _sanitizedOpacity(json.tryGet<double>('wallpaper_opacity')),
+        unifiedPushEndpoint: json[SettingKeys.unifiedPushEndpoint] is String
+            ? json[SettingKeys.unifiedPushEndpoint]
+            : "",
+        unifiedPushRegistered:
+            json.tryGet<bool>(SettingKeys.unifiedPushRegistered),
       );
 
   Map<String, dynamic> toJson() => {
         'wallpaper_url': wallpaperUrl?.toString(),
         'wallpaper_opacity': wallpaperOpacity,
+        SettingKeys.unifiedPushEndpoint: unifiedPushEndpoint,
+        SettingKeys.unifiedPushRegistered: unifiedPushRegistered?.toString(),
       };
 }
