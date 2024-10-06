@@ -14,7 +14,7 @@ extension EventInfoDialogExtension on Event {
   void showInfoDialog(BuildContext context) => showAdaptiveBottomSheet(
         context: context,
         builder: (context) =>
-            EventInfoDialog(l10n: L10n.of(context)!, event: this),
+            EventInfoDialog(l10n: L10n.of(context), event: this),
       );
 }
 
@@ -40,11 +40,11 @@ class EventInfoDialog extends StatelessWidget {
     final originalSource = event.originalSource;
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.messageInfo),
+        title: Text(L10n.of(context).messageInfo),
         leading: IconButton(
           icon: const Icon(Icons.arrow_downward_outlined),
           onPressed: Navigator.of(context, rootNavigator: false).pop,
-          tooltip: L10n.of(context)!.close,
+          tooltip: L10n.of(context).close,
         ),
       ),
       body: ListView(
@@ -56,20 +56,20 @@ class EventInfoDialog extends StatelessWidget {
               client: event.room.client,
               presenceUserId: event.senderId,
             ),
-            title: Text(L10n.of(context)!.sender),
+            title: Text(L10n.of(context).sender),
             subtitle: Text(
               '${event.senderFromMemoryOrFallback.calcDisplayname()} [${event.senderId}]',
             ),
           ),
           ListTile(
-            title: Text('${L10n.of(context)!.time}:'),
+            title: Text('${L10n.of(context).time}:'),
             subtitle: Text(event.originServerTs.localizedTime(context)),
           ),
           ListTile(
-            title: Text('${L10n.of(context)!.status}:'),
+            title: Text('${L10n.of(context).status}:'),
             subtitle: Text(event.status.name),
           ),
-          ListTile(title: Text('${L10n.of(context)!.sourceCode}:')),
+          ListTile(title: Text('${L10n.of(context).sourceCode}:')),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Material(
@@ -88,7 +88,7 @@ class EventInfoDialog extends StatelessWidget {
             ),
           ),
           if (originalSource != null) ...[
-            ListTile(title: Text('${L10n.of(context)!.encrypted}:')),
+            ListTile(title: Text('${L10n.of(context).encrypted}:')),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Material(

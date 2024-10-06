@@ -31,7 +31,7 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     if (!room.canSendEvent(EventTypes.RoomPowerLevels)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.noPermission)),
+        SnackBar(content: Text(L10n.of(context).noPermission)),
       );
       return;
     }

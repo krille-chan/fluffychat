@@ -40,7 +40,7 @@ class SendFileDialogState extends State<SendFileDialog> {
 
   Future<void> _send() async {
     final scaffoldMessenger = ScaffoldMessenger.of(widget.outerContext);
-    final l10n = L10n.of(context)!;
+    final l10n = L10n.of(context);
 
     try {
       scaffoldMessenger.showLoadingSnackBar(l10n.prepareSendingAttachment);
@@ -146,7 +146,7 @@ class SendFileDialogState extends State<SendFileDialog> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    var sendStr = L10n.of(context)!.sendFile;
+    var sendStr = L10n.of(context).sendFile;
     final uniqueMimeType = widget.files
         .map((file) => file.mimeType ?? lookupMimeType(file.path))
         .toSet()
@@ -154,21 +154,21 @@ class SendFileDialogState extends State<SendFileDialog> {
 
     final fileName = widget.files.length == 1
         ? widget.files.single.name
-        : L10n.of(context)!.countFiles(widget.files.length.toString());
+        : L10n.of(context).countFiles(widget.files.length.toString());
 
     if (uniqueMimeType?.startsWith('image') ?? false) {
-      sendStr = L10n.of(context)!.sendImage;
+      sendStr = L10n.of(context).sendImage;
     } else if (uniqueMimeType?.startsWith('audio') ?? false) {
-      sendStr = L10n.of(context)!.sendAudio;
+      sendStr = L10n.of(context).sendAudio;
     } else if (uniqueMimeType?.startsWith('video') ?? false) {
-      sendStr = L10n.of(context)!.sendVideo;
+      sendStr = L10n.of(context).sendVideo;
     }
 
     return FutureBuilder<String>(
       future: _calcCombinedFileSize(),
       builder: (context, snapshot) {
         final sizeString =
-            snapshot.data ?? L10n.of(context)!.calculatingFileSize;
+            snapshot.data ?? L10n.of(context).calculatingFileSize;
 
         Widget contentWidget;
         if (uniqueMimeType?.startsWith('image') ?? false) {
@@ -210,7 +210,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          L10n.of(context)!.sendOriginal,
+                          L10n.of(context).sendOriginal,
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(sizeString),
@@ -270,7 +270,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              L10n.of(context)!.sendOriginal,
+                              L10n.of(context).sendOriginal,
                               style:
                                   const TextStyle(fontWeight: FontWeight.bold),
                             ),
@@ -293,11 +293,11 @@ class SendFileDialogState extends State<SendFileDialog> {
                 // just close the dialog
                 Navigator.of(context, rootNavigator: false).pop();
               },
-              child: Text(L10n.of(context)!.cancel),
+              child: Text(L10n.of(context).cancel),
             ),
             TextButton(
               onPressed: _send,
-              child: Text(L10n.of(context)!.send),
+              child: Text(L10n.of(context).send),
             ),
           ],
         );

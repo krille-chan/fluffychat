@@ -72,7 +72,7 @@ class ReplyContent extends StatelessWidget {
                 ),
                 Text(
                   displayEvent.calcLocalizedBodyFallback(
-                    MatrixLocals(L10n.of(context)!),
+                    MatrixLocals(L10n.of(context)),
                     withSenderNamePrefix: false,
                     hideReply: true,
                   ),

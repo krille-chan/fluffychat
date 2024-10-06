@@ -16,7 +16,7 @@ class DevicesSettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.devices),
+        title: Text(L10n.of(context).devices),
       ),
       body: MaxWidthBody(
         child: FutureBuilder<bool>(
@@ -56,7 +56,7 @@ class DevicesSettingsView extends StatelessWidget {
                           ),
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            L10n.of(context)!.thisDevice,
+                            L10n.of(context).thisDevice,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: theme.colorScheme.primary,
@@ -84,7 +84,7 @@ class DevicesSettingsView extends StatelessWidget {
                             child: TextButton.icon(
                               label: Text(
                                 controller.errorDeletingDevices ??
-                                    L10n.of(context)!.removeAllOtherDevices,
+                                    L10n.of(context).removeAllOtherDevices,
                               ),
                               style: TextButton.styleFrom(
                                 foregroundColor:
@@ -109,7 +109,7 @@ class DevicesSettingsView extends StatelessWidget {
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Text(L10n.of(context)!.noOtherDevicesFound),
+                            child: Text(L10n.of(context).noOtherDevicesFound),
                           ),
                         ),
                     ],

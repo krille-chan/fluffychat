@@ -28,7 +28,7 @@ class SettingsView extends StatelessWidget {
             onPressed: () => context.go('/rooms'),
           ),
         ),
-        title: Text(L10n.of(context)!.settings),
+        title: Text(L10n.of(context).settings),
       ),
       body: ListTileTheme(
         iconColor: theme.colorScheme.onSurface,
@@ -40,7 +40,7 @@ class SettingsView extends StatelessWidget {
               builder: (context, snapshot) {
                 final profile = snapshot.data;
                 final mxid =
-                    Matrix.of(context).client.userID ?? L10n.of(context)!.user;
+                    Matrix.of(context).client.userID ?? L10n.of(context).user;
                 final displayname =
                     profile?.displayName ?? mxid.localpart ?? mxid;
                 return Row(
@@ -118,7 +118,7 @@ class SettingsView extends StatelessWidget {
             if (showChatBackupBanner == null)
               ListTile(
                 leading: const Icon(Icons.backup_outlined),
-                title: Text(L10n.of(context)!.chatBackup),
+                title: Text(L10n.of(context).chatBackup),
                 trailing: const CircularProgressIndicator.adaptive(),
               )
             else
@@ -126,7 +126,7 @@ class SettingsView extends StatelessWidget {
                 controlAffinity: ListTileControlAffinity.trailing,
                 value: controller.showChatBackupBanner == false,
                 secondary: const Icon(Icons.backup_outlined),
-                title: Text(L10n.of(context)!.chatBackup),
+                title: Text(L10n.of(context).chatBackup),
                 onChanged: controller.firstRunBootstrapAction,
               ),
             Divider(
@@ -134,49 +134,49 @@ class SettingsView extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.format_paint_outlined),
-              title: Text(L10n.of(context)!.changeTheme),
+              title: Text(L10n.of(context).changeTheme),
               onTap: () => context.go('/rooms/settings/style'),
             ),
             ListTile(
               leading: const Icon(Icons.notifications_outlined),
-              title: Text(L10n.of(context)!.notifications),
+              title: Text(L10n.of(context).notifications),
               onTap: () => context.go('/rooms/settings/notifications'),
             ),
             ListTile(
               leading: const Icon(Icons.devices_outlined),
-              title: Text(L10n.of(context)!.devices),
+              title: Text(L10n.of(context).devices),
               onTap: () => context.go('/rooms/settings/devices'),
             ),
             ListTile(
               leading: const Icon(Icons.forum_outlined),
-              title: Text(L10n.of(context)!.chat),
+              title: Text(L10n.of(context).chat),
               onTap: () => context.go('/rooms/settings/chat'),
             ),
             ListTile(
               leading: const Icon(Icons.shield_outlined),
-              title: Text(L10n.of(context)!.security),
+              title: Text(L10n.of(context).security),
               onTap: () => context.go('/rooms/settings/security'),
             ),
             Divider(color: theme.dividerColor),
             ListTile(
               leading: const Icon(Icons.help_outline_outlined),
-              title: Text(L10n.of(context)!.help),
+              title: Text(L10n.of(context).help),
               onTap: () => launchUrlString(AppConfig.supportUrl),
             ),
             ListTile(
               leading: const Icon(Icons.shield_sharp),
-              title: Text(L10n.of(context)!.privacy),
+              title: Text(L10n.of(context).privacy),
               onTap: () => launchUrlString(AppConfig.privacyUrl),
             ),
             ListTile(
               leading: const Icon(Icons.info_outline_rounded),
-              title: Text(L10n.of(context)!.about),
+              title: Text(L10n.of(context).about),
               onTap: () => PlatformInfos.showDialog(context),
             ),
             Divider(color: theme.dividerColor),
             ListTile(
               leading: const Icon(Icons.logout_outlined),
-              title: Text(L10n.of(context)!.logout),
+              title: Text(L10n.of(context).logout),
               onTap: controller.logoutAction,
             ),
           ],

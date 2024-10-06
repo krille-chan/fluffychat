@@ -31,20 +31,20 @@ class SettingsPasswordController extends State<SettingsPassword> {
     });
     if (oldPasswordController.text.isEmpty) {
       setState(() {
-        oldPasswordError = L10n.of(context)!.pleaseEnterYourPassword;
+        oldPasswordError = L10n.of(context).pleaseEnterYourPassword;
       });
       return;
     }
     if (newPassword1Controller.text.isEmpty ||
         newPassword1Controller.text.length < 6) {
       setState(() {
-        newPassword1Error = L10n.of(context)!.pleaseChooseAStrongPassword;
+        newPassword1Error = L10n.of(context).pleaseChooseAStrongPassword;
       });
       return;
     }
     if (newPassword1Controller.text != newPassword2Controller.text) {
       setState(() {
-        newPassword2Error = L10n.of(context)!.passwordsDoNotMatch;
+        newPassword2Error = L10n.of(context).passwordsDoNotMatch;
       });
       return;
     }
@@ -60,7 +60,7 @@ class SettingsPasswordController extends State<SettingsPassword> {
           );
       scaffoldMessenger.showSnackBar(
         SnackBar(
-          content: Text(L10n.of(context)!.passwordHasBeenChanged),
+          content: Text(L10n.of(context).passwordHasBeenChanged),
         ),
       );
       if (mounted) context.pop();

@@ -35,7 +35,7 @@ class SettingsIgnoreListController extends State<SettingsIgnoreList> {
     if (userId.isEmpty) return;
     if (!userId.isValidMatrixId || userId.sigil != '@') {
       setState(() {
-        errorText = L10n.of(context)!.invalidInput;
+        errorText = L10n.of(context).invalidInput;
       });
       return;
     }

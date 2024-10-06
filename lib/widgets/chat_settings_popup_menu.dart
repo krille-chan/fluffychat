@@ -57,7 +57,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             LogicalKeyboardKey.controlLeft,
             LogicalKeyboardKey.keyI,
           },
-          helpLabel: L10n.of(context)!.chatDetails,
+          helpLabel: L10n.of(context).chatDetails,
           onKeysPressed: _showChatDetails,
           child: const SizedBox.shrink(),
         ),
@@ -68,10 +68,10 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 final confirmed = await showOkCancelAlertDialog(
                   useRootNavigator: false,
                   context: context,
-                  title: L10n.of(context)!.areYouSure,
-                  okLabel: L10n.of(context)!.ok,
-                  cancelLabel: L10n.of(context)!.cancel,
-                  message: L10n.of(context)!.archiveRoomDescription,
+                  title: L10n.of(context).areYouSure,
+                  okLabel: L10n.of(context).ok,
+                  cancelLabel: L10n.of(context).cancel,
+                  message: L10n.of(context).archiveRoomDescription,
                 );
                 if (confirmed == OkCancelResult.ok) {
                   final success = await showFutureLoadingDialog(
@@ -113,7 +113,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   children: [
                     const Icon(Icons.info_outline_rounded),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.chatDetails),
+                    Text(L10n.of(context).chatDetails),
                   ],
                 ),
               ),
@@ -124,7 +124,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   children: [
                     const Icon(Icons.notifications_off_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.muteChat),
+                    Text(L10n.of(context).muteChat),
                   ],
                 ),
               )
@@ -135,7 +135,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   children: [
                     const Icon(Icons.notifications_on_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.unmuteChat),
+                    Text(L10n.of(context).unmuteChat),
                   ],
                 ),
               ),
@@ -145,7 +145,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 children: [
                   const Icon(Icons.search_outlined),
                   const SizedBox(width: 12),
-                  Text(L10n.of(context)!.search),
+                  Text(L10n.of(context).search),
                 ],
               ),
             ),
@@ -155,7 +155,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 children: [
                   const Icon(Icons.delete_outlined),
                   const SizedBox(width: 12),
-                  Text(L10n.of(context)!.leave),
+                  Text(L10n.of(context).leave),
                 ],
               ),
             ),

@@ -24,7 +24,7 @@ class HomeserverPickerView extends StatelessWidget {
       appBar: controller.widget.addMultiAccount
           ? AppBar(
               centerTitle: true,
-              title: Text(L10n.of(context)!.addAccount),
+              title: Text(L10n.of(context).addAccount),
             )
           : null,
       body: Column(
@@ -46,8 +46,8 @@ class HomeserverPickerView extends StatelessWidget {
               color: theme.colorScheme.surface,
               child: ListTile(
                 leading: const Icon(Icons.vpn_key),
-                title: Text(L10n.of(context)!.hydrateTor),
-                subtitle: Text(L10n.of(context)!.hydrateTorLong),
+                title: Text(L10n.of(context).hydrateTor),
+                subtitle: Text(L10n.of(context).hydrateTorLong),
                 trailing: const Icon(Icons.chevron_right_outlined),
                 onTap: controller.restoreBackup,
               ),
@@ -95,16 +95,16 @@ class HomeserverPickerView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                 ),
                 hintText: AppConfig.defaultHomeserver,
-                labelText: L10n.of(context)!.homeserver,
+                labelText: L10n.of(context).homeserver,
                 errorText: controller.error,
                 suffixIcon: IconButton(
                   onPressed: () {
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog.adaptive(
-                        title: Text(L10n.of(context)!.whatIsAHomeserver),
+                        title: Text(L10n.of(context).whatIsAHomeserver),
                         content: Linkify(
-                          text: L10n.of(context)!.homeserverDescription,
+                          text: L10n.of(context).homeserverDescription,
                         ),
                         actions: [
                           TextButton(
@@ -112,12 +112,12 @@ class HomeserverPickerView extends StatelessWidget {
                               Uri.https('servers.joinmatrix.org'),
                             ),
                             child: Text(
-                              L10n.of(context)!.discoverHomeservers,
+                              L10n.of(context).discoverHomeservers,
                             ),
                           ),
                           TextButton(
                             onPressed: Navigator.of(context).pop,
-                            child: Text(L10n.of(context)!.close),
+                            child: Text(L10n.of(context).close),
                           ),
                         ],
                       ),
@@ -144,7 +144,7 @@ class HomeserverPickerView extends StatelessWidget {
                 onPressed: controller.isLoggingIn || controller.isLoading
                     ? null
                     : controller.restoreBackup,
-                child: Text(L10n.of(context)!.hydrate),
+                child: Text(L10n.of(context).hydrate),
               ),
               if (controller.supportsPasswordLogin && controller.supportsSso)
                 TextButton(
@@ -155,7 +155,7 @@ class HomeserverPickerView extends StatelessWidget {
                   onPressed: controller.isLoggingIn || controller.isLoading
                       ? null
                       : controller.login,
-                  child: Text(L10n.of(context)!.loginWithMatrixId),
+                  child: Text(L10n.of(context).loginWithMatrixId),
                 ),
               const SizedBox(height: 8.0),
               if (controller.supportsPasswordLogin || controller.supportsSso)
@@ -169,7 +169,7 @@ class HomeserverPickerView extends StatelessWidget {
                       : controller.supportsSso
                           ? controller.ssoLoginAction
                           : controller.login,
-                  child: Text(L10n.of(context)!.next),
+                  child: Text(L10n.of(context).next),
                 ),
             ],
           ),

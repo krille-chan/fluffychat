@@ -137,8 +137,8 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
                             )
                           : const Icon(Icons.play_circle_outlined),
                       tooltip: _isDownloading
-                          ? L10n.of(context)!.loadingPleaseWait
-                          : L10n.of(context)!.videoWithSize(
+                          ? L10n.of(context).loadingPleaseWait
+                          : L10n.of(context).videoWithSize(
                               widget.event.sizeString ?? '?MB',
                             ),
                       onPressed: _isDownloading ? null : _downloadAction,

@@ -43,14 +43,14 @@ class ChatDetailsController extends State<ChatDetails> {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     final input = await showTextInputDialog(
       context: context,
-      title: L10n.of(context)!.changeTheNameOfTheGroup,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).changeTheNameOfTheGroup,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           initialText: room.getLocalizedDisplayname(
             MatrixLocals(
-              L10n.of(context)!,
+              L10n.of(context),
             ),
           ),
         ),
@@ -63,7 +63,7 @@ class ChatDetailsController extends State<ChatDetails> {
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.displaynameHasBeenChanged)),
+        SnackBar(content: Text(L10n.of(context).displaynameHasBeenChanged)),
       );
     }
   }
@@ -72,12 +72,12 @@ class ChatDetailsController extends State<ChatDetails> {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     final input = await showTextInputDialog(
       context: context,
-      title: L10n.of(context)!.setChatDescription,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).setChatDescription,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
-          hintText: L10n.of(context)!.noChatDescriptionYet,
+          hintText: L10n.of(context).noChatDescriptionYet,
           initialText: room.topic,
           minLines: 4,
           maxLines: 8,
@@ -92,7 +92,7 @@ class ChatDetailsController extends State<ChatDetails> {
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(L10n.of(context)!.chatDescriptionHasBeenChanged),
+          content: Text(L10n.of(context).chatDescriptionHasBeenChanged),
         ),
       );
     }
@@ -118,19 +118,19 @@ class ChatDetailsController extends State<ChatDetails> {
       if (PlatformInfos.isMobile)
         SheetAction(
           key: AvatarAction.camera,
-          label: L10n.of(context)!.openCamera,
+          label: L10n.of(context).openCamera,
           isDefaultAction: true,
           icon: Icons.camera_alt_outlined,
         ),
       SheetAction(
         key: AvatarAction.file,
-        label: L10n.of(context)!.openGallery,
+        label: L10n.of(context).openGallery,
         icon: Icons.photo_outlined,
       ),
       if (room?.avatar != null)
         SheetAction(
           key: AvatarAction.remove,
-          label: L10n.of(context)!.delete,
+          label: L10n.of(context).delete,
           isDestructiveAction: true,
           icon: Icons.delete_outlined,
         ),
@@ -139,7 +139,7 @@ class ChatDetailsController extends State<ChatDetails> {
         ? actions.single.key
         : await showModalActionSheet<AvatarAction>(
             context: context,
-            title: L10n.of(context)!.editRoomAvatar,
+            title: L10n.of(context).editRoomAvatar,
             actions: actions,
           );
     if (action == null) return;

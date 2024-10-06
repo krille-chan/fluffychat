@@ -56,12 +56,11 @@ class ChatPage extends StatelessWidget {
     final room = Matrix.of(context).client.getRoomById(roomId);
     if (room == null) {
       return Scaffold(
-        appBar: AppBar(title: Text(L10n.of(context)!.oopsSomethingWentWrong)),
+        appBar: AppBar(title: Text(L10n.of(context).oopsSomethingWentWrong)),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child:
-                Text(L10n.of(context)!.youAreNoLongerParticipatingInThisChat),
+            child: Text(L10n.of(context).youAreNoLongerParticipatingInThisChat),
           ),
         ),
       );
@@ -446,7 +445,7 @@ class ChatController extends State<ChatPageWithRoom>
     final commandMatch = RegExp(r'^\/(\w+)').firstMatch(sendController.text);
     if (commandMatch != null &&
         !sendingClient.commands.keys.contains(commandMatch[1]!.toLowerCase())) {
-      final l10n = L10n.of(context)!;
+      final l10n = L10n.of(context);
       final dialogResult = await showOkCancelAlertDialog(
         context: context,
         title: l10n.commandInvalid,
@@ -564,9 +563,9 @@ class ChatController extends State<ChatPageWithRoom>
       if (info.version.sdkInt < 19) {
         showOkAlertDialog(
           context: context,
-          title: L10n.of(context)!.unsupportedAndroidVersion,
-          message: L10n.of(context)!.unsupportedAndroidVersionLong,
-          okLabel: L10n.of(context)!.close,
+          title: L10n.of(context).unsupportedAndroidVersion,
+          message: L10n.of(context).unsupportedAndroidVersionLong,
+          okLabel: L10n.of(context).close,
         );
         return;
       }
@@ -646,12 +645,12 @@ class ChatController extends State<ChatPageWithRoom>
     if (selectedEvents.length == 1) {
       return selectedEvents.first
           .getDisplayEvent(timeline!)
-          .calcLocalizedBodyFallback(MatrixLocals(L10n.of(context)!));
+          .calcLocalizedBodyFallback(MatrixLocals(L10n.of(context)));
     }
     for (final event in selectedEvents) {
       if (copyString.isNotEmpty) copyString += '\n\n';
       copyString += event.getDisplayEvent(timeline!).calcLocalizedBodyFallback(
-            MatrixLocals(L10n.of(context)!),
+            MatrixLocals(L10n.of(context)),
             withSenderNamePrefix: true,
           );
     }
@@ -670,32 +669,32 @@ class ChatController extends State<ChatPageWithRoom>
     final event = selectedEvents.single;
     final score = await showConfirmationDialog<int>(
       context: context,
-      title: L10n.of(context)!.reportMessage,
-      message: L10n.of(context)!.howOffensiveIsThisContent,
-      cancelLabel: L10n.of(context)!.cancel,
-      okLabel: L10n.of(context)!.ok,
+      title: L10n.of(context).reportMessage,
+      message: L10n.of(context).howOffensiveIsThisContent,
+      cancelLabel: L10n.of(context).cancel,
+      okLabel: L10n.of(context).ok,
       actions: [
         AlertDialogAction(
           key: -100,
-          label: L10n.of(context)!.extremeOffensive,
+          label: L10n.of(context).extremeOffensive,
         ),
         AlertDialogAction(
           key: -50,
-          label: L10n.of(context)!.offensive,
+          label: L10n.of(context).offensive,
         ),
         AlertDialogAction(
           key: 0,
-          label: L10n.of(context)!.inoffensive,
+          label: L10n.of(context).inoffensive,
         ),
       ],
     );
     if (score == null) return;
     final reason = await showTextInputDialog(
       context: context,
-      title: L10n.of(context)!.whyDoYouWantToReportThis,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
-      textFields: [DialogTextField(hintText: L10n.of(context)!.reason)],
+      title: L10n.of(context).whyDoYouWantToReportThis,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
+      textFields: [DialogTextField(hintText: L10n.of(context).reason)],
     );
     if (reason == null || reason.single.isEmpty) return;
     final result = await showFutureLoadingDialog(
@@ -713,7 +712,7 @@ class ChatController extends State<ChatPageWithRoom>
       selectedEvents.clear();
     });
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(L10n.of(context)!.contentHasBeenReported)),
+      SnackBar(content: Text(L10n.of(context).contentHasBeenReported)),
     );
   }
 
@@ -740,16 +739,16 @@ class ChatController extends State<ChatPageWithRoom>
     final reasonInput = selectedEvents.any((event) => event.status.isSent)
         ? await showTextInputDialog(
             context: context,
-            title: L10n.of(context)!.redactMessage,
-            message: L10n.of(context)!.redactMessageDescription,
+            title: L10n.of(context).redactMessage,
+            message: L10n.of(context).redactMessageDescription,
             isDestructiveAction: true,
             textFields: [
               DialogTextField(
-                hintText: L10n.of(context)!.optionalRedactReason,
+                hintText: L10n.of(context).optionalRedactReason,
               ),
             ],
-            okLabel: L10n.of(context)!.remove,
-            cancelLabel: L10n.of(context)!.cancel,
+            okLabel: L10n.of(context).remove,
+            cancelLabel: L10n.of(context).cancel,
           )
         : <String>[];
     if (reasonInput == null) return;
@@ -1015,7 +1014,7 @@ class ChatController extends State<ChatPageWithRoom>
       editEvent = selectedEvents.first;
       sendController.text =
           editEvent!.getDisplayEvent(timeline!).calcLocalizedBodyFallback(
-                MatrixLocals(L10n.of(context)!),
+                MatrixLocals(L10n.of(context)),
                 withSenderNamePrefix: false,
                 hideReply: true,
               );
@@ -1028,13 +1027,13 @@ class ChatController extends State<ChatPageWithRoom>
     if (OkCancelResult.ok !=
         await showOkCancelAlertDialog(
           context: context,
-          title: L10n.of(context)!.goToTheNewRoom,
+          title: L10n.of(context).goToTheNewRoom,
           message: room
               .getState(EventTypes.RoomTombstone)!
               .parsedTombstoneContent
               .body,
-          okLabel: L10n.of(context)!.ok,
-          cancelLabel: L10n.of(context)!.cancel,
+          okLabel: L10n.of(context).ok,
+          cancelLabel: L10n.of(context).cancel,
         )) {
       return;
     }
@@ -1117,10 +1116,10 @@ class ChatController extends State<ChatPageWithRoom>
   unpinEvent(String eventId) async {
     final response = await showOkCancelAlertDialog(
       context: context,
-      title: L10n.of(context)!.unpin,
-      message: L10n.of(context)!.confirmEventUnpin,
-      okLabel: L10n.of(context)!.unpin,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).unpin,
+      message: L10n.of(context).confirmEventUnpin,
+      okLabel: L10n.of(context).unpin,
+      cancelLabel: L10n.of(context).cancel,
     );
     if (response == OkCancelResult.ok) {
       final events = room.pinnedEventIds
@@ -1214,26 +1213,26 @@ class ChatController extends State<ChatPageWithRoom>
           Navigator.pop(context);
           showOkAlertDialog(
             context: context,
-            title: L10n.of(context)!.unsupportedAndroidVersion,
-            message: L10n.of(context)!.unsupportedAndroidVersionLong,
-            okLabel: L10n.of(context)!.close,
+            title: L10n.of(context).unsupportedAndroidVersion,
+            message: L10n.of(context).unsupportedAndroidVersionLong,
+            okLabel: L10n.of(context).close,
           );
         }
       });
     }
     final callType = await showModalActionSheet<CallType>(
       context: context,
-      title: L10n.of(context)!.warning,
-      message: L10n.of(context)!.videoCallsBetaWarning,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).warning,
+      message: L10n.of(context).videoCallsBetaWarning,
+      cancelLabel: L10n.of(context).cancel,
       actions: [
         SheetAction(
-          label: L10n.of(context)!.voiceCall,
+          label: L10n.of(context).voiceCall,
           icon: Icons.phone_outlined,
           key: CallType.kVoice,
         ),
         SheetAction(
-          label: L10n.of(context)!.videoCall,
+          label: L10n.of(context).videoCall,
           icon: Icons.video_call_outlined,
           key: CallType.kVideo,
         ),

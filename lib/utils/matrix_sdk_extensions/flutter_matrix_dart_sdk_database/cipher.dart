@@ -57,7 +57,7 @@ void _sendNoEncryptionWarning(Object exception) async {
 
   if (isStored == true) return;
 
-  final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+  final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
   ClientManager.sendInitNotification(
     l10n.noDatabaseEncryption,
     exception.toString(),

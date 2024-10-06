@@ -132,10 +132,10 @@ class _SpaceViewState extends State<SpaceView> {
         final confirmed = await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.ok,
-          cancelLabel: L10n.of(context)!.cancel,
-          message: L10n.of(context)!.archiveRoomDescription,
+          title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).ok,
+          cancelLabel: L10n.of(context).cancel,
+          message: L10n.of(context).archiveRoomDescription,
         );
         if (!mounted) return;
         if (confirmed != OkCancelResult.ok) return;
@@ -153,15 +153,15 @@ class _SpaceViewState extends State<SpaceView> {
   void _addChatOrSubspace() async {
     final roomType = await showConfirmationDialog(
       context: context,
-      title: L10n.of(context)!.addChatOrSubSpace,
+      title: L10n.of(context).addChatOrSubSpace,
       actions: [
         AlertDialogAction(
           key: AddRoomType.subspace,
-          label: L10n.of(context)!.createNewSpace,
+          label: L10n.of(context).createNewSpace,
         ),
         AlertDialogAction(
           key: AddRoomType.chat,
-          label: L10n.of(context)!.createGroup,
+          label: L10n.of(context).createGroup,
         ),
       ],
     );
@@ -170,32 +170,32 @@ class _SpaceViewState extends State<SpaceView> {
     final names = await showTextInputDialog(
       context: context,
       title: roomType == AddRoomType.subspace
-          ? L10n.of(context)!.createNewSpace
-          : L10n.of(context)!.createGroup,
+          ? L10n.of(context).createNewSpace
+          : L10n.of(context).createGroup,
       textFields: [
         DialogTextField(
           hintText: roomType == AddRoomType.subspace
-              ? L10n.of(context)!.spaceName
-              : L10n.of(context)!.groupName,
+              ? L10n.of(context).spaceName
+              : L10n.of(context).groupName,
           minLines: 1,
           maxLines: 1,
           maxLength: 64,
           validator: (text) {
             if (text == null || text.isEmpty) {
-              return L10n.of(context)!.pleaseChoose;
+              return L10n.of(context).pleaseChoose;
             }
             return null;
           },
         ),
         DialogTextField(
-          hintText: L10n.of(context)!.chatDescription,
+          hintText: L10n.of(context).chatDescription,
           minLines: 4,
           maxLines: 8,
           maxLength: 255,
         ),
       ],
-      okLabel: L10n.of(context)!.create,
-      cancelLabel: L10n.of(context)!.cancel,
+      okLabel: L10n.of(context).create,
+      cancelLabel: L10n.of(context).cancel,
     );
     if (names == null) return;
     final client = Matrix.of(context).client;
@@ -245,7 +245,7 @@ class _SpaceViewState extends State<SpaceView> {
 
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
     final displayname =
-        room?.getLocalizedDisplayname() ?? L10n.of(context)!.nothingFound;
+        room?.getLocalizedDisplayname() ?? L10n.of(context).nothingFound;
     return Scaffold(
       appBar: AppBar(
         leading: Center(
@@ -269,7 +269,7 @@ class _SpaceViewState extends State<SpaceView> {
           subtitle: room == null
               ? null
               : Text(
-                  L10n.of(context)!.countChatsAndCountParticipants(
+                  L10n.of(context).countChatsAndCountParticipants(
                     room.spaceChildren.length,
                     room.summary.mJoinedMemberCount ?? 1,
                   ),
@@ -288,7 +288,7 @@ class _SpaceViewState extends State<SpaceView> {
                   children: [
                     const Icon(Icons.settings_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.settings),
+                    Text(L10n.of(context).settings),
                   ],
                 ),
               ),
@@ -299,7 +299,7 @@ class _SpaceViewState extends State<SpaceView> {
                   children: [
                     const Icon(Icons.person_add_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.invite),
+                    Text(L10n.of(context).invite),
                   ],
                 ),
               ),
@@ -310,7 +310,7 @@ class _SpaceViewState extends State<SpaceView> {
                   children: [
                     const Icon(Icons.delete_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.leave),
+                    Text(L10n.of(context).leave),
                   ],
                 ),
               ),
@@ -368,7 +368,7 @@ class _SpaceViewState extends State<SpaceView> {
                             borderRadius: BorderRadius.circular(99),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          hintText: L10n.of(context)!.search,
+                          hintText: L10n.of(context).search,
                           hintStyle: TextStyle(
                             color: theme.colorScheme.onPrimaryContainer,
                             fontWeight: FontWeight.normal,
@@ -453,7 +453,7 @@ class _SpaceViewState extends State<SpaceView> {
                                         child: Icon(Icons.add_outlined),
                                       ),
                                       title: Text(
-                                        L10n.of(context)!.addChatOrSubSpace,
+                                        L10n.of(context).addChatOrSubSpace,
                                         style: const TextStyle(fontSize: 14),
                                       ),
                                     ),
@@ -461,7 +461,7 @@ class _SpaceViewState extends State<SpaceView> {
                                 ),
                               ],
                               SearchTitle(
-                                title: L10n.of(context)!.joinedChats,
+                                title: L10n.of(context).joinedChats,
                                 icon: const Icon(Icons.chat_outlined),
                               ),
                             ],
@@ -486,7 +486,7 @@ class _SpaceViewState extends State<SpaceView> {
                       itemBuilder: (context, i) {
                         if (i == 0) {
                           return SearchTitle(
-                            title: L10n.of(context)!.discover,
+                            title: L10n.of(context).discover,
                             icon: const Icon(Icons.explore_outlined),
                           );
                         }
@@ -497,7 +497,7 @@ class _SpaceViewState extends State<SpaceView> {
                               padding: const EdgeInsets.all(12.0),
                               child: Center(
                                 child: Text(
-                                  L10n.of(context)!.noMoreChatsFound,
+                                  L10n.of(context).noMoreChatsFound,
                                   style: const TextStyle(fontSize: 13),
                                 ),
                               ),
@@ -516,14 +516,14 @@ class _SpaceViewState extends State<SpaceView> {
                                         AppConfig.borderRadius,
                                       ),
                                     )
-                                  : Text(L10n.of(context)!.loadMore),
+                                  : Text(L10n.of(context).loadMore),
                             ),
                           );
                         }
                         final item = _discoveredChildren[i];
                         final displayname = item.name ??
                             item.canonicalAlias ??
-                            L10n.of(context)!.emptyChat;
+                            L10n.of(context).emptyChat;
                         if (!displayname.toLowerCase().contains(filter)) {
                           return const SizedBox.shrink();
                         }
@@ -564,7 +564,7 @@ class _SpaceViewState extends State<SpaceView> {
                               ),
                               subtitle: Text(
                                 item.topic ??
-                                    L10n.of(context)!.countParticipants(
+                                    L10n.of(context).countParticipants(
                                       item.numJoinedMembers,
                                     ),
                                 maxLines: 1,

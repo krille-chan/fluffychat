@@ -21,54 +21,54 @@ class SettingsChatView extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text(L10n.of(context)!.chat)),
+      appBar: AppBar(title: Text(L10n.of(context).chat)),
       body: ListTileTheme(
         iconColor: theme.textTheme.bodyLarge!.color,
         child: MaxWidthBody(
           child: Column(
             children: [
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.formattedMessages,
-                subtitle: L10n.of(context)!.formattedMessagesDescription,
+                title: L10n.of(context).formattedMessages,
+                subtitle: L10n.of(context).formattedMessagesDescription,
                 onChanged: (b) => AppConfig.renderHtml = b,
                 storeKey: SettingKeys.renderHtml,
                 defaultValue: AppConfig.renderHtml,
               ),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.hideMemberChangesInPublicChats,
-                subtitle: L10n.of(context)!.hideMemberChangesInPublicChatsBody,
+                title: L10n.of(context).hideMemberChangesInPublicChats,
+                subtitle: L10n.of(context).hideMemberChangesInPublicChatsBody,
                 onChanged: (b) => AppConfig.hideUnimportantStateEvents = b,
                 storeKey: SettingKeys.hideUnimportantStateEvents,
                 defaultValue: AppConfig.hideUnimportantStateEvents,
               ),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.hideRedactedMessages,
-                subtitle: L10n.of(context)!.hideRedactedMessagesBody,
+                title: L10n.of(context).hideRedactedMessages,
+                subtitle: L10n.of(context).hideRedactedMessagesBody,
                 onChanged: (b) => AppConfig.hideRedactedEvents = b,
                 storeKey: SettingKeys.hideRedactedEvents,
                 defaultValue: AppConfig.hideRedactedEvents,
               ),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.hideInvalidOrUnknownMessageFormats,
+                title: L10n.of(context).hideInvalidOrUnknownMessageFormats,
                 onChanged: (b) => AppConfig.hideUnknownEvents = b,
                 storeKey: SettingKeys.hideUnknownEvents,
                 defaultValue: AppConfig.hideUnknownEvents,
               ),
               if (PlatformInfos.isMobile)
                 SettingsSwitchListTile.adaptive(
-                  title: L10n.of(context)!.autoplayImages,
+                  title: L10n.of(context).autoplayImages,
                   onChanged: (b) => AppConfig.autoplayImages = b,
                   storeKey: SettingKeys.autoplayImages,
                   defaultValue: AppConfig.autoplayImages,
                 ),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.sendOnEnter,
+                title: L10n.of(context).sendOnEnter,
                 onChanged: (b) => AppConfig.sendOnEnter = b,
                 storeKey: SettingKeys.sendOnEnter,
                 defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
               ),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.swipeRightToLeftToReply,
+                title: L10n.of(context).swipeRightToLeftToReply,
                 onChanged: (b) => AppConfig.swipeRightToLeftToReply = b,
                 storeKey: SettingKeys.swipeRightToLeftToReply,
                 defaultValue: AppConfig.swipeRightToLeftToReply,
@@ -76,7 +76,7 @@ class SettingsChatView extends StatelessWidget {
               Divider(color: theme.dividerColor),
               ListTile(
                 title: Text(
-                  L10n.of(context)!.customEmojisAndStickers,
+                  L10n.of(context).customEmojisAndStickers,
                   style: TextStyle(
                     color: theme.colorScheme.secondary,
                     fontWeight: FontWeight.bold,
@@ -84,8 +84,8 @@ class SettingsChatView extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: Text(L10n.of(context)!.customEmojisAndStickers),
-                subtitle: Text(L10n.of(context)!.customEmojisAndStickersBody),
+                title: Text(L10n.of(context).customEmojisAndStickers),
+                subtitle: Text(L10n.of(context).customEmojisAndStickersBody),
                 onTap: () => context.go('/rooms/settings/chat/emotes'),
                 trailing: const Padding(
                   padding: EdgeInsets.all(16.0),
@@ -95,7 +95,7 @@ class SettingsChatView extends StatelessWidget {
               Divider(color: theme.dividerColor),
               ListTile(
                 title: Text(
-                  L10n.of(context)!.calls,
+                  L10n.of(context).calls,
                   style: TextStyle(
                     color: theme.colorScheme.secondary,
                     fontWeight: FontWeight.bold,
@@ -103,7 +103,7 @@ class SettingsChatView extends StatelessWidget {
                 ),
               ),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.experimentalVideoCalls,
+                title: L10n.of(context).experimentalVideoCalls,
                 onChanged: (b) {
                   AppConfig.experimentalVoip = b;
                   Matrix.of(context).createVoipPlugin();
@@ -114,7 +114,7 @@ class SettingsChatView extends StatelessWidget {
               ),
               if (PlatformInfos.isMobile)
                 ListTile(
-                  title: Text(L10n.of(context)!.callingPermissions),
+                  title: Text(L10n.of(context).callingPermissions),
                   onTap: () =>
                       CallKeepManager().checkoutPhoneAccountSetting(context),
                   trailing: const Padding(

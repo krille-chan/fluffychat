@@ -36,7 +36,7 @@ class ChatAppBarTitle extends StatelessWidget {
             child: Avatar(
               mxContent: room.avatar,
               name: room.getLocalizedDisplayname(
-                MatrixLocals(L10n.of(context)!),
+                MatrixLocals(L10n.of(context)),
               ),
               size: 32,
             ),
@@ -47,7 +47,7 @@ class ChatAppBarTitle extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+                  room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
@@ -63,13 +63,13 @@ class ChatAppBarTitle extends StatelessWidget {
                       final style = Theme.of(context).textTheme.bodySmall;
                       if (presence?.currentlyActive == true) {
                         return Text(
-                          L10n.of(context)!.currentlyActive,
+                          L10n.of(context).currentlyActive,
                           style: style,
                         );
                       }
                       if (lastActiveTimestamp != null) {
                         return Text(
-                          L10n.of(context)!.lastActiveAgo(
+                          L10n.of(context).lastActiveAgo(
                             lastActiveTimestamp.localizedTimeShort(context),
                           ),
                           style: style,

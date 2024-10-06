@@ -49,8 +49,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       (e, s) async {
         await showOkAlertDialog(
           context: context,
-          title: L10n.of(context)!.indexedDbErrorTitle,
-          message: L10n.of(context)!.indexedDbErrorLong,
+          title: L10n.of(context).indexedDbErrorTitle,
+          message: L10n.of(context).indexedDbErrorLong,
         );
         _checkTorBrowser();
       },

@@ -48,8 +48,8 @@ abstract class ClientManager {
       await Future.wait(
         clients.map(
           (client) => client.initWithRestore(
-            onMigration: () {
-              final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+            onMigration: () async {
+              final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
               sendInitNotification(
                 l10n.databaseMigrationTitle,
                 l10n.databaseMigrationBody,

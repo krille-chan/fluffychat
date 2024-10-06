@@ -52,7 +52,7 @@ abstract class PlatformInfos {
         TextButton.icon(
           onPressed: () => launchUrlString(AppConfig.sourceCodeUrl),
           icon: const Icon(Icons.source_outlined),
-          label: Text(L10n.of(context)!.sourceCode),
+          label: Text(L10n.of(context).sourceCode),
         ),
         TextButton.icon(
           onPressed: () => launchUrlString(AppConfig.emojiFontUrl),

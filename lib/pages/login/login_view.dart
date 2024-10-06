@@ -20,7 +20,7 @@ class LoginView extends StatelessWidget {
         .homeserver
         .toString()
         .replaceFirst('https://', '');
-    final title = L10n.of(context)!.logInTo(homeserver);
+    final title = L10n.of(context).logInTo(homeserver);
     final titleParts = title.split(homeserver);
 
     return LoginScaffold(
@@ -68,7 +68,7 @@ class LoginView extends StatelessWidget {
                       errorText: controller.usernameError,
                       errorStyle: const TextStyle(color: Colors.orange),
                       hintText: '@username:localpart',
-                      labelText: L10n.of(context)!.emailOrUsername,
+                      labelText: L10n.of(context).emailOrUsername,
                     ),
                   ),
                 ),
@@ -98,7 +98,7 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                       hintText: '******',
-                      labelText: L10n.of(context)!.password,
+                      labelText: L10n.of(context).password,
                     ),
                   ),
                 ),
@@ -113,7 +113,7 @@ class LoginView extends StatelessWidget {
                     onPressed: controller.loading ? null : controller.login,
                     child: controller.loading
                         ? const LinearProgressIndicator()
-                        : Text(L10n.of(context)!.login),
+                        : Text(L10n.of(context).login),
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -126,7 +126,7 @@ class LoginView extends StatelessWidget {
                     style: TextButton.styleFrom(
                       foregroundColor: theme.colorScheme.error,
                     ),
-                    child: Text(L10n.of(context)!.passwordForgotten),
+                    child: Text(L10n.of(context).passwordForgotten),
                   ),
                 ),
                 const SizedBox(height: 16),

@@ -30,8 +30,8 @@ class ChatEmojiPicker extends StatelessWidget {
                 children: [
                   TabBar(
                     tabs: [
-                      Tab(text: L10n.of(context)!.emojis),
-                      Tab(text: L10n.of(context)!.stickers),
+                      Tab(text: L10n.of(context).emojis),
+                      Tab(text: L10n.of(context).stickers),
                     ],
                   ),
                   Expanded(
@@ -97,7 +97,7 @@ class NoRecent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      L10n.of(context)!.emoteKeyboardNoRecents,
+      L10n.of(context).emoteKeyboardNoRecents,
       style: Theme.of(context).textTheme.bodyLarge,
     );
   }

@@ -20,14 +20,14 @@ class ArchiveView extends StatelessWidget {
       builder: (BuildContext context, snapshot) => Scaffold(
         appBar: AppBar(
           leading: const Center(child: BackButton()),
-          title: Text(L10n.of(context)!.archive),
+          title: Text(L10n.of(context).archive),
           actions: [
             if (snapshot.data?.isNotEmpty ?? false)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton.icon(
                   onPressed: controller.forgetAllAction,
-                  label: Text(L10n.of(context)!.clearArchive),
+                  label: Text(L10n.of(context).clearArchive),
                   icon: const Icon(Icons.cleaning_services_outlined),
                 ),
               ),
@@ -40,7 +40,7 @@ class ArchiveView extends StatelessWidget {
               if (snapshot.hasError) {
                 return Center(
                   child: Text(
-                    L10n.of(context)!.oopsSomethingWentWrong,
+                    L10n.of(context).oopsSomethingWentWrong,
                     textAlign: TextAlign.center,
                   ),
                 );

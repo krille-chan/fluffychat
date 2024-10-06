@@ -10,7 +10,7 @@ Future<int?> showPermissionChooser(
 }) async {
   final customLevel = await showTextInputDialog(
     context: context,
-    title: L10n.of(context)!.setPermissionsLevel,
+    title: L10n.of(context).setPermissionsLevel,
     textFields: [
       DialogTextField(
         initialText: currentLevel.toString(),
@@ -18,11 +18,11 @@ Future<int?> showPermissionChooser(
         autocorrect: false,
         validator: (text) {
           if (text == null) {
-            return L10n.of(context)!.pleaseEnterANumber;
+            return L10n.of(context).pleaseEnterANumber;
           }
           final level = int.tryParse(text);
           if (level == null) {
-            return L10n.of(context)!.pleaseEnterANumber;
+            return L10n.of(context).pleaseEnterANumber;
           }
           return null;
         },

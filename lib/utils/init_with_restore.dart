@@ -101,7 +101,7 @@ extension InitWithRestoreExtension on Client {
       }
     } catch (e, s) {
       Logs().wtf('Client init failed!', e, s);
-      final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+      final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
       final sessionBackupString = await storage?.read(key: storageKey);
       if (sessionBackupString == null) {
         ClientManager.sendInitNotification(

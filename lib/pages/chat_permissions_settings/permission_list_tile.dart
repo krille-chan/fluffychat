@@ -25,45 +25,45 @@ class PermissionsListTile extends StatelessWidget {
     if (category == null) {
       switch (permissionKey) {
         case 'users_default':
-          return L10n.of(context)!.defaultPermissionLevel;
+          return L10n.of(context).defaultPermissionLevel;
         case 'events_default':
-          return L10n.of(context)!.sendMessages;
+          return L10n.of(context).sendMessages;
         case 'state_default':
-          return L10n.of(context)!.changeGeneralChatSettings;
+          return L10n.of(context).changeGeneralChatSettings;
         case 'ban':
-          return L10n.of(context)!.banFromChat;
+          return L10n.of(context).banFromChat;
         case 'kick':
-          return L10n.of(context)!.kickFromChat;
+          return L10n.of(context).kickFromChat;
         case 'redact':
-          return L10n.of(context)!.deleteMessage;
+          return L10n.of(context).deleteMessage;
         case 'invite':
-          return L10n.of(context)!.inviteOtherUsers;
+          return L10n.of(context).inviteOtherUsers;
       }
     } else if (category == 'notifications') {
       switch (permissionKey) {
         case 'rooms':
-          return L10n.of(context)!.sendRoomNotifications;
+          return L10n.of(context).sendRoomNotifications;
       }
     } else if (category == 'events') {
       switch (permissionKey) {
         case EventTypes.RoomName:
-          return L10n.of(context)!.changeTheNameOfTheGroup;
+          return L10n.of(context).changeTheNameOfTheGroup;
         case EventTypes.RoomTopic:
-          return L10n.of(context)!.changeTheDescriptionOfTheGroup;
+          return L10n.of(context).changeTheDescriptionOfTheGroup;
         case EventTypes.RoomPowerLevels:
-          return L10n.of(context)!.changeTheChatPermissions;
+          return L10n.of(context).changeTheChatPermissions;
         case EventTypes.HistoryVisibility:
-          return L10n.of(context)!.changeTheVisibilityOfChatHistory;
+          return L10n.of(context).changeTheVisibilityOfChatHistory;
         case EventTypes.RoomCanonicalAlias:
-          return L10n.of(context)!.changeTheCanonicalRoomAlias;
+          return L10n.of(context).changeTheCanonicalRoomAlias;
         case EventTypes.RoomAvatar:
-          return L10n.of(context)!.editRoomAvatar;
+          return L10n.of(context).editRoomAvatar;
         case EventTypes.RoomTombstone:
-          return L10n.of(context)!.replaceRoomWithNewerVersion;
+          return L10n.of(context).replaceRoomWithNewerVersion;
         case EventTypes.Encryption:
-          return L10n.of(context)!.enableEncryption;
+          return L10n.of(context).enableEncryption;
         case 'm.room.server_acl':
-          return L10n.of(context)!.editBlockedServers;
+          return L10n.of(context).editBlockedServers;
       }
     }
     return permissionKey;
@@ -96,13 +96,13 @@ class PermissionsListTile extends StatelessWidget {
             DropdownMenuItem(
               value: permission < 50 ? permission : 0,
               child: Text(
-                L10n.of(context)!.userLevel(permission < 50 ? permission : 0),
+                L10n.of(context).userLevel(permission < 50 ? permission : 0),
               ),
             ),
             DropdownMenuItem(
               value: permission < 100 && permission >= 50 ? permission : 50,
               child: Text(
-                L10n.of(context)!.moderatorLevel(
+                L10n.of(context).moderatorLevel(
                   permission < 100 && permission >= 50 ? permission : 50,
                 ),
               ),
@@ -110,13 +110,13 @@ class PermissionsListTile extends StatelessWidget {
             DropdownMenuItem(
               value: permission >= 100 ? permission : 100,
               child: Text(
-                L10n.of(context)!
+                L10n.of(context)
                     .adminLevel(permission >= 100 ? permission : 100),
               ),
             ),
             DropdownMenuItem(
               value: null,
-              child: Text(L10n.of(context)!.custom),
+              child: Text(L10n.of(context).custom),
             ),
           ],
         ),

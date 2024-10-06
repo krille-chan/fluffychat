@@ -79,7 +79,7 @@ extension on SyncStatusUpdate {
   String toLocalizedString(BuildContext context) {
     switch (status) {
       case SyncStatus.waitingForResponse:
-        return L10n.of(context)!.loadingPleaseWait;
+        return L10n.of(context).loadingPleaseWait;
       case SyncStatus.error:
         return ((error?.exception ?? Object()) as Object)
             .toLocalizedString(context);
@@ -87,7 +87,7 @@ extension on SyncStatusUpdate {
       case SyncStatus.cleaningUp:
       case SyncStatus.finished:
       default:
-        return L10n.of(context)!.synchronizingPleaseWait;
+        return L10n.of(context).synchronizingPleaseWait;
     }
   }
 }

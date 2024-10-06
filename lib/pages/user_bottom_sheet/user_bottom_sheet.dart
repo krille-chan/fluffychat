@@ -98,22 +98,22 @@ class UserBottomSheetController extends State<UserBottomSheet> {
 
         final score = await showConfirmationDialog<int>(
           context: context,
-          title: L10n.of(context)!.reportUser,
-          message: L10n.of(context)!.howOffensiveIsThisContent,
-          cancelLabel: L10n.of(context)!.cancel,
-          okLabel: L10n.of(context)!.ok,
+          title: L10n.of(context).reportUser,
+          message: L10n.of(context).howOffensiveIsThisContent,
+          cancelLabel: L10n.of(context).cancel,
+          okLabel: L10n.of(context).ok,
           actions: [
             AlertDialogAction(
               key: -100,
-              label: L10n.of(context)!.extremeOffensive,
+              label: L10n.of(context).extremeOffensive,
             ),
             AlertDialogAction(
               key: -50,
-              label: L10n.of(context)!.offensive,
+              label: L10n.of(context).offensive,
             ),
             AlertDialogAction(
               key: 0,
-              label: L10n.of(context)!.inoffensive,
+              label: L10n.of(context).inoffensive,
             ),
           ],
         );
@@ -121,10 +121,10 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         final reason = await showTextInputDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context)!.whyDoYouWantToReportThis,
-          okLabel: L10n.of(context)!.ok,
-          cancelLabel: L10n.of(context)!.cancel,
-          textFields: [DialogTextField(hintText: L10n.of(context)!.reason)],
+          title: L10n.of(context).whyDoYouWantToReportThis,
+          okLabel: L10n.of(context).ok,
+          cancelLabel: L10n.of(context).cancel,
+          textFields: [DialogTextField(hintText: L10n.of(context).reason)],
         );
         if (reason == null || reason.single.isEmpty) return;
 
@@ -139,7 +139,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         );
         if (result.error != null) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.contentHasBeenReported)),
+          SnackBar(content: Text(L10n.of(context).contentHasBeenReported)),
         );
         break;
       case UserBottomSheetAction.mention:
@@ -152,10 +152,10 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         if (await showOkCancelAlertDialog(
               useRootNavigator: false,
               context: context,
-              title: L10n.of(context)!.areYouSure,
-              okLabel: L10n.of(context)!.yes,
-              cancelLabel: L10n.of(context)!.no,
-              message: L10n.of(context)!.banUserDescription,
+              title: L10n.of(context).areYouSure,
+              okLabel: L10n.of(context).yes,
+              cancelLabel: L10n.of(context).no,
+              message: L10n.of(context).banUserDescription,
             ) ==
             OkCancelResult.ok) {
           await showFutureLoadingDialog(
@@ -170,10 +170,10 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         if (await showOkCancelAlertDialog(
               useRootNavigator: false,
               context: context,
-              title: L10n.of(context)!.areYouSure,
-              okLabel: L10n.of(context)!.yes,
-              cancelLabel: L10n.of(context)!.no,
-              message: L10n.of(context)!.unbanUserDescription,
+              title: L10n.of(context).areYouSure,
+              okLabel: L10n.of(context).yes,
+              cancelLabel: L10n.of(context).no,
+              message: L10n.of(context).unbanUserDescription,
             ) ==
             OkCancelResult.ok) {
           await showFutureLoadingDialog(
@@ -188,10 +188,10 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         if (await showOkCancelAlertDialog(
               useRootNavigator: false,
               context: context,
-              title: L10n.of(context)!.areYouSure,
-              okLabel: L10n.of(context)!.yes,
-              cancelLabel: L10n.of(context)!.no,
-              message: L10n.of(context)!.kickUserDescription,
+              title: L10n.of(context).areYouSure,
+              okLabel: L10n.of(context).yes,
+              cancelLabel: L10n.of(context).no,
+              message: L10n.of(context).kickUserDescription,
             ) ==
             OkCancelResult.ok) {
           await showFutureLoadingDialog(
@@ -300,10 +300,10 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       final consent = await showOkCancelAlertDialog(
         useRootNavigator: false,
         context: context,
-        title: L10n.of(context)!.areYouSure,
-        okLabel: L10n.of(context)!.yes,
-        cancelLabel: L10n.of(context)!.no,
-        message: L10n.of(context)!.makeAdminDescription,
+        title: L10n.of(context).areYouSure,
+        okLabel: L10n.of(context).yes,
+        cancelLabel: L10n.of(context).no,
+        message: L10n.of(context).makeAdminDescription,
       );
       if (consent != OkCancelResult.ok) return;
     }

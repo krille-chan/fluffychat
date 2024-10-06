@@ -18,7 +18,7 @@ class SettingsNotificationsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.notifications),
+        title: Text(L10n.of(context).notifications),
       ),
       body: MaxWidthBody(
         child: StreamBuilder(
@@ -36,7 +36,7 @@ class SettingsNotificationsView extends StatelessWidget {
                 SwitchListTile.adaptive(
                   value: !Matrix.of(context).client.allPushNotificationsMuted,
                   title: Text(
-                    L10n.of(context)!.notificationsEnabledForThisAccount,
+                    L10n.of(context).notificationsEnabledForThisAccount,
                   ),
                   onChanged: controller.isLoading
                       ? null
@@ -45,7 +45,7 @@ class SettingsNotificationsView extends StatelessWidget {
                 Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
-                    L10n.of(context)!.notifyMeFor,
+                    L10n.of(context).notifyMeFor,
                     style: TextStyle(
                       color: theme.colorScheme.secondary,
                       fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ class SettingsNotificationsView extends StatelessWidget {
                 Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
-                    L10n.of(context)!.devices,
+                    L10n.of(context).devices,
                     style: TextStyle(
                       color: theme.colorScheme.secondary,
                       fontWeight: FontWeight.bold,
@@ -98,7 +98,7 @@ class SettingsNotificationsView extends StatelessWidget {
                       return Center(
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Text(L10n.of(context)!.noOtherDevicesFound),
+                          child: Text(L10n.of(context).noOtherDevicesFound),
                         ),
                       );
                     }

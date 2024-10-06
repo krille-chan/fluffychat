@@ -17,17 +17,17 @@ class ParticipantListItem extends StatelessWidget {
     final theme = Theme.of(context);
 
     final membershipBatch = switch (user.membership) {
-      Membership.ban => L10n.of(context)!.banned,
-      Membership.invite => L10n.of(context)!.invited,
+      Membership.ban => L10n.of(context).banned,
+      Membership.invite => L10n.of(context).invited,
       Membership.join => null,
-      Membership.knock => L10n.of(context)!.knocking,
-      Membership.leave => L10n.of(context)!.leftTheChat,
+      Membership.knock => L10n.of(context).knocking,
+      Membership.leave => L10n.of(context).leftTheChat,
     };
 
     final permissionBatch = user.powerLevel == 100
-        ? L10n.of(context)!.admin
+        ? L10n.of(context).admin
         : user.powerLevel >= 50
-            ? L10n.of(context)!.moderator
+            ? L10n.of(context).moderator
             : '';
 
     return Opacity(

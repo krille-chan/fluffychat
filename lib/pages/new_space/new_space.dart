@@ -52,7 +52,7 @@ class NewSpaceController extends State<NewSpace> {
     });
     if (nameController.text.isEmpty) {
       setState(() {
-        nameError = L10n.of(context)!.pleaseChoose;
+        nameError = L10n.of(context).pleaseChoose;
       });
       return;
     }

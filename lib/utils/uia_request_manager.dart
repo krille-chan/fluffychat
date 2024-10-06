@@ -9,7 +9,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 extension UiaRequestManager on MatrixState {
   Future uiaRequestHandler(UiaRequest uiaRequest) async {
-    final l10n = L10n.of(context)!;
+    final l10n = L10n.of(context);
     try {
       if (uiaRequest.state != UiaRequestState.waitForUser ||
           uiaRequest.nextStages.isEmpty) {
@@ -49,7 +49,7 @@ extension UiaRequestManager on MatrixState {
         case AuthenticationTypes.emailIdentity:
           if (currentThreepidCreds == null) {
             return uiaRequest.cancel(
-              UiaException(L10n.of(context)!.serverRequiresEmail),
+              UiaException(L10n.of(context).serverRequiresEmail),
             );
           }
           final auth = AuthenticationThreePidCreds(

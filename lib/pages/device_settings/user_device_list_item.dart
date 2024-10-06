@@ -55,30 +55,30 @@ class UserDeviceListItem extends StatelessWidget {
               actions: [
                 SheetAction(
                   key: UserDeviceListItemAction.rename,
-                  label: L10n.of(context)!.changeDeviceName,
+                  label: L10n.of(context).changeDeviceName,
                 ),
                 if (!isOwnDevice && keys != null) ...{
                   SheetAction(
                     key: UserDeviceListItemAction.verify,
-                    label: L10n.of(context)!.verifyStart,
+                    label: L10n.of(context).verifyStart,
                   ),
                   if (!keys.blocked)
                     SheetAction(
                       key: UserDeviceListItemAction.block,
-                      label: L10n.of(context)!.blockDevice,
+                      label: L10n.of(context).blockDevice,
                       isDestructiveAction: true,
                     ),
                   if (keys.blocked)
                     SheetAction(
                       key: UserDeviceListItemAction.unblock,
-                      label: L10n.of(context)!.unblockDevice,
+                      label: L10n.of(context).unblockDevice,
                       isDestructiveAction: true,
                     ),
                 },
                 if (!isOwnDevice)
                   SheetAction(
                     key: UserDeviceListItemAction.remove,
-                    label: L10n.of(context)!.delete,
+                    label: L10n.of(context).delete,
                     isDestructiveAction: true,
                   ),
               ],
@@ -119,7 +119,7 @@ class UserDeviceListItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           subtitle: Text(
-            L10n.of(context)!.lastActiveAgo(
+            L10n.of(context).lastActiveAgo(
               DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs ?? 0)
                   .localizedTimeShort(context),
             ),
@@ -129,10 +129,10 @@ class UserDeviceListItem extends StatelessWidget {
               ? null
               : Text(
                   keys.blocked
-                      ? L10n.of(context)!.blocked
+                      ? L10n.of(context).blocked
                       : keys.verified
-                          ? L10n.of(context)!.verified
-                          : L10n.of(context)!.unverified,
+                          ? L10n.of(context).verified
+                          : L10n.of(context).unverified,
                   style: TextStyle(
                     color: keys.blocked
                         ? Colors.red

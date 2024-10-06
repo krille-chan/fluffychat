@@ -27,7 +27,7 @@ class SettingsStyleView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.changeTheme),
+        title: Text(L10n.of(context).changeTheme),
       ),
       backgroundColor: theme.colorScheme.surface,
       body: MaxWidthBody(
@@ -35,7 +35,7 @@ class SettingsStyleView extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                L10n.of(context)!.setColorTheme,
+                L10n.of(context).setColorTheme,
                 style: TextStyle(
                   color: theme.colorScheme.secondary,
                   fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class SettingsStyleView extends StatelessWidget {
                                                   ),
                                                 ),
                                               Text(
-                                                L10n.of(context)!.systemTheme,
+                                                L10n.of(context).systemTheme,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   color: theme
@@ -140,7 +140,7 @@ class SettingsStyleView extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                L10n.of(context)!.setTheme,
+                L10n.of(context).setTheme,
                 style: TextStyle(
                   color: theme.colorScheme.secondary,
                   fontWeight: FontWeight.bold,
@@ -150,19 +150,19 @@ class SettingsStyleView extends StatelessWidget {
             RadioListTile<ThemeMode>(
               groupValue: controller.currentTheme,
               value: ThemeMode.system,
-              title: Text(L10n.of(context)!.systemTheme),
+              title: Text(L10n.of(context).systemTheme),
               onChanged: controller.switchTheme,
             ),
             RadioListTile<ThemeMode>(
               groupValue: controller.currentTheme,
               value: ThemeMode.light,
-              title: Text(L10n.of(context)!.lightTheme),
+              title: Text(L10n.of(context).lightTheme),
               onChanged: controller.switchTheme,
             ),
             RadioListTile<ThemeMode>(
               groupValue: controller.currentTheme,
               value: ThemeMode.dark,
-              title: Text(L10n.of(context)!.darkTheme),
+              title: Text(L10n.of(context).darkTheme),
               onChanged: controller.switchTheme,
             ),
             Divider(
@@ -170,7 +170,7 @@ class SettingsStyleView extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                L10n.of(context)!.overview,
+                L10n.of(context).overview,
                 style: TextStyle(
                   color: theme.colorScheme.secondary,
                   fontWeight: FontWeight.bold,
@@ -178,13 +178,13 @@ class SettingsStyleView extends StatelessWidget {
               ),
             ),
             SettingsSwitchListTile.adaptive(
-              title: L10n.of(context)!.presencesToggle,
+              title: L10n.of(context).presencesToggle,
               onChanged: (b) => AppConfig.showPresences = b,
               storeKey: SettingKeys.showPresences,
               defaultValue: AppConfig.showPresences,
             ),
             SettingsSwitchListTile.adaptive(
-              title: L10n.of(context)!.separateChatTypes,
+              title: L10n.of(context).separateChatTypes,
               onChanged: (b) => AppConfig.separateChatTypes = b,
               storeKey: SettingKeys.separateChatTypes,
               defaultValue: AppConfig.separateChatTypes,
@@ -194,7 +194,7 @@ class SettingsStyleView extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                L10n.of(context)!.messagesStyle,
+                L10n.of(context).messagesStyle,
                 style: TextStyle(
                   color: theme.colorScheme.secondary,
                   fontWeight: FontWeight.bold,
@@ -270,7 +270,7 @@ class SettingsStyleView extends StatelessWidget {
                       ),
                     ),
                     ListTile(
-                      title: Text(L10n.of(context)!.wallpaper),
+                      title: Text(L10n.of(context).wallpaper),
                       leading: const Icon(Icons.photo_outlined),
                       trailing: accountConfig.wallpaperUrl == null
                           ? null
@@ -286,7 +286,7 @@ class SettingsStyleView extends StatelessWidget {
                       curve: FluffyThemes.animationCurve,
                       child: accountConfig.wallpaperUrl != null
                           ? SwitchListTile.adaptive(
-                              title: Text(L10n.of(context)!.transparent),
+                              title: Text(L10n.of(context).transparent),
                               secondary: const Icon(Icons.blur_linear_outlined),
                               value: !wallpaperOpacityIsDefault,
                               onChanged: (_) =>
@@ -301,7 +301,7 @@ class SettingsStyleView extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text(L10n.of(context)!.fontSize),
+              title: Text(L10n.of(context).fontSize),
               trailing: Text('× ${AppConfig.fontSizeFactor}'),
             ),
             Slider.adaptive(

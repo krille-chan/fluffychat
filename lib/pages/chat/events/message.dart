@@ -484,7 +484,7 @@ class Message extends StatelessWidget {
                     horizontal: 8,
                   ),
                   child: Text(
-                    L10n.of(context)!.readUpToHere,
+                    L10n.of(context).readUpToHere,
                     style: TextStyle(color: theme.colorScheme.primary),
                   ),
                 ),

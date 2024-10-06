@@ -37,9 +37,9 @@ class ChatSearchFilesTab extends StatelessWidget {
               const CircularProgressIndicator.adaptive(strokeWidth: 2),
               const SizedBox(height: 8),
               Text(
-                L10n.of(context)!.searchIn(
+                L10n.of(context).searchIn(
                   room.getLocalizedDisplayname(
-                    MatrixLocals(L10n.of(context)!),
+                    MatrixLocals(L10n.of(context)),
                   ),
                 ),
               ),
@@ -53,7 +53,7 @@ class ChatSearchFilesTab extends StatelessWidget {
             children: [
               const Icon(Icons.file_present_outlined, size: 64),
               const SizedBox(height: 8),
-              Text(L10n.of(context)!.nothingFound),
+              Text(L10n.of(context).nothingFound),
             ],
           );
         }
@@ -93,7 +93,7 @@ class ChatSearchFilesTab extends StatelessWidget {
                       icon: const Icon(
                         Icons.arrow_downward_outlined,
                       ),
-                      label: Text(L10n.of(context)!.searchMore),
+                      label: Text(L10n.of(context).searchMore),
                     ),
                   ),
                 );
@@ -101,7 +101,7 @@ class ChatSearchFilesTab extends StatelessWidget {
               final event = events[i];
               final filename = event.content.tryGet<String>('filename') ??
                   event.content.tryGet<String>('body') ??
-                  L10n.of(context)!.unknownEvent('File');
+                  L10n.of(context).unknownEvent('File');
               final filetype = (filename.contains('.')
                   ? filename.split('.').last.toUpperCase()
                   : event.content

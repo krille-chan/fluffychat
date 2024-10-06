@@ -25,7 +25,7 @@ class ImageViewerView extends StatelessWidget {
           icon: const Icon(Icons.close),
           onPressed: Navigator.of(context).pop,
           color: Colors.white,
-          tooltip: L10n.of(context)!.close,
+          tooltip: L10n.of(context).close,
         ),
         backgroundColor: Colors.transparent,
         actions: [
@@ -36,7 +36,7 @@ class ImageViewerView extends StatelessWidget {
             icon: const Icon(Icons.reply_outlined),
             onPressed: controller.forwardAction,
             color: Colors.white,
-            tooltip: L10n.of(context)!.share,
+            tooltip: L10n.of(context).share,
           ),
           const SizedBox(width: 8),
           IconButton(
@@ -46,7 +46,7 @@ class ImageViewerView extends StatelessWidget {
             icon: const Icon(Icons.download_outlined),
             onPressed: () => controller.saveFileAction(context),
             color: Colors.white,
-            tooltip: L10n.of(context)!.downloadFile,
+            tooltip: L10n.of(context).downloadFile,
           ),
           const SizedBox(width: 8),
           if (PlatformInfos.isMobile)
@@ -59,7 +59,7 @@ class ImageViewerView extends StatelessWidget {
                     backgroundColor: Colors.black.withOpacity(0.5),
                   ),
                   onPressed: () => controller.shareFileAction(context),
-                  tooltip: L10n.of(context)!.share,
+                  tooltip: L10n.of(context).share,
                   color: Colors.white,
                   icon: Icon(Icons.adaptive.share_outlined),
                 ),

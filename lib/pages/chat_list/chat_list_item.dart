@@ -47,10 +47,10 @@ class ChatListItem extends StatelessWidget {
       final confirmed = await showOkCancelAlertDialog(
         useRootNavigator: false,
         context: context,
-        title: L10n.of(context)!.areYouSure,
-        okLabel: L10n.of(context)!.yes,
-        cancelLabel: L10n.of(context)!.no,
-        message: L10n.of(context)!.archiveRoomDescription,
+        title: L10n.of(context).areYouSure,
+        okLabel: L10n.of(context).yes,
+        cancelLabel: L10n.of(context).no,
+        message: L10n.of(context).archiveRoomDescription,
       );
       if (confirmed == OkCancelResult.cancel) return;
       await showFutureLoadingDialog(
@@ -81,7 +81,7 @@ class ChatListItem extends StatelessWidget {
     final backgroundColor =
         activeChat ? theme.colorScheme.secondaryContainer : null;
     final displayname = room.getLocalizedDisplayname(
-      MatrixLocals(L10n.of(context)!),
+      MatrixLocals(L10n.of(context)),
     );
     final filter = this.filter;
     if (filter != null && !displayname.toLowerCase().contains(filter)) {
@@ -272,7 +272,7 @@ class ChatListItem extends StatelessWidget {
                   Expanded(
                     child: room.isSpace && room.membership == Membership.join
                         ? Text(
-                            L10n.of(context)!.countChatsAndCountParticipants(
+                            L10n.of(context).countChatsAndCountParticipants(
                               room.spaceChildren.length.toString(),
                               (room.summary.mJoinedMemberCount ?? 1).toString(),
                             ),
@@ -292,7 +292,7 @@ class ChatListItem extends StatelessWidget {
                                 ),
                                 future: needLastEventSender
                                     ? lastEvent.calcLocalizedBody(
-                                        MatrixLocals(L10n.of(context)!),
+                                        MatrixLocals(L10n.of(context)),
                                         hideReply: true,
                                         hideEdit: true,
                                         plaintextBody: true,
@@ -304,7 +304,7 @@ class ChatListItem extends StatelessWidget {
                                     : null,
                                 initialData:
                                     lastEvent?.calcLocalizedBodyFallback(
-                                  MatrixLocals(L10n.of(context)!),
+                                  MatrixLocals(L10n.of(context)),
                                   hideReply: true,
                                   hideEdit: true,
                                   plaintextBody: true,
@@ -316,10 +316,10 @@ class ChatListItem extends StatelessWidget {
                                 builder: (context, snapshot) => Text(
                                   room.membership == Membership.invite
                                       ? isDirectChat
-                                          ? L10n.of(context)!.invitePrivateChat
-                                          : L10n.of(context)!.inviteGroupChat
+                                          ? L10n.of(context).invitePrivateChat
+                                          : L10n.of(context).inviteGroupChat
                                       : snapshot.data ??
-                                          L10n.of(context)!.emptyChat,
+                                          L10n.of(context).emptyChat,
                                   softWrap: false,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,

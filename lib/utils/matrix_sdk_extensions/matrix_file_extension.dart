@@ -20,7 +20,7 @@ extension MatrixFileExtension on MatrixFile {
     }
 
     final downloadPath = await FilePicker.platform.saveFile(
-      dialogTitle: L10n.of(context)!.saveFile,
+      dialogTitle: L10n.of(context).saveFile,
       fileName: name,
       type: filePickerFileType,
       bytes: bytes,
@@ -38,7 +38,7 @@ extension MatrixFileExtension on MatrixFile {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          L10n.of(context)!.fileHasBeenSavedAt(downloadPath),
+          L10n.of(context).fileHasBeenSavedAt(downloadPath),
         ),
       ),
     );

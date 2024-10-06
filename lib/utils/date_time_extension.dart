@@ -35,9 +35,9 @@ extension DateTimeExtension on DateTime {
 
   /// Returns a simple time String.
   String localizedTimeOfDay(BuildContext context) =>
-      L10n.of(context)!.alwaysUse24HourFormat == 'true'
-          ? DateFormat('HH:mm', L10n.of(context)!.localeName).format(this)
-          : DateFormat('h:mm a', L10n.of(context)!.localeName).format(this);
+      L10n.of(context).alwaysUse24HourFormat == 'true'
+          ? DateFormat('HH:mm', L10n.of(context).localeName).format(this)
+          : DateFormat('h:mm a', L10n.of(context).localeName).format(this);
 
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
   /// day if the ChatTime is this week and a date string else.
@@ -77,7 +77,7 @@ extension DateTimeExtension on DateTime {
     final sameDay = sameYear && now.month == month && now.day == day;
 
     if (sameDay) return localizedTimeOfDay(context);
-    return L10n.of(context)!.dateAndTimeOfDay(
+    return L10n.of(context).dateAndTimeOfDay(
       localizedTimeShort(context),
       localizedTimeOfDay(context),
     );

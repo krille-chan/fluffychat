@@ -20,12 +20,12 @@ class Settings3PidView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.passwordRecovery),
+        title: Text(L10n.of(context).passwordRecovery),
         actions: [
           IconButton(
             icon: const Icon(Icons.add_outlined),
             onPressed: controller.add3PidAction,
-            tooltip: L10n.of(context)!.addEmail,
+            tooltip: L10n.of(context).addEmail,
           ),
         ],
       ),
@@ -66,8 +66,8 @@ class Settings3PidView extends StatelessWidget {
                   ),
                   title: Text(
                     identifier.isEmpty
-                        ? L10n.of(context)!.noPasswordRecoveryDescription
-                        : L10n.of(context)!
+                        ? L10n.of(context).noPasswordRecoveryDescription
+                        : L10n.of(context)
                             .withTheseAddressesRecoveryDescription,
                   ),
                 ),
@@ -83,7 +83,7 @@ class Settings3PidView extends StatelessWidget {
                       ),
                       title: Text(identifier[i].address),
                       trailing: IconButton(
-                        tooltip: L10n.of(context)!.delete,
+                        tooltip: L10n.of(context).delete,
                         icon: const Icon(Icons.delete_forever_outlined),
                         color: Colors.red,
                         onPressed: () => controller.delete3Pid(identifier[i]),

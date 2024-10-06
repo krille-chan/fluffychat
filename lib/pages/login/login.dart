@@ -33,12 +33,12 @@ class LoginController extends State<Login> {
   void login() async {
     final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
-      setState(() => usernameError = L10n.of(context)!.pleaseEnterYourUsername);
+      setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
     } else {
       setState(() => usernameError = null);
     }
     if (passwordController.text.isEmpty) {
-      setState(() => passwordError = L10n.of(context)!.pleaseEnterYourPassword);
+      setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
     } else {
       setState(() => passwordError = null);
     }
@@ -128,10 +128,9 @@ class LoginController extends State<Login> {
           final dialogResult = await showOkCancelAlertDialog(
             context: context,
             useRootNavigator: false,
-            message:
-                L10n.of(context)!.noMatrixServer(newDomain, oldHomeserver!),
-            okLabel: L10n.of(context)!.ok,
-            cancelLabel: L10n.of(context)!.cancel,
+            message: L10n.of(context).noMatrixServer(newDomain, oldHomeserver!),
+            okLabel: L10n.of(context).ok,
+            cancelLabel: L10n.of(context).cancel,
           );
           if (dialogResult == OkCancelResult.ok) {
             if (mounted) setState(() => usernameError = null);
@@ -159,16 +158,16 @@ class LoginController extends State<Login> {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.passwordForgotten,
-      message: L10n.of(context)!.enterAnEmailAddress,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).passwordForgotten,
+      message: L10n.of(context).enterAnEmailAddress,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       fullyCapitalizedForMaterial: false,
       textFields: [
         DialogTextField(
           initialText:
               usernameController.text.isEmail ? usernameController.text : '',
-          hintText: L10n.of(context)!.enterAnEmailAddress,
+          hintText: L10n.of(context).enterAnEmailAddress,
           keyboardType: TextInputType.emailAddress,
         ),
       ],
@@ -188,10 +187,10 @@ class LoginController extends State<Login> {
     final password = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.passwordForgotten,
-      message: L10n.of(context)!.chooseAStrongPassword,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).passwordForgotten,
+      message: L10n.of(context).chooseAStrongPassword,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       fullyCapitalizedForMaterial: false,
       textFields: [
         const DialogTextField(
@@ -206,9 +205,9 @@ class LoginController extends State<Login> {
     final ok = await showOkAlertDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.weSentYouAnEmail,
-      message: L10n.of(context)!.pleaseClickOnLink,
-      okLabel: L10n.of(context)!.iHaveClickedOnLink,
+      title: L10n.of(context).weSentYouAnEmail,
+      message: L10n.of(context).pleaseClickOnLink,
+      okLabel: L10n.of(context).iHaveClickedOnLink,
       fullyCapitalizedForMaterial: false,
     );
     if (ok != OkCancelResult.ok) return;
@@ -233,7 +232,7 @@ class LoginController extends State<Login> {
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)),
+        SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)),
       );
       usernameController.text = input.single;
       passwordController.text = password.single;

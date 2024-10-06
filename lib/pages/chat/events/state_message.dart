@@ -21,7 +21,7 @@ class StateMessage extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Text(
             event.calcLocalizedBodyFallback(
-              MatrixLocals(L10n.of(context)!),
+              MatrixLocals(L10n.of(context)),
             ),
             textAlign: TextAlign.center,
             style: TextStyle(

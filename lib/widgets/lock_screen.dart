@@ -30,7 +30,7 @@ class _LockScreenState extends State<LockScreen> {
     final enteredPin = int.tryParse(text);
     if (enteredPin == null || text.length != 4) {
       setState(() {
-        _errorText = L10n.of(context)!.invalidInput;
+        _errorText = L10n.of(context).invalidInput;
       });
       _textEditingController.clear();
       return;
@@ -46,7 +46,7 @@ class _LockScreenState extends State<LockScreen> {
     }
 
     setState(() {
-      _errorText = L10n.of(context)!.wrongPinEntered(_coolDownSeconds);
+      _errorText = L10n.of(context).wrongPinEntered(_coolDownSeconds);
       _inputBlocked = true;
     });
     Future.delayed(Duration(seconds: _coolDownSeconds)).then((_) {
@@ -63,7 +63,7 @@ class _LockScreenState extends State<LockScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.pleaseEnterYourPin),
+        title: Text(L10n.of(context).pleaseEnterYourPin),
         centerTitle: true,
       ),
       extendBodyBehindAppBar: true,

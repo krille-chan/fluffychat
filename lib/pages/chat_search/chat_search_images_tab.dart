@@ -37,9 +37,9 @@ class ChatSearchImagesTab extends StatelessWidget {
               const CircularProgressIndicator.adaptive(strokeWidth: 2),
               const SizedBox(height: 8),
               Text(
-                L10n.of(context)!.searchIn(
+                L10n.of(context).searchIn(
                   room.getLocalizedDisplayname(
-                    MatrixLocals(L10n.of(context)!),
+                    MatrixLocals(L10n.of(context)),
                   ),
                 ),
               ),
@@ -52,7 +52,7 @@ class ChatSearchImagesTab extends StatelessWidget {
             children: [
               const Icon(Icons.photo_outlined, size: 64),
               const SizedBox(height: 8),
-              Text(L10n.of(context)!.nothingFound),
+              Text(L10n.of(context).nothingFound),
             ],
           );
         }
@@ -102,7 +102,7 @@ class ChatSearchImagesTab extends StatelessWidget {
                     icon: const Icon(
                       Icons.arrow_downward_outlined,
                     ),
-                    label: Text(L10n.of(context)!.searchMore),
+                    label: Text(L10n.of(context).searchMore),
                   ),
                 ),
               );

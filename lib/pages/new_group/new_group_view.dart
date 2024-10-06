@@ -26,7 +26,7 @@ class NewGroupView extends StatelessWidget {
             onPressed: controller.loading ? null : Navigator.of(context).pop,
           ),
         ),
-        title: Text(L10n.of(context)!.createGroup),
+        title: Text(L10n.of(context).createGroup),
       ),
       body: MaxWidthBody(
         child: Column(
@@ -61,7 +61,7 @@ class NewGroupView extends StatelessWidget {
                 readOnly: controller.loading,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.people_outlined),
-                  labelText: L10n.of(context)!.groupName,
+                  labelText: L10n.of(context).groupName,
                 ),
               ),
             ),
@@ -69,7 +69,7 @@ class NewGroupView extends StatelessWidget {
             SwitchListTile.adaptive(
               contentPadding: const EdgeInsets.symmetric(horizontal: 32),
               secondary: const Icon(Icons.public_outlined),
-              title: Text(L10n.of(context)!.groupIsPublic),
+              title: Text(L10n.of(context).groupIsPublic),
               value: controller.publicGroup,
               onChanged: controller.loading ? null : controller.setPublicGroup,
             ),
@@ -80,7 +80,7 @@ class NewGroupView extends StatelessWidget {
                       contentPadding:
                           const EdgeInsets.symmetric(horizontal: 32),
                       secondary: const Icon(Icons.search_outlined),
-                      title: Text(L10n.of(context)!.groupCanBeFoundViaSearch),
+                      title: Text(L10n.of(context).groupCanBeFoundViaSearch),
                       value: controller.groupCanBeFound,
                       onChanged: controller.loading
                           ? null
@@ -95,7 +95,7 @@ class NewGroupView extends StatelessWidget {
                 color: theme.colorScheme.onSurface,
               ),
               title: Text(
-                L10n.of(context)!.enableEncryption,
+                L10n.of(context).enableEncryption,
                 style: TextStyle(
                   color: theme.colorScheme.onSurface,
                 ),
@@ -112,7 +112,7 @@ class NewGroupView extends StatelessWidget {
                       controller.loading ? null : controller.submitAction,
                   child: controller.loading
                       ? const LinearProgressIndicator()
-                      : Text(L10n.of(context)!.createGroupAndInviteUsers),
+                      : Text(L10n.of(context).createGroupAndInviteUsers),
                 ),
               ),
             ),

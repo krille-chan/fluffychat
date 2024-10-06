@@ -39,7 +39,7 @@ class UrlLauncher {
     if (uri == null) {
       // we can't open this thing
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))),
+        SnackBar(content: Text(L10n.of(context).cantOpenUri(url!))),
       );
       return;
     }
@@ -49,10 +49,10 @@ class UrlLauncher {
       // that the user can see the actual url before opening the browser.
       final consent = await showOkCancelAlertDialog(
         context: context,
-        title: L10n.of(context)!.openLinkInBrowser,
+        title: L10n.of(context).openLinkInBrowser,
         message: url,
-        okLabel: L10n.of(context)!.yes,
-        cancelLabel: L10n.of(context)!.cancel,
+        okLabel: L10n.of(context).yes,
+        cancelLabel: L10n.of(context).cancel,
       );
       if (consent != OkCancelResult.ok) return;
     }
@@ -93,7 +93,7 @@ class UrlLauncher {
     }
     if (uri.host.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))),
+        SnackBar(content: Text(L10n.of(context).cantOpenUri(url!))),
       );
       return;
     }

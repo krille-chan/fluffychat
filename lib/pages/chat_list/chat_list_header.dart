@@ -35,14 +35,14 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       leading: selectMode == SelectMode.normal
           ? null
           : IconButton(
-              tooltip: L10n.of(context)!.cancel,
+              tooltip: L10n.of(context).cancel,
               icon: const Icon(Icons.close_outlined),
               onPressed: controller.cancelAction,
               color: theme.colorScheme.primary,
             ),
       title: selectMode == SelectMode.share
           ? Text(
-              L10n.of(context)!.share,
+              L10n.of(context).share,
               key: const ValueKey(SelectMode.share),
             )
           : TextField(
@@ -61,7 +61,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   borderRadius: BorderRadius.circular(99),
                 ),
                 contentPadding: EdgeInsets.zero,
-                hintText: L10n.of(context)!.searchChatsRooms,
+                hintText: L10n.of(context).searchChatsRooms,
                 hintStyle: TextStyle(
                   color: theme.colorScheme.onPrimaryContainer,
                   fontWeight: FontWeight.normal,
@@ -69,7 +69,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 prefixIcon: controller.isSearchMode
                     ? IconButton(
-                        tooltip: L10n.of(context)!.cancel,
+                        tooltip: L10n.of(context).cancel,
                         icon: const Icon(Icons.close_outlined),
                         onPressed: controller.cancelSearch,
                         color: theme.colorScheme.onPrimaryContainer,

@@ -35,13 +35,13 @@ abstract class UpdateNotifier {
                 ),
                 Expanded(
                   child: Text(
-                    L10n.of(context)!.updateInstalled(currentVersion),
+                    L10n.of(context).updateInstalled(currentVersion),
                   ),
                 ),
               ],
             ),
             action: SnackBarAction(
-              label: L10n.of(context)!.changelog,
+              label: L10n.of(context).changelog,
               onPressed: () => launchUrlString(AppConfig.changelogUrl),
             ),
           ),

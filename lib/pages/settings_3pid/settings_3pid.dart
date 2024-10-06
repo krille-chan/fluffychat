@@ -22,12 +22,12 @@ class Settings3PidController extends State<Settings3Pid> {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.enterAnEmailAddress,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).enterAnEmailAddress,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
-          hintText: L10n.of(context)!.enterAnEmailAddress,
+          hintText: L10n.of(context).enterAnEmailAddress,
           keyboardType: TextInputType.emailAddress,
         ),
       ],
@@ -46,9 +46,9 @@ class Settings3PidController extends State<Settings3Pid> {
     final ok = await showOkAlertDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.weSentYouAnEmail,
-      message: L10n.of(context)!.pleaseClickOnLink,
-      okLabel: L10n.of(context)!.iHaveClickedOnLink,
+      title: L10n.of(context).weSentYouAnEmail,
+      message: L10n.of(context).pleaseClickOnLink,
+      okLabel: L10n.of(context).iHaveClickedOnLink,
     );
     if (ok != OkCancelResult.ok) return;
     final success = await showFutureLoadingDialog(
@@ -71,9 +71,9 @@ class Settings3PidController extends State<Settings3Pid> {
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
+          title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
         ) !=
         OkCancelResult.ok) {
       return;
