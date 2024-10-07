@@ -348,7 +348,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               nextEvent: widget._nextEvent,
               previousEvent: widget._prevEvent,
             ),
-            // TODO for @ggurdin - move reactions and toolbar here
             // MessageReactions(widget._event, widget.chatController.timeline!),
             // const SizedBox(height: 6),
             // MessagePadding(

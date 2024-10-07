@@ -42,7 +42,7 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
   final int _maxMessagesCached = 10;
 
   /// the number of minutes before an automatic update is triggered
-  final int _minutesBeforeUpdate = 2;
+  final int _minutesBeforeUpdate = 5;
 
   /// the time since the last update that will trigger an automatic update
   final Duration _timeSinceUpdate = const Duration(days: 1);
@@ -120,9 +120,6 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
       }
       if (filtered.isEmpty) return;
 
-      // @ggurdin - are we sure this isn't happening twice? it's also above
-      filtered.addAll(_getDraftUses(data.roomId));
-
       final level = _pangeaController.analytics.level;
 
       _addLocalMessage(eventID, filtered).then(
@@ -179,8 +176,6 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
       }
     }
 
-    // @ggurdin - if the point of draft uses is that we don't want to send them twice,
-    // then, if this is triggered here, couldn't that make a problem?
     final level = _pangeaController.analytics.level;
     _addLocalMessage('draft$roomID', uses).then(
       (_) => _decideWhetherToUpdateAnalyticsRoom(level),
@@ -201,21 +196,20 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
   /// Add a list of construct uses for a new message to the local
   /// cache of recently sent messages
   Future<void> _addLocalMessage(
-    String eventID,
-    // @ggurdin - why is this an eventID and not a roomID?
+    String cacheKey,
     List<OneConstructUse> constructs,
   ) async {
     try {
       final currentCache = _pangeaController.analytics.messagesSinceUpdate;
-      constructs.addAll(currentCache[eventID] ?? []);
-      currentCache[eventID] = constructs;
+      constructs.addAll(currentCache[cacheKey] ?? []);
+      currentCache[cacheKey] = constructs;
 
       await _setMessagesSinceUpdate(currentCache);
     } catch (e, s) {
       ErrorHandler.logError(
         e: PangeaWarningError("Failed to add message since update: $e"),
         s: s,
-        m: 'Failed to add message since update for eventId: $eventID',
+        m: 'Failed to add message since update for eventId: $cacheKey',
       );
     }
   }
@@ -248,7 +242,18 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
 
   /// Clears the local cache of recently sent constructs. Called before updating analytics
   void clearMessagesSinceUpdate() {
-    _pangeaController.pStoreService.delete(PLocalKey.messagesSinceUpdate);
+    final localCache = _pangeaController.analytics.messagesSinceUpdate;
+    final draftKeys = localCache.keys.where((key) => key.startsWith('draft'));
+    if (draftKeys.isEmpty) {
+      _pangeaController.pStoreService.delete(PLocalKey.messagesSinceUpdate);
+      return;
+    }
+
+    final Map<String, List<OneConstructUse>> newCache = {};
+    for (final key in draftKeys) {
+      newCache[key] = localCache[key]!;
+    }
+    _setMessagesSinceUpdate(newCache);
   }
 
   /// Save the local cache of recently sent constructs to the local storage

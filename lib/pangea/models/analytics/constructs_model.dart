@@ -78,6 +78,10 @@ class OneConstructUse {
   List<String> categories;
   ConstructTypeEnum constructType;
   ConstructUseTypeEnum useType;
+
+  /// Used to unqiuely identify the construct use. Useful in the case
+  /// that a users makes the same type of mistake multiple times in a
+  /// message, and those uses need to be disinguished.
   String? id;
   ConstructUseMetaData metadata;
 
