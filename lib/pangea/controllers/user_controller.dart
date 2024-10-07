@@ -10,7 +10,6 @@ import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
 
 import '../models/user_model.dart';
-import '../repo/user_repo.dart';
 
 /// Controller that manages saving and reading of user/profile information
 class UserController extends BaseController {
@@ -122,21 +121,6 @@ class UserController extends BaseController {
   /// data to profile, and migrating from the pangea profile if the account data is not present.
   Future<void> _initialize() async {
     await _pangeaController.matrixState.client.waitForAccountData();
-    if (profile.userSettings.dateOfBirth != null) {
-      return;
-    }
-
-    final PangeaProfileResponse? resp = await PUserRepo.fetchPangeaUserInfo(
-      userID: userId!,
-      matrixAccessToken: _matrixAccessToken!,
-    );
-    if (resp?.profile == null) {
-      return;
-    }
-
-    final userSetting = UserSettings.fromJson(resp!.profile.toJson());
-    final newProfile = Profile(userSettings: userSetting);
-    await newProfile.saveProfileData(waitForDataInSync: true);
   }
 
   /// Reinitializes the user's profile

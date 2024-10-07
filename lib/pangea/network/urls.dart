@@ -9,58 +9,65 @@ import 'package:fluffychat/pangea/config/environment.dart';
 ///
 /// https://api.staging.pangea.chat/api/v1/
 class PApiUrls {
-  static String baseAPI = Environment.baseAPI;
+  static String choreoPrefix = "/choreo";
+  static String revenuePrefix = "/revenue";
+  static String accountPrefix = "/account";
+
+  static String choreoEndpoint =
+      "${Environment.choreoApi}${PApiUrls.choreoPrefix}";
+  static String revenueEndpoint =
+      "${Environment.choreoApi}${PApiUrls.revenuePrefix}";
+  static String accountEndpoint =
+      "${Environment.choreoApi}${PApiUrls.accountPrefix}";
 
   ///   ---------------------- Languages --------------------------------------
-  static String getLanguages = "${Environment.choreoApi}/choreo/languages";
+  static String getLanguages = "${PApiUrls.choreoEndpoint}/languages";
 
   ///   ---------------------- Users --------------------------------------
-  static String paymentLink = "/account/payment_link";
-  static String userDetails = "/account/get_user_access_token?pangea_user_id=";
-  
-  // USED ??
-  static String createUser = "/account/create";
-  static String updateUserProfile = "/account/update";
-  static String subscriptionExpiration = "/account/premium_expires_date";
+  static String paymentLink = "${PApiUrls.accountEndpoint}/payment_link";
 
   ///   ---------------------- Conversation Partner -------------------------
-  static String searchUserProfiles = "/account/search";
+  /// PTODO: Migrate or remove
+  static String searchUserProfiles = "${PApiUrls.accountEndpoint}/search";
 
   ///-------------------------------- choreo --------------------------
-  static String igc = "${Environment.choreoApi}/grammar";
+  static String igc = "${PApiUrls.choreoEndpoint}/grammar";
 
   static String languageDetection =
-      "${Environment.choreoApi}/language_detection";
+      "${PApiUrls.choreoEndpoint}/language_detection";
 
-  static String igcLite = "${Environment.choreoApi}/grammar_lite";
-  static String spanDetails = "${Environment.choreoApi}/span_details";
+  static String igcLite = "${PApiUrls.choreoEndpoint}/grammar_lite";
+  static String spanDetails = "${PApiUrls.choreoEndpoint}/span_details";
 
-  static String wordNet = "${Environment.choreoApi}/wordnet";
+  static String wordNet = "${PApiUrls.choreoEndpoint}/wordnet";
   static String contextualizedTranslation =
-      "${Environment.choreoApi}/translation/contextual";
+      "${PApiUrls.choreoEndpoint}/translation/contextual";
   static String simpleTranslation =
-      "${Environment.choreoApi}/translation/direct";
-  static String tokenize = "${Environment.choreoApi}/tokenize";
+      "${PApiUrls.choreoEndpoint}/translation/direct";
+  static String tokenize = "${PApiUrls.choreoEndpoint}/tokenize";
   static String contextualDefinition =
-      "${Environment.choreoApi}/contextual_definition";
-  static String similarity = "${Environment.choreoApi}/similarity";
-  static String topicInfo = "${Environment.choreoApi}/vocab_list";
+      "${PApiUrls.choreoEndpoint}/contextual_definition";
+  static String similarity = "${PApiUrls.choreoEndpoint}/similarity";
+  static String topicInfo = "${PApiUrls.choreoEndpoint}/vocab_list";
 
-  static String itFeedback = "${Environment.choreoApi}/translation/feedback";
+  static String itFeedback = "${PApiUrls.choreoEndpoint}/translation/feedback";
 
   static String firstStep = "/it_initialstep";
   static String subseqStep = "/it_step";
 
-  static String textToSpeech = "${Environment.choreoApi}/text_to_speech";
-  static String speechToText = "${Environment.choreoApi}/speech_to_text";
+  static String textToSpeech = "${PApiUrls.choreoEndpoint}/text_to_speech";
+  static String speechToText = "${PApiUrls.choreoEndpoint}/speech_to_text";
 
   static String messageActivityGeneration =
       "${Environment.choreoApi}/practice/message";
 
   ///-------------------------------- revenue cat --------------------------
 
-  static String rcAppsChoreo = "${Environment.choreoApi}/revenue/app_ids";
+  static String rcApiV1 = "https://api.revenuecat.com/v1";
+
+  static String rcAppsChoreo = "${PApiUrls.revenueEndpoint}/app_ids";
   static String rcProductsChoreo =
-      "${Environment.choreoApi}/revenue/all_products";
-  static String rcSubscriptionChoreo =
-      "${Environment.choreoApi}/revenue/subscription";
+      "${PApiUrls.revenueEndpoint}/all_products";
+
+  static String rcSubscription = "$rcApiV1/subscribers";
+}

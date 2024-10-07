@@ -13,17 +13,11 @@ import 'package:http/http.dart' as http;
 import '../network/urls.dart';
 
 class SubscriptionRepo {
-  static final Map<String, String> requestHeaders = {
-    'Content-type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization': 'Bearer ${Environment.rcKey}',
-  };
-
   static Future<SubscriptionAppIds?> getAppIds(String accessToken) async {
     try {
       final Requests req = Requests(
         choreoApiKey: Environment.choreoApiKey,
-        accessToken: accessToken,
+        matrixAccessToken: accessToken,
       );
       final http.Response res = await req.get(
         url: PApiUrls.rcAppsChoreo,
@@ -47,7 +41,7 @@ class SubscriptionRepo {
     try {
       final Requests req = Requests(
         choreoApiKey: Environment.choreoApiKey,
-        accessToken: accessToken,
+        matrixAccessToken: accessToken,
       );
       final http.Response res = await req.get(
         url: PApiUrls.rcProductsChoreo,
@@ -74,7 +68,7 @@ class SubscriptionRepo {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${Environment.rcStripeKey}',
     };
-    final String url = "${PApiUrls.rcSubscribers}/$userId";
+    final String url = "${PApiUrls.rcSubscription}/$userId";
     final http.Response res = await http.get(
       Uri.parse(url),
       headers: stripeHeaders,
