@@ -8,7 +8,7 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:flutter/material.dart';
 
-class ToolbarButtons extends StatefulWidget {
+class ToolbarButtons extends StatelessWidget {
   final MessageOverlayController overlayController;
   final double width;
 
@@ -18,13 +18,8 @@ class ToolbarButtons extends StatefulWidget {
     super.key,
   });
 
-  @override
-  ToolbarButtonsState createState() => ToolbarButtonsState();
-}
-
-class ToolbarButtonsState extends State<ToolbarButtons> {
   PangeaMessageEvent get pangeaMessageEvent =>
-      widget.overlayController.pangeaMessageEvent;
+      overlayController.pangeaMessageEvent;
 
   List<MessageMode> get modes => MessageMode.values
       .where((mode) => mode.isValidMode(pangeaMessageEvent.event))
@@ -32,31 +27,23 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
 
   static const double iconWidth = 36.0;
 
-  MessageOverlayController get overlayController => widget.overlayController;
-
-  // @ggurdin - maybe this can be stateless now?
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final double barWidth = widget.width - iconWidth;
+    final double barWidth = width - iconWidth;
 
-    if (widget.overlayController.pangeaMessageEvent.isAudioMessage) {
+    if (overlayController.pangeaMessageEvent.isAudioMessage) {
       return const SizedBox();
     }
 
     return SizedBox(
-      width: widget.width,
+      width: width,
       child: Stack(
         alignment: Alignment.center,
         children: [
           Stack(
             children: [
               Container(
-                width: widget.width,
+                width: width,
                 height: 12,
                 decoration: BoxDecoration(
                   color: MessageModeExtension.barAndLockedButtonColor(context),
@@ -87,18 +74,18 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
                     child: IconButton(
                       iconSize: 20,
                       icon: Icon(mode.icon),
-                      color: mode == widget.overlayController.toolbarMode
+                      color: mode == overlayController.toolbarMode
                           ? Colors.white
                           : null,
-                      isSelected: mode == widget.overlayController.toolbarMode,
+                      isSelected: mode == overlayController.toolbarMode,
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(
                           mode.iconButtonColor(
                             context,
                             index,
-                            widget.overlayController.toolbarMode,
+                            overlayController.toolbarMode,
                             pangeaMessageEvent.numberOfActivitiesCompleted,
-                            widget.overlayController.isPracticeComplete,
+                            overlayController.isPracticeComplete,
                           ),
                         ),
                       ),
@@ -107,8 +94,7 @@ class ToolbarButtonsState extends State<ToolbarButtons> {
                         pangeaMessageEvent.numberOfActivitiesCompleted,
                         overlayController.isPracticeComplete,
                       )
-                          ? () =>
-                              widget.overlayController.updateToolbarMode(mode)
+                          ? () => overlayController.updateToolbarMode(mode)
                           : null,
                     ),
                   ),
