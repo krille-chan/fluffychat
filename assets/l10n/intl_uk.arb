@@ -2806,15 +2806,15 @@
   "@doesNotSeemToBeAValidHomeserver": {},
   "calculatingFileSize": "Обчислення розміру файлу...",
   "@calculatingFileSize": {},
-  "prepareSendingAttachment": "Підготовка до відправлення вкладення...",
+  "prepareSendingAttachment": "Підготовка до надсилання вкладення...",
   "@prepareSendingAttachment": {},
-  "sendingAttachment": "Відправлення вкладення...",
+  "sendingAttachment": "Надсилання вкладення...",
   "@sendingAttachment": {},
   "generatingVideoThumbnail": "Генерування мініатюри відео...",
   "@generatingVideoThumbnail": {},
-  "compressVideo": "Стискання відео...",
+  "compressVideo": "Стиснення відео...",
   "@compressVideo": {},
-  "sendingAttachmentCountOfCount": "Відправлення вкладення {index} з {length}...",
+  "sendingAttachmentCountOfCount": "Надсилання вкладення {index} з {length}...",
   "@sendingAttachmentCountOfCount": {
     "type": "integer",
     "placeholders": {
@@ -2822,7 +2822,7 @@
       "length": {}
     }
   },
-  "serverLimitReached": "Досягнуто ліміт сервера! Очікування {seconds} секунд...",
+  "serverLimitReached": "Досягнуто ліміту сервера! Очікування {seconds} секунд...",
   "@serverLimitReached": {
     "type": "integer",
     "placeholders": {
