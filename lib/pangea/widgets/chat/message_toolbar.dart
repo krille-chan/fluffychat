@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_speech_to_text_card.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar_buttons.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
@@ -124,12 +123,6 @@ class MessageToolbarState extends State<MessageToolbar> {
       child: Column(
         children: [
           Container(
-            constraints: const BoxConstraints(
-              maxHeight: AppConfig.toolbarMaxHeight,
-              maxWidth: 350,
-              minWidth: 350,
-            ),
-            padding: const EdgeInsets.all(0),
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
               border: Border.all(
@@ -140,10 +133,9 @@ class MessageToolbarState extends State<MessageToolbar> {
                 Radius.circular(AppConfig.borderRadius),
               ),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: Row(
               children: [
-                Flexible(
+                Expanded(
                   child: SingleChildScrollView(
                     child: AnimatedSize(
                       duration: FluffyThemes.animationDuration,
@@ -154,12 +146,6 @@ class MessageToolbarState extends State<MessageToolbar> {
               ],
             ),
           ),
-          const SizedBox(height: 6),
-          ToolbarButtons(
-            overlayController: widget.overLayController,
-            width: 250,
-          ),
-          const SizedBox(height: 6),
         ],
       ),
     );

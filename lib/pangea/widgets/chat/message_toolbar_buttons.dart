@@ -37,6 +37,7 @@ class ToolbarButtons extends StatelessWidget {
 
     return SizedBox(
       width: width,
+      height: 50,
       child: Stack(
         alignment: Alignment.center,
         children: [
