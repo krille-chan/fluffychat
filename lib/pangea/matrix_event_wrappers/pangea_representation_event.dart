@@ -98,7 +98,22 @@ class RepresentationEvent {
       );
     }
 
-    _tokens = tokenEvents.first.getPangeaContent<PangeaMessageTokens>();
+    final PangeaMessageTokens storedTokens =
+        tokenEvents.first.getPangeaContent<PangeaMessageTokens>();
+
+    if (PangeaToken.reconstructText(storedTokens.tokens) != text) {
+      ErrorHandler.logError(
+        m: 'Stored tokens do not match text for representation',
+        s: StackTrace.current,
+        data: {
+          'text': text,
+          'tokens': storedTokens.tokens,
+        },
+      );
+      return null;
+    }
+
+    _tokens = storedTokens;
 
     return _tokens?.tokens;
   }
