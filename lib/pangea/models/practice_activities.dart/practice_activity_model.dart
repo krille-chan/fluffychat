@@ -35,6 +35,21 @@ class ConstructIdentifier {
       'type': type.string,
     };
   }
+
+  // override operator == and hashCode
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is ConstructIdentifier &&
+        other.lemma == lemma &&
+        other.type == type;
+  }
+
+  @override
+  int get hashCode {
+    return lemma.hashCode ^ type.hashCode;
+  }
 }
 
 class CandidateMessage {
@@ -238,9 +253,25 @@ class PracticeActivityModel {
     this.freeResponse,
   });
 
+  String get question {
+    switch (activityType) {
+      case ActivityTypeEnum.multipleChoice:
+        return multipleChoice!.question;
+      case ActivityTypeEnum.listening:
+        return listening!.text;
+      case ActivityTypeEnum.speaking:
+        return speaking!.text;
+      case ActivityTypeEnum.freeResponse:
+        return freeResponse!.question;
+      default:
+        return '';
+    }
+  }
+
   factory PracticeActivityModel.fromJson(Map<String, dynamic> json) {
     return PracticeActivityModel(
-      tgtConstructs: (json['tgt_constructs'] as List)
+      tgtConstructs: ((json['tgt_constructs'] ?? json['target_constructs'])
+              as List)
           .map((e) => ConstructIdentifier.fromJson(e as Map<String, dynamic>))
           .toList(),
       langCode: json['lang_code'] as String,
@@ -248,7 +279,9 @@ class PracticeActivityModel {
       activityType: json['activity_type'] == "multipleChoice"
           ? ActivityTypeEnum.multipleChoice
           : ActivityTypeEnum.values.firstWhere(
-              (e) => e.string == json['activity_type'],
+              (e) =>
+                  e.string == json['activity_type'] as String ||
+                  e.string.split('.').last == json['activity_type'] as String,
             ),
       multipleChoice: json['multiple_choice'] != null
           ? MultipleChoice.fromJson(
@@ -269,12 +302,15 @@ class PracticeActivityModel {
     );
   }
 
+  RelevantSpanDisplayDetails? get relevantSpanDisplayDetails =>
+      multipleChoice?.spanDisplayDetails;
+
   Map<String, dynamic> toJson() {
     return {
-      'tgt_constructs': tgtConstructs.map((e) => e.toJson()).toList(),
+      'target_constructs': tgtConstructs.map((e) => e.toJson()).toList(),
       'lang_code': langCode,
       'msg_id': msgId,
-      'activity_type': activityType.toString().split('.').last,
+      'activity_type': activityType.string,
       'multiple_choice': multipleChoice?.toJson(),
       'listening': listening?.toJson(),
       'speaking': speaking?.toJson(),
@@ -282,20 +318,32 @@ class PracticeActivityModel {
     };
   }
 
-  RelevantSpanDisplayDetails? getRelevantSpanDisplayDetails() {
-    switch (activityType) {
-      case ActivityTypeEnum.multipleChoice:
-        return multipleChoice?.spanDisplayDetails;
-      case ActivityTypeEnum.listening:
-        return null;
-      case ActivityTypeEnum.speaking:
-        return null;
-      case ActivityTypeEnum.freeResponse:
-        return null;
-      default:
-        debugger(when: kDebugMode);
-        return null;
-    }
+  // override operator == and hashCode
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is PracticeActivityModel &&
+        const ListEquality().equals(other.tgtConstructs, tgtConstructs) &&
+        other.langCode == langCode &&
+        other.msgId == msgId &&
+        other.activityType == activityType &&
+        other.multipleChoice == multipleChoice &&
+        other.listening == listening &&
+        other.speaking == speaking &&
+        other.freeResponse == freeResponse;
+  }
+
+  @override
+  int get hashCode {
+    return const ListEquality().hash(tgtConstructs) ^
+        langCode.hashCode ^
+        msgId.hashCode ^
+        activityType.hashCode ^
+        multipleChoice.hashCode ^
+        listening.hashCode ^
+        speaking.hashCode ^
+        freeResponse.hashCode;
   }
 }
 
@@ -332,7 +380,23 @@ class RelevantSpanDisplayDetails {
     return {
       'offset': offset,
       'length': length,
-      'display_instructions': displayInstructions,
+      'display_instructions': displayInstructions.string,
     };
+  }
+
+  // override operator == and hashCode
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is RelevantSpanDisplayDetails &&
+        other.offset == offset &&
+        other.length == length &&
+        other.displayInstructions == displayInstructions;
+  }
+
+  @override
+  int get hashCode {
+    return offset.hashCode ^ length.hashCode ^ displayInstructions.hashCode;
   }
 }

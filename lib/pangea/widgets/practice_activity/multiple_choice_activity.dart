@@ -1,19 +1,24 @@
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// The multiple choice activity view
 class MultipleChoiceActivity extends StatefulWidget {
-  final MessagePracticeActivityCardState controller;
+  final MessagePracticeActivityCardState practiceCardController;
   final PracticeActivityEvent? currentActivity;
 
   const MultipleChoiceActivity({
     super.key,
-    required this.controller,
+    required this.practiceCardController,
     required this.currentActivity,
   });
 
@@ -25,60 +30,65 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   int? selectedChoiceIndex;
 
   PracticeActivityRecordModel? get currentRecordModel =>
-      widget.controller.currentRecordModel;
-
-  bool get isSubmitted =>
-      widget.currentActivity?.userRecord?.record.latestResponse != null;
+      widget.practiceCardController.currentCompletionRecord;
 
   @override
   void initState() {
     super.initState();
-    setCompletionRecord();
   }
 
   @override
   void didUpdateWidget(covariant MultipleChoiceActivity oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.currentActivity?.event.eventId !=
-        widget.currentActivity?.event.eventId) {
-      setCompletionRecord();
+    if (widget.practiceCardController.currentCompletionRecord?.responses
+            .isEmpty ??
+        false) {
+      setState(() => selectedChoiceIndex = null);
     }
   }
 
-  /// Sets the completion record for the multiple choice activity.
-  /// If the user record is null, it creates a new record model with the question
-  /// from the current activity and sets the selected choice index to null.
-  /// Otherwise, it sets the current model to the user record's record and
-  /// determines the selected choice index.
-  void setCompletionRecord() {
-    if (widget.currentActivity?.userRecord?.record == null) {
-      widget.controller.setCurrentModel(
-        PracticeActivityRecordModel(
-          question:
-              widget.currentActivity?.practiceActivity.multipleChoice!.question,
-        ),
-      );
-      selectedChoiceIndex = null;
-    } else {
-      widget.controller
-          .setCurrentModel(widget.currentActivity!.userRecord!.record);
-      selectedChoiceIndex = widget
-          .currentActivity?.practiceActivity.multipleChoice!
-          .choiceIndex(currentRecordModel!.latestResponse!.text!);
+  void updateChoice(String value, int index) {
+    if (currentRecordModel?.hasTextResponse(value) ?? false) {
+      return;
     }
-    setState(() {});
-  }
 
-  void updateChoice(int index) {
+    final bool isCorrect = widget
+        .currentActivity!.practiceActivity.multipleChoice!
+        .isCorrect(value, index);
+
     currentRecordModel?.addResponse(
-      text: widget.controller.currentActivity!.practiceActivity.multipleChoice!
-          .choices[index],
-      score: widget.controller.currentActivity!.practiceActivity.multipleChoice!
-              .isCorrect(index)
-          ? 1
-          : 0,
+      text: value,
+      score: isCorrect ? 1 : 0,
     );
-    setState(() => selectedChoiceIndex = index);
+
+    if (currentRecordModel == null ||
+        currentRecordModel!.latestResponse == null) {
+      debugger(when: kDebugMode);
+      return;
+    }
+
+    MatrixState.pangeaController.myAnalytics.setState(
+      AnalyticsStream(
+        // note - this maybe should be the activity event id
+        eventId:
+            widget.practiceCardController.widget.pangeaMessageEvent.eventId,
+        roomId: widget.practiceCardController.widget.pangeaMessageEvent.room.id,
+        constructs: currentRecordModel!.latestResponse!.toUses(
+          widget.practiceCardController.currentActivity!.practiceActivity,
+          widget.practiceCardController.metadata,
+        ),
+      ),
+    );
+
+    // If the selected choice is correct, send the record and get the next activity
+    if (widget.currentActivity!.practiceActivity.multipleChoice!
+        .isCorrect(value, index)) {
+      widget.practiceCardController.onActivityFinish();
+    }
+
+    setState(
+      () => selectedChoiceIndex = index,
+    );
   }
 
   @override
@@ -112,14 +122,15 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
                 .mapIndexed(
                   (index, value) => Choice(
                     text: value,
-                    color: selectedChoiceIndex == index
+                    color: currentRecordModel?.hasTextResponse(value) ?? false
                         ? practiceActivity.multipleChoice!.choiceColor(index)
                         : null,
-                    isGold: practiceActivity.multipleChoice!.isCorrect(index),
+                    isGold: practiceActivity.multipleChoice!
+                        .isCorrect(value, index),
                   ),
                 )
                 .toList(),
-            isActive: !isSubmitted,
+            isActive: true,
           ),
         ],
       ),

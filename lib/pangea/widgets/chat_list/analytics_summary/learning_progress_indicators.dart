@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pangea/constants/analytics_constants.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
@@ -13,6 +12,7 @@ import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/analytics_
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/progress_indicator.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -59,7 +59,7 @@ class LearningProgressIndicatorsState
         _pangeaController.analytics.locallyCachedConstructs,
       );
   int get serverXP => currentXP - localXP;
-  int get level => currentXP ~/ AnalyticsConstants.xpPerLevel;
+  int get level => _pangeaController.analytics.level;
 
   @override
   void initState() {
@@ -142,12 +142,17 @@ class LearningProgressIndicatorsState
     final progressBar = ProgressBar(
       levelBars: [
         LevelBarDetails(
-          fillColor: const Color.fromARGB(255, 0, 190, 83),
+          fillColor: kDebugMode
+              ? const Color.fromARGB(255, 0, 190, 83)
+              : Theme.of(context).colorScheme.primary,
           currentPoints: currentXP,
+          width: levelBarWidth * _pangeaController.analytics.levelProgress,
         ),
         LevelBarDetails(
           fillColor: Theme.of(context).colorScheme.primary,
           currentPoints: serverXP,
+          width:
+              levelBarWidth * _pangeaController.analytics.serverLevelProgress,
         ),
       ],
       progressBarDetails: ProgressBarDetails(
@@ -239,15 +244,19 @@ class LearningProgressIndicatorsState
                 ],
               ),
             ),
-            Container(
-              height: 36,
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Positioned(left: 16, right: 0, child: progressBar),
-                  Positioned(left: 0, child: levelBadge),
-                ],
+            Center(
+              child: SizedBox(
+                height: 36,
+                child: SizedBox(
+                  width: levelBarWidth + 16,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Positioned(left: 16, right: 0, child: progressBar),
+                      Positioned(left: 0, child: levelBadge),
+                    ],
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 16),

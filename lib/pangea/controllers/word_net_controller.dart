@@ -77,7 +77,7 @@ class WordController extends BaseController {
     if (local == null) {
       if (_wordData.length > 100) _wordData.clear();
       _wordData.add(w);
-      setState();
+      setState(null);
     }
   }
 }

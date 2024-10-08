@@ -1,6 +1,5 @@
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -33,27 +32,29 @@ class GeneratePracticeActivityButton extends StatelessWidget {
           return;
         }
 
-        final PracticeActivityEvent? practiceActivityEvent = await MatrixState
-            .pangeaController.practiceGenerationController
-            .getPracticeActivity(
-          PracticeActivityRequest(
-            candidateMessages: [
-              CandidateMessage(
-                msgId: pangeaMessageEvent.eventId,
-                roomId: pangeaMessageEvent.room.id,
-                text:
-                    pangeaMessageEvent.representationByLanguage(l2Code)?.text ??
-                        pangeaMessageEvent.body,
-              ),
-            ],
-            userIds: pangeaMessageEvent.room.client.userID != null
-                ? [pangeaMessageEvent.room.client.userID!]
-                : null,
-          ),
-          pangeaMessageEvent,
-        );
+        throw UnimplementedError();
 
-        onActivityGenerated(practiceActivityEvent);
+        // final PracticeActivityEvent? practiceActivityEvent = await MatrixState
+        //     .pangeaController.practiceGenerationController
+        //     .getPracticeActivity(
+        //   MessageActivityRequest(
+        //     candidateMessages: [
+        //       CandidateMessage(
+        //         msgId: pangeaMessageEvent.eventId,
+        //         roomId: pangeaMessageEvent.room.id,
+        //         text:
+        //             pangeaMessageEvent.representationByLanguage(l2Code)?.text ??
+        //                 pangeaMessageEvent.body,
+        //       ),
+        //     ],
+        //     userIds: pangeaMessageEvent.room.client.userID != null
+        //         ? [pangeaMessageEvent.room.client.userID!]
+        //         : null,
+        //   ),
+        //   pangeaMessageEvent,
+        // );
+
+        // onActivityGenerated(practiceActivityEvent);
       },
       child: Text(L10n.of(context)!.practice),
     );

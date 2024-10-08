@@ -1,20 +1,14 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/constants/local.key.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
-import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
-import 'package:fluffychat/pangea/models/representation_content_model.dart';
-import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
@@ -25,11 +19,11 @@ enum AnalyticsUpdateType { server, local }
 /// handles the processing of analytics for
 /// 1) messages sent by the user and
 /// 2) constructs used by the user, both in sending messages and doing practice activities
-class MyAnalyticsController extends BaseController {
+class MyAnalyticsController extends BaseController<AnalyticsStream> {
   late PangeaController _pangeaController;
   CachedStreamController<AnalyticsUpdateType> analyticsUpdateStream =
       CachedStreamController<AnalyticsUpdateType>();
-  StreamSubscription? _messageSendSubscription;
+  StreamSubscription<AnalyticsStream>? _analyticsStream;
   Timer? _updateTimer;
 
   Client get _client => _pangeaController.matrixState.client;
@@ -60,9 +54,8 @@ class MyAnalyticsController extends BaseController {
   void initialize() {
     // Listen to a stream that provides the eventIDs
     // of new messages sent by the logged in user
-    _messageSendSubscription ??= stateStream
-        .where((data) => data is Map)
-        .listen((data) => onMessageSent(data as Map<String, dynamic>));
+    _analyticsStream ??=
+        stateStream.listen((data) => _onNewAnalyticsData(data));
 
     _refreshAnalyticsIfOutdated();
   }
@@ -73,8 +66,8 @@ class MyAnalyticsController extends BaseController {
     _updateTimer?.cancel();
     lastUpdated = null;
     lastUpdatedCompleter = Completer<DateTime?>();
-    _messageSendSubscription?.cancel();
-    _messageSendSubscription = null;
+    _analyticsStream?.cancel();
+    _analyticsStream = null;
     _refreshAnalyticsIfOutdated();
     clearMessagesSinceUpdate();
   }
@@ -103,77 +96,36 @@ class MyAnalyticsController extends BaseController {
     final DateTime yesterday = DateTime.now().subtract(_timeSinceUpdate);
     if (lastUpdated?.isBefore(yesterday) ?? true) {
       debugPrint("analytics out-of-date, updating");
-      await updateAnalytics();
+      await sendLocalAnalyticsToAnalyticsRoom();
     }
   }
 
   /// Given the data from a newly sent message, format and cache
   /// the message's construct data locally and reset the update timer
-  void onMessageSent(Map<String, dynamic> data) {
-    // cancel the last timer that was set on message event and
-    // reset it to fire after _minutesBeforeUpdate minutes
-    _updateTimer?.cancel();
-    _updateTimer = Timer(Duration(minutes: _minutesBeforeUpdate), () {
-      debugPrint("timer fired, updating analytics");
-      updateAnalytics();
-    });
+  void _onNewAnalyticsData(AnalyticsStream data) {
+    final List<OneConstructUse> constructs = _getDraftUses(data.roomId);
 
-    // extract the relevant data about this message
-    final String? eventID = data['eventID'];
-    final String? roomID = data['roomID'];
-    final String? eventType = data['eventType'];
-    final PangeaRepresentation? originalSent = data['originalSent'];
-    final PangeaMessageTokens? tokensSent = data['tokensSent'];
-    final ChoreoRecord? choreo = data['choreo'];
-    final PracticeActivityEvent? practiceActivity = data['practiceActivity'];
-    final PracticeActivityRecordModel? recordModel = data['recordModel'];
+    constructs.addAll(data.constructs);
 
-    if (roomID == null || eventID == null) return;
-
-    // convert that data into construct uses and add it to the cache
-    final metadata = ConstructUseMetaData(
-      roomId: roomID,
-      eventId: eventID,
-      timeStamp: DateTime.now(),
-    );
-
-    final List<OneConstructUse> constructs = getDraftUses(roomID);
-
-    if (eventType == EventTypes.Message) {
-      final grammarConstructs =
-          choreo?.grammarConstructUses(metadata: metadata);
-      final vocabUses = tokensSent != null
-          ? originalSent?.vocabUses(
-              choreo: choreo,
-              tokens: tokensSent.tokens,
-              metadata: metadata,
-            )
-          : null;
-      constructs.addAll([
-        ...(grammarConstructs ?? []),
-        ...(vocabUses ?? []),
-      ]);
-    }
-
-    if (eventType == PangeaEventTypes.activityRecord &&
-        practiceActivity != null) {
-      final activityConstructs = recordModel?.uses(
-        practiceActivity,
-        metadata: metadata,
-      );
-      constructs.addAll(activityConstructs ?? []);
-    }
+    final String eventID = data.eventId;
+    final String roomID = data.roomId;
 
     _pangeaController.analytics
         .filterConstructs(unfilteredConstructs: constructs)
         .then((filtered) {
+      for (final use in filtered) {
+        debugPrint(
+          "_onNewAnalyticsData filtered use: ${use.constructType.string} ${use.useType.string} ${use.lemma} ${use.useType.pointValue}",
+        );
+      }
       if (filtered.isEmpty) return;
-      filtered.addAll(getDraftUses(roomID));
+
       final level = _pangeaController.analytics.level;
-      addLocalMessage(eventID, filtered).then(
+
+      _addLocalMessage(eventID, filtered).then(
         (_) {
-          clearDraftUses(roomID);
-          afterAddLocalMessages(level);
+          _clearDraftUses(roomID);
+          _decideWhetherToUpdateAnalyticsRoom(level);
         },
       );
     });
@@ -216,40 +168,48 @@ class MyAnalyticsController extends BaseController {
       }
     }
 
+    if (kDebugMode) {
+      for (final use in uses) {
+        debugPrint(
+          "Draft use: ${use.constructType.string} ${use.useType.string} ${use.lemma} ${use.useType.pointValue}",
+        );
+      }
+    }
+
     final level = _pangeaController.analytics.level;
-    addLocalMessage('draft$roomID', uses).then(
-      (_) => afterAddLocalMessages(level),
+    _addLocalMessage('draft$roomID', uses).then(
+      (_) => _decideWhetherToUpdateAnalyticsRoom(level),
     );
   }
 
-  List<OneConstructUse> getDraftUses(String roomID) {
+  List<OneConstructUse> _getDraftUses(String roomID) {
     final currentCache = _pangeaController.analytics.messagesSinceUpdate;
     return currentCache['draft$roomID'] ?? [];
   }
 
-  void clearDraftUses(String roomID) {
+  void _clearDraftUses(String roomID) {
     final currentCache = _pangeaController.analytics.messagesSinceUpdate;
     currentCache.remove('draft$roomID');
-    setMessagesSinceUpdate(currentCache);
+    _setMessagesSinceUpdate(currentCache);
   }
 
   /// Add a list of construct uses for a new message to the local
   /// cache of recently sent messages
-  Future<void> addLocalMessage(
-    String eventID,
+  Future<void> _addLocalMessage(
+    String cacheKey,
     List<OneConstructUse> constructs,
   ) async {
     try {
       final currentCache = _pangeaController.analytics.messagesSinceUpdate;
-      constructs.addAll(currentCache[eventID] ?? []);
-      currentCache[eventID] = constructs;
+      constructs.addAll(currentCache[cacheKey] ?? []);
+      currentCache[cacheKey] = constructs;
 
-      await setMessagesSinceUpdate(currentCache);
+      await _setMessagesSinceUpdate(currentCache);
     } catch (e, s) {
       ErrorHandler.logError(
         e: PangeaWarningError("Failed to add message since update: $e"),
         s: s,
-        m: 'Failed to add message since update for eventId: $eventID',
+        m: 'Failed to add message since update for eventId: $cacheKey',
       );
     }
   }
@@ -258,27 +218,46 @@ class MyAnalyticsController extends BaseController {
   /// If the addition brought the total number of messages in the cache
   /// to the max, or if the addition triggered a level-up, update the analytics.
   /// Otherwise, add a local update to the alert stream.
-  void afterAddLocalMessages(int prevLevel) {
+  void _decideWhetherToUpdateAnalyticsRoom(int prevLevel) {
+    // cancel the last timer that was set on message event and
+    // reset it to fire after _minutesBeforeUpdate minutes
+    _updateTimer?.cancel();
+    _updateTimer = Timer(Duration(minutes: _minutesBeforeUpdate), () {
+      debugPrint("timer fired, updating analytics");
+      sendLocalAnalyticsToAnalyticsRoom();
+    });
+
     if (_pangeaController.analytics.messagesSinceUpdate.length >
         _maxMessagesCached) {
       debugPrint("reached max messages, updating");
-      updateAnalytics();
+      sendLocalAnalyticsToAnalyticsRoom();
       return;
     }
 
     final int newLevel = _pangeaController.analytics.level;
     newLevel > prevLevel
-        ? updateAnalytics()
+        ? sendLocalAnalyticsToAnalyticsRoom()
         : analyticsUpdateStream.add(AnalyticsUpdateType.local);
   }
 
   /// Clears the local cache of recently sent constructs. Called before updating analytics
   void clearMessagesSinceUpdate() {
-    _pangeaController.pStoreService.delete(PLocalKey.messagesSinceUpdate);
+    final localCache = _pangeaController.analytics.messagesSinceUpdate;
+    final draftKeys = localCache.keys.where((key) => key.startsWith('draft'));
+    if (draftKeys.isEmpty) {
+      _pangeaController.pStoreService.delete(PLocalKey.messagesSinceUpdate);
+      return;
+    }
+
+    final Map<String, List<OneConstructUse>> newCache = {};
+    for (final key in draftKeys) {
+      newCache[key] = localCache[key]!;
+    }
+    _setMessagesSinceUpdate(newCache);
   }
 
   /// Save the local cache of recently sent constructs to the local storage
-  Future<void> setMessagesSinceUpdate(
+  Future<void> _setMessagesSinceUpdate(
     Map<String, List<OneConstructUse>> cache,
   ) async {
     final formattedCache = {};
@@ -302,7 +281,7 @@ class MyAnalyticsController extends BaseController {
   /// for the completion of the previous update and returns. Otherwise, it creates a new [_updateCompleter] and
   /// proceeds with the update process. If the update is successful, it clears any messages that were received
   /// since the last update and notifies the [analyticsUpdateStream].
-  Future<void> updateAnalytics() async {
+  Future<void> sendLocalAnalyticsToAnalyticsRoom() async {
     if (_pangeaController.matrixState.client.userID == null) return;
     if (!(_updateCompleter?.isCompleted ?? true)) {
       await _updateCompleter!.future;
@@ -347,4 +326,17 @@ class MyAnalyticsController extends BaseController {
       _pangeaController.analytics.locallyCachedSentConstructs,
     );
   }
+}
+
+class AnalyticsStream {
+  final String eventId;
+  final String roomId;
+
+  final List<OneConstructUse> constructs;
+
+  AnalyticsStream({
+    required this.eventId,
+    required this.roomId,
+    required this.constructs,
+  });
 }

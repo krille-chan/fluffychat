@@ -1,5 +1,4 @@
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:flutter/material.dart';
@@ -35,24 +34,25 @@ class AnalyticsPopup extends StatelessWidget {
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: constructsModel.constructs.isEmpty
+              child: constructsModel.constructList.isEmpty
                   ? Center(
                       child: Text(L10n.of(context)!.noDataFound),
                     )
                   : ListView.builder(
-                      itemCount: constructsModel.constructs.length,
+                      itemCount: constructsModel.constructList.length,
                       itemBuilder: (context, index) {
                         return Tooltip(
                           message:
-                              "${constructsModel.constructs[index].points} / ${constructsModel.type.maxXPPerLemma}",
+                              "${constructsModel.constructList[index].points} / ${constructsModel.maxXPPerLemma}",
                           child: ListTile(
                             onTap: () {},
                             title: Text(
-                              constructsModel.constructs[index].lemma,
+                              constructsModel.constructList[index].lemma,
                             ),
                             subtitle: LinearProgressIndicator(
-                              value: constructsModel.constructs[index].points /
-                                  constructsModel.type.maxXPPerLemma,
+                              value:
+                                  constructsModel.constructList[index].points /
+                                      constructsModel.maxXPPerLemma,
                               minHeight: 20,
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(AppConfig.borderRadius),

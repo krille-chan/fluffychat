@@ -14,8 +14,17 @@ class PangeaMessageTokens {
   });
 
   factory PangeaMessageTokens.fromJson(Map<String, dynamic> json) {
+    // "tokens" was accidentally used as the key in the first implementation
+    // _tokensKey is the correct key
+    final something = json[_tokensKey] ?? json["tokens"];
+
+    final Iterable tokensIterable = something is Iterable
+        ? something
+        : something is String
+            ? jsonDecode(json[_tokensKey])
+            : null;
     return PangeaMessageTokens(
-      tokens: (jsonDecode(json[_tokensKey] ?? "[]") as Iterable)
+      tokens: tokensIterable
           .map((e) => PangeaToken.fromJson(e))
           .toList()
           .cast<PangeaToken>(),

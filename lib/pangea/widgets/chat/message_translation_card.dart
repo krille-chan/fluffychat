@@ -1,11 +1,12 @@
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -13,13 +14,11 @@ import 'package:flutter/material.dart';
 
 class MessageTranslationCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
-  final bool immersionMode;
-  final MessageTextSelection selection;
+  final PangeaTokenText? selection;
 
   const MessageTranslationCard({
     super.key,
     required this.messageEvent,
-    required this.immersionMode,
     required this.selection,
   });
 
@@ -30,10 +29,25 @@ class MessageTranslationCard extends StatefulWidget {
 class MessageTranslationCardState extends State<MessageTranslationCard> {
   PangeaRepresentation? repEvent;
   String? selectionTranslation;
-  String? oldSelectedText;
-  bool _fetchingRepresentation = false;
+  bool _fetchingTranslation = false;
 
-  Future<void> fetchRepresentation() async {
+  @override
+  void initState() {
+    debugPrint('MessageTranslationCard initState');
+    super.initState();
+    loadTranslation();
+  }
+
+  @override
+  void didUpdateWidget(covariant MessageTranslationCard oldWidget) {
+    if (oldWidget.selection != widget.selection) {
+      debugPrint('selection changed');
+      loadTranslation();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  Future<void> fetchRepresentationText() async {
     if (l1Code == null) return;
 
     repEvent = widget.messageEvent
@@ -49,48 +63,48 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     }
   }
 
-  Future<void> translateSelection() async {
-    if (widget.selection.selectedText == null ||
-        l1Code == null ||
-        l2Code == null ||
-        widget.selection.messageText == null) {
-      selectionTranslation = null;
+  Future<void> fetchSelectedTextTranslation() async {
+    if (!mounted) return;
+
+    final pangeaController = MatrixState.pangeaController;
+
+    if (!pangeaController.languageController.languagesSet) {
+      selectionTranslation = widget.messageEvent.messageDisplayText;
       return;
     }
 
-    oldSelectedText = widget.selection.selectedText;
-    final String accessToken =
-        MatrixState.pangeaController.userController.accessToken;
-
-    final resp = await FullTextTranslationRepo.translate(
-      accessToken: accessToken,
+    final FullTextTranslationResponseModel res =
+        await FullTextTranslationRepo.translate(
+      accessToken: pangeaController.userController.accessToken,
       request: FullTextTranslationRequestModel(
-        text: widget.selection.messageText!,
+        text: widget.messageEvent.messageDisplayText,
+        srcLang: widget.messageEvent.messageDisplayLangCode,
         tgtLang: l1Code!,
+        offset: widget.selection?.offset,
+        length: widget.selection?.length,
         userL1: l1Code!,
         userL2: l2Code!,
-        srcLang: widget.messageEvent.messageDisplayLangCode,
-        length: widget.selection.selectedText!.length,
-        offset: widget.selection.offset,
       ),
     );
 
-    if (mounted) {
-      selectionTranslation = resp.bestTranslation;
-    }
+    selectionTranslation = res.translations.first;
   }
 
-  Future<void> loadTranslation(Future<void> Function() future) async {
+  Future<void> loadTranslation() async {
     if (!mounted) return;
-    setState(() => _fetchingRepresentation = true);
+
+    setState(() => _fetchingTranslation = true);
+
     try {
-      await future();
+      await (widget.selection != null
+          ? fetchSelectedTextTranslation()
+          : fetchRepresentationText());
     } catch (err) {
       ErrorHandler.logError(e: err);
     }
 
     if (mounted) {
-      setState(() => _fetchingRepresentation = false);
+      setState(() => _fetchingTranslation = false);
     }
   }
 
@@ -99,68 +113,36 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   String? get l2Code =>
       MatrixState.pangeaController.languageController.activeL2Code();
 
-  @override
-  void initState() {
-    super.initState();
-    loadTranslation(() async {
-      final List<Future> futures = [];
-      futures.add(fetchRepresentation());
-      if (widget.selection.selectedText != null) {
-        futures.add(translateSelection());
-      }
-      await Future.wait(futures);
-    });
-  }
-
-  @override
-  void didUpdateWidget(covariant MessageTranslationCard oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldSelectedText != widget.selection.selectedText) {
-      loadTranslation(translateSelection);
-    }
-  }
-
-  void closeHint() {
-    MatrixState.pangeaController.instructions.turnOffInstruction(
-      InlineInstructions.l1Translation.toString(),
-    );
-    MatrixState.pangeaController.instructions.updateEnableInstructions(
-      InlineInstructions.l1Translation.toString(),
-      true,
-    );
-    setState(() {});
-  }
-
   /// Show warning if message's language code is user's L1
   /// or if translated text is same as original text.
   /// Warning does not show if was previously closed
-  bool get showWarning {
-    if (MatrixState.pangeaController.instructions.wereInstructionsTurnedOff(
-      InlineInstructions.l1Translation.toString(),
-    )) return false;
-
+  bool get notGoingToTranslate {
     final bool isWrittenInL1 =
         l1Code != null && widget.messageEvent.originalSent?.langCode == l1Code;
     final bool isTextIdentical = selectionTranslation != null &&
         widget.messageEvent.originalSent?.text == selectionTranslation;
 
-    return isWrittenInL1 || isTextIdentical;
+    return (isWrittenInL1 || isTextIdentical);
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!_fetchingRepresentation &&
+    debugPrint('MessageTranslationCard build');
+    if (!_fetchingTranslation &&
         repEvent == null &&
         selectionTranslation == null) {
       return const CardErrorWidget();
     }
 
     return Container(
-      child: _fetchingRepresentation
+      padding: const EdgeInsets.all(8),
+      constraints: const BoxConstraints(minHeight: minCardHeight),
+      alignment: Alignment.center,
+      child: _fetchingTranslation
           ? const ToolbarContentLoadingIndicator()
           : Column(
               children: [
-                selectionTranslation != null
+                widget.selection != null
                     ? Text(
                         selectionTranslation!,
                         style: BotStyle.text(context),
@@ -169,12 +151,17 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
                         repEvent!.text,
                         style: BotStyle.text(context),
                       ),
-                const SizedBox(height: 10),
-                if (showWarning)
+                if (notGoingToTranslate && widget.selection == null)
                   InlineTooltip(
-                    body: InlineInstructions.l1Translation.body(context),
-                    onClose: closeHint,
+                    instructionsEnum: InstructionsEnum.l1Translation,
+                    onClose: () => setState(() {}),
                   ),
+                if (widget.selection != null)
+                  InlineTooltip(
+                    instructionsEnum: InstructionsEnum.clickAgainToDeselect,
+                    onClose: () => setState(() {}),
+                  ),
+                // if (widget.selection != null)
               ],
             ),
     );

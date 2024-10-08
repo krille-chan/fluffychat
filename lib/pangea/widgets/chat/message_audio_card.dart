@@ -1,6 +1,8 @@
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +11,12 @@ import 'package:matrix/matrix.dart';
 
 class MessageAudioCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
+  final MessageOverlayController overlayController;
 
   const MessageAudioCard({
     super.key,
     required this.messageEvent,
+    required this.overlayController,
   });
 
   @override
@@ -45,7 +49,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       audioFile =
           await widget.messageEvent.getMatrixAudioFile(langCode, context);
       if (mounted) setState(() => _isLoading = false);
-    } catch (e, _) {
+    } catch (e, s) {
       debugPrint(StackTrace.current.toString());
       if (!mounted) return;
       setState(() => _isLoading = false);
@@ -56,7 +60,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       );
       ErrorHandler.logError(
         e: Exception(),
-        s: StackTrace.current,
+        s: s,
         m: 'something wrong getting audio in MessageAudioCardState',
         data: {
           'widget.messageEvent.messageDisplayLangCode':
@@ -70,29 +74,33 @@ class MessageAudioCardState extends State<MessageAudioCard> {
   @override
   void initState() {
     super.initState();
+
+    //once we have audio for words, we'll play that
+    if (widget.overlayController.isSelection) {
+      widget.overlayController.clearSelection();
+    }
+
     fetchAudio();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(8),
+      constraints: const BoxConstraints(minHeight: minCardHeight),
+      alignment: Alignment.center,
       child: _isLoading
           ? const ToolbarContentLoadingIndicator()
           : localAudioEvent != null || audioFile != null
-              ? Container(
-                  constraints: const BoxConstraints(
-                    maxWidth: 250,
-                  ),
-                  child: Column(
-                    children: [
-                      AudioPlayerWidget(
-                        localAudioEvent,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                        matrixFile: audioFile,
-                        autoplay: true,
-                      ),
-                    ],
-                  ),
+              ? Column(
+                  children: [
+                    AudioPlayerWidget(
+                      localAudioEvent,
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      matrixFile: audioFile,
+                      autoplay: true,
+                    ),
+                  ],
                 )
               : const CardErrorWidget(),
     );

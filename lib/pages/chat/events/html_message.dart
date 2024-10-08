@@ -5,7 +5,6 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_highlighter/flutter_highlighter.dart';
 import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -75,9 +74,6 @@ class HtmlMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // #Pangea
-    controller.textSelection.setMessageText(html);
-    // Pangea#
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
 
     final linkColor = textColor.withAlpha(150);
@@ -97,9 +93,6 @@ class HtmlMessage extends StatelessWidget {
     // there is no need to pre-validate the html, as we validate it while rendering
     // #Pangea
     return SelectionArea(
-      onSelectionChanged: (SelectedContent? selection) {
-        controller.textSelection.onSelection(selection?.plainText);
-      },
       child: GestureDetector(
         onTap: () {
           if (pangeaMessageEvent != null && !isOverlay) {

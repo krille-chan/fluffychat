@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'dart:math';
 
-import 'package:fluffychat/pangea/constants/analytics_constants.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/match_rule_ids.dart';
@@ -42,7 +42,31 @@ class GetAnalyticsController {
   int get serverXP => currentXP - localXP;
 
   /// Get the current level based on the number of xp points
-  int get level => currentXP ~/ AnalyticsConstants.xpPerLevel;
+  /// The formula is calculated from XP and modeled on RPG games
+  int get level => 1 + sqrt((1 + 8 * currentXP / 100) / 2).floor();
+
+  // the minimum XP required for a given level
+  double get minXPForLevel {
+    return 12.5 * (2 * pow(level - 1, 2) - 1);
+  }
+
+  // the minimum XP required for the next level
+  double get minXPForNextLevel {
+    return 12.5 * (2 * pow(level, 2) - 1);
+  }
+
+  // the progress within the current level as a percentage (0.0 to 1.0)
+  double get levelProgress {
+    final progress =
+        (currentXP - minXPForLevel) / (minXPForNextLevel - minXPForLevel);
+    return progress >= 0 ? progress : 0;
+  }
+
+  double get serverLevelProgress {
+    final progress =
+        (serverXP - minXPForLevel) / (minXPForNextLevel - minXPForLevel);
+    return progress >= 0 ? progress : 0;
+  }
 
   void initialize() {
     _analyticsUpdateSubscription ??= _pangeaController
