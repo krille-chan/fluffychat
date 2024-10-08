@@ -10,13 +10,13 @@ import 'package:fluffychat/pangea/config/environment.dart';
 /// https://api.staging.pangea.chat/api/v1/
 class PApiUrls {
   static String choreoPrefix = "/choreo";
-  static String revenuePrefix = "/revenue";
+  static String subscriptionPrefix = "/subscription";
   static String accountPrefix = "/account";
 
   static String choreoEndpoint =
       "${Environment.choreoApi}${PApiUrls.choreoPrefix}";
-  static String revenueEndpoint =
-      "${Environment.choreoApi}${PApiUrls.revenuePrefix}";
+  static String subscriptionEndpoint =
+      "${Environment.choreoApi}${PApiUrls.subscriptionPrefix}";
   static String accountEndpoint =
       "${Environment.choreoApi}${PApiUrls.accountPrefix}";
 
@@ -65,9 +65,9 @@ class PApiUrls {
 
   static String rcApiV1 = "https://api.revenuecat.com/v1";
 
-  static String rcAppsChoreo = "${PApiUrls.revenueEndpoint}/app_ids";
+  static String rcAppsChoreo = "${PApiUrls.subscriptionEndpoint}/app_ids";
   static String rcProductsChoreo =
-      "${PApiUrls.revenueEndpoint}/all_products";
+      "${PApiUrls.subscriptionEndpoint}/all_products";
 
   static String rcSubscription = "$rcApiV1/subscribers";
 }
