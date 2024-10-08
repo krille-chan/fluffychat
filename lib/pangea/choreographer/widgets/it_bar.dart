@@ -114,8 +114,7 @@ class ITBarState extends State<ITBar> {
                             // const SizedBox(height: 40.0),
                             OriginalText(controller: itController),
                             const SizedBox(height: 7.0),
-                            if (!InstructionsEnum.translationChoices
-                                .toggledOff(context))
+                            if (showTranslationsChoicesTooltip)
                               InlineTooltip(
                                 instructionsEnum:
                                     InstructionsEnum.translationChoices,
@@ -166,6 +165,16 @@ class ITBarState extends State<ITBar> {
               // ),
             ),
     );
+  }
+
+  bool get showTranslationsChoicesTooltip {
+    return !itController.choreographer.isFetching &&
+        !itController.isLoading &&
+        !itController.isEditingSourceText &&
+        !itController.isTranslationDone &&
+        itController.currentITStep != null &&
+        itController.currentITStep!.continuances.isNotEmpty &&
+        !itController.showChoiceFeedback;
   }
 }
 
