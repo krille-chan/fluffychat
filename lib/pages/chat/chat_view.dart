@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/chat/chat_floating_action_button.dart';
+import 'package:fluffychat/pangea/widgets/chat/chat_view_background.dart';
 import 'package:fluffychat/pangea/widgets/chat/input_bar_wrapper.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
@@ -419,6 +420,9 @@ class ChatView extends StatelessWidget {
                           ],
                         ),
                         // #Pangea
+                        ChatViewBackground(
+                          choreographer: controller.choreographer,
+                        ),
                         Positioned(
                           left: 0,
                           right: 0,
