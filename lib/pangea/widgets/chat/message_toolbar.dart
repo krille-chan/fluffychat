@@ -133,6 +133,9 @@ class MessageToolbarState extends State<MessageToolbar> {
                 Radius.circular(AppConfig.borderRadius),
               ),
             ),
+            constraints: const BoxConstraints(
+              maxHeight: AppConfig.toolbarMaxHeight,
+            ),
             child: Row(
               children: [
                 Expanded(

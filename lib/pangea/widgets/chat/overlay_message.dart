@@ -88,30 +88,32 @@ class OverlayMessage extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius,
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            AppConfig.borderRadius,
+      child: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              AppConfig.borderRadius,
+            ),
           ),
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
-        ),
-        width: messageWidth,
-        height: messageHeight,
-        child: MessageContent(
-          pangeaMessageEvent.event,
-          textColor: ownMessage
-              ? theme.colorScheme.onPrimary
-              : theme.colorScheme.onSurface,
-          pangeaMessageEvent: pangeaMessageEvent,
-          immersionMode: immersionMode,
-          overlayController: overlayController,
-          controller: controller,
-          nextEvent: nextEvent,
-          prevEvent: prevEvent,
-          borderRadius: borderRadius,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 8,
+          ),
+          width: messageWidth,
+          height: messageHeight,
+          child: MessageContent(
+            pangeaMessageEvent.event,
+            textColor: ownMessage
+                ? theme.colorScheme.onPrimary
+                : theme.colorScheme.onSurface,
+            pangeaMessageEvent: pangeaMessageEvent,
+            immersionMode: immersionMode,
+            overlayController: overlayController,
+            controller: controller,
+            nextEvent: nextEvent,
+            prevEvent: prevEvent,
+            borderRadius: borderRadius,
+          ),
         ),
       ),
     );

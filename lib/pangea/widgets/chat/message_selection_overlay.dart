@@ -232,8 +232,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         messageSize!.height -
         toolbarButtonsHeight;
 
-    final bool hasHeaderOverflow = (messageOffset!.dy - toolbarButtonsHeight) <
-        (AppConfig.toolbarMaxHeight + headerHeight);
+    final bool hasHeaderOverflow =
+        messageOffset!.dy < (AppConfig.toolbarMaxHeight + headerHeight);
     final bool hasFooterOverflow = footerHeight > currentBottomOffset;
 
     if (!hasHeaderOverflow && !hasFooterOverflow) return;
@@ -252,7 +252,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         newTopOffset < (headerHeight + AppConfig.toolbarMaxHeight);
 
     if (hasHeaderOverflow || upshiftCausesHeaderOverflow) {
-      animationEndOffset = midpoint - messageSize!.height;
+      animationEndOffset =
+          midpoint - messageSize!.height - toolbarButtonsHeight;
       final totalTopOffset =
           animationEndOffset + messageSize!.height + AppConfig.toolbarMaxHeight;
       final remainingSpace = screenHeight - totalTopOffset;
@@ -263,6 +264,15 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       scrollOffset = animationEndOffset - currentBottomOffset;
     } else if (hasFooterOverflow) {
       scrollOffset = footerHeight - currentBottomOffset;
+      animationEndOffset = footerHeight;
+    }
+
+    if (animationEndOffset < footerHeight + toolbarButtonsHeight) {
+      adjustedMessageHeight = screenHeight -
+          AppConfig.toolbarMaxHeight -
+          headerHeight -
+          footerHeight -
+          toolbarButtonsHeight;
       animationEndOffset = footerHeight;
     }
 
@@ -296,6 +306,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   Size? get messageSize => messageRenderBox?.size;
   Offset? get messageOffset => messageRenderBox?.localToGlobal(Offset.zero);
+  double? adjustedMessageHeight;
 
   // height of the reply/forward bar + the reaction picker + contextual padding
   double get footerHeight =>
@@ -352,16 +363,20 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               pangeaMessageEvent: widget._pangeaMessageEvent,
               overLayController: this,
             ),
-            OverlayMessage(
-              pangeaMessageEvent,
-              immersionMode: widget.chatController.choreographer.immersionMode,
-              controller: widget.chatController,
-              overlayController: this,
-              nextEvent: widget._nextEvent,
-              prevEvent: widget._prevEvent,
-              timeline: widget.chatController.timeline!,
-              messageWidth: messageSize!.width,
-              messageHeight: messageSize!.height,
+            SizedBox(
+              height: adjustedMessageHeight,
+              child: OverlayMessage(
+                pangeaMessageEvent,
+                immersionMode:
+                    widget.chatController.choreographer.immersionMode,
+                controller: widget.chatController,
+                overlayController: this,
+                nextEvent: widget._nextEvent,
+                prevEvent: widget._prevEvent,
+                timeline: widget.chatController.timeline!,
+                messageWidth: messageSize!.width,
+                messageHeight: messageSize!.height,
+              ),
             ),
             ToolbarButtons(
               overlayController: this,
