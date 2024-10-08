@@ -1,6 +1,4 @@
-import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
-import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -24,54 +22,40 @@ class InstructionsController {
   /// Instruction popup has already been shown this session
   final Map<String, bool> _instructionsShown = {};
 
-  /// Returns true if the user requested this popup not be shown again
-  bool? toggledOff(String key) {
-    final bool? instruction = InstructionsEnum.values
-        .firstWhereOrNull((value) => value.toString() == key)
-        ?.toggledOff;
-    final bool? tooltip = InlineInstructions.values
-        .firstWhereOrNull((value) => value.toString() == key)
-        ?.toggledOff;
-    return instruction ?? tooltip;
-  }
-
   InstructionsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
   }
 
-  /// Returns true if the instructions were closed
-  /// or turned off by the user via the toggle switch
-  bool wereInstructionsTurnedOff(String key) {
-    return toggledOff(key) ?? _instructionsClosed[key] ?? false;
-  }
-
-  void turnOffInstruction(String key) => _instructionsClosed[key] = true;
-
-  void updateEnableInstructions(
-    String key,
+  void setToggledOff(
+    InstructionsEnum key,
     bool value,
   ) {
     _pangeaController.userController.updateProfile((profile) {
-      if (key == InstructionsEnum.itInstructions.toString()) {
-        profile.instructionSettings.showedItInstructions = value;
-      }
-      if (key == InstructionsEnum.clickMessage.toString()) {
-        profile.instructionSettings.showedClickMessage = value;
-      }
-      if (key == InstructionsEnum.blurMeansTranslate.toString()) {
-        profile.instructionSettings.showedBlurMeansTranslate = value;
-      }
-      if (key == InstructionsEnum.tooltipInstructions.toString()) {
-        profile.instructionSettings.showedTooltipInstructions = value;
-      }
-      if (key == InlineInstructions.speechToText.toString()) {
-        profile.instructionSettings.showedSpeechToTextTooltip = value;
-      }
-      if (key == InlineInstructions.l1Translation.toString()) {
-        profile.instructionSettings.showedL1TranslationTooltip = value;
-      }
-      if (key == InlineInstructions.translationChoices.toString()) {
-        profile.instructionSettings.showedTranslationChoicesTooltip = value;
+      switch (key) {
+        case InstructionsEnum.speechToText:
+          profile.instructionSettings.showedSpeechToTextTooltip = value;
+          break;
+        case InstructionsEnum.l1Translation:
+          profile.instructionSettings.showedL1TranslationTooltip = value;
+          break;
+        case InstructionsEnum.translationChoices:
+          profile.instructionSettings.showedTranslationChoicesTooltip = value;
+          break;
+        case InstructionsEnum.tooltipInstructions:
+          profile.instructionSettings.showedTooltipInstructions = value;
+          break;
+        case InstructionsEnum.itInstructions:
+          profile.instructionSettings.showedItInstructions = value;
+          break;
+        case InstructionsEnum.clickMessage:
+          profile.instructionSettings.showedClickMessage = value;
+          break;
+        case InstructionsEnum.blurMeansTranslate:
+          profile.instructionSettings.showedBlurMeansTranslate = value;
+          break;
+        case InstructionsEnum.clickAgainToDeselect:
+          profile.instructionSettings.showedClickAgainToDeselect = value;
+          break;
       }
       return profile;
     });
@@ -90,7 +74,7 @@ class InstructionsController {
     }
     _instructionsShown[key.toString()] = true;
 
-    if (wereInstructionsTurnedOff(key.toString())) {
+    if (key.toggledOff(context)) {
       return;
     }
     if (L10n.of(context) == null) {
@@ -142,31 +126,6 @@ class InstructionsController {
       ),
     );
   }
-
-  /// Returns a widget that will be added to existing widget
-  /// which displays hint text defined in the enum extension
-  Widget getInstructionInlineTooltip(
-    BuildContext context,
-    InlineInstructions key,
-    VoidCallback onClose,
-  ) {
-    if (wereInstructionsTurnedOff(key.toString())) {
-      return const SizedBox();
-    }
-
-    if (L10n.of(context) == null) {
-      ErrorHandler.logError(
-        m: "null context in ITBotButton.showCard",
-        s: StackTrace.current,
-      );
-      return const SizedBox();
-    }
-
-    return InlineTooltip(
-      body: InlineInstructions.speechToText.body(context),
-      onClose: onClose,
-    );
-  }
 }
 
 /// User can toggle on to prevent Instruction Card
@@ -196,12 +155,10 @@ class InstructionsToggleState extends State<InstructionsToggle> {
     return SwitchListTile.adaptive(
       activeColor: AppConfig.activeToggleColor,
       title: Text(L10n.of(context)!.doNotShowAgain),
-      value: pangeaController.instructions.wereInstructionsTurnedOff(
-        widget.instructionsKey.toString(),
-      ),
+      value: widget.instructionsKey.toggledOff(context),
       onChanged: ((value) async {
-        pangeaController.instructions.updateEnableInstructions(
-          widget.instructionsKey.toString(),
+        pangeaController.instructions.setToggledOff(
+          widget.instructionsKey,
           value,
         );
         setState(() {});

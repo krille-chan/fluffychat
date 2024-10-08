@@ -18,10 +18,10 @@ class WhyButton extends StatelessWidget {
     return TextButton(
       onPressed: loading ? null : onPress,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(
+        backgroundColor: WidgetStateProperty.all<Color>(
           AppConfig.primaryColor.withOpacity(0.1),
         ),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10), // Border radius
             side: const BorderSide(

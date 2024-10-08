@@ -1,35 +1,32 @@
-import 'dart:async';
+import 'dart:developer';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_speech_to_text_card.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
+import 'package:fluffychat/pangea/widgets/select_to_define.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:matrix/matrix.dart';
+
+const double minCardHeight = 70;
 
 class MessageToolbar extends StatefulWidget {
-  final MessageTextSelection textSelection;
   final PangeaMessageEvent pangeaMessageEvent;
-  final ChatController controller;
-  final MessageMode? initialMode;
+  final MessageOverlayController overLayController;
 
   const MessageToolbar({
     super.key,
-    required this.textSelection,
     required this.pangeaMessageEvent,
-    required this.controller,
-    this.initialMode,
+    required this.overLayController,
   });
 
   @override
@@ -37,289 +34,119 @@ class MessageToolbar extends StatefulWidget {
 }
 
 class MessageToolbarState extends State<MessageToolbar> {
-  Widget? toolbarContent;
-  MessageMode? currentMode;
-  bool updatingMode = false;
-  late StreamSubscription<String?> selectionStream;
-
-  void updateMode(MessageMode newMode) {
-    //Early exit from the function if the widget has been unmounted to prevent updates on an inactive widget.
-    if (!mounted) return;
-    if (updatingMode) return;
-    debugPrint("updating toolbar mode");
-    final bool subscribed =
-        MatrixState.pangeaController.subscriptionController.isSubscribed;
-
-    if (!newMode.isValidMode(widget.pangeaMessageEvent.event)) {
-      ErrorHandler.logError(
-        e: "Invalid mode for event",
-        s: StackTrace.current,
-        data: {
-          "newMode": newMode,
-          "event": widget.pangeaMessageEvent.event,
-        },
-      );
-      return;
-    }
-
-    // if there is an uncompleted activity, then show that
-    // we don't want the user to user the tools to get the answer :P
-    if (widget.pangeaMessageEvent.hasUncompletedActivity) {
-      newMode = MessageMode.practiceActivity;
-    }
-
-    if (mounted) {
-      setState(() {
-        currentMode = newMode;
-        updatingMode = true;
-      });
-    }
-
-    if (!subscribed) {
-      toolbarContent = MessageUnsubscribedCard(
-        languageTool: newMode.title(context),
-        mode: newMode,
-        controller: this,
-      );
-    } else {
-      switch (currentMode) {
-        case MessageMode.translation:
-          showTranslation();
-          break;
-        case MessageMode.textToSpeech:
-          showTextToSpeech();
-          break;
-        case MessageMode.speechToText:
-          showSpeechToText();
-          break;
-        case MessageMode.definition:
-          showDefinition();
-          break;
-        case MessageMode.practiceActivity:
-          showPracticeActivity();
-          break;
-        default:
-          ErrorHandler.logError(
-            e: "Invalid toolbar mode",
-            s: StackTrace.current,
-            data: {"newMode": newMode},
-          );
-          break;
-      }
-    }
-    if (mounted) {
-      setState(() {
-        updatingMode = false;
-      });
-    }
-  }
-
-  void showTranslation() {
-    debugPrint("show translation");
-    toolbarContent = MessageTranslationCard(
-      messageEvent: widget.pangeaMessageEvent,
-      immersionMode: widget.controller.choreographer.immersionMode,
-      selection: widget.textSelection,
-    );
-  }
-
-  void showTextToSpeech() {
-    debugPrint("show text to speech");
-    toolbarContent = MessageAudioCard(
-      messageEvent: widget.pangeaMessageEvent,
-    );
-  }
-
-  void showSpeechToText() {
-    debugPrint("show speech to text");
-    toolbarContent = MessageSpeechToTextCard(
-      messageEvent: widget.pangeaMessageEvent,
-    );
-  }
-
-  void showDefinition() {
-    debugPrint("show definition");
-    if (widget.textSelection.selectedText == null ||
-        widget.textSelection.messageText == null ||
-        widget.textSelection.selectedText!.isEmpty) {
-      toolbarContent = const SelectToDefine();
-      return;
-    }
-
-    toolbarContent = WordDataCard(
-      word: widget.textSelection.selectedText!,
-      wordLang: widget.pangeaMessageEvent.messageDisplayLangCode,
-      fullText: widget.textSelection.messageText!,
-      fullTextLang: widget.pangeaMessageEvent.messageDisplayLangCode,
-      hasInfo: true,
-      room: widget.controller.room,
-    );
-  }
-
-  void showPracticeActivity() {
-    toolbarContent = PracticeActivityCard(
-      pangeaMessageEvent: widget.pangeaMessageEvent,
-    );
-  }
-
-  void showImage() {}
-
-  void spellCheck() {}
-
   @override
   void initState() {
     super.initState();
-    widget.textSelection.selectedText = null;
+  }
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (widget.pangeaMessageEvent.isAudioMessage) {
-        updateMode(MessageMode.speechToText);
-        return;
-      }
+  Widget get toolbarContent {
+    final bool subscribed =
+        MatrixState.pangeaController.subscriptionController.isSubscribed;
 
-      if (widget.initialMode != null) {
-        updateMode(widget.initialMode!);
-      } else {
-        MatrixState.pangeaController.userController.profile.userSettings
-                .autoPlayMessages
-            ? updateMode(MessageMode.textToSpeech)
-            : updateMode(MessageMode.translation);
-      }
-    });
+    if (!subscribed) {
+      return MessageUnsubscribedCard(
+        controller: widget.overLayController,
+      );
+    }
 
-    Timer? timer;
-    selectionStream =
-        widget.textSelection.selectionStream.stream.listen((value) {
-      timer?.cancel();
-      timer = Timer(const Duration(milliseconds: 500), () {
-        if (value != null && value.isNotEmpty) {
-          final MessageMode newMode = currentMode == MessageMode.definition
-              ? MessageMode.definition
-              : MessageMode.translation;
-          updateMode(newMode);
-        } else if (currentMode != null) {
-          updateMode(currentMode!);
+    switch (widget.overLayController.toolbarMode) {
+      case MessageMode.translation:
+        return MessageTranslationCard(
+          messageEvent: widget.pangeaMessageEvent,
+          selection: widget.overLayController.selectedSpan,
+        );
+      case MessageMode.textToSpeech:
+        return MessageAudioCard(
+          messageEvent: widget.pangeaMessageEvent,
+          overlayController: widget.overLayController,
+        );
+      case MessageMode.speechToText:
+        return MessageSpeechToTextCard(
+          messageEvent: widget.pangeaMessageEvent,
+        );
+      case MessageMode.definition:
+        if (!widget.overLayController.isSelection) {
+          return const SelectToDefine();
+        } else {
+          try {
+            final selectedText = widget.overLayController.targetText;
+
+            return WordDataCard(
+              word: selectedText,
+              wordLang: widget.pangeaMessageEvent.messageDisplayLangCode,
+              fullText: widget.pangeaMessageEvent.messageDisplayText,
+              fullTextLang: widget.pangeaMessageEvent.messageDisplayLangCode,
+              hasInfo: true,
+              room: widget.overLayController.widget.chatController.room,
+            );
+          } catch (e, s) {
+            debugger(when: kDebugMode);
+            ErrorHandler.logError(
+              e: "Error in WordDataCard",
+              s: s,
+              data: {
+                "word": widget.overLayController.targetText,
+                "fullText": widget.pangeaMessageEvent.messageDisplayText,
+              },
+            );
+            return const SizedBox();
+          }
         }
-      });
-    });
+      case MessageMode.practiceActivity:
+        return PracticeActivityCard(
+          pangeaMessageEvent: widget.pangeaMessageEvent,
+          overlayController: widget.overLayController,
+        );
+      default:
+        debugger(when: kDebugMode);
+        ErrorHandler.logError(
+          e: "Invalid toolbar mode",
+          s: StackTrace.current,
+          data: {"newMode": widget.overLayController.toolbarMode},
+        );
+        return const SizedBox();
+    }
   }
 
   @override
   void dispose() {
-    selectionStream.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final buttonRow = Row(
-      mainAxisSize: MainAxisSize.min,
-      children: MessageMode.values
-          .map(
-            (mode) => mode.isValidMode(widget.pangeaMessageEvent.event)
-                ? Tooltip(
-                    message: mode.tooltip(context),
-                    child: IconButton(
-                      icon: Icon(mode.icon),
-                      color: mode.iconColor(
-                        widget.pangeaMessageEvent,
-                        currentMode,
-                        context,
-                      ),
-                      onPressed: () => updateMode(mode),
-                    ),
-                  )
-                : const SizedBox.shrink(),
-          )
-          .toList(),
-    );
-
     return Material(
       key: MatrixState.pAnyState
           .layerLinkAndKey('${widget.pangeaMessageEvent.eventId}-toolbar')
           .key,
       type: MaterialType.transparency,
-      child: Container(
-        constraints: const BoxConstraints(
-          maxHeight: AppConfig.toolbarMaxHeight,
-          maxWidth: 275,
-          minWidth: 275,
-        ),
-        padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          border: Border.all(
-            width: 2,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(25),
-          ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (toolbarContent != null)
-              Flexible(
-                child: SingleChildScrollView(
-                  child: AnimatedSize(
-                    duration: FluffyThemes.animationDuration,
-                    child: toolbarContent,
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              border: Border.all(
+                width: 2,
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(AppConfig.borderRadius),
+              ),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: AnimatedSize(
+                      duration: FluffyThemes.animationDuration,
+                      child: toolbarContent,
+                    ),
                   ),
                 ),
-              ),
-            buttonRow,
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ToolbarSelectionArea extends StatelessWidget {
-  final ChatController controller;
-  final PangeaMessageEvent? pangeaMessageEvent;
-  final bool isOverlay;
-  final Widget child;
-  final Event? nextEvent;
-  final Event? prevEvent;
-
-  const ToolbarSelectionArea({
-    required this.controller,
-    this.pangeaMessageEvent,
-    this.isOverlay = false,
-    required this.child,
-    this.nextEvent,
-    this.prevEvent,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SelectionArea(
-      onSelectionChanged: (SelectedContent? selection) {
-        controller.textSelection.onSelection(selection?.plainText);
-      },
-      child: GestureDetector(
-        onTap: () {
-          if (pangeaMessageEvent != null && !isOverlay) {
-            controller.showToolbar(
-              pangeaMessageEvent!,
-              nextEvent: nextEvent,
-              prevEvent: prevEvent,
-            );
-          }
-        },
-        onLongPress: () {
-          if (pangeaMessageEvent != null && !isOverlay) {
-            controller.showToolbar(
-              pangeaMessageEvent!,
-              nextEvent: nextEvent,
-              prevEvent: prevEvent,
-            );
-          }
-        },
-        child: child,
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 //Question for Jordan - is this for an individual token or could it be a span?
 
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart';
@@ -10,10 +11,58 @@ import '../network/requests.dart';
 import '../network/urls.dart';
 
 class FullTextTranslationRepo {
+  static final Map<String, FullTextTranslationResponseModel> _cache = {};
+  static Timer? _cacheTimer;
+
+  // start a timer to clear the cache
+  static void startCacheTimer() {
+    _cacheTimer = Timer.periodic(const Duration(minutes: 3), (timer) {
+      clearCache();
+    });
+  }
+
+  // stop the cache time (optional)
+  static void stopCacheTimer() {
+    _cacheTimer?.cancel();
+  }
+
+  // method to clear the cache
+  static void clearCache() {
+    _cache.clear();
+  }
+
+  static String _generateCacheKey({
+    required String text,
+    required String srcLang,
+    required String tgtLang,
+    required int offset,
+    required int length,
+    bool? deepL,
+  }) {
+    return '${text.hashCode}-$srcLang-$tgtLang-$deepL-$offset-$length';
+  }
+
   static Future<FullTextTranslationResponseModel> translate({
     required String accessToken,
     required FullTextTranslationRequestModel request,
   }) async {
+    // start cache timer when the first API call is made
+    startCacheTimer();
+
+    final cacheKey = _generateCacheKey(
+      text: request.text,
+      srcLang: request.srcLang ?? '',
+      tgtLang: request.tgtLang,
+      offset: request.offset ?? 0,
+      length: request.length ?? 0,
+      deepL: request.deepL,
+    );
+
+    // check cache first
+    if (_cache.containsKey(cacheKey)) {
+      return _cache[cacheKey]!;
+    }
+
     final Requests req = Requests(
       choreoApiKey: Environment.choreoApiKey,
       accessToken: accessToken,
@@ -24,9 +73,14 @@ class FullTextTranslationRepo {
       body: request.toJson(),
     );
 
-    return FullTextTranslationResponseModel.fromJson(
+    final responseModel = FullTextTranslationResponseModel.fromJson(
       jsonDecode(utf8.decode(res.bodyBytes)),
     );
+
+    // store response in cache
+    _cache[cacheKey] = responseModel;
+
+    return responseModel;
   }
 }
 
@@ -63,6 +117,33 @@ class FullTextTranslationRequestModel {
         ModelKey.offset: offset,
         ModelKey.length: length,
       };
+
+  // override equals and hashcode
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is FullTextTranslationRequestModel &&
+        other.text == text &&
+        other.srcLang == srcLang &&
+        other.tgtLang == tgtLang &&
+        other.userL2 == userL2 &&
+        other.userL1 == userL1 &&
+        other.deepL == deepL &&
+        other.offset == offset &&
+        other.length == length;
+  }
+
+  @override
+  int get hashCode =>
+      text.hashCode ^
+      srcLang.hashCode ^
+      tgtLang.hashCode ^
+      userL2.hashCode ^
+      userL1.hashCode ^
+      deepL.hashCode ^
+      offset.hashCode ^
+      length.hashCode;
 }
 
 class FullTextTranslationResponseModel {

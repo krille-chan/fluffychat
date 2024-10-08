@@ -10,6 +10,7 @@ import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/enum/assistance_state_enum.dart';
 import 'package:fluffychat/pangea/enum/edit_type.dart';
 import 'package:fluffychat/pangea/models/it_step.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
@@ -103,11 +104,33 @@ class Choreographer {
               )
             : null;
 
+    // we've got a rather elaborate method of updating tokens after matches are accepted
+    // so we need to check if the reconstructed text matches the current text
+    // if not, let's get the tokens again and log an error
+    if (igc.igcTextData?.tokens != null &&
+        PangeaToken.reconstructText(igc.igcTextData!.tokens) != currentText) {
+      if (kDebugMode) {
+        PangeaToken.reconstructText(
+          igc.igcTextData!.tokens,
+          debugWalkThrough: true,
+        );
+      }
+      ErrorHandler.logError(
+        m: "reconstructed text not working",
+        s: StackTrace.current,
+        data: {
+          "igcTextData": igc.igcTextData?.toJson(),
+          "choreoRecord": choreoRecord.toJson(),
+        },
+      );
+      await igc.getIGCTextData(onlyTokensAndLanguageDetection: true);
+    }
+
     // TODO - why does both it and igc need to be enabled for choreo to be applicable?
     // final ChoreoRecord? applicableChoreo =
     //     isITandIGCEnabled && igc.igcTextData != null ? choreoRecord : null;
 
-    // if tokens or language detection are not available, we should get them
+    // if tokens OR language detection are not available, we should get them
     // notes
     // 1) we probably need to move this to after we clear the input field
     // or the user could experience some lag here.

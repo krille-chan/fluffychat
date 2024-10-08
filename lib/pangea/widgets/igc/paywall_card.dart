@@ -21,69 +21,84 @@ class PaywallCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CardHeader(
-          text: L10n.of(context)!.subscriptionPopupTitle,
+          text: L10n.of(context)!.clickMessageTitle,
           botExpression: BotExpression.addled,
+          onClose: () {
+            MatrixState.pangeaController.subscriptionController
+                .dismissPaywall();
+          },
         ),
         Padding(
-          padding: const EdgeInsets.all(17),
+          padding: const EdgeInsets.all(8),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                L10n.of(context)!.subscriptionPopupDesc,
+                L10n.of(context)!.subscribedToUnlockTools,
                 style: BotStyle.text(context),
                 textAlign: TextAlign.center,
               ),
-              if (inTrialWindow)
-                Text(
-                  L10n.of(context)!.noPaymentInfo,
-                  style: BotStyle.text(context),
-                  textAlign: TextAlign.center,
+              // if (inTrialWindow)
+              //   Text(
+              //     L10n.of(context)!.noPaymentInfo,
+              //     style: BotStyle.text(context),
+              //     textAlign: TextAlign.center,
+              //   ),
+              if (inTrialWindow) ...[
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      MatrixState.pangeaController.subscriptionController
+                          .activateNewUserTrial();
+                      MatrixState.pAnyState.closeOverlay();
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all<Color>(
+                        (AppConfig.primaryColor).withOpacity(0.1),
+                      ),
+                    ),
+                    child: Text(L10n.of(context)!.activateTrial),
+                  ),
                 ),
-              const SizedBox(height: 15.0),
+              ],
+              const SizedBox(height: 10),
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () {
-                    inTrialWindow
-                        ? MatrixState.pangeaController.subscriptionController
-                            .activateNewUserTrial()
-                        : MatrixState.pangeaController.subscriptionController
-                            .showPaywall(context);
-                    MatrixState.pAnyState.closeOverlay();
+                    MatrixState.pangeaController.subscriptionController
+                        .showPaywall(context);
                   },
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all<Color>(
                       (AppConfig.primaryColor).withOpacity(0.1),
                     ),
                   ),
-                  child: Text(
-                    inTrialWindow
-                        ? L10n.of(context)!.activateTrial
-                        : L10n.of(context)!.seeOptions,
-                  ),
+                  child: Text(L10n.of(context)!.getAccess),
                 ),
               ),
-              const SizedBox(height: 5.0),
-              SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color>(
-                      AppConfig.primaryColor.withOpacity(0.1),
-                    ),
-                  ),
-                  onPressed: () {
-                    MatrixState.pangeaController.subscriptionController
-                        .dismissPaywall();
-                    MatrixState.pAnyState.closeOverlay();
-                  },
-                  child: Center(
-                    child: Text(L10n.of(context)!.continuedWithoutSubscription),
-                  ),
-                ),
-              ),
+              // const SizedBox(height: 5.0),
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: TextButton(
+              //     style: ButtonStyle(
+              //       backgroundColor: WidgetStateProperty.all<Color>(
+              //         AppConfig.primaryColor.withOpacity(0.1),
+              //       ),
+              //     ),
+              //     onPressed: () {
+              //       MatrixState.pangeaController.subscriptionController
+              //           .dismissPaywall();
+              //       MatrixState.pAnyState.closeOverlay();
+              //     },
+              //     child: Center(
+              //       child: Text(L10n.of(context)!.continuedWithoutSubscription),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

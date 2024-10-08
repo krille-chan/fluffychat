@@ -76,8 +76,12 @@ class OneConstructUse {
   String? lemma;
   String? form;
   List<String> categories;
-  ConstructTypeEnum? constructType;
+  ConstructTypeEnum constructType;
   ConstructUseTypeEnum useType;
+
+  /// Used to unqiuely identify the construct use. Useful in the case
+  /// that a users makes the same type of mistake multiple times in a
+  /// message, and those uses need to be disinguished.
   String? id;
   ConstructUseMetaData metadata;
 
@@ -96,6 +100,11 @@ class OneConstructUse {
   DateTime get timeStamp => metadata.timeStamp;
 
   factory OneConstructUse.fromJson(Map<String, dynamic> json) {
+    final constructType = json['constructType'] != null
+        ? ConstructTypeUtil.fromString(json['constructType'])
+        : null;
+    debugger(when: kDebugMode && constructType == null);
+
     return OneConstructUse(
       useType: ConstructUseTypeEnum.values
               .firstWhereOrNull((e) => e.string == json['useType']) ??
@@ -105,9 +114,7 @@ class OneConstructUse {
       categories: json['categories'] != null
           ? List<String>.from(json['categories'])
           : [],
-      constructType: json['constructType'] != null
-          ? ConstructTypeUtil.fromString(json['constructType'])
-          : null,
+      constructType: constructType ?? ConstructTypeEnum.vocab,
       id: json['id'],
       metadata: ConstructUseMetaData(
         eventId: json['msgId'],
@@ -117,7 +124,7 @@ class OneConstructUse {
     );
   }
 
-  Map<String, dynamic> toJson([bool condensed = false]) {
+  Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {
       'useType': useType.string,
       'chatId': metadata.roomId,
@@ -125,10 +132,10 @@ class OneConstructUse {
       'form': form,
       'msgId': metadata.eventId,
     };
-    if (!condensed && lemma != null) data['lemma'] = lemma!;
-    if (!condensed && constructType != null) {
-      data['constructType'] = constructType!.string;
-    }
+
+    data['lemma'] = lemma!;
+    data['constructType'] = constructType.string;
+
     if (id != null) data['id'] = id;
     data['categories'] = categories;
     return data;

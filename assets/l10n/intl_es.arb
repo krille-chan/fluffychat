@@ -4329,7 +4329,6 @@
   "pleaseTryAgainLaterOrChooseDifferentServer": "",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "createGroup": "",
-  "@createGroup": {},
   "@noBackupWarning": {},
   "kickUserDescription": "",
   "@kickUserDescription": {},
@@ -4490,9 +4489,7 @@
   "translations": "traducciónes",
   "messageAudio": "mensaje de audio",
   "definitions": "definiciones",
-  "subscribedToUnlockTools": "Suscríbase para desbloquear herramientas lingüísticas, como",
   "clickMessageTitle": "¿Necesitas ayuda?",
-  "clickMessageBody": "¡Lame un mensaje para obtener ayuda con el idioma! Haz clic y mantén presionado para reaccionar 😀",
   "more": "Más",
   "translationTooltip": "Traducir",
   "audioTooltip": "Reproducir audio",
@@ -4505,7 +4502,7 @@
       "age": {}
     }
   },
-  "selectToDefine": "¡Resalta una palabra o frase para ver su definición!",
+  "selectToDefine": "Clic una palabra para definirla",
   "kickBotWarning": "Patear Pangea Bot eliminará el bot de conversación de este chat.",
   "activateTrial": "Activar prueba gratuita",
   "refresh": "Actualizar",
@@ -4513,6 +4510,7 @@
   "autoPlayTitle": "Reproducción automática de mensajes",
   "autoPlayDesc": "Cuando está activado, el audio de texto a voz de los mensajes se reproducirá automáticamente cuando se seleccione.",
   "presenceStyle": "Presencia:",
+  "noActivitiesFound": "¡Ya has practicado por ahora! Vuelve más tarde para ver más.",
   "presencesToggle": "Mostrar mensajes de estado de otros usuarios",
   "writeAMessageFlag": "Escribe un mensaje en {l1flag} o {l2flag}",
   "@writeAMessageFlag": {
@@ -4685,7 +4683,6 @@
   "fetchingVersion": "Obteniendo versión...",
   "versionFetchError": "Error al obtener la versión",
   "connectedToStaging": "Conectado al entorno de pruebas",
-  "connectedToStaging": "Conectado al entorno de pruebas",
   "versionText": "Versión: {version}+{buildNumber}",
   "@versionText": {
     "description": "Texto que muestra la versión y el número de compilación de la aplicación.",
@@ -4709,8 +4706,6 @@
   },
   "emojis": "Emojis",
   "@emojis": {},
-  "createGroup": "Crear grupo",
-  "@createGroup": {},
   "hydrateTorLong": "¿Exportó su sesión la última vez que estuvo en TOR? Impórtela rápidamente y continúe chateando.",
   "@hydrateTorLong": {},
   "custom": "Personalizado",
@@ -4736,5 +4731,5 @@
     }
   },
   "commandHint_googly": "Enviar unos ojos saltones",
-  "@commandHint_googly": {}
+  "reportContentIssue": "Problema de contenido"
 }

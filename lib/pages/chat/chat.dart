@@ -15,10 +15,12 @@ import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
@@ -27,7 +29,6 @@ import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/utils/report_message.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
@@ -551,6 +552,7 @@ class ChatController extends State<ChatPageWithRoom>
     //#Pangea
     choreographer.stateListener.close();
     choreographer.dispose();
+    MatrixState.pAnyState.closeOverlay();
     //Pangea#
     super.dispose();
   }
@@ -652,16 +654,26 @@ class ChatController extends State<ChatPageWithRoom>
         // There's a listen in my_analytics_controller that decides when to auto-update
         // analytics based on when / how many messages the logged in user send. This
         // stream sends the data for newly sent messages.
+        final metadata = ConstructUseMetaData(
+          roomId: roomId,
+          timeStamp: DateTime.now(),
+          eventId: msgEventId,
+        );
+
         if (msgEventId != null) {
           pangeaController.myAnalytics.setState(
-            data: {
-              'eventID': msgEventId,
-              'eventType': EventTypes.Message,
-              'roomID': room.id,
-              'originalSent': originalSent,
-              'tokensSent': tokensSent,
-              'choreo': choreo,
-            },
+            AnalyticsStream(
+              eventId: msgEventId,
+              roomId: room.id,
+              constructs: [
+                ...(choreo!.grammarConstructUses(metadata: metadata)),
+                ...(originalSent!.vocabUses(
+                  choreo: choreo,
+                  tokens: tokensSent!.tokens,
+                  metadata: metadata,
+                )),
+              ],
+            ),
           );
         }
 
@@ -1303,8 +1315,7 @@ class ChatController extends State<ChatPageWithRoom>
   /// text and selection stored for the text in that overlay
   void closeSelectionOverlay() {
     MatrixState.pAnyState.closeAllOverlays();
-    textSelection.clearMessageText();
-    textSelection.onSelection(null);
+    // selectedTokenIndicies.clear();
   }
   // Pangea#
 
@@ -1610,8 +1621,6 @@ class ChatController extends State<ChatPageWithRoom>
       });
 
 // #Pangea
-  final textSelection = MessageTextSelection();
-
   void showToolbar(
     PangeaMessageEvent pangeaMessageEvent, {
     MessageMode? mode,
@@ -1643,10 +1652,9 @@ class ChatController extends State<ChatPageWithRoom>
     Widget? overlayEntry;
     try {
       overlayEntry = MessageSelectionOverlay(
-        controller: this,
+        chatController: this,
         event: pangeaMessageEvent.event,
         pangeaMessageEvent: pangeaMessageEvent,
-        textSelection: textSelection,
         nextEvent: nextEvent,
         prevEvent: prevEvent,
       );
@@ -1671,7 +1679,39 @@ class ChatController extends State<ChatPageWithRoom>
     onSelectMessage(pangeaMessageEvent.event);
     HapticFeedback.mediumImpact();
   }
-  // Pangea#
+
+  // final List<int> selectedTokenIndicies = [];
+  // void onClickOverlayMessageToken(
+  //   PangeaMessageEvent pangeaMessageEvent,
+  //   int tokenIndex,
+  // ) {
+  //   if (pangeaMessageEvent.originalSent?.tokens == null ||
+  //       tokenIndex < 0 ||
+  //       tokenIndex >= pangeaMessageEvent.originalSent!.tokens!.length) {
+  //     selectedTokenIndicies.clear();
+  //     return;
+  //   }
+
+  //   // if there's stuff that's already selected, then we already ahve a sentence deselect
+  //   if (selectedTokenIndicies.isNotEmpty) {
+  //     final bool listContainedIndex =
+  //         selectedTokenIndicies.contains(tokenIndex);
+
+  //     selectedTokenIndicies.clear();
+  //     if (!listContainedIndex) {
+  //       selectedTokenIndicies.add(tokenIndex);
+  //     }
+  //   }
+
+  //   // TODO
+  //   // if this is already selected, see if there's sentnence and selelct that
+
+  //   // if nothing is select, select one token
+  //   else {
+  //     selectedTokenIndicies.add(tokenIndex);
+  //   }
+  // }
+  // // Pangea#
 
   late final ValueNotifier<bool> displayChatDetailsColumn;
 

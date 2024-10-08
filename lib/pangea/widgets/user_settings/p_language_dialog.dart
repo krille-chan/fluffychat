@@ -92,7 +92,7 @@ Future<void> pLanguageDialog(
                             future: () async {
                               try {
                                 pangeaController.myAnalytics
-                                    .updateAnalytics()
+                                    .sendLocalAnalyticsToAnalyticsRoom()
                                     .then((_) {
                                   pangeaController.userController.updateProfile(
                                     (profile) {

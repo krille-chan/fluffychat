@@ -6,53 +6,76 @@ import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 /// the process of filtering / sorting / displaying the events.
 /// Takes a construct type and a list of events
 class ConstructListModel {
-  final ConstructTypeEnum type;
+  final ConstructTypeEnum? type;
   final List<OneConstructUse> _uses;
+  List<ConstructUses>? _constructList;
+  List<ConstructUseTypeUses>? _typedConstructs;
+
+  /// A map of lemmas to ConstructUses, each of which contains a lemma
+  /// key = lemmma + constructType.string, value = ConstructUses
+  Map<String, ConstructUses>? _constructMap;
 
   ConstructListModel({
     required this.type,
-    uses,
-  }) : _uses = uses ?? [];
-
-  List<ConstructUses>? _constructs;
-  List<ConstructUseTypeUses>? _typedConstructs;
+    required List<OneConstructUse> uses,
+  }) : _uses = uses;
 
   List<OneConstructUse> get uses =>
-      _uses.where((use) => use.constructType == type).toList();
+      _uses.where((use) => use.constructType == type || type == null).toList();
 
   /// All unique lemmas used in the construct events
-  List<String> get lemmas => constructs.map((e) => e.lemma).toSet().toList();
+  List<String> get lemmas => constructList.map((e) => e.lemma).toSet().toList();
 
-  /// A list of ConstructUses, each of which contains a lemma and
-  /// a list of uses, sorted by the number of uses
-  List<ConstructUses> get constructs {
-    // the list of uses doesn't change so we don't have to re-calculate this
-    if (_constructs != null) return _constructs!;
+  /// A map of lemmas to ConstructUses, each of which contains a lemma
+  /// key = lemmma + constructType.string, value = ConstructUses
+  void _buildConstructMap() {
     final Map<String, List<OneConstructUse>> lemmaToUses = {};
     for (final use in uses) {
       if (use.lemma == null) continue;
-      lemmaToUses[use.lemma!] ??= [];
-      lemmaToUses[use.lemma!]!.add(use);
+      lemmaToUses[use.lemma! + use.constructType.string] ??= [];
+      lemmaToUses[use.lemma! + use.constructType.string]!.add(use);
     }
 
-    final constructUses = lemmaToUses.entries
-        .map(
-          (entry) => ConstructUses(
-            lemma: entry.key,
-            uses: entry.value,
-            constructType: type,
-          ),
-        )
-        .toList();
+    _constructMap = lemmaToUses.map(
+      (key, value) => MapEntry(
+        key,
+        ConstructUses(
+          uses: value,
+          constructType: value.first.constructType,
+          lemma: value.first.lemma!,
+        ),
+      ),
+    );
+  }
 
-    constructUses.sort((a, b) {
+  ConstructUses? getConstructUses(String lemma, ConstructTypeEnum type) {
+    if (_constructMap == null) _buildConstructMap();
+    return _constructMap![lemma + type.string];
+  }
+
+  /// A list of ConstructUses, each of which contains a lemma and
+  /// a list of uses, sorted by the number of uses
+  List<ConstructUses> get constructList {
+    // the list of uses doesn't change so we don't have to re-calculate this
+    if (_constructList != null) return _constructList!;
+
+    if (_constructMap == null) _buildConstructMap();
+
+    _constructList = _constructMap!.values.toList();
+
+    _constructList!.sort((a, b) {
       final comp = b.uses.length.compareTo(a.uses.length);
       if (comp != 0) return comp;
       return a.lemma.compareTo(b.lemma);
     });
 
-    _constructs = constructUses;
-    return constructUses;
+    return _constructList!;
+  }
+
+  get maxXPPerLemma {
+    return type != null
+        ? type!.maxXPPerLemma
+        : ConstructTypeEnum.vocab.maxXPPerLemma;
   }
 
   /// A list of ConstructUseTypeUses, each of which
@@ -60,7 +83,7 @@ class ConstructListModel {
   List<ConstructUseTypeUses> get typedConstructs {
     if (_typedConstructs != null) return _typedConstructs!;
     final List<ConstructUseTypeUses> typedConstructs = [];
-    for (final construct in constructs) {
+    for (final construct in constructList) {
       final typeToUses = <ConstructUseTypeEnum, List<OneConstructUse>>{};
       for (final use in construct.uses) {
         typeToUses[use.useType] ??= [];
@@ -70,7 +93,7 @@ class ConstructListModel {
         typedConstructs.add(
           ConstructUseTypeUses(
             lemma: construct.lemma,
-            constructType: type,
+            constructType: typeEntry.value.first.constructType,
             useType: typeEntry.key,
             uses: typeEntry.value,
           ),
@@ -124,6 +147,16 @@ class ConstructUses {
       0,
       (total, use) => total + use.useType.pointValue,
     );
+  }
+
+  DateTime? _lastUsed;
+  DateTime? get lastUsed {
+    if (_lastUsed != null) return _lastUsed;
+    final lastUse = uses.fold<DateTime?>(null, (DateTime? last, use) {
+      if (last == null) return use.timeStamp;
+      return use.timeStamp.isAfter(last) ? use.timeStamp : last;
+    });
+    return _lastUsed = lastUse;
   }
 }
 

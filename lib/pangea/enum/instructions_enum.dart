@@ -1,5 +1,9 @@
+import 'dart:developer';
+
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -8,10 +12,22 @@ enum InstructionsEnum {
   clickMessage,
   blurMeansTranslate,
   tooltipInstructions,
+  speechToText,
+  l1Translation,
+  translationChoices,
+  clickAgainToDeselect,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
   String title(BuildContext context) {
+    if (!context.mounted) {
+      ErrorHandler.logError(
+        e: Exception("Context not mounted"),
+        m: 'InstructionsEnumExtension.title for $this',
+      );
+      debugger(when: kDebugMode);
+      return '';
+    }
     switch (this) {
       case InstructionsEnum.itInstructions:
         return L10n.of(context)!.itInstructionsTitle;
@@ -21,10 +37,31 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return L10n.of(context)!.blurMeansTranslateTitle;
       case InstructionsEnum.tooltipInstructions:
         return L10n.of(context)!.tooltipInstructionsTitle;
+      case InstructionsEnum.clickAgainToDeselect:
+      case InstructionsEnum.speechToText:
+      case InstructionsEnum.l1Translation:
+      case InstructionsEnum.translationChoices:
+        ErrorHandler.logError(
+          e: Exception("No title for this instruction"),
+          m: 'InstructionsEnumExtension.title',
+          data: {
+            'this': this,
+          },
+        );
+        debugger(when: kDebugMode);
+        return "";
     }
   }
 
   String body(BuildContext context) {
+    if (!context.mounted) {
+      ErrorHandler.logError(
+        e: Exception("Context not mounted"),
+        m: 'InstructionsEnumExtension.body for $this',
+      );
+      debugger(when: kDebugMode);
+      return "";
+    }
     switch (this) {
       case InstructionsEnum.itInstructions:
         return L10n.of(context)!.itInstructionsBody;
@@ -32,6 +69,14 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return L10n.of(context)!.clickMessageBody;
       case InstructionsEnum.blurMeansTranslate:
         return L10n.of(context)!.blurMeansTranslateBody;
+      case InstructionsEnum.speechToText:
+        return L10n.of(context)!.speechToTextBody;
+      case InstructionsEnum.l1Translation:
+        return L10n.of(context)!.l1TranslationBody;
+      case InstructionsEnum.translationChoices:
+        return L10n.of(context)!.translationChoicesBody;
+      case InstructionsEnum.clickAgainToDeselect:
+        return L10n.of(context)!.clickTheWordAgainToDeselect;
       case InstructionsEnum.tooltipInstructions:
         return PlatformInfos.isMobile
             ? L10n.of(context)!.tooltipInstructionsMobileBody
@@ -39,7 +84,15 @@ extension InstructionsEnumExtension on InstructionsEnum {
     }
   }
 
-  bool get toggledOff {
+  bool toggledOff(BuildContext context) {
+    if (!context.mounted) {
+      ErrorHandler.logError(
+        e: Exception("Context not mounted"),
+        m: 'InstructionsEnumExtension.toggledOff for $this',
+      );
+      debugger(when: kDebugMode);
+      return false;
+    }
     final instructionSettings =
         MatrixState.pangeaController.userController.profile.instructionSettings;
     switch (this) {
@@ -51,38 +104,14 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return instructionSettings.showedBlurMeansTranslate;
       case InstructionsEnum.tooltipInstructions:
         return instructionSettings.showedTooltipInstructions;
-    }
-  }
-}
-
-enum InlineInstructions {
-  speechToText,
-  l1Translation,
-  translationChoices,
-}
-
-extension InlineInstructionsExtension on InlineInstructions {
-  String body(BuildContext context) {
-    switch (this) {
-      case InlineInstructions.speechToText:
-        return L10n.of(context)!.speechToTextBody;
-      case InlineInstructions.l1Translation:
-        return L10n.of(context)!.l1TranslationBody;
-      case InlineInstructions.translationChoices:
-        return L10n.of(context)!.translationChoicesBody;
-    }
-  }
-
-  bool get toggledOff {
-    final instructionSettings =
-        MatrixState.pangeaController.userController.profile.instructionSettings;
-    switch (this) {
-      case InlineInstructions.speechToText:
+      case InstructionsEnum.speechToText:
         return instructionSettings.showedSpeechToTextTooltip;
-      case InlineInstructions.l1Translation:
+      case InstructionsEnum.l1Translation:
         return instructionSettings.showedL1TranslationTooltip;
-      case InlineInstructions.translationChoices:
+      case InstructionsEnum.translationChoices:
         return instructionSettings.showedTranslationChoicesTooltip;
+      case InstructionsEnum.clickAgainToDeselect:
+        return instructionSettings.showedClickAgainToDeselect;
     }
   }
 }

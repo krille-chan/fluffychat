@@ -6,7 +6,7 @@ class IconNumberWidget extends StatelessWidget {
   final Color? iconColor;
   final double? iconSize;
   final String? toolTip;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const IconNumberWidget({
     super.key,
@@ -15,7 +15,7 @@ class IconNumberWidget extends StatelessWidget {
     this.toolTip,
     this.iconColor,
     this.iconSize,
-    required this.onPressed,
+    this.onPressed,
   });
 
   Widget _content(BuildContext context) {
