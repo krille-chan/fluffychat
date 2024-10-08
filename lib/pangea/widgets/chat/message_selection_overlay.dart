@@ -234,7 +234,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     final bool hasHeaderOverflow =
         messageOffset!.dy < (AppConfig.toolbarMaxHeight + headerHeight);
-    debugPrint("has header overflow: $hasHeaderOverflow");
     final bool hasFooterOverflow = footerHeight > currentBottomOffset;
 
     if (!hasHeaderOverflow && !hasFooterOverflow) return;
@@ -258,9 +257,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       final totalTopOffset =
           animationEndOffset + messageSize!.height + AppConfig.toolbarMaxHeight;
       final remainingSpace = screenHeight - totalTopOffset;
-      debugPrint(
-        "total top offset: $totalTopOffset, remaining space: $remainingSpace",
-      );
       if (remainingSpace < headerHeight) {
         // the overlay could run over the header, so it needs to be shifted down
         animationEndOffset -= (headerHeight - remainingSpace);
@@ -270,10 +266,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       scrollOffset = footerHeight - currentBottomOffset;
       animationEndOffset = footerHeight;
     }
-
-    debugPrint(
-      "NIMATION END OFFSET: $animationEndOffset. Footer height: $footerHeight",
-    );
 
     if (animationEndOffset < footerHeight + toolbarButtonsHeight) {
       adjustedMessageHeight = screenHeight -
