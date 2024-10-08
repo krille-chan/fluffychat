@@ -86,7 +86,6 @@ class OverlayMessage extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius,
       ),
-      // #Pangea
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(

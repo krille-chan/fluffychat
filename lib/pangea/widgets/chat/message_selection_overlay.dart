@@ -215,6 +215,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   PangeaTokenText? get selectedSpan => _selectedSpan;
 
+  final int toolbarButtonsHeight = 50;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -225,11 +227,13 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // position the overlay directly over the underlying message
     final headerBottomOffset = screenHeight - headerHeight;
     final footerBottomOffset = footerHeight;
-    final currentBottomOffset =
-        screenHeight - messageOffset!.dy - messageSize!.height - 50;
+    final currentBottomOffset = screenHeight -
+        messageOffset!.dy -
+        messageSize!.height -
+        toolbarButtonsHeight;
 
-    final bool hasHeaderOverflow =
-        (messageOffset!.dy - 50) < (AppConfig.toolbarMaxHeight + headerHeight);
+    final bool hasHeaderOverflow = (messageOffset!.dy - toolbarButtonsHeight) <
+        (AppConfig.toolbarMaxHeight + headerHeight);
     final bool hasFooterOverflow = footerHeight > currentBottomOffset;
 
     if (!hasHeaderOverflow && !hasFooterOverflow) return;
@@ -242,7 +246,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // if the overlay would have a footer overflow for this message,
     // check if shifting the overlay up could cause a header overflow
     final bottomOffsetDifference = footerHeight - currentBottomOffset;
-    final newTopOffset = messageOffset!.dy - bottomOffsetDifference - 50;
+    final newTopOffset =
+        messageOffset!.dy - bottomOffsetDifference - toolbarButtonsHeight;
     final bool upshiftCausesHeaderOverflow = hasFooterOverflow &&
         newTopOffset < (headerHeight + AppConfig.toolbarMaxHeight);
 
@@ -313,19 +318,22 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         FluffyThemes.isThreeColumnMode(context) &&
         widget.chatController.room.membership == Membership.join;
 
-    final messageMargin =
+    // the default spacing between the side of the screen and the message bubble
+    final double messageMargin =
         pangeaMessageEvent.ownMessage ? Avatar.defaultSize + 16 : 8;
 
+    // the actual spacing between the side of the screen and
+    // the message bubble, accounts for wide screen
     double extraChatSpace = FluffyThemes.isColumnMode(context)
         ? ((screenWidth -
                     (FluffyThemes.columnWidth * 3.5) -
                     FluffyThemes.navRailWidth) /
                 2) +
             messageMargin
-        : 0.0;
+        : messageMargin;
 
-    if (extraChatSpace < 0) {
-      extraChatSpace = 0;
+    if (extraChatSpace < messageMargin) {
+      extraChatSpace = messageMargin;
     }
 
     final overlayMessage = Container(
@@ -383,7 +391,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         ? Positioned(
             left: leftPadding,
             right: rightPadding,
-            bottom: screenHeight - messageOffset!.dy - messageSize!.height - 50,
+            bottom: screenHeight -
+                messageOffset!.dy -
+                messageSize!.height -
+                toolbarButtonsHeight,
             child: overlayMessage,
           )
         : AnimatedBuilder(
