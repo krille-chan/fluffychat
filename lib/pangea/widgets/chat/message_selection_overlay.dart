@@ -361,6 +361,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               prevEvent: widget._prevEvent,
               timeline: widget.chatController.timeline!,
               messageWidth: messageSize!.width,
+              messageHeight: messageSize!.height,
             ),
             ToolbarButtons(
               overlayController: this,

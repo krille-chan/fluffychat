@@ -205,9 +205,13 @@ class Message extends StatelessWidget {
                       right: 0,
                       child: InkWell(
                         // #Pangea
-                        // onTap: controller.clearSelectedEvents,
-                        onTap: () => showToolbar(pangeaMessageEvent),
-                        //onTap: () => onSelect(event),
+                        onTap: () => overlayController == null
+                            ? showToolbar(pangeaMessageEvent)
+                            : controller.clearSelectedEvents(),
+                        onLongPress: () => overlayController == null
+                            ? showToolbar(pangeaMessageEvent)
+                            : controller.clearSelectedEvents(),
+                        // onTap: () => onSelect(event),
                         // onLongPress: () => onSelect(event),
                         // Pangea#
                         borderRadius:
