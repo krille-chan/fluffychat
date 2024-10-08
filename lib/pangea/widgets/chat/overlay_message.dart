@@ -17,6 +17,7 @@ class OverlayMessage extends StatelessWidget {
   final Timeline timeline;
   final bool immersionMode;
   final double messageWidth;
+  final double messageHeight;
 
   const OverlayMessage(
     this.pangeaMessageEvent, {
@@ -25,6 +26,7 @@ class OverlayMessage extends StatelessWidget {
     required this.controller,
     required this.timeline,
     required this.messageWidth,
+    required this.messageHeight,
     this.nextEvent,
     this.prevEvent,
     super.key,
@@ -97,6 +99,7 @@ class OverlayMessage extends StatelessWidget {
           vertical: 8,
         ),
         width: messageWidth,
+        height: messageHeight,
         child: MessageContent(
           pangeaMessageEvent.event,
           textColor: ownMessage
