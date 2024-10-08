@@ -7,12 +7,11 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
-import '../config/environment.dart';
 import '../network/requests.dart';
 
 class LanguageRepo {
   static Future<List<LanguageModel>> fetchLanguages() async {
-    final Requests req = Requests(baseUrl: Environment.choreoApi);
+    final Requests req = Requests();
     final Response res = await req.get(url: PApiUrls.getLanguages);
 
     final decodedBody =
