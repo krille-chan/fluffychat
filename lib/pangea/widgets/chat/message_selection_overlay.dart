@@ -4,14 +4,15 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar_buttons.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_header.dart';
+import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -214,6 +215,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   PangeaTokenText? get selectedSpan => _selectedSpan;
 
+  final int toolbarButtonsHeight = 50;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -224,11 +227,13 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // position the overlay directly over the underlying message
     final headerBottomOffset = screenHeight - headerHeight;
     final footerBottomOffset = footerHeight;
-    final currentBottomOffset =
-        screenHeight - messageOffset!.dy - messageSize!.height;
+    final currentBottomOffset = screenHeight -
+        messageOffset!.dy -
+        messageSize!.height -
+        toolbarButtonsHeight;
 
-    final bool hasHeaderOverflow =
-        messageOffset!.dy < (AppConfig.toolbarMaxHeight + headerHeight);
+    final bool hasHeaderOverflow = (messageOffset!.dy - toolbarButtonsHeight) <
+        (AppConfig.toolbarMaxHeight + headerHeight);
     final bool hasFooterOverflow = footerHeight > currentBottomOffset;
 
     if (!hasHeaderOverflow && !hasFooterOverflow) return;
@@ -241,7 +246,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // if the overlay would have a footer overflow for this message,
     // check if shifting the overlay up could cause a header overflow
     final bottomOffsetDifference = footerHeight - currentBottomOffset;
-    final newTopOffset = messageOffset!.dy - bottomOffsetDifference;
+    final newTopOffset =
+        messageOffset!.dy - bottomOffsetDifference - toolbarButtonsHeight;
     final bool upshiftCausesHeaderOverflow = hasFooterOverflow &&
         newTopOffset < (headerHeight + AppConfig.toolbarMaxHeight);
 
@@ -301,6 +307,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   double get screenHeight => MediaQuery.of(context).size.height;
 
+  double get screenWidth => MediaQuery.of(context).size.width;
+
   @override
   Widget build(BuildContext context) {
     final bool showDetails = (Matrix.of(context)
@@ -310,7 +318,25 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         FluffyThemes.isThreeColumnMode(context) &&
         widget.chatController.room.membership == Membership.join;
 
-    final overlayMessage = ConstrainedBox(
+    // the default spacing between the side of the screen and the message bubble
+    final double messageMargin =
+        pangeaMessageEvent.ownMessage ? Avatar.defaultSize + 16 : 8;
+
+    // the actual spacing between the side of the screen and
+    // the message bubble, accounts for wide screen
+    double extraChatSpace = FluffyThemes.isColumnMode(context)
+        ? ((screenWidth -
+                    (FluffyThemes.columnWidth * 3.5) -
+                    FluffyThemes.navRailWidth) /
+                2) +
+            messageMargin
+        : messageMargin;
+
+    if (extraChatSpace < messageMargin) {
+      extraChatSpace = messageMargin;
+    }
+
+    final overlayMessage = Container(
       constraints: const BoxConstraints(
         maxWidth: FluffyThemes.columnWidth * 2.5,
       ),
@@ -318,76 +344,75 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         type: MaterialType.transparency,
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: widget._pangeaMessageEvent.ownMessage
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: widget._pangeaMessageEvent.ownMessage
-                  ? MainAxisAlignment.end
-                  : MainAxisAlignment.start,
-              children: [
-                MessagePadding(
-                  pangeaMessageEvent: pangeaMessageEvent,
-                  child: MessageToolbar(
-                    pangeaMessageEvent: widget._pangeaMessageEvent,
-                    overLayController: this,
-                  ),
-                ),
-              ],
+            MessageToolbar(
+              pangeaMessageEvent: widget._pangeaMessageEvent,
+              overLayController: this,
             ),
-            Message(
-              widget._event,
-              onSwipe: () => {},
-              onInfoTab: (_) => {},
-              onAvatarTab: (_) => {},
-              scrollToEventId: (_) => {},
-              onSelect: (_) => {},
+            OverlayMessage(
+              pangeaMessageEvent,
               immersionMode: widget.chatController.choreographer.immersionMode,
               controller: widget.chatController,
-              timeline: widget.chatController.timeline!,
               overlayController: this,
-              animateIn: false,
               nextEvent: widget._nextEvent,
-              previousEvent: widget._prevEvent,
+              prevEvent: widget._prevEvent,
+              timeline: widget.chatController.timeline!,
+              messageWidth: messageSize!.width,
             ),
-            // MessageReactions(widget._event, widget.chatController.timeline!),
-            // const SizedBox(height: 6),
-            // MessagePadding(
-            //   pangeaMessageEvent: pangeaMessageEvent,
-            //   child: ToolbarButtons(overlayController: this, width: 250),
-            // ),
+            ToolbarButtons(
+              overlayController: this,
+              width: 250,
+            ),
           ],
         ),
       ),
     );
 
+    final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
+    final columnOffset = FluffyThemes.isColumnMode(context)
+        ? FluffyThemes.columnWidth + FluffyThemes.navRailWidth
+        : 0;
+
+    final double leftPadding = widget._pangeaMessageEvent.ownMessage
+        ? extraChatSpace
+        : messageOffset!.dx - horizontalPadding - columnOffset;
+
+    final double rightPadding = widget._pangeaMessageEvent.ownMessage
+        ? screenWidth -
+            messageOffset!.dx -
+            messageSize!.width -
+            horizontalPadding
+        : extraChatSpace;
+
     final positionedOverlayMessage = _overlayPositionAnimation == null
         ? Positioned(
-            left: 0,
-            right: showDetails ? FluffyThemes.columnWidth : 0,
-            bottom: screenHeight - messageOffset!.dy - messageSize!.height,
-            child: Align(
-              alignment: Alignment.center,
-              child: overlayMessage,
-            ),
+            left: leftPadding,
+            right: rightPadding,
+            bottom: screenHeight -
+                messageOffset!.dy -
+                messageSize!.height -
+                toolbarButtonsHeight,
+            child: overlayMessage,
           )
         : AnimatedBuilder(
             animation: _overlayPositionAnimation!,
             builder: (context, child) {
               return Positioned(
-                left: 0,
-                right: showDetails ? FluffyThemes.columnWidth : 0,
+                left: leftPadding,
+                right: rightPadding,
                 bottom: _overlayPositionAnimation!.value,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: overlayMessage,
-                ),
+                child: overlayMessage,
               );
             },
           );
 
     return Padding(
       padding: EdgeInsets.only(
-        left: FluffyThemes.isColumnMode(context) ? 8.0 : 0.0,
-        right: FluffyThemes.isColumnMode(context) ? 8.0 : 0.0,
+        left: horizontalPadding,
+        right: horizontalPadding,
       ),
       child: Stack(
         children: [
