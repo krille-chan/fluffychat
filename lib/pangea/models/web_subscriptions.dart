@@ -8,9 +8,8 @@ class WebSubscriptionInfo extends SubscriptionInfo {
 
   @override
   Future<void> configure() async {
-    final accessToken = super.pangeaController.userController.accessToken;
-    await setAppIds(accessToken);
-    await setAllProducts(accessToken);
+    await setAppIds();
+    await setAllProducts();
     await setCustomerInfo();
 
     if (allProducts == null || appIds == null) {

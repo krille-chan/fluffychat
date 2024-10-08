@@ -13,11 +13,10 @@ import 'package:http/http.dart' as http;
 import '../network/urls.dart';
 
 class SubscriptionRepo {
-  static Future<SubscriptionAppIds?> getAppIds(String accessToken) async {
+  static Future<SubscriptionAppIds?> getAppIds() async {
     try {
       final Requests req = Requests(
         choreoApiKey: Environment.choreoApiKey,
-        matrixAccessToken: accessToken,
       );
       final http.Response res = await req.get(
         url: PApiUrls.rcAppsChoreo,
@@ -35,13 +34,10 @@ class SubscriptionRepo {
     }
   }
 
-  static Future<List<SubscriptionDetails>?> getAllProducts(
-    String accessToken,
-  ) async {
+  static Future<List<SubscriptionDetails>?> getAllProducts() async {
     try {
       final Requests req = Requests(
         choreoApiKey: Environment.choreoApiKey,
-        matrixAccessToken: accessToken,
       );
       final http.Response res = await req.get(
         url: PApiUrls.rcProductsChoreo,

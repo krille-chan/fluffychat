@@ -36,14 +36,14 @@ class SubscriptionInfo {
   Fetch App Ids for each RC app (iOS, Android, and Stripe). Used to determine which app a user 
   with an active subscription purchased that subscription.
   */
-  Future<void> setAppIds(String accessToken) async {
+  Future<void> setAppIds() async {
     if (appIds != null) return;
-    appIds = await SubscriptionRepo.getAppIds(accessToken);
+    appIds = await SubscriptionRepo.getAppIds();
   }
 
-  Future<void> setAllProducts(String accessToken) async {
+  Future<void> setAllProducts() async {
     if (allProducts != null) return;
-    allProducts = await SubscriptionRepo.getAllProducts(accessToken);
+    allProducts = await SubscriptionRepo.getAllProducts();
   }
 
   bool get isNewUserTrial =>

@@ -31,9 +31,8 @@ class MobileSubscriptionInfo extends SubscriptionInfo {
       );
       return;
     }
-    final accessToken = super.pangeaController.userController.accessToken;
-    await setAppIds(accessToken);
-    await setAllProducts(accessToken);
+    await setAppIds();
+    await setAllProducts();
     await setCustomerInfo();
     await setMobilePackages();
     if (allProducts != null && appIds != null) {
