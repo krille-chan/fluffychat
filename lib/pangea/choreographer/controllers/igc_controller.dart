@@ -76,7 +76,7 @@ class IgcController {
 
       debugPrint("igc text ${igcTextData.toString()}");
     } catch (err, stack) {
-      //debugger(when: kDebugMode);
+      debugger(when: kDebugMode);
       choreographer.errorService.setError(
         ChoreoError(type: ChoreoErrorType.unknown, raw: err),
       );
