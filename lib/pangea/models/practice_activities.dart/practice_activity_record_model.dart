@@ -169,7 +169,7 @@ class ActivityRecordResponse {
       'audio': audioBytes,
       'image': imageBytes,
       'timestamp': timestamp.toIso8601String(),
-      'score': score,
+      'score': score.toInt(),
     };
   }
 
