@@ -583,13 +583,15 @@ class PangeaMessageEvent {
   /// Otherwise, it checks if every activity in the list is complete using the [isComplete] property.
   /// If any activity is not complete, it returns true, indicating that the activity icon should be shown.
   /// Otherwise, it returns false.
-  bool get hasUncompletedActivity {
-    if (practiceActivities.isEmpty) return false;
-    return practiceActivities.any((activity) => !(activity.isComplete));
-  }
+  // bool get hasUncompletedActivity {
+  //   if (practiceActivities.isEmpty) return false;
+  //   return practiceActivities.any((activity) => !(activity.isComplete));
+  // }
 
   int get numberOfActivitiesCompleted {
-    return practiceActivities.where((activity) => activity.isComplete).length;
+    return MatrixState.pangeaController.activityRecordController
+            .completedActivities[eventId] ??
+        0;
   }
 
   String? get l2Code =>

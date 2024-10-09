@@ -197,6 +197,9 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       );
 
       widget.overlayController.onActivityFinish();
+      pangeaController.activityRecordController.completeActivity(
+        widget.pangeaMessageEvent.eventId,
+      );
 
       //
       final Iterable<dynamic> result = await Future.wait([

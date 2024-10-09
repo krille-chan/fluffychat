@@ -63,29 +63,25 @@ class PracticeActivityEvent {
 
   /// Completion record assosiated with this activity
   /// for the logged in user, null if there is none
-  List<PracticeActivityRecordEvent> get allUserRecords => allRecords
-      .where(
-        (recordEvent) =>
-            recordEvent.event.senderId == recordEvent.event.room.client.userID,
-      )
-      .toList();
+  // List<PracticeActivityRecordEvent> get allUserRecords => allRecords
+  //     .where(
+  //       (recordEvent) =>
+  //           recordEvent.event.senderId == recordEvent.event.room.client.userID,
+  //     )
+  //     .toList();
 
   /// Get the most recent user record for this activity
-  PracticeActivityRecordEvent? get latestUserRecord {
-    final List<PracticeActivityRecordEvent> userRecords = allUserRecords;
-    if (userRecords.isEmpty) return null;
-    return userRecords.reduce(
-      (a, b) => a.event.originServerTs.isAfter(b.event.originServerTs) ? a : b,
-    );
-  }
+  // PracticeActivityRecordEvent? get latestUserRecord {
+  //   final List<PracticeActivityRecordEvent> userRecords = allUserRecords;
+  //   if (userRecords.isEmpty) return null;
+  //   return userRecords.reduce(
+  //     (a, b) => a.event.originServerTs.isAfter(b.event.originServerTs) ? a : b,
+  //   );
+  // }
 
-  DateTime? get lastCompletedAt => latestUserRecord?.event.originServerTs;
+  // DateTime? get lastCompletedAt => latestUserRecord?.event.originServerTs;
 
   String get parentMessageId => event.relationshipEventId!;
-
-  /// Checks if there are any user records in the list for this activity,
-  /// and, if so, then the activity is complete
-  bool get isComplete => latestUserRecord != null;
 
   ExistingActivityMetaData get activityRequestMetaData =>
       ExistingActivityMetaData(
