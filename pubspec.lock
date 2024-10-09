@@ -1303,7 +1303,7 @@ packages:
     dependency: transitive
     description:
       name: olm
-      sha256: "37948a6576949256f3ee1d0063d5b408634ff7e452b9a5c2f6410f9d7ced1c20"
+      sha256: "3306bf534ceb914fd148b3b4a3d603fb5e067b2e6da8304025b47c24cfdf6b46"
       url: "https://pub.dev"
     source: hosted
     version: "2.0.4"
