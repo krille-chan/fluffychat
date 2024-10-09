@@ -4,6 +4,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat/events/message_reactions.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -215,7 +216,17 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   PangeaTokenText? get selectedSpan => _selectedSpan;
 
-  final int toolbarButtonsHeight = 50;
+  bool get hasReactions {
+    final reactionsEvents = widget._pangeaMessageEvent.event.aggregatedEvents(
+      widget.chatController.timeline!,
+      RelationshipTypes.reaction,
+    );
+    return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
+  }
+
+  final double toolbarButtonsHeight = 50;
+  double get reactionsHeight => hasReactions ? 28 : 0;
+  double get belowMessageHeight => toolbarButtonsHeight + reactionsHeight;
 
   @override
   void didChangeDependencies() {
@@ -230,7 +241,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     final currentBottomOffset = screenHeight -
         messageOffset!.dy -
         messageSize!.height -
-        toolbarButtonsHeight;
+        belowMessageHeight;
 
     final bool hasHeaderOverflow =
         messageOffset!.dy < (AppConfig.toolbarMaxHeight + headerHeight);
@@ -247,13 +258,12 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // check if shifting the overlay up could cause a header overflow
     final bottomOffsetDifference = footerHeight - currentBottomOffset;
     final newTopOffset =
-        messageOffset!.dy - bottomOffsetDifference - toolbarButtonsHeight;
+        messageOffset!.dy - bottomOffsetDifference - belowMessageHeight;
     final bool upshiftCausesHeaderOverflow = hasFooterOverflow &&
         newTopOffset < (headerHeight + AppConfig.toolbarMaxHeight);
 
     if (hasHeaderOverflow || upshiftCausesHeaderOverflow) {
-      animationEndOffset =
-          midpoint - messageSize!.height - toolbarButtonsHeight;
+      animationEndOffset = midpoint - messageSize!.height - belowMessageHeight;
       final totalTopOffset =
           animationEndOffset + messageSize!.height + AppConfig.toolbarMaxHeight;
       final remainingSpace = screenHeight - totalTopOffset;
@@ -270,12 +280,12 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // If, after ajusting the overlay position, the message still overflows the footer,
     // update the message height to fit the screen. The message is scrollable, so
     // this will make the both the toolbar box and the toolbar buttons visible.
-    if (animationEndOffset < footerHeight + toolbarButtonsHeight) {
+    if (animationEndOffset < footerHeight + belowMessageHeight) {
       final double remainingSpace = screenHeight -
           AppConfig.toolbarMaxHeight -
           headerHeight -
           footerHeight -
-          toolbarButtonsHeight;
+          belowMessageHeight;
 
       if (remainingSpace < messageSize!.height) {
         adjustedMessageHeight = remainingSpace;
@@ -386,6 +396,17 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                 messageHeight: messageSize!.height,
               ),
             ),
+            if (hasReactions)
+              Padding(
+                padding: const EdgeInsets.all(4),
+                child: SizedBox(
+                  height: reactionsHeight - 8,
+                  child: MessageReactions(
+                    widget._pangeaMessageEvent.event,
+                    widget.chatController.timeline!,
+                  ),
+                ),
+              ),
             ToolbarButtons(
               overlayController: this,
               width: 250,
@@ -418,7 +439,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             bottom: screenHeight -
                 messageOffset!.dy -
                 messageSize!.height -
-                toolbarButtonsHeight,
+                belowMessageHeight,
             child: overlayMessage,
           )
         : AnimatedBuilder(
