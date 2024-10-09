@@ -241,7 +241,39 @@ class BotController extends State<AddBridge> {
         return 'unknown-bridge';
     }
   }
-  
+
+  Future<void> fetchLoginFlows(SocialNetwork network) async {
+    final bridgePathIdentifier  = getBridgePath(network);
+    final accessToken = client.accessToken;
+    final userId = client.userID;
+    final url = Uri.parse(
+      'https://matrix.staging.tawkie.fr/_matrix/$bridgePathIdentifier/provision/v3/login/flows?user_id=$userId',
+    );
+
+    final response = await http.get(
+      url,
+      headers: {'Authorization': 'Bearer $accessToken'},
+    );
+
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(response.body);
+      final flows = responseJson['flows'];
+
+      if (flows != null) {
+        print('Available login flows for ${network.name}:');
+        for (var flow in flows) {
+          print('Name: ${flow['name']}, Description: ${flow['description']}');
+        }
+      } else {
+        print('No login flows found for ${network.name}.');
+      }
+    } else if (response.statusCode == 401) {
+      print('Invalid token for ${network.name}.');
+    } else {
+      print('Unexpected error: ${response.statusCode}');
+    }
+  }
+
   /// Ping a social network to check connection status
   Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
     final String botUserId = '${socialNetwork.chatBot}$hostname';
