@@ -1306,7 +1306,7 @@ packages:
       sha256: "37948a6576949256f3ee1d0063d5b408634ff7e452b9a5c2f6410f9d7ced1c20"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   opus_caf_converter_dart:
     dependency: "direct main"
     description:
