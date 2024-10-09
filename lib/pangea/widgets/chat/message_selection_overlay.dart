@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -49,6 +50,7 @@ class MessageSelectionOverlay extends StatefulWidget {
 class MessageOverlayController extends State<MessageSelectionOverlay>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
+  StreamSubscription? _reactionSubscription;
   Animation<double>? _overlayPositionAnimation;
 
   MessageMode toolbarMode = MessageMode.translation;
@@ -72,6 +74,26 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     activitiesLeftToComplete = activitiesLeftToComplete -
         widget._pangeaMessageEvent.numberOfActivitiesCompleted;
+
+    _reactionSubscription =
+        widget.chatController.room.client.onSync.stream.where(
+      (update) {
+        // check if this sync update has a reaction event or a
+        // redaction (of a reaction event). If so, rebuild the overlay
+        final room = widget.chatController.room;
+        final timelineEvents = update.rooms?.join?[room.id]?.timeline?.events;
+        if (timelineEvents == null) return false;
+
+        final eventID = widget._pangeaMessageEvent.event.eventId;
+        return timelineEvents.any(
+          (e) =>
+              e.type == EventTypes.Redaction ||
+              (e.type == EventTypes.Reaction &&
+                  Event.fromMatrixEvent(e, room).relationshipEventId ==
+                      eventID),
+        );
+      },
+    ).listen((_) => setState(() {}));
 
     setInitialToolbarMode();
   }
@@ -315,6 +337,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   @override
   void dispose() {
     _animationController.dispose();
+    _reactionSubscription?.cancel();
     super.dispose();
   }
 
