@@ -179,8 +179,11 @@ class BotController extends State<AddBridge> {
     Logs().i('No message received from bot within the wait time');
   }
 
-  Future<void> pingBridgeAPI() async {
-    final serverUrl = AppConfig.baseUrl;
+  Future<void> pingBridgeAPI(SocialNetwork network) async {
+    final serverUrl = AppConfig.server.startsWith(':')
+        ? AppConfig.server.substring(1)
+        : AppConfig.server;
+    final bridgePathIdentifier  = getBridgePath(network);
     final accessToken = client.accessToken;
     final userId = client.userID;
 
@@ -188,7 +191,7 @@ class BotController extends State<AddBridge> {
     print("userId: $userId");
 
     final url = Uri.parse(
-      'https://matrix.staging.tawkie.fr/_matrix/matrix-mautrix-meta-messenger/provision/v3/whoami?user_id=$userId',
+      'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/whoami?user_id=$userId',
     );
 
     final response = await http.get(
@@ -230,7 +233,15 @@ class BotController extends State<AddBridge> {
     }
   }
 
-
+  String getBridgePath(SocialNetwork network) {
+    switch (network.name) {
+      case 'Facebook Messenger':
+        return 'matrix-mautrix-meta-messenger';
+      default:
+        return 'unknown-bridge';
+    }
+  }
+  
   /// Ping a social network to check connection status
   Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
     final String botUserId = '${socialNetwork.chatBot}$hostname';
@@ -303,7 +314,7 @@ class BotController extends State<AddBridge> {
     await Future.wait(socialNetworks.where((network) => network.available).map((network) {
       if (network.name == "Facebook Messenger") {
         // Calling up the ping API function for Messenger
-        return pingBridgeAPI();
+        return pingBridgeAPI(network);
       } else {
         // Continue with existing function for other networks
         return pingSocialNetwork(network);
