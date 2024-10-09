@@ -22,8 +22,7 @@ import 'package:matrix/matrix.dart';
 /// Represents an item in the completion cache.
 class _RequestCacheItem {
   MessageActivityRequest req;
-
-  Future<PracticeActivityEvent?> practiceActivityEvent;
+  PracticeActivityModel? practiceActivityEvent;
 
   _RequestCacheItem({
     required this.req,
@@ -103,7 +102,7 @@ class PracticeGenerationController {
 
   //TODO - allow return of activity content before sending the event
   // this requires some downstream changes to the way the event is handled
-  Future<PracticeActivityEvent?> getPracticeActivity(
+  Future<PracticeActivityModel?> getPracticeActivity(
     MessageActivityRequest req,
     PangeaMessageEvent event,
   ) async {
@@ -131,7 +130,7 @@ class PracticeGenerationController {
           return PracticeActivityEvent(
             event: existingEvent,
             timeline: event.timeline,
-          );
+          ).practiceActivity;
         }
       }
 
@@ -142,11 +141,9 @@ class PracticeGenerationController {
 
       debugPrint('Activity generated: ${res.activity!.toJson()}');
 
-      final Future<PracticeActivityEvent?> eventFuture =
-          _sendAndPackageEvent(res.activity!, event);
-
+      _sendAndPackageEvent(res.activity!, event);
       _cache[cacheKey] =
-          _RequestCacheItem(req: req, practiceActivityEvent: eventFuture);
+          _RequestCacheItem(req: req, practiceActivityEvent: res.activity!);
 
       return _cache[cacheKey]!.practiceActivityEvent;
     }

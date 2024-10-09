@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
 import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
@@ -14,7 +13,7 @@ import 'package:flutter/material.dart';
 /// The multiple choice activity view
 class MultipleChoiceActivity extends StatefulWidget {
   final MessagePracticeActivityCardState practiceCardController;
-  final PracticeActivityEvent? currentActivity;
+  final PracticeActivityModel? currentActivity;
 
   const MultipleChoiceActivity({
     super.key,
@@ -52,9 +51,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       return;
     }
 
-    final bool isCorrect = widget
-        .currentActivity!.practiceActivity.multipleChoice!
-        .isCorrect(value, index);
+    final bool isCorrect =
+        widget.currentActivity!.multipleChoice!.isCorrect(value, index);
 
     currentRecordModel?.addResponse(
       text: value,
@@ -74,15 +72,14 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             widget.practiceCardController.widget.pangeaMessageEvent.eventId,
         roomId: widget.practiceCardController.widget.pangeaMessageEvent.room.id,
         constructs: currentRecordModel!.latestResponse!.toUses(
-          widget.practiceCardController.currentActivity!.practiceActivity,
+          widget.practiceCardController.currentActivity!,
           widget.practiceCardController.metadata,
         ),
       ),
     );
 
     // If the selected choice is correct, send the record and get the next activity
-    if (widget.currentActivity!.practiceActivity.multipleChoice!
-        .isCorrect(value, index)) {
+    if (widget.currentActivity!.multipleChoice!.isCorrect(value, index)) {
       widget.practiceCardController.onActivityFinish();
     }
 
@@ -93,8 +90,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
 
   @override
   Widget build(BuildContext context) {
-    final PracticeActivityModel? practiceActivity =
-        widget.currentActivity?.practiceActivity;
+    final PracticeActivityModel? practiceActivity = widget.currentActivity;
 
     if (practiceActivity == null) {
       return const SizedBox();

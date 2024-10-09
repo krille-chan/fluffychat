@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_ev
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -42,7 +43,7 @@ class PracticeActivityCard extends StatefulWidget {
 }
 
 class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
-  PracticeActivityEvent? currentActivity;
+  PracticeActivityModel? currentActivity;
   PracticeActivityRecordModel? currentCompletionRecord;
   bool fetchingActivity = false;
 
@@ -70,7 +71,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     if (mounted) setState(() => fetchingActivity = value);
   }
 
-  void _setPracticeActivity(PracticeActivityEvent? activity) {
+  void _setPracticeActivity(PracticeActivityModel? activity) {
     //set elsewhere but just in case
     fetchingActivity = false;
 
@@ -83,36 +84,21 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
 
     //make new completion record
     currentCompletionRecord = PracticeActivityRecordModel(
-      question: activity.practiceActivity.question,
+      question: activity.question,
     );
 
-    widget.overlayController.setSelectedSpan(activity.practiceActivity);
+    widget.overlayController.setSelectedSpan(activity);
   }
 
   /// Get an existing activity if there is one.
   /// If not, get a new activity from the server.
   Future<void> initialize() async {
     _setPracticeActivity(
-      _fetchExistingIncompleteActivity() ?? await _fetchNewActivity(),
+      await _fetchNewActivity(),
     );
   }
 
-  // if the user did the activity before but awhile ago and we don't have any
-  // more target tokens, maybe we should give them the same activity again
-  PracticeActivityEvent? _fetchExistingIncompleteActivity() {
-    if (practiceActivities.isEmpty) {
-      return null;
-    }
-
-    final List<PracticeActivityEvent> incompleteActivities =
-        practiceActivities.where((element) => !element.isComplete).toList();
-
-    // TODO - maybe check the user's xp for the tgtConstructs and decide if its relevant for them
-    // however, maybe we'd like to go ahead and give them the activity to get some data on our xp?
-    return incompleteActivities.firstOrNull;
-  }
-
-  Future<PracticeActivityEvent?> _fetchNewActivity([
+  Future<PracticeActivityModel?> _fetchNewActivity([
     ActivityQualityFeedback? activityFeedback,
   ]) async {
     try {
@@ -134,7 +120,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         return null;
       }
 
-      final PracticeActivityEvent? ourNewActivity = await pangeaController
+      final PracticeActivityModel? ourNewActivity = await pangeaController
           .practiceGenerationController
           .getPracticeActivity(
         MessageActivityRequest(
@@ -203,29 +189,12 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       // NOTE - multiple choice activity is handling adding these to analytics
       await targetTokensController.updateTokensWithConstructs(
         currentCompletionRecord!.usesForAllResponses(
-          currentActivity!.practiceActivity,
+          currentActivity!,
           metadata,
         ),
         context,
         widget.pangeaMessageEvent,
       );
-
-      // save the record without awaiting to avoid blocking the UI
-      // send a copy of the activity record to make sure its not overwritten by
-      // the new activity
-      MatrixState.pangeaController.activityRecordController
-          .send(currentCompletionRecord!, currentActivity!)
-          .catchError(
-            (e, s) => ErrorHandler.logError(
-              e: e,
-              s: s,
-              m: 'Failed to save record',
-              data: {
-                'record': currentCompletionRecord?.toJson(),
-                'activity': currentActivity?.practiceActivity.toJson(),
-              },
-            ),
-          );
 
       widget.overlayController.onActivityFinish();
 
@@ -235,7 +204,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         _fetchNewActivity(),
       ]);
 
-      _setPracticeActivity(result.last as PracticeActivityEvent?);
+      _setPracticeActivity(result.last as PracticeActivityModel?);
     } catch (e, s) {
       _setPracticeActivity(null);
       debugger(when: kDebugMode);
@@ -262,7 +231,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     _fetchNewActivity(
       ActivityQualityFeedback(
         feedbackText: feedback,
-        badActivity: currentActivity!.practiceActivity,
+        badActivity: currentActivity!,
       ),
     ).then((activity) {
       _setPracticeActivity(activity);
@@ -300,7 +269,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       // return sizedbox with height of 80
       return const SizedBox(height: 80);
     }
-    switch (currentActivity!.practiceActivity.activityType) {
+    switch (currentActivity!.activityType) {
       case ActivityTypeEnum.multipleChoice:
         return MultipleChoiceActivity(
           practiceCardController: this,
@@ -311,7 +280,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
           e: Exception('Unknown activity type'),
           m: 'Unknown activity type',
           data: {
-            'activityType': currentActivity!.practiceActivity.activityType,
+            'activityType': currentActivity!.activityType,
           },
         );
         return Text(
