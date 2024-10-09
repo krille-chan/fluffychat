@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/add_bridge/service/hostname.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
@@ -15,6 +17,7 @@ import 'package:tawkie/utils/bridge_utils.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
+import 'package:http/http.dart' as http;
 
 import 'bot_chat_list.dart';
 import 'connection_bridge_dialog.dart';
@@ -176,6 +179,58 @@ class BotController extends State<AddBridge> {
     Logs().i('No message received from bot within the wait time');
   }
 
+  Future<void> pingBridgeAPI() async {
+    final serverUrl = AppConfig.baseUrl;
+    final accessToken = client.accessToken;
+    final userId = client.userID;
+
+    print("accessToken: $accessToken");
+    print("userId: $userId");
+
+    final url = Uri.parse(
+      'https://matrix.staging.tawkie.fr/_matrix/matrix-mautrix-meta-messenger/provision/v3/whoami?user_id=$userId',
+    );
+
+    final response = await http.get(
+      url,
+      headers: {'Authorization': 'Bearer $accessToken'},
+    );
+
+    interpretBridgeResponse(response);
+
+    if (response.statusCode == 200) {
+      print('Successful ping');
+    } else {
+      print('Error: ${response.statusCode}');
+    }
+  }
+
+  void interpretBridgeResponse(http.Response response) {
+    final responseJson = jsonDecode(response.body);
+
+    final networkName = responseJson['network']?['displayname'];
+    if (networkName != null) {
+      final SocialNetwork? network = SocialNetworkManager.fromName(networkName);
+
+      if (network != null) {
+        final stateEvent = responseJson['logins']?[0]?['state']?['state_event'];
+
+        if (stateEvent == 'CONNECTING') {
+          _updateNetworkStatus(network, true, false);
+          print('Status: Connected to $networkName');
+        } else {
+          _updateNetworkStatus(network, false, false);
+          print('Status: Not connected to $networkName');
+        }
+      } else {
+        print('Network not detected or not supported: $networkName');
+      }
+    } else {
+      print('Network not detected in response.');
+    }
+  }
+
+
   /// Ping a social network to check connection status
   Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
     final String botUserId = '${socialNetwork.chatBot}$hostname';
@@ -245,9 +300,15 @@ class BotController extends State<AddBridge> {
       }
     });
 
-    await Future.wait(socialNetworks
-        .where((network) => network.available)
-        .map((network) => pingSocialNetwork(network)));
+    await Future.wait(socialNetworks.where((network) => network.available).map((network) {
+      if (network.name == "Facebook Messenger") {
+        // Calling up the ping API function for Messenger
+        return pingBridgeAPI();
+      } else {
+        // Continue with existing function for other networks
+        return pingSocialNetwork(network);
+      }
+    }));
   }
 
   /// Process the ping response from a social network
