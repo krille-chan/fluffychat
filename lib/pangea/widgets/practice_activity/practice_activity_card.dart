@@ -98,21 +98,6 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     );
   }
 
-  // if the user did the activity before but awhile ago and we don't have any
-  // more target tokens, maybe we should give them the same activity again
-  // PracticeActivityEvent? _fetchExistingIncompleteActivity() {
-  //   if (practiceActivities.isEmpty) {
-  //     return null;
-  //   }
-
-  //   final List<PracticeActivityEvent> incompleteActivities =
-  //       practiceActivities.where((element) => !element.isComplete).toList();
-
-  //   // TODO - maybe check the user's xp for the tgtConstructs and decide if its relevant for them
-  //   // however, maybe we'd like to go ahead and give them the activity to get some data on our xp?
-  //   return incompleteActivities.firstOrNull;
-  // }
-
   Future<PracticeActivityModel?> _fetchNewActivity([
     ActivityQualityFeedback? activityFeedback,
   ]) async {
@@ -210,23 +195,6 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         context,
         widget.pangeaMessageEvent,
       );
-
-      // save the record without awaiting to avoid blocking the UI
-      // send a copy of the activity record to make sure its not overwritten by
-      // the new activity
-      // MatrixState.pangeaController.activityRecordController
-      //     .send(currentCompletionRecord!, currentActivity!)
-      //     .catchError(
-      //       (e, s) => ErrorHandler.logError(
-      //         e: e,
-      //         s: s,
-      //         m: 'Failed to save record',
-      //         data: {
-      //           'record': currentCompletionRecord?.toJson(),
-      //           'activity': currentActivity?.practiceActivity.toJson(),
-      //         },
-      //       ),
-      //     );
 
       widget.overlayController.onActivityFinish();
 
