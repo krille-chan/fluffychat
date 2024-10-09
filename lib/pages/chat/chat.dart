@@ -1251,7 +1251,14 @@ class ChatController extends State<ChatPageWithRoom>
     )) {
       return;
     }
-    return sendEmojiAction(emoji.emoji);
+    // #Pangea
+    // return sendEmojiAction(emoji.emoji);
+    sendEmojiAction(emoji.emoji);
+
+    // don't need to clear these when sending while in select mode,
+    // but do need to clear these when reacting from the large emoji picker
+    setState(() => selectedEvents.clear());
+    // Pangea#
   }
 
   void typeEmoji(Emoji? emoji) {
@@ -1298,16 +1305,16 @@ class ChatController extends State<ChatPageWithRoom>
 
   void sendEmojiAction(String? emoji) async {
     final events = List<Event>.from(selectedEvents);
-    setState(() => selectedEvents.clear());
+    // #Pangea
+    // keep this event selected in case the user wants to send another emoji
+    // setState(() => selectedEvents.clear());
+    // Pangea#
     for (final event in events) {
       await room.sendReaction(
         event.eventId,
         emoji!,
       );
     }
-    // #Pangea
-    clearSelectedEvents();
-    // Pangea#
   }
 
   // #Pangea
