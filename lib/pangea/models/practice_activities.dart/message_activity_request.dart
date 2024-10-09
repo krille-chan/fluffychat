@@ -215,6 +215,7 @@ class MessageActivityRequest {
       'message_id': messageId,
       'existing_activities': existingActivities.map((e) => e.toJson()).toList(),
       'activity_quality_feedback': activityQualityFeedback?.toJson(),
+      'iso_8601_time_of_req': DateTime.now().toIso8601String(),
     };
   }
 
