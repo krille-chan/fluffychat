@@ -267,12 +267,20 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       animationEndOffset = footerHeight;
     }
 
+    // If, after ajusting the overlay position, the message still overflows the footer,
+    // update the message height to fit the screen. The message is scrollable, so
+    // this will make the both the toolbar box and the toolbar buttons visible.
     if (animationEndOffset < footerHeight + toolbarButtonsHeight) {
-      adjustedMessageHeight = screenHeight -
+      final double remainingSpace = screenHeight -
           AppConfig.toolbarMaxHeight -
           headerHeight -
           footerHeight -
           toolbarButtonsHeight;
+
+      if (remainingSpace < messageSize!.height) {
+        adjustedMessageHeight = remainingSpace;
+      }
+
       animationEndOffset = footerHeight;
     }
 
