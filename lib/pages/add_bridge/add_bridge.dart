@@ -797,7 +797,7 @@ class BotController extends State<AddBridge> {
   // 📌 ************************** Messenger & Instagram **************************
   // 📌 ***********************************************************************
 
-  Future<void> bridgeLoginApiMessenger(
+  Future<void> bridgeLoginApi(
       BuildContext context,
       WebviewCookieManager cookieManager,
       ConnectionStateModel connectionState,
