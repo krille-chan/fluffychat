@@ -270,7 +270,7 @@ class BotController extends State<AddBridge> {
       if (flows != null) {
         print('Available login flows for ${network.name}:');
         for (var flow in flows) {
-          print('Name: ${flow['name']}, Description: ${flow['description']}');
+          print('Name: ${flow['name']}, Description: ${flow['description']}, ${flow['id']}');
         }
       } else {
         print('No login flows found for ${network.name}.');
