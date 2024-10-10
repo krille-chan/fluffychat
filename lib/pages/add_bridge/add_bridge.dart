@@ -512,6 +512,54 @@ class BotController extends State<AddBridge> {
   }
 
   /// Disconnect from a social network
+  Future<void> disconnectBridgeApi(
+      BuildContext context,
+      SocialNetwork network,
+      ConnectionStateModel connectionState,
+      {String loginId = 'all'}
+      ) async {
+    final serverUrl = AppConfig.server.startsWith(':')
+        ? AppConfig.server.substring(1)
+        : AppConfig.server;
+    final bridgePathIdentifier  = getBridgePath(network);
+    final userId = client.userID;
+
+    final String logoutUrl = 'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/logout/$loginId?user_id=$userId';
+
+    Future.microtask(() {
+      connectionState.updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
+    });
+
+    try {
+      final response = await http.post(
+        Uri.parse(logoutUrl),
+        headers: {
+          'Authorization': 'Bearer ${client.accessToken}',
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        if (kDebugMode) {
+          print("Successful disconnection for ${network.name}");
+        }
+        setState(() => network.updateConnectionResult(false));
+      } else {
+        if (kDebugMode) {
+          print("Disconnection error: ${response.statusCode}");
+        }
+
+      }
+    } catch (error) {
+      throw("Disconnection error: $error");
+
+    } finally {
+      Future.microtask(() {
+        connectionState.reset();
+      });
+    }
+  }
+
   Future<void> disconnectFromNetwork(BuildContext context,
       SocialNetwork network, ConnectionStateModel connectionState) async {
     final String botUserId = '${network.chatBot}$hostname';
@@ -740,7 +788,7 @@ class BotController extends State<AddBridge> {
       BuildContext context, SocialNetwork network) async {
     final bool success = await showBottomSheetBridge(context, network, this);
 
-    if (success) {
+    if (success && network.name != "Facebook Messenger") {
       await deleteConversationDialog(context, network, this);
     }
   }
