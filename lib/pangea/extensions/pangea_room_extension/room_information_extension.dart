@@ -49,15 +49,14 @@ extension RoomInformationRoomExtension on Room {
   //       creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
   // }
 
-  Future<bool> get _isBotRoom async {
+  Future<bool> get _botIsInRoom async {
     final List<User> participants = await requestParticipants();
     return participants.any(
       (User user) => user.id == BotName.byEnvironment,
     );
   }
 
-  Future<bool> get _isBotDM async =>
-      (await isBotRoom) && getParticipants().length == 2;
+  Future<bool> get _isBotDM async => botOptions?.mode == BotMode.direct;
 
   bool get _isLocked {
     if (isDirectChat) return false;
