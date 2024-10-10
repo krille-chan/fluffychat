@@ -27,6 +27,7 @@ class OverlayUtil {
     double? height,
     Offset? offset,
     backDropToDismiss = true,
+    blurBackground = false,
     Color? borderColor,
     Color? backgroundColor,
     Alignment? targetAnchor,
@@ -50,6 +51,7 @@ class OverlayUtil {
                 TransparentBackdrop(
                   backgroundColor: backgroundColor,
                   onDismiss: onDismiss,
+                  blurBackground: blurBackground,
                 ),
               Positioned(
                 top: (position == OverlayPositionEnum.centered) ? 0 : null,
@@ -207,10 +209,13 @@ class OverlayUtil {
 class TransparentBackdrop extends StatelessWidget {
   final Color? backgroundColor;
   final Function? onDismiss;
+  final bool blurBackground;
+
   const TransparentBackdrop({
     super.key,
     this.onDismiss,
     this.backgroundColor,
+    this.blurBackground = false,
   });
 
   @override
@@ -231,7 +236,9 @@ class TransparentBackdrop extends StatelessWidget {
           MatrixState.pAnyState.closeOverlay();
         },
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
+          filter: blurBackground
+              ? ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5)
+              : ImageFilter.blur(sigmaX: 0, sigmaY: 0),
           child: Container(
             height: double.infinity,
             width: double.infinity,
