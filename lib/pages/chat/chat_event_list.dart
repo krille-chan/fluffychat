@@ -46,11 +46,16 @@ class ChatEventList extends StatelessWidget {
     // after the chat event list mounts, if the user hasn't yet seen this instruction
     // card, attach it on top of the first shown message
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (events.isEmpty) return;
+      final msgEvents = events
+          .where(
+            (event) => event.type == EventTypes.Message,
+          )
+          .toList();
+      if (msgEvents.isEmpty) return;
       controller.pangeaController.instructions.showInstructionsPopup(
         context,
         InstructionsEnum.clickMessage,
-        events[0].eventId,
+        msgEvents[0].eventId,
         true,
       );
     });

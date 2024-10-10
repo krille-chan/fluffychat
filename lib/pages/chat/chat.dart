@@ -1680,6 +1680,7 @@ class ChatController extends State<ChatPageWithRoom>
           MatrixState.pangeaController.subscriptionController.isSubscribed,
       position: OverlayPositionEnum.centered,
       onDismiss: clearSelectedEvents,
+      blurBackground: true,
     );
 
     // select the message
