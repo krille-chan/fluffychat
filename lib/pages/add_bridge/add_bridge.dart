@@ -218,18 +218,26 @@ class BotController extends State<AddBridge> {
       if (network != null) {
         final stateEvent = responseJson['logins']?[0]?['state']?['state_event'];
 
-        if (stateEvent == 'CONNECTING') {
+        if (stateEvent == 'CONNECTED') {
           _updateNetworkStatus(network, true, false);
-          print('Status: Connected to $networkName');
+          if (kDebugMode) {
+            print('Status: Connected to $networkName');
+          }
         } else {
           _updateNetworkStatus(network, false, false);
-          print('Status: Not connected to $networkName');
+          if (kDebugMode) {
+            print('Status: Not connected to $networkName');
+          }
         }
       } else {
-        print('Network not detected or not supported: $networkName');
+        if (kDebugMode) {
+          print('Network not detected or not supported: $networkName');
+        }
       }
     } else {
-      print('Network not detected in response.');
+      if (kDebugMode) {
+        print('Network not detected in response.');
+      }
     }
   }
 
