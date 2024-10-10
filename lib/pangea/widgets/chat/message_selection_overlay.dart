@@ -373,24 +373,16 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // the default spacing between the side of the screen and the message bubble
     final double messageMargin =
         pangeaMessageEvent.ownMessage ? Avatar.defaultSize + 16 : 8;
-
-    // the actual spacing between the side of the screen and
-    // the message bubble, accounts for wide screen
-    double extraChatSpace = FluffyThemes.isColumnMode(context)
-        ? ((screenWidth -
-                    (FluffyThemes.columnWidth * 3.5) -
-                    FluffyThemes.navRailWidth) /
-                2) +
-            messageMargin
-        : messageMargin;
-
-    if (extraChatSpace < messageMargin) {
-      extraChatSpace = messageMargin;
-    }
+    final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
+    final chatViewWidth = screenWidth -
+        (FluffyThemes.isColumnMode(context)
+            ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth)
+            : 0);
+    final maxWidth = chatViewWidth - (2 * horizontalPadding) - messageMargin;
 
     final overlayMessage = Container(
-      constraints: const BoxConstraints(
-        maxWidth: FluffyThemes.columnWidth * 2.5,
+      constraints: BoxConstraints(
+        maxWidth: maxWidth,
       ),
       child: Material(
         type: MaterialType.transparency,
@@ -439,21 +431,20 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       ),
     );
 
-    final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
     final columnOffset = FluffyThemes.isColumnMode(context)
         ? FluffyThemes.columnWidth + FluffyThemes.navRailWidth
         : 0;
 
-    final double leftPadding = widget._pangeaMessageEvent.ownMessage
-        ? extraChatSpace
+    final double? leftPadding = widget._pangeaMessageEvent.ownMessage
+        ? null
         : messageOffset!.dx - horizontalPadding - columnOffset;
 
-    final double rightPadding = widget._pangeaMessageEvent.ownMessage
+    final double? rightPadding = widget._pangeaMessageEvent.ownMessage
         ? screenWidth -
             messageOffset!.dx -
             messageSize!.width -
             horizontalPadding
-        : extraChatSpace;
+        : null;
 
     final positionedOverlayMessage = _overlayPositionAnimation == null
         ? Positioned(

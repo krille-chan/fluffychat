@@ -120,34 +120,40 @@ class MessageToolbarState extends State<MessageToolbar> {
           .layerLinkAndKey('${widget.pangeaMessageEvent.eventId}-toolbar')
           .key,
       type: MaterialType.transparency,
-      child: Column(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-              border: Border.all(
-                width: 2,
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-              ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(AppConfig.borderRadius),
-              ),
-            ),
-            constraints: const BoxConstraints(
-              maxHeight: AppConfig.toolbarMaxHeight,
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: AnimatedSize(
-                      duration: FluffyThemes.animationDuration,
-                      child: toolbarContent,
-                    ),
+          Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).cardColor,
+                  border: Border.all(
+                    width: 2,
+                    color:
+                        Theme.of(context).colorScheme.primary.withOpacity(0.5),
+                  ),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(AppConfig.borderRadius),
                   ),
                 ),
-              ],
-            ),
+                constraints: const BoxConstraints(
+                  maxHeight: AppConfig.toolbarMaxHeight,
+                ),
+                // child: Row(
+                //   children: [
+                //     Expanded(
+                child: SingleChildScrollView(
+                  child: AnimatedSize(
+                    duration: FluffyThemes.animationDuration,
+                    child: toolbarContent,
+                  ),
+                ),
+                //     ),
+                //   ],
+                // ),
+              ),
+            ],
           ),
         ],
       ),
