@@ -20,7 +20,6 @@ import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/controllers/user_controller.dart';
 import 'package:fluffychat/pangea/controllers/word_net_controller.dart';
-import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
@@ -193,19 +192,53 @@ class PangeaController {
   void startChatWithBotIfNotPresent() {
     Future.delayed(const Duration(milliseconds: 10000), () async {
       // check if user is logged in
-      if (!matrixState.client.isLogged() ||
-          (await matrixState.client.hasBotDM)) {
+      if (!matrixState.client.isLogged()) {
         return;
       }
 
-      try {
-        await matrixState.client.startDirectChat(
-          BotName.byEnvironment,
-          enableEncryption: false,
-        );
-      } catch (err, stack) {
-        debugger(when: kDebugMode);
-        ErrorHandler.logError(e: err, s: stack);
+      const List<Room> botDMs = [];
+      for (final room in matrixState.client.rooms) {
+        if (await room.isBotDM) {
+          botDMs.add(room);
+        }
+      }
+
+      if (botDMs.isEmpty) {
+        try {
+          await matrixState.client.startDirectChat(
+            BotName.byEnvironment,
+            enableEncryption: false,
+          );
+        } catch (err, stack) {
+          debugger(when: kDebugMode);
+          ErrorHandler.logError(e: err, s: stack);
+        }
+        return;
+      }
+
+      final Room botDMWithLatestActivity = botDMs.reduce((a, b) {
+        if (a.timeline == null || b.timeline == null) {
+          return a;
+        }
+        final aLastEvent = a.timeline!.events.last;
+        final bLastEvent = b.timeline!.events.last;
+        return aLastEvent.originServerTs.isAfter(bLastEvent.originServerTs)
+            ? a
+            : b;
+      });
+
+      for (final room in botDMs) {
+        if (room.id != botDMWithLatestActivity.id) {
+          await room.leave();
+          continue;
+        }
+      }
+
+      final participants = await botDMWithLatestActivity.requestParticipants();
+      final joinedParticipants =
+          participants.where((e) => e.membership == Membership.join).toList();
+      if (joinedParticipants.length < 2) {
+        await botDMWithLatestActivity.invite(BotName.byEnvironment);
       }
     });
   }

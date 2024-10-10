@@ -46,7 +46,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
     botOptions = widget.room?.botOptions != null
         ? BotOptionsModel.fromJson(widget.room?.botOptions?.toJson())
         : BotOptionsModel();
-    widget.room?.isBotRoom.then((bool isBotRoom) {
+    widget.room?.botIsInRoom.then((bool isBotRoom) {
       setState(() {
         addBot = isBotRoom;
       });
@@ -260,7 +260,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                         botOptions = botOptions;
                       });
                       final bool isBotRoomMember =
-                          await widget.room?.isBotRoom ?? false;
+                          await widget.room?.botIsInRoom ?? false;
                       if (addBot && !isBotRoomMember) {
                         await widget.room?.invite(BotName.byEnvironment);
                       } else if (!addBot && isBotRoomMember) {
