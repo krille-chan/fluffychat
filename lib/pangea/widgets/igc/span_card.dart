@@ -237,49 +237,47 @@ class WordMatchContent extends StatelessWidget {
                     ? controller.currentExpression
                     : BotExpression.addled,
               ),
-              Expanded(
-                child: Scrollbar(
+              Scrollbar(
+                controller: scrollController,
+                thumbVisibility: true,
+                child: SingleChildScrollView(
                   controller: scrollController,
-                  thumbVisibility: true,
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // const SizedBox(height: 10.0),
-                        // if (matchCopy.description != null)
-                        //   Padding(
-                        //     padding: const EdgeInsets.only(),
-                        //     child: Text(
-                        //       matchCopy.description!,
-                        //       style: BotStyle.text(context),
-                        //     ),
-                        //   ),
-                        const SizedBox(height: 8),
-                        if (!controller.widget.scm.pangeaMatch!.isITStart)
-                          ChoicesArray(
-                            originalSpan:
-                                controller.widget.scm.pangeaMatch!.matchContent,
-                            isLoading: controller.fetchingData,
-                            choices:
-                                controller.widget.scm.pangeaMatch!.match.choices
-                                    ?.map(
-                                      (e) => Choice(
-                                        text: e.value,
-                                        color: e.selected ? e.type.color : null,
-                                        isGold: e.type.name == 'bestCorrection',
-                                      ),
-                                    )
-                                    .toList(),
-                            onPressed: controller.onChoiceSelect,
-                            uniqueKeyForLayerLink: (int index) =>
-                                "wordMatch$index",
-                            selectedChoiceIndex: controller.selectedChoiceIndex,
-                          ),
-                        const SizedBox(height: 12),
-                        PromptAndFeedback(controller: controller),
-                      ],
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // const SizedBox(height: 10.0),
+                      // if (matchCopy.description != null)
+                      //   Padding(
+                      //     padding: const EdgeInsets.only(),
+                      //     child: Text(
+                      //       matchCopy.description!,
+                      //       style: BotStyle.text(context),
+                      //     ),
+                      //   ),
+                      const SizedBox(height: 8),
+                      if (!controller.widget.scm.pangeaMatch!.isITStart)
+                        ChoicesArray(
+                          originalSpan:
+                              controller.widget.scm.pangeaMatch!.matchContent,
+                          isLoading: controller.fetchingData,
+                          choices:
+                              controller.widget.scm.pangeaMatch!.match.choices
+                                  ?.map(
+                                    (e) => Choice(
+                                      text: e.value,
+                                      color: e.selected ? e.type.color : null,
+                                      isGold: e.type.name == 'bestCorrection',
+                                    ),
+                                  )
+                                  .toList(),
+                          onPressed: controller.onChoiceSelect,
+                          uniqueKeyForLayerLink: (int index) =>
+                              "wordMatch$index",
+                          selectedChoiceIndex: controller.selectedChoiceIndex,
+                        ),
+                      const SizedBox(height: 12),
+                      PromptAndFeedback(controller: controller),
+                    ],
                   ),
                 ),
               ),

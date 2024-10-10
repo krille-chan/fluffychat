@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 
 class OverlayContainer extends StatelessWidget {
   final Widget cardToShow;
-  final Size cardSize;
   final Color? borderColor;
+  final double maxHeight;
+  final double maxWidth;
 
   const OverlayContainer({
     super.key,
     required this.cardToShow,
-    this.cardSize = const Size(300.0, 300.0),
     this.borderColor,
+    required this.maxHeight,
+    required this.maxWidth,
   });
 
   @override
@@ -28,14 +30,17 @@ class OverlayContainer extends StatelessWidget {
         ),
       ),
       constraints: BoxConstraints(
-        maxWidth: cardSize.width,
-        maxHeight: cardSize.height,
-        minWidth: cardSize.width,
-        minHeight: cardSize.height,
+        maxWidth: maxWidth,
+        maxHeight: maxHeight,
       ),
       //PTODO - position card above input/message
       // margin: const EdgeInsets.all(10),
-      child: cardToShow,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [cardToShow],
+        ),
+      ),
     );
   }
 }

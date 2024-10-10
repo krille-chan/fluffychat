@@ -124,7 +124,8 @@ class IgcController {
         ),
         roomId: choreographer.roomId,
       ),
-      cardSize: match.isITStart ? const Size(350, 260) : const Size(400, 400),
+      maxHeight: match.isITStart ? 260 : 400,
+      maxWidth: match.isITStart ? 350 : 400,
       transformTargetId: choreographer.inputTransformTargetKey,
     );
   }
