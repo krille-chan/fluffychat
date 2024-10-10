@@ -15,6 +15,7 @@ class SocialNetwork {
   final String? urlLogin;
   final String? urlRedirect;
   final RegExp? urlRedirectPattern;
+  final String flowId;
   bool loading; // To find out if state is loading
   bool connected; // To find out if state is disconnected
   bool error; // Bool to indicate if there is an error
@@ -31,6 +32,7 @@ class SocialNetwork {
     this.urlLogin,
     this.urlRedirect,
     this.urlRedirectPattern,
+    this.flowId = "",
     this.loading = true, // Default value true for loading
     this.connected = false, // Default value false for connected
     this.error = false, // Défaut à false
@@ -80,6 +82,7 @@ class SocialNetworkManager {
       urlLogin: "https://www.messenger.com/login/",
       urlRedirect: "https://www.messenger.com/t/",
       urlRedirectPattern: RegExp(r'^https:\/\/www\.messenger\.com\/.*t\/.*$'),
+      flowId: "cookies-messenger"
     ),
     SocialNetwork(
       logo: Logo(Logos.instagram),

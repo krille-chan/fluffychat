@@ -797,6 +797,110 @@ class BotController extends State<AddBridge> {
   // 📌 ************************** Messenger & Instagram **************************
   // 📌 ***********************************************************************
 
+  Future<void> bridgeLoginApiMessenger(
+      BuildContext context,
+      WebviewCookieManager cookieManager,
+      ConnectionStateModel connectionState,
+      SocialNetwork network,
+      ) async {
+    final flowID = network.flowId;
+    final serverUrl = AppConfig.server.startsWith(':')
+        ? AppConfig.server.substring(1)
+        : AppConfig.server;
+    final bridgePathIdentifier  = getBridgePath(network);
+    final userId = client.userID;
+
+    // Step 1: Start the login process
+    final loginStartUrl = Uri.parse(
+      'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/login/start/$flowID?user_id=$userId',
+    );
+
+    try {
+      // Initiate the login process
+      final startResponse = await http.post(
+        loginStartUrl,
+        headers: {
+          'Authorization': 'Bearer ${client.accessToken}',
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (startResponse.statusCode == 200) {
+        final startData = jsonDecode(startResponse.body);
+        final loginId = startData['login_id'];
+        final stepType = startData['type'];
+        final stepId = startData['step_id'];
+
+        // Update state if there's a display message
+        if (stepType == 'display_and_wait') {
+          connectionState.updateConnectionTitle(
+            startData['instructions'] ?? 'Waiting for user action...',
+          );
+        }
+
+        // Step 2: If the next step is user input or cookies, prepare to submit cookies
+        if (stepType == 'user_input' || stepType == 'cookies') {
+          // Retrieve cookies
+          final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+          final formattedCookieString = formatCookiesToJsonApi(gotCookies);
+
+          // Submit cookies to the login process step
+          final stepUrl = Uri.parse(
+            'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId',
+          );
+
+          final stepResponse = await http.post(
+            stepUrl,
+            headers: {
+              'Authorization': 'Bearer ${client.accessToken}',
+              'Content-Type': 'application/json',
+            },
+            body: formattedCookieString,
+          );
+
+          if (stepResponse.statusCode == 200) {
+            final stepData = jsonDecode(stepResponse.body);
+            if (stepData['type'] == 'complete') {
+              setState(() => network.updateConnectionResult(true));
+              if (kDebugMode) {
+                print('Login successful for ${network.name}');
+              }
+            } else {
+              network.setError(true);
+              if (kDebugMode) {
+                print('Unexpected response: ${stepData['type']}');
+              }
+            }
+          } else {
+            network.setError(true);
+            if (kDebugMode) {
+              print('Error submitting step: ${stepResponse.statusCode}');
+            }
+          }
+        } else {
+          network.setError(true);
+          if (kDebugMode) {
+            print('Unexpected step type: $stepType');
+          }
+        }
+      } else {
+        network.setError(true);
+        if (kDebugMode) {
+          print('Login initiation failed with status: ${startResponse.statusCode}');
+        }
+      }
+    } catch (error) {
+      network.setError(true);
+      if (kDebugMode) {
+        print('Error during login process: $error');
+      }
+    } finally {
+      Future.microtask(() {
+        connectionState.reset();
+      });
+    }
+  }
+
   /// Create a bridge for Messenger & Instagram using cookies
   Future<void> createBridgeMeta(
       BuildContext context,
