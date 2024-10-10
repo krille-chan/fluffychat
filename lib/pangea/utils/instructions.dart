@@ -69,6 +69,12 @@ class InstructionsController {
     String transformTargetKey, [
     bool showToggle = true,
   ]) async {
+    final bool userLangsSet =
+        await _pangeaController.userController.areUserLanguagesSet;
+    if (!userLangsSet) {
+      return;
+    }
+
     if (_instructionsShown[key.toString()] ?? false) {
       return;
     }
@@ -82,12 +88,6 @@ class InstructionsController {
         m: "null context in ITBotButton.showCard",
         s: StackTrace.current,
       );
-      return;
-    }
-
-    final bool userLangsSet =
-        await _pangeaController.userController.areUserLanguagesSet;
-    if (!userLangsSet) {
       return;
     }
 
