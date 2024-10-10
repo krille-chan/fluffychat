@@ -216,17 +216,26 @@ class BotController extends State<AddBridge> {
       final SocialNetwork? network = SocialNetworkManager.fromName(networkName);
 
       if (network != null) {
-        final stateEvent = responseJson['logins']?[0]?['state']?['state_event'];
+        final logins = responseJson['logins'];
+        if (logins != null && logins.isNotEmpty) {
+          final stateEvent = logins[0]['state']?['state_event'];
 
-        if (stateEvent == 'CONNECTED') {
-          _updateNetworkStatus(network, true, false);
-          if (kDebugMode) {
-            print('Status: Connected to $networkName');
+          if (stateEvent == 'CONNECTED') {
+            _updateNetworkStatus(network, true, false);
+            if (kDebugMode) {
+              print('Status: Connected to $networkName');
+            }
+          } else {
+            _updateNetworkStatus(network, false, false);
+            if (kDebugMode) {
+              print('Status: Not connected to $networkName');
+            }
           }
         } else {
+          // Treat an empty list as unconnected
           _updateNetworkStatus(network, false, false);
           if (kDebugMode) {
-            print('Status: Not connected to $networkName');
+            print('Status: Not connected to $networkName (logins list is empty)');
           }
         }
       } else {
