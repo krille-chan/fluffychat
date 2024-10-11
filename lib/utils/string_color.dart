@@ -14,7 +14,7 @@ extension StringColor on String {
 
   Color get color {
     _colorCache[this] ??= {};
-    return _colorCache[this]![0.35] ??= _getColorLight(0.35);
+    return _colorCache[this]![0.3] ??= _getColorLight(0.3);
   }
 
   Color get darkColor {

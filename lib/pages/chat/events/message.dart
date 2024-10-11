@@ -249,7 +249,8 @@ class Message extends StatelessWidget {
                                             return Text(
                                               displayname,
                                               style: TextStyle(
-                                                fontSize: 12,
+                                                fontSize: 11,
+                                                fontWeight: FontWeight.bold,
                                                 color: (theme.brightness ==
                                                         Brightness.light
                                                     ? displayname.color
@@ -469,27 +470,33 @@ class Message extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Divider(color: theme.colorScheme.primary),
+                  child: Divider(color: theme.colorScheme.secondary),
                 ),
                 Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: theme.colorScheme.primary,
-                    ),
-                    color: theme.colorScheme.primaryContainer,
-                    borderRadius: BorderRadius.circular(4),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 4,
+                    vertical: 16.0,
                   ),
-                  margin: const EdgeInsets.all(8.0),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
                   ),
                   child: Text(
                     L10n.of(context).readUpToHere,
-                    style: TextStyle(color: theme.colorScheme.primary),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12 * AppConfig.fontSizeFactor,
+                      color: theme.colorScheme.secondary,
+                      shadows: [
+                        Shadow(
+                          color: theme.colorScheme.surface,
+                          blurRadius: 3,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: Divider(color: theme.colorScheme.primary),
+                  child: Divider(color: theme.colorScheme.secondary),
                 ),
               ],
             ),
