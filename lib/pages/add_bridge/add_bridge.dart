@@ -52,6 +52,9 @@ class BotController extends State<AddBridge> {
 
   late Client client;
   late String hostname;
+  late Map<String, String> headers;
+
+  final serverUrl = AppConfig.server.startsWith(':') ? AppConfig.server.substring(1) : AppConfig.server;
 
   List<SocialNetwork> socialNetworks = SocialNetworkManager.socialNetworks;
 
@@ -62,6 +65,7 @@ class BotController extends State<AddBridge> {
   void initState() {
     super.initState();
     matrixInit();
+    initializeHeaders();
     handleRefresh();
   }
 
@@ -79,6 +83,13 @@ class BotController extends State<AddBridge> {
 
     final String fullUrl = client.homeserver!.host;
     hostname = extractHostName(fullUrl);
+  }
+
+  void initializeHeaders() {
+    headers = {
+      'Authorization': 'Bearer ${client.accessToken}',
+      'Content-Type': 'application/json',
+    };
   }
 
   /// Wait for Matrix synchronization
@@ -179,32 +190,32 @@ class BotController extends State<AddBridge> {
     Logs().i('No message received from bot within the wait time');
   }
 
+  Future<http.Response> requestGet(String url) async {
+    return await http.get(Uri.parse(url), headers: headers);
+  }
+
+  Future<http.Response> requestPost(String url, {dynamic body}) async {
+    return await http.post(Uri.parse(url), headers: headers, body: body);
+  }
+
   Future<void> pingBridgeAPI(SocialNetwork network) async {
-    final serverUrl = AppConfig.server.startsWith(':')
-        ? AppConfig.server.substring(1)
-        : AppConfig.server;
     final bridgePathIdentifier  = getBridgePath(network);
-    final accessToken = client.accessToken;
     final userId = client.userID;
 
-    print("accessToken: $accessToken");
-    print("userId: $userId");
+    final url = 'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/whoami?user_id=$userId';
 
-    final url = Uri.parse(
-      'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/whoami?user_id=$userId',
-    );
-
-    final response = await http.get(
-      url,
-      headers: {'Authorization': 'Bearer $accessToken'},
-    );
+    final response = await requestGet(url);
 
     interpretBridgeResponse(response);
 
     if (response.statusCode == 200) {
-      print('Successful ping');
+      if (kDebugMode) {
+        print('Successful ping');
+      }
     } else {
-      print('Error: ${response.statusCode}');
+      if (kDebugMode) {
+        print('Error: ${response.statusCode}');
+      }
     }
   }
 
@@ -518,26 +529,17 @@ class BotController extends State<AddBridge> {
       ConnectionStateModel connectionState,
       {String loginId = 'all'}
       ) async {
-    final serverUrl = AppConfig.server.startsWith(':')
-        ? AppConfig.server.substring(1)
-        : AppConfig.server;
     final bridgePathIdentifier  = getBridgePath(network);
     final userId = client.userID;
 
-    final String logoutUrl = 'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/logout/$loginId?user_id=$userId';
+    final logoutUrl = 'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/logout/$loginId?user_id=$userId';
 
     Future.microtask(() {
       connectionState.updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
     });
 
     try {
-      final response = await http.post(
-        Uri.parse(logoutUrl),
-        headers: {
-          'Authorization': 'Bearer ${client.accessToken}',
-          'Content-Type': 'application/json',
-        },
-      );
+      final response = await requestPost(logoutUrl);
 
       if (response.statusCode == 200) {
         if (kDebugMode) {
@@ -804,26 +806,15 @@ class BotController extends State<AddBridge> {
       SocialNetwork network,
       ) async {
     final flowID = network.flowId;
-    final serverUrl = AppConfig.server.startsWith(':')
-        ? AppConfig.server.substring(1)
-        : AppConfig.server;
     final bridgePathIdentifier  = getBridgePath(network);
     final userId = client.userID;
 
     // Step 1: Start the login process
-    final loginStartUrl = Uri.parse(
-      'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/login/start/$flowID?user_id=$userId',
-    );
+    final loginStartUrl = 'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/login/start/$flowID?user_id=$userId';
 
     try {
       // Initiate the login process
-      final startResponse = await http.post(
-        loginStartUrl,
-        headers: {
-          'Authorization': 'Bearer ${client.accessToken}',
-          'Content-Type': 'application/json',
-        },
-      );
+      final startResponse = await requestPost(loginStartUrl);
 
       if (startResponse.statusCode == 200) {
         final startData = jsonDecode(startResponse.body);
@@ -845,18 +836,9 @@ class BotController extends State<AddBridge> {
           final formattedCookieString = formatCookiesToJsonApi(gotCookies);
 
           // Submit cookies to the login process step
-          final stepUrl = Uri.parse(
-            'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId',
-          );
+          final stepUrl = 'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId';
 
-          final stepResponse = await http.post(
-            stepUrl,
-            headers: {
-              'Authorization': 'Bearer ${client.accessToken}',
-              'Content-Type': 'application/json',
-            },
-            body: formattedCookieString,
-          );
+          final stepResponse = await requestPost(stepUrl, body: formattedCookieString);
 
           if (stepResponse.statusCode == 200) {
             final stepData = jsonDecode(stepResponse.body);
