@@ -21,6 +21,9 @@ extension IsStateExtension on Event {
       (isState || !AppConfig.hideAllStateEvents) &&
       // #Pangea
       content.tryGet(ModelKey.transcription) == null &&
+      ((unsigned?['extra_content']
+              as Map<String, dynamic>?)?[ModelKey.transcription] ==
+          null) &&
       // hide unimportant state events
       (!AppConfig.hideUnimportantStateEvents ||
           !isState ||
