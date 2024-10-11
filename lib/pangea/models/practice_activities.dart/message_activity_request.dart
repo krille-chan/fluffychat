@@ -156,6 +156,20 @@ class ActivityQualityFeedback {
       'bad_activity': badActivity.toJson(),
     };
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is ActivityQualityFeedback &&
+        other.feedbackText == feedbackText &&
+        other.badActivity == badActivity;
+  }
+
+  @override
+  int get hashCode {
+    return feedbackText.hashCode ^ badActivity.hashCode;
+  }
 }
 
 class MessageActivityRequest {
@@ -231,7 +245,9 @@ class MessageActivityRequest {
 
   @override
   int get hashCode {
-    return messageId.hashCode ^ const ListEquality().hash(tokensWithXP);
+    return messageId.hashCode ^
+        const ListEquality().hash(tokensWithXP) ^
+        activityQualityFeedback.hashCode;
   }
 }
 
