@@ -21,6 +21,8 @@ extension IsStateExtension on Event {
       (isState || !AppConfig.hideAllStateEvents) &&
       // #Pangea
       content.tryGet(ModelKey.transcription) == null &&
+      // if sending of transcription fails,
+      // don't show it as a errored audio event in timeline.
       ((unsigned?['extra_content']
               as Map<String, dynamic>?)?[ModelKey.transcription] ==
           null) &&
