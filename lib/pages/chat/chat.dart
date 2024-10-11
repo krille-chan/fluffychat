@@ -363,6 +363,7 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void>? _setReadMarkerFuture;
 
   void setReadMarker({String? eventId}) {
+    if (!mounted) return;
     if (_setReadMarkerFuture != null) return;
     if (_scrolledUp) return;
     if (scrollUpBannerEventId != null) return;
@@ -418,17 +419,21 @@ class ChatController extends State<ChatPageWithRoom>
       room.setTyping(false);
       currentlyTyping = false;
     }
-    // then cancel the old timeline
-    // fixes bug with read reciepts and quick switching
-    loadTimelineFuture = _getTimeline(eventContextId: room.fullyRead).onError(
+
+    setState(() {
+      sendingClient = c;
+    });
+
+    loadTimelineFuture = _getTimeline(eventContextId: room.fullyRead)
+        .onError(
       ErrorReporter(
         context,
         'Unable to load timeline after changing sending Client',
       ).onErrorCallback,
-    );
-
-    // then set the new sending client
-    setState(() => sendingClient = c);
+    )
+        .then((_) {
+      setReadMarker();
+    });
   }
 
   void setActiveClient(Client c) => setState(() {

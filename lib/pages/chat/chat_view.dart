@@ -138,7 +138,7 @@ class ChatView extends StatelessWidget {
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
 
-    final accountConfig = Matrix.of(context).client.applicationAccountConfig;
+    final accountConfig = controller.sendingClient.applicationAccountConfig;
 
     return PopScope(
       canPop: controller.selectedEvents.isEmpty && !controller.showEmojiPicker,

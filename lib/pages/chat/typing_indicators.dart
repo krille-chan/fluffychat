@@ -6,7 +6,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 class TypingIndicators extends StatelessWidget {
   final ChatController controller;
@@ -27,7 +26,7 @@ class TypingIndicators extends StatelessWidget {
       ),
       builder: (context, _) {
         final typingUsers = controller.room.typingUsers
-          ..removeWhere((u) => u.stateKey == Matrix.of(context).client.userID);
+          ..removeWhere((u) => u.stateKey == controller.sendingClient.userID);
 
         return Container(
           width: double.infinity,
@@ -40,7 +39,7 @@ class TypingIndicators extends StatelessWidget {
             curve: FluffyThemes.animationCurve,
             alignment: controller.timeline!.events.isNotEmpty &&
                     controller.timeline!.events.first.senderId ==
-                        Matrix.of(context).client.userID
+                        controller.sendingClient.userID
                 ? Alignment.topRight
                 : Alignment.topLeft,
             clipBehavior: Clip.hardEdge,
