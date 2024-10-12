@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_208",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cUP(){return new B.Hi(A.dJ("bn"))},
-Hi:function Hi(d){this.a=d}}
+cUQ(){return new B.Hj(A.dJ("bo"))},
+Hj:function Hj(d){this.a=d}}
 A=c[0]
 C=c[51]
-B=a.updateHolder(c[7],B)
-B.Hi.prototype={
+B=a.updateHolder(c[8],B)
+B.Hj.prototype={
 go3(){return"false"},
 gko(){return"Repeat password"},
 gmx(){return"Not an image file."},
@@ -17,10 +17,10 @@ gm6(){return"Import Emojis"},
 gm7(){return"Import from .zip file"},
 glR(){return"Export Emote pack as .zip"},
 gmV(d){return"Replace"},
-gfC(){return"\u09b8\u09ae\u09cd\u09aa\u09b0\u09cd\u0995\u09c7"},
-gf3(d){return"\u09b8\u09cd\u09ac\u09c0\u0995\u09be\u09b0 \u0995\u09b0\u09bf"},
-hJ(d){return d+" \u0986\u09ae\u09a8\u09cd\u09a4\u09cd\u09b0\u09a3 \u0997\u09cd\u09b0\u09b9\u09a3 \u0995\u09b0\u09c7\u099b\u09c7"},
-ghL(){return"\u0985\u09cd\u09af\u09be\u0995\u09be\u0989\u09a8\u09cd\u099f"},
+gfC(){return"About"},
+gf3(d){return"Accept"},
+hJ(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
+ghL(){return"Account"},
 hM(d){return"\ud83d\udd10 "+d+" activated end to end encryption"},
 ghO(){return"Add email"},
 glA(){return"Please confirm your Matrix ID in order to delete your account."},
@@ -558,8 +558,8 @@ of(d,e){return"Sending attachment "+d+" of "+e+"..."},
 og(d){return"Server limit reached! Waiting "+d+" seconds..."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Hi,C.aP)})()
-A.eo(b.typeUniverse,JSON.parse('{"Hi":{"aP":[]}}'))};
+y(B.Hj,C.aP)})()
+A.eo(b.typeUniverse,JSON.parse('{"Hj":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_208",e:"endPart",h:b})})($__dart_deferred_initializers__,"Axs3zIEpOKTlQ8+VErXJ+cE2Vlg=");
+a.eventLog.push({p:"main.dart.js_208",e:"endPart",h:b})})($__dart_deferred_initializers__,"JQ1pRzIvfPTXK0LdffuZqLCvDH0=");
 //# sourceMappingURL=main.dart.js_208.part.js.map
