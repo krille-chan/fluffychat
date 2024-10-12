@@ -32,6 +32,28 @@ class DevicesSettingsController extends State<DevicesSettings> {
   bool loadingDeletingDevices = false;
   String? errorDeletingDevices;
 
+  bool? chatBackupEnabled;
+
+  @override
+  void initState() {
+    _checkChatBackup();
+    super.initState();
+  }
+
+  void _checkChatBackup() async {
+    final client = Matrix.of(context).client;
+    if (client.encryption?.keyManager.enabled == true) {
+      if (await client.encryption?.keyManager.isCached() == false ||
+          await client.encryption?.crossSigning.isCached() == false ||
+          client.isUnknownSession && !mounted) {
+        setState(() {
+          chatBackupEnabled = false;
+        });
+        return;
+      }
+    }
+  }
+
   void removeDevicesAction(List<Device> devices) async {
     if (await showOkCancelAlertDialog(
           context: context,

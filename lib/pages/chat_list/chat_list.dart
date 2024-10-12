@@ -820,6 +820,7 @@ class ChatListController extends State<ChatList>
   bool waitForFirstSync = false;
 
   Future<void> _waitForFirstSync() async {
+    final router = GoRouter.of(context);
     final client = Matrix.of(context).client;
     await client.roomsLoading;
     await client.accountDataLoading;
@@ -840,6 +841,33 @@ class ChatListController extends State<ChatList>
     setState(() {
       waitForFirstSync = true;
     });
+
+    if (client.userDeviceKeys[client.userID!]?.deviceKeys.values
+            .any((device) => !device.verified && !device.blocked) ??
+        false) {
+      late final ScaffoldFeatureController controller;
+      final theme = Theme.of(context);
+      controller = ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          duration: const Duration(seconds: 15),
+          backgroundColor: theme.colorScheme.errorContainer,
+          content: Text(
+            L10n.of(context).oneOfYourDevicesIsNotVerified,
+            style: TextStyle(
+              color: theme.colorScheme.onErrorContainer,
+            ),
+          ),
+          action: SnackBarAction(
+            onPressed: () {
+              controller.close();
+              router.go('/rooms/settings/devices');
+            },
+            textColor: theme.colorScheme.onErrorContainer,
+            label: L10n.of(context).settings,
+          ),
+        ),
+      );
+    }
   }
 
   void cancelAction() {
