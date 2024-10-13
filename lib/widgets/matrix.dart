@@ -8,7 +8,6 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -21,12 +20,12 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
@@ -234,16 +233,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     } else {
       initSettings();
     }
-    initLoadingDialog();
-  }
-
-  void initLoadingDialog() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
-      LoadingDialog.defaultBackLabel = L10n.of(context).close;
-      LoadingDialog.defaultOnError =
-          (e) => (e as Object?)!.toLocalizedString(context);
-    });
   }
 
   Future<void> initConfig() async {

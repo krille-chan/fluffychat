@@ -789,14 +789,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  future_loading_dialog:
-    dependency: "direct main"
-    description:
-      name: future_loading_dialog
-      sha256: "2718b1a308db452da32ab9bca9ad496ff92b683e217add9e92cf50520f90537e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.0"
   geolocator:
     dependency: "direct main"
     description:
