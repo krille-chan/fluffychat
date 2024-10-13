@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -72,6 +73,10 @@ abstract class FluffyThemes {
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
+      cupertinoOverrideTheme: const CupertinoThemeData(
+        // This is required by adaptive_dialog
+        textTheme: CupertinoTextThemeData(),
+      ),
       textTheme: PlatformInfos.isDesktop
           ? brightness == Brightness.light
               ? Typography.material2018().black.merge(fallbackTextTheme)
