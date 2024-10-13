@@ -96,8 +96,7 @@ class DevicesSettingsView extends StatelessWidget {
                             width: double.infinity,
                             child: TextButton.icon(
                               label: Text(
-                                controller.errorDeletingDevices ??
-                                    L10n.of(context).removeAllOtherDevices,
+                                L10n.of(context).removeAllOtherDevices,
                               ),
                               style: TextButton.styleFrom(
                                 foregroundColor:
@@ -105,16 +104,10 @@ class DevicesSettingsView extends StatelessWidget {
                                 backgroundColor:
                                     theme.colorScheme.errorContainer,
                               ),
-                              icon: controller.loadingDeletingDevices
-                                  ? const CircularProgressIndicator.adaptive(
-                                      strokeWidth: 2,
-                                    )
-                                  : const Icon(Icons.delete_outline),
-                              onPressed: controller.loadingDeletingDevices
-                                  ? null
-                                  : () => controller.removeDevicesAction(
-                                        controller.notThisDevice,
-                                      ),
+                              icon: const Icon(Icons.delete_outline),
+                              onPressed: () => controller.removeDevicesAction(
+                                controller.notThisDevice,
+                              ),
                             ),
                           ),
                         )

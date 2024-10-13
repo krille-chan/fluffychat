@@ -9,7 +9,6 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/device_settings/device_settings_view.dart';
 import 'package:fluffychat/pages/key_verification/key_verification_dialog.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
 
 class DevicesSettings extends StatefulWidget {
@@ -28,9 +27,6 @@ class DevicesSettingsController extends State<DevicesSettings> {
   }
 
   void reload() => setState(() => devices = null);
-
-  bool loadingDeletingDevices = false;
-  String? errorDeletingDevices;
 
   bool? chatBackupEnabled;
 
@@ -69,24 +65,16 @@ class DevicesSettingsController extends State<DevicesSettings> {
       deviceIds.add(userDevice.deviceId);
     }
 
-    try {
-      setState(() {
-        loadingDeletingDevices = true;
-        errorDeletingDevices = null;
-      });
-      await matrix.client.uiaRequestBackground(
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => matrix.client.uiaRequestBackground(
         (auth) => matrix.client.deleteDevices(
           deviceIds,
           auth: auth,
         ),
-      );
-      reload();
-    } catch (e, s) {
-      Logs().w('Error while deleting devices', e, s);
-      setState(() => errorDeletingDevices = e.toLocalizedString(context));
-    } finally {
-      setState(() => loadingDeletingDevices = false);
-    }
+      ),
+    );
+    reload();
   }
 
   void renameDeviceAction(Device device) async {
