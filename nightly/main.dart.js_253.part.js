@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_253",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVm(){return new B.HE(A.dJ("hr"))},
-HE:function HE(d){this.a=d}}
+cVk(){return new B.HF(A.dJ("hr"))},
+HF:function HF(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[26],B)
-B.HE.prototype={
+B.HF.prototype={
 go3(){return"true"},
 gko(){return"Ponovi lozinku"},
 gmx(){return"Nije slikovna datoteka."},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HE,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HE":{"aP":[]}}'))};
+y(B.HF,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HF":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"mhSCaq5Kvyfym0mXDlJiVLZtecg=");
+a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"QQa1ZiW2u8OHFCiqUvwyEBqOB2Y=");
 //# sourceMappingURL=main.dart.js_253.part.js.map
