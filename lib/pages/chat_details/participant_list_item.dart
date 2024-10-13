@@ -51,22 +51,18 @@ class ParticipantListItem extends StatelessWidget {
             if (permissionBatch.isNotEmpty)
               Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 4,
+                  horizontal: 8,
                   vertical: 2,
                 ),
-                margin: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
                   color: theme.colorScheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: theme.colorScheme.primary,
-                  ),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 child: Text(
                   permissionBatch,
                   style: TextStyle(
-                    fontSize: 14,
-                    color: theme.colorScheme.primary,
+                    fontSize: 12,
+                    color: theme.colorScheme.onPrimaryContainer,
                   ),
                 ),
               ),
