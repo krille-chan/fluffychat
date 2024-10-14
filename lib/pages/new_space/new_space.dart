@@ -150,7 +150,10 @@ class NewSpaceController extends State<NewSpace> {
     try {
       final avatar = this.avatar;
       avatarUrl ??= avatar == null ? null : await client.uploadContent(avatar);
-
+      final classCode = await SpaceCodeUtil.generateSpaceCode(client);
+      if (classCode == null) {
+        return;
+      }
       final spaceId = await client.createRoom(
         // #Pangea
         // preset: publicGroup
@@ -164,7 +167,7 @@ class NewSpaceController extends State<NewSpace> {
         // roomAliasName: publicGroup
         //     ? nameController.text.trim().toLowerCase().replaceAll(' ', '_')
         //     : null,
-        roomAliasName: SpaceCodeUtil.generateSpaceCode(),
+        roomAliasName: classCode,
         // Pangea#
         name: nameController.text.trim(),
         topic: topicController.text.isEmpty ? null : topicController.text,
@@ -178,14 +181,21 @@ class NewSpaceController extends State<NewSpace> {
             : null,
         // Pangea#
         initialState: [
+          // #Pangea
+          ...initialState,
+          // Pangea#
           if (avatar != null)
             sdk.StateEvent(
               type: sdk.EventTypes.RoomAvatar,
               content: {'url': avatarUrl.toString()},
             ),
-          // #Pangea
-          ...initialState,
-          // Pangea#
+          sdk.StateEvent(
+            type: sdk.EventTypes.RoomJoinRules,
+            content: {
+              'join_rule': 'knock',
+              'access_code': classCode,
+            },
+          ),
         ],
       );
       // #Pangea

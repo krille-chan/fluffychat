@@ -123,4 +123,8 @@ class ModelKey {
 
   static const String prevEventId = "prev_event_id";
   static const String prevLastUpdated = "prev_last_updated";
+
+  // room code
+  static const String joinRule = "join_rule";
+  static const String accessCode = "access_code";
 }

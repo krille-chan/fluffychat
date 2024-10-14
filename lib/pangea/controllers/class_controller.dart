@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 
-import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -9,15 +9,15 @@ import 'package:fluffychat/pangea/extensions/client_extension/client_extension.d
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/utils/space_code.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-import '../../widgets/matrix.dart';
-import '../utils/firebase_analytics.dart';
 import 'base_controller.dart';
 
 class ClassController extends BaseController {
@@ -65,47 +65,56 @@ class ClassController extends BaseController {
   }
 
   Future<void> joinClasswithCode(BuildContext context, String classCode) async {
+    final client = Matrix.of(context).client;
     try {
-      final QueryPublicRoomsResponse queryPublicRoomsResponse =
-          await Matrix.of(context).client.queryPublicRooms(
-                limit: 1,
-                filter: PublicRoomQueryFilter(genericSearchTerm: classCode),
-              );
-
-      final PublicRoomsChunk? classChunk =
-          queryPublicRoomsResponse.chunk.firstWhereOrNull((element) {
-        return element.canonicalAlias?.replaceAll("#", "").split(":")[0] ==
-            classCode;
-      });
-
-      if (classChunk == null) {
+      final knockResponse = await client.httpClient.post(
+        Uri.parse(
+          '${client.homeserver}/_synapse/client/pangea/v1/knock_with_code',
+        ),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${client.accessToken}',
+        },
+        body: jsonEncode({'access_code': classCode}),
+      );
+      if (knockResponse.statusCode != 200) {
         SpaceCodeUtil.messageSnack(
           context,
           L10n.of(context)!.unableToFindClass,
         );
         return;
       }
-
+      final knockResult = jsonDecode(knockResponse.body);
+      final foundClasses = knockResult['rooms'];
+      if (!(foundClasses is List<String> && foundClasses.isNotEmpty)) {
+        SpaceCodeUtil.messageSnack(
+          context,
+          L10n.of(context)!.unableToFindClass,
+        );
+        return;
+      }
+      final chosenClassId = foundClasses.first;
+      await client.joinRoomById(chosenClassId);
       if (_pangeaController.matrixState.client.rooms
-          .any((room) => room.id == classChunk.roomId)) {
-        setActiveSpaceIdInChatListController(classChunk.roomId);
+          .any((room) => room.id == chosenClassId)) {
+        setActiveSpaceIdInChatListController(chosenClassId);
         SpaceCodeUtil.messageSnack(context, L10n.of(context)!.alreadyInClass);
         return;
       }
 
-      await _pangeaController.matrixState.client.joinRoom(classChunk.roomId);
+      await _pangeaController.matrixState.client.joinRoom(chosenClassId);
 
-      if (_pangeaController.matrixState.client.getRoomById(classChunk.roomId) ==
+      if (_pangeaController.matrixState.client.getRoomById(chosenClassId) ==
           null) {
         await _pangeaController.matrixState.client.waitForRoomInSync(
-          classChunk.roomId,
+          chosenClassId,
           join: true,
         );
       }
 
       // If the room is full, leave
       final room =
-          _pangeaController.matrixState.client.getRoomById(classChunk.roomId);
+          _pangeaController.matrixState.client.getRoomById(chosenClassId);
       if (room == null) {
         return;
       }
@@ -121,12 +130,12 @@ class ClassController extends BaseController {
         return;
       }
 
-      setActiveSpaceIdInChatListController(classChunk.roomId);
+      setActiveSpaceIdInChatListController(chosenClassId);
 
       // add the user's analytics room to this joined space
       // so their teachers can join them via the space hierarchy
       final Room? joinedSpace =
-          _pangeaController.matrixState.client.getRoomById(classChunk.roomId);
+          _pangeaController.matrixState.client.getRoomById(chosenClassId);
 
       // when possible, add user's analytics room the to space they joined
       joinedSpace?.addAnalyticsRoomsToSpace();
