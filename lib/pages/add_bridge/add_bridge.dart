@@ -240,36 +240,44 @@ class BotController extends State<AddBridge> {
     return ConnectionStatus.error;
   }
 
-  Future<void> fetchLoginFlows(SocialNetwork network) async {
-    final accessToken = client.accessToken;
-    final userId = client.userID;
-    final url = '/${network.apiPath}/provision/v3/login/flows?user_id=$userId';
-
-    final response = await dio.get(
-      url,
-      options: Options(
-        headers: {'Authorization': 'Bearer $accessToken'},
-      ),
-    );
-
-    if (response.statusCode == 200) {
-      final responseJson = response.data;
-      final flows = responseJson['flows'];
-
-      if (flows != null) {
-        print('Available login flows for ${network.name}:');
-        for (var flow in flows) {
-          print('Name: ${flow['name']}, Description: ${flow['description']}, ${flow['id']}');
-        }
-      } else {
-        print('No login flows found for ${network.name}.');
-      }
-    } else if (response.statusCode == 401) {
-      print('Invalid token for ${network.name}.');
-    } else {
-      print('Unexpected error: ${response.statusCode}');
-    }
-  }
+  // Future<void> fetchLoginFlows(SocialNetwork network) async {
+  //   final accessToken = client.accessToken;
+  //   final userId = client.userID;
+  //   final url = '/${network.apiPath}/provision/v3/login/flows?user_id=$userId';
+  //
+  //   try {
+  //     final response = await dio.get(
+  //       url,
+  //       options: Options(
+  //         headers: {'Authorization': 'Bearer $accessToken'},
+  //       ),
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       final responseJson = response.data;
+  //       final flows = responseJson['flows'];
+  //
+  //       if (flows != null) {
+  //         if (kDebugMode) {
+  //           print('Available login flows for ${network.name}:');
+  //         }
+  //         for (var flow in flows) {
+  //           if (kDebugMode) {
+  //             print('Name: ${flow['name']}, Description: ${flow['description']}, ${flow['id']}');
+  //           }
+  //         }
+  //       } else {
+  //         _handleError(network, ConnectionError.unknown, "No login flows found.");
+  //       }
+  //     } else if (response.statusCode == 401) {
+  //       _handleError(network, ConnectionError.unknown, "Invalid token for ${network.name}.");
+  //     } else {
+  //       _handleError(network, ConnectionError.unknown, "Unexpected error: ${response.statusCode}");
+  //     }
+  //   } catch (error) {
+  //     _handleError(network, ConnectionError.unknown, error.toString());
+  //   }
+  // }
 
   /// Ping a social network to check connection status
   Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
