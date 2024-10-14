@@ -232,6 +232,8 @@ class BotController extends State<AddBridge> {
         if (logins != null && logins.isNotEmpty) {
           final stateEvent = logins[0]['state']?['state_event'];
           return stateEvent == 'CONNECTED' ? ConnectionStatus.connected : ConnectionStatus.notConnected;
+        }else{
+          return ConnectionStatus.notConnected;
         }
       }
     } catch (e) {
