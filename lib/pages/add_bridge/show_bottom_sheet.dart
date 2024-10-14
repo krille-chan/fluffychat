@@ -40,15 +40,12 @@ Future<bool> showBottomSheetBridge(
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
-                    switch (network.name) {
-                      case 'Facebook Messenger':
-                        await controller.disconnectBridgeApi(
-                            context, network, connectionStateModel);
-                        break;
-                      default:
-                        await controller.disconnectFromNetwork(
-                            context, network, connectionStateModel);
-                        break;
+                    if(network.apiBridge) {
+                      await controller.disconnectBridgeApi(
+                          context, network, connectionStateModel);
+                    }else{
+                      await controller.disconnectFromNetwork(
+                          context, network, connectionStateModel);
                     }
                   },
                 );

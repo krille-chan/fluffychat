@@ -15,6 +15,7 @@ class SocialNetwork {
   final String? urlLogin;
   final String? urlRedirect;
   final RegExp? urlRedirectPattern;
+  final bool apiBridge;
   final String flowId;
   final String apiPath;
   bool loading; // To find out if state is loading
@@ -33,6 +34,7 @@ class SocialNetwork {
     this.urlLogin,
     this.urlRedirect,
     this.urlRedirectPattern,
+    this.apiBridge = false,
     this.flowId = "",
     this.apiPath = "",
     this.loading = true, // Default value true for loading
@@ -84,6 +86,7 @@ class SocialNetworkManager {
       urlLogin: "https://www.messenger.com/login/",
       urlRedirect: "https://www.messenger.com/t/",
       urlRedirectPattern: RegExp(r'^https:\/\/www\.messenger\.com\/.*t\/.*$'),
+      apiBridge: true,
       flowId: "cookies-messenger",
       apiPath: "matrix-mautrix-meta-messenger",
     ),
