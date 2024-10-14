@@ -207,58 +207,37 @@ class BotController extends State<AddBridge> {
 
     final response = await dio.get('${network.apiPath}/provision/v3/whoami?user_id=$userId');
 
-    interpretBridgeResponse(response, network);
+    final status = interpretBridgeResponse(response);
+
+    switch (status) {
+      case ConnectionStatus.connected:
+        setState(() => network.updateConnectionResult(true));
+        break;
+      case ConnectionStatus.notConnected:
+        setState(() => network.updateConnectionResult(false));
+        break;
+      case ConnectionStatus.error:
+        _handleError(network, ConnectionError.unknown);
+        break;
+    }
   }
 
-  void interpretBridgeResponse(Response response, SocialNetwork socialNetwork) {
+  ConnectionStatus interpretBridgeResponse(Response response) {
     try {
-      if (response.statusCode == 200 && response.data != null) {
-        final responseJson = response.data;
-        final networkName = responseJson['network']?['displayname'];
+      final responseJson = response.data;
 
-        if (networkName != null) {
-          final SocialNetwork? network = SocialNetworkManager.fromName(networkName);
-
-          if (network != null) {
-            final logins = responseJson['logins'];
-            if (logins != null && logins.isNotEmpty) {
-              final stateEvent = logins[0]['state']?['state_event'];
-              if (stateEvent == 'CONNECTED') {
-                _updateNetworkStatus(network, true, false);
-                if (kDebugMode) {
-                  print('Status : Connected to $networkName');
-                }
-              } else {
-                _updateNetworkStatus(network, false, false);
-                if (kDebugMode) {
-                  print('Status : Not connected to $networkName');
-                }
-              }
-            } else {
-              _updateNetworkStatus(network, false, false);
-              if (kDebugMode) {
-                print('Status : Not connected to $networkName (response body empty)');
-              }
-            }
-          } else {
-            if (kDebugMode) {
-              print('Network not detected or not supported : $networkName');
-            }
-          }
-        } else {
-          if (kDebugMode) {
-            print('Network not detected in response.');
-          }
+      final networkName = responseJson['network']?['displayname'];
+      if (networkName != null) {
+        final logins = responseJson['logins'];
+        if (logins != null && logins.isNotEmpty) {
+          final stateEvent = logins[0]['state']?['state_event'];
+          return stateEvent == 'CONNECTED' ? ConnectionStatus.connected : ConnectionStatus.notConnected;
         }
-      } else {
-        _handleError(socialNetwork, ConnectionError.unknown, "Unexpected status code : ${response.statusCode}");
       }
     } catch (e) {
-      _handleError(socialNetwork, ConnectionError.unknown, e.toString());
-      if (kDebugMode) {
-        print('Error when interpreting the bridge response: $e');
-      }
+      return ConnectionStatus.error;
     }
+    return ConnectionStatus.error;
   }
 
   Future<void> fetchLoginFlows(SocialNetwork network) async {
