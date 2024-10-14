@@ -810,47 +810,32 @@ class BotController extends State<AddBridge> {
           // Submit cookies to the login process step
           final stepUrl = '/${network.apiPath}/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId';
 
-          final stepResponse = await dio.post(
-            stepUrl,
-            data: formattedCookieString,
-          );
+          final stepResponse = await dio.post(stepUrl, data: formattedCookieString);
 
           if (stepResponse.statusCode == 200) {
             final stepData = stepResponse.data;
             if (stepData['type'] == 'complete') {
               setState(() => network.updateConnectionResult(true));
-              if (kDebugMode) {
-                print('Login successful for ${network.name}');
-              }
+              if (kDebugMode) print('Login successful for ${network.name}');
             } else {
               network.setError(true);
-              if (kDebugMode) {
-                print('Unexpected response: ${stepData['type']}');
-              }
+              _handleError(network, ConnectionError.unknown, 'Unexpected response type: ${stepData['type']}');
             }
           } else {
             network.setError(true);
-            if (kDebugMode) {
-              print('Error submitting step: ${stepResponse.statusCode}');
-            }
+            _handleError(network, ConnectionError.unknown, 'Error submitting step: ${stepResponse.statusCode}');
           }
         } else {
           network.setError(true);
-          if (kDebugMode) {
-            print('Unexpected step type: $stepType');
-          }
+          _handleError(network, ConnectionError.unknown, 'Unexpected step type: $stepType');
         }
       } else {
         network.setError(true);
-        if (kDebugMode) {
-          print('Login initiation failed with status: ${startResponse.statusCode}');
-        }
+        _handleError(network, ConnectionError.unknown, 'Login initiation failed with status: ${startResponse.statusCode}');
       }
     } catch (error) {
       network.setError(true);
-      if (kDebugMode) {
-        print('Error during login process: $error');
-      }
+      _handleError(network, ConnectionError.unknown, error.toString());
     } finally {
       Future.microtask(() {
         connectionState.reset();
