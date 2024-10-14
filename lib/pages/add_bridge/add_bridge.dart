@@ -351,7 +351,7 @@ class BotController extends State<AddBridge> {
     });
 
     await Future.wait(socialNetworks.where((network) => network.available).map((network) {
-      if (network.name == "Facebook Messenger") {
+      if (network.apiBridge) {
         // Calling up the ping API function for Messenger
         return pingBridgeAPI(network);
       } else {
@@ -763,7 +763,7 @@ class BotController extends State<AddBridge> {
       BuildContext context, SocialNetwork network) async {
     final bool success = await showBottomSheetBridge(context, network, this);
 
-    if (success && network.name != "Facebook Messenger") {
+    if (success && !network.apiBridge) {
       await deleteConversationDialog(context, network, this);
     }
   }
