@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -17,7 +18,6 @@ import 'package:tawkie/utils/bridge_utils.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
-import 'package:http/http.dart' as http;
 
 import 'bot_chat_list.dart';
 import 'connection_bridge_dialog.dart';
@@ -54,7 +54,7 @@ class BotController extends State<AddBridge> {
   late String hostname;
   late Map<String, String> headers;
 
-  final serverUrl = AppConfig.server.startsWith(':') ? AppConfig.server.substring(1) : AppConfig.server;
+  late Dio dio;
 
   List<SocialNetwork> socialNetworks = SocialNetworkManager.socialNetworks;
 
@@ -66,6 +66,7 @@ class BotController extends State<AddBridge> {
     super.initState();
     matrixInit();
     initializeHeaders();
+    initializeDio();
     handleRefresh();
   }
 
@@ -75,6 +76,17 @@ class BotController extends State<AddBridge> {
     _pingSubscriptions.forEach((key, subscription) => subscription.cancel());
     continueProcess = false;
     super.dispose();
+  }
+
+  void initializeDio() {
+    final serverUrl = AppConfig.server.startsWith(':')
+        ? AppConfig.server.substring(1)
+        : AppConfig.server;
+
+    dio = Dio(BaseOptions(
+      baseUrl: 'https://matrix.$serverUrl/_matrix/',
+      headers: headers,
+    ));
   }
 
   /// Initialize Matrix client and extract hostname
@@ -190,21 +202,11 @@ class BotController extends State<AddBridge> {
     Logs().i('No message received from bot within the wait time');
   }
 
-  Future<http.Response> requestGet(String url) async {
-    return await http.get(Uri.parse(url), headers: headers);
-  }
-
-  Future<http.Response> requestPost(String url, {dynamic body}) async {
-    return await http.post(Uri.parse(url), headers: headers, body: body);
-  }
-
   Future<void> pingBridgeAPI(SocialNetwork network) async {
     final bridgePathIdentifier  = getBridgePath(network);
     final userId = client.userID;
 
-    final url = 'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/whoami?user_id=$userId';
-
-    final response = await requestGet(url);
+    final response = await dio.get('$bridgePathIdentifier/provision/v3/whoami?user_id=$userId');
 
     interpretBridgeResponse(response);
 
@@ -219,8 +221,8 @@ class BotController extends State<AddBridge> {
     }
   }
 
-  void interpretBridgeResponse(http.Response response) {
-    final responseJson = jsonDecode(response.body);
+  void interpretBridgeResponse(Response response) {
+    final responseJson = response.data;
 
     final networkName = responseJson['network']?['displayname'];
     if (networkName != null) {
@@ -274,17 +276,17 @@ class BotController extends State<AddBridge> {
     final bridgePathIdentifier  = getBridgePath(network);
     final accessToken = client.accessToken;
     final userId = client.userID;
-    final url = Uri.parse(
-      'https://matrix.staging.tawkie.fr/_matrix/$bridgePathIdentifier/provision/v3/login/flows?user_id=$userId',
-    );
+    final url = '/$bridgePathIdentifier/provision/v3/login/flows?user_id=$userId';
 
-    final response = await http.get(
+    final response = await dio.get(
       url,
-      headers: {'Authorization': 'Bearer $accessToken'},
+      options: Options(
+        headers: {'Authorization': 'Bearer $accessToken'},
+      ),
     );
 
     if (response.statusCode == 200) {
-      final responseJson = jsonDecode(response.body);
+      final responseJson = response.data;
       final flows = responseJson['flows'];
 
       if (flows != null) {
@@ -532,14 +534,14 @@ class BotController extends State<AddBridge> {
     final bridgePathIdentifier  = getBridgePath(network);
     final userId = client.userID;
 
-    final logoutUrl = 'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/logout/$loginId?user_id=$userId';
+    final logoutUrl = '/$bridgePathIdentifier/provision/v3/logout/$loginId?user_id=$userId';
 
     Future.microtask(() {
       connectionState.updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
     });
 
     try {
-      final response = await requestPost(logoutUrl);
+      final response = await dio.post(logoutUrl);
 
       if (response.statusCode == 200) {
         if (kDebugMode) {
@@ -810,14 +812,14 @@ class BotController extends State<AddBridge> {
     final userId = client.userID;
 
     // Step 1: Start the login process
-    final loginStartUrl = 'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/login/start/$flowID?user_id=$userId';
+    final loginStartUrl = '/$bridgePathIdentifier/provision/v3/login/start/$flowID?user_id=$userId';
 
     try {
       // Initiate the login process
-      final startResponse = await requestPost(loginStartUrl);
+      final startResponse = await dio.post(loginStartUrl);
 
       if (startResponse.statusCode == 200) {
-        final startData = jsonDecode(startResponse.body);
+        final startData = startResponse.data;
         final loginId = startData['login_id'];
         final stepType = startData['type'];
         final stepId = startData['step_id'];
@@ -836,12 +838,15 @@ class BotController extends State<AddBridge> {
           final formattedCookieString = formatCookiesToJsonApi(gotCookies);
 
           // Submit cookies to the login process step
-          final stepUrl = 'https://matrix.$serverUrl/_matrix/$bridgePathIdentifier/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId';
+          final stepUrl = '/$bridgePathIdentifier/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId';
 
-          final stepResponse = await requestPost(stepUrl, body: formattedCookieString);
+          final stepResponse = await dio.post(
+            stepUrl,
+            data: formattedCookieString,
+          );
 
           if (stepResponse.statusCode == 200) {
-            final stepData = jsonDecode(stepResponse.body);
+            final stepData = stepResponse.data;
             if (stepData['type'] == 'complete') {
               setState(() => network.updateConnectionResult(true));
               if (kDebugMode) {
