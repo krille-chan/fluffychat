@@ -507,7 +507,6 @@ class BotController extends State<AddBridge> {
       {String loginId = 'all'}
       ) async {
     final userId = client.userID;
-
     final logoutUrl = '/${network.apiPath}/provision/v3/logout/$loginId?user_id=$userId';
 
     Future.microtask(() {
@@ -523,14 +522,10 @@ class BotController extends State<AddBridge> {
         }
         setState(() => network.updateConnectionResult(false));
       } else {
-        if (kDebugMode) {
-          print("Disconnection error: ${response.statusCode}");
-        }
-
+        _handleError(network, ConnectionError.unknown, "Disconnection error: ${response.statusCode}");
       }
     } catch (error) {
-      throw("Disconnection error: $error");
-
+      _handleError(network, ConnectionError.unknown, "Disconnection error: $error");
     } finally {
       Future.microtask(() {
         connectionState.reset();
