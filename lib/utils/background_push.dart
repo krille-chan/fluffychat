@@ -32,6 +32,7 @@ import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
+import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
@@ -77,7 +78,12 @@ class BackgroundPush {
           android: AndroidInitializationSettings('notifications_icon'),
           iOS: DarwinInitializationSettings(),
         ),
-        onDidReceiveNotificationResponse: goToRoom,
+        onDidReceiveNotificationResponse: (response) => notificationTap(
+          response,
+          client: client,
+          router: FluffyChatApp.router,
+        ),
+        onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
       );
       Logs().v('Flutter Local Notifications initialized');
       firebase?.setListeners(
@@ -275,7 +281,14 @@ class BackgroundPush {
         return;
       }
       _wentToRoomOnStartup = true;
-      goToRoom(details.notificationResponse);
+      final response = details.notificationResponse;
+      if (response != null) {
+        notificationTap(
+          response,
+          client: client,
+          router: FluffyChatApp.router,
+        );
+      }
     });
   }
 
@@ -317,25 +330,6 @@ class BackgroundPush {
       gatewayUrl: AppConfig.pushNotificationsGatewayUrl,
       token: _fcmToken,
     );
-  }
-
-  Future<void> goToRoom(NotificationResponse? response) async {
-    try {
-      final roomId = response?.payload;
-      Logs().v('[Push] Attempting to go to room $roomId...');
-      if (roomId == null) {
-        return;
-      }
-      await client.roomsLoading;
-      await client.accountDataLoading;
-      FluffyChatApp.router.go(
-        client.getRoomById(roomId)?.membership == Membership.invite
-            ? '/rooms'
-            : '/rooms/$roomId',
-      );
-    } catch (e, s) {
-      Logs().e('[Push] Failed to open room', e, s);
-    }
   }
 
   Future<void> setupUp() async {
