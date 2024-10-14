@@ -63,6 +63,7 @@ Future<void> pLanguageDialog(
                           setState(() => selectedSourceLanguage = p0),
                       initialLanguage: selectedSourceLanguage,
                       languages: pangeaController.pLanguageStore.baseOptions,
+                      isL2List: false,
                     ),
                     PQuestionContainer(
                       title: L10n.of(parentContext)!.whatLanguageYouWantToLearn,
@@ -72,6 +73,7 @@ Future<void> pLanguageDialog(
                           setState(() => selectedTargetLanguage = p0),
                       initialLanguage: selectedTargetLanguage,
                       languages: pangeaController.pLanguageStore.targetOptions,
+                      isL2List: true,
                     ),
                   ],
                 ),

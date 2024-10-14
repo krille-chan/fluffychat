@@ -231,6 +231,10 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       return;
     }
 
+    // clear the current activity and record
+    currentActivity = null;
+    currentCompletionRecord = null;
+
     _fetchNewActivity(
       ActivityQualityFeedback(
         feedbackText: feedback,
