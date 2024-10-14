@@ -203,10 +203,9 @@ class BotController extends State<AddBridge> {
   }
 
   Future<void> pingBridgeAPI(SocialNetwork network) async {
-    final bridgePathIdentifier  = getBridgePath(network);
     final userId = client.userID;
 
-    final response = await dio.get('$bridgePathIdentifier/provision/v3/whoami?user_id=$userId');
+    final response = await dio.get('${network.apiPath}/provision/v3/whoami?user_id=$userId');
 
     interpretBridgeResponse(response);
 
@@ -263,20 +262,10 @@ class BotController extends State<AddBridge> {
     }
   }
 
-  String getBridgePath(SocialNetwork network) {
-    switch (network.name) {
-      case 'Facebook Messenger':
-        return 'matrix-mautrix-meta-messenger';
-      default:
-        return 'unknown-bridge';
-    }
-  }
-
   Future<void> fetchLoginFlows(SocialNetwork network) async {
-    final bridgePathIdentifier  = getBridgePath(network);
     final accessToken = client.accessToken;
     final userId = client.userID;
-    final url = '/$bridgePathIdentifier/provision/v3/login/flows?user_id=$userId';
+    final url = '/${network.apiPath}/provision/v3/login/flows?user_id=$userId';
 
     final response = await dio.get(
       url,
@@ -531,10 +520,9 @@ class BotController extends State<AddBridge> {
       ConnectionStateModel connectionState,
       {String loginId = 'all'}
       ) async {
-    final bridgePathIdentifier  = getBridgePath(network);
     final userId = client.userID;
 
-    final logoutUrl = '/$bridgePathIdentifier/provision/v3/logout/$loginId?user_id=$userId';
+    final logoutUrl = '/${network.apiPath}/provision/v3/logout/$loginId?user_id=$userId';
 
     Future.microtask(() {
       connectionState.updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
@@ -808,11 +796,10 @@ class BotController extends State<AddBridge> {
       SocialNetwork network,
       ) async {
     final flowID = network.flowId;
-    final bridgePathIdentifier  = getBridgePath(network);
     final userId = client.userID;
 
     // Step 1: Start the login process
-    final loginStartUrl = '/$bridgePathIdentifier/provision/v3/login/start/$flowID?user_id=$userId';
+    final loginStartUrl = '/${network.apiPath}/provision/v3/login/start/$flowID?user_id=$userId';
 
     try {
       // Initiate the login process
@@ -838,7 +825,7 @@ class BotController extends State<AddBridge> {
           final formattedCookieString = formatCookiesToJsonApi(gotCookies);
 
           // Submit cookies to the login process step
-          final stepUrl = '/$bridgePathIdentifier/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId';
+          final stepUrl = '/${network.apiPath}/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId';
 
           final stepResponse = await dio.post(
             stepUrl,
