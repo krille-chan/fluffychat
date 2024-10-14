@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/language_constants.dart';
+import 'package:fluffychat/pangea/enum/l2_support_enum.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -12,15 +13,15 @@ class LanguageModel {
   final String languageFlag;
   final String displayName;
   final String? languageEmoji;
-  final bool l2;
   final bool l1;
+  final L2SupportEnum l2Support;
 
   LanguageModel({
     required this.langCode,
     required this.languageFlag,
     required this.displayName,
-    required this.l2,
     required this.l1,
+    this.l2Support = L2SupportEnum.na,
     this.languageEmoji,
   });
 
@@ -37,9 +38,11 @@ class LanguageModel {
       displayName: _LanguageLocal.getDisplayName(
         code != LanguageKeys.unknownLanguage ? code : json['language_name'],
       ),
-      l2: json["l2"] ?? code.contains("es") || code.contains("en"),
       l1: json["l1"] ?? !code.contains("es") && !code.contains("en"),
       languageEmoji: json['language_emoji'],
+      l2Support: json['l2_support'] != null
+          ? L2SupportEnum.na.fromStorageString(json['l2_support'])
+          : L2SupportEnum.na,
     );
   }
 
@@ -47,10 +50,12 @@ class LanguageModel {
         'language_code': langCode,
         'language_name': displayName,
         'language_flag': languageFlag,
-        'l2': l2,
         'l1': l1,
         'language_emoji': languageEmoji,
+        'l2_support': l2Support.storageString,
       };
+
+  bool get l2 => l2Support != L2SupportEnum.na;
 
   // Discuss with Jordan - adding langCode field to language objects as separate from displayName
   static String codeFromNameOrCode(String codeOrName, [String? url]) {
@@ -73,7 +78,6 @@ class LanguageModel {
         langCode: LanguageKeys.unknownLanguage,
         languageFlag: "",
         displayName: "Unknown",
-        l2: false,
         l1: false,
       );
 
@@ -81,15 +85,11 @@ class LanguageModel {
         displayName: context != null
             ? L10n.of(context)!.multiLingualSpace
             : "Multilingual Space",
-        l2: false,
         l1: false,
         langCode: LanguageKeys.multiLanguage,
         languageFlag: 'assets/colors.png',
         languageEmoji: "🌎",
       );
-
-  // Discuss with Jordan
-  bool get hasContextualDefinitionSupport => l2;
 
   String? getDisplayName(BuildContext context) {
     switch (langCode) {
