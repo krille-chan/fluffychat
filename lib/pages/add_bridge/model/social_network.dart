@@ -12,6 +12,7 @@ class SocialNetwork {
   final String mxidPrefix; // The matrix ID prefix used to identify puppets
   final String
       displayNameSuffix; // The `(Network)` suffix to remove from displayname)
+  final String displayNameBot; // The name of bot in the room title
   final String? urlLogin;
   final String? urlRedirect;
   final RegExp? urlRedirectPattern;
@@ -28,6 +29,7 @@ class SocialNetwork {
     required this.chatBot,
     required this.mxidPrefix,
     this.displayNameSuffix = "",
+    this.displayNameBot = "",
     this.urlLogin,
     this.urlRedirect,
     this.urlRedirectPattern,
@@ -50,8 +52,17 @@ class SocialNetwork {
 
   // Remove `(Network)` suffix from displayname
   String removeSuffix(String displayname) {
+    if (displayNameBot.isNotEmpty) {
+      displayname = displayname.replaceAll(displayNameBot, ''); // Delete bot name
+    }
+
     if (displayNameSuffix.isNotEmpty) {
-      return displayname.replaceAll(displayNameSuffix, ''); // Delete (Network)
+      displayname =  displayname.replaceAll(displayNameSuffix, ''); // Delete (Network)
+    }
+
+    displayname = displayname.trim(); // Removes leading and trailing spaces
+    if (displayname.endsWith(',')) {
+      displayname = displayname.substring(0, displayname.length - 1).trim(); // Deletes the comma
     }
     return displayname;
   }
@@ -76,6 +87,7 @@ class SocialNetworkManager {
       available: true,
       chatBot: "@messenger2bot:",
       displayNameSuffix: "(FB)",
+      displayNameBot: "Messenger bridge bot",
       mxidPrefix: "@messenger2_",
       urlLogin: "https://www.messenger.com/login/",
       urlRedirect: "https://www.messenger.com/t/",
@@ -89,6 +101,7 @@ class SocialNetworkManager {
       available: true,
       chatBot: "@instagram2bot:",
       displayNameSuffix: "(IG)",
+      displayNameBot: "Instagram bridge bot",
       mxidPrefix: "@instagram2_",
       urlLogin: "https://www.instagram.com/accounts/login/",
       urlRedirect: "https://www.instagram.com/",
