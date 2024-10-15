@@ -114,8 +114,8 @@ class PangeaTextController extends TextEditingController {
         context: context,
         cardSize: matchIndex != -1 &&
                 choreographer.igc.igcTextData!.matches[matchIndex].isITStart
-            ? const Size(325, 260)
-            : const Size(325, 400),
+            ? const Size(350, 260)
+            : const Size(350, 400),
         cardToShow: cardToShow,
         transformTargetId: choreographer.inputTransformTargetKey,
       );
