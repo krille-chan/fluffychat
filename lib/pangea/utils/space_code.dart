@@ -79,6 +79,7 @@ class SpaceCodeUtil {
       SnackBar(
         duration: const Duration(seconds: 10),
         content: Text(message),
+        showCloseIcon: true,
       ),
     );
   }

@@ -78,6 +78,13 @@ class ClassController extends BaseController {
         },
         body: jsonEncode({'access_code': classCode}),
       );
+      if (knockResponse.statusCode == 429) {
+        SpaceCodeUtil.messageSnack(
+          context,
+          L10n.of(context)!.tooManyRequest,
+        );
+        return;
+      }
       if (knockResponse.statusCode != 200) {
         SpaceCodeUtil.messageSnack(
           context,
@@ -87,6 +94,14 @@ class ClassController extends BaseController {
       }
       final knockResult = jsonDecode(knockResponse.body);
       final foundClasses = List<String>.from(knockResult['rooms']);
+      final alreadyJoined = List<String>.from(knockResult['already_joined']);
+      if (alreadyJoined.isNotEmpty) {
+        SpaceCodeUtil.messageSnack(
+          context,
+          L10n.of(context)!.alreadyInClass,
+        );
+        return;
+      }
       if (foundClasses.isEmpty) {
         SpaceCodeUtil.messageSnack(
           context,
