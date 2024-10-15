@@ -6,4 +6,5 @@ class PLocalKey {
   static const String paywallBackoff = 'paywallBackoff';
   static const String messagesSinceUpdate = 'messagesSinceLastUpdate';
   static const String completedActivities = 'completedActivities';
+  static const String justInputtedCode = 'justInputtedCode';
 }

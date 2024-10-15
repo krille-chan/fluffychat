@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/class_code_constants.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -51,16 +50,13 @@ class ClassController extends BaseController {
     );
 
     if (classCode != null) {
-      await _pangeaController.pStoreService.delete(
-        PLocalKey.cachedClassCodeToJoin,
-        isAccountData: false,
-      );
       await joinClasswithCode(
         context,
         classCode,
-      ).onError(
-        (error, stackTrace) =>
-            SpaceCodeUtil.messageSnack(context, ErrorCopy(context, error).body),
+      );
+      await _pangeaController.pStoreService.delete(
+        PLocalKey.cachedClassCodeToJoin,
+        isAccountData: false,
       );
     }
   }
@@ -116,8 +112,13 @@ class ClassController extends BaseController {
         SpaceCodeUtil.messageSnack(context, L10n.of(context)!.alreadyInClass);
         return;
       } else {
-        justInputtedCode = classCode;
+        await _pangeaController.pStoreService.save(
+          PLocalKey.justInputtedCode,
+          classCode,
+          isAccountData: false,
+        );
         await client.joinRoomById(chosenClassId);
+        _pangeaController.pStoreService.delete(PLocalKey.justInputtedCode);
       }
 
       if (_pangeaController.matrixState.client.getRoomById(chosenClassId) ==
