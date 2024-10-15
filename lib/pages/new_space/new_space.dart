@@ -182,7 +182,8 @@ class NewSpaceController extends State<NewSpace> {
           sdk.StateEvent(
             type: sdk.EventTypes.RoomJoinRules,
             content: {
-              ModelKey.joinRule: sdk.JoinRules.knock,
+              ModelKey.joinRule:
+                  sdk.JoinRules.knock.toString().replaceAll('JoinRules.', ''),
               ModelKey.accessCode: classCode,
             },
           ),
