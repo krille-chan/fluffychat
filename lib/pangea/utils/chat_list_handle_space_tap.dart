@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
+import 'package:fluffychat/pangea/constants/class_code_constants.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -107,6 +108,9 @@ void chatListHandleSpaceTap(
           );
       if (rooms.any((s) => s.spaceChildren.any((c) => c.roomId == space.id))) {
         autoJoin(space);
+      } else if (justInputtedCode != null &&
+          space.classCode == justInputtedCode) {
+        // do nothing
       } else {
         showAlertDialog(context);
       }

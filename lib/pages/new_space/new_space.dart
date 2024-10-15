@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/new_space/new_space_view.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
@@ -156,23 +157,12 @@ class NewSpaceController extends State<NewSpace> {
       }
       final spaceId = await client.createRoom(
         // #Pangea
-        // preset: publicGroup
-        //     ? sdk.CreateRoomPreset.publicChat
-        //     : sdk.CreateRoomPreset.privateChat,
         preset: sdk.CreateRoomPreset.publicChat,
-        // Pangea#
         creationContent: {'type': RoomCreationTypes.mSpace},
         visibility: publicGroup ? sdk.Visibility.public : null,
-        // #Pangea
-        // roomAliasName: publicGroup
-        //     ? nameController.text.trim().toLowerCase().replaceAll(' ', '_')
-        //     : null,
-        roomAliasName: classCode,
-        // Pangea#
         name: nameController.text.trim(),
         topic: topicController.text.isEmpty ? null : topicController.text,
         // #Pangea
-        // powerLevelContentOverride: {'events_default': 100},
         powerLevelContentOverride: addToSpaceKey.currentState != null
             ? await ClassChatPowerLevels.powerLevelOverrideForClassChat(
                 context,
@@ -192,8 +182,8 @@ class NewSpaceController extends State<NewSpace> {
           sdk.StateEvent(
             type: sdk.EventTypes.RoomJoinRules,
             content: {
-              'join_rule': 'knock',
-              'access_code': classCode,
+              ModelKey.joinRule: sdk.JoinRules.knock,
+              ModelKey.accessCode: classCode,
             },
           ),
         ],

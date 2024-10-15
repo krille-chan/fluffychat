@@ -7,10 +7,11 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 class SpaceCodeUtil {
-  static const codeLength = 6;
+  static const codeLength = 7;
 
   static bool isValidCode(String? spacecode) {
-    return spacecode == null || spacecode.length > 4;
+    if (spacecode == null) return false;
+    return spacecode.length == codeLength && spacecode.contains(r'[0-9]');
   }
 
   static Future<String?> generateSpaceCode(Client client) async {

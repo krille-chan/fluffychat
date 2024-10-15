@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/class_code_constants.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -85,8 +86,8 @@ class ClassController extends BaseController {
         return;
       }
       final knockResult = jsonDecode(knockResponse.body);
-      final foundClasses = knockResult['rooms'];
-      if (!(foundClasses is List<String> && foundClasses.isNotEmpty)) {
+      final foundClasses = List<String>.from(knockResult['rooms']);
+      if (foundClasses.isEmpty) {
         SpaceCodeUtil.messageSnack(
           context,
           L10n.of(context)!.unableToFindClass,
@@ -94,15 +95,15 @@ class ClassController extends BaseController {
         return;
       }
       final chosenClassId = foundClasses.first;
-      await client.joinRoomById(chosenClassId);
       if (_pangeaController.matrixState.client.rooms
           .any((room) => room.id == chosenClassId)) {
         setActiveSpaceIdInChatListController(chosenClassId);
         SpaceCodeUtil.messageSnack(context, L10n.of(context)!.alreadyInClass);
         return;
+      } else {
+        justInputtedCode = classCode;
+        await client.joinRoomById(chosenClassId);
       }
-
-      await _pangeaController.matrixState.client.joinRoom(chosenClassId);
 
       if (_pangeaController.matrixState.client.getRoomById(chosenClassId) ==
           null) {

@@ -22,7 +22,7 @@ extension SpaceRoomExtension on Room {
         return accessCode;
       }
     }
-    return "No class code!";
+    return noClassCode;
   }
 
   void _checkClass() {
