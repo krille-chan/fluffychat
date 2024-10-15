@@ -40,7 +40,7 @@ Future<bool> showBottomSheetBridge(
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
-                    if(network.apiBridge) {
+                    if(network.supportsBridgev2Apis) {
                       await controller.disconnectBridgeApi(
                           context, network, connectionStateModel);
                     }else{
