@@ -240,7 +240,12 @@ class BotController extends State<AddBridge> {
         setState(() => network.updateConnectionResult(false));
         break;
       case ConnectionStatus.error:
-        _handleError(network, ConnectionError.unknown);
+        _handleError(
+            network,
+            ConnectionError.unknown,
+            null,
+            'An unexpected error occurred while communicating with the server. Please check your connection or try again later.',
+        );
         break;
     }
   }
@@ -502,7 +507,7 @@ class BotController extends State<AddBridge> {
 
   /// Error handling method with a default error type
   void _handleError(SocialNetwork socialNetwork,
-      [ConnectionError error = ConnectionError.unknown, String? lastMessage]) {
+      [ConnectionError error = ConnectionError.unknown, String? lastMessage, String? customMessage]) {
     setState(() {
       socialNetwork.setError(true);
     });
@@ -527,7 +532,7 @@ class BotController extends State<AddBridge> {
         break;
       case ConnectionError.unknown:
       default:
-        errorMessage = 'An unknown error occurred';
+        errorMessage = customMessage ?? 'An unknown error occurred';
         break;
     }
 
