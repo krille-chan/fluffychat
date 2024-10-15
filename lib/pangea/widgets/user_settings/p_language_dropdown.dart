@@ -1,5 +1,6 @@
 // Flutter imports:
 
+import 'package:fluffychat/pangea/enum/l2_support_enum.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ class PLanguageDropdown extends StatefulWidget {
   final LanguageModel initialLanguage;
   final Function(LanguageModel) onChange;
   final bool showMultilingual;
+  final bool isL2List;
 
   const PLanguageDropdown({
     super.key,
@@ -17,6 +19,7 @@ class PLanguageDropdown extends StatefulWidget {
     required this.onChange,
     required this.initialLanguage,
     this.showMultilingual = false,
+    required this.isL2List,
   });
 
   @override
@@ -98,6 +101,7 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
                 value: LanguageModel.multiLingual(context),
                 child: LanguageDropDownEntry(
                   languageModel: LanguageModel.multiLingual(context),
+                  isL2List: widget.isL2List,
                 ),
               ),
             ...sortedLanguages.map(
@@ -105,6 +109,7 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
                 value: languageModel,
                 child: LanguageDropDownEntry(
                   languageModel: languageModel,
+                  isL2List: widget.isL2List,
                 ),
               ),
             ),
@@ -118,9 +123,11 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
 
 class LanguageDropDownEntry extends StatelessWidget {
   final LanguageModel languageModel;
+  final bool isL2List;
   const LanguageDropDownEntry({
     super.key,
     required this.languageModel,
+    required this.isL2List,
   });
 
   @override
@@ -144,6 +151,9 @@ class LanguageDropDownEntry extends StatelessWidget {
             overflow: TextOverflow.clip,
             textAlign: TextAlign.center,
           ),
+          const SizedBox(width: 10),
+          if (isL2List && languageModel.l2Support != L2SupportEnum.full)
+            languageModel.l2Support.toBadge(context),
         ],
       ),
     );

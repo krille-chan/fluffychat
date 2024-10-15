@@ -118,6 +118,11 @@ class PracticeGenerationController {
         requestModel: req,
       );
 
+      if (res.finished) {
+        debugPrint('Activity generation finished');
+        return null;
+      }
+
       // if the server points to an existing event, return that event
       if (res.existingActivityEventId != null) {
         final Event? existingEvent =

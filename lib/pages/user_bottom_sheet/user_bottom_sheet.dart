@@ -255,7 +255,12 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       sendError = null;
     });
     try {
-      final roomId = await client.startDirectChat(userId);
+      final roomId = await client.startDirectChat(
+        userId,
+        // #Pangea
+        enableEncryption: false,
+        // Pangea#
+      );
       if (!mounted) return;
       final room = client.getRoomById(roomId);
       if (room == null) {

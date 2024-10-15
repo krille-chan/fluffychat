@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 
 const double minCardHeight = 70;
 
-class MessageToolbar extends StatefulWidget {
+class MessageToolbar extends StatelessWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overLayController;
 
@@ -29,55 +29,45 @@ class MessageToolbar extends StatefulWidget {
     required this.overLayController,
   });
 
-  @override
-  MessageToolbarState createState() => MessageToolbarState();
-}
-
-class MessageToolbarState extends State<MessageToolbar> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   Widget get toolbarContent {
     final bool subscribed =
         MatrixState.pangeaController.subscriptionController.isSubscribed;
 
     if (!subscribed) {
       return MessageUnsubscribedCard(
-        controller: widget.overLayController,
+        controller: overLayController,
       );
     }
 
-    switch (widget.overLayController.toolbarMode) {
+    switch (overLayController.toolbarMode) {
       case MessageMode.translation:
         return MessageTranslationCard(
-          messageEvent: widget.pangeaMessageEvent,
-          selection: widget.overLayController.selectedSpan,
+          messageEvent: pangeaMessageEvent,
+          selection: overLayController.selectedSpan,
         );
       case MessageMode.textToSpeech:
         return MessageAudioCard(
-          messageEvent: widget.pangeaMessageEvent,
-          overlayController: widget.overLayController,
+          messageEvent: pangeaMessageEvent,
+          overlayController: overLayController,
         );
       case MessageMode.speechToText:
         return MessageSpeechToTextCard(
-          messageEvent: widget.pangeaMessageEvent,
+          messageEvent: pangeaMessageEvent,
         );
       case MessageMode.definition:
-        if (!widget.overLayController.isSelection) {
+        if (!overLayController.isSelection) {
           return const SelectToDefine();
         } else {
           try {
-            final selectedText = widget.overLayController.targetText;
+            final selectedText = overLayController.targetText;
 
             return WordDataCard(
               word: selectedText,
-              wordLang: widget.pangeaMessageEvent.messageDisplayLangCode,
-              fullText: widget.pangeaMessageEvent.messageDisplayText,
-              fullTextLang: widget.pangeaMessageEvent.messageDisplayLangCode,
+              wordLang: pangeaMessageEvent.messageDisplayLangCode,
+              fullText: pangeaMessageEvent.messageDisplayText,
+              fullTextLang: pangeaMessageEvent.messageDisplayLangCode,
               hasInfo: true,
-              room: widget.overLayController.widget.chatController.room,
+              room: overLayController.widget.chatController.room,
             );
           } catch (e, s) {
             debugger(when: kDebugMode);
@@ -85,8 +75,8 @@ class MessageToolbarState extends State<MessageToolbar> {
               e: "Error in WordDataCard",
               s: s,
               data: {
-                "word": widget.overLayController.targetText,
-                "fullText": widget.pangeaMessageEvent.messageDisplayText,
+                "word": overLayController.targetText,
+                "fullText": pangeaMessageEvent.messageDisplayText,
               },
             );
             return const SizedBox();
@@ -94,30 +84,25 @@ class MessageToolbarState extends State<MessageToolbar> {
         }
       case MessageMode.practiceActivity:
         return PracticeActivityCard(
-          pangeaMessageEvent: widget.pangeaMessageEvent,
-          overlayController: widget.overLayController,
+          pangeaMessageEvent: pangeaMessageEvent,
+          overlayController: overLayController,
         );
       default:
         debugger(when: kDebugMode);
         ErrorHandler.logError(
           e: "Invalid toolbar mode",
           s: StackTrace.current,
-          data: {"newMode": widget.overLayController.toolbarMode},
+          data: {"newMode": overLayController.toolbarMode},
         );
         return const SizedBox();
     }
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Material(
       key: MatrixState.pAnyState
-          .layerLinkAndKey('${widget.pangeaMessageEvent.eventId}-toolbar')
+          .layerLinkAndKey('${pangeaMessageEvent.eventId}-toolbar')
           .key,
       type: MaterialType.transparency,
       child: Row(

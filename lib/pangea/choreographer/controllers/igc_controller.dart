@@ -105,6 +105,7 @@ class IgcController {
       return;
     }
 
+    choreographer.chatController.inputFocus.unfocus();
     OverlayUtil.showPositionedCard(
       context: context,
       cardToShow: SpanCard(
@@ -124,8 +125,8 @@ class IgcController {
         ),
         roomId: choreographer.roomId,
       ),
-      maxHeight: match.isITStart ? 260 : 400,
-      maxWidth: match.isITStart ? 350 : 400,
+      maxHeight: match.isITStart ? 260 : 350,
+      maxWidth: 350,
       transformTargetId: choreographer.inputTransformTargetKey,
     );
   }

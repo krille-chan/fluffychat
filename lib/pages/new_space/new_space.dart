@@ -152,9 +152,12 @@ class NewSpaceController extends State<NewSpace> {
       avatarUrl ??= avatar == null ? null : await client.uploadContent(avatar);
 
       final spaceId = await client.createRoom(
-        preset: publicGroup
-            ? sdk.CreateRoomPreset.publicChat
-            : sdk.CreateRoomPreset.privateChat,
+        // #Pangea
+        // preset: publicGroup
+        //     ? sdk.CreateRoomPreset.publicChat
+        //     : sdk.CreateRoomPreset.privateChat,
+        preset: sdk.CreateRoomPreset.publicChat,
+        // Pangea#
         creationContent: {'type': RoomCreationTypes.mSpace},
         visibility: publicGroup ? sdk.Visibility.public : null,
         // #Pangea

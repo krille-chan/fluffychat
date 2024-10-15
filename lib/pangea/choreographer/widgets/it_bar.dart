@@ -308,6 +308,8 @@ class ITChoices extends StatelessWidget {
       );
       return;
     }
+
+    controller.choreographer.chatController.inputFocus.unfocus();
     OverlayUtil.showPositionedCard(
       context: context,
       cardToShow: choiceFeedback == null

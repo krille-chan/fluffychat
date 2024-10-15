@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
@@ -253,7 +254,7 @@ extension PangeaRoom on Room {
 
   // bool isMadeForLang(String langCode) => _isMadeForLang(langCode);
 
-  Future<bool> get isBotRoom async => await _isBotRoom;
+  Future<bool> get botIsInRoom async => await _botIsInRoom;
 
   Future<bool> get isBotDM async => await _isBotDM;
 

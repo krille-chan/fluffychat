@@ -384,9 +384,12 @@ class _SpaceViewState extends State<SpaceView> {
         } else {
           roomId = await client.createGroupChat(
             groupName: names.first,
-            preset: activeSpace.joinRules == JoinRules.public
-                ? CreateRoomPreset.publicChat
-                : CreateRoomPreset.privateChat,
+            // #Pangea
+            // preset: activeSpace.joinRules == JoinRules.public
+            //     ? CreateRoomPreset.publicChat
+            //     : CreateRoomPreset.privateChat,
+            preset: CreateRoomPreset.publicChat,
+            // Pangea#
             visibility: activeSpace.joinRules == JoinRules.public
                 ? sdk.Visibility.public
                 : sdk.Visibility.private,

@@ -391,18 +391,19 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           // #Pangea
           // const SizedBox(width: 8),
           const SizedBox(width: 5),
+          // SizedBox(
+          //   width: 36,
+          //   child:
           // Pangea#
-          SizedBox(
-            width: 36,
-            child: Text(
-              statusText,
-              style: TextStyle(
-                color: widget.color,
-                fontSize: 12,
-              ),
+          Text(
+            statusText,
+            style: TextStyle(
+              color: widget.color,
+              fontSize: 12,
             ),
           ),
           // #Pangea
+          // ),
           // const SizedBox(width: 8),
           // Badge(
           //   isLabelVisible: audioPlayer != null,

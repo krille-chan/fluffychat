@@ -27,7 +27,9 @@ class PangeaLanguage {
   static Future<void> initialize() async {
     try {
       _langList = await _getCachedFlags();
-      if (await _shouldFetch || _langList.isEmpty) {
+      if (await _shouldFetch ||
+          _langList.isEmpty ||
+          _langList.every((lang) => !lang.l2)) {
         _langList = await LanguageRepo.fetchLanguages();
 
         await _saveFlags(_langList);

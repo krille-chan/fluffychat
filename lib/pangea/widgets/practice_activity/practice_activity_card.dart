@@ -231,6 +231,10 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       return;
     }
 
+    // clear the current activity and record
+    currentActivity = null;
+    currentCompletionRecord = null;
+
     _fetchNewActivity(
       ActivityQualityFeedback(
         feedbackText: feedback,
@@ -248,12 +252,13 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
           'record': currentCompletionRecord,
         },
       );
+
+      // clear the current activity and record
+      currentActivity = null;
+      currentCompletionRecord = null;
+
       widget.overlayController.exitPracticeFlow();
     });
-
-    // clear the current activity and record
-    currentActivity = null;
-    currentCompletionRecord = null;
   }
 
   RepresentationEvent? get representation =>
