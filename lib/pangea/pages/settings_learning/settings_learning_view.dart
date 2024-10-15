@@ -19,6 +19,12 @@ class SettingsLearningView extends StatelessWidget {
         title: Text(
           L10n.of(context)!.learningSettings,
         ),
+        leading: controller.widget.isPopup
+            ? IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: Navigator.of(context).pop,
+              )
+            : null,
       ),
       body: ListTileTheme(
         iconColor: Theme.of(context).textTheme.bodyLarge!.color,
