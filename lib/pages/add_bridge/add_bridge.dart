@@ -29,6 +29,12 @@ enum ConnectionStatus {
   connected,
   notConnected,
   error,
+  connecting,
+  transientDisconnect,
+  badCredentials,
+  unknownError,
+
+
 }
 
 enum ConnectionError {
@@ -37,6 +43,7 @@ enum ConnectionError {
   messageSendingFailed,
   timeout,
   unknown,
+  badCredentials,
 }
 
 class AddBridge extends StatefulWidget {
@@ -210,8 +217,24 @@ class BotController extends State<AddBridge> {
     final status = interpretBridgeResponse(response);
 
     switch (status) {
+      case ConnectionStatus.connecting:
+        if (kDebugMode) {
+          print('Connecting to ${network.name}...');
+        }
+        break;
       case ConnectionStatus.connected:
         setState(() => network.updateConnectionResult(true));
+        break;
+      case ConnectionStatus.transientDisconnect:
+        if (kDebugMode) {
+          print('Transient disconnect detected for ${network.name}.');
+        }
+        break;
+      case ConnectionStatus.badCredentials:
+        _handleError(network, ConnectionError.badCredentials);
+        break;
+      case ConnectionStatus.unknownError:
+        _handleError(network, ConnectionError.unknown);
         break;
       case ConnectionStatus.notConnected:
         setState(() => network.updateConnectionResult(false));
@@ -225,14 +248,29 @@ class BotController extends State<AddBridge> {
   ConnectionStatus interpretBridgeResponse(Response response) {
     try {
       final responseJson = response.data;
-
       final networkName = responseJson['network']?['displayname'];
+
       if (networkName != null) {
         final logins = responseJson['logins'];
+
         if (logins != null && logins.isNotEmpty) {
           final stateEvent = logins[0]['state']?['state_event'];
-          return stateEvent == 'CONNECTED' ? ConnectionStatus.connected : ConnectionStatus.notConnected;
-        }else{
+
+          switch (stateEvent) {
+            case 'CONNECTING':
+              return ConnectionStatus.connecting;
+            case 'CONNECTED':
+              return ConnectionStatus.connected;
+            case 'TRANSIENT_DISCONNECT':
+              return ConnectionStatus.transientDisconnect;
+            case 'BAD_CREDENTIALS':
+              return ConnectionStatus.badCredentials;
+            case 'UNKNOWN_ERROR':
+              return ConnectionStatus.unknownError;
+            default:
+              return ConnectionStatus.notConnected;
+          }
+        } else {
           return ConnectionStatus.notConnected;
         }
       }
@@ -483,6 +521,9 @@ class BotController extends State<AddBridge> {
         break;
       case ConnectionError.timeout:
         errorMessage = 'Operation timed out';
+        break;
+      case ConnectionError.badCredentials:
+        errorMessage = 'Invalid credentials provided';
         break;
       case ConnectionError.unknown:
       default:
