@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/download_chat.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -18,7 +19,6 @@ enum ChatPopupMenuActions {
   leave,
   search,
   // #Pangea
-  archive,
   downloadTxt,
   downloadCsv,
   downloadXlsx,
@@ -118,25 +118,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 context.go('/rooms/${widget.room.id}/search');
                 break;
               // #Pangea
-              case ChatPopupMenuActions.archive:
-                final confirmed = await showOkCancelAlertDialog(
-                  useRootNavigator: false,
-                  context: context,
-                  title: L10n.of(context)!.areYouSure,
-                  okLabel: L10n.of(context)!.ok,
-                  cancelLabel: L10n.of(context)!.cancel,
-                  message: L10n.of(context)!.archiveRoomDescription,
-                );
-                if (confirmed == OkCancelResult.ok) {
-                  final success = await showFutureLoadingDialog(
-                    context: context,
-                    future: () => widget.room.archive(),
-                  );
-                  if (success.error == null) {
-                    context.go('/rooms');
-                  }
-                }
-                break;
               case ChatPopupMenuActions.downloadTxt:
                 showFutureLoadingDialog(
                   context: context,
@@ -171,7 +152,30 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 );
                 break;
               case ChatPopupMenuActions.learningSettings:
-                context.go('/rooms/settings/learning');
+                showDialog(
+                  context: context,
+                  builder: (c) {
+                    return kIsWeb
+                        ? Dialog(
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                maxWidth: 600,
+                                maxHeight: 600,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20.0),
+                                child: const SettingsLearning(isPopup: true),
+                              ),
+                            ),
+                          )
+                        : Dialog.fullscreen(
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 600),
+                              child: const SettingsLearning(isPopup: true),
+                            ),
+                          );
+                  },
+                );
                 break;
               // Pangea#
             }
@@ -246,18 +250,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               ),
             ),
             // #Pangea
-            if (!widget.room.isArchived)
-              if (widget.room.isRoomAdmin)
-                PopupMenuItem<ChatPopupMenuActions>(
-                  value: ChatPopupMenuActions.archive,
-                  child: Row(
-                    children: [
-                      const Icon(Icons.archive_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context)!.archive),
-                    ],
-                  ),
-                ),
             PopupMenuItem<ChatPopupMenuActions>(
               value: ChatPopupMenuActions.downloadTxt,
               child: Row(
