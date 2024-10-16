@@ -4234,5 +4234,9 @@
   "reportContentIssueTitle": "Report content issue",
   "feedback": "Optional feedback",
   "reportContentIssueDescription": "Uh oh! AI can faciliate personalized learning experiences but... also hallucinates. Please provide any feedback you have and we'll try again.",
-  "clickTheWordAgainToDeselect": "Click the selected word to deselect it."
+  "clickTheWordAgainToDeselect": "Click the selected word to deselect it.",
+  "l2SupportNa": "Not Available",
+  "l2SupportAlpha": "Alpha",
+  "l2SupportBeta": "Beta",
+  "l2SupportFull": "Full"
 }

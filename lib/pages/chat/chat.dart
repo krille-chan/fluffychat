@@ -470,6 +470,14 @@ class ChatController extends State<ChatPageWithRoom>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    // #Pangea
+    // On iOS, if the toolbar is open and the app is closed, then the user goes
+    // back to do more toolbar activities, the toolbar buttons / selection don't
+    // update properly. So, when the user closes the app, close the toolbar overlay.
+    if (state == AppLifecycleState.paused) {
+      clearSelectedEvents();
+    }
+    // Pangea#
     if (state != AppLifecycleState.resumed) return;
     setReadMarker();
   }
