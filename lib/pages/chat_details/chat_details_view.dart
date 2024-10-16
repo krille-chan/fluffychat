@@ -402,64 +402,6 @@ class ChatDetailsView extends StatelessWidget {
                               startOpen: false,
                             ),
                           const Divider(height: 1),
-                          if (!room.isDirectChat)
-                            if (room.isRoomAdmin)
-                              ListTile(
-                                title: Text(
-                                  room.isSpace
-                                      ? L10n.of(context)!.archiveSpace
-                                      : L10n.of(context)!.archive,
-                                  style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                leading: CircleAvatar(
-                                  backgroundColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                  foregroundColor: iconColor,
-                                  child: const Icon(
-                                    Icons.archive_outlined,
-                                  ),
-                                ),
-                                onTap: () async {
-                                  var confirmed = OkCancelResult.ok;
-                                  var shouldGo = false;
-                                  // archiveSpace has its own popup; only show if not space
-                                  if (!room.isSpace) {
-                                    confirmed = await showOkCancelAlertDialog(
-                                      useRootNavigator: false,
-                                      context: context,
-                                      title: L10n.of(context)!.areYouSure,
-                                      okLabel: L10n.of(context)!.ok,
-                                      cancelLabel: L10n.of(context)!.cancel,
-                                      message: L10n.of(context)!
-                                          .archiveRoomDescription,
-                                    );
-                                  }
-                                  if (confirmed == OkCancelResult.ok) {
-                                    if (room.isSpace) {
-                                      shouldGo = await room.archiveSpace(
-                                        context,
-                                        Matrix.of(context).client,
-                                      );
-                                    } else {
-                                      final success =
-                                          await showFutureLoadingDialog(
-                                        context: context,
-                                        future: () async {
-                                          await room.archive();
-                                        },
-                                      );
-                                      shouldGo = (success.error == null);
-                                    }
-                                    if (shouldGo) {
-                                      context.go('/rooms');
-                                    }
-                                  }
-                                },
-                              ),
                           ListTile(
                             title: Text(
                               L10n.of(context)!.leave,

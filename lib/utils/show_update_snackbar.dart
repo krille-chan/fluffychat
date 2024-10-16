@@ -18,7 +18,12 @@ abstract class UpdateNotifier {
         ScaffoldFeatureController? controller;
         controller = scaffoldMessenger.showSnackBar(
           SnackBar(
-            duration: const Duration(seconds: 30),
+            duration: const Duration(
+              // #Pangea
+              // seconds: 30,
+              seconds: 5,
+              // Pangea#
+            ),
             content: Row(
               children: [
                 IconButton(
