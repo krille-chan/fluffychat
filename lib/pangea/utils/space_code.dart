@@ -14,7 +14,7 @@ class SpaceCodeUtil {
     return spacecode.length == codeLength && spacecode.contains(r'[0-9]');
   }
 
-  static Future<String?> generateSpaceCode(Client client) async {
+  static Future<String> generateSpaceCode(Client client) async {
     final response = await client.httpClient.get(
       Uri.parse(
         '${client.homeserver}/_synapse/client/pangea/v1/request_room_code',
@@ -25,7 +25,7 @@ class SpaceCodeUtil {
       },
     );
     if (response.statusCode != 200) {
-      return null;
+      throw Exception('Failed to generate room code: $response');
     }
     final roomCodeResult = jsonDecode(response.body);
     if (roomCodeResult['access_code'] is String) {

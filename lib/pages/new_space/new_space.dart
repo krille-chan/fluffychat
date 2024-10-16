@@ -28,8 +28,8 @@ class NewSpaceController extends State<NewSpace> {
   TextEditingController nameController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   // #Pangea
-  // bool publicGroup = false;
-  bool publicGroup = true;
+  bool publicGroup = false;
+  // bool publicGroup = true;
   // final GlobalKey<RoomRulesState> rulesEditorKey = GlobalKey<RoomRulesState>();
   final GlobalKey<AddToSpaceState> addToSpaceKey = GlobalKey<AddToSpaceState>();
   // commenting out language settings in spaces for now
@@ -152,14 +152,20 @@ class NewSpaceController extends State<NewSpace> {
       final avatar = this.avatar;
       avatarUrl ??= avatar == null ? null : await client.uploadContent(avatar);
       final classCode = await SpaceCodeUtil.generateSpaceCode(client);
-      if (classCode == null) {
-        return;
-      }
       final spaceId = await client.createRoom(
         // #Pangea
-        preset: sdk.CreateRoomPreset.publicChat,
+        preset: publicGroup
+            ? sdk.CreateRoomPreset.publicChat
+            : sdk.CreateRoomPreset.privateChat,
+        // #Pangea
         creationContent: {'type': RoomCreationTypes.mSpace},
         visibility: publicGroup ? sdk.Visibility.public : null,
+        // #Pangea
+        // roomAliasName: publicGroup
+        //     ? nameController.text.trim().toLowerCase().replaceAll(' ', '_')
+        //     : null,
+        // roomAliasName: SpaceCodeUtil.generateSpaceCode(),
+        // Pangea#
         name: nameController.text.trim(),
         topic: topicController.text.isEmpty ? null : topicController.text,
         // #Pangea
@@ -173,7 +179,6 @@ class NewSpaceController extends State<NewSpace> {
         initialState: [
           // #Pangea
           ...initialState,
-          // Pangea#
           if (avatar != null)
             sdk.StateEvent(
               type: sdk.EventTypes.RoomAvatar,
@@ -187,7 +192,9 @@ class NewSpaceController extends State<NewSpace> {
               ModelKey.accessCode: classCode,
             },
           ),
+          // Pangea#
         ],
+        // Pangea#
       );
       // #Pangea
       final List<Future<dynamic>> futures = [
