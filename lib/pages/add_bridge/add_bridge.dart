@@ -212,7 +212,7 @@ class BotController extends State<AddBridge> {
   Future<void> pingBridgeAPI(SocialNetwork network) async {
     final userId = client.userID;
 
-    final response = await dio.get('${network.apiPath}/provision/v3/whoami?user_id=$userId');
+    final response = await dio.get('${network.apiPath}/_matrix/provision/v3/whoami?user_id=$userId');
 
     final status = interpretBridgeResponse(response);
 
@@ -555,7 +555,7 @@ class BotController extends State<AddBridge> {
       {String loginId = 'all'}
       ) async {
     final userId = client.userID;
-    final logoutUrl = '/${network.apiPath}/provision/v3/logout/$loginId?user_id=$userId';
+    final logoutUrl = '/${network.apiPath}/_matrix/provision/v3/logout/$loginId?user_id=$userId';
 
     Future.microtask(() {
       connectionState.updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
@@ -828,7 +828,9 @@ class BotController extends State<AddBridge> {
     final userId = client.userID;
 
     // Step 1: Start the login process
-    final loginStartUrl = '/${network.apiPath}/provision/v3/login/start/$flowID?user_id=$userId';
+    final loginStartUrl = '/${network.apiPath}/_matrix/provision/v3/login/start/$flowID?user_id=$userId';
+
+    print("loginStartUrl: $loginStartUrl");
 
     try {
       // Initiate the login process
@@ -854,7 +856,7 @@ class BotController extends State<AddBridge> {
           final formattedCookieString = formatCookiesToJsonApi(gotCookies);
 
           // Submit cookies to the login process step
-          final stepUrl = '/${network.apiPath}/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId';
+          final stepUrl = '/${network.apiPath}/_matrix/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId';
 
           final stepResponse = await dio.post(stepUrl, data: formattedCookieString);
 
