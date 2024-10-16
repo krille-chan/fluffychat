@@ -169,6 +169,7 @@ class NewSpaceController extends State<NewSpace> {
         name: nameController.text.trim(),
         topic: topicController.text.isEmpty ? null : topicController.text,
         // #Pangea
+        // powerLevelContentOverride: {'events_default': 100},
         powerLevelContentOverride: addToSpaceKey.currentState != null
             ? await ClassChatPowerLevels.powerLevelOverrideForClassChat(
                 context,
