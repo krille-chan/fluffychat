@@ -28,22 +28,12 @@ class SettingsLearningView extends StatelessWidget {
             children: [
               LanguageTile(controller),
               CountryPickerTile(controller),
-              const SizedBox(height: 8),
               const Divider(height: 1),
-              const SizedBox(height: 8),
-              // if (controller.pangeaController.permissionsController.isUser18())
-              //   SwitchListTile.adaptive(
-              //     activeColor: AppConfig.activeToggleColor,
-              //     title: Text(L10n.of(context)!.publicProfileTitle),
-              //     subtitle: Text(L10n.of(context)!.publicProfileDesc),
-              //     value: controller.pangeaController.userController.isPublic,
-              //     onChanged: (bool isPublicProfile) =>
-              //         controller.setPublicProfile(isPublicProfile),
-              //   ),
               ListTile(
-                subtitle: Text(L10n.of(context)!.toggleToolSettingsDescription),
+                title: Text(L10n.of(context)!.toggleToolSettingsDescription),
               ),
-              for (final toolSetting in ToolSetting.values)
+              for (final toolSetting in ToolSetting.values
+                  .where((tool) => tool.isAvailableSetting))
                 ProfileSettingsSwitchListTile.adaptive(
                   defaultValue: controller.getToolSetting(toolSetting),
                   title: toolSetting.toolName(context),
@@ -66,18 +56,18 @@ class SettingsLearningView extends StatelessWidget {
                   return profile;
                 }),
               ),
-              ProfileSettingsSwitchListTile.adaptive(
-                defaultValue: controller.pangeaController.userController.profile
-                    .userSettings.autoPlayMessages,
-                title: L10n.of(context)!.autoPlayTitle,
-                subtitle: L10n.of(context)!.autoPlayDesc,
-                onChange: (bool value) => controller
-                    .pangeaController.userController
-                    .updateProfile((profile) {
-                  profile.userSettings.autoPlayMessages = value;
-                  return profile;
-                }),
-              ),
+              // ProfileSettingsSwitchListTile.adaptive(
+              //   defaultValue: controller.pangeaController.userController.profile
+              //       .userSettings.autoPlayMessages,
+              //   title: L10n.of(context)!.autoPlayTitle,
+              //   subtitle: L10n.of(context)!.autoPlayDesc,
+              //   onChange: (bool value) => controller
+              //       .pangeaController.userController
+              //       .updateProfile((profile) {
+              //     profile.userSettings.autoPlayMessages = value;
+              //     return profile;
+              //   }),
+              // ),
             ],
           ),
         ),

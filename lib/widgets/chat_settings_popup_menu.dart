@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/download_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -18,7 +17,6 @@ enum ChatPopupMenuActions {
   leave,
   search,
   // #Pangea
-  archive,
   downloadTxt,
   downloadCsv,
   downloadXlsx,
@@ -118,25 +116,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 context.go('/rooms/${widget.room.id}/search');
                 break;
               // #Pangea
-              case ChatPopupMenuActions.archive:
-                final confirmed = await showOkCancelAlertDialog(
-                  useRootNavigator: false,
-                  context: context,
-                  title: L10n.of(context)!.areYouSure,
-                  okLabel: L10n.of(context)!.ok,
-                  cancelLabel: L10n.of(context)!.cancel,
-                  message: L10n.of(context)!.archiveRoomDescription,
-                );
-                if (confirmed == OkCancelResult.ok) {
-                  final success = await showFutureLoadingDialog(
-                    context: context,
-                    future: () => widget.room.archive(),
-                  );
-                  if (success.error == null) {
-                    context.go('/rooms');
-                  }
-                }
-                break;
               case ChatPopupMenuActions.downloadTxt:
                 showFutureLoadingDialog(
                   context: context,
@@ -246,18 +225,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               ),
             ),
             // #Pangea
-            if (!widget.room.isArchived)
-              if (widget.room.isRoomAdmin)
-                PopupMenuItem<ChatPopupMenuActions>(
-                  value: ChatPopupMenuActions.archive,
-                  child: Row(
-                    children: [
-                      const Icon(Icons.archive_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context)!.archive),
-                    ],
-                  ),
-                ),
             PopupMenuItem<ChatPopupMenuActions>(
               value: ChatPopupMenuActions.downloadTxt,
               child: Row(

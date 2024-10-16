@@ -269,4 +269,16 @@ extension SettingCopy on ToolSetting {
         return L10n.of(context)!.autoIGCToolDescription;
     }
   }
+
+  bool get isAvailableSetting {
+    switch (this) {
+      case ToolSetting.interactiveTranslator:
+      case ToolSetting.interactiveGrammar:
+      case ToolSetting.definitions:
+        return false;
+      case ToolSetting.immersionMode:
+      case ToolSetting.autoIGC:
+        return true;
+    }
+  }
 }
