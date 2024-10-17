@@ -324,8 +324,10 @@ class BotController extends State<AddBridge> {
     try {
       switch (socialNetwork.name) {
         case "Instagram":
+          await roomBot.sendTextEvent("!ig list-logins");
+          break;
         case "Facebook Messenger":
-          await roomBot.sendTextEvent("list-logins");
+          await roomBot.sendTextEvent("!fb list-logins");
           break;
         case "Linkedin":
           await roomBot.sendTextEvent("whoami");
@@ -423,8 +425,13 @@ class BotController extends State<AddBridge> {
   /// Get the event name for logout based on the social network
   String _getEventName(String networkName) {
     switch (networkName) {
+      case "Instagram":
+        return '!ig logout';
+      case "Facebook Messenger":
+        return '!fb logout';
       default:
         return 'logout';
+
     }
   }
 
@@ -470,7 +477,14 @@ class BotController extends State<AddBridge> {
               final userId = extractUserId(latestMessage);
               if (userId != null) {
                 final room = client.getRoomById(directChat);
-                room?.sendTextEvent("logout $userId");
+                switch (network.name) {
+                  case "Instagram":
+                    room?.sendTextEvent("!ig logout $userId");
+                    break;
+                  case "Facebook Messenger":
+                    room?.sendTextEvent("!fb logout $userId");
+                    break;
+                }
                 Logs().v("Sent logout message for user $userId on ${network.name}");
                 sentLogoutMessage = true;  // Set the flag to prevent sending the message again
                 await Future.delayed(const Duration(seconds: 3));
@@ -696,7 +710,14 @@ class BotController extends State<AddBridge> {
     });
 
     try {
-      await roomBot.sendTextEvent("login");
+      switch (network.name) {
+        case "Instagram":
+          await roomBot.sendTextEvent("!ig login");
+          break;
+        case "Facebook Messenger":
+          await roomBot.sendTextEvent("!fb login");
+          break;
+      }
 
       Future.microtask(() {
         connectionState
@@ -737,7 +758,14 @@ class BotController extends State<AddBridge> {
 
     if (lastEvent != null && lastEvent.senderId == botUserId) {
       if (pasteCookie.hasMatch(lastMessage!) && !cookiesSent) {
-        roomBot.sendTextEvent(formattedCookieString);
+        switch (network.name) {
+          case "Instagram":
+            roomBot.sendTextEvent("!ig $formattedCookieString");
+            break;
+          case "Facebook Messenger":
+            roomBot.sendTextEvent("!fb $formattedCookieString");
+            break;
+        }
         cookiesSent = true;
       } else if (alreadyConnected.hasMatch(lastMessage)) {
         Logs().v("Already Connected to ${network.name}");
