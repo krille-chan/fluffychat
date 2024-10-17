@@ -4,6 +4,7 @@ import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -17,14 +18,6 @@ class SettingsView extends StatelessWidget {
   final SettingsController controller;
 
   const SettingsView(this.controller, {super.key});
-
-  // #Pangea
-  Future<String> getAppVersion(BuildContext context) async {
-    final packageInfo = await PackageInfo.fromPlatform();
-    return L10n.of(context)!
-        .versionText(packageInfo.version, packageInfo.buildNumber);
-  }
-  // Pangea#
 
   @override
   Widget build(BuildContext context) {
@@ -218,14 +211,34 @@ class SettingsView extends StatelessWidget {
               onTap: () => launchUrlString(AppConfig.termsOfServiceUrl),
               trailing: const Icon(Icons.open_in_new_outlined),
             ),
-            FutureBuilder<String>(
-              future: getAppVersion(context),
+            FutureBuilder<PackageInfo>(
+              future: PackageInfo.fromPlatform(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   return ListTile(
                     leading: const Icon(Icons.info_outline),
+                    trailing: const Icon(Icons.copy_outlined),
+                    onTap: () async {
+                      if (snapshot.data == null) return;
+                      await Clipboard.setData(
+                        ClipboardData(
+                          text:
+                              "${snapshot.data!.version}+${snapshot.data!.buildNumber}",
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(L10n.of(context)!.copiedToClipboard),
+                        ),
+                      );
+                    },
                     title: Text(
-                      snapshot.data ?? L10n.of(context)!.versionNotFound,
+                      snapshot.data != null
+                          ? L10n.of(context)!.versionText(
+                              snapshot.data!.version,
+                              snapshot.data!.buildNumber,
+                            )
+                          : L10n.of(context)!.versionNotFound,
                     ),
                   );
                 } else if (snapshot.hasError) {
