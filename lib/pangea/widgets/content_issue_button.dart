@@ -36,21 +36,20 @@ class ContentIssueButton extends StatelessWidget {
                     L10n.of(context)!.reportContentIssueTitle,
                     textAlign: TextAlign.center,
                   ),
-                  content: Container(
-                    constraints: const BoxConstraints(maxWidth: 300),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const BotFace(
-                          width: 60,
-                          expression: BotExpression.addled,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(L10n.of(context)!.reportContentIssueDescription),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          width: double.infinity,
-                          child: TextField(
+                  content: SingleChildScrollView(
+                    child: Container(
+                      constraints: const BoxConstraints(maxWidth: 300),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const BotFace(
+                            width: 60,
+                            expression: BotExpression.addled,
+                          ),
+                          const SizedBox(height: 10),
+                          Text(L10n.of(context)!.reportContentIssueDescription),
+                          const SizedBox(height: 10),
+                          TextField(
                             controller: feedbackController,
                             decoration: InputDecoration(
                               labelText: L10n.of(context)!.feedback,
@@ -58,8 +57,8 @@ class ContentIssueButton extends StatelessWidget {
                             ),
                             maxLines: 4,
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   actions: [
