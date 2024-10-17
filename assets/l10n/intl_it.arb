@@ -447,7 +447,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Livello di autorizzazione predefinito",
+  "defaultPermissionLevel": "Livello di autorizzazione predefinito per i nuovi utenti",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -482,7 +482,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Discussioni dirette",
+  "directChats": "Chat dirette",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -951,7 +951,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Sembra che tu non abbia Firebase Cloud Messaging sul tuo telefono. Per ricevere notifiche push consigliamo di installare ntfy. Con ntfy, o altro provided Unified Push, puoi ricevere le notifiche push in modo sicuro. Puoi scaricare ntfy dal PlayStore o fa F-Droid.",
+  "noGoogleServicesWarning": "Firebase Cloud Messaging non sembra essere disponibile sul tuo dispositivo. Per continuare a ricevere notifiche push, ti consigliamo di installare ntfy. Con ntfy o un altro provider Unified Push puoi ricevere notifiche push in modo sicuro per i dati. Puoi scaricare ntfy dal PlayStore o da F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1754,7 +1754,7 @@
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "sendSticker": "Invia sticker",
+  "sendSticker": "Invia adesivo",
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
@@ -1803,7 +1803,7 @@
   },
   "repeatPassword": "Ripeti password",
   "@repeatPassword": {},
-  "autoplayImages": "Riproduci automaticamente sticker animati ed emoticon",
+  "autoplayImages": "Riproduci automaticamente adesivi ed emote animati",
   "@autoplayImages": {
     "type": "text",
     "placeholder": {}
@@ -2049,7 +2049,7 @@
       "provider": {}
     }
   },
-  "fileIsTooBigForServer": "Il server segnala che il file è troppo grande per essere inviato.",
+  "fileIsTooBigForServer": "Impossibile inviare! Il server supporta solo allegati fino a {max}.",
   "@fileIsTooBigForServer": {},
   "homeserver": "Homeserver",
   "@homeserver": {},
@@ -2187,7 +2187,7 @@
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "hasKnocked": "{user} ha bussato",
+  "hasKnocked": "🚪 {user} ha bussato",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2437,7 +2437,7 @@
       "query": {}
     }
   },
-  "block": "bloccare",
+  "block": "Blocca",
   "@block": {},
   "yourGlobalUserIdIs": "Il tuo ID dell'utente globale è: ",
   "@yourGlobalUserIdIs": {},
@@ -2453,7 +2453,7 @@
   "@searchChatsRooms": {},
   "databaseMigrationBody": "Attendere prego. L'operazione potrebbe richiedere un momento.",
   "@databaseMigrationBody": {},
-  "youInvitedToBy": "📩 Sei stato invitato via collegamento in:\n{alias}",
+  "youInvitedToBy": "📩 Sei stato invitato tramite link in:\n{alias}",
   "@youInvitedToBy": {
     "placeholders": {
       "alias": {}
@@ -2465,7 +2465,7 @@
   "@subspace": {},
   "publicSpaces": "Spazio pubblico",
   "@publicSpaces": {},
-  "hidePresences": "Nascondi Lista Stato?",
+  "hidePresences": "Nascondere l'elenco degli stati?",
   "@hidePresences": {},
   "pleaseEnterYourCurrentPassword": "Per favore inserisci la tua password attuale",
   "@pleaseEnterYourCurrentPassword": {},
@@ -2504,7 +2504,7 @@
   "@verifyOtherDeviceDescription": {},
   "discover": "Scopri",
   "@discover": {},
-  "presencesToggle": "Mostra messaggi di stato degli altri utenti",
+  "presencesToggle": "Mostra i messaggi di stato di altri utenti",
   "@presencesToggle": {
     "type": "text",
     "placeholders": {}
@@ -2518,5 +2518,88 @@
   "transparent": "Trasparente",
   "@transparent": {},
   "incomingMessages": "Messaggi in arrivo",
-  "@incomingMessages": {}
+  "@incomingMessages": {},
+  "noChatsFoundHere": "Nessuna chat trovata. Inizia una nuova chat con qualcuno usando il pulsante qui sotto. ⤵️",
+  "@noChatsFoundHere": {},
+  "joinedChats": "Chat a cui partecipi",
+  "@joinedChats": {},
+  "unread": "Non letti",
+  "@unread": {},
+  "space": "Spazio",
+  "@space": {},
+  "spaces": "Spazi",
+  "@spaces": {},
+  "notifyMeFor": "Avvisami per",
+  "@notifyMeFor": {},
+  "invitedBy": "📩 Invitato da {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "knock": "Bussa",
+  "@knock": {},
+  "hideInvalidOrUnknownMessageFormats": "Nascondi formati di messaggi non validi o sconosciuti",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "overview": "Panoramica",
+  "@overview": {},
+  "presenceStyle": "Presenza:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "swipeRightToLeftToReply": "Scorri da destra a sinistra per rispondere",
+  "@swipeRightToLeftToReply": {},
+  "globalChatId": "ID chat globale",
+  "@globalChatId": {},
+  "hideMemberChangesInPublicChats": "Nascondi le modifiche dei membri nelle chat pubbliche",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "Per migliorare la leggibilità, non mostrare nella cronologia della chat se qualcuno si unisce o abbandona una chat pubblica.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "userWouldLikeToChangeTheChat": "{user} vorrebbe unirsi alla chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Non è stato ancora creato alcun link pubblico",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "appLockDescription": "Blocca l'app con un codice PIN quando non è in uso",
+  "@appLockDescription": {},
+  "noOneCanJoin": "Nessuno può unirsi",
+  "@noOneCanJoin": {},
+  "usersMustKnock": "Gli utenti devono bussare",
+  "@usersMustKnock": {},
+  "alwaysUse24HourFormat": "disattivato",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "accessAndVisibility": "Accesso e visibilità",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Chi è autorizzato a partecipare a questa chat e come è possibile scoprirla.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Chiamate",
+  "@calls": {},
+  "customEmojisAndStickers": "Emoji e adesivi personalizzati",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Aggiungi o condividi emoji o adesivi personalizzati che possono essere utilizzati in qualsiasi chat.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "Mostra i messaggi rimossi",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Se qualcuno rimuove un messaggio, il messaggio non sarà più visibile nella chat.",
+  "@hideRedactedMessagesBody": {},
+  "passwordRecoverySettings": "Impostazioni di recupero password",
+  "@passwordRecoverySettings": {},
+  "noMoreChatsFound": "Non sono state trovate altre chat...",
+  "@noMoreChatsFound": {},
+  "countChatsAndCountParticipants": "{chats} chat e {participants} partecipanti",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "stickers": "Adesivi",
+  "@stickers": {}
 }
