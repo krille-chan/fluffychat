@@ -1,6 +1,8 @@
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
+import 'package:fluffychat/pangea/utils/get_grammar_copy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -47,7 +49,13 @@ class AnalyticsPopup extends StatelessWidget {
                           child: ListTile(
                             onTap: () {},
                             title: Text(
-                              constructsModel.constructList[index].lemma,
+                              constructsModel.type == ConstructTypeEnum.morph
+                                  ? getGrammarCopy(
+                                      constructsModel
+                                          .constructList[index].lemma,
+                                      context,
+                                    )
+                                  : constructsModel.constructList[index].lemma,
                             ),
                             subtitle: LinearProgressIndicator(
                               value:
