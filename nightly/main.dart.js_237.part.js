@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cV9(){return new B.Hv(A.dJ("et"))},
-Hv:function Hv(d){this.a=d}}
+cVa(){return new B.Hx(A.dJ("et"))},
+Hx:function Hx(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[16],B)
-B.Hv.prototype={
+B.Hx.prototype={
 go3(){return"false"},
 gko(){return"Korda salas\xf5na"},
 gmx(){return"See pole pildifail."},
@@ -92,7 +92,7 @@ gf7(){return"Vestluse teave"},
 gfO(){return"Vestlused"},
 gir(){return"Vali korralik salas\xf5na"},
 gfP(){return"Kustuta arhiiv"},
-gd3(d){return"Sulge"},
+gd4(d){return"Sulge"},
 glu(){return"M\xe4rgi otsevestusluseks antud Matrixi ID jaoks"},
 glv(){return"M\xe4rgi vestlusr\xfchmaks"},
 gis(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Hv,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"Hv":{"aP":[]}}'))};
+y(B.Hx,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"Hx":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"8WVAjDnizOkdxjlN+6eg8toN+j8=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"ZibnSq+t+4aLfNeYA/YpUjUexzM=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

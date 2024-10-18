@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_279",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVv(){return new B.HR(A.dJ("nl"))},
-HR:function HR(d){this.a=d}}
+cVw(){return new B.HT(A.dJ("nl"))},
+HT:function HT(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[38],B)
-B.HR.prototype={
+B.HT.prototype={
 go3(){return"true"},
 gko(){return"Wachtwoord herhalen"},
 gmx(){return"Geen afbeeldingsbestand."},
@@ -92,7 +92,7 @@ gf7(){return"Chatdetails"},
 gfO(){return"Chats"},
 gir(){return"Kies een sterk wachtwoord"},
 gfP(){return"Archief wissen"},
-gd3(d){return"Sluiten"},
+gd4(d){return"Sluiten"},
 glu(){return"Markeer als priv\xe9berichtenkamer voor Matrix ID"},
 glv(){return"Markeer als groep"},
 gis(){return"Persoon uit deze kamer verbannen"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HR,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HR":{"aP":[]}}'))};
+y(B.HT,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HT":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"r1gN6XP5RlznfXETD4jVP9iGRyY=");
+a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"6nKOHmYtcTZNCsIpJqwNMkWAob0=");
 //# sourceMappingURL=main.dart.js_279.part.js.map

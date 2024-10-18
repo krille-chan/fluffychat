@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_270",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVo(){return new B.HK(A.dJ("it"))},
-HK:function HK(d){this.a=d}}
+cVp(){return new B.HM(A.dJ("it"))},
+HM:function HM(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[31],B)
-B.HK.prototype={
+B.HM.prototype={
 go3(){return"false"},
 gko(){return"Ripeti password"},
 gmx(){return"Non \xe8 un file immagine."},
@@ -92,7 +92,7 @@ gf7(){return"Dettagli chat"},
 gfO(){return"Discussioni"},
 gir(){return"Scegli una password complessa"},
 gfP(){return"Cancella archivio"},
-gd3(d){return"Chiudi"},
+gd4(d){return"Chiudi"},
 glu(){return"Segna come stanza messaggi diretti per questo ID Matrix"},
 glv(){return"Segna come gruppo"},
 gis(){return"Banna l'utente specificato da questa stanza"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HK,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HK":{"aP":[]}}'))};
+y(B.HM,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HM":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"vtMnvVl8CnGmcjw74kKnldCUMyA=");
+a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"ItELyUuKvK5vR9IM96/2Sjp3Oec=");
 //# sourceMappingURL=main.dart.js_270.part.js.map

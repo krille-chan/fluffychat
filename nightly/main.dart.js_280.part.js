@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_280",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVw(){return new B.HS(A.dJ("pl"))},
-HS:function HS(d){this.a=d}}
+cVx(){return new B.HU(A.dJ("pl"))},
+HU:function HU(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[39],B)
-B.HS.prototype={
+B.HU.prototype={
 go3(){return"false"},
 gko(){return"Powt\xf3rz has\u0142o"},
 gmx(){return"To nie jest plik obrazu."},
@@ -92,7 +92,7 @@ gf7(){return"Szczeg\xf3\u0142y czatu"},
 gfO(){return"Rozmowy"},
 gir(){return"Wybierz silne has\u0142o"},
 gfP(){return"Wyczy\u015b\u0107 archiwum"},
-gd3(d){return"Zamknij"},
+gd4(d){return"Zamknij"},
 glu(){return"Oznacz jako pok\xf3j wiadomo\u015bci bezpo\u015brednich dla podanego Matrix ID"},
 glv(){return"Oznacz jako grup\u0119"},
 gis(){return"Zablokuj u\u017cytkownika w tym pokoju"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HS,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HS":{"aP":[]}}'))};
+y(B.HU,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HU":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"q7YGY1TgkCtpyvo8nLIi43v37QI=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"29z+9C4AaoshCWi25dIIbUq0LDw=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

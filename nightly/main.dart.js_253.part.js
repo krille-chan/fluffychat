@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_253",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVj(){return new B.HF(A.dJ("hr"))},
-HF:function HF(d){this.a=d}}
+cVk(){return new B.HH(A.dJ("hr"))},
+HH:function HH(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[26],B)
-B.HF.prototype={
+B.HH.prototype={
 go3(){return"true"},
 gko(){return"Ponovi lozinku"},
 gmx(){return"Nije slikovna datoteka."},
@@ -92,7 +92,7 @@ gf7(){return"Detalji razgovora"},
 gfO(){return"Razgovori"},
 gir(){return"Odaberi sna\u017enu lozinku"},
 gfP(){return"Isprazni arhiv"},
-gd3(d){return"Zatvori"},
+gd4(d){return"Zatvori"},
 glu(){return"Ozna\u010di kao sobu za izravnu razmjenu poruka za zadani Matrix ID"},
 glv(){return"Ozna\u010di kao grupu"},
 gis(){return"Isklju\u010di navedenog korisnika iz ove sobe"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HF,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HF":{"aP":[]}}'))};
+y(B.HH,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HH":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"kxpT3cWL+rVtlluySopPBj/uFxA=");
+a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"Lp5XbtPEVTzUKX8tl8NFcokSmQM=");
 //# sourceMappingURL=main.dart.js_253.part.js.map

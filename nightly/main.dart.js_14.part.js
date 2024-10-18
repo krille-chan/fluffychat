@@ -2,16 +2,16 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_14",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cVx(d){return new A.Cz(B.dJ(d))},
-cVy(){return new A.HT(B.dJ("pt_BR"))},
-cVz(){return new A.HU(B.dJ("pt_PT"))},
-Cz:function Cz(d){this.a=d},
-HT:function HT(d){this.a=d},
-HU:function HU(d){this.a=d}},C
+cVy(d){return new A.CA(B.dJ(d))},
+cVz(){return new A.HV(B.dJ("pt_BR"))},
+cVA(){return new A.HW(B.dJ("pt_PT"))},
+CA:function CA(d){this.a=d},
+HV:function HV(d){this.a=d},
+HW:function HW(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[51]
-A.Cz.prototype={
+A.CA.prototype={
 go3(){return"false"},
 gko(){return"Repeat password"},
 gmx(){return"Not an image file."},
@@ -96,7 +96,7 @@ gf7(){return"Chat details"},
 gfO(){return"Chats"},
 gir(){return"Choose a strong password"},
 gfP(){return"Clear archive"},
-gd3(d){return"Fechar"},
+gd4(d){return"Fechar"},
 glu(){return"Mark as direct message room for the giving Matrix ID"},
 glv(){return"Mark as group"},
 gis(){return"Ban the given user from this room"},
@@ -563,7 +563,7 @@ og(d){return"Server limit reached! Waiting "+d+" seconds..."},
 goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
-A.HT.prototype={
+A.HV.prototype={
 gko(){return"Repita a senha"},
 gmx(){return"N\xe3o \xe9 uma imagem."},
 gbp(d){return"Remover"},
@@ -639,7 +639,7 @@ gf7(){return"Detalhes da conversa"},
 gfO(){return"Conversas"},
 gir(){return"Escolha uma senha forte"},
 gfP(){return"Limpar arquivo"},
-gd3(d){return"Fechar"},
+gd4(d){return"Fechar"},
 glu(){return"Marcar como conversa direta para o ID Matrix dado"},
 glv(){return"Marcar como grupo"},
 gis(){return"Banir um(a) usu\xe1rio(a) desta sala"},
@@ -1078,7 +1078,7 @@ n1(d){return"Nesse momento, h\xe1 "+d+" usu\xe1rios bloqueados."},
 gn_(){return"Restrito"},
 gmj(){return"Bater na porta restrito"},
 C(d,e){return this.gbp(this).$1(e)}}
-A.HU.prototype={
+A.HW.prototype={
 gko(){return"Repete a palavra-passe"},
 gbp(d){return"Remover"},
 gfC(){return"Acerca de"},
@@ -1139,7 +1139,7 @@ gf7(){return"Detalhes de conversa"},
 gfO(){return"Conversas"},
 gir(){return"Escolhe uma palavra-passe forte"},
 gfP(){return"Limpar arquivo"},
-gd3(d){return"Fechar"},
+gd4(d){return"Fechar"},
 gis(){return"Banir o utilizador dado desta sala"},
 git(){return"Limpar cache"},
 giu(){return"Criar uma conversa de grupo vazia\nUsa --no-encryption para desativar a encripta\xe7\xe3o"},
@@ -1335,10 +1335,10 @@ fz(d){return d+" enviou um autocolante"},
 hy(d){return d+" enviou um v\xeddeo"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Cz,C.aP)
-w(A.Cz,[A.HT,A.HU])})()
-B.ep(b.typeUniverse,JSON.parse('{"Cz":{"aP":[]},"HT":{"aP":[]},"HU":{"aP":[]}}'))
+x(A.CA,C.aP)
+w(A.CA,[A.HV,A.HW])})()
+B.ep(b.typeUniverse,JSON.parse('{"CA":{"aP":[]},"HV":{"aP":[]},"HW":{"aP":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_14",e:"endPart",h:b})})($__dart_deferred_initializers__,"wVv2FTPYwAnKSn7a6ijrhwzhhXU=");
+a.eventLog.push({p:"main.dart.js_14",e:"endPart",h:b})})($__dart_deferred_initializers__,"QhhLFV2rbUzCHW7vAKcmn0iq6XE=");
 //# sourceMappingURL=main.dart.js_14.part.js.map

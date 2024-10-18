@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_260",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVk(){return new B.HG(A.dJ("hu"))},
-HG:function HG(d){this.a=d}}
+cVl(){return new B.HI(A.dJ("hu"))},
+HI:function HI(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[27],B)
-B.HG.prototype={
+B.HI.prototype={
 go3(){return"true"},
 gko(){return"Jelsz\xf3 megism\xe9tl\xe9se"},
 gmx(){return"Nem k\xe9p f\xe1jl."},
@@ -92,7 +92,7 @@ gf7(){return"Cseveg\xe9s r\xe9szletei"},
 gfO(){return"Cseveg\xe9sek"},
 gir(){return"V\xe1lasszon egy er\u0151s jelsz\xf3t"},
 gfP(){return"Arch\xedvum t\xf6rl\xe9se"},
-gd3(d){return"Bez\xe1r\xe1s"},
+gd4(d){return"Bez\xe1r\xe1s"},
 glu(){return"Szoba megjel\xf6l\xe9se mint k\xf6zvetlen cseveg\u0151 szoba az adott Matrix ID-n\xe9l"},
 glv(){return"Csoportnak jel\xf6l\xe9s"},
 gis(){return"Felhaszn\xe1l\xf3 kitilt\xe1sa ebb\u0151l a szob\xe1b\xf3l"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HG,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HG":{"aP":[]}}'))};
+y(B.HI,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HI":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"5ePXi18oWtpVsQ/oQVu5guLvjg4=");
+a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"gkvcFv1+dr0IaxTcEzw+w3TiOO4=");
 //# sourceMappingURL=main.dart.js_260.part.js.map

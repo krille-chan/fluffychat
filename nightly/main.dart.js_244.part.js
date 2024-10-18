@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_244",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVe(){return new B.HA(A.dJ("fr"))},
-HA:function HA(d){this.a=d}}
+cVf(){return new B.HC(A.dJ("fr"))},
+HC:function HC(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[21],B)
-B.HA.prototype={
+B.HC.prototype={
 go3(){return"true"},
 gko(){return"R\xe9p\xe9tez le mot de passe"},
 gmx(){return"Pas un fichier image."},
@@ -92,7 +92,7 @@ gf7(){return"D\xe9tails de la discussion"},
 gfO(){return"Discussions"},
 gir(){return"Choisissez un mot de passe fort"},
 gfP(){return"Effacer les archives"},
-gd3(d){return"Fermer"},
+gd4(d){return"Fermer"},
 glu(){return"Marquer comme salon de messages directs pour l'identifiant Matrix indiqu\xe9"},
 glv(){return"Marquer comme groupe"},
 gis(){return"Bannir l'utilisateur/trice donn\xe9(e) de ce salon"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HA,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HA":{"aP":[]}}'))};
+y(B.HC,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HC":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"VbpBc6+3ZaLfNHUuvFvijiBiwO8=");
+a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"t+APaxgOW6Uqt0WTveSIfxwpO+0=");
 //# sourceMappingURL=main.dart.js_244.part.js.map
