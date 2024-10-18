@@ -2280,7 +2280,7 @@
   "@dehydrateTor": {},
   "removeFromSpace": "Rimuovi dallo spazio",
   "@removeFromSpace": {},
-  "commandHint_op": "Imposta il livello di permessi dell'utente specificato (predefinito: 50)",
+  "commandHint_op": "Imposta il livello di privilegi dell'utente specificato (predefinito: 50)",
   "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
@@ -2459,7 +2459,7 @@
       "alias": {}
     }
   },
-  "addChatOrSubSpace": "Aggiungi chat o sotto spazio",
+  "addChatOrSubSpace": "Aggiungi chat o sottospazio",
   "@addChatOrSubSpace": {},
   "subspace": "Sottospazio",
   "@subspace": {},
@@ -2496,11 +2496,11 @@
   },
   "verifyOtherUser": "🔐 Verifica altro utente",
   "@verifyOtherUser": {},
-  "verifyOtherUserDescription": "Se verifichi un altro utente, puoi stare certo di conoscere con chi tu stia parlando veramente. 💪\n\nQuando inizi una verifica, tu e l'altro utente vedrete un popup nell'applicazione. Lì vedrete una serie di emoji o numeri che dovrete confrontare l'uno con l'altro.\n\nIl miglior modo per farlo è di incontrarsi o iniziare una chiamata video. 👭",
+  "verifyOtherUserDescription": "Se verifichi un altro utente, puoi essere certo di sapere a chi stai realmente scrivendo. 💪\n\nQuando inizi una verifica, tu e l'altro utente vedrete un popup nell'app. Lì vedrai una serie di emoji o numeri che dovrai confrontare tra loro.\n\nIl modo migliore per farlo è incontrarsi o avviare una videochiamata. 👭",
   "@verifyOtherUserDescription": {},
   "verifyOtherDevice": "🔐 Verifica altro dispositivo",
   "@verifyOtherDevice": {},
-  "verifyOtherDeviceDescription": "Quando verifichi un altro dispositivo, quei dispositivi possono scambiarsi chiavi, aumentando la tua sicurezza generale. 💪 Quando inizia una verifica, apparirà un popup su entrambi i dispositivi. Lì vedrai una serie di emoji o numeri che dovrai confrontare l'uno con l'altro. È meglio avere entrambi i dispositivi a portata di mano prima di iniziare la verifica. 🤳",
+  "verifyOtherDeviceDescription": "Quando verifichi un altro dispositivo, questi dispositivi possono scambiarsi le chiavi, aumentando la tua sicurezza complessiva. 💪 Quando inizi una verifica, apparirà un popup nell'app su entrambi i dispositivi. Lì vedrai una serie di emoji o numeri che dovrai confrontare tra loro. È meglio avere entrambi i dispositivi a portata di mano prima di iniziare la verifica. 🤳",
   "@verifyOtherDeviceDescription": {},
   "discover": "Scopri",
   "@discover": {},
@@ -2509,9 +2509,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicLink": "Collegamento pubblico",
+  "publicLink": "Link pubblico",
   "@publicLink": {},
-  "leaveEmptyToClearStatus": "Lasciare vuoto per cancellare il tuo stato.",
+  "leaveEmptyToClearStatus": "Lascia vuoto per cancellare il tuo stato.",
   "@leaveEmptyToClearStatus": {},
   "decline": "Declina",
   "@decline": {},
@@ -2601,5 +2601,143 @@
     }
   },
   "stickers": "Adesivi",
-  "@stickers": {}
+  "@stickers": {},
+  "searchMore": "Cerca di più...",
+  "@searchMore": {},
+  "sessionLostBody": "La tua sessione è andata persa. Segnala questo errore agli sviluppatori all'indirizzo {url}. Il messaggio di errore è: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "formattedMessagesDescription": "Visualizza contenuti di messaggi complessi, come testo in grassetto, utilizzando il markdown.",
+  "@formattedMessagesDescription": {},
+  "canceledKeyVerification": "{sender} ha annullato la verifica della chiave",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "chatPermissionsDescription": "Definisci quale livello di privilegi è necessario per determinate azioni in questa chat. I livelli di privilegi 0, 50 e 100 rappresentano solitamente utenti, moderatori e amministratori, ma qualsiasi valore intermedio è possibile.",
+  "@chatPermissionsDescription": {},
+  "passwordsDoNotMatch": "Le password non corrispondono",
+  "@passwordsDoNotMatch": {},
+  "initAppError": "Si è verificato un errore durante l'inizializzazione dell'app",
+  "@initAppError": {},
+  "startedKeyVerification": "{sender} ha avviato la verifica della chiave",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "chatCanBeDiscoveredViaSearchOnServer": "La chat può essere trovata tramite la ricerca su {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "unreadChatsInApp": "{appname}: {unread} chat non lette",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "thereAreCountUsersBlocked": "Al momento ci sono {count} utenti bloccati.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "nothingFound": "Non è stato trovato nulla...",
+  "@nothingFound": {},
+  "joinSpace": "Unisciti allo spazio",
+  "@joinSpace": {},
+  "commandHint_ignore": "Ignora il Matrix ID fornito",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Ignora il Matrix ID specificato",
+  "@commandHint_unignore": {},
+  "noDatabaseEncryption": "La crittografia del database non è supportata su questa piattaforma",
+  "@noDatabaseEncryption": {},
+  "knocking": "Bussare",
+  "@knocking": {},
+  "sendReadReceipts": "Invia ricevute di lettura",
+  "@sendReadReceipts": {},
+  "knockRestricted": "Limitato al bussare",
+  "@knockRestricted": {},
+  "restricted": "Limitato",
+  "@restricted": {},
+  "publicChatAddresses": "Indirizzi di chat pubblici",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Crea un nuovo indirizzo",
+  "@createNewAddress": {},
+  "userRole": "Ruolo utente",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} è il livello minimo di privilegi.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "searchIn": "Cerca nella chat \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "gallery": "Galleria",
+  "@gallery": {},
+  "formattedMessages": "Messaggi formattati",
+  "@formattedMessages": {},
+  "files": "File",
+  "@files": {},
+  "restoreSessionBody": "L'app ora tenta di ripristinare la sessione dal backup. Segnala questo errore agli sviluppatori all'indirizzo {url}. Il messaggio di errore è: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "acceptedKeyVerification": "{sender} ha accettato la verifica della chiave",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} ha completato la verifica della chiave",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} è pronto per la verifica della chiave",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "searchForUsers": "Cerca @utenti...",
+  "@searchForUsers": {},
+  "sendTypingNotificationsDescription": "Gli altri partecipanti alla chat possono vedere quando stai scrivendo un nuovo messaggio.",
+  "@sendTypingNotificationsDescription": {},
+  "sendReadReceiptsDescription": "Gli altri partecipanti alla chat possono vedere quando hai letto un messaggio.",
+  "@sendReadReceiptsDescription": {},
+  "requestedKeyVerification": "{sender} ha richiesto la verifica della chiave",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  }
 }
