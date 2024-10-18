@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/new_space/new_space_view.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
@@ -13,6 +14,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
@@ -27,8 +29,8 @@ class NewSpaceController extends State<NewSpace> {
   TextEditingController nameController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   // #Pangea
-  // bool publicGroup = false;
-  bool publicGroup = true;
+  bool publicGroup = false;
+  // bool publicGroup = true;
   // final GlobalKey<RoomRulesState> rulesEditorKey = GlobalKey<RoomRulesState>();
   final GlobalKey<AddToSpaceState> addToSpaceKey = GlobalKey<AddToSpaceState>();
   // commenting out language settings in spaces for now
@@ -147,98 +149,118 @@ class NewSpaceController extends State<NewSpace> {
     setState(() {
       loading = true;
     });
-    try {
-      final avatar = this.avatar;
-      avatarUrl ??= avatar == null ? null : await client.uploadContent(avatar);
-
-      final spaceId = await client.createRoom(
-        // #Pangea
-        // preset: publicGroup
-        //     ? sdk.CreateRoomPreset.publicChat
-        //     : sdk.CreateRoomPreset.privateChat,
-        preset: sdk.CreateRoomPreset.publicChat,
-        // Pangea#
-        creationContent: {'type': RoomCreationTypes.mSpace},
-        visibility: publicGroup ? sdk.Visibility.public : null,
-        // #Pangea
-        // roomAliasName: publicGroup
-        //     ? nameController.text.trim().toLowerCase().replaceAll(' ', '_')
-        //     : null,
-        roomAliasName: SpaceCodeUtil.generateSpaceCode(),
-        // Pangea#
-        name: nameController.text.trim(),
-        topic: topicController.text.isEmpty ? null : topicController.text,
-        // #Pangea
-        // powerLevelContentOverride: {'events_default': 100},
-        powerLevelContentOverride: addToSpaceKey.currentState != null
-            ? await ClassChatPowerLevels.powerLevelOverrideForClassChat(
-                context,
-                addToSpaceKey.currentState!.parent,
-              )
-            : null,
-        // Pangea#
-        initialState: [
-          if (avatar != null)
-            sdk.StateEvent(
-              type: sdk.EventTypes.RoomAvatar,
-              content: {'url': avatarUrl.toString()},
-            ),
-          // #Pangea
-          ...initialState,
+    // #Pangea
+    // try {
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        try {
           // Pangea#
-        ],
-      );
-      // #Pangea
-      final List<Future<dynamic>> futures = [
-        Matrix.of(context).client.waitForRoomInSync(spaceId, join: true),
-      ];
-      if (addToSpaceKey.currentState != null) {
-        futures.add(addToSpaceKey.currentState!.addSpaces(spaceId));
-      }
-      await Future.wait(futures);
+          final avatar = this.avatar;
+          avatarUrl ??=
+              avatar == null ? null : await client.uploadContent(avatar);
+          final classCode = await SpaceCodeUtil.generateSpaceCode(client);
+          final spaceId = await client.createRoom(
+            // #Pangea
+            preset: publicGroup
+                ? sdk.CreateRoomPreset.publicChat
+                : sdk.CreateRoomPreset.privateChat,
+            // #Pangea
+            creationContent: {'type': RoomCreationTypes.mSpace},
+            visibility: publicGroup ? sdk.Visibility.public : null,
+            // #Pangea
+            // roomAliasName: publicGroup
+            //     ? nameController.text.trim().toLowerCase().replaceAll(' ', '_')
+            //     : null,
+            // roomAliasName: SpaceCodeUtil.generateSpaceCode(),
+            // Pangea#
+            name: nameController.text.trim(),
+            topic: topicController.text.isEmpty ? null : topicController.text,
+            // #Pangea
+            // powerLevelContentOverride: {'events_default': 100},
+            powerLevelContentOverride: addToSpaceKey.currentState != null
+                ? await ClassChatPowerLevels.powerLevelOverrideForClassChat(
+                    context,
+                    addToSpaceKey.currentState!.parent,
+                  )
+                : null,
+            // Pangea#
+            initialState: [
+              // #Pangea
+              ...initialState,
+              if (avatar != null)
+                sdk.StateEvent(
+                  type: sdk.EventTypes.RoomAvatar,
+                  content: {'url': avatarUrl.toString()},
+                ),
+              sdk.StateEvent(
+                type: sdk.EventTypes.RoomJoinRules,
+                content: {
+                  ModelKey.joinRule: sdk.JoinRules.knock
+                      .toString()
+                      .replaceAll('JoinRules.', ''),
+                  ModelKey.accessCode: classCode,
+                },
+              ),
+              // Pangea#
+            ],
+            // Pangea#
+          );
+          // #Pangea
+          final List<Future<dynamic>> futures = [
+            Matrix.of(context).client.waitForRoomInSync(spaceId, join: true),
+          ];
+          if (addToSpaceKey.currentState != null) {
+            futures.add(addToSpaceKey.currentState!.addSpaces(spaceId));
+          }
+          await Future.wait(futures);
 
-      final capacity = addCapacityKey.currentState?.capacity;
-      final space = client.getRoomById(spaceId);
-      if (capacity != null && space != null) {
-        space.updateRoomCapacity(capacity);
-      }
+          final capacity = addCapacityKey.currentState?.capacity;
+          final space = client.getRoomById(spaceId);
+          if (capacity != null && space != null) {
+            space.updateRoomCapacity(capacity);
+          }
 
-      final Room? room = Matrix.of(context).client.getRoomById(spaceId);
-      if (room == null) {
-        ErrorHandler.logError(
-          e: 'Failed to get new space by id $spaceId',
-        );
-        MatrixState.pangeaController.classController
-            .setActiveSpaceIdInChatListController(spaceId);
-        return;
-      }
+          final Room? room = Matrix.of(context).client.getRoomById(spaceId);
+          if (room == null) {
+            ErrorHandler.logError(
+              e: 'Failed to get new space by id $spaceId',
+            );
+            MatrixState.pangeaController.classController
+                .setActiveSpaceIdInChatListController(spaceId);
+            return;
+          }
 
-      GoogleAnalytics.createClass(room.name, room.classCode);
-      try {
-        await room.invite(BotName.byEnvironment);
-      } catch (err) {
-        ErrorHandler.logError(
-          e: "Failed to invite pangea bot to space ${room.id}",
-        );
-      }
-      // Pangea#
-      if (!mounted) return;
-      // #Pangea
-      // context.pop<String>(spaceId);
-      MatrixState.pangeaController.classController
-          .setActiveSpaceIdInChatListController(spaceId);
-      // Pangea#
-    } catch (e) {
-      setState(() {
-        // #Pangea
-        // topicError = e.toLocalizedString(context);
-        // Pangea#
-      });
-    } finally {
-      setState(() {
-        loading = false;
-      });
-    }
+          GoogleAnalytics.createClass(room.name, room.classCode);
+          try {
+            await room.invite(BotName.byEnvironment);
+          } catch (err) {
+            ErrorHandler.logError(
+              e: "Failed to invite pangea bot to space ${room.id}",
+            );
+          }
+          // Pangea#
+          if (!mounted) return;
+          // #Pangea
+          // context.pop<String>(spaceId);
+          MatrixState.pangeaController.classController
+              .setActiveSpaceIdInChatListController(spaceId);
+          // Pangea#
+        } catch (e, s) {
+          // #Pangea
+          ErrorHandler.logError(e: e, s: s);
+          rethrow;
+          // setState(() {
+          //   topicError = e.toLocalizedString(context);
+          // });
+          // Pangea#
+        } finally {
+          setState(() {
+            loading = false;
+          });
+        }
+      },
+    );
     // TODO: Go to spaces
   }
 

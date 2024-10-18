@@ -1,23 +1,38 @@
-import 'dart:math';
+import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-
-import '../controllers/pangea_controller.dart';
+import 'package:matrix/matrix.dart';
 
 class SpaceCodeUtil {
-  static const codeLength = 6;
+  static const codeLength = 7;
 
   static bool isValidCode(String? spacecode) {
-    return spacecode == null || spacecode.length > 4;
+    if (spacecode == null) return false;
+    return spacecode.length == codeLength && spacecode.contains(r'[0-9]');
   }
 
-  static String generateSpaceCode() {
-    final r = Random();
-    const chars = 'AaBbCcDdEeFfGgHhiJjKkLMmNnoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    return List.generate(codeLength, (index) => chars[r.nextInt(chars.length)])
-        .join();
+  static Future<String> generateSpaceCode(Client client) async {
+    final response = await client.httpClient.get(
+      Uri.parse(
+        '${client.homeserver}/_synapse/client/pangea/v1/request_room_code',
+      ),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${client.accessToken}',
+      },
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to generate room code: $response');
+    }
+    final roomCodeResult = jsonDecode(response.body);
+    if (roomCodeResult['access_code'] is String) {
+      return roomCodeResult['access_code'] as String;
+    } else {
+      throw Exception('Invalid response, access_code not found $response');
+    }
   }
 
   static Future<void> joinWithSpaceCodeDialog(
@@ -64,6 +79,7 @@ class SpaceCodeUtil {
       SnackBar(
         duration: const Duration(seconds: 10),
         content: Text(message),
+        showCloseIcon: true,
       ),
     );
   }

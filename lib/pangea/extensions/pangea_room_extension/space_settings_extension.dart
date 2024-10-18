@@ -15,8 +15,14 @@ extension SpaceRoomExtension on Room {
       }
       return "Not in a class!";
     }
-
-    return canonicalAlias.replaceAll(":$domainString", "").replaceAll("#", "");
+    final roomJoinRules = getState(EventTypes.RoomJoinRules, "");
+    if (roomJoinRules != null) {
+      final accessCode = roomJoinRules.content.tryGet(ModelKey.accessCode);
+      if (accessCode is String) {
+        return accessCode;
+      }
+    }
+    return noClassCode;
   }
 
   void _checkClass() {

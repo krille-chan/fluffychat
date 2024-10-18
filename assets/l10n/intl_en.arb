@@ -4086,6 +4086,7 @@
     }
   },
   "roomCapacityExplanation": "{roomType} capacity limits the number of non-admins allowed in a room.",
+  "tooManyRequest": "Too many request, please try again later.",
   "@roomCapacityExplanation": {
     "type": "text",
     "placeholders": {
