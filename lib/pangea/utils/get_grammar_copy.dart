@@ -1,0 +1,267 @@
+import 'dart:developer';
+
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+String getGrammarCopy(String tag, BuildContext context) {
+  switch (tag) {
+    case 'SCONJ':
+      return L10n.of(context)!.grammarCopySCONJ;
+    case 'NUM':
+      return L10n.of(context)!.grammarCopyNUM;
+    case 'VERB':
+      return L10n.of(context)!.grammarCopyVERB;
+    case 'AFFIX':
+      return L10n.of(context)!.grammarCopyAFFIX;
+    case 'PART':
+      return L10n.of(context)!.grammarCopyPARTpos;
+    case 'ADJ':
+      return L10n.of(context)!.grammarCopyADJ;
+    case 'CCONJ':
+      return L10n.of(context)!.grammarCopyCCONJ;
+    case 'PUNCT':
+      return L10n.of(context)!.grammarCopyPUNCT;
+    case 'ADV':
+      return L10n.of(context)!.grammarCopyADV;
+    case 'AUX':
+      return L10n.of(context)!.grammarCopyAUX;
+    case 'SPACE':
+      return L10n.of(context)!.grammarCopySPACE;
+    case 'SYM':
+      return L10n.of(context)!.grammarCopySYM;
+    case 'DET':
+      return L10n.of(context)!.grammarCopyDET;
+    case 'PRON':
+      return L10n.of(context)!.grammarCopyPRON;
+    case 'ADP':
+      return L10n.of(context)!.grammarCopyADP;
+    case 'PROPN':
+      return L10n.of(context)!.grammarCopyPROPN;
+    case 'NOUN':
+      return L10n.of(context)!.grammarCopyNOUN;
+    case 'INTJ':
+      return L10n.of(context)!.grammarCopyINTJ;
+    case 'X':
+      return L10n.of(context)!.grammarCopyX;
+    case 'Fem':
+      return L10n.of(context)!.grammarCopyFem;
+    case '2':
+      return L10n.of(context)!.grammarCopy2;
+    case 'Imp':
+      return L10n.of(context)!.grammarCopyImp;
+    case 'Qest':
+      return L10n.of(context)!.grammarCopyQest;
+    case 'Perf':
+      return L10n.of(context)!.grammarCopyPerf;
+    case 'Acc,Nom':
+      return L10n.of(context)!.grammarCopyAccNom;
+    case 'Obl':
+      return L10n.of(context)!.grammarCopyObl;
+    case 'Act':
+      return L10n.of(context)!.grammarCopyAct;
+    case 'Brck':
+      return L10n.of(context)!.grammarCopyBrck;
+    case 'Art':
+      return L10n.of(context)!.grammarCopyArt;
+    case 'Sing':
+      return L10n.of(context)!.grammarCopySing;
+    case 'Masc':
+      return L10n.of(context)!.grammarCopyMasc;
+    case 'Mod':
+      return L10n.of(context)!.grammarCopyMod;
+    case 'Adverbial':
+      return L10n.of(context)!.grammarCopyAdverbial;
+    case 'Peri':
+      return L10n.of(context)!.grammarCopyPeri;
+    case 'Digit':
+      return L10n.of(context)!.grammarCopyDigit;
+    case 'Not_proper':
+      return L10n.of(context)!.grammarCopyNot_proper;
+    case 'Card':
+      return L10n.of(context)!.grammarCopyCard;
+    case 'Prop':
+      return L10n.of(context)!.grammarCopyProp;
+    case 'Dash':
+      return L10n.of(context)!.grammarCopyDash;
+    case 'Yes':
+      return L10n.of(context)!.grammarCopyYes;
+    case 'Semi':
+      return L10n.of(context)!.grammarCopySemi;
+    case 'Comm':
+      return L10n.of(context)!.grammarCopyComm;
+    case 'Cnd':
+      return L10n.of(context)!.grammarCopyCnd;
+    case 'Int,Rel':
+      return L10n.of(context)!.grammarCopyIntRel;
+    case 'Acc':
+      return L10n.of(context)!.grammarCopyAcc;
+    case 'Part':
+      return L10n.of(context)!
+          .grammarCopyPartTag; // To avoid conflict with 'PART' POS
+    case 'Int':
+      return L10n.of(context)!.grammarCopyInt;
+    case 'Past':
+      return L10n.of(context)!.grammarCopyPast;
+    case 'Sup':
+      return L10n.of(context)!.grammarCopySup;
+    case 'Colo':
+      return L10n.of(context)!.grammarCopyColo;
+    case '3':
+      return L10n.of(context)!.grammarCopy3;
+    case 'Plur':
+      return L10n.of(context)!.grammarCopyPlur;
+    case 'Npr':
+      return L10n.of(context)!.grammarCopyNpr;
+    case 'Interrogative':
+      return L10n.of(context)!.grammarCopyInterrogative;
+    case 'Infm':
+      return L10n.of(context)!.grammarCopyInfm;
+    case 'Tim':
+      return L10n.of(context)!.grammarCopyTim;
+    case 'Neg':
+      return L10n.of(context)!.grammarCopyNeg;
+    case 'Tot':
+      return L10n.of(context)!.grammarCopyTot;
+    case 'Adnomial':
+      return L10n.of(context)!.grammarCopyAdnomial;
+    case 'Prog':
+      return L10n.of(context)!.grammarCopyProg;
+    case 'Sub':
+      return L10n.of(context)!.grammarCopySub;
+    case 'Complementive':
+      return L10n.of(context)!.grammarCopyComplementive;
+    case 'Nom':
+      return L10n.of(context)!.grammarCopyNom;
+    case 'Fut':
+      return L10n.of(context)!.grammarCopyFut;
+    case 'Dat':
+      return L10n.of(context)!.grammarCopyDat;
+    case 'Pres':
+      return L10n.of(context)!.grammarCopyPres;
+    case 'Neut':
+      return L10n.of(context)!.grammarCopyNeut;
+    case 'Rel':
+      return L10n.of(context)!.grammarCopyRel;
+    case 'Final_ending':
+      return L10n.of(context)!.grammarCopyFinal_ending;
+    case 'Dem':
+      return L10n.of(context)!.grammarCopyDem;
+    case 'Pre':
+      return L10n.of(context)!.grammarCopyPre;
+    case 'Fin':
+      return L10n.of(context)!.grammarCopyFin;
+    case 'Pos':
+      return L10n.of(context)!.grammarCopyPos;
+    case 'Quot':
+      return L10n.of(context)!.grammarCopyQuot;
+    case 'Ger':
+      return L10n.of(context)!.grammarCopyGer;
+    case 'Pass':
+      return L10n.of(context)!.grammarCopyPass;
+    case 'Gen':
+      return L10n.of(context)!.grammarCopyGen;
+    case 'Prs':
+      return L10n.of(context)!.grammarCopyPrs;
+    case 'Def':
+      return L10n.of(context)!.grammarCopyDef;
+    case 'Ord':
+      return L10n.of(context)!.grammarCopyOrd;
+    case 'Ins':
+      return L10n.of(context)!.grammarCopyIns;
+    case 'Acc,Dat':
+      return L10n.of(context)!.grammarCopyAccDat;
+    case 'Inf':
+      return L10n.of(context)!.grammarCopyInf;
+    case 'Long':
+      return L10n.of(context)!.grammarCopyLong;
+    case 'Ind':
+      return L10n.of(context)!.grammarCopyInd;
+    case 'Cmp':
+      return L10n.of(context)!.grammarCopyCmp;
+    case 'Relative_case':
+      return L10n.of(context)!.grammarCopyRelative_case;
+    case 'Excl':
+      return L10n.of(context)!.grammarCopyExcl;
+    case '1':
+      return L10n.of(context)!.grammarCopy1;
+    case 'Ini':
+      return L10n.of(context)!.grammarCopyIni;
+    case 'Person':
+      return L10n.of(context)!.grammarCopyPerson;
+    case 'Foreign':
+      return L10n.of(context)!.grammarCopyForeign;
+    case 'Voice':
+      return L10n.of(context)!.grammarCopyVoice;
+    case 'VerbType':
+      return L10n.of(context)!.grammarCopyVerbType;
+    case 'Poss':
+      return L10n.of(context)!.grammarCopyPoss;
+    case 'PrepCase':
+      return L10n.of(context)!.grammarCopyPrepCase;
+    case 'NumType':
+      return L10n.of(context)!.grammarCopyNumType;
+    case 'NounType':
+      return L10n.of(context)!.grammarCopyNounType;
+    case 'Reflex':
+      return L10n.of(context)!.grammarCopyReflex;
+    case 'PronType':
+      return L10n.of(context)!.grammarCopyPronType;
+    case 'PunctSide':
+      return L10n.of(context)!.grammarCopyPunctSide;
+    case 'VerbForm':
+      return L10n.of(context)!.grammarCopyVerbForm;
+    case 'Gender':
+      return L10n.of(context)!.grammarCopyGender;
+    case 'Mood':
+      return L10n.of(context)!.grammarCopyMood;
+    case 'Aspect':
+      return L10n.of(context)!.grammarCopyAspect;
+    case 'PunctType':
+      return L10n.of(context)!.grammarCopyPunctType;
+    case 'Tense':
+      return L10n.of(context)!.grammarCopyTense;
+    case 'Degree':
+      return L10n.of(context)!.grammarCopyDegree;
+    case 'Polite':
+      return L10n.of(context)!.grammarCopyPolite;
+    case 'AdvType':
+      return L10n.of(context)!.grammarCopyAdvType;
+    case 'Number':
+      return L10n.of(context)!.grammarCopyNumber;
+    case 'ConjType':
+      return L10n.of(context)!.grammarCopyConjType;
+    case 'Polarity':
+      return L10n.of(context)!.grammarCopyPolarity;
+    case 'Number[psor]':
+      return L10n.of(context)!.grammarCopyNumberPsor;
+    case 'Case':
+      return L10n.of(context)!.grammarCopyCase;
+    case 'Definite':
+      return L10n.of(context)!.grammarCopyDefinite;
+    case 'NumForm':
+      return L10n.of(context)!.grammarCopyNumForm;
+    // Handle empty tag
+    case '':
+      ErrorHandler.logError(
+        e: Exception('Empty tag'),
+        m: 'Empty tag in getGrammarCopy',
+        data: {
+          'context': context,
+        },
+      );
+      return L10n.of(context)!.grammarCopyUnknown;
+    default:
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        e: Exception('Need to add copy for $tag to intl_en.arb'),
+        m: 'Need to add copy for $tag to intl_en.arb',
+        data: {
+          'tag': tag,
+          'context': context,
+        },
+      );
+      return tag; // Fallback to the tag itself if no match is found
+  }
+}
