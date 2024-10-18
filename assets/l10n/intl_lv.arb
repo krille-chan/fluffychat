@@ -2806,5 +2806,9 @@
   "prepareSendingAttachment": "Sagatavo pielikuma nosūtīšanu...",
   "@prepareSendingAttachment": {},
   "compressVideo": "Saspiež video...",
-  "@compressVideo": {}
+  "@compressVideo": {},
+  "oneOfYourDevicesIsNotVerified": "Viena no jūsu ierīcēm nav verificēta",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Piezīme. Kad visas ierīces pievienojat tērzēšanas dublējumam, tās tiek automātiski pārbaudītas.",
+  "@noticeChatBackupDeviceVerification": {}
 }
