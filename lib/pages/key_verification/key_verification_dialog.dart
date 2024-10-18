@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/widgets/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
@@ -150,7 +151,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           ),
         );
         buttons.add(
-          TextButton(
+          AdaptiveDialogAction(
             child: Text(
               L10n.of(context).submit,
             ),
@@ -158,7 +159,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           ),
         );
         buttons.add(
-          TextButton(
+          AdaptiveDialogAction(
             child: Text(
               L10n.of(context).skip,
             ),
@@ -320,7 +321,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           ],
         );
         buttons.add(
-          TextButton(
+          AdaptiveDialogAction(
             child: Text(
               L10n.of(context).close,
             ),
@@ -343,7 +344,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           ],
         );
         buttons.add(
-          TextButton(
+          AdaptiveDialogAction(
             child: Text(
               L10n.of(context).close,
             ),

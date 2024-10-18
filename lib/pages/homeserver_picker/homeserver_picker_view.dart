@@ -5,6 +5,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/widgets/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../config/themes.dart';
@@ -107,7 +108,7 @@ class HomeserverPickerView extends StatelessWidget {
                           text: L10n.of(context).homeserverDescription,
                         ),
                         actions: [
-                          TextButton(
+                          AdaptiveDialogAction(
                             onPressed: () => launchUrl(
                               Uri.https('servers.joinmatrix.org'),
                             ),
@@ -115,7 +116,7 @@ class HomeserverPickerView extends StatelessWidget {
                               L10n.of(context).discoverHomeservers,
                             ),
                           ),
-                          TextButton(
+                          AdaptiveDialogAction(
                             onPressed: Navigator.of(context).pop,
                             child: Text(L10n.of(context).close),
                           ),

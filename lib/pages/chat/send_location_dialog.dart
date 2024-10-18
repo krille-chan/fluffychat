@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat/events/map_bubble.dart';
+import 'package:fluffychat/widgets/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 class SendLocationDialog extends StatefulWidget {
@@ -114,12 +115,12 @@ class SendLocationDialogState extends State<SendLocationDialog> {
       title: Text(L10n.of(context).shareLocation),
       content: contentWidget,
       actions: [
-        TextButton(
+        AdaptiveDialogAction(
           onPressed: Navigator.of(context, rootNavigator: false).pop,
           child: Text(L10n.of(context).cancel),
         ),
         if (position != null)
-          TextButton(
+          AdaptiveDialogAction(
             onPressed: isSending ? null : sendAction,
             child: Text(L10n.of(context).send),
           ),

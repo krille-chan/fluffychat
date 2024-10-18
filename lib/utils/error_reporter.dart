@@ -8,6 +8,7 @@ import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/widgets/adaptive_dialog_action.dart';
 
 class ErrorReporter {
   final BuildContext context;
@@ -34,17 +35,17 @@ class ErrorReporter {
           ),
         ),
         actions: [
-          TextButton(
+          AdaptiveDialogAction(
             onPressed: () => Navigator.of(context).pop(),
             child: Text(L10n.of(context).close),
           ),
-          TextButton(
+          AdaptiveDialogAction(
             onPressed: () => Clipboard.setData(
               ClipboardData(text: text),
             ),
             child: Text(L10n.of(context).copy),
           ),
-          TextButton(
+          AdaptiveDialogAction(
             onPressed: () => launchUrl(
               AppConfig.newIssueUrl.resolveUri(
                 Uri(
