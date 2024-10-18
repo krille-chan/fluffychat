@@ -61,18 +61,12 @@ String getGrammarCopy(String tag, BuildContext context) {
       return L10n.of(context)!.grammarCopyObl;
     case 'Act':
       return L10n.of(context)!.grammarCopyAct;
-    case 'Tense_unknown':
-      return L10n.of(context)!.grammarCopyTense_unknown;
     case 'Brck':
       return L10n.of(context)!.grammarCopyBrck;
-    case 'Aspect_unknown':
-      return L10n.of(context)!.grammarCopyAspect_unknown;
     case 'Art':
       return L10n.of(context)!.grammarCopyArt;
     case 'Sing':
       return L10n.of(context)!.grammarCopySing;
-    case 'Mood_unknown':
-      return L10n.of(context)!.grammarCopyMood_unknown;
     case 'Masc':
       return L10n.of(context)!.grammarCopyMasc;
     case 'Mod':
@@ -103,8 +97,6 @@ String getGrammarCopy(String tag, BuildContext context) {
       return L10n.of(context)!.grammarCopyIntRel;
     case 'Acc':
       return L10n.of(context)!.grammarCopyAcc;
-    case 'Voice_unknown':
-      return L10n.of(context)!.grammarCopyVoice_unknown;
     case 'Part':
       return L10n.of(context)!
           .grammarCopyPartTag; // To avoid conflict with 'PART' POS
@@ -128,14 +120,10 @@ String getGrammarCopy(String tag, BuildContext context) {
       return L10n.of(context)!.grammarCopyInfm;
     case 'Tim':
       return L10n.of(context)!.grammarCopyTim;
-    case 'Person_unknown':
-      return L10n.of(context)!.grammarCopyPerson_unknown;
     case 'Neg':
       return L10n.of(context)!.grammarCopyNeg;
     case 'Tot':
       return L10n.of(context)!.grammarCopyTot;
-    case 'Case_unknown':
-      return L10n.of(context)!.grammarCopyCase_unknown;
     case 'Adnomial':
       return L10n.of(context)!.grammarCopyAdnomial;
     case 'Prog':
@@ -164,8 +152,6 @@ String getGrammarCopy(String tag, BuildContext context) {
       return L10n.of(context)!.grammarCopyPre;
     case 'Fin':
       return L10n.of(context)!.grammarCopyFin;
-    case 'Gender_unknown':
-      return L10n.of(context)!.grammarCopyGender_unknown;
     case 'Pos':
       return L10n.of(context)!.grammarCopyPos;
     case 'Quot':
@@ -176,8 +162,6 @@ String getGrammarCopy(String tag, BuildContext context) {
       return L10n.of(context)!.grammarCopyPass;
     case 'Gen':
       return L10n.of(context)!.grammarCopyGen;
-    case 'Number_unknown':
-      return L10n.of(context)!.grammarCopyNumber_unknown;
     case 'Prs':
       return L10n.of(context)!.grammarCopyPrs;
     case 'Def':
@@ -204,8 +188,6 @@ String getGrammarCopy(String tag, BuildContext context) {
       return L10n.of(context)!.grammarCopy1;
     case 'Ini':
       return L10n.of(context)!.grammarCopyIni;
-    case 'Form_unknown':
-      return L10n.of(context)!.grammarCopyForm_unknown;
     case 'Person':
       return L10n.of(context)!.grammarCopyPerson;
     case 'Foreign':
