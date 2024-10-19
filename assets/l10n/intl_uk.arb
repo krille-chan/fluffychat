@@ -2829,8 +2829,8 @@
       "seconds": {}
     }
   },
-  "oneOfYourDevicesIsNotVerified": "Один із ваших пристроїв не підтверджений",
+  "oneOfYourDevicesIsNotVerified": "Один із ваших пристроїв не верифікований",
   "@oneOfYourDevicesIsNotVerified": {},
-  "noticeChatBackupDeviceVerification": "Примітка: Коли ви підключаєте всі свої пристрої до резервної копії чату, вони автоматично підтверджуються.",
+  "noticeChatBackupDeviceVerification": "Примітка: Коли ви під'єднуєте всі свої пристрої до резервної копії бесіди, вони автоматично верифікуються.",
   "@noticeChatBackupDeviceVerification": {}
 }
