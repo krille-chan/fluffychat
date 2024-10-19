@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -67,6 +68,9 @@ class Message extends StatelessWidget {
     }.contains(event.type)) {
       if (event.type.startsWith('m.call.')) {
         return const SizedBox.shrink();
+      }
+      if (event.type == EventTypes.RoomCreate) {
+        return RoomCreationStateEvent(event: event);
       }
       return StateMessage(event);
     }

@@ -25,9 +25,7 @@ class ChatEventList extends StatelessWidget {
   Widget build(BuildContext context) {
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
-    final events = controller.timeline!.events
-        .where((event) => event.isVisibleInGui)
-        .toList();
+    final events = controller.timeline!.events.filterByVisibleInGui();
     final animateInEventIndex = controller.animateInEventIndex;
 
     // create a map of eventId --> index to greatly improve performance of

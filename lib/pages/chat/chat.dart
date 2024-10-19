@@ -261,8 +261,7 @@ class ChatController extends State<ChatPageWithRoom>
       var readMarkerEventIndex = readMarkerEventId.isEmpty
           ? -1
           : timeline!.events
-              .where((e) => e.isVisibleInGui || e.eventId == readMarkerEventId)
-              .toList()
+              .filterByVisibleInGui(exceptionEventId: readMarkerEventId)
               .indexWhere((e) => e.eventId == readMarkerEventId);
 
       // Read marker is existing but not found in first events. Try a single
@@ -270,8 +269,7 @@ class ChatController extends State<ChatPageWithRoom>
       if (readMarkerEventId.isNotEmpty && readMarkerEventIndex == -1) {
         await timeline?.requestHistory(historyCount: _loadHistoryCount);
         readMarkerEventIndex = timeline!.events
-            .where((e) => e.isVisibleInGui || e.eventId == readMarkerEventId)
-            .toList()
+            .filterByVisibleInGui(exceptionEventId: readMarkerEventId)
             .indexWhere((e) => e.eventId == readMarkerEventId);
       }
 
@@ -868,8 +866,7 @@ class ChatController extends State<ChatPageWithRoom>
     final eventIndex = foundEvent == null
         ? -1
         : timeline!.events
-            .where((event) => event.isVisibleInGui || event.eventId == eventId)
-            .toList()
+            .filterByVisibleInGui(exceptionEventId: eventId)
             .indexOf(foundEvent);
 
     if (eventIndex == -1) {

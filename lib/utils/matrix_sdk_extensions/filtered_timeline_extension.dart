@@ -2,6 +2,36 @@ import 'package:matrix/matrix.dart';
 
 import '../../config/app_config.dart';
 
+extension VisibleInGuiExtension on List<Event> {
+  List<Event> filterByVisibleInGui({String? exceptionEventId}) {
+    final visibleEvents =
+        where((e) => e.isVisibleInGui || e.eventId == exceptionEventId)
+            .toList();
+
+    // Hide creation state events:
+    if (visibleEvents.isNotEmpty &&
+        visibleEvents.last.type == EventTypes.RoomCreate) {
+      var i = visibleEvents.length - 2;
+      while (i > 0) {
+        final event = visibleEvents[i];
+        if (!event.isState) break;
+        if (event.type == EventTypes.Encryption) {
+          i--;
+          continue;
+        }
+        if (event.type == EventTypes.RoomMember &&
+            event.roomMemberChangeType == RoomMemberChangeType.acceptInvite) {
+          i--;
+          continue;
+        }
+        visibleEvents.removeAt(i);
+        i--;
+      }
+    }
+    return visibleEvents;
+  }
+}
+
 extension IsStateExtension on Event {
   bool get isVisibleInGui =>
       // always filter out edit and reaction relationships
