@@ -2828,5 +2828,9 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "oneOfYourDevicesIsNotVerified": "Один із ваших пристроїв не підтверджений",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Примітка: Коли ви підключаєте всі свої пристрої до резервної копії чату, вони автоматично підтверджуються.",
+  "@noticeChatBackupDeviceVerification": {}
 }
