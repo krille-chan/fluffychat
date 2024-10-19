@@ -2828,5 +2828,9 @@
   "sendingAttachment": "Saadame manust...",
   "@sendingAttachment": {},
   "calculatingFileSize": "Arvutame faili suurust...",
-  "@calculatingFileSize": {}
+  "@calculatingFileSize": {},
+  "oneOfYourDevicesIsNotVerified": "Üks sinu seadmetest pole verifitseeritud",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Märkus: kui liidad kõik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud.",
+  "@noticeChatBackupDeviceVerification": {}
 }
