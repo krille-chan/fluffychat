@@ -371,6 +371,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                               if (consent != OkCancelResult.ok) return;
                               final req = await showFutureLoadingDialog(
                                 context: context,
+                                delay: false,
                                 future: () async {
                                   await widget.client.updateUserDeviceKeys();
                                   return widget.client

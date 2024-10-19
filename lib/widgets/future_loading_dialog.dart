@@ -19,20 +19,23 @@ Future<Result<T>> showFutureLoadingDialog<T>({
   String? backLabel,
   String Function(dynamic exception)? onError,
   bool barrierDismissible = false,
+  bool delay = true,
 }) async {
   final futureExec = future();
   final resultFuture = ResultFuture(futureExec);
 
-  var i = 3;
-  do {
-    final result = resultFuture.result;
-    if (result != null) {
-      if (result.isError) break;
-      return result;
+  if (delay) {
+    var i = 3;
+    while (i > 0) {
+      final result = resultFuture.result;
+      if (result != null) {
+        if (result.isError) break;
+        return result;
+      }
+      await Future.delayed(const Duration(milliseconds: 100));
+      i--;
     }
-    await Future.delayed(const Duration(milliseconds: 100));
-    i--;
-  } while (i > 0);
+  }
 
   final result = await showAdaptiveDialog<Result<T>>(
     context: context,

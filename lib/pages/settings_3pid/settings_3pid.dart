@@ -53,6 +53,7 @@ class Settings3PidController extends State<Settings3Pid> {
     if (ok != OkCancelResult.ok) return;
     final success = await showFutureLoadingDialog(
       context: context,
+      delay: false,
       future: () => Matrix.of(context).client.uiaRequestBackground(
             (auth) => Matrix.of(context).client.add3PID(
                   clientSecret,

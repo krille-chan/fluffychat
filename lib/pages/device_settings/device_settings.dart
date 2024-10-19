@@ -67,6 +67,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
 
     await showFutureLoadingDialog(
       context: context,
+      delay: false,
       future: () => matrix.client.uiaRequestBackground(
         (auth) => matrix.client.deleteDevices(
           deviceIds,
