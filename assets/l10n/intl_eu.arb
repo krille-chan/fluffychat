@@ -2828,5 +2828,9 @@
       "index": {},
       "length": {}
     }
-  }
+  },
+  "oneOfYourDevicesIsNotVerified": "Zure gailuetako bat ez dago egiaztatuta",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira.",
+  "@noticeChatBackupDeviceVerification": {}
 }
