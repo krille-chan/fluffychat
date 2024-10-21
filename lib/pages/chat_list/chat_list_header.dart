@@ -23,7 +23,10 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
 
     return SliverAppBar(
       floating: true,
-      toolbarHeight: 175,
+      // #Pangea
+      // toolbarHeight: 72,
+      toolbarHeight: controller.isSearchMode ? 72 : 175,
+      // Pangea#
       pinned:
           FluffyThemes.isColumnMode(context) || selectMode != SelectMode.normal,
       scrolledUnderElevation: selectMode == SelectMode.normal ? 0 : null,
@@ -32,111 +35,124 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       //     selectMode == SelectMode.normal ? Colors.transparent : null,
       // Pangea#
       automaticallyImplyLeading: false,
-      leading: selectMode == SelectMode.normal
-          ? null
-          : IconButton(
-              tooltip: L10n.of(context)!.cancel,
-              icon: const Icon(Icons.close_outlined),
-              onPressed: controller.cancelAction,
-              color: theme.colorScheme.primary,
-            ),
-      title: selectMode == SelectMode.share
-          ? Text(
-              L10n.of(context)!.share,
-              key: const ValueKey(SelectMode.share),
-            )
-          // #Pangea
-          : Column(
-              children: [
-                ClientChooserButton(controller),
-                const LearningProgressIndicators(),
-              ],
-            ),
-      // : TextField(
-      //     controller: controller.searchController,
-      //     focusNode: controller.searchFocusNode,
-      //     textInputAction: TextInputAction.search,
-      //     onChanged: (text) => controller.onSearchEnter(
-      //       text,
-      //       globalSearch: globalSearch,
-      //     ),
-      //     decoration: InputDecoration(
-      //       filled: true,
-      //       fillColor: theme.colorScheme.secondaryContainer,
-      //       border: OutlineInputBorder(
-      //         borderSide: BorderSide.none,
-      //         borderRadius: BorderRadius.circular(99),
+      // #Pangea
+      // leading: selectMode == SelectMode.normal
+      //     ? null
+      //     : IconButton(
+      //         tooltip: L10n.of(context)!.cancel,
+      //         icon: const Icon(Icons.close_outlined),
+      //         onPressed: controller.cancelAction,
+      //         color: theme.colorScheme.primary,
       //       ),
-      //       contentPadding: EdgeInsets.zero,
-      //       hintText: L10n.of(context)!.searchChatsRooms,
-      //       hintStyle: TextStyle(
-      //         color: theme.colorScheme.onPrimaryContainer,
-      //         fontWeight: FontWeight.normal,
-      //       ),
-      //       floatingLabelBehavior: FloatingLabelBehavior.never,
-      //       prefixIcon: controller.isSearchMode
-      //           ? IconButton(
-      //               tooltip: L10n.of(context)!.cancel,
-      //               icon: const Icon(Icons.close_outlined),
-      //               onPressed: controller.cancelSearch,
-      //               color: theme.colorScheme.onPrimaryContainer,
-      //             )
-      //           : IconButton(
-      //               onPressed: controller.startSearch,
-      //               icon: Icon(
-      //                 Icons.search_outlined,
-      //                 color: theme.colorScheme.onPrimaryContainer,
-      //               ),
-      //             ),
-      //       suffixIcon: controller.isSearchMode && globalSearch
-      //           ? controller.isSearching
-      //               ? const Padding(
-      //                   padding: EdgeInsets.symmetric(
-      //                     vertical: 10.0,
-      //                     horizontal: 12,
-      //                   ),
-      //                   child: SizedBox.square(
-      //                     dimension: 24,
-      //                     child: CircularProgressIndicator.adaptive(
-      //                       strokeWidth: 2,
-      //                     ),
-      //                   ),
-      //                 )
-      //               : TextButton.icon(
-      //                   onPressed: controller.setServer,
-      //                   style: TextButton.styleFrom(
-      //                     shape: RoundedRectangleBorder(
-      //                       borderRadius: BorderRadius.circular(99),
-      //                     ),
-      //                     textStyle: const TextStyle(fontSize: 12),
-      //                   ),
-      //                   icon: const Icon(Icons.edit_outlined, size: 16),
-      //                   label: Text(
-      //                     controller.searchServer ??
-      //                         Matrix.of(context).client.homeserver!.host,
-      //                     maxLines: 2,
-      //                   ),
-      //                 )
-      //           : SizedBox(
-      //               width: 0,
-      //               child: ClientChooserButton(controller),
-      //             ),
-      //     ),
-      //   ),
       // Pangea#
-      actions: selectMode == SelectMode.share
-          ? [
-              // #Pangea
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(
-              //     horizontal: 16.0,
-              //     vertical: 8.0,
-              //   ),
-              //   child: ClientChooserButton(controller),
-              // ),
-              // Pangea#
-            ]
-          : null,
+      title:
+          // #Pangea
+          // selectMode == SelectMode.share
+          //     ? Text(
+          //         L10n.of(context)!.share,
+          //         key: const ValueKey(SelectMode.share),
+          //       )
+          //     :
+          // Pangea#
+          Column(
+        children: [
+          TextField(
+            controller: controller.searchController,
+            focusNode: controller.searchFocusNode,
+            textInputAction: TextInputAction.search,
+            onChanged: (text) => controller.onSearchEnter(
+              text,
+              globalSearch: globalSearch,
+            ),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: theme.colorScheme.secondaryContainer,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(99),
+              ),
+              contentPadding: EdgeInsets.zero,
+              hintText: L10n.of(context)!.searchChatsRooms,
+              hintStyle: TextStyle(
+                color: theme.colorScheme.onPrimaryContainer,
+                fontWeight: FontWeight.normal,
+              ),
+              floatingLabelBehavior: FloatingLabelBehavior.never,
+              prefixIcon: controller.isSearchMode
+                  ? IconButton(
+                      tooltip: L10n.of(context)!.cancel,
+                      icon: const Icon(Icons.close_outlined),
+                      onPressed: controller.cancelSearch,
+                      color: theme.colorScheme.onPrimaryContainer,
+                    )
+                  : IconButton(
+                      onPressed: controller.startSearch,
+                      icon: Icon(
+                        Icons.search_outlined,
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+              suffixIcon: controller.isSearchMode && globalSearch
+                  ? controller.isSearching
+                      ? const Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10.0,
+                            horizontal: 12,
+                          ),
+                          child: SizedBox.square(
+                            dimension: 24,
+                            child: CircularProgressIndicator.adaptive(
+                              strokeWidth: 2,
+                            ),
+                          ),
+                        )
+                      // #Pangea
+                      : SizedBox(
+                          width: 0,
+                          child: ClientChooserButton(controller),
+                        )
+                  // : TextButton.icon(
+                  //     onPressed: controller.setServer,
+                  //     style: TextButton.styleFrom(
+                  //       shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(99),
+                  //       ),
+                  //       textStyle: const TextStyle(fontSize: 12),
+                  //     ),
+                  //     icon: const Icon(Icons.edit_outlined, size: 16),
+                  //     label: Text(
+                  //       controller.searchServer ??
+                  //           Matrix.of(context).client.homeserver!.host,
+                  //       maxLines: 2,
+                  //     ),
+                  //   )
+                  // Pangea#
+                  : SizedBox(
+                      width: 0,
+                      child: ClientChooserButton(controller),
+                    ),
+            ),
+          ),
+          if (!controller.isSearchMode)
+            const Padding(
+              padding: EdgeInsets.only(top: 16.0),
+              child: LearningProgressIndicators(),
+            ),
+        ],
+      ),
+      // #Pangea
+      // actions: selectMode == SelectMode.share
+      //     ? [
+      //         Padding(
+      //           padding: const EdgeInsets.symmetric(
+      //             horizontal: 16.0,
+      //             vertical: 8.0,
+      //           ),
+      //           child: ClientChooserButton(controller),
+      //         ),
+      //       ]
+      //     : null,
+      // Pangea#
     );
   }
 
