@@ -84,7 +84,7 @@ class Message extends StatelessWidget {
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
     // ignore: deprecated_member_use
-    var color = theme.colorScheme.surfaceVariant;
+    var color = theme.colorScheme.surfaceBright;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -27,11 +28,27 @@ class RoomCreationStateEvent extends StatelessWidget {
         ),
         Text(
           roomName,
-          style: theme.textTheme.headlineSmall,
+          style: TextStyle(
+            fontSize: 24 * AppConfig.fontSizeFactor,
+            shadows: [
+              Shadow(
+                color: theme.colorScheme.surface,
+                blurRadius: 3,
+              ),
+            ],
+          ),
         ),
         Text(
           '${event.originServerTs.localizedTime(context)} | ${l10n.countParticipants((event.room.summary.mJoinedMemberCount ?? 1) + (event.room.summary.mInvitedMemberCount ?? 0))}',
-          style: theme.textTheme.labelSmall,
+          style: TextStyle(
+            fontSize: 12 * AppConfig.fontSizeFactor,
+            shadows: [
+              Shadow(
+                color: theme.colorScheme.surface,
+                blurRadius: 3,
+              ),
+            ],
+          ),
         ),
         const SizedBox(height: 48),
       ],

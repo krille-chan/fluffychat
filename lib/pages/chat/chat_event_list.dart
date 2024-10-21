@@ -9,7 +9,6 @@ import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -34,10 +33,6 @@ class ChatEventList extends StatelessWidget {
     for (var i = 0; i < events.length; i++) {
       thisEventsKeyMap[events[i].eventId] = i;
     }
-
-    final hasWallpaper =
-        controller.room.client.applicationAccountConfig.wallpaperUrl != null;
-
     return SelectionArea(
       child: ListView.custom(
         padding: EdgeInsets.only(
@@ -142,8 +137,7 @@ class ChatEventList extends StatelessWidget {
                     i > 0 && controller.readMarkerEventId == event.eventId,
                 nextEvent: i + 1 < events.length ? events[i + 1] : null,
                 previousEvent: i > 0 ? events[i - 1] : null,
-                avatarPresenceBackgroundColor:
-                    hasWallpaper ? Colors.transparent : null,
+                avatarPresenceBackgroundColor: Colors.transparent,
               ),
             );
           },
