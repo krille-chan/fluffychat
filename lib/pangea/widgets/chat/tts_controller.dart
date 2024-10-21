@@ -14,7 +14,6 @@ class TtsController {
   List<String> availableLangCodes = [];
   final flutter_tts.FlutterTts tts = flutter_tts.FlutterTts();
 
-  // if targetLanguage isn't set here, it needs to be set later
   TtsController() {
     setupTTS();
   }
@@ -26,8 +25,6 @@ class TtsController {
 
       debugger(when: kDebugMode && targetLanguage == null);
 
-      debugPrint('setupTTS targetLanguage: $targetLanguage');
-
       tts.setLanguage(
         targetLanguage ?? "en",
       );
@@ -35,21 +32,21 @@ class TtsController {
       await tts.awaitSpeakCompletion(true);
 
       final voices = await tts.getVoices;
+      debugPrint("voices: $voices");
       availableLangCodes = (voices as List)
           .map((v) {
-            // debugPrint('v: $v');
-
-            //@ggurdin i changed this from name to locale
-            //in my testing, that's where the language code is stored
-            // maybe it's different for different devices? was it different in your android testing?
-            // return v['name']?.split("-").first;
-            return v['locale']?.split("-").first;
+            // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'
+            final nameCode = v['name']?.split("-").first;
+            final localeCode = v['locale']?.split("-").first;
+            return nameCode.length == 2 ? nameCode : localeCode;
           })
           .toSet()
           .cast<String>()
           .toList();
 
-      debugPrint("lang supported? $isLanguageFullySupported");
+      debugPrint("availableLangCodes: $availableLangCodes");
+
+      debugger(when: kDebugMode && !isLanguageFullySupported);
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: s);
@@ -67,7 +64,6 @@ class TtsController {
   bool get isLanguageFullySupported =>
       availableLangCodes.contains(targetLanguage);
 
-  // @ggurdin
   Widget get missingVoiceButton => targetLanguage != null &&
           (kIsWeb || isLanguageFullySupported || !PlatformInfos.isAndroid)
       ? const SizedBox.shrink()

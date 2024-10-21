@@ -242,6 +242,11 @@ class MessageActivityRequest {
       'existing_activities': existingActivities.map((e) => e.toJson()).toList(),
       'activity_quality_feedback': activityQualityFeedback?.toJson(),
       'iso_8601_time_of_req': DateTime.now().toIso8601String(),
+      // this is a list of activity types that the client can handle
+      // the server will only return activities of these types
+      // this for backwards compatibility with old clients
+      'client_version_compatible_activity_types':
+          ActivityTypeEnum.values.map((e) => e.string).toList(),
     };
   }
 

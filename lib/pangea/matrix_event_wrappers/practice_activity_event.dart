@@ -41,7 +41,6 @@ class PracticeActivityEvent {
       return _content!;
     } catch (e, s) {
       final contentMap = event.content;
-      debugger(when: kDebugMode);
       rethrow;
     }
   }

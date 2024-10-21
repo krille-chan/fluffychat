@@ -56,12 +56,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
   @override
   void didUpdateWidget(covariant oldWidget) {
-    // @ggurdin did you find a case of needing to reinitialize TTS because of a language change?
-    // if (widget.messageEvent.messageDisplayLangCode !=
-    //     oldWidget.messageEvent.messageDisplayLangCode) {
-    //   initializeTTS();
-    // }
-
     if (oldWidget.selection != widget.selection) {
       debugPrint('selection changed');
       setSectionStartAndEndFromSelection();

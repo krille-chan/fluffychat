@@ -5,13 +5,10 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
-import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
@@ -22,11 +19,11 @@ import 'package:matrix/matrix.dart';
 /// Represents an item in the completion cache.
 class _RequestCacheItem {
   MessageActivityRequest req;
-  PracticeActivityModel? practiceActivityEvent;
+  PracticeActivityModel? practiceActivity;
 
   _RequestCacheItem({
     required this.req,
-    required this.practiceActivityEvent,
+    required this.practiceActivity,
   });
 }
 
@@ -109,64 +106,46 @@ class PracticeGenerationController {
     final int cacheKey = req.hashCode;
 
     if (_cache.containsKey(cacheKey)) {
-      return _cache[cacheKey]!.practiceActivityEvent;
-    } else {
-      //TODO - send request to server/bot, either via API or via event of type pangeaActivityReq
-      // for now, just make and send the event from the client
-      final MessageActivityResponse res = await _fetch(
-        accessToken: _pangeaController.userController.accessToken,
-        requestModel: req,
-      );
-
-      if (res.finished) {
-        debugPrint('Activity generation finished');
-        return null;
-      }
-
-      // if the server points to an existing event, return that event
-      if (res.existingActivityEventId != null) {
-        final Event? existingEvent =
-            await event.room.getEventById(res.existingActivityEventId!);
-
-        debugPrint(
-          'Existing activity event found: ${existingEvent?.content}',
-        );
-        if (existingEvent != null) {
-          return PracticeActivityEvent(
-            event: existingEvent,
-            timeline: event.timeline,
-          ).practiceActivity;
-        }
-      }
-
-      if (res.activity == null) {
-        debugPrint('No activity generated');
-        return null;
-      }
-
-      debugPrint('Activity generated: ${res.activity!.toJson()}');
-
-      _sendAndPackageEvent(res.activity!, event);
-      _cache[cacheKey] =
-          _RequestCacheItem(req: req, practiceActivityEvent: res.activity!);
-
-      return _cache[cacheKey]!.practiceActivityEvent;
+      return _cache[cacheKey]!.practiceActivity;
     }
-  }
 
-  PracticeActivityModel _dummyModel(PangeaMessageEvent event) =>
-      PracticeActivityModel(
-        tgtConstructs: [
-          ConstructIdentifier(lemma: "be", type: ConstructTypeEnum.vocab),
-        ],
-        activityType: ActivityTypeEnum.multipleChoice,
-        langCode: event.messageDisplayLangCode,
-        msgId: event.eventId,
-        content: ActivityContent(
-          question: "What is a synonym for 'happy'?",
-          choices: ["sad", "angry", "joyful", "tired"],
-          answer: "joyful",
-          spanDisplayDetails: null,
-        ),
+    final MessageActivityResponse res = await _fetch(
+      accessToken: _pangeaController.userController.accessToken,
+      requestModel: req,
+    );
+
+    if (res.finished) {
+      debugPrint('Activity generation finished');
+      return null;
+    }
+
+    // if the server points to an existing event, return that event
+    if (res.existingActivityEventId != null) {
+      final Event? existingEvent =
+          await event.room.getEventById(res.existingActivityEventId!);
+
+      debugPrint(
+        'Existing activity event found: ${existingEvent?.content}',
       );
+      if (existingEvent != null) {
+        return PracticeActivityEvent(
+          event: existingEvent,
+          timeline: event.timeline,
+        ).practiceActivity;
+      }
+    }
+
+    if (res.activity == null) {
+      debugPrint('No activity generated');
+      return null;
+    }
+
+    debugPrint('Activity generated: ${res.activity!.toJson()}');
+
+    _sendAndPackageEvent(res.activity!, event);
+    _cache[cacheKey] =
+        _RequestCacheItem(req: req, practiceActivity: res.activity!);
+
+    return _cache[cacheKey]!.practiceActivity;
+  }
 }
