@@ -5,20 +5,93 @@ import 'dart:typed_data';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:http/http.dart';
 
 import '../network/requests.dart';
 
-class TextToSpeechRequest {
-  String text;
-  String langCode;
+class PangeaAudioEventData {
+  final String text;
+  final String langCode;
+  final List<TTSToken> tokens;
 
-  TextToSpeechRequest({required this.text, required this.langCode});
+  PangeaAudioEventData({
+    required this.text,
+    required this.langCode,
+    required this.tokens,
+  });
+
+  factory PangeaAudioEventData.fromJson(dynamic json) => PangeaAudioEventData(
+        text: json[ModelKey.text] as String,
+        langCode: json[ModelKey.langCode] as String,
+        tokens: List<TTSToken>.from(
+          (json[ModelKey.tokens] as Iterable)
+              .map((x) => TTSToken.fromJson(x))
+              .toList(),
+        ),
+      );
 
   Map<String, dynamic> toJson() => {
         ModelKey.text: text,
         ModelKey.langCode: langCode,
+        ModelKey.tokens:
+            List<Map<String, dynamic>>.from(tokens.map((x) => x.toJson())),
+      };
+}
+
+class TTSToken {
+  final int startMS;
+  final int endMS;
+  final PangeaTokenText text;
+
+  TTSToken({
+    required this.startMS,
+    required this.endMS,
+    required this.text,
+  });
+
+  factory TTSToken.fromJson(Map<String, dynamic> json) => TTSToken(
+        startMS: json["start_ms"],
+        endMS: json["end_ms"],
+        text: PangeaTokenText.fromJson(json["text"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "start_ms": startMS,
+        "end_ms": endMS,
+        "text": text.toJson(),
+      };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is TTSToken &&
+        other.startMS == startMS &&
+        other.endMS == endMS &&
+        other.text == text;
+  }
+
+  @override
+  int get hashCode => startMS.hashCode ^ endMS.hashCode ^ text.hashCode;
+}
+
+class TextToSpeechRequest {
+  String text;
+  String langCode;
+  List<PangeaTokenText> tokens;
+
+  TextToSpeechRequest({
+    required this.text,
+    required this.langCode,
+    required this.tokens,
+  });
+
+  Map<String, dynamic> toJson() => {
+        ModelKey.text: text,
+        ModelKey.langCode: langCode,
+        ModelKey.tokens: tokens.map((token) => token.toJson()).toList(),
       };
 
   @override
@@ -40,6 +113,7 @@ class TextToSpeechResponse {
   int durationMillis;
   List<int> waveform;
   String fileExtension;
+  List<TTSToken> ttsTokens;
 
   TextToSpeechResponse({
     required this.audioContent,
@@ -47,6 +121,7 @@ class TextToSpeechResponse {
     required this.durationMillis,
     required this.waveform,
     required this.fileExtension,
+    required this.ttsTokens,
   });
 
   factory TextToSpeechResponse.fromJson(
@@ -58,7 +133,27 @@ class TextToSpeechResponse {
         durationMillis: json["duration_millis"],
         waveform: List<int>.from(json["wave_form"]),
         fileExtension: json["file_extension"],
+        ttsTokens: List<TTSToken>.from(
+          json["tts_tokens"].map((x) => TTSToken.fromJson(x)),
+        ),
       );
+
+  Map<String, dynamic> toJson() => {
+        "audio_content": audioContent,
+        "mime_type": mimeType,
+        "duration_millis": durationMillis,
+        "wave_form": List<dynamic>.from(waveform.map((x) => x)),
+        "file_extension": fileExtension,
+        "tts_tokens": List<dynamic>.from(ttsTokens.map((x) => x.toJson())),
+      };
+
+  PangeaAudioEventData toPangeaAudioEventData(String text, String langCode) {
+    return PangeaAudioEventData(
+      text: text,
+      langCode: langCode,
+      tokens: ttsTokens,
+    );
+  }
 }
 
 class _TextToSpeechCacheItem {

@@ -5,13 +5,13 @@ import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activ
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class MultipleChoice {
+class ActivityContent {
   final String question;
   final List<String> choices;
   final String answer;
   final RelevantSpanDisplayDetails? spanDisplayDetails;
 
-  MultipleChoice({
+  ActivityContent({
     required this.question,
     required this.choices,
     required this.answer,
@@ -37,12 +37,12 @@ class MultipleChoice {
   Color choiceColor(int index) =>
       index == correctAnswerIndex ? AppConfig.success : AppConfig.warning;
 
-  factory MultipleChoice.fromJson(Map<String, dynamic> json) {
+  factory ActivityContent.fromJson(Map<String, dynamic> json) {
     final spanDisplay = json['span_display_details'] != null &&
             json['span_display_details'] is Map
         ? RelevantSpanDisplayDetails.fromJson(json['span_display_details'])
         : null;
-    return MultipleChoice(
+    return ActivityContent(
       question: json['question'] as String,
       choices: (json['choices'] as List).map((e) => e as String).toList(),
       answer: json['answer'] ?? json['correct_answer'] as String,

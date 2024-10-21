@@ -162,7 +162,7 @@ class PracticeGenerationController {
         activityType: ActivityTypeEnum.multipleChoice,
         langCode: event.messageDisplayLangCode,
         msgId: event.eventId,
-        multipleChoice: MultipleChoice(
+        content: ActivityContent(
           question: "What is a synonym for 'happy'?",
           choices: ["sad", "angry", "joyful", "tired"],
           answer: "joyful",

@@ -1,13 +1,6 @@
-enum ActivityDisplayInstructionsEnum { highlight, hide }
+enum ActivityDisplayInstructionsEnum { highlight, hide, nothing }
 
 extension ActivityDisplayInstructionsEnumExt
     on ActivityDisplayInstructionsEnum {
-  String get string {
-    switch (this) {
-      case ActivityDisplayInstructionsEnum.highlight:
-        return 'highlight';
-      case ActivityDisplayInstructionsEnum.hide:
-        return 'hide';
-    }
-  }
+  String get string => toString().split('.').last;
 }
