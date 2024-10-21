@@ -99,6 +99,12 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
     );
   }
 
+  void updateAllBotOptions() {
+    botOptions.discussionTopic = discussionTopicController.text;
+    botOptions.discussionKeywords = discussionKeywordsController.text;
+    botOptions.customSystemPrompt = customSystemPromptController.text;
+  }
+
   Future<void> showBotOptionsDialog() async {
     if (isCreating) return;
     final bool? confirm = await showDialog<bool>(
@@ -135,10 +141,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
     );
 
     if (confirm == true) {
-      botOptions.discussionTopic = discussionTopicController.text;
-      botOptions.discussionKeywords = discussionKeywordsController.text;
-      botOptions.customSystemPrompt = customSystemPromptController.text;
-
+      updateAllBotOptions();
       updateBotOption(() => botOptions = botOptions);
 
       final bool isBotRoomMember = await widget.room?.botIsInRoom ?? false;
@@ -241,12 +244,34 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
             onTap: showBotOptionsDialog,
           ),
           if (isCreating && addBot)
-            ConversationBotSettingsForm(
-              botOptions: botOptions,
-              formKey: formKey,
-              discussionKeywordsController: discussionKeywordsController,
-              discussionTopicController: discussionTopicController,
-              customSystemPromptController: customSystemPromptController,
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Text(
+                        L10n.of(context)!.botConfig,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ),
+                  ),
+                  Form(
+                    key: formKey,
+                    child: ConversationBotSettingsForm(
+                      botOptions: botOptions,
+                      formKey: formKey,
+                      discussionKeywordsController:
+                          discussionKeywordsController,
+                      discussionTopicController: discussionTopicController,
+                      customSystemPromptController:
+                          customSystemPromptController,
+                    ),
+                  ),
+                ],
+              ),
             ),
         ],
       ),

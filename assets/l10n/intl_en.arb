@@ -4359,5 +4359,6 @@
   "enterPrompt": "Please enter a system prompt",
   "selectBotLanguage": "Select bot language",
   "chooseVoice": "Choose a voice",
-  "enterLanguageLevel": "Please enter a language level"
+  "enterLanguageLevel": "Please enter a language level",
+  "enterDiscussionTopic": "Please enter a discussion topic"
 }

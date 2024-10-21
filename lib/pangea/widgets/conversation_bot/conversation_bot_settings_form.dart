@@ -95,7 +95,7 @@ class ConversationBotSettingsFormState
           validator: (value) =>
               value == null ? L10n.of(context)!.enterLanguageLevel : null,
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 12),
         Align(
           alignment: Alignment.centerLeft,
           child: Padding(
@@ -106,7 +106,6 @@ class ConversationBotSettingsFormState
             ),
           ),
         ),
-        const SizedBox(height: 12),
         ConversationBotModeSelect(
           initialMode: botOptions.mode,
           onChanged: (String? mode) => {

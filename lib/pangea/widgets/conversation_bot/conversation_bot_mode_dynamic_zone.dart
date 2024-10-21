@@ -29,6 +29,9 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
               .conversationBotDiscussionZone_discussionTopicPlaceholder,
         ),
         controller: discussionTopicController,
+        validator: (value) => value == null || value.isEmpty
+            ? L10n.of(context)!.enterDiscussionTopic
+            : null,
       ),
       const SizedBox(height: 12),
       TextFormField(
