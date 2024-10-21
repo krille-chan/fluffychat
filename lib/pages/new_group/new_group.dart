@@ -106,6 +106,20 @@ class NewGroupController extends State<NewGroup> {
 
       // #Pangea
       // validate init bot options
+      if (addConversationBotKey.currentState?.formKey.currentState != null) {
+        final isValid = addConversationBotKey
+            .currentState!.formKey.currentState!
+            .validate();
+        if (isValid == false) {
+          setState(() {
+            error = L10n.of(context)!
+                .conversationBotCustomZone_customSystemPromptEmptyError;
+            loading = false;
+          });
+          return;
+        }
+      }
+      addConversationBotKey.currentState?.updateAllBotOptions();
       final addBot = addConversationBotKey.currentState?.addBot ?? false;
       if (addBot) {
         final botOptions = addConversationBotKey.currentState!.botOptions;

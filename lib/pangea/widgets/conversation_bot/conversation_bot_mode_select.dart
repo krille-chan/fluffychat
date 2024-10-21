@@ -24,56 +24,35 @@ class ConversationBotModeSelect extends StatelessWidget {
       //     L10n.of(context)!.conversationBotModeSelectOption_storyGame,
     };
 
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Theme.of(context).colorScheme.secondary,
-            width: 0.5,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-        ),
-        child: DropdownButton(
-          // Initial Value
-          hint: Padding(
-            padding: const EdgeInsets.only(left: 15),
+    String? mode = initialMode;
+    if (!options.containsKey(initialMode)) {
+      mode = null;
+    }
+
+    return DropdownButtonFormField(
+      // Initial Value
+      hint: Text(
+        options[mode ?? BotMode.discussion]!,
+        overflow: TextOverflow.clip,
+        textAlign: TextAlign.center,
+      ),
+      // ),
+      isExpanded: true,
+      // Down Arrow Icon
+      icon: const Icon(Icons.keyboard_arrow_down),
+      // Array list of items
+      items: [
+        for (final entry in options.entries)
+          DropdownMenuItem(
+            value: entry.key,
             child: Text(
-              options[initialMode ?? BotMode.discussion]!,
-              style: const TextStyle().copyWith(
-                color: Theme.of(context).textTheme.bodyLarge!.color,
-                fontSize: 14,
-              ),
+              entry.value,
               overflow: TextOverflow.clip,
               textAlign: TextAlign.center,
             ),
           ),
-          isExpanded: true,
-          underline: Container(),
-          // Down Arrow Icon
-          icon: const Icon(Icons.keyboard_arrow_down),
-          // Array list of items
-          items: [
-            for (final entry in options.entries)
-              DropdownMenuItem(
-                value: entry.key,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Text(
-                    entry.value,
-                    style: const TextStyle().copyWith(
-                      color: Theme.of(context).textTheme.bodyLarge!.color,
-                      fontSize: 14,
-                    ),
-                    overflow: TextOverflow.clip,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-          ],
-          onChanged: onChanged,
-        ),
-      ),
+      ],
+      onChanged: onChanged,
     );
   }
 }
