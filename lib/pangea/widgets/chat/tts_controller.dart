@@ -35,20 +35,10 @@ class TtsController {
       debugPrint("voices: $voices");
       availableLangCodes = (voices as List)
           .map((v) {
-<<<<<<< Updated upstream
             // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'
             final nameCode = v['name']?.split("-").first;
             final localeCode = v['locale']?.split("-").first;
             return nameCode.length == 2 ? nameCode : localeCode;
-=======
-            debugPrint('v: $v');
-
-            //@ggurdin i changed this from name to locale
-            //in my testing, that's where the language code is stored
-            // maybe it's different for different devices? was it different in your android testing?
-            // return v['name']?.split("-").first;
-            return v['locale']?.split("-").first;
->>>>>>> Stashed changes
           })
           .toSet()
           .cast<String>()
