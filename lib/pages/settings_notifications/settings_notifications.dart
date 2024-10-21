@@ -102,7 +102,6 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
     });
     try {
       await Matrix.of(context).client.setPushRuleEnabled(
-            'global',
             item.type,
             item.key,
             enabled,
