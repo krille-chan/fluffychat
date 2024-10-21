@@ -2828,5 +2828,9 @@
       "index": {},
       "length": {}
     }
-  }
+  },
+  "oneOfYourDevicesIsNotVerified": "Un dos teus dispositivos non está verificado",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Nota: Cando conectas todos os teus dispositivos á copia de apoio da conversa quedan verificados automaticamente.",
+  "@noticeChatBackupDeviceVerification": {}
 }
