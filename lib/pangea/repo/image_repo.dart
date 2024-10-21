@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
@@ -44,9 +45,12 @@ class GenerateImageRequest {
 
 class ImageRepo {
   static Future<GenerateImageeResponse> fetchImage(
-      GenerateImageRequest request) async {
-    final Requests req =
-        Requests(baseUrl: Environment.choreoApi); // Set your API base URL
+    GenerateImageRequest request,
+  ) async {
+    final Requests req = Requests(
+      choreoApiKey: Environment.choreoApiKey,
+      accessToken: MatrixState.pangeaController.userController.accessToken,
+    ); // Set your API base URL
     final requestBody = request.toJson();
 
     try {
@@ -58,7 +62,8 @@ class ImageRepo {
       if (res.statusCode == 200) {
         final decodedBody = jsonDecode(utf8.decode(res.bodyBytes));
         return GenerateImageeResponse.fromJson(
-            decodedBody); // Convert response to ImageModel
+          decodedBody,
+        ); // Convert response to ImageModel
       } else {
         throw Exception('Failed to load image');
       }

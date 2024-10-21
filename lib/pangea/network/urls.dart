@@ -52,14 +52,14 @@ class PApiUrls {
 
   static String itFeedback = "${PApiUrls.choreoEndpoint}/translation/feedback";
 
-  static String firstStep = "/it_initialstep";
-  static String subseqStep = "/it_step";
+  static String firstStep = "${PApiUrls.choreoEndpoint}/it_initialstep";
+  static String subseqStep = "${PApiUrls.choreoEndpoint}/it_step";
 
   static String textToSpeech = "${PApiUrls.choreoEndpoint}/text_to_speech";
   static String speechToText = "${PApiUrls.choreoEndpoint}/speech_to_text";
 
   static String messageActivityGeneration =
-      "${Environment.choreoApi}/practice/message";
+      "${PApiUrls.choreoEndpoint}/practice/message";
 
   ///-------------------------------- revenue cat --------------------------
 

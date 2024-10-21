@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:http/http.dart';
 
@@ -20,6 +21,7 @@ class PUserRepo {
   }) async {
     final Requests req = Requests(
       accessToken: accessToken,
+      choreoApiKey: Environment.choreoApiKey,
     );
     final Map<String, dynamic> body = {};
     // if (interests != null) body[ModelKey.userInterests] = interests.toString();

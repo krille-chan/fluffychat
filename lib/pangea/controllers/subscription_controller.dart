@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -308,7 +309,10 @@ class SubscriptionController extends BaseController {
   }
 
   Future<String> getPaymentLink(String duration, {bool isPromo = false}) async {
-    final Requests req = Requests();
+    final Requests req = Requests(
+      choreoApiKey: Environment.choreoApiKey,
+      accessToken: _pangeaController.userController.accessToken,
+    );
     final String reqUrl = Uri.encodeFull(
       "${PApiUrls.paymentLink}?pangea_user_id=${_pangeaController.matrixState.client.userID}&duration=$duration&redeem=$isPromo",
     );
@@ -322,7 +326,6 @@ class SubscriptionController extends BaseController {
     }
     return paymentLink;
   }
-
 
   Future<void> redeemPromoCode(BuildContext context) async {
     final List<String>? promoCode = await showTextInputDialog(

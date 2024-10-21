@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -17,6 +18,7 @@ class SubscriptionRepo {
     try {
       final Requests req = Requests(
         choreoApiKey: Environment.choreoApiKey,
+        accessToken: MatrixState.pangeaController.userController.accessToken,
       );
       final http.Response res = await req.get(
         url: PApiUrls.rcAppsChoreo,
@@ -38,6 +40,7 @@ class SubscriptionRepo {
     try {
       final Requests req = Requests(
         choreoApiKey: Environment.choreoApiKey,
+        accessToken: MatrixState.pangeaController.userController.accessToken,
       );
       final http.Response res = await req.get(
         url: PApiUrls.rcProductsChoreo,
