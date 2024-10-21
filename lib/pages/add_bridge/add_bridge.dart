@@ -288,7 +288,7 @@ class BotController extends State<AddBridge> {
   // Future<void> fetchLoginFlows(SocialNetwork network) async {
   //   final accessToken = client.accessToken;
   //   final userId = client.userID;
-  //   final url = '/${network.apiPath}/provision/v3/login/flows?user_id=$userId';
+  //   final url = '/${network.apiPath}/_matrix/provision/v3/login/flows?user_id=$userId';
   //
   //   try {
   //     final response = await dio.get(
