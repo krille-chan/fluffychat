@@ -20,11 +20,16 @@ class WordAudioButtonState extends State<WordAudioButton> {
   TtsController ttsController = TtsController();
 
   @override
-  @override
   void initState() {
     // TODO: implement initState
     super.initState();
     ttsController.setupTTS().then((value) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    ttsController.dispose();
+    super.dispose();
   }
 
   @override

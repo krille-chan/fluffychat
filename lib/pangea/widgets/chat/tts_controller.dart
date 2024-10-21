@@ -18,8 +18,21 @@ class TtsController {
     setupTTS();
   }
 
+  Future<void> dispose() async {
+    await tts.stop();
+  }
+
+  onError(dynamic message) => ErrorHandler.logError(
+        m: 'TTS error',
+        data: {
+          'message': message,
+        },
+      );
+
   Future<void> setupTTS() async {
     try {
+      tts.setErrorHandler(onError);
+
       targetLanguage ??=
           MatrixState.pangeaController.languageController.userL2?.langCode;
 
@@ -53,12 +66,50 @@ class TtsController {
     }
   }
 
-  Future<void> speak(String text) async {
-    targetLanguage ??=
-        MatrixState.pangeaController.languageController.userL2?.langCode;
-
+  Future<void> stop() async {
+    try {
+      // return type is dynamic but apparent its supposed to be 1
+      // https://pub.dev/packages/flutter_tts
+      final result = await tts.stop();
+      if (result != 1) {
+        ErrorHandler.logError(
+          m: 'Unexpected result from tts.stop',
+          data: {
+            'result': result,
+          },
+        );
+      }
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: e, s: s);
+    }
     await tts.stop();
-    return tts.speak(text);
+  }
+
+  Future<void> speak(String text) async {
+    try {
+      stop();
+
+      targetLanguage ??=
+          MatrixState.pangeaController.languageController.userL2?.langCode;
+
+      final result = await tts.speak(text);
+
+      // return type is dynamic but apparent its supposed to be 1
+      // https://pub.dev/packages/flutter_tts
+      if (result != 1) {
+        ErrorHandler.logError(
+          m: 'Unexpected result from tts.speak',
+          data: {
+            'result': result,
+            'text': text,
+          },
+        );
+      }
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: e, s: s);
+    }
   }
 
   bool get isLanguageFullySupported =>
