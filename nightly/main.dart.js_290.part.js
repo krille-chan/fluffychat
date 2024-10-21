@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_290",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVF(){return new B.I1(A.dJ("sv"))},
-I1:function I1(d){this.a=d}}
+cVN(){return new B.I4(A.dJ("sv"))},
+I4:function I4(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[45],B)
-B.I1.prototype={
+B.I4.prototype={
 go4(){return"false"},
 gko(){return"Upprepa l\xf6senord"},
 gmx(){return"Inte en bildfil."},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Bannlys fr\xe5n chatt"},
 gi0(){return"Bannlyst"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" \xe4ndrade anslutningsreglerna till "+e},
 ik(d){return d+" \xe4ndrade sin avatar"},
 il(d){return d+" \xe4ndrade rummets alias"},
 im(d){return d+" \xe4ndrade inbjudningsl\xe4nken"},
-geD(){return"\xc4ndra l\xf6senord"},
+geE(){return"\xc4ndra l\xf6senord"},
 gi5(){return"\xc4ndra hemserver"},
 gfM(){return"\xc4ndra din stil"},
 gfL(){return"\xc4ndra namn p\xe5 gruppen"},
@@ -176,7 +176,7 @@ jl(d){return"Fel vid erh\xe5llande av plats: "+d},
 gjm(){return"Allt \xe4r klart!"},
 gfW(){return"Extremt st\xf6tande"},
 gjo(d){return"Textstorlek"},
-geF(d){return"Fram\xe5t"},
+geG(d){return"Fram\xe5t"},
 glX(){return"Fr\xe5n att g\xe5 med"},
 glY(){return"Fr\xe5n inbjudan"},
 gfp(){return"G\xe5 till det nya rummet"},
@@ -247,7 +247,7 @@ gh7(){return"Tysta chatt"},
 gh8(){return"Ny chatt"},
 gh9(){return"Ny verifikationsbeg\xe4ran!"},
 gds(d){return"N\xe4sta"},
-gex(){return"Nej"},
+gey(){return"Nej"},
 gjQ(){return"Ingen anslutning till servern"},
 gha(){return"Hittade inga dekaler. \ud83d\ude15"},
 gjR(){return"Du kan endast aktivera kryptering n\xe4r rummet inte l\xe4ngre \xe4r publikt tillg\xe4ngligt."},
@@ -310,11 +310,11 @@ gkp(d){return"Svara"},
 ghl(){return"Rapportera meddelande"},
 gkr(){return"Rummet har blivit uppgraderat"},
 gks(){return"Rum version"},
-geA(d){return"S\xf6k"},
+geB(d){return"S\xf6k"},
 gft(){return"S\xe4kerhet"},
 ghi(){return"\xc5terst\xe4llningsnyckel"},
 gkg(){return"Borttappad \xe5terst\xe4llningsnyckel?"},
-geB(d){return"Skicka"},
+geC(d){return"Skicka"},
 ghs(){return"Skicka som text"},
 ght(){return"Skicka ljud"},
 gf_(){return"Skicka fil"},
@@ -387,7 +387,7 @@ gkG(){return"Varf\xf6r vill du rapportera detta?"},
 gnG(){return"Radera din chatt-backup f\xf6r att skapa en ny \xe5terst\xe4llningsnyckel?"},
 gnH(){return"Med dessa addresser kan du \xe5terst\xe4lla ditt l\xf6senord."},
 gnI(){return"Skriv ett meddelande\u2026"},
-ge8(){return"Ja"},
+ge7(){return"Ja"},
 gnK(){return"Du"},
 geY(){return"Du deltar inte l\xe4ngre i denna chatt"},
 gnN(){return"Du har blivit bannad fr\xe5n denna chatt"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.I1,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"I1":{"aP":[]}}'))};
+y(B.I4,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"I4":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"M6YThrPvOE+Pfs+EKxNYNHLTnS0=");
+a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"bU7S6YlSPGcLLl0ZSpWXIDmwXV4=");
 //# sourceMappingURL=main.dart.js_290.part.js.map

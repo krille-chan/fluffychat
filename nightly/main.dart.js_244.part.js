@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_244",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVe(){return new B.HC(A.dJ("fr"))},
-HC:function HC(d){this.a=d}}
+cVm(){return new B.HF(A.dJ("fr"))},
+HF:function HF(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[21],B)
-B.HC.prototype={
+B.HF.prototype={
 go4(){return"true"},
 gko(){return"R\xe9p\xe9tez le mot de passe"},
 gmx(){return"Pas un fichier image."},
@@ -53,7 +53,7 @@ gmu(){return"Aucune autre discussion trouv\xe9e..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Discussions rejointes"},
 goa(){return"Non lu"},
-geC(){return"Espace"},
+geD(){return"Espace"},
 gnZ(){return"Espaces"},
 gfG(){return"Bannir de la discussion"},
 gi0(){return"Banni"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" a chang\xe9 les r\xe8gles d'acc\xe8s \xe0 la discussion en : 
 ik(d){return d+" a chang\xe9 son avatar"},
 il(d){return d+" a chang\xe9 les adresses du salon"},
 im(d){return d+" a chang\xe9 le lien d'invitation"},
-geD(){return"Changer de mot de passe"},
+geE(){return"Changer de mot de passe"},
 gi5(){return"Changer le serveur d'accueil"},
 gfM(){return"Changez votre style"},
 gfL(){return"Changer le nom du groupe"},
@@ -176,7 +176,7 @@ jl(d){return"Erreur lors de l'obtention de la localisation : "+d},
 gjm(){return"Tout est pr\xeat !"},
 gfW(){return"Extr\xeamement offensant"},
 gjo(d){return"Taille de la police"},
-geF(d){return"Transf\xe9rer"},
+geG(d){return"Transf\xe9rer"},
 glX(){return"\xc0 partir de l'entr\xe9e dans le salon"},
 glY(){return"\xc0 partir de l'invitation"},
 gfp(){return"Aller dans le nouveau salon"},
@@ -247,7 +247,7 @@ gh7(){return"Mettre la discussion en sourdine"},
 gh8(){return"Nouvelle discussion"},
 gh9(){return"Nouvelle demande de v\xe9rification !"},
 gds(d){return"Suivant"},
-gex(){return"Non"},
+gey(){return"Non"},
 gjQ(){return"Aucune connexion au serveur"},
 gha(){return"Aucune \xe9motic\xf4ne trouv\xe9e. \ud83d\ude15"},
 gjR(){return"Vous pouvez activer le chiffrement seulement quand le salon n'est plus accessible au public."},
@@ -310,11 +310,11 @@ gkp(d){return"R\xe9pondre"},
 ghl(){return"Signaler un message"},
 gkr(){return"Le salon a \xe9t\xe9 mis \xe0 niveau"},
 gks(){return"Version du salon"},
-geA(d){return"Rechercher"},
+geB(d){return"Rechercher"},
 gft(){return"S\xe9curit\xe9"},
 ghi(){return"Cl\xe9 de r\xe9cup\xe9ration"},
 gkg(){return"Cl\xe9 de r\xe9cup\xe9ration perdue ?"},
-geB(d){return"Envoyer"},
+geC(d){return"Envoyer"},
 ghs(){return"Envoyer un texte"},
 ght(){return"Envoyer un fichier audio"},
 gf_(){return"Envoyer un fichier"},
@@ -387,7 +387,7 @@ gkG(){return"Pourquoi voulez-vous le signaler ?"},
 gnG(){return"Effacer la sauvegarde de votre discussion pour cr\xe9er une nouvelle cl\xe9 de r\xe9cup\xe9ration ?"},
 gnH(){return"Gr\xe2ce \xe0 ces adresses, vous pouvez r\xe9cup\xe9rer votre mot de passe si vous en avez besoin."},
 gnI(){return"\xc9crivez un message\u2026"},
-ge8(){return"Oui"},
+ge7(){return"Oui"},
 gnK(){return"Vous"},
 geY(){return"Vous ne participez plus \xe0 cette discussion"},
 gnN(){return"Vous avez \xe9t\xe9 banni\xb7e de cette discussion"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HC,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HC":{"aP":[]}}'))};
+y(B.HF,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HF":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"dywpgjjuGMC7jh7XhFojNAxkfj8=");
+a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"Fp6ikhiQ/+fnIYN3iQwtanKm4HY=");
 //# sourceMappingURL=main.dart.js_244.part.js.map

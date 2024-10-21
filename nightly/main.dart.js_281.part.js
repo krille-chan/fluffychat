@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_281",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVA(){return new B.HX(A.dJ("ro"))},
-HX:function HX(d){this.a=d}}
+cVI(){return new B.I_(A.dJ("ro"))},
+I_:function I_(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[40],B)
-B.HX.prototype={
+B.I_.prototype={
 go4(){return"false"},
 gko(){return"Repeta\u021bi parola"},
 gmx(){return"Not an image file."},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Interzis din conversa\u021bie"},
 gi0(){return"Interzis"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" a schimbat regulile de al\u0103turare la: "+e},
 ik(d){return d+" s-a schimbat avatarul"},
 il(d){return d+" a schimbat pseudonimele camerei"},
 im(d){return d+" a schimbat linkul de invita\u021bie"},
-geD(){return"Schimba\u021bi parola"},
+geE(){return"Schimba\u021bi parola"},
 gi5(){return"Schimba\u021bi homeserver-ul"},
 gfM(){return"Schimba\u021bi tema aplica\u021biei"},
 gfL(){return"Schimba\u021bi numele grupului"},
@@ -176,7 +176,7 @@ jl(d){return"Ob\u021binerea loca\u021biei a e\u0219uat: "+d},
 gjm(){return"Totul e gata!"},
 gfW(){return"De foarte mare ofens\u0103"},
 gjo(d){return"M\u0103rimea fontului"},
-geF(d){return"\xcenainte"},
+geG(d){return"\xcenainte"},
 glX(){return"De la al\u0103turare"},
 glY(){return"De la invita\u021bia"},
 gfp(){return"Merge\u021bi la camera nou\u0103"},
@@ -247,7 +247,7 @@ gh7(){return"Amu\u021ba\u021bi chatul"},
 gh8(){return"Chat nou"},
 gh9(){return"Cerere de verificare nou\u0103!"},
 gds(d){return"Urm\u0103tor"},
-gex(){return"Nu"},
+gey(){return"Nu"},
 gjQ(){return"F\u0103r\u0103 conexiune la server"},
 gha(){return"Nu s-a g\u0103sit nici un emote. \ud83d\ude15"},
 gjR(){return"Criptare nu poate fi activat\u0103 p\xe2n\u0103 c\xe2nd camera este accesibil\u0103 public."},
@@ -310,11 +310,11 @@ gkp(d){return"R\u0103spunde\u021bi"},
 ghl(){return"Raporta\u021bi mesajul"},
 gkr(){return"Camera a fost actualizat\u0103"},
 gks(){return"Versiunea camerei"},
-geA(d){return"C\u0103uta\u021bi"},
+geB(d){return"C\u0103uta\u021bi"},
 gft(){return"Securitate"},
 ghi(){return"Cheie de recuperare"},
 gkg(){return"Cheia de recuperare pierdut\u0103?"},
-geB(d){return"Trimite\u021bi"},
+geC(d){return"Trimite\u021bi"},
 ghs(){return"Trimite\u021bi ca text"},
 ght(){return"Trimite\u021bi audio"},
 gf_(){return"Trimite\u021bi fi\u0219ier"},
@@ -387,7 +387,7 @@ gkG(){return"De ce dori\u021bi s\u0103 reporta\u021bi acest con\u021binut?"},
 gnG(){return"\u0218terge\u021bi backup-ul vostru de chat s\u0103 crea\u021bi o nou\u0103 cheie de recuperare?"},
 gnH(){return"Cu acestea adrese pute\u021bi s\u0103 v\u0103 recupera\u021bi parola."},
 gnI(){return"Scrie\u021bi un mesaj\u2026"},
-ge8(){return"Da"},
+ge7(){return"Da"},
 gnK(){return"Voi"},
 geY(){return"Nu mai participa\u021bi \xeen acest chat"},
 gnN(){return"A\u021bi fost interzis din acest chat"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HX,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HX":{"aP":[]}}'))};
+y(B.I_,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"I_":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_281",e:"endPart",h:b})})($__dart_deferred_initializers__,"WtbRGr/GlaZyVcXoe8vazwahdE8=");
+a.eventLog.push({p:"main.dart.js_281",e:"endPart",h:b})})($__dart_deferred_initializers__,"r8f6DRNSS4B6L/0WQaem5+sW898=");
 //# sourceMappingURL=main.dart.js_281.part.js.map

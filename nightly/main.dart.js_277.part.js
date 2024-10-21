@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_277",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVu(){return new B.HS(A.dJ("nb"))},
-HS:function HS(d){this.a=d}}
+cVC(){return new B.HV(A.dJ("nb"))},
+HV:function HV(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[37],B)
-B.HS.prototype={
+B.HV.prototype={
 go4(){return"false"},
 gko(){return"Gjenta passord"},
 gmx(){return"Ikke en bildefil."},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Bannlys fra sludring"},
 gi0(){return"Bannlyst"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" endret tilgangsreglene til: "+e},
 ik(d){return d+" endret avataren sin"},
 il(d){return d+" endret rom-aliasene"},
 im(d){return d+" endret invitasjonslenken"},
-geD(){return"Endre passord"},
+geE(){return"Endre passord"},
 gi5(){return"Endre hjemmetjener"},
 gfM(){return"Endre din stil"},
 gfL(){return"Endre gruppens navn"},
@@ -176,7 +176,7 @@ jl(d){return"Error obtaining location: "+d},
 gjm(){return"Alt er klart!"},
 gfW(){return"Veldig"},
 gjo(d){return"Skriftst\xf8rrelse"},
-geF(d){return"Videre"},
+geG(d){return"Videre"},
 glX(){return"Fra \xe5 ta del"},
 glY(){return"Fra invitasjonen"},
 gfp(){return"Go to the new room"},
@@ -247,7 +247,7 @@ gh7(){return"Forstum sludring"},
 gh8(){return"Ny sludring"},
 gh9(){return"Ny bekreftelsesforesp\xf8rsel!"},
 gds(d){return"Neste"},
-gex(){return"Nei"},
+gey(){return"Nei"},
 gjQ(){return"Ingen tilkobling til tjeneren"},
 gha(){return"Fant ingen smilefjes. \ud83d\ude15"},
 gjR(){return"You can only activate encryption as soon as the room is no longer publicly accessible."},
@@ -310,11 +310,11 @@ gkp(d){return"Svar"},
 ghl(){return"Rapporter melding"},
 gkr(){return"Rommet har blitt oppgradert"},
 gks(){return"Room version"},
-geA(d){return"S\xf8k"},
+geB(d){return"S\xf8k"},
 gft(){return"Sikkerhet"},
 ghi(){return"Recovery key"},
 gkg(){return"Recovery key lost?"},
-geB(d){return"Send"},
+geC(d){return"Send"},
 ghs(){return"Send as text"},
 ght(){return"Send lyd"},
 gf_(){return"Send fil"},
@@ -387,7 +387,7 @@ gkG(){return"Hvorfor \xf8nsker du \xe5 rapportere dette?"},
 gnG(){return"Wipe your chat backup to create a new recovery key?"},
 gnH(){return"Med disse adressene kan du gjenopprette passordet ditt hvis du trenger det."},
 gnI(){return"Skriv en melding \u2026"},
-ge8(){return"Ja"},
+ge7(){return"Ja"},
 gnK(){return"Deg"},
 geY(){return"Du deltar ikke lenger i denne sludringen"},
 gnN(){return"Du har blitt bannlyst fra denne sludringen"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HS,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HS":{"aP":[]}}'))};
+y(B.HV,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HV":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"xVs7a3lbbauGpnTJm/0RO6uQjQI=");
+a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"3zpDJiwCZCITmumvtY5hM2hb2wo=");
 //# sourceMappingURL=main.dart.js_277.part.js.map

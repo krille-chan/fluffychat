@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_263",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVm(){return new B.HK(A.dJ("id"))},
-HK:function HK(d){this.a=d}}
+cVu(){return new B.HN(A.dJ("id"))},
+HN:function HN(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[29],B)
-B.HK.prototype={
+B.HN.prototype={
 go4(){return"tidak"},
 gko(){return"Ulangi kata sandi"},
 gmx(){return"Bukan berkas gambar."},
@@ -53,7 +53,7 @@ gmu(){return"Tidak ada chat lagi yang ditemukan..."},
 goy(){return"Belum ada chat di sini. Mulai chat baru dengan seseorang menggunakan tombol di bawah. \u2935\ufe0f"},
 go7(){return"Bergabung chat"},
 goa(){return"Tidak dibaca"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Space"},
 gfG(){return"Cekal dari obrolan"},
 gi0(){return"Dicekal"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" mengubah aturan bergabung ke: "+e},
 ik(d){return d+" mengubah avatarnya"},
 il(d){return d+" mengubah alias ruangan"},
 im(d){return d+" mengubah tautan undangan"},
-geD(){return"Ubah kata sandi"},
+geE(){return"Ubah kata sandi"},
 gi5(){return"Ubah homeserver"},
 gfM(){return"Ubah tema"},
 gfL(){return"Ubah nama grup"},
@@ -176,7 +176,7 @@ jl(d){return"Gagal mendapat lokasi: "+d},
 gjm(){return"Semua siap!"},
 gfW(){return"Sangat menyinggung"},
 gjo(d){return"Ukuran font"},
-geF(d){return"Teruskan"},
+geG(d){return"Teruskan"},
 glX(){return"Dari bergabung"},
 glY(){return"Dari undangan"},
 gfp(){return"Pergi ke ruangan yang baru"},
@@ -247,7 +247,7 @@ gh7(){return"Bisukan obrolan"},
 gh8(){return"Chat baru"},
 gh9(){return"Permintaan verifikasi baru!"},
 gds(d){return"Lanjut"},
-gex(){return"Tidak"},
+gey(){return"Tidak"},
 gjQ(){return"Tidak ada koneksi ke server"},
 gha(){return"Tidak ada emote yang ditemukan. \ud83d\ude15"},
 gjR(){return"Kamu hanya bisa mengaktifkan enkripsi setelah ruangan tidak lagi dapat diakses secara publik."},
@@ -310,11 +310,11 @@ gkp(d){return"Balas"},
 ghl(){return"Laporkan pesan"},
 gkr(){return"Ruangan telah ditingkatkan"},
 gks(){return"Versi ruangan"},
-geA(d){return"Cari"},
+geB(d){return"Cari"},
 gft(){return"Keamanan"},
 ghi(){return"Kunci pemulihan"},
 gkg(){return"Kunci pemulihan hilang?"},
-geB(d){return"Kirim"},
+geC(d){return"Kirim"},
 ghs(){return"Kirim sebagai teks"},
 ght(){return"Kirim suara"},
 gf_(){return"Kirim file"},
@@ -387,7 +387,7 @@ gkG(){return"Kenapa kamu ingin melaporkannya?"},
 gnG(){return"Hapus cadangan obrolan untuk membuat kunci pemulihan baru?"},
 gnH(){return"Dengan alamat ini kamu bisa memulihkan kata sandimu."},
 gnI(){return"Tulis pesan\u2026"},
-ge8(){return"Ya"},
+ge7(){return"Ya"},
 gnK(){return"Kamu"},
 geY(){return"Kamu tidak berpartisipasi lagi di obrolan ini"},
 gnN(){return"Kamu telah dicekal dari obrolan ini"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HK,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HK":{"aP":[]}}'))};
+y(B.HN,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HN":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_263",e:"endPart",h:b})})($__dart_deferred_initializers__,"wD90dkRruLqMZ6PLxU0vW53WDa8=");
+a.eventLog.push({p:"main.dart.js_263",e:"endPart",h:b})})($__dart_deferred_initializers__,"qKrbK6THVEIJmuoycTCmbY5FdW0=");
 //# sourceMappingURL=main.dart.js_263.part.js.map

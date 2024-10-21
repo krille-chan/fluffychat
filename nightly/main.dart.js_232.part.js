@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_232",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cV8(){return new B.Hw(A.dJ("es"))},
-Hw:function Hw(d){this.a=d}}
+cVg(){return new B.Hz(A.dJ("es"))},
+Hz:function Hz(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[15],B)
-B.Hw.prototype={
+B.Hz.prototype={
 go4(){return"false"},
 gko(){return"Repita la contrase\xf1a"},
 gmx(){return"El archivo no es una imagen."},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Vetar del chat"},
 gi0(){return"Vetado"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" cambi\xf3 las reglas de ingreso a "+e},
 ik(d){return d+" cambi\xf3 su imagen de perfil"},
 il(d){return d+" cambi\xf3 el alias de la sala"},
 im(d){return d+" cambi\xf3 el enlace de invitaci\xf3n"},
-geD(){return"Cambiar la contrase\xf1a"},
+geE(){return"Cambiar la contrase\xf1a"},
 gi5(){return"Cambiar el servidor"},
 gfM(){return"Cambia tu estilo"},
 gfL(){return"Cambiar el nombre del grupo"},
@@ -176,7 +176,7 @@ jl(d){return"Error al obtener la ubicaci\xf3n: "+d},
 gjm(){return"\xa1Todo listo!"},
 gfW(){return"Extremadamente ofensivo"},
 gjo(d){return"Tama\xf1o de fuente"},
-geF(d){return"Reenviar"},
+geG(d){return"Reenviar"},
 glX(){return"Desde que se uni\xf3"},
 glY(){return"Desde la invitaci\xf3n"},
 gfp(){return"Ir a la nueva sala"},
@@ -247,7 +247,7 @@ gh7(){return"Silenciar chat"},
 gh8(){return"Nuevo chat"},
 gh9(){return"\xa1Nueva solicitud de verificaci\xf3n!"},
 gds(d){return"Siguiente"},
-gex(){return"No"},
+gey(){return"No"},
 gjQ(){return"Sin conexi\xf3n al servidor"},
 gha(){return"Ning\xfan emote encontrado. \ud83d\ude15"},
 gjR(){return"S\xf3lo se puede activar el cifrado en cuanto la sala deja de ser de acceso p\xfablico."},
@@ -310,11 +310,11 @@ gkp(d){return"Responder"},
 ghl(){return"Mensaje de informe"},
 gkr(){return"La sala ha subido de categor\xeda"},
 gks(){return"Versi\xf3n de sala"},
-geA(d){return"Buscar"},
+geB(d){return"Buscar"},
 gft(){return"Seguridad"},
 ghi(){return"Clave de recuperaci\xf3n"},
 gkg(){return"\xbfPerdi\xf3 su clave de recuperaci\xf3n?"},
-geB(d){return"Enviar"},
+geC(d){return"Enviar"},
 ghs(){return"Enviar como texto"},
 ght(){return"Enviar audio"},
 gf_(){return"Enviar un archivo"},
@@ -387,7 +387,7 @@ gkG(){return"\xbfPor qu\xe9 quieres denunciar esto?"},
 gnG(){return"\xbfLimpiar la copia de seguridad de su chat para crear una nueva clave de seguridad?"},
 gnH(){return"Con esta direcci\xf3n puede recuperar su contrase\xf1a."},
 gnI(){return"Escribe un mensaje\u2026"},
-ge8(){return"S\xed"},
+ge7(){return"S\xed"},
 gnK(){return"T\xfa"},
 geY(){return"Ya no est\xe1s participando en este chat"},
 gnN(){return"Has sido vetado de este chat"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Hw,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"Hw":{"aP":[]}}'))};
+y(B.Hz,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"Hz":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"2boOqCElCC9OdvrRN2jVVCJ1RDU=");
+a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"7ffzfaLUWa+PM+ckcPpzlOy+wCs=");
 //# sourceMappingURL=main.dart.js_232.part.js.map

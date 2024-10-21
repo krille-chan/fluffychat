@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_252",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVi(){return new B.HG(A.dJ("hi"))},
-HG:function HG(d){this.a=d}}
+cVq(){return new B.HJ(A.dJ("hi"))},
+HJ:function HJ(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[25],B)
-B.HG.prototype={
+B.HJ.prototype={
 go4(){return"false"},
 gko(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gmx(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Ban from chat"},
 gi0(){return"Banned"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" changed the join rules to: "+e},
 ik(d){return d+" changed their avatar"},
 il(d){return d+" changed the room aliases"},
 im(d){return d+" changed the invitation link"},
-geD(){return"Change password"},
+geE(){return"Change password"},
 gi5(){return"Change the homeserver"},
 gfM(){return"Change your style"},
 gfL(){return"Change the name of the group"},
@@ -176,7 +176,7 @@ jl(d){return"Error obtaining location: "+d},
 gjm(){return"Everything ready!"},
 gfW(){return"Extremely offensive"},
 gjo(d){return"Font size"},
-geF(d){return"Forward"},
+geG(d){return"Forward"},
 glX(){return"From joining"},
 glY(){return"From the invitation"},
 gfp(){return"Go to the new room"},
@@ -247,7 +247,7 @@ gh7(){return"Mute chat"},
 gh8(){return"New chat"},
 gh9(){return"New verification request!"},
 gds(d){return"Next"},
-gex(){return"No"},
+gey(){return"No"},
 gjQ(){return"No connection to the server"},
 gha(){return"No emotes found. \ud83d\ude15"},
 gjR(){return"You can only activate encryption as soon as the room is no longer publicly accessible."},
@@ -310,11 +310,11 @@ gkp(d){return"Reply"},
 ghl(){return"Report message"},
 gkr(){return"Room has been upgraded"},
 gks(){return"Room version"},
-geA(d){return"Search"},
+geB(d){return"Search"},
 gft(){return"Security"},
 ghi(){return"Recovery key"},
 gkg(){return"Recovery key lost?"},
-geB(d){return"Send"},
+geC(d){return"Send"},
 ghs(){return"Send as text"},
 ght(){return"Send audio"},
 gf_(){return"Send file"},
@@ -387,7 +387,7 @@ gkG(){return"Why do you want to report this?"},
 gnG(){return"Wipe your chat backup to create a new recovery key?"},
 gnH(){return"With these addresses you can recover your password."},
 gnI(){return"Write a message\u2026"},
-ge8(){return"Yes"},
+ge7(){return"Yes"},
 gnK(){return"You"},
 geY(){return"You are no longer participating in this chat"},
 gnN(){return"You have been banned from this chat"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HG,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HG":{"aP":[]}}'))};
+y(B.HJ,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HJ":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"T/BQGuawN36tJmue4UxHDOOpd/0=");
+a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"79dpa19q81s8L24+OZvfbD269b8=");
 //# sourceMappingURL=main.dart.js_252.part.js.map

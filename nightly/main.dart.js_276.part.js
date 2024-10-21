@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_276",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVt(){return new B.HR(A.dJ("lv"))},
-HR:function HR(d){this.a=d}}
+cVB(){return new B.HU(A.dJ("lv"))},
+HU:function HU(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[36],B)
-B.HR.prototype={
+B.HU.prototype={
 go4(){return"n\u0113"},
 gko(){return"Atk\u0101rtot paroli"},
 gmx(){return"Nav att\u0113la datne."},
@@ -53,7 +53,7 @@ gmu(){return"Vairs nav t\u0113rz\u0113\u0161anu..."},
 goy(){return"\u0160eit v\u0113l nav t\u0113rz\u0113\u0161anu. Jauna saruna ar k\u0101du ir uzs\u0101kama ar zem\u0101k eso\u0161o pogu. \u2935\ufe0f"},
 go7(){return"T\u0113rz\u0113\u0161anas, kur\u0101s piedalos"},
 goa(){return"Nelas\u012btas"},
-geC(){return"Vieta"},
+geD(){return"Vieta"},
 gnZ(){return"Vietas"},
 gfG(){return"Izsl\u0113gt no t\u0113rz\u0113\u0161anas"},
 gi0(){return"Izsl\u0113gts"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" nomain\u012bja pievieno\u0161an\u0101s nosac\u012bjumus uz "+
 ik(d){return d+" nomain\u012bja savu att\u0113lu"},
 il(d){return d+" nomain\u012bja istabas aizst\u0101jv\u0101rdus"},
 im(d){return d+" nomain\u012bja uzaicin\u0101juma saiti"},
-geD(){return"Nomain\u012bt paroli"},
+geE(){return"Nomain\u012bt paroli"},
 gi5(){return"Main\u012bt m\u0101jasserveri"},
 gfM(){return"Main\u012bt izskatu"},
 gfL(){return"Main\u012bt kopas nosaukumu"},
@@ -176,7 +176,7 @@ jl(d){return"K\u013c\u016bda atra\u0161an\u0101s vietas ieg\u016b\u0161an\u0101:
 gjm(){return"Viss ir gatavs!"},
 gfW(){return"\u012apa\u0161i aizskaro\u0161s"},
 gjo(d){return"Fonta izm\u0113rs"},
-geF(d){return"P\u0101rs\u016bt\u012bt"},
+geG(d){return"P\u0101rs\u016bt\u012bt"},
 glX(){return"No pievieno\u0161an\u0101s"},
 glY(){return"No uzaicin\u0101juma"},
 gfp(){return"Doties uz jauno istabu"},
@@ -247,7 +247,7 @@ gh7(){return"Apklusin\u0101t t\u0113rz\u0113\u0161anu"},
 gh8(){return"Jauna t\u0113rz\u0113\u0161ana"},
 gh9(){return"Jauns apliecin\u0101\u0161anas piepras\u012bjums."},
 gds(d){return"N\u0101kamais"},
-gex(){return"N\u0113"},
+gey(){return"N\u0113"},
 gjQ(){return"Nav savienojuma ar serveri"},
 gha(){return"Netika atrastas emocijas. \ud83d\ude15"},
 gjR(){return"\u0160ifr\u0113\u0161anu var iesp\u0113jot tikai tad, kad istaba vairs nav publiski pieejama."},
@@ -310,11 +310,11 @@ gkp(d){return"Atbild\u0113t"},
 ghl(){return"Zi\u0146ot par zi\u0146u"},
 gkr(){return"Istaba tika atjaunin\u0101ta"},
 gks(){return"Istabas versija"},
-geA(d){return"Mekl\u0113t"},
+geB(d){return"Mekl\u0113t"},
 gft(){return"Dro\u0161\u012bba"},
 ghi(){return"Atkop\u0161anas atsl\u0113ga"},
 gkg(){return"Pazaud\u0113ta atkop\u0161anas atsl\u0113ga?"},
-geB(d){return"Nos\u016bt\u012bt"},
+geC(d){return"Nos\u016bt\u012bt"},
 ghs(){return"Nos\u016bt\u012bt k\u0101 tekstu"},
 ght(){return"Nos\u016bt\u012bt ska\u0146u"},
 gf_(){return"Nos\u016bt\u012bt datni"},
@@ -387,7 +387,7 @@ gkG(){return"K\u0101d\u0113\u013c v\u0113lies zi\u0146ot par \u0161o?"},
 gnG(){return"Not\u012br\u012bt t\u0113rz\u0113\u0161anas rezerves kopiju, lai izveidotu jaunu atkop\u0161anas atsl\u0113gu?"},
 gnH(){return"Ar \u0161\u012bm adres\u0113m var atjaunot savu paroli."},
 gnI(){return"Rakst\u012bt zi\u0146u\u2026"},
-ge8(){return"J\u0101"},
+ge7(){return"J\u0101"},
 gnK(){return"Tu"},
 geY(){return"Tu vairs nepiedalies \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 gnN(){return"Tev tika liegta piek\u013cuve \u0161ai t\u0113rz\u0113\u0161anai"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HR,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HR":{"aP":[]}}'))};
+y(B.HU,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HU":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"J/PjwigZsA3i8il/ishNxb/3zzE=");
+a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"p89/PvpSVRNaT6cZOkqKg3R33Zo=");
 //# sourceMappingURL=main.dart.js_276.part.js.map

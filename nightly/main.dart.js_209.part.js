@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_209",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cV2(){return new B.Hq(A.dJ("ca"))},
-Hq:function Hq(d){this.a=d}}
+cVa(){return new B.Ht(A.dJ("ca"))},
+Ht:function Ht(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[9],B)
-B.Hq.prototype={
+B.Ht.prototype={
 go4(){return"true"},
 gko(){return"Repetiu la contrasenya"},
 gmx(){return"No \xe9s un arxiu d'image."},
@@ -53,7 +53,7 @@ gmu(){return"No hi ha m\xe9s xats..."},
 goy(){return"Encara no hi ha xats. Obre una conversa amb alg\xfa picant al bot\xf3 de sota. \u2935\ufe0f"},
 go7(){return"Xats on has entrat"},
 goa(){return"Sense llegir"},
-geC(){return"Espai"},
+geD(){return"Espai"},
 gnZ(){return"Espais"},
 gfG(){return"Veta del xat"},
 gi0(){return"Vetadi"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" ha canviat les normes d\u2019uni\xf3 a: "+e},
 ik(d){return d+" ha canviat la seva imatge de perfil"},
 il(d){return d+" ha canviat l\u2019\xe0lies de la sala"},
 im(d){return d+" ha canviat l\u2019enlla\xe7 per a convidar"},
-geD(){return"Canvia la contrasenya"},
+geE(){return"Canvia la contrasenya"},
 gi5(){return"Canvia el servidor"},
 gfM(){return"Canvia l\u2019estil"},
 gfL(){return"Canvia el nom del grup"},
@@ -176,7 +176,7 @@ jl(d){return"S\u2019ha produ\xeft un error en obtenir la ubicaci\xf3: "+d},
 gjm(){return"Tot \xe9s a punt!"},
 gfW(){return"Extremadament ofensiu"},
 gjo(d){return"Mida de la lletra"},
-geF(d){return"Reenvia"},
+geG(d){return"Reenvia"},
 glX(){return"Des de la uni\xf3"},
 glY(){return"Des de la invitaci\xf3"},
 gfp(){return"Ves a la sala nova"},
@@ -247,7 +247,7 @@ gh7(){return"Silencia el xat"},
 gh8(){return"Xat nou"},
 gh9(){return"Nova sol\xb7licitud de verificaci\xf3!"},
 gds(d){return"Seg\xfcent"},
-gex(){return"No"},
+gey(){return"No"},
 gjQ(){return"Sense connexi\xf3 al servidor"},
 gha(){return"No s\u2019ha trobat cap emoticona. \ud83d\ude15"},
 gjR(){return"Nom\xe9s podreu activar el xifratge quan la sala ja no sigui accessible p\xfablicament."},
@@ -310,11 +310,11 @@ gkp(d){return"Respon"},
 ghl(){return"Denuncia el missatge"},
 gkr(){return"La sala s'ha actualitzat"},
 gks(){return"Versi\xf3 de la sala"},
-geA(d){return"Cerca"},
+geB(d){return"Cerca"},
 gft(){return"Seguretat"},
 ghi(){return"Clau de recuperaci\xf3"},
 gkg(){return"Que has perdut la clau de recuperaci\xf3?"},
-geB(d){return"Envia"},
+geC(d){return"Envia"},
 ghs(){return"Envia com a text"},
 ght(){return"Envia un \xe0udio"},
 gf_(){return"Envia un fitxer"},
@@ -387,7 +387,7 @@ gkG(){return"Per qu\xe8 voleu denunciar aix\xf2?"},
 gnG(){return"Voleu suprimir la c\xf2pia de seguretat dels xats per a crear una clau de recuperaci\xf3 nova?"},
 gnH(){return"Amb aquestes adreces, si ho necessiteu, podeu recuperar la vostra contrasenya."},
 gnI(){return"Escriviu un missatge\u2026"},
-ge8(){return"S\xed"},
+ge7(){return"S\xed"},
 gnK(){return"V\xf3s"},
 geY(){return"Ja no participeu en aquest xat"},
 gnN(){return"T'han vetat en aquest xat"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Hq,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"Hq":{"aP":[]}}'))};
+y(B.Ht,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"Ht":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_209",e:"endPart",h:b})})($__dart_deferred_initializers__,"1utbbePgsMWxANBZ611aZN5NyyI=");
+a.eventLog.push({p:"main.dart.js_209",e:"endPart",h:b})})($__dart_deferred_initializers__,"9+QTQPZmPB2/ejgBmaztPkClprU=");
 //# sourceMappingURL=main.dart.js_209.part.js.map

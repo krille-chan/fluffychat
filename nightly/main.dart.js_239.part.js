@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_239",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVa(){return new B.Hy(A.dJ("eu"))},
-Hy:function Hy(d){this.a=d}}
+cVi(){return new B.HB(A.dJ("eu"))},
+HB:function HB(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[17],B)
-B.Hy.prototype={
+B.HB.prototype={
 go4(){return"false"},
 gko(){return"Idatzi berriro pasahitza"},
 gmx(){return"Ez da irudi-fitxategia."},
@@ -53,7 +53,7 @@ gmu(){return"Ez da beste txatik aurkitu..."},
 goy(){return"Ez da txatik aurkitu. Hasi norbaitekin txateatzen beheko botoia erabiliz. \u2935\ufe0f"},
 go7(){return"Batu zaren txatak"},
 goa(){return"Irakurtzeke"},
-geC(){return"Gunea"},
+geD(){return"Gunea"},
 gnZ(){return"Guneak"},
 gfG(){return"Txatera batzeko debekua ezarri"},
 gi0(){return"Kanporatuta"},
@@ -78,7 +78,7 @@ ij(d,e){return d+"(e)k batzeko arauak aldatu ditu: "+e},
 ik(d){return d+"(e)k profileko abatarra aldatu du"},
 il(d){return d+"(e)k gelaren ezizena aldatu du"},
 im(d){return d+"(e)k gonbidapen-esteka aldatu du"},
-geD(){return"Aldatu pasahitza"},
+geE(){return"Aldatu pasahitza"},
 gi5(){return"Aldatu zerbitzaria"},
 gfM(){return"Aldatu itxura"},
 gfL(){return"Taldearen izena aldatu"},
@@ -176,7 +176,7 @@ jl(d){return"Errorea kokapena lortzerakoan: "+d},
 gjm(){return"Dena prest!"},
 gfW(){return"Izugarri iraingarria"},
 gjo(d){return"Letraren tamaina"},
-geF(d){return"Birbidali"},
+geG(d){return"Birbidali"},
 glX(){return"Batzeaz geroztik"},
 glY(){return"Gonbidapenaz geroztik"},
 gfp(){return"Joan gela berrira"},
@@ -247,7 +247,7 @@ gh7(){return"Mututu txata"},
 gh8(){return"Txat berria"},
 gh9(){return"Egiaztaketa-eskaera berria!"},
 gds(d){return"Hurrengoa"},
-gex(){return"Ez"},
+gey(){return"Ez"},
 gjQ(){return"Ez dago konexiorik zerbitzariarekin"},
 gha(){return"Ez da emoterik aurkitu. \ud83d\ude15"},
 gjR(){return"Zifratzea aktiba dezakezu soilik gelak publikoa izateari utzi badio."},
@@ -310,11 +310,11 @@ gkp(d){return"Erantzun"},
 ghl(){return"Salatu mezua"},
 gkr(){return"Gela bertsio-berritu da"},
 gks(){return"Gelaren bertsioa"},
-geA(d){return"Bilatu"},
+geB(d){return"Bilatu"},
 gft(){return"Segurtasuna"},
 ghi(){return"Berreskuratze-gakoa"},
 gkg(){return"Berreskuratze-gakoa galdu duzu?"},
-geB(d){return"Bidali"},
+geC(d){return"Bidali"},
 ghs(){return"Bidali testu bezala"},
 ght(){return"Bidali audioa"},
 gf_(){return"Bidali fitxategia"},
@@ -387,7 +387,7 @@ gkG(){return"Zergatik salatu nahi duzu?"},
 gnG(){return"Ezabatu txataren babeskopia berreskuratze-gako berria sortzeko?"},
 gnH(){return"Helbide hauekin pasahitza berreskuratu dezakezu."},
 gnI(){return"Idatzi mezua\u2026"},
-ge8(){return"Bai"},
+ge7(){return"Bai"},
 gnK(){return"Zeu"},
 geY(){return"Ez duzu txat honetan parte hartzen honezkero"},
 gnN(){return"Txat honetan debekua ezarri dizute"},
@@ -560,9 +560,9 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Hy,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"Hy":{"aP":[]}}'))
+x(B.HB,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HB":{"aP":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"xvbMkZlANURNPkQMWEDAs9BimF4=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"+ji49Bh706qCCRreYmNJGiaUe5U=");
 //# sourceMappingURL=main.dart.js_239.part.js.map

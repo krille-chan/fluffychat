@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_279",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVv(){return new B.HT(A.dJ("nl"))},
-HT:function HT(d){this.a=d}}
+cVD(){return new B.HW(A.dJ("nl"))},
+HW:function HW(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[38],B)
-B.HT.prototype={
+B.HW.prototype={
 go4(){return"true"},
 gko(){return"Wachtwoord herhalen"},
 gmx(){return"Geen afbeeldingsbestand."},
@@ -53,7 +53,7 @@ gmu(){return"Geen chats gevonden..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Deelnemende chats"},
 goa(){return"Zet als ongelezen"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Van chat verbannen"},
 gi0(){return"Verbannen"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" heeft de deelnameregels gewijzigd in: "+e},
 ik(d){return d+"'s avatar is gewijzigd"},
 il(d){return d+" heeft de kameraliassen gewijzigd"},
 im(d){return d+" heeft de uitnodigingslink gewijzigd"},
-geD(){return"Wachtwoord wijzigen"},
+geE(){return"Wachtwoord wijzigen"},
 gi5(){return"Homeserver wijzigen"},
 gfM(){return"Stijl veranderen"},
 gfL(){return"Groepsnaam wijzigen"},
@@ -176,7 +176,7 @@ jl(d){return"Locatie ophalen fout: "+d},
 gjm(){return"Alles klaar!"},
 gfW(){return"Extreem beledigend"},
 gjo(d){return"Lettergrootte"},
-geF(d){return"Stuur door"},
+geG(d){return"Stuur door"},
 glX(){return"Vanaf deelname"},
 glY(){return"Vanaf uitnodiging"},
 gfp(){return"Ga naar de nieuwe kamer"},
@@ -247,7 +247,7 @@ gh7(){return"Meldingen uitschakelen"},
 gh8(){return"Nieuwe chat"},
 gh9(){return"Nieuw verificatieverzoek!"},
 gds(d){return"Volgende"},
-gex(){return"Nee"},
+gey(){return"Nee"},
 gjQ(){return"Geen verbinding met de server"},
 gha(){return"Geen emoticons gevonden. \ud83d\ude15"},
 gjR(){return"Je kunt de versleuteling pas activeren zodra de kamer niet meer openbaar toegankelijk is."},
@@ -310,11 +310,11 @@ gkp(d){return"Antwoord"},
 ghl(){return"Bericht rapporteren"},
 gkr(){return"Kamer is ge\xfcpgrade"},
 gks(){return"Kamerversie"},
-geA(d){return"Zoeken"},
+geB(d){return"Zoeken"},
 gft(){return"Beveiliging"},
 ghi(){return"Herstelsleutel"},
 gkg(){return"Herstelsleutel verloren?"},
-geB(d){return"Verstuur"},
+geC(d){return"Verstuur"},
 ghs(){return"Als tekst versturen"},
 ght(){return"Audio versturen"},
 gf_(){return"Bestand versturen"},
@@ -387,7 +387,7 @@ gkG(){return"Waarom wil je dit rapporteren?"},
 gnG(){return"Wil je de chatback-up wissen om een nieuwe herstelsleutel te kunnen maken?"},
 gnH(){return"Met deze adressen kan je je wachtwoord herstellen."},
 gnI(){return"Schrijf een bericht\u2026"},
-ge8(){return"Ja"},
+ge7(){return"Ja"},
 gnK(){return"Jij"},
 geY(){return"Je neemt niet langer deel aan deze chat"},
 gnN(){return"Je bent verbannen uit deze chat"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HT,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HT":{"aP":[]}}'))};
+y(B.HW,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HW":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"b8H4jUQhHthu/jWmfW8Smb4jyMU=");
+a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"USRck3RZIf5uA5OlrFtOaUOJdg0=");
 //# sourceMappingURL=main.dart.js_279.part.js.map

@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_280",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVw(){return new B.HU(A.dJ("pl"))},
-HU:function HU(d){this.a=d}}
+cVE(){return new B.HX(A.dJ("pl"))},
+HX:function HX(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[39],B)
-B.HU.prototype={
+B.HX.prototype={
 go4(){return"false"},
 gko(){return"Powt\xf3rz has\u0142o"},
 gmx(){return"To nie jest plik obrazu."},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Ban na czacie"},
 gi0(){return"Zbanowany/-a"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" zmieni\u0142/-a zasady wej\u015bcia na: "+e},
 ik(d){return d+" zmieni\u0142/-a zdj\u0119cie profilowe"},
 il(d){return d+" zmieni\u0142/-a skr\xf3t pokoju"},
 im(d){return d+" zmieni\u0142/-a link do zaproszenia do pokoju"},
-geD(){return"Zmie\u0144 has\u0142o"},
+geE(){return"Zmie\u0144 has\u0142o"},
 gi5(){return"Zmie\u0144 serwer domy\u015blny"},
 gfM(){return"Zmie\u0144 sw\xf3j styl"},
 gfL(){return"Zmie\u0144 nazw\u0119 grupy"},
@@ -176,7 +176,7 @@ jl(d){return"B\u0142\u0105d w ustalaniu lokalizacji: "+d},
 gjm(){return"Wszystko gotowe!"},
 gfW(){return"Bardzo obra\u017aliwe"},
 gjo(d){return"Rozmiar czcionki"},
-geF(d){return"Przeka\u017c"},
+geG(d){return"Przeka\u017c"},
 glX(){return"Od do\u0142\u0105czenia"},
 glY(){return"Od zaproszenia"},
 gfp(){return"Przejd\u017a do nowego pokoju"},
@@ -247,7 +247,7 @@ gh7(){return"Wycisz czat"},
 gh8(){return"Nowa rozmowa"},
 gh9(){return"Nowa pro\u015bba o weryfikacj\u0119!"},
 gds(d){return"Dalej"},
-gex(){return"Nie"},
+gey(){return"Nie"},
 gjQ(){return"Brak po\u0142\u0105czenia z serwerem"},
 gha(){return"Nie znaleziono \u017cadnych emotek. \ud83d\ude15"},
 gjR(){return"Mo\u017cesz aktywowa\u0107 szyfrowanie dopiero kiedy pok\xf3j nie b\u0119dzie publicznie dost\u0119pny."},
@@ -310,11 +310,11 @@ gkp(d){return"Odpowiedz"},
 ghl(){return"Zg\u0142o\u015b wiadomo\u015b\u0107"},
 gkr(){return"Pok\xf3j zosta\u0107 zaktualizowany"},
 gks(){return"Wersja pokoju"},
-geA(d){return"Szukaj"},
+geB(d){return"Szukaj"},
 gft(){return"Bezpiecze\u0144stwo"},
 ghi(){return"Klucz odzyskiwania"},
 gkg(){return"Utracono klucz odzyskiwania?"},
-geB(d){return"Wy\u015blij"},
+geC(d){return"Wy\u015blij"},
 ghs(){return"Wy\u015blij jako tekst"},
 ght(){return"Wy\u015blij d\u017awi\u0119k"},
 gf_(){return"Wy\u015blij plik"},
@@ -387,7 +387,7 @@ gkG(){return"Dlaczego chcesz to zg\u0142osi\u0107?"},
 gnG(){return"Wymaza\u0107 kopi\u0119 zapasow\u0105 czatu, aby utworzy\u0107 nowy klucz odzyskiwania?"},
 gnH(){return"Dzi\u0119ki tym adresom mo\u017cesz odzyska\u0107 swoje has\u0142o."},
 gnI(){return"Napisz wiadomo\u015b\u0107\u2026"},
-ge8(){return"Tak"},
+ge7(){return"Tak"},
 gnK(){return"Ty"},
 geY(){return"Nie uczestniczysz ju\u017c w tym czacie"},
 gnN(){return"Zosta\u0142e\u015b/-a\u015b zbanowany/-a z tego czatu"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HU,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HU":{"aP":[]}}'))};
+y(B.HX,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HX":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"ClNCHFLvDWRq443y8iQeZvHdxJE=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"ol0O3XiQ+lQpGEgqmPecWgAkp3E=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

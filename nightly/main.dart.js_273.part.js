@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_273",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVq(){return new B.HO(A.dJ("ka"))},
-HO:function HO(d){this.a=d}}
+cVy(){return new B.HR(A.dJ("ka"))},
+HR:function HR(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[33],B)
-B.HO.prototype={
+B.HR.prototype={
 go4(){return"false"},
 gko(){return"\u10d2\u10d0\u10d8\u10db\u10d4\u10dd\u10e0\u10d4\u10d7 \u10de\u10d0\u10e0\u10dd\u10da\u10d8"},
 gmx(){return"\u10e4\u10d0\u10d8\u10da\u10d8 \u10d0\u10e0\u10d0\u10d0 \u10e1\u10e3\u10e0\u10d0\u10d7\u10d8."},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"\u10e9\u10d0\u10e2\u10d8\u10d3\u10d0\u10dc \u10d2\u10d0\u10d2\u10d3\u10d4\u10d1\u10d0 \u10d3\u10d0 \u10d1\u10da\u10dd\u10d9\u10d8\u10e0\u10d4\u10d1\u10d0"},
 gi0(){return"\u10d3\u10d0\u10d1\u10da\u10dd\u10d9\u10d8\u10da\u10d8\u10d0"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" \u10d2\u10d0\u10ec\u10d4\u10d5\u10e0\u10d8\u10d0\u10dc\u10d4\
 ik(d){return d+" \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0 \u10de\u10e0\u10dd\u10e4\u10d8\u10da\u10d8\u10e1 \u10e4\u10dd\u10e2\u10dd"},
 il(d){return d+" \u10dd\u10d7\u10d0\u10ee\u10d8\u10e1 \u10db\u10d4\u10e2\u10e1\u10d0\u10ee\u10d4\u10da\u10d4\u10d1\u10d8 \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0"},
 im(d){return d+" \u10db\u10dd\u10ec\u10d5\u10d4\u10d5\u10d8\u10e1 \u10d1\u10db\u10e3\u10da\u10d8 \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0"},
-geD(){return"\u10de\u10d0\u10e0\u10dd\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
+geE(){return"\u10de\u10d0\u10e0\u10dd\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 gi5(){return"\u10e1\u10d0\u10ee\u10da\u10d8\u10e1 \u10e1\u10d4\u10e0\u10d5\u10d4\u10e0\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 gfM(){return"\u10e1\u10e2\u10d8\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 gfL(){return"\u10ef\u10d2\u10e3\u10e4\u10d8\u10e1 \u10d2\u10d0\u10d3\u10d0\u10e0\u10e5\u10db\u10d4\u10d5\u10d0"},
@@ -176,7 +176,7 @@ jl(d){return"Error obtaining location: "+d},
 gjm(){return"Everything ready!"},
 gfW(){return"Extremely offensive"},
 gjo(d){return"Font size"},
-geF(d){return"Forward"},
+geG(d){return"Forward"},
 glX(){return"From joining"},
 glY(){return"From the invitation"},
 gfp(){return"Go to the new room"},
@@ -247,7 +247,7 @@ gh7(){return"Mute chat"},
 gh8(){return"New chat"},
 gh9(){return"New verification request!"},
 gds(d){return"Next"},
-gex(){return"No"},
+gey(){return"No"},
 gjQ(){return"No connection to the server"},
 gha(){return"No emotes found. \ud83d\ude15"},
 gjR(){return"You can only activate encryption as soon as the room is no longer publicly accessible."},
@@ -310,11 +310,11 @@ gkp(d){return"Reply"},
 ghl(){return"Report message"},
 gkr(){return"Room has been upgraded"},
 gks(){return"Room version"},
-geA(d){return"Search"},
+geB(d){return"Search"},
 gft(){return"Security"},
 ghi(){return"Recovery key"},
 gkg(){return"Recovery key lost?"},
-geB(d){return"Send"},
+geC(d){return"Send"},
 ghs(){return"Send as text"},
 ght(){return"Send audio"},
 gf_(){return"Send file"},
@@ -387,7 +387,7 @@ gkG(){return"Why do you want to report this?"},
 gnG(){return"Wipe your chat backup to create a new recovery key?"},
 gnH(){return"With these addresses you can recover your password."},
 gnI(){return"Write a message\u2026"},
-ge8(){return"Yes"},
+ge7(){return"Yes"},
 gnK(){return"You"},
 geY(){return"You are no longer participating in this chat"},
 gnN(){return"You have been banned from this chat"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HO,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HO":{"aP":[]}}'))};
+y(B.HR,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HR":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_273",e:"endPart",h:b})})($__dart_deferred_initializers__,"23zxsCZDuAepIm1/9IQhZM8lhEE=");
+a.eventLog.push({p:"main.dart.js_273",e:"endPart",h:b})})($__dart_deferred_initializers__,"qZr2dNcOnHC4+9RYnWrenty1vME=");
 //# sourceMappingURL=main.dart.js_273.part.js.map

@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cV9(){return new B.Hx(A.dJ("et"))},
-Hx:function Hx(d){this.a=d}}
+cVh(){return new B.HA(A.dJ("et"))},
+HA:function HA(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[16],B)
-B.Hx.prototype={
+B.HA.prototype={
 go4(){return"false"},
 gko(){return"Korda salas\xf5na"},
 gmx(){return"See pole pildifail."},
@@ -53,7 +53,7 @@ gmu(){return"Rohkem vestlusi ei leidu..."},
 goy(){return"Siin ei leidu veel \xfchtegi vestlust. Alusta uut vestlust kl\xf5psides allpool asuvat nuppu. \u2935\ufe0f"},
 go7(){return"Vestlusi, millega oled liitunud"},
 goa(){return"Lugemata"},
-geC(){return"Kogukond"},
+geD(){return"Kogukond"},
 gnZ(){return"Kogukonnad"},
 gfG(){return"Keela ligip\xe4\xe4s vestlusele"},
 gi0(){return"Ligip\xe4\xe4s vestlusele on keelatud"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" muutis liitumise reegleid j\xe4rgnevalt: "+e},
 ik(d){return d+" muutis oma tunnuspilti"},
 il(d){return d+" muutis jututoa aliast"},
 im(d){return d+" muutis kutse linki"},
-geD(){return"Muuda salas\xf5na"},
+geE(){return"Muuda salas\xf5na"},
 gi5(){return"Muuda koduserverit"},
 gfM(){return"Muuda oma stiili"},
 gfL(){return"Muuda vestlusr\xfchma nime"},
@@ -176,7 +176,7 @@ jl(d){return"Viga asukoha tuvastamisel: "+d},
 gjm(){return"K\xf5ik on valmis!"},
 gfW(){return"\xc4\xe4rmiselt solvav"},
 gjo(d){return"Fondi suurus"},
-geF(d){return"Edasta"},
+geG(d){return"Edasta"},
 glX(){return"Alates liitumise hetkest"},
 glY(){return"Kutse saamisest"},
 gfp(){return"Hakka kasutama uut jututuba"},
@@ -247,7 +247,7 @@ gh7(){return"Summuta vestlus"},
 gh8(){return"Uus vestlus"},
 gh9(){return"Uus verifitseerimisp\xe4ring!"},
 gds(d){return"Edasi"},
-gex(){return"Ei"},
+gey(){return"Ei"},
 gjQ(){return"Puudub \xfchendus koduserveriga"},
 gha(){return"\xdchtegi emotsioonitegevust ei leidunud. \ud83d\ude15"},
 gjR(){return"Sa v\xf5id kr\xfcptimise kasutusele v\xf5tta niipea, kui jututuba pole enam avalik."},
@@ -310,11 +310,11 @@ gkp(d){return"Vasta"},
 ghl(){return"Teata s\xf5numist"},
 gkr(){return"Jututoa vesrioon on uuendatud"},
 gks(){return"Jututoa versioon"},
-geA(d){return"Otsi"},
+geB(d){return"Otsi"},
 gft(){return"Turvalisus"},
 ghi(){return"Taastev\xf5ti"},
 gkg(){return"Kas taasetv\xf5ti on kadunud?"},
-geB(d){return"Saada"},
+geC(d){return"Saada"},
 ghs(){return"Saada tekstis\xf5numina"},
 ght(){return"Saada helifail"},
 gf_(){return"Saada fail"},
@@ -387,7 +387,7 @@ gkG(){return"Miks sa soovid sellest teatada?"},
 gnG(){return"Kas kustutame sinu vestluste varukoopia ja loome uue taastamiseks m\xf5eldud kr\xfcptov\xf5tme?"},
 gnH(){return"Nende e-posti aadresside abil saad taastada oma salas\xf5na."},
 gnI(){return"Kirjuta \xfcks s\xf5num\u2026"},
-ge8(){return"Jah"},
+ge7(){return"Jah"},
 gnK(){return"Sina"},
 geY(){return"Sa enam ei osale selles vestluses"},
 gnN(){return"Sinule on selles vestluses seatud suhtluskeeld"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Hx,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"Hx":{"aP":[]}}'))};
+y(B.HA,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HA":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"LdJDSxvE7qIFh2fX4Kzcu+Oo/10=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"bhyyMhoDnOwdtHVv/GZg6FTs6Dg=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

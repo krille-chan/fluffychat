@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_216",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cV3(){return new B.Hr(A.dJ("cs"))},
-Hr:function Hr(d){this.a=d}}
+cVb(){return new B.Hu(A.dJ("cs"))},
+Hu:function Hu(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[10],B)
-B.Hr.prototype={
+B.Hu.prototype={
 go4(){return"Vypnuto"},
 gko(){return"Zopakujte heslo"},
 gmx(){return"Nen\xed obr\xe1zek."},
@@ -53,7 +53,7 @@ gmu(){return"\u017d\xe1dn\xe9 dal\u0161\xed konverzace nalezeny..."},
 goy(){return"Nejsou zde \u017e\xe1dn\xe9 chaty. Za\u010dn\u011bte nov\xfd chat s n\u011bk\xfdm, pou\u017eit\xedm n\xed\u017ee uveden\xe9ho tla\u010d\xedtka. \u2935\ufe0f"},
 go7(){return"P\u0159ipojen\xe9 chaty"},
 goa(){return"Nep\u0159e\u010dten\xe9"},
-geC(){return"Prostor"},
+geD(){return"Prostor"},
 gnZ(){return"Prostory"},
 gfG(){return"Zak\xe1zat chat"},
 gi0(){return"Zak\xe1z\xe1n"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" zm\u011bnili nastaven\xed pravidel p\u0159ipojen\xed na: "+e}
 ik(d){return d+" zm\u011bnili sv\u016fj avatar"},
 il(d){return d+" zm\u011bnili nastaven\xed alias\u016f m\xedstnosti"},
 im(d){return d+" zm\u011bnili odkaz k pozv\xe1n\xed do m\xedstnosti"},
-geD(){return"Zm\u011bnit heslo"},
+geE(){return"Zm\u011bnit heslo"},
 gi5(){return"Zm\u011bnit domovsk\xfd server"},
 gfM(){return"Zm\u011b\u0148te sv\u016fj styl"},
 gfL(){return"Zm\u011bnit n\xe1zev skupiny"},
@@ -176,7 +176,7 @@ jl(d){return"Chyba p\u0159i z\xedsk\xe1v\xe1n\xed polohy: "+d},
 gjm(){return"V\u0161e p\u0159ipraveno!"},
 gfW(){return"Extr\xe9mn\u011b ur\xe1\u017eliv\xe9"},
 gjo(d){return"Velikost p\xedsma"},
-geF(d){return"P\u0159eposlat"},
+geG(d){return"P\u0159eposlat"},
 glX(){return"Od vstupu"},
 glY(){return"Od pozv\xe1n\xed"},
 gfp(){return"P\u0159ej\xedt do nov\xe9 m\xedstnost"},
@@ -247,7 +247,7 @@ gh7(){return"Ztlumit chat"},
 gh8(){return"Nov\xfd chat"},
 gh9(){return"Nov\xe1 \u017e\xe1dost o ov\u011b\u0159en\xed!"},
 gds(d){return"Dal\u0161\xed"},
-gex(){return"Ne"},
+gey(){return"Ne"},
 gjQ(){return"\u017d\xe1dn\xe9 p\u0159ipojen\xed k serveru"},
 gha(){return"Nebyly nalezeny \u017e\xe1dn\xe9 emotikony. \ud83d\ude15"},
 gjR(){return"M\u016f\u017eete aktivovat \u0161ifrov\xe1n\xed jakmile m\xedstnost p\u0159estane b\xfdt ve\u0159ejn\u011b dostupn\xe1."},
@@ -310,11 +310,11 @@ gkp(d){return"Odpov\u011bd\u011bt"},
 ghl(){return"Nahl\xe1sit zpr\xe1vu"},
 gkr(){return"M\xedstnost byla upgradov\xe1na"},
 gks(){return"Verze m\xedstnosti"},
-geA(d){return"Hledat"},
+geB(d){return"Hledat"},
 gft(){return"Bezpe\u010dnostn\xed"},
 ghi(){return"Kl\xed\u010d k obnoven\xed"},
 gkg(){return"Ztracen\xfd kl\xed\u010d k obnoven\xed?"},
-geB(d){return"Odeslat"},
+geC(d){return"Odeslat"},
 ghs(){return"Odeslat jako text"},
 ght(){return"Odeslat audio"},
 gf_(){return"Odeslat soubor"},
@@ -387,7 +387,7 @@ gkG(){return"Pro\u010d to chcete nahl\xe1sit?"},
 gnG(){return"Chcete vymazat z\xe1lohu chatu a vytvo\u0159it nov\xfd bezpe\u010dnostn\xed kl\xed\u010d?"},
 gnH(){return"S t\u011bmito adresami m\u016f\u017eete obnovit sv\xe9 heslo."},
 gnI(){return"Napi\u0161te zpr\xe1vu\u2026"},
-ge8(){return"Ano"},
+ge7(){return"Ano"},
 gnK(){return"Vy"},
 geY(){return"Tohoto chatu se nad\xe1le ne\xfa\u010dastn\xedte"},
 gnN(){return"Byl v\xe1m zablokov\xe1n p\u0159\xedstup k tomuto chatu"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Hr,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"Hr":{"aP":[]}}'))};
+y(B.Hu,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"Hu":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_216",e:"endPart",h:b})})($__dart_deferred_initializers__,"eX8nYYUpXEpkabylGkrk4+VAJNc=");
+a.eventLog.push({p:"main.dart.js_216",e:"endPart",h:b})})($__dart_deferred_initializers__,"aTXtQWoTVCDgI5ak5N6ZS0P33Zg=");
 //# sourceMappingURL=main.dart.js_216.part.js.map

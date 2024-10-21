@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_243",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVd(){return new B.HB(A.dJ("fil"))},
-HB:function HB(d){this.a=d}}
+cVl(){return new B.HE(A.dJ("fil"))},
+HE:function HE(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[20],B)
-B.HB.prototype={
+B.HE.prototype={
 go4(){return"false"},
 gko(){return"Ulitin ang password"},
 gmx(){return"Hindi isang file na larawan."},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Pagbawalan sa chat"},
 gi0(){return"Pinagbawalan"},
@@ -78,7 +78,7 @@ ij(d,e){return"Pinalitan ni "+d+" ang mga tuntunin sa pagsali sa: "+e},
 ik(d){return"Pinalitan ni "+d+" ang kanilang avatar"},
 il(d){return"Pinalitan ni "+d+" ang mga alias ng room"},
 im(d){return"Pinalitan ni "+d+" ang link ng imbitasyon"},
-geD(){return"Palitan ang password"},
+geE(){return"Palitan ang password"},
 gi5(){return"Palitan ang homeserver"},
 gfM(){return"Palitan ang iyong istilio"},
 gfL(){return"Palitan ng pangalan ng grupo"},
@@ -176,7 +176,7 @@ jl(d){return"Hindi makuha ang lokasyon: "+d},
 gjm(){return"Handa na ang lahat!"},
 gfW(){return"Lubhang nakakasakit"},
 gjo(d){return"Laki ng font"},
-geF(d){return"Forward"},
+geG(d){return"Forward"},
 glX(){return"From joining"},
 glY(){return"From the invitation"},
 gfp(){return"Go to the new room"},
@@ -247,7 +247,7 @@ gh7(){return"Mute chat"},
 gh8(){return"New chat"},
 gh9(){return"New verification request!"},
 gds(d){return"Next"},
-gex(){return"No"},
+gey(){return"No"},
 gjQ(){return"No connection to the server"},
 gha(){return"No emotes found. \ud83d\ude15"},
 gjR(){return"You can only activate encryption as soon as the room is no longer publicly accessible."},
@@ -310,11 +310,11 @@ gkp(d){return"Reply"},
 ghl(){return"Report message"},
 gkr(){return"Room has been upgraded"},
 gks(){return"Room version"},
-geA(d){return"Search"},
+geB(d){return"Search"},
 gft(){return"Security"},
 ghi(){return"Recovery key"},
 gkg(){return"Recovery key lost?"},
-geB(d){return"Send"},
+geC(d){return"Send"},
 ghs(){return"Send as text"},
 ght(){return"Send audio"},
 gf_(){return"Send file"},
@@ -387,7 +387,7 @@ gkG(){return"Why do you want to report this?"},
 gnG(){return"Wipe your chat backup to create a new recovery key?"},
 gnH(){return"With these addresses you can recover your password."},
 gnI(){return"Write a message\u2026"},
-ge8(){return"Yes"},
+ge7(){return"Yes"},
 gnK(){return"You"},
 geY(){return"You are no longer participating in this chat"},
 gnN(){return"You have been banned from this chat"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HB,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HB":{"aP":[]}}'))};
+y(B.HE,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HE":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_243",e:"endPart",h:b})})($__dart_deferred_initializers__,"7TMkUwMWcxkOLYNrZ7AoDfR6si8=");
+a.eventLog.push({p:"main.dart.js_243",e:"endPart",h:b})})($__dart_deferred_initializers__,"V6ApnUeF8K5STw0q8luETZY0cCw=");
 //# sourceMappingURL=main.dart.js_243.part.js.map

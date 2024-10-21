@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_286",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVC(){return new B.HZ(A.dJ("sk"))},
-HZ:function HZ(d){this.a=d}}
+cVK(){return new B.I1(A.dJ("sk"))},
+I1:function I1(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[42],B)
-B.HZ.prototype={
+B.I1.prototype={
 go4(){return"false"},
 gko(){return"Zopakujte heslo"},
 gmx(){return"Not an image file."},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Zabanova\u0165 z chatu"},
 gi0(){return"Zabanovan\xfd"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" zmenili nastavenie pravidiel pripojenia na: "+e},
 ik(d){return d+" si zmenili profilov\xfd obr\xe1zok"},
 il(d){return d+" zmenili nastavenie aliasov chatu"},
 im(d){return d+" zmenili odkaz k pozv\xe1nke do miestnosti"},
-geD(){return"Zmeni\u0165 heslo"},
+geE(){return"Zmeni\u0165 heslo"},
 gi5(){return"Zmeni\u0165 pou\u017eit\xfd server"},
 gfM(){return"Zmena \u0161t\xfdlu"},
 gfL(){return"Zmeni\u0165 n\xe1zov skupiny"},
@@ -176,7 +176,7 @@ jl(d){return"Error obtaining location: "+d},
 gjm(){return"Everything ready!"},
 gfW(){return"Extremely offensive"},
 gjo(d){return"Font size"},
-geF(d){return"Preposla\u0165"},
+geG(d){return"Preposla\u0165"},
 glX(){return"Od pripojenia"},
 glY(){return"Od pozvania"},
 gfp(){return"Go to the new room"},
@@ -247,7 +247,7 @@ gh7(){return"Stlmi\u0165 chat"},
 gh8(){return"New chat"},
 gh9(){return"Nov\xe1 \u017eiados\u0165 o verifik\xe1ciu!"},
 gds(d){return"Next"},
-gex(){return"No"},
+gey(){return"No"},
 gjQ(){return"No connection to the server"},
 gha(){return"Nena\u0161li sa \u017eiadne emotikony. \ud83d\ude15"},
 gjR(){return"You can only activate encryption as soon as the room is no longer publicly accessible."},
@@ -310,11 +310,11 @@ gkp(d){return"Odpoveda\u0165"},
 ghl(){return"Nahl\xe1si\u0165 spr\xe1vu"},
 gkr(){return"Miestnos\u0165 bola upgradeovan\xe1"},
 gks(){return"Verzia miestnosti"},
-geA(d){return"H\u013eada\u0165"},
+geB(d){return"H\u013eada\u0165"},
 gft(){return"Bezpe\u010dnos\u0165"},
 ghi(){return"Recovery key"},
 gkg(){return"Recovery key lost?"},
-geB(d){return"Odosla\u0165"},
+geC(d){return"Odosla\u0165"},
 ghs(){return"Posla\u0165 ako text"},
 ght(){return"Posla\u0165 zvuk"},
 gf_(){return"Odosla\u0165 s\xfabor"},
@@ -387,7 +387,7 @@ gkG(){return"Why do you want to report this?"},
 gnG(){return"Wipe your chat backup to create a new recovery key?"},
 gnH(){return"With these addresses you can recover your password."},
 gnI(){return"Nap\xedsa\u0165 spr\xe1vu\u2026"},
-ge8(){return"\xc1no"},
+ge7(){return"\xc1no"},
 gnK(){return"Vy"},
 geY(){return"U\u017e sa nez\xfa\u010dast\u0148ujete tohto chatu"},
 gnN(){return"M\xe1te zablokovan\xfd pr\xedstup k tomuto chatu"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HZ,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HZ":{"aP":[]}}'))};
+y(B.I1,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"I1":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"D4VXqk25svS6AVh+fDl2Sff/pcU=");
+a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"aHZLD2wySOsJytCmzlV1FqxontM=");
 //# sourceMappingURL=main.dart.js_286.part.js.map

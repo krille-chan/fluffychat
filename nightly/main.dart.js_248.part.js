@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_248",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVg(){return new B.HE(A.dJ("gl"))},
-HE:function HE(d){this.a=d}}
+cVo(){return new B.HH(A.dJ("gl"))},
+HH:function HH(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[23],B)
-B.HE.prototype={
+B.HH.prototype={
 go4(){return"falso"},
 gko(){return"Repite o contrasinal"},
 gmx(){return"Non \xe9 un ficheiro de imaxe."},
@@ -53,7 +53,7 @@ gmu(){return"Non se atopan m\xe1is charlas\u2026"},
 goy(){return"Sen charlas por aqu\xed. Comeza unha nova conversa con algu\xe9n premendo no bot\xf3n de abaixo. \u2935\ufe0f"},
 go7(){return"Charlas nas que participas"},
 goa(){return"Sen ler"},
-geC(){return"Espazo"},
+geD(){return"Espazo"},
 gnZ(){return"Espazos"},
 gfG(){return"Vetar na conversa"},
 gi0(){return"Vetada"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" mudou as regras de acceso a: "+e},
 ik(d){return d+" mudou o avatar"},
 il(d){return d+" mudou os alias da sala"},
 im(d){return d+" mudou a ligaz\xf3n de convite"},
-geD(){return"Mudar contrasinal"},
+geE(){return"Mudar contrasinal"},
 gi5(){return"Mudar de servidor de inicio"},
 gfM(){return"Cambiar o estilo"},
 gfL(){return"Mudar o nome do grupo"},
@@ -176,7 +176,7 @@ jl(d){return"Erro ao obter a localizaci\xf3n: "+d},
 gjm(){return"Todo preparado!"},
 gfW(){return"Extremadamente ofensivo"},
 gjo(d){return"Tama\xf1o da letra"},
-geF(d){return"Reenviar"},
+geG(d){return"Reenviar"},
 glX(){return"Desde que se una"},
 glY(){return"Desde o convite"},
 gfp(){return"Ir \xe1 nova sala"},
@@ -247,7 +247,7 @@ gh7(){return"Acalar conversa"},
 gh8(){return"Nova conversa"},
 gh9(){return"Nova solicitude de verificaci\xf3n!"},
 gds(d){return"Seguinte"},
-gex(){return"Non"},
+gey(){return"Non"},
 gjQ(){return"Sen conexi\xf3n co servidor"},
 gha(){return"Non hai emotes. \ud83d\ude15"},
 gjR(){return"S\xf3 podes activar a cifraxe tan pronto como a sala non sexa p\xfablicamente accesible."},
@@ -310,11 +310,11 @@ gkp(d){return"Responder"},
 ghl(){return"Denunciar mensaxe"},
 gkr(){return"A sala foi actualizada"},
 gks(){return"Versi\xf3n da sala"},
-geA(d){return"Buscar"},
+geB(d){return"Buscar"},
 gft(){return"Seguridade"},
 ghi(){return"Chave de recuperaci\xf3n"},
 gkg(){return"Perdeches a chave de recuperaci\xf3n?"},
-geB(d){return"Enviar"},
+geC(d){return"Enviar"},
 ghs(){return"Enviar como texto"},
 ght(){return"Enviar audio"},
 gf_(){return"Enviar ficheiro"},
@@ -387,7 +387,7 @@ gkG(){return"Por que queres denunciar esto?"},
 gnG(){return"Queres eliminar a copia de apoio da conversa e crear unha nova chave de recuperaci\xf3n?"},
 gnH(){return"Con estos enderezos podes recuperar o contrasinal."},
 gnI(){return"Escribe unha mensaxe\u2026"},
-ge8(){return"Si"},
+ge7(){return"Si"},
 gnK(){return"Ti"},
 geY(){return"Xa non participas desta conversa"},
 gnN(){return"Foches vetada nesta conversa"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HE,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HE":{"aP":[]}}'))};
+y(B.HH,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HH":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"axZn5J/R/c6K9ZkUqqPqivzPpG0=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"Ka5XcDGsqInQxEsTf+C388/NvSg=");
 //# sourceMappingURL=main.dart.js_248.part.js.map

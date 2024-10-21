@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_270",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVo(){return new B.HM(A.dJ("it"))},
-HM:function HM(d){this.a=d}}
+cVw(){return new B.HP(A.dJ("it"))},
+HP:function HP(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[31],B)
-B.HM.prototype={
+B.HP.prototype={
 go4(){return"false"},
 gko(){return"Ripeti password"},
 gmx(){return"Non \xe8 un file immagine."},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Bandisci dalla chat"},
 gi0(){return"Bandito"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" ha cambiato le regole per unirsi in: "+e},
 ik(d){return d+" ha cambiato il loro avatar"},
 il(d){return d+" ha cambiato il nome delle stanze"},
 im(d){return d+" ha cambiato il link di invito"},
-geD(){return"Cambia la password"},
+geE(){return"Cambia la password"},
 gi5(){return"Cambia il server principale"},
 gfM(){return"Cambia il tuo stile"},
 gfL(){return"Cambia il nome del gruppo"},
@@ -176,7 +176,7 @@ jl(d){return"Errore cercando di ottenere la posizione: "+d},
 gjm(){return"Tutto pronto!"},
 gfW(){return"Estremamente offensivo"},
 gjo(d){return"Dimensione carattere"},
-geF(d){return"Inoltra"},
+geG(d){return"Inoltra"},
 glX(){return"Dall'adesione"},
 glY(){return"Dall'invito"},
 gfp(){return"Vai nella nuova stanza"},
@@ -247,7 +247,7 @@ gh7(){return"Silenzia discussione"},
 gh8(){return"Nuova discussione"},
 gh9(){return"Nuova richiesta di verifica!"},
 gds(d){return"Avanti"},
-gex(){return"No"},
+gey(){return"No"},
 gjQ(){return"Nessuna connessione al server"},
 gha(){return"Nessun emote trovato. \ud83d\ude15"},
 gjR(){return"Puoi attivare la crittografia solo quando la stanza non \xe8 pi\xf9 accessibile pubblicamente."},
@@ -310,11 +310,11 @@ gkp(d){return"Rispondi"},
 ghl(){return"Segnala il messaggio"},
 gkr(){return"La stanza \xe8 stata aggiornata"},
 gks(){return"Versione della stanza"},
-geA(d){return"Cerca"},
+geB(d){return"Cerca"},
 gft(){return"Sicurezza"},
 ghi(){return"Chiave di recupero"},
 gkg(){return"Chiave di recupero smarrita?"},
-geB(d){return"Invia"},
+geC(d){return"Invia"},
 ghs(){return"Invia come testo"},
 ght(){return"Invia un file audio"},
 gf_(){return"Invia un file"},
@@ -387,7 +387,7 @@ gkG(){return"Perch\xe9 vuoi segnalarlo?"},
 gnG(){return"Cancellare il backup della discussione per creare una nuova chiave di ripristino?"},
 gnH(){return"Con questi indirizzi puoi recuperare la tua password se necessario."},
 gnI(){return"Scrivi un messaggio\u2026"},
-ge8(){return"S\xec"},
+ge7(){return"S\xec"},
 gnK(){return"Tu"},
 geY(){return"Non stai pi\xf9 partecipando a questa chat"},
 gnN(){return"Sei stato/a bandito/a da questa chat"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HM,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HM":{"aP":[]}}'))};
+y(B.HP,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HP":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"X8a7WtZM+DDqDk+hjHE0vjih+mo=");
+a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"fxE0PySRGrPmh0xqWyv8JGGAvbM=");
 //# sourceMappingURL=main.dart.js_270.part.js.map

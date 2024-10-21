@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_260",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVk(){return new B.HI(A.dJ("hu"))},
-HI:function HI(d){this.a=d}}
+cVs(){return new B.HL(A.dJ("hu"))},
+HL:function HL(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[27],B)
-B.HI.prototype={
+B.HL.prototype={
 go4(){return"true"},
 gko(){return"Jelsz\xf3 megism\xe9tl\xe9se"},
 gmx(){return"Nem k\xe9p f\xe1jl."},
@@ -53,7 +53,7 @@ gmu(){return"Nincs t\xf6bb cseveg\xe9s..."},
 goy(){return"Itt m\xe9g nincs cseveg\xe9s. Kezdjen \xfajat valakivel a lentebbi gombbal. \u2935\ufe0f"},
 go7(){return"Csatlakozott cseveg\xe9sek"},
 goa(){return"Olvasatlan"},
-geC(){return"T\xe9r"},
+geD(){return"T\xe9r"},
 gnZ(){return"Terek"},
 gfG(){return"Kitilt\xe1s cseveg\xe9sb\u0151l"},
 gi0(){return"Kitiltva"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" m\xf3dos\xedtotta a csatlakoz\xe1si szab\xe1lyokat erre: "+e}
 ik(d){return d+" m\xf3dos\xedtotta a profilk\xe9p\xe9t"},
 il(d){return d+" m\xf3dos\xedtotta a szoba \xe1lneveit"},
 im(d){return d+" m\xf3dos\xedtotta a megh\xedv\xf3 hivatkoz\xe1st"},
-geD(){return"Jelsz\xf3 m\xf3dos\xedt\xe1sa"},
+geE(){return"Jelsz\xf3 m\xf3dos\xedt\xe1sa"},
 gi5(){return"Matrix-kiszolg\xe1l\xf3 v\xe1lt\xe1s"},
 gfM(){return"St\xedlus m\xf3dos\xedt\xe1sa"},
 gfL(){return"Csoport nev\xe9nek m\xf3dos\xedt\xe1sa"},
@@ -176,7 +176,7 @@ jl(d){return"Hiba a tart\xf3zkod\xe1si hely meghat\xe1roz\xe1sa k\xf6zben: "+d},
 gjm(){return"Minden k\xe9sz!"},
 gfW(){return"Rendk\xedv\xfcl s\xe9rt\u0151"},
 gjo(d){return"Bet\u0171m\xe9ret"},
-geF(d){return"Tov\xe1bb\xedt\xe1s"},
+geG(d){return"Tov\xe1bb\xedt\xe1s"},
 glX(){return"Csatlakoz\xe1s \xf3ta"},
 glY(){return"Megh\xedv\xe1s \xf3ta"},
 gfp(){return"\xdaj szoba megnyit\xe1sa"},
@@ -247,7 +247,7 @@ gh7(){return"Cseveg\xe9s n\xe9m\xedt\xe1sa"},
 gh8(){return"\xdaj cseveg\xe9s"},
 gh9(){return"\xdaj hiteles\xedt\xe9si k\xe9relem!"},
 gds(d){return"K\xf6vetkez\u0151"},
-gex(){return"Nem"},
+gey(){return"Nem"},
 gjQ(){return"Nem el\xe9rhet\u0151 a szerver"},
 gha(){return"Emojik nem el\xe9rhet\u0151ek. \ud83d\ude15"},
 gjR(){return"Csak akkor kapcsolhat\xf3 be a titkos\xedt\xe1s, ha a szoba nem nyilv\xe1nosan hozz\xe1f\xe9rhet\u0151."},
@@ -310,11 +310,11 @@ gkp(d){return"V\xe1lasz"},
 ghl(){return"\xdczenet jelent\xe9se"},
 gkr(){return"A szoba friss\xedtve lett"},
 gks(){return"Szoba verzi\xf3"},
-geA(d){return"Keres\xe9s"},
+geB(d){return"Keres\xe9s"},
 gft(){return"Biztons\xe1g"},
 ghi(){return"Vissza\xe1ll\xedt\xf3 kulcs"},
 gkg(){return"Elveszett vissza\xe1ll\xedt\xf3 kulcs?"},
-geB(d){return"K\xfcld\xe9s"},
+geC(d){return"K\xfcld\xe9s"},
 ghs(){return"Sz\xf6vegk\xe9nt k\xfcld\xe9s"},
 ght(){return"Hang\xfczenet k\xfcld\xe9se"},
 gf_(){return"F\xe1jl k\xfcld\xe9se"},
@@ -387,7 +387,7 @@ gkG(){return"Mi\xe9rt k\xedv\xe1nja ezt bejelenteni?"},
 gnG(){return"Le k\xedv\xe1nja t\xf6r\xf6lni a chat ment\xe9s\xe9t, hogy l\xe9trehozhasson egy \xfaj vissza\xe1ll\xedt\xe1si kulcsot?"},
 gnH(){return"Ezekkel a c\xedmekkel vissza tudja \xe1ll\xedtani a jelszav\xe1t."},
 gnI(){return"\xcdrjon egy \xfczenetet\u2026"},
-ge8(){return"Igen"},
+ge7(){return"Igen"},
 gnK(){return"\xd6n"},
 geY(){return"Imm\xe1ron nem vesz r\xe9szt ebben a cseveg\xe9sben"},
 gnN(){return"Kitiltott\xe1k ebb\u0151l a cseveg\xe9sb\u0151l"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HI,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HI":{"aP":[]}}'))};
+y(B.HL,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HL":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"hVyDnMH8CwxfNSUhGRXnBZTv3i8=");
+a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"oO6Wgfz99Q/dVc8GkBr7LgqaGNw=");
 //# sourceMappingURL=main.dart.js_260.part.js.map

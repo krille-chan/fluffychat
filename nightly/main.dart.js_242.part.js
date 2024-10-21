@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_242",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVc(){return new B.HA(A.dJ("fi"))},
-HA:function HA(d){this.a=d}}
+cVk(){return new B.HD(A.dJ("fi"))},
+HD:function HD(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[19],B)
-B.HA.prototype={
+B.HD.prototype={
 go4(){return"false"},
 gko(){return"Salasana uudelleen"},
 gmx(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -53,7 +53,7 @@ gmu(){return"No more chats found..."},
 goy(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go7(){return"Joined chats"},
 goa(){return"Unread"},
-geC(){return"Space"},
+geD(){return"Space"},
 gnZ(){return"Spaces"},
 gfG(){return"Anna porttikielto keskusteluun"},
 gi0(){return"Porttikiellossa"},
@@ -78,7 +78,7 @@ ij(d,e){return d+" asetti liittymiss\xe4\xe4nn\xf6iksi: "+e},
 ik(d){return d+" vaihtoi profiilikuvaansa"},
 il(d){return d+" muutti huoneen aliaksia"},
 im(d){return d+" muutti kutsulinkki\xe4"},
-geD(){return"Vaihda salasana"},
+geE(){return"Vaihda salasana"},
 gi5(){return"Vaihda kotipalvelinta"},
 gfM(){return"Vaihda tyyli\xe4si"},
 gfL(){return"Vaihda ryhm\xe4n nime\xe4"},
@@ -176,7 +176,7 @@ jl(d){return"Virhe paikannuksessa: "+d},
 gjm(){return"Kaikki on valmista!"},
 gfW(){return"Eritt\xe4in loukkaavaa"},
 gjo(d){return"Fonttikoko"},
-geF(d){return"Edelleenl\xe4het\xe4"},
+geG(d){return"Edelleenl\xe4het\xe4"},
 glX(){return"Alkaen liittymisest\xe4"},
 glY(){return"Alkaen kutsumisesta"},
 gfp(){return"Mene uuteen huoneeseen"},
@@ -247,7 +247,7 @@ gh7(){return"Vaienna keskustelu"},
 gh8(){return"Uusi keskustelu"},
 gh9(){return"Uusi varmennuspyynt\xf6!"},
 gds(d){return"Seuraava"},
-gex(){return"Ei"},
+gey(){return"Ei"},
 gjQ(){return"Ei yhteytt\xe4 palvelimeen"},
 gha(){return"Emoteja ei l\xf6ytynyt. \ud83d\ude15"},
 gjR(){return"Voit ottaa salauksen k\xe4ytt\xf6\xf6n vasta kun huone ei ole julkisesti liitytt\xe4viss\xe4."},
@@ -310,11 +310,11 @@ gkp(d){return"Vastaa"},
 ghl(){return"Ilmoita viesti"},
 gkr(){return"Huone on p\xe4ivitetty"},
 gks(){return"Huoneen versio"},
-geA(d){return"Hae"},
+geB(d){return"Hae"},
 gft(){return"Turvallisuus"},
 ghi(){return"Palautusavain"},
 gkg(){return"Kadonnut palautusavain?"},
-geB(d){return"L\xe4het\xe4"},
+geC(d){return"L\xe4het\xe4"},
 ghs(){return"L\xe4het\xe4 tekstin\xe4"},
 ght(){return"L\xe4het\xe4 \xe4\xe4niviesti"},
 gf_(){return"L\xe4het\xe4 tiedosto"},
@@ -387,7 +387,7 @@ gkG(){return"Miksi haluat ilmoittaa t\xe4m\xe4n?"},
 gnG(){return"Pyyhi keskusteluvarmuuskopio luodaksesi uuden palautusavaimen?"},
 gnH(){return"N\xe4ill\xe4 osoitteilla voit palauttaa salasanasi."},
 gnI(){return"Kirjoita viesti\u2026"},
-ge8(){return"Kyll\xe4"},
+ge7(){return"Kyll\xe4"},
 gnK(){return"Sin\xe4"},
 geY(){return"Et en\xe4\xe4 osallistu t\xe4h\xe4n keskusteluun"},
 gnN(){return"Sinulle on annettu porttikielto t\xe4h\xe4n keskusteluun"},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HA,C.aP)})()
-A.ep(b.typeUniverse,JSON.parse('{"HA":{"aP":[]}}'))};
+y(B.HD,C.aP)})()
+A.ep(b.typeUniverse,JSON.parse('{"HD":{"aP":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"/gVdim2HiiaXaVXthW2ymuv+RcA=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"A89AxB1yhzFJm1t18THtQQBUA3Q=");
 //# sourceMappingURL=main.dart.js_242.part.js.map
