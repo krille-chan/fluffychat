@@ -35,15 +35,13 @@ class TtsController {
       await tts.awaitSpeakCompletion(true);
 
       final voices = await tts.getVoices;
+      debugPrint("voices: $voices");
       availableLangCodes = (voices as List)
           .map((v) {
-            // debugPrint('v: $v');
-
-            //@ggurdin i changed this from name to locale
-            //in my testing, that's where the language code is stored
-            // maybe it's different for different devices? was it different in your android testing?
-            // return v['name']?.split("-").first;
-            return v['locale']?.split("-").first;
+            // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'
+            final nameCode = v['name']?.split("-").first;
+            final localeCode = v['locale']?.split("-").first;
+            return nameCode.length == 2 ? nameCode : localeCode;
           })
           .toSet()
           .cast<String>()
@@ -67,7 +65,6 @@ class TtsController {
   bool get isLanguageFullySupported =>
       availableLangCodes.contains(targetLanguage);
 
-  // @ggurdin
   Widget get missingVoiceButton => targetLanguage != null &&
           (kIsWeb || isLanguageFullySupported || !PlatformInfos.isAndroid)
       ? const SizedBox.shrink()

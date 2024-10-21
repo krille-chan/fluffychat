@@ -45,18 +45,24 @@ extension PangeaEvent on Event {
   Future<PangeaAudioFile?> getPangeaAudioFile() async {
     if (type != EventTypes.Message || messageType != MessageTypes.Audio) {
       ErrorHandler.logError(
-        e: "Event $eventId is not an audio message",
+        e: "Event is not an audio message",
+        data: {
+          "event": toJson(),
+        },
       );
       return null;
     }
 
-    // @ggurdin what are cases where these would be null?
-    // if it would be unexpected, we should log an error with details to investigate
     final transcription =
         content.tryGetMap<String, dynamic>(ModelKey.transcription);
     final audioContent =
         content.tryGetMap<String, dynamic>('org.matrix.msc1767.audio');
-    if (transcription == null || audioContent == null) return null;
+    if (transcription == null || audioContent == null) {
+      ErrorHandler.logError(
+        e: "Called getPangeaAudioFile on an audio message without transcription or audio content",
+      );
+      return null;
+    }
 
     final matrixFile = await downloadAndDecryptAttachment();
     final duration = audioContent.tryGet<int>('duration');
