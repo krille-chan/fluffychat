@@ -48,17 +48,17 @@ class WordAudioButtonState extends State<WordAudioButton> {
           onPressed: () async {
             if (_isPlaying) {
               await ttsController.tts.stop();
-              setState(() {
-                _isPlaying = false;
-              });
+              if (mounted) {
+                setState(() => _isPlaying = false);
+              }
             } else {
-              setState(() {
-                _isPlaying = true;
-              });
+              if (mounted) {
+                setState(() => _isPlaying = true);
+              }
               await ttsController.speak(widget.text);
-              setState(() {
-                _isPlaying = false;
-              });
+              if (mounted) {
+                setState(() => _isPlaying = false);
+              }
             }
           }, // Disable button if language isn't supported
         ),

@@ -587,18 +587,27 @@ class PangeaMessageEvent {
   /// Returns a list of all [PracticeActivityEvent] objects
   /// associated with this message event.
   List<PracticeActivityEvent> get _practiceActivityEvents {
-    return _latestEdit
+    final List<Event> events = _latestEdit
         .aggregatedEvents(
           timeline,
           PangeaEventTypes.pangeaActivity,
         )
-        .map(
-          (e) => PracticeActivityEvent(
-            timeline: timeline,
-            event: e,
-          ),
-        )
         .toList();
+
+    final List<PracticeActivityEvent> practiceEvents = [];
+    for (final event in events) {
+      try {
+        practiceEvents.add(
+          PracticeActivityEvent(
+            timeline: timeline,
+            event: event,
+          ),
+        );
+      } catch (e, s) {
+        ErrorHandler.logError(e: e, s: s, data: event.toJson());
+      }
+    }
+    return practiceEvents;
   }
 
   /// Returns a boolean value indicating whether there are any
@@ -617,7 +626,6 @@ class PangeaMessageEvent {
     String langCode, {
     bool debug = false,
   }) {
-    // @wcjord - disabled try catch for testing
     try {
       debugger(when: debug);
       final List<PracticeActivityEvent> activities = [];
