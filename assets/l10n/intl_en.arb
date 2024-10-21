@@ -2812,7 +2812,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unableToFindClass": "We are unable to find the space. Please double-check the information with the space administrator. If you are still experiencing an issue, please contact support@pangea.chat.",
+  "unableToFindClass": "There's no space with that code. Please try again.",
   "@unableToFindClass": {
     "type": "text",
     "placeholders": {}
