@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io' as io;
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -42,6 +43,16 @@ String formatCookiesToJsonString(
   }
 
   return result;
+}
+
+String formatCookiesToJsonApi(List<Cookie> cookies) {
+  Map<String, String> formattedCookies = {};
+
+  for (var cookie in cookies) {
+    formattedCookies[cookie.name] = cookie.value;
+  }
+
+  return jsonEncode(formattedCookies);
 }
 
 /// Check if the latest message indicates online status

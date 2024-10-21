@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/add_bridge/service/hostname.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
@@ -26,6 +29,12 @@ enum ConnectionStatus {
   connected,
   notConnected,
   error,
+  connecting,
+  transientDisconnect,
+  badCredentials,
+  unknownError,
+
+
 }
 
 enum ConnectionError {
@@ -34,6 +43,7 @@ enum ConnectionError {
   messageSendingFailed,
   timeout,
   unknown,
+  badCredentials,
 }
 
 class AddBridge extends StatefulWidget {
@@ -49,6 +59,9 @@ class BotController extends State<AddBridge> {
 
   late Client client;
   late String hostname;
+  late Map<String, String> headers;
+
+  late Dio dio;
 
   List<SocialNetwork> socialNetworks = SocialNetworkManager.socialNetworks;
 
@@ -59,6 +72,8 @@ class BotController extends State<AddBridge> {
   void initState() {
     super.initState();
     matrixInit();
+    initializeHeaders();
+    initializeDio();
     handleRefresh();
   }
 
@@ -70,12 +85,30 @@ class BotController extends State<AddBridge> {
     super.dispose();
   }
 
+  void initializeDio() {
+    final serverUrl = AppConfig.server.startsWith(':')
+        ? AppConfig.server.substring(1)
+        : AppConfig.server;
+
+    dio = Dio(BaseOptions(
+      baseUrl: 'https://matrix.$serverUrl/_matrix/',
+      headers: headers,
+    ));
+  }
+
   /// Initialize Matrix client and extract hostname
   void matrixInit() {
     client = Matrix.of(context).client;
 
     final String fullUrl = client.homeserver!.host;
     hostname = extractHostName(fullUrl);
+  }
+
+  void initializeHeaders() {
+    headers = {
+      'Authorization': 'Bearer ${client.accessToken}',
+      'Content-Type': 'application/json',
+    };
   }
 
   /// Wait for Matrix synchronization
@@ -176,6 +209,121 @@ class BotController extends State<AddBridge> {
     Logs().i('No message received from bot within the wait time');
   }
 
+  Future<void> pingBridgeAPI(SocialNetwork network) async {
+    final userId = client.userID;
+
+    final response = await dio.get('${network.apiPath}/_matrix/provision/v3/whoami?user_id=$userId');
+
+    final status = interpretBridgeResponse(response);
+
+    switch (status) {
+      case ConnectionStatus.connecting:
+        if (kDebugMode) {
+          print('Connecting to ${network.name}...');
+        }
+        break;
+      case ConnectionStatus.connected:
+        setState(() => network.updateConnectionResult(true));
+        break;
+      case ConnectionStatus.transientDisconnect:
+        if (kDebugMode) {
+          print('Transient disconnect detected for ${network.name}.');
+        }
+        break;
+      case ConnectionStatus.badCredentials:
+        _handleError(network, ConnectionError.badCredentials);
+        break;
+      case ConnectionStatus.unknownError:
+        _handleError(network, ConnectionError.unknown);
+        break;
+      case ConnectionStatus.notConnected:
+        setState(() => network.updateConnectionResult(false));
+        break;
+      case ConnectionStatus.error:
+        _handleError(
+            network,
+            ConnectionError.unknown,
+            null,
+            'An unexpected error occurred while communicating with the server. Please check your connection or try again later.',
+        );
+        break;
+    }
+  }
+
+  ConnectionStatus interpretBridgeResponse(Response response) {
+    try {
+      final responseJson = response.data;
+      final networkName = responseJson['network']?['displayname'];
+
+      if (networkName != null) {
+        final logins = responseJson['logins'];
+
+        if (logins != null && logins.isNotEmpty) {
+          final stateEvent = logins[0]['state']?['state_event'];
+
+          switch (stateEvent) {
+            case 'CONNECTING':
+              return ConnectionStatus.connecting;
+            case 'CONNECTED':
+              return ConnectionStatus.connected;
+            case 'TRANSIENT_DISCONNECT':
+              return ConnectionStatus.transientDisconnect;
+            case 'BAD_CREDENTIALS':
+              return ConnectionStatus.badCredentials;
+            case 'UNKNOWN_ERROR':
+              return ConnectionStatus.unknownError;
+            default:
+              return ConnectionStatus.notConnected;
+          }
+        } else {
+          return ConnectionStatus.notConnected;
+        }
+      }
+    } catch (e) {
+      return ConnectionStatus.error;
+    }
+    return ConnectionStatus.error;
+  }
+
+  // Future<void> fetchLoginFlows(SocialNetwork network) async {
+  //   final accessToken = client.accessToken;
+  //   final userId = client.userID;
+  //   final url = '/${network.apiPath}/provision/v3/login/flows?user_id=$userId';
+  //
+  //   try {
+  //     final response = await dio.get(
+  //       url,
+  //       options: Options(
+  //         headers: {'Authorization': 'Bearer $accessToken'},
+  //       ),
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       final responseJson = response.data;
+  //       final flows = responseJson['flows'];
+  //
+  //       if (flows != null) {
+  //         if (kDebugMode) {
+  //           print('Available login flows for ${network.name}:');
+  //         }
+  //         for (var flow in flows) {
+  //           if (kDebugMode) {
+  //             print('Name: ${flow['name']}, Description: ${flow['description']}, ${flow['id']}');
+  //           }
+  //         }
+  //       } else {
+  //         _handleError(network, ConnectionError.unknown, "No login flows found.");
+  //       }
+  //     } else if (response.statusCode == 401) {
+  //       _handleError(network, ConnectionError.unknown, "Invalid token for ${network.name}.");
+  //     } else {
+  //       _handleError(network, ConnectionError.unknown, "Unexpected error: ${response.statusCode}");
+  //     }
+  //   } catch (error) {
+  //     _handleError(network, ConnectionError.unknown, error.toString());
+  //   }
+  // }
+
   /// Ping a social network to check connection status
   Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
     final String botUserId = '${socialNetwork.chatBot}$hostname';
@@ -245,9 +393,15 @@ class BotController extends State<AddBridge> {
       }
     });
 
-    await Future.wait(socialNetworks
-        .where((network) => network.available)
-        .map((network) => pingSocialNetwork(network)));
+    await Future.wait(socialNetworks.where((network) => network.available).map((network) {
+      if (network.supportsBridgev2Apis) {
+        // Calling up the ping API function for Messenger
+        return pingBridgeAPI(network);
+      } else {
+        // Continue with existing function for other networks
+        return pingSocialNetwork(network);
+      }
+    }));
   }
 
   /// Process the ping response from a social network
@@ -355,7 +509,7 @@ class BotController extends State<AddBridge> {
 
   /// Error handling method with a default error type
   void _handleError(SocialNetwork socialNetwork,
-      [ConnectionError error = ConnectionError.unknown, String? lastMessage]) {
+      [ConnectionError error = ConnectionError.unknown, String? lastMessage, String? customMessage]) {
     setState(() {
       socialNetwork.setError(true);
     });
@@ -375,9 +529,12 @@ class BotController extends State<AddBridge> {
       case ConnectionError.timeout:
         errorMessage = 'Operation timed out';
         break;
+      case ConnectionError.badCredentials:
+        errorMessage = 'Invalid credentials provided';
+        break;
       case ConnectionError.unknown:
       default:
-        errorMessage = 'An unknown error occurred';
+        errorMessage = customMessage ?? 'An unknown error occurred';
         break;
     }
 
@@ -393,6 +550,39 @@ class BotController extends State<AddBridge> {
   }
 
   /// Disconnect from a social network
+  Future<void> disconnectBridgeApi(
+      BuildContext context,
+      SocialNetwork network,
+      ConnectionStateModel connectionState,
+      {String loginId = 'all'}
+      ) async {
+    final userId = client.userID;
+    final logoutUrl = '/${network.apiPath}/_matrix/provision/v3/logout/$loginId?user_id=$userId';
+
+    Future.microtask(() {
+      connectionState.updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
+    });
+
+    try {
+      final response = await dio.post(logoutUrl);
+
+      if (response.statusCode == 200) {
+        if (kDebugMode) {
+          print("Successful disconnection for ${network.name}");
+        }
+        setState(() => network.updateConnectionResult(false));
+      } else {
+        _handleError(network, ConnectionError.unknown, "Disconnection error: ${response.statusCode}");
+      }
+    } catch (error) {
+      _handleError(network, ConnectionError.unknown, "Disconnection error: $error");
+    } finally {
+      Future.microtask(() {
+        connectionState.reset();
+      });
+    }
+  }
+
   Future<void> disconnectFromNetwork(BuildContext context,
       SocialNetwork network, ConnectionStateModel connectionState) async {
     final String botUserId = '${network.chatBot}$hostname';
@@ -633,7 +823,7 @@ class BotController extends State<AddBridge> {
       BuildContext context, SocialNetwork network) async {
     final bool success = await showBottomSheetBridge(context, network, this);
 
-    if (success) {
+    if (success && !network.supportsBridgev2Apis) {
       await deleteConversationDialog(context, network, this);
     }
   }
@@ -641,6 +831,79 @@ class BotController extends State<AddBridge> {
   // 📌 ***********************************************************************
   // 📌 ************************** Messenger & Instagram **************************
   // 📌 ***********************************************************************
+
+  Future<void> startBridgeLogin(
+      BuildContext context,
+      WebviewCookieManager cookieManager,
+      ConnectionStateModel connectionState,
+      SocialNetwork network,
+      ) async {
+    final flowID = network.flowId;
+    final userId = client.userID;
+
+    // Step 1: Start the login process
+    final loginStartUrl = '/${network.apiPath}/_matrix/provision/v3/login/start/$flowID?user_id=$userId';
+
+    print("loginStartUrl: $loginStartUrl");
+
+    try {
+      // Initiate the login process
+      final startResponse = await dio.post(loginStartUrl);
+
+      if (startResponse.statusCode == 200) {
+        final startData = startResponse.data;
+        final loginId = startData['login_id'];
+        final stepType = startData['type'];
+        final stepId = startData['step_id'];
+
+        // Update state if there's a display message
+        if (stepType == 'display_and_wait') {
+          connectionState.updateConnectionTitle(
+            startData['instructions'] ?? 'Waiting for user action...',
+          );
+        }
+
+        // Step 2: If the next step is user input or cookies, prepare to submit cookies
+        if (stepType == 'user_input' || stepType == 'cookies') {
+          // Retrieve cookies
+          final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+          final formattedCookieString = formatCookiesToJsonApi(gotCookies);
+
+          // Submit cookies to the login process step
+          final stepUrl = '/${network.apiPath}/_matrix/provision/v3/login/step/$loginId/$stepId/cookies?user_id=$userId';
+
+          final stepResponse = await dio.post(stepUrl, data: formattedCookieString);
+
+          if (stepResponse.statusCode == 200) {
+            final stepData = stepResponse.data;
+            if (stepData['type'] == 'complete') {
+              setState(() => network.updateConnectionResult(true));
+              if (kDebugMode) print('Login successful for ${network.name}');
+            } else {
+              network.setError(true);
+              _handleError(network, ConnectionError.unknown, 'Unexpected response type: ${stepData['type']}');
+            }
+          } else {
+            network.setError(true);
+            _handleError(network, ConnectionError.unknown, 'Error submitting step: ${stepResponse.statusCode}');
+          }
+        } else {
+          network.setError(true);
+          _handleError(network, ConnectionError.unknown, 'Unexpected step type: $stepType');
+        }
+      } else {
+        network.setError(true);
+        _handleError(network, ConnectionError.unknown, 'Login initiation failed with status: ${startResponse.statusCode}');
+      }
+    } catch (error) {
+      network.setError(true);
+      _handleError(network, ConnectionError.unknown, error.toString());
+    } finally {
+      Future.microtask(() {
+        connectionState.reset();
+      });
+    }
+  }
 
   /// Create a bridge for Messenger & Instagram using cookies
   Future<void> createBridgeMeta(

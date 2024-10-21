@@ -37,12 +37,16 @@ Future<bool> showBottomSheetBridge(
             ),
             onTap: () async {
               try {
-                // To show Loading while executing the function
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
-                    await controller.disconnectFromNetwork(
-                        context, network, connectionStateModel);
+                    if(network.supportsBridgev2Apis) {
+                      await controller.disconnectBridgeApi(
+                          context, network, connectionStateModel);
+                    }else{
+                      await controller.disconnectFromNetwork(
+                          context, network, connectionStateModel);
+                    }
                   },
                 );
 
