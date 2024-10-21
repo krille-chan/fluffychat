@@ -3,9 +3,11 @@ import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
 import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,7 @@ import 'package:flutter/material.dart';
 /// The multiple choice activity view
 class MultipleChoiceActivity extends StatefulWidget {
   final MessagePracticeActivityCardState practiceCardController;
-  final PracticeActivityModel? currentActivity;
+  final PracticeActivityModel currentActivity;
 
   const MultipleChoiceActivity({
     super.key,
@@ -52,7 +54,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     }
 
     final bool isCorrect =
-        widget.currentActivity!.multipleChoice!.isCorrect(value, index);
+        widget.currentActivity.content.isCorrect(value, index);
 
     currentRecordModel?.addResponse(
       text: value,
@@ -79,7 +81,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     );
 
     // If the selected choice is correct, send the record and get the next activity
-    if (widget.currentActivity!.multipleChoice!.isCorrect(value, index)) {
+    if (widget.currentActivity.content.isCorrect(value, index)) {
       widget.practiceCardController.onActivityFinish();
     }
 
@@ -90,39 +92,37 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
 
   @override
   Widget build(BuildContext context) {
-    final PracticeActivityModel? practiceActivity = widget.currentActivity;
-
-    if (practiceActivity == null) {
-      return const SizedBox();
-    }
+    final PracticeActivityModel practiceActivity = widget.currentActivity;
 
     return Container(
       padding: const EdgeInsets.all(8),
       child: Column(
         children: [
           Text(
-            practiceActivity.multipleChoice!.question,
+            practiceActivity.content.question,
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 8),
+          if (practiceActivity.activityType ==
+              ActivityTypeEnum.wordFocusListening)
+            WordAudioButton(text: practiceActivity.content.answer),
           ChoicesArray(
             isLoading: false,
             uniqueKeyForLayerLink: (index) => "multiple_choice_$index",
             originalSpan: "placeholder",
             onPressed: updateChoice,
             selectedChoiceIndex: selectedChoiceIndex,
-            choices: practiceActivity.multipleChoice!.choices
+            choices: practiceActivity.content.choices
                 .mapIndexed(
                   (index, value) => Choice(
                     text: value,
                     color: currentRecordModel?.hasTextResponse(value) ?? false
-                        ? practiceActivity.multipleChoice!.choiceColor(index)
+                        ? practiceActivity.content.choiceColor(index)
                         : null,
-                    isGold: practiceActivity.multipleChoice!
-                        .isCorrect(value, index),
+                    isGold: practiceActivity.content.isCorrect(value, index),
                   ),
                 )
                 .toList(),

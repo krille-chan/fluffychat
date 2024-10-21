@@ -6,6 +6,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_reactions.dart';
+import 'package:fluffychat/pangea/enum/activity_display_instructions_enum.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -182,8 +183,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void onClickOverlayMessageToken(
     PangeaToken token,
   ) {
-    if ([MessageMode.practiceActivity, MessageMode.textToSpeech]
-        .contains(toolbarMode)) {
+    if ([
+      MessageMode.practiceActivity,
+      // MessageMode.textToSpeech
+    ].contains(toolbarMode)) {
       return;
     }
 
@@ -210,19 +213,23 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   void setSelectedSpan(PracticeActivityModel activity) {
     final RelevantSpanDisplayDetails? span =
-        activity.multipleChoice?.spanDisplayDetails;
+        activity.content.spanDisplayDetails;
 
     if (span == null) {
       debugger(when: kDebugMode);
       return;
     }
 
-    _selectedSpan = PangeaTokenText(
-      offset: span.offset,
-      length: span.length,
-      content: widget._pangeaMessageEvent.messageDisplayText
-          .substring(span.offset, span.offset + span.length),
-    );
+    if (span.displayInstructions != ActivityDisplayInstructionsEnum.nothing) {
+      _selectedSpan = PangeaTokenText(
+        offset: span.offset,
+        length: span.length,
+        content: widget._pangeaMessageEvent.messageDisplayText
+            .substring(span.offset, span.offset + span.length),
+      );
+    } else {
+      _selectedSpan = null;
+    }
 
     setState(() {});
   }

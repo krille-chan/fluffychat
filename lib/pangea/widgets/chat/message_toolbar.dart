@@ -49,6 +49,7 @@ class MessageToolbar extends StatelessWidget {
         return MessageAudioCard(
           messageEvent: pangeaMessageEvent,
           overlayController: overLayController,
+          selection: overLayController.selectedSpan,
         );
       case MessageMode.speechToText:
         return MessageSpeechToTextCard(
