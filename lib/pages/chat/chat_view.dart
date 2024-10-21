@@ -260,30 +260,18 @@ class ChatView extends StatelessWidget {
                 onDragExited: controller.onDragExited,
                 child: Stack(
                   children: <Widget>[
-                    accountConfig.wallpaperUrl != null
-                        ? Opacity(
-                            opacity: accountConfig.wallpaperOpacity ?? 1,
-                            child: MxcImage(
-                              uri: accountConfig.wallpaperUrl,
-                              fit: BoxFit.cover,
-                              isThumbnail: true,
-                              width: FluffyThemes.columnWidth * 4,
-                              height: FluffyThemes.columnWidth * 4,
-                              placeholder: (_) => Container(),
-                            ),
-                          )
-                        : ColorFiltered(
-                            colorFilter: ColorFilter.mode(
-                              theme.colorScheme.surfaceContainerHighest,
-                              BlendMode.color,
-                            ),
-                            child: Image.asset(
-                              'assets/chat_wallpaper_${theme.brightness.name}.png',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: double.infinity,
-                            ),
-                          ),
+                    if (accountConfig.wallpaperUrl != null)
+                      Opacity(
+                        opacity: accountConfig.wallpaperOpacity ?? 1,
+                        child: MxcImage(
+                          uri: accountConfig.wallpaperUrl,
+                          fit: BoxFit.cover,
+                          isThumbnail: true,
+                          width: FluffyThemes.columnWidth * 4,
+                          height: FluffyThemes.columnWidth * 4,
+                          placeholder: (_) => Container(),
+                        ),
+                      ),
                     SafeArea(
                       child: Column(
                         children: <Widget>[
@@ -320,7 +308,10 @@ class ChatView extends StatelessWidget {
                               alignment: Alignment.center,
                               child: Material(
                                 clipBehavior: Clip.hardEdge,
-                                color: theme.colorScheme.surfaceBright,
+                                color: theme
+                                    .colorScheme
+                                    // ignore: deprecated_member_use
+                                    .surfaceVariant,
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(24),
                                 ),
