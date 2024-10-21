@@ -69,9 +69,7 @@ class UserBottomSheetView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Material(
-                      color:
-                          // ignore: deprecated_member_use
-                          theme.colorScheme.surfaceVariant,
+                      color: theme.colorScheme.surfaceContainerHigh,
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
                       child: ListTile(
