@@ -603,6 +603,7 @@ class PangeaMessageEvent {
             event: event,
           ),
         );
+        final content = practiceEvents.last.practiceActivity;
       } catch (e, s) {
         ErrorHandler.logError(e: e, s: s, data: event.toJson());
       }
@@ -625,22 +626,10 @@ class PangeaMessageEvent {
   List<PracticeActivityEvent> practiceActivitiesByLangCode(
     String langCode, {
     bool debug = false,
-  }) {
-    try {
-      debugger(when: debug);
-      final List<PracticeActivityEvent> activities = [];
-      for (final event in _practiceActivityEvents) {
-        if (event.practiceActivity.langCode == langCode) {
-          activities.add(event);
-        }
-      }
-      return activities;
-    } catch (e, s) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: e, s: s, data: event.toJson());
-      return [];
-    }
-  }
+  }) =>
+      _practiceActivityEvents
+          .where((event) => event.practiceActivity.langCode == langCode)
+          .toList();
 
   /// Returns a list of [PracticeActivityEvent] for the user's active l2.
   List<PracticeActivityEvent> get practiceActivities =>
