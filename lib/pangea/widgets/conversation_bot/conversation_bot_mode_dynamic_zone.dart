@@ -1,44 +1,74 @@
 import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
-import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_custom_zone.dart';
 import 'package:flutter/material.dart';
-
-import 'conversation_bot_discussion_zone.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ConversationBotModeDynamicZone extends StatelessWidget {
   final BotOptionsModel initialBotOptions;
-  final void Function(BotOptionsModel) onChanged;
+  final GlobalKey<FormState> formKey;
+
+  final TextEditingController discussionTopicController;
+  final TextEditingController discussionKeywordsController;
+  final TextEditingController customSystemPromptController;
 
   const ConversationBotModeDynamicZone({
     super.key,
     required this.initialBotOptions,
-    required this.onChanged,
+    required this.formKey,
+    required this.discussionTopicController,
+    required this.discussionKeywordsController,
+    required this.customSystemPromptController,
   });
 
   @override
   Widget build(BuildContext context) {
-    final zoneMap = {
-      BotMode.discussion: ConversationBotDiscussionZone(
-        initialBotOptions: initialBotOptions,
-        onChanged: onChanged,
-      ),
-      BotMode.custom: ConversationBotCustomZone(
-        initialBotOptions: initialBotOptions,
-        onChanged: onChanged,
-      ),
-    };
-    if (!zoneMap.containsKey(initialBotOptions.mode)) {
-      return Container();
-    }
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Theme.of(context).colorScheme.secondary,
-          width: 0.5,
+    final discussionChildren = [
+      TextFormField(
+        decoration: InputDecoration(
+          hintText: L10n.of(context)!
+              .conversationBotDiscussionZone_discussionTopicPlaceholder,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        controller: discussionTopicController,
       ),
-      child: zoneMap[initialBotOptions.mode],
+      const SizedBox(height: 12),
+      TextFormField(
+        decoration: InputDecoration(
+          hintText: L10n.of(context)!
+              .conversationBotDiscussionZone_discussionKeywordsPlaceholder,
+        ),
+        controller: discussionKeywordsController,
+      ),
+    ];
+
+    final customChildren = [
+      TextFormField(
+        decoration: InputDecoration(
+          hintText: L10n.of(context)!
+              .conversationBotCustomZone_customSystemPromptPlaceholder,
+        ),
+        validator: (value) => value == null || value.isEmpty
+            ? L10n.of(context)!.enterPrompt
+            : null,
+        controller: customSystemPromptController,
+      ),
+    ];
+
+    return Column(
+      children: [
+        if (initialBotOptions.mode == BotMode.discussion) ...discussionChildren,
+        if (initialBotOptions.mode == BotMode.custom) ...customChildren,
+        const SizedBox(height: 12),
+        CheckboxListTile(
+          title: Text(
+            L10n.of(context)!
+                .conversationBotCustomZone_customTriggerReactionEnabledLabel,
+          ),
+          enabled: false,
+          value: initialBotOptions.customTriggerReactionEnabled ?? true,
+          onChanged: null,
+        ),
+        const SizedBox(height: 12),
+      ],
     );
   }
 }
