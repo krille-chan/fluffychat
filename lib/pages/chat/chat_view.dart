@@ -258,125 +258,130 @@ class ChatView extends StatelessWidget {
                 onDragDone: controller.onDragDone,
                 onDragEntered: controller.onDragEntered,
                 onDragExited: controller.onDragExited,
-                child: Stack(
-                  children: <Widget>[
-                    if (accountConfig.wallpaperUrl != null)
-                      Opacity(
-                        opacity: accountConfig.wallpaperOpacity ?? 1,
-                        child: MxcImage(
-                          uri: accountConfig.wallpaperUrl,
-                          fit: BoxFit.cover,
-                          isThumbnail: true,
-                          width: FluffyThemes.columnWidth * 4,
-                          height: FluffyThemes.columnWidth * 4,
-                          placeholder: (_) => Container(),
-                        ),
-                      ),
-                    SafeArea(
-                      child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: controller.clearSingleSelectedEvent,
-                              child: Builder(
-                                builder: (context) {
-                                  if (controller.timeline == null) {
-                                    return const Center(
-                                      child: CircularProgressIndicator.adaptive(
-                                        strokeWidth: 2,
-                                      ),
-                                    );
-                                  }
-                                  return ChatEventList(
-                                    controller: controller,
-                                  );
-                                },
-                              ),
-                            ),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.surfaceContainer,
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      if (accountConfig.wallpaperUrl != null)
+                        Opacity(
+                          opacity: accountConfig.wallpaperOpacity ?? 1,
+                          child: MxcImage(
+                            uri: accountConfig.wallpaperUrl,
+                            fit: BoxFit.cover,
+                            isThumbnail: true,
+                            width: FluffyThemes.columnWidth * 4,
+                            height: FluffyThemes.columnWidth * 4,
+                            placeholder: (_) => Container(),
                           ),
-                          if (controller.room.canSendDefaultMessages &&
-                              controller.room.membership == Membership.join)
-                            Container(
-                              margin: EdgeInsets.only(
-                                bottom: bottomSheetPadding,
-                                left: bottomSheetPadding,
-                                right: bottomSheetPadding,
-                              ),
-                              constraints: const BoxConstraints(
-                                maxWidth: FluffyThemes.columnWidth * 2.5,
-                              ),
-                              alignment: Alignment.center,
-                              child: Material(
-                                clipBehavior: Clip.hardEdge,
-                                color: theme
-                                    .colorScheme
-                                    // ignore: deprecated_member_use
-                                    .surfaceVariant,
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(24),
+                        ),
+                      SafeArea(
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: controller.clearSingleSelectedEvent,
+                                child: Builder(
+                                  builder: (context) {
+                                    if (controller.timeline == null) {
+                                      return const Center(
+                                        child:
+                                            CircularProgressIndicator.adaptive(
+                                          strokeWidth: 2,
+                                        ),
+                                      );
+                                    }
+                                    return ChatEventList(
+                                      controller: controller,
+                                    );
+                                  },
                                 ),
-                                child: controller.room.isAbandonedDMRoom == true
-                                    ? Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          TextButton.icon(
-                                            style: TextButton.styleFrom(
-                                              padding: const EdgeInsets.all(
-                                                16,
-                                              ),
-                                              foregroundColor:
-                                                  theme.colorScheme.error,
-                                            ),
-                                            icon: const Icon(
-                                              Icons.archive_outlined,
-                                            ),
-                                            onPressed: controller.leaveChat,
-                                            label: Text(
-                                              L10n.of(context).leave,
-                                            ),
-                                          ),
-                                          TextButton.icon(
-                                            style: TextButton.styleFrom(
-                                              padding: const EdgeInsets.all(
-                                                16,
-                                              ),
-                                            ),
-                                            icon: const Icon(
-                                              Icons.forum_outlined,
-                                            ),
-                                            onPressed: controller.recreateChat,
-                                            label: Text(
-                                              L10n.of(context).reopenChat,
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    : Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const ConnectionStatusHeader(),
-                                          ReactionsPicker(controller),
-                                          ReplyDisplay(controller),
-                                          ChatInputRow(controller),
-                                          ChatEmojiPicker(controller),
-                                        ],
-                                      ),
                               ),
                             ),
-                        ],
-                      ),
-                    ),
-                    if (controller.dragging)
-                      Container(
-                        color: theme.scaffoldBackgroundColor.withOpacity(0.9),
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.upload_outlined,
-                          size: 100,
+                            if (controller.room.canSendDefaultMessages &&
+                                controller.room.membership == Membership.join)
+                              Container(
+                                margin: EdgeInsets.only(
+                                  bottom: bottomSheetPadding,
+                                  left: bottomSheetPadding,
+                                  right: bottomSheetPadding,
+                                ),
+                                constraints: const BoxConstraints(
+                                  maxWidth: FluffyThemes.columnWidth * 2.5,
+                                ),
+                                alignment: Alignment.center,
+                                child: Material(
+                                  clipBehavior: Clip.hardEdge,
+                                  color: theme.colorScheme.surfaceBright,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(24),
+                                  ),
+                                  child: controller.room.isAbandonedDMRoom ==
+                                          true
+                                      ? Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            TextButton.icon(
+                                              style: TextButton.styleFrom(
+                                                padding: const EdgeInsets.all(
+                                                  16,
+                                                ),
+                                                foregroundColor:
+                                                    theme.colorScheme.error,
+                                              ),
+                                              icon: const Icon(
+                                                Icons.archive_outlined,
+                                              ),
+                                              onPressed: controller.leaveChat,
+                                              label: Text(
+                                                L10n.of(context).leave,
+                                              ),
+                                            ),
+                                            TextButton.icon(
+                                              style: TextButton.styleFrom(
+                                                padding: const EdgeInsets.all(
+                                                  16,
+                                                ),
+                                              ),
+                                              icon: const Icon(
+                                                Icons.forum_outlined,
+                                              ),
+                                              onPressed:
+                                                  controller.recreateChat,
+                                              label: Text(
+                                                L10n.of(context).reopenChat,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const ConnectionStatusHeader(),
+                                            ReactionsPicker(controller),
+                                            ReplyDisplay(controller),
+                                            ChatInputRow(controller),
+                                            ChatEmojiPicker(controller),
+                                          ],
+                                        ),
+                                ),
+                              ),
+                          ],
                         ),
                       ),
-                  ],
+                      if (controller.dragging)
+                        Container(
+                          color: theme.scaffoldBackgroundColor.withOpacity(0.9),
+                          alignment: Alignment.center,
+                          child: const Icon(
+                            Icons.upload_outlined,
+                            size: 100,
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             );
