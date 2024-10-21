@@ -115,6 +115,9 @@ class SocialNetworkManager {
       urlLogin: "https://www.instagram.com/accounts/login/",
       urlRedirect: "https://www.instagram.com/",
       urlRedirectPattern: RegExp(r'^https:\/\/www\.instagram\.com\/.*$'),
+      supportsBridgev2Apis: true,
+      flowId: "cookies-instagram",
+      apiPath: "matrix-mautrix-meta-instagram2",
     ),
     SocialNetwork(
       logo: Logo(Logos.whatsapp),
