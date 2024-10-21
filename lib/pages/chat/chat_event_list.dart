@@ -34,7 +34,6 @@ class ChatEventList extends StatelessWidget {
     for (var i = 0; i < events.length; i++) {
       thisEventsKeyMap[events[i].eventId] = i;
     }
-    final theme = Theme.of(context);
 
     final hasWallpaper =
         controller.room.client.applicationAccountConfig.wallpaperUrl != null;
@@ -143,9 +142,8 @@ class ChatEventList extends StatelessWidget {
                     i > 0 && controller.readMarkerEventId == event.eventId,
                 nextEvent: i + 1 < events.length ? events[i + 1] : null,
                 previousEvent: i > 0 ? events[i - 1] : null,
-                avatarPresenceBackgroundColor: hasWallpaper
-                    ? Colors.transparent
-                    : theme.colorScheme.surfaceContainer,
+                avatarPresenceBackgroundColor:
+                    hasWallpaper ? Colors.transparent : null,
               ),
             );
           },
