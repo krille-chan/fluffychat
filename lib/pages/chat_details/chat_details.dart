@@ -5,7 +5,6 @@ import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_description_button.dart';
 import 'package:fluffychat/pangea/utils/set_class_name.dart';
-import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -41,9 +40,7 @@ class ChatDetailsController extends State<ChatDetails> {
   String? get roomId => widget.roomId;
 
   // #Pangea
-  final GlobalKey<AddToSpaceState> addToSpaceKey = GlobalKey<AddToSpaceState>();
-  final GlobalKey<ChatDetailsController>
-      addConversationBotKey =
+  final GlobalKey<ChatDetailsController> addConversationBotKey =
       GlobalKey<ChatDetailsController>();
 
   bool displayAddStudentOptions = false;
