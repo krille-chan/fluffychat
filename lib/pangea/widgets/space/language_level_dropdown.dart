@@ -7,12 +7,14 @@ class LanguageLevelDropdown extends StatelessWidget {
   final int? initialLevel;
   final void Function(int?)? onChanged;
   final String? Function(int?)? validator;
+  final bool enabled;
 
   const LanguageLevelDropdown({
     super.key,
     this.initialLevel,
     this.onChanged,
     this.validator,
+    this.enabled = true,
   });
 
   @override
@@ -42,7 +44,7 @@ class LanguageLevelDropdown extends StatelessWidget {
           ),
         );
       }).toList(),
-      onChanged: onChanged,
+      onChanged: enabled ? onChanged : null,
       validator: validator,
     );
   }
