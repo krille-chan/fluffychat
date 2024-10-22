@@ -15,14 +15,12 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 class ConversationBotSettings extends StatefulWidget {
-  final Room? room;
-  final bool startOpen;
+  final Room room;
   final String? activeSpaceId;
 
   const ConversationBotSettings({
     super.key,
-    this.room,
-    this.startOpen = false,
+    required this.room,
     this.activeSpaceId,
   });
 
@@ -32,10 +30,7 @@ class ConversationBotSettings extends StatefulWidget {
 
 class ConversationBotSettingsState extends State<ConversationBotSettings> {
   late BotOptionsModel botOptions;
-  late bool isOpen;
-  late bool isCreating;
   bool addBot = false;
-  Room? parentSpace;
 
   ConversationBotSettingsState({Key? key});
 
@@ -49,19 +44,13 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
   @override
   void initState() {
     super.initState();
-    isOpen = widget.startOpen;
-    botOptions = widget.room?.botOptions != null
-        ? BotOptionsModel.fromJson(widget.room?.botOptions?.toJson())
+    botOptions = widget.room.botOptions != null
+        ? BotOptionsModel.fromJson(widget.room.botOptions?.toJson())
         : BotOptionsModel();
-    widget.room?.botIsInRoom.then((bool isBotRoom) {
-      setState(() {
-        addBot = isBotRoom;
-      });
+
+    widget.room.botIsInRoom.then((bool isBotRoom) {
+      setState(() => addBot = isBotRoom);
     });
-    parentSpace = widget.activeSpaceId != null
-        ? Matrix.of(context).client.getRoomById(widget.activeSpaceId!)
-        : null;
-    isCreating = widget.room == null;
 
     discussionKeywordsController.text = botOptions.discussionKeywords ?? "";
     discussionTopicController.text = botOptions.discussionTopic ?? "";
@@ -69,10 +58,9 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
   }
 
   Future<void> setBotOption() async {
-    if (widget.room == null) return;
     try {
       await Matrix.of(context).client.setRoomStateWithKey(
-            widget.room!.id,
+            widget.room.id,
             PangeaEventTypes.botOptions,
             '',
             botOptions.toJson(),
@@ -99,14 +87,13 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
     );
   }
 
-  void updateAllBotOptions() {
+  void updateFromTextControllers() {
     botOptions.discussionTopic = discussionTopicController.text;
     botOptions.discussionKeywords = discussionKeywordsController.text;
     botOptions.customSystemPrompt = customSystemPromptController.text;
   }
 
   Future<void> showBotOptionsDialog() async {
-    if (isCreating) return;
     final bool? confirm = await showDialog<bool>(
       context: context,
       builder: (BuildContext context) {
@@ -141,62 +128,15 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
     );
 
     if (confirm == true) {
-      updateAllBotOptions();
+      updateFromTextControllers();
       updateBotOption(() => botOptions = botOptions);
 
-      final bool isBotRoomMember = await widget.room?.botIsInRoom ?? false;
+      final bool isBotRoomMember = await widget.room.botIsInRoom;
       if (addBot && !isBotRoomMember) {
-        await widget.room?.invite(BotName.byEnvironment);
+        await widget.room.invite(BotName.byEnvironment);
       } else if (!addBot && isBotRoomMember) {
-        await widget.room?.kick(BotName.byEnvironment);
+        await widget.room.kick(BotName.byEnvironment);
       }
-    }
-  }
-
-  Future<void> showNewRoomBotOptionsDialog() async {
-    final bool? confirm = await showDialog<bool>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: addBot
-              ? Text(
-                  L10n.of(context)!.addConversationBotButtonTitleRemove,
-                )
-              : Text(
-                  L10n.of(context)!.addConversationBotDialogTitleInvite,
-                ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-              child: Text(L10n.of(context)!.cancel),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(!addBot);
-              },
-              child: addBot
-                  ? Text(
-                      L10n.of(context)!
-                          .addConversationBotDialogRemoveConfirmation,
-                    )
-                  : Text(
-                      L10n.of(context)!
-                          .addConversationBotDialogInviteConfirmation,
-                    ),
-            ),
-          ],
-        );
-      },
-    );
-
-    if (confirm == true) {
-      setState(() => addBot = true);
-      widget.room?.invite(BotName.byEnvironment);
-    } else {
-      setState(() => addBot = false);
-      widget.room?.kick(BotName.byEnvironment);
     }
   }
 
@@ -212,17 +152,12 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
         children: [
           ListTile(
             title: Text(
-              isCreating
-                  ? L10n.of(context)!.addConversationBot
-                  : L10n.of(context)!.botConfig,
+              L10n.of(context)!.botConfig,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.secondary,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: isCreating
-                ? Text(L10n.of(context)!.addConversationBotDesc)
-                : null,
             leading: CircleAvatar(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
@@ -231,48 +166,9 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                 expression: BotExpression.idle,
               ),
             ),
-            trailing: isCreating
-                ? ElevatedButton(
-                    onPressed: showNewRoomBotOptionsDialog,
-                    child: Text(
-                      addBot
-                          ? L10n.of(context)!.addConversationBotButtonRemove
-                          : L10n.of(context)!.addConversationBotButtonInvite,
-                    ),
-                  )
-                : const Icon(Icons.settings),
+            trailing: const Icon(Icons.settings),
             onTap: showBotOptionsDialog,
           ),
-          if (isCreating && addBot)
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      child: Text(
-                        L10n.of(context)!.botConfig,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ),
-                  ),
-                  Form(
-                    key: formKey,
-                    child: ConversationBotSettingsForm(
-                      botOptions: botOptions,
-                      formKey: formKey,
-                      discussionKeywordsController:
-                          discussionKeywordsController,
-                      discussionTopicController: discussionTopicController,
-                      customSystemPromptController:
-                          customSystemPromptController,
-                    ),
-                  ),
-                ],
-              ),
-            ),
         ],
       ),
     );
