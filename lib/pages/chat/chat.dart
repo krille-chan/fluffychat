@@ -560,6 +560,7 @@ class ChatController extends State<ChatPageWithRoom>
     //#Pangea
     choreographer.stateListener.close();
     choreographer.dispose();
+    clearSelectedEvents();
     MatrixState.pAnyState.closeOverlay();
     //Pangea#
     super.dispose();
@@ -1334,13 +1335,18 @@ class ChatController extends State<ChatPageWithRoom>
   }
   // Pangea#
 
-  void clearSelectedEvents() => setState(() {
-        // #Pangea
-        closeSelectionOverlay();
-        // Pangea#
-        selectedEvents.clear();
-        showEmojiPicker = false;
-      });
+  void clearSelectedEvents() {
+    // #Pangea
+    if (!mounted) return;
+    // Pangea#
+    setState(() {
+      // #Pangea
+      closeSelectionOverlay();
+      // Pangea#
+      selectedEvents.clear();
+      showEmojiPicker = false;
+    });
+  }
 
   void clearSingleSelectedEvent() {
     if (selectedEvents.length <= 1) {
