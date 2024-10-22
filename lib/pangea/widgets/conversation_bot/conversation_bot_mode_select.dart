@@ -4,12 +4,14 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ConversationBotModeSelect extends StatelessWidget {
   final String? initialMode;
-  final void Function(String?)? onChanged;
+  final void Function(String?) onChanged;
+  final bool enabled;
 
   const ConversationBotModeSelect({
     super.key,
     this.initialMode,
-    this.onChanged,
+    required this.onChanged,
+    this.enabled = true,
   });
 
   @override
@@ -52,7 +54,7 @@ class ConversationBotModeSelect extends StatelessWidget {
             ),
           ),
       ],
-      onChanged: onChanged,
+      onChanged: enabled ? onChanged : null,
     );
   }
 }
