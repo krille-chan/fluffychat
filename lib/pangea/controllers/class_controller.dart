@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 
-import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -9,15 +9,14 @@ import 'package:fluffychat/pangea/extensions/client_extension/client_extension.d
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/utils/space_code.dart';
+import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-import '../../widgets/matrix.dart';
-import '../utils/firebase_analytics.dart';
 import 'base_controller.dart';
 
 class ClassController extends BaseController {
@@ -50,97 +49,134 @@ class ClassController extends BaseController {
     );
 
     if (classCode != null) {
-      await _pangeaController.pStoreService.delete(
-        PLocalKey.cachedClassCodeToJoin,
-        isAccountData: false,
-      );
       await joinClasswithCode(
         context,
         classCode,
-      ).onError(
-        (error, stackTrace) =>
-            SpaceCodeUtil.messageSnack(context, ErrorCopy(context, error).body),
+      );
+      await _pangeaController.pStoreService.delete(
+        PLocalKey.cachedClassCodeToJoin,
+        isAccountData: false,
       );
     }
   }
 
   Future<void> joinClasswithCode(BuildContext context, String classCode) async {
-    try {
-      final QueryPublicRoomsResponse queryPublicRoomsResponse =
-          await Matrix.of(context).client.queryPublicRooms(
-                limit: 1,
-                filter: PublicRoomQueryFilter(genericSearchTerm: classCode),
-              );
-
-      final PublicRoomsChunk? classChunk =
-          queryPublicRoomsResponse.chunk.firstWhereOrNull((element) {
-        return element.canonicalAlias?.replaceAll("#", "").split(":")[0] ==
-            classCode;
-      });
-
-      if (classChunk == null) {
-        SpaceCodeUtil.messageSnack(
-          context,
-          L10n.of(context)!.unableToFindClass,
+    final client = Matrix.of(context).client;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        final knockResponse = await client.httpClient.post(
+          Uri.parse(
+            '${client.homeserver}/_synapse/client/pangea/v1/knock_with_code',
+          ),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ${client.accessToken}',
+          },
+          body: jsonEncode({'access_code': classCode}),
         );
-        return;
-      }
+        if (knockResponse.statusCode == 429) {
+          await showFutureLoadingDialog(
+            context: context,
+            future: () async {
+              throw L10n.of(context)!.tooManyRequest;
+            },
+          );
+          return;
+        }
+        if (knockResponse.statusCode != 200) {
+          await showFutureLoadingDialog(
+            context: context,
+            future: () async {
+              throw L10n.of(context)!.unableToFindClass;
+            },
+          );
+          return;
+        }
+        final knockResult = jsonDecode(knockResponse.body);
+        final foundClasses = List<String>.from(knockResult['rooms']);
+        final alreadyJoined = List<String>.from(knockResult['already_joined']);
+        if (alreadyJoined.isNotEmpty) {
+          await showFutureLoadingDialog(
+            context: context,
+            future: () async {
+              throw L10n.of(context)!.alreadyInClass;
+            },
+          );
+          return;
+        }
+        if (foundClasses.isEmpty) {
+          await showFutureLoadingDialog(
+            context: context,
+            future: () async {
+              throw L10n.of(context)!.unableToFindClass;
+            },
+          );
+          return;
+        }
+        final chosenClassId = foundClasses.first;
+        if (_pangeaController.matrixState.client.rooms
+            .any((room) => room.id == chosenClassId)) {
+          setActiveSpaceIdInChatListController(chosenClassId);
+          await showFutureLoadingDialog(
+            context: context,
+            future: () async {
+              throw L10n.of(context)!.alreadyInClass;
+            },
+          );
+          return;
+        } else {
+          await _pangeaController.pStoreService.save(
+            PLocalKey.justInputtedCode,
+            classCode,
+            isAccountData: false,
+          );
+          await client.joinRoomById(chosenClassId);
+          _pangeaController.pStoreService.delete(PLocalKey.justInputtedCode);
+        }
 
-      if (_pangeaController.matrixState.client.rooms
-          .any((room) => room.id == classChunk.roomId)) {
-        setActiveSpaceIdInChatListController(classChunk.roomId);
-        SpaceCodeUtil.messageSnack(context, L10n.of(context)!.alreadyInClass);
-        return;
-      }
+        if (_pangeaController.matrixState.client.getRoomById(chosenClassId) ==
+            null) {
+          await _pangeaController.matrixState.client.waitForRoomInSync(
+            chosenClassId,
+            join: true,
+          );
+        }
 
-      await _pangeaController.matrixState.client.joinRoom(classChunk.roomId);
-
-      if (_pangeaController.matrixState.client.getRoomById(classChunk.roomId) ==
-          null) {
-        await _pangeaController.matrixState.client.waitForRoomInSync(
-          classChunk.roomId,
-          join: true,
+        // If the room is full, leave
+        final room =
+            _pangeaController.matrixState.client.getRoomById(chosenClassId);
+        if (room == null) {
+          return;
+        }
+        final joinResult = await showFutureLoadingDialog(
+          context: context,
+          future: () async {
+            if (await room.leaveIfFull()) {
+              throw L10n.of(context)!.roomFull;
+            }
+          },
         );
-      }
+        if (joinResult.error != null) {
+          return;
+        }
 
-      // If the room is full, leave
-      final room =
-          _pangeaController.matrixState.client.getRoomById(classChunk.roomId);
-      if (room == null) {
+        setActiveSpaceIdInChatListController(chosenClassId);
+
+        // add the user's analytics room to this joined space
+        // so their teachers can join them via the space hierarchy
+        final Room? joinedSpace =
+            _pangeaController.matrixState.client.getRoomById(chosenClassId);
+
+        // when possible, add user's analytics room the to space they joined
+        joinedSpace?.addAnalyticsRoomsToSpace();
+
+        // and invite the space's teachers to the user's analytics rooms
+        joinedSpace?.inviteSpaceTeachersToAnalyticsRooms();
+        GoogleAnalytics.joinClass(classCode);
         return;
-      }
-      final joinResult = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          if (await room.leaveIfFull()) {
-            throw L10n.of(context)!.roomFull;
-          }
-        },
-      );
-      if (joinResult.error != null) {
-        return;
-      }
-
-      setActiveSpaceIdInChatListController(classChunk.roomId);
-
-      // add the user's analytics room to this joined space
-      // so their teachers can join them via the space hierarchy
-      final Room? joinedSpace =
-          _pangeaController.matrixState.client.getRoomById(classChunk.roomId);
-
-      // when possible, add user's analytics room the to space they joined
-      joinedSpace?.addAnalyticsRoomsToSpace();
-
-      // and invite the space's teachers to the user's analytics rooms
-      joinedSpace?.inviteSpaceTeachersToAnalyticsRooms();
-      GoogleAnalytics.joinClass(classCode);
-      return;
-    } catch (err) {
-      SpaceCodeUtil.messageSnack(
-        context,
-        ErrorCopy(context, err).body,
-      );
-    }
+      },
+    );
     // P-EPIC
     // prereq - server needs ability to invite to private room. how?
     // does server api have ability with admin token?

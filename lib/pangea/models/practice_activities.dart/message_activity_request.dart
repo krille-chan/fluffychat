@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 
@@ -7,11 +8,13 @@ class ConstructWithXP {
   final ConstructIdentifier id;
   int xp;
   DateTime? lastUsed;
+  List<ConstructUseTypeEnum> condensedConstructUses;
 
   ConstructWithXP({
     required this.id,
-    required this.xp,
-    required this.lastUsed,
+    this.xp = 0,
+    this.lastUsed,
+    this.condensedConstructUses = const [],
   });
 
   factory ConstructWithXP.fromJson(Map<String, dynamic> json) {
@@ -23,6 +26,14 @@ class ConstructWithXP {
       lastUsed: json['last_used'] != null
           ? DateTime.parse(json['last_used'] as String)
           : null,
+      condensedConstructUses: (json['uses'] as List<String>).map((e) {
+        return ConstructUseTypeEnum.values.firstWhereOrNull(
+              (element) =>
+                  element.string == e ||
+                  element.toString().split('.').last == e,
+            ) ??
+            ConstructUseTypeEnum.nan;
+      }).toList(),
     );
   }
 
@@ -31,6 +42,7 @@ class ConstructWithXP {
       'construct_id': id.toJson(),
       'xp': xp,
       'last_used': lastUsed?.toIso8601String(),
+      'uses': condensedConstructUses.map((e) => e.string).toList(),
     };
     return json;
   }
@@ -230,6 +242,11 @@ class MessageActivityRequest {
       'existing_activities': existingActivities.map((e) => e.toJson()).toList(),
       'activity_quality_feedback': activityQualityFeedback?.toJson(),
       'iso_8601_time_of_req': DateTime.now().toIso8601String(),
+      // this is a list of activity types that the client can handle
+      // the server will only return activities of these types
+      // this for backwards compatibility with old clients
+      'client_version_compatible_activity_types':
+          ActivityTypeEnum.values.map((e) => e.string).toList(),
     };
   }
 

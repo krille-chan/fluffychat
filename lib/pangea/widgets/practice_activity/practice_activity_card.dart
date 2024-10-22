@@ -231,10 +231,6 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       return;
     }
 
-    // clear the current activity and record
-    currentActivity = null;
-    currentCompletionRecord = null;
-
     _fetchNewActivity(
       ActivityQualityFeedback(
         feedbackText: feedback,
@@ -281,7 +277,14 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       case ActivityTypeEnum.multipleChoice:
         return MultipleChoiceActivity(
           practiceCardController: this,
-          currentActivity: currentActivity,
+          currentActivity: currentActivity!,
+        );
+      case ActivityTypeEnum.wordFocusListening:
+        // return WordFocusListeningActivity(
+        //     activity: currentActivity!, practiceCardController: this);
+        return MultipleChoiceActivity(
+          practiceCardController: this,
+          currentActivity: currentActivity!,
         );
       default:
         ErrorHandler.logError(

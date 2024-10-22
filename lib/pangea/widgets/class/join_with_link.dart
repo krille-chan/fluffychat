@@ -1,11 +1,10 @@
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/url_query_parameter_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-
-import '../../../widgets/matrix.dart';
-import '../../constants/local.key.dart';
 
 //if on home with classcode in url and not logged in, then save it soemhow and after llogin, join class automatically
 //if on home with classcode in url and logged in, then join class automatically
@@ -19,7 +18,7 @@ class JoinClassWithLink extends StatefulWidget {
 //PTODO - show class info in field so they know they're joining the right class
 class _JoinClassWithLinkState extends State<JoinClassWithLink> {
   String? classCode;
-  final PangeaController _pangeaController = MatrixState.pangeaController;
+  final PangeaController pangeaController = MatrixState.pangeaController;
 
   @override
   void initState() {
@@ -39,8 +38,7 @@ class _JoinClassWithLinkState extends State<JoinClassWithLink> {
         );
         return;
       }
-
-      await _pangeaController.pStoreService.save(
+      await pangeaController.pStoreService.save(
         PLocalKey.cachedClassCodeToJoin,
         classCode,
         isAccountData: false,

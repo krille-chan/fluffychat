@@ -56,7 +56,7 @@ extension RoomInformationRoomExtension on Room {
     );
   }
 
-  Future<bool> get _isBotDM async => botOptions?.mode == BotMode.direct;
+  Future<bool> get _isBotDM async => botOptions?.mode == BotMode.directChat;
 
   bool get _isLocked {
     if (isDirectChat) return false;

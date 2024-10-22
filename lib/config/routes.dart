@@ -233,11 +233,7 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                NewGroup(
-                  // #Pangea
-                  spaceId: state.uri.queryParameters['spaceId'],
-                  // Pangea#
-                ),
+                const NewGroup(),
               ),
               redirect: loggedOutRedirect,
               // #Pangea

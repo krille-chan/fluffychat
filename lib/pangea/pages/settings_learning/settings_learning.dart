@@ -8,7 +8,11 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
 class SettingsLearning extends StatefulWidget {
-  const SettingsLearning({super.key});
+  final bool isPopup;
+  const SettingsLearning({
+    this.isPopup = false,
+    super.key,
+  });
 
   @override
   SettingsLearningController createState() => SettingsLearningController();

@@ -244,6 +244,7 @@ class WordMatchContent extends StatelessWidget {
                   controller: scrollController,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       // const SizedBox(height: 10.0),
                       // if (matchCopy.description != null)

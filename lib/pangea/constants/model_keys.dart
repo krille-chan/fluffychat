@@ -121,6 +121,13 @@ class ModelKey {
   static const String textAdventureGameMasterInstructions =
       "text_adventure_game_master_instructions";
 
+  static const String targetLanguage = "target_language";
+  static const String targetVoice = "target_voice";
+
   static const String prevEventId = "prev_event_id";
   static const String prevLastUpdated = "prev_last_updated";
+
+  // room code
+  static const String joinRule = "join_rule";
+  static const String accessCode = "access_code";
 }

@@ -58,17 +58,9 @@ class TargetTokensController {
       return _targetTokens = [];
     }
 
-    _targetTokens = [];
-    for (int i = 0; i < tokens.length; i++) {
-      //don't bother with tokens that we don't save to vocab
-      if (!tokens[i].lemma.saveVocab) {
-        continue;
-      }
-
-      _targetTokens!.add(tokens[i].emptyTokenWithXP);
-    }
-
-    return _targetTokens!;
+    return _targetTokens = tokens
+        .map((token) => token.emptyTokenWithXP)
+        .toList();
   }
 
   Future<void> updateTokensWithConstructs(
@@ -84,6 +76,12 @@ class TargetTokensController {
     _targetTokens ??= await _initialize(context, pangeaMessageEvent);
 
     for (final token in _targetTokens!) {
+      
+      // we don't need to do this for tokens that don't have saveVocab set to true
+      if (!token.token.lemma.saveVocab){
+        continue;
+      }
+
       for (final construct in token.constructs) {
         final constructUseModel = constructList.getConstructUses(
           construct.id.lemma,
