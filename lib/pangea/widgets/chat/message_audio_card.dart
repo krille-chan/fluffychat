@@ -187,26 +187,32 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      constraints: const BoxConstraints(minHeight: minCardHeight),
-      alignment: Alignment.center,
-      child: _isLoading
-          ? const ToolbarContentLoadingIndicator()
-          : audioFile != null
-              ? Column(
-                  children: [
-                    AudioPlayerWidget(
-                      null,
-                      matrixFile: audioFile,
-                      sectionStartMS: sectionStartMS,
-                      sectionEndMS: sectionEndMS,
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    ),
-                    tts.missingVoiceButton,
-                  ],
-                )
-              : const CardErrorWidget(),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          constraints: const BoxConstraints(minHeight: minCardHeight),
+          alignment: Alignment.center,
+          child: _isLoading
+              ? const ToolbarContentLoadingIndicator()
+              : audioFile != null
+                  ? Column(
+                      children: [
+                        AudioPlayerWidget(
+                          null,
+                          matrixFile: audioFile,
+                          sectionStartMS: sectionStartMS,
+                          sectionEndMS: sectionEndMS,
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                        ),
+                        tts.missingVoiceButton,
+                      ],
+                    )
+                  : const CardErrorWidget(),
+        ),
+      ],
     );
   }
 }

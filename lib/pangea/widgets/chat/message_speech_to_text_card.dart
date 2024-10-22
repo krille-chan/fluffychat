@@ -5,7 +5,6 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/common/icon_number_widget.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
@@ -154,16 +153,11 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
       return CardErrorWidget(error: error);
     }
 
-    final int words = speechToTextResponse!.transcript.sttTokens.length;
-    final int accuracy = speechToTextResponse!.transcript.confidence;
-    final int total = words * accuracy;
-
     //TODO: find better icons
-    return Container(
+    return Padding(
       padding: const EdgeInsets.all(8),
-      constraints: const BoxConstraints(minHeight: minCardHeight),
-      alignment: Alignment.center,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 8),
           RichText(
@@ -171,19 +165,15 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
           ),
           const SizedBox(height: 16),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              // IconNumberWidget(
-              //   icon: Icons.abc,
-              //   number: (selectedToken == null ? words : 1).toString(),
-              //   toolTip: L10n.of(context)!.words,
-              // ),
               IconNumberWidget(
                 icon: Symbols.target,
                 number:
                     "${selectedToken?.confidence ?? speechToTextResponse!.transcript.confidence}%",
                 toolTip: L10n.of(context)!.accuracy,
               ),
+              const SizedBox(width: 16),
               IconNumberWidget(
                 icon: Icons.speed,
                 number: wordsPerMinuteString != null

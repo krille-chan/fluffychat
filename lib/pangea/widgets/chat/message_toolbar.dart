@@ -101,47 +101,25 @@ class MessageToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      key: MatrixState.pAnyState
-          .layerLinkAndKey('${pangeaMessageEvent.eventId}-toolbar')
-          .key,
-      type: MaterialType.transparency,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  border: Border.all(
-                    width: 2,
-                    color:
-                        Theme.of(context).colorScheme.primary.withOpacity(0.5),
-                  ),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(AppConfig.borderRadius),
-                  ),
-                ),
-                constraints: const BoxConstraints(
-                  maxHeight: AppConfig.toolbarMaxHeight,
-                ),
-                // child: Row(
-                //   children: [
-                //     Expanded(
-                child: SingleChildScrollView(
-                  child: AnimatedSize(
-                    duration: FluffyThemes.animationDuration,
-                    child: toolbarContent,
-                  ),
-                ),
-                //     ),
-                //   ],
-                // ),
-              ),
-            ],
-          ),
-        ],
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+        border: Border.all(
+          width: 2,
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(AppConfig.borderRadius),
+        ),
+      ),
+      constraints: const BoxConstraints(
+        maxHeight: AppConfig.toolbarMaxHeight,
+      ),
+      child: SingleChildScrollView(
+        child: AnimatedSize(
+          duration: FluffyThemes.animationDuration,
+          child: toolbarContent,
+        ),
       ),
     );
   }
