@@ -306,54 +306,44 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     }
   }
 
-  String? get userMessage {
-    if (!fetchingActivity && currentActivity == null) {
-      return L10n.of(context)!.noActivitiesFound;
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (userMessage != null) {
-      return GamifiedTextWidget(userMessage: userMessage!);
+    if (!fetchingActivity && currentActivity == null) {
+      return GamifiedTextWidget(
+        userMessage: L10n.of(context)!.noActivitiesFound,
+      );
     }
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            // Main content
-            const Positioned(
-              child: PointsGainedAnimation(),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: activityWidget,
-            ),
-            // Conditionally show the darkening and progress indicator based on the loading state
-            if (!savoringTheJoy && fetchingActivity) ...[
-              // Semi-transparent overlay
-              Container(
-                color: Colors.black.withOpacity(0.5), // Darkening effect
-              ),
-              // Circular progress indicator in the center
-              const Center(
-                child: CircularProgressIndicator(),
-              ),
-            ],
-            // Flag button in the top right corner
-            Positioned(
-              top: 0,
-              right: 0,
-              child: ContentIssueButton(
-                isActive: currentActivity != null,
-                submitFeedback: submitFeedback,
-              ),
-            ),
-          ],
+        // Main content
+        const Positioned(
+          child: PointsGainedAnimation(),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
+          child: activityWidget,
+        ),
+        // Conditionally show the darkening and progress indicator based on the loading state
+        if (!savoringTheJoy && fetchingActivity) ...[
+          // Semi-transparent overlay
+          Container(
+            color: Colors.black.withOpacity(0.5), // Darkening effect
+          ),
+          // Circular progress indicator in the center
+          const Center(
+            child: CircularProgressIndicator(),
+          ),
+        ],
+        // Flag button in the top right corner
+        Positioned(
+          top: 0,
+          right: 0,
+          child: ContentIssueButton(
+            isActive: currentActivity != null,
+            submitFeedback: submitFeedback,
+          ),
         ),
       ],
     );

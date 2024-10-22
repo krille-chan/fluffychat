@@ -94,7 +94,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   Widget build(BuildContext context) {
     final PracticeActivityModel practiceActivity = widget.currentActivity;
 
-    return Container(
+    return Padding(
       padding: const EdgeInsets.all(8),
       child: Column(
         children: [

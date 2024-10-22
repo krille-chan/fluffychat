@@ -71,24 +71,16 @@ class GamifiedTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.all(8),
       child: Column(
-        mainAxisSize: MainAxisSize.min, // Adjusts the size to fit children
         children: [
-          const SizedBox(height: 10), // Spacing between the star and text
-          // Star animation above the text
           const StarAnimationWidget(),
-          const SizedBox(height: 10), // Spacing between the star and text
-          Container(
-            constraints: const BoxConstraints(
-              minHeight: 80,
-            ),
-            padding: const EdgeInsets.all(8),
-            child: Text(
-              userMessage,
-              style: BotStyle.text(context),
-              textAlign: TextAlign.center, // Center-align the text
-            ),
+          const SizedBox(height: 10),
+          Text(
+            userMessage,
+            style: BotStyle.text(context),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
