@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
+// import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import 'chat_list.dart';
@@ -221,38 +221,40 @@ class ClientChooserButton extends StatelessWidget {
       builder: (context, snapshot) => Stack(
         alignment: Alignment.center,
         children: [
-          ...List.generate(
-            clientCount,
-            (index) => KeyBoardShortcuts(
-              keysToPress: _buildKeyboardShortcut(index + 1),
-              helpLabel: L10n.of(context)!.switchToAccount(index + 1),
-              onKeysPressed: () => _handleKeyboardShortcut(
-                matrix,
-                index,
-                context,
-              ),
-              child: const SizedBox.shrink(),
-            ),
-          ),
-          KeyBoardShortcuts(
-            keysToPress: {
-              LogicalKeyboardKey.controlLeft,
-              LogicalKeyboardKey.tab,
-            },
-            helpLabel: L10n.of(context)!.nextAccount,
-            onKeysPressed: () => _nextAccount(matrix, context),
-            child: const SizedBox.shrink(),
-          ),
-          KeyBoardShortcuts(
-            keysToPress: {
-              LogicalKeyboardKey.controlLeft,
-              LogicalKeyboardKey.shiftLeft,
-              LogicalKeyboardKey.tab,
-            },
-            helpLabel: L10n.of(context)!.previousAccount,
-            onKeysPressed: () => _previousAccount(matrix, context),
-            child: const SizedBox.shrink(),
-          ),
+          // #Pangea
+          // ...List.generate(
+          //   clientCount,
+          //   (index) => KeyBoardShortcuts(
+          //     keysToPress: _buildKeyboardShortcut(index + 1),
+          //     helpLabel: L10n.of(context)!.switchToAccount(index + 1),
+          //     onKeysPressed: () => _handleKeyboardShortcut(
+          //       matrix,
+          //       index,
+          //       context,
+          //     ),
+          //     child: const SizedBox.shrink(),
+          //   ),
+          // ),
+          // KeyBoardShortcuts(
+          //   keysToPress: {
+          //     LogicalKeyboardKey.controlLeft,
+          //     LogicalKeyboardKey.tab,
+          //   },
+          //   helpLabel: L10n.of(context)!.nextAccount,
+          //   onKeysPressed: () => _nextAccount(matrix, context),
+          //   child: const SizedBox.shrink(),
+          // ),
+          // KeyBoardShortcuts(
+          //   keysToPress: {
+          //     LogicalKeyboardKey.controlLeft,
+          //     LogicalKeyboardKey.shiftLeft,
+          //     LogicalKeyboardKey.tab,
+          //   },
+          //   helpLabel: L10n.of(context)!.previousAccount,
+          //   onKeysPressed: () => _previousAccount(matrix, context),
+          //   child: const SizedBox.shrink(),
+          // ),
+          // Pangea#
           PopupMenuButton<Object>(
             onSelected: (o) => _clientSelected(o, context),
             itemBuilder: _bundleMenuItems,
