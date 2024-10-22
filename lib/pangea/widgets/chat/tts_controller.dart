@@ -96,7 +96,7 @@ class TtsController {
 
       // return type is dynamic but apparent its supposed to be 1
       // https://pub.dev/packages/flutter_tts
-      if (result != 1) {
+      if (result != 1 && !kIsWeb) {
         ErrorHandler.logError(
           m: 'Unexpected result from tts.speak',
           data: {

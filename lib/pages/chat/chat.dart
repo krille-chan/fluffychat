@@ -485,6 +485,14 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void>? setReadMarkerFuture;
 
   void setReadMarker({String? eventId}) {
+    // #Pangea
+    if (eventId != null &&
+        (eventId.contains("web") ||
+            eventId.contains("android") ||
+            eventId.contains("ios"))) {
+      return;
+    }
+    // Pangea#
     if (setReadMarkerFuture != null) return;
     if (_scrolledUp) return;
     if (scrollUpBannerEventId != null) return;

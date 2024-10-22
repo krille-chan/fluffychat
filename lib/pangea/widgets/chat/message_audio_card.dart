@@ -210,7 +210,9 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                         tts.missingVoiceButton,
                       ],
                     )
-                  : const CardErrorWidget(),
+                  : const CardErrorWidget(
+                      error: "Null audio file in message_audio_card",
+                    ),
         ),
       ],
     );

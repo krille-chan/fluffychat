@@ -136,7 +136,8 @@ class NewSpaceController extends State<NewSpace> {
         await room.invite(BotName.byEnvironment);
       } catch (err) {
         ErrorHandler.logError(
-          e: "Failed to invite pangea bot to space ${room.id}",
+          e: "Failed to invite pangea bot to new space",
+          data: {"spaceId": spaceId, "error": err},
         );
       }
       MatrixState.pangeaController.classController

@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
@@ -119,13 +118,25 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         return null;
       }
 
+      if (widget.pangeaMessageEvent.originalSent == null) {
+        debugger(when: kDebugMode);
+        _updateFetchingActivity(false);
+        ErrorHandler.logError(
+          e: Exception('No original message found in _fetchNewActivity'),
+          data: {
+            'event': widget.pangeaMessageEvent.event.toJson(),
+          },
+        );
+        return null;
+      }
+
       final PracticeActivityModel? ourNewActivity = await pangeaController
           .practiceGenerationController
           .getPracticeActivity(
         MessageActivityRequest(
           userL1: pangeaController.languageController.userL1!.langCode,
           userL2: pangeaController.languageController.userL2!.langCode,
-          messageText: representation!.text,
+          messageText: widget.pangeaMessageEvent.originalSent!.text,
           tokensWithXP: await targetTokensController.targetTokens(
             context,
             widget.pangeaMessageEvent,
@@ -255,11 +266,6 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       widget.overlayController.exitPracticeFlow();
     });
   }
-
-  RepresentationEvent? get representation =>
-      widget.pangeaMessageEvent.originalSent;
-
-  String get messsageText => representation!.text;
 
   PangeaController get pangeaController => MatrixState.pangeaController;
 

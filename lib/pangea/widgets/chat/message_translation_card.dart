@@ -130,7 +130,7 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     if (!_fetchingTranslation &&
         repEvent == null &&
         selectionTranslation == null) {
-      return const CardErrorWidget();
+      return const CardErrorWidget(error: "No translation found");
     }
 
     return Padding(
