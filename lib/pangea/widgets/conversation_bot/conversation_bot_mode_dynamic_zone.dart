@@ -35,6 +35,9 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
             ? L10n.of(context)!.enterDiscussionTopic
             : null,
         enabled: enabled,
+        minLines: 1, // Minimum number of lines
+        maxLines: null, // Allow the field to expand based on content
+        keyboardType: TextInputType.multiline,
       ),
       const SizedBox(height: 12),
       TextFormField(
@@ -44,6 +47,9 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
         ),
         controller: discussionKeywordsController,
         enabled: enabled,
+        minLines: 1, // Minimum number of lines
+        maxLines: null, // Allow the field to expand based on content
+        keyboardType: TextInputType.multiline,
       ),
     ];
 
@@ -60,6 +66,9 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
             : null,
         controller: customSystemPromptController,
         enabled: enabled,
+        minLines: 1, // Minimum number of lines
+        maxLines: null, // Allow the field to expand based on content
+        keyboardType: TextInputType.multiline,
       ),
     ];
 

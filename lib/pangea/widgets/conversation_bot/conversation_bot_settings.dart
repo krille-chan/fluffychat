@@ -169,17 +169,24 @@ class ConversationBotSettingsDialogState
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                    ),
+                    child: Text(
+                      L10n.of(context)!.botConfig,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
-                  child: Text(
-                    L10n.of(context)!.botConfig,
-                    style: Theme.of(context).textTheme.titleLarge,
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () => Navigator.of(context).pop(null),
                   ),
-                ),
+                ],
               ),
               SwitchListTile(
                 title: Text(
