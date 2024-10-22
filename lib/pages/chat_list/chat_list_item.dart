@@ -35,31 +35,30 @@ class ChatListItem extends StatelessWidget {
     super.key,
   });
 
-  Future<bool> archiveAction(BuildContext context, {bool? confirmed}) async {
+  Future<bool> archiveAction(BuildContext context) async {
     {
       if ([Membership.leave, Membership.ban].contains(room.membership)) {
-        await showFutureLoadingDialog(
+        final forgetResult = await showFutureLoadingDialog(
           context: context,
           future: () => room.forget(),
         );
-        return true;
+        return forgetResult.isValue;
       }
-      confirmed ??= (await showOkCancelAlertDialog(
-            useRootNavigator: false,
-            context: context,
-            title: L10n.of(context).areYouSure,
-            okLabel: L10n.of(context).leave,
-            cancelLabel: L10n.of(context).cancel,
-            message: L10n.of(context).archiveRoomDescription,
-            isDestructiveAction: true,
-          )) ==
-          OkCancelResult.ok;
-      if (!confirmed) return false;
-      await showFutureLoadingDialog(
+      final confirmed = await showOkCancelAlertDialog(
+        useRootNavigator: false,
+        context: context,
+        title: L10n.of(context).areYouSure,
+        okLabel: L10n.of(context).leave,
+        cancelLabel: L10n.of(context).cancel,
+        message: L10n.of(context).archiveRoomDescription,
+        isDestructiveAction: true,
+      );
+      if (confirmed != OkCancelResult.ok) return false;
+      final leaveResult = await showFutureLoadingDialog(
         context: context,
         future: () => room.leave(),
       );
-      return true;
+      return leaveResult.isValue;
     }
   }
 
@@ -97,18 +96,10 @@ class ChatListItem extends StatelessWidget {
 
     return Dismissible(
       key: ValueKey(room.id),
-      confirmDismiss: (_) async =>
-          (await showOkCancelAlertDialog(
-            useRootNavigator: false,
-            context: context,
-            title: L10n.of(context).areYouSure,
-            okLabel: L10n.of(context).leave,
-            cancelLabel: L10n.of(context).cancel,
-            message: L10n.of(context).archiveRoomDescription,
-            isDestructiveAction: true,
-          )) ==
-          OkCancelResult.ok,
-      onDismissed: (_) => archiveAction(context, confirmed: true),
+      confirmDismiss: (_) => archiveAction(context),
+      onDismissed: (_) {
+        // Empty dismissed callback to trigger the dismiss animation
+      },
       background: Material(
         color: theme.colorScheme.errorContainer,
         child: Icon(
