@@ -22,7 +22,6 @@ class OverlayUtil {
     required String transformTargetId,
     double? width,
     double? height,
-    Offset? offset,
     backDropToDismiss = true,
     blurBackground = false,
     Color? borderColor,
@@ -86,8 +85,9 @@ class OverlayUtil {
   static showPositionedCard({
     required BuildContext context,
     required Widget cardToShow,
-    required Size cardSize,
     required String transformTargetId,
+    required double maxHeight,
+    required double maxWidth,
     backDropToDismiss = true,
     Color? borderColor,
     bool closePrevOverlay = true,
@@ -107,14 +107,14 @@ class OverlayUtil {
         child: OverlayContainer(
           cardToShow: cardToShow,
           borderColor: borderColor,
+          maxHeight: maxHeight,
+          maxWidth: maxWidth,
         ),
       );
 
       showOverlay(
         context: context,
         child: child,
-        width: cardSize.width,
-        height: cardSize.height,
         transformTargetId: transformTargetId,
         backDropToDismiss: backDropToDismiss,
         borderColor: borderColor,

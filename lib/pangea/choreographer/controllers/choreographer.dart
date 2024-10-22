@@ -74,8 +74,11 @@ class Choreographer {
         CanSendStatus.showPaywall) {
       OverlayUtil.showPositionedCard(
         context: context,
-        cardToShow: const PaywallCard(),
-        cardSize: const Size(325, 325),
+        cardToShow: PaywallCard(
+          chatController: chatController,
+        ),
+        maxHeight: 325,
+        maxWidth: 325,
         transformTargetId: inputTransformTargetKey,
       );
       return;

@@ -21,6 +21,8 @@ class BotOptionsModel {
   bool? customTriggerReactionEnabled;
   String? customTriggerReactionKey;
   String? textAdventureGameMasterInstructions;
+  String? targetLanguage;
+  String? targetVoice;
 
   BotOptionsModel({
     ////////////////////////////////////////////////////////////////////////////
@@ -31,6 +33,8 @@ class BotOptionsModel {
     this.keywords = const [],
     this.safetyModeration = true,
     this.mode = BotMode.discussion,
+    this.targetLanguage,
+    this.targetVoice,
 
     ////////////////////////////////////////////////////////////////////////////
     // Discussion Mode Options
@@ -63,6 +67,8 @@ class BotOptionsModel {
           : null,
       safetyModeration: json[ModelKey.safetyModeration] ?? true,
       mode: json[ModelKey.mode] ?? BotMode.discussion,
+      targetLanguage: json[ModelKey.targetLanguage],
+      targetVoice: json[ModelKey.targetVoice],
 
       //////////////////////////////////////////////////////////////////////////
       // Discussion Mode Options
@@ -97,6 +103,8 @@ class BotOptionsModel {
       data[ModelKey.languageLevel] = languageLevel;
       data[ModelKey.safetyModeration] = safetyModeration;
       data[ModelKey.mode] = mode;
+      data[ModelKey.targetLanguage] = targetLanguage;
+      data[ModelKey.targetVoice] = targetVoice;
       data[ModelKey.discussionTopic] = discussionTopic;
       data[ModelKey.discussionKeywords] = discussionKeywords;
       data[ModelKey.discussionTriggerReactionEnabled] =
@@ -152,6 +160,12 @@ class BotOptionsModel {
         break;
       case ModelKey.textAdventureGameMasterInstructions:
         textAdventureGameMasterInstructions = value;
+        break;
+      case ModelKey.targetLanguage:
+        targetLanguage = value;
+        break;
+      case ModelKey.targetVoice:
+        targetVoice = value;
         break;
       default:
         throw Exception('Invalid key for bot options - $key');

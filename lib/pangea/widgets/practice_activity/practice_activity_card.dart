@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
@@ -14,7 +13,6 @@ import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/content_issue_button.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_card.dart';
@@ -120,13 +118,25 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         return null;
       }
 
+      if (widget.pangeaMessageEvent.originalSent == null) {
+        debugger(when: kDebugMode);
+        _updateFetchingActivity(false);
+        ErrorHandler.logError(
+          e: Exception('No original message found in _fetchNewActivity'),
+          data: {
+            'event': widget.pangeaMessageEvent.event.toJson(),
+          },
+        );
+        return null;
+      }
+
       final PracticeActivityModel? ourNewActivity = await pangeaController
           .practiceGenerationController
           .getPracticeActivity(
         MessageActivityRequest(
           userL1: pangeaController.languageController.userL1!.langCode,
           userL2: pangeaController.languageController.userL2!.langCode,
-          messageText: representation!.text,
+          messageText: widget.pangeaMessageEvent.originalSent!.text,
           tokensWithXP: await targetTokensController.targetTokens(
             context,
             widget.pangeaMessageEvent,
@@ -257,11 +267,6 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     });
   }
 
-  RepresentationEvent? get representation =>
-      widget.pangeaMessageEvent.originalSent;
-
-  String get messsageText => representation!.text;
-
   PangeaController get pangeaController => MatrixState.pangeaController;
 
   /// The widget that displays the current activity.
@@ -277,7 +282,14 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       case ActivityTypeEnum.multipleChoice:
         return MultipleChoiceActivity(
           practiceCardController: this,
-          currentActivity: currentActivity,
+          currentActivity: currentActivity!,
+        );
+      case ActivityTypeEnum.wordFocusListening:
+        // return WordFocusListeningActivity(
+        //     activity: currentActivity!, practiceCardController: this);
+        return MultipleChoiceActivity(
+          practiceCardController: this,
+          currentActivity: currentActivity!,
         );
       default:
         ErrorHandler.logError(
@@ -294,58 +306,46 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
     }
   }
 
-  String? get userMessage {
-    if (!fetchingActivity && currentActivity == null) {
-      return L10n.of(context)!.noActivitiesFound;
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (userMessage != null) {
-      return GamifiedTextWidget(userMessage: userMessage!);
+    if (!fetchingActivity && currentActivity == null) {
+      return GamifiedTextWidget(
+        userMessage: L10n.of(context)!.noActivitiesFound,
+      );
     }
 
-    return Container(
-      constraints: const BoxConstraints(
-        maxWidth: 350,
-        minWidth: 350,
-        minHeight: minCardHeight,
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          // Main content
-          const Positioned(
-            child: PointsGainedAnimation(),
-          ),
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        // Main content
+        const Positioned(
+          child: PointsGainedAnimation(),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
+          child: activityWidget,
+        ),
+        // Conditionally show the darkening and progress indicator based on the loading state
+        if (!savoringTheJoy && fetchingActivity) ...[
+          // Semi-transparent overlay
           Container(
-            padding: const EdgeInsets.all(8),
-            child: activityWidget,
+            color: Colors.black.withOpacity(0.5), // Darkening effect
           ),
-          // Conditionally show the darkening and progress indicator based on the loading state
-          if (!savoringTheJoy && fetchingActivity) ...[
-            // Semi-transparent overlay
-            Container(
-              color: Colors.black.withOpacity(0.5), // Darkening effect
-            ),
-            // Circular progress indicator in the center
-            const Center(
-              child: CircularProgressIndicator(),
-            ),
-          ],
-          // Flag button in the top right corner
-          Positioned(
-            top: 0,
-            right: 0,
-            child: ContentIssueButton(
-              isActive: currentActivity != null,
-              submitFeedback: submitFeedback,
-            ),
+          // Circular progress indicator in the center
+          const Center(
+            child: CircularProgressIndicator(),
           ),
         ],
-      ),
+        // Flag button in the top right corner
+        Positioned(
+          top: 0,
+          right: 0,
+          child: ContentIssueButton(
+            isActive: currentActivity != null,
+            submitFeedback: submitFeedback,
+          ),
+        ),
+      ],
     );
   }
 }

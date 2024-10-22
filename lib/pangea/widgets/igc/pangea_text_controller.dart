@@ -54,8 +54,11 @@ class PangeaTextController extends TextEditingController {
         text.isNotEmpty) {
       OverlayUtil.showPositionedCard(
         context: context,
-        cardToShow: const PaywallCard(),
-        cardSize: const Size(325, 325),
+        cardToShow: PaywallCard(
+          chatController: choreographer.chatController,
+        ),
+        maxHeight: 325,
+        maxWidth: 325,
         transformTargetId: choreographer.inputTransformTargetKey,
       );
     }
@@ -112,10 +115,11 @@ class PangeaTextController extends TextEditingController {
     if (cardToShow != null) {
       OverlayUtil.showPositionedCard(
         context: context,
-        cardSize: matchIndex != -1 &&
+        maxHeight: matchIndex != -1 &&
                 choreographer.igc.igcTextData!.matches[matchIndex].isITStart
-            ? const Size(350, 260)
-            : const Size(350, 400),
+            ? 260
+            : 400,
+        maxWidth: 350,
         cardToShow: cardToShow,
         transformTargetId: choreographer.inputTransformTargetKey,
       );

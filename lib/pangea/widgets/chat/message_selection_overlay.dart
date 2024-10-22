@@ -6,6 +6,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_reactions.dart';
+import 'package:fluffychat/pangea/enum/activity_display_instructions_enum.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -182,8 +183,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void onClickOverlayMessageToken(
     PangeaToken token,
   ) {
-    if ([MessageMode.practiceActivity, MessageMode.textToSpeech]
-        .contains(toolbarMode)) {
+    if ([
+      MessageMode.practiceActivity,
+      // MessageMode.textToSpeech
+    ].contains(toolbarMode)) {
       return;
     }
 
@@ -210,19 +213,23 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   void setSelectedSpan(PracticeActivityModel activity) {
     final RelevantSpanDisplayDetails? span =
-        activity.multipleChoice?.spanDisplayDetails;
+        activity.content.spanDisplayDetails;
 
     if (span == null) {
       debugger(when: kDebugMode);
       return;
     }
 
-    _selectedSpan = PangeaTokenText(
-      offset: span.offset,
-      length: span.length,
-      content: widget._pangeaMessageEvent.messageDisplayText
-          .substring(span.offset, span.offset + span.length),
-    );
+    if (span.displayInstructions != ActivityDisplayInstructionsEnum.nothing) {
+      _selectedSpan = PangeaTokenText(
+        offset: span.offset,
+        length: span.length,
+        content: widget._pangeaMessageEvent.messageDisplayText
+            .substring(span.offset, span.offset + span.length),
+      );
+    } else {
+      _selectedSpan = null;
+    }
 
     setState(() {});
   }
@@ -371,26 +378,21 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         widget.chatController.room.membership == Membership.join;
 
     // the default spacing between the side of the screen and the message bubble
-    final double messageMargin =
-        pangeaMessageEvent.ownMessage ? Avatar.defaultSize + 16 : 8;
-
-    // the actual spacing between the side of the screen and
-    // the message bubble, accounts for wide screen
-    double extraChatSpace = FluffyThemes.isColumnMode(context)
-        ? ((screenWidth -
-                    (FluffyThemes.columnWidth * 3.5) -
-                    FluffyThemes.navRailWidth) /
-                2) +
-            messageMargin
-        : messageMargin;
-
-    if (extraChatSpace < messageMargin) {
-      extraChatSpace = messageMargin;
+    const double messageMargin = Avatar.defaultSize + 16 + 8;
+    final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
+    final chatViewWidth = screenWidth -
+        (FluffyThemes.isColumnMode(context)
+            ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth)
+            : 0);
+    const totalMaxWidth = (FluffyThemes.columnWidth * 2.5) - messageMargin;
+    double maxWidth = chatViewWidth - (2 * horizontalPadding) - messageMargin;
+    if (maxWidth > totalMaxWidth) {
+      maxWidth = totalMaxWidth;
     }
 
     final overlayMessage = Container(
-      constraints: const BoxConstraints(
-        maxWidth: FluffyThemes.columnWidth * 2.5,
+      constraints: BoxConstraints(
+        maxWidth: maxWidth,
       ),
       child: Material(
         type: MaterialType.transparency,
@@ -439,21 +441,20 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       ),
     );
 
-    final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
     final columnOffset = FluffyThemes.isColumnMode(context)
         ? FluffyThemes.columnWidth + FluffyThemes.navRailWidth
         : 0;
 
-    final double leftPadding = widget._pangeaMessageEvent.ownMessage
-        ? extraChatSpace
+    final double? leftPadding = widget._pangeaMessageEvent.ownMessage
+        ? null
         : messageOffset!.dx - horizontalPadding - columnOffset;
 
-    final double rightPadding = widget._pangeaMessageEvent.ownMessage
+    final double? rightPadding = widget._pangeaMessageEvent.ownMessage
         ? screenWidth -
             messageOffset!.dx -
             messageSize!.width -
             horizontalPadding
-        : extraChatSpace;
+        : null;
 
     final positionedOverlayMessage = _overlayPositionAnimation == null
         ? Positioned(

@@ -70,34 +70,32 @@ class ToolbarButtons extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: modes
                 .mapIndexed(
-                  (index, mode) => Tooltip(
-                    message: mode.tooltip(context),
-                    child: IconButton(
-                      iconSize: 20,
-                      icon: Icon(mode.icon),
-                      color: mode == overlayController.toolbarMode
-                          ? Colors.white
-                          : null,
-                      isSelected: mode == overlayController.toolbarMode,
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(
-                          mode.iconButtonColor(
-                            context,
-                            index,
-                            overlayController.toolbarMode,
-                            pangeaMessageEvent.numberOfActivitiesCompleted,
-                            overlayController.isPracticeComplete,
-                          ),
+                  (index, mode) => IconButton(
+                    iconSize: 20,
+                    icon: Icon(mode.icon),
+                    tooltip: mode.tooltip(context),
+                    color: mode == overlayController.toolbarMode
+                        ? Colors.white
+                        : null,
+                    isSelected: mode == overlayController.toolbarMode,
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        mode.iconButtonColor(
+                          context,
+                          index,
+                          overlayController.toolbarMode,
+                          pangeaMessageEvent.numberOfActivitiesCompleted,
+                          overlayController.isPracticeComplete,
                         ),
                       ),
-                      onPressed: mode.isUnlocked(
-                        index,
-                        pangeaMessageEvent.numberOfActivitiesCompleted,
-                        overlayController.isPracticeComplete,
-                      )
-                          ? () => overlayController.updateToolbarMode(mode)
-                          : null,
                     ),
+                    onPressed: mode.isUnlocked(
+                      index,
+                      pangeaMessageEvent.numberOfActivitiesCompleted,
+                      overlayController.isPracticeComplete,
+                    )
+                        ? () => overlayController.updateToolbarMode(mode)
+                        : null,
                   ),
                 )
                 .toList(),
