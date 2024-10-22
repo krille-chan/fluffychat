@@ -4731,5 +4731,145 @@
     }
   },
   "commandHint_googly": "Enviar unos ojos saltones",
-  "reportContentIssue": "Problema de contenido"
+  "reportContentIssue": "Problema de contenido",
+  "alwaysUse24HourFormat": "falso",
+  "countChatsAndCountParticipants": "{chats} chats y {participants} participantes",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "No se encontraron más chats...",
+  "noChatsFoundHere": "Aún no se encontraron chats aquí. Inicia un nuevo chat con alguien usando el botón de abajo. ⤵️",
+  "joinedChats": "Chats unidos",
+  "unread": "No leído",
+  "space": "Espacio",
+  "spaces": "Espacios",
+  "enterASpacepName": "Ingresa un nombre",
+  "invitedBy": "📩 Invitado por {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "clickMessageBody": "Haz clic en un mensaje para herramientas de idioma como traducción, reproducción y más!",
+  "searchIn": "Buscar en el chat \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "subscribedToUnlockTools": "¡Suscríbete para desbloquear la traducción interactiva y la verificación gramatical, la reproducción de audio, las actividades de práctica personalizadas y la analítica de aprendizaje!",
+  "conversationBotModeSelectOption_storyGame": "Juego de Historia",
+  "conversationBotCustomZone_title": "Configuraciones Personalizadas",
+  "conversationBotCustomZone_customSystemPromptLabel": "Mensaje del sistema",
+  "conversationBotCustomZone_customSystemPromptPlaceholder": "Establecer mensaje del sistema personalizado",
+  "conversationBotCustomZone_customSystemPromptEmptyError": "Falta mensaje del sistema personalizado",
+  "conversationBotCustomZone_customTriggerReactionEnabledLabel": "Responde a la reacción ⏩",
+  "botConfig": "Configuraciones del Bot de Conversación",
+  "addConversationBotDialogTitleInvite": "Confirmar la invitación del bot de conversación",
+  "addConversationBotButtonInvite": "Invitar",
+  "addConversationBotDialogInviteConfirmation": "Invitar",
+  "addConversationBotButtonTitleRemove": "Confirmar la eliminación del bot de conversación",
+  "addConversationBotButtonRemove": "Eliminar",
+  "addConversationBotDialogRemoveConfirmation": "Eliminar",
+  "conversationBotConfigConfirmChange": "Confirmar",
+  "conversationBotStatus": "Estado del Bot",
+  "conversationBotTextAdventureZone_title": "Aventura de Texto",
+  "conversationBotTextAdventureZone_instructionLabel": "Instrucciones del Maestro del Juego",
+  "conversationBotTextAdventureZone_instructionPlaceholder": "Establecer instrucciones del maestro del juego",
+  "conversationBotCustomZone_instructionSystemPromptEmptyError": "Faltan instrucciones del maestro del juego",
+  "suggestToSpace": "Sugerir este espacio",
+  "suggestToSpaceDesc": "Los subespacios sugeridos aparecerán en la lista de chats de su espacio principal",
+  "practice": "Práctica",
+  "noLanguagesSet": "No hay idiomas configurados",
+  "hintTitle": "Sugerencia:",
+  "speechToTextBody": "Ve qué tan bien lo hiciste al mirar tus puntajes de Precisión y Palabras Por Minuto.",
+  "previous": "Anterior",
+  "languageButtonLabel": "Idioma: {currentLanguage}",
+  "@languageButtonLabel": {
+    "type": "text",
+    "placeholders": {
+      "currentLanguage": {}
+    }
+  },
+  "changeAnalyticsView": "Cambiar Vista de Análisis",
+  "l1TranslationBody": "Los mensajes en tu idioma base no serán traducidos.",
+  "continueText": "Continuar",
+  "deleteSubscriptionWarningTitle": "YTienes una suscripción activa",
+  "deleteSubscriptionWarningBody": "Eliminar tu cuenta no cancelará automáticamente tu suscripción.",
+  "manageSubscription": "Gestionar Suscripción",
+  "createSpace": "Crear espacio",
+  "createChat": "Crear chat",
+  "error520Title": "Por favor, intenta de nuevo.",
+  "error520Desc": "Lo sentimos, no pudimos entender tu mensaje...",
+  "wordsUsed": "Palabras Usadas",
+  "errorTypes": "Tipos de Error",
+  "level": "Nivel",
+  "canceledSend": "Envío cancelado",
+  "morphsUsed": "Morphs Usados",
+  "translationChoicesBody": "Haz clic y mantén presionada una opción para una pista.",
+  "sendCanceled": "Envío cancelado",
+  "goToSpace": "Ir al espacio: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Marcar como no leído",
+  "userLevel": "{level} - Usuario",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderador",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Administrador",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Cambiar la configuración general del chat.",
+  "inviteOtherUsers": "Invitar a otros usuarios a este chat",
+  "changeTheChatPermissions": "Cambiar los permisos del chat",
+  "changeTheVisibilityOfChatHistory": "Cambiar la visibilidad del historial de chat",
+  "changeTheCanonicalRoomAlias": "Cambiar la dirección del chat público principal.",
+  "sendRoomNotifications": "Enviar una notificación a @room",
+  "changeTheDescriptionOfTheGroup": "Cambiar la descripción del chat",
+  "chatPermissionsDescription": "Define qué nivel de poder es necesario para ciertas acciones en este chat. Los niveles de poder 0, 50 y 100 suelen representar a usuarios, moderadores y administradores, pero cualquier graduación es posible.",
+  "updateInstalled": "🎉 ¡Actualización {version} instalada!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "loginWithMatrixId": "Iniciar sesión con Matrix-ID.",
+  "discoverHomeservers": "Descubrir homeservers",
+  "whatIsAHomeserver": "¿Qué es un homeserver?",
+  "homeserverDescription": "Todos tus datos se almacenan en el homeserver, al igual que un proveedor de correo electrónico. Puedes elegir qué homeserver deseas utilizar, mientras que aún puedes comunicarte con todos. Aprende más en https://matrix.org.",
+  "doesNotSeemToBeAValidHomeserver": "No parece ser un homeserver compatible. ¿URL incorrecta?",
+  "grammar": "Gramática",
+  "contactHasBeenInvitedToTheChat": "El contacto ha sido invitado al chat",
+  "inviteChat": "📨 Invitar al chat",
+  "chatName": "Nombre del chat",
+  "reportContentIssueTitle": "Informar sobre un problema de contenido",
+  "feedback": "Comentarios opcionales",
+  "reportContentIssueDescription": "¡Ups! La IA puede facilitar experiencias de aprendizaje personalizadas, pero... también alucina. Por favor, proporciona cualquier comentario que tengas y lo intentaremos de nuevo.",
+  "clickTheWordAgainToDeselect": "Click the selected word to deselect it.",
+  "l2SupportNa": "Haz clic en la palabra seleccionada para deseleccionarla",
+  "l2SupportAlpha": "Alfa",
+  "l2SupportBeta": "Beta",
+  "l2SupportFull": "Lleno"
 }
