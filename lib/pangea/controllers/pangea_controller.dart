@@ -298,7 +298,8 @@ class PangeaController {
           await space.invite(BotName.byEnvironment);
         } catch (err) {
           ErrorHandler.logError(
-            e: "Failed to invite pangea bot to space ${space.id}",
+            e: "Failed to invite pangea bot to existing space",
+            data: {"spaceId": space.id, "error": err},
           );
         }
       }
