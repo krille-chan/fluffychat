@@ -1,4 +1,5 @@
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_header.dart';
@@ -7,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class PaywallCard extends StatelessWidget {
+  final ChatController chatController;
   const PaywallCard({
     super.key,
+    required this.chatController,
   });
 
   @override
@@ -69,6 +72,7 @@ class PaywallCard extends StatelessWidget {
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () {
+                    chatController.clearSelectedEvents();
                     MatrixState.pangeaController.subscriptionController
                         .showPaywall(context);
                   },

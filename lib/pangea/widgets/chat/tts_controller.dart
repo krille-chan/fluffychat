@@ -45,7 +45,6 @@ class TtsController {
       await tts.awaitSpeakCompletion(true);
 
       final voices = await tts.getVoices;
-      debugPrint("voices: $voices");
       availableLangCodes = (voices as List)
           .map((v) {
             // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'

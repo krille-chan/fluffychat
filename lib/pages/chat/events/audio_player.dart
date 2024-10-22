@@ -439,64 +439,61 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           //   ],
           // ),
           // const SizedBox(width: 8),
-          Expanded(
-            child: Row(
-              children: [
-                for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
-                  Builder(
-                    builder: (context) {
-                      final double barOpacity = currentPosition > i ? 1 : 0.5;
-                      return Expanded(
-                        child: GestureDetector(
-                          onTapDown: (_) {
-                            audioPlayer?.seek(
-                              Duration(
-                                milliseconds:
-                                    (maxPosition / AudioPlayerWidget.wavesCount)
-                                            .round() *
-                                        i,
-                              ),
-                            );
-                          },
-                          child: Stack(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: 0.5,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: widget.color.withOpacity(barOpacity),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                                height: 32 * (waveform[i] / 1024),
-                              ),
-                            ],
+          Row(
+            children: [
+              for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
+                Builder(
+                  builder: (context) {
+                    final double barOpacity = currentPosition > i ? 1 : 0.5;
+                    return GestureDetector(
+                      onTapDown: (_) {
+                        audioPlayer?.seek(
+                          Duration(
+                            milliseconds:
+                                (maxPosition / AudioPlayerWidget.wavesCount)
+                                        .round() *
+                                    i,
                           ),
-                        ),
-                      );
-                      // return Container(
-                      //   height: 32,
-                      //   width: 2,
-                      //   alignment: Alignment.center,
-                      //   child: Opacity(
-                      //     opacity: barOpacity,
-                      //     child: Container(
-                      //       margin: const EdgeInsets.symmetric(
-                      //         horizontal: 1,
-                      //       ),
-                      //       decoration: BoxDecoration(
-                      //         color: widget.color,
-                      //         borderRadius: BorderRadius.circular(2),
-                      //       ),
-                      //       height: 32 * (waveform[i] / 1024),
-                      //       width: 2,
-                      //     ),
-                      //   ),
-                      // );
-                    },
-                  ),
-              ],
-            ),
+                        );
+                      },
+                      child: Stack(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 0.5,
+                            ),
+                            decoration: BoxDecoration(
+                              color: widget.color.withOpacity(barOpacity),
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                            height: 32 * (waveform[i] / 1024),
+                            width: 1.5,
+                          ),
+                        ],
+                      ),
+                    );
+                    // return Container(
+                    //   height: 32,
+                    //   width: 2,
+                    //   alignment: Alignment.center,
+                    //   child: Opacity(
+                    //     opacity: barOpacity,
+                    //     child: Container(
+                    //       margin: const EdgeInsets.symmetric(
+                    //         horizontal: 1,
+                    //       ),
+                    //       decoration: BoxDecoration(
+                    //         color: widget.color,
+                    //         borderRadius: BorderRadius.circular(2),
+                    //       ),
+                    //       height: 32 * (waveform[i] / 1024),
+                    //       width: 2,
+                    //     ),
+                    //   ),
+                    // );
+                  },
+                ),
+            ],
           ),
           const SizedBox(width: 5),
           // SizedBox(

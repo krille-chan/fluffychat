@@ -14,7 +14,6 @@ import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/content_issue_button.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_card.dart';
@@ -314,45 +313,43 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       return GamifiedTextWidget(userMessage: userMessage!);
     }
 
-    return Container(
-      constraints: const BoxConstraints(
-        maxWidth: 350,
-        minWidth: 350,
-        minHeight: minCardHeight,
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          // Main content
-          const Positioned(
-            child: PointsGainedAnimation(),
-          ),
-          Container(
-            padding: const EdgeInsets.all(8),
-            child: activityWidget,
-          ),
-          // Conditionally show the darkening and progress indicator based on the loading state
-          if (!savoringTheJoy && fetchingActivity) ...[
-            // Semi-transparent overlay
-            Container(
-              color: Colors.black.withOpacity(0.5), // Darkening effect
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            // Main content
+            const Positioned(
+              child: PointsGainedAnimation(),
             ),
-            // Circular progress indicator in the center
-            const Center(
-              child: CircularProgressIndicator(),
+            Container(
+              padding: const EdgeInsets.all(8),
+              child: activityWidget,
+            ),
+            // Conditionally show the darkening and progress indicator based on the loading state
+            if (!savoringTheJoy && fetchingActivity) ...[
+              // Semi-transparent overlay
+              Container(
+                color: Colors.black.withOpacity(0.5), // Darkening effect
+              ),
+              // Circular progress indicator in the center
+              const Center(
+                child: CircularProgressIndicator(),
+              ),
+            ],
+            // Flag button in the top right corner
+            Positioned(
+              top: 0,
+              right: 0,
+              child: ContentIssueButton(
+                isActive: currentActivity != null,
+                submitFeedback: submitFeedback,
+              ),
             ),
           ],
-          // Flag button in the top right corner
-          Positioned(
-            top: 0,
-            right: 0,
-            child: ContentIssueButton(
-              isActive: currentActivity != null,
-              submitFeedback: submitFeedback,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

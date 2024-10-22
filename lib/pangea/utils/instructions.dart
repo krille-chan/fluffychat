@@ -106,21 +106,18 @@ class InstructionsController {
               onClose: () => {_instructionsClosed[key.toString()] = true},
             ),
             const SizedBox(height: 10.0),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Text(
-                    key.body(context),
-                    style: botStyle,
-                  ),
-                ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                key.body(context),
+                style: botStyle,
               ),
             ),
             if (showToggle) InstructionsToggle(instructionsKey: key),
           ],
         ),
-        cardSize: const Size(300.0, 300.0),
+        maxHeight: 300,
+        maxWidth: 300,
         transformTargetId: transformTargetKey,
         closePrevOverlay: false,
       ),

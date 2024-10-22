@@ -6,7 +6,6 @@ import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -134,36 +133,41 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
       return const CardErrorWidget();
     }
 
-    return Container(
+    return Padding(
       padding: const EdgeInsets.all(8),
-      constraints: const BoxConstraints(minHeight: minCardHeight),
-      alignment: Alignment.center,
-      child: _fetchingTranslation
-          ? const ToolbarContentLoadingIndicator()
-          : Column(
-              children: [
-                widget.selection != null
-                    ? Text(
-                        selectionTranslation!,
-                        style: BotStyle.text(context),
-                      )
-                    : Text(
-                        repEvent!.text,
-                        style: BotStyle.text(context),
-                      ),
-                if (notGoingToTranslate && widget.selection == null)
-                  InlineTooltip(
-                    instructionsEnum: InstructionsEnum.l1Translation,
-                    onClose: () => setState(() {}),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _fetchingTranslation
+              ? const ToolbarContentLoadingIndicator()
+              : Flexible(
+                  child: Column(
+                    children: [
+                      widget.selection != null
+                          ? Text(
+                              selectionTranslation!,
+                              style: BotStyle.text(context),
+                            )
+                          : Text(
+                              repEvent!.text,
+                              style: BotStyle.text(context),
+                            ),
+                      if (notGoingToTranslate && widget.selection == null)
+                        InlineTooltip(
+                          instructionsEnum: InstructionsEnum.l1Translation,
+                          onClose: () => setState(() {}),
+                        ),
+                      if (widget.selection != null)
+                        InlineTooltip(
+                          instructionsEnum:
+                              InstructionsEnum.clickAgainToDeselect,
+                          onClose: () => setState(() {}),
+                        ),
+                    ],
                   ),
-                if (widget.selection != null)
-                  InlineTooltip(
-                    instructionsEnum: InstructionsEnum.clickAgainToDeselect,
-                    onClose: () => setState(() {}),
-                  ),
-                // if (widget.selection != null)
-              ],
-            ),
+                ),
+        ],
+      ),
     );
   }
 }
