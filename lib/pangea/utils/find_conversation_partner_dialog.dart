@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,13 +25,6 @@ void findConversationPartnerDialog(
           TextButton(
             onPressed: Navigator.of(context).pop,
             child: Text(L10n.of(context)!.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              context.go('/rooms/settings/learning');
-              Navigator.of(context).pop();
-            },
-            child: Text(L10n.of(context)!.accountSettings),
           ),
         ],
       ),

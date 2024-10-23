@@ -4,6 +4,7 @@ import 'package:fluffychat/pangea/widgets/user_settings/country_picker_tile.dart
 import 'package:fluffychat/pangea/widgets/user_settings/language_tile.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_settings_switch_list_tile.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -13,18 +14,16 @@ class SettingsLearningView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final dialogContent = Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           L10n.of(context)!.learningSettings,
         ),
-        leading: controller.widget.isPopup
-            ? IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: Navigator.of(context).pop,
-              )
-            : null,
+        leading: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: Navigator.of(context).pop,
+        ),
       ),
       body: ListTileTheme(
         iconColor: Theme.of(context).textTheme.bodyLarge!.color,
@@ -79,5 +78,25 @@ class SettingsLearningView extends StatelessWidget {
         ),
       ),
     );
+
+    return kIsWeb
+        ? Dialog(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 600,
+                maxHeight: 600,
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: dialogContent,
+              ),
+            ),
+          )
+        : Dialog.fullscreen(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: dialogContent,
+            ),
+          );
   }
 }
