@@ -106,7 +106,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void setState(VoidCallback fn) {
     if (SchedulerBinding.instance.schedulerPhase == SchedulerPhase.idle ||
         SchedulerBinding.instance.schedulerPhase ==
-            SchedulerPhase.postFrameCallbacks) {
+                SchedulerPhase.postFrameCallbacks &&
+            mounted) {
       // It's safe to call setState immediately
       super.setState(fn);
     } else {
