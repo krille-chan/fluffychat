@@ -105,17 +105,29 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// This is a workaround to prevent that error
   @override
   void setState(VoidCallback fn) {
-    if (SchedulerBinding.instance.schedulerPhase == SchedulerPhase.idle ||
-        SchedulerBinding.instance.schedulerPhase ==
-                SchedulerPhase.postFrameCallbacks &&
-            mounted) {
+    final phase = SchedulerBinding.instance.schedulerPhase;
+    if (mounted &&
+        (phase == SchedulerPhase.idle ||
+            phase == SchedulerPhase.postFrameCallbacks)) {
       // It's safe to call setState immediately
-      super.setState(fn);
+      try {
+        super.setState(fn);
+      } catch (e, s) {
+        ErrorHandler.logError(
+          e: "Error calling setState in MessageSelectionOverlay: $e",
+          s: s,
+        );
+      }
     } else {
       // Defer the setState call to after the current frame
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) {
-          super.setState(fn);
+        try {
+          if (mounted) super.setState(fn);
+        } catch (e, s) {
+          ErrorHandler.logError(
+            e: "Error calling setState in MessageSelectionOverlay after postframeCallback: $e",
+            s: s,
+          );
         }
       });
     }
@@ -404,6 +416,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   @override
   Widget build(BuildContext context) {
+    if (messageSize == null) return const SizedBox.shrink();
+
     final bool showDetails = (Matrix.of(context)
                 .store
                 .getBool(SettingKeys.displayChatDetailsColumn) ??
@@ -483,21 +497,25 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         ? FluffyThemes.columnWidth + FluffyThemes.navRailWidth
         : 0;
 
-    final double? leftPadding = widget._pangeaMessageEvent.ownMessage
-        ? null
-        : messageOffset!.dx - horizontalPadding - columnOffset;
+    final double? leftPadding =
+        (widget._pangeaMessageEvent.ownMessage || messageOffset == null)
+            ? null
+            : messageOffset!.dx - horizontalPadding - columnOffset;
 
-    final double? rightPadding =
-        (widget._pangeaMessageEvent.ownMessage && screenWidth != null)
-            ? screenWidth! -
-                messageOffset!.dx -
-                messageSize!.width -
-                horizontalPadding
-            : null;
+    final double? rightPadding = (widget._pangeaMessageEvent.ownMessage &&
+            screenWidth != null &&
+            messageOffset != null &&
+            messageSize != null)
+        ? screenWidth! -
+            messageOffset!.dx -
+            messageSize!.width -
+            horizontalPadding
+        : null;
 
-    final positionedOverlayMessage =
-        (_overlayPositionAnimation == null || screenHeight == null)
-            ? Positioned(
+    final positionedOverlayMessage = (_overlayPositionAnimation == null)
+        ? (screenHeight == null || messageSize == null || messageOffset == null)
+            ? const SizedBox.shrink()
+            : Positioned(
                 left: leftPadding,
                 right: rightPadding,
                 bottom: screenHeight! -
@@ -506,17 +524,17 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                     belowMessageHeight,
                 child: overlayMessage,
               )
-            : AnimatedBuilder(
-                animation: _overlayPositionAnimation!,
-                builder: (context, child) {
-                  return Positioned(
-                    left: leftPadding,
-                    right: rightPadding,
-                    bottom: _overlayPositionAnimation!.value,
-                    child: overlayMessage,
-                  );
-                },
+        : AnimatedBuilder(
+            animation: _overlayPositionAnimation!,
+            builder: (context, child) {
+              return Positioned(
+                left: leftPadding,
+                right: rightPadding,
+                bottom: _overlayPositionAnimation!.value,
+                child: overlayMessage,
               );
+            },
+          );
 
     return Padding(
       padding: EdgeInsets.only(
