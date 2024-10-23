@@ -134,7 +134,16 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   bool isDefaultPlatform =
       (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS);
 
-  bool get supportsPasswordLogin => _supportsFlow('m.login.password');
+  bool get supportsPasswordLogin =>
+      _supportsFlow('m.login.password') &&
+      // OIDC Aware client we should hide password login if
+      // "delegated_oidc_compatibility" is `true`.
+      // https://github.com/matrix-org/matrix-spec-proposals/blob/hughns/sso-redirect-action/proposals/3824-oidc-aware-clients.md
+      loginFlows?.any(
+            (flow) =>
+                flow.type == 'm.login.sso' && flow.delegateOidcCompatibility,
+          ) ==
+          false;
 
   void ssoLoginAction() async {
     final redirectUrl = kIsWeb
@@ -240,4 +249,12 @@ class IdentityProvider {
         icon: json['icon'],
         brand: json['brand'],
       );
+}
+
+extension on LoginFlow {
+  bool get delegateOidcCompatibility =>
+      additionalProperties.tryGet<bool>('delegated_oidc_compatibility') ??
+      additionalProperties
+          .tryGet<bool>('org.matrix.msc3824.delegated_oidc_compatibility') ??
+      false;
 }
