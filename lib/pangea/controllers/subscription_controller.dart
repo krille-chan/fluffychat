@@ -23,7 +23,7 @@ import 'package:http/http.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-enum CanSendStatus {
+enum SubscriptionStatus {
   subscribed,
   dimissedPaywall,
   showPaywall,
@@ -227,11 +227,13 @@ class SubscriptionController extends BaseController {
     setState(null);
   }
 
-  CanSendStatus get canSendStatus => isSubscribed
-      ? CanSendStatus.subscribed
+  /// if the user is subscribed, returns subscribed
+  /// if the user has dismissed the paywall, returns dismissed
+  SubscriptionStatus get subscriptionStatus => isSubscribed
+      ? SubscriptionStatus.subscribed
       : _shouldShowPaywall
-          ? CanSendStatus.showPaywall
-          : CanSendStatus.dimissedPaywall;
+          ? SubscriptionStatus.showPaywall
+          : SubscriptionStatus.dimissedPaywall;
 
   DateTime? get _lastDismissedPaywall {
     final lastDismissed = _pangeaController.pStoreService.read(
@@ -249,6 +251,7 @@ class SubscriptionController extends BaseController {
     return backoff;
   }
 
+  /// whether or not the paywall should be shown
   bool get _shouldShowPaywall {
     return initialized.isCompleted &&
         !isSubscribed &&

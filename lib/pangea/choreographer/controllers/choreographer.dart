@@ -70,8 +70,8 @@ class Choreographer {
   void send(BuildContext context) {
     if (isFetching) return;
 
-    if (pangeaController.subscriptionController.canSendStatus ==
-        CanSendStatus.showPaywall) {
+    if (pangeaController.subscriptionController.subscriptionStatus ==
+        SubscriptionStatus.showPaywall) {
       OverlayUtil.showPositionedCard(
         context: context,
         cardToShow: PaywallCard(
@@ -245,10 +245,10 @@ class Choreographer {
   }) async {
     try {
       if (errorService.isError) return;
-      final CanSendStatus canSendStatus =
-          pangeaController.subscriptionController.canSendStatus;
+      final SubscriptionStatus canSendStatus =
+          pangeaController.subscriptionController.subscriptionStatus;
 
-      if (canSendStatus != CanSendStatus.subscribed ||
+      if (canSendStatus != SubscriptionStatus.subscribed ||
           (!igcEnabled && !itEnabled) ||
           (!isAutoIGCEnabled && !manual && choreoMode != ChoreoMode.it)) {
         return;
