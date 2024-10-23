@@ -89,8 +89,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       // should never happen but just in case
       debugger(when: kDebugMode);
       ErrorHandler.logError(
-        e: Exception(),
-        m: 'audioFile duration is null in MessageAudioCardState',
+        e: 'audioFile duration is null in MessageAudioCardState',
         data: {
           'audioFile': audioFile,
         },
@@ -124,8 +123,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
     // if we didn't find the token, we should pause if debug and log an error
     debugger(when: kDebugMode);
     ErrorHandler.logError(
-      e: Exception(),
-      m: 'could not find token for selection in MessageAudioCardState',
+      e: 'could not find token for selection in MessageAudioCardState',
       data: {
         'selection': selection,
         'tokens': tokens,
@@ -174,7 +172,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
         ),
       );
       ErrorHandler.logError(
-        e: Exception(),
+        e: e,
         s: s,
         m: 'something wrong getting audio in MessageAudioCardState',
         data: {
