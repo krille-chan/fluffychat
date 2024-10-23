@@ -187,10 +187,10 @@ class PracticeActivityModel {
     // moving from multiple_choice to content as the key
     // this is to make the model more generic
     // here for backward compatibility
-    final Map<String, dynamic>? content =
+    final Map<String, dynamic>? contentMap =
         (json['content'] ?? json["multiple_choice"]) as Map<String, dynamic>?;
 
-    if (content == null) {
+    if (contentMap == null) {
       Sentry.addBreadcrumb(
         Breadcrumb(data: {"json": json}),
       );
@@ -211,9 +211,7 @@ class PracticeActivityModel {
                   e.string == json['activity_type'] as String ||
                   e.string.split('.').last == json['activity_type'] as String,
             ),
-      content: ActivityContent.fromJson(
-        content,
-      ),
+      content: ActivityContent.fromJson(contentMap),
     );
   }
 
