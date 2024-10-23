@@ -41,30 +41,17 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      PopupMenuItem(
-        value: SettingsAction.learning,
-        child: Row(
-          children: [
-            const Icon(Icons.psychology_outlined),
-            const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.learningSettings)),
-          ],
-        ),
-      ),
+      // PopupMenuItem(
+      //   value: SettingsAction.newGroup,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.group_add_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context)!.createGroup),
+      //     ],
+      //   ),
+      // ),
       // Pangea#
-      PopupMenuItem(
-        value: SettingsAction.newGroup,
-        child: Row(
-          children: [
-            const Icon(Icons.group_add_outlined),
-            const SizedBox(width: 18),
-            // #Pangea
-            Expanded(child: Text(L10n.of(context)!.createGroup)),
-            // Text(L10n.of(context)!.createGroup),
-            // Pangea#
-          ],
-        ),
-      ),
       PopupMenuItem(
         value: SettingsAction.newSpace,
         child: Row(
@@ -79,6 +66,16 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       // #Pangea
+      PopupMenuItem(
+        value: SettingsAction.learning,
+        child: Row(
+          children: [
+            const Icon(Icons.psychology_outlined),
+            const SizedBox(width: 18),
+            Expanded(child: Text(L10n.of(context)!.learningSettings)),
+          ],
+        ),
+      ),
       // PopupMenuItem(
       //   value: SettingsAction.setStatus,
       //   child: Row(
@@ -306,9 +303,11 @@ class ClientChooserButton extends StatelessWidget {
           if (consent != OkCancelResult.ok) return;
           context.go('/rooms/settings/addaccount');
           break;
-        case SettingsAction.newGroup:
-          context.go('/rooms/newgroup');
-          break;
+        // #Pangea
+        // case SettingsAction.newGroup:
+        //   context.go('/rooms/newgroup');
+        //   break;
+        // Pangea#
         case SettingsAction.newSpace:
           controller.createNewSpace();
           break;
@@ -416,7 +415,9 @@ class ClientChooserButton extends StatelessWidget {
 
 enum SettingsAction {
   addAccount,
-  newGroup,
+  // #Pangea
+  // newGroup,
+  // Pangea#
   newSpace,
   // #Pangea
   // setStatus,

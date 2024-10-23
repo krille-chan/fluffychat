@@ -3095,7 +3095,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "learningSettings": "My Learning Settings",
+  "learningSettings": "Learning settings",
   "classNameRequired": "Please enter a space name",
   "@classNameRequired": {
     "type": "text",
