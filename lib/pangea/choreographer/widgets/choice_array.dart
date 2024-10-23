@@ -44,17 +44,13 @@ class ChoicesArrayState extends State<ChoicesArray> {
 
   void disableInteraction() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        interactionDisabled = true;
-      });
+      if (mounted) setState(() => interactionDisabled = true);
     });
   }
 
   void enableInteractions() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        interactionDisabled = false;
-      });
+      if (mounted) setState(() => interactionDisabled = false);
     });
   }
 

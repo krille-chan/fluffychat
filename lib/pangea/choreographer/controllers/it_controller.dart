@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
-import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -180,6 +179,18 @@ class ITController {
   }
 
   Future<void> getNextTranslationData() async {
+    if (sourceText == null) {
+      ErrorHandler.logError(
+        e: Exception("sourceText is null in getNextTranslationData"),
+        data: {
+          "sourceText": sourceText,
+          "currentITStep": currentITStep,
+          "nextITStep": nextITStep,
+        },
+      );
+      return;
+    }
+
     try {
       if (completedITSteps.length < goldRouteTracker.continuances.length) {
         final String currentText = choreographer.currentText;
