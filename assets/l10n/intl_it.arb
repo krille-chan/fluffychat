@@ -1913,7 +1913,7 @@
   "@widgetEtherpad": {},
   "removeDevicesDescription": "Sarai disconnesso da questo dispositivo e non potrai più ricevere messaggi.",
   "@removeDevicesDescription": {},
-  "separateChatTypes": "Separa Chat Dirette e Gruppi",
+  "separateChatTypes": "Separare le chat dirette e i gruppi",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2260,7 +2260,7 @@
   "@noChatDescriptionYet": {},
   "removeFromBundle": "Rimuovi da questo bundle",
   "@removeFromBundle": {},
-  "confirmMatrixId": "Conferma il tuo ID Matrix per cancellare il tuo account.",
+  "confirmMatrixId": "Per eliminare il tuo account, conferma il tuo Matrix ID.",
   "@confirmMatrixId": {},
   "learnMore": "Scopri di più",
   "@learnMore": {},
@@ -2328,7 +2328,7 @@
   },
   "shareInviteLink": "Condividi link d'invito",
   "@shareInviteLink": {},
-  "commandHint_markasdm": "Segna come stanza messaggi diretti per questo ID Matrix",
+  "commandHint_markasdm": "Contrassegna questo Matrix ID come stanza di messaggi diretti",
   "@commandHint_markasdm": {},
   "recoveryKeyLost": "Chiave di recupero smarrita?",
   "@recoveryKeyLost": {},
@@ -2361,7 +2361,7 @@
   "@widgetName": {},
   "errorAddingWidget": "Errore aggiungendo il widget.",
   "@errorAddingWidget": {},
-  "commandHint_dm": "Avvia una chat diretta\nUtilizza --no-encryption per disattivare la criptazione",
+  "commandHint_dm": "Avvia una chat diretta\nUsa --no-encryption per disabilitare la crittografia",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -2739,5 +2739,97 @@
     "placeholders": {
       "sender": {}
     }
-  }
+  },
+  "changeTheChatPermissions": "Cambia i permessi della chat",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "Cambia la visibilità della cronologia chat",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Cambia l'indirizzo principale della chat pubblica",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "Invia notifiche alla @stanza",
+  "@sendRoomNotifications": {},
+  "sendCanceled": "Invio annullato",
+  "@sendCanceled": {},
+  "calculatingFileSize": "Calcolo della dimensione del file...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Preparazione per l'invio dell'allegato...",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "Invio allegato...",
+  "@sendingAttachment": {},
+  "compressVideo": "Compressione video...",
+  "@compressVideo": {},
+  "generatingVideoThumbnail": "Generazione miniatura video...",
+  "@generatingVideoThumbnail": {},
+  "sendingAttachmentCountOfCount": "Invio dell'allegato {index} di {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "Limite server raggiunto! Attendere {seconds} secondi...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "oneOfYourDevicesIsNotVerified": "Uno dei tuoi dispositivi non è verificato",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Nota: quando colleghi tutti i tuoi dispositivi al backup della chat, vengono verificati automaticamente.",
+  "@noticeChatBackupDeviceVerification": {},
+  "moderatorLevel": "{level} - Moderatore",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheDescriptionOfTheGroup": "Cambia la descrizione della chat",
+  "@changeTheDescriptionOfTheGroup": {},
+  "updateInstalled": "🎉 Aggiornamento {version} installato!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "inviteOtherUsers": "Invita altri utenti a questa chat",
+  "@inviteOtherUsers": {},
+  "userLevel": "{level} - Utente",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Amministratore",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Modifica le impostazioni generali della chat",
+  "@changeGeneralChatSettings": {},
+  "loginWithMatrixId": "Accedi con il Matrix ID",
+  "@loginWithMatrixId": {},
+  "homeserverDescription": "Tutti i tuoi dati sono archiviati sull'homeserver, proprio come un provider di posta elettronica. Puoi scegliere quale homeserver vuoi usare, mentre puoi comunque comunicare con tutti. Scopri di più su https://matrix.org.",
+  "@homeserverDescription": {},
+  "discoverHomeservers": "Scopri gli homeserver",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Cos'è un homeserver?",
+  "@whatIsAHomeserver": {},
+  "changelog": "Registro delle modifiche",
+  "@changelog": {},
+  "doesNotSeemToBeAValidHomeserver": "Non sembra essere un homeserver compatibile. URL sbagliato?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "goToSpace": "Vai allo spazio: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Contrassegna come non letto",
+  "@markAsUnread": {}
 }
