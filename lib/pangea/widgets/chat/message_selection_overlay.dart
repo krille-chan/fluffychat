@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar_buttons.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
@@ -261,14 +262,14 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (messageSize == null || messageOffset == null) {
+    if (messageSize == null || messageOffset == null || screenHeight == null) {
       return;
     }
 
     // position the overlay directly over the underlying message
-    final headerBottomOffset = screenHeight - headerHeight;
+    final headerBottomOffset = screenHeight! - headerHeight;
     final footerBottomOffset = footerHeight;
-    final currentBottomOffset = screenHeight -
+    final currentBottomOffset = screenHeight! -
         messageOffset!.dy -
         messageSize!.height -
         belowMessageHeight;
@@ -296,7 +297,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       animationEndOffset = midpoint - messageSize!.height - belowMessageHeight;
       final totalTopOffset =
           animationEndOffset + messageSize!.height + AppConfig.toolbarMaxHeight;
-      final remainingSpace = screenHeight - totalTopOffset;
+      final remainingSpace = screenHeight! - totalTopOffset;
       if (remainingSpace < headerHeight) {
         // the overlay could run over the header, so it needs to be shifted down
         animationEndOffset -= (headerHeight - remainingSpace);
@@ -311,7 +312,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // update the message height to fit the screen. The message is scrollable, so
     // this will make the both the toolbar box and the toolbar buttons visible.
     if (animationEndOffset < footerHeight + belowMessageHeight) {
-      final double remainingSpace = screenHeight -
+      final double remainingSpace = screenHeight! -
           AppConfig.toolbarMaxHeight -
           headerHeight -
           footerHeight -
@@ -349,25 +350,57 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     super.dispose();
   }
 
-  RenderBox? get messageRenderBox => MatrixState.pAnyState.getRenderBox(
+  RenderBox? get messageRenderBox {
+    try {
+      return MatrixState.pAnyState.getRenderBox(
         widget._event.eventId,
       );
+    } catch (e, s) {
+      ErrorHandler.logError(e: "Error getting message render box: $e", s: s);
+      return null;
+    }
+  }
 
-  Size? get messageSize => messageRenderBox?.size;
-  Offset? get messageOffset => messageRenderBox?.localToGlobal(Offset.zero);
+  Size? get messageSize {
+    try {
+      return messageRenderBox?.size;
+    } catch (e, s) {
+      ErrorHandler.logError(e: "Error getting message size: $e", s: s);
+      return null;
+    }
+  }
+
+  Offset? get messageOffset {
+    try {
+      return messageRenderBox?.localToGlobal(Offset.zero);
+    } catch (e, s) {
+      ErrorHandler.logError(e: "Error getting message offset: $e", s: s);
+      return null;
+    }
+  }
+
   double? adjustedMessageHeight;
 
   // height of the reply/forward bar + the reaction picker + contextual padding
   double get footerHeight =>
       48 + 56 + (FluffyThemes.isColumnMode(context) ? 16.0 : 8.0);
 
+  MediaQueryData? get mediaQuery {
+    try {
+      return MediaQuery.of(context);
+    } catch (e, s) {
+      ErrorHandler.logError(e: "Error getting media query: $e", s: s);
+      return null;
+    }
+  }
+
   double get headerHeight =>
       (Theme.of(context).appBarTheme.toolbarHeight ?? 56) +
-      MediaQuery.of(context).padding.top;
+      (mediaQuery?.padding.top ?? 0);
 
-  double get screenHeight => MediaQuery.of(context).size.height;
+  double? get screenHeight => mediaQuery?.size.height;
 
-  double get screenWidth => MediaQuery.of(context).size.width;
+  double? get screenWidth => mediaQuery?.size.width;
 
   @override
   Widget build(BuildContext context) {
@@ -381,13 +414,17 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // the default spacing between the side of the screen and the message bubble
     const double messageMargin = Avatar.defaultSize + 16 + 8;
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
-    final chatViewWidth = screenWidth -
-        (FluffyThemes.isColumnMode(context)
-            ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth)
-            : 0);
+
     const totalMaxWidth = (FluffyThemes.columnWidth * 2.5) - messageMargin;
-    double maxWidth = chatViewWidth - (2 * horizontalPadding) - messageMargin;
-    if (maxWidth > totalMaxWidth) {
+    double? maxWidth;
+    if (screenWidth != null) {
+      final chatViewWidth = screenWidth! -
+          (FluffyThemes.isColumnMode(context)
+              ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth)
+              : 0);
+      maxWidth = chatViewWidth - (2 * horizontalPadding) - messageMargin;
+    }
+    if (maxWidth == null || maxWidth > totalMaxWidth) {
       maxWidth = totalMaxWidth;
     }
 
@@ -450,34 +487,36 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         ? null
         : messageOffset!.dx - horizontalPadding - columnOffset;
 
-    final double? rightPadding = widget._pangeaMessageEvent.ownMessage
-        ? screenWidth -
-            messageOffset!.dx -
-            messageSize!.width -
-            horizontalPadding
-        : null;
+    final double? rightPadding =
+        (widget._pangeaMessageEvent.ownMessage && screenWidth != null)
+            ? screenWidth! -
+                messageOffset!.dx -
+                messageSize!.width -
+                horizontalPadding
+            : null;
 
-    final positionedOverlayMessage = _overlayPositionAnimation == null
-        ? Positioned(
-            left: leftPadding,
-            right: rightPadding,
-            bottom: screenHeight -
-                messageOffset!.dy -
-                messageSize!.height -
-                belowMessageHeight,
-            child: overlayMessage,
-          )
-        : AnimatedBuilder(
-            animation: _overlayPositionAnimation!,
-            builder: (context, child) {
-              return Positioned(
+    final positionedOverlayMessage =
+        (_overlayPositionAnimation == null || screenHeight == null)
+            ? Positioned(
                 left: leftPadding,
                 right: rightPadding,
-                bottom: _overlayPositionAnimation!.value,
+                bottom: screenHeight! -
+                    messageOffset!.dy -
+                    messageSize!.height -
+                    belowMessageHeight,
                 child: overlayMessage,
+              )
+            : AnimatedBuilder(
+                animation: _overlayPositionAnimation!,
+                builder: (context, child) {
+                  return Positioned(
+                    left: leftPadding,
+                    right: rightPadding,
+                    bottom: _overlayPositionAnimation!.value,
+                    child: overlayMessage,
+                  );
+                },
               );
-            },
-          );
 
     return Padding(
       padding: EdgeInsets.only(
