@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
 import 'package:fluffychat/pangea/utils/space_code.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -327,7 +328,10 @@ class ClientChooserButton extends StatelessWidget {
         //   controller.setStatus();
         //   break;
         case SettingsAction.learning:
-          context.go('/rooms/settings/learning');
+          showDialog(
+            context: context,
+            builder: (c) => const SettingsLearning(),
+          );
           break;
         case SettingsAction.joinWithClassCode:
           SpaceCodeUtil.joinWithSpaceCodeDialog(
