@@ -112,6 +112,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
           // Check the URL when the page finishes loading
           switch (widget.network.name) {
             case "Facebook Messenger":
+            case "Instagram":
               final successfullyRedirected = !_facebookBridgeCreated &&
                   url != null &&
                   urlString != widget.network.urlLogin! &&
@@ -133,26 +134,6 @@ class _WebViewConnectionState extends State<WebViewConnection> {
               } else {
                 // assume login page
                 await _addCustomStyle();
-              }
-              break;
-
-            case "Instagram":
-              if (!_instagramBridgeCreated &&
-                  url != null &&
-                  urlString != widget.network.urlLogin! &&
-                  widget.network.urlRedirectPattern?.hasMatch(urlString!) == true) {
-                // Close the WebView
-                await _closeWebView();
-                await showCustomLoadingDialog(
-                  context: context,
-                  future: () async {
-                    // Mark the Instagram bridge as created
-                    _instagramBridgeCreated = true;
-
-                    await widget.controller.createBridgeMeta(context,
-                        cookieManager, connectionState, widget.network);
-                  },
-                );
               }
               break;
 
