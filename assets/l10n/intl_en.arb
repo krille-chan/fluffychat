@@ -2563,7 +2563,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "interactiveTranslatorAllowedDesc": "Students can choose whether to use translation assistance in space group chats in Main Menu > My Learning Settings.",
+  "interactiveTranslatorAllowedDesc": "Students can choose whether to use translation assistance in space group chats in Main Menu > Learning Settings.",
   "@interactiveTranslatorAllowedDesc": {
     "type": "text",
     "placeholders": {}
@@ -3030,9 +3030,9 @@
   "errorDisableLanguageAssistanceClassDesc": "Translation assistance and grammar assistance are turned off for the space that this chat is in.",
   "itIsDisabled": "Interactive Translation is disabled",
   "igcIsDisabled": "Interactive Grammar Checking is disabled",
-  "goToLearningSettings": "Go to My Learning Settings",
+  "goToLearningSettings": "Go to Learning Settings",
   "error405Title": "Languages not set",
-  "error405Desc": "Please set your languages in Main Menu > My Learning Settings.",
+  "error405Desc": "Please set your languages in Main Menu > Learning Settings.",
   "loginOrSignup": "Sign in with",
   "@loginOrSignup": {
     "type": "text",
