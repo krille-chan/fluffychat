@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/word_audio_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -106,9 +108,9 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           ),
           const SizedBox(height: 8),
           // #freeze-activity
-          // if (practiceActivity.activityType ==
-          //     ActivityTypeEnum.wordFocusListening)
-          //   WordAudioButton(text: practiceActivity.content.answer),
+          if (practiceActivity.activityType ==
+              ActivityTypeEnum.wordFocusListening)
+            WordAudioButton(text: practiceActivity.content.answer),
           ChoicesArray(
             isLoading: false,
             uniqueKeyForLayerLink: (index) => "multiple_choice_$index",

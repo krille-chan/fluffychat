@@ -70,8 +70,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
           }, // Disable button if language isn't supported
         ),
         // #freeze-activity
-        //commenting out to see if it's causing an issue
-        // ttsController.missingVoiceButton,
+        ttsController.missingVoiceButton,
       ],
     );
   }
