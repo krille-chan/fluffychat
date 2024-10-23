@@ -36,11 +36,10 @@ class PracticeActivityCard extends StatefulWidget {
   });
 
   @override
-  MessagePracticeActivityCardState createState() =>
-      MessagePracticeActivityCardState();
+  PracticeActivityCardState createState() => PracticeActivityCardState();
 }
 
-class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
+class PracticeActivityCardState extends State<PracticeActivityCard> {
   PracticeActivityModel? currentActivity;
   PracticeActivityRecordModel? currentCompletionRecord;
   bool fetchingActivity = false;

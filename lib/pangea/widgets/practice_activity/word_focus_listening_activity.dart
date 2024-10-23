@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 
 class WordFocusListeningActivity extends StatefulWidget {
   final PracticeActivityModel activity;
-  final MessagePracticeActivityCardState practiceCardController;
+  final PracticeActivityCardState practiceCardController;
 
   const WordFocusListeningActivity({
     super.key,

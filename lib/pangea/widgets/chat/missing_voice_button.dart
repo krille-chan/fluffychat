@@ -51,9 +51,9 @@ class MissingVoiceButton extends StatelessWidget {
             onPressed: () => launchTTSSettings,
             // commenting out as suspecting this is causing an issue
             // #freeze-activity
-            // style: const ButtonStyle(
-            //   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            // ),
+            style: const ButtonStyle(
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
             child: Text(L10n.of(context)!.openVoiceSettings),
           ),
         ],
