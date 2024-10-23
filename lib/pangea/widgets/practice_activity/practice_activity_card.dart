@@ -177,7 +177,7 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
   Future<void> _savorTheJoy() async {
     debugger(when: savoringTheJoy && kDebugMode);
 
-    setState(() => savoringTheJoy = true);
+    if (mounted) setState(() => savoringTheJoy = true);
 
     await Future.delayed(appropriateTimeForJoy);
 
