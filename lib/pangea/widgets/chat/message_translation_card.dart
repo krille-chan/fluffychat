@@ -144,14 +144,18 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
                   child: Column(
                     children: [
                       widget.selection != null
-                          ? Text(
-                              selectionTranslation!,
-                              style: BotStyle.text(context),
-                            )
-                          : Text(
-                              repEvent!.text,
-                              style: BotStyle.text(context),
-                            ),
+                          ? selectionTranslation != null
+                              ? Text(
+                                  selectionTranslation!,
+                                  style: BotStyle.text(context),
+                                )
+                              : const ToolbarContentLoadingIndicator()
+                          : repEvent != null
+                              ? Text(
+                                  repEvent!.text,
+                                  style: BotStyle.text(context),
+                                )
+                              : const ToolbarContentLoadingIndicator(),
                       if (notGoingToTranslate && widget.selection == null)
                         InlineTooltip(
                           instructionsEnum: InstructionsEnum.l1Translation,
