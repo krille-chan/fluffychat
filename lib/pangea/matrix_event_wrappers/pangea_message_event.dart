@@ -540,8 +540,7 @@ class PangeaMessageEvent {
 
   int get numberOfActivitiesCompleted {
     return MatrixState.pangeaController.activityRecordController
-            .completedActivities[eventId] ??
-        0;
+        .getCompletedActivityCount(eventId);
   }
 
   String? get l2Code =>
