@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -26,23 +27,8 @@ class ConversationBotModeSelect extends StatelessWidget {
       //     L10n.of(context)!.conversationBotModeSelectOption_storyGame,
     };
 
-    String? mode = initialMode;
-    if (!options.containsKey(initialMode)) {
-      mode = null;
-    }
-
-    return DropdownButtonFormField(
-      // Initial Value
-      hint: Text(
-        options[mode ?? BotMode.discussion]!,
-        overflow: TextOverflow.clip,
-        textAlign: TextAlign.center,
-      ),
-      // ),
-      isExpanded: true,
-      // Down Arrow Icon
-      icon: const Icon(Icons.keyboard_arrow_down),
-      // Array list of items
+    return DropdownButtonFormField2(
+      hint: Text(L10n.of(context)!.selectBotChatMode),
       items: [
         for (final entry in options.entries)
           DropdownMenuItem(

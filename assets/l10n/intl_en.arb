@@ -4016,9 +4016,9 @@
   "conversationBotModeSelectOption_storyGame": "Story Game",
   "conversationBotDiscussionZone_title": "Discussion Settings",
   "conversationBotDiscussionZone_discussionTopicLabel": "Discussion Topic",
-  "conversationBotDiscussionZone_discussionTopicPlaceholder": "Set Discussion Topic",
+  "conversationBotDiscussionZone_discussionTopicPlaceholder": "Set discussion topic",
   "conversationBotDiscussionZone_discussionKeywordsLabel": "Discussion Keywords",
-  "conversationBotDiscussionZone_discussionKeywordsPlaceholder": "Set Discussion Keywords",
+  "conversationBotDiscussionZone_discussionKeywordsPlaceholder": "Set discussion keywords",
   "conversationBotDiscussionZone_discussionKeywordsHintText": "Comma separated list of keywords to guide the discussion",
   "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel": "Send discussion prompt on a schedule",
   "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Hours between discussion prompts",
@@ -4364,5 +4364,6 @@
   "selectBotLanguage": "Select bot language",
   "chooseVoice": "Choose a voice",
   "enterLanguageLevel": "Please enter a language level",
-  "enterDiscussionTopic": "Please enter a discussion topic"
+  "enterDiscussionTopic": "Please enter a discussion topic",
+  "selectBotChatMode": "Select chat mode"
 }
