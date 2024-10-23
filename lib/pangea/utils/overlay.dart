@@ -20,17 +20,14 @@ class OverlayUtil {
     required BuildContext context,
     required Widget child,
     required String transformTargetId,
-    double? width,
-    double? height,
     backDropToDismiss = true,
     blurBackground = false,
     Color? borderColor,
     Color? backgroundColor,
-    Alignment? targetAnchor,
-    Alignment? followerAnchor,
     bool closePrevOverlay = true,
     Function? onDismiss,
     OverlayPositionEnum position = OverlayPositionEnum.transform,
+    Offset? offset,
   }) {
     try {
       if (closePrevOverlay) {
@@ -54,18 +51,16 @@ class OverlayUtil {
                 right: (position == OverlayPositionEnum.centered) ? 0 : null,
                 left: (position == OverlayPositionEnum.centered) ? 0 : null,
                 bottom: (position == OverlayPositionEnum.centered) ? 0 : null,
-                width: width,
-                height: height,
                 child: (position != OverlayPositionEnum.transform)
                     ? child
                     : CompositedTransformFollower(
-                        targetAnchor: targetAnchor ?? Alignment.topCenter,
-                        followerAnchor:
-                            followerAnchor ?? Alignment.bottomCenter,
+                        targetAnchor: Alignment.topCenter,
+                        followerAnchor: Alignment.bottomCenter,
                         link: MatrixState.pAnyState
                             .layerLinkAndKey(transformTargetId)
                             .link,
                         showWhenUnlinked: false,
+                        offset: offset ?? Offset.zero,
                         child: child,
                       ),
               ),
@@ -100,6 +95,32 @@ class OverlayUtil {
         return;
       }
 
+      Offset offset = Offset.zero;
+      final RenderBox? targetRenderBox =
+          layerLinkAndKey.key.currentContext!.findRenderObject() as RenderBox?;
+      if (targetRenderBox != null && targetRenderBox.hasSize) {
+        final Offset transformTargetOffset =
+            (targetRenderBox).localToGlobal(Offset.zero);
+        final Size transformTargetSize = targetRenderBox.size;
+        final horizontalMidpoint =
+            transformTargetOffset.dx + (transformTargetSize.width / 2);
+
+        final halfMaxWidth = maxWidth / 2;
+        final hasLeftOverflow = (horizontalMidpoint - halfMaxWidth) < 0;
+        final hasRightOverflow = (horizontalMidpoint + halfMaxWidth) >
+            MediaQuery.of(context).size.width;
+        double xOffset = 0;
+
+        MediaQuery.of(context).size.width - (horizontalMidpoint + halfMaxWidth);
+        if (hasLeftOverflow) {
+          xOffset = (transformTargetOffset.dx - halfMaxWidth) * -1;
+        } else if (hasRightOverflow) {
+          xOffset = MediaQuery.of(context).size.width -
+              (horizontalMidpoint + halfMaxWidth);
+        }
+        offset = Offset(xOffset, 0);
+      }
+
       final Widget child = Material(
         borderOnForeground: false,
         color: Colors.transparent,
@@ -119,6 +140,7 @@ class OverlayUtil {
         backDropToDismiss: backDropToDismiss,
         borderColor: borderColor,
         closePrevOverlay: closePrevOverlay,
+        offset: offset,
       );
     } catch (err, stack) {
       debugger(when: kDebugMode);
@@ -138,12 +160,12 @@ class OverlayUtil {
   //   final OverlayConstraints constraints =
   //       ChatViewConstraints(transformTargetContext);
 
-  //   final RenderObject? targetRenderBox =
-  //       transformTargetContext.findRenderObject();
-  //   if (targetRenderBox == null) return Offset.zero;
-  //   final Offset transformTargetOffset =
-  //       (targetRenderBox as RenderBox).localToGlobal(Offset.zero);
-  //   final Size transformTargetSize = targetRenderBox.size;
+  // final RenderObject? targetRenderBox =
+  //     transformTargetContext.findRenderObject();
+  // if (targetRenderBox == null) return Offset.zero;
+  // final Offset transformTargetOffset =
+  //     (targetRenderBox as RenderBox).localToGlobal(Offset.zero);
+  // final Size transformTargetSize = targetRenderBox.size;
 
   //   // ideally horizontally centered on target
   //   double dx = transformTargetSize.width / 2 - cardSize.width / 2;
