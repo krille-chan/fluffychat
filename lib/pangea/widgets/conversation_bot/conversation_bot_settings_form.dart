@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_dynamic_zone.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_select.dart';
@@ -36,8 +37,10 @@ class ConversationBotSettingsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        DropdownButtonFormField(
-          // Initial Value
+        DropdownButtonFormField2(
+          dropdownStyleData: const DropdownStyleData(
+            padding: EdgeInsets.zero,
+          ),
           hint: Text(
             L10n.of(context)!.selectBotLanguage,
             overflow: TextOverflow.clip,
@@ -45,7 +48,6 @@ class ConversationBotSettingsForm extends StatelessWidget {
           ),
           value: botOptions.targetLanguage,
           isExpanded: true,
-          icon: const Icon(Icons.keyboard_arrow_down),
           items: MatrixState.pangeaController.pLanguageStore.targetOptions
               .map((language) {
             return DropdownMenuItem(
@@ -60,8 +62,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
           onChanged: enabled ? onUpdateBotLanguage : null,
         ),
         const SizedBox(height: 12),
-        DropdownButtonFormField<String>(
-          // Initial Value
+        DropdownButtonFormField2<String>(
           hint: Text(
             L10n.of(context)!.chooseVoice,
             overflow: TextOverflow.clip,
@@ -69,7 +70,6 @@ class ConversationBotSettingsForm extends StatelessWidget {
           ),
           value: botOptions.targetVoice,
           isExpanded: true,
-          icon: const Icon(Icons.keyboard_arrow_down),
           items: const [],
           onChanged: enabled ? onUpdateBotVoice : null,
         ),
