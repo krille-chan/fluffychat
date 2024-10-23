@@ -175,13 +175,26 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
       );
 
   Future<void> _savorTheJoy() async {
-    debugger(when: savoringTheJoy && kDebugMode);
+    try {
+      debugger(when: savoringTheJoy && kDebugMode);
 
-    if (mounted) setState(() => savoringTheJoy = true);
+      if (mounted) setState(() => savoringTheJoy = true);
 
-    await Future.delayed(appropriateTimeForJoy);
+      await Future.delayed(appropriateTimeForJoy);
 
-    if (mounted) setState(() => savoringTheJoy = false);
+      if (mounted) setState(() => savoringTheJoy = false);
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        m: 'Failed to savor the joy',
+        data: {
+          'activity': currentActivity,
+          'record': currentCompletionRecord,
+        },
+      );
+    }
   }
 
   /// Called when the user finishes an activity.
@@ -211,7 +224,8 @@ class MessagePracticeActivityCardState extends State<PracticeActivityCard> {
         widget.pangeaMessageEvent.eventId,
       );
 
-      //
+      // wait for the joy to be savored before resolving the activity
+      // and setting it to replace the previous activity
       final Iterable<dynamic> result = await Future.wait([
         _savorTheJoy(),
         _fetchNewActivity(),

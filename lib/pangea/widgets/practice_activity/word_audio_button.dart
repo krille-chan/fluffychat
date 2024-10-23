@@ -22,6 +22,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
   @override
   void initState() {
     // TODO: implement initState
+    debugPrint('initState WordAudioButton');
     super.initState();
     ttsController.setupTTS().then((value) => setState(() {}));
   }
@@ -34,6 +35,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('build WordAudioButton');
     return Column(
       children: [
         IconButton(
@@ -67,7 +69,9 @@ class WordAudioButtonState extends State<WordAudioButton> {
             }
           }, // Disable button if language isn't supported
         ),
-        ttsController.missingVoiceButton,
+        // #freeze-activity
+        //commenting out to see if it's causing an issue
+        // ttsController.missingVoiceButton,
       ],
     );
   }
