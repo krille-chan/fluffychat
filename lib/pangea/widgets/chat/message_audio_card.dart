@@ -22,12 +22,14 @@ class MessageAudioCard extends StatefulWidget {
   final MessageOverlayController overlayController;
   final PangeaTokenText? selection;
   final TtsController tts;
+  final Function(bool) setIsPlayingAudio;
 
   const MessageAudioCard({
     super.key,
     required this.messageEvent,
     required this.overlayController,
     required this.tts,
+    required this.setIsPlayingAudio,
     this.selection,
   });
 
@@ -56,7 +58,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
   @override
   void didUpdateWidget(covariant oldWidget) {
-    if (oldWidget.selection != widget.selection) {
+    if (oldWidget.selection != widget.selection && widget.selection != null) {
       debugPrint('selection changed');
       setSectionStartAndEndFromSelection();
       playSelectionAudio();
@@ -65,6 +67,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
   }
 
   Future<void> playSelectionAudio() async {
+    if (widget.selection == null) return;
     final PangeaTokenText selection = widget.selection!;
     final tokenText = selection.content;
 
@@ -203,6 +206,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                           sectionEndMS: sectionEndMS,
                           color:
                               Theme.of(context).colorScheme.onPrimaryContainer,
+                          setIsPlayingAudio: widget.setIsPlayingAudio,
                         ),
                         widget.tts.missingVoiceButton,
                       ],
