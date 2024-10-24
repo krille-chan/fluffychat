@@ -13,9 +13,9 @@ import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/content_issue_button.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/target_tokens_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -321,11 +321,13 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   @override
   Widget build(BuildContext context) {
-    if (!fetchingActivity && currentActivity == null) {
-      return GamifiedTextWidget(
-        userMessage: L10n.of(context)!.noActivitiesFound,
-      );
-    }
+    // if (!fetchingActivity && currentActivity == null) {
+    //   return GamifiedTextWidget(
+    //     userMessage: L10n.of(context)!.noActivitiesFound,
+    //   );
+    // }
+
+    return const ToolbarContentLoadingIndicator();
 
     return Stack(
       alignment: Alignment.center,
@@ -340,10 +342,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         ),
         // Conditionally show the darkening and progress indicator based on the loading state
         if (!savoringTheJoy && fetchingActivity) ...[
-          // Semi-transparent overlay
-          Container(
-            color: Colors.black.withOpacity(0.5), // Darkening effect
-          ),
           // Circular progress indicator in the center
           const Center(
             child: CircularProgressIndicator(),

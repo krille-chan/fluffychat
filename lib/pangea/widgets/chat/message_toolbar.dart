@@ -114,6 +114,9 @@ class MessageToolbar extends StatelessWidget {
       ),
       constraints: const BoxConstraints(
         maxHeight: AppConfig.toolbarMaxHeight,
+        minWidth: AppConfig.toolbarMinWidth,
+        minHeight: AppConfig.toolbarMinHeight,
+        // maxWidth is set by MessageSelectionOverlay
       ),
       child: SingleChildScrollView(
         child: AnimatedSize(

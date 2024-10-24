@@ -134,26 +134,31 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     }
 
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _fetchingTranslation
               ? const ToolbarContentLoadingIndicator()
               : Flexible(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       widget.selection != null
                           ? selectionTranslation != null
                               ? Text(
                                   selectionTranslation!,
                                   style: BotStyle.text(context),
+                                  textAlign: TextAlign.center,
                                 )
                               : const ToolbarContentLoadingIndicator()
                           : repEvent != null
                               ? Text(
                                   repEvent!.text,
                                   style: BotStyle.text(context),
+                                  textAlign: TextAlign.center,
                                 )
                               : const ToolbarContentLoadingIndicator(),
                       if (notGoingToTranslate && widget.selection == null)

@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
@@ -190,7 +189,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       children: [
         Container(
           padding: const EdgeInsets.all(8),
-          constraints: const BoxConstraints(minHeight: minCardHeight),
           alignment: Alignment.center,
           child: _isLoading
               ? const ToolbarContentLoadingIndicator()
