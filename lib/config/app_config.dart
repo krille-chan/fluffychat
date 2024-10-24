@@ -24,7 +24,7 @@ abstract class AppConfig {
   static const bool enableRegistration = true;
   static const double toolbarMaxHeight = 300.0;
   static const double toolbarMinHeight = 70.0;
-  static const double toolbarMinWidth = 350.0;
+  static const double toolbarMinWidth = 250.0;
   // #Pangea
   // static const Color primaryColor = Color(0xFF5625BA);
   // static const Color primaryColorLight = Color(0xFFCCBDEA);

@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
@@ -208,6 +209,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                     )
                   : const CardErrorWidget(
                       error: "Null audio file in message_audio_card",
+                      maxWidth: AppConfig.toolbarMinWidth,
                     ),
         ),
       ],

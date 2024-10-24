@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 
 class ToolbarContentLoadingIndicator extends StatelessWidget {
@@ -7,25 +8,19 @@ class ToolbarContentLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      // mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 14,
-              width: 14,
-              child: CircularProgressIndicator(
-                strokeWidth: 2.0,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-          ],
+    return SizedBox(
+      width: AppConfig.toolbarMinWidth,
+      height: AppConfig.toolbarMinHeight,
+      child: Center(
+        child: SizedBox(
+          height: 14,
+          width: 14,
+          child: CircularProgressIndicator(
+            strokeWidth: 2.0,
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
-      ],
+      ),
     );
   }
 }

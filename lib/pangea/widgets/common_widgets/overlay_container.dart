@@ -32,6 +32,8 @@ class OverlayContainer extends StatelessWidget {
       constraints: BoxConstraints(
         maxWidth: maxWidth,
         maxHeight: maxHeight,
+        minHeight: 100,
+        minWidth: 100,
       ),
       //PTODO - position card above input/message
       // margin: const EdgeInsets.all(10),
