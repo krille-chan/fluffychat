@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
@@ -213,98 +212,99 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
-  AnimationState animationState = AnimationState.ready;
+  // AnimationState animationState = AnimationState.ready;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
+    // _controller = AnimationController(
+    //   duration: const Duration(milliseconds: 300),
+    //   vsync: this,
+    // );
 
-    _animation = widget.isGold
-        ? Tween<double>(begin: 1.0, end: 1.2).animate(_controller)
-        : TweenSequence<double>([
-            TweenSequenceItem<double>(
-              tween: Tween<double>(begin: 0, end: -8 * pi / 180),
-              weight: 1.0,
-            ),
-            TweenSequenceItem<double>(
-              tween: Tween<double>(begin: -8 * pi / 180, end: 16 * pi / 180),
-              weight: 2.0,
-            ),
-            TweenSequenceItem<double>(
-              tween: Tween<double>(begin: 16 * pi / 180, end: 0),
-              weight: 1.0,
-            ),
-          ]).animate(_controller);
+    // _animation = widget.isGold
+    //     ? Tween<double>(begin: 1.0, end: 1.2).animate(_controller)
+    //     : TweenSequence<double>([
+    //         TweenSequenceItem<double>(
+    //           tween: Tween<double>(begin: 0, end: -8 * pi / 180),
+    //           weight: 1.0,
+    //         ),
+    //         TweenSequenceItem<double>(
+    //           tween: Tween<double>(begin: -8 * pi / 180, end: 16 * pi / 180),
+    //           weight: 2.0,
+    //         ),
+    //         TweenSequenceItem<double>(
+    //           tween: Tween<double>(begin: 16 * pi / 180, end: 0),
+    //           weight: 1.0,
+    //         ),
+    //       ]).animate(_controller);
 
     widget.enableInteraction();
 
-    if (widget.selected && animationState == AnimationState.ready) {
-      widget.disableInteraction();
-      _controller.forward();
-      setState(() {
-        animationState = AnimationState.forward;
-      });
-    }
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed &&
-          animationState == AnimationState.forward) {
-        _controller.reverse();
-        setState(() {
-          animationState = AnimationState.reverse;
-        });
-      }
-      if (status == AnimationStatus.dismissed &&
-          animationState == AnimationState.reverse) {
-        widget.enableInteraction();
-        setState(() {
-          animationState = AnimationState.finished;
-        });
-      }
-    });
+    //   if (widget.selected && animationState == AnimationState.ready) {
+    //     widget.disableInteraction();
+    //     _controller.forward();
+    //     setState(() {
+    //       animationState = AnimationState.forward;
+    //     });
+    //   }
+    //   _controller.addStatusListener((status) {
+    //     if (status == AnimationStatus.completed &&
+    //         animationState == AnimationState.forward) {
+    //       _controller.reverse();
+    //       setState(() {
+    //         animationState = AnimationState.reverse;
+    //       });
+    //     }
+    //     if (status == AnimationStatus.dismissed &&
+    //         animationState == AnimationState.reverse) {
+    //       widget.enableInteraction();
+    //       setState(() {
+    //         animationState = AnimationState.finished;
+    //       });
+    //     }
+    //   });
   }
 
   @override
   void didUpdateWidget(ChoiceAnimationWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.selected && animationState == AnimationState.ready) {
-      widget.disableInteraction();
-      _controller.forward();
-      setState(() {
-        animationState = AnimationState.forward;
-      });
-    }
+    // if (widget.selected && animationState == AnimationState.ready) {
+    //   widget.disableInteraction();
+    //   _controller.forward();
+    //   setState(() {
+    //     animationState = AnimationState.forward;
+    //   });
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.isGold
-        ? AnimatedBuilder(
-            key: UniqueKey(),
-            animation: _animation,
-            builder: (context, child) {
-              return Transform.scale(
-                scale: _animation.value,
-                child: child,
-              );
-            },
-            child: widget.child,
-          )
-        : AnimatedBuilder(
-            key: UniqueKey(),
-            animation: _animation,
-            builder: (context, child) {
-              return Transform.rotate(
-                angle: _animation.value,
-                child: child,
-              );
-            },
-            child: widget.child,
-          );
+    return widget.child;
+    // widget.isGold
+    //     ? AnimatedBuilder(
+    //         key: UniqueKey(),
+    //         animation: _animation,
+    //         builder: (context, child) {
+    //           return Transform.scale(
+    //             scale: _animation.value,
+    //             child: child,
+    //           );
+    //         },
+    //         child: widget.child,
+    //       )
+    //     : AnimatedBuilder(
+    //         key: UniqueKey(),
+    //         animation: _animation,
+    //         builder: (context, child) {
+    //           return Transform.rotate(
+    //             angle: _animation.value,
+    //             child: child,
+    //           );
+    //         },
+    //         child: widget.child,
+    //       );
   }
 
   @override
