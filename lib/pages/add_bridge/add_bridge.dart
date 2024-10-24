@@ -86,12 +86,10 @@ class BotController extends State<AddBridge> {
   }
 
   void initializeDio() {
-    final serverUrl = AppConfig.server.startsWith(':')
-        ? AppConfig.server.substring(1)
-        : AppConfig.server;
+    final homeserver = Matrix.of(context).client.homeserver;
 
     dio = Dio(BaseOptions(
-      baseUrl: 'https://matrix.$serverUrl/_matrix/',
+      baseUrl: '$homeserver/_matrix/',
       headers: headers,
     ));
   }
