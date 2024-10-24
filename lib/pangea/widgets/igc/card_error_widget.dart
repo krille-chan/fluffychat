@@ -27,26 +27,26 @@ class CardErrorWidget extends StatelessWidget {
       constraints: maxWidth != null
           ? BoxConstraints(maxWidth: maxWidth!)
           : const BoxConstraints(),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CardHeader(
-              text: errorCopy.title,
-              botExpression: BotExpression.addled,
-              onClose: () => choreographer?.onMatchError(
-                cursorOffset: offset,
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CardHeader(
+            text: errorCopy.title,
+            botExpression: BotExpression.addled,
+            onClose: () => choreographer?.onMatchError(
+              cursorOffset: offset,
             ),
-            const SizedBox(height: 12.0),
-            Text(
+          ),
+          const SizedBox(height: 12.0),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text(
               errorCopy.body,
               style: BotStyle.text(context),
               textAlign: TextAlign.center,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
