@@ -22,19 +22,24 @@ class CardHeader extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 5.0),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          BotFace(
-            width: 50.0,
-            expression: botExpression,
-          ),
-          const SizedBox(width: 12.0),
           Flexible(
-            child: Text(
-              text,
-              style: BotStyle.text(context),
-              softWrap: true,
+            child: Row(
+              children: [
+                BotFace(
+                  width: 50.0,
+                  expression: botExpression,
+                ),
+                const SizedBox(width: 12.0),
+                Flexible(
+                  child: Text(
+                    text,
+                    style: BotStyle.text(context),
+                    softWrap: true,
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(width: 5.0),
