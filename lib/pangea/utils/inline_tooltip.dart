@@ -30,6 +30,7 @@ class InlineTooltip extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               // Lightbulb icon on the left
               Icon(
@@ -39,16 +40,14 @@ class InlineTooltip extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               // Text in the middle
-              Expanded(
-                child: Center(
-                  child: Text(
-                    instructionsEnum.body(context),
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      height: 1.5,
-                    ),
-                    textAlign: TextAlign.left,
+              Center(
+                child: Text(
+                  instructionsEnum.body(context),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    height: 1.5,
                   ),
+                  textAlign: TextAlign.left,
                 ),
               ),
               // Close button on the right

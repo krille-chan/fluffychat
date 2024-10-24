@@ -443,9 +443,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     final overlayMessage = Container(
-      constraints: BoxConstraints(
-        maxWidth: maxWidth,
-      ),
+      constraints: BoxConstraints(maxWidth: maxWidth),
       child: Material(
         type: MaterialType.transparency,
         child: Column(

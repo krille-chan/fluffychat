@@ -9,10 +9,10 @@ import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
-import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/content_issue_button.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_card.dart';
@@ -286,12 +286,10 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   /// If there is no current activity, the widget returns a sizedbox with a height of 80.
   /// If the activity type is multiple choice, the widget returns a MultipleChoiceActivity.
   /// If the activity type is unknown, the widget logs an error and returns a text widget with an error message.
-  Widget get activityWidget {
-    if (currentActivity == null) {
-      // return sizedbox with height of 80
-      return const SizedBox(height: 80);
-    }
-    switch (currentActivity!.activityType) {
+  Widget? get activityWidget {
+    switch (currentActivity?.activityType) {
+      case null:
+        return null;
       case ActivityTypeEnum.multipleChoice:
         return MultipleChoiceActivity(
           practiceCardController: this,
@@ -304,18 +302,18 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
           practiceCardController: this,
           currentActivity: currentActivity!,
         );
-      default:
-        ErrorHandler.logError(
-          e: Exception('Unknown activity type'),
-          m: 'Unknown activity type',
-          data: {
-            'activityType': currentActivity!.activityType,
-          },
-        );
-        return Text(
-          L10n.of(context)!.oopsSomethingWentWrong,
-          style: BotStyle.text(context),
-        );
+      // default:
+      //   ErrorHandler.logError(
+      //     e: Exception('Unknown activity type'),
+      //     m: 'Unknown activity type',
+      //     data: {
+      //       'activityType': currentActivity!.activityType,
+      //     },
+      //   );
+      //   return Text(
+      //     L10n.of(context)!.oopsSomethingWentWrong,
+      //     style: BotStyle.text(context),
+      //   );
     }
   }
 
@@ -334,20 +332,15 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         const Positioned(
           child: PointsGainedAnimation(),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
-          child: activityWidget,
-        ),
+        if (activityWidget != null)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+            child: activityWidget,
+          ),
         // Conditionally show the darkening and progress indicator based on the loading state
         if (!savoringTheJoy && fetchingActivity) ...[
-          // Semi-transparent overlay
-          Container(
-            color: Colors.black.withOpacity(0.5), // Darkening effect
-          ),
           // Circular progress indicator in the center
-          const Center(
-            child: CircularProgressIndicator(),
-          ),
+          const ToolbarContentLoadingIndicator(),
         ],
         // Flag button in the top right corner
         Positioned(

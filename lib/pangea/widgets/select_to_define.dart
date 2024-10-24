@@ -10,18 +10,11 @@ class SelectToDefine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Flexible(
-            child: Text(
-              L10n.of(context)!.selectToDefine,
-              style: BotStyle.text(context),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+      child: Text(
+        L10n.of(context)!.selectToDefine,
+        style: BotStyle.text(context),
+        textAlign: TextAlign.center,
       ),
     );
   }

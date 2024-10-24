@@ -467,7 +467,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                               borderRadius: BorderRadius.circular(2),
                             ),
                             height: 32 * (waveform[i] / 1024),
-                            width: 1.5,
+                            width: 3,
                           ),
                         ],
                       ),
