@@ -278,7 +278,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void setIsPlayingAudio(bool isPlaying) {
     if (mounted) {
       setState(() => isPlayingAudio = isPlaying);
-      debugPrint("IS PLAYING AUDIO: $isPlaying");
     }
   }
 
