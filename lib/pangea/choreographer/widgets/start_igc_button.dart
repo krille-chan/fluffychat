@@ -63,10 +63,13 @@ class StartIGCButtonState extends State<StartIGCButton>
 
   bool get itEnabled => widget.controller.choreographer.itEnabled;
   bool get igcEnabled => widget.controller.choreographer.igcEnabled;
-  CanSendStatus get canSendStatus =>
-      widget.controller.pangeaController.subscriptionController.canSendStatus;
+
+  SubscriptionStatus get subscriptionStatus => widget
+      .controller.pangeaController.subscriptionController.subscriptionStatus;
+
   bool get grammarCorrectionEnabled =>
-      (itEnabled || igcEnabled) && canSendStatus == CanSendStatus.subscribed;
+      (itEnabled || igcEnabled) &&
+      subscriptionStatus == SubscriptionStatus.subscribed;
 
   @override
   Widget build(BuildContext context) {

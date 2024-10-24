@@ -317,14 +317,14 @@ class _SpaceViewState extends State<SpaceView> {
           key: AddRoomType.subspace,
           // #Pangea
           // label: L10n.of(context)!.createNewSpace,
-          label: L10n.of(context)!.newChat,
+          label: L10n.of(context)!.newSpace,
           // Pangea#
         ),
         AlertDialogAction(
           key: AddRoomType.chat,
           // #Pangea
           // label: L10n.of(context)!.createGroup,
-          label: L10n.of(context)!.createChat,
+          label: L10n.of(context)!.newChat,
           // Pangea#
         ),
       ],

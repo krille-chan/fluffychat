@@ -1,18 +1,18 @@
 import 'dart:async';
 
 class BaseController<T> {
-  final StreamController<T> stateListener = StreamController<T>();
+  final StreamController<T> _stateListener = StreamController<T>();
   late Stream<T> stateStream;
 
   BaseController() {
-    stateStream = stateListener.stream.asBroadcastStream();
+    stateStream = _stateListener.stream.asBroadcastStream();
   }
 
   dispose() {
-    stateListener.close();
+    _stateListener.close();
   }
 
   setState(T data) {
-    stateListener.add(data);
+    _stateListener.add(data);
   }
 }

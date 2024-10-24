@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -130,42 +131,51 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     if (!_fetchingTranslation &&
         repEvent == null &&
         selectionTranslation == null) {
-      return const CardErrorWidget();
+      return const CardErrorWidget(
+        error: "No translation found",
+        maxWidth: AppConfig.toolbarMinWidth,
+      );
+    }
+
+    final loadingTranslation =
+        (widget.selection != null && selectionTranslation == null) ||
+            (widget.selection == null && repEvent == null);
+
+    if (_fetchingTranslation || loadingTranslation) {
+      return const ToolbarContentLoadingIndicator();
     }
 
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _fetchingTranslation
-              ? const ToolbarContentLoadingIndicator()
-              : Flexible(
-                  child: Column(
-                    children: [
-                      widget.selection != null
-                          ? Text(
-                              selectionTranslation!,
-                              style: BotStyle.text(context),
-                            )
-                          : Text(
-                              repEvent!.text,
-                              style: BotStyle.text(context),
-                            ),
-                      if (notGoingToTranslate && widget.selection == null)
-                        InlineTooltip(
-                          instructionsEnum: InstructionsEnum.l1Translation,
-                          onClose: () => setState(() {}),
-                        ),
-                      if (widget.selection != null)
-                        InlineTooltip(
-                          instructionsEnum:
-                              InstructionsEnum.clickAgainToDeselect,
-                          onClose: () => setState(() {}),
-                        ),
-                    ],
-                  ),
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  widget.selection != null
+                      ? selectionTranslation!
+                      : repEvent!.text,
+                  style: BotStyle.text(context),
+                  textAlign: TextAlign.center,
                 ),
+                if (notGoingToTranslate && widget.selection == null)
+                  InlineTooltip(
+                    instructionsEnum: InstructionsEnum.l1Translation,
+                    onClose: () => setState(() {}),
+                  ),
+                if (widget.selection != null)
+                  InlineTooltip(
+                    instructionsEnum: InstructionsEnum.clickAgainToDeselect,
+                    onClose: () => setState(() {}),
+                  ),
+              ],
+            ),
+          ),
         ],
       ),
     );

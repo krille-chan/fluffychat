@@ -93,6 +93,8 @@ class PangeaMessageEvent {
       text: rep.content.text,
       tokens: (await rep.tokensGlobal(context)).map((t) => t.text).toList(),
       langCode: langCode,
+      userL1: l1Code ?? LanguageKeys.unknownLanguage,
+      userL2: l2Code ?? LanguageKeys.unknownLanguage,
     );
 
     final TextToSpeechResponse response =
@@ -538,8 +540,7 @@ class PangeaMessageEvent {
 
   int get numberOfActivitiesCompleted {
     return MatrixState.pangeaController.activityRecordController
-            .completedActivities[eventId] ??
-        0;
+        .getCompletedActivityCount(eventId);
   }
 
   String? get l2Code =>

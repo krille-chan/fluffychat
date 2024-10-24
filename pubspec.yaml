@@ -6,7 +6,7 @@ description: Learn a language while texting your friends.
 # Pangea#
 publish_to: none
 # On version bump also increase the build number for F-Droid
-version: 1.21.5+3541
+version: 1.22.6+3556
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -113,6 +113,7 @@ dependencies:
   android_intent_plus: ^5.2.0
   country_picker: ^2.0.25
   csv: ^6.0.0
+  dropdown_button2: ^2.3.9
   fl_chart: ^0.67.0
   firebase_analytics: ^11.0.1
   firebase_core: ^3.1.0

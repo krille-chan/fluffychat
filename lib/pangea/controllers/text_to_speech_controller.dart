@@ -80,17 +80,23 @@ class TTSToken {
 class TextToSpeechRequest {
   String text;
   String langCode;
+  String userL1;
+  String userL2;
   List<PangeaTokenText> tokens;
 
   TextToSpeechRequest({
     required this.text,
     required this.langCode,
+    required this.userL1,
+    required this.userL2,
     required this.tokens,
   });
 
   Map<String, dynamic> toJson() => {
         ModelKey.text: text,
         ModelKey.langCode: langCode,
+        ModelKey.userL1: userL1,
+        ModelKey.userL2: userL2,
         ModelKey.tokens: tokens.map((token) => token.toJson()).toList(),
       };
 

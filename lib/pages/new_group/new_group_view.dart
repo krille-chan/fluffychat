@@ -24,7 +24,10 @@ class NewGroupView extends StatelessWidget {
             onPressed: controller.loading ? null : Navigator.of(context).pop,
           ),
         ),
-        title: Text(L10n.of(context)!.createGroup),
+        // #Pangea
+        // title: Text(L10n.of(context)!.createGroup),
+        title: Text(L10n.of(context)!.newChat),
+        // Pangea#
       ),
       body: MaxWidthBody(
         child: Column(

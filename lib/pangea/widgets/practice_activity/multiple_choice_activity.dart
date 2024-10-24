@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
+import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -14,13 +15,15 @@ import 'package:flutter/material.dart';
 
 /// The multiple choice activity view
 class MultipleChoiceActivity extends StatefulWidget {
-  final MessagePracticeActivityCardState practiceCardController;
+  final PracticeActivityCardState practiceCardController;
   final PracticeActivityModel currentActivity;
+  final TtsController tts;
 
   const MultipleChoiceActivity({
     super.key,
     required this.practiceCardController,
     required this.currentActivity,
+    required this.tts,
   });
 
   @override
@@ -67,6 +70,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       return;
     }
 
+    // #freeze-activity
     MatrixState.pangeaController.myAnalytics.setState(
       AnalyticsStream(
         // note - this maybe should be the activity event id
@@ -85,16 +89,18 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       widget.practiceCardController.onActivityFinish();
     }
 
-    setState(
-      () => selectedChoiceIndex = index,
-    );
+    if (mounted) {
+      setState(
+        () => selectedChoiceIndex = index,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final PracticeActivityModel practiceActivity = widget.currentActivity;
 
-    return Container(
+    return Padding(
       padding: const EdgeInsets.all(8),
       child: Column(
         children: [
@@ -106,9 +112,13 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             ),
           ),
           const SizedBox(height: 8),
+          // #freeze-activity
           if (practiceActivity.activityType ==
               ActivityTypeEnum.wordFocusListening)
-            WordAudioButton(text: practiceActivity.content.answer),
+            WordAudioButton(
+              text: practiceActivity.content.answer,
+              ttsController: widget.tts,
+            ),
           ChoicesArray(
             isLoading: false,
             uniqueKeyForLayerLink: (index) => "multiple_choice_$index",
