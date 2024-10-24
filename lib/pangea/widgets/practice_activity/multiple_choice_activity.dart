@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
+import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -16,11 +17,13 @@ import 'package:flutter/material.dart';
 class MultipleChoiceActivity extends StatefulWidget {
   final PracticeActivityCardState practiceCardController;
   final PracticeActivityModel currentActivity;
+  final TtsController tts;
 
   const MultipleChoiceActivity({
     super.key,
     required this.practiceCardController,
     required this.currentActivity,
+    required this.tts,
   });
 
   @override
@@ -112,7 +115,10 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           // #freeze-activity
           if (practiceActivity.activityType ==
               ActivityTypeEnum.wordFocusListening)
-            WordAudioButton(text: practiceActivity.content.answer),
+            WordAudioButton(
+              text: practiceActivity.content.answer,
+              ttsController: widget.tts,
+            ),
           ChoicesArray(
             isLoading: false,
             uniqueKeyForLayerLink: (index) => "multiple_choice_$index",

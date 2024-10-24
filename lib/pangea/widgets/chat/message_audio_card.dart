@@ -21,11 +21,13 @@ class MessageAudioCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
   final MessageOverlayController overlayController;
   final PangeaTokenText? selection;
+  final TtsController tts;
 
   const MessageAudioCard({
     super.key,
     required this.messageEvent,
     required this.overlayController,
+    required this.tts,
     this.selection,
   });
 
@@ -39,8 +41,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
   int? sectionStartMS;
   int? sectionEndMS;
-
-  TtsController tts = TtsController();
 
   @override
   void initState() {
@@ -68,7 +68,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
     final PangeaTokenText selection = widget.selection!;
     final tokenText = selection.content;
 
-    await tts.speak(tokenText);
+    await widget.tts.speak(tokenText);
   }
 
   void setSectionStartAndEnd(int? start, int? end) => mounted
@@ -204,7 +204,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                           color:
                               Theme.of(context).colorScheme.onPrimaryContainer,
                         ),
-                        tts.missingVoiceButton,
+                        widget.tts.missingVoiceButton,
                       ],
                     )
                   : const CardErrorWidget(

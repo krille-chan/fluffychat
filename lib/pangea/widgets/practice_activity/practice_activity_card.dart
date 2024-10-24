@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
+import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/content_issue_button.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_card.dart';
@@ -28,11 +29,13 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 class PracticeActivityCard extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overlayController;
+  final TtsController tts;
 
   const PracticeActivityCard({
     super.key,
     required this.pangeaMessageEvent,
     required this.overlayController,
+    required this.tts,
   });
 
   @override
@@ -294,6 +297,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return MultipleChoiceActivity(
           practiceCardController: this,
           currentActivity: currentActivity!,
+          tts: widget.tts,
         );
       case ActivityTypeEnum.wordFocusListening:
         // return WordFocusListeningActivity(
@@ -301,6 +305,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return MultipleChoiceActivity(
           practiceCardController: this,
           currentActivity: currentActivity!,
+          tts: widget.tts,
         );
       // default:
       //   ErrorHandler.logError(

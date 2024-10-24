@@ -10,6 +10,7 @@ import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_speech_to_text_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
+import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/select_to_define.dart';
@@ -22,11 +23,13 @@ const double minCardHeight = 70;
 class MessageToolbar extends StatelessWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overLayController;
+  final TtsController tts;
 
   const MessageToolbar({
     super.key,
     required this.pangeaMessageEvent,
     required this.overLayController,
+    required this.tts,
   });
 
   Widget get toolbarContent {
@@ -50,6 +53,7 @@ class MessageToolbar extends StatelessWidget {
           messageEvent: pangeaMessageEvent,
           overlayController: overLayController,
           selection: overLayController.selectedSpan,
+          tts: tts,
         );
       case MessageMode.speechToText:
         return MessageSpeechToTextCard(
@@ -87,6 +91,7 @@ class MessageToolbar extends StatelessWidget {
         return PracticeActivityCard(
           pangeaMessageEvent: pangeaMessageEvent,
           overlayController: overLayController,
+          tts: tts,
         );
       default:
         debugger(when: kDebugMode);
