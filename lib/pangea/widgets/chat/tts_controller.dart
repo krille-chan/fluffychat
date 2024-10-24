@@ -23,7 +23,8 @@ class TtsController {
   }
 
   onError(dynamic message) => ErrorHandler.logError(
-        m: 'TTS error',
+        e: message,
+        m: (message.toString().isNotEmpty) ? message.toString() : 'TTS error',
         data: {
           'message': message,
         },
@@ -82,13 +83,11 @@ class TtsController {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: s);
     }
-    await tts.stop();
   }
 
   Future<void> speak(String text) async {
     try {
       stop();
-
       targetLanguage ??=
           MatrixState.pangeaController.languageController.userL2?.langCode;
 
