@@ -2828,5 +2828,9 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "oneOfYourDevicesIsNotVerified": "您设备中的一台未验证",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "注意：当你连接所有设备到聊天备份时，这些设备将被自动验证。",
+  "@noticeChatBackupDeviceVerification": {}
 }

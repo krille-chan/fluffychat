@@ -2833,5 +2833,7 @@
     "placeholders": {
       "max": {}
     }
-  }
+  },
+  "oneOfYourDevicesIsNotVerified": "Eines deiner Geräte ist nicht verifiziert",
+  "@oneOfYourDevicesIsNotVerified": {}
 }
