@@ -99,7 +99,7 @@ extension AnalyticsRoomExtension on Room {
       await analyticsRoom.requestParticipants();
     }
 
-    final List<User> participants = await analyticsRoom.requestParticipants();
+    final List<User> participants = analyticsRoom.getParticipants();
     final List<User> uninvitedTeachers = teachersLocal
         .where((teacher) => !participants.contains(teacher))
         .toList();
@@ -110,12 +110,8 @@ extension AnalyticsRoomExtension on Room {
           (teacher) => analyticsRoom.invite(teacher.id).catchError((err, s) {
             ErrorHandler.logError(
               e: err,
-              m: "Failed to invite teacher to analytics room",
+              m: "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
               s: s,
-              data: {
-                "teacherId": teacher.id,
-                "analyticsRoomId": analyticsRoom.id,
-              },
             );
           }),
         ),
