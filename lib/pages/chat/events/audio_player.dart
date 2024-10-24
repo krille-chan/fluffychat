@@ -21,6 +21,7 @@ class AudioPlayerWidget extends StatefulWidget {
   final Event? event;
   final PangeaAudioFile? matrixFile;
   final bool autoplay;
+  final Function(bool)? setIsPlayingAudio;
   // Pangea#
 
   static String? currentId;
@@ -41,6 +42,7 @@ class AudioPlayerWidget extends StatefulWidget {
     this.autoplay = false,
     this.sectionStartMS,
     this.sectionEndMS,
+    this.setIsPlayingAudio,
     // Pangea#
     super.key,
   });
@@ -204,8 +206,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       if (max == null || max == Duration.zero) return;
       setState(() => maxPosition = max.inMilliseconds.toDouble());
     });
-    onPlayerStateChanged ??=
-        audioPlayer.playingStream.listen((_) => setState(() {}));
+    onPlayerStateChanged ??= audioPlayer.playingStream.listen(
+      (isPlaying) => setState(() {
+        // #Pangea
+        widget.setIsPlayingAudio?.call(isPlaying);
+        // Pangea#
+      }),
+    );
     final audioFile = this.audioFile;
     if (audioFile != null) {
       audioPlayer.setFilePath(audioFile.path);
@@ -467,7 +474,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                               borderRadius: BorderRadius.circular(2),
                             ),
                             height: 32 * (waveform[i] / 1024),
-                            width: 1.5,
+                            width: 3,
                           ),
                         ],
                       ),

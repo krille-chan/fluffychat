@@ -125,3 +125,12 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
     }
   }
 }
+
+class ConstructUseTypeUtil {
+  static ConstructUseTypeEnum fromString(String value) {
+    return ConstructUseTypeEnum.values.firstWhere(
+      (e) => e.string == value,
+      orElse: () => ConstructUseTypeEnum.nan,
+    );
+  }
+}

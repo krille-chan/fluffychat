@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
@@ -148,9 +149,12 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
       return const ToolbarContentLoadingIndicator();
     }
 
-    //done fetchig but not results means some kind of error
+    // done fetchig but not results means some kind of error
     if (speechToTextResponse == null) {
-      return CardErrorWidget(error: error);
+      return CardErrorWidget(
+        error: error,
+        maxWidth: AppConfig.toolbarMinWidth,
+      );
     }
 
     //TODO: find better icons

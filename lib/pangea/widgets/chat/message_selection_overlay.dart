@@ -17,6 +17,7 @@ import 'package:fluffychat/pangea/widgets/chat/message_toolbar_buttons.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_header.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
+import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -61,10 +62,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// The number of activities that need to be completed before the toolbar is unlocked
   /// If we don't have any good activities for them, we'll decrease this number
   static const int neededActivities = 3;
-
   int activitiesLeftToComplete = neededActivities;
-
   PangeaMessageEvent get pangeaMessageEvent => widget._pangeaMessageEvent;
+
+  final TtsController tts = TtsController();
+  bool isPlayingAudio = false;
 
   @override
   void initState() {
@@ -98,6 +100,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     ).listen((_) => setState(() {}));
 
     setInitialToolbarMode();
+    tts.setupTTS();
   }
 
   /// We need to check if the setState call is safe to call immediately
@@ -198,9 +201,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     PangeaToken token,
   ) {
     if ([
-      MessageMode.practiceActivity,
-      // MessageMode.textToSpeech
-    ].contains(toolbarMode)) {
+          MessageMode.practiceActivity,
+          // MessageMode.textToSpeech
+        ].contains(toolbarMode) ||
+        isPlayingAudio) {
       return;
     }
 
@@ -270,6 +274,12 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   final double toolbarButtonsHeight = 50;
   double get reactionsHeight => hasReactions ? 28 : 0;
   double get belowMessageHeight => toolbarButtonsHeight + reactionsHeight;
+
+  void setIsPlayingAudio(bool isPlaying) {
+    if (mounted) {
+      setState(() => isPlayingAudio = isPlaying);
+    }
+  }
 
   @override
   void didChangeDependencies() {
@@ -359,6 +369,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void dispose() {
     _animationController.dispose();
     _reactionSubscription?.cancel();
+    tts.dispose();
     super.dispose();
   }
 
@@ -443,9 +454,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     final overlayMessage = Container(
-      constraints: BoxConstraints(
-        maxWidth: maxWidth,
-      ),
+      constraints: BoxConstraints(maxWidth: maxWidth),
       child: Material(
         type: MaterialType.transparency,
         child: Column(
@@ -457,6 +466,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             MessageToolbar(
               pangeaMessageEvent: widget._pangeaMessageEvent,
               overLayController: this,
+              tts: tts,
             ),
             SizedBox(
               height: adjustedMessageHeight,

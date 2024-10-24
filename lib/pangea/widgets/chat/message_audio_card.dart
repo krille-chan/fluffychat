@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
@@ -8,7 +9,6 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
@@ -21,11 +21,15 @@ class MessageAudioCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
   final MessageOverlayController overlayController;
   final PangeaTokenText? selection;
+  final TtsController tts;
+  final Function(bool) setIsPlayingAudio;
 
   const MessageAudioCard({
     super.key,
     required this.messageEvent,
     required this.overlayController,
+    required this.tts,
+    required this.setIsPlayingAudio,
     this.selection,
   });
 
@@ -39,8 +43,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
   int? sectionStartMS;
   int? sectionEndMS;
-
-  TtsController tts = TtsController();
 
   @override
   void initState() {
@@ -56,7 +58,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
   @override
   void didUpdateWidget(covariant oldWidget) {
-    if (oldWidget.selection != widget.selection) {
+    if (oldWidget.selection != widget.selection && widget.selection != null) {
       debugPrint('selection changed');
       setSectionStartAndEndFromSelection();
       playSelectionAudio();
@@ -65,10 +67,11 @@ class MessageAudioCardState extends State<MessageAudioCard> {
   }
 
   Future<void> playSelectionAudio() async {
+    if (widget.selection == null) return;
     final PangeaTokenText selection = widget.selection!;
     final tokenText = selection.content;
 
-    await tts.speak(tokenText);
+    await widget.tts.speak(tokenText);
   }
 
   void setSectionStartAndEnd(int? start, int? end) => mounted
@@ -190,7 +193,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       children: [
         Container(
           padding: const EdgeInsets.all(8),
-          constraints: const BoxConstraints(minHeight: minCardHeight),
           alignment: Alignment.center,
           child: _isLoading
               ? const ToolbarContentLoadingIndicator()
@@ -204,12 +206,14 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                           sectionEndMS: sectionEndMS,
                           color:
                               Theme.of(context).colorScheme.onPrimaryContainer,
+                          setIsPlayingAudio: widget.setIsPlayingAudio,
                         ),
-                        tts.missingVoiceButton,
+                        widget.tts.missingVoiceButton,
                       ],
                     )
                   : const CardErrorWidget(
                       error: "Null audio file in message_audio_card",
+                      maxWidth: AppConfig.toolbarMinWidth,
                     ),
         ),
       ],

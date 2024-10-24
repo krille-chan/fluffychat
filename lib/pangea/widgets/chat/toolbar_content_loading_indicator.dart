@@ -1,4 +1,4 @@
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 
 class ToolbarContentLoadingIndicator extends StatelessWidget {
@@ -8,10 +8,9 @@ class ToolbarContentLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      constraints: const BoxConstraints(minHeight: minCardHeight),
-      alignment: Alignment.center,
+    return SizedBox(
+      width: AppConfig.toolbarMinWidth,
+      height: AppConfig.toolbarMinHeight,
       child: Center(
         child: SizedBox(
           height: 14,

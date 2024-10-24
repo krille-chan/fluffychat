@@ -27,12 +27,7 @@ class ConstructWithXP {
           ? DateTime.parse(json['last_used'] as String)
           : null,
       condensedConstructUses: (json['uses'] as List<String>).map((e) {
-        return ConstructUseTypeEnum.values.firstWhereOrNull(
-              (element) =>
-                  element.string == e ||
-                  element.toString().split('.').last == e,
-            ) ??
-            ConstructUseTypeEnum.nan;
+        return ConstructUseTypeUtil.fromString(e);
       }).toList(),
     );
   }
