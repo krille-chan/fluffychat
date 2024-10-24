@@ -54,6 +54,7 @@ class MessageToolbar extends StatelessWidget {
           overlayController: overLayController,
           selection: overLayController.selectedSpan,
           tts: tts,
+          setIsPlayingAudio: overLayController.setIsPlayingAudio,
         );
       case MessageMode.speechToText:
         return MessageSpeechToTextCard(

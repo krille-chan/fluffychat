@@ -66,6 +66,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   PangeaMessageEvent get pangeaMessageEvent => widget._pangeaMessageEvent;
 
   final TtsController tts = TtsController();
+  bool isPlayingAudio = false;
 
   @override
   void initState() {
@@ -200,9 +201,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     PangeaToken token,
   ) {
     if ([
-      MessageMode.practiceActivity,
-      // MessageMode.textToSpeech
-    ].contains(toolbarMode)) {
+          MessageMode.practiceActivity,
+          // MessageMode.textToSpeech
+        ].contains(toolbarMode) ||
+        isPlayingAudio) {
       return;
     }
 
@@ -272,6 +274,13 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   final double toolbarButtonsHeight = 50;
   double get reactionsHeight => hasReactions ? 28 : 0;
   double get belowMessageHeight => toolbarButtonsHeight + reactionsHeight;
+
+  void setIsPlayingAudio(bool isPlaying) {
+    if (mounted) {
+      setState(() => isPlayingAudio = isPlaying);
+      debugPrint("IS PLAYING AUDIO: $isPlaying");
+    }
+  }
 
   @override
   void didChangeDependencies() {
