@@ -9,6 +9,7 @@ enum MessageMode {
   definition,
   translation,
   speechToText,
+  nullMode
 }
 
 extension MessageModeExtension on MessageMode {
@@ -25,6 +26,7 @@ extension MessageModeExtension on MessageMode {
         return Icons.book;
       case MessageMode.practiceActivity:
         return Symbols.fitness_center;
+      case MessageMode.nullMode:
       default:
         return Icons.error; // Icon to indicate an error or unsupported mode
     }
@@ -42,6 +44,7 @@ extension MessageModeExtension on MessageMode {
         return L10n.of(context)!.definitions;
       case MessageMode.practiceActivity:
         return L10n.of(context)!.practice;
+      case MessageMode.nullMode:
       default:
         return L10n.of(context)!
             .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
@@ -60,18 +63,23 @@ extension MessageModeExtension on MessageMode {
         return L10n.of(context)!.define;
       case MessageMode.practiceActivity:
         return L10n.of(context)!.practice;
+      case MessageMode.nullMode:
       default:
         return L10n.of(context)!
             .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
     }
   }
 
-  bool isValidMode(Event event) {
+  bool shouldShowAsToolbarButton(Event event) {
     switch (this) {
       case MessageMode.translation:
+        return event.messageType == MessageTypes.Text;
       case MessageMode.textToSpeech:
+        return event.messageType == MessageTypes.Text;
       case MessageMode.definition:
         return event.messageType == MessageTypes.Text;
+      case MessageMode.nullMode:
+        return false;
       case MessageMode.speechToText:
         return event.messageType == MessageTypes.Audio;
       case MessageMode.practiceActivity:

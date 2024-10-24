@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_display_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_speech_to_text_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
@@ -39,7 +40,22 @@ class MessageToolbar extends StatelessWidget {
       );
     }
 
+    // Check if the message is in the user's second language
+    final bool messageInUserL2 = pangeaMessageEvent.messageDisplayLangCode ==
+        MatrixState.pangeaController.languageController.userL2?.langCode;
+
+    // If not in the target language, set to nullMode
+    if (!messageInUserL2) {
+      overLayController.toolbarMode = MessageMode.nullMode;
+    }
+
     switch (overLayController.toolbarMode) {
+      case MessageMode.nullMode:
+        return MessageDisplayCard(
+          messageEvent: pangeaMessageEvent, // Pass the message event here
+          displayText:
+              "Message not in target language", // Pass the display text,
+        );
       case MessageMode.translation:
         return MessageTranslationCard(
           messageEvent: pangeaMessageEvent,

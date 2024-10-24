@@ -22,7 +22,7 @@ class ToolbarButtons extends StatelessWidget {
       overlayController.pangeaMessageEvent;
 
   List<MessageMode> get modes => MessageMode.values
-      .where((mode) => mode.isValidMode(pangeaMessageEvent.event))
+      .where((mode) => mode.shouldShowAsToolbarButton(pangeaMessageEvent.event))
       .toList();
 
   static const double iconWidth = 36.0;
