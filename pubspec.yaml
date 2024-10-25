@@ -65,8 +65,7 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix:
-    path: ../matrix-dart-sdk/
+  matrix: ^0.34.0
   mime: ^1.0.6
   native_imaging: ^0.1.1
   opus_caf_converter_dart: ^1.0.1
