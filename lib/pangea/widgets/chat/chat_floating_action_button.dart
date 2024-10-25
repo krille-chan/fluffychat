@@ -76,8 +76,8 @@ class ChatFloatingActionButtonState extends State<ChatFloatingActionButton> {
     }
     if (widget.controller.choreographer.errorService.error != null) {
       return ChoreographerHasErrorButton(
-        widget.controller.pangeaController,
         widget.controller.choreographer.errorService.error!,
+        widget.controller.choreographer,
       );
     }
 
