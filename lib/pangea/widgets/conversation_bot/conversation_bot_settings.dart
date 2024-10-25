@@ -241,6 +241,8 @@ class ConversationBotSettingsDialogState
 
                       updateFromTextControllers();
 
+                      Navigator.of(context).pop(botOptions);
+
                       final bool isBotRoomMember =
                           await widget.room.botIsInRoom;
                       if (addBot && !isBotRoomMember) {
@@ -248,8 +250,6 @@ class ConversationBotSettingsDialogState
                       } else if (!addBot && isBotRoomMember) {
                         await widget.room.kick(BotName.byEnvironment);
                       }
-
-                      Navigator.of(context).pop(botOptions);
                     },
                     child: Text(L10n.of(context)!.confirm),
                   ),
