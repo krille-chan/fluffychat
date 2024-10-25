@@ -593,6 +593,7 @@ class Choreographer {
     if (isFetching) return false;
     if (errorService.isError) return true;
     if (itEnabled && isRunningIT) return false;
+    if (igc.igcTextData == null) return false;
 
     final hasITMatches =
         igc.igcTextData!.matches.any((match) => match.isITStart);

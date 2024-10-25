@@ -6,14 +6,14 @@ import 'package:fluffychat/pangea/widgets/igc/card_header.dart';
 import 'package:flutter/material.dart';
 
 class CardErrorWidget extends StatelessWidget {
-  final Object? error;
+  final Object error;
   final Choreographer? choreographer;
   final int? offset;
   final double? maxWidth;
 
   const CardErrorWidget({
     super.key,
-    this.error,
+    required this.error,
     this.choreographer,
     this.offset,
     this.maxWidth,

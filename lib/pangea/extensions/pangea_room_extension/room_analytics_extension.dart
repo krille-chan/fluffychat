@@ -10,7 +10,7 @@ extension AnalyticsRoomExtension on Room {
         return;
       }
 
-      if (!isRoomAdmin) return;
+      if (client.userID == null || !isRoomAdmin) return;
       final spaceHierarchy = await client.getSpaceHierarchy(
         id,
         maxDepth: 1,

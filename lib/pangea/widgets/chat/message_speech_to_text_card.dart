@@ -152,7 +152,7 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
     // done fetchig but not results means some kind of error
     if (speechToTextResponse == null) {
       return CardErrorWidget(
-        error: error,
+        error: error ?? "Failed to fetch speech to text",
         maxWidth: AppConfig.toolbarMinWidth,
       );
     }
