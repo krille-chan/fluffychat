@@ -192,18 +192,4 @@ class IgcController {
     // Not sure why this is here
     // MatrixState.pAnyState.closeOverlay();
   }
-
-  bool get canSendMessage {
-    if (choreographer.isFetching) return false;
-    if (igcTextData == null ||
-        choreographer.errorService.isError ||
-        igcTextData!.matches.isEmpty) {
-      return true;
-    }
-
-    return !((choreographer.itEnabled &&
-            igcTextData!.matches.any((match) => match.isITStart)) ||
-        (choreographer.igcEnabled &&
-            igcTextData!.matches.any((match) => !match.isITStart)));
-  }
 }
