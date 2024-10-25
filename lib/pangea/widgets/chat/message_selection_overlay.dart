@@ -395,6 +395,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   }
 
   Size? get messageSize {
+    if (messageRenderBox == null || !messageRenderBox!.hasSize) {
+      return null;
+    }
+
     try {
       return messageRenderBox?.size;
     } catch (e, s) {
@@ -404,6 +408,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   }
 
   Offset? get messageOffset {
+    if (messageRenderBox == null || !messageRenderBox!.hasSize) {
+      return null;
+    }
+
     try {
       return messageRenderBox?.localToGlobal(Offset.zero);
     } catch (e, s) {
