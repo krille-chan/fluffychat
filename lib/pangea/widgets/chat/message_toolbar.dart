@@ -12,11 +12,12 @@ import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
+import 'package:fluffychat/pangea/widgets/message_display_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
-import 'package:fluffychat/pangea/widgets/select_to_define.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 const double minCardHeight = 70;
 
@@ -32,13 +33,25 @@ class MessageToolbar extends StatelessWidget {
     required this.tts,
   });
 
-  Widget get toolbarContent {
+  Widget toolbarContent(BuildContext context) {
     final bool subscribed =
         MatrixState.pangeaController.subscriptionController.isSubscribed;
 
     if (!subscribed) {
       return MessageUnsubscribedCard(
         controller: overLayController,
+      );
+    }
+
+    // Check if the message is in the user's second language
+    final bool messageInUserL2 = pangeaMessageEvent.messageDisplayLangCode ==
+        MatrixState.pangeaController.languageController.userL2?.langCode;
+
+    // If not in the target language, set to nullMode
+    if (!messageInUserL2) {
+      return MessageDisplayCard(
+        displayText:
+            L10n.of(context)!.messageNotInTargetLang, // Pass the display text,
       );
     }
 
@@ -62,7 +75,9 @@ class MessageToolbar extends StatelessWidget {
         );
       case MessageMode.definition:
         if (!overLayController.isSelection) {
-          return const SelectToDefine();
+          return MessageDisplayCard(
+            displayText: L10n.of(context)!.selectToDefine,
+          );
         } else {
           try {
             final selectedText = overLayController.targetText;
@@ -127,7 +142,7 @@ class MessageToolbar extends StatelessWidget {
       child: SingleChildScrollView(
         child: AnimatedSize(
           duration: FluffyThemes.animationDuration,
-          child: toolbarContent,
+          child: toolbarContent(context),
         ),
       ),
     );

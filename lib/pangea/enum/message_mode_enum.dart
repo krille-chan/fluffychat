@@ -66,10 +66,12 @@ extension MessageModeExtension on MessageMode {
     }
   }
 
-  bool isValidMode(Event event) {
+  bool shouldShowAsToolbarButton(Event event) {
     switch (this) {
       case MessageMode.translation:
+        return event.messageType == MessageTypes.Text;
       case MessageMode.textToSpeech:
+        return event.messageType == MessageTypes.Text;
       case MessageMode.definition:
         return event.messageType == MessageTypes.Text;
       case MessageMode.speechToText:

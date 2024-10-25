@@ -63,6 +63,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// If we don't have any good activities for them, we'll decrease this number
   static const int neededActivities = 3;
   int activitiesLeftToComplete = neededActivities;
+
+  bool get messageInUserL2 =>
+      pangeaMessageEvent.messageDisplayLangCode ==
+      MatrixState.pangeaController.languageController.userL2?.langCode;
+
   PangeaMessageEvent get pangeaMessageEvent => widget._pangeaMessageEvent;
 
   final TtsController tts = TtsController();
@@ -160,6 +165,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       toolbarMode = MessageMode.speechToText;
       return;
     }
+    // if (!messageInUserL2) {
+    //   activitiesLeftToComplete = 0;
+    //   toolbarMode = MessageMode.nullMode;
+    //   return;
+    // }
 
     if (activitiesLeftToComplete > 0) {
       toolbarMode = MessageMode.practiceActivity;
