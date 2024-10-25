@@ -261,7 +261,7 @@ class Choreographer {
         // debugger(when: kDebugMode);
       }
 
-      await (choreoMode == ChoreoMode.it && !itController.isTranslationDone
+      await (isRunningIT
           ? itController.getTranslationData(_useCustomInput)
           : igc.getIGCTextData(
               onlyTokensAndLanguageDetection: onlyTokensAndLanguageDetection,
@@ -418,7 +418,7 @@ class Choreographer {
     setState();
   }
 
-  giveInputFocus() {
+  void giveInputFocus() {
     Future.delayed(Duration.zero, () {
       chatController.inputFocus.requestFocus();
     });
@@ -478,6 +478,9 @@ class Choreographer {
   bool get _noChange =>
       _lastChecked != null && _lastChecked == _textController.text;
 
+  bool get isRunningIT =>
+      choreoMode == ChoreoMode.it && !itController.isTranslationDone;
+
   void startLoading() {
     _lastChecked = _textController.text;
     isFetching = true;
@@ -504,8 +507,6 @@ class Choreographer {
       stateListener.add(0);
     }
   }
-
-  bool get showIsError => !itController.isOpen && errorService.isError;
 
   LayerLinkAndKey get itBarLinkAndKey =>
       MatrixState.pAnyState.layerLinkAndKey(itBarTransformTargetKey);
