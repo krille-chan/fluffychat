@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_228",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVl(){return new B.Hw(A.dJ("el"))},
-Hw:function Hw(d){this.a=d}}
+cVj(){return new B.Hv(A.dK("el"))},
+Hv:function Hv(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[12],B)
-B.Hw.prototype={
+B.Hv.prototype={
 go4(){return"false"},
 gko(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gmx(){return"\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1\u03c2."},
@@ -560,8 +560,8 @@ goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Hw,C.aR)})()
-A.ep(b.typeUniverse,JSON.parse('{"Hw":{"aR":[]}}'))};
+y(B.Hv,C.aR)})()
+A.ep(b.typeUniverse,JSON.parse('{"Hv":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_228",e:"endPart",h:b})})($__dart_deferred_initializers__,"mk3rLmwrGtQOqsllDGXJPxsQyFA=");
+a.eventLog.push({p:"main.dart.js_228",e:"endPart",h:b})})($__dart_deferred_initializers__,"fCciZnwL3ugDQImUi/8e6g/1FGg=");
 //# sourceMappingURL=main.dart.js_228.part.js.map

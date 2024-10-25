@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_14",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cVN(d){return new A.CC(B.dJ(d))},
-cVO(){return new A.HY(B.dJ("pt_BR"))},
-cVP(){return new A.HZ(B.dJ("pt_PT"))},
+cVL(d){return new A.CC(B.dK(d))},
+cVM(){return new A.HX(B.dK("pt_BR"))},
+cVN(){return new A.HY(B.dK("pt_PT"))},
 CC:function CC(d){this.a=d},
-HY:function HY(d){this.a=d},
-HZ:function HZ(d){this.a=d}},C
+HX:function HX(d){this.a=d},
+HY:function HY(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[51]
@@ -563,7 +563,7 @@ og(d){return"Server limit reached! Waiting "+d+" seconds..."},
 goA(){return"One of your devices is not verified"},
 goz(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 C(d,e){return this.gbp(this).$1(e)}}
-A.HY.prototype={
+A.HX.prototype={
 gko(){return"Repita a senha"},
 gmx(){return"N\xe3o \xe9 uma imagem."},
 gbp(d){return"Remover"},
@@ -1078,7 +1078,7 @@ n2(d){return"Nesse momento, h\xe1 "+d+" usu\xe1rios bloqueados."},
 gn0(){return"Restrito"},
 gmj(){return"Bater na porta restrito"},
 C(d,e){return this.gbp(this).$1(e)}}
-A.HZ.prototype={
+A.HY.prototype={
 gko(){return"Repete a palavra-passe"},
 gbp(d){return"Remover"},
 gfD(){return"Acerca de"},
@@ -1336,9 +1336,9 @@ hy(d){return d+" enviou um v\xeddeo"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.CC,C.aR)
-w(A.CC,[A.HY,A.HZ])})()
-B.ep(b.typeUniverse,JSON.parse('{"CC":{"aR":[]},"HY":{"aR":[]},"HZ":{"aR":[]}}'))
+w(A.CC,[A.HX,A.HY])})()
+B.ep(b.typeUniverse,JSON.parse('{"CC":{"aR":[]},"HX":{"aR":[]},"HY":{"aR":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_14",e:"endPart",h:b})})($__dart_deferred_initializers__,"XhLG57AsfB/w90Q+gZShPKYfaSY=");
+a.eventLog.push({p:"main.dart.js_14",e:"endPart",h:b})})($__dart_deferred_initializers__,"QdDiwirM4dbCZmZlmPuGHXoosvY=");
 //# sourceMappingURL=main.dart.js_14.part.js.map
