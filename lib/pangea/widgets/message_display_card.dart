@@ -1,10 +1,12 @@
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class SelectToDefine extends StatelessWidget {
-  const SelectToDefine({
+class MessageDisplayCard extends StatelessWidget {
+  final String displayText;
+
+  const MessageDisplayCard({
     super.key,
+    required this.displayText,
   });
 
   @override
@@ -12,7 +14,7 @@ class SelectToDefine extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
       child: Text(
-        L10n.of(context)!.selectToDefine,
+        displayText,
         style: BotStyle.text(context),
         textAlign: TextAlign.center,
       ),
