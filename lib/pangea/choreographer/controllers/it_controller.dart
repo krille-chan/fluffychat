@@ -68,9 +68,10 @@ class ITController {
   }
 
   void closeIT() {
-    //if they close it before completing, just put their text back
-    //PTODO - explore using last itStep
-    choreographer.textController.text = sourceText ?? "";
+    // if the user hasn't gone through any IT steps, reset the text
+    if (completedITSteps.isEmpty && sourceText != null) {
+      choreographer.textController.text = sourceText!;
+    }
     clear();
   }
 
