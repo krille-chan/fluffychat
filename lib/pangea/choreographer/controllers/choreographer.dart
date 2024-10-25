@@ -68,7 +68,7 @@ class Choreographer {
   }
 
   void send(BuildContext context) {
-    if (isFetching) return;
+    if (!canSendMessage) return;
 
     if (pangeaController.subscriptionController.subscriptionStatus ==
         SubscriptionStatus.showPaywall) {
@@ -92,7 +92,7 @@ class Choreographer {
   }
 
   Future<void> _sendWithIGC(BuildContext context) async {
-    if (!igc.canSendMessage) {
+    if (!canSendMessage) {
       igc.showFirstMatch(context);
       return;
     }
@@ -571,7 +571,7 @@ class Choreographer {
       return AssistanceState.noMessage;
     }
 
-    if (igc.igcTextData?.matches.isNotEmpty ?? false) {
+    if ((igc.igcTextData?.matches.isNotEmpty ?? false) || isRunningIT) {
       return AssistanceState.fetched;
     }
 
@@ -584,5 +584,21 @@ class Choreographer {
     }
 
     return AssistanceState.complete;
+  }
+
+  bool get canSendMessage {
+    if (isFetching) return false;
+    if (errorService.isError) return true;
+    if (itEnabled && isRunningIT) return false;
+
+    final hasITMatches =
+        igc.igcTextData!.matches.any((match) => match.isITStart);
+    final hasIGCMatches =
+        igc.igcTextData!.matches.any((match) => !match.isITStart);
+
+    if ((itEnabled && hasITMatches) || (igcEnabled && hasIGCMatches)) {
+      return false;
+    }
+    return true;
   }
 }

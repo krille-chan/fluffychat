@@ -202,8 +202,8 @@ class IgcController {
     }
 
     return !((choreographer.itEnabled &&
-            igcTextData!.matches.any((match) => match.isOutOfTargetMatch)) ||
+            igcTextData!.matches.any((match) => match.isITStart)) ||
         (choreographer.igcEnabled &&
-            igcTextData!.matches.any((match) => !match.isOutOfTargetMatch)));
+            igcTextData!.matches.any((match) => !match.isITStart)));
   }
 }
