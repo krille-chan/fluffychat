@@ -255,10 +255,13 @@ class Choreographer {
       }
 
       startLoading();
+
+      // if getting language assistance after finishing IT,
+      // reset the itController
       if (choreoMode == ChoreoMode.it &&
           itController.isTranslationDone &&
           !onlyTokensAndLanguageDetection) {
-        // debugger(when: kDebugMode);
+        itController.clear();
       }
 
       await (isRunningIT
