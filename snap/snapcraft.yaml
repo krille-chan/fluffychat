@@ -80,6 +80,7 @@ parts:
       - libsecret-1-dev
       - libjsoncpp-dev
       - libssl-dev
+      - libwebkit2gtk-4.1-dev
 
 slots:
   dbus-svc:
