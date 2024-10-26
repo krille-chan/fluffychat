@@ -2,12 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -54,21 +52,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
 
   void inviteAction(BuildContext context, String id, String displayname) async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
-    if (OkCancelResult.ok !=
-        await showOkCancelAlertDialog(
-          context: context,
-          title: L10n.of(context).inviteContact,
-          message: L10n.of(context).inviteContactToGroupQuestion(
-            displayname,
-            room.getLocalizedDisplayname(
-              MatrixLocals(L10n.of(context)),
-            ),
-          ),
-          okLabel: L10n.of(context).invite,
-          cancelLabel: L10n.of(context).cancel,
-        )) {
-      return;
-    }
+
     final success = await showFutureLoadingDialog(
       context: context,
       future: () => room.invite(id),
