@@ -104,28 +104,31 @@ jobs:
           asset_content_type: application/vnd.android.package-archive
 
   build_linux:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [ x64, arm64 ]
+    runs-on: ${{ matrix.arch == 'arm64' && 'self-hosted' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev -y
-      - run: flutter pub get
-      - run: flutter build linux --release --target-platform linux-x64
+        run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
+      - name: Install Flutter
+        run: |
+          git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
+          ./flutter/bin/flutter doctor
+      - run: ./flutter/bin/flutter pub get
+      - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
       - name: Create archive
-        run: tar -czf fluffychat-linux-x64.tar.gz -C build/linux/x64/release/bundle/ .
+        run: tar -czf fluffychat-linux-${{ matrix.arch }}.tar.gz -C build/linux/${{ matrix.arch }}/release/bundle/ .
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-linux-x64.tar.gz
-          asset_name: fluffychat-linux-x64.tar.gz
+          asset_path: fluffychat-linux-${{ matrix.arch }}.tar.gz
+          asset_name: fluffychat-linux-${{ matrix.arch }}.tar.gz
           asset_content_type: application/gzip
 
   deploy_playstore:

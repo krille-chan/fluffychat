@@ -61,8 +61,8 @@ jobs:
   build_debug_linux:
     strategy:
       matrix:
-        os: [ubuntu-latest, self-hosted]
-    runs-on: ${{ matrix.os }}
+        arch: [ x64, arm64 ]
+    runs-on: ${{ matrix.arch == 'arm64' && 'self-hosted' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -73,7 +73,7 @@ jobs:
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
           ./flutter/bin/flutter doctor
       - run: ./flutter/bin/flutter pub get
-      - run: ./flutter/bin/flutter build linux
+      - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
   build_debug_ios:
     runs-on: macos-latest
