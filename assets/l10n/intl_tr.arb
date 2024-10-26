@@ -2828,5 +2828,9 @@
   "generatingVideoThumbnail": "Video küçük resmi oluşturuluyor...",
   "@generatingVideoThumbnail": {},
   "compressVideo": "Video sıkıştırılıyor...",
-  "@compressVideo": {}
+  "@compressVideo": {},
+  "oneOfYourDevicesIsNotVerified": "Aygıtlarınızdan biri doğrulanmadı",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Not: Tüm aygıtlarınızı sohbet yedeklemesine bağladığınızda, otomatik olarak doğrulanırlar.",
+  "@noticeChatBackupDeviceVerification": {}
 }

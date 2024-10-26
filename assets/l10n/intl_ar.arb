@@ -2828,5 +2828,9 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "oneOfYourDevicesIsNotVerified": "لم يتم التحقق من أحد أجهزتك",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "ملاحظة: عند توصيل جميع أجهزتك بنسخة احتياطية للدردشة، يتم التحقق منها تلقائيًا.",
+  "@noticeChatBackupDeviceVerification": {}
 }

@@ -447,7 +447,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Livello di autorizzazione predefinito",
+  "defaultPermissionLevel": "Livello di autorizzazione predefinito per i nuovi utenti",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -482,7 +482,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Discussioni dirette",
+  "directChats": "Chat dirette",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -951,7 +951,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Sembra che tu non abbia Firebase Cloud Messaging sul tuo telefono. Per ricevere notifiche push consigliamo di installare ntfy. Con ntfy, o altro provided Unified Push, puoi ricevere le notifiche push in modo sicuro. Puoi scaricare ntfy dal PlayStore o fa F-Droid.",
+  "noGoogleServicesWarning": "Firebase Cloud Messaging non sembra essere disponibile sul tuo dispositivo. Per continuare a ricevere notifiche push, ti consigliamo di installare ntfy. Con ntfy o un altro provider Unified Push puoi ricevere notifiche push in modo sicuro per i dati. Puoi scaricare ntfy dal PlayStore o da F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1754,7 +1754,7 @@
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "sendSticker": "Invia sticker",
+  "sendSticker": "Invia adesivo",
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
@@ -1803,7 +1803,7 @@
   },
   "repeatPassword": "Ripeti password",
   "@repeatPassword": {},
-  "autoplayImages": "Riproduci automaticamente sticker animati ed emoticon",
+  "autoplayImages": "Riproduci automaticamente adesivi ed emote animati",
   "@autoplayImages": {
     "type": "text",
     "placeholder": {}
@@ -1913,7 +1913,7 @@
   "@widgetEtherpad": {},
   "removeDevicesDescription": "Sarai disconnesso da questo dispositivo e non potrai più ricevere messaggi.",
   "@removeDevicesDescription": {},
-  "separateChatTypes": "Separa Chat Dirette e Gruppi",
+  "separateChatTypes": "Separare le chat dirette e i gruppi",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2049,7 +2049,7 @@
       "provider": {}
     }
   },
-  "fileIsTooBigForServer": "Il server segnala che il file è troppo grande per essere inviato.",
+  "fileIsTooBigForServer": "Impossibile inviare! Il server supporta solo allegati fino a {max}.",
   "@fileIsTooBigForServer": {},
   "homeserver": "Homeserver",
   "@homeserver": {},
@@ -2187,7 +2187,7 @@
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "hasKnocked": "{user} ha bussato",
+  "hasKnocked": "🚪 {user} ha bussato",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2260,7 +2260,7 @@
   "@noChatDescriptionYet": {},
   "removeFromBundle": "Rimuovi da questo bundle",
   "@removeFromBundle": {},
-  "confirmMatrixId": "Conferma il tuo ID Matrix per cancellare il tuo account.",
+  "confirmMatrixId": "Per eliminare il tuo account, conferma il tuo Matrix ID.",
   "@confirmMatrixId": {},
   "learnMore": "Scopri di più",
   "@learnMore": {},
@@ -2280,7 +2280,7 @@
   "@dehydrateTor": {},
   "removeFromSpace": "Rimuovi dallo spazio",
   "@removeFromSpace": {},
-  "commandHint_op": "Imposta il livello di permessi dell'utente specificato (predefinito: 50)",
+  "commandHint_op": "Imposta il livello di privilegi dell'utente specificato (predefinito: 50)",
   "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
@@ -2328,7 +2328,7 @@
   },
   "shareInviteLink": "Condividi link d'invito",
   "@shareInviteLink": {},
-  "commandHint_markasdm": "Segna come stanza messaggi diretti per questo ID Matrix",
+  "commandHint_markasdm": "Contrassegna questo Matrix ID come stanza di messaggi diretti",
   "@commandHint_markasdm": {},
   "recoveryKeyLost": "Chiave di recupero smarrita?",
   "@recoveryKeyLost": {},
@@ -2361,7 +2361,7 @@
   "@widgetName": {},
   "errorAddingWidget": "Errore aggiungendo il widget.",
   "@errorAddingWidget": {},
-  "commandHint_dm": "Avvia una chat diretta\nUtilizza --no-encryption per disattivare la criptazione",
+  "commandHint_dm": "Avvia una chat diretta\nUsa --no-encryption per disabilitare la crittografia",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -2437,7 +2437,7 @@
       "query": {}
     }
   },
-  "block": "bloccare",
+  "block": "Blocca",
   "@block": {},
   "yourGlobalUserIdIs": "Il tuo ID dell'utente globale è: ",
   "@yourGlobalUserIdIs": {},
@@ -2453,19 +2453,19 @@
   "@searchChatsRooms": {},
   "databaseMigrationBody": "Attendere prego. L'operazione potrebbe richiedere un momento.",
   "@databaseMigrationBody": {},
-  "youInvitedToBy": "📩 Sei stato invitato via collegamento in:\n{alias}",
+  "youInvitedToBy": "📩 Sei stato invitato tramite link in:\n{alias}",
   "@youInvitedToBy": {
     "placeholders": {
       "alias": {}
     }
   },
-  "addChatOrSubSpace": "Aggiungi chat o sotto spazio",
+  "addChatOrSubSpace": "Aggiungi chat o sottospazio",
   "@addChatOrSubSpace": {},
   "subspace": "Sottospazio",
   "@subspace": {},
   "publicSpaces": "Spazio pubblico",
   "@publicSpaces": {},
-  "hidePresences": "Nascondi Lista Stato?",
+  "hidePresences": "Nascondere l'elenco degli stati?",
   "@hidePresences": {},
   "pleaseEnterYourCurrentPassword": "Per favore inserisci la tua password attuale",
   "@pleaseEnterYourCurrentPassword": {},
@@ -2496,27 +2496,340 @@
   },
   "verifyOtherUser": "🔐 Verifica altro utente",
   "@verifyOtherUser": {},
-  "verifyOtherUserDescription": "Se verifichi un altro utente, puoi stare certo di conoscere con chi tu stia parlando veramente. 💪\n\nQuando inizi una verifica, tu e l'altro utente vedrete un popup nell'applicazione. Lì vedrete una serie di emoji o numeri che dovrete confrontare l'uno con l'altro.\n\nIl miglior modo per farlo è di incontrarsi o iniziare una chiamata video. 👭",
+  "verifyOtherUserDescription": "Se verifichi un altro utente, puoi essere certo di sapere a chi stai realmente scrivendo. 💪\n\nQuando inizi una verifica, tu e l'altro utente vedrete un popup nell'app. Lì vedrai una serie di emoji o numeri che dovrai confrontare tra loro.\n\nIl modo migliore per farlo è incontrarsi o avviare una videochiamata. 👭",
   "@verifyOtherUserDescription": {},
   "verifyOtherDevice": "🔐 Verifica altro dispositivo",
   "@verifyOtherDevice": {},
-  "verifyOtherDeviceDescription": "Quando verifichi un altro dispositivo, quei dispositivi possono scambiarsi chiavi, aumentando la tua sicurezza generale. 💪 Quando inizia una verifica, apparirà un popup su entrambi i dispositivi. Lì vedrai una serie di emoji o numeri che dovrai confrontare l'uno con l'altro. È meglio avere entrambi i dispositivi a portata di mano prima di iniziare la verifica. 🤳",
+  "verifyOtherDeviceDescription": "Quando verifichi un altro dispositivo, questi dispositivi possono scambiarsi le chiavi, aumentando la tua sicurezza complessiva. 💪 Quando inizi una verifica, apparirà un popup nell'app su entrambi i dispositivi. Lì vedrai una serie di emoji o numeri che dovrai confrontare tra loro. È meglio avere entrambi i dispositivi a portata di mano prima di iniziare la verifica. 🤳",
   "@verifyOtherDeviceDescription": {},
   "discover": "Scopri",
   "@discover": {},
-  "presencesToggle": "Mostra messaggi di stato degli altri utenti",
+  "presencesToggle": "Mostra i messaggi di stato di altri utenti",
   "@presencesToggle": {
     "type": "text",
     "placeholders": {}
   },
-  "publicLink": "Collegamento pubblico",
+  "publicLink": "Link pubblico",
   "@publicLink": {},
-  "leaveEmptyToClearStatus": "Lasciare vuoto per cancellare il tuo stato.",
+  "leaveEmptyToClearStatus": "Lascia vuoto per cancellare il tuo stato.",
   "@leaveEmptyToClearStatus": {},
   "decline": "Declina",
   "@decline": {},
   "transparent": "Trasparente",
   "@transparent": {},
   "incomingMessages": "Messaggi in arrivo",
-  "@incomingMessages": {}
+  "@incomingMessages": {},
+  "noChatsFoundHere": "Nessuna chat trovata. Inizia una nuova chat con qualcuno usando il pulsante qui sotto. ⤵️",
+  "@noChatsFoundHere": {},
+  "joinedChats": "Chat a cui partecipi",
+  "@joinedChats": {},
+  "unread": "Non letti",
+  "@unread": {},
+  "space": "Spazio",
+  "@space": {},
+  "spaces": "Spazi",
+  "@spaces": {},
+  "notifyMeFor": "Avvisami per",
+  "@notifyMeFor": {},
+  "invitedBy": "📩 Invitato da {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "knock": "Bussa",
+  "@knock": {},
+  "hideInvalidOrUnknownMessageFormats": "Nascondi formati di messaggi non validi o sconosciuti",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "overview": "Panoramica",
+  "@overview": {},
+  "presenceStyle": "Presenza:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "swipeRightToLeftToReply": "Scorri da destra a sinistra per rispondere",
+  "@swipeRightToLeftToReply": {},
+  "globalChatId": "ID chat globale",
+  "@globalChatId": {},
+  "hideMemberChangesInPublicChats": "Nascondi le modifiche dei membri nelle chat pubbliche",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "Per migliorare la leggibilità, non mostrare nella cronologia della chat se qualcuno si unisce o abbandona una chat pubblica.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "userWouldLikeToChangeTheChat": "{user} vorrebbe unirsi alla chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Non è stato ancora creato alcun link pubblico",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "appLockDescription": "Blocca l'app con un codice PIN quando non è in uso",
+  "@appLockDescription": {},
+  "noOneCanJoin": "Nessuno può unirsi",
+  "@noOneCanJoin": {},
+  "usersMustKnock": "Gli utenti devono bussare",
+  "@usersMustKnock": {},
+  "alwaysUse24HourFormat": "disattivato",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "accessAndVisibility": "Accesso e visibilità",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Chi è autorizzato a partecipare a questa chat e come è possibile scoprirla.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Chiamate",
+  "@calls": {},
+  "customEmojisAndStickers": "Emoji e adesivi personalizzati",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Aggiungi o condividi emoji o adesivi personalizzati che possono essere utilizzati in qualsiasi chat.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "Mostra i messaggi rimossi",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Se qualcuno rimuove un messaggio, il messaggio non sarà più visibile nella chat.",
+  "@hideRedactedMessagesBody": {},
+  "passwordRecoverySettings": "Impostazioni di recupero password",
+  "@passwordRecoverySettings": {},
+  "noMoreChatsFound": "Non sono state trovate altre chat...",
+  "@noMoreChatsFound": {},
+  "countChatsAndCountParticipants": "{chats} chat e {participants} partecipanti",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "stickers": "Adesivi",
+  "@stickers": {},
+  "searchMore": "Cerca di più...",
+  "@searchMore": {},
+  "sessionLostBody": "La tua sessione è andata persa. Segnala questo errore agli sviluppatori all'indirizzo {url}. Il messaggio di errore è: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "formattedMessagesDescription": "Visualizza contenuti di messaggi complessi, come testo in grassetto, utilizzando il markdown.",
+  "@formattedMessagesDescription": {},
+  "canceledKeyVerification": "{sender} ha annullato la verifica della chiave",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "chatPermissionsDescription": "Definisci quale livello di privilegi è necessario per determinate azioni in questa chat. I livelli di privilegi 0, 50 e 100 rappresentano solitamente utenti, moderatori e amministratori, ma qualsiasi valore intermedio è possibile.",
+  "@chatPermissionsDescription": {},
+  "passwordsDoNotMatch": "Le password non corrispondono",
+  "@passwordsDoNotMatch": {},
+  "initAppError": "Si è verificato un errore durante l'inizializzazione dell'app",
+  "@initAppError": {},
+  "startedKeyVerification": "{sender} ha avviato la verifica della chiave",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "chatCanBeDiscoveredViaSearchOnServer": "La chat può essere trovata tramite la ricerca su {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "unreadChatsInApp": "{appname}: {unread} chat non lette",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "thereAreCountUsersBlocked": "Al momento ci sono {count} utenti bloccati.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "nothingFound": "Non è stato trovato nulla...",
+  "@nothingFound": {},
+  "joinSpace": "Unisciti allo spazio",
+  "@joinSpace": {},
+  "commandHint_ignore": "Ignora il Matrix ID fornito",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Ignora il Matrix ID specificato",
+  "@commandHint_unignore": {},
+  "noDatabaseEncryption": "La crittografia del database non è supportata su questa piattaforma",
+  "@noDatabaseEncryption": {},
+  "knocking": "Bussare",
+  "@knocking": {},
+  "sendReadReceipts": "Invia ricevute di lettura",
+  "@sendReadReceipts": {},
+  "knockRestricted": "Limitato al bussare",
+  "@knockRestricted": {},
+  "restricted": "Limitato",
+  "@restricted": {},
+  "publicChatAddresses": "Indirizzi di chat pubblici",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Crea un nuovo indirizzo",
+  "@createNewAddress": {},
+  "userRole": "Ruolo utente",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} è il livello minimo di privilegi.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "searchIn": "Cerca nella chat \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "gallery": "Galleria",
+  "@gallery": {},
+  "formattedMessages": "Messaggi formattati",
+  "@formattedMessages": {},
+  "files": "File",
+  "@files": {},
+  "restoreSessionBody": "L'app ora tenta di ripristinare la sessione dal backup. Segnala questo errore agli sviluppatori all'indirizzo {url}. Il messaggio di errore è: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "acceptedKeyVerification": "{sender} ha accettato la verifica della chiave",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} ha completato la verifica della chiave",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} è pronto per la verifica della chiave",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "searchForUsers": "Cerca @utenti...",
+  "@searchForUsers": {},
+  "sendTypingNotificationsDescription": "Gli altri partecipanti alla chat possono vedere quando stai scrivendo un nuovo messaggio.",
+  "@sendTypingNotificationsDescription": {},
+  "sendReadReceiptsDescription": "Gli altri partecipanti alla chat possono vedere quando hai letto un messaggio.",
+  "@sendReadReceiptsDescription": {},
+  "requestedKeyVerification": "{sender} ha richiesto la verifica della chiave",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "changeTheChatPermissions": "Cambia i permessi della chat",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "Cambia la visibilità della cronologia chat",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Cambia l'indirizzo principale della chat pubblica",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "Invia notifiche alla @stanza",
+  "@sendRoomNotifications": {},
+  "sendCanceled": "Invio annullato",
+  "@sendCanceled": {},
+  "calculatingFileSize": "Calcolo della dimensione del file...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Preparazione per l'invio dell'allegato...",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "Invio allegato...",
+  "@sendingAttachment": {},
+  "compressVideo": "Compressione video...",
+  "@compressVideo": {},
+  "generatingVideoThumbnail": "Generazione miniatura video...",
+  "@generatingVideoThumbnail": {},
+  "sendingAttachmentCountOfCount": "Invio dell'allegato {index} di {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "Limite server raggiunto! Attendere {seconds} secondi...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "oneOfYourDevicesIsNotVerified": "Uno dei tuoi dispositivi non è verificato",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Nota: quando colleghi tutti i tuoi dispositivi al backup della chat, vengono verificati automaticamente.",
+  "@noticeChatBackupDeviceVerification": {},
+  "moderatorLevel": "{level} - Moderatore",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheDescriptionOfTheGroup": "Cambia la descrizione della chat",
+  "@changeTheDescriptionOfTheGroup": {},
+  "updateInstalled": "🎉 Aggiornamento {version} installato!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "inviteOtherUsers": "Invita altri utenti a questa chat",
+  "@inviteOtherUsers": {},
+  "userLevel": "{level} - Utente",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Amministratore",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Modifica le impostazioni generali della chat",
+  "@changeGeneralChatSettings": {},
+  "loginWithMatrixId": "Accedi con il Matrix ID",
+  "@loginWithMatrixId": {},
+  "homeserverDescription": "Tutti i tuoi dati sono archiviati sull'homeserver, proprio come un provider di posta elettronica. Puoi scegliere quale homeserver vuoi usare, mentre puoi comunque comunicare con tutti. Scopri di più su https://matrix.org.",
+  "@homeserverDescription": {},
+  "discoverHomeservers": "Scopri gli homeserver",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Cos'è un homeserver?",
+  "@whatIsAHomeserver": {},
+  "changelog": "Registro delle modifiche",
+  "@changelog": {},
+  "doesNotSeemToBeAValidHomeserver": "Non sembra essere un homeserver compatibile. URL sbagliato?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "goToSpace": "Vai allo spazio: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "markAsUnread": "Contrassegna come non letto",
+  "@markAsUnread": {}
 }
