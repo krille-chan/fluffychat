@@ -34,7 +34,10 @@ class InvitationSelectionController extends State<InvitationSelection> {
   Future<List<User>> getContacts(BuildContext context) async {
     final client = Matrix.of(context).client;
     final room = client.getRoomById(roomId!)!;
-    final participants = await room.requestParticipants();
+
+    final participants = (room.summary.mJoinedMemberCount ?? 0) > 100
+        ? room.getParticipants()
+        : await room.requestParticipants();
     participants.removeWhere(
       (u) => ![Membership.join, Membership.invite].contains(u.membership),
     );
