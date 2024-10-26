@@ -24,7 +24,7 @@ extension DateTimeExtension on DateTime {
   /// Checks if two DateTimes are close enough to belong to the same
   /// environment.
   bool sameEnvironment(DateTime prevTime) =>
-      prevTime.difference(this) < const Duration(hours: 1);
+      difference(prevTime) < const Duration(hours: 1);
 
   /// Returns a simple time String.
   String localizedTimeOfDay(BuildContext context) =>
