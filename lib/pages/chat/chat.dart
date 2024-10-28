@@ -486,10 +486,11 @@ class ChatController extends State<ChatPageWithRoom>
 
   void setReadMarker({String? eventId}) {
     // #Pangea
-    if (eventId != null &&
-        (eventId.contains("web") ||
-            eventId.contains("android") ||
-            eventId.contains("ios"))) {
+    if (room.client.userID == null ||
+        eventId != null &&
+            (eventId.contains("web") ||
+                eventId.contains("android") ||
+                eventId.contains("ios"))) {
       return;
     }
     // Pangea#
