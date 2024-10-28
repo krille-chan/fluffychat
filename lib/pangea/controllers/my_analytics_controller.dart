@@ -243,7 +243,12 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
   }
 
   /// Clears the local cache of recently sent constructs. Called before updating analytics
-  void clearMessagesSinceUpdate() {
+  void clearMessagesSinceUpdate({clearDrafts = false}) {
+    if (clearDrafts) {
+      _pangeaController.pStoreService.delete(PLocalKey.messagesSinceUpdate);
+      return;
+    }
+
     final localCache = _pangeaController.analytics.messagesSinceUpdate;
     final draftKeys = localCache.keys.where((key) => key.startsWith('draft'));
     if (draftKeys.isEmpty) {

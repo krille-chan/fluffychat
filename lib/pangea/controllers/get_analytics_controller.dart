@@ -162,7 +162,8 @@ class GetAnalyticsController {
         return formattedCache;
       } catch (err) {
         // if something goes wrong while trying to format the local data, clear it
-        _pangeaController.myAnalytics.clearMessagesSinceUpdate();
+        _pangeaController.myAnalytics
+            .clearMessagesSinceUpdate(clearDrafts: true);
         return {};
       }
     } catch (exception, stackTrace) {
