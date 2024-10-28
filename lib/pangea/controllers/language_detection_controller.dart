@@ -14,26 +14,26 @@ class LanguageDetectionRequest {
   /// The full text from which to detect the language.
   String fullText;
 
-  /// The base language of the user, if known. Including this is much preferred
+  /// The base language of the user that sent the meessage, if known. Including this is much preferred
   /// and should return better results; however, it is not absolutely necessary.
   /// This property is nullable to allow for situations where the languages are not set
   /// at the time of the request.
-  String? userL1;
+  String? senderL1;
 
-  /// The target language of the user. This is expected to be set for the request
+  /// The target language of the user that sent the message. This is expected to be set for the request
   /// but is nullable to handle edge cases where it might not be.
-  String? userL2;
+  String? senderL2;
 
   LanguageDetectionRequest({
     required this.fullText,
-    this.userL1 = "",
-    required this.userL2,
+    required this.senderL1,
+    required this.senderL2,
   });
 
   Map<String, dynamic> toJson() => {
         'full_text': fullText,
-        'user_l1': userL1,
-        'user_l2': userL2,
+        'sender_l1': senderL1,
+        'sender_l2': senderL2,
       };
 
   @override
@@ -41,12 +41,12 @@ class LanguageDetectionRequest {
     if (identical(this, other)) return true;
     return other is LanguageDetectionRequest &&
         other.fullText == fullText &&
-        other.userL1 == userL1 &&
-        other.userL2 == userL2;
+        other.senderL1 == senderL1 &&
+        other.senderL2 == senderL2;
   }
 
   @override
-  int get hashCode => fullText.hashCode ^ userL1.hashCode ^ userL2.hashCode;
+  int get hashCode => fullText.hashCode ^ senderL1.hashCode ^ senderL2.hashCode;
 }
 
 class LanguageDetectionResponse {
@@ -123,19 +123,6 @@ class LanguageDetectionController {
 
   void dispose() {
     _cacheClearTimer?.cancel();
-  }
-
-  Future<LanguageDetectionResponse> detectLanguage(
-    String fullText,
-    String? userL2,
-    String? userL1,
-  ) async {
-    final LanguageDetectionRequest params = LanguageDetectionRequest(
-      fullText: fullText,
-      userL1: userL1,
-      userL2: userL2,
-    );
-    return get(params);
   }
 
   Future<LanguageDetectionResponse> get(

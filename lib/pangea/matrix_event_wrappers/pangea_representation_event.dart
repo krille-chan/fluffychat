@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_choreo_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/models/token_api_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
-import 'package:fluffychat/pangea/repo/tokens_repo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
@@ -135,13 +135,17 @@ class RepresentationEvent {
         await MatrixState.pangeaController.messageData.getTokens(
       repEventId: _event?.eventId,
       room: _event?.room ?? parentMessageEvent.room,
-      // Jordan - for just tokens, it's not clear which languages to pass
       req: TokensRequestModel(
         fullText: text,
-        userL1:
+        langCode: langCode,
+        senderL1:
             MatrixState.pangeaController.languageController.userL1?.langCode ??
                 LanguageKeys.unknownLanguage,
-        userL2: langCode,
+        // since langCode is known, senderL2 will be used to determine whether these tokens
+        // need pos/mporph tags whether lemmas are eligible to marked as "save_vocab=true"
+        senderL2:
+            MatrixState.pangeaController.languageController.userL2?.langCode ??
+                LanguageKeys.unknownLanguage,
       ),
     );
 
