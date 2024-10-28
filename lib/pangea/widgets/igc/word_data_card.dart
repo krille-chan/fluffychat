@@ -167,7 +167,7 @@ class WordDataCardView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (controller.wordNetError != null) {
       return CardErrorWidget(
-        error: controller.wordNetError,
+        error: controller.wordNetError!,
         maxWidth: AppConfig.toolbarMinWidth,
       );
     }

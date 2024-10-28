@@ -68,7 +68,7 @@ class Choreographer {
   }
 
   void send(BuildContext context) {
-    if (isFetching) return;
+    if (!canSendMessage) return;
 
     if (pangeaController.subscriptionController.subscriptionStatus ==
         SubscriptionStatus.showPaywall) {
@@ -92,7 +92,7 @@ class Choreographer {
   }
 
   Future<void> _sendWithIGC(BuildContext context) async {
-    if (!igc.canSendMessage) {
+    if (!canSendMessage) {
       igc.showFirstMatch(context);
       return;
     }
@@ -255,13 +255,16 @@ class Choreographer {
       }
 
       startLoading();
+
+      // if getting language assistance after finishing IT,
+      // reset the itController
       if (choreoMode == ChoreoMode.it &&
           itController.isTranslationDone &&
           !onlyTokensAndLanguageDetection) {
-        // debugger(when: kDebugMode);
+        itController.clear();
       }
 
-      await (choreoMode == ChoreoMode.it && !itController.isTranslationDone
+      await (isRunningIT
           ? itController.getTranslationData(_useCustomInput)
           : igc.getIGCTextData(
               onlyTokensAndLanguageDetection: onlyTokensAndLanguageDetection,
@@ -418,7 +421,7 @@ class Choreographer {
     setState();
   }
 
-  giveInputFocus() {
+  void giveInputFocus() {
     Future.delayed(Duration.zero, () {
       chatController.inputFocus.requestFocus();
     });
@@ -478,6 +481,9 @@ class Choreographer {
   bool get _noChange =>
       _lastChecked != null && _lastChecked == _textController.text;
 
+  bool get isRunningIT =>
+      choreoMode == ChoreoMode.it && !itController.isTranslationDone;
+
   void startLoading() {
     _lastChecked = _textController.text;
     isFetching = true;
@@ -504,8 +510,6 @@ class Choreographer {
       stateListener.add(0);
     }
   }
-
-  bool get showIsError => !itController.isOpen && errorService.isError;
 
   LayerLinkAndKey get itBarLinkAndKey =>
       MatrixState.pAnyState.layerLinkAndKey(itBarTransformTargetKey);
@@ -570,7 +574,7 @@ class Choreographer {
       return AssistanceState.noMessage;
     }
 
-    if (igc.igcTextData?.matches.isNotEmpty ?? false) {
+    if ((igc.igcTextData?.matches.isNotEmpty ?? false) || isRunningIT) {
       return AssistanceState.fetched;
     }
 
@@ -583,5 +587,34 @@ class Choreographer {
     }
 
     return AssistanceState.complete;
+  }
+
+  bool get canSendMessage {
+    // if there's an error, let them send. we don't want to block them from sending in this case
+    if (errorService.isError) return true;
+
+    // if they're in IT mode, don't let them send
+    if (itEnabled && isRunningIT) return false;
+
+    // if they've turned off IGC then let them send the message when they want
+    if (!isAutoIGCEnabled) return true;
+
+    // if we're in the middle of fetching results, don't let them send
+    if (isFetching) return false;
+
+    // they're supposed to run IGC but haven't yet, don't let them send
+    if (isAutoIGCEnabled && igc.igcTextData == null) return false;
+
+    // if they have relevant matches, don't let them send
+    final hasITMatches =
+        igc.igcTextData!.matches.any((match) => match.isITStart);
+    final hasIGCMatches =
+        igc.igcTextData!.matches.any((match) => !match.isITStart);
+    if ((itEnabled && hasITMatches) || (igcEnabled && hasIGCMatches)) {
+      return false;
+    }
+
+    // otherwise, let them send
+    return true;
   }
 }
