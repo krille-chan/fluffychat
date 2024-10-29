@@ -259,7 +259,7 @@ class MessageContent extends StatelessWidget {
               ),
               style: TextStyle(
                 color: textColor,
-                fontSize: bigEmotes ? fontSize * 6 : fontSize,
+                fontSize: bigEmotes ? fontSize * 5 : fontSize,
                 decoration: event.redacted ? TextDecoration.lineThrough : null,
               ),
               options: const LinkifyOptions(humanize: false),
