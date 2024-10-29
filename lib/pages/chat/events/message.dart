@@ -122,12 +122,17 @@ class Message extends StatelessWidget {
       bottomRight:
           ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
     );
-    final noBubble = {
-          MessageTypes.Video,
-          MessageTypes.Image,
-          MessageTypes.Sticker,
-        }.contains(event.messageType) &&
-        !event.redacted;
+    final noBubble = ({
+              MessageTypes.Video,
+              MessageTypes.Image,
+              MessageTypes.Sticker,
+            }.contains(event.messageType) &&
+            !event.redacted) ||
+        (event.messageType == MessageTypes.Text &&
+            event.relationshipType == null &&
+            event.onlyEmotes &&
+            event.numberEmotes > 0 &&
+            event.numberEmotes <= 3);
     final noPadding = {
       MessageTypes.File,
       MessageTypes.Audio,

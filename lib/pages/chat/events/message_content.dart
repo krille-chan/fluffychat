@@ -251,7 +251,7 @@ class MessageContent extends StatelessWidget {
             }
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
-                event.numberEmotes <= 10;
+                event.numberEmotes <= 3;
             return Linkify(
               text: event.calcLocalizedBodyFallback(
                 MatrixLocals(L10n.of(context)),
@@ -259,13 +259,13 @@ class MessageContent extends StatelessWidget {
               ),
               style: TextStyle(
                 color: textColor,
-                fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                fontSize: bigEmotes ? fontSize * 6 : fontSize,
                 decoration: event.redacted ? TextDecoration.lineThrough : null,
               ),
               options: const LinkifyOptions(humanize: false),
               linkStyle: TextStyle(
                 color: textColor.withAlpha(150),
-                fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                fontSize: fontSize,
                 decoration: TextDecoration.underline,
                 decorationColor: textColor.withAlpha(150),
               ),
