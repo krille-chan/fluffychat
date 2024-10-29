@@ -4,7 +4,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum InstructionsEnum {
@@ -19,24 +18,16 @@ enum InstructionsEnum {
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
-  String title(BuildContext context) {
-    if (!context.mounted) {
-      ErrorHandler.logError(
-        e: Exception("Context not mounted"),
-        m: 'InstructionsEnumExtension.title for $this',
-      );
-      debugger(when: kDebugMode);
-      return '';
-    }
+  String title(L10n l10n) {
     switch (this) {
       case InstructionsEnum.itInstructions:
-        return L10n.of(context)!.itInstructionsTitle;
+        return l10n.itInstructionsTitle;
       case InstructionsEnum.clickMessage:
-        return L10n.of(context)!.clickMessageTitle;
+        return l10n.clickMessageTitle;
       case InstructionsEnum.blurMeansTranslate:
-        return L10n.of(context)!.blurMeansTranslateTitle;
+        return l10n.blurMeansTranslateTitle;
       case InstructionsEnum.tooltipInstructions:
-        return L10n.of(context)!.tooltipInstructionsTitle;
+        return l10n.tooltipInstructionsTitle;
       case InstructionsEnum.clickAgainToDeselect:
       case InstructionsEnum.speechToText:
       case InstructionsEnum.l1Translation:
@@ -53,46 +44,30 @@ extension InstructionsEnumExtension on InstructionsEnum {
     }
   }
 
-  String body(BuildContext context) {
-    if (!context.mounted) {
-      ErrorHandler.logError(
-        e: Exception("Context not mounted"),
-        m: 'InstructionsEnumExtension.body for $this',
-      );
-      debugger(when: kDebugMode);
-      return "";
-    }
+  String body(L10n l10n) {
     switch (this) {
       case InstructionsEnum.itInstructions:
-        return L10n.of(context)!.itInstructionsBody;
+        return l10n.itInstructionsBody;
       case InstructionsEnum.clickMessage:
-        return L10n.of(context)!.clickMessageBody;
+        return l10n.clickMessageBody;
       case InstructionsEnum.blurMeansTranslate:
-        return L10n.of(context)!.blurMeansTranslateBody;
+        return l10n.blurMeansTranslateBody;
       case InstructionsEnum.speechToText:
-        return L10n.of(context)!.speechToTextBody;
+        return l10n.speechToTextBody;
       case InstructionsEnum.l1Translation:
-        return L10n.of(context)!.l1TranslationBody;
+        return l10n.l1TranslationBody;
       case InstructionsEnum.translationChoices:
-        return L10n.of(context)!.translationChoicesBody;
+        return l10n.translationChoicesBody;
       case InstructionsEnum.clickAgainToDeselect:
-        return L10n.of(context)!.clickTheWordAgainToDeselect;
+        return l10n.clickTheWordAgainToDeselect;
       case InstructionsEnum.tooltipInstructions:
         return PlatformInfos.isMobile
-            ? L10n.of(context)!.tooltipInstructionsMobileBody
-            : L10n.of(context)!.tooltipInstructionsBrowserBody;
+            ? l10n.tooltipInstructionsMobileBody
+            : l10n.tooltipInstructionsBrowserBody;
     }
   }
 
-  bool toggledOff(BuildContext context) {
-    if (!context.mounted) {
-      ErrorHandler.logError(
-        e: Exception("Context not mounted"),
-        m: 'InstructionsEnumExtension.toggledOff for $this',
-      );
-      debugger(when: kDebugMode);
-      return false;
-    }
+  bool toggledOff() {
     final instructionSettings =
         MatrixState.pangeaController.userController.profile.instructionSettings;
     switch (this) {

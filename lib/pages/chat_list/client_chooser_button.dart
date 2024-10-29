@@ -214,62 +214,71 @@ class ClientChooserButton extends StatelessWidget {
 
     var clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
-    return FutureBuilder<Profile>(
-      future: matrix.client.fetchOwnProfile(),
-      builder: (context, snapshot) => Stack(
-        alignment: Alignment.center,
-        children: [
-          // #Pangea
-          // ...List.generate(
-          //   clientCount,
-          //   (index) => KeyBoardShortcuts(
-          //     keysToPress: _buildKeyboardShortcut(index + 1),
-          //     helpLabel: L10n.of(context)!.switchToAccount(index + 1),
-          //     onKeysPressed: () => _handleKeyboardShortcut(
-          //       matrix,
-          //       index,
-          //       context,
-          //     ),
-          //     child: const SizedBox.shrink(),
-          //   ),
-          // ),
-          // KeyBoardShortcuts(
-          //   keysToPress: {
-          //     LogicalKeyboardKey.controlLeft,
-          //     LogicalKeyboardKey.tab,
-          //   },
-          //   helpLabel: L10n.of(context)!.nextAccount,
-          //   onKeysPressed: () => _nextAccount(matrix, context),
-          //   child: const SizedBox.shrink(),
-          // ),
-          // KeyBoardShortcuts(
-          //   keysToPress: {
-          //     LogicalKeyboardKey.controlLeft,
-          //     LogicalKeyboardKey.shiftLeft,
-          //     LogicalKeyboardKey.tab,
-          //   },
-          //   helpLabel: L10n.of(context)!.previousAccount,
-          //   onKeysPressed: () => _previousAccount(matrix, context),
-          //   child: const SizedBox.shrink(),
-          // ),
-          // Pangea#
-          PopupMenuButton<Object>(
-            onSelected: (o) => _clientSelected(o, context),
-            itemBuilder: _bundleMenuItems,
-            child: Material(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(99),
-              child: Avatar(
-                mxContent: snapshot.data?.avatarUrl,
-                name: snapshot.data?.displayName ??
-                    matrix.client.userID!.localpart,
-                size: 32,
-              ),
+    // #Pangea
+    return matrix.client.userID == null
+        ? const SizedBox(
+            height: 16,
+            width: 16,
+            child: CircularProgressIndicator.adaptive(),
+          )
+        :
+        // Pangea#
+        FutureBuilder<Profile>(
+            future: matrix.client.fetchOwnProfile(),
+            builder: (context, snapshot) => Stack(
+              alignment: Alignment.center,
+              children: [
+                // #Pangea
+                // ...List.generate(
+                //   clientCount,
+                //   (index) => KeyBoardShortcuts(
+                //     keysToPress: _buildKeyboardShortcut(index + 1),
+                //     helpLabel: L10n.of(context)!.switchToAccount(index + 1),
+                //     onKeysPressed: () => _handleKeyboardShortcut(
+                //       matrix,
+                //       index,
+                //       context,
+                //     ),
+                //     child: const SizedBox.shrink(),
+                //   ),
+                // ),
+                // KeyBoardShortcuts(
+                //   keysToPress: {
+                //     LogicalKeyboardKey.controlLeft,
+                //     LogicalKeyboardKey.tab,
+                //   },
+                //   helpLabel: L10n.of(context)!.nextAccount,
+                //   onKeysPressed: () => _nextAccount(matrix, context),
+                //   child: const SizedBox.shrink(),
+                // ),
+                // KeyBoardShortcuts(
+                //   keysToPress: {
+                //     LogicalKeyboardKey.controlLeft,
+                //     LogicalKeyboardKey.shiftLeft,
+                //     LogicalKeyboardKey.tab,
+                //   },
+                //   helpLabel: L10n.of(context)!.previousAccount,
+                //   onKeysPressed: () => _previousAccount(matrix, context),
+                //   child: const SizedBox.shrink(),
+                // ),
+                // Pangea#
+                PopupMenuButton<Object>(
+                  onSelected: (o) => _clientSelected(o, context),
+                  itemBuilder: _bundleMenuItems,
+                  child: Material(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(99),
+                    child: Avatar(
+                      mxContent: snapshot.data?.avatarUrl,
+                      name: snapshot.data?.displayName ??
+                          matrix.client.userID!.localpart,
+                      size: 32,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 
   Set<LogicalKeyboardKey>? _buildKeyboardShortcut(int index) {

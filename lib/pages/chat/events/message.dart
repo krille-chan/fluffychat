@@ -186,7 +186,11 @@ class Message extends StatelessWidget {
         if (animateIn && resetAnimateIn != null) {
           WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
             animateIn = false;
-            setState(resetAnimateIn);
+            // #Pangea
+            if (context.mounted) {
+              // Pangea#
+              setState(resetAnimateIn);
+            }
           });
         }
         return AnimatedSize(
