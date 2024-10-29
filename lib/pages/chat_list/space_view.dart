@@ -404,6 +404,9 @@ class _SpaceViewState extends State<SpaceView> {
                     ),
                   ]
                 : null,
+            // #Pangea
+            enableEncryption: false,
+            // Pangea#
           );
         }
         await activeSpace.setSpaceChild(roomId);

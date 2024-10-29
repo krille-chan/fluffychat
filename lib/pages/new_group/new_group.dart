@@ -74,6 +74,9 @@ class NewGroupController extends State<NewGroup> {
               content: {'url': avatarUrl.toString()},
             ),
         ],
+        // #Pangea
+        enableEncryption: false,
+        // Pangea#
       );
       if (!mounted) return;
       context.go('/rooms/$roomId/invite');
