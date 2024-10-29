@@ -49,7 +49,10 @@ class LoginView extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               children: <Widget>[
-                Image.asset('assets/banner_transparent.png'),
+                Hero(
+                  tag: 'info-logo',
+                  child: Image.asset('assets/banner_transparent.png'),
+                ),
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -67,7 +70,7 @@ class LoginView extends StatelessWidget {
                       prefixIcon: const Icon(Icons.account_box_outlined),
                       errorText: controller.usernameError,
                       errorStyle: const TextStyle(color: Colors.orange),
-                      hintText: '@username:localpart',
+                      hintText: '@username:domain',
                       labelText: L10n.of(context).emailOrUsername,
                     ),
                   ),

@@ -44,17 +44,6 @@ class LoginScaffold extends StatelessWidget {
       body: SafeArea(child: body),
       backgroundColor:
           isMobileMode ? null : theme.colorScheme.surface.withOpacity(0.8),
-      bottomNavigationBar: isMobileMode
-          ? Material(
-              elevation: 4,
-              shadowColor: theme.colorScheme.onSurface,
-              child: const SafeArea(
-                child: _PrivacyButtons(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ),
-              ),
-            )
-          : null,
     );
     if (isMobileMode) return scaffold;
     return Container(
