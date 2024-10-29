@@ -196,13 +196,13 @@ class UserController extends BaseController {
   }
 
   /// Returns a boolean value indicating whether the user is currently in the trial window.
-  bool get inTrialWindow {
+  bool inTrialWindow({int trialDays = 7}) {
     final DateTime? createdAt = profile.userSettings.createdAt;
     if (createdAt == null) {
       return false;
     }
     return createdAt.isAfter(
-      DateTime.now().subtract(const Duration(days: 7)),
+      DateTime.now().subtract(Duration(days: trialDays)),
     );
   }
 

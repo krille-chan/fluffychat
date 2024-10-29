@@ -1,50 +1,32 @@
+import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/config/environment.dart';
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/repo/subscription_repo.dart';
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
 
-class SubscriptionInfo {
-  PangeaController pangeaController;
-  List<SubscriptionDetails> availableSubscriptions = [];
-  String? currentSubscriptionId;
-  SubscriptionDetails? currentSubscription;
-  // Gabby - is it necessary to store appIds for each platform?
-  SubscriptionAppIds? appIds;
-  List<SubscriptionDetails>? allProducts;
-  final SubscriptionPlatform platform = SubscriptionPlatform();
-  List<String> allEntitlements = [];
+/// Contains information about the users's current subscription
+class CurrentSubscriptionInfo {
+  final String userID;
+  final AvailableSubscriptionsInfo availableSubscriptionInfo;
+
   DateTime? expirationDate;
+  String? currentSubscriptionId;
 
-  bool get hasSubscribed => allEntitlements.isNotEmpty;
+  CurrentSubscriptionInfo({
+    required this.userID,
+    required this.availableSubscriptionInfo,
+  });
 
-  SubscriptionInfo({
-    required this.pangeaController,
-  }) : super();
+  SubscriptionDetails? get currentSubscription {
+    if (currentSubscriptionId == null) return null;
+    return availableSubscriptionInfo.allProducts?.firstWhereOrNull(
+      (SubscriptionDetails sub) =>
+          sub.id.contains(currentSubscriptionId!) ||
+          currentSubscriptionId!.contains(sub.id),
+    );
+  }
 
   Future<void> configure() async {}
-
-  //TO-DO - hey Gabby this file feels like it could be reorganized. i'd like to
-  // 1) move these api calls to a class in a file in repo and
-  // 2) move the url to the urls file.
-  // 3) any stateful info to the subscription controller
-  // let's discuss before you make the changes though
-  // maybe you had some reason for this organization
-
-  /* 
-  Fetch App Ids for each RC app (iOS, Android, and Stripe). Used to determine which app a user 
-  with an active subscription purchased that subscription.
-  */
-  Future<void> setAppIds() async {
-    if (appIds != null) return;
-    appIds = await SubscriptionRepo.getAppIds();
-  }
-
-  Future<void> setAllProducts() async {
-    if (allProducts != null) return;
-    allProducts = await SubscriptionRepo.getAllProducts();
-  }
 
   bool get isNewUserTrial =>
       currentSubscriptionId == AppConfig.trialSubscriptionId;
@@ -64,41 +46,69 @@ class SubscriptionInfo {
 
   String? get purchasePlatformDisplayName {
     if (currentSubscription?.appId == null) return null;
-    return appIds?.appDisplayName(currentSubscription!.appId!);
+    return availableSubscriptionInfo.appIds
+        ?.appDisplayName(currentSubscription!.appId!);
   }
 
   bool get purchasedOnWeb =>
-      (currentSubscription != null && appIds != null) &&
-      (currentSubscription?.appId == appIds?.stripeId);
+      (currentSubscription != null &&
+          availableSubscriptionInfo.appIds != null) &&
+      (currentSubscription?.appId ==
+          availableSubscriptionInfo.appIds?.stripeId);
 
   bool get currentPlatformMatchesPurchasePlatform =>
-      (currentSubscription != null && appIds != null) &&
-      (currentSubscription?.appId == appIds?.currentAppId);
+      (currentSubscription != null &&
+          availableSubscriptionInfo.appIds != null) &&
+      (currentSubscription?.appId ==
+          availableSubscriptionInfo.appIds?.currentAppId);
 
-  void resetSubscription() {
-    currentSubscription = null;
-    currentSubscriptionId = null;
-  }
+  void resetSubscription() => currentSubscriptionId = null;
 
   void setTrial(DateTime expiration) {
-    if (currentSubscription != null) return;
     expirationDate = expiration;
     currentSubscriptionId = AppConfig.trialSubscriptionId;
-    currentSubscription = SubscriptionDetails(
-      price: 0,
-      id: AppConfig.trialSubscriptionId,
-      periodType: 'trial',
-    );
+    if (currentSubscription == null) {
+      availableSubscriptionInfo.availableSubscriptions.add(
+        SubscriptionDetails(
+          price: 0,
+          id: AppConfig.trialSubscriptionId,
+          periodType: SubscriptionPeriodType.trial,
+        ),
+      );
+    }
   }
 
-  Future<void> setCustomerInfo() async {}
+  Future<void> setCurrentSubscription() async {}
+}
 
-  String? get defaultManagementURL {
-    final String? purchaseAppId = currentSubscription?.appId;
-    return purchaseAppId == appIds?.androidId
-        ? AppConfig.googlePlayMangementUrl
-        : purchaseAppId == appIds?.appleId
-            ? AppConfig.appleMangementUrl
-            : Environment.stripeManagementUrl;
+/// Contains information about the suscriptions available on revenuecat
+class AvailableSubscriptionsInfo {
+  List<SubscriptionDetails> availableSubscriptions = [];
+  SubscriptionAppIds? appIds;
+  List<SubscriptionDetails>? allProducts;
+
+  Future<void> setAvailableSubscriptions() async {
+    appIds ??= await SubscriptionRepo.getAppIds();
+    allProducts ??= await SubscriptionRepo.getAllProducts();
+    availableSubscriptions = (allProducts ?? [])
+        .where((product) => product.appId == appIds!.currentAppId)
+        .sorted((a, b) => a.price.compareTo(b.price))
+        .toList();
+    // //@Gabby - temporary solution to add trial to list
+    // if (currentSubscriptionId == null && !hasSubscribed) {
+    //   final id = availableSubscriptions[0].id;
+    //   final package = availableSubscriptions[0].package;
+    //   final duration = availableSubscriptions[0].duration;
+    //   availableSubscriptions.insert(
+    //     0,
+    //     SubscriptionDetails(
+    //       price: 0,
+    //       id: id,
+    //       duration: duration,
+    //       package: package,
+    //       periodType: SubscriptionPeriodType.trial,
+    //     ),
+    //   );
+    // }
   }
 }

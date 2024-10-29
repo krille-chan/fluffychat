@@ -16,7 +16,7 @@ class MessageUnsubscribedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool inTrialWindow =
-        MatrixState.pangeaController.userController.inTrialWindow;
+        MatrixState.pangeaController.userController.inTrialWindow();
 
     return Padding(
       padding: const EdgeInsets.all(16),

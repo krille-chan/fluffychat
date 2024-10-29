@@ -19,7 +19,7 @@ class SubscriptionOptions extends StatelessWidget {
       alignment: WrapAlignment.center,
       direction: Axis.horizontal,
       spacing: 10,
-      children: pangeaController.userController.inTrialWindow
+      children: pangeaController.userController.inTrialWindow()
           ? [
               SubscriptionCard(
                 onTap: () => pangeaController.subscriptionController
@@ -27,7 +27,7 @@ class SubscriptionOptions extends StatelessWidget {
                   SubscriptionDetails(
                     price: 0,
                     id: "",
-                    periodType: 'trial',
+                    periodType: SubscriptionPeriodType.trial,
                   ),
                   context,
                 ),
@@ -36,8 +36,8 @@ class SubscriptionOptions extends StatelessWidget {
                 buttonText: L10n.of(context)!.activateTrial,
               ),
             ]
-          : pangeaController
-              .subscriptionController.subscription!.availableSubscriptions
+          : pangeaController.subscriptionController.availableSubscriptionInfo!
+              .availableSubscriptions
               .map(
                 (subscription) => SubscriptionCard(
                   subscription: subscription,
