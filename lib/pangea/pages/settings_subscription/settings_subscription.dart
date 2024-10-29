@@ -57,30 +57,33 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
   }
 
   bool get subscriptionsAvailable =>
-      subscriptionController.subscription?.availableSubscriptions.isNotEmpty ??
+      subscriptionController
+          .availableSubscriptionInfo?.availableSubscriptions.isNotEmpty ??
       false;
 
   bool get currentSubscriptionAvailable =>
       subscriptionController.isSubscribed &&
-      subscriptionController.subscription?.currentSubscription != null;
+      subscriptionController.currentSubscriptionInfo?.currentSubscription !=
+          null;
 
-  String? get purchasePlatformDisplayName =>
-      subscriptionController.subscription?.purchasePlatformDisplayName;
+  String? get purchasePlatformDisplayName => subscriptionController
+      .currentSubscriptionInfo?.purchasePlatformDisplayName;
 
   bool get currentSubscriptionIsPromotional =>
-      subscriptionController.subscription?.currentSubscriptionIsPromotional ??
+      subscriptionController
+          .currentSubscriptionInfo?.currentSubscriptionIsPromotional ??
       false;
 
   bool get isNewUserTrial =>
-      subscriptionController.subscription?.isNewUserTrial ?? false;
+      subscriptionController.currentSubscriptionInfo?.isNewUserTrial ?? false;
 
   String get currentSubscriptionTitle =>
-      subscriptionController.subscription?.currentSubscription
+      subscriptionController.currentSubscriptionInfo?.currentSubscription
           ?.displayName(context) ??
       "";
 
   String get currentSubscriptionPrice =>
-      subscriptionController.subscription?.currentSubscription
+      subscriptionController.currentSubscriptionInfo?.currentSubscription
           ?.displayPrice(context) ??
       "";
 
@@ -88,11 +91,11 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
     if (!currentSubscriptionAvailable || isNewUserTrial) {
       return false;
     }
-    if (subscriptionController.subscription!.purchasedOnWeb) {
+    if (subscriptionController.currentSubscriptionInfo!.purchasedOnWeb) {
       return true;
     }
     return subscriptionController
-        .subscription!.currentPlatformMatchesPurchasePlatform;
+        .currentSubscriptionInfo!.currentPlatformMatchesPurchasePlatform;
   }
 
   void submitChange({bool isPromo = false}) {
@@ -122,12 +125,12 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
     if (email != null) {
       managementUrl += "?prefilled_email=${Uri.encodeComponent(email)}";
     }
-    final String? purchaseAppId =
-        subscriptionController.subscription?.currentSubscription?.appId;
+    final String? purchaseAppId = subscriptionController
+        .currentSubscriptionInfo?.currentSubscription?.appId;
     if (purchaseAppId == null) return;
 
     final SubscriptionAppIds? appIds =
-        subscriptionController.subscription!.appIds;
+        subscriptionController.availableSubscriptionInfo!.appIds;
 
     if (purchaseAppId == appIds?.stripeId) {
       launchUrlString(managementUrl);
@@ -167,7 +170,7 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
   }
 
   bool isCurrentSubscription(SubscriptionDetails subscription) =>
-      subscriptionController.subscription?.currentSubscription ==
+      subscriptionController.currentSubscriptionInfo?.currentSubscription ==
           subscription ||
       isNewUserTrial && subscription.isTrial;
 

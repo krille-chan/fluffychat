@@ -15,14 +15,16 @@ class SubscriptionButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool inTrialWindow = pangeaController.userController.inTrialWindow;
+    final bool inTrialWindow = pangeaController.userController.inTrialWindow();
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: controller
-          .subscriptionController.subscription!.availableSubscriptions.length,
+      itemCount: controller.subscriptionController.availableSubscriptionInfo!
+          .availableSubscriptions.length,
       itemBuilder: (BuildContext context, int i) {
         final SubscriptionDetails subscription = pangeaController
-            .subscriptionController.subscription!.availableSubscriptions[i];
+            .subscriptionController
+            .availableSubscriptionInfo!
+            .availableSubscriptions[i];
         return Column(
           children: [
             ListTile(

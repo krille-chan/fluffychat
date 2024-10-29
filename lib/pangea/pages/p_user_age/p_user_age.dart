@@ -91,6 +91,7 @@ class PUserAgeController extends State<PUserAge> {
           return profile;
         });
       }
+      pangeaController.subscriptionController.reinitialize();
       FluffyChatApp.router.go('/rooms');
     } catch (err, s) {
       setState(() {

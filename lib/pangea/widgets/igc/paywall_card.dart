@@ -17,7 +17,7 @@ class PaywallCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool inTrialWindow =
-        MatrixState.pangeaController.userController.inTrialWindow;
+        MatrixState.pangeaController.userController.inTrialWindow();
 
     return Column(
       mainAxisSize: MainAxisSize.max,
