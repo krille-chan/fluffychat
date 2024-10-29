@@ -94,6 +94,7 @@ class SubscriptionController extends BaseController {
             );
 
       await currentSubscriptionInfo!.configure();
+      await currentSubscriptionInfo!.setCurrentSubscription();
       if (_activatedNewUserTrial) {
         setNewUserTrial();
       }
