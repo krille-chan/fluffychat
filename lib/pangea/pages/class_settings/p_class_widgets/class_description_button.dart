@@ -52,7 +52,7 @@ class ClassDescriptionButton extends StatelessWidget {
           title: Text(
             room.isSpace
                 ? L10n.of(context)!.classDescription
-                : L10n.of(context)!.chatTopic,
+                : L10n.of(context)!.chatDescription,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ void setClassTopic(Room room, BuildContext context) {
       title: Text(
         room.isSpace
             ? L10n.of(context)!.classDescription
-            : L10n.of(context)!.chatTopic,
+            : L10n.of(context)!.chatDescription,
       ),
       content: TextField(
         controller: textFieldController,
