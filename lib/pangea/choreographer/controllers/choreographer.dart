@@ -68,7 +68,12 @@ class Choreographer {
   }
 
   void send(BuildContext context) {
-    if (!canSendMessage) return;
+    if (!canSendMessage) {
+      if (igc.igcTextData != null) {
+        igc.showFirstMatch(context);
+      }
+      return;
+    }
 
     if (pangeaController.subscriptionController.subscriptionStatus ==
         SubscriptionStatus.showPaywall) {
