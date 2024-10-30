@@ -3656,11 +3656,6 @@
   "unknownPrivateChat": "Unknown private chat",
   "copyClassCodeDesc": "Users who are already in the app can 'Join space' via the main menu.",
   "addToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
-  "@addToSpaceDesc": {
-    "placeholders": {
-      "roomtype": {}
-    }
-  },
   "invitedToSpace": "{user} has invited you to join a space: {space}! Do you wish to accept?",
   "@invitedToSpace": {
     "placeholders": {
@@ -4008,7 +4003,7 @@
   "accuracy": "Accuracy",
   "points": "Points",
   "noPaymentInfo": "No payment info necessary!",
-  "conversationBotModeSelectDescription": "Chat Activity",
+  "conversationBotModeSelectDescription": "Chat activity",
   "conversationBotModeSelectOption_discussion": "Discussion",
   "conversationBotModeSelectOption_custom": "Custom",
   "conversationBotModeSelectOption_conversation": "Conversation",
@@ -4029,7 +4024,7 @@
   "conversationBotCustomZone_customSystemPromptPlaceholder": "Set custom system prompt",
   "conversationBotCustomZone_customSystemPromptEmptyError": "Missing custom system prompt",
   "conversationBotCustomZone_customTriggerReactionEnabledLabel": "Responds on ⏩ reaction",
-  "botConfig": "Chat Settings",
+  "botConfig": "Chat settings",
   "addConversationBotDialogTitleInvite": "Confirm inviting conversation bot",
   "addConversationBotButtonInvite": "Invite",
   "addConversationBotDialogInviteConfirmation": "Invite",
@@ -4059,39 +4054,21 @@
   "tooltipInstructionsMobileBody": "Press and hold items to view tooltips.",
   "tooltipInstructionsBrowserBody": "Hover over items to view tooltips.",
   "addSpaceToSpaceDescription": "Select a space to add as a parent",
-  "roomCapacity": "{roomType} Capacity",
-  "@roomCapacity": {
-    "type": "text",
-    "placeholders": {
-      "roomType": {}
-    }
-  },
+  "chatCapacity": "Chat capacity",
+  "spaceCapacity": "Space capacity",
   "roomFull": "This room is already at capacity.",
   "topicNotSet": "The topic has not been set.",
-  "capacityNotSet": "This room has no capacity limit.",
-  "roomCapacityHasBeenChanged": "{roomType} capacity changed",
-  "@roomCapacityHasBeenChanged": {
-    "type": "text",
-    "placeholders": {
-      "roomType": {}
-    }
-  },
-  "roomExceedsCapacity": "Room exceeds capacity. Consider removing students from the room, or raising the capacity.",
-  "capacitySetTooLow": "{roomType} capacity cannot be set below the current number of non-admins.",
-  "@capacitySetTooLow": {
-    "type": "text",
-    "placeholders": {
-      "roomType": {}
-    }
-  },
-  "roomCapacityExplanation": "{roomType} capacity limits the number of non-admins allowed in a room.",
+  "chatCapacityNotSet": "This chat has no capacity limit.",
+  "spaceCapacityNotSet": "This space has no capacity limit.",
+  "chatCapacityHasBeenChanged": "Chat capacity changed",
+  "spaceCapacityHasBeenChanged": "Space capacity changed",
+  "chatCapacitySetTooLow": "Chat capacity cannot be set below the current number of non-admins.",
+  "spaceCapacitySetTooLow": "Space capacity cannot be set below the current number of non-admins.",
+  "chatCapacityExplanation": "Chat capacity limits the number of non-admins allowed in a chat.",
+  "spaceCapacityExplanation": "Space capacity limits the number of non-admins allowed in a space.",
+  "chatExceedsCapacity": "This chat exceeds its capacity.",
+  "spaceExceedsCapacity": "This space exceeds its capacity.",
   "tooManyRequest": "Too many request, please try again later.",
-  "@roomCapacityExplanation": {
-    "type": "text",
-    "placeholders": {
-      "roomType": {}
-    }
-  },
   "enterNumber": "Please enter a whole number value.",
   "buildTranslation": "Build your translation from the choices above",
   "noDatabaseEncryption": "Database encryption is not supported on this platform",
