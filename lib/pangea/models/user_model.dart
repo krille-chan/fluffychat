@@ -23,7 +23,7 @@ class UserSettings {
     this.dateOfBirth,
     this.createdAt,
     this.autoPlayMessages = false,
-    this.itAutoPlay = false,
+    this.itAutoPlay = true,
     this.activatedFreeTrial = false,
     this.publicProfile = false,
     this.targetLanguage,
@@ -37,7 +37,7 @@ class UserSettings {
             ? DateTime.parse(json[ModelKey.userCreatedAt])
             : null,
         autoPlayMessages: json[ModelKey.autoPlayMessages] ?? false,
-        itAutoPlay: json[ModelKey.itAutoPlay] ?? false,
+        itAutoPlay: json[ModelKey.itAutoPlay] ?? true,
         activatedFreeTrial: json[ModelKey.activatedTrialKey] ?? false,
         publicProfile: json[ModelKey.publicProfile] ?? false,
         targetLanguage: json[ModelKey.l2LanguageKey],
@@ -98,7 +98,7 @@ class UserSettings {
           false,
       itAutoPlay: (accountData[ModelKey.itAutoPlay]
               ?.content[ModelKey.itAutoPlay] as bool?) ??
-          false,
+          true,
       activatedFreeTrial: (accountData[ModelKey.activatedTrialKey]
               ?.content[ModelKey.activatedTrialKey] as bool?) ??
           false,
