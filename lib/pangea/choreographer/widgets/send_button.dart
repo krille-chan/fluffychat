@@ -58,8 +58,10 @@ class ChoreographerSendButtonState extends State<ChoreographerSendButton> {
               onPressed: () {
                 widget.controller.choreographer.canSendMessage
                     ? widget.controller.choreographer.send(context)
-                    : widget.controller.choreographer.igc
-                        .showFirstMatch(context);
+                    : !widget.controller.choreographer.isRunningIT
+                        ? widget.controller.choreographer.igc
+                            .showFirstMatch(context)
+                        : null;
               },
               tooltip: L10n.of(context)!.send,
             ),
