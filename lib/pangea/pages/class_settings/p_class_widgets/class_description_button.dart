@@ -42,7 +42,7 @@ class ClassDescriptionButton extends StatelessWidget {
                       ? (room.isRoomAdmin
                           ? (room.isSpace
                               ? L10n.of(context)!.classDescriptionDesc
-                              : L10n.of(context)!.chatTopicDesc)
+                              : L10n.of(context)!.setChatDescription)
                           : L10n.of(context)!.topicNotSet)
                       : room.topic,
                 ),
