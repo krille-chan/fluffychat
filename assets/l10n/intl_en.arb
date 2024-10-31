@@ -2788,5 +2788,7 @@
     }
   },
   "oneOfYourDevicesIsNotVerified": "One of your devices is not verified",
-  "noticeChatBackupDeviceVerification": "Note: When you connect all your devices to the chat backup, they are automatically verified."
+  "noticeChatBackupDeviceVerification": "Note: When you connect all your devices to the chat backup, they are automatically verified.",
+  "continueText": "Continue",
+  "welcomeText": "Hey Hey 👋 This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"
 }

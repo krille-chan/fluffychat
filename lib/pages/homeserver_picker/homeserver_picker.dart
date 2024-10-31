@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
@@ -83,29 +84,30 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   /// well-known information and forwards to the login page depending on the
   /// login type.
   Future<void> checkHomeserverAction([_]) async {
-    homeserverController.text =
+    final homeserverInput =
         homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
 
-    if (homeserverController.text.isEmpty) {
+    if (homeserverInput.isEmpty || !homeserverInput.contains('.')) {
       setState(() {
         error = loginFlows = null;
         isLoading = false;
         Matrix.of(context).getLoginClient().homeserver = null;
+        _lastCheckedUrl = null;
       });
       return;
     }
-    if (_lastCheckedUrl == homeserverController.text) return;
+    if (_lastCheckedUrl == homeserverInput) return;
 
-    _lastCheckedUrl = homeserverController.text;
+    _lastCheckedUrl = homeserverInput;
     setState(() {
       error = loginFlows = null;
       isLoading = true;
     });
 
     try {
-      var homeserver = Uri.parse(homeserverController.text);
+      var homeserver = Uri.parse(homeserverInput);
       if (homeserver.scheme.isEmpty) {
-        homeserver = Uri.https(homeserverController.text, '');
+        homeserver = Uri.https(homeserverInput, '');
       }
       final client = Matrix.of(context).getLoginClient();
       final (_, _, loginFlows) = await client.checkHomeserver(homeserver);
@@ -185,9 +187,15 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
   }
 
-  void login() => context.push(
-        '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
-      );
+  void login() async {
+    if (!supportsPasswordLogin) {
+      homeserverController.text = AppConfig.defaultHomeserver;
+      await checkHomeserverAction();
+    }
+    context.push(
+      '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
+    );
+  }
 
   @override
   void initState() {
@@ -223,7 +231,20 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       }
     }
   }
+
+  void onMoreAction(MoreLoginActions action) {
+    switch (action) {
+      case MoreLoginActions.passwordLogin:
+        login();
+      case MoreLoginActions.privacy:
+        launchUrlString(AppConfig.privacyUrl);
+      case MoreLoginActions.about:
+        PlatformInfos.showDialog(context);
+    }
+  }
 }
+
+enum MoreLoginActions { passwordLogin, privacy, about }
 
 class IdentityProvider {
   final String? id;
