@@ -99,7 +99,7 @@ class IgcController {
     final PangeaMatch match = igcTextData!.matches[firstMatchIndex];
 
     if (match.isITStart &&
-        choreographer.itAutoPlayEnabled &&
+        // choreographer.itAutoPlayEnabled &&
         igcTextData != null) {
       choreographer.onITStart(igcTextData!.matches[firstMatchIndex]);
       return;

@@ -90,7 +90,7 @@ class PangeaTextController extends TextEditingController {
 
     // if autoplay on and it start then just start it
     if (matchIndex != -1 &&
-        choreographer.itAutoPlayEnabled &&
+        // choreographer.itAutoPlayEnabled &&
         choreographer.igc.igcTextData!.matches[matchIndex].isITStart) {
       return choreographer.onITStart(
         choreographer.igc.igcTextData!.matches[matchIndex],
