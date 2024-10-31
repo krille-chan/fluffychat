@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -315,6 +316,7 @@ class ITController {
       ignoredTokens ?? [],
       choreographer.roomId,
       ConstructUseTypeEnum.ignIt,
+      AnalyticsUpdateOrigin.it,
     );
 
     Future.delayed(

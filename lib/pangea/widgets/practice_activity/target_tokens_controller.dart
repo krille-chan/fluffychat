@@ -29,7 +29,9 @@ class TargetTokensController {
     _targetTokens = await _initialize(context, pangeaMessageEvent);
 
     await updateTokensWithConstructs(
-      MatrixState.pangeaController.analytics.analyticsStream.value ?? [],
+      MatrixState
+              .pangeaController.analytics.analyticsStream.value?.constructs ??
+          [],
       context,
       pangeaMessageEvent,
     );
@@ -58,9 +60,8 @@ class TargetTokensController {
       return _targetTokens = [];
     }
 
-    return _targetTokens = tokens
-        .map((token) => token.emptyTokenWithXP)
-        .toList();
+    return _targetTokens =
+        tokens.map((token) => token.emptyTokenWithXP).toList();
   }
 
   Future<void> updateTokensWithConstructs(
@@ -76,9 +77,8 @@ class TargetTokensController {
     _targetTokens ??= await _initialize(context, pangeaMessageEvent);
 
     for (final token in _targetTokens!) {
-      
       // we don't need to do this for tokens that don't have saveVocab set to true
-      if (!token.token.lemma.saveVocab){
+      if (!token.token.lemma.saveVocab) {
         continue;
       }
 
