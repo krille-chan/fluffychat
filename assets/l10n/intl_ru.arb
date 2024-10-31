@@ -2215,7 +2215,7 @@
       "number": {}
     }
   },
-  "fileIsTooBigForServer": "Файл слишком большой.",
+  "fileIsTooBigForServer": "Отправка не удалась! Сервер поддерживает только вложения размером до {max}.",
   "@fileIsTooBigForServer": {},
   "hideUnimportantStateEvents": "Скрыть необязательные события статуса",
   "@hideUnimportantStateEvents": {},
@@ -2787,5 +2787,35 @@
   "alwaysUse24HourFormat": "нет",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "compressVideo": "Сжатие видео...",
+  "@compressVideo": {},
+  "oneOfYourDevicesIsNotVerified": "Одно из ваших устройств не подтверждено",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "chatPermissionsDescription": "Задайте уровень власти, необходимый для совершения определённых действий в этом чате. Уровни власти 0, 50 и 100 обычно означают пользователей, модераторов и администраторов соответственно, но любая градация также возможна.",
+  "@chatPermissionsDescription": {},
+  "prepareSendingAttachment": "Подготовка к отправке вложения...",
+  "@prepareSendingAttachment": {},
+  "sendRoomNotifications": "Упоминать @room",
+  "@sendRoomNotifications": {},
+  "calculatingFileSize": "Вычисление размера файла...",
+  "@calculatingFileSize": {},
+  "sendingAttachment": "Отправка вложения...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Создание превью видео...",
+  "@generatingVideoThumbnail": {},
+  "noticeChatBackupDeviceVerification": "Примечание: Если вы подключите все свои устройства к резервному копированию чатов, то они автоматически станут подтверждёнными.",
+  "@noticeChatBackupDeviceVerification": {},
+  "changeTheCanonicalRoomAlias": "Изменить основной общедоступный адрес чата",
+  "@changeTheCanonicalRoomAlias": {},
+  "loginWithMatrixId": "Войти через Matrix ID",
+  "@loginWithMatrixId": {},
+  "whatIsAHomeserver": "Для чего нужен домашний сервер?",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Все ваши данные хранятся на домашнем сервере, прямо как у вашего провайдера электронной почты. Вы можете выбрать, какому серверу вы их доверите, при этом сохраняя возможность общаться со всеми. Узнайте больше на https://matrix.org.",
+  "@homeserverDescription": {},
+  "discoverHomeservers": "Список домашних серверов",
+  "@discoverHomeservers": {},
+  "joinedChats": "Вступленные чаты",
+  "@joinedChats": {}
 }
