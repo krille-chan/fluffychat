@@ -16,11 +16,6 @@ class AnalyticsPopup extends StatelessWidget {
     super.key,
   });
 
-  // we just want to show the constructs that have points
-  List<ConstructUses> get constructs => constructsModel.constructList
-      .where((constructUse) => constructUse.points > 0)
-      .toList();
-
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -41,29 +36,31 @@ class AnalyticsPopup extends StatelessWidget {
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: constructs.isEmpty
+              child: constructsModel.constructListWithPoints.isEmpty
                   ? Center(
                       child: Text(L10n.of(context)!.noDataFound),
                     )
                   : ListView.builder(
-                      itemCount: constructs.length,
+                      itemCount: constructsModel.constructListWithPoints.length,
                       itemBuilder: (context, index) {
                         return Tooltip(
                           message:
-                              "${constructs[index].points} / ${constructsModel.maxXPPerLemma}",
+                              "${constructsModel.constructListWithPoints[index].points} / ${constructsModel.maxXPPerLemma}",
                           child: ListTile(
                             onTap: () {},
                             title: Text(
                               constructsModel.type == ConstructTypeEnum.morph
                                   ? getGrammarCopy(
                                       constructsModel
-                                          .constructList[index].lemma,
+                                          .constructListWithPoints[index].lemma,
                                       context,
                                     )
-                                  : constructs[index].lemma,
+                                  : constructsModel
+                                      .constructListWithPoints[index].lemma,
                             ),
                             subtitle: LinearProgressIndicator(
-                              value: constructs[index].points /
+                              value: constructsModel
+                                      .constructListWithPoints[index].points /
                                   constructsModel.maxXPPerLemma,
                               minHeight: 20,
                               borderRadius: const BorderRadius.all(
