@@ -11,6 +11,7 @@ import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/background_push.dart' show clientFromInstance;
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -19,15 +20,17 @@ import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 
 Future<void> pushHelper(
   PushNotification notification, {
-  Client? client,
+  List<Client>? clients,
   L10n? l10n,
   String? activeRoomId,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+  required String instance,
 }) async {
   try {
     await _tryPushHelper(
       notification,
-      client: client,
+      clients: clients,
+      instance: instance,
       l10n: l10n,
       activeRoomId: activeRoomId,
       flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
@@ -62,12 +65,22 @@ Future<void> pushHelper(
 
 Future<void> _tryPushHelper(
   PushNotification notification, {
-  Client? client,
+  List<Client>? clients,
   L10n? l10n,
   String? activeRoomId,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+  required String instance,
 }) async {
-  final isBackgroundMessage = client == null;
+  final isBackgroundMessage = clients == null;
+  clients ??= (await ClientManager.getClients(
+    initialize: false,
+    store: await SharedPreferences.getInstance(),
+  ));
+  final client = clientFromInstance(instance, clients);
+  if (client == null) {
+    throw "Not client could be found for $instance";
+  }
+
   Logs().v(
     'Push helper has been started (background=$isBackgroundMessage).',
     notification.toJson(),
@@ -76,15 +89,11 @@ Future<void> _tryPushHelper(
   if (notification.roomId != null &&
       activeRoomId == notification.roomId &&
       WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+    //TODO: check if client is active
     Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }
 
-  client ??= (await ClientManager.getClients(
-    initialize: false,
-    store: await SharedPreferences.getInstance(),
-  ))
-      .first;
   final event = await client.getEventByPushNotification(
     notification,
     storeInDatabase: isBackgroundMessage,

@@ -49,7 +49,7 @@ class BackgroundPush {
   static BackgroundPush? _instance;
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-  Client client;
+  List<Client> clients;
   MatrixState? matrix;
   String? _fcmToken;
   void Function(String errorMsg, {Uri? link})? onFcmError;
@@ -85,7 +85,10 @@ class BackgroundPush {
           PushNotification.fromJson(
             Map<String, dynamic>.from(message['data'] ?? message),
           ),
-          client: client,
+          clients: clients,
+          //TODO: figure out if firebase supports
+          //      multiple instances
+          instance: clients.first.clientName,
           l10n: l10n,
           activeRoomId: matrix?.activeRoomId,
           flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
@@ -93,10 +96,10 @@ class BackgroundPush {
       );
       if (Platform.isAndroid) {
         await UnifiedPush.initialize(
-          onNewEndpoint: _newUpEndpoint,
-          onRegistrationFailed: _upUnregistered,
-          onUnregistered: _upUnregistered,
-          onMessage: _onUpMessage,
+          onNewEndpoint: _newUPEndpoint,
+          onRegistrationFailed: _onUPUnregistered,
+          onUnregistered: _onUPUnregistered,
+          onMessage: _onUPMessage,
         );
       }
     } catch (e, s) {
@@ -104,26 +107,26 @@ class BackgroundPush {
     }
   }
 
-  BackgroundPush._(this.client) {
+  BackgroundPush._(this.clients) {
     _init();
   }
 
-  factory BackgroundPush.clientOnly(Client client) {
-    return _instance ??= BackgroundPush._(client);
+  factory BackgroundPush.clientsOnly(List<Client> clients) {
+    return _instance ??= BackgroundPush._(clients);
   }
 
   factory BackgroundPush(
     MatrixState matrix, {
     final void Function(String errorMsg, {Uri? link})? onFcmError,
   }) {
-    final instance = BackgroundPush.clientOnly(matrix.client);
+    final instance = BackgroundPush.clientsOnly(matrix.widget.clients);
     instance.matrix = matrix;
     // ignore: prefer_initializing_formals
     instance.onFcmError = onFcmError;
     return instance;
   }
 
-  Future<void> cancelNotification(String roomId) async {
+  Future<void> cancelNotification(Client client, String roomId) async {
     Logs().v('Cancel notification for room', roomId);
     await _flutterLocalNotificationsPlugin.cancel(roomId.hashCode);
 
@@ -146,6 +149,7 @@ class BackgroundPush {
     String? token,
     Set<String?>? oldTokens,
     bool useDeviceSpecificAppId = false,
+    required Client client,
   }) async {
     if (PlatformInfos.isIOS) {
       await firebase?.requestPermission();
@@ -246,9 +250,9 @@ class BackgroundPush {
 
   static bool _wentToRoomOnStartup = false;
 
-  Future<void> setupPush() async {
+  Future<void> setupPush(List<Client> clients) async {
     Logs().d("SetupPush");
-    if (client.onLoginStateChanged.value != LoginState.loggedIn ||
+    if (clients.first.onLoginStateChanged.value != LoginState.loggedIn ||
         !PlatformInfos.isMobile ||
         matrix == null) {
       return;
@@ -260,7 +264,7 @@ class BackgroundPush {
     }
     if (!PlatformInfos.isIOS &&
         (await UnifiedPush.getDistributors()).isNotEmpty) {
-      await setupUp();
+      await setupUP(clients);
     } else {
       await setupFirebase();
     }
@@ -316,6 +320,7 @@ class BackgroundPush {
     await setupPusher(
       gatewayUrl: AppConfig.pushNotificationsGatewayUrl,
       token: _fcmToken,
+      client: clients.first, // Workaround: set todo in _init
     );
   }
 
@@ -324,6 +329,20 @@ class BackgroundPush {
       final roomId = response?.payload;
       Logs().v('[Push] Attempting to go to room $roomId...');
       if (roomId == null) {
+        return;
+      }
+
+      // Workaround because response does not give more information
+      // about who received the notification
+      Client? client;
+      for (final c in clients) {
+        if (c.getRoomById(roomId) != null) {
+          client = c;
+          break;
+        }
+      }
+      if (client == null) {
+        Logs().w('[Push] No client could be found for room $roomId...');
         return;
       }
       await client.roomsLoading;
@@ -343,15 +362,16 @@ class BackgroundPush {
     }
   }
 
-  Future<void> setupUp() async {
-    await UnifiedPushUi(matrix!.context, ["default"], UPFunctions())
+  Future<void> setupUP(List<Client> clients) async {
+    final names = clients.map((c) => c.clientName);
+    await UnifiedPushUi(matrix!.context, List.from(names), UPFunctions())
         .registerAppWithDialog();
   }
 
-  Future<void> _newUpEndpoint(String newEndpoint, String i) async {
+  Future<void> _newUPEndpoint(String newEndpoint, String instance) async {
     upAction = true;
     if (newEndpoint.isEmpty) {
-      await _upUnregistered(i);
+      await _onUPUnregistered(instance);
       return;
     }
     var endpoint =
@@ -377,38 +397,45 @@ class BackgroundPush {
         '[Push] No self-hosted unified push gateway present: $newEndpoint',
       );
     }
-    Logs().i('[Push] UnifiedPush using endpoint $endpoint');
+    Logs().i('[Push] UnifiedPush $instance using endpoint $endpoint');
     final oldTokens = <String?>{};
     try {
       final fcmToken = await firebase?.getToken();
       oldTokens.add(fcmToken);
     } catch (_) {}
+    final client = clientFromInstance(instance, clients);
+    if (client == null) {
+      throw "Not client found for $instance";
+    }
     await setupPusher(
       gatewayUrl: endpoint,
       token: newEndpoint,
       oldTokens: oldTokens,
       useDeviceSpecificAppId: true,
+      client: client,
     );
     await matrix?.store.setString(SettingKeys.unifiedPushEndpoint, newEndpoint);
     await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, true);
   }
 
-  Future<void> _upUnregistered(String i) async {
+  Future<void> _onUPUnregistered(String instance) async {
     upAction = true;
+    final client = clientFromInstance(instance, clients);
     Logs().i('[Push] Removing UnifiedPush endpoint...');
     final oldEndpoint =
         matrix?.store.getString(SettingKeys.unifiedPushEndpoint);
     await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, false);
     await matrix?.store.remove(SettingKeys.unifiedPushEndpoint);
-    if (oldEndpoint?.isNotEmpty ?? false) {
+    if (client != null && (oldEndpoint?.isNotEmpty ?? false)) {
       // remove the old pusher
       await setupPusher(
         oldTokens: {oldEndpoint},
+        client: client,
       );
     }
   }
 
-  Future<void> _onUpMessage(Uint8List message, String i) async {
+  Future<void> _onUPMessage(Uint8List message, String instance) async {
     upAction = true;
     final data = Map<String, dynamic>.from(
       json.decode(utf8.decode(message))['notification'],
@@ -417,7 +444,8 @@ class BackgroundPush {
     data['devices'] ??= [];
     await pushHelper(
       PushNotification.fromJson(data),
-      client: client,
+      clients: clients,
+      instance: instance,
       l10n: l10n,
       activeRoomId: matrix?.activeRoomId,
       flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
@@ -446,4 +474,13 @@ class UPFunctions extends UnifiedPushFunctions {
   Future<void> saveDistributor(String distributor) async {
     await UnifiedPush.saveDistributor(distributor);
   }
+}
+
+Client? clientFromInstance(String? instance, List<Client> clients) {
+  for (final c in clients) {
+    if (c.clientName == instance) {
+      return c;
+    }
+  }
+  return null;
 }

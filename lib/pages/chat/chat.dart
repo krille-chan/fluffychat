@@ -392,7 +392,9 @@ class ChatController extends State<ChatPageWithRoom>
       _setReadMarkerFuture = null;
     });
     if (eventId == null || eventId == timeline.room.lastEvent?.eventId) {
-      Matrix.of(context).backgroundPush?.cancelNotification(roomId);
+      Matrix.of(context)
+          .backgroundPush
+          ?.cancelNotification(Matrix.of(context).client, roomId);
     }
   }
 
