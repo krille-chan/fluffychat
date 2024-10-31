@@ -4303,6 +4303,7 @@
   "grammarCopyAccDat": "Accusative, Dative",
   "grammarCopyInf": "Infinitive",
   "grammarCopyLong": "Long",
+  "grammarCopyLoc": "Locative",
   "grammarCopyInd": "Indicative",
   "grammarCopyCmp": "Comparative",
   "grammarCopyRelative_case": "Relative Case",
