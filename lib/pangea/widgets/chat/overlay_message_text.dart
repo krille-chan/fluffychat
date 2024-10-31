@@ -104,7 +104,7 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
                   widget.overlayController.onClickOverlayMessageToken(
                     tokenPosition.token!,
                   );
-                  setState(() {});
+                  if (mounted) setState(() {});
                 },
               text: tokenPosition.token!.text.content,
               style: style.merge(
