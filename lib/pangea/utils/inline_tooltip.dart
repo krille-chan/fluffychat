@@ -41,14 +41,16 @@ class InlineTooltip extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               // Text in the middle
-              Center(
-                child: Text(
-                  instructionsEnum.body(L10n.of(context)!),
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface,
-                    height: 1.5,
+              Flexible(
+                child: Center(
+                  child: Text(
+                    instructionsEnum.body(L10n.of(context)!),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      height: 1.5,
+                    ),
+                    textAlign: TextAlign.left,
                   ),
-                  textAlign: TextAlign.left,
                 ),
               ),
               // Close button on the right
