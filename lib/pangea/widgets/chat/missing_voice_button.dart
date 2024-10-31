@@ -40,23 +40,27 @@ class MissingVoiceButton extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.only(top: 8),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            L10n.of(context)!.voiceNotAvailable,
-            textAlign: TextAlign.center,
-          ),
-          TextButton(
-            onPressed: () => launchTTSSettings,
-            // commenting out as suspecting this is causing an issue
-            // #freeze-activity
-            style: const ButtonStyle(
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      child: SizedBox(
+        width: AppConfig.toolbarMinWidth,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              L10n.of(context)!.voiceNotAvailable,
+              textAlign: TextAlign.center,
             ),
-            child: Text(L10n.of(context)!.openVoiceSettings),
-          ),
-        ],
+            TextButton(
+              onPressed: () => launchTTSSettings,
+              // commenting out as suspecting this is causing an issue
+              // #freeze-activity
+              style: const ButtonStyle(
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              child: Text(L10n.of(context)!.openVoiceSettings),
+            ),
+          ],
+        ),
       ),
     );
   }
