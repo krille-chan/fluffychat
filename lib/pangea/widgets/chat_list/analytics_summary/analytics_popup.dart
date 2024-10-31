@@ -16,6 +16,11 @@ class AnalyticsPopup extends StatelessWidget {
     super.key,
   });
 
+  // we just want to show the constructs that have points
+  List<ConstructUses> get constructs => constructsModel.constructList
+      .where((constructUse) => constructUse.points > 0)
+      .toList();
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -36,16 +41,16 @@ class AnalyticsPopup extends StatelessWidget {
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: constructsModel.constructList.isEmpty
+              child: constructs.isEmpty
                   ? Center(
                       child: Text(L10n.of(context)!.noDataFound),
                     )
                   : ListView.builder(
-                      itemCount: constructsModel.constructList.length,
+                      itemCount: constructs.length,
                       itemBuilder: (context, index) {
                         return Tooltip(
                           message:
-                              "${constructsModel.constructList[index].points} / ${constructsModel.maxXPPerLemma}",
+                              "${constructs[index].points} / ${constructsModel.maxXPPerLemma}",
                           child: ListTile(
                             onTap: () {},
                             title: Text(
@@ -55,12 +60,11 @@ class AnalyticsPopup extends StatelessWidget {
                                           .constructList[index].lemma,
                                       context,
                                     )
-                                  : constructsModel.constructList[index].lemma,
+                                  : constructs[index].lemma,
                             ),
                             subtitle: LinearProgressIndicator(
-                              value:
-                                  constructsModel.constructList[index].points /
-                                      constructsModel.maxXPPerLemma,
+                              value: constructs[index].points /
+                                  constructsModel.maxXPPerLemma,
                               minHeight: 20,
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(AppConfig.borderRadius),

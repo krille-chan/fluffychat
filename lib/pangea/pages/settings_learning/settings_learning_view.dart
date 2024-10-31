@@ -48,19 +48,19 @@ class SettingsLearningView extends StatelessWidget {
                     value,
                   ),
                 ),
-              ProfileSettingsSwitchListTile.adaptive(
-                defaultValue: controller.pangeaController.userController.profile
-                    .userSettings.itAutoPlay,
-                title:
-                    L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader,
-                subtitle: L10n.of(context)!.interactiveTranslatorAutoPlayDesc,
-                onChange: (bool value) => controller
-                    .pangeaController.userController
-                    .updateProfile((profile) {
-                  profile.userSettings.itAutoPlay = value;
-                  return profile;
-                }),
-              ),
+              // ProfileSettingsSwitchListTile.adaptive(
+              //   defaultValue: controller.pangeaController.userController.profile
+              //       .userSettings.itAutoPlay,
+              //   title:
+              //       L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader,
+              //   subtitle: L10n.of(context)!.interactiveTranslatorAutoPlayDesc,
+              //   onChange: (bool value) => controller
+              //       .pangeaController.userController
+              //       .updateProfile((profile) {
+              //     profile.userSettings.itAutoPlay = value;
+              //     return profile;
+              //   }),
+              // ),
               // ProfileSettingsSwitchListTile.adaptive(
               //   defaultValue: controller.pangeaController.userController.profile
               //       .userSettings.autoPlayMessages,
