@@ -318,6 +318,16 @@ class _SpaceViewState extends State<SpaceView> {
           ),
         ],
       ),
+      floatingActionButton: room?.canChangeStateEvent(
+                EventTypes.SpaceChild,
+              ) ==
+              true
+          ? FloatingActionButton.extended(
+              onPressed: _addChatOrSubspace,
+              label: Text(L10n.of(context).chat),
+              icon: const Icon(Icons.chat_outlined),
+            )
+          : null,
       body: room == null
           ? const Center(
               child: Icon(
@@ -432,34 +442,6 @@ class _SpaceViewState extends State<SpaceView> {
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              if (room.canChangeStateEvent(
-                                    EventTypes.SpaceChild,
-                                  ) &&
-                                  filter.isEmpty) ...[
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 1,
-                                  ),
-                                  child: Material(
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
-                                    clipBehavior: Clip.hardEdge,
-                                    child: ListTile(
-                                      onTap: _addChatOrSubspace,
-                                      leading: const CircleAvatar(
-                                        radius: Avatar.defaultSize / 2,
-                                        child: Icon(Icons.add_outlined),
-                                      ),
-                                      title: Text(
-                                        L10n.of(context).addChatOrSubSpace,
-                                        style: const TextStyle(fontSize: 14),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
                               SearchTitle(
                                 title: L10n.of(context).joinedChats,
                                 icon: const Icon(Icons.chat_outlined),
@@ -537,6 +519,10 @@ class _SpaceViewState extends State<SpaceView> {
                                 BorderRadius.circular(AppConfig.borderRadius),
                             clipBehavior: Clip.hardEdge,
                             child: ListTile(
+                              visualDensity:
+                                  const VisualDensity(vertical: -0.5),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
                               onTap: () => _joinChildRoom(item),
                               leading: Avatar(
                                 mxContent: item.avatarUrl,
@@ -556,9 +542,17 @@ class _SpaceViewState extends State<SpaceView> {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                  const SizedBox(width: 8),
+                                  Text(
+                                    item.numJoinedMembers.toString(),
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: theme.textTheme.bodyMedium!.color,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 4),
                                   const Icon(
-                                    Icons.add_circle_outline_outlined,
+                                    Icons.people_outlined,
+                                    size: 14,
                                   ),
                                 ],
                               ),
