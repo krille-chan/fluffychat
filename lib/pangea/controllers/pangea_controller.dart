@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/class_controller.dart';
@@ -22,6 +23,7 @@ import 'package:fluffychat/pangea/controllers/user_controller.dart';
 import 'package:fluffychat/pangea/controllers/word_net_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
+import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/instructions.dart';
@@ -205,15 +207,88 @@ class PangeaController {
 
       if (botDMs.isEmpty) {
         try {
-          await matrixState.client.startDirectChat(
-            BotName.byEnvironment,
-            enableEncryption: false,
+          // Copied from client.dart.startDirectChat
+          final directChatRoomId =
+              matrixState.client.getDirectChatFromUserId(BotName.byEnvironment);
+          if (directChatRoomId != null) {
+            final room = matrixState.client.getRoomById(directChatRoomId);
+            if (room != null) {
+              if (room.membership == Membership.join) {
+                return null;
+              } else if (room.membership == Membership.invite) {
+                // we might already have an invite into a DM room. If that is the case, we should try to join. If the room is
+                // unjoinable, that will automatically leave the room, so in that case we need to continue creating a new
+                // room. (This implicitly also prevents the room from being returned as a DM room by getDirectChatFromUserId,
+                // because it only returns joined or invited rooms atm.)
+                await room.join();
+                if (room.membership != Membership.leave) {
+                  if (room.membership != Membership.join) {
+                    // Wait for room actually appears in sync with the right membership
+                    await matrixState.client
+                        .waitForRoomInSync(directChatRoomId, join: true);
+                  }
+                  return null;
+                }
+              }
+            }
+          }
+          // enableEncryption ??=
+          //     encryptionEnabled && await userOwnsEncryptionKeys(mxid);
+          // if (enableEncryption) {
+          //   initialState ??= [];
+          //   if (!initialState.any((s) => s.type == EventTypes.Encryption)) {
+          //     initialState.add(
+          //       StateEvent(
+          //         content: {
+          //           'algorithm': supportedGroupEncryptionAlgorithms.first,
+          //         },
+          //         type: EventTypes.Encryption,
+          //       ),
+          //     );
+          //   }
+          // }
+
+          // Start a new direct chat
+          final roomId = await matrixState.client.createRoom(
+            invite: [], // intentionally not invite bot yet
+            isDirect: true,
+            preset: CreateRoomPreset.trustedPrivateChat,
+            initialState: [
+              BotOptionsModel(mode: BotMode.directChat).toStateEvent,
+            ],
           );
+
+          final room = matrixState.client.getRoomById(roomId);
+          if (room == null || room.membership != Membership.join) {
+            // Wait for room actually appears in sync
+            await matrixState.client.waitForRoomInSync(roomId, join: true);
+          }
+
+          final botOptions = room!.getState(PangeaEventTypes.botOptions);
+          if (botOptions == null) {
+            await matrixState.client.setRoomStateWithKey(
+              roomId,
+              PangeaEventTypes.botOptions,
+              "",
+              BotOptionsModel(mode: BotMode.directChat).toJson(),
+            );
+            await matrixState.client
+                .getRoomStateWithKey(roomId, PangeaEventTypes.botOptions, "");
+          }
+
+          // invite bot to direct chat
+          await matrixState.client.setRoomStateWithKey(
+              roomId, EventTypes.RoomMember, BotName.byEnvironment, {
+            "membership": Membership.invite.name,
+            "is_direct": true,
+          });
+          await room.addToDirectChat(BotName.byEnvironment);
+
+          return null;
         } catch (err, stack) {
           debugger(when: kDebugMode);
           ErrorHandler.logError(e: err, s: stack);
         }
-        return;
       }
 
       final Room botDMWithLatestActivity = botDMs.reduce((a, b) {

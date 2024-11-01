@@ -65,33 +65,71 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
       );
     }
 
-    int lastEnd = 0;
+// Convert the entire message into a list of characters
+    final Characters messageCharacters =
+        widget.pangeaMessageEvent.event.body.characters;
+
+    // When building token positions, use grapheme cluster indices
     final List<TokenPosition> tokenPositions = [];
+    int globalIndex = 0;
 
     for (int i = 0; i < tokens!.length; i++) {
       final token = tokens![i];
       final start = token.start;
       final end = token.end;
 
-      if (lastEnd < start) {
-        tokenPositions.add(TokenPosition(start: lastEnd, end: start));
+      // Calculate the number of grapheme clusters up to the start and end positions
+      final int startIndex = messageCharacters.take(start).length;
+      final int endIndex = messageCharacters.take(end).length;
+
+      if (globalIndex < startIndex) {
+        tokenPositions.add(TokenPosition(start: globalIndex, end: startIndex));
       }
 
       tokenPositions.add(
         TokenPosition(
-          start: start,
-          end: end,
+          start: startIndex,
+          end: endIndex,
           tokenIndex: i,
           token: token,
         ),
       );
-      lastEnd = end;
+      globalIndex = endIndex;
     }
+
+    // debug prints for fixing words sticking together
+    // void printEscapedString(String input) {
+    //   // Escaped string using Unicode escape sequences
+    //   final String escapedString = input.replaceAllMapped(
+    //     RegExp(r'[^\w\s]', unicode: true),
+    //     (match) {
+    //       final codeUnits = match.group(0)!.runes;
+    //       String unicodeEscapes = '';
+    //       for (final rune in codeUnits) {
+    //         unicodeEscapes += '\\u{${rune.toRadixString(16)}}';
+    //       }
+    //       return unicodeEscapes;
+    //     },
+    //   );
+    //   print("Escaped String: $escapedString");
+
+    //   // Printing each character with its index
+    //   int index = 0;
+    //   for (final char in input.characters) {
+    //     print("Index $index: $char");
+    //     index++;
+    //   }
+    // }
 
     //TODO - take out of build function of every message
     return RichText(
       text: TextSpan(
         children: tokenPositions.map((tokenPosition) {
+          final substring = messageCharacters
+              .skip(tokenPosition.start)
+              .take(tokenPosition.end - tokenPosition.start)
+              .toString();
+
           if (tokenPosition.token != null) {
             final isSelected =
                 widget.overlayController.isTokenSelected(tokenPosition.token!);
@@ -106,7 +144,7 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
                   );
                   if (mounted) setState(() {});
                 },
-              text: tokenPosition.token!.text.content,
+              text: substring,
               style: style.merge(
                 TextStyle(
                   backgroundColor: isSelected
@@ -119,10 +157,7 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
             );
           } else {
             return TextSpan(
-              text: widget.pangeaMessageEvent.event.body.substring(
-                tokenPosition.start,
-                tokenPosition.end,
-              ),
+              text: substring,
               style: style,
             );
           }

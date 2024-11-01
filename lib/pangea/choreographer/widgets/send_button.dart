@@ -56,10 +56,7 @@ class ChoreographerSendButtonState extends State<ChoreographerSendButton> {
               color: widget.controller.choreographer.assistanceState
                   .stateColor(context),
               onPressed: () {
-                widget.controller.choreographer.canSendMessage
-                    ? widget.controller.choreographer.send(context)
-                    : widget.controller.choreographer.igc
-                        .showFirstMatch(context);
+                widget.controller.choreographer.send(context);
               },
               tooltip: L10n.of(context)!.send,
             ),

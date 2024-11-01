@@ -26,6 +26,10 @@ class ConstructListModel {
   /// All unique lemmas used in the construct events
   List<String> get lemmas => constructList.map((e) => e.lemma).toSet().toList();
 
+  /// All unique lemmas used in the construct events with non-zero points
+  List<String> get lemmasWithPoints =>
+      constructListWithPoints.map((e) => e.lemma).toSet().toList();
+
   /// A map of lemmas to ConstructUses, each of which contains a lemma
   /// key = lemmma + constructType.string, value = ConstructUses
   void _buildConstructMap() {
@@ -71,6 +75,9 @@ class ConstructListModel {
 
     return _constructList!;
   }
+
+  List<ConstructUses> get constructListWithPoints =>
+      constructList.where((constructUse) => constructUse.points > 0).toList();
 
   get maxXPPerLemma {
     return type != null

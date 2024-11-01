@@ -1,5 +1,4 @@
 import 'package:animations/animations.dart';
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -299,11 +298,12 @@ class ChatInputRow extends StatelessWidget {
                         maxLines: 8,
                         autofocus: !PlatformInfos.isMobile,
                         keyboardType: TextInputType.multiline,
-                        textInputAction: AppConfig.sendOnEnter == true &&
-                                PlatformInfos.isMobile
-                            ? TextInputAction.send
-                            : null,
                         // #Pangea
+                        // textInputAction: AppConfig.sendOnEnter == true &&
+                        //         PlatformInfos.isMobile
+                        //     ? TextInputAction.send
+                        //     : null,
+                        textInputAction: TextInputAction.send,
                         // onSubmitted: controller.onInputBarSubmitted,
                         onSubmitted: (String value) =>
                             controller.onInputBarSubmitted(value, context),
@@ -336,36 +336,36 @@ class ChatInputRow extends StatelessWidget {
                     height: height,
                     width: height,
                     alignment: Alignment.center,
-                    child: PlatformInfos.platformCanRecord &&
-                            controller.sendController.text.isEmpty
-                        ? FloatingActionButton.small(
-                            tooltip: L10n.of(context)!.voiceMessage,
-                            onPressed: controller.voiceMessageAction,
-                            elevation: 0,
-                            heroTag: null,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(height),
-                            ),
-                            backgroundColor: theme.colorScheme.primary,
-                            foregroundColor: theme.colorScheme.onPrimary,
-                            child: const Icon(Icons.mic_none_outlined),
-                          )
-                        :
+                    child:
                         // #Pangea
+                        // PlatformInfos.platformCanRecord &&
+                        //         controller.sendController.text.isEmpty
+                        //     ? FloatingActionButton.small(
+                        //         tooltip: L10n.of(context)!.voiceMessage,
+                        //         onPressed: controller.voiceMessageAction,
+                        //         elevation: 0,
+                        //         heroTag: null,
+                        //         shape: RoundedRectangleBorder(
+                        //           borderRadius: BorderRadius.circular(height),
+                        //         ),
+                        //         backgroundColor: theme.colorScheme.primary,
+                        //         foregroundColor: theme.colorScheme.onPrimary,
+                        //         child: const Icon(Icons.mic_none_outlined),
+                        //       )
+                        // : FloatingActionButton.small(
+                        //     tooltip: L10n.of(context)!.send,
+                        //     onPressed: controller.send,
+                        //     elevation: 0,
+                        //     heroTag: null,
+                        //     shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(height),
+                        //     ),
+                        //     backgroundColor:
+                        //         theme.colorScheme.onPrimaryContainer,
+                        //     foregroundColor: theme.colorScheme.onPrimary,
+                        //     child: const Icon(Icons.send_outlined),
+                        //   ),
                         ChoreographerSendButton(controller: controller),
-                    // FloatingActionButton.small(
-                    //     tooltip: L10n.of(context)!.send,
-                    //     onPressed: controller.send,
-                    //     elevation: 0,
-                    //     heroTag: null,
-                    //     shape: RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.circular(height),
-                    //     ),
-                    //     backgroundColor:
-                    //         theme.colorScheme.onPrimaryContainer,
-                    //     foregroundColor: theme.colorScheme.onPrimary,
-                    //     child: const Icon(Icons.send_outlined),
-                    //   ),
                     // Pangea#
                   ),
                 ],

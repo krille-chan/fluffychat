@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
@@ -335,7 +336,9 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       children: [
         // Main content
         const Positioned(
-          child: PointsGainedAnimation(),
+          child: PointsGainedAnimation(
+            origin: AnalyticsUpdateOrigin.practiceActivity,
+          ),
         ),
         if (activityWidget != null)
           Padding(

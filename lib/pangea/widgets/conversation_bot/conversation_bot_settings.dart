@@ -200,27 +200,31 @@ class ConversationBotSettingsDialogState
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 20),
-                      AnimatedOpacity(
-                        duration: FluffyThemes.animationDuration,
-                        opacity: addBot ? 1.0 : 0.5,
-                        child: ConversationBotSettingsForm(
-                          botOptions: botOptions,
-                          discussionKeywordsController:
-                              discussionKeywordsController,
-                          discussionTopicController: discussionTopicController,
-                          customSystemPromptController:
-                              customSystemPromptController,
-                          enabled: addBot,
-                          onUpdateBotMode: onUpdateChatMode,
-                          onUpdateBotLanguage: onUpdateBotLanguage,
-                          onUpdateBotVoice: onUpdateBotVoice,
-                          onUpdateBotLanguageLevel: onUpdateBotLanguageLevel,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 20),
+                        AnimatedOpacity(
+                          duration: FluffyThemes.animationDuration,
+                          opacity: addBot ? 1.0 : 0.5,
+                          child: ConversationBotSettingsForm(
+                            botOptions: botOptions,
+                            discussionKeywordsController:
+                                discussionKeywordsController,
+                            discussionTopicController:
+                                discussionTopicController,
+                            customSystemPromptController:
+                                customSystemPromptController,
+                            enabled: addBot,
+                            onUpdateBotMode: onUpdateChatMode,
+                            onUpdateBotLanguage: onUpdateBotLanguage,
+                            onUpdateBotVoice: onUpdateBotVoice,
+                            onUpdateBotLanguageLevel: onUpdateBotLanguageLevel,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
