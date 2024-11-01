@@ -5,4 +5,5 @@ enum EditType {
   alternativeTranslation,
   itGold,
   itStart,
+  itDismissed,
 }

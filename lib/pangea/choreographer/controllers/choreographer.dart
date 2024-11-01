@@ -68,7 +68,12 @@ class Choreographer {
   }
 
   void send(BuildContext context) {
-    if (!canSendMessage) return;
+    if (!canSendMessage) {
+      if (igc.igcTextData != null) {
+        igc.showFirstMatch(context);
+      }
+      return;
+    }
 
     if (pangeaController.subscriptionController.subscriptionStatus ==
         SubscriptionStatus.showPaywall) {
@@ -84,7 +89,7 @@ class Choreographer {
       return;
     }
 
-    if (!igc.hasRelevantIGCTextData) {
+    if (!igc.hasRelevantIGCTextData && !itController.dismissed) {
       getLanguageHelp().then((value) => _sendWithIGC(context));
     } else {
       _sendWithIGC(context);
@@ -201,7 +206,8 @@ class Choreographer {
       return;
     }
 
-    if (_textController.editType == EditType.igc) {
+    if (_textController.editType == EditType.igc ||
+        _textController.editType == EditType.itDismissed) {
       _lastChecked = _textController.text;
       _textController.editType = EditType.keyboard;
       return;
@@ -603,7 +609,9 @@ class Choreographer {
     if (isFetching) return false;
 
     // they're supposed to run IGC but haven't yet, don't let them send
-    if (isAutoIGCEnabled && igc.igcTextData == null) return false;
+    if (igc.igcTextData == null) {
+      return itController.dismissed;
+    }
 
     // if they have relevant matches, don't let them send
     final hasITMatches =
