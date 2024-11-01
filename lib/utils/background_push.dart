@@ -414,19 +414,22 @@ class BackgroundPush {
       useDeviceSpecificAppId: true,
       client: client,
     );
-    await matrix?.store.setString(SettingKeys.unifiedPushEndpoint, newEndpoint);
-    await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, true);
+    await matrix?.store.setString(client.clientName + SettingKeys.unifiedPushEndpoint, newEndpoint);
+    await matrix?.store.setBool(client.clientName + SettingKeys.unifiedPushRegistered, true);
   }
 
   Future<void> _onUPUnregistered(String instance) async {
     upAction = true;
     final client = clientFromInstance(instance, clients);
+    if (client == null) {
+      return;
+    }
     Logs().i('[Push] Removing UnifiedPush endpoint...');
     final oldEndpoint =
-        matrix?.store.getString(SettingKeys.unifiedPushEndpoint);
-    await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, false);
-    await matrix?.store.remove(SettingKeys.unifiedPushEndpoint);
-    if (client != null && (oldEndpoint?.isNotEmpty ?? false)) {
+        matrix?.store.getString(client.clientName + SettingKeys.unifiedPushEndpoint);
+    await matrix?.store.setBool(client.clientName + SettingKeys.unifiedPushRegistered, false);
+    await matrix?.store.remove(client.clientName + SettingKeys.unifiedPushEndpoint);
+    if (oldEndpoint?.isNotEmpty ?? false) {
       // remove the old pusher
       await setupPusher(
         oldTokens: {oldEndpoint},
