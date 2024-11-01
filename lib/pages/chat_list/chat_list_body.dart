@@ -35,6 +35,7 @@ class ChatListViewBody extends StatelessWidget {
     final activeSpace = controller.activeSpaceId;
     if (activeSpace != null) {
       return SpaceView(
+        key: ValueKey(activeSpace),
         spaceId: activeSpace,
         onBack: controller.clearActiveSpace,
         onChatTab: (room) => controller.onChatTap(room),

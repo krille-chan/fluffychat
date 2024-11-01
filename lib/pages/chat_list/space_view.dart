@@ -324,8 +324,8 @@ class _SpaceViewState extends State<SpaceView> {
               true
           ? FloatingActionButton.extended(
               onPressed: _addChatOrSubspace,
-              label: Text(L10n.of(context).chat),
-              icon: const Icon(Icons.chat_outlined),
+              label: Text(L10n.of(context).group),
+              icon: const Icon(Icons.group_add_outlined),
             )
           : null,
       body: room == null
@@ -436,20 +436,8 @@ class _SpaceViewState extends State<SpaceView> {
                       },
                     ),
                     SliverList.builder(
-                      itemCount: joinedRooms.length + 1,
+                      itemCount: joinedRooms.length,
                       itemBuilder: (context, i) {
-                        if (i == 0) {
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SearchTitle(
-                                title: L10n.of(context).joinedChats,
-                                icon: const Icon(Icons.chat_outlined),
-                              ),
-                            ],
-                          );
-                        }
-                        i--;
                         final joinedRoom = joinedRooms[i];
                         return ChatListItem(
                           joinedRoom,
@@ -569,6 +557,7 @@ class _SpaceViewState extends State<SpaceView> {
                         );
                       },
                     ),
+                    const SliverPadding(padding: EdgeInsets.only(top: 32)),
                   ],
                 );
               },
