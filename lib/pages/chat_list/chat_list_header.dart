@@ -107,9 +107,13 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                           ),
                         )
                       // #Pangea
-                      : SizedBox(
+                      : const SizedBox(
                           width: 0,
-                          child: ClientChooserButton(controller),
+                          child: ClientChooserButton(
+                              // #Pangea
+                              // controller
+                              // Pangea#
+                              ),
                         )
                   // : TextButton.icon(
                   //     onPressed: controller.setServer,
@@ -127,9 +131,13 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   //     ),
                   //   )
                   // Pangea#
-                  : SizedBox(
+                  : const SizedBox(
                       width: 0,
-                      child: ClientChooserButton(controller),
+                      child: ClientChooserButton(
+                          // #Pangea
+                          // controller
+                          // Pangea#
+                          ),
                     ),
             ),
           ),

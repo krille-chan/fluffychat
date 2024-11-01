@@ -3,12 +3,12 @@ import 'dart:ui';
 class LevelBarDetails {
   final Color fillColor;
   final int currentPoints;
-  final double width;
+  final double widthMultiplier;
 
   const LevelBarDetails({
     required this.fillColor,
     required this.currentPoints,
-    required this.width,
+    required this.widthMultiplier,
   });
 }
 
