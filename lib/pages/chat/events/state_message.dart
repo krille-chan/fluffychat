@@ -29,6 +29,8 @@ class StateMessage extends StatelessWidget {
                   MatrixLocals(L10n.of(context)),
                 ),
                 textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 12 * AppConfig.fontSizeFactor,
                   decoration:
