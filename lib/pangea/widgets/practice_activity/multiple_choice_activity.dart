@@ -80,6 +80,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           widget.practiceCardController.currentActivity!,
           widget.practiceCardController.metadata,
         ),
+        origin: AnalyticsUpdateOrigin.practiceActivity,
       ),
     );
 

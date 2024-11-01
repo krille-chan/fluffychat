@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
@@ -37,7 +38,7 @@ class LearningProgressIndicatorsState
 
   /// A stream subscription to listen for updates to
   /// the analytics data, either locally or from events
-  StreamSubscription<List<OneConstructUse>>? _analyticsUpdateSubscription;
+  StreamSubscription<AnalyticsStreamUpdate>? _analyticsUpdateSubscription;
 
   /// Vocabulary constructs model
   ConstructListModel? words;
@@ -65,11 +66,11 @@ class LearningProgressIndicatorsState
   void initState() {
     super.initState();
     updateAnalyticsData(
-      _pangeaController.analytics.analyticsStream.value ?? [],
+      _pangeaController.analytics.analyticsStream.value?.constructs ?? [],
     );
     _analyticsUpdateSubscription = _pangeaController
         .analytics.analyticsStream.stream
-        .listen(updateAnalyticsData);
+        .listen((update) => updateAnalyticsData(update.constructs));
   }
 
   @override

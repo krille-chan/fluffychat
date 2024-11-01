@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
+import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,11 @@ import 'package:flutter/material.dart';
 class PointsGainedAnimation extends StatefulWidget {
   final Color? gainColor;
   final Color? loseColor;
+  final AnalyticsUpdateOrigin origin;
+
   const PointsGainedAnimation({
     super.key,
+    required this.origin,
     this.gainColor,
     this.loseColor = Colors.red,
   });
@@ -69,7 +73,8 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
     super.dispose();
   }
 
-  void _showPointsGained(List<OneConstructUse> constructs) {
+  void _showPointsGained(AnalyticsStreamUpdate update) {
+    if (update.origin != widget.origin) return;
     setState(() => _addedPoints = (_currentXP ?? 0) - (_prevXP ?? 0));
     if (_prevXP != _currentXP) {
       _controller.reset();
