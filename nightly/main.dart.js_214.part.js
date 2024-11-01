@@ -544,7 +544,7 @@ goc(){return"Senden abgebrochen"},
 goy(){return"Mit Matrix-ID anmelden"},
 got(){return"Server suchen"},
 goH(){return"Was ist ein Homeserver?"},
-gow(){return"Alle deine Daten werden auf dem Homeserver gespeichert, so wie bei einem Email Anbieter. Du kannst aussuchen, welchen Homeserver du benutzen willst und kannst trotzdem mit allen kommunizieren. Erfahre mehr auf https:/matrix.org."},
+gow(){return"Alle deine Daten werden auf einem Homeserver gespeichert, so wie bei einem E-Mail Anbieter. Du kannst aussuchen, welchen Homeserver du benutzen willst und kannst trotzdem mit allen kommunizieren. Erfahre mehr auf https://matrix.org."},
 gou(){return"Scheint kein kompatibler Homeserver zu sein. Falsche URL?"},
 goj(){return"Dateigr\xf6\xdfe wird berechnet ..."},
 goD(){return"Anhang zum Senden vorbereiten ..."},
@@ -564,5 +564,5 @@ x(B.HI,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HI":{"aR":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_214",e:"endPart",h:b})})($__dart_deferred_initializers__,"jI6aVxrgAbEOtEQImDfF4sjlYjQ=");
+a.eventLog.push({p:"main.dart.js_214",e:"endPart",h:b})})($__dart_deferred_initializers__,"NxCkuFESKhOdUKEX5Q8Zx0BJ+HI=");
 //# sourceMappingURL=main.dart.js_214.part.js.map
