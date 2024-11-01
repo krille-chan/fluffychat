@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -130,6 +131,7 @@ class SpanCardState extends State<SpanCard> {
           selectedChoice!.isBestCorrection
               ? ConstructUseTypeEnum.corIGC
               : ConstructUseTypeEnum.incIGC,
+          AnalyticsUpdateOrigin.igc,
         );
       }
 
@@ -160,6 +162,7 @@ class SpanCardState extends State<SpanCard> {
       ignoredTokens ?? [],
       widget.roomId,
       ConstructUseTypeEnum.ignIGC,
+      AnalyticsUpdateOrigin.igc,
     );
   }
 
@@ -226,7 +229,9 @@ class WordMatchContent extends StatelessWidget {
         children: [
           const Positioned(
             top: 40,
-            child: PointsGainedAnimation(),
+            child: PointsGainedAnimation(
+              origin: AnalyticsUpdateOrigin.igc,
+            ),
           ),
           Column(
             children: [

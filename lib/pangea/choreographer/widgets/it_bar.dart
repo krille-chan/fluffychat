@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/choreographer/widgets/it_bar_buttons.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/translation_finished_flow.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -80,7 +81,9 @@ class ITBarState extends State<ITBar> {
                     children: [
                       const Positioned(
                         top: 60,
-                        child: PointsGainedAnimation(),
+                        child: PointsGainedAnimation(
+                          origin: AnalyticsUpdateOrigin.it,
+                        ),
                       ),
                       SingleChildScrollView(
                         child: Column(
@@ -372,6 +375,7 @@ class ITChoices extends StatelessWidget {
         continuance.level > 1
             ? ConstructUseTypeEnum.incIt
             : ConstructUseTypeEnum.corIt,
+        AnalyticsUpdateOrigin.it,
       );
     }
     controller.currentITStep!.continuances[index].wasClicked = true;
