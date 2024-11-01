@@ -98,10 +98,6 @@ class ChatListController extends State<ChatList>
 
   StreamSubscription? _intentUriStreamSubscription;
 
-  void createNewSpace() {
-    context.push<String?>('/rooms/newspace');
-  }
-
   ActiveFilter activeFilter = AppConfig.separateChatTypes
       ? ActiveFilter.messages
       : ActiveFilter.allChats;
