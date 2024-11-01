@@ -23,8 +23,8 @@ class ConstructListModel {
   List<OneConstructUse> get uses =>
       _uses.where((use) => use.constructType == type || type == null).toList();
 
-  /// All unique lemmas used in the construct events
-  List<String> get lemmas => constructList.map((e) => e.lemma).toSet().toList();
+  // /// All unique lemmas used in the construct events
+  // List<String> get lemmas => constructList.map((e) => e.lemma).toSet().toList();
 
   /// All unique lemmas used in the construct events with non-zero points
   List<String> get lemmasWithPoints =>
@@ -36,8 +36,13 @@ class ConstructListModel {
     final Map<String, List<OneConstructUse>> lemmaToUses = {};
     for (final use in uses) {
       if (use.lemma == null) continue;
-      lemmaToUses[use.lemma! + use.constructType.string] ??= [];
-      lemmaToUses[use.lemma! + use.constructType.string]!.add(use);
+      lemmaToUses[use.lemma! +
+          use.constructType.string +
+          (use.category ?? "Other")] ??= [];
+      lemmaToUses[use.lemma! +
+              use.constructType.string +
+              (use.category ?? "Other")]!
+          .add(use);
     }
 
     _constructMap = lemmaToUses.map(
@@ -47,6 +52,7 @@ class ConstructListModel {
           uses: value,
           constructType: value.first.constructType,
           lemma: value.first.lemma!,
+          category: value.first.category,
         ),
       ),
     );
@@ -68,7 +74,7 @@ class ConstructListModel {
     _constructList = _constructMap!.values.toList();
 
     _constructList!.sort((a, b) {
-      final comp = b.uses.length.compareTo(a.uses.length);
+      final comp = b.points.compareTo(a.points);
       if (comp != 0) return comp;
       return a.lemma.compareTo(b.lemma);
     });
@@ -78,6 +84,15 @@ class ConstructListModel {
 
   List<ConstructUses> get constructListWithPoints =>
       constructList.where((constructUse) => constructUse.points > 0).toList();
+
+  Map<String, List<ConstructUses>> get categoriesToUses {
+    final Map<String, List<ConstructUses>> categoriesMap = {};
+    for (final use in constructListWithPoints) {
+      categoriesMap[use.category] ??= [];
+      categoriesMap[use.category]!.add(use);
+    }
+    return categoriesMap;
+  }
 
   get maxXPPerLemma {
     return type != null
@@ -141,12 +156,14 @@ class ConstructUses {
   final List<OneConstructUse> uses;
   final ConstructTypeEnum constructType;
   final String lemma;
+  final String? _category;
 
   ConstructUses({
     required this.uses,
     required this.constructType,
     required this.lemma,
-  });
+    required category,
+  }) : _category = category;
 
   // Total points for all uses of this lemma
   int get points {
@@ -165,6 +182,8 @@ class ConstructUses {
     });
     return _lastUsed = lastUse;
   }
+
+  String get category => _category ?? "Other";
 }
 
 /// One lemma, a use type, and a list of uses

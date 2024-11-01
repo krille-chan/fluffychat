@@ -74,7 +74,11 @@ class ConstructAnalyticsModel {
 class OneConstructUse {
   String? lemma;
   String? form;
+
+  /// For vocab constructs, this is the POS. For morph
+  /// constructs, this is the morphological category.
   String? category;
+
   ConstructTypeEnum constructType;
   ConstructUseTypeEnum useType;
 

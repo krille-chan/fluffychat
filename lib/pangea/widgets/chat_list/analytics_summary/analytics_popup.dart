@@ -16,8 +16,76 @@ class AnalyticsPopup extends StatelessWidget {
     super.key,
   });
 
+  List<MapEntry<String, List<ConstructUses>>> get categoriesToUses {
+    final entries = constructsModel.categoriesToUses.entries.toList();
+    // Sort the list with custom logic
+    entries.sort((a, b) {
+      // Check if one of the keys is 'Other'
+      if (a.key == 'Other') return 1;
+      if (b.key == 'Other') return -1;
+
+      // Sort by the length of the list in descending order
+      final aTotalPoints = a.value.fold<int>(
+        0,
+        (previousValue, element) => previousValue + element.points,
+      );
+      final bTotalPoints = b.value.fold<int>(
+        0,
+        (previousValue, element) => previousValue + element.points,
+      );
+      return bTotalPoints.compareTo(aTotalPoints);
+    });
+    return entries;
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget? dialogContent;
+    final bool hasNoData = constructsModel.constructListWithPoints.isEmpty;
+    final bool hasNoCategories = constructsModel.categoriesToUses.length == 1 &&
+        constructsModel.categoriesToUses.keys.first == "Other";
+
+    if (hasNoData) {
+      dialogContent = Center(child: Text(L10n.of(context)!.noDataFound));
+    } else if (hasNoCategories) {
+      dialogContent = ListView.builder(
+        itemCount: constructsModel.constructListWithPoints.length,
+        itemBuilder: (context, index) {
+          return ConstructUsesXPTile(
+            indicator: indicator,
+            constructsModel: constructsModel,
+            constructUses: constructsModel.constructListWithPoints[index],
+          );
+        },
+      );
+    } else {
+      dialogContent = ListView.builder(
+        itemCount: categoriesToUses.length,
+        itemBuilder: (context, index) {
+          final category = categoriesToUses[index];
+          return Column(
+            children: [
+              ExpansionTile(
+                title: Text(
+                  category.key != 'Other'
+                      ? getGrammarCopy(category.key, context)
+                      : category.key,
+                ),
+                children: category.value.map((constructUses) {
+                  return ConstructUsesXPTile(
+                    indicator: indicator,
+                    constructsModel: constructsModel,
+                    constructUses: constructUses,
+                  );
+                }).toList(),
+              ),
+              const Divider(height: 1),
+            ],
+          );
+        },
+      );
+    }
+
     return Dialog(
       child: ConstrainedBox(
         constraints: const BoxConstraints(
@@ -36,46 +104,49 @@ class AnalyticsPopup extends StatelessWidget {
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: constructsModel.constructListWithPoints.isEmpty
-                  ? Center(
-                      child: Text(L10n.of(context)!.noDataFound),
-                    )
-                  : ListView.builder(
-                      itemCount: constructsModel.constructListWithPoints.length,
-                      itemBuilder: (context, index) {
-                        return Tooltip(
-                          message:
-                              "${constructsModel.constructListWithPoints[index].points} / ${constructsModel.maxXPPerLemma}",
-                          child: ListTile(
-                            onTap: () {},
-                            title: Text(
-                              constructsModel.type == ConstructTypeEnum.morph
-                                  ? getGrammarCopy(
-                                      constructsModel
-                                          .constructListWithPoints[index].lemma,
-                                      context,
-                                    )
-                                  : constructsModel
-                                      .constructListWithPoints[index].lemma,
-                            ),
-                            subtitle: LinearProgressIndicator(
-                              value: constructsModel
-                                      .constructListWithPoints[index].points /
-                                  constructsModel.maxXPPerLemma,
-                              minHeight: 20,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(AppConfig.borderRadius),
-                              ),
-                              color: indicator.color(context),
-                            ),
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                          ),
-                        );
-                      },
-                    ),
+              child: dialogContent,
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ConstructUsesXPTile extends StatelessWidget {
+  final ProgressIndicatorEnum indicator;
+  final ConstructListModel constructsModel;
+  final ConstructUses constructUses;
+
+  const ConstructUsesXPTile({
+    required this.indicator,
+    required this.constructsModel,
+    required this.constructUses,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final lemma = constructUses.lemma;
+    return Tooltip(
+      message: "${constructUses.points} / ${constructsModel.maxXPPerLemma}",
+      child: ListTile(
+        onTap: () {},
+        title: Text(
+          constructsModel.type == ConstructTypeEnum.morph
+              ? getGrammarCopy(lemma, context)
+              : lemma,
+        ),
+        subtitle: LinearProgressIndicator(
+          value: constructUses.points / constructsModel.maxXPPerLemma,
+          minHeight: 20,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(AppConfig.borderRadius),
+          ),
+          color: indicator.color(context),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
         ),
       ),
     );
