@@ -21,10 +21,14 @@ class ConstructIdentifier {
   });
 
   factory ConstructIdentifier.fromJson(Map<String, dynamic> json) {
-    final categoryEntry = json['cat'];
+    final categoryEntry = json['cat'] ?? json['categories'];
     String? category;
-    if (categoryEntry != null && categoryEntry is String) {
-      category = categoryEntry;
+    if (categoryEntry != null) {
+      if (categoryEntry is String) {
+        category = categoryEntry;
+      } else if (categoryEntry is List) {
+        category = categoryEntry.first;
+      }
     }
 
     try {
@@ -46,6 +50,7 @@ class ConstructIdentifier {
     return {
       'lemma': lemma,
       'type': type.string,
+      'cat': category,
     };
   }
 

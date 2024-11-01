@@ -108,7 +108,7 @@ class OneConstructUse {
         : null;
     debugger(when: kDebugMode && constructType == null);
 
-    final categoryEntry = json['categories'];
+    final categoryEntry = json['cat'] ?? json['categories'];
     String? category;
     if (categoryEntry != null) {
       if ((categoryEntry is List) && categoryEntry.isNotEmpty) {
