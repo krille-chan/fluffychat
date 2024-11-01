@@ -95,7 +95,7 @@ gfc(){return"Chat details"},
 gfQ(){return"Chats"},
 gir(){return"Choose a strong password"},
 gfR(){return"Clear archive"},
-gd4(d){return"Fechar"},
+gd5(d){return"Fechar"},
 glv(){return"Mark as direct message room for the giving Matrix ID"},
 glw(){return"Mark as group"},
 gis(){return"Ban the given user from this room"},
@@ -639,7 +639,7 @@ gfc(){return"Detalhes da conversa"},
 gfQ(){return"Conversas"},
 gir(){return"Escolha uma senha forte"},
 gfR(){return"Limpar arquivo"},
-gd4(d){return"Fechar"},
+gd5(d){return"Fechar"},
 glv(){return"Marcar como conversa direta para o ID Matrix dado"},
 glw(){return"Marcar como grupo"},
 gis(){return"Banir um(a) usu\xe1rio(a) desta sala"},
@@ -1135,7 +1135,7 @@ gfc(){return"Detalhes de conversa"},
 gfQ(){return"Conversas"},
 gir(){return"Escolhe uma palavra-passe forte"},
 gfR(){return"Limpar arquivo"},
-gd4(d){return"Fechar"},
+gd5(d){return"Fechar"},
 gis(){return"Banir o utilizador dado desta sala"},
 git(){return"Limpar cache"},
 giu(){return"Criar uma conversa de grupo vazia\nUsa --no-encryption para desativar a encripta\xe7\xe3o"},
@@ -1335,5 +1335,5 @@ w(A.CI,[A.Ia,A.Ib])})()
 B.eo(b.typeUniverse,JSON.parse('{"CI":{"aR":[]},"Ia":{"aR":[]},"Ib":{"aR":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_14",e:"endPart",h:b})})($__dart_deferred_initializers__,"98No6UwOfBjROibI1d5FTpFnM18=");
+a.eventLog.push({p:"main.dart.js_14",e:"endPart",h:b})})($__dart_deferred_initializers__,"HycDTHKj3Hba/tJgH+SEnfc/UhQ=");
 //# sourceMappingURL=main.dart.js_14.part.js.map

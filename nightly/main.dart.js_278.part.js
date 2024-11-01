@@ -91,7 +91,7 @@ gfc(){return"Podrobnosti o chate"},
 gfQ(){return"\u010cety"},
 gir(){return"Vyberte si siln\xe9 heslo"},
 gfR(){return"Clear archive"},
-gd4(d){return"Zavrie\u0165"},
+gd5(d){return"Zavrie\u0165"},
 glv(){return"Mark as direct message room for the giving Matrix ID"},
 glw(){return"Mark as group"},
 gis(){return"Ban the given user from this room"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ie,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"Ie":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_278",e:"endPart",h:b})})($__dart_deferred_initializers__,"i/bkW/Xotja2CsM9p89rbREo1W4=");
+a.eventLog.push({p:"main.dart.js_278",e:"endPart",h:b})})($__dart_deferred_initializers__,"yIF21PagQ2dt2zm8yT028NnsHg4=");
 //# sourceMappingURL=main.dart.js_278.part.js.map

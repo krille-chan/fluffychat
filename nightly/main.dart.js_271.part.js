@@ -91,7 +91,7 @@ gfc(){return"Chatdetails"},
 gfQ(){return"Chats"},
 gir(){return"Kies een sterk wachtwoord"},
 gfR(){return"Archief wissen"},
-gd4(d){return"Sluiten"},
+gd5(d){return"Sluiten"},
 glv(){return"Markeer als priv\xe9berichtenkamer voor Matrix ID"},
 glw(){return"Markeer als groep"},
 gis(){return"Persoon uit deze kamer verbannen"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I8,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I8":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_271",e:"endPart",h:b})})($__dart_deferred_initializers__,"T6ss3Mt/kjP5dY/id2jma8/O/+g=");
+a.eventLog.push({p:"main.dart.js_271",e:"endPart",h:b})})($__dart_deferred_initializers__,"UndRQkdmZSeId0MBUT2Aim29KFI=");
 //# sourceMappingURL=main.dart.js_271.part.js.map

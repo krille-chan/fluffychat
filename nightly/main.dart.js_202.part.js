@@ -91,7 +91,7 @@ gfc(){return"Detalls del xat"},
 gfQ(){return"Xats"},
 gir(){return"Trieu una contrasenya forta"},
 gfR(){return"Neteja l\u2019arxiu"},
-gd4(d){return"Tanca"},
+gd5(d){return"Tanca"},
 glv(){return"Marca com a conversa directa la sala amb aquesta ID de Matrix"},
 glw(){return"Marca com un grup"},
 gis(){return"Veta uni usu\xe0ri\xef d'aquesta sala"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HG,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HG":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_202",e:"endPart",h:b})})($__dart_deferred_initializers__,"FWuuIsQaHCZfp/kT+KYySZ8SWbI=");
+a.eventLog.push({p:"main.dart.js_202",e:"endPart",h:b})})($__dart_deferred_initializers__,"g8RZ/mjHsKaSNFwdWPNfa5QZ0hs=");
 //# sourceMappingURL=main.dart.js_202.part.js.map

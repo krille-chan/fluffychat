@@ -91,7 +91,7 @@ gfc(){return"\u0e23\u0e32\u0e22\u0e25\u0e30\u0e40\u0e2d\u0e35\u0e22\u0e14\u0e41\
 gfQ(){return"Chats"},
 gir(){return"Choose a strong password"},
 gfR(){return"Clear archive"},
-gd4(d){return"Close"},
+gd5(d){return"Close"},
 glv(){return"Mark as direct message room for the giving Matrix ID"},
 glw(){return"Mark as group"},
 gis(){return"Ban the given user from this room"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ij,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"Ij":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_284",e:"endPart",h:b})})($__dart_deferred_initializers__,"mSPHV6SmWC7J0xCrF5kuCuLm8NM=");
+a.eventLog.push({p:"main.dart.js_284",e:"endPart",h:b})})($__dart_deferred_initializers__,"METtubpcN68zbvaUVBSLjiuvOSE=");
 //# sourceMappingURL=main.dart.js_284.part.js.map

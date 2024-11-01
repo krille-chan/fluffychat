@@ -91,7 +91,7 @@ gfc(){return"Dettagli chat"},
 gfQ(){return"Discussioni"},
 gir(){return"Scegli una password complessa"},
 gfR(){return"Cancella archivio"},
-gd4(d){return"Chiudi"},
+gd5(d){return"Chiudi"},
 glv(){return"Contrassegna questo Matrix ID come stanza di messaggi diretti"},
 glw(){return"Segna come gruppo"},
 gis(){return"Banna l'utente specificato da questa stanza"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I1,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I1":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_262",e:"endPart",h:b})})($__dart_deferred_initializers__,"7145SAKYAIp9u3KIMYQjOOjK2qM=");
+a.eventLog.push({p:"main.dart.js_262",e:"endPart",h:b})})($__dart_deferred_initializers__,"mEBqBw509U3DwfqmMOcqoAiIog0=");
 //# sourceMappingURL=main.dart.js_262.part.js.map

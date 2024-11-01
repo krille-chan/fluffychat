@@ -91,7 +91,7 @@ gfc(){return"Detalji razgovora"},
 gfQ(){return"Razgovori"},
 gir(){return"Odaberi sna\u017enu lozinku"},
 gfR(){return"Isprazni arhiv"},
-gd4(d){return"Zatvori"},
+gd5(d){return"Zatvori"},
 glv(){return"Ozna\u010di kao sobu za izravnu razmjenu poruka za zadani Matrix ID"},
 glw(){return"Ozna\u010di kao grupu"},
 gis(){return"Isklju\u010di navedenog korisnika iz ove sobe"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HX,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HX":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_246",e:"endPart",h:b})})($__dart_deferred_initializers__,"hqOh9xtgt1Iicb82jJVMuEiXvpc=");
+a.eventLog.push({p:"main.dart.js_246",e:"endPart",h:b})})($__dart_deferred_initializers__,"CmE8O5cfCdn9D3as0pPRnQ3sQFI=");
 //# sourceMappingURL=main.dart.js_246.part.js.map

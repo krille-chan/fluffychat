@@ -91,7 +91,7 @@ gfc(){return"Cseveg\xe9s r\xe9szletei"},
 gfQ(){return"Cseveg\xe9sek"},
 gir(){return"V\xe1lasszon egy er\u0151s jelsz\xf3t"},
 gfR(){return"Arch\xedvum t\xf6rl\xe9se"},
-gd4(d){return"Bez\xe1r\xe1s"},
+gd5(d){return"Bez\xe1r\xe1s"},
 glv(){return"Szoba megjel\xf6l\xe9se mint k\xf6zvetlen cseveg\u0151 szoba az adott Matrix ID-n\xe9l"},
 glw(){return"Csoportnak jel\xf6l\xe9s"},
 gis(){return"Felhaszn\xe1l\xf3 kitilt\xe1sa ebb\u0151l a szob\xe1b\xf3l"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HY,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HY":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"SIiYQsZHsld1TB+u1Vj8M48tXP4=");
+a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"DptomFIXBzEi6VTeOuPV4QAO6Yc=");
 //# sourceMappingURL=main.dart.js_252.part.js.map

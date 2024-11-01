@@ -91,7 +91,7 @@ gfc(){return"Detalles del chat"},
 gfQ(){return"Conversaciones"},
 gir(){return"Elija una contrase\xf1a segura"},
 gfR(){return"Borrar archivo"},
-gd4(d){return"Cerrar"},
+gd5(d){return"Cerrar"},
 glv(){return"Marcar como sala de mensajes directos para el ID de Matrix"},
 glw(){return"Marcar como grupo"},
 gis(){return"Prohibir al usuario dado en esta sala"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HM,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HM":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_225",e:"endPart",h:b})})($__dart_deferred_initializers__,"gdOQOvPQo7c0UOWjQHvqd2VP83Q=");
+a.eventLog.push({p:"main.dart.js_225",e:"endPart",h:b})})($__dart_deferred_initializers__,"9zKrXAaIbzz6ZhKBfQOz5fMWRuc=");
 //# sourceMappingURL=main.dart.js_225.part.js.map

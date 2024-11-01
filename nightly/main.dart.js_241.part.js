@@ -91,7 +91,7 @@ gfc(){return"Detalles da conversa"},
 gfQ(){return"Conversas"},
 gir(){return"Escolle un contrasinal forte"},
 gfR(){return"Baleirar arquivo"},
-gd4(d){return"Pechar"},
+gd5(d){return"Pechar"},
 glv(){return"Marcar como sala de mensaxe directa para o ID Matrix indicado"},
 glw(){return"Marcar como grupo"},
 gis(){return"Vetar a usuaria indicada desta sala"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HU,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HU":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"u88tFJl1inhu6O6uPdv4ORrSRP4=");
+a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"9ayTadaXF/aJHK1OcgCwi79+1Gs=");
 //# sourceMappingURL=main.dart.js_241.part.js.map

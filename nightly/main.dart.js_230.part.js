@@ -91,7 +91,7 @@ gfc(){return"Vestluse teave"},
 gfQ(){return"Vestlused"},
 gir(){return"Vali korralik salas\xf5na"},
 gfR(){return"Kustuta arhiiv"},
-gd4(d){return"Sulge"},
+gd5(d){return"Sulge"},
 glv(){return"M\xe4rgi otsevestusluseks antud Matrixi ID jaoks"},
 glw(){return"M\xe4rgi vestlusr\xfchmaks"},
 gis(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HN,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HN":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"8dS0CAa/s4XvsH+8q+2bI+TAKP0=");
+a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"MhhlBbP8MgtSDY1KFgAThkpdwMA=");
 //# sourceMappingURL=main.dart.js_230.part.js.map

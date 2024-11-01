@@ -91,7 +91,7 @@ gfc(){return"Sludringsdetaljer"},
 gfQ(){return"Chats"},
 gir(){return"Velg et sterkt passord"},
 gfR(){return"Clear archive"},
-gd4(d){return"Lukk"},
+gd5(d){return"Lukk"},
 glv(){return"Mark as direct message room for the giving Matrix ID"},
 glw(){return"Mark as group"},
 gis(){return"Ban the given user from this room"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I7,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I7":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_269",e:"endPart",h:b})})($__dart_deferred_initializers__,"DChlASzVY63xUHF5wQIANJsczus=");
+a.eventLog.push({p:"main.dart.js_269",e:"endPart",h:b})})($__dart_deferred_initializers__,"PAt/CDdD+K+RIDmqVRmqeftXn3A=");
 //# sourceMappingURL=main.dart.js_269.part.js.map

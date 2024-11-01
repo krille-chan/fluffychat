@@ -91,7 +91,7 @@ gfc(){return"Podrobnosti klepeta"},
 gfQ(){return"Klepeti"},
 gir(){return"Izberite mo\u010dno geslo"},
 gfR(){return"Po\u010disti arhiv"},
-gd4(d){return"Zapri"},
+gd5(d){return"Zapri"},
 glv(){return"Mark as direct message room for the giving Matrix ID"},
 glw(){return"Mark as group"},
 gis(){return"Izklju\u010di dolo\u010denega uporabnika iz te sobe"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.If,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"If":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"sE2n69nDDL9YT0uQATe2fQ1/ISM=");
+a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"XCnFtp3RyNDAVqxyi48MdGwrd1I=");
 //# sourceMappingURL=main.dart.js_279.part.js.map

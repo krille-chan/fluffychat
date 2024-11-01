@@ -91,7 +91,7 @@ gfc(){return"Chatt-detaljer"},
 gfQ(){return"Chatter"},
 gir(){return"V\xe4lj ett starkt l\xf6senord"},
 gfR(){return"Rensa arkiv"},
-gd4(d){return"St\xe4ng"},
+gd5(d){return"St\xe4ng"},
 glv(){return"M\xe4rk som rum f\xf6r direktmeddelanden f\xf6r det givante Matrix ID"},
 glw(){return"M\xe4rk som grupp"},
 gis(){return"Bannlys anv\xe4ndaren fr\xe5n detta rum"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ih,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"Ih":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_282",e:"endPart",h:b})})($__dart_deferred_initializers__,"1kIUq9hohzU1k3m58uQWaKpTjaM=");
+a.eventLog.push({p:"main.dart.js_282",e:"endPart",h:b})})($__dart_deferred_initializers__,"3WmxLdFuL4a5IGSuFI7tHH1kh+0=");
 //# sourceMappingURL=main.dart.js_282.part.js.map

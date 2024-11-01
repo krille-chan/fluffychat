@@ -91,7 +91,7 @@ gfc(){return"Chi ti\u1ebft cu\u1ed9c tr\xf2 chuy\u1ec7n"},
 gfQ(){return"Chats"},
 gir(){return"Ch\u1ecdn m\u1ed9t m\u1eadt kh\u1ea9u m\u1ea1nh"},
 gfR(){return"Clear archive"},
-gd4(d){return"\u0110\xf3ng"},
+gd5(d){return"\u0110\xf3ng"},
 glv(){return"Mark as direct message room for the giving Matrix ID"},
 glw(){return"Mark as group"},
 gis(){return"Ban the given user from this room"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Im,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"Im":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"1ICNGJcI2hPTMunOtsKI7CK/ySs=");
+a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"p1zJBjNYtRAtV08fA1I1dJKJPEA=");
 //# sourceMappingURL=main.dart.js_287.part.js.map

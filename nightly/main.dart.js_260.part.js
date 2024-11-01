@@ -91,7 +91,7 @@ gfc(){return"Detallies del conversation"},
 gfQ(){return"Conversationes"},
 gir(){return"Choose a strong password"},
 gfR(){return"Vacuar li archive"},
-gd4(d){return"Cluder"},
+gd5(d){return"Cluder"},
 glv(){return"Mark as direct message room for the giving Matrix ID"},
 glw(){return"Marcar quam gruppe"},
 gis(){return"Ban the given user from this room"},
@@ -563,5 +563,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I0,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I0":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"OaJuLj7v6TV6qUqerZjw6MvIXBg=");
+a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"n7t918x2/Oquw9ZhieME69v0EgI=");
 //# sourceMappingURL=main.dart.js_260.part.js.map

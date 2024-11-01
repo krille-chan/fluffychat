@@ -91,7 +91,7 @@ gfc(){return"Txataren xehetasunak"},
 gfQ(){return"Txatak"},
 gir(){return"Aukeratu pasahitz sendo bat"},
 gfR(){return"Ezabatu artxiboa"},
-gd4(d){return"Itxi"},
+gd5(d){return"Itxi"},
 glv(){return"Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat"},
 glw(){return"Markatu talde bezala"},
 gis(){return"Debekatu erabiltzailea gela honetan"},
@@ -564,5 +564,5 @@ x(B.HO,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HO":{"aR":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"Utk5KUgEaN++L8Tpduah85P7XG0=");
+a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"AECslX1h7SH1au4+YYf0hqoISco=");
 //# sourceMappingURL=main.dart.js_232.part.js.map
