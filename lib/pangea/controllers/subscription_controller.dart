@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/controllers/user_controller.dart';
 import 'package:fluffychat/pangea/models/base_subscription_info.dart';
 import 'package:fluffychat/pangea/models/mobile_subscriptions.dart';
 import 'package:fluffychat/pangea/models/web_subscriptions.dart';
@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
+import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_paywall.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
@@ -24,7 +25,7 @@ import 'package:http/http.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-enum CanSendStatus {
+enum SubscriptionStatus {
   subscribed,
   dimissedPaywall,
   showPaywall,
@@ -32,7 +33,10 @@ enum CanSendStatus {
 
 class SubscriptionController extends BaseController {
   late PangeaController _pangeaController;
-  SubscriptionInfo? subscription;
+
+  CurrentSubscriptionInfo? currentSubscriptionInfo;
+  AvailableSubscriptionsInfo? availableSubscriptionInfo;
+
   final StreamController subscriptionStream = StreamController.broadcast();
   final StreamController trialActivationStream = StreamController.broadcast();
 
@@ -40,10 +44,11 @@ class SubscriptionController extends BaseController {
     _pangeaController = pangeaController;
   }
 
+  UserController get userController => _pangeaController.userController;
+  String? get userID => _pangeaController.matrixState.client.userID;
+
   bool get isSubscribed =>
-      subscription != null &&
-      (subscription!.currentSubscriptionId != null ||
-          subscription!.currentSubscription != null);
+      currentSubscriptionInfo?.currentSubscriptionId != null;
 
   bool _isInitializing = false;
   Completer<void> initialized = Completer<void>();
@@ -68,18 +73,28 @@ class SubscriptionController extends BaseController {
 
   Future<void> _initialize() async {
     try {
-      if (_pangeaController.matrixState.client.userID == null) {
+      if (userID == null) {
         debugPrint(
           "Attempted to initalize subscription information with null userId",
         );
         return;
       }
 
-      subscription = kIsWeb
-          ? WebSubscriptionInfo(pangeaController: _pangeaController)
-          : MobileSubscriptionInfo(pangeaController: _pangeaController);
+      availableSubscriptionInfo = AvailableSubscriptionsInfo();
+      await availableSubscriptionInfo!.setAvailableSubscriptions();
 
-      await subscription!.configure();
+      currentSubscriptionInfo = kIsWeb
+          ? WebSubscriptionInfo(
+              userID: userID!,
+              availableSubscriptionInfo: availableSubscriptionInfo!,
+            )
+          : MobileSubscriptionInfo(
+              userID: userID!,
+              availableSubscriptionInfo: availableSubscriptionInfo!,
+            );
+
+      await currentSubscriptionInfo!.configure();
+      await currentSubscriptionInfo!.setCurrentSubscription();
       if (_activatedNewUserTrial) {
         setNewUserTrial();
       }
@@ -102,7 +117,7 @@ class SubscriptionController extends BaseController {
           await _pangeaController.pStoreService.delete(
             PLocalKey.beganWebPayment,
           );
-          if (_pangeaController.subscriptionController.isSubscribed) {
+          if (isSubscribed) {
             subscriptionStream.add(true);
           }
         }
@@ -171,7 +186,7 @@ class SubscriptionController extends BaseController {
           return;
         }
         ErrorHandler.logError(
-          m: "Failed to purchase revenuecat package for user ${_pangeaController.matrixState.client.userID} with error code $errCode",
+          m: "Failed to purchase revenuecat package for user $userID with error code $errCode",
           s: StackTrace.current,
         );
         return;
@@ -179,14 +194,19 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  bool get _activatedNewUserTrial {
-    final bool activated = _pangeaController
-        .userController.profile.userSettings.activatedFreeTrial;
-    return _pangeaController.userController.inTrialWindow && activated;
-  }
+  int get currentTrialDays => userController.inTrialWindow(trialDays: 1)
+      ? 1
+      : userController.inTrialWindow(trialDays: 7)
+          ? 7
+          : 0;
+
+  bool get _activatedNewUserTrial =>
+      userController.inTrialWindow(trialDays: 1) ||
+      (userController.inTrialWindow() &&
+          userController.profile.userSettings.activatedFreeTrial);
 
   void activateNewUserTrial() {
-    _pangeaController.userController.updateProfile(
+    userController.updateProfile(
       (profile) {
         profile.userSettings.activatedFreeTrial = true;
         return profile;
@@ -197,8 +217,7 @@ class SubscriptionController extends BaseController {
   }
 
   void setNewUserTrial() {
-    final DateTime? createdAt =
-        _pangeaController.userController.profile.userSettings.createdAt;
+    final DateTime? createdAt = userController.profile.userSettings.createdAt;
     if (createdAt == null) {
       ErrorHandler.logError(
         m: "Null user profile createAt in subscription settings",
@@ -208,31 +227,26 @@ class SubscriptionController extends BaseController {
     }
 
     final DateTime expirationDate = createdAt.add(
-      const Duration(days: 7),
+      Duration(days: currentTrialDays),
     );
-    subscription?.setTrial(expirationDate);
+    currentSubscriptionInfo?.setTrial(expirationDate);
   }
 
   Future<void> updateCustomerInfo() async {
     if (!initialized.isCompleted) {
       await initialize();
     }
-    if (subscription == null) {
-      ErrorHandler.logError(
-        m: "Null subscription info in subscription settings",
-        s: StackTrace.current,
-      );
-      return;
-    }
-    await subscription!.setCustomerInfo();
+    await currentSubscriptionInfo!.setCurrentSubscription();
     setState(null);
   }
 
-  CanSendStatus get canSendStatus => isSubscribed
-      ? CanSendStatus.subscribed
+  /// if the user is subscribed, returns subscribed
+  /// if the user has dismissed the paywall, returns dismissed
+  SubscriptionStatus get subscriptionStatus => isSubscribed
+      ? SubscriptionStatus.subscribed
       : _shouldShowPaywall
-          ? CanSendStatus.showPaywall
-          : CanSendStatus.dimissedPaywall;
+          ? SubscriptionStatus.showPaywall
+          : SubscriptionStatus.dimissedPaywall;
 
   DateTime? get _lastDismissedPaywall {
     final lastDismissed = _pangeaController.pStoreService.read(
@@ -250,6 +264,7 @@ class SubscriptionController extends BaseController {
     return backoff;
   }
 
+  /// whether or not the paywall should be shown
   bool get _shouldShowPaywall {
     return initialized.isCompleted &&
         !isSubscribed &&
@@ -282,7 +297,7 @@ class SubscriptionController extends BaseController {
       if (!initialized.isCompleted) {
         await initialize();
       }
-      if (subscription?.availableSubscriptions.isEmpty ?? true) {
+      if (availableSubscriptionInfo?.availableSubscriptions.isEmpty ?? true) {
         return;
       }
       if (isSubscribed) return;
@@ -308,48 +323,54 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  Future<String> getPaymentLink(String duration, {bool isPromo = false}) async {
+  Future<String> getPaymentLink(
+    SubscriptionDuration duration, {
+    bool isPromo = false,
+  }) async {
     final Requests req = Requests(
       choreoApiKey: Environment.choreoApiKey,
       accessToken: _pangeaController.userController.accessToken,
     );
     final String reqUrl = Uri.encodeFull(
-      "${PApiUrls.paymentLink}?pangea_user_id=${_pangeaController.matrixState.client.userID}&duration=$duration&redeem=$isPromo",
+      "${PApiUrls.paymentLink}?pangea_user_id=$userID&duration=${duration.value}&redeem=$isPromo",
     );
     final Response res = await req.get(url: reqUrl);
     final json = jsonDecode(res.body);
     String paymentLink = json["link"]["url"];
 
-    final String? email = await _pangeaController.userController.userEmail;
+    final String? email = await userController.userEmail;
     if (email != null) {
       paymentLink += "?prefilled_email=${Uri.encodeComponent(email)}";
     }
     return paymentLink;
   }
 
-  Future<void> redeemPromoCode(BuildContext context) async {
-    final List<String>? promoCode = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context)!.enterPromoCode,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
-      textFields: [const DialogTextField()],
-    );
-    if (promoCode == null || promoCode.single.isEmpty) return;
-    launchUrlString(
-      "${AppConfig.iosPromoCode}${promoCode.single}",
-    );
-  }
+  String? get defaultManagementURL =>
+      currentSubscriptionInfo?.currentSubscription
+          ?.defaultManagementURL(availableSubscriptionInfo?.appIds);
+}
+
+enum SubscriptionPeriodType {
+  normal,
+  trial,
+}
+
+enum SubscriptionDuration {
+  month,
+  year,
+}
+
+extension SubscriptionDurationExtension on SubscriptionDuration {
+  String get value => this == SubscriptionDuration.month ? "month" : "year";
 }
 
 class SubscriptionDetails {
-  double price;
-  String? duration;
-  Package? package;
-  String? appId;
+  final double price;
+  final SubscriptionDuration? duration;
+  final String? appId;
   final String id;
-  String? periodType = "normal";
+  SubscriptionPeriodType periodType;
+  Package? package;
 
   SubscriptionDetails({
     required this.price,
@@ -357,30 +378,35 @@ class SubscriptionDetails {
     this.duration,
     this.package,
     this.appId,
-    this.periodType,
+    this.periodType = SubscriptionPeriodType.normal,
   });
 
-  void makeTrial() => periodType = 'trial';
-  bool get isTrial => periodType == 'trial';
+  void makeTrial() => periodType = SubscriptionPeriodType.trial;
+  bool get isTrial => periodType == SubscriptionPeriodType.trial;
 
-  String displayPrice(BuildContext context) {
-    if (isTrial || price <= 0) {
-      return L10n.of(context)!.freeTrial;
-    }
-    return "\$${price.toStringAsFixed(2)}";
-  }
+  String displayPrice(BuildContext context) => isTrial || price <= 0
+      ? L10n.of(context)!.freeTrial
+      : "\$${price.toStringAsFixed(2)}";
 
   String displayName(BuildContext context) {
     if (isTrial) {
       return L10n.of(context)!.oneWeekTrial;
     }
     switch (duration) {
-      case ('month'):
+      case (SubscriptionDuration.month):
         return L10n.of(context)!.monthlySubscription;
-      case ('year'):
+      case (SubscriptionDuration.year):
         return L10n.of(context)!.yearlySubscription;
       default:
         return L10n.of(context)!.defaultSubscription;
     }
+  }
+
+  String? defaultManagementURL(SubscriptionAppIds? appIds) {
+    return appId == appIds?.androidId
+        ? AppConfig.googlePlayMangementUrl
+        : appId == appIds?.appleId
+            ? AppConfig.appleMangementUrl
+            : Environment.stripeManagementUrl;
   }
 }

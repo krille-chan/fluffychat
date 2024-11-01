@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class ConstructIdentifier {
   final String lemma;
@@ -165,110 +166,37 @@ class PracticeActivityRequest {
   }
 }
 
-class FreeResponse {
-  final String question;
-  final String correctAnswer;
-  final String gradingGuide;
-
-  FreeResponse({
-    required this.question,
-    required this.correctAnswer,
-    required this.gradingGuide,
-  });
-
-  factory FreeResponse.fromJson(Map<String, dynamic> json) {
-    return FreeResponse(
-      question: json['question'] as String,
-      correctAnswer: json['correct_answer'] as String,
-      gradingGuide: json['grading_guide'] as String,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'question': question,
-      'correct_answer': correctAnswer,
-      'grading_guide': gradingGuide,
-    };
-  }
-}
-
-class Listening {
-  final String audioUrl;
-  final String text;
-
-  Listening({required this.audioUrl, required this.text});
-
-  factory Listening.fromJson(Map<String, dynamic> json) {
-    return Listening(
-      audioUrl: json['audio_url'] as String,
-      text: json['text'] as String,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'audio_url': audioUrl,
-      'text': text,
-    };
-  }
-}
-
-class Speaking {
-  final String text;
-
-  Speaking({required this.text});
-
-  factory Speaking.fromJson(Map<String, dynamic> json) {
-    return Speaking(
-      text: json['text'] as String,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'text': text,
-    };
-  }
-}
-
 class PracticeActivityModel {
   final List<ConstructIdentifier> tgtConstructs;
   final String langCode;
   final String msgId;
   final ActivityTypeEnum activityType;
-  final MultipleChoice? multipleChoice;
-  final Listening? listening;
-  final Speaking? speaking;
-  final FreeResponse? freeResponse;
+  final ActivityContent content;
 
   PracticeActivityModel({
     required this.tgtConstructs,
     required this.langCode,
     required this.msgId,
     required this.activityType,
-    this.multipleChoice,
-    this.listening,
-    this.speaking,
-    this.freeResponse,
+    required this.content,
   });
 
-  String get question {
-    switch (activityType) {
-      case ActivityTypeEnum.multipleChoice:
-        return multipleChoice!.question;
-      case ActivityTypeEnum.listening:
-        return listening!.text;
-      case ActivityTypeEnum.speaking:
-        return speaking!.text;
-      case ActivityTypeEnum.freeResponse:
-        return freeResponse!.question;
-      default:
-        return '';
-    }
-  }
+  String get question => content.question;
 
   factory PracticeActivityModel.fromJson(Map<String, dynamic> json) {
+    // moving from multiple_choice to content as the key
+    // this is to make the model more generic
+    // here for backward compatibility
+    final Map<String, dynamic>? contentMap =
+        (json['content'] ?? json["multiple_choice"]) as Map<String, dynamic>?;
+
+    if (contentMap == null) {
+      Sentry.addBreadcrumb(
+        Breadcrumb(data: {"json": json}),
+      );
+      throw ("content is null in PracticeActivityModel.fromJson");
+    }
+
     return PracticeActivityModel(
       tgtConstructs: ((json['tgt_constructs'] ?? json['target_constructs'])
               as List)
@@ -283,27 +211,12 @@ class PracticeActivityModel {
                   e.string == json['activity_type'] as String ||
                   e.string.split('.').last == json['activity_type'] as String,
             ),
-      multipleChoice: json['multiple_choice'] != null
-          ? MultipleChoice.fromJson(
-              json['multiple_choice'] as Map<String, dynamic>,
-            )
-          : null,
-      listening: json['listening'] != null
-          ? Listening.fromJson(json['listening'] as Map<String, dynamic>)
-          : null,
-      speaking: json['speaking'] != null
-          ? Speaking.fromJson(json['speaking'] as Map<String, dynamic>)
-          : null,
-      freeResponse: json['free_response'] != null
-          ? FreeResponse.fromJson(
-              json['free_response'] as Map<String, dynamic>,
-            )
-          : null,
+      content: ActivityContent.fromJson(contentMap),
     );
   }
 
   RelevantSpanDisplayDetails? get relevantSpanDisplayDetails =>
-      multipleChoice?.spanDisplayDetails;
+      content.spanDisplayDetails;
 
   Map<String, dynamic> toJson() {
     return {
@@ -311,10 +224,7 @@ class PracticeActivityModel {
       'lang_code': langCode,
       'msg_id': msgId,
       'activity_type': activityType.string,
-      'multiple_choice': multipleChoice?.toJson(),
-      'listening': listening?.toJson(),
-      'speaking': speaking?.toJson(),
-      'free_response': freeResponse?.toJson(),
+      'content': content.toJson(),
     };
   }
 
@@ -328,10 +238,7 @@ class PracticeActivityModel {
         other.langCode == langCode &&
         other.msgId == msgId &&
         other.activityType == activityType &&
-        other.multipleChoice == multipleChoice &&
-        other.listening == listening &&
-        other.speaking == speaking &&
-        other.freeResponse == freeResponse;
+        other.content == content;
   }
 
   @override
@@ -340,10 +247,7 @@ class PracticeActivityModel {
         langCode.hashCode ^
         msgId.hashCode ^
         activityType.hashCode ^
-        multipleChoice.hashCode ^
-        listening.hashCode ^
-        speaking.hashCode ^
-        freeResponse.hashCode;
+        content.hashCode;
   }
 }
 
@@ -372,7 +276,7 @@ class RelevantSpanDisplayDetails {
     return RelevantSpanDisplayDetails(
       offset: json['offset'] as int,
       length: json['length'] as int,
-      displayInstructions: display ?? ActivityDisplayInstructionsEnum.hide,
+      displayInstructions: display ?? ActivityDisplayInstructionsEnum.nothing,
     );
   }
 
@@ -384,7 +288,6 @@ class RelevantSpanDisplayDetails {
     };
   }
 
-  // override operator == and hashCode
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

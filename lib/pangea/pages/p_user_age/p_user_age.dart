@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/age_limits.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/pages/p_user_age/p_user_age_view.dart';
 import 'package:fluffychat/pangea/utils/p_extension.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
@@ -11,7 +10,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../../utils/bot_name.dart';
 import '../../utils/error_handler.dart';
 
 class PUserAge extends StatefulWidget {
@@ -34,20 +32,7 @@ class PUserAgeController extends State<PUserAge> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () async {
-      if (!(await Matrix.of(context).client.hasBotDM)) {
-        Matrix.of(context)
-            .client
-            .startDirectChat(
-              BotName.byEnvironment,
-              enableEncryption: false,
-            )
-            .onError(
-              (error, stackTrace) =>
-                  ErrorHandler.logError(e: error, s: stackTrace),
-            );
-      }
-    });
+    pangeaController.startChatWithBotIfNotPresent();
   }
 
   String? dobValidator() {
@@ -91,6 +76,7 @@ class PUserAgeController extends State<PUserAge> {
           return profile;
         });
       }
+      pangeaController.subscriptionController.reinitialize();
       FluffyChatApp.router.go('/rooms');
     } catch (err, s) {
       setState(() {

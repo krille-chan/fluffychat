@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -6,7 +7,6 @@ import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -131,26 +131,38 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     if (!_fetchingTranslation &&
         repEvent == null &&
         selectionTranslation == null) {
-      return const CardErrorWidget();
+      return const CardErrorWidget(
+        error: "No translation found",
+        maxWidth: AppConfig.toolbarMinWidth,
+      );
     }
 
-    return Container(
-      padding: const EdgeInsets.all(8),
-      constraints: const BoxConstraints(minHeight: minCardHeight),
-      alignment: Alignment.center,
-      child: _fetchingTranslation
-          ? const ToolbarContentLoadingIndicator()
-          : Column(
+    final loadingTranslation =
+        (widget.selection != null && selectionTranslation == null) ||
+            (widget.selection == null && repEvent == null);
+
+    if (_fetchingTranslation || loadingTranslation) {
+      return const ToolbarContentLoadingIndicator();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.selection != null
-                    ? Text(
-                        selectionTranslation!,
-                        style: BotStyle.text(context),
-                      )
-                    : Text(
-                        repEvent!.text,
-                        style: BotStyle.text(context),
-                      ),
+                Text(
+                  widget.selection != null
+                      ? selectionTranslation!
+                      : repEvent!.text,
+                  style: BotStyle.text(context),
+                  textAlign: TextAlign.center,
+                ),
                 if (notGoingToTranslate && widget.selection == null)
                   InlineTooltip(
                     instructionsEnum: InstructionsEnum.l1Translation,
@@ -161,9 +173,11 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
                     instructionsEnum: InstructionsEnum.clickAgainToDeselect,
                     onClose: () => setState(() {}),
                   ),
-                // if (widget.selection != null)
               ],
             ),
+          ),
+        ],
+      ),
     );
   }
 }

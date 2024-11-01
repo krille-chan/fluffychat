@@ -51,6 +51,8 @@ class SettingsSubscriptionView extends StatelessWidget {
       ),
     ];
 
+    final isSubscribed = controller.subscriptionController.isSubscribed;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -63,13 +65,11 @@ class SettingsSubscriptionView extends StatelessWidget {
         child: MaxWidthBody(
           child: Column(
             children: [
-              if (controller.subscriptionController.isSubscribed &&
-                  !controller.showManagementOptions)
+              if (isSubscribed && !controller.showManagementOptions)
                 ManagementNotAvailableWarning(
                   controller: controller,
                 ),
-              if (!(controller.subscriptionController.isSubscribed) ||
-                  controller.isNewUserTrial)
+              if (!isSubscribed || controller.isNewUserTrial)
                 ChangeSubscription(controller: controller),
               if (controller.showManagementOptions) ...managementButtons,
             ],
@@ -90,13 +90,14 @@ class ManagementNotAvailableWarning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentSubscriptionInfo =
+        controller.subscriptionController.currentSubscriptionInfo;
+
     String getWarningText() {
       final DateFormat formatter = DateFormat('yyyy-MM-dd');
       if (controller.isNewUserTrial) {
         return L10n.of(context)!.trialExpiration(
-          formatter.format(
-            controller.subscriptionController.subscription!.expirationDate!,
-          ),
+          formatter.format(currentSubscriptionInfo!.expirationDate!),
         );
       }
       if (controller.currentSubscriptionAvailable) {
@@ -108,15 +109,11 @@ class ManagementNotAvailableWarning extends StatelessWidget {
         return warningText;
       }
       if (controller.currentSubscriptionIsPromotional) {
-        if (controller
-                .subscriptionController.subscription?.isLifetimeSubscription ??
-            false) {
+        if (currentSubscriptionInfo?.isLifetimeSubscription ?? false) {
           return L10n.of(context)!.promotionalSubscriptionDesc;
         }
         return L10n.of(context)!.promoSubscriptionExpirationDesc(
-          formatter.format(
-            controller.subscriptionController.subscription!.expirationDate!,
-          ),
+          formatter.format(currentSubscriptionInfo!.expirationDate!),
         );
       }
       return L10n.of(context)!.subscriptionManagementUnavailable;

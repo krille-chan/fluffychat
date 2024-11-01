@@ -120,6 +120,8 @@ class UserController extends BaseController {
   /// Initializes the user's profile by waiting for account data to load, reading in account
   /// data to profile, and migrating from the pangea profile if the account data is not present.
   Future<void> _initialize() async {
+    // wait for account data to load
+    // as long as it's not null, then this we've already migrated the profile
     await _pangeaController.matrixState.client.waitForAccountData();
   }
 
@@ -173,13 +175,13 @@ class UserController extends BaseController {
   }
 
   /// Returns a boolean value indicating whether the user is currently in the trial window.
-  bool get inTrialWindow {
+  bool inTrialWindow({int trialDays = 7}) {
     final DateTime? createdAt = profile.userSettings.createdAt;
     if (createdAt == null) {
       return false;
     }
     return createdAt.isAfter(
-      DateTime.now().subtract(const Duration(days: 7)),
+      DateTime.now().subtract(Duration(days: trialDays)),
     );
   }
 

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/download_chat.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -154,27 +153,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               case ChatPopupMenuActions.learningSettings:
                 showDialog(
                   context: context,
-                  builder: (c) {
-                    return kIsWeb
-                        ? Dialog(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(
-                                maxWidth: 600,
-                                maxHeight: 600,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20.0),
-                                child: const SettingsLearning(isPopup: true),
-                              ),
-                            ),
-                          )
-                        : Dialog.fullscreen(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(maxWidth: 600),
-                              child: const SettingsLearning(isPopup: true),
-                            ),
-                          );
-                  },
+                  builder: (c) => const SettingsLearning(),
                 );
                 break;
               // Pangea#

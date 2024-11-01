@@ -30,7 +30,7 @@ class IconNumberWidget extends StatelessWidget {
           ),
           onPressed: onPressed,
         ),
-        const SizedBox(width: 8),
+        const SizedBox(width: 5),
         Text(
           number.toString(),
           style: TextStyle(

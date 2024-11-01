@@ -21,11 +21,18 @@ class AudioPlayerWidget extends StatefulWidget {
   final Event? event;
   final PangeaAudioFile? matrixFile;
   final bool autoplay;
+  final Function(bool)? setIsPlayingAudio;
   // Pangea#
 
   static String? currentId;
 
-  static const int wavesCount = 40;
+  // #Pangea
+  // static const int wavesCount = 40;
+  static const int wavesCount = kIsWeb ? 100 : 40;
+
+  final int? sectionStartMS;
+  final int? sectionEndMS;
+  // Pangea#
 
   const AudioPlayerWidget(
     this.event, {
@@ -33,6 +40,9 @@ class AudioPlayerWidget extends StatefulWidget {
     // #Pangea
     this.matrixFile,
     this.autoplay = false,
+    this.sectionStartMS,
+    this.sectionEndMS,
+    this.setIsPlayingAudio,
     // Pangea#
     super.key,
   });
@@ -71,6 +81,24 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
     super.dispose();
   }
+
+  // #Pangea
+  // @override
+  // void didUpdateWidget(covariant oldWidget) {
+  //   if ((oldWidget.sectionEndMS != widget.sectionEndMS) ||
+  //       (oldWidget.sectionStartMS != widget.sectionStartMS)) {
+  //     debugPrint('selection changed');
+  //     if (widget.sectionStartMS != null) {
+  //       audioPlayer?.seek(Duration(milliseconds: widget.sectionStartMS!));
+  //       audioPlayer?.play();
+  //     } else {
+  //       audioPlayer?.stop();
+  //       audioPlayer?.seek(null);
+  //     }
+  //   }
+  //   super.didUpdateWidget(oldWidget);
+  // }
+  // Pangea#
 
   Future<void> _downloadAction() async {
     // #Pangea
@@ -160,7 +188,16 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                 AudioPlayerWidget.wavesCount)
             .round();
       });
+      // #Pangea
+      // if (widget.sectionStartMS != null &&
+      //     widget.sectionEndMS != null &&
+      //     state.inMilliseconds.toDouble() >= widget.sectionEndMS!) {
+      //   audioPlayer.stop();
+      //   audioPlayer.seek(Duration(milliseconds: widget.sectionStartMS!));
+      // } else
       if (state.inMilliseconds.toDouble() == maxPosition) {
+        // if (state.inMilliseconds.toDouble() == maxPosition) {
+        // Pangea#
         audioPlayer.stop();
         audioPlayer.seek(null);
       }
@@ -169,8 +206,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       if (max == null || max == Duration.zero) return;
       setState(() => maxPosition = max.inMilliseconds.toDouble());
     });
-    onPlayerStateChanged ??=
-        audioPlayer.playingStream.listen((_) => setState(() {}));
+    onPlayerStateChanged ??= audioPlayer.playingStream.listen(
+      (isPlaying) => setState(() {
+        // #Pangea
+        widget.setIsPlayingAudio?.call(isPlaying);
+        // Pangea#
+      }),
+    );
     final audioFile = this.audioFile;
     if (audioFile != null) {
       audioPlayer.setFilePath(audioFile.path);
@@ -194,6 +236,11 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       }
       // Pangea#
     }
+    // #Pangea
+    // if (widget.sectionStartMS != null) {
+    //   audioPlayer.seek(Duration(milliseconds: widget.sectionStartMS!));
+    // }
+    // Pangea#
     audioPlayer.play().onError(
           ErrorReporter(context, 'Unable to play audio message')
               .onErrorCallback,
@@ -311,6 +358,17 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
     final statusText = this.statusText ??= _durationString ?? '00:00';
     final audioPlayer = this.audioPlayer;
+
+    // #Pangea
+    final msPerWave = (maxPosition / AudioPlayerWidget.wavesCount);
+    final int? startWave = widget.sectionStartMS != null && msPerWave > 0
+        ? (widget.sectionStartMS! / msPerWave).floor()
+        : null;
+    final int? endWave = widget.sectionEndMS != null && msPerWave > 0
+        ? (widget.sectionEndMS! / msPerWave).ceil()
+        : null;
+    // Pangea#
+
     return Padding(
       // #Pangea
       // padding: const EdgeInsets.all(12.0),
@@ -352,44 +410,98 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           // #Pangea
           // const SizedBox(width: 8),
           const SizedBox(width: 5),
-          // Pangea#
+          // Row(
+          //   mainAxisSize: MainAxisSize.min,
+          //   children: [
+          //     for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
+          //       GestureDetector(
+          //         onTapDown: (_) => audioPlayer?.seek(
+          //           Duration(
+          //             milliseconds:
+          //                 (maxPosition / AudioPlayerWidget.wavesCount).round() *
+          //                     i,
+          //           ),
+          //         ),
+          //         child: Container(
+          //           height: 32,
+          //           color: widget.color.withAlpha(0),
+          //           alignment: Alignment.center,
+          //           child: Opacity(
+          //             opacity: currentPosition > i ? 1 : 0.5,
+          //             child: Container(
+          //               margin: const EdgeInsets.symmetric(horizontal: 1),
+          //               decoration: BoxDecoration(
+          //                 color: widget.color,
+          //                 borderRadius: BorderRadius.circular(2),
+          //               ),
+          //               // #Pangea
+          //               // width: 2,
+          //               width: 1,
+          //               // Pangea#
+          //               height: 32 * (waveform[i] / 1024),
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //   ],
+          // ),
+          // const SizedBox(width: 8),
           Row(
-            mainAxisSize: MainAxisSize.min,
             children: [
               for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
-                GestureDetector(
-                  onTapDown: (_) => audioPlayer?.seek(
-                    Duration(
-                      milliseconds:
-                          (maxPosition / AudioPlayerWidget.wavesCount).round() *
-                              i,
-                    ),
-                  ),
-                  child: Container(
-                    height: 32,
-                    color: widget.color.withAlpha(0),
-                    alignment: Alignment.center,
-                    child: Opacity(
-                      opacity: currentPosition > i ? 1 : 0.5,
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 1),
-                        decoration: BoxDecoration(
-                          color: widget.color,
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                        // #Pangea
-                        // width: 2,
-                        width: 1,
-                        // Pangea#
-                        height: 32 * (waveform[i] / 1024),
+                Builder(
+                  builder: (context) {
+                    final double barOpacity = currentPosition > i ? 1 : 0.5;
+                    return GestureDetector(
+                      onTapDown: (_) {
+                        audioPlayer?.seek(
+                          Duration(
+                            milliseconds:
+                                (maxPosition / AudioPlayerWidget.wavesCount)
+                                        .round() *
+                                    i,
+                          ),
+                        );
+                      },
+                      child: Stack(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 0.5,
+                            ),
+                            decoration: BoxDecoration(
+                              color: widget.color.withOpacity(barOpacity),
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                            height: 32 * (waveform[i] / 1024),
+                            width: 3,
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
+                    );
+                    // return Container(
+                    //   height: 32,
+                    //   width: 2,
+                    //   alignment: Alignment.center,
+                    //   child: Opacity(
+                    //     opacity: barOpacity,
+                    //     child: Container(
+                    //       margin: const EdgeInsets.symmetric(
+                    //         horizontal: 1,
+                    //       ),
+                    //       decoration: BoxDecoration(
+                    //         color: widget.color,
+                    //         borderRadius: BorderRadius.circular(2),
+                    //       ),
+                    //       height: 32 * (waveform[i] / 1024),
+                    //       width: 2,
+                    //     ),
+                    //   ),
+                    // );
+                  },
                 ),
             ],
           ),
-          // #Pangea
-          // const SizedBox(width: 8),
           const SizedBox(width: 5),
           // SizedBox(
           //   width: 36,

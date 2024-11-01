@@ -2563,7 +2563,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "interactiveTranslatorAllowedDesc": "Students can choose whether to use translation assistance in space group chats in Main Menu > My Learning Settings.",
+  "interactiveTranslatorAllowedDesc": "Students can choose whether to use translation assistance in space group chats in Main Menu > Learning Settings.",
   "@interactiveTranslatorAllowedDesc": {
     "type": "text",
     "placeholders": {}
@@ -3030,9 +3030,9 @@
   "errorDisableLanguageAssistanceClassDesc": "Translation assistance and grammar assistance are turned off for the space that this chat is in.",
   "itIsDisabled": "Interactive Translation is disabled",
   "igcIsDisabled": "Interactive Grammar Checking is disabled",
-  "goToLearningSettings": "Go to My Learning Settings",
+  "goToLearningSettings": "Go to Learning Settings",
   "error405Title": "Languages not set",
-  "error405Desc": "Please set your languages in Main Menu > My Learning Settings.",
+  "error405Desc": "Please set your languages in Main Menu > Learning Settings.",
   "loginOrSignup": "Sign in with",
   "@loginOrSignup": {
     "type": "text",
@@ -3095,7 +3095,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "learningSettings": "My Learning Settings",
+  "learningSettings": "Learning settings",
   "classNameRequired": "Please enter a space name",
   "@classNameRequired": {
     "type": "text",
@@ -3656,11 +3656,6 @@
   "unknownPrivateChat": "Unknown private chat",
   "copyClassCodeDesc": "Users who are already in the app can 'Join space' via the main menu.",
   "addToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
-  "@addToSpaceDesc": {
-    "placeholders": {
-      "roomtype": {}
-    }
-  },
   "invitedToSpace": "{user} has invited you to join a space: {space}! Do you wish to accept?",
   "@invitedToSpace": {
     "placeholders": {
@@ -3904,7 +3899,6 @@
   "listen": "Listen",
   "addConversationBot": "Enable Conversation Bot",
   "addConversationBotDesc": "Add a bot to this chat",
-  "convoBotSettingsTitle": "Conversation Bot Settings",
   "convoBotSettingsDescription": "Edit conversation topic and difficulty",
   "enterAConversationTopic": "Enter a conversation topic",
   "conversationTopic": "Conversation topic",
@@ -4009,7 +4003,7 @@
   "accuracy": "Accuracy",
   "points": "Points",
   "noPaymentInfo": "No payment info necessary!",
-  "conversationBotModeSelectDescription": "Bot mode",
+  "conversationBotModeSelectDescription": "Chat activity",
   "conversationBotModeSelectOption_discussion": "Discussion",
   "conversationBotModeSelectOption_custom": "Custom",
   "conversationBotModeSelectOption_conversation": "Conversation",
@@ -4017,9 +4011,9 @@
   "conversationBotModeSelectOption_storyGame": "Story Game",
   "conversationBotDiscussionZone_title": "Discussion Settings",
   "conversationBotDiscussionZone_discussionTopicLabel": "Discussion Topic",
-  "conversationBotDiscussionZone_discussionTopicPlaceholder": "Set Discussion Topic",
+  "conversationBotDiscussionZone_discussionTopicPlaceholder": "Set discussion topic",
   "conversationBotDiscussionZone_discussionKeywordsLabel": "Discussion Keywords",
-  "conversationBotDiscussionZone_discussionKeywordsPlaceholder": "Set Discussion Keywords",
+  "conversationBotDiscussionZone_discussionKeywordsPlaceholder": "Set discussion keywords",
   "conversationBotDiscussionZone_discussionKeywordsHintText": "Comma separated list of keywords to guide the discussion",
   "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel": "Send discussion prompt on a schedule",
   "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Hours between discussion prompts",
@@ -4030,7 +4024,7 @@
   "conversationBotCustomZone_customSystemPromptPlaceholder": "Set custom system prompt",
   "conversationBotCustomZone_customSystemPromptEmptyError": "Missing custom system prompt",
   "conversationBotCustomZone_customTriggerReactionEnabledLabel": "Responds on ⏩ reaction",
-  "botConfig": "Conversation Bot Settings",
+  "botConfig": "Chat settings",
   "addConversationBotDialogTitleInvite": "Confirm inviting conversation bot",
   "addConversationBotButtonInvite": "Invite",
   "addConversationBotDialogInviteConfirmation": "Invite",
@@ -4038,7 +4032,7 @@
   "addConversationBotButtonRemove": "Remove",
   "addConversationBotDialogRemoveConfirmation": "Remove",
   "conversationBotConfigConfirmChange": "Confirm",
-  "conversationBotStatus": "Bot Status",
+  "conversationBotStatus": "Invite bot",
   "conversationBotTextAdventureZone_title": "Text Adventure",
   "conversationBotTextAdventureZone_instructionLabel": "Game Master Instructions",
   "conversationBotTextAdventureZone_instructionPlaceholder": "Set game master instructions",
@@ -4060,39 +4054,21 @@
   "tooltipInstructionsMobileBody": "Press and hold items to view tooltips.",
   "tooltipInstructionsBrowserBody": "Hover over items to view tooltips.",
   "addSpaceToSpaceDescription": "Select a space to add as a parent",
-  "roomCapacity": "{roomType} Capacity",
-  "@roomCapacity": {
-    "type": "text",
-    "placeholders": {
-      "roomType": {}
-    }
-  },
+  "chatCapacity": "Chat capacity",
+  "spaceCapacity": "Space capacity",
   "roomFull": "This room is already at capacity.",
   "topicNotSet": "The topic has not been set.",
-  "capacityNotSet": "This room has no capacity limit.",
-  "roomCapacityHasBeenChanged": "{roomType} capacity changed",
-  "@roomCapacityHasBeenChanged": {
-    "type": "text",
-    "placeholders": {
-      "roomType": {}
-    }
-  },
-  "roomExceedsCapacity": "Room exceeds capacity. Consider removing students from the room, or raising the capacity.",
-  "capacitySetTooLow": "{roomType} capacity cannot be set below the current number of non-admins.",
-  "@capacitySetTooLow": {
-    "type": "text",
-    "placeholders": {
-      "roomType": {}
-    }
-  },
-  "roomCapacityExplanation": "{roomType} capacity limits the number of non-admins allowed in a room.",
+  "chatCapacityNotSet": "This chat has no capacity limit.",
+  "spaceCapacityNotSet": "This space has no capacity limit.",
+  "chatCapacityHasBeenChanged": "Chat capacity changed",
+  "spaceCapacityHasBeenChanged": "Space capacity changed",
+  "chatCapacitySetTooLow": "Chat capacity cannot be set below the current number of non-admins.",
+  "spaceCapacitySetTooLow": "Space capacity cannot be set below the current number of non-admins.",
+  "chatCapacityExplanation": "Chat capacity limits the number of non-admins allowed in a chat.",
+  "spaceCapacityExplanation": "Space capacity limits the number of non-admins allowed in a space.",
+  "chatExceedsCapacity": "This chat exceeds its capacity.",
+  "spaceExceedsCapacity": "This space exceeds its capacity.",
   "tooManyRequest": "Too many request, please try again later.",
-  "@roomCapacityExplanation": {
-    "type": "text",
-    "placeholders": {
-      "roomType": {}
-    }
-  },
   "enterNumber": "Please enter a whole number value.",
   "buildTranslation": "Build your translation from the choices above",
   "noDatabaseEncryption": "Database encryption is not supported on this platform",
@@ -4115,14 +4091,14 @@
     "placeholders": {}
   },
   "addChatToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
-  "addSpaceToSpaceDesc": "Adding a sub space to space will make the sub space appear in the main space''s chat list.",
+  "addSpaceToSpaceDesc": "Adding a sub space to space will make the sub space appear in the main space's chat list.",
   "spaceAnalytics": "Space Analytics",
   "changeAnalyticsLanguage": "Change Analytics Language",
   "suggestToSpace": "Suggest this space",
-  "suggestToSpaceDesc": "Suggested sub spaces will appear in their main space''s chat list",
+  "suggestToSpaceDesc": "Suggested sub spaces will appear in their main space's chat list",
   "practice": "Practice",
   "noLanguagesSet": "No languages set",
-  "noActivitiesFound": "That''s enough on this for now! Come back later for more.",
+  "noActivitiesFound": "That's enough on this for now! Come back later for more.",
   "hintTitle": "Hint:",
   "speechToTextBody": "See how well you did by looking at your Accuracy and Words Per Minute scores",
   "previous": "Previous",
@@ -4226,19 +4202,23 @@
   "discoverHomeservers": "Discover homeservers",
   "whatIsAHomeserver": "What is a homeserver?",
   "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
-  "doesNotSeemToBeAValidHomeserver": "Doesn''t seem to be a compatible homeserver. Wrong URL?",
+  "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
   "grammar": "Grammar",
   "contactHasBeenInvitedToTheChat": "Contact has been invited to the chat",
   "inviteChat": "📨 Invite chat",
   "chatName": "Chat name",
   "reportContentIssueTitle": "Report content issue",
   "feedback": "Optional feedback",
-  "reportContentIssueDescription": "Uh oh! AI can faciliate personalized learning experiences but... also hallucinates. Please provide any feedback you have and we''ll try again.",
+  "reportContentIssueDescription": "Uh oh! AI can faciliate personalized learning experiences but... also hallucinates. Please provide any feedback you have and we'll try again.",
   "clickTheWordAgainToDeselect": "Click the selected word to deselect it.",
   "l2SupportNa": "Not Available",
   "l2SupportAlpha": "Alpha",
   "l2SupportBeta": "Beta",
   "l2SupportFull": "Full",
+  "voiceNotAvailable": "It looks like you don't have a voice installed for this language.",
+  "openVoiceSettings": "Click here to open voice settings",
+  "playAudio": "Play",
+  "stop": "Stop",
   "grammarCopySCONJ": "Subordinating Conjunction",
   "grammarCopyNUM": "Number",
   "grammarCopyVERB": "Verb",
@@ -4323,6 +4303,7 @@
   "grammarCopyAccDat": "Accusative, Dative",
   "grammarCopyInf": "Infinitive",
   "grammarCopyLong": "Long",
+  "grammarCopyLoc": "Locative",
   "grammarCopyInd": "Indicative",
   "grammarCopyCmp": "Comparative",
   "grammarCopyRelative_case": "Relative Case",
@@ -4352,9 +4333,16 @@
   "grammarCopyNumber": "Number",
   "grammarCopyConjType": "Conjunction Type",
   "grammarCopyPolarity": "Polarity",
-  "grammarCopyNumberPsor": "Possessor''s Number",
+  "grammarCopyNumberPsor": "Possessor's Number",
   "grammarCopyCase": "Case",
   "grammarCopyDefinite": "Definiteness",
   "grammarCopyNumForm": "Numeral Form",
-  "grammarCopyUnknown": "Unknown"
+  "grammarCopyUnknown": "Unknown",
+  "enterPrompt": "Please enter a system prompt",
+  "selectBotLanguage": "Select bot language",
+  "chooseVoice": "Choose a voice",
+  "enterLanguageLevel": "Please enter a language level",
+  "enterDiscussionTopic": "Please enter a discussion topic",
+  "selectBotChatMode": "Select chat mode",
+  "messageNotInTargetLang": "Message not in target language"
 }

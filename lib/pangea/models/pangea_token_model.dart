@@ -128,8 +128,6 @@ class PangeaToken {
           lemma: lemma.text,
           type: ConstructTypeEnum.vocab,
         ),
-        xp: 0,
-        lastUsed: null,
       ),
     );
 
@@ -140,8 +138,6 @@ class PangeaToken {
             lemma: morph.key,
             type: ConstructTypeEnum.morph,
           ),
-          xp: 0,
-          lastUsed: null,
         ),
       );
     }

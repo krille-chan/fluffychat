@@ -36,15 +36,14 @@ enum RCPlatform {
   apple,
 }
 
-class SubscriptionPlatform {
-  RCPlatform currentPlatform = kIsWeb
+extension RCPlatformExtension on RCPlatform {
+  RCPlatform get currentPlatform => kIsWeb
       ? RCPlatform.stripe
       : Platform.isAndroid
           ? RCPlatform.android
           : RCPlatform.apple;
 
-  @override
-  String toString() {
+  String get string {
     return currentPlatform == RCPlatform.stripe
         ? 'stripe'
         : currentPlatform == RCPlatform.android

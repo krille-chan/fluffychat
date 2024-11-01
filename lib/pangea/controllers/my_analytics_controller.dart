@@ -21,8 +21,8 @@ enum AnalyticsUpdateType { server, local }
 /// 2) constructs used by the user, both in sending messages and doing practice activities
 class MyAnalyticsController extends BaseController<AnalyticsStream> {
   late PangeaController _pangeaController;
-  CachedStreamController<AnalyticsUpdateType> analyticsUpdateStream =
-      CachedStreamController<AnalyticsUpdateType>();
+  CachedStreamController<AnalyticsUpdate> analyticsUpdateStream =
+      CachedStreamController<AnalyticsUpdate>();
   StreamSubscription<AnalyticsStream>? _analyticsStream;
   Timer? _updateTimer;
 
@@ -237,11 +237,18 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
     final int newLevel = _pangeaController.analytics.level;
     newLevel > prevLevel
         ? sendLocalAnalyticsToAnalyticsRoom()
-        : analyticsUpdateStream.add(AnalyticsUpdateType.local);
+        : analyticsUpdateStream.add(
+            AnalyticsUpdate(AnalyticsUpdateType.local),
+          );
   }
 
   /// Clears the local cache of recently sent constructs. Called before updating analytics
-  void clearMessagesSinceUpdate() {
+  void clearMessagesSinceUpdate({clearDrafts = false}) {
+    if (clearDrafts) {
+      _pangeaController.pStoreService.delete(PLocalKey.messagesSinceUpdate);
+      return;
+    }
+
     final localCache = _pangeaController.analytics.messagesSinceUpdate;
     final draftKeys = localCache.keys.where((key) => key.startsWith('draft'));
     if (draftKeys.isEmpty) {
@@ -281,7 +288,9 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
   /// for the completion of the previous update and returns. Otherwise, it creates a new [_updateCompleter] and
   /// proceeds with the update process. If the update is successful, it clears any messages that were received
   /// since the last update and notifies the [analyticsUpdateStream].
-  Future<void> sendLocalAnalyticsToAnalyticsRoom() async {
+  Future<void> sendLocalAnalyticsToAnalyticsRoom({
+    onLogout = false,
+  }) async {
     if (_pangeaController.matrixState.client.userID == null) return;
     if (!(_updateCompleter?.isCompleted ?? true)) {
       await _updateCompleter!.future;
@@ -293,7 +302,12 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
       clearMessagesSinceUpdate();
 
       lastUpdated = DateTime.now();
-      analyticsUpdateStream.add(AnalyticsUpdateType.server);
+      analyticsUpdateStream.add(
+        AnalyticsUpdate(
+          AnalyticsUpdateType.server,
+          isLogout: onLogout,
+        ),
+      );
     } catch (err, s) {
       ErrorHandler.logError(
         e: err,
@@ -339,4 +353,11 @@ class AnalyticsStream {
     required this.roomId,
     required this.constructs,
   });
+}
+
+class AnalyticsUpdate {
+  final AnalyticsUpdateType type;
+  final bool isLogout;
+
+  AnalyticsUpdate(this.type, {this.isLogout = false});
 }

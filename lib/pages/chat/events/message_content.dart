@@ -123,7 +123,6 @@ class MessageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // debugger(when: overlayController != null);
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
     final buttonTextColor = textColor;
     switch (event.type) {
@@ -307,7 +306,6 @@ class MessageContent extends StatelessWidget {
               height: 1.3,
             );
 
-            // debugger(when: overlayController != null);
             if (overlayController != null && pangeaMessageEvent != null) {
               return OverlayMessageText(
                 pangeaMessageEvent: pangeaMessageEvent!,

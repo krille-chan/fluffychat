@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
@@ -26,66 +25,60 @@ class PracticeActivityRecordController {
   static const int maxStoredEvents = 100;
   static final Map<int, _RecordCacheItem> _cache = {};
   late final PangeaController _pangeaController;
-  Timer? _cacheClearTimer;
 
-  PracticeActivityRecordController(this._pangeaController) {
-    _initializeCacheClearing();
+  PracticeActivityRecordController(this._pangeaController);
+
+  int getCompletedActivityCount(String messageID) {
+    return _completedActivities[messageID] ?? 0;
   }
 
-  LinkedHashMap<String, int> get completedActivities {
-    try {
-      final dynamic locallySaved = _pangeaController.pStoreService.read(
-        PLocalKey.completedActivities,
-      );
-      if (locallySaved == null) return LinkedHashMap<String, int>();
-      try {
-        final LinkedHashMap<String, int> cache =
-            LinkedHashMap<String, int>.from(locallySaved);
-        return cache;
-      } catch (err) {
-        _pangeaController.pStoreService.delete(
-          PLocalKey.completedActivities,
-        );
-        return LinkedHashMap<String, int>();
-      }
-    } catch (exception, stackTrace) {
-      ErrorHandler.logError(
-        e: PangeaWarningError(
-          "Failed to get completed activities from cache: $exception",
-        ),
-        s: stackTrace,
-        m: 'Failed to get completed activities from cache',
-      );
-      return LinkedHashMap<String, int>();
-    }
-  }
+  final LinkedHashMap<String, int> _completedActivities =
+      LinkedHashMap<String, int>();
+
+  // LinkedHashMap<String, int> get _completedActivities {
+  //   try {
+  //     final dynamic locallySaved = _pangeaController.pStoreService.read(
+  //       PLocalKey.completedActivities,
+  //     );
+  //     if (locallySaved == null) return LinkedHashMap<String, int>();
+  //     try {
+  //       final LinkedHashMap<String, int> cache =
+  //           LinkedHashMap<String, int>.from(locallySaved);
+  //       return cache;
+  //     } catch (err) {
+  //       _pangeaController.pStoreService.delete(
+  //         PLocalKey.completedActivities,
+  //       );
+  //       return LinkedHashMap<String, int>();
+  //     }
+  //   } catch (exception, stackTrace) {
+  //     ErrorHandler.logError(
+  //       e: PangeaWarningError(
+  //         "Failed to get completed activities from cache: $exception",
+  //       ),
+  //       s: stackTrace,
+  //       m: 'Failed to get completed activities from cache',
+  //     );
+  //     return LinkedHashMap<String, int>();
+  //   }
+  // }
 
   Future<void> completeActivity(String messageID) async {
-    final LinkedHashMap<String, int> currentCache = completedActivities;
-    final numCompleted = currentCache[messageID] ?? 0;
-    currentCache[messageID] = numCompleted + 1;
+    final numCompleted = _completedActivities[messageID] ?? 0;
+    _completedActivities[messageID] = numCompleted + 1;
+    // final LinkedHashMap<String, int> currentCache = _completedActivities;
+    // final numCompleted = currentCache[messageID] ?? 0;
+    // currentCache[messageID] = numCompleted + 1;
 
-    if (currentCache.length > maxStoredEvents) {
-      currentCache.remove(currentCache.keys.first);
-    }
+    // if (currentCache.length > maxStoredEvents) {
+    //   currentCache.remove(currentCache.keys.first);
+    // }
 
-    await _pangeaController.pStoreService.save(
-      PLocalKey.completedActivities,
-      currentCache,
-    );
-  }
-
-  void _initializeCacheClearing() {
-    const duration = Duration(minutes: 2);
-    _cacheClearTimer = Timer.periodic(duration, (Timer t) => _clearCache());
-  }
-
-  void _clearCache() {
-    _cache.clear();
-  }
-
-  void dispose() {
-    _cacheClearTimer?.cancel();
+    // await _pangeaController.pStoreService.save(
+    //   PLocalKey.completedActivities,
+    //   currentCache,
+    // );
+    debugPrint("completed activities is now: $_completedActivities");
   }
 
   /// Sends a practice activity record to the server and returns the corresponding event.

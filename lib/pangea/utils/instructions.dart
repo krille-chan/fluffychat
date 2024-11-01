@@ -80,7 +80,7 @@ class InstructionsController {
     }
     _instructionsShown[key.toString()] = true;
 
-    if (key.toggledOff(context)) {
+    if (key.toggledOff()) {
       return;
     }
     if (L10n.of(context) == null) {
@@ -94,36 +94,36 @@ class InstructionsController {
     final botStyle = BotStyle.text(context);
     Future.delayed(
       const Duration(seconds: 1),
-      () => OverlayUtil.showPositionedCard(
-        context: context,
-        backDropToDismiss: false,
-        cardToShow: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CardHeader(
-              text: key.title(context),
-              botExpression: BotExpression.idle,
-              onClose: () => {_instructionsClosed[key.toString()] = true},
-            ),
-            const SizedBox(height: 10.0),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Text(
-                    key.body(context),
-                    style: botStyle,
-                  ),
+      () {
+        if (!context.mounted) return;
+        OverlayUtil.showPositionedCard(
+          context: context,
+          backDropToDismiss: false,
+          cardToShow: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CardHeader(
+                text: key.title(L10n.of(context)!),
+                botExpression: BotExpression.idle,
+                onClose: () => {_instructionsClosed[key.toString()] = true},
+              ),
+              const SizedBox(height: 10.0),
+              Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: Text(
+                  key.body(L10n.of(context)!),
+                  style: botStyle,
                 ),
               ),
-            ),
-            if (showToggle) InstructionsToggle(instructionsKey: key),
-          ],
-        ),
-        cardSize: const Size(300.0, 300.0),
-        transformTargetId: transformTargetKey,
-        closePrevOverlay: false,
-      ),
+              if (showToggle) InstructionsToggle(instructionsKey: key),
+            ],
+          ),
+          maxHeight: 300,
+          maxWidth: 300,
+          transformTargetId: transformTargetKey,
+          closePrevOverlay: false,
+        );
+      },
     );
   }
 }
@@ -155,7 +155,7 @@ class InstructionsToggleState extends State<InstructionsToggle> {
     return SwitchListTile.adaptive(
       activeColor: AppConfig.activeToggleColor,
       title: Text(L10n.of(context)!.doNotShowAgain),
-      value: widget.instructionsKey.toggledOff(context),
+      value: widget.instructionsKey.toggledOff(),
       onChanged: ((value) async {
         pangeaController.instructions.setToggledOff(
           widget.instructionsKey,

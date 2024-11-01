@@ -5,7 +5,6 @@ import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
@@ -15,7 +14,6 @@ class LanguageRepo {
   static Future<List<LanguageModel>> fetchLanguages() async {
     final Requests req = Requests(
       choreoApiKey: Environment.choreoApiKey,
-      accessToken: MatrixState.pangeaController.userController.accessToken,
     );
     final Response res = await req.get(url: PApiUrls.getLanguages);
 

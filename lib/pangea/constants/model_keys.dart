@@ -24,7 +24,7 @@ class ModelKey {
   // making this a random string so that it's harder to guess
   static const String activatedTrialKey = '7C4EuKIsph';
   static const String autoPlayMessages = 'autoPlayMessages';
-  static const String itAutoPlay = 'itAutoPlay';
+  static const String itAutoPlay = 'autoPlayIT';
 
   static const String clientClassCity = "city";
   static const String clientClassCountry = "country";
@@ -120,6 +120,9 @@ class ModelKey {
 
   static const String textAdventureGameMasterInstructions =
       "text_adventure_game_master_instructions";
+
+  static const String targetLanguage = "target_language";
+  static const String targetVoice = "target_voice";
 
   static const String prevEventId = "prev_event_id";
   static const String prevLastUpdated = "prev_last_updated";

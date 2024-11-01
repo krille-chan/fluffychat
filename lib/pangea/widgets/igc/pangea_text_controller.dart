@@ -47,23 +47,35 @@ class PangeaTextController extends TextEditingController {
       debugger(when: kDebugMode);
       return;
     }
-    final CanSendStatus canSendStatus =
-        choreographer.pangeaController.subscriptionController.canSendStatus;
-    if (canSendStatus == CanSendStatus.showPaywall &&
+
+    // show the paywall if appropriate
+    if (choreographer
+                .pangeaController.subscriptionController.subscriptionStatus ==
+            SubscriptionStatus.showPaywall &&
         !choreographer.isFetching &&
         text.isNotEmpty) {
       OverlayUtil.showPositionedCard(
         context: context,
-        cardToShow: const PaywallCard(),
-        cardSize: const Size(325, 325),
+        cardToShow: PaywallCard(
+          chatController: choreographer.chatController,
+        ),
+        maxHeight: 325,
+        maxWidth: 325,
         transformTargetId: choreographer.inputTransformTargetKey,
       );
     }
 
+    // if there is no igc text data, then don't do anything
     if (choreographer.igc.igcTextData == null) return;
 
     // debugPrint(
     //     "onInputTap matches are ${choreographer.igc.igcTextData?.matches.map((e) => e.match.rule.id).toList().toString()}");
+
+    // if user is just trying to get their cursor into the text input field to add soemthing,
+    // then don't interrupt them
+    if (selection.baseOffset >= text.length) {
+      return;
+    }
 
     final int tokenIndex = choreographer.igc.igcTextData!.tokenIndexByOffset(
       selection.baseOffset,
@@ -78,7 +90,7 @@ class PangeaTextController extends TextEditingController {
 
     // if autoplay on and it start then just start it
     if (matchIndex != -1 &&
-        choreographer.itAutoPlayEnabled &&
+        // choreographer.itAutoPlayEnabled &&
         choreographer.igc.igcTextData!.matches[matchIndex].isITStart) {
       return choreographer.onITStart(
         choreographer.igc.igcTextData!.matches[matchIndex],
@@ -112,10 +124,11 @@ class PangeaTextController extends TextEditingController {
     if (cardToShow != null) {
       OverlayUtil.showPositionedCard(
         context: context,
-        cardSize: matchIndex != -1 &&
+        maxHeight: matchIndex != -1 &&
                 choreographer.igc.igcTextData!.matches[matchIndex].isITStart
-            ? const Size(350, 260)
-            : const Size(350, 400),
+            ? 260
+            : 400,
+        maxWidth: 350,
         cardToShow: cardToShow,
         transformTargetId: choreographer.inputTransformTargetKey,
       );
@@ -143,9 +156,9 @@ class PangeaTextController extends TextEditingController {
     //   debugPrint("composing after ${value.composing.textAfter(value.text)}");
     // }
 
-    final CanSendStatus canSendStatus =
-        choreographer.pangeaController.subscriptionController.canSendStatus;
-    if (canSendStatus == CanSendStatus.showPaywall &&
+    final SubscriptionStatus canSendStatus = choreographer
+        .pangeaController.subscriptionController.subscriptionStatus;
+    if (canSendStatus == SubscriptionStatus.showPaywall &&
         !choreographer.isFetching &&
         text.isNotEmpty) {
       return TextSpan(

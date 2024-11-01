@@ -38,63 +38,49 @@ enum ConstructUseTypeEnum {
 
   /// was target construct in word meaning in context practice activity and incorrectly selected
   incPA,
+
+  /// was target lemma in word-focus listening activity and correctly selected
+  corWL,
+
+  /// form of lemma was read-aloud in word-focus listening activity and incorrectly selected
+  incWL,
+
+  /// form of lemma was read-aloud in word-focus listening activity and correctly ignored
+  ignWL,
+
+  /// not defined, likely a new construct introduced by choreo and not yet classified by an old version of the client
+  nan
 }
 
 extension ConstructUseTypeExtension on ConstructUseTypeEnum {
-  String get string {
-    switch (this) {
-      case ConstructUseTypeEnum.ga:
-        return 'ga';
-      case ConstructUseTypeEnum.wa:
-        return 'wa';
-      case ConstructUseTypeEnum.corIt:
-        return 'corIt';
-      case ConstructUseTypeEnum.incIt:
-        return 'incIt';
-      case ConstructUseTypeEnum.ignIt:
-        return 'ignIt';
-      case ConstructUseTypeEnum.ignIGC:
-        return 'ignIGC';
-      case ConstructUseTypeEnum.corIGC:
-        return 'corIGC';
-      case ConstructUseTypeEnum.incIGC:
-        return 'incIGC';
-      case ConstructUseTypeEnum.unk:
-        return 'unk';
-      case ConstructUseTypeEnum.corPA:
-        return 'corPA';
-      case ConstructUseTypeEnum.incPA:
-        return 'incPA';
-      case ConstructUseTypeEnum.ignPA:
-        return 'ignPA';
-    }
-  }
+  String get string => toString().split('.').last;
 
   IconData get icon {
     switch (this) {
-      case ConstructUseTypeEnum.ga:
-        return Icons.check;
       case ConstructUseTypeEnum.wa:
         return Icons.thumb_up_sharp;
+
       case ConstructUseTypeEnum.corIt:
-        return Icons.translate;
       case ConstructUseTypeEnum.incIt:
-        return Icons.translate;
       case ConstructUseTypeEnum.ignIt:
         return Icons.translate;
+
       case ConstructUseTypeEnum.ignIGC:
-        return Icons.close;
-      case ConstructUseTypeEnum.corIGC:
-        return Icons.check;
       case ConstructUseTypeEnum.incIGC:
-        return Icons.close;
-      case ConstructUseTypeEnum.corPA:
-        return Icons.check;
       case ConstructUseTypeEnum.incPA:
-        return Icons.close;
       case ConstructUseTypeEnum.ignPA:
+      case ConstructUseTypeEnum.ignWL:
+      case ConstructUseTypeEnum.incWL:
         return Icons.close;
+
+      case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.corIGC:
+      case ConstructUseTypeEnum.corPA:
+      case ConstructUseTypeEnum.corWL:
+        return Icons.check;
+
       case ConstructUseTypeEnum.unk:
+      case ConstructUseTypeEnum.nan:
         return Icons.help;
     }
   }
@@ -107,30 +93,44 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
   /// Practice activities get a moderate amount of points.
   int get pointValue {
     switch (this) {
-      case ConstructUseTypeEnum.ga:
-        return 2;
-      case ConstructUseTypeEnum.wa:
-        return 3;
-      case ConstructUseTypeEnum.corIt:
-        return 1;
-      case ConstructUseTypeEnum.incIt:
-        return -1;
-      case ConstructUseTypeEnum.ignIt:
-        return 1;
-      case ConstructUseTypeEnum.ignIGC:
-        return 1;
-      case ConstructUseTypeEnum.corIGC:
-        return 2;
-      case ConstructUseTypeEnum.incIGC:
-        return -1;
-      case ConstructUseTypeEnum.unk:
-        return 0;
       case ConstructUseTypeEnum.corPA:
         return 5;
-      case ConstructUseTypeEnum.incPA:
-        return -2;
-      case ConstructUseTypeEnum.ignPA:
+
+      case ConstructUseTypeEnum.wa:
+      case ConstructUseTypeEnum.corWL:
+        return 3;
+
+      case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.corIGC:
+        return 2;
+
+      case ConstructUseTypeEnum.corIt:
         return 1;
+
+      case ConstructUseTypeEnum.ignIt:
+      case ConstructUseTypeEnum.ignIGC:
+      case ConstructUseTypeEnum.ignPA:
+      case ConstructUseTypeEnum.ignWL:
+      case ConstructUseTypeEnum.unk:
+      case ConstructUseTypeEnum.nan:
+        return 0;
+
+      case ConstructUseTypeEnum.incIt:
+      case ConstructUseTypeEnum.incIGC:
+        return -2;
+
+      case ConstructUseTypeEnum.incPA:
+      case ConstructUseTypeEnum.incWL:
+        return -3;
     }
+  }
+}
+
+class ConstructUseTypeUtil {
+  static ConstructUseTypeEnum fromString(String value) {
+    return ConstructUseTypeEnum.values.firstWhere(
+      (e) => e.string == value,
+      orElse: () => ConstructUseTypeEnum.nan,
+    );
   }
 }

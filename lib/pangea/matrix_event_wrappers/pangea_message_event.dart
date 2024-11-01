@@ -81,18 +81,20 @@ class PangeaMessageEvent {
     _representations = null;
   }
 
-  Future<PangeaAudioFile> getMatrixAudioFile(
+  Future<PangeaAudioFile?> getMatrixAudioFile(
     String langCode,
     BuildContext context,
   ) async {
-    final String text = (await representationByLanguageGlobal(
-          langCode: langCode,
-        ))
-            ?.text ??
-        body;
+    final RepresentationEvent? rep = representationByLanguage(langCode);
+
+    if (rep == null) return null;
+
     final TextToSpeechRequest params = TextToSpeechRequest(
-      text: text,
+      text: rep.content.text,
+      tokens: (await rep.tokensGlobal(context)).map((t) => t.text).toList(),
       langCode: langCode,
+      userL1: l1Code ?? LanguageKeys.unknownLanguage,
+      userL2: l2Code ?? LanguageKeys.unknownLanguage,
     );
 
     final TextToSpeechResponse response =
@@ -111,9 +113,10 @@ class PangeaMessageEvent {
       mimeType: response.mimeType,
       duration: response.durationMillis,
       waveform: response.waveform,
+      tokens: response.ttsTokens,
     );
 
-    sendAudioEvent(file, response, text, langCode);
+    sendAudioEvent(file, response, rep.text, langCode);
 
     return file;
   }
@@ -137,10 +140,8 @@ class PangeaMessageEvent {
           'duration': response.durationMillis,
           'waveform': response.waveform,
         },
-        ModelKey.transcription: {
-          ModelKey.text: text,
-          ModelKey.langCode: langCode,
-        },
+        ModelKey.transcription:
+            response.toPangeaAudioEventData(text, langCode).toJson(),
       },
     );
 
@@ -155,97 +156,46 @@ class PangeaMessageEvent {
     return audioEvent;
   }
 
-  //get audio for text and language
-  //if no audio exists, create it
-  //if audio exists, return it
-  Future<Event?> getTextToSpeechGlobal(String langCode) async {
-    final String text = representationByLanguage(langCode)?.text ?? body;
-
-    final local = getTextToSpeechLocal(langCode, text);
-
-    if (local != null) return Future.value(local);
-
-    final TextToSpeechRequest params = TextToSpeechRequest(
-      text: text,
-      langCode: langCode,
-    );
-
-    final TextToSpeechResponse response =
-        await MatrixState.pangeaController.textToSpeech.get(
-      params,
-    );
-
-    final audioBytes = base64.decode(response.audioContent);
-
-    // if (!TextToSpeechController.isOggFile(audioBytes)) {
-    //   throw Exception("File is not a valid OGG format");
-    // } else {
-    //   debugPrint("File is a valid OGG format");
-    // }
-
-    // from text, trim whitespace, remove special characters, and limit to 20 characters
-    // final fileName =
-    //     text.trim().replaceAll(RegExp('[^A-Za-z0-9]'), '').substring(0, 20);
-    final eventIdParam = _event.eventId;
-    final fileName =
-        "audio_for_${eventIdParam}_$langCode.${response.fileExtension}";
-
-    final file = MatrixAudioFile(
-      bytes: audioBytes,
-      name: fileName,
-      mimeType: response.mimeType,
-    );
-
-    // try {
-    final String? eventId = await room.sendFileEvent(
-      file,
-      inReplyTo: _event,
-      extraContent: {
-        'info': {
-          ...file.info,
-          'duration': response.durationMillis,
-        },
-        'org.matrix.msc3245.voice': {},
-        'org.matrix.msc1767.audio': {
-          'duration': response.durationMillis,
-          'waveform': response.waveform,
-        },
-        ModelKey.transcription: {
-          ModelKey.text: text,
-          ModelKey.langCode: langCode,
-        },
-      },
-    );
-    // .timeout(
-    //   Durations.long4,
-    //   onTimeout: () {
-    //     debugPrint("timeout in getTextToSpeechGlobal");
-    //     return null;
-    //   },
-    // );
-
-    debugPrint("eventId in getTextToSpeechGlobal $eventId");
-    return eventId != null ? room.getEventById(eventId) : null;
-  }
-
   Event? getTextToSpeechLocal(String langCode, String text) {
     return allAudio.firstWhereOrNull(
-      (element) {
-        // Safely access the transcription map
-        final transcription = element.content.tryGetMap(ModelKey.transcription);
+      (event) {
+        try {
+          // Safely access
+          final dataMap = event.content.tryGetMap(ModelKey.transcription);
 
-        // return transcription != null;
-        if (transcription == null) {
-          // If transcription is null, this element does not match.
+          if (dataMap == null) {
+            return false;
+          }
+
+          // old text to speech content will not have TTSToken data
+          // we want to disregard them and just generate new ones
+          // for that, we'll return false if 'tokens' are null
+          // while in-development, we'll pause here to inspect
+          // debugger can be removed after we're sure it's working
+          if (dataMap['tokens'] == null) {
+            // events before today will definitely not have the tokens
+            debugger(
+              when: kDebugMode &&
+                  event.originServerTs.isAfter(DateTime(2024, 10, 16)),
+            );
+            return false;
+          }
+
+          final PangeaAudioEventData audioData =
+              PangeaAudioEventData.fromJson(dataMap as dynamic);
+
+          // Check if both language code and text match
+          return audioData.langCode == langCode && audioData.text == text;
+        } catch (e, s) {
+          debugger(when: kDebugMode);
+          ErrorHandler.logError(
+            e: e,
+            s: s,
+            data: event.content.tryGetMap(ModelKey.transcription),
+            m: "error parsing data in getTextToSpeechLocal",
+          );
           return false;
         }
-
-        // Safely get language code and text from the transcription
-        final elementLangCode = transcription[ModelKey.langCode];
-        final elementText = transcription[ModelKey.text];
-
-        // Check if both language code and text matsch
-        return elementLangCode == langCode && elementText == text;
       },
     );
   }
@@ -590,8 +540,7 @@ class PangeaMessageEvent {
 
   int get numberOfActivitiesCompleted {
     return MatrixState.pangeaController.activityRecordController
-            .completedActivities[eventId] ??
-        0;
+        .getCompletedActivityCount(eventId);
   }
 
   String? get l2Code =>
@@ -639,18 +588,28 @@ class PangeaMessageEvent {
   /// Returns a list of all [PracticeActivityEvent] objects
   /// associated with this message event.
   List<PracticeActivityEvent> get _practiceActivityEvents {
-    return _latestEdit
+    final List<Event> events = _latestEdit
         .aggregatedEvents(
           timeline,
           PangeaEventTypes.pangeaActivity,
         )
-        .map(
-          (e) => PracticeActivityEvent(
-            timeline: timeline,
-            event: e,
-          ),
-        )
         .toList();
+
+    final List<PracticeActivityEvent> practiceEvents = [];
+    for (final event in events) {
+      try {
+        practiceEvents.add(
+          PracticeActivityEvent(
+            timeline: timeline,
+            event: event,
+          ),
+        );
+        final content = practiceEvents.last.practiceActivity;
+      } catch (e, s) {
+        ErrorHandler.logError(e: e, s: s, data: event.toJson());
+      }
+    }
+    return practiceEvents;
   }
 
   /// Returns a boolean value indicating whether there are any
@@ -668,23 +627,10 @@ class PangeaMessageEvent {
   List<PracticeActivityEvent> practiceActivitiesByLangCode(
     String langCode, {
     bool debug = false,
-  }) {
-    // @wcjord - disabled try catch for testing
-    try {
-      debugger(when: debug);
-      final List<PracticeActivityEvent> activities = [];
-      for (final event in _practiceActivityEvents) {
-        if (event.practiceActivity.langCode == langCode) {
-          activities.add(event);
-        }
-      }
-      return activities;
-    } catch (e, s) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: e, s: s, data: event.toJson());
-      return [];
-    }
-  }
+  }) =>
+      _practiceActivityEvents
+          .where((event) => event.practiceActivity.langCode == langCode)
+          .toList();
 
   /// Returns a list of [PracticeActivityEvent] for the user's active l2.
   List<PracticeActivityEvent> get practiceActivities =>

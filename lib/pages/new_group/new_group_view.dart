@@ -1,8 +1,5 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
-import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
-import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
-import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -29,18 +26,9 @@ class NewGroupView extends StatelessWidget {
         ),
         // #Pangea
         // title: Text(L10n.of(context)!.createGroup),
-        title: Text(L10n.of(context)!.createChat),
+        title: Text(L10n.of(context)!.newChat),
         // Pangea#
       ),
-      // #Pangea
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: controller.loading ? null : controller.submitAction,
-        icon: controller.loading ? null : const Icon(Icons.chat_bubble_outline),
-        label: controller.loading
-            ? const CircularProgressIndicator.adaptive()
-            : Text(L10n.of(context)!.createChat),
-      ),
-      // Pangea#
       body: MaxWidthBody(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -68,9 +56,6 @@ class NewGroupView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: TextField(
-                // #Pangea
-                maxLength: 64,
-                // Pangea#
                 autofocus: true,
                 controller: controller.nameController,
                 autocorrect: false,
@@ -85,40 +70,31 @@ class NewGroupView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+            SwitchListTile.adaptive(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 32),
+              secondary: const Icon(Icons.public_outlined),
+              title: Text(L10n.of(context)!.groupIsPublic),
+              value: controller.publicGroup,
+              onChanged: controller.loading ? null : controller.setPublicGroup,
+            ),
+            AnimatedSize(
+              duration: FluffyThemes.animationDuration,
+              child: controller.publicGroup
+                  ? SwitchListTile.adaptive(
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 32),
+                      secondary: const Icon(Icons.search_outlined),
+                      title: Text(L10n.of(context)!.groupCanBeFoundViaSearch),
+                      value: controller.groupCanBeFound,
+                      onChanged: controller.loading
+                          ? null
+                          : controller.setGroupCanBeFound,
+                    )
+                  : const SizedBox.shrink(),
+            ),
             // #Pangea
-            RoomCapacityButton(
-              key: controller.addCapacityKey,
-            ),
-            ConversationBotSettings(
-              key: controller.addConversationBotKey,
-              activeSpaceId: controller.activeSpaceId,
-            ),
-            const Divider(height: 1),
-            AddToSpaceToggles(
-              key: controller.addToSpaceKey,
-              startOpen: true,
-              activeSpaceId: controller.activeSpaceId,
-            ),
             // SwitchListTile.adaptive(
-            //   secondary: const Icon(Icons.public_outlined),
-            //   title: Text(L10n.of(context)!.groupIsPublic),
-            //   value: controller.publicGroup,
-            //   onChanged: controller.loading ? null : controller.setPublicGroup,
-            // ),
-            // AnimatedSize(
-            //   duration: FluffyThemes.animationDuration,
-            //   child: controller.publicGroup
-            //       ? SwitchListTile.adaptive(
-            //           secondary: const Icon(Icons.search_outlined),
-            //           title: Text(L10n.of(context)!.groupCanBeFoundViaSearch),
-            //           value: controller.groupCanBeFound,
-            //           onChanged: controller.loading
-            //               ? null
-            //               : controller.setGroupCanBeFound,
-            //         )
-            //       : const SizedBox.shrink(),
-            // ),
-            // SwitchListTile.adaptive(
+            //   contentPadding: const EdgeInsets.symmetric(horizontal: 32),
             //   secondary: Icon(
             //     Icons.lock_outlined,
             //     color: theme.colorScheme.onSurface,
@@ -132,29 +108,20 @@ class NewGroupView extends StatelessWidget {
             //   value: !controller.publicGroup,
             //   onChanged: null,
             // ),
-            // Padding(
-            //   padding: const EdgeInsets.all(16.0),
-            //   child: SizedBox(
-            //     width: double.infinity,
-            //     child: ElevatedButton(
-            //       onPressed:
-            //           controller.loading ? null : controller.submitAction,
-            //       child: controller.loading
-            //           ? const LinearProgressIndicator()
-            //           : Row(
-            //               children: [
-            //                 Expanded(
-            //                   child: Text(
-            //                     L10n.of(context)!.createGroupAndInviteUsers,
-            //                   ),
-            //                 ),
-            //                 Icon(Icons.adaptive.arrow_forward_outlined),
-            //               ],
-            //             ),
-            //     ),
-            //   ),
-            // ),
             // Pangea#
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed:
+                      controller.loading ? null : controller.submitAction,
+                  child: controller.loading
+                      ? const LinearProgressIndicator()
+                      : Text(L10n.of(context)!.createGroupAndInviteUsers),
+                ),
+              ),
+            ),
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
               child: error == null

@@ -1,15 +1,15 @@
+import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:flutter/material.dart';
 
-import '../../controllers/pangea_controller.dart';
 import '../controllers/error_service.dart';
 
 class ChoreographerHasErrorButton extends StatelessWidget {
   final ChoreoError error;
-  final PangeaController pangeaController;
+  final Choreographer choreographer;
 
   const ChoreographerHasErrorButton(
-    this.pangeaController,
-    this.error, {
+    this.error,
+    this.choreographer, {
     super.key,
   });
 
@@ -26,6 +26,7 @@ class ChoreographerHasErrorButton extends StatelessWidget {
               ),
             ),
           );
+          choreographer.errorService.resetError();
         }
       },
       mini: true,

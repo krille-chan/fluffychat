@@ -116,7 +116,9 @@ class RCProductsResponseModel {
         .map(
           (productDetails) => SubscriptionDetails(
             price: double.parse(metadata['$packageId.price']),
-            duration: metadata['$packageId.duration'],
+            duration: SubscriptionDuration.values.firstWhereOrNull(
+              (duration) => duration.value == metadata['$packageId.duration'],
+            ),
             id: productDetails['product']['store_identifier'],
             appId: productDetails['product']['app_id'],
           ),
@@ -145,9 +147,6 @@ class RCSubscriptionResponseModel {
   ) {
     final List<String> activeEntitlements =
         RCSubscriptionResponseModel.getActiveEntitlements(json);
-
-    final List<String> allEntitlements =
-        RCSubscriptionResponseModel.getAllEntitlements(json);
 
     if (activeEntitlements.length > 1) {
       debugPrint(

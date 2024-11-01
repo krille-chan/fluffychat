@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:flutter/material.dart';
 
@@ -71,26 +72,21 @@ class GamifiedTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min, // Adjusts the size to fit children
-        children: [
-          const SizedBox(height: 10), // Spacing between the star and text
-          // Star animation above the text
-          const StarAnimationWidget(),
-          const SizedBox(height: 10), // Spacing between the star and text
-          Container(
-            constraints: const BoxConstraints(
-              minHeight: 80,
-            ),
-            padding: const EdgeInsets.all(8),
-            child: Text(
+    return SizedBox(
+      width: AppConfig.toolbarMinWidth,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+        child: Column(
+          children: [
+            const StarAnimationWidget(),
+            const SizedBox(height: 10),
+            Text(
               userMessage,
               style: BotStyle.text(context),
-              textAlign: TextAlign.center, // Center-align the text
+              textAlign: TextAlign.center,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

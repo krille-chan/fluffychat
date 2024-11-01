@@ -1,44 +1,100 @@
 import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
-import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_custom_zone.dart';
 import 'package:flutter/material.dart';
-
-import 'conversation_bot_discussion_zone.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ConversationBotModeDynamicZone extends StatelessWidget {
-  final BotOptionsModel initialBotOptions;
-  final void Function(BotOptionsModel) onChanged;
+  final BotOptionsModel botOptions;
+  final TextEditingController discussionTopicController;
+  final TextEditingController discussionKeywordsController;
+  final TextEditingController customSystemPromptController;
+
+  final bool enabled;
 
   const ConversationBotModeDynamicZone({
     super.key,
-    required this.initialBotOptions,
-    required this.onChanged,
+    required this.botOptions,
+    required this.discussionTopicController,
+    required this.discussionKeywordsController,
+    required this.customSystemPromptController,
+    this.enabled = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    final zoneMap = {
-      BotMode.discussion: ConversationBotDiscussionZone(
-        initialBotOptions: initialBotOptions,
-        onChanged: onChanged,
-      ),
-      BotMode.custom: ConversationBotCustomZone(
-        initialBotOptions: initialBotOptions,
-        onChanged: onChanged,
-      ),
-    };
-    if (!zoneMap.containsKey(initialBotOptions.mode)) {
-      return Container();
-    }
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Theme.of(context).colorScheme.secondary,
-          width: 0.5,
+    final discussionChildren = [
+      TextFormField(
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+        decoration: InputDecoration(
+          hintText: L10n.of(context)!
+              .conversationBotDiscussionZone_discussionTopicPlaceholder,
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 28.0, vertical: 12.0),
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        controller: discussionTopicController,
+        validator: (value) => enabled &&
+                botOptions.mode == BotMode.discussion &&
+                (value == null || value.isEmpty)
+            ? L10n.of(context)!.enterDiscussionTopic
+            : null,
+        enabled: enabled,
+        minLines: 1, // Minimum number of lines
+        maxLines: null, // Allow the field to expand based on content
+        keyboardType: TextInputType.multiline,
       ),
-      child: zoneMap[initialBotOptions.mode],
+      const SizedBox(height: 12),
+      TextFormField(
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+        decoration: InputDecoration(
+          hintText: L10n.of(context)!
+              .conversationBotDiscussionZone_discussionKeywordsPlaceholder,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 28.0),
+        ),
+        controller: discussionKeywordsController,
+        enabled: enabled,
+        minLines: 1, // Minimum number of lines
+        maxLines: null, // Allow the field to expand based on content
+        keyboardType: TextInputType.multiline,
+      ),
+    ];
+
+    final customChildren = [
+      TextFormField(
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+        decoration: InputDecoration(
+          hintText: L10n.of(context)!
+              .conversationBotCustomZone_customSystemPromptPlaceholder,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 28.0),
+        ),
+        validator: (value) => enabled &&
+                botOptions.mode == BotMode.custom &&
+                (value == null || value.isEmpty)
+            ? L10n.of(context)!.enterPrompt
+            : null,
+        controller: customSystemPromptController,
+        enabled: enabled,
+        minLines: 1, // Minimum number of lines
+        maxLines: null, // Allow the field to expand based on content
+        keyboardType: TextInputType.multiline,
+      ),
+    ];
+
+    return Column(
+      children: [
+        if (botOptions.mode == BotMode.discussion) ...discussionChildren,
+        if (botOptions.mode == BotMode.custom) ...customChildren,
+        const SizedBox(height: 12),
+        CheckboxListTile(
+          title: Text(
+            L10n.of(context)!
+                .conversationBotCustomZone_customTriggerReactionEnabledLabel,
+          ),
+          enabled: false,
+          value: botOptions.customTriggerReactionEnabled ?? true,
+          onChanged: null,
+        ),
+        const SizedBox(height: 12),
+      ],
     );
   }
 }
