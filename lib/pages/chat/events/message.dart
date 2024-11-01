@@ -265,6 +265,23 @@ class Message extends StatelessWidget {
                                                     ? displayname.color
                                                     : displayname
                                                         .lightColorText),
+                                                shadows:
+                                                    avatarPresenceBackgroundColor ==
+                                                            null
+                                                        ? null
+                                                        : [
+                                                            Shadow(
+                                                              offset:
+                                                                  const Offset(
+                                                                0.0,
+                                                                0.0,
+                                                              ),
+                                                              blurRadius: 5,
+                                                              color: theme
+                                                                  .colorScheme
+                                                                  .surface,
+                                                            ),
+                                                          ],
                                               ),
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
@@ -443,12 +460,21 @@ class Message extends StatelessWidget {
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 4.0),
-                  child: Text(
-                    event.originServerTs.localizedTime(context),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12 * AppConfig.fontSizeFactor,
-                      color: theme.colorScheme.secondary,
+                  child: Material(
+                    borderRadius:
+                        BorderRadius.circular(AppConfig.borderRadius * 2),
+                    color: theme.colorScheme.surface.withAlpha(128),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 2.0,
+                      ),
+                      child: Text(
+                        event.originServerTs.localizedTime(context),
+                        style: TextStyle(
+                          fontSize: 12 * AppConfig.fontSizeFactor,
+                        ),
+                      ),
                     ),
                   ),
                 ),
