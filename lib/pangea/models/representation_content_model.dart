@@ -157,7 +157,7 @@ class PangeaRepresentation {
           OneConstructUse(
             useType: useType,
             lemma: entry.value,
-            categories: [entry.key],
+            category: entry.key,
             constructType: ConstructTypeEnum.morph,
             metadata: metadata,
           ),
@@ -166,7 +166,7 @@ class PangeaRepresentation {
 
       if (lemma.saveVocab) {
         uses.add(
-          lemma.toVocabUse(
+          token.toVocabUse(
             inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk,
             metadata,
           ),
@@ -213,7 +213,7 @@ class PangeaRepresentation {
         OneConstructUse(
           useType: ConstructUseTypeEnum.wa,
           lemma: entry.value,
-          categories: [entry.key],
+          category: entry.key,
           constructType: ConstructTypeEnum.morph,
           metadata: metadata,
         ),
@@ -221,7 +221,7 @@ class PangeaRepresentation {
     }
     if (lemma.saveVocab) {
       uses.add(
-        lemma.toVocabUse(
+        token.toVocabUse(
           ConstructUseTypeEnum.wa,
           metadata,
         ),

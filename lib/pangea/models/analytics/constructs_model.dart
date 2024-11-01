@@ -74,7 +74,7 @@ class ConstructAnalyticsModel {
 class OneConstructUse {
   String? lemma;
   String? form;
-  List<String> categories;
+  String? category;
   ConstructTypeEnum constructType;
   ConstructUseTypeEnum useType;
 
@@ -89,7 +89,7 @@ class OneConstructUse {
     required this.lemma,
     required this.constructType,
     required this.metadata,
-    this.categories = const [],
+    this.category,
     this.form,
     this.id,
   });
@@ -104,13 +104,21 @@ class OneConstructUse {
         : null;
     debugger(when: kDebugMode && constructType == null);
 
+    final categoryEntry = json['categories'];
+    String? category;
+    if (categoryEntry != null) {
+      if ((categoryEntry is List) && categoryEntry.isNotEmpty) {
+        category = categoryEntry.first;
+      } else if (categoryEntry is String) {
+        category = categoryEntry;
+      }
+    }
+
     return OneConstructUse(
       useType: ConstructUseTypeUtil.fromString(json['useType']),
       lemma: json['lemma'],
       form: json['form'],
-      categories: json['categories'] != null
-          ? List<String>.from(json['categories'])
-          : [],
+      category: category,
       constructType: constructType ?? ConstructTypeEnum.vocab,
       id: json['id'],
       metadata: ConstructUseMetaData(
@@ -134,7 +142,7 @@ class OneConstructUse {
     data['constructType'] = constructType.string;
 
     if (id != null) data['id'] = id;
-    data['categories'] = categories;
+    data['categories'] = category;
     return data;
   }
 

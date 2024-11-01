@@ -151,6 +151,7 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
             form: token.lemma.form,
             constructType: ConstructTypeEnum.vocab,
             metadata: metadata,
+            category: token.pos,
           ),
         )
         .toList();
@@ -161,7 +162,7 @@ class MyAnalyticsController extends BaseController<AnalyticsStream> {
           OneConstructUse(
             useType: useType,
             lemma: entry.value,
-            categories: [entry.key],
+            category: entry.key,
             constructType: ConstructTypeEnum.morph,
             metadata: metadata,
           ),

@@ -12,16 +12,28 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class ConstructIdentifier {
   final String lemma;
   final ConstructTypeEnum type;
+  String? category;
 
-  ConstructIdentifier({required this.lemma, required this.type});
+  ConstructIdentifier({
+    required this.lemma,
+    required this.type,
+    this.category,
+  });
 
   factory ConstructIdentifier.fromJson(Map<String, dynamic> json) {
+    final categoryEntry = json['cat'];
+    String? category;
+    if (categoryEntry != null && categoryEntry is String) {
+      category = categoryEntry;
+    }
+
     try {
       return ConstructIdentifier(
         lemma: json['lemma'] as String,
         type: ConstructTypeEnum.values.firstWhere(
           (e) => e.string == json['type'],
         ),
+        category: category,
       );
     } catch (e, s) {
       debugger(when: kDebugMode);

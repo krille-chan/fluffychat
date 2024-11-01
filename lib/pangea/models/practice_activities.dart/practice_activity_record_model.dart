@@ -146,6 +146,7 @@ class ActivityRecordResponse {
               constructType: construct.type,
               useType: useType,
               metadata: metadata,
+              category: construct.category,
             ),
           )
           .toList();
