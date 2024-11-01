@@ -12,7 +12,7 @@ class UserSettings {
   DateTime? dateOfBirth;
   DateTime? createdAt;
   bool autoPlayMessages;
-  bool itAutoPlay;
+  // bool itAutoPlay;
   bool activatedFreeTrial;
   bool publicProfile;
   String? targetLanguage;
@@ -23,7 +23,7 @@ class UserSettings {
     this.dateOfBirth,
     this.createdAt,
     this.autoPlayMessages = false,
-    this.itAutoPlay = false,
+    // this.itAutoPlay = true,
     this.activatedFreeTrial = false,
     this.publicProfile = false,
     this.targetLanguage,
@@ -37,7 +37,7 @@ class UserSettings {
             ? DateTime.parse(json[ModelKey.userCreatedAt])
             : null,
         autoPlayMessages: json[ModelKey.autoPlayMessages] ?? false,
-        itAutoPlay: json[ModelKey.itAutoPlay] ?? false,
+        // itAutoPlay: json[ModelKey.itAutoPlay] ?? true,
         activatedFreeTrial: json[ModelKey.activatedTrialKey] ?? false,
         publicProfile: json[ModelKey.publicProfile] ?? false,
         targetLanguage: json[ModelKey.l2LanguageKey],
@@ -50,7 +50,7 @@ class UserSettings {
     data[ModelKey.userDateOfBirth] = dateOfBirth?.toIso8601String();
     data[ModelKey.userCreatedAt] = createdAt?.toIso8601String();
     data[ModelKey.autoPlayMessages] = autoPlayMessages;
-    data[ModelKey.itAutoPlay] = itAutoPlay;
+    // data[ModelKey.itAutoPlay] = itAutoPlay;
     data[ModelKey.activatedTrialKey] = activatedFreeTrial;
     data[ModelKey.publicProfile] = publicProfile;
     data[ModelKey.l2LanguageKey] = targetLanguage;
@@ -96,9 +96,9 @@ class UserSettings {
       autoPlayMessages: (accountData[ModelKey.autoPlayMessages]
               ?.content[ModelKey.autoPlayMessages] as bool?) ??
           false,
-      itAutoPlay: (accountData[ModelKey.itAutoPlay]
-              ?.content[ModelKey.itAutoPlay] as bool?) ??
-          false,
+      // itAutoPlay: (accountData[ModelKey.itAutoPlay]
+      //         ?.content[ModelKey.itAutoPlay] as bool?) ??
+      //     true,
       activatedFreeTrial: (accountData[ModelKey.activatedTrialKey]
               ?.content[ModelKey.activatedTrialKey] as bool?) ??
           false,

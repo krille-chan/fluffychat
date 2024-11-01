@@ -360,16 +360,16 @@ class WordMatchContent extends StatelessWidget {
                     ),
                 ],
               ),
-              if (controller.widget.scm.pangeaMatch!.isITStart)
-                DontShowSwitchListTile(
-                  controller: pangeaController,
-                  onSwitch: (bool value) {
-                    pangeaController.userController.updateProfile((profile) {
-                      profile.userSettings.itAutoPlay = value;
-                      return profile;
-                    });
-                  },
-                ),
+              // if (controller.widget.scm.pangeaMatch!.isITStart)
+              //   DontShowSwitchListTile(
+              //     controller: pangeaController,
+              //     onSwitch: (bool value) {
+              //       pangeaController.userController.updateProfile((profile) {
+              //         profile.userSettings.itAutoPlay = value;
+              //         return profile;
+              //       });
+              //     },
+              //   ),
             ],
           ),
         ],

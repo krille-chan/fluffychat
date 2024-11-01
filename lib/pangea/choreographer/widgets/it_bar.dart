@@ -355,7 +355,7 @@ class ITChoices extends StatelessWidget {
   void selectContinuance(int index, BuildContext context) {
     final Continuance continuance =
         controller.currentITStep!.continuances[index];
-    if (continuance.level == 1 || continuance.wasClicked) {
+    if (continuance.level == 1) {
       Future.delayed(
         const Duration(milliseconds: 500),
         () => controller.selectTranslation(index),
