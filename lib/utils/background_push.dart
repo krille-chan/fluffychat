@@ -91,6 +91,7 @@ class BackgroundPush {
           instance: clients.first.clientName,
           l10n: l10n,
           activeRoomId: matrix?.activeRoomId,
+          activeClient: matrix?.client,
           flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
         ),
       );
@@ -320,31 +321,39 @@ class BackgroundPush {
     await setupPusher(
       gatewayUrl: AppConfig.pushNotificationsGatewayUrl,
       token: _fcmToken,
-      client: clients.first, // Workaround: set todo in _init
+      client: clients.first, // Workaround: see todo in _init
     );
   }
 
   Future<void> goToRoom(NotificationResponse? response) async {
     try {
-      final roomId = response?.payload;
-      Logs().v('[Push] Attempting to go to room $roomId...');
-      if (roomId == null) {
+      final payloadEncoded = response?.payload;
+      if (payloadEncoded == null || payloadEncoded.isEmpty) {
         return;
       }
+      final payload =
+          NotificationResponsePayload.fromJson(jsonDecode(payloadEncoded));
+      if (payload.roomId.isEmpty) {
+        return;
+      }
+      Logs().v('[Push] Attempting to go to room ${payload.roomId}...');
 
-      // Workaround because response does not give more information
-      // about who received the notification
       Client? client;
       for (final c in clients) {
-        if (c.getRoomById(roomId) != null) {
+        if (c.clientName == payload.clientName) {
           client = c;
           break;
         }
       }
       if (client == null) {
-        Logs().w('[Push] No client could be found for room $roomId...');
+        Logs()
+            .w('[Push] No client could be found for room ${payload.roomId}...');
         return;
       }
+      if (matrix!.client != client) {
+        matrix!.setActiveClient(client);
+      }
+
       await client.roomsLoading;
       await client.accountDataLoading;
       if (client.getRoomById(roomId) == null) {
@@ -353,9 +362,9 @@ class BackgroundPush {
             .timeout(const Duration(seconds: 30));
       }
       FluffyChatApp.router.go(
-        client.getRoomById(roomId)?.membership == Membership.invite
+        client.getRoomById(payload.roomId)?.membership == Membership.invite
             ? '/rooms'
-            : '/rooms/$roomId',
+            : '/rooms/${payload.roomId}',
       );
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
@@ -405,7 +414,8 @@ class BackgroundPush {
     } catch (_) {}
     final client = clientFromInstance(instance, clients);
     if (client == null) {
-      throw "Not client found for $instance";
+      Logs().e("Not client found for $instance");
+      return;
     }
     await setupPusher(
       gatewayUrl: endpoint,
@@ -414,8 +424,10 @@ class BackgroundPush {
       useDeviceSpecificAppId: true,
       client: client,
     );
-    await matrix?.store.setString(client.clientName + SettingKeys.unifiedPushEndpoint, newEndpoint);
-    await matrix?.store.setBool(client.clientName + SettingKeys.unifiedPushRegistered, true);
+    await matrix?.store.setString(
+        client.clientName + SettingKeys.unifiedPushEndpoint, newEndpoint);
+    await matrix?.store
+        .setBool(client.clientName + SettingKeys.unifiedPushRegistered, true);
   }
 
   Future<void> _onUPUnregistered(String instance) async {
@@ -425,10 +437,12 @@ class BackgroundPush {
       return;
     }
     Logs().i('[Push] Removing UnifiedPush endpoint...');
-    final oldEndpoint =
-        matrix?.store.getString(client.clientName + SettingKeys.unifiedPushEndpoint);
-    await matrix?.store.setBool(client.clientName + SettingKeys.unifiedPushRegistered, false);
-    await matrix?.store.remove(client.clientName + SettingKeys.unifiedPushEndpoint);
+    final oldEndpoint = matrix?.store
+        .getString(client.clientName + SettingKeys.unifiedPushEndpoint);
+    await matrix?.store
+        .setBool(client.clientName + SettingKeys.unifiedPushRegistered, false);
+    await matrix?.store
+        .remove(client.clientName + SettingKeys.unifiedPushEndpoint);
     if (oldEndpoint?.isNotEmpty ?? false) {
       // remove the old pusher
       await setupPusher(
@@ -450,6 +464,7 @@ class BackgroundPush {
       clients: clients,
       instance: instance,
       l10n: l10n,
+      activeClient: matrix?.client,
       activeRoomId: matrix?.activeRoomId,
       flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
     );

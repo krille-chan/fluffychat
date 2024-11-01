@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
@@ -18,11 +19,14 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 
+//TODO: maybe introduce a class
+
 Future<void> pushHelper(
   PushNotification notification, {
   List<Client>? clients,
   L10n? l10n,
   String? activeRoomId,
+  Client? activeClient,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
   required String instance,
 }) async {
@@ -33,6 +37,7 @@ Future<void> pushHelper(
       instance: instance,
       l10n: l10n,
       activeRoomId: activeRoomId,
+      activeClient: activeClient,
       flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
     );
   } catch (e, s) {
@@ -68,28 +73,27 @@ Future<void> _tryPushHelper(
   List<Client>? clients,
   L10n? l10n,
   String? activeRoomId,
+  Client? activeClient,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
   required String instance,
 }) async {
   final isBackgroundMessage = clients == null;
+  Logs().v(
+    'Push helper has been started (background=$isBackgroundMessage).',
+    notification.toJson(),
+  );
+
   clients ??= (await ClientManager.getClients(
     initialize: false,
     store: await SharedPreferences.getInstance(),
   ));
   final client = clientFromInstance(instance, clients);
   if (client == null) {
-    throw "Not client could be found for $instance";
+    Logs().e("Not client could be found for $instance");
+    return;
   }
 
-  Logs().v(
-    'Push helper has been started (background=$isBackgroundMessage).',
-    notification.toJson(),
-  );
-
-  if (notification.roomId != null &&
-      activeRoomId == notification.roomId &&
-      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
-    //TODO: check if client is active
+  if (isInForeground(notification, activeRoomId, activeClient, client)) {
     Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }
@@ -135,26 +139,33 @@ Future<void> _tryPushHelper(
     client.backgroundSync = false;
   }
 
-  if (event.type.startsWith('m.call') && event.type != EventTypes.CallInvite) {
-    Logs().v('Push message is a m.call but not invite. Do not display.');
-    return;
-  }
-
   if ((event.type.startsWith('m.call') &&
           event.type != EventTypes.CallInvite) ||
-      event.type == 'org.matrix.call.sdp_stream_metadata_changed') {
+      event.type == EventTypes.CallSDPStreamMetadataChangedPrefix) {
     Logs().v('Push message was for a call, but not call invite.');
     return;
   }
 
+  showNotification(
+      l10n, event, notification, client, flutterLocalNotificationsPlugin);
+  Logs().v('Push helper has been completed!');
+}
+
+Future<void> showNotification(
+  L10n? l10n,
+  Event event,
+  PushNotification notification,
+  Client client,
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+) async {
   l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
-  final matrixLocals = MatrixLocals(l10n);
+  final locals = MatrixLocals(l10n);
 
   // Calculate the body
   final body = event.type == EventTypes.Encrypted
       ? l10n.newMessageInFluffyChat
       : await event.calcLocalizedBody(
-          matrixLocals,
+          locals,
           plaintextBody: true,
           withSenderNamePrefix: false,
           hideReply: true,
@@ -162,75 +173,13 @@ Future<void> _tryPushHelper(
           removeMarkdown: true,
         );
 
-  // The person object for the android message style notification
-  final avatar = event.room.avatar;
-  final senderAvatar = event.room.isDirectChat
-      ? avatar
-      : event.senderFromMemoryOrFallback.avatarUrl;
-
-  Uint8List? roomAvatarFile, senderAvatarFile;
-  try {
-    roomAvatarFile = avatar == null
-        ? null
-        : await client
-            .downloadMxcCached(
-              avatar,
-              thumbnailMethod: ThumbnailMethod.scale,
-              width: 256,
-              height: 256,
-              animated: false,
-              isThumbnail: true,
-            )
-            .timeout(const Duration(seconds: 3));
-  } catch (e, s) {
-    Logs().e('Unable to get avatar picture', e, s);
-  }
-  try {
-    senderAvatarFile = event.room.isDirectChat
-        ? roomAvatarFile
-        : senderAvatar == null
-            ? null
-            : await client
-                .downloadMxcCached(
-                  senderAvatar,
-                  thumbnailMethod: ThumbnailMethod.scale,
-                  width: 256,
-                  height: 256,
-                  animated: false,
-                  isThumbnail: true,
-                )
-                .timeout(const Duration(seconds: 3));
-  } catch (e, s) {
-    Logs().e('Unable to get avatar picture', e, s);
-  }
-
   final id = notification.roomId.hashCode;
+  final title = event.room.getLocalizedDisplayname(locals);
+  final roomName = event.room.getLocalizedDisplayname(locals);
 
-  // Show notification
-
-  final newMessage = Message(
-    body,
-    event.originServerTs,
-    Person(
-      bot: event.messageType == MessageTypes.Notice,
-      key: event.senderId,
-      name: event.senderFromMemoryOrFallback.calcDisplayname(),
-      icon: senderAvatarFile == null
-          ? null
-          : ByteArrayAndroidIcon(senderAvatarFile),
-    ),
-  );
-
-  final messagingStyleInformation = PlatformInfos.isAndroid
-      ? await AndroidFlutterLocalNotificationsPlugin()
-          .getActiveNotificationMessagingStyle(id)
-      : null;
-  messagingStyleInformation?.messages?.add(newMessage);
-
-  final roomName = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
-
-  final notificationGroupId =
+  var notificationGroupId =
       event.room.isDirectChat ? 'directChats' : 'groupChats';
+  notificationGroupId += client.clientName;
   final groupName = event.room.isDirectChat ? l10n.directChats : l10n.groups;
 
   final messageRooms = AndroidNotificationChannelGroup(
@@ -251,6 +200,76 @@ Future<void> _tryPushHelper(
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(roomsChannel);
+
+  final platformChannelSpecifics = await getPlatformChannelSpecifics(
+    l10n,
+    notification,
+    event,
+    client,
+    id,
+    body,
+    title,
+    roomName,
+  );
+
+  return await flutterLocalNotificationsPlugin.show(
+    id,
+    title,
+    body,
+    platformChannelSpecifics,
+    payload: jsonEncode(
+      NotificationResponsePayload(
+        event.roomId ?? "",
+        client.clientName,
+      ).toJson(),
+    ),
+  );
+}
+
+Future<NotificationDetails> getPlatformChannelSpecifics(
+  L10n l10n,
+  PushNotification notification,
+  Event event,
+  Client client,
+  int notificationId,
+  String notificationBody,
+  String notificationTitle,
+  String roomName,
+) async {
+  // The person object for the android message style notification
+  final avatar = event.room.avatar;
+  final senderAvatar = event.room.isDirectChat
+      ? avatar
+      : event.senderFromMemoryOrFallback.avatarUrl;
+
+  final roomAvatarFile = await getAvatarFile(client, avatar);
+  final senderAvatarFile = event.room.isDirectChat
+      ? roomAvatarFile
+      : await getAvatarFile(client, senderAvatar);
+
+  // Show notification
+  final newMessage = Message(
+    notificationTitle,
+    event.originServerTs,
+    Person(
+      bot: event.messageType == MessageTypes.Notice,
+      key: event.senderId,
+      name: event.senderFromMemoryOrFallback.calcDisplayname(),
+      icon: senderAvatarFile == null
+          ? null
+          : ByteArrayAndroidIcon(senderAvatarFile),
+    ),
+  );
+
+  final messagingStyleInformation = PlatformInfos.isAndroid
+      ? await AndroidFlutterLocalNotificationsPlugin()
+          .getActiveNotificationMessagingStyle(notificationId)
+      : null;
+  messagingStyleInformation?.messages?.add(newMessage);
+
+  if (PlatformInfos.isAndroid && messagingStyleInformation == null) {
+    await _setShortcut(event, l10n, notificationTitle, roomAvatarFile);
+  }
 
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
     AppConfig.pushNotificationsChannelId,
@@ -273,7 +292,7 @@ Future<void> _tryPushHelper(
           messages: [newMessage],
         ),
     ticker: event.calcLocalizedBodyFallback(
-      matrixLocals,
+      MatrixLocals(l10n),
       plaintextBody: true,
       withSenderNamePrefix: true,
       hideReply: true,
@@ -285,25 +304,10 @@ Future<void> _tryPushHelper(
     groupKey: event.room.spaceParents.firstOrNull?.roomId ?? 'rooms',
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
-  final platformChannelSpecifics = NotificationDetails(
+  return NotificationDetails(
     android: androidPlatformChannelSpecifics,
     iOS: iOSPlatformChannelSpecifics,
   );
-
-  final title = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
-
-  if (PlatformInfos.isAndroid && messagingStyleInformation == null) {
-    await _setShortcut(event, l10n, title, roomAvatarFile);
-  }
-
-  await flutterLocalNotificationsPlugin.show(
-    id,
-    title,
-    body,
-    platformChannelSpecifics,
-    payload: event.roomId,
-  );
-  Logs().v('Push helper has been completed!');
 }
 
 /// Creates a shortcut for Android platform but does not block displaying the
@@ -332,4 +336,54 @@ Future<void> _setShortcut(
       isImportant: event.room.isFavourite,
     ),
   );
+}
+
+Future<Uint8List?> getAvatarFile(Client client, Uri? avatar) async {
+  try {
+    return avatar == null
+        ? null
+        : await client
+            .downloadMxcCached(
+              avatar,
+              thumbnailMethod: ThumbnailMethod.scale,
+              width: 256,
+              height: 256,
+              animated: false,
+              isThumbnail: true,
+            )
+            .timeout(const Duration(seconds: 3));
+  } catch (e, s) {
+    Logs().e('Unable to get avatar picture', e, s);
+    return null;
+  }
+}
+
+bool isInForeground(
+  PushNotification notification,
+  String? activeRoomId,
+  Client? activeClient,
+  Client notifiedClient,
+) {
+  return notification.roomId != null &&
+      activeRoomId == notification.roomId &&
+      activeClient == notifiedClient &&
+      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
+}
+
+class NotificationResponsePayload {
+  final String roomId;
+  final String clientName;
+
+  NotificationResponsePayload(this.roomId, this.clientName);
+
+  NotificationResponsePayload.fromJson(Map<String, dynamic> json)
+      : roomId = json['roomId'],
+        clientName = json['clientName'];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'roomId': roomId,
+      'clientName': clientName,
+    };
+  }
 }
