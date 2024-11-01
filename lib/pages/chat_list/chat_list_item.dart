@@ -157,7 +157,12 @@ class ChatListItem extends StatelessWidget {
                             right: 0,
                             child: Avatar(
                               border: space == null
-                                  ? null
+                                  ? room.isSpace
+                                      ? BorderSide(
+                                          width: 1,
+                                          color: theme.dividerColor,
+                                        )
+                                      : null
                                   : BorderSide(
                                       width: 2,
                                       color: backgroundColor ??
@@ -250,11 +255,6 @@ class ChatListItem extends StatelessWidget {
                                 : theme.textTheme.bodyMedium!.color,
                           ),
                         ),
-                      ),
-                    if (room.isSpace)
-                      const Icon(
-                        Icons.arrow_circle_right_outlined,
-                        size: 18,
                       ),
                   ],
                 ),

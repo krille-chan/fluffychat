@@ -39,16 +39,6 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       PopupMenuItem(
-        value: SettingsAction.newSpace,
-        child: Row(
-          children: [
-            const Icon(Icons.workspaces_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context).createNewSpace),
-          ],
-        ),
-      ),
-      PopupMenuItem(
         value: SettingsAction.setStatus,
         child: Row(
           children: [
@@ -260,9 +250,6 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.newGroup:
           context.go('/rooms/newgroup');
           break;
-        case SettingsAction.newSpace:
-          controller.createNewSpace();
-          break;
         case SettingsAction.invite:
           FluffyShare.shareInviteLink(context);
           break;
@@ -352,7 +339,6 @@ class ClientChooserButton extends StatelessWidget {
 enum SettingsAction {
   addAccount,
   newGroup,
-  newSpace,
   setStatus,
   invite,
   settings,
