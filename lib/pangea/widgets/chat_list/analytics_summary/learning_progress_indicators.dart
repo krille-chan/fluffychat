@@ -1,22 +1,21 @@
 import 'dart:async';
 
-import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
 import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
+import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar_details.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/analytics_popup.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/progress_indicator.dart';
-import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/pangea/widgets/flag.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
 
 /// A summary of "My Analytics" shown at the top of the chat list
 /// It shows a variety of progress indicators such as
@@ -120,7 +119,7 @@ class LearningProgressIndicatorsState
     }
   }
 
-  double get levelBarWidth => FluffyThemes.columnWidth - (32 * 2) - 25;
+  // double get levelBarWidth => FluffyThemes.columnWidth - (32 * 2) - 25;
 
   Color levelColor(int level) {
     final colors = [
@@ -147,19 +146,14 @@ class LearningProgressIndicatorsState
               ? const Color.fromARGB(255, 0, 190, 83)
               : Theme.of(context).colorScheme.primary,
           currentPoints: currentXP,
-          width: levelBarWidth * _pangeaController.analytics.levelProgress,
+          widthMultiplier: _pangeaController.analytics.levelProgress,
         ),
         LevelBarDetails(
           fillColor: Theme.of(context).colorScheme.primary,
           currentPoints: serverXP,
-          width:
-              levelBarWidth * _pangeaController.analytics.serverLevelProgress,
+          widthMultiplier: _pangeaController.analytics.serverLevelProgress,
         ),
       ],
-      progressBarDetails: ProgressBarDetails(
-        totalWidth: levelBarWidth,
-        borderColor: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-      ),
     );
 
     final levelBadge = Container(
@@ -184,84 +178,67 @@ class LearningProgressIndicatorsState
       ),
     );
 
-    return Stack(
-      alignment: Alignment.topCenter,
+    return Row(
       children: [
-        // const Positioned(
-        //   child: PointsGainedAnimation(),
-        // ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(46, 0, 32, 4),
-              child: Row(
+        const ClientChooserButton(),
+        const SizedBox(width: 6),
+        Expanded(
+          child: Column(
+            children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  FutureBuilder(
-                    future: _pangeaController.matrixState.client
-                        .getProfileFromUserId(
-                      _pangeaController.matrixState.client.userID!,
-                    ),
-                    builder: (context, snapshot) {
-                      final mxid = Matrix.of(context).client.userID ??
-                          L10n.of(context)!.user;
-                      return Avatar(
-                        name: snapshot.data?.displayName ??
-                            mxid.localpart ??
-                            mxid,
-                        mxContent: snapshot.data?.avatarUrl,
-                        size: 40,
-                      );
-                    },
-                  ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: ProgressIndicatorEnum.values
-                        .where(
-                          (indicator) =>
-                              indicator != ProgressIndicatorEnum.level,
-                        )
+                        .where((i) => i != ProgressIndicatorEnum.level)
                         .map(
-                          (indicator) => ProgressIndicatorBadge(
-                            points: getProgressPoints(indicator),
-                            onTap: () {
-                              final model = getConstructsModel(indicator);
-                              if (model == null) return;
-                              showDialog<AnalyticsPopup>(
-                                context: context,
-                                builder: (c) => AnalyticsPopup(
-                                  indicator: indicator,
-                                  constructsModel: model,
-                                ),
-                              );
-                            },
-                            progressIndicator: indicator,
-                            loading: loading,
+                          (indicator) => Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: ProgressIndicatorBadge(
+                              points: getProgressPoints(indicator),
+                              onTap: () {
+                                final model = getConstructsModel(indicator);
+                                if (model == null) return;
+                                showDialog<AnalyticsPopup>(
+                                  context: context,
+                                  builder: (c) => AnalyticsPopup(
+                                    indicator: indicator,
+                                    constructsModel: model,
+                                  ),
+                                );
+                              },
+                              progressIndicator: indicator,
+                              loading: loading,
+                            ),
                           ),
                         )
                         .toList(),
                   ),
+                  InkWell(
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (c) => const SettingsLearning(),
+                    ),
+                    child: LanguageFlag(
+                      language: _pangeaController.languageController.userL2,
+                      size: 24,
+                    ),
+                  ),
                 ],
               ),
-            ),
-            Center(
-              child: SizedBox(
+              const SizedBox(height: 6),
+              SizedBox(
                 height: 36,
-                child: SizedBox(
-                  width: levelBarWidth + 16,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Positioned(left: 16, right: 0, child: progressBar),
-                      Positioned(left: 0, child: levelBadge),
-                    ],
-                  ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned(left: 16, right: 0, child: progressBar),
+                    Positioned(left: 0, child: levelBadge),
+                  ],
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-          ],
+            ],
+          ),
         ),
       ],
     );

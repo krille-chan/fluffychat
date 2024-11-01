@@ -11,12 +11,18 @@ import 'package:go_router/go_router.dart';
 // import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
-import 'chat_list.dart';
-
 class ClientChooserButton extends StatelessWidget {
-  final ChatListController controller;
+  // #Pangea
+  // final ChatListController controller;
+  // Pangea#
 
-  const ClientChooserButton(this.controller, {super.key});
+  const ClientChooserButton(
+      // #Pangea
+      // this.controller,
+      // Pangea#
+      {
+    super.key,
+  });
 
   List<PopupMenuEntry<Object>> _bundleMenuItems(BuildContext context) {
     final matrix = Matrix.of(context);
@@ -268,12 +274,27 @@ class ClientChooserButton extends StatelessWidget {
                   child: Material(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(99),
-                    child: Avatar(
-                      mxContent: snapshot.data?.avatarUrl,
-                      name: snapshot.data?.displayName ??
-                          matrix.client.userID!.localpart,
-                      size: 32,
+                    child:
+                        // #Pangea
+                        Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(4),
+                          child:
+                              // Pangea#
+                              Avatar(
+                            mxContent: snapshot.data?.avatarUrl,
+                            name: snapshot.data?.displayName ??
+                                matrix.client.userID!.localpart,
+                            size: 50,
+                          ),
+                          // #Pangea
+                        ),
+                        const Icon(Icons.settings_outlined, size: 20),
+                      ],
                     ),
+                    // Pangea#
                   ),
                 ),
               ],
@@ -296,11 +317,14 @@ class ClientChooserButton extends StatelessWidget {
     Object object,
     BuildContext context,
   ) async {
-    if (object is Client) {
-      controller.setActiveClient(object);
-    } else if (object is String) {
-      controller.setActiveBundle(object);
-    } else if (object is SettingsAction) {
+    // #Pangea
+    // if (object is Client) {
+    //   controller.setActiveClient(object);
+    // } else if (object is String) {
+    //   controller.setActiveBundle(object);
+    // } else
+    // Pangea#
+    if (object is SettingsAction) {
       switch (object) {
         case SettingsAction.addAccount:
           final consent = await showOkCancelAlertDialog(
@@ -319,7 +343,10 @@ class ClientChooserButton extends StatelessWidget {
         //   break;
         // Pangea#
         case SettingsAction.newSpace:
-          controller.createNewSpace();
+          // #Pangea
+          // controller.createNewSpace();
+          context.push<String?>('/rooms/newspace');
+          // Pangea#
           break;
         // #Pangea
         // case SettingsAction.invite:
