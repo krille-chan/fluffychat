@@ -24,6 +24,7 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
   Widget build(BuildContext context) {
     final discussionChildren = [
       TextFormField(
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         decoration: InputDecoration(
           hintText: L10n.of(context)!
               .conversationBotDiscussionZone_discussionTopicPlaceholder,
@@ -43,6 +44,7 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
       ),
       const SizedBox(height: 12),
       TextFormField(
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         decoration: InputDecoration(
           hintText: L10n.of(context)!
               .conversationBotDiscussionZone_discussionKeywordsPlaceholder,
@@ -58,6 +60,7 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
 
     final customChildren = [
       TextFormField(
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         decoration: InputDecoration(
           hintText: L10n.of(context)!
               .conversationBotCustomZone_customSystemPromptPlaceholder,

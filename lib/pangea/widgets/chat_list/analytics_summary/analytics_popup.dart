@@ -36,31 +36,32 @@ class AnalyticsPopup extends StatelessWidget {
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: constructsModel.constructList.isEmpty
+              child: constructsModel.constructListWithPoints.isEmpty
                   ? Center(
                       child: Text(L10n.of(context)!.noDataFound),
                     )
                   : ListView.builder(
-                      itemCount: constructsModel.constructList.length,
+                      itemCount: constructsModel.constructListWithPoints.length,
                       itemBuilder: (context, index) {
                         return Tooltip(
                           message:
-                              "${constructsModel.constructList[index].points} / ${constructsModel.maxXPPerLemma}",
+                              "${constructsModel.constructListWithPoints[index].points} / ${constructsModel.maxXPPerLemma}",
                           child: ListTile(
                             onTap: () {},
                             title: Text(
                               constructsModel.type == ConstructTypeEnum.morph
                                   ? getGrammarCopy(
                                       constructsModel
-                                          .constructList[index].lemma,
+                                          .constructListWithPoints[index].lemma,
                                       context,
                                     )
-                                  : constructsModel.constructList[index].lemma,
+                                  : constructsModel
+                                      .constructListWithPoints[index].lemma,
                             ),
                             subtitle: LinearProgressIndicator(
-                              value:
-                                  constructsModel.constructList[index].points /
-                                      constructsModel.maxXPPerLemma,
+                              value: constructsModel
+                                      .constructListWithPoints[index].points /
+                                  constructsModel.maxXPPerLemma,
                               minHeight: 20,
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(AppConfig.borderRadius),

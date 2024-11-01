@@ -111,9 +111,9 @@ class LearningProgressIndicatorsState
   int? getProgressPoints(ProgressIndicatorEnum indicator) {
     switch (indicator) {
       case ProgressIndicatorEnum.wordsUsed:
-        return words?.lemmas.length;
+        return words?.lemmasWithPoints.length;
       case ProgressIndicatorEnum.morphsUsed:
-        return morphs?.lemmas.length;
+        return morphs?.lemmasWithPoints.length;
       case ProgressIndicatorEnum.level:
         return level;
     }

@@ -542,9 +542,9 @@ class Choreographer {
         chatController.room,
       );
 
-  bool get itAutoPlayEnabled {
-    return pangeaController.userController.profile.userSettings.itAutoPlay;
-  }
+  // bool get itAutoPlayEnabled {
+  //   return pangeaController.userController.profile.userSettings.itAutoPlay;
+  // }
 
   bool get definitionsEnabled =>
       pangeaController.permissionsController.isToolEnabled(
