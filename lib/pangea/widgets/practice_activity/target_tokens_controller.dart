@@ -40,7 +40,10 @@ class TargetTokensController {
   ) async {
     final tokens = await pangeaMessageEvent
         .representationByLanguage(pangeaMessageEvent.messageDisplayLangCode)
-        ?.tokensGlobal();
+        ?.tokensGlobal(
+          pangeaMessageEvent.senderId,
+          pangeaMessageEvent.originServerTs,
+        );
 
     if (tokens == null || tokens.isEmpty) {
       debugger(when: kDebugMode);

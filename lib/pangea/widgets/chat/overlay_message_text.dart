@@ -31,7 +31,12 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
   void initState() {
     tokens = widget.pangeaMessageEvent.originalSent?.tokens;
     if (widget.pangeaMessageEvent.originalSent != null && tokens == null) {
-      widget.pangeaMessageEvent.originalSent!.tokensGlobal().then((tokens) {
+      widget.pangeaMessageEvent.originalSent!
+          .tokensGlobal(
+        widget.pangeaMessageEvent.senderId,
+        widget.pangeaMessageEvent.originServerTs,
+      )
+          .then((tokens) {
         // this isn't currently working because originalSent's _event is null
         setState(() => this.tokens = tokens);
       });

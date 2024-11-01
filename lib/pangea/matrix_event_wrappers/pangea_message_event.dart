@@ -89,7 +89,12 @@ class PangeaMessageEvent {
 
     final TextToSpeechRequest params = TextToSpeechRequest(
       text: rep.content.text,
-      tokens: (await rep.tokensGlobal()).map((t) => t.text).toList(),
+      tokens: (await rep.tokensGlobal(
+        senderId,
+        originServerTs,
+      ))
+          .map((t) => t.text)
+          .toList(),
       langCode: langCode,
       userL1: l1Code ?? LanguageKeys.unknownLanguage,
       userL2: l2Code ?? LanguageKeys.unknownLanguage,
