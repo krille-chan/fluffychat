@@ -19,6 +19,7 @@ dependencies:
   badges: ^3.1.2
   blurhash_dart: ^1.2.1
   callkeep: ^0.3.2
+  characters: ^1.2.0
   chewie: ^1.8.1
   collection: ^1.18.0
   cupertino_icons: any
