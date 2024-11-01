@@ -45,14 +45,59 @@ class SettingsStyleController extends State<SettingsStyle> {
     );
   }
 
-  void setChatWallpaperOpacity(double opacity) {
+  double get wallpaperOpacity =>
+      _wallpaperOpacity ??
+      Matrix.of(context).client.applicationAccountConfig.wallpaperOpacity ??
+      0.5;
+
+  double? _wallpaperOpacity;
+
+  void saveWallpaperOpacity(double opacity) async {
     final client = Matrix.of(context).client;
-    showFutureLoadingDialog(
+    final result = await showFutureLoadingDialog(
       context: context,
       future: () => client.updateApplicationAccountConfig(
         ApplicationAccountConfig(wallpaperOpacity: opacity),
       ),
     );
+    if (result.isValue) return;
+
+    setState(() {
+      _wallpaperOpacity = client.applicationAccountConfig.wallpaperOpacity;
+    });
+  }
+
+  void updateWallpaperOpacity(double opacity) {
+    setState(() {
+      _wallpaperOpacity = opacity;
+    });
+  }
+
+  double get wallpaperBlur =>
+      _wallpaperBlur ??
+      Matrix.of(context).client.applicationAccountConfig.wallpaperBlur ??
+      0.5;
+  double? _wallpaperBlur;
+
+  void saveWallpaperBlur(double blur) async {
+    final client = Matrix.of(context).client;
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () => client.updateApplicationAccountConfig(
+        ApplicationAccountConfig(wallpaperBlur: blur),
+      ),
+    );
+    if (result.isValue) return;
+
+    setState(() {
+      _wallpaperBlur = client.applicationAccountConfig.wallpaperBlur;
+    });
+  }
+
+  void updateWallpaperBlur(double blur) {
+    setState(() {
+      _wallpaperBlur = blur;
+    });
   }
 
   void deleteChatWallpaper() => showFutureLoadingDialog(
@@ -60,7 +105,7 @@ class SettingsStyleController extends State<SettingsStyle> {
         future: () => Matrix.of(context).client.setApplicationAccountConfig(
               const ApplicationAccountConfig(
                 wallpaperUrl: null,
-                wallpaperOpacity: null,
+                wallpaperBlur: null,
               ),
             ),
       );
@@ -72,10 +117,26 @@ class SettingsStyleController extends State<SettingsStyle> {
     null,
     AppConfig.chatColor,
     Colors.indigo,
+    Colors.blue,
+    Colors.blueAccent,
+    Colors.teal,
+    Colors.tealAccent,
     Colors.green,
+    Colors.greenAccent,
+    Colors.yellow,
+    Colors.yellowAccent,
     Colors.orange,
+    Colors.orangeAccent,
+    Colors.red,
+    Colors.redAccent,
     Colors.pink,
+    Colors.pinkAccent,
+    Colors.purple,
+    Colors.purpleAccent,
     Colors.blueGrey,
+    Colors.grey,
+    Colors.white,
+    Colors.black,
   ];
 
   void switchTheme(ThemeMode? newTheme) {

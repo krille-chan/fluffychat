@@ -449,12 +449,6 @@ class Message extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 12 * AppConfig.fontSizeFactor,
                       color: theme.colorScheme.secondary,
-                      shadows: [
-                        Shadow(
-                          color: theme.colorScheme.surface,
-                          blurRadius: 3,
-                        ),
-                      ],
                     ),
                   ),
                 ),
@@ -495,12 +489,6 @@ class Message extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 12 * AppConfig.fontSizeFactor,
                       color: theme.colorScheme.secondary,
-                      shadows: [
-                        Shadow(
-                          color: theme.colorScheme.surface,
-                          blurRadius: 3,
-                        ),
-                      ],
                     ),
                   ),
                 ),

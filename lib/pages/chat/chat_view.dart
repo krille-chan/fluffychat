@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
@@ -262,14 +264,21 @@ class ChatView extends StatelessWidget {
                   children: <Widget>[
                     if (accountConfig.wallpaperUrl != null)
                       Opacity(
-                        opacity: accountConfig.wallpaperOpacity ?? 1,
-                        child: MxcImage(
-                          uri: accountConfig.wallpaperUrl,
-                          fit: BoxFit.cover,
-                          isThumbnail: true,
-                          width: FluffyThemes.columnWidth * 4,
-                          height: FluffyThemes.columnWidth * 4,
-                          placeholder: (_) => Container(),
+                        opacity: accountConfig.wallpaperOpacity ?? 0.5,
+                        child: ImageFiltered(
+                          imageFilter: ui.ImageFilter.blur(
+                            sigmaX: accountConfig.wallpaperBlur ?? 0.0,
+                            sigmaY: accountConfig.wallpaperBlur ?? 0.0,
+                          ),
+                          child: MxcImage(
+                            cacheKey: accountConfig.wallpaperUrl.toString(),
+                            uri: accountConfig.wallpaperUrl,
+                            fit: BoxFit.cover,
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            isThumbnail: false,
+                            placeholder: (_) => Container(),
+                          ),
                         ),
                       ),
                     SafeArea(
