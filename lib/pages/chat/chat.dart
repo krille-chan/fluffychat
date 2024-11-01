@@ -485,6 +485,15 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void>? setReadMarkerFuture;
 
   void setReadMarker({String? eventId}) {
+    // #Pangea
+    if (room.client.userID == null ||
+        eventId != null &&
+            (eventId.contains("web") ||
+                eventId.contains("android") ||
+                eventId.contains("ios"))) {
+      return;
+    }
+    // Pangea#
     if (setReadMarkerFuture != null) return;
     if (_scrolledUp) return;
     if (scrollUpBannerEventId != null) return;
@@ -560,6 +569,7 @@ class ChatController extends State<ChatPageWithRoom>
     //#Pangea
     choreographer.stateListener.close();
     choreographer.dispose();
+    clearSelectedEvents();
     MatrixState.pAnyState.closeOverlay();
     //Pangea#
     super.dispose();
@@ -1334,13 +1344,18 @@ class ChatController extends State<ChatPageWithRoom>
   }
   // Pangea#
 
-  void clearSelectedEvents() => setState(() {
-        // #Pangea
-        closeSelectionOverlay();
-        // Pangea#
-        selectedEvents.clear();
-        showEmojiPicker = false;
-      });
+  void clearSelectedEvents() {
+    // #Pangea
+    if (!mounted) return;
+    // Pangea#
+    setState(() {
+      // #Pangea
+      closeSelectionOverlay();
+      // Pangea#
+      selectedEvents.clear();
+      showEmojiPicker = false;
+    });
+  }
 
   void clearSingleSelectedEvent() {
     if (selectedEvents.length <= 1) {
@@ -1405,7 +1420,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void onSelectMessage(Event event) {
     // #Pangea
-    if (choreographer.itController.isOpen) {
+    if (choreographer.itController.willOpen) {
       return;
     }
     // Pangea#

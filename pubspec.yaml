@@ -6,7 +6,7 @@ description: Learn a language while texting your friends.
 # Pangea#
 publish_to: none
 # On version bump also increase the build number for F-Droid
-version: 1.21.5+3541
+version: 1.23.3+3562
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -69,7 +69,9 @@ dependencies:
   image_picker: ^1.1.0
   intl: any
   just_audio: ^0.9.39
-  keyboard_shortcuts: ^0.1.4
+  # #Pangea
+  # keyboard_shortcuts: ^0.1.4
+  # Pangea#
   latlong2: ^0.9.1
   linkify: ^5.0.0
   # #Pangea
@@ -112,6 +114,7 @@ dependencies:
   android_intent_plus: ^5.2.0
   country_picker: ^2.0.25
   csv: ^6.0.0
+  dropdown_button2: ^2.3.9
   fl_chart: ^0.67.0
   firebase_analytics: ^11.0.1
   firebase_core: ^3.1.0
@@ -217,8 +220,10 @@ dependency_overrides:
     version: ^1.0.1
   # waiting for null safety
   # Upstream pull request: https://github.com/AntoineMarcel/keyboard_shortcuts/pull/13
-  keyboard_shortcuts:
-    git:
-      url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
-      ref: null-safety
-  win32: 5.5.3
+  # #Pangea
+  # keyboard_shortcuts:
+  #   git:
+  #     url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
+  #     ref: null-safety
+  # win32: 5.5.3
+  # Pangea#

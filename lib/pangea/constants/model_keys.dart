@@ -24,7 +24,7 @@ class ModelKey {
   // making this a random string so that it's harder to guess
   static const String activatedTrialKey = '7C4EuKIsph';
   static const String autoPlayMessages = 'autoPlayMessages';
-  static const String itAutoPlay = 'itAutoPlay';
+  static const String itAutoPlay = 'autoPlayIT';
 
   static const String clientClassCity = "city";
   static const String clientClassCountry = "country";

@@ -1,4 +1,4 @@
-import 'package:fluffychat/pangea/constants/bot_mode.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_dynamic_zone.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_select.dart';
@@ -7,44 +7,40 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class ConversationBotSettingsForm extends StatefulWidget {
+class ConversationBotSettingsForm extends StatelessWidget {
   final BotOptionsModel botOptions;
-  final GlobalKey<FormState> formKey;
 
   final TextEditingController discussionTopicController;
   final TextEditingController discussionKeywordsController;
   final TextEditingController customSystemPromptController;
 
+  final bool enabled;
+  final void Function(String?) onUpdateBotMode;
+  final void Function(String?) onUpdateBotLanguage;
+  final void Function(String?) onUpdateBotVoice;
+  final void Function(int?) onUpdateBotLanguageLevel;
+
   const ConversationBotSettingsForm({
     super.key,
     required this.botOptions,
-    required this.formKey,
     required this.discussionTopicController,
     required this.discussionKeywordsController,
     required this.customSystemPromptController,
+    required this.onUpdateBotMode,
+    required this.onUpdateBotLanguage,
+    required this.onUpdateBotVoice,
+    required this.onUpdateBotLanguageLevel,
+    this.enabled = true,
   });
-
-  @override
-  ConversationBotSettingsFormState createState() =>
-      ConversationBotSettingsFormState();
-}
-
-class ConversationBotSettingsFormState
-    extends State<ConversationBotSettingsForm> {
-  late BotOptionsModel botOptions;
-
-  @override
-  void initState() {
-    super.initState();
-    botOptions = widget.botOptions;
-  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        DropdownButtonFormField(
-          // Initial Value
+        DropdownButtonFormField2(
+          dropdownStyleData: const DropdownStyleData(
+            padding: EdgeInsets.zero,
+          ),
           hint: Text(
             L10n.of(context)!.selectBotLanguage,
             overflow: TextOverflow.clip,
@@ -52,7 +48,6 @@ class ConversationBotSettingsFormState
           ),
           value: botOptions.targetLanguage,
           isExpanded: true,
-          icon: const Icon(Icons.keyboard_arrow_down),
           items: MatrixState.pangeaController.pLanguageStore.targetOptions
               .map((language) {
             return DropdownMenuItem(
@@ -64,13 +59,10 @@ class ConversationBotSettingsFormState
               ),
             );
           }).toList(),
-          onChanged: (String? newValue) => {
-            setState(() => botOptions.targetLanguage = newValue!),
-          },
+          onChanged: enabled ? onUpdateBotLanguage : null,
         ),
         const SizedBox(height: 12),
-        DropdownButtonFormField<String>(
-          // Initial Value
+        DropdownButtonFormField2<String>(
           hint: Text(
             L10n.of(context)!.chooseVoice,
             overflow: TextOverflow.clip,
@@ -78,22 +70,17 @@ class ConversationBotSettingsFormState
           ),
           value: botOptions.targetVoice,
           isExpanded: true,
-          icon: const Icon(Icons.keyboard_arrow_down),
           items: const [],
-          onChanged: (String? newValue) => {
-            setState(() => botOptions.targetVoice = newValue!),
-          },
+          onChanged: enabled ? onUpdateBotVoice : null,
         ),
         const SizedBox(height: 12),
         LanguageLevelDropdown(
           initialLevel: botOptions.languageLevel,
-          onChanged: (int? newValue) => {
-            setState(() {
-              botOptions.languageLevel = newValue!;
-            }),
-          },
-          validator: (value) =>
-              value == null ? L10n.of(context)!.enterLanguageLevel : null,
+          onChanged: onUpdateBotLanguageLevel,
+          validator: (value) => enabled && value == null
+              ? L10n.of(context)!.enterLanguageLevel
+              : null,
+          enabled: enabled,
         ),
         const SizedBox(height: 12),
         Align(
@@ -108,19 +95,16 @@ class ConversationBotSettingsFormState
         ),
         ConversationBotModeSelect(
           initialMode: botOptions.mode,
-          onChanged: (String? mode) => {
-            setState(() {
-              botOptions.mode = mode ?? BotMode.discussion;
-            }),
-          },
+          onChanged: onUpdateBotMode,
+          enabled: enabled,
         ),
         const SizedBox(height: 12),
         ConversationBotModeDynamicZone(
-          initialBotOptions: botOptions,
-          discussionTopicController: widget.discussionTopicController,
-          discussionKeywordsController: widget.discussionKeywordsController,
-          customSystemPromptController: widget.customSystemPromptController,
-          formKey: widget.formKey,
+          botOptions: botOptions,
+          discussionTopicController: discussionTopicController,
+          discussionKeywordsController: discussionKeywordsController,
+          customSystemPromptController: customSystemPromptController,
+          enabled: enabled,
         ),
       ],
     );

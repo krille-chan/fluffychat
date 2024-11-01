@@ -321,6 +321,7 @@ class ChatInputRow extends StatelessWidget {
                           // #Pangea
                           // hintText: L10n.of(context)!.writeAMessage,
                           hintText: hintText(),
+                          disabledBorder: InputBorder.none,
                           // Pangea#
                           hintMaxLines: 1,
                           border: InputBorder.none,

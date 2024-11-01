@@ -1,14 +1,13 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:http/http.dart' as http;
-
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 import '../network/urls.dart';
 
 class SubscriptionRepo {
@@ -120,7 +119,9 @@ class RCProductsResponseModel {
         .map(
           (productDetails) => SubscriptionDetails(
             price: double.parse(metadata['$packageId.price']),
-            duration: metadata['$packageId.duration'],
+            duration: SubscriptionDuration.values.firstWhereOrNull(
+              (duration) => duration.value == metadata['$packageId.duration'],
+            ),
             id: productDetails['product']['store_identifier'],
             appId: productDetails['product']['app_id'],
           ),
@@ -149,9 +150,6 @@ class RCSubscriptionResponseModel {
   ) {
     final List<String> activeEntitlements =
         RCSubscriptionResponseModel.getActiveEntitlements(json);
-
-    final List<String> allEntitlements =
-        RCSubscriptionResponseModel.getAllEntitlements(json);
 
     if (activeEntitlements.length > 1) {
       debugPrint(

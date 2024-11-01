@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class ConstructIdentifier {
   final String lemma;
@@ -186,8 +187,15 @@ class PracticeActivityModel {
     // moving from multiple_choice to content as the key
     // this is to make the model more generic
     // here for backward compatibility
-    final Map<String, dynamic> content =
-        (json['content'] ?? json["multiple_choice"]) as Map<String, dynamic>;
+    final Map<String, dynamic>? contentMap =
+        (json['content'] ?? json["multiple_choice"]) as Map<String, dynamic>?;
+
+    if (contentMap == null) {
+      Sentry.addBreadcrumb(
+        Breadcrumb(data: {"json": json}),
+      );
+      throw ("content is null in PracticeActivityModel.fromJson");
+    }
 
     return PracticeActivityModel(
       tgtConstructs: ((json['tgt_constructs'] ?? json['target_constructs'])
@@ -203,9 +211,7 @@ class PracticeActivityModel {
                   e.string == json['activity_type'] as String ||
                   e.string.split('.').last == json['activity_type'] as String,
             ),
-      content: ActivityContent.fromJson(
-        content,
-      ),
+      content: ActivityContent.fromJson(contentMap),
     );
   }
 

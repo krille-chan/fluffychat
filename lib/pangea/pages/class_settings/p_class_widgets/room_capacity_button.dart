@@ -62,21 +62,17 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            L10n.of(context)!.roomExceedsCapacity,
+            spaceMode
+                ? L10n.of(context)!.chatExceedsCapacity
+                : L10n.of(context)!.spaceExceedsCapacity,
           ),
         ),
       );
     }
   }
 
-  String get roomType {
-    final String chat = L10n.of(context)!.chat;
-    final String space = L10n.of(context)!.space;
-    if (widget.room != null) {
-      return widget.room!.isSpace ? space : chat;
-    }
-    return widget.spaceMode ? space : chat;
-  }
+  bool get spaceMode =>
+      (widget.room != null && widget.room!.isSpace) || widget.spaceMode;
 
   @override
   Widget build(BuildContext context) {
@@ -92,13 +88,17 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
           ),
           subtitle: Text(
             (capacity == null)
-                ? L10n.of(context)!.capacityNotSet
+                ? spaceMode
+                    ? L10n.of(context)!.spaceCapacityNotSet
+                    : L10n.of(context)!.chatCapacityNotSet
                 : (nonAdmins != null)
                     ? '$nonAdmins/$capacity'
                     : '$capacity',
           ),
           title: Text(
-            L10n.of(context)!.roomCapacity(roomType),
+            spaceMode
+                ? L10n.of(context)!.spaceCapacity
+                : L10n.of(context)!.chatCapacity,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
@@ -116,8 +116,12 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
   Future<void> setRoomCapacity() async {
     final input = await showTextInputDialog(
       context: context,
-      title: L10n.of(context)!.roomCapacity(roomType),
-      message: L10n.of(context)!.roomCapacityExplanation(roomType),
+      title: spaceMode
+          ? L10n.of(context)!.spaceCapacity
+          : L10n.of(context)!.chatCapacity,
+      message: spaceMode
+          ? L10n.of(context)!.spaceCapacityExplanation
+          : L10n.of(context)!.chatCapacityExplanation,
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
       textFields: [
@@ -133,7 +137,9 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
               return L10n.of(context)!.enterNumber;
             }
             if (nonAdmins != null && int.parse(value) < int.parse(nonAdmins!)) {
-              return L10n.of(context)!.capacitySetTooLow(roomType);
+              return spaceMode
+                  ? L10n.of(context)!.spaceCapacitySetTooLow
+                  : L10n.of(context)!.chatCapacitySetTooLow;
             }
             return null;
           },
@@ -159,7 +165,9 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            L10n.of(context)!.roomCapacityHasBeenChanged(roomType),
+            spaceMode
+                ? L10n.of(context)!.spaceCapacityHasBeenChanged
+                : L10n.of(context)!.chatCapacityHasBeenChanged,
           ),
         ),
       );

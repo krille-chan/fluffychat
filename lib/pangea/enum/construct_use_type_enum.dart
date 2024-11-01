@@ -105,23 +105,32 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
         return 2;
 
       case ConstructUseTypeEnum.corIt:
+        return 1;
+
       case ConstructUseTypeEnum.ignIt:
       case ConstructUseTypeEnum.ignIGC:
       case ConstructUseTypeEnum.ignPA:
       case ConstructUseTypeEnum.ignWL:
-        return 1;
-
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.nan:
         return 0;
 
       case ConstructUseTypeEnum.incIt:
       case ConstructUseTypeEnum.incIGC:
-        return -1;
+        return -2;
 
       case ConstructUseTypeEnum.incPA:
       case ConstructUseTypeEnum.incWL:
-        return -2;
+        return -3;
     }
+  }
+}
+
+class ConstructUseTypeUtil {
+  static ConstructUseTypeEnum fromString(String value) {
+    return ConstructUseTypeEnum.values.firstWhere(
+      (e) => e.string == value,
+      orElse: () => ConstructUseTypeEnum.nan,
+    );
   }
 }

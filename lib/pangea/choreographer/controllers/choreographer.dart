@@ -68,14 +68,17 @@ class Choreographer {
   }
 
   void send(BuildContext context) {
-    if (isFetching) return;
+    if (!canSendMessage) return;
 
-    if (pangeaController.subscriptionController.canSendStatus ==
-        CanSendStatus.showPaywall) {
+    if (pangeaController.subscriptionController.subscriptionStatus ==
+        SubscriptionStatus.showPaywall) {
       OverlayUtil.showPositionedCard(
         context: context,
-        cardToShow: const PaywallCard(),
-        cardSize: const Size(325, 325),
+        cardToShow: PaywallCard(
+          chatController: chatController,
+        ),
+        maxHeight: 325,
+        maxWidth: 325,
         transformTargetId: inputTransformTargetKey,
       );
       return;
@@ -89,7 +92,7 @@ class Choreographer {
   }
 
   Future<void> _sendWithIGC(BuildContext context) async {
-    if (!igc.canSendMessage) {
+    if (!canSendMessage) {
       igc.showFirstMatch(context);
       return;
     }
@@ -242,23 +245,26 @@ class Choreographer {
   }) async {
     try {
       if (errorService.isError) return;
-      final CanSendStatus canSendStatus =
-          pangeaController.subscriptionController.canSendStatus;
+      final SubscriptionStatus canSendStatus =
+          pangeaController.subscriptionController.subscriptionStatus;
 
-      if (canSendStatus != CanSendStatus.subscribed ||
+      if (canSendStatus != SubscriptionStatus.subscribed ||
           (!igcEnabled && !itEnabled) ||
           (!isAutoIGCEnabled && !manual && choreoMode != ChoreoMode.it)) {
         return;
       }
 
       startLoading();
+
+      // if getting language assistance after finishing IT,
+      // reset the itController
       if (choreoMode == ChoreoMode.it &&
           itController.isTranslationDone &&
           !onlyTokensAndLanguageDetection) {
-        // debugger(when: kDebugMode);
+        itController.clear();
       }
 
-      await (choreoMode == ChoreoMode.it && !itController.isTranslationDone
+      await (isRunningIT
           ? itController.getTranslationData(_useCustomInput)
           : igc.getIGCTextData(
               onlyTokensAndLanguageDetection: onlyTokensAndLanguageDetection,
@@ -415,7 +421,7 @@ class Choreographer {
     setState();
   }
 
-  giveInputFocus() {
+  void giveInputFocus() {
     Future.delayed(Duration.zero, () {
       chatController.inputFocus.requestFocus();
     });
@@ -475,6 +481,9 @@ class Choreographer {
   bool get _noChange =>
       _lastChecked != null && _lastChecked == _textController.text;
 
+  bool get isRunningIT =>
+      choreoMode == ChoreoMode.it && !itController.isTranslationDone;
+
   void startLoading() {
     _lastChecked = _textController.text;
     isFetching = true;
@@ -502,8 +511,6 @@ class Choreographer {
     }
   }
 
-  bool get showIsError => !itController.isOpen && errorService.isError;
-
   LayerLinkAndKey get itBarLinkAndKey =>
       MatrixState.pAnyState.layerLinkAndKey(itBarTransformTargetKey);
 
@@ -529,9 +536,9 @@ class Choreographer {
         chatController.room,
       );
 
-  bool get itAutoPlayEnabled {
-    return pangeaController.userController.profile.userSettings.itAutoPlay;
-  }
+  // bool get itAutoPlayEnabled {
+  //   return pangeaController.userController.profile.userSettings.itAutoPlay;
+  // }
 
   bool get definitionsEnabled =>
       pangeaController.permissionsController.isToolEnabled(
@@ -567,7 +574,7 @@ class Choreographer {
       return AssistanceState.noMessage;
     }
 
-    if (igc.igcTextData?.matches.isNotEmpty ?? false) {
+    if ((igc.igcTextData?.matches.isNotEmpty ?? false) || isRunningIT) {
       return AssistanceState.fetched;
     }
 
@@ -580,5 +587,34 @@ class Choreographer {
     }
 
     return AssistanceState.complete;
+  }
+
+  bool get canSendMessage {
+    // if there's an error, let them send. we don't want to block them from sending in this case
+    if (errorService.isError) return true;
+
+    // if they're in IT mode, don't let them send
+    if (itEnabled && isRunningIT) return false;
+
+    // if they've turned off IGC then let them send the message when they want
+    if (!isAutoIGCEnabled) return true;
+
+    // if we're in the middle of fetching results, don't let them send
+    if (isFetching) return false;
+
+    // they're supposed to run IGC but haven't yet, don't let them send
+    if (isAutoIGCEnabled && igc.igcTextData == null) return false;
+
+    // if they have relevant matches, don't let them send
+    final hasITMatches =
+        igc.igcTextData!.matches.any((match) => match.isITStart);
+    final hasIGCMatches =
+        igc.igcTextData!.matches.any((match) => !match.isITStart);
+    if ((itEnabled && hasITMatches) || (igcEnabled && hasIGCMatches)) {
+      return false;
+    }
+
+    // otherwise, let them send
+    return true;
   }
 }

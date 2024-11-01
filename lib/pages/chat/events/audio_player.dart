@@ -21,6 +21,7 @@ class AudioPlayerWidget extends StatefulWidget {
   final Event? event;
   final PangeaAudioFile? matrixFile;
   final bool autoplay;
+  final Function(bool)? setIsPlayingAudio;
   // Pangea#
 
   static String? currentId;
@@ -41,6 +42,7 @@ class AudioPlayerWidget extends StatefulWidget {
     this.autoplay = false,
     this.sectionStartMS,
     this.sectionEndMS,
+    this.setIsPlayingAudio,
     // Pangea#
     super.key,
   });
@@ -204,8 +206,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       if (max == null || max == Duration.zero) return;
       setState(() => maxPosition = max.inMilliseconds.toDouble());
     });
-    onPlayerStateChanged ??=
-        audioPlayer.playingStream.listen((_) => setState(() {}));
+    onPlayerStateChanged ??= audioPlayer.playingStream.listen(
+      (isPlaying) => setState(() {
+        // #Pangea
+        widget.setIsPlayingAudio?.call(isPlaying);
+        // Pangea#
+      }),
+    );
     final audioFile = this.audioFile;
     if (audioFile != null) {
       audioPlayer.setFilePath(audioFile.path);
@@ -439,64 +446,61 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           //   ],
           // ),
           // const SizedBox(width: 8),
-          Expanded(
-            child: Row(
-              children: [
-                for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
-                  Builder(
-                    builder: (context) {
-                      final double barOpacity = currentPosition > i ? 1 : 0.5;
-                      return Expanded(
-                        child: GestureDetector(
-                          onTapDown: (_) {
-                            audioPlayer?.seek(
-                              Duration(
-                                milliseconds:
-                                    (maxPosition / AudioPlayerWidget.wavesCount)
-                                            .round() *
-                                        i,
-                              ),
-                            );
-                          },
-                          child: Stack(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: 0.5,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: widget.color.withOpacity(barOpacity),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                                height: 32 * (waveform[i] / 1024),
-                              ),
-                            ],
+          Row(
+            children: [
+              for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
+                Builder(
+                  builder: (context) {
+                    final double barOpacity = currentPosition > i ? 1 : 0.5;
+                    return GestureDetector(
+                      onTapDown: (_) {
+                        audioPlayer?.seek(
+                          Duration(
+                            milliseconds:
+                                (maxPosition / AudioPlayerWidget.wavesCount)
+                                        .round() *
+                                    i,
                           ),
-                        ),
-                      );
-                      // return Container(
-                      //   height: 32,
-                      //   width: 2,
-                      //   alignment: Alignment.center,
-                      //   child: Opacity(
-                      //     opacity: barOpacity,
-                      //     child: Container(
-                      //       margin: const EdgeInsets.symmetric(
-                      //         horizontal: 1,
-                      //       ),
-                      //       decoration: BoxDecoration(
-                      //         color: widget.color,
-                      //         borderRadius: BorderRadius.circular(2),
-                      //       ),
-                      //       height: 32 * (waveform[i] / 1024),
-                      //       width: 2,
-                      //     ),
-                      //   ),
-                      // );
-                    },
-                  ),
-              ],
-            ),
+                        );
+                      },
+                      child: Stack(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 0.5,
+                            ),
+                            decoration: BoxDecoration(
+                              color: widget.color.withOpacity(barOpacity),
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                            height: 32 * (waveform[i] / 1024),
+                            width: 3,
+                          ),
+                        ],
+                      ),
+                    );
+                    // return Container(
+                    //   height: 32,
+                    //   width: 2,
+                    //   alignment: Alignment.center,
+                    //   child: Opacity(
+                    //     opacity: barOpacity,
+                    //     child: Container(
+                    //       margin: const EdgeInsets.symmetric(
+                    //         horizontal: 1,
+                    //       ),
+                    //       decoration: BoxDecoration(
+                    //         color: widget.color,
+                    //         borderRadius: BorderRadius.circular(2),
+                    //       ),
+                    //       height: 32 * (waveform[i] / 1024),
+                    //       width: 2,
+                    //     ),
+                    //   ),
+                    // );
+                  },
+                ),
+            ],
           ),
           const SizedBox(width: 5),
           // SizedBox(

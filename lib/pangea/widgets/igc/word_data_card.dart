@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -7,8 +8,7 @@ import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
-import 'package:fluffychat/pangea/widgets/common/p_circular_loader.dart';
+import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -166,71 +166,68 @@ class WordDataCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (controller.wordNetError != null) {
-      return CardErrorWidget(error: controller.wordNetError);
+      return CardErrorWidget(
+        error: controller.wordNetError!,
+        maxWidth: AppConfig.toolbarMinWidth,
+      );
     }
     if (controller.activeL1 == null || controller.activeL2 == null) {
       ErrorHandler.logError(m: "should not be here");
-      return CardErrorWidget(error: controller.noLanguages);
+      return CardErrorWidget(
+        error: controller.noLanguages,
+        maxWidth: AppConfig.toolbarMinWidth,
+      );
     }
 
-    final ScrollController scrollController = ScrollController();
-
-    return Container(
-      padding: const EdgeInsets.all(8),
-      constraints: const BoxConstraints(minHeight: minCardHeight),
-      alignment: Alignment.center,
-      child: Scrollbar(
-        thumbVisibility: true,
-        controller: scrollController,
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (controller.widget.choiceFeedback != null)
-                Text(
-                  controller.widget.choiceFeedback!,
-                  style: BotStyle.text(context),
-                ),
-              const SizedBox(height: 5.0),
-              if (controller.wordData != null &&
-                  controller.wordNetError == null &&
-                  controller.activeL1 != null &&
-                  controller.activeL2 != null)
-                WordNetInfo(
-                  wordData: controller.wordData!,
-                  activeL1: controller.activeL1!,
-                  activeL2: controller.activeL2!,
-                ),
-              if (controller.isLoadingWordNet) const PCircular(),
-              const SizedBox(height: 5.0),
-              // if (controller.widget.hasInfo &&
-              //     !controller.isLoadingContextualDefinition &&
-              //     controller.contextualDefinitionRes == null)
-              //   Material(
-              //     type: MaterialType.transparency,
-              //     child: ListTile(
-              //       leading: const BotFace(
-              //           width: 40, expression: BotExpression.surprised),
-              //       title: Text(L10n.of(context)!.askPangeaBot),
-              //       onTap: controller.handleGetDefinitionButtonPress,
-              //     ),
-              //   ),
-              if (controller.isLoadingContextualDefinition) const PCircular(),
-              if (controller.contextualDefinitionRes != null)
-                Text(
-                  controller.contextualDefinitionRes!.text,
-                  style: BotStyle.text(context),
-                ),
-              if (controller.definitionError != null)
-                Text(
-                  L10n.of(context)!.sorryNoResults,
-                  style: BotStyle.text(context),
-                ),
-            ],
-          ),
-        ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+      child: Column(
+        children: [
+          if (controller.widget.choiceFeedback != null)
+            Text(
+              controller.widget.choiceFeedback!,
+              style: BotStyle.text(context),
+            ),
+          const SizedBox(height: 5.0),
+          if (controller.wordData != null &&
+              controller.wordNetError == null &&
+              controller.activeL1 != null &&
+              controller.activeL2 != null)
+            WordNetInfo(
+              wordData: controller.wordData!,
+              activeL1: controller.activeL1!,
+              activeL2: controller.activeL2!,
+            ),
+          if (controller.isLoadingWordNet)
+            const ToolbarContentLoadingIndicator(),
+          const SizedBox(height: 5.0),
+          // if (controller.widget.hasInfo &&
+          //     !controller.isLoadingContextualDefinition &&
+          //     controller.contextualDefinitionRes == null)
+          //   Material(
+          //     type: MaterialType.transparency,
+          //     child: ListTile(
+          //       leading: const BotFace(
+          //           width: 40, expression: BotExpression.surprised),
+          //       title: Text(L10n.of(context)!.askPangeaBot),
+          //       onTap: controller.handleGetDefinitionButtonPress,
+          //     ),
+          //   ),
+          if (controller.isLoadingContextualDefinition)
+            const ToolbarContentLoadingIndicator(),
+          if (controller.contextualDefinitionRes != null)
+            Text(
+              controller.contextualDefinitionRes!.text,
+              style: BotStyle.text(context),
+              textAlign: TextAlign.center,
+            ),
+          if (controller.definitionError != null)
+            Text(
+              L10n.of(context)!.sorryNoResults,
+              style: BotStyle.text(context),
+              textAlign: TextAlign.center,
+            ),
+        ],
       ),
     );
   }
@@ -251,12 +248,14 @@ class WordNetInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SensesForLanguage(
           wordData: wordData,
           languageType: LanguageType.target,
           language: activeL2,
         ),
+        const SizedBox(height: 10),
         SensesForLanguage(
           wordData: wordData,
           languageType: LanguageType.base,
@@ -273,52 +272,6 @@ enum LanguageType {
 }
 
 class SensesForLanguage extends StatelessWidget {
-  const SensesForLanguage({
-    super.key,
-    required this.wordData,
-    required this.languageType,
-    required this.language,
-  });
-
-  final LanguageModel language;
-  final LanguageType languageType;
-  final WordData wordData;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(7, 0, 0, 0),
-            child: LanguageFlag(
-              language: language,
-            ),
-          ),
-          Expanded(
-            child: PartOfSpeechBlock(
-              wordData: wordData,
-              languageType: languageType,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class PartOfSpeechBlock extends StatelessWidget {
-  final WordData wordData;
-  final LanguageType languageType;
-
-  const PartOfSpeechBlock({
-    super.key,
-    required this.wordData,
-    required this.languageType,
-  });
-
   String get exampleSentence => languageType == LanguageType.target
       ? wordData.targetExampleSentence
       : wordData.baseExampleSentence;
@@ -336,70 +289,76 @@ class PartOfSpeechBlock extends StatelessWidget {
     return "$word (${wordData.formattedPartOfSpeech(languageType)})";
   }
 
+  const SensesForLanguage({
+    super.key,
+    required this.wordData,
+    required this.languageType,
+    required this.language,
+  });
+
+  final LanguageModel language;
+  final LanguageType languageType;
+  final WordData wordData;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              formattedTitle(context),
-              style: BotStyle.text(context, italics: true, bold: false),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.only(left: 14.0, bottom: 10.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Column(
-                children: [
-                  if (definition.isNotEmpty)
-                    RichText(
-                      text: TextSpan(
-                        style: BotStyle.text(
-                          context,
-                          italics: false,
-                          bold: false,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: "${L10n.of(context)!.definition}: ",
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          TextSpan(text: definition),
-                        ],
-                      ),
-                    ),
-                  const SizedBox(height: 10),
-                  if (exampleSentence.isNotEmpty)
-                    RichText(
-                      text: TextSpan(
-                        style: BotStyle.text(
-                          context,
-                          italics: false,
-                          bold: false,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: "${L10n.of(context)!.exampleSentence}: ",
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(text: exampleSentence),
-                        ],
-                      ),
-                    ),
-                ],
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        LanguageFlag(language: language),
+        const SizedBox(width: 10),
+        Flexible(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                formattedTitle(context),
+                style: BotStyle.text(context, italics: true, bold: false),
               ),
-            ),
+              const SizedBox(height: 4),
+              if (definition.isNotEmpty)
+                RichText(
+                  text: TextSpan(
+                    style: BotStyle.text(
+                      context,
+                      italics: false,
+                      bold: false,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: "${L10n.of(context)!.definition}: ",
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(text: definition),
+                    ],
+                  ),
+                ),
+              const SizedBox(height: 4),
+              if (exampleSentence.isNotEmpty)
+                RichText(
+                  text: TextSpan(
+                    style: BotStyle.text(
+                      context,
+                      italics: false,
+                      bold: false,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: "${L10n.of(context)!.exampleSentence}: ",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextSpan(text: exampleSentence),
+                    ],
+                  ),
+                ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

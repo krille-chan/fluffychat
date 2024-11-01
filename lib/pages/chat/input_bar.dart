@@ -478,6 +478,8 @@ class InputBar extends StatelessWidget {
             // builder: (context, controller, focusNode) => TextField(
             builder: (context, _, focusNode) => TextField(
               enableSuggestions: false,
+              readOnly:
+                  controller != null && controller!.choreographer.isRunningIT,
               // Pangea#
               controller: controller,
               focusNode: focusNode,

@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
 import 'package:fluffychat/pangea/utils/space_code.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
+// import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import 'chat_list.dart';
@@ -41,30 +42,17 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      PopupMenuItem(
-        value: SettingsAction.learning,
-        child: Row(
-          children: [
-            const Icon(Icons.psychology_outlined),
-            const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.learningSettings)),
-          ],
-        ),
-      ),
+      // PopupMenuItem(
+      //   value: SettingsAction.newGroup,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.group_add_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context)!.createGroup),
+      //     ],
+      //   ),
+      // ),
       // Pangea#
-      PopupMenuItem(
-        value: SettingsAction.newGroup,
-        child: Row(
-          children: [
-            const Icon(Icons.group_add_outlined),
-            const SizedBox(width: 18),
-            // #Pangea
-            Expanded(child: Text(L10n.of(context)!.createGroup)),
-            // Text(L10n.of(context)!.createGroup),
-            // Pangea#
-          ],
-        ),
-      ),
       PopupMenuItem(
         value: SettingsAction.newSpace,
         child: Row(
@@ -79,6 +67,16 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       // #Pangea
+      PopupMenuItem(
+        value: SettingsAction.learning,
+        child: Row(
+          children: [
+            const Icon(Icons.psychology_outlined),
+            const SizedBox(width: 18),
+            Expanded(child: Text(L10n.of(context)!.learningSettings)),
+          ],
+        ),
+      ),
       // PopupMenuItem(
       //   value: SettingsAction.setStatus,
       //   child: Row(
@@ -216,60 +214,71 @@ class ClientChooserButton extends StatelessWidget {
 
     var clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
-    return FutureBuilder<Profile>(
-      future: matrix.client.fetchOwnProfile(),
-      builder: (context, snapshot) => Stack(
-        alignment: Alignment.center,
-        children: [
-          ...List.generate(
-            clientCount,
-            (index) => KeyBoardShortcuts(
-              keysToPress: _buildKeyboardShortcut(index + 1),
-              helpLabel: L10n.of(context)!.switchToAccount(index + 1),
-              onKeysPressed: () => _handleKeyboardShortcut(
-                matrix,
-                index,
-                context,
-              ),
-              child: const SizedBox.shrink(),
+    // #Pangea
+    return matrix.client.userID == null
+        ? const SizedBox(
+            height: 16,
+            width: 16,
+            child: CircularProgressIndicator.adaptive(),
+          )
+        :
+        // Pangea#
+        FutureBuilder<Profile>(
+            future: matrix.client.fetchOwnProfile(),
+            builder: (context, snapshot) => Stack(
+              alignment: Alignment.center,
+              children: [
+                // #Pangea
+                // ...List.generate(
+                //   clientCount,
+                //   (index) => KeyBoardShortcuts(
+                //     keysToPress: _buildKeyboardShortcut(index + 1),
+                //     helpLabel: L10n.of(context)!.switchToAccount(index + 1),
+                //     onKeysPressed: () => _handleKeyboardShortcut(
+                //       matrix,
+                //       index,
+                //       context,
+                //     ),
+                //     child: const SizedBox.shrink(),
+                //   ),
+                // ),
+                // KeyBoardShortcuts(
+                //   keysToPress: {
+                //     LogicalKeyboardKey.controlLeft,
+                //     LogicalKeyboardKey.tab,
+                //   },
+                //   helpLabel: L10n.of(context)!.nextAccount,
+                //   onKeysPressed: () => _nextAccount(matrix, context),
+                //   child: const SizedBox.shrink(),
+                // ),
+                // KeyBoardShortcuts(
+                //   keysToPress: {
+                //     LogicalKeyboardKey.controlLeft,
+                //     LogicalKeyboardKey.shiftLeft,
+                //     LogicalKeyboardKey.tab,
+                //   },
+                //   helpLabel: L10n.of(context)!.previousAccount,
+                //   onKeysPressed: () => _previousAccount(matrix, context),
+                //   child: const SizedBox.shrink(),
+                // ),
+                // Pangea#
+                PopupMenuButton<Object>(
+                  onSelected: (o) => _clientSelected(o, context),
+                  itemBuilder: _bundleMenuItems,
+                  child: Material(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(99),
+                    child: Avatar(
+                      mxContent: snapshot.data?.avatarUrl,
+                      name: snapshot.data?.displayName ??
+                          matrix.client.userID!.localpart,
+                      size: 32,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-          KeyBoardShortcuts(
-            keysToPress: {
-              LogicalKeyboardKey.controlLeft,
-              LogicalKeyboardKey.tab,
-            },
-            helpLabel: L10n.of(context)!.nextAccount,
-            onKeysPressed: () => _nextAccount(matrix, context),
-            child: const SizedBox.shrink(),
-          ),
-          KeyBoardShortcuts(
-            keysToPress: {
-              LogicalKeyboardKey.controlLeft,
-              LogicalKeyboardKey.shiftLeft,
-              LogicalKeyboardKey.tab,
-            },
-            helpLabel: L10n.of(context)!.previousAccount,
-            onKeysPressed: () => _previousAccount(matrix, context),
-            child: const SizedBox.shrink(),
-          ),
-          PopupMenuButton<Object>(
-            onSelected: (o) => _clientSelected(o, context),
-            itemBuilder: _bundleMenuItems,
-            child: Material(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(99),
-              child: Avatar(
-                mxContent: snapshot.data?.avatarUrl,
-                name: snapshot.data?.displayName ??
-                    matrix.client.userID!.localpart,
-                size: 32,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 
   Set<LogicalKeyboardKey>? _buildKeyboardShortcut(int index) {
@@ -304,9 +313,11 @@ class ClientChooserButton extends StatelessWidget {
           if (consent != OkCancelResult.ok) return;
           context.go('/rooms/settings/addaccount');
           break;
-        case SettingsAction.newGroup:
-          context.go('/rooms/newgroup');
-          break;
+        // #Pangea
+        // case SettingsAction.newGroup:
+        //   context.go('/rooms/newgroup');
+        //   break;
+        // Pangea#
         case SettingsAction.newSpace:
           controller.createNewSpace();
           break;
@@ -326,7 +337,10 @@ class ClientChooserButton extends StatelessWidget {
         //   controller.setStatus();
         //   break;
         case SettingsAction.learning:
-          context.go('/rooms/settings/learning');
+          showDialog(
+            context: context,
+            builder: (c) => const SettingsLearning(),
+          );
           break;
         case SettingsAction.joinWithClassCode:
           SpaceCodeUtil.joinWithSpaceCodeDialog(
@@ -414,7 +428,9 @@ class ClientChooserButton extends StatelessWidget {
 
 enum SettingsAction {
   addAccount,
-  newGroup,
+  // #Pangea
+  // newGroup,
+  // Pangea#
   newSpace,
   // #Pangea
   // setStatus,

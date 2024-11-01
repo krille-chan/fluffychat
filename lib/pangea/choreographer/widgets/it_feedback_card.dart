@@ -103,7 +103,7 @@ class ITFeedbackCardController extends State<ITFeedbackCard> {
   @override
   Widget build(BuildContext context) => error == null
       ? ITFeedbackCardView(controller: this)
-      : CardErrorWidget(error: error);
+      : CardErrorWidget(error: error!);
 }
 
 class ITFeedbackCardView extends StatelessWidget {

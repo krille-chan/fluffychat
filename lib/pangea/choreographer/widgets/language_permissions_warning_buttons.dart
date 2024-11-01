@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
+import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../../widgets/matrix.dart';
@@ -52,7 +52,12 @@ class LanguagePermissionsButtons extends StatelessWidget {
               text: copy.description,
               style: const TextStyle(color: AppConfig.primaryColor),
               recognizer: TapGestureRecognizer()
-                ..onTap = () => context.go('/rooms/settings/learning'),
+                ..onTap = () {
+                  showDialog(
+                    context: context,
+                    builder: (c) => const SettingsLearning(),
+                  );
+                },
             ),
         ],
       ),

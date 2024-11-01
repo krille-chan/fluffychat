@@ -345,6 +345,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
+  dropdown_button2:
+    dependency: "direct main"
+    description:
+      name: dropdown_button2
+      sha256: b0fe8d49a030315e9eef6c7ac84ca964250155a6224d491c1365061bc974a9e1
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.9"
   dynamic_color:
     dependency: "direct main"
     description:
@@ -1324,15 +1332,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.1"
-  keyboard_shortcuts:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: null-safety
-      resolved-ref: a3d4020911860ff091d90638ab708604b71d2c5a
-      url: "https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git"
-    source: git
-    version: "0.1.4"
   language_tool:
     dependency: "direct main"
     description:
@@ -1482,7 +1481,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "3b77012ba93d6ff8f98dfdff00663aabeddf077e"
+      resolved-ref: "59895c358743fa23d8b52a61a8ec9755139951f8"
       url: "https://github.com/pangeachat/matrix-dart-sdk.git"
     source: git
     version: "0.32.4"
@@ -2651,14 +2650,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  visibility_detector:
-    dependency: transitive
-    description:
-      name: visibility_detector
-      sha256: "15c54a459ec2c17b4705450483f3d5a2858e733aee893dcee9d75fd04814940d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.3"
   vm_service:
     dependency: transitive
     description:
@@ -2732,7 +2723,7 @@ packages:
     source: hosted
     version: "1.2.0"
   win32:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: win32
       sha256: "015002c060f1ae9f41a818f2d5640389cc05283e368be19dc8d77cecb43c40c9"

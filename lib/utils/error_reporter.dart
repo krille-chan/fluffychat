@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -11,18 +12,17 @@ class ErrorReporter {
   void onErrorCallback(Object error, [StackTrace? stackTrace]) async {
     Logs().e(message ?? 'Error caught', error, stackTrace);
     // #Pangea
-    // Attempt to retrieve the L10n instance using the current context
-    final L10n? l10n = L10n.of(context);
-
-    // Check if the L10n instance is null
-    if (l10n == null) {
-      // Log an error message saying that the localization object is null
-      Logs().e('Localization object is null, cannot show error message.');
-      // Exits early to prevent further execution
-      return;
-    }
-
     try {
+      // Attempt to retrieve the L10n instance using the current context
+      final L10n? l10n = L10n.of(context);
+
+      // Check if the L10n instance is null
+      if (l10n == null) {
+        // Log an error message saying that the localization object is null
+        Logs().e('Localization object is null, cannot show error message.');
+        // Exits early to prevent further execution
+        return;
+      }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -32,6 +32,12 @@ class ErrorReporter {
       );
     } catch (err) {
       debugPrint("Failed to show error snackbar.");
+    } finally {
+      ErrorHandler.logError(
+        e: error,
+        s: stackTrace,
+        m: message ?? 'Error caught',
+      );
     }
   }
   // final text = '$error\n${stackTrace ?? ''}';

@@ -22,7 +22,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class GetAnalyticsController {
   late PangeaController _pangeaController;
   final List<AnalyticsCacheEntry> _cache = [];
-  StreamSubscription<AnalyticsUpdateType>? _analyticsUpdateSubscription;
+  StreamSubscription<AnalyticsUpdate>? _analyticsUpdateSubscription;
   CachedStreamController<List<OneConstructUse>> analyticsStream =
       CachedStreamController<List<OneConstructUse>>();
 
@@ -87,8 +87,9 @@ class GetAnalyticsController {
     prevXP = null;
   }
 
-  Future<void> onAnalyticsUpdate(AnalyticsUpdateType type) async {
-    if (type == AnalyticsUpdateType.server) {
+  Future<void> onAnalyticsUpdate(AnalyticsUpdate analyticsUpdate) async {
+    if (analyticsUpdate.isLogout) return;
+    if (analyticsUpdate.type == AnalyticsUpdateType.server) {
       await getConstructs(forceUpdate: true);
     }
     updateAnalyticsStream();
@@ -161,7 +162,8 @@ class GetAnalyticsController {
         return formattedCache;
       } catch (err) {
         // if something goes wrong while trying to format the local data, clear it
-        _pangeaController.myAnalytics.clearMessagesSinceUpdate();
+        _pangeaController.myAnalytics
+            .clearMessagesSinceUpdate(clearDrafts: true);
         return {};
       }
     } catch (exception, stackTrace) {

@@ -4,10 +4,12 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class WordAudioButton extends StatefulWidget {
   final String text;
+  final TtsController ttsController;
 
   const WordAudioButton({
     super.key,
     required this.text,
+    required this.ttsController,
   });
 
   @override
@@ -17,18 +19,9 @@ class WordAudioButton extends StatefulWidget {
 class WordAudioButtonState extends State<WordAudioButton> {
   bool _isPlaying = false;
 
-  TtsController ttsController = TtsController();
-
-  @override
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    ttsController.setupTTS().then((value) => setState(() {}));
-  }
-
   @override
   Widget build(BuildContext context) {
+    debugPrint('build WordAudioButton');
     return Column(
       children: [
         IconButton(
@@ -47,7 +40,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
               _isPlaying ? L10n.of(context)!.stop : L10n.of(context)!.playAudio,
           onPressed: () async {
             if (_isPlaying) {
-              await ttsController.tts.stop();
+              await widget.ttsController.tts.stop();
               if (mounted) {
                 setState(() => _isPlaying = false);
               }
@@ -55,14 +48,15 @@ class WordAudioButtonState extends State<WordAudioButton> {
               if (mounted) {
                 setState(() => _isPlaying = true);
               }
-              await ttsController.speak(widget.text);
+              await widget.ttsController.speak(widget.text);
               if (mounted) {
                 setState(() => _isPlaying = false);
               }
             }
           }, // Disable button if language isn't supported
         ),
-        ttsController.missingVoiceButton,
+        // #freeze-activity
+        widget.ttsController.missingVoiceButton,
       ],
     );
   }

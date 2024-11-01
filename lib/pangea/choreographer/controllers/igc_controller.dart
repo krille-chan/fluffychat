@@ -99,7 +99,7 @@ class IgcController {
     final PangeaMatch match = igcTextData!.matches[firstMatchIndex];
 
     if (match.isITStart &&
-        choreographer.itAutoPlayEnabled &&
+        // choreographer.itAutoPlayEnabled &&
         igcTextData != null) {
       choreographer.onITStart(igcTextData!.matches[firstMatchIndex]);
       return;
@@ -125,7 +125,8 @@ class IgcController {
         ),
         roomId: choreographer.roomId,
       ),
-      cardSize: match.isITStart ? const Size(350, 260) : const Size(350, 350),
+      maxHeight: match.isITStart ? 260 : 350,
+      maxWidth: 350,
       transformTargetId: choreographer.inputTransformTargetKey,
     );
   }
@@ -190,19 +191,5 @@ class IgcController {
     spanDataController.clearCache();
     // Not sure why this is here
     // MatrixState.pAnyState.closeOverlay();
-  }
-
-  bool get canSendMessage {
-    if (choreographer.isFetching) return false;
-    if (igcTextData == null ||
-        choreographer.errorService.isError ||
-        igcTextData!.matches.isEmpty) {
-      return true;
-    }
-
-    return !((choreographer.itEnabled &&
-            igcTextData!.matches.any((match) => match.isOutOfTargetMatch)) ||
-        (choreographer.igcEnabled &&
-            igcTextData!.matches.any((match) => !match.isOutOfTargetMatch)));
   }
 }

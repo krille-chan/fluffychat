@@ -7,7 +7,6 @@ import 'package:fluffychat/pangea/pages/class_settings/class_name_header.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_description_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_details_toggle_add_students_tile.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_invitation_buttons.dart';
-import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_name_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/utils/lock_room.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
@@ -213,11 +212,6 @@ class ChatDetailsView extends StatelessWidget {
                           ),
                           Divider(color: theme.dividerColor),
                           // #Pangea
-                          if (room.isRoomAdmin)
-                            ClassNameButton(
-                              room: room,
-                              controller: controller,
-                            ),
                           if (room.canSendEvent('m.room.topic'))
                             ClassDescriptionButton(
                               room: room,

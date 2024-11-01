@@ -2,6 +2,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class InlineTooltip extends StatelessWidget {
   final InstructionsEnum instructionsEnum;
@@ -15,7 +16,7 @@ class InlineTooltip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (instructionsEnum.toggledOff(context)) {
+    if (instructionsEnum.toggledOff()) {
       return const SizedBox();
     }
 
@@ -30,6 +31,7 @@ class InlineTooltip extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               // Lightbulb icon on the left
               Icon(
@@ -39,10 +41,10 @@ class InlineTooltip extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               // Text in the middle
-              Expanded(
+              Flexible(
                 child: Center(
                   child: Text(
-                    instructionsEnum.body(context),
+                    instructionsEnum.body(L10n.of(context)!),
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onSurface,
                       height: 1.5,
