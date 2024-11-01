@@ -302,8 +302,7 @@ class Message extends StatelessWidget {
                                   child: AnimatedOpacity(
                                     opacity: animateIn
                                         ? 0
-                                        : event.redacted ||
-                                                event.messageType ==
+                                        : event.messageType ==
                                                     MessageTypes.BadEncrypted ||
                                                 event.status.isSending
                                             ? 0.5
@@ -473,6 +472,8 @@ class Message extends StatelessWidget {
                         event.originServerTs.localizedTime(context),
                         style: TextStyle(
                           fontSize: 12 * AppConfig.fontSizeFactor,
+                          fontWeight: FontWeight.bold,
+                          color: theme.colorScheme.secondary,
                         ),
                       ),
                     ),

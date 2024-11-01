@@ -242,7 +242,7 @@ class MessageContent extends StatelessWidget {
                             reason,
                           ),
                     icon: '🗑️',
-                    textColor: buttonTextColor,
+                    textColor: buttonTextColor.withAlpha(128),
                     onPressed: () => onInfoTab!(event),
                     fontSize: fontSize,
                   );
