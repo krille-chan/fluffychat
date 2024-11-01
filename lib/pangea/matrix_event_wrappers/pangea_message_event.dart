@@ -17,7 +17,6 @@ import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -83,7 +82,6 @@ class PangeaMessageEvent {
 
   Future<PangeaAudioFile?> getMatrixAudioFile(
     String langCode,
-    BuildContext context,
   ) async {
     final RepresentationEvent? rep = representationByLanguage(langCode);
 
@@ -91,7 +89,7 @@ class PangeaMessageEvent {
 
     final TextToSpeechRequest params = TextToSpeechRequest(
       text: rep.content.text,
-      tokens: (await rep.tokensGlobal(context)).map((t) => t.text).toList(),
+      tokens: (await rep.tokensGlobal()).map((t) => t.text).toList(),
       langCode: langCode,
       userL1: l1Code ?? LanguageKeys.unknownLanguage,
       userL2: l2Code ?? LanguageKeys.unknownLanguage,

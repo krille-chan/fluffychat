@@ -158,7 +158,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       } else {
         audioFile = await widget.messageEvent.getMatrixAudioFile(
           langCode,
-          context,
         );
       }
       debugPrint("audio file is now: $audioFile. setting starts and ends...");

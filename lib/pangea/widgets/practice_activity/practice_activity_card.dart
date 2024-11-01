@@ -141,7 +141,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
           userL2: pangeaController.languageController.userL2!.langCode,
           messageText: widget.pangeaMessageEvent.originalSent!.text,
           tokensWithXP: await targetTokensController.targetTokens(
-            context,
             widget.pangeaMessageEvent,
           ),
           messageId: widget.pangeaMessageEvent.eventId,
@@ -218,7 +217,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
           currentActivity!,
           metadata,
         ),
-        context,
         widget.pangeaMessageEvent,
       );
 
