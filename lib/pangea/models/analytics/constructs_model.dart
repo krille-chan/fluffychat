@@ -104,13 +104,21 @@ class OneConstructUse {
         : null;
     debugger(when: kDebugMode && constructType == null);
 
+    List<String> categories = [];
+    final categoriesEntry = json['cat'] ?? json['categories'];
+    if (categoriesEntry != null) {
+      if (categoriesEntry is List) {
+        categories = List<String>.from(categoriesEntry);
+      } else if (categoriesEntry is String) {
+        categories = [categoriesEntry];
+      }
+    }
+
     return OneConstructUse(
       useType: ConstructUseTypeUtil.fromString(json['useType']),
       lemma: json['lemma'],
       form: json['form'],
-      categories: json['categories'] != null
-          ? List<String>.from(json['categories'])
-          : [],
+      categories: categories,
       constructType: constructType ?? ConstructTypeEnum.vocab,
       id: json['id'],
       metadata: ConstructUseMetaData(
