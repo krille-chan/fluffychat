@@ -25,8 +25,6 @@ void main() async {
   final store = await SharedPreferences.getInstance();
   final clients = await ClientManager.getClients(store: store);
 
-  //TODO: migrate single client push settings to multiclient settings
-
   // If the app starts in detached mode, we assume that it is in
   // background fetch mode for processing push notifications. This is
   // currently only supported on Android.

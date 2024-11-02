@@ -197,7 +197,7 @@ class BackgroundPush {
           )) {
         Logs().i('[Push] Pusher already set');
       } else {
-        Logs().i('Need to set new pusher');
+        Logs().i('[Push] Need to set new pusher');
         oldTokens.add(token);
         if (client.isLogged()) {
           setNewPusher = true;
@@ -253,6 +253,27 @@ class BackgroundPush {
 
   Future<void> setupPush(List<Client> clients) async {
     Logs().d("SetupPush");
+
+    {
+      // migrate single client push settings to multiclient settings
+      final endpoint = matrix!.store.getString(SettingKeys.unifiedPushEndpoint);
+      if (endpoint != null) {
+        matrix!.store.setString(
+            clients.first.clientName + SettingKeys.unifiedPushEndpoint,
+            endpoint);
+        matrix!.store.remove(SettingKeys.unifiedPushEndpoint);
+      }
+
+      final registered =
+          matrix!.store.getBool(SettingKeys.unifiedPushRegistered);
+      if (registered != null) {
+        matrix!.store.setBool(
+            clients.first.clientName + SettingKeys.unifiedPushRegistered,
+            registered);
+        matrix!.store.remove(SettingKeys.unifiedPushRegistered);
+      }
+    }
+
     if (clients.first.onLoginStateChanged.value != LoginState.loggedIn ||
         !PlatformInfos.isMobile ||
         matrix == null) {
@@ -425,7 +446,9 @@ class BackgroundPush {
       client: client,
     );
     await matrix?.store.setString(
-        client.clientName + SettingKeys.unifiedPushEndpoint, newEndpoint);
+      client.clientName + SettingKeys.unifiedPushEndpoint,
+      newEndpoint,
+    );
     await matrix?.store
         .setBool(client.clientName + SettingKeys.unifiedPushRegistered, true);
   }
