@@ -39,16 +39,20 @@ class PushHelper {
     required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
     required String instance,
   }) async {
-    final handler = await _newPushHandler(
-      notification,
-      clients: clients,
-      l10n: l10n,
-      activeRoomId: activeRoomId,
-      activeClient: activeClient,
-      flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
-      instance: instance,
-    );
-    await handler?._showNotification();
+    try {
+      final handler = await _newPushHandler(
+        notification,
+        clients: clients,
+        l10n: l10n,
+        activeRoomId: activeRoomId,
+        activeClient: activeClient,
+        flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
+        instance: instance,
+      );
+      await handler?._showNotification();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   static FutureOr<PushHelper?> _newPushHandler(
@@ -65,7 +69,7 @@ class PushHelper {
     try {
       helper.isBackgroundMessage = clients == null;
       Logs().v(
-        'Push helper has been started (background=$helper.isBackgroundMessage).',
+        'Push helper has been started (background=${helper.isBackgroundMessage}).',
         notification.toJson(),
       );
 
@@ -78,6 +82,7 @@ class PushHelper {
         Logs().e("Not client could be found for $instance");
         return null;
       }
+      helper.client = client;
 
       if (_isInForeground(notification, activeRoomId, activeClient, client)) {
         Logs().v('Room is in foreground. Stop push helper here.');
@@ -116,12 +121,12 @@ class PushHelper {
       Logs().v('Push helper got notification event of type ${event.type}.');
       return helper;
     } catch (e, s) {
-      helper._crashHandler(e, s);
+      await helper._crashHandler(e, s);
       rethrow;
     }
   }
 
-  _crashHandler(e, s) {
+  _crashHandler(e, s) async {
     Logs().v('Push Helper has crashed!', e, s);
 
     l10n ??= await lookupL10n(const Locale('en'));
@@ -233,7 +238,7 @@ class PushHelper {
       );
       Logs().v('Push helper has been completed!');
     } catch (e, s) {
-      _crashHandler(e, s);
+      await _crashHandler(e, s);
       rethrow;
     }
   }

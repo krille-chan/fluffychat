@@ -259,8 +259,9 @@ class BackgroundPush {
       final endpoint = matrix!.store.getString(SettingKeys.unifiedPushEndpoint);
       if (endpoint != null) {
         matrix!.store.setString(
-            clients.first.clientName + SettingKeys.unifiedPushEndpoint,
-            endpoint,);
+          clients.first.clientName + SettingKeys.unifiedPushEndpoint,
+          endpoint,
+        );
         matrix!.store.remove(SettingKeys.unifiedPushEndpoint);
       }
 
@@ -268,8 +269,9 @@ class BackgroundPush {
           matrix!.store.getBool(SettingKeys.unifiedPushRegistered);
       if (registered != null) {
         matrix!.store.setBool(
-            clients.first.clientName + SettingKeys.unifiedPushRegistered,
-            registered,);
+          clients.first.clientName + SettingKeys.unifiedPushRegistered,
+          registered,
+        );
         matrix!.store.remove(SettingKeys.unifiedPushRegistered);
       }
     }
@@ -377,9 +379,9 @@ class BackgroundPush {
 
       await client.roomsLoading;
       await client.accountDataLoading;
-      if (client.getRoomById(roomId) == null) {
+      if (client.getRoomById(payload.roomId) == null) {
         await client
-            .waitForRoomInSync(roomId)
+            .waitForRoomInSync(payload.roomId)
             .timeout(const Duration(seconds: 30));
       }
       FluffyChatApp.router.go(
