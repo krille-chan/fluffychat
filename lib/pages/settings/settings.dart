@@ -202,7 +202,8 @@ class SettingsController extends State<Settings> {
   }
 
   Future<String?> getOidcAccountManageUrl() async {
-    final wellKnown = await Matrix.of(context).client.getWellknown();
+    final client = Matrix.of(context).client;
+    final wellKnown = client.wellKnown ?? await client.getWellknown();
     return wellKnown.additionalProperties
         .tryGetMap<String, Object?>('org.matrix.msc2965.authentication')
         ?.tryGet<String>('account');
