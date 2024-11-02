@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_241",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWd(){return new B.HU(A.dK("gl"))},
+cWg(){return new B.HU(A.dK("gl"))},
 HU:function HU(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -50,7 +50,7 @@ ghv(){return"Enter para enviar"},
 i_(d,e,f,g){return"O servidor soporta as seguintes caracter\xedsticas:\n"+d+"\nPero esta app s\xf3 soporta "+e},
 lC(d,e){return A.u(d)+" charlas e "+A.u(e)+" participantes"},
 gmv(){return"Non se atopan m\xe1is charlas\u2026"},
-goz(){return"Sen charlas por aqu\xed. Comeza unha nova conversa con algu\xe9n premendo no bot\xf3n de abaixo. \u2935\ufe0f"},
+goA(){return"Sen charlas por aqu\xed. Comeza unha nova conversa con algu\xe9n premendo no bot\xf3n de abaixo. \u2935\ufe0f"},
 goa(){return"Sen ler"},
 ger(){return"Espazo"},
 gnY(){return"Espazos"},
@@ -538,30 +538,31 @@ gom(){return"Cambiar o enderezo p\xfablico principal da charla"},
 god(){return"Enviar notificaci\xf3ns a @room"},
 goo(){return"Cambiar a descrici\xf3n da charla"},
 gor(){return"Define que nivel de permisos son necesarios para realizar certas acci\xf3ns nesta charla. Os niveis de permiso 0, 50 e 100 normalmente representan, usuarias, moderadoras e administradoras, pero son posibles outras escalas."},
-oF(d){return"\ud83c\udf89 Instalouse a actualizaci\xf3n a "+d+"!"},
+oG(d){return"\ud83c\udf89 Instalouse a actualizaci\xf3n a "+d+"!"},
 goq(){return"Novidades na versi\xf3n"},
 goc(){return"Cancelouse o env\xedo"},
 goy(){return"Acceder co ID-Matrix"},
 got(){return"Atopar servidores"},
-goH(){return"Que \xe9 un servidor de inicio?"},
+goI(){return"Que \xe9 un servidor de inicio?"},
 gow(){return"Todos os teus datos quedan gardados no servidor de inicio, igual que co teu provedor de correo electr\xf3nico. Podes elexir o servidor que queres usar e poder\xe1s comunicarte con todos os demais. Aprende m\xe1is en https://matrix.org."},
 gou(){return"Non semella ser un servidor de inicio compatible. \xc9 o URL correcto?"},
 goj(){return"Calculando o tama\xf1o do ficheiro\u2026"},
-goD(){return"Preparando o env\xedo\u2026"},
+goE(){return"Preparando o env\xedo\u2026"},
 goe(){return"Enviando o anexo\u2026"},
 of(d,e){return"Enviando o anexo "+d+" de "+e+"\u2026"},
 og(d){return"Acadouse o l\xedmite do servidor! Agarda "+d+" segundos\u2026"},
-goB(){return"Un dos teus dispositivos non est\xe1 verificado"},
-goA(){return"Nota: Cando conectas todos os teus dispositivos \xe1 copia de apoio da conversa quedan verificados automaticamente."},
+goC(){return"Un dos teus dispositivos non est\xe1 verificado"},
+goB(){return"Nota: Cando conectas todos os teus dispositivos \xe1 copia de apoio da conversa quedan verificados automaticamente."},
 gos(){return"Continue"},
-goG(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goH(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 goi(d){return"Blur:"},
 gc2(d){return"Opacity:"},
 gl2(){return"Set wallpaper"},
+goz(){return"Manage account"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HU,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HU":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"9ayTadaXF/aJHK1OcgCwi79+1Gs=");
+a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"jFWtUwX02kW3oMKEOUSZQ6GVzFw=");
 //# sourceMappingURL=main.dart.js_241.part.js.map

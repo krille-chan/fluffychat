@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_230",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cW6(){return new B.HN(A.dK("et"))},
+cW9(){return new B.HN(A.dK("et"))},
 HN:function HN(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -50,7 +50,7 @@ ghv(){return"Saada s\xf5num sisestusklahvi vajutusel"},
 i_(d,e,f,g){return"See koduserver toetab Matrixi spetsifikatsioonist j\xe4rgmisi versioone:\n"+d+"\nAga see rakendus toetab vaid j\xe4rgmisi versioone: "+e},
 lC(d,e){return A.u(d)+" vestlust ja "+A.u(e)+" osalejat"},
 gmv(){return"Rohkem vestlusi ei leidu..."},
-goz(){return"Siin ei leidu veel \xfchtegi vestlust. Alusta uut vestlust kl\xf5psides allpool asuvat nuppu. \u2935\ufe0f"},
+goA(){return"Siin ei leidu veel \xfchtegi vestlust. Alusta uut vestlust kl\xf5psides allpool asuvat nuppu. \u2935\ufe0f"},
 goa(){return"Lugemata"},
 ger(){return"Kogukond"},
 gnY(){return"Kogukonnad"},
@@ -538,30 +538,31 @@ gom(){return"Muuda vestluse p\xf5hilist avalikult n\xe4htavat aadressi"},
 god(){return"Saada @jututuba teavitusi"},
 goo(){return"Muuda vestluse kirjeldust"},
 gor(){return"M\xe4\xe4ra erinevatele kasutajatele selles vestluses vajalikud \xf5igused. T\xfc\xfcpiliselt on need 0, 50 ja 100 (vastavalt kasutajad, moderaatorid ja peakasutajad), kuid igasugused vahepealsed variatsioonid on ka v\xf5imalikud."},
-oF(d){return"\ud83c\udf89 Versiooniuuendus "+d+" on paigaldatud!"},
+oG(d){return"\ud83c\udf89 Versiooniuuendus "+d+" on paigaldatud!"},
 goq(){return"Muudatuste logi"},
 goc(){return"Saatmine on katkestatud"},
 goy(){return"Logi sisse Matrix-ID alusel"},
 got(){return"Leia koduservereid"},
-goH(){return"Mis on koduserver?"},
+goI(){return"Mis on koduserver?"},
 gow(){return"Sarnaselt e-postiteenuse pakkujale on k\xf5ik sinu s\xf5numid salvestatud koduserveris. Sa v\xf5id valida sellise koduserveri, nagu sulle meeldib ja nad k\xf5ik suudavad teiste koduserveritega suhelda. Lisateavet leiad veebisaidist https://matrix.org."},
 gou(){return"Ei tundu olema \xfchilduv koduserver. Kas v\xf5rguaadress on ikka \xf5ige?"},
 goj(){return"Arvutame faili suurust..."},
-goD(){return"Valmistume manuse saatmiseks..."},
+goE(){return"Valmistume manuse saatmiseks..."},
 goe(){return"Saadame manust..."},
 of(d,e){return"Saadame manust: "+d+" pikkusega "+e+"..."},
 og(d){return"Serveri poolt lubatud \xfclempiir on k\xe4es. Ootame "+d+" sekundit..."},
-goB(){return"\xdcks sinu seadmetest pole verifitseeritud"},
-goA(){return"M\xe4rkus: kui liidad k\xf5ik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud."},
+goC(){return"\xdcks sinu seadmetest pole verifitseeritud"},
+goB(){return"M\xe4rkus: kui liidad k\xf5ik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud."},
 gos(){return"Continue"},
-goG(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goH(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 goi(d){return"Blur:"},
 gc2(d){return"Opacity:"},
 gl2(){return"Set wallpaper"},
+goz(){return"Manage account"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HN,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HN":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"MhhlBbP8MgtSDY1KFgAThkpdwMA=");
+a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"WNNlWErJJzQF+HAmP2qBH6uxnrE=");
 //# sourceMappingURL=main.dart.js_230.part.js.map

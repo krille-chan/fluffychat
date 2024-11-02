@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_202",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cW_(){return new B.HG(A.dK("ca"))},
+cW2(){return new B.HG(A.dK("ca"))},
 HG:function HG(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -50,7 +50,7 @@ ghv(){return"Envia en pr\xe9mer Retorn"},
 i_(d,e,f,g){return"Aquest servidor suporta aquestes versions de Matrix:\n"+d+"\nPer\xf2 aquesta aplicaci\xf3n nom\xe9s \xe9s compatible amb "+e},
 lC(d,e){return A.u(d)+" xats i "+A.u(e)+" participants"},
 gmv(){return"No hi ha m\xe9s xats..."},
-goz(){return"Encara no hi ha xats. Obre una conversa amb alg\xfa picant al bot\xf3 de sota. \u2935\ufe0f"},
+goA(){return"Encara no hi ha xats. Obre una conversa amb alg\xfa picant al bot\xf3 de sota. \u2935\ufe0f"},
 goa(){return"Sense llegir"},
 ger(){return"Espai"},
 gnY(){return"Espais"},
@@ -538,30 +538,31 @@ gom(){return"Canvia l'adre\xe7a principal de la sala"},
 god(){return"Envia notificacions @room"},
 goo(){return"Canvia la descripci\xf3 de la sala"},
 gor(){return"Defineix quin nivell de permisos cal per cada acci\xf3 en aquesta sala. Els nivells 0, 50 i 100 normalment representen usu\xe0ri\xefs, mods i admins, per\xf2 es pot canviar."},
-oF(d){return"\ud83c\udf89 S'ha actualitzat a la versi\xf3 "+d+"!"},
+oG(d){return"\ud83c\udf89 S'ha actualitzat a la versi\xf3 "+d+"!"},
 goq(){return"Registre de canvis"},
 goc(){return"S'ha cance\u0140lat l'enviament"},
 goy(){return"Entra amb l'id de Matrix"},
 got(){return"Descobreix servidors"},
-goH(){return"Qu\xe8 \xe9s un servidor de Matrix?"},
+goI(){return"Qu\xe8 \xe9s un servidor de Matrix?"},
 gow(){return"Totes les teves dades s'emmagatzemen al servidor, com passa amb el e-mail. Pots triar quin servidor vols fer servir sense t\xe9mer a no poder comunicar gent d'altres servidors. Llegeix-ne m\xe9s a https://matrix.org."},
 gou(){return"No sembla un servidor compatible. Pot ser que la URL estigui malament?"},
 goj(){return"Calculating file size..."},
-goD(){return"Prepare sending attachment..."},
+goE(){return"Prepare sending attachment..."},
 goe(){return"Sending attachment..."},
 of(d,e){return"Sending attachment "+d+" of "+e+"..."},
 og(d){return"Server limit reached! Waiting "+d+" seconds..."},
-goB(){return"One of your devices is not verified"},
-goA(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
+goC(){return"One of your devices is not verified"},
+goB(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gos(){return"Continue"},
-goG(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goH(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 goi(d){return"Blur:"},
 gc2(d){return"Opacity:"},
 gl2(){return"Set wallpaper"},
+goz(){return"Manage account"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HG,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HG":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_202",e:"endPart",h:b})})($__dart_deferred_initializers__,"g8RZ/mjHsKaSNFwdWPNfa5QZ0hs=");
+a.eventLog.push({p:"main.dart.js_202",e:"endPart",h:b})})($__dart_deferred_initializers__,"4Lp/MBwgb9QnHAgqXZjzWgCd/MM=");
 //# sourceMappingURL=main.dart.js_202.part.js.map

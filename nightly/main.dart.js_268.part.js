@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_268",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWq(){return new B.I6(A.dK("lv"))},
+cWt(){return new B.I6(A.dK("lv"))},
 I6:function I6(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -50,7 +50,7 @@ ghv(){return"Nos\u016bt\u012bt ar Enter"},
 i_(d,e,f,g){return"M\u0101jasserveris nodro\u0161ina specifik\u0101cijas versijas:\n"+d+"\nSavuk\u0101rt, lietotne atbalsta tikai "+e},
 lC(d,e){return A.u(d)+" t\u0113rz\u0113\u0161anas un "+A.u(e)+" dal\u012bbnieki"},
 gmv(){return"Vairs nav t\u0113rz\u0113\u0161anu..."},
-goz(){return"\u0160eit v\u0113l nav t\u0113rz\u0113\u0161anu. Jauna saruna ar k\u0101du ir uzs\u0101kama ar zem\u0101k eso\u0161o pogu. \u2935\ufe0f"},
+goA(){return"\u0160eit v\u0113l nav t\u0113rz\u0113\u0161anu. Jauna saruna ar k\u0101du ir uzs\u0101kama ar zem\u0101k eso\u0161o pogu. \u2935\ufe0f"},
 goa(){return"Nelas\u012btas"},
 ger(){return"Vieta"},
 gnY(){return"Vietas"},
@@ -538,30 +538,31 @@ gom(){return"Main\u012bt t\u0113rz\u0113\u0161anas galveno publisko adresi"},
 god(){return"S\u016bt\u012bt @istaba pazi\u0146ojumus"},
 goo(){return"Main\u012bt t\u0113rz\u0113\u0161anas aprakstu"},
 gor(){return"Noteikt, kur\u0161 sp\u0113ka l\u012bmenis ir nepiecie\u0161ams noteikt\u0101m darb\u012bb\u0101m \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101. Sp\u0113ka l\u012bme\u0146i 0, 50 un 100 parasti atbilst lietot\u0101jiem, moderatoriem un p\u0101rvald\u012bt\u0101jiem, bet ir iesp\u0113jams jebk\u0101ds iedal\u012bjums."},
-oF(d){return"\ud83c\udf89 Atjaunin\u0101jums "+d+" uzst\u0101d\u012bts."},
+oG(d){return"\ud83c\udf89 Atjaunin\u0101jums "+d+" uzst\u0101d\u012bts."},
 goq(){return"Izmai\u0146u \u017eurn\u0101ls"},
 goc(){return"S\u016bt\u012b\u0161ana atcelta"},
 goy(){return"Pieteikties ar Matrix-Id"},
 got(){return"Atkl\u0101t m\u0101jasserverus"},
-goH(){return"Kas ir m\u0101jasserveris?"},
+goI(){return"Kas ir m\u0101jasserveris?"},
 gow(){return"Visi lietot\u0101ja dati tiek glab\u0101ti m\u0101jasserver\u012b, glu\u017ei k\u0101 ar e-pasta nodro\u0161in\u0101t\u0101ju. Ir iesp\u0113jams izv\u0113l\u0113ties, kuru m\u0101jasserveri izmantot, saglab\u0101jot iesp\u0113ju sazin\u0101ties ar ikvienu. Vair\u0101k var uzzin\u0101t https://matrix.org."},
 gou(){return"Neizskat\u0101s p\u0113c sader\u012bga m\u0101jasservera. Nepareizs URL?"},
 goj(){return"Apr\u0113\u0137ina datnes lielumu..."},
-goD(){return"Sagatavo pielikuma nos\u016bt\u012b\u0161anu..."},
+goE(){return"Sagatavo pielikuma nos\u016bt\u012b\u0161anu..."},
 goe(){return"Nos\u016bta pielikumu..."},
 of(d,e){return"Nos\u016bta "+d+". pielikumu no "+e+"..."},
 og(d){return"Sasniegts servera ierobe\u017eojums. Gaida "+d+" sekundes..."},
-goB(){return"Viena no ier\u012bc\u0113m nav apliecin\u0101ta"},
-goA(){return"Piez\u012bme: kad visas ier\u012bces tiek savienotas ar t\u0113rz\u0113\u0161anas rezerves kopiju, t\u0101s tiek autom\u0101tiski apliecin\u0101tas."},
+goC(){return"Viena no ier\u012bc\u0113m nav apliecin\u0101ta"},
+goB(){return"Piez\u012bme: kad visas ier\u012bces tiek savienotas ar t\u0113rz\u0113\u0161anas rezerves kopiju, t\u0101s tiek autom\u0101tiski apliecin\u0101tas."},
 gos(){return"Continue"},
-goG(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goH(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 goi(d){return"Blur:"},
 gc2(d){return"Opacity:"},
 gl2(){return"Set wallpaper"},
+goz(){return"Manage account"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I6,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I6":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_268",e:"endPart",h:b})})($__dart_deferred_initializers__,"J7wa/TBz4UuUvPylqGgu6s+ouvA=");
+a.eventLog.push({p:"main.dart.js_268",e:"endPart",h:b})})($__dart_deferred_initializers__,"Rl43Aol2D55RnxZVSWG7dEj9xLE=");
 //# sourceMappingURL=main.dart.js_268.part.js.map

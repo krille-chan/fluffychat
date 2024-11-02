@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_232",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cW7(){return new B.HO(A.dK("eu"))},
+cWa(){return new B.HO(A.dK("eu"))},
 HO:function HO(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -50,7 +50,7 @@ ghv(){return"Bidali enter sakatuz"},
 i_(d,e,f,g){return"Zerbitzariak ondorengo ezaugarriak onartzen ditu:\n"+d+"\nBaina aplikazioak hauek onartzen ditu bakarrik: "+e},
 lC(d,e){return A.u(d)+" txat eta "+A.u(e)+" partaide"},
 gmv(){return"Ez da beste txatik aurkitu..."},
-goz(){return"Ez da txatik aurkitu. Hasi norbaitekin txateatzen beheko botoia erabiliz. \u2935\ufe0f"},
+goA(){return"Ez da txatik aurkitu. Hasi norbaitekin txateatzen beheko botoia erabiliz. \u2935\ufe0f"},
 goa(){return"Irakurtzeke"},
 ger(){return"Gunea"},
 gnY(){return"Guneak"},
@@ -538,31 +538,32 @@ gom(){return"Aldatu txataren helbide publiko nagusia"},
 god(){return"Bidali @gela jakinarazpena"},
 goo(){return"Aldatu txataren deskribapena"},
 gor(){return"Definitu zer botere-maila behar den txat honetako ekintza jakinetarako. 0, 50 eta 100 botere-mailek erabiltzaileak, moderatzaileak eta administratzaileak ordezkatzen dituzte, baina edozein graduazio posible da."},
-oF(d){return"\ud83c\udf89 "+d+" bertsioa instalatu da!"},
+oG(d){return"\ud83c\udf89 "+d+" bertsioa instalatu da!"},
 goq(){return"Aldaketak"},
 goc(){return"Bidalketa bertan behera utzi da"},
 goy(){return"Hasi saioa Matrix IDarekin"},
 got(){return"Arakatu zerbitzariak"},
-goH(){return"Zer da zerbitzari bat?"},
+goI(){return"Zer da zerbitzari bat?"},
 gow(){return"Zerbitzariak datuak gordetzen ditu, ePosta hornitzaileek mezuak gordetzen dituzten bezala. Nahi duzun zerbitzaria aukeratu dezakezu eta, hala ere, besteetako edonorekin hitz egin. Ikasi gehiago https://matrix.org webgunean."},
 gou(){return"Ez dirudi zerbitzaria bateragarria denik. Zuzena da URLa?"},
 goj(){return"Fitxategiaren tamaina kalkulatzen\u2026"},
-goD(){return"Eranskinaren bidalketa prestatzen\u2026"},
+goE(){return"Eranskinaren bidalketa prestatzen\u2026"},
 goe(){return"Eranskina bidaltzen\u2026"},
 of(d,e){return""+d+". eranskina bidaltzen ("+e+" guztira)\u2026"},
 og(d){return"Zerbitzariaren muga gainditu da! Itxaron "+d+" segundo\u2026"},
-goB(){return"Zure gailuetako bat ez dago egiaztatuta"},
-goA(){return"Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira."},
+goC(){return"Zure gailuetako bat ez dago egiaztatuta"},
+goB(){return"Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira."},
 gos(){return"Continue"},
-goG(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goH(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 goi(d){return"Blur:"},
 gc2(d){return"Opacity:"},
 gl2(){return"Set wallpaper"},
+goz(){return"Manage account"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.HO,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HO":{"aR":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"AECslX1h7SH1au4+YYf0hqoISco=");
+a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"T1o7Fh2M0cd7Gc4Jmd2/t1QLZXw=");
 //# sourceMappingURL=main.dart.js_232.part.js.map

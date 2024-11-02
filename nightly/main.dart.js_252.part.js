@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_252",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWh(){return new B.HY(A.dK("hu"))},
+cWk(){return new B.HY(A.dK("hu"))},
 HY:function HY(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -50,7 +50,7 @@ ghv(){return"K\xfcld\xe9s Enterrel"},
 i_(d,e,f,g){return"A Matrix szerver ezeket a specifik\xe1ci\xf3 verzi\xf3kat t\xe1mogatja:\n"+d+"\nAzonban ez az app csak ezeket: "+e},
 lC(d,e){return A.u(d)+" cseveg\xe9sek \xe9s "+A.u(e)+" r\xe9sztvev\u0151k"},
 gmv(){return"Nincs t\xf6bb cseveg\xe9s..."},
-goz(){return"Itt m\xe9g nincs cseveg\xe9s. Kezdjen \xfajat valakivel a lentebbi gombbal. \u2935\ufe0f"},
+goA(){return"Itt m\xe9g nincs cseveg\xe9s. Kezdjen \xfajat valakivel a lentebbi gombbal. \u2935\ufe0f"},
 goa(){return"Olvasatlan"},
 ger(){return"T\xe9r"},
 gnY(){return"Terek"},
@@ -538,30 +538,31 @@ gom(){return"Cseveg\xe9s f\u0151, nyilv\xe1nos c\xedm\xe9nek v\xe1ltoztat\xe1sa"
 god(){return"@room \xe9rtes\xedt\xe9s k\xfcld\xe9se"},
 goo(){return"Cseveg\xe9s le\xedr\xe1s\xe1nak v\xe1ltoztat\xe1sa"},
 gor(){return"Adja meg milyen er\u0151ss\xe9gi szint kell egyes cseveg\xe9si akci\xf3khoz. A 0, 50 \xe9s 100-as szintek \xe1ltal\xe1ban felhaszn\xe1l\xf3kat, moder\xe1torokat \xe9s rendszergazd\xe1kat jel\xf6lnek de b\xe1rmilyen szintez\xe9s lehets\xe9ges."},
-oF(d){return"\ud83c\udf89 "+d+" verzi\xf3j\xfa fejleszt\xe9s telep\xedtve!"},
+oG(d){return"\ud83c\udf89 "+d+" verzi\xf3j\xfa fejleszt\xe9s telep\xedtve!"},
 goq(){return"V\xe1ltoz\xe1sok"},
 goc(){return"Visszavon\xe1s k\xfcld\xe9se"},
 goy(){return"Jelentkezzen be Matrix-ID-vel"},
 got(){return"Matrix-kiszolg\xe1l\xf3k felfedez\xe9se"},
-goH(){return"Mi az a Matrix-kiszolg\xe1l\xf3?"},
+goI(){return"Mi az a Matrix-kiszolg\xe1l\xf3?"},
 gow(){return"Az \xf6sszes adata a M\xe1trix-kiszolg\xe1l\xf3n t\xe1rol\xf3dik, pont mint egy e-mail kiszolg\xe1l\xf3n. Kiv\xe1laszthatja melyik Matrix-kiszolg\xe1l\xf3t akarja haszn\xe1lni, mik\xf6zben tud kommunik\xe1lni mindenkivel. Tudjon meg t\xf6bbet itt: https://matrix.org."},
 gou(){return"Nem t\u0171nik kompatibilisnak a M\xe1trix-kiszolg\xe1l\xf3val. Helytelen URL?"},
 goj(){return"Calculating file size..."},
-goD(){return"Prepare sending attachment..."},
+goE(){return"Prepare sending attachment..."},
 goe(){return"Sending attachment..."},
 of(d,e){return"Sending attachment "+d+" of "+e+"..."},
 og(d){return"Server limit reached! Waiting "+d+" seconds..."},
-goB(){return"One of your devices is not verified"},
-goA(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
+goC(){return"One of your devices is not verified"},
+goB(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gos(){return"Continue"},
-goG(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goH(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 goi(d){return"Blur:"},
 gc2(d){return"Opacity:"},
 gl2(){return"Set wallpaper"},
+goz(){return"Manage account"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HY,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HY":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"DptomFIXBzEi6VTeOuPV4QAO6Yc=");
+a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"dd5Ojh/qm3SU2Qhd5hTK+YxZmVI=");
 //# sourceMappingURL=main.dart.js_252.part.js.map

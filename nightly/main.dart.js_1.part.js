@@ -2,8 +2,8 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_1",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cWI(d){return new A.CJ(B.dK(d))},
-cWJ(){return new A.In(B.dK("zh_Hant"))},
+cWL(d){return new A.CJ(B.dK(d))},
+cWM(){return new A.In(B.dK("zh_Hant"))},
 CJ:function CJ(d){this.a=d},
 In:function In(d){this.a=d}},C
 B=c[0]
@@ -52,7 +52,7 @@ ghv(){return"\u6309 Enter \u952e\u53d1\u9001"},
 i_(d,e,f,g){return"\u4e3b\u670d\u52a1\u5668\u652f\u6301\u7684 Spec \u7248\u672c\uff1a\n"+d+"\n\u4f46\u6b64\u5e94\u7528\u4ec5\u652f\u6301 "+e+" \u7248\u672c"},
 lC(d,e){return B.u(d)+" \u4e2a\u804a\u5929\u548c "+B.u(e)+" \u540d\u53c2\u4e0e\u8005"},
 gmv(){return"\u627e\u4e0d\u5230\u66f4\u591a\u804a\u5929\u2026"},
-goz(){return"\u6b64\u5904\u5c1a\u672a\u627e\u5230\u804a\u5929\u3002\u4f7f\u7528\u4e0b\u65b9\u6309\u94ae \u2935\ufe0f \u5f00\u59cb\u548c\u67d0\u4eba\u7684\u65b0\u804a\u5929"},
+goA(){return"\u6b64\u5904\u5c1a\u672a\u627e\u5230\u804a\u5929\u3002\u4f7f\u7528\u4e0b\u65b9\u6309\u94ae \u2935\ufe0f \u5f00\u59cb\u548c\u67d0\u4eba\u7684\u65b0\u804a\u5929"},
 goa(){return"\u672a\u8bfb"},
 ger(){return"\u7a7a\u95f4"},
 gnY(){return"\u7a7a\u95f4"},
@@ -540,26 +540,27 @@ gom(){return"\u66f4\u6539\u4e3b\u516c\u5171\u804a\u5929\u5730\u5740"},
 god(){return"\u53d1\u9001\u901a\u77e5\u804a\u5929\u5ba4\u6240\u6709\u4eba\u7684\u901a\u77e5"},
 goo(){return"\u66f4\u6539\u804a\u5929\u63cf\u8ff0"},
 gor(){return"\u5b9a\u4e49\u6b64\u804a\u5929\u4e2d\u54ea\u4e2a\u6743\u9650\u7b49\u7ea7\u5bf9\u7279\u5b9a\u64cd\u4f5c\u662f\u5fc5\u9700\u7684\u3002\u6743\u9650\u7b49\u7ea7 0\u300150 \u548c 100 \u901a\u5e38\u4ee3\u8868\u7528\u6237\u3001\u4e3b\u6301\u4eba\u548c\u7ba1\u7406\u5458\uff0c\u4f46\u4f60\u53ef\u4ee5\u81ea\u5b9a\u4e49\u4efb\u4f55\u7b49\u7ea7\u3002"},
-oF(d){return"\ud83c\udf89 \u5df2\u5b89\u88c5\u66f4\u65b0 "+d+" \uff01"},
+oG(d){return"\ud83c\udf89 \u5df2\u5b89\u88c5\u66f4\u65b0 "+d+" \uff01"},
 goq(){return"\u66f4\u65b0\u8bb0\u5f55"},
 goc(){return"\u53d1\u9001\u88ab\u53d6\u6d88"},
 goy(){return"\u4f7f\u7528 Matrix-ID \u767b\u5f55"},
 got(){return"\u53d1\u73b0\u4e3b\u670d\u52a1\u5668"},
-goH(){return"\u4ec0\u4e48\u662f\u4e3b\u670d\u52a1\u5668\uff1f"},
+goI(){return"\u4ec0\u4e48\u662f\u4e3b\u670d\u52a1\u5668\uff1f"},
 gow(){return"\u4e3b\u670d\u52a1\u5668\u4e0a\u5c31\u50cf\u7535\u5b50\u90ae\u4ef6\u63d0\u4f9b\u5546\uff0c\u4f60\u7684\u6240\u6709\u6570\u636e\u90fd\u5b58\u50a8\u5728\u4e0a\u9762\u3002\u4f60\u53ef\u4ee5\u9009\u62e9\u4f60\u60f3\u4f7f\u7528\u54ea\u4e2a\u4e3b\u670d\u52a1\u5668\u3002\u5728 https://matrix.org \u4e0a\u4e86\u89e3\u66f4\u591a\u4fe1\u606f\u3002"},
 gou(){return"\u4f3c\u4e4e\u4e0d\u662f\u517c\u5bb9\u7684\u4e3b\u670d\u52a1\u5668\u3002URL \u4e0d\u6b63\u786e\uff1f"},
 goj(){return"\u8ba1\u7b97\u6587\u4ef6\u5c3a\u5bf8\u4e2d\u2026"},
-goD(){return"\u51c6\u5907\u53d1\u9001\u9644\u4ef6\u2026"},
+goE(){return"\u51c6\u5907\u53d1\u9001\u9644\u4ef6\u2026"},
 goe(){return"\u53d1\u9001\u9644\u4ef6\u4e2d\u2026"},
 of(d,e){return"\u6b63\u5728\u53d1\u9001\u9644\u4ef6 "+d+"\uff0c\u5171 "+e+" \u4e2a\u9644\u4ef6\u2026"},
 og(d){return"\u8fbe\u5230\u4e86\u670d\u52a1\u5668\u9650\u5236\uff01\u7b49\u5f85 "+d+" \u79d2\u2026"},
-goB(){return"\u60a8\u8bbe\u5907\u4e2d\u7684\u4e00\u53f0\u672a\u9a8c\u8bc1"},
-goA(){return"\u6ce8\u610f\uff1a\u5f53\u4f60\u8fde\u63a5\u6240\u6709\u8bbe\u5907\u5230\u804a\u5929\u5907\u4efd\u65f6\uff0c\u8fd9\u4e9b\u8bbe\u5907\u5c06\u88ab\u81ea\u52a8\u9a8c\u8bc1\u3002"},
+goC(){return"\u60a8\u8bbe\u5907\u4e2d\u7684\u4e00\u53f0\u672a\u9a8c\u8bc1"},
+goB(){return"\u6ce8\u610f\uff1a\u5f53\u4f60\u8fde\u63a5\u6240\u6709\u8bbe\u5907\u5230\u804a\u5929\u5907\u4efd\u65f6\uff0c\u8fd9\u4e9b\u8bbe\u5907\u5c06\u88ab\u81ea\u52a8\u9a8c\u8bc1\u3002"},
 gos(){return"Continue"},
-goG(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goH(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 goi(d){return"Blur:"},
 gc2(d){return"Opacity:"},
 gl2(){return"Set wallpaper"},
+goz(){return"Manage account"},
 C(d,e){return this.gbp(this).$1(e)}}
 A.In.prototype={
 go2(){return"false"},
@@ -1089,5 +1090,5 @@ y(A.CJ,C.aR)
 y(A.In,A.CJ)})()
 B.eo(b.typeUniverse,JSON.parse('{"CJ":{"aR":[]},"In":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"Z7e1yGsQDQ6PPl8BqJSP9uYE+Wo=");
+a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"rWVv5DgJgD3AevAYN1OKyXC6Nq0=");
 //# sourceMappingURL=main.dart.js_1.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_255",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWj(){return new B.I_(A.dK("id"))},
+cWm(){return new B.I_(A.dK("id"))},
 I_:function I_(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -50,7 +50,7 @@ ghv(){return"Kirim dengan enter"},
 i_(d,e,f,g){return"Homeserver ini mendukung versi Spec ini:\n"+d+"\nTetapi aplikasi ini hanya mendukung "+e},
 lC(d,e){return A.u(d)+" chat dan "+A.u(e)+" anggota"},
 gmv(){return"Tidak ada chat lagi yang ditemukan..."},
-goz(){return"Belum ada chat di sini. Mulai chat baru dengan seseorang menggunakan tombol di bawah. \u2935\ufe0f"},
+goA(){return"Belum ada chat di sini. Mulai chat baru dengan seseorang menggunakan tombol di bawah. \u2935\ufe0f"},
 goa(){return"Tidak dibaca"},
 ger(){return"Space"},
 gnY(){return"Space"},
@@ -538,30 +538,31 @@ gom(){return"Ubah alamat chat publik utama"},
 god(){return"Kirim notifikasi @room"},
 goo(){return"Ubah deskripsi chat"},
 gor(){return"Tentukan tingkat kekuasaan yang diperlukan untuk tindakan tertentu dalam chat ini. Tingkat kekuasaan 0, 50 dan 100 biasanya mewakili pengguna, moderator dan admin, tetapi gradasi apa pun dimungkinkan."},
-oF(d){return"\ud83c\udf89 Pembaruan "+d+" terpasang!"},
+oG(d){return"\ud83c\udf89 Pembaruan "+d+" terpasang!"},
 goq(){return"Catatan perubahan"},
 goc(){return"Pengiriman dibatalkan"},
 goy(){return"Masuk dengan ID Matrix"},
 got(){return"Jelajahi homeserver"},
-goH(){return"Apa itu homeserver?"},
+goI(){return"Apa itu homeserver?"},
 gow(){return"Semua data Anda disimpan di dalam server, seperti halnya penyedia email. Anda dapat memilih homeserver mana yang ingin Anda gunakan, sementara Anda masih dapat berkomunikasi dengan semua orang. Pelajari lebih lanjut di https://matrix.org."},
 gou(){return"Sepertinya bukan homeserver yang kompatibel. URL salah?"},
 goj(){return"Menghitung ukuran berkas..."},
-goD(){return"Menyiapkan pengiriman lampiran..."},
+goE(){return"Menyiapkan pengiriman lampiran..."},
 goe(){return"Mengirim lampiran..."},
 of(d,e){return"Mengirim lampiran "+d+" dari "+e+"..."},
 og(d){return"Batasan server tercapai! Menunggu "+d+" detik..."},
-goB(){return"Salah satu perangkat Anda tidak terverifikasi"},
-goA(){return"Catatan: Ketika Anda menghubungkan semua perangkat Anda ke cadangan chat, mereka akan diverifikasi secara otomatis."},
+goC(){return"Salah satu perangkat Anda tidak terverifikasi"},
+goB(){return"Catatan: Ketika Anda menghubungkan semua perangkat Anda ke cadangan chat, mereka akan diverifikasi secara otomatis."},
 gos(){return"Continue"},
-goG(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goH(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 goi(d){return"Blur:"},
 gc2(d){return"Opacity:"},
 gl2(){return"Set wallpaper"},
+goz(){return"Manage account"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I_,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I_":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_255",e:"endPart",h:b})})($__dart_deferred_initializers__,"grEsVqAVItSVkPXNxtU/AKkUzU0=");
+a.eventLog.push({p:"main.dart.js_255",e:"endPart",h:b})})($__dart_deferred_initializers__,"aHshHoshO9mNvk3yDi0XMAE3PQM=");
 //# sourceMappingURL=main.dart.js_255.part.js.map

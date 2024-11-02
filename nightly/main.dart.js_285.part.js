@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_285",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWF(){return new B.Ik(A.dK("tr"))},
+cWI(){return new B.Ik(A.dK("tr"))},
 Ik:function Ik(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -50,7 +50,7 @@ ghv(){return"Enter tu\u015fu ile g\xf6nder"},
 i_(d,e,f,g){return"Ana sunucu a\u015fa\u011f\u0131daki Spec s\xfcr\xfcmlerini destekliyor:\n"+d+"\nAncak bu uygulama yaln\u0131zca "+e+" destekliyor"},
 lC(d,e){return A.u(d)+" sohbet ve "+A.u(e)+" kat\u0131l\u0131mc\u0131"},
 gmv(){return"Ba\u015fka sohbet bulunamad\u0131..."},
-goz(){return"Burada hen\xfcz sohbet bulunamad\u0131. A\u015fa\u011f\u0131daki d\xfc\u011fmeyi kullanarak biriyle yeni bir sohbet ba\u015flat\u0131n. \u2935\ufe0f"},
+goA(){return"Burada hen\xfcz sohbet bulunamad\u0131. A\u015fa\u011f\u0131daki d\xfc\u011fmeyi kullanarak biriyle yeni bir sohbet ba\u015flat\u0131n. \u2935\ufe0f"},
 goa(){return"Okunmad\u0131"},
 ger(){return"Alan"},
 gnY(){return"Alanlar"},
@@ -538,31 +538,32 @@ gom(){return"Ana herkese a\xe7\u0131k sohbet adresini de\u011fi\u015ftir"},
 god(){return"@oda bildirimleri g\xf6nder"},
 goo(){return"Sohbetin a\xe7\u0131klamas\u0131n\u0131 de\u011fi\u015ftir"},
 gor(){return"Bu sohbette belirli eylemler i\xe7in hangi g\xfc\xe7 d\xfczeyinin gerekli oldu\u011funu tan\u0131mlay\u0131n. 0, 50 ve 100 g\xfc\xe7 d\xfczeyleri genellikle kullan\u0131c\u0131lar\u0131, moderat\xf6rleri ve y\xf6neticileri temsil eder, ancak herhangi bir derecelendirme m\xfcmk\xfcnd\xfcr."},
-oF(d){return"\ud83c\udf89 G\xfcncelleme "+d+" kuruldu!"},
+oG(d){return"\ud83c\udf89 G\xfcncelleme "+d+" kuruldu!"},
 goq(){return"De\u011fi\u015fiklik g\xfcnl\xfc\u011f\xfc"},
 goc(){return"G\xf6nderme iptal edildi"},
 goy(){return"Matrix kimli\u011fi ile oturum a\xe7"},
 got(){return"Ana sunucular\u0131 ke\u015ffet"},
-goH(){return"Ana sunucu nedir?"},
+goI(){return"Ana sunucu nedir?"},
 gow(){return"T\xfcm verileriniz t\u0131pk\u0131 bir e-posta sa\u011flay\u0131c\u0131s\u0131 gibi ana sunucuda saklan\u0131r. Hangi ana sunucuyu kullanmak istedi\u011finizi se\xe7ebilir ve herkesle ileti\u015fim kurmaya devam edebilirsiniz. https://matrix.org adresinden daha fazla bilgi edinin."},
 gou(){return"Uyumlu bir ana sunucu gibi g\xf6r\xfcnm\xfcyor. Yanl\u0131\u015f URL mi?"},
 goj(){return"Dosya boyutu hesaplan\u0131yor..."},
-goD(){return"Ek g\xf6nderilmeye haz\u0131rlan\u0131yor..."},
+goE(){return"Ek g\xf6nderilmeye haz\u0131rlan\u0131yor..."},
 goe(){return"Ek g\xf6nderiliyor..."},
 of(d,e){return"Ek "+d+" / "+e+" g\xf6nderiliyor..."},
 og(d){return"Sunucu s\u0131n\u0131r\u0131na ula\u015f\u0131ld\u0131! "+d+" saniye bekleniyor..."},
-goB(){return"Ayg\u0131tlar\u0131n\u0131zdan biri do\u011frulanmad\u0131"},
-goA(){return"Not: T\xfcm ayg\u0131tlar\u0131n\u0131z\u0131 sohbet yedeklemesine ba\u011flad\u0131\u011f\u0131n\u0131zda, otomatik olarak do\u011frulan\u0131rlar."},
+goC(){return"Ayg\u0131tlar\u0131n\u0131zdan biri do\u011frulanmad\u0131"},
+goB(){return"Not: T\xfcm ayg\u0131tlar\u0131n\u0131z\u0131 sohbet yedeklemesine ba\u011flad\u0131\u011f\u0131n\u0131zda, otomatik olarak do\u011frulan\u0131rlar."},
 gos(){return"Continue"},
-goG(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goH(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 goi(d){return"Blur:"},
 gc2(d){return"Opacity:"},
 gl2(){return"Set wallpaper"},
+goz(){return"Manage account"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Ik,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"Ik":{"aR":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_285",e:"endPart",h:b})})($__dart_deferred_initializers__,"uIWErhc6Enaks3GgmGhn5UxF/XM=");
+a.eventLog.push({p:"main.dart.js_285",e:"endPart",h:b})})($__dart_deferred_initializers__,"PQsFq7IXxtWDam+fosEOLTUdzPE=");
 //# sourceMappingURL=main.dart.js_285.part.js.map
