@@ -81,7 +81,7 @@ class BackgroundPush {
       );
       Logs().v('Flutter Local Notifications initialized');
       firebase?.setListeners(
-        onMessage: (message) => pushHelper(
+        onMessage: (message) => PushHelper.pushHelper(
           PushNotification.fromJson(
             Map<String, dynamic>.from(message['data'] ?? message),
           ),
@@ -260,7 +260,7 @@ class BackgroundPush {
       if (endpoint != null) {
         matrix!.store.setString(
             clients.first.clientName + SettingKeys.unifiedPushEndpoint,
-            endpoint);
+            endpoint,);
         matrix!.store.remove(SettingKeys.unifiedPushEndpoint);
       }
 
@@ -269,7 +269,7 @@ class BackgroundPush {
       if (registered != null) {
         matrix!.store.setBool(
             clients.first.clientName + SettingKeys.unifiedPushRegistered,
-            registered);
+            registered,);
         matrix!.store.remove(SettingKeys.unifiedPushRegistered);
       }
     }
@@ -482,7 +482,7 @@ class BackgroundPush {
     );
     // UP may strip the devices list
     data['devices'] ??= [];
-    await pushHelper(
+    await PushHelper.pushHelper(
       PushNotification.fromJson(data),
       clients: clients,
       instance: instance,
