@@ -1180,7 +1180,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openCamera": "Ava kaamera",
+  "openCamera": "Pildista",
   "@openCamera": {
     "type": "text",
     "placeholders": {}
@@ -1981,7 +1981,7 @@
     "type": "text",
     "description": "Usage hint for the command /create"
   },
-  "openVideoCamera": "Video salvestamiseks ava kaamera",
+  "openVideoCamera": "Tee video",
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
@@ -2836,5 +2836,9 @@
   "continueText": "Jätka",
   "@continueText": {},
   "welcomeText": "Tere, tere 👋 See on FluffyChat. Sa võid sisse logida igasse koduserverisse, mis ühildub https://matrix.org serveriga. Ja seejärel saad suhelda kõigiga. Tegemist on ikka väga suure detsentraliseeritud sõnumivõrguga!",
-  "@welcomeText": {}
+  "@welcomeText": {},
+  "setWallpaper": "Määra taustapildiks",
+  "@setWallpaper": {},
+  "manageAccount": "Halda kasutajakontot",
+  "@manageAccount": {}
 }
