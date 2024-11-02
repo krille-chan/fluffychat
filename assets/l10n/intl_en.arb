@@ -2793,5 +2793,6 @@
   "welcomeText": "Hey Hey 👋 This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!",
   "blur": "Blur:",
   "opacity": "Opacity:",
-  "setWallpaper": "Set wallpaper"
+  "setWallpaper": "Set wallpaper",
+  "manageAccount": "Manage account"
 }

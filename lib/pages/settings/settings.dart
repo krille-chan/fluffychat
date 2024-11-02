@@ -201,6 +201,13 @@ class SettingsController extends State<Settings> {
     checkBootstrap();
   }
 
+  Future<String?> getOidcAccountManageUrl() async {
+    final wellKnown = await Matrix.of(context).client.getWellknown();
+    return wellKnown.additionalProperties
+        .tryGetMap<String, Object?>('org.matrix.msc2965.authentication')
+        ?.tryGet<String>('account');
+  }
+
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
