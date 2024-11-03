@@ -137,10 +137,7 @@ class HomeserverPickerView extends StatelessWidget {
                           TextField(
                             onChanged:
                                 controller.tryCheckHomeserverActionWithCooldown,
-                            onEditingComplete: controller
-                                .tryCheckHomeserverActionWithoutCooldown,
-                            onSubmitted: controller
-                                .tryCheckHomeserverActionWithoutCooldown,
+                            onSubmitted: controller.onSubmitted,
                             onTap:
                                 controller.tryCheckHomeserverActionWithCooldown,
                             controller: controller.homeserverController,
