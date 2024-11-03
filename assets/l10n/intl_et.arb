@@ -2832,5 +2832,9 @@
   "oneOfYourDevicesIsNotVerified": "Üks sinu seadmetest pole verifitseeritud",
   "@oneOfYourDevicesIsNotVerified": {},
   "noticeChatBackupDeviceVerification": "Märkus: kui liidad kõik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud.",
-  "@noticeChatBackupDeviceVerification": {}
+  "@noticeChatBackupDeviceVerification": {},
+  "continueText": "Jätka",
+  "@continueText": {},
+  "welcomeText": "Tere, tere 👋 See on FluffyChat. Sa võid sisse logida igasse koduserverisse, mis ühildub https://matrix.org serveriga. Ja seejärel saad suhelda kõigiga. Tegemist on ikka väga suure detsentraliseeritud sõnumivõrguga!",
+  "@welcomeText": {}
 }

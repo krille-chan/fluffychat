@@ -2832,5 +2832,9 @@
   "oneOfYourDevicesIsNotVerified": "您设备中的一台未验证",
   "@oneOfYourDevicesIsNotVerified": {},
   "noticeChatBackupDeviceVerification": "注意：当你连接所有设备到聊天备份时，这些设备将被自动验证。",
-  "@noticeChatBackupDeviceVerification": {}
+  "@noticeChatBackupDeviceVerification": {},
+  "welcomeText": "你好呀 👋 欢迎来到 FluffyChat。你可以登录任意兼容 https://matrix.org 的 homeserver，然后和任何人聊天。这是个巨大的去中心化消息网络！",
+  "@welcomeText": {},
+  "continueText": "继续",
+  "@continueText": {}
 }

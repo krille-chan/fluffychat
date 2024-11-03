@@ -424,7 +424,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Oikeuksien oletustaso",
+  "defaultPermissionLevel": "Uusien käyttäjien oikeuksien oletustaso",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2282,9 +2282,9 @@
   "@encryptThisChat": {},
   "noBackupWarning": "Varoitus! Ilman avainvarmuuskopion käyttöönottoa menetät pääsyn salattuihin viesteihisi. Suosittelemme ehdottomasti avainvarmuuskopion käyttöönottoa ennen uloskirjautumista.",
   "@noBackupWarning": {},
-  "fileIsTooBigForServer": "Palvelimen mukaan tiedosto on liian suuri lähetettäväksi.",
+  "fileIsTooBigForServer": "Ei voi lähettää! Palvelin tukee liitetiedostoja vain enintään {max}.",
   "@fileIsTooBigForServer": {},
-  "reportErrorDescription": "Voi ei. Jokin meni pieleen. Yritäthän myöhemmin uudelleen. Halutessasi voit ilmoittaa ongelman kehittäjille.",
+  "reportErrorDescription": "😭 Voi ei. Jokin meni pieleen. Halutessasi voit ilmoittaa ongelman kehittäjille.",
   "@reportErrorDescription": {},
   "wasDirectChatDisplayName": "Tyhjä keskustelu (oli {oldDisplayName})",
   "@wasDirectChatDisplayName": {
@@ -2349,9 +2349,9 @@
   "@redactMessageDescription": {},
   "invalidInput": "Virheellinen syöte!",
   "@invalidInput": {},
-  "addChatDescription": "Lisää keskustelulle kuvaus",
+  "addChatDescription": "Lisää keskustelulle kuvaus...",
   "@addChatDescription": {},
-  "hasKnocked": "{user} on koputtanut",
+  "hasKnocked": "🚪 {user} on koputtanut",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2402,5 +2402,13 @@
   "importNow": "Tuo nyt",
   "@importNow": {},
   "invite": "Kutsu",
-  "@invite": {}
+  "@invite": {},
+  "swipeRightToLeftToReply": "Vastaa pyyhkäisemällä oikealta vasemmalle",
+  "@swipeRightToLeftToReply": {},
+  "accessAndVisibility": "Pääsy ja näkyvyys",
+  "@accessAndVisibility": {},
+  "unread": "Lukemattomat",
+  "@unread": {},
+  "noMoreChatsFound": "Lisää keskusteluja ei löytynyt...",
+  "@noMoreChatsFound": {}
 }

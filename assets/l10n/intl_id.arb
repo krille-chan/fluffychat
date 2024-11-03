@@ -2831,5 +2831,9 @@
   "oneOfYourDevicesIsNotVerified": "Salah satu perangkat Anda tidak terverifikasi",
   "@oneOfYourDevicesIsNotVerified": {},
   "noticeChatBackupDeviceVerification": "Catatan: Ketika Anda menghubungkan semua perangkat Anda ke cadangan chat, mereka akan diverifikasi secara otomatis.",
-  "@noticeChatBackupDeviceVerification": {}
+  "@noticeChatBackupDeviceVerification": {},
+  "welcomeText": "Halo 👋 Ini FluffyChat. Kamu bisa masuk ke homeserver mana pun, yang kompatibel dengan https://matrix.org. Lalu, chat dengan siapa pun. Ini merupakan jaringan perpesanan besar yang terdesentralisasi!",
+  "@welcomeText": {},
+  "continueText": "Lanjutkan",
+  "@continueText": {}
 }
