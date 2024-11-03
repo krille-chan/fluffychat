@@ -2836,5 +2836,13 @@
   "welcomeText": "你好呀 👋 欢迎来到 FluffyChat。你可以登录任意兼容 https://matrix.org 的 homeserver，然后和任何人聊天。这是个巨大的去中心化消息网络！",
   "@welcomeText": {},
   "continueText": "继续",
-  "@continueText": {}
+  "@continueText": {},
+  "blur": "模糊：",
+  "@blur": {},
+  "opacity": "不透明：",
+  "@opacity": {},
+  "setWallpaper": "设置壁纸",
+  "@setWallpaper": {},
+  "manageAccount": "管理账户",
+  "@manageAccount": {}
 }
