@@ -6,7 +6,6 @@ import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/token_api_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 import 'package:matrix/src/utils/markdown.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -118,16 +117,21 @@ class RepresentationEvent {
     return _tokens?.tokens;
   }
 
-  Future<List<PangeaToken>> tokensGlobal(BuildContext context) async {
+  Future<List<PangeaToken>> tokensGlobal(
+    String senderID,
+    DateTime timestamp,
+  ) async {
     if (tokens != null) return tokens!;
 
-    if (_event == null) {
+    if (_event == null && timestamp.isAfter(DateTime(2024, 9, 25))) {
       ErrorHandler.logError(
         m: 'representation with no _event and no tokens got tokens directly. This means an original_sent with no tokens. This should not happen in messages sent after September 25',
         s: StackTrace.current,
         data: {
           'content': content.toJson(),
           'event': _event?.toJson(),
+          'timestamp': timestamp,
+          'senderID': senderID,
         },
       );
     }

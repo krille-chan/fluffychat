@@ -691,6 +691,7 @@ class ChatController extends State<ChatPageWithRoom>
                   metadata: metadata,
                 )),
               ],
+              origin: AnalyticsUpdateOrigin.sendMessage,
             ),
           );
         }

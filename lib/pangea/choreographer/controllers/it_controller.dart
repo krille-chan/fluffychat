@@ -3,7 +3,9 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/enum/edit_type.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -25,6 +27,7 @@ class ITController {
   bool _willOpen = false;
   bool _isEditingSourceText = false;
   bool showChoiceFeedback = false;
+  bool dismissed = false;
 
   ITStartData? _itStartData;
   String? sourceText;
@@ -41,6 +44,7 @@ class ITController {
     _willOpen = false;
     showChoiceFeedback = false;
     _isEditingSourceText = false;
+    dismissed = false;
 
     _itStartData = null;
     sourceText = null;
@@ -70,9 +74,11 @@ class ITController {
   void closeIT() {
     // if the user hasn't gone through any IT steps, reset the text
     if (completedITSteps.isEmpty && sourceText != null) {
+      choreographer.textController.editType = EditType.itDismissed;
       choreographer.textController.text = sourceText!;
     }
     clear();
+    dismissed = true;
   }
 
   /// if IGC isn't positive that text is full L1 then translate to L1
@@ -200,6 +206,7 @@ class ITController {
 
         final ITResponseModel res =
             await _customInputTranslation(currentText + nextText);
+        if (sourceText == null) return;
 
         nextITStep = CurrentITStep(
           sourceText: sourceText!,
@@ -315,6 +322,7 @@ class ITController {
       ignoredTokens ?? [],
       choreographer.roomId,
       ConstructUseTypeEnum.ignIt,
+      AnalyticsUpdateOrigin.it,
     );
 
     Future.delayed(

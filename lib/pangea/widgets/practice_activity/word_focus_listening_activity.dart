@@ -79,6 +79,7 @@ class WordFocusListeningActivityState
           widget.practiceCardController.currentActivity!,
           widget.practiceCardController.metadata,
         ),
+        origin: AnalyticsUpdateOrigin.practiceActivity,
       ),
     );
     setState(() {

@@ -45,8 +45,8 @@ class TtsController {
 
       await tts.awaitSpeakCompletion(true);
 
-      final voices = await tts.getVoices;
-      availableLangCodes = (voices as List)
+      final voices = (await tts.getVoices) as List?;
+      availableLangCodes = (voices ?? [])
           .map((v) {
             // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'
             final nameCode = v['name']?.split("-").first;

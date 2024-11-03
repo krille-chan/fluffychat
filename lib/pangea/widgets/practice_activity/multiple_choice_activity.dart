@@ -70,7 +70,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       return;
     }
 
-    // #freeze-activity
     MatrixState.pangeaController.myAnalytics.setState(
       AnalyticsStream(
         // note - this maybe should be the activity event id
@@ -81,6 +80,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           widget.practiceCardController.currentActivity!,
           widget.practiceCardController.metadata,
         ),
+        origin: AnalyticsUpdateOrigin.practiceActivity,
       ),
     );
 
@@ -112,7 +112,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             ),
           ),
           const SizedBox(height: 8),
-          // #freeze-activity
           if (practiceActivity.activityType ==
               ActivityTypeEnum.wordFocusListening)
             WordAudioButton(

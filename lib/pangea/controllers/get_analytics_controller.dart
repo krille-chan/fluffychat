@@ -23,8 +23,8 @@ class GetAnalyticsController {
   late PangeaController _pangeaController;
   final List<AnalyticsCacheEntry> _cache = [];
   StreamSubscription<AnalyticsUpdate>? _analyticsUpdateSubscription;
-  CachedStreamController<List<OneConstructUse>> analyticsStream =
-      CachedStreamController<List<OneConstructUse>>();
+  CachedStreamController<AnalyticsStreamUpdate> analyticsStream =
+      CachedStreamController<AnalyticsStreamUpdate>();
 
   /// The previous XP points of the user, before the last update.
   /// Used for animating analytics updates.
@@ -83,7 +83,7 @@ class GetAnalyticsController {
     _analyticsUpdateSubscription?.cancel();
     _analyticsUpdateSubscription = null;
     _cache.clear();
-    analyticsStream.add([]);
+    analyticsStream.add(AnalyticsStreamUpdate(constructs: []));
     prevXP = null;
   }
 
@@ -92,24 +92,30 @@ class GetAnalyticsController {
     if (analyticsUpdate.type == AnalyticsUpdateType.server) {
       await getConstructs(forceUpdate: true);
     }
-    updateAnalyticsStream();
+    updateAnalyticsStream(origin: analyticsUpdate.origin);
   }
 
-  void updateAnalyticsStream() {
+  void updateAnalyticsStream({AnalyticsUpdateOrigin? origin}) {
     // if there are no construct uses, or if the last update in this
     //  stream has the same length as this update, don't update the stream
     if (allConstructUses.isEmpty ||
-        allConstructUses.length == analyticsStream.value?.length) {
+        allConstructUses.length == analyticsStream.value?.constructs.length) {
       return;
     }
 
     // set the previous XP to the currentXP
-    if (analyticsStream.value != null && analyticsStream.value!.isNotEmpty) {
-      prevXP = calcXP(analyticsStream.value!);
+    if (analyticsStream.value != null &&
+        analyticsStream.value!.constructs.isNotEmpty) {
+      prevXP = calcXP(analyticsStream.value!.constructs);
     }
 
     // finally, add to the stream
-    analyticsStream.add(allConstructUses);
+    analyticsStream.add(
+      AnalyticsStreamUpdate(
+        constructs: allConstructUses,
+        origin: origin,
+      ),
+    );
   }
 
   /// Calculates the user's xpPoints for their current L2,
@@ -346,4 +352,14 @@ class AnalyticsCacheEntry {
     }
     return _createdAt.isBefore(lastEventUpdated);
   }
+}
+
+class AnalyticsStreamUpdate {
+  final List<OneConstructUse> constructs;
+  final AnalyticsUpdateOrigin? origin;
+
+  AnalyticsStreamUpdate({
+    required this.constructs,
+    this.origin,
+  });
 }
