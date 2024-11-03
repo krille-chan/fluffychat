@@ -320,7 +320,8 @@ class Message extends StatelessWidget {
                                             ? LinearGradient(
                                                 colors: [
                                                   theme.colorScheme.primary,
-                                                  theme.colorScheme.secondary,
+                                                  theme.colorScheme
+                                                      .onPrimaryFixedVariant,
                                                 ],
                                                 begin: Alignment.centerLeft,
                                                 end: Alignment.bottomRight,

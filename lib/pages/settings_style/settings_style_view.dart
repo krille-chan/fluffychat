@@ -216,7 +216,7 @@ class SettingsStyleView extends StatelessWidget {
                                     gradient: LinearGradient(
                                       colors: [
                                         theme.colorScheme.primary,
-                                        theme.colorScheme.secondary,
+                                        theme.colorScheme.onPrimaryFixedVariant,
                                       ],
                                       begin: Alignment.centerLeft,
                                       end: Alignment.bottomRight,
@@ -253,8 +253,10 @@ class SettingsStyleView extends StatelessWidget {
                                     bottom: 12,
                                   ),
                                   child: Material(
-                                    color: theme
-                                        .colorScheme.surfaceContainerHighest,
+                                    color: accountConfig.wallpaperUrl == null
+                                        ? theme
+                                            .colorScheme.surfaceContainerHighest
+                                        : theme.colorScheme.surfaceBright,
                                     borderRadius: BorderRadius.circular(
                                       AppConfig.borderRadius,
                                     ),
@@ -281,7 +283,12 @@ class SettingsStyleView extends StatelessWidget {
                       ),
                     ),
                     ListTile(
-                      title: OutlinedButton(
+                      title: TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: theme.colorScheme.secondaryContainer,
+                          foregroundColor:
+                              theme.colorScheme.onSecondaryContainer,
+                        ),
                         onPressed: controller.setWallpaper,
                         child: Text(L10n.of(context).setWallpaper),
                       ),
