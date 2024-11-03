@@ -2840,5 +2840,9 @@
   "setWallpaper": "Määra taustapildiks",
   "@setWallpaper": {},
   "manageAccount": "Halda kasutajakontot",
-  "@manageAccount": {}
+  "@manageAccount": {},
+  "blur": "Hägusus:",
+  "@blur": {},
+  "opacity": "Läbipaistmatus:",
+  "@opacity": {}
 }
