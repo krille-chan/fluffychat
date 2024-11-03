@@ -3,6 +3,10 @@ title: FluffyChat
 base: core24
 version: git
 license: AGPL-3.0
+website: https://fluffychat.im
+source-code: https://github.com/krille-chan/fluffychat
+issues: https://github.com/krille-chan/fluffychat/issues
+donation: https://ko-fi.com/krille
 summary: The cutest messenger in the Matrix network
 description: |
   FluffyChat is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
