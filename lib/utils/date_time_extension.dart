@@ -28,7 +28,8 @@ extension DateTimeExtension on DateTime {
 
   /// Returns a simple time String.
   String localizedTimeOfDay(BuildContext context) =>
-      L10n.of(context).alwaysUse24HourFormat == 'true'
+      MediaQuery.alwaysUse24HourFormatOf(context) ||
+              L10n.of(context).alwaysUse24HourFormat == 'true'
           ? DateFormat('HH:mm', L10n.of(context).localeName).format(this)
           : DateFormat('h:mm a', L10n.of(context).localeName).format(this);
 
