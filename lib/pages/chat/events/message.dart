@@ -537,7 +537,6 @@ class Message extends StatelessWidget {
                     L10n.of(context).readUpToHere,
                     style: TextStyle(
                       fontSize: 12 * AppConfig.fontSizeFactor,
-                      color: theme.colorScheme.secondary,
                     ),
                   ),
                 ),
