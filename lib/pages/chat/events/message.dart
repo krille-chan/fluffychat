@@ -84,9 +84,7 @@ class Message extends StatelessWidget {
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
 
-    var color = wallpaperMode
-        ? theme.colorScheme.surfaceBright
-        : theme.colorScheme.surfaceContainerHigh;
+    var color = theme.colorScheme.surfaceContainerHigh;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -270,15 +268,13 @@ class Message extends StatelessWidget {
                                                 shadows: !wallpaperMode
                                                     ? null
                                                     : [
-                                                        Shadow(
-                                                          offset: const Offset(
+                                                        const Shadow(
+                                                          offset: Offset(
                                                             0.0,
                                                             0.0,
                                                           ),
-                                                          blurRadius: 5,
-                                                          color: theme
-                                                              .colorScheme
-                                                              .surface,
+                                                          blurRadius: 3,
+                                                          color: Colors.black,
                                                         ),
                                                       ],
                                               ),

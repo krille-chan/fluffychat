@@ -256,10 +256,8 @@ class SettingsStyleView extends StatelessWidget {
                                     bottom: 12,
                                   ),
                                   child: Material(
-                                    color: accountConfig.wallpaperUrl == null
-                                        ? theme
-                                            .colorScheme.surfaceContainerHighest
-                                        : theme.colorScheme.surfaceBright,
+                                    color:
+                                        theme.colorScheme.surfaceContainerHigh,
                                     borderRadius: BorderRadius.circular(
                                       AppConfig.borderRadius,
                                     ),
