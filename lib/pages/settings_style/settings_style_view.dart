@@ -211,10 +211,19 @@ class SettingsStyleView extends StatelessWidget {
                                       : 12,
                                   bottom: 12,
                                 ),
-                                child: Material(
-                                  color: theme.colorScheme.primary,
-                                  borderRadius: BorderRadius.circular(
-                                    AppConfig.borderRadius,
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        theme.colorScheme.primary,
+                                        theme.colorScheme.secondary,
+                                      ],
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
+                                    borderRadius: BorderRadius.circular(
+                                      AppConfig.borderRadius,
+                                    ),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(

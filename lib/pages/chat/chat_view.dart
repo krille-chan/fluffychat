@@ -317,7 +317,9 @@ class ChatView extends StatelessWidget {
                               alignment: Alignment.center,
                               child: Material(
                                 clipBehavior: Clip.hardEdge,
-                                color: theme.colorScheme.surfaceContainerHigh,
+                                color: accountConfig.wallpaperUrl != null
+                                    ? theme.colorScheme.surfaceBright
+                                    : theme.colorScheme.surfaceContainerHigh,
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(24),
                                 ),
