@@ -557,10 +557,10 @@ goC(){return"\u60a8\u8bbe\u5907\u4e2d\u7684\u4e00\u53f0\u672a\u9a8c\u8bc1"},
 goB(){return"\u6ce8\u610f\uff1a\u5f53\u4f60\u8fde\u63a5\u6240\u6709\u8bbe\u5907\u5230\u804a\u5929\u5907\u4efd\u65f6\uff0c\u8fd9\u4e9b\u8bbe\u5907\u5c06\u88ab\u81ea\u52a8\u9a8c\u8bc1\u3002"},
 gos(){return"\u7ee7\u7eed"},
 goH(){return"\u4f60\u597d\u5440 \ud83d\udc4b \u6b22\u8fce\u6765\u5230 FluffyChat\u3002\u4f60\u53ef\u4ee5\u767b\u5f55\u4efb\u610f\u517c\u5bb9 https://matrix.org \u7684 homeserver\uff0c\u7136\u540e\u548c\u4efb\u4f55\u4eba\u804a\u5929\u3002\u8fd9\u662f\u4e2a\u5de8\u5927\u7684\u53bb\u4e2d\u5fc3\u5316\u6d88\u606f\u7f51\u7edc\uff01"},
-goi(d){return"Blur:"},
-gc2(d){return"Opacity:"},
-gl2(){return"Set wallpaper"},
-goz(){return"Manage account"},
+goi(d){return"\u6a21\u7cca\uff1a"},
+gc2(d){return"\u4e0d\u900f\u660e\uff1a"},
+gl2(){return"\u8bbe\u7f6e\u58c1\u7eb8"},
+goz(){return"\u7ba1\u7406\u8d26\u6237"},
 C(d,e){return this.gbp(this).$1(e)}}
 A.In.prototype={
 go2(){return"false"},
@@ -1090,5 +1090,5 @@ y(A.CJ,C.aR)
 y(A.In,A.CJ)})()
 B.eo(b.typeUniverse,JSON.parse('{"CJ":{"aR":[]},"In":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"XFsnn1PvxMuH8RpDL+/lxbUVE40=");
+a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"mfEeuZHqCRtt7LfaOmRykbK9AtM=");
 //# sourceMappingURL=main.dart.js_1.part.js.map
