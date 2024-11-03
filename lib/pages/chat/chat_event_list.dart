@@ -51,7 +51,7 @@ class ChatEventList extends StatelessWidget {
       child: ListView.custom(
         padding: EdgeInsets.only(
           top: 16,
-          bottom: 0,
+          bottom: 8,
           left: horizontalPadding,
           right: horizontalPadding,
         ),

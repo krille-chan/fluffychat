@@ -339,7 +339,7 @@ class ChatListItem extends StatelessWidget {
                                         : snapshot.data ??
                                             L10n.of(context).emptyChat,
                                     softWrap: false,
-                                    maxLines: 1,
+                                    maxLines: room.hasNewMessages ? 2 : 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       fontWeight: unread || room.hasNewMessages
