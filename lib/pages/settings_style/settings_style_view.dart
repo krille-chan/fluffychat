@@ -216,7 +216,10 @@ class SettingsStyleView extends StatelessWidget {
                                     gradient: LinearGradient(
                                       colors: [
                                         theme.colorScheme.primary,
-                                        theme.colorScheme.onPrimaryFixedVariant,
+                                        theme.brightness == Brightness.light
+                                            ? theme.colorScheme
+                                                .onPrimaryFixedVariant
+                                            : theme.colorScheme.primaryFixed,
                                       ],
                                       begin: Alignment.centerLeft,
                                       end: Alignment.bottomRight,
