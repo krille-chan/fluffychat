@@ -213,17 +213,7 @@ class SettingsStyleView extends StatelessWidget {
                                 ),
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        theme.colorScheme.primary,
-                                        theme.brightness == Brightness.light
-                                            ? theme.colorScheme
-                                                .onPrimaryFixedVariant
-                                            : theme.colorScheme.primaryFixed,
-                                      ],
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
+                                    color: theme.colorScheme.primary,
                                     borderRadius: BorderRadius.circular(
                                       AppConfig.borderRadius,
                                     ),

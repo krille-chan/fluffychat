@@ -306,27 +306,10 @@ class Message extends StatelessWidget {
                                     curve: FluffyThemes.animationCurve,
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: ownMessage
-                                            ? null
-                                            : noBubble
-                                                ? Colors.transparent
-                                                : color,
+                                        color: noBubble
+                                            ? Colors.transparent
+                                            : color,
                                         borderRadius: borderRadius,
-                                        gradient: ownMessage && !noBubble
-                                            ? LinearGradient(
-                                                colors: [
-                                                  theme.colorScheme.primary,
-                                                  theme.brightness ==
-                                                          Brightness.light
-                                                      ? theme.colorScheme
-                                                          .onPrimaryFixedVariant
-                                                      : theme.colorScheme
-                                                          .primaryFixed,
-                                                ],
-                                                begin: Alignment.centerLeft,
-                                                end: Alignment.bottomRight,
-                                              )
-                                            : null,
                                       ),
                                       clipBehavior: Clip.antiAlias,
                                       child: Container(

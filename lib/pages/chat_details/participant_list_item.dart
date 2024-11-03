@@ -25,7 +25,7 @@ class ParticipantListItem extends StatelessWidget {
       Membership.leave => L10n.of(context).leftTheChat,
     };
 
-    final permissionBatch = user.powerLevel == 100
+    final permissionBatch = user.powerLevel >= 100
         ? L10n.of(context).admin
         : user.powerLevel >= 50
             ? L10n.of(context).moderator
@@ -56,14 +56,20 @@ class ParticipantListItem extends StatelessWidget {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: theme.colorScheme.primaryContainer,
+                  color: user.powerLevel >= 100
+                      ? theme.colorScheme.tertiary
+                      : theme.colorScheme.tertiaryContainer,
                   borderRadius: BorderRadius.circular(
                     AppConfig.borderRadius,
                   ),
                 ),
                 child: Text(
                   permissionBatch,
-                  style: TextStyle(color: theme.colorScheme.onPrimaryContainer),
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: user.powerLevel >= 100
+                        ? theme.colorScheme.onTertiary
+                        : theme.colorScheme.onTertiaryContainer,
+                  ),
                 ),
               ),
             membershipBatch == null
@@ -75,7 +81,12 @@ class ParticipantListItem extends StatelessWidget {
                       color: theme.secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Center(child: Text(membershipBatch)),
+                    child: Center(
+                      child: Text(
+                        membershipBatch,
+                        style: theme.textTheme.labelSmall,
+                      ),
+                    ),
                   ),
           ],
         ),
