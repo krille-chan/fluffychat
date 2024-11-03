@@ -282,15 +282,19 @@ class SettingsStyleView extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Divider(
+                      color: theme.dividerColor,
+                    ),
                     ListTile(
-                      title: TextButton(
+                      title: TextButton.icon(
                         style: TextButton.styleFrom(
                           backgroundColor: theme.colorScheme.secondaryContainer,
                           foregroundColor:
                               theme.colorScheme.onSecondaryContainer,
                         ),
                         onPressed: controller.setWallpaper,
-                        child: Text(L10n.of(context).setWallpaper),
+                        icon: const Icon(Icons.edit_outlined),
+                        label: Text(L10n.of(context).setWallpaper),
                       ),
                       trailing: accountConfig.wallpaperUrl == null
                           ? null
