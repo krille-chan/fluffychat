@@ -2832,5 +2832,17 @@
   "oneOfYourDevicesIsNotVerified": "Zure gailuetako bat ez dago egiaztatuta",
   "@oneOfYourDevicesIsNotVerified": {},
   "noticeChatBackupDeviceVerification": "Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira.",
-  "@noticeChatBackupDeviceVerification": {}
+  "@noticeChatBackupDeviceVerification": {},
+  "opacity": "Opakutasuna:",
+  "@opacity": {},
+  "manageAccount": "Kudeatu kontua",
+  "@manageAccount": {},
+  "setWallpaper": "Ezarri horma-irudia",
+  "@setWallpaper": {},
+  "blur": "Lausotu:",
+  "@blur": {},
+  "continueText": "Jarraitu",
+  "@continueText": {},
+  "welcomeText": "Ieup 👋 Ongi etorri FluffyChat-era. https://matrix.org-rekin bateragarria den edozein zerbitzaritan hasi dezakezu saioa eta edonorekin txateatu. Mezularitza-sare deszentralizatu eraraldoia da!",
+  "@welcomeText": {}
 }

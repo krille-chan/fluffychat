@@ -2837,5 +2837,17 @@
   "oneOfYourDevicesIsNotVerified": "Eines deiner Geräte ist nicht verifiziert",
   "@oneOfYourDevicesIsNotVerified": {},
   "noticeChatBackupDeviceVerification": "Hinweis: Wenn du alle deine Geräte mit dem Chat-Backup verbindest, sind sie automatisch verifiziert.",
-  "@noticeChatBackupDeviceVerification": {}
+  "@noticeChatBackupDeviceVerification": {},
+  "setWallpaper": "Hintergrund ändern",
+  "@setWallpaper": {},
+  "opacity": "Deckkraft:",
+  "@opacity": {},
+  "welcomeText": "Hey Hey 👋 Das ist FluffyChat. Du kannst sich bei jedem Homeserver anmelden, der mit https://matrix.org kompatibel ist. Und dann mit jedem chatten. Das hier ist ein riesiges dezentrales Nachrichtennetzwerk!",
+  "@welcomeText": {},
+  "blur": "Verwischen:",
+  "@blur": {},
+  "manageAccount": "Konto verwalten",
+  "@manageAccount": {},
+  "continueText": "Fortfahren",
+  "@continueText": {}
 }
