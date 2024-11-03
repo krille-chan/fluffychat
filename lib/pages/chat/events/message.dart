@@ -315,6 +315,7 @@ class Message extends StatelessWidget {
                                         gradient: ownMessage && !noBubble
                                             ? LinearGradient(
                                                 colors: [
+                                                  theme.colorScheme.primary,
                                                   theme.brightness ==
                                                           Brightness.light
                                                       ? theme.colorScheme
