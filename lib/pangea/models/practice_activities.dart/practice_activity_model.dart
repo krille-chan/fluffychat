@@ -12,7 +12,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class ConstructIdentifier {
   final String lemma;
   final ConstructTypeEnum type;
-  String? category;
+  final String? category;
 
   ConstructIdentifier({
     required this.lemma,
@@ -68,6 +68,9 @@ class ConstructIdentifier {
   int get hashCode {
     return lemma.hashCode ^ type.hashCode;
   }
+
+  String get string =>
+      "$lemma-${type.string}${category != null ? "-$category" : "-other"}";
 }
 
 class CandidateMessage {

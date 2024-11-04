@@ -36,13 +36,8 @@ class ConstructListModel {
     final Map<String, List<OneConstructUse>> lemmaToUses = {};
     for (final use in uses) {
       if (use.lemma == null) continue;
-      lemmaToUses[use.lemma! +
-          use.constructType.string +
-          (use.category ?? "Other")] ??= [];
-      lemmaToUses[use.lemma! +
-              use.constructType.string +
-              (use.category ?? "Other")]!
-          .add(use);
+      lemmaToUses[use.identifier.string] ??= [];
+      lemmaToUses[use.identifier.string]!.add(use);
     }
 
     _constructMap = lemmaToUses.map(
