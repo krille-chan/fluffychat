@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -27,30 +25,23 @@ class LoginScaffold extends StatelessWidget {
 
     final isMobileMode =
         enforceMobileMode || !FluffyThemes.isColumnMode(context);
-    final scaffold = Scaffold(
-      key: const Key('LoginScaffold'),
-      appBar: appBar == null
-          ? null
-          : AppBar(
-              titleSpacing: appBar?.titleSpacing,
-              automaticallyImplyLeading:
-                  appBar?.automaticallyImplyLeading ?? true,
-              centerTitle: appBar?.centerTitle,
-              title: appBar?.title,
-              leading: appBar?.leading,
-              actions: appBar?.actions,
-              backgroundColor: isMobileMode ? null : Colors.transparent,
-            ),
-      body: SafeArea(child: body),
-      backgroundColor:
-          isMobileMode ? null : theme.colorScheme.surface.withOpacity(0.8),
-    );
-    if (isMobileMode) return scaffold;
+    if (isMobileMode) {
+      return Scaffold(
+        key: const Key('LoginScaffold'),
+        appBar: appBar,
+        body: SafeArea(child: body),
+      );
+    }
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage('assets/login_wallpaper.png'),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            theme.colorScheme.surfaceContainerLow,
+            theme.colorScheme.surfaceContainer,
+            theme.colorScheme.surfaceContainerHighest,
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
       ),
       child: Column(
@@ -61,7 +52,6 @@ class LoginScaffold extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Material(
-                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                   clipBehavior: Clip.hardEdge,
                   elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
@@ -70,12 +60,10 @@ class LoginScaffold extends StatelessWidget {
                     constraints: isMobileMode
                         ? const BoxConstraints()
                         : const BoxConstraints(maxWidth: 480, maxHeight: 640),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(
-                        sigmaX: 10.0,
-                        sigmaY: 10.0,
-                      ),
-                      child: scaffold,
+                    child: Scaffold(
+                      key: const Key('LoginScaffold'),
+                      appBar: appBar,
+                      body: SafeArea(child: body),
                     ),
                   ),
                 ),
@@ -95,18 +83,8 @@ class _PrivacyButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final shadowTextStyle = FluffyThemes.isColumnMode(context)
-        ? const TextStyle(
-            color: Colors.white,
-            shadows: [
-              Shadow(
-                offset: Offset(0.0, 0.0),
-                blurRadius: 3,
-                color: Colors.black,
-              ),
-            ],
-          )
-        : null;
+    final theme = Theme.of(context);
+    final shadowTextStyle = TextStyle(color: theme.colorScheme.secondary);
     return SizedBox(
       height: 64,
       child: Padding(
@@ -115,9 +93,16 @@ class _PrivacyButtons extends StatelessWidget {
           mainAxisAlignment: mainAxisAlignment,
           children: [
             TextButton(
-              onPressed: () => PlatformInfos.showDialog(context),
+              onPressed: () => launchUrlString(AppConfig.website),
               child: Text(
-                L10n.of(context).about,
+                L10n.of(context).website,
+                style: shadowTextStyle,
+              ),
+            ),
+            TextButton(
+              onPressed: () => launchUrlString(AppConfig.supportUrl),
+              child: Text(
+                L10n.of(context).help,
                 style: shadowTextStyle,
               ),
             ),
@@ -125,6 +110,13 @@ class _PrivacyButtons extends StatelessWidget {
               onPressed: () => launchUrlString(AppConfig.privacyUrl),
               child: Text(
                 L10n.of(context).privacy,
+                style: shadowTextStyle,
+              ),
+            ),
+            TextButton(
+              onPressed: () => PlatformInfos.showDialog(context),
+              child: Text(
+                L10n.of(context).about,
                 style: shadowTextStyle,
               ),
             ),

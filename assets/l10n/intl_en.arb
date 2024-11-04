@@ -2804,5 +2804,6 @@
   "supportPage": "Support page",
   "serverInformation": "Server information:",
   "name": "Name",
-  "version": "Version"
+  "version": "Version",
+  "website": "Website"
 }
