@@ -56,6 +56,9 @@ class InstructionsController {
         case InstructionsEnum.clickAgainToDeselect:
           profile.instructionSettings.showedClickAgainToDeselect = value;
           break;
+        case InstructionsEnum.missingVoice:
+          profile.instructionSettings.showedMissingVoice = value;
+          break;
       }
       return profile;
     });
@@ -66,9 +69,10 @@ class InstructionsController {
   Future<void> showInstructionsPopup(
     BuildContext context,
     InstructionsEnum key,
-    String transformTargetKey, [
+    String transformTargetKey, {
     bool showToggle = true,
-  ]) async {
+    Widget? customContent,
+  }) async {
     final bool userLangsSet =
         await _pangeaController.userController.areUserLanguagesSet;
     if (!userLangsSet) {
@@ -115,6 +119,7 @@ class InstructionsController {
                   style: botStyle,
                 ),
               ),
+              if (customContent != null) customContent,
               if (showToggle) InstructionsToggle(instructionsKey: key),
             ],
           ),

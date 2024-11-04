@@ -195,6 +195,8 @@ class MessageActivityRequest {
 
   final String messageId;
 
+  final List<ActivityTypeEnum> clientCompatibleActivities;
+
   MessageActivityRequest({
     required this.userL1,
     required this.userL2,
@@ -203,9 +205,28 @@ class MessageActivityRequest {
     required this.messageId,
     required this.existingActivities,
     required this.activityQualityFeedback,
-  });
+    clientCompatibleActivities,
+  }) : clientCompatibleActivities =
+            clientCompatibleActivities ?? ActivityTypeEnum.values;
 
   factory MessageActivityRequest.fromJson(Map<String, dynamic> json) {
+    final clientCompatibleActivitiesEntry =
+        json['client_version_compatible_activity_types'];
+    List<ActivityTypeEnum>? clientCompatibleActivities;
+    if (clientCompatibleActivitiesEntry != null &&
+        clientCompatibleActivitiesEntry is List) {
+      clientCompatibleActivities = clientCompatibleActivitiesEntry
+          .map(
+            (e) => ActivityTypeEnum.values.firstWhereOrNull(
+              (element) =>
+                  element.string == e as String ||
+                  element.string.split('.').last == e,
+            ),
+          )
+          .where((entry) => entry != null)
+          .cast<ActivityTypeEnum>()
+          .toList();
+    }
     return MessageActivityRequest(
       userL1: json['user_l1'] as String,
       userL2: json['user_l2'] as String,
@@ -224,6 +245,10 @@ class MessageActivityRequest {
               json['activity_quality_feedback'] as Map<String, dynamic>,
             )
           : null,
+      clientCompatibleActivities: clientCompatibleActivities != null &&
+              clientCompatibleActivities.isNotEmpty
+          ? clientCompatibleActivities
+          : ActivityTypeEnum.values,
     );
   }
 
@@ -241,7 +266,7 @@ class MessageActivityRequest {
       // the server will only return activities of these types
       // this for backwards compatibility with old clients
       'client_version_compatible_activity_types':
-          ActivityTypeEnum.values.map((e) => e.string).toList(),
+          clientCompatibleActivities.map((e) => e.string).toList(),
     };
   }
 

@@ -148,6 +148,11 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
               .map((activity) => activity.activityRequestMetaData)
               .toList(),
           activityQualityFeedback: activityFeedback,
+          clientCompatibleActivities: widget.tts.isLanguageFullySupported
+              ? ActivityTypeEnum.values
+              : ActivityTypeEnum.values
+                  .where((type) => type != ActivityTypeEnum.wordFocusListening)
+                  .toList(),
         ),
         widget.pangeaMessageEvent,
       );
@@ -297,6 +302,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
           practiceCardController: this,
           currentActivity: currentActivity!,
           tts: widget.tts,
+          eventID: widget.pangeaMessageEvent.eventId,
         );
       case ActivityTypeEnum.wordFocusListening:
         // return WordFocusListeningActivity(
@@ -305,6 +311,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
           practiceCardController: this,
           currentActivity: currentActivity!,
           tts: widget.tts,
+          eventID: widget.pangeaMessageEvent.eventId,
         );
       // default:
       //   ErrorHandler.logError(
