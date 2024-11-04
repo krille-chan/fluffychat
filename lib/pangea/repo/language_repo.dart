@@ -1,18 +1,20 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
-import '../config/environment.dart';
 import '../network/requests.dart';
 
 class LanguageRepo {
   static Future<List<LanguageModel>> fetchLanguages() async {
-    final Requests req = Requests(baseUrl: Environment.choreoApi);
+    final Requests req = Requests(
+      choreoApiKey: Environment.choreoApiKey,
+    );
     final Response res = await req.get(url: PApiUrls.getLanguages);
 
     final decodedBody =
