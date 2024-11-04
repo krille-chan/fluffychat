@@ -6,6 +6,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
 class ToolbarButtons extends StatelessWidget {
@@ -25,10 +26,16 @@ class ToolbarButtons extends StatelessWidget {
       .where((mode) => mode.shouldShowAsToolbarButton(pangeaMessageEvent.event))
       .toList();
 
+  bool get messageInUserL2 =>
+      pangeaMessageEvent.messageDisplayLangCode ==
+      MatrixState.pangeaController.languageController.userL2?.langCode;
+
   static const double iconWidth = 36.0;
 
   @override
   Widget build(BuildContext context) {
+    final totallyDone =
+        overlayController.isPracticeComplete || !messageInUserL2;
     final double barWidth = width - iconWidth;
 
     if (overlayController.pangeaMessageEvent.isAudioMessage) {
@@ -85,14 +92,14 @@ class ToolbarButtons extends StatelessWidget {
                           index,
                           overlayController.toolbarMode,
                           pangeaMessageEvent.numberOfActivitiesCompleted,
-                          overlayController.isPracticeComplete,
+                          totallyDone,
                         ),
                       ),
                     ),
                     onPressed: mode.isUnlocked(
                       index,
                       pangeaMessageEvent.numberOfActivitiesCompleted,
-                      overlayController.isPracticeComplete,
+                      totallyDone,
                     )
                         ? () => overlayController.updateToolbarMode(mode)
                         : null,
