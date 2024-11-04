@@ -2844,5 +2844,28 @@
   "opacity": "التعتيم:",
   "@opacity": {},
   "manageAccount": "‫إدارة الحساب‬",
-  "@manageAccount": {}
+  "@manageAccount": {},
+  "noContactInformationProvided": "لا يقدم السيرفر أي معلومات اتصال صحيحة",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "اتصل بمسؤول الخادم",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "الاتصال بمسؤول أمان ااخادم",
+  "@contactServerSecurity": {},
+  "supportPage": "صفحة الدعم",
+  "@supportPage": {},
+  "serverInformation": "معلومات الخادم:",
+  "@serverInformation": {},
+  "name": "الإسم",
+  "@name": {},
+  "version": "اﻹصدار",
+  "@version": {},
+  "website": "الموقع اﻹلكتروني",
+  "@website": {},
+  "aboutHomeserver": "حول {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  }
 }
