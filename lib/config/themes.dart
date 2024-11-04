@@ -97,7 +97,7 @@ abstract class FluffyThemes {
       appBarTheme: AppBarTheme(
         toolbarHeight: FluffyThemes.isColumnMode(context) ? 72 : 56,
         shadowColor: FluffyThemes.isColumnMode(context)
-            ? colorScheme.surfaceContainer.withAlpha(64)
+            ? colorScheme.surfaceContainer.withAlpha(128)
             : null,
         surfaceTintColor:
             FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
