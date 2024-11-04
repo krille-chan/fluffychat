@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
@@ -65,21 +67,11 @@ class AnalyticsPopup extends StatelessWidget {
           final category = categoriesToUses[index];
           return Column(
             children: [
-              ExpansionTile(
-                title: Text(
-                  category.value.first.constructType.getDisplayCopy(
-                        category.key,
-                        context,
-                      ) ??
-                      category.key,
-                ),
-                children: category.value.map((constructUses) {
-                  return ConstructUsesXPTile(
-                    indicator: indicator,
-                    constructsModel: constructsModel,
-                    constructUses: constructUses,
-                  );
-                }).toList(),
+              ConstructUsesExpansionTile(
+                indicator: indicator,
+                constructsModel: constructsModel,
+                category: category.key,
+                constructUses: category.value,
               ),
               const Divider(height: 1),
             ],
@@ -163,6 +155,77 @@ class ConstructUsesXPTile extends StatelessWidget {
           horizontal: 20,
         ),
       ),
+    );
+  }
+}
+
+class ConstructUsesExpansionTile extends StatefulWidget {
+  final ProgressIndicatorEnum indicator;
+  final ConstructListModel constructsModel;
+  final String category;
+  final List<ConstructUses> constructUses;
+
+  const ConstructUsesExpansionTile({
+    required this.indicator,
+    required this.constructsModel,
+    required this.category,
+    required this.constructUses,
+    super.key,
+  });
+
+  @override
+  ConstructUsesExpansionTileState createState() =>
+      ConstructUsesExpansionTileState();
+}
+
+class ConstructUsesExpansionTileState
+    extends State<ConstructUsesExpansionTile> {
+  int _lastLoadedIndex = 50;
+  int get endIndex => min(_lastLoadedIndex, widget.constructUses.length);
+
+  @override
+  Widget build(BuildContext context) {
+    final List<Widget> xpTiles = widget.constructUses
+        .sublist(0, endIndex)
+        .map((constructUses) {
+          return ConstructUsesXPTile(
+            indicator: widget.indicator,
+            constructsModel: widget.constructsModel,
+            constructUses: constructUses,
+          );
+        })
+        .cast<Widget>()
+        .toList();
+
+    if (widget.constructUses.length > _lastLoadedIndex) {
+      xpTiles.add(
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: TextButton(
+            child: Text(L10n.of(context)!.loadMore),
+            onPressed: () => setState(() => _lastLoadedIndex += 50),
+          ),
+        ),
+      );
+    }
+
+    return ExpansionTile(
+      title: Text(
+        widget.constructsModel.type == ConstructTypeEnum.morph
+            ? getGrammarCopy(
+                  category: widget.category,
+                  lemma: widget.constructUses.first.lemma,
+                  context: context,
+                ) ??
+                widget.category
+            : widget.category,
+      ),
+      children: xpTiles,
+      onExpansionChanged: (expanded) {
+        if (expanded) {
+          setState(() => _lastLoadedIndex = 50);
+        }
+      },
     );
   }
 }
