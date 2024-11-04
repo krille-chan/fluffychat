@@ -66,11 +66,8 @@ class AnalyticsPopup extends StatelessWidget {
           return Column(
             children: [
               ExpansionTile(
-                title: Text(
-                  category.key != 'Other'
-                      ? getGrammarCopy(category.key, context)
-                      : category.key,
-                ),
+                // GABBY TODO switch back to getGrammarCopy once it's updated
+                title: Text(category.key),
                 children: category.value.map((constructUses) {
                   return ConstructUsesXPTile(
                     indicator: indicator,
@@ -127,23 +124,34 @@ class ConstructUsesXPTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lemma = constructUses.lemma;
     return Tooltip(
       message: "${constructUses.points} / ${constructsModel.maxXPPerLemma}",
       child: ListTile(
         onTap: () {},
         title: Text(
           constructsModel.type == ConstructTypeEnum.morph
-              ? getGrammarCopy(lemma, context)
-              : lemma,
+              ? getGrammarCopy(
+                  category: constructUses.category,
+                  lemma: constructUses.lemma,
+                  context: context,
+                )
+              : constructUses.lemma,
         ),
-        subtitle: LinearProgressIndicator(
-          value: constructUses.points / constructsModel.maxXPPerLemma,
-          minHeight: 20,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(AppConfig.borderRadius),
-          ),
-          color: indicator.color(context),
+        subtitle: Row(
+          children: [
+            Expanded(
+              child: LinearProgressIndicator(
+                value: constructUses.points / constructsModel.maxXPPerLemma,
+                minHeight: 20,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(AppConfig.borderRadius),
+                ),
+                color: indicator.color(context),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Text("${constructUses.points}xp"),
+          ],
         ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 20,

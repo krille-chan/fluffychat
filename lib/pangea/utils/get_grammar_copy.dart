@@ -5,12 +5,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-String getGrammarCopy(
-    {required String category,
-    required String feature,
-    required BuildContext context}) {
+/// Used on morph constructs
+String getGrammarCopy({
+  required String category,
+
+  /// This is the tag / feature
+  required String lemma,
+  required BuildContext context,
+}) {
   final String key =
-      'grammarCopy${category.toUpperCase()}${feature.toLowerCase()}';
+      'grammarCopy${category.toUpperCase()}${lemma.toLowerCase()}';
 
   switch (key) {
     case 'grammarCopyPOSsconj':
