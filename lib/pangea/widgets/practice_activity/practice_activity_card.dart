@@ -148,6 +148,11 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
               .map((activity) => activity.activityRequestMetaData)
               .toList(),
           activityQualityFeedback: activityFeedback,
+          clientCompatibleActivities: widget.tts.isLanguageFullySupported
+              ? ActivityTypeEnum.values
+              : ActivityTypeEnum.values
+                  .where((type) => type != ActivityTypeEnum.wordFocusListening)
+                  .toList(),
         ),
         widget.pangeaMessageEvent,
       );
