@@ -71,7 +71,11 @@ class MessageAudioCardState extends State<MessageAudioCard> {
     final PangeaTokenText selection = widget.selection!;
     final tokenText = selection.content;
 
-    await widget.tts.speak(tokenText);
+    await widget.tts.tryToSpeak(
+      tokenText,
+      context,
+      widget.messageEvent.eventId,
+    );
   }
 
   void setSectionStartAndEnd(int? start, int? end) => mounted
@@ -196,19 +200,13 @@ class MessageAudioCardState extends State<MessageAudioCard> {
           child: _isLoading
               ? const ToolbarContentLoadingIndicator()
               : audioFile != null
-                  ? Column(
-                      children: [
-                        AudioPlayerWidget(
-                          null,
-                          matrixFile: audioFile,
-                          sectionStartMS: sectionStartMS,
-                          sectionEndMS: sectionEndMS,
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
-                          setIsPlayingAudio: widget.setIsPlayingAudio,
-                        ),
-                        widget.tts.missingVoiceButton,
-                      ],
+                  ? AudioPlayerWidget(
+                      null,
+                      matrixFile: audioFile,
+                      sectionStartMS: sectionStartMS,
+                      sectionEndMS: sectionEndMS,
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      setIsPlayingAudio: widget.setIsPlayingAudio,
                     )
                   : const CardErrorWidget(
                       error: "Null audio file in message_audio_card",

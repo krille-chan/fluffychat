@@ -2,20 +2,17 @@ import 'dart:io';
 
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 
 class MissingVoiceButton extends StatelessWidget {
-  final String targetLangCode;
-
-  const MissingVoiceButton({
-    required this.targetLangCode,
-    super.key,
-  });
+  const MissingVoiceButton({super.key});
 
   Future<void> launchTTSSettings(BuildContext context) async {
-    if (Platform.isAndroid) {
+    if (!kIsWeb && Platform.isAndroid) {
       const intent = AndroidIntent(
         action: 'com.android.settings.TTS_SETTINGS',
         package: 'com.talktolearn.chat',
@@ -30,36 +27,18 @@ class MissingVoiceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: AppConfig.toolbarMinWidth),
-      decoration: BoxDecoration(
-        color:
-            Theme.of(context).colorScheme.onPrimaryContainer.withOpacity(0.1),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(AppConfig.borderRadius),
+    return TextButton(
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.all<Color>(
+          AppConfig.primaryColor.withOpacity(0.1),
         ),
       ),
-      padding: const EdgeInsets.all(8),
-      margin: const EdgeInsets.only(top: 8),
-      child: SizedBox(
-        width: AppConfig.toolbarMinWidth,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              L10n.of(context)!.voiceNotAvailable,
-              textAlign: TextAlign.center,
-            ),
-            TextButton(
-              onPressed: () => launchTTSSettings(context),
-              style: const ButtonStyle(
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-              child: Text(L10n.of(context)!.openVoiceSettings),
-            ),
-          ],
-        ),
+      onPressed: () async {
+        MatrixState.pAnyState.closeOverlay();
+        await launchTTSSettings(context);
+      },
+      child: Center(
+        child: Text(L10n.of(context)!.openVoiceSettings),
       ),
     );
   }
