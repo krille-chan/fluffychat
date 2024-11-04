@@ -14,14 +14,14 @@ class MissingVoiceButton extends StatelessWidget {
     super.key,
   });
 
-  void launchTTSSettings(BuildContext context) {
+  Future<void> launchTTSSettings(BuildContext context) async {
     if (Platform.isAndroid) {
       const intent = AndroidIntent(
         action: 'com.android.settings.TTS_SETTINGS',
         package: 'com.talktolearn.chat',
       );
 
-      showFutureLoadingDialog(
+      await showFutureLoadingDialog(
         context: context,
         future: intent.launch,
       );
@@ -31,6 +31,7 @@ class MissingVoiceButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: const BoxConstraints(maxWidth: AppConfig.toolbarMinWidth),
       decoration: BoxDecoration(
         color:
             Theme.of(context).colorScheme.onPrimaryContainer.withOpacity(0.1),
@@ -51,9 +52,7 @@ class MissingVoiceButton extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             TextButton(
-              onPressed: () => launchTTSSettings,
-              // commenting out as suspecting this is causing an issue
-              // #freeze-activity
+              onPressed: () => launchTTSSettings(context),
               style: const ButtonStyle(
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
