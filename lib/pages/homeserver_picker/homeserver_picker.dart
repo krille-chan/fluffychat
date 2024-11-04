@@ -80,6 +80,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   }
 
   void onSubmitted([_]) {
+    if (isLoading) return tryCheckHomeserverActionWithoutCooldown();
     if (supportsSso) return ssoLoginAction();
     if (supportsPasswordLogin) return login();
     return tryCheckHomeserverActionWithoutCooldown();
