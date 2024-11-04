@@ -49,11 +49,8 @@ class SubscriptionRepo {
       final RCProductsResponseModel resp =
           RCProductsResponseModel.fromJson(json);
       return resp.allProducts;
-    } catch (err) {
-      ErrorHandler.logError(
-        m: "Failed to fetch entitlement information for revenuecat API",
-        s: StackTrace.current,
-      );
+    } catch (err, s) {
+      ErrorHandler.logError(e: err, s: s);
       return null;
     }
   }
@@ -97,7 +94,9 @@ class RCProductsResponseModel {
         .map(
           (offering) => SubscriptionDetails(
             price: offering['price'],
-            duration: offering['duration'],
+            duration: SubscriptionDuration.values.firstWhereOrNull(
+              (duration) => duration.value == offering['duration'],
+            ),
             id: offering['id'],
             appId: offering['appId'],
           ),
