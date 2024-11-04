@@ -24,7 +24,7 @@ class PApiUrls {
   static String getLanguages = "${PApiUrls.choreoEndpoint}/languages";
 
   ///   ---------------------- Users --------------------------------------
-  static String paymentLink = "${PApiUrls.accountEndpoint}/payment_link";
+  static String paymentLink = "${PApiUrls.subscriptionEndpoint}/payment_link";
 
   ///   ---------------------- Conversation Partner -------------------------
   /// PTODO: Migrate or remove
