@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -44,11 +45,19 @@ extension MorphologicalCategoriesExtension on MorphologicalCategories {
 
   /// Convert string to enum
   static MorphologicalCategories? fromString(String category) {
-    return MorphologicalCategories.values.firstWhereOrNull(
+    final morph = MorphologicalCategories.values.firstWhereOrNull(
       (e) =>
           e.toShortString() ==
           category.toLowerCase().replaceAll(RegExp(r'[,\[\]]'), ''),
     );
+    if (morph == null) {
+      ErrorHandler.logError(
+        e: "Missing morphological category",
+        s: StackTrace.current,
+        data: {"category": category},
+      );
+    }
+    return morph;
   }
 
   String getDisplayCopy(BuildContext context) {

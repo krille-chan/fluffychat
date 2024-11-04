@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -31,9 +32,17 @@ extension GrammarCopyPOSExtension on GrammarCopyPOS {
   }
 
   GrammarCopyPOS? fromString(String categoryName) {
-    return GrammarCopyPOS.values.firstWhereOrNull(
+    final pos = GrammarCopyPOS.values.firstWhereOrNull(
       (pos) => pos.toShortString() == categoryName.toLowerCase(),
     );
+    if (pos == null) {
+      ErrorHandler.logError(
+        e: "Missing part of speech",
+        s: StackTrace.current,
+        data: {"category": categoryName},
+      );
+    }
+    return pos;
   }
 
   String getDisplayCopy(BuildContext context) {

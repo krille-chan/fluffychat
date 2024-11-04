@@ -450,8 +450,7 @@ String? getGrammarCopy({
     default:
       debugger(when: kDebugMode);
       ErrorHandler.logError(
-        e: Exception('Need to add copy for $key to intl_en.arb'),
-        m: 'Need to add copy for $key to intl_en.arb',
+        e: 'Need to add copy to intl_en.arb',
         data: {
           'tag': key,
           'context': context,
