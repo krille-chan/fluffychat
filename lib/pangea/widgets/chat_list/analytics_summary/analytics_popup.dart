@@ -66,8 +66,13 @@ class AnalyticsPopup extends StatelessWidget {
           return Column(
             children: [
               ExpansionTile(
-                // GABBY TODO switch back to getGrammarCopy once it's updated
-                title: Text(category.key),
+                title: Text(
+                  category.value.first.constructType.getDisplayCopy(
+                        category.key,
+                        context,
+                      ) ??
+                      category.key,
+                ),
                 children: category.value.map((constructUses) {
                   return ConstructUsesXPTile(
                     indicator: indicator,
@@ -131,10 +136,11 @@ class ConstructUsesXPTile extends StatelessWidget {
         title: Text(
           constructsModel.type == ConstructTypeEnum.morph
               ? getGrammarCopy(
-                  category: constructUses.category,
-                  lemma: constructUses.lemma,
-                  context: context,
-                )
+                    category: constructUses.category,
+                    lemma: constructUses.lemma,
+                    context: context,
+                  ) ??
+                  constructUses.lemma
               : constructUses.lemma,
         ),
         subtitle: Row(

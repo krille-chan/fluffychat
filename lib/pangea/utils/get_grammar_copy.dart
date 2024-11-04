@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -6,15 +8,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 /// Used on morph constructs
-String getGrammarCopy({
+String? getGrammarCopy({
   required String category,
 
   /// This is the tag / feature
   required String lemma,
   required BuildContext context,
 }) {
+  if (category.toLowerCase() == 'other') {
+    return null;
+  }
+
   final String key =
-      'grammarCopy${category.toUpperCase()}${lemma.toLowerCase()}';
+      'grammarCopy${category.toUpperCase()}${lemma.replaceAll(",", "").toLowerCase()}';
 
   switch (key) {
     case 'grammarCopyPOSsconj':
@@ -119,8 +125,16 @@ String getGrammarCopy({
       return L10n.of(context)!.grammarCopyNUMBERplur;
     case 'grammarCopyPRONTYPEnpr':
       return L10n.of(context)!.grammarCopyPRONTYPEnpr;
+    case 'grammarCopyPRONTYPEprs':
+      return L10n.of(context)!.grammarCopyPRONTYPEprs;
+    case 'grammarCopyPRONTYPEind':
+      return L10n.of(context)!.grammarCopyPRONTYPEind;
     case 'grammarCopyPRONTYPEinterrogative':
       return L10n.of(context)!.grammarCopyPRONTYPEinterrogative;
+    case 'grammarCopyPRONTYPEart':
+      return L10n.of(context)!.grammarCopyPRONTYPEart;
+    case 'grammarCopyPRONTYPEtot':
+      return L10n.of(context)!.grammarCopyPRONTYPEtot;
     case 'grammarCopyPOLITEinfm':
       return L10n.of(context)!.grammarCopyPOLITEinfm;
     case 'grammarCopyADVTYPEtim':
@@ -155,6 +169,8 @@ String getGrammarCopy({
       return L10n.of(context)!.grammarCopyPRONTYPEdem;
     case 'grammarCopyPREPCASEpre':
       return L10n.of(context)!.grammarCopyPREPCASEpre;
+    case 'grammarCopyPREPCASEnpr':
+      return L10n.of(context)!.grammarCopyPREPCASEnpr;
     case 'grammarCopyVERBFORMfin':
       return L10n.of(context)!.grammarCopyVERBFORMfin;
     case 'grammarCopyDEGREEpos':
@@ -171,6 +187,8 @@ String getGrammarCopy({
       return L10n.of(context)!.grammarCopyTENSEprs;
     case 'grammarCopyDEFINITEdef':
       return L10n.of(context)!.grammarCopyDEFINITEdef;
+    case 'grammarCopyDEFINITEind':
+      return L10n.of(context)!.grammarCopyDEFINITEind;
     case 'grammarCopyNUMTYPEord':
       return L10n.of(context)!.grammarCopyNUMTYPEord;
     case 'grammarCopyCASEins':
@@ -189,10 +207,14 @@ String getGrammarCopy({
       return L10n.of(context)!.grammarCopyCASErelativeCase;
     case 'grammarCopyPUNCTTYPEexcl':
       return L10n.of(context)!.grammarCopyPUNCTTYPEexcl;
+    case 'rammarCopyPUNCTTYPEperi':
+      return L10n.of(context)!.grammarCopyPUNCTTYPEperi;
     case 'grammarCopyPERSON1':
       return L10n.of(context)!.grammarCopyPERSON1;
     case 'grammarCopyPUNCTSIDEini':
       return L10n.of(context)!.grammarCopyPUNCTSIDEini;
+    case 'grammarCopyPUNCTSIDEfin':
+      return L10n.of(context)!.grammarCopyPUNCTSIDEfin;
     case 'grammarCopyGENDERperson':
       return L10n.of(context)!.grammarCopyGENDERperson;
     case 'grammarCopyFOREIGNyes':
@@ -203,6 +225,8 @@ String getGrammarCopy({
       return L10n.of(context)!.grammarCopyVERBTYPEverbType;
     case 'grammarCopyPOSSpass':
       return L10n.of(context)!.grammarCopyPOSSpass;
+    case 'grammarCopyPOSSyes':
+      return L10n.of(context)!.grammarCopyPOSSyes;
     case 'grammarCopyPREPCASEprepCase':
       return L10n.of(context)!.grammarCopyPREPCASEprepCase;
     case 'grammarCopyNUMTYPEnumType':
@@ -259,6 +283,8 @@ String getGrammarCopy({
       return L10n.of(context)!.grammarCopyGENDERcom;
     case 'grammarCopyREFLEXrflx':
       return L10n.of(context)!.grammarCopyREFLEXrflx;
+    case 'grammarCopyREFLEXyes':
+      return L10n.of(context)!.grammarCopyREFLEXyes;
     case 'grammarCopyPARTTYPEpar':
       return L10n.of(context)!.grammarCopyPARTTYPEpar;
     case 'grammarCopySPCspc':
@@ -377,6 +403,8 @@ String getGrammarCopy({
       return L10n.of(context)!.grammarCopyPRONTYPEexc;
     case 'grammarCopyPRONTYPErcp':
       return L10n.of(context)!.grammarCopyPRONTYPErcp;
+    case 'grammarCopyPRONTYPEintrel':
+      return L10n.of(context)!.grammarCopyPRONTYPEintrel;
     case 'grammarCopyPRONTYPEintRelPronType':
       return L10n.of(context)!.grammarCopyPRONTYPEintRelPronType;
     case 'grammarCopyTENSEaor':
@@ -385,6 +413,8 @@ String getGrammarCopy({
       return L10n.of(context)!.grammarCopyTENSEeps;
     case 'grammarCopyTENSEprosp':
       return L10n.of(context)!.grammarCopyTENSEprosp;
+    case 'grammarCopyTENSEimp':
+      return L10n.of(context)!.grammarCopyTENSEimp;
     case 'grammarCopyVERBFORMpart':
       return L10n.of(context)!.grammarCopyVERBFORMpart;
     case 'grammarCopyVERBFORMconv':
