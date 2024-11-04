@@ -39,13 +39,15 @@ enum MorphologicalCategories {
 extension MorphologicalCategoriesExtension on MorphologicalCategories {
   /// Convert enum to string
   String toShortString() {
-    return toString().split('.').last;
+    return toString().split('.').last.toLowerCase();
   }
 
   /// Convert string to enum
   static MorphologicalCategories? fromString(String category) {
     return MorphologicalCategories.values.firstWhereOrNull(
-      (e) => e.toShortString() == category,
+      (e) =>
+          e.toShortString() ==
+          category.toLowerCase().replaceAll(RegExp(r'[,\[\]]'), ''),
     );
   }
 

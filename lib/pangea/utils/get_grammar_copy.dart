@@ -20,7 +20,7 @@ String? getGrammarCopy({
   }
 
   final String key =
-      'grammarCopy${category.toUpperCase()}${lemma.replaceAll(",", "").toLowerCase()}';
+      'grammarCopy${category.replaceAll(RegExp(r'[,\[\]]'), '').toUpperCase()}${lemma.replaceAll(RegExp(r'[,\[\]]'), '').toLowerCase()}';
 
   switch (key) {
     case 'grammarCopyPOSsconj':
@@ -81,6 +81,12 @@ String? getGrammarCopy({
       return L10n.of(context)!.grammarCopyPUNCTTYPEbrck;
     case 'grammarCopyNOUNTYPEart':
       return L10n.of(context)!.grammarCopyNOUNTYPEart;
+    case 'grammarCopyNUMBERPSORsing':
+      return L10n.of(context)!.grammarCopyNUMBERPSORsing;
+    case 'grammarCopyNUMBERPSORplur':
+      return L10n.of(context)!.grammarCopyNUMBERPSORplur;
+    case 'grammarCopyNUMBERPSORdual':
+      return L10n.of(context)!.grammarCopyNUMBERPSORdual;
     case 'grammarCopyNUMBERsing':
       return L10n.of(context)!.grammarCopyNUMBERsing;
     case 'grammarCopyGENDERmasc':
