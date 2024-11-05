@@ -2844,5 +2844,28 @@
   "continueText": "Jarraitu",
   "@continueText": {},
   "welcomeText": "Ieup 👋 Ongi etorri FluffyChat-era. https://matrix.org-rekin bateragarria den edozein zerbitzaritan hasi dezakezu saioa eta edonorekin txateatu. Mezularitza-sare deszentralizatu eraraldoia da!",
-  "@welcomeText": {}
+  "@welcomeText": {},
+  "contactServerAdmin": "Jarri harremanetan zerbitzariaren administratzailearekin",
+  "@contactServerAdmin": {},
+  "aboutHomeserver": "{homeserver}(e)ri buruz",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "supportPage": "Laguntza orria",
+  "@supportPage": {},
+  "serverInformation": "Zerbitzariaren informazioa:",
+  "@serverInformation": {},
+  "name": "Izena",
+  "@name": {},
+  "version": "Bertsioa",
+  "@version": {},
+  "website": "Webgunea",
+  "@website": {},
+  "contactServerSecurity": "Jakinarazi segurtasun arazo bat",
+  "@contactServerSecurity": {},
+  "noContactInformationProvided": "Zerbitzariak ez du harremanetarako informaziorik zehaztu",
+  "@noContactInformationProvided": {}
 }
