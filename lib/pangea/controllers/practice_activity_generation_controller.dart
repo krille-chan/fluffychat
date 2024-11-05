@@ -19,7 +19,7 @@ import 'package:matrix/matrix.dart';
 /// Represents an item in the completion cache.
 class _RequestCacheItem {
   MessageActivityRequest req;
-  PracticeActivityModel? practiceActivity;
+  PracticeActivityModelResponse? practiceActivity;
 
   _RequestCacheItem({
     required this.req,
@@ -99,7 +99,7 @@ class PracticeGenerationController {
 
   //TODO - allow return of activity content before sending the event
   // this requires some downstream changes to the way the event is handled
-  Future<PracticeActivityModel?> getPracticeActivity(
+  Future<PracticeActivityModelResponse?> getPracticeActivity(
     MessageActivityRequest req,
     PangeaMessageEvent event,
   ) async {
@@ -119,6 +119,8 @@ class PracticeGenerationController {
       return null;
     }
 
+    final eventCompleter = Completer<PracticeActivityEvent?>();
+
     // if the server points to an existing event, return that event
     if (res.existingActivityEventId != null) {
       final Event? existingEvent =
@@ -127,11 +129,19 @@ class PracticeGenerationController {
       debugPrint(
         'Existing activity event found: ${existingEvent?.content}',
       );
-      if (existingEvent != null) {
-        return PracticeActivityEvent(
+      debugPrint(
+        "eventID: ${existingEvent?.eventId}, event is redacted: ${existingEvent?.redacted}",
+      );
+      if (existingEvent != null && !existingEvent.redacted) {
+        final activityEvent = PracticeActivityEvent(
           event: existingEvent,
           timeline: event.timeline,
-        ).practiceActivity;
+        );
+        eventCompleter.complete(activityEvent);
+        return PracticeActivityModelResponse(
+          activity: activityEvent.practiceActivity,
+          eventCompleter: eventCompleter,
+        );
       }
     }
 
@@ -141,11 +151,30 @@ class PracticeGenerationController {
     }
 
     debugPrint('Activity generated: ${res.activity!.toJson()}');
+    _sendAndPackageEvent(res.activity!, event).then((event) {
+      eventCompleter.complete(event);
+    });
 
-    _sendAndPackageEvent(res.activity!, event);
-    _cache[cacheKey] =
-        _RequestCacheItem(req: req, practiceActivity: res.activity!);
+    final responseModel = PracticeActivityModelResponse(
+      activity: res.activity!,
+      eventCompleter: eventCompleter,
+    );
 
-    return _cache[cacheKey]!.practiceActivity;
+    _cache[cacheKey] = _RequestCacheItem(
+      req: req,
+      practiceActivity: responseModel,
+    );
+
+    return responseModel;
   }
+}
+
+class PracticeActivityModelResponse {
+  final PracticeActivityModel? activity;
+  final Completer<PracticeActivityEvent?> eventCompleter;
+
+  PracticeActivityModelResponse({
+    required this.activity,
+    required this.eventCompleter,
+  });
 }

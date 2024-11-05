@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/controllers/practice_activity_generation_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
@@ -45,6 +46,8 @@ class PracticeActivityCard extends StatefulWidget {
 
 class PracticeActivityCardState extends State<PracticeActivityCard> {
   PracticeActivityModel? currentActivity;
+  Completer<PracticeActivityEvent?>? currentActivityCompleter;
+
   PracticeActivityRecordModel? currentCompletionRecord;
   bool fetchingActivity = false;
 
@@ -133,9 +136,9 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return null;
       }
 
-      final PracticeActivityModel? ourNewActivity = await pangeaController
-          .practiceGenerationController
-          .getPracticeActivity(
+      final PracticeActivityModelResponse? activityResponse =
+          await pangeaController.practiceGenerationController
+              .getPracticeActivity(
         MessageActivityRequest(
           userL1: pangeaController.languageController.userL1!.langCode,
           userL2: pangeaController.languageController.userL2!.langCode,
@@ -157,9 +160,10 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         widget.pangeaMessageEvent,
       );
 
+      currentActivityCompleter = activityResponse?.eventCompleter;
       _updateFetchingActivity(false);
 
-      return ourNewActivity;
+      return activityResponse?.activity;
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -255,10 +259,25 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   /// clear the current activity, record, and selection
   /// fetch a new activity, including the offending activity in the request
-  void submitFeedback(String feedback) {
-    if (currentActivity == null) {
+  Future<void> submitFeedback(String feedback) async {
+    if (currentActivity == null || currentCompletionRecord == null) {
       debugger(when: kDebugMode);
       return;
+    }
+
+    if (currentActivityCompleter != null) {
+      final activityEvent = await currentActivityCompleter!.future;
+      await activityEvent?.event.redactEvent(reason: feedback);
+    } else {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        e: Exception('No completer found for current activity'),
+        data: {
+          'activity': currentActivity,
+          'record': currentCompletionRecord,
+          'feedback': feedback,
+        },
+      );
     }
 
     _fetchNewActivity(
