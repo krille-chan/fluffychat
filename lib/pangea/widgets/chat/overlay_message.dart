@@ -82,6 +82,17 @@ class OverlayMessage extends StatelessWidget {
           : theme.colorScheme.primary;
     }
 
+    final noBubble = {
+          MessageTypes.Video,
+          MessageTypes.Image,
+          MessageTypes.Sticker,
+        }.contains(pangeaMessageEvent.event.messageType) &&
+        !pangeaMessageEvent.event.redacted;
+    final noPadding = {
+      MessageTypes.File,
+      MessageTypes.Audio,
+    }.contains(pangeaMessageEvent.event.messageType);
+
     return Material(
       color: color,
       clipBehavior: Clip.antiAlias,
@@ -95,10 +106,12 @@ class OverlayMessage extends StatelessWidget {
               AppConfig.borderRadius,
             ),
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
+          padding: noBubble || noPadding
+              ? EdgeInsets.zero
+              : const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
           width: messageWidth,
           height: messageHeight,
           child: MessageContent(

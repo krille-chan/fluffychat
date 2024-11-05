@@ -40,7 +40,7 @@ class ToolbarButtons extends StatelessWidget {
         overlayController.isPracticeComplete || !messageInUserL2;
     final double barWidth = width - iconWidth;
 
-    if (overlayController.pangeaMessageEvent.isAudioMessage) {
+    if (!overlayController.showToolbarButtons) {
       return const SizedBox();
     }
 

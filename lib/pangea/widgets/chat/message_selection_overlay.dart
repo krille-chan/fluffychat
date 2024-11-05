@@ -73,6 +73,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   final TtsController tts = TtsController();
   bool isPlayingAudio = false;
 
+  bool get showToolbarButtons => !widget._pangeaMessageEvent.isAudioMessage;
+
   @override
   void initState() {
     super.initState();
@@ -281,9 +283,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
   }
 
+  double get toolbarButtonsHeight =>
+      showToolbarButtons ? AppConfig.toolbarButtonsHeight : 0;
   double get reactionsHeight => hasReactions ? 28 : 0;
-  double get belowMessageHeight =>
-      AppConfig.toolbarButtonsHeight + reactionsHeight;
+  double get belowMessageHeight => toolbarButtonsHeight + reactionsHeight;
 
   void setIsPlayingAudio(bool isPlaying) {
     if (mounted) {
