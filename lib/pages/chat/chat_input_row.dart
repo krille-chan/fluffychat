@@ -349,22 +349,25 @@ class ChatInputRow extends StatelessWidget {
                     height: height,
                     width: height,
                     alignment: Alignment.center,
-                    child:
+                    child: PlatformInfos.platformCanRecord &&
+                            controller.sendController.text.isEmpty
+                            // #Pangea
+                            &&
+                            !controller.choreographer.itController.willOpen
+                        // Pangea#
+                        ? FloatingActionButton.small(
+                            tooltip: L10n.of(context)!.voiceMessage,
+                            onPressed: controller.voiceMessageAction,
+                            elevation: 0,
+                            heroTag: null,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(height),
+                            ),
+                            backgroundColor: theme.colorScheme.primary,
+                            foregroundColor: theme.colorScheme.onPrimary,
+                            child: const Icon(Icons.mic_none_outlined),
+                          )
                         // #Pangea
-                        // PlatformInfos.platformCanRecord &&
-                        //         controller.sendController.text.isEmpty
-                        //     ? FloatingActionButton.small(
-                        //         tooltip: L10n.of(context)!.voiceMessage,
-                        //         onPressed: controller.voiceMessageAction,
-                        //         elevation: 0,
-                        //         heroTag: null,
-                        //         shape: RoundedRectangleBorder(
-                        //           borderRadius: BorderRadius.circular(height),
-                        //         ),
-                        //         backgroundColor: theme.colorScheme.primary,
-                        //         foregroundColor: theme.colorScheme.onPrimary,
-                        //         child: const Icon(Icons.mic_none_outlined),
-                        //       )
                         // : FloatingActionButton.small(
                         //     tooltip: L10n.of(context)!.send,
                         //     onPressed: controller.send,
@@ -378,7 +381,7 @@ class ChatInputRow extends StatelessWidget {
                         //     foregroundColor: theme.colorScheme.onPrimary,
                         //     child: const Icon(Icons.send_outlined),
                         //   ),
-                        ChoreographerSendButton(controller: controller),
+                        : ChoreographerSendButton(controller: controller),
                     // Pangea#
                   ),
                 ],
