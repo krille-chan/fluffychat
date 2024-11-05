@@ -281,9 +281,9 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
   }
 
-  final double toolbarButtonsHeight = 50;
   double get reactionsHeight => hasReactions ? 28 : 0;
-  double get belowMessageHeight => toolbarButtonsHeight + reactionsHeight;
+  double get belowMessageHeight =>
+      AppConfig.toolbarButtonsHeight + reactionsHeight;
 
   void setIsPlayingAudio(bool isPlaying) {
     if (mounted) {

@@ -101,11 +101,7 @@ extension MessageModeExtension on MessageMode {
     }
 
     //unlocked and active
-    if (this == currentMode) {
-      return Theme.of(context).brightness == Brightness.dark
-          ? Theme.of(context).colorScheme.primary
-          : Theme.of(context).colorScheme.primary;
-    }
+    if (this == currentMode) return Theme.of(context).colorScheme.primary;
 
     //unlocked and inactive
     return Theme.of(context).colorScheme.primaryContainer;

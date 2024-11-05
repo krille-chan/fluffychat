@@ -25,6 +25,7 @@ abstract class AppConfig {
   static const double toolbarMaxHeight = 300.0;
   static const double toolbarMinHeight = 70.0;
   static const double toolbarMinWidth = 270.0;
+  static const double toolbarButtonsHeight = 50.0;
   // #Pangea
   // static const Color primaryColor = Color(0xFF5625BA);
   // static const Color primaryColorLight = Color(0xFFCCBDEA);
