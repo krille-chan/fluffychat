@@ -2844,5 +2844,28 @@
   "blur": "Hägusus:",
   "@blur": {},
   "opacity": "Läbipaistmatus:",
-  "@opacity": {}
+  "@opacity": {},
+  "contactServerSecurity": "Võta ühendust serveri andmeturbe eest vastutajaga",
+  "@contactServerSecurity": {},
+  "supportPage": "Kasutajatugi",
+  "@supportPage": {},
+  "serverInformation": "Serveri teave:",
+  "@serverInformation": {},
+  "name": "Nimi",
+  "@name": {},
+  "version": "Versioon",
+  "@version": {},
+  "noContactInformationProvided": "Server ei jaga asjakohast kontaktteavet",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "Võta ühendust serveri haldajaga",
+  "@contactServerAdmin": {},
+  "website": "Veebisait",
+  "@website": {},
+  "aboutHomeserver": "Koduserveri teave: {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  }
 }
