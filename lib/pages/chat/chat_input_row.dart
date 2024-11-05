@@ -1,11 +1,13 @@
 import 'package:animations/animations.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
+import 'package:fluffychat/pangea/widgets/chat/pangea_reaction_picker.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../config/themes.dart';
@@ -55,9 +57,9 @@ class ChatInputRow extends StatelessWidget {
       children: [
         Row(
           // crossAxisAlignment: CrossAxisAlignment.end,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           // Pangea#
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: controller.selectMode
               ? <Widget>[
                   if (controller.selectedEvents
@@ -77,50 +79,61 @@ class ChatInputRow extends StatelessWidget {
                         ),
                       ),
                     )
+                  // #Pangea
+                  // else
+                  //   SizedBox(
+                  //     height: height,
+                  //     child: TextButton(
+                  //       onPressed: controller.forwardEventsAction,
+                  //       child: Row(
+                  //         children: <Widget>[
+                  //           const Icon(Icons.keyboard_arrow_left_outlined),
+                  //           Text(L10n.of(context)!.forward),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
                   else
-                    SizedBox(
-                      height: height,
-                      child: TextButton(
-                        onPressed: controller.forwardEventsAction,
-                        child: Row(
-                          children: <Widget>[
-                            const Icon(Icons.keyboard_arrow_left_outlined),
-                            Text(L10n.of(context)!.forward),
-                          ],
-                        ),
-                      ),
-                    ),
-                  controller.selectedEvents.length == 1
-                      ? controller.selectedEvents.first
-                              .getDisplayEvent(controller.timeline!)
-                              .status
-                              .isSent
-                          ? SizedBox(
-                              height: height,
-                              child: TextButton(
-                                onPressed: controller.replyAction,
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(L10n.of(context)!.reply),
-                                    const Icon(Icons.keyboard_arrow_right),
-                                  ],
+                    // Pangea#
+                    controller.selectedEvents.length == 1
+                        ? controller.selectedEvents.first
+                                .getDisplayEvent(controller.timeline!)
+                                .status
+                                .isSent
+                            ? SizedBox(
+                                height: height,
+                                child: TextButton(
+                                  onPressed: controller.replyAction,
+                                  child: Row(
+                                    children: <Widget>[
+                                      // #Pangea
+                                      // Text(L10n.of(context)!.reply),
+                                      // const Icon(Icons.keyboard_arrow_right),
+                                      const Icon(Symbols.reply),
+                                      const SizedBox(width: 6),
+                                      Text(L10n.of(context)!.reply),
+                                      // Pangea#
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            )
-                          : SizedBox(
-                              height: height,
-                              child: TextButton(
-                                onPressed: controller.sendAgainAction,
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(L10n.of(context)!.tryToSendAgain),
-                                    const SizedBox(width: 4),
-                                    const Icon(Icons.send_outlined, size: 16),
-                                  ],
+                              )
+                            : SizedBox(
+                                height: height,
+                                child: TextButton(
+                                  onPressed: controller.sendAgainAction,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text(L10n.of(context)!.tryToSendAgain),
+                                      const SizedBox(width: 4),
+                                      const Icon(Icons.send_outlined, size: 16),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            )
-                      : const SizedBox.shrink(),
+                              )
+                        : const SizedBox.shrink(),
+                  // #Pangea
+                  PangeaReactionsPicker(controller),
+                  // Pangea#
                 ]
               : <Widget>[
                   // #Pangea
