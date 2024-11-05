@@ -41,7 +41,6 @@ class ITBotButton extends StatelessWidget {
       context,
       InstructionsEnum.itInstructions,
       choreographer.itBotTransformTargetKey,
-      true,
     );
 
     return IconButton(
@@ -51,7 +50,7 @@ class ITBotButton extends StatelessWidget {
         context,
         InstructionsEnum.itInstructions,
         choreographer.itBotTransformTargetKey,
-        false,
+        showToggle: false,
       ),
     );
   }

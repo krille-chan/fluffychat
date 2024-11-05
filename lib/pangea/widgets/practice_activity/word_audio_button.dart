@@ -5,11 +5,13 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 class WordAudioButton extends StatefulWidget {
   final String text;
   final TtsController ttsController;
+  final String eventID;
 
   const WordAudioButton({
     super.key,
     required this.text,
     required this.ttsController,
+    required this.eventID,
   });
 
   @override
@@ -22,41 +24,40 @@ class WordAudioButtonState extends State<WordAudioButton> {
   @override
   Widget build(BuildContext context) {
     debugPrint('build WordAudioButton');
-    return Column(
-      children: [
-        IconButton(
-          icon: const Icon(Icons.play_arrow_outlined),
-          isSelected: _isPlaying,
-          selectedIcon: const Icon(Icons.pause_outlined),
-          color: _isPlaying ? Colors.white : null,
-          style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(
-              _isPlaying
-                  ? Theme.of(context).colorScheme.secondary
-                  : Theme.of(context).colorScheme.primaryContainer,
-            ),
-          ),
-          tooltip:
-              _isPlaying ? L10n.of(context)!.stop : L10n.of(context)!.playAudio,
-          onPressed: () async {
-            if (_isPlaying) {
-              await widget.ttsController.tts.stop();
-              if (mounted) {
-                setState(() => _isPlaying = false);
-              }
-            } else {
-              if (mounted) {
-                setState(() => _isPlaying = true);
-              }
-              await widget.ttsController.speak(widget.text);
-              if (mounted) {
-                setState(() => _isPlaying = false);
-              }
-            }
-          }, // Disable button if language isn't supported
+    return IconButton(
+      icon: const Icon(Icons.play_arrow_outlined),
+      isSelected: _isPlaying,
+      selectedIcon: const Icon(Icons.pause_outlined),
+      color: _isPlaying ? Colors.white : null,
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.all(
+          _isPlaying
+              ? Theme.of(context).colorScheme.secondary
+              : Theme.of(context).colorScheme.primaryContainer,
         ),
-        widget.ttsController.missingVoiceButton,
-      ],
+      ),
+      tooltip:
+          _isPlaying ? L10n.of(context)!.stop : L10n.of(context)!.playAudio,
+      onPressed: () async {
+        if (_isPlaying) {
+          await widget.ttsController.tts.stop();
+          if (mounted) {
+            setState(() => _isPlaying = false);
+          }
+        } else {
+          if (mounted) {
+            setState(() => _isPlaying = true);
+          }
+          await widget.ttsController.tryToSpeak(
+            widget.text,
+            context,
+            widget.eventID,
+          );
+          if (mounted) {
+            setState(() => _isPlaying = false);
+          }
+        }
+      }, // Disable button if language isn't supported
     );
   }
 }

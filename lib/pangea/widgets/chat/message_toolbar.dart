@@ -47,14 +47,6 @@ class MessageToolbar extends StatelessWidget {
     final bool messageInUserL2 = pangeaMessageEvent.messageDisplayLangCode ==
         MatrixState.pangeaController.languageController.userL2?.langCode;
 
-    // If not in the target language show specific messsage
-    if (!messageInUserL2) {
-      return MessageDisplayCard(
-        displayText:
-            L10n.of(context)!.messageNotInTargetLang, // Pass the display text,
-      );
-    }
-
     switch (overLayController.toolbarMode) {
       case MessageMode.translation:
         return MessageTranslationCard(
@@ -104,6 +96,13 @@ class MessageToolbar extends StatelessWidget {
           }
         }
       case MessageMode.practiceActivity:
+        // If not in the target language show specific messsage
+        if (!messageInUserL2) {
+          return MessageDisplayCard(
+            displayText: L10n.of(context)!
+                .messageNotInTargetLang, // Pass the display text,
+          );
+        }
         return PracticeActivityCard(
           pangeaMessageEvent: pangeaMessageEvent,
           overlayController: overLayController,
