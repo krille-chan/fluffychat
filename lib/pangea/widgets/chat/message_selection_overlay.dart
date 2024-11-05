@@ -550,13 +550,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                     messageOffset!.dy -
                     messageSize!.height -
                     belowMessageHeight,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: horizontalPadding,
-                    right: horizontalPadding,
-                  ),
-                  child: overlayMessage,
-                ),
+                child: overlayMessage,
               )
         : AnimatedBuilder(
             animation: _overlayPositionAnimation!,
@@ -570,33 +564,39 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             },
           );
 
-    return Stack(
-      children: [
-        positionedOverlayMessage,
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    OverlayFooter(controller: widget.chatController),
-                  ],
+    return Padding(
+      padding: EdgeInsets.only(
+        left: horizontalPadding,
+        right: horizontalPadding,
+      ),
+      child: Stack(
+        children: [
+          positionedOverlayMessage,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      OverlayFooter(controller: widget.chatController),
+                    ],
+                  ),
                 ),
-              ),
-              if (showDetails)
-                const SizedBox(
-                  width: FluffyThemes.columnWidth,
-                ),
-            ],
+                if (showDetails)
+                  const SizedBox(
+                    width: FluffyThemes.columnWidth,
+                  ),
+              ],
+            ),
           ),
-        ),
-        Material(
-          child: OverlayHeader(controller: widget.chatController),
-        ),
-      ],
+          Material(
+            child: OverlayHeader(controller: widget.chatController),
+          ),
+        ],
+      ),
     );
   }
 }
