@@ -29,17 +29,19 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
 
   @override
   void initState() {
-    tokens = widget.pangeaMessageEvent.originalSent?.tokens;
-    if (widget.pangeaMessageEvent.originalSent != null && tokens == null) {
-      widget.pangeaMessageEvent.originalSent!
-          .tokensGlobal(
-        widget.pangeaMessageEvent.senderId,
-        widget.pangeaMessageEvent.originServerTs,
-      )
-          .then((tokens) {
-        // this isn't currently working because originalSent's _event is null
-        setState(() => this.tokens = tokens);
-      });
+    final repEvent = widget.pangeaMessageEvent.messageDisplayRepresentation;
+    if (repEvent != null) {
+      tokens = repEvent.tokens;
+      if (tokens == null) {
+        repEvent
+            .tokensGlobal(
+          widget.pangeaMessageEvent.senderId,
+          widget.pangeaMessageEvent.originServerTs,
+        )
+            .then((tokens) {
+          setState(() => this.tokens = tokens);
+        });
+      }
     }
     super.initState();
   }
@@ -70,7 +72,7 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
 
 // Convert the entire message into a list of characters
     final Characters messageCharacters =
-        widget.pangeaMessageEvent.event.body.characters;
+        widget.pangeaMessageEvent.messageDisplayText.characters;
 
     // When building token positions, use grapheme cluster indices
     final List<TokenPosition> tokenPositions = [];

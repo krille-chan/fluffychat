@@ -14,7 +14,6 @@ import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 class MessageAudioCard extends StatefulWidget {
@@ -147,15 +146,10 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
     try {
       final String langCode = widget.messageEvent.messageDisplayLangCode;
-      final String? text =
-          widget.messageEvent.representationByLanguage(langCode)?.text;
-
-      if (text == null) {
-        //TODO - handle error but get out of flow
-      }
-
-      final Event? localEvent =
-          widget.messageEvent.getTextToSpeechLocal(langCode, text!);
+      final Event? localEvent = widget.messageEvent.getTextToSpeechLocal(
+        langCode,
+        widget.messageEvent.messageDisplayText,
+      );
 
       if (localEvent != null) {
         audioFile = await localEvent.getPangeaAudioFile();
@@ -172,11 +166,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       debugPrint(StackTrace.current.toString());
       if (!mounted) return;
       setState(() => _isLoading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context)!.errorGettingAudio),
-        ),
-      );
       ErrorHandler.logError(
         e: e,
         s: s,

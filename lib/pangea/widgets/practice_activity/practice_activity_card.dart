@@ -31,13 +31,15 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 class PracticeActivityCard extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overlayController;
-  final TtsController tts;
+  final TtsController ttsController;
+  final TargetTokensController targetTokensController;
 
   const PracticeActivityCard({
     super.key,
     required this.pangeaMessageEvent,
     required this.overlayController,
-    required this.tts,
+    required this.ttsController,
+    required this.targetTokensController,
   });
 
   @override
@@ -50,10 +52,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   PracticeActivityRecordModel? currentCompletionRecord;
   bool fetchingActivity = false;
-
-  // tracks the target tokens for the current message
-  // in a separate controller to manage the state
-  TargetTokensController targetTokensController = TargetTokensController();
 
   List<PracticeActivityEvent> get practiceActivities =>
       widget.pangeaMessageEvent.practiceActivities;
@@ -124,7 +122,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return null;
       }
 
-      if (widget.pangeaMessageEvent.originalSent == null) {
+      if (widget.pangeaMessageEvent.messageDisplayRepresentation == null) {
         debugger(when: kDebugMode);
         _updateFetchingActivity(false);
         ErrorHandler.logError(
@@ -142,8 +140,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         MessageActivityRequest(
           userL1: pangeaController.languageController.userL1!.langCode,
           userL2: pangeaController.languageController.userL2!.langCode,
-          messageText: widget.pangeaMessageEvent.originalSent!.text,
-          tokensWithXP: await targetTokensController.targetTokens(
+          messageText: widget.pangeaMessageEvent.messageDisplayText,
+          tokensWithXP: await widget.targetTokensController.targetTokens(
             widget.pangeaMessageEvent,
           ),
           messageId: widget.pangeaMessageEvent.eventId,
@@ -151,7 +149,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
               .map((activity) => activity.activityRequestMetaData)
               .toList(),
           activityQualityFeedback: activityFeedback,
-          clientCompatibleActivities: widget.tts.isLanguageFullySupported
+          clientCompatibleActivities: widget
+                  .ttsController.isLanguageFullySupported
               ? ActivityTypeEnum.values
               : ActivityTypeEnum.values
                   .where((type) => type != ActivityTypeEnum.wordFocusListening)
@@ -221,7 +220,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
       // update the target tokens with the new construct uses
       // NOTE - multiple choice activity is handling adding these to analytics
-      await targetTokensController.updateTokensWithConstructs(
+      await widget.targetTokensController.updateTokensWithConstructs(
         currentCompletionRecord!.usesForAllResponses(
           currentActivity!,
           metadata,
@@ -320,7 +319,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return MultipleChoiceActivity(
           practiceCardController: this,
           currentActivity: currentActivity!,
-          tts: widget.tts,
+          tts: widget.ttsController,
           eventID: widget.pangeaMessageEvent.eventId,
         );
       case ActivityTypeEnum.wordFocusListening:
@@ -329,7 +328,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return MultipleChoiceActivity(
           practiceCardController: this,
           currentActivity: currentActivity!,
-          tts: widget.tts,
+          tts: widget.ttsController,
           eventID: widget.pangeaMessageEvent.eventId,
         );
       // default:

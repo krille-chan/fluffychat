@@ -38,12 +38,11 @@ class TargetTokensController {
   Future<List<TokenWithXP>> _initialize(
     PangeaMessageEvent pangeaMessageEvent,
   ) async {
-    final tokens = await pangeaMessageEvent
-        .representationByLanguage(pangeaMessageEvent.messageDisplayLangCode)
-        ?.tokensGlobal(
-          pangeaMessageEvent.senderId,
-          pangeaMessageEvent.originServerTs,
-        );
+    final tokens =
+        await pangeaMessageEvent.messageDisplayRepresentation?.tokensGlobal(
+      pangeaMessageEvent.senderId,
+      pangeaMessageEvent.originServerTs,
+    );
 
     if (tokens == null || tokens.isEmpty) {
       debugger(when: kDebugMode);
