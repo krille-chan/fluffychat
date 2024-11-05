@@ -1,7 +1,6 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_input_row.dart';
-import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:flutter/material.dart';
 
 class OverlayFooter extends StatelessWidget {
@@ -18,7 +17,7 @@ class OverlayFooter extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.only(
-        bottom: bottomSheetPadding,
+        bottom: bottomSheetPadding + 16,
         left: bottomSheetPadding,
         right: bottomSheetPadding,
       ),
@@ -34,12 +33,7 @@ class OverlayFooter extends StatelessWidget {
             borderRadius: const BorderRadius.all(
               Radius.circular(24),
             ),
-            child: Column(
-              children: [
-                ReactionsPicker(controller),
-                ChatInputRow(controller),
-              ],
-            ),
+            child: ChatInputRow(controller),
           ),
         ],
       ),
