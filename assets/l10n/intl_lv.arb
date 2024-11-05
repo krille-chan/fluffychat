@@ -2822,5 +2822,28 @@
   "opacity": "Necaurredzamība:",
   "@opacity": {},
   "manageAccount": "Pārvaldīt kontu",
-  "@manageAccount": {}
+  "@manageAccount": {},
+  "noContactInformationProvided": "Serveris nesniedz nekādu derīgu saziņas informāciju",
+  "@noContactInformationProvided": {},
+  "serverInformation": "Informācija par serveri:",
+  "@serverInformation": {},
+  "aboutHomeserver": "Par {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "contactServerAdmin": "Sazināties ar servera pārvaldītāju",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "Sazināties ar servera drošības uzturētājiem",
+  "@contactServerSecurity": {},
+  "supportPage": "Atbalsta lapa",
+  "@supportPage": {},
+  "name": "Nosaukums",
+  "@name": {},
+  "version": "Versija",
+  "@version": {},
+  "website": "Tīmekļvietne",
+  "@website": {}
 }
