@@ -86,33 +86,30 @@ class PressableButtonState extends State<PressableButton>
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
       onTapCancel: _onTapCancel,
-      child: Container(
-        decoration: BoxDecoration(border: Border.all(color: Colors.green)),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Container(
-              width: widget.width,
-              // height: widget.height,
-              decoration: BoxDecoration(
-                color: Color.alphaBlend(
-                  Colors.black.withOpacity(0.25),
-                  widget.color,
-                ),
-                borderRadius: widget.borderRadius,
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Container(
+            width: widget.width,
+            height: widget.height,
+            decoration: BoxDecoration(
+              color: Color.alphaBlend(
+                Colors.black.withOpacity(0.25),
+                widget.color,
               ),
+              borderRadius: widget.borderRadius,
             ),
-            AnimatedBuilder(
-              animation: _tweenAnimation,
-              builder: (context, _) {
-                return Positioned(
-                  bottom: widget.depressed ? 0 : _tweenAnimation.value,
-                  child: widget.child,
-                );
-              },
-            ),
-          ],
-        ),
+          ),
+          AnimatedBuilder(
+            animation: _tweenAnimation,
+            builder: (context, _) {
+              return Positioned(
+                bottom: widget.depressed ? 0 : _tweenAnimation.value,
+                child: widget.child,
+              );
+            },
+          ),
+        ],
       ),
     );
   }
