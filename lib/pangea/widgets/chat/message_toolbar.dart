@@ -124,10 +124,6 @@ class MessageToolbar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
-        border: Border.all(
-          width: 2,
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-        ),
         borderRadius: const BorderRadius.all(
           Radius.circular(AppConfig.borderRadius),
         ),
@@ -138,18 +134,15 @@ class MessageToolbar extends StatelessWidget {
         minHeight: AppConfig.toolbarMinHeight,
         // maxWidth is set by MessageSelectionOverlay
       ),
-      child: Container(
-        decoration: BoxDecoration(border: Border.all(color: Colors.green)),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedSize(
-              duration: FluffyThemes.animationDuration,
-              child: toolbarContent(context),
-            ),
-          ],
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          AnimatedSize(
+            duration: FluffyThemes.animationDuration,
+            child: toolbarContent(context),
+          ),
+        ],
       ),
     );
   }
