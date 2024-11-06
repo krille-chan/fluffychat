@@ -55,7 +55,7 @@ class PressableButtonState extends State<PressableButton>
   }
 
   Future<void> _onTapUp(TapUpDetails details) async {
-    if (!widget.enabled) return;
+    if (!widget.enabled || widget.depressed) return;
     widget.onPressed?.call();
     if (_animationCompleter != null) {
       await _animationCompleter!.future;
@@ -93,7 +93,11 @@ class PressableButtonState extends State<PressableButton>
                 animation: _tweenAnimation,
                 builder: (context, _) {
                   return Container(
-                    padding: EdgeInsets.only(bottom: _tweenAnimation.value),
+                    padding: EdgeInsets.only(
+                      bottom: widget.enabled && !widget.depressed
+                          ? _tweenAnimation.value
+                          : 0,
+                    ),
                     decoration: BoxDecoration(
                       color: Color.alphaBlend(
                         Colors.black.withOpacity(0.25),
