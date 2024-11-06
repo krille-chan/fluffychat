@@ -10,7 +10,6 @@ import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
 
 import '../models/user_model.dart';
-import '../repo/user_repo.dart';
 
 /// Controller that manages saving and reading of user/profile information
 class UserController extends BaseController {
@@ -124,26 +123,6 @@ class UserController extends BaseController {
     // wait for account data to load
     // as long as it's not null, then this we've already migrated the profile
     await _pangeaController.matrixState.client.waitForAccountData();
-    if (profile.userSettings.dateOfBirth != null) {
-      return;
-    }
-
-    // we used to store the user's profile in the pangea server
-    // we now store it in the matrix account data
-    final PangeaProfileResponse? resp = await PUserRepo.fetchPangeaUserInfo(
-      userID: userId!,
-      matrixAccessToken: _matrixAccessToken!,
-    );
-
-    // if it's null, we don't have a profile in the pangea server
-    if (resp?.profile == null) {
-      return;
-    }
-
-    // if we have a profile in the pangea server, we need to migrate it to the matrix account data
-    final userSetting = UserSettings.fromJson(resp!.profile.toJson());
-    final newProfile = Profile(userSettings: userSetting);
-    await newProfile.saveProfileData(waitForDataInSync: true);
   }
 
   /// Reinitializes the user's profile

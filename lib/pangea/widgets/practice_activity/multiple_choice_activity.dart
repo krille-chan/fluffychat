@@ -18,12 +18,14 @@ class MultipleChoiceActivity extends StatefulWidget {
   final PracticeActivityCardState practiceCardController;
   final PracticeActivityModel currentActivity;
   final TtsController tts;
+  final String eventID;
 
   const MultipleChoiceActivity({
     super.key,
     required this.practiceCardController,
     required this.currentActivity,
     required this.tts,
+    required this.eventID,
   });
 
   @override
@@ -70,7 +72,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       return;
     }
 
-    // #freeze-activity
     MatrixState.pangeaController.myAnalytics.setState(
       AnalyticsStream(
         // note - this maybe should be the activity event id
@@ -81,6 +82,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           widget.practiceCardController.currentActivity!,
           widget.practiceCardController.metadata,
         ),
+        origin: AnalyticsUpdateOrigin.practiceActivity,
       ),
     );
 
@@ -112,12 +114,12 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             ),
           ),
           const SizedBox(height: 8),
-          // #freeze-activity
           if (practiceActivity.activityType ==
               ActivityTypeEnum.wordFocusListening)
             WordAudioButton(
               text: practiceActivity.content.answer,
               ttsController: widget.tts,
+              eventID: widget.eventID,
             ),
           ChoicesArray(
             isLoading: false,

@@ -56,7 +56,6 @@ class ChatEventList extends StatelessWidget {
         context,
         InstructionsEnum.clickMessage,
         msgEvents[0].eventId,
-        true,
       );
     });
     // Pangea#

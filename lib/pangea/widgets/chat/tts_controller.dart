@@ -1,8 +1,8 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/missing_voice_button.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +45,8 @@ class TtsController {
 
       await tts.awaitSpeakCompletion(true);
 
-      final voices = await tts.getVoices;
-      availableLangCodes = (voices as List)
+      final voices = (await tts.getVoices) as List?;
+      availableLangCodes = (voices ?? [])
           .map((v) {
             // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'
             final nameCode = v['name']?.split("-").first;
@@ -85,6 +85,37 @@ class TtsController {
     }
   }
 
+  Future<void> showMissingVoicePopup(
+    BuildContext context,
+    String eventID,
+  ) async {
+    await MatrixState.pangeaController.instructions.showInstructionsPopup(
+      context,
+      InstructionsEnum.missingVoice,
+      eventID,
+      showToggle: false,
+      customContent: const Padding(
+        padding: EdgeInsets.only(top: 12),
+        child: MissingVoiceButton(),
+      ),
+    );
+    return;
+  }
+
+  /// A safer version of speak, that handles the case of
+  /// the language not being supported by the TTS engine
+  Future<void> tryToSpeak(
+    String text,
+    BuildContext context,
+    String eventID,
+  ) async {
+    if (isLanguageFullySupported) {
+      await speak(text);
+    } else {
+      await showMissingVoicePopup(context, eventID);
+    }
+  }
+
   Future<void> speak(String text) async {
     try {
       stop();
@@ -112,11 +143,4 @@ class TtsController {
 
   bool get isLanguageFullySupported =>
       availableLangCodes.contains(targetLanguage);
-
-  Widget get missingVoiceButton => targetLanguage != null &&
-          (kIsWeb || isLanguageFullySupported || !PlatformInfos.isAndroid)
-      ? const SizedBox.shrink()
-      : MissingVoiceButton(
-          targetLangCode: targetLanguage!,
-        );
 }

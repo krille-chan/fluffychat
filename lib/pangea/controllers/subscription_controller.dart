@@ -327,7 +327,10 @@ class SubscriptionController extends BaseController {
     SubscriptionDuration duration, {
     bool isPromo = false,
   }) async {
-    final Requests req = Requests(baseUrl: PApiUrls.baseAPI);
+    final Requests req = Requests(
+      choreoApiKey: Environment.choreoApiKey,
+      accessToken: _pangeaController.userController.accessToken,
+    );
     final String reqUrl = Uri.encodeFull(
       "${PApiUrls.paymentLink}?pangea_user_id=$userID&duration=${duration.value}&redeem=$isPromo",
     );

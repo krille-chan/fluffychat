@@ -15,6 +15,7 @@ enum InstructionsEnum {
   l1Translation,
   translationChoices,
   clickAgainToDeselect,
+  missingVoice,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
@@ -28,6 +29,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.blurMeansTranslateTitle;
       case InstructionsEnum.tooltipInstructions:
         return l10n.tooltipInstructionsTitle;
+      case InstructionsEnum.missingVoice:
+        return l10n.missingVoiceTitle;
       case InstructionsEnum.clickAgainToDeselect:
       case InstructionsEnum.speechToText:
       case InstructionsEnum.l1Translation:
@@ -64,6 +67,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return PlatformInfos.isMobile
             ? l10n.tooltipInstructionsMobileBody
             : l10n.tooltipInstructionsBrowserBody;
+      case InstructionsEnum.missingVoice:
+        return l10n.voiceNotAvailable;
     }
   }
 
@@ -87,6 +92,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return instructionSettings.showedTranslationChoicesTooltip;
       case InstructionsEnum.clickAgainToDeselect:
         return instructionSettings.showedClickAgainToDeselect;
+      case InstructionsEnum.missingVoice:
+        return instructionSettings.showedMissingVoice;
     }
   }
 }

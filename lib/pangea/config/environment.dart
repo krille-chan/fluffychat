@@ -56,6 +56,7 @@ class Environment {
     return dotenv.env["RC_IOS_KEY"] ?? 'appl_DUPqnxuLjkBLzhBPTWeDjqNENuv';
   }
 
+  // This is a public key
   static String get rcStripeKey {
     return dotenv.env["RC_STRIPE_KEY"] ?? 'strp_YWZxWUeEfvagiefDNoofinaRCOl';
   }

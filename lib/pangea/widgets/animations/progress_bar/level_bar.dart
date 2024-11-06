@@ -19,12 +19,14 @@ class LevelBar extends StatefulWidget {
 
 class LevelBarState extends State<LevelBar> {
   double prevWidth = 0;
+  double get width =>
+      widget.progressBarDetails.totalWidth * widget.details.widthMultiplier;
 
   @override
   void didUpdateWidget(covariant LevelBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.details.currentPoints != widget.details.currentPoints) {
-      setState(() => prevWidth = widget.details.width);
+      setState(() => prevWidth = width);
     }
   }
 
@@ -33,7 +35,7 @@ class LevelBarState extends State<LevelBar> {
     return AnimatedLevelBar(
       height: widget.progressBarDetails.height,
       beginWidth: prevWidth,
-      endWidth: widget.details.width,
+      endWidth: width,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(
           Radius.circular(AppConfig.borderRadius),
