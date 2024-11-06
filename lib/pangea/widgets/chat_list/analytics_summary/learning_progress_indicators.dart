@@ -204,6 +204,8 @@ class LearningProgressIndicatorsState
                                   builder: (c) => AnalyticsPopup(
                                     indicator: indicator,
                                     constructsModel: model,
+                                    showGroups: indicator ==
+                                        ProgressIndicatorEnum.morphsUsed,
                                   ),
                                 );
                               },

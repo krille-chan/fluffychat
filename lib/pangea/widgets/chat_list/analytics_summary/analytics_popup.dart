@@ -11,10 +11,12 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 class AnalyticsPopup extends StatelessWidget {
   final ProgressIndicatorEnum indicator;
   final ConstructListModel constructsModel;
+  final bool showGroups;
 
   const AnalyticsPopup({
     required this.indicator,
     required this.constructsModel,
+    this.showGroups = true,
     super.key,
   });
 
@@ -49,7 +51,7 @@ class AnalyticsPopup extends StatelessWidget {
 
     if (hasNoData) {
       dialogContent = Center(child: Text(L10n.of(context)!.noDataFound));
-    } else if (hasNoCategories) {
+    } else if (hasNoCategories || !showGroups) {
       dialogContent = ListView.builder(
         itemCount: constructsModel.constructListWithPoints.length,
         itemBuilder: (context, index) {
