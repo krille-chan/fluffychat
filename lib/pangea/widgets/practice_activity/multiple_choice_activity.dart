@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
+import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/word_audio_button.dart';
@@ -108,10 +109,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
         children: [
           Text(
             practiceActivity.content.question,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: BotStyle.text(context),
           ),
           const SizedBox(height: 8),
           if (practiceActivity.activityType ==
