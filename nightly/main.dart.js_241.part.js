@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_241",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWB(){return new B.HR(A.dK("fi"))},
+cWD(){return new B.HR(A.dK("fi"))},
 HR:function HR(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" asetti liittymiss\xe4\xe4nn\xf6iksi: "+e},
 ik(d){return d+" vaihtoi profiilikuvaansa"},
 il(d){return d+" muutti huoneen aliaksia"},
 im(d){return d+" muutti kutsulinkki\xe4"},
-geG(){return"Vaihda salasana"},
+geH(){return"Vaihda salasana"},
 gi5(){return"Vaihda kotipalvelinta"},
 gfO(){return"Vaihda tyyli\xe4si"},
 gfN(){return"Vaihda ryhm\xe4n nime\xe4"},
@@ -175,7 +175,7 @@ jl(d){return"Virhe paikannuksessa: "+d},
 gjm(){return"Kaikki on valmista!"},
 gfY(){return"Eritt\xe4in loukkaavaa"},
 gjo(d){return"Fonttikoko"},
-geI(d){return"Edelleenl\xe4het\xe4"},
+geJ(d){return"Edelleenl\xe4het\xe4"},
 glY(){return"Alkaen liittymisest\xe4"},
 glZ(){return"Alkaen kutsumisesta"},
 gfv(){return"Mene uuteen huoneeseen"},
@@ -233,7 +233,7 @@ gep(){return"Ladataan... Hetkinen."},
 gjJ(){return"Lataa lis\xe4\xe4\u2026"},
 gjK(){return"Sijaintipalvelut ovat poissa k\xe4yt\xf6st\xe4. Otathan ne k\xe4ytt\xf6\xf6n jakaaksesi sijaintisi."},
 gjL(){return"SIjaintioikeus on estetty. My\xf6nn\xe4th\xe4n sen jakaaksesi sijaintisi."},
-gez(){return"Kirjaudu sis\xe4\xe4n"},
+geA(){return"Kirjaudu sis\xe4\xe4n"},
 jM(d){return"Kirjaudu sis\xe4\xe4n palvelimelle "+d},
 gh6(){return"Kirjaudu ulos"},
 gjN(){return"J\xe4senmuutoksia"},
@@ -245,7 +245,7 @@ gh9(){return"Vaienna keskustelu"},
 gha(){return"Uusi keskustelu"},
 ghb(){return"Uusi varmennuspyynt\xf6!"},
 gdG(d){return"Seuraava"},
-geB(){return"Ei"},
+geC(){return"Ei"},
 gjQ(){return"Ei yhteytt\xe4 palvelimeen"},
 ghc(){return"Emoteja ei l\xf6ytynyt. \ud83d\ude15"},
 gjR(){return"Voit ottaa salauksen k\xe4ytt\xf6\xf6n vasta kun huone ei ole julkisesti liitytt\xe4viss\xe4."},
@@ -308,11 +308,11 @@ gkq(d){return"Vastaa"},
 ghm(){return"Ilmoita viesti"},
 gks(){return"Huone on p\xe4ivitetty"},
 gkt(){return"Huoneen versio"},
-geE(d){return"Hae"},
+geF(d){return"Hae"},
 gfz(){return"Turvallisuus"},
 ghj(){return"Palautusavain"},
 gkh(){return"Kadonnut palautusavain?"},
-geF(d){return"L\xe4het\xe4"},
+geG(d){return"L\xe4het\xe4"},
 ght(){return"L\xe4het\xe4 tekstin\xe4"},
 ghu(){return"L\xe4het\xe4 \xe4\xe4niviesti"},
 gf1(){return"L\xe4het\xe4 tiedosto"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HR,C.aR)})()
-A.eo(b.typeUniverse,JSON.parse('{"HR":{"aR":[]}}'))};
+A.en(b.typeUniverse,JSON.parse('{"HR":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"GIX94T9HALNLWFbQHnvlLY/FbhE=");
+a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"W9F/UM33b+bXrlTTZCWubfnszF8=");
 //# sourceMappingURL=main.dart.js_241.part.js.map

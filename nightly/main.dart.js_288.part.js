@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_288",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cX3(){return new B.Ii(A.dK("sv"))},
+cX5(){return new B.Ii(A.dK("sv"))},
 Ii:function Ii(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" \xe4ndrade anslutningsreglerna till "+e},
 ik(d){return d+" \xe4ndrade sin avatar"},
 il(d){return d+" \xe4ndrade rummets alias"},
 im(d){return d+" \xe4ndrade inbjudningsl\xe4nken"},
-geG(){return"\xc4ndra l\xf6senord"},
+geH(){return"\xc4ndra l\xf6senord"},
 gi5(){return"\xc4ndra hemserver"},
 gfO(){return"\xc4ndra din stil"},
 gfN(){return"\xc4ndra namn p\xe5 gruppen"},
@@ -175,7 +175,7 @@ jl(d){return"Fel vid erh\xe5llande av plats: "+d},
 gjm(){return"Allt \xe4r klart!"},
 gfY(){return"Extremt st\xf6tande"},
 gjo(d){return"Textstorlek"},
-geI(d){return"Fram\xe5t"},
+geJ(d){return"Fram\xe5t"},
 glY(){return"Fr\xe5n att g\xe5 med"},
 glZ(){return"Fr\xe5n inbjudan"},
 gfv(){return"G\xe5 till det nya rummet"},
@@ -233,7 +233,7 @@ gep(){return"Laddar... Var god v\xe4nta."},
 gjJ(){return"Ladda mer\u2026"},
 gjK(){return"Platstj\xe4nster \xe4r inaktiverade. Var god aktivera dom f\xf6r att kunna dela din plats."},
 gjL(){return"Plats \xe5tkomst nekad. Var god godk\xe4n detta f\xf6r att kunna dela din plats."},
-gez(){return"Logga in"},
+geA(){return"Logga in"},
 jM(d){return"Logga in till "+d},
 gh6(){return"Logga ut"},
 gjN(){return"Medlems\xe4ndringar"},
@@ -245,7 +245,7 @@ gh9(){return"Tysta chatt"},
 gha(){return"Ny chatt"},
 ghb(){return"Ny verifikationsbeg\xe4ran!"},
 gdG(d){return"N\xe4sta"},
-geB(){return"Nej"},
+geC(){return"Nej"},
 gjQ(){return"Ingen anslutning till servern"},
 ghc(){return"Hittade inga dekaler. \ud83d\ude15"},
 gjR(){return"Du kan endast aktivera kryptering n\xe4r rummet inte l\xe4ngre \xe4r publikt tillg\xe4ngligt."},
@@ -308,11 +308,11 @@ gkq(d){return"Svara"},
 ghm(){return"Rapportera meddelande"},
 gks(){return"Rummet har blivit uppgraderat"},
 gkt(){return"Rum version"},
-geE(d){return"S\xf6k"},
+geF(d){return"S\xf6k"},
 gfz(){return"S\xe4kerhet"},
 ghj(){return"\xc5terst\xe4llningsnyckel"},
 gkh(){return"Borttappad \xe5terst\xe4llningsnyckel?"},
-geF(d){return"Skicka"},
+geG(d){return"Skicka"},
 ght(){return"Skicka som text"},
 ghu(){return"Skicka ljud"},
 gf1(){return"Skicka fil"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ii,C.aR)})()
-A.eo(b.typeUniverse,JSON.parse('{"Ii":{"aR":[]}}'))};
+A.en(b.typeUniverse,JSON.parse('{"Ii":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_288",e:"endPart",h:b})})($__dart_deferred_initializers__,"Ga98h7jKusknF0yEDIFMYiMTICA=");
+a.eventLog.push({p:"main.dart.js_288",e:"endPart",h:b})})($__dart_deferred_initializers__,"+lk6bWKiluVJxj2K6jEMgVSSXYM=");
 //# sourceMappingURL=main.dart.js_288.part.js.map

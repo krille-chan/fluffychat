@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_284",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cX0(){return new B.If(A.dK("sk"))},
+cX2(){return new B.If(A.dK("sk"))},
 If:function If(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" zmenili nastavenie pravidiel pripojenia na: "+e},
 ik(d){return d+" si zmenili profilov\xfd obr\xe1zok"},
 il(d){return d+" zmenili nastavenie aliasov chatu"},
 im(d){return d+" zmenili odkaz k pozv\xe1nke do miestnosti"},
-geG(){return"Zmeni\u0165 heslo"},
+geH(){return"Zmeni\u0165 heslo"},
 gi5(){return"Zmeni\u0165 pou\u017eit\xfd server"},
 gfO(){return"Zmena \u0161t\xfdlu"},
 gfN(){return"Zmeni\u0165 n\xe1zov skupiny"},
@@ -175,7 +175,7 @@ jl(d){return"Error obtaining location: "+d},
 gjm(){return"Everything ready!"},
 gfY(){return"Extremely offensive"},
 gjo(d){return"Font size"},
-geI(d){return"Preposla\u0165"},
+geJ(d){return"Preposla\u0165"},
 glY(){return"Od pripojenia"},
 glZ(){return"Od pozvania"},
 gfv(){return"Go to the new room"},
@@ -233,7 +233,7 @@ gep(){return"Na\u010d\xedtava sa\u2026 \u010cakajte pros\xedm."},
 gjJ(){return"Na\u010d\xedta\u0165 viac\u2026"},
 gjK(){return"Location services are disabled. Please enable them to be able to share your location."},
 gjL(){return"Location permission denied. Please grant them to be able to share your location."},
-gez(){return"Prihl\xe1si\u0165 sa"},
+geA(){return"Prihl\xe1si\u0165 sa"},
 jM(d){return"Prihl\xe1senie k "+d},
 gh6(){return"Odhl\xe1si\u0165 sa"},
 gjN(){return"Member changes"},
@@ -245,7 +245,7 @@ gh9(){return"Stlmi\u0165 chat"},
 gha(){return"New chat"},
 ghb(){return"Nov\xe1 \u017eiados\u0165 o verifik\xe1ciu!"},
 gdG(d){return"Next"},
-geB(){return"No"},
+geC(){return"No"},
 gjQ(){return"No connection to the server"},
 ghc(){return"Nena\u0161li sa \u017eiadne emotikony. \ud83d\ude15"},
 gjR(){return"You can only activate encryption as soon as the room is no longer publicly accessible."},
@@ -308,11 +308,11 @@ gkq(d){return"Odpoveda\u0165"},
 ghm(){return"Nahl\xe1si\u0165 spr\xe1vu"},
 gks(){return"Miestnos\u0165 bola upgradeovan\xe1"},
 gkt(){return"Verzia miestnosti"},
-geE(d){return"H\u013eada\u0165"},
+geF(d){return"H\u013eada\u0165"},
 gfz(){return"Bezpe\u010dnos\u0165"},
 ghj(){return"Recovery key"},
 gkh(){return"Recovery key lost?"},
-geF(d){return"Odosla\u0165"},
+geG(d){return"Odosla\u0165"},
 ght(){return"Posla\u0165 ako text"},
 ghu(){return"Posla\u0165 zvuk"},
 gf1(){return"Odosla\u0165 s\xfabor"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.If,C.aR)})()
-A.eo(b.typeUniverse,JSON.parse('{"If":{"aR":[]}}'))};
+A.en(b.typeUniverse,JSON.parse('{"If":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_284",e:"endPart",h:b})})($__dart_deferred_initializers__,"3umxGztLjkxLaLLomXe+NduJXsc=");
+a.eventLog.push({p:"main.dart.js_284",e:"endPart",h:b})})($__dart_deferred_initializers__,"l+toHr6hkGcZQBos3Q4e9T4eHWc=");
 //# sourceMappingURL=main.dart.js_284.part.js.map

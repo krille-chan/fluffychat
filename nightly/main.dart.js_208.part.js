@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_208",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWr(){return new B.HH(A.dK("ca"))},
+cWt(){return new B.HH(A.dK("ca"))},
 HH:function HH(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" ha canviat les normes d\u2019uni\xf3 a: "+e},
 ik(d){return d+" ha canviat la seva imatge de perfil"},
 il(d){return d+" ha canviat l\u2019\xe0lies de la sala"},
 im(d){return d+" ha canviat l\u2019enlla\xe7 per a convidar"},
-geG(){return"Canvia la contrasenya"},
+geH(){return"Canvia la contrasenya"},
 gi5(){return"Canvia el servidor"},
 gfO(){return"Canvia l\u2019estil"},
 gfN(){return"Canvia el nom del grup"},
@@ -175,7 +175,7 @@ jl(d){return"S\u2019ha produ\xeft un error en obtenir la ubicaci\xf3: "+d},
 gjm(){return"Tot \xe9s a punt!"},
 gfY(){return"Extremadament ofensiu"},
 gjo(d){return"Mida de la lletra"},
-geI(d){return"Reenvia"},
+geJ(d){return"Reenvia"},
 glY(){return"Des de la uni\xf3"},
 glZ(){return"Des de la invitaci\xf3"},
 gfv(){return"Ves a la sala nova"},
@@ -233,7 +233,7 @@ gep(){return"S\u2019est\xe0 carregant\u2026 Espereu."},
 gjJ(){return"Carrega\u2019n m\xe9s\u2026"},
 gjK(){return"S\u2019han desactivat els serveis d\u2019ubicaci\xf3. Activeu-los per a compartir la vostra ubicaci\xf3."},
 gjL(){return"S\u2019ha rebutjat el perm\xeds d\u2019ubicaci\xf3. Atorgueu-lo per a poder compartir la vostra ubicaci\xf3."},
-gez(){return"Inicia la sessi\xf3"},
+geA(){return"Inicia la sessi\xf3"},
 jM(d){return"Inicia sessi\xf3 a "+d},
 gh6(){return"Finalitza la sessi\xf3"},
 gjN(){return"Canvis de participants"},
@@ -245,7 +245,7 @@ gh9(){return"Silencia el xat"},
 gha(){return"Xat nou"},
 ghb(){return"Nova sol\xb7licitud de verificaci\xf3!"},
 gdG(d){return"Seg\xfcent"},
-geB(){return"No"},
+geC(){return"No"},
 gjQ(){return"Sense connexi\xf3 al servidor"},
 ghc(){return"No s\u2019ha trobat cap emoticona. \ud83d\ude15"},
 gjR(){return"Nom\xe9s podreu activar el xifratge quan la sala ja no sigui accessible p\xfablicament."},
@@ -308,11 +308,11 @@ gkq(d){return"Respon"},
 ghm(){return"Denuncia el missatge"},
 gks(){return"La sala s'ha actualitzat"},
 gkt(){return"Versi\xf3 de la sala"},
-geE(d){return"Cerca"},
+geF(d){return"Cerca"},
 gfz(){return"Seguretat"},
 ghj(){return"Clau de recuperaci\xf3"},
 gkh(){return"Que has perdut la clau de recuperaci\xf3?"},
-geF(d){return"Envia"},
+geG(d){return"Envia"},
 ght(){return"Envia com a text"},
 ghu(){return"Envia un \xe0udio"},
 gf1(){return"Envia un fitxer"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HH,C.aR)})()
-A.eo(b.typeUniverse,JSON.parse('{"HH":{"aR":[]}}'))};
+A.en(b.typeUniverse,JSON.parse('{"HH":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_208",e:"endPart",h:b})})($__dart_deferred_initializers__,"eQexSCA0qZKN2UR6LcvzG+UodQM=");
+a.eventLog.push({p:"main.dart.js_208",e:"endPart",h:b})})($__dart_deferred_initializers__,"9rm3WBXZX3hjhU2Iiu2eyg0eStI=");
 //# sourceMappingURL=main.dart.js_208.part.js.map
