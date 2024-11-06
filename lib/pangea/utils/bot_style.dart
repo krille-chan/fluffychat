@@ -9,11 +9,10 @@ class BotStyle {
     bool setColor = true,
     bool big = false,
     bool italics = false,
-    bool bold = true,
+    bool bold = false,
   }) {
     try {
       final TextStyle botStyle = TextStyle(
-        fontFamily: 'Inconsolata',
         fontWeight: bold ? FontWeight.w700 : null,
         fontSize: AppConfig.messageFontSize *
             AppConfig.fontSizeFactor *

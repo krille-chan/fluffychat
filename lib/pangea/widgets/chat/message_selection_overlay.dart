@@ -491,6 +491,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               overLayController: this,
               tts: tts,
             ),
+            const SizedBox(height: 8),
             SizedBox(
               height: adjustedMessageHeight,
               child: OverlayMessage(
