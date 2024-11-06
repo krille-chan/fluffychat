@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_243",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWF(){return new B.HT(A.dK("fr"))},
+cWD(){return new B.HT(A.dK("fr"))},
 HT:function HT(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" a chang\xe9 les r\xe8gles d'acc\xe8s \xe0 la discussion en : 
 ik(d){return d+" a chang\xe9 son avatar"},
 il(d){return d+" a chang\xe9 les adresses du salon"},
 im(d){return d+" a chang\xe9 le lien d'invitation"},
-geH(){return"Changer de mot de passe"},
+geG(){return"Changer de mot de passe"},
 gi5(){return"Changer le serveur d'accueil"},
 gfO(){return"Changez votre style"},
 gfN(){return"Changer le nom du groupe"},
@@ -175,7 +175,7 @@ jl(d){return"Erreur lors de l'obtention de la localisation : "+d},
 gjm(){return"Tout est pr\xeat !"},
 gfY(){return"Extr\xeamement offensant"},
 gjo(d){return"Taille de la police"},
-geJ(d){return"Transf\xe9rer"},
+geI(d){return"Transf\xe9rer"},
 glY(){return"\xc0 partir de l'entr\xe9e dans le salon"},
 glZ(){return"\xc0 partir de l'invitation"},
 gfv(){return"Aller dans le nouveau salon"},
@@ -233,7 +233,7 @@ gep(){return"Chargement\u2026 Veuillez patienter."},
 gjJ(){return"Charger plus\u2026"},
 gjK(){return"Les services de localisation sont d\xe9sactiv\xe9s. Il est n\xe9cessaire de les activer avant de pouvoir partager votre localisation."},
 gjL(){return"L'application n'a pas la permission d'acc\xe9der \xe0 votre localisation. Merci de l'accorder afin de pouvoir partager votre localisation."},
-geA(){return"Se connecter"},
+gez(){return"Se connecter"},
 jM(d){return"Se connecter \xe0 "+d},
 gh6(){return"Se d\xe9connecter"},
 gjN(){return"Changements de membres"},
@@ -245,7 +245,7 @@ gh9(){return"Mettre la discussion en sourdine"},
 gha(){return"Nouvelle discussion"},
 ghb(){return"Nouvelle demande de v\xe9rification !"},
 gdG(d){return"Suivant"},
-geC(){return"Non"},
+geB(){return"Non"},
 gjQ(){return"Aucune connexion au serveur"},
 ghc(){return"Aucune \xe9motic\xf4ne trouv\xe9e. \ud83d\ude15"},
 gjR(){return"Vous pouvez activer le chiffrement seulement quand le salon n'est plus accessible au public."},
@@ -308,11 +308,11 @@ gkq(d){return"R\xe9pondre"},
 ghm(){return"Signaler un message"},
 gks(){return"Le salon a \xe9t\xe9 mis \xe0 niveau"},
 gkt(){return"Version du salon"},
-geF(d){return"Rechercher"},
+geE(d){return"Rechercher"},
 gfz(){return"S\xe9curit\xe9"},
 ghj(){return"Cl\xe9 de r\xe9cup\xe9ration"},
 gkh(){return"Cl\xe9 de r\xe9cup\xe9ration perdue ?"},
-geG(d){return"Envoyer"},
+geF(d){return"Envoyer"},
 ght(){return"Envoyer un texte"},
 ghu(){return"Envoyer un fichier audio"},
 gf1(){return"Envoyer un fichier"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HT,C.aR)})()
-A.en(b.typeUniverse,JSON.parse('{"HT":{"aR":[]}}'))};
+A.eo(b.typeUniverse,JSON.parse('{"HT":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_243",e:"endPart",h:b})})($__dart_deferred_initializers__,"QroAQbA/lI9QOWzZPXsbd0iU1Q8=");
+a.eventLog.push({p:"main.dart.js_243",e:"endPart",h:b})})($__dart_deferred_initializers__,"YXXoULWKvs0qykbp8wFeml3AVwI=");
 //# sourceMappingURL=main.dart.js_243.part.js.map

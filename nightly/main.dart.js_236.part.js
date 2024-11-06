@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_236",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWA(){return new B.HO(A.dK("et"))},
+cWy(){return new B.HO(A.dK("et"))},
 HO:function HO(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" muutis liitumise reegleid j\xe4rgnevalt: "+e},
 ik(d){return d+" muutis oma tunnuspilti"},
 il(d){return d+" muutis jututoa aliast"},
 im(d){return d+" muutis kutse linki"},
-geH(){return"Muuda salas\xf5na"},
+geG(){return"Muuda salas\xf5na"},
 gi5(){return"Muuda koduserverit"},
 gfO(){return"Muuda oma stiili"},
 gfN(){return"Muuda vestlusr\xfchma nime"},
@@ -175,7 +175,7 @@ jl(d){return"Viga asukoha tuvastamisel: "+d},
 gjm(){return"K\xf5ik on valmis!"},
 gfY(){return"\xc4\xe4rmiselt solvav"},
 gjo(d){return"Fondi suurus"},
-geJ(d){return"Edasta"},
+geI(d){return"Edasta"},
 glY(){return"Alates liitumise hetkest"},
 glZ(){return"Kutse saamisest"},
 gfv(){return"Hakka kasutama uut jututuba"},
@@ -233,7 +233,7 @@ gep(){return"Laadin andmeid\u2026 Palun oota."},
 gjJ(){return"Laadi veel\u2026"},
 gjK(){return"Asukohateenused on seadmes v\xe4ljal\xfclitatud. Asukoha jagamiseks palun l\xfclita nad sisse."},
 gjL(){return"Puudub luba asukohateenuste kasutamiseks. Asukoha jagamiseks palun anna rakendusele vastavad \xf5igused."},
-geA(){return"Logi sisse"},
+gez(){return"Logi sisse"},
 jM(d){return"Logi sisse "+d+" serverisse"},
 gh6(){return"Logi v\xe4lja"},
 gjN(){return"Muudatused liikmeskonnas"},
@@ -245,7 +245,7 @@ gh9(){return"Summuta vestlus"},
 gha(){return"Uus vestlus"},
 ghb(){return"Uus verifitseerimisp\xe4ring!"},
 gdG(d){return"Edasi"},
-geC(){return"Ei"},
+geB(){return"Ei"},
 gjQ(){return"Puudub \xfchendus koduserveriga"},
 ghc(){return"\xdchtegi emotsioonitegevust ei leidunud. \ud83d\ude15"},
 gjR(){return"Sa v\xf5id kr\xfcptimise kasutusele v\xf5tta niipea, kui jututuba pole enam avalik."},
@@ -308,11 +308,11 @@ gkq(d){return"Vasta"},
 ghm(){return"Teata s\xf5numist"},
 gks(){return"Jututoa vesrioon on uuendatud"},
 gkt(){return"Jututoa versioon"},
-geF(d){return"Otsi"},
+geE(d){return"Otsi"},
 gfz(){return"Turvalisus"},
 ghj(){return"Taastev\xf5ti"},
 gkh(){return"Kas taasetv\xf5ti on kadunud?"},
-geG(d){return"Saada"},
+geF(d){return"Saada"},
 ght(){return"Saada tekstis\xf5numina"},
 ghu(){return"Saada helifail"},
 gf1(){return"Saada fail"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HO,C.aR)})()
-A.en(b.typeUniverse,JSON.parse('{"HO":{"aR":[]}}'))};
+A.eo(b.typeUniverse,JSON.parse('{"HO":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_236",e:"endPart",h:b})})($__dart_deferred_initializers__,"xMpedobBKuZDRg8H1l3n0rjIrXw=");
+a.eventLog.push({p:"main.dart.js_236",e:"endPart",h:b})})($__dart_deferred_initializers__,"Cp8Lzj6gquC1ekI3IQ94TrjdY/A=");
 //# sourceMappingURL=main.dart.js_236.part.js.map

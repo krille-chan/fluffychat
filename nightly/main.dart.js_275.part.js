@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_275",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWV(){return new B.I8(A.dK("nb"))},
+cWT(){return new B.I8(A.dK("nb"))},
 I8:function I8(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" endret tilgangsreglene til: "+e},
 ik(d){return d+" endret avataren sin"},
 il(d){return d+" endret rom-aliasene"},
 im(d){return d+" endret invitasjonslenken"},
-geH(){return"Endre passord"},
+geG(){return"Endre passord"},
 gi5(){return"Endre hjemmetjener"},
 gfO(){return"Endre din stil"},
 gfN(){return"Endre gruppens navn"},
@@ -175,7 +175,7 @@ jl(d){return"Error obtaining location: "+d},
 gjm(){return"Alt er klart!"},
 gfY(){return"Veldig"},
 gjo(d){return"Skriftst\xf8rrelse"},
-geJ(d){return"Videre"},
+geI(d){return"Videre"},
 glY(){return"Fra \xe5 ta del"},
 glZ(){return"Fra invitasjonen"},
 gfv(){return"Go to the new room"},
@@ -233,7 +233,7 @@ gep(){return"Laster inn\u2026 Vent."},
 gjJ(){return"Last inn mer\u2026"},
 gjK(){return"Location services are disabled. Please enable them to be able to share your location."},
 gjL(){return"Location permission denied. Please grant them to be able to share your location."},
-geA(){return"Logg inn"},
+gez(){return"Logg inn"},
 jM(d){return"Logg inn p\xe5 "+d},
 gh6(){return"Logg ut"},
 gjN(){return"Medlemsendringer"},
@@ -245,7 +245,7 @@ gh9(){return"Forstum sludring"},
 gha(){return"Ny sludring"},
 ghb(){return"Ny bekreftelsesforesp\xf8rsel!"},
 gdG(d){return"Neste"},
-geC(){return"Nei"},
+geB(){return"Nei"},
 gjQ(){return"Ingen tilkobling til tjeneren"},
 ghc(){return"Fant ingen smilefjes. \ud83d\ude15"},
 gjR(){return"You can only activate encryption as soon as the room is no longer publicly accessible."},
@@ -308,11 +308,11 @@ gkq(d){return"Svar"},
 ghm(){return"Rapporter melding"},
 gks(){return"Rommet har blitt oppgradert"},
 gkt(){return"Room version"},
-geF(d){return"S\xf8k"},
+geE(d){return"S\xf8k"},
 gfz(){return"Sikkerhet"},
 ghj(){return"Recovery key"},
 gkh(){return"Recovery key lost?"},
-geG(d){return"Send"},
+geF(d){return"Send"},
 ght(){return"Send as text"},
 ghu(){return"Send lyd"},
 gf1(){return"Send fil"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I8,C.aR)})()
-A.en(b.typeUniverse,JSON.parse('{"I8":{"aR":[]}}'))};
+A.eo(b.typeUniverse,JSON.parse('{"I8":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"smA9eWPgMat8zKK0x9wCE1eR+jk=");
+a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"y1gJdCRHLiIykjJA9XhBV+YWD7E=");
 //# sourceMappingURL=main.dart.js_275.part.js.map

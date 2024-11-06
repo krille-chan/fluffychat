@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_252",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWK(){return new B.HY(A.dK("hr"))},
+cWI(){return new B.HY(A.dK("hr"))},
 HY:function HY(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" je promijenio/la pravila pridru\u017eivanja u: "+e},
 ik(d){return d+" je promijenio/la svoj avatar"},
 il(d){return d+" je promijenio/la pseudonime soba"},
 im(d){return d+" je promijenio/la poveznicu poziva"},
-geH(){return"Promijeni lozinku"},
+geG(){return"Promijeni lozinku"},
 gi5(){return"Promijeni doma\u0107eg poslu\u017eitelja"},
 gfO(){return"Promijeni tvoj stil"},
 gfN(){return"Promijeni ime grupe"},
@@ -175,7 +175,7 @@ jl(d){return"Gre\u0161ka u dohva\u0107anju lokacije: "+d},
 gjm(){return"Sve je spremno!"},
 gfY(){return"Izrazito uvredljiv"},
 gjo(d){return"Veli\u010dina fonta"},
-geJ(d){return"Proslijedi"},
+geI(d){return"Proslijedi"},
 glY(){return"Od pridru\u017eivanja"},
 glZ(){return"Od poziva"},
 gfv(){return"Idi u novu sobu"},
@@ -233,7 +233,7 @@ gep(){return"U\u010ditava se \u2026 Pri\u010dekaj."},
 gjJ(){return"U\u010ditaj jo\u0161 \u2026"},
 gjK(){return"Lokacijske usluge su deaktivirane. Za dijeljenje tvoje lokacije aktiviraj ih."},
 gjL(){return"Lokacijske dozvole su odbijene. Za dijeljenje tvoje lokacije dozvoli ih."},
-geA(){return"Prijava"},
+gez(){return"Prijava"},
 jM(d){return"Prijavi se na "+d},
 gh6(){return"Odjava"},
 gjN(){return"Promjene \u010dlana"},
@@ -245,7 +245,7 @@ gh9(){return"Isklju\u010di zvuk razgovora"},
 gha(){return"Novi razgovor"},
 ghb(){return"Novi zahtjev za potvr\u0111ivanje!"},
 gdG(d){return"Dalje"},
-geC(){return"Ne"},
+geB(){return"Ne"},
 gjQ(){return"Ne postoji veza s poslu\u017eiteljem"},
 ghc(){return"Nema emotikona. \ud83d\ude15"},
 gjR(){return"\u0160ifriranje mo\u017ee\u0161 aktivirati samo nakon \u0161to soba vi\u0161e nije javno dostupna."},
@@ -308,11 +308,11 @@ gkq(d){return"Odgovori"},
 ghm(){return"Prijavi poruku"},
 gks(){return"Soba je nadogra\u0111ena"},
 gkt(){return"Verzija sobe"},
-geF(d){return"Tra\u017ei"},
+geE(d){return"Tra\u017ei"},
 gfz(){return"Sigurnost"},
 ghj(){return"Klju\u010d za obnavljanje"},
 gkh(){return"Izgubio/la si klju\u010d za obnavljanje?"},
-geG(d){return"Po\u0161alji"},
+geF(d){return"Po\u0161alji"},
 ght(){return"Po\u0161alji kao tekst"},
 ghu(){return"Po\u0161alji audio datoteku"},
 gf1(){return"Po\u0161alji datoteku"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HY,C.aR)})()
-A.en(b.typeUniverse,JSON.parse('{"HY":{"aR":[]}}'))};
+A.eo(b.typeUniverse,JSON.parse('{"HY":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"Wq9Cvan1YtB62CyVNvraEAeAvKM=");
+a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"8pIjoWfwefFj+i/A2kLwchXk3RI=");
 //# sourceMappingURL=main.dart.js_252.part.js.map

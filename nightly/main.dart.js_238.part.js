@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_238",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWB(){return new B.HP(A.dK("eu"))},
+cWz(){return new B.HP(A.dK("eu"))},
 HP:function HP(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+"(e)k batzeko arauak aldatu ditu: "+e},
 ik(d){return d+"(e)k profileko abatarra aldatu du"},
 il(d){return d+"(e)k gelaren ezizena aldatu du"},
 im(d){return d+"(e)k gonbidapen-esteka aldatu du"},
-geH(){return"Aldatu pasahitza"},
+geG(){return"Aldatu pasahitza"},
 gi5(){return"Aldatu zerbitzaria"},
 gfO(){return"Aldatu itxura"},
 gfN(){return"Taldearen izena aldatu"},
@@ -175,7 +175,7 @@ jl(d){return"Errorea kokapena lortzerakoan: "+d},
 gjm(){return"Dena prest!"},
 gfY(){return"Izugarri iraingarria"},
 gjo(d){return"Letraren tamaina"},
-geJ(d){return"Birbidali"},
+geI(d){return"Birbidali"},
 glY(){return"Batzeaz geroztik"},
 glZ(){return"Gonbidapenaz geroztik"},
 gfv(){return"Joan gela berrira"},
@@ -233,7 +233,7 @@ gep(){return"Kargatzen\u2026 itxaron."},
 gjJ(){return"Kargatu gehiago\u2026"},
 gjK(){return"Kokapen zerbitzuak ezgaituta daude. Gaitu zure kokapena partekatu ahal izateko."},
 gjL(){return"Kokapen baimena ukatu da. Eman zure kokapena partekatzeko baimena."},
-geA(){return"Hasi saioa"},
+gez(){return"Hasi saioa"},
 jM(d){return"Hasi saioa "+d+"(e)n"},
 gh6(){return"Amaitu saioa"},
 gjN(){return"Kideen aldaketak"},
@@ -245,7 +245,7 @@ gh9(){return"Mututu txata"},
 gha(){return"Txat berria"},
 ghb(){return"Egiaztaketa-eskaera berria!"},
 gdG(d){return"Hurrengoa"},
-geC(){return"Ez"},
+geB(){return"Ez"},
 gjQ(){return"Ez dago konexiorik zerbitzariarekin"},
 ghc(){return"Ez da emoterik aurkitu. \ud83d\ude15"},
 gjR(){return"Zifratzea aktiba dezakezu soilik gelak publikoa izateari utzi badio."},
@@ -308,11 +308,11 @@ gkq(d){return"Erantzun"},
 ghm(){return"Salatu mezua"},
 gks(){return"Gela bertsio-berritu da"},
 gkt(){return"Gelaren bertsioa"},
-geF(d){return"Bilatu"},
+geE(d){return"Bilatu"},
 gfz(){return"Segurtasuna"},
 ghj(){return"Berreskuratze-gakoa"},
 gkh(){return"Berreskuratze-gakoa galdu duzu?"},
-geG(d){return"Bidali"},
+geF(d){return"Bidali"},
 ght(){return"Bidali testu bezala"},
 ghu(){return"Bidali audioa"},
 gf1(){return"Bidali fitxategia"},
@@ -571,8 +571,8 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.HP,C.aR)})()
-A.en(b.typeUniverse,JSON.parse('{"HP":{"aR":[]}}'))
+A.eo(b.typeUniverse,JSON.parse('{"HP":{"aR":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_238",e:"endPart",h:b})})($__dart_deferred_initializers__,"v8jAcVxuqjwM+ZSF5z/ju0VFh7c=");
+a.eventLog.push({p:"main.dart.js_238",e:"endPart",h:b})})($__dart_deferred_initializers__,"4D1jauHzEdr/Unzi8RK83qEVUq4=");
 //# sourceMappingURL=main.dart.js_238.part.js.map

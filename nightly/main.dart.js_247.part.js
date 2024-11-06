@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_247",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWH(){return new B.HV(A.dK("gl"))},
+cWF(){return new B.HV(A.dK("gl"))},
 HV:function HV(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" mudou as regras de acceso a: "+e},
 ik(d){return d+" mudou o avatar"},
 il(d){return d+" mudou os alias da sala"},
 im(d){return d+" mudou a ligaz\xf3n de convite"},
-geH(){return"Mudar contrasinal"},
+geG(){return"Mudar contrasinal"},
 gi5(){return"Mudar de servidor de inicio"},
 gfO(){return"Cambiar o estilo"},
 gfN(){return"Mudar o nome do grupo"},
@@ -175,7 +175,7 @@ jl(d){return"Erro ao obter a localizaci\xf3n: "+d},
 gjm(){return"Todo preparado!"},
 gfY(){return"Extremadamente ofensivo"},
 gjo(d){return"Tama\xf1o da letra"},
-geJ(d){return"Reenviar"},
+geI(d){return"Reenviar"},
 glY(){return"Desde que se una"},
 glZ(){return"Desde o convite"},
 gfv(){return"Ir \xe1 nova sala"},
@@ -233,7 +233,7 @@ gep(){return"Cargando... Agarda."},
 gjJ(){return"Cargar m\xe1is\u2026"},
 gjK(){return"Os servizos de localizaci\xf3n est\xe1n desactivados. Act\xedvaos para poder compartir a localizaci\xf3n."},
 gjL(){return"Permiso de localizaci\xf3n denegado. Concede este permiso para poder compartir a localizaci\xf3n."},
-geA(){return"Acceder"},
+gez(){return"Acceder"},
 jM(d){return"Entrar en "+d},
 gh6(){return"Pechar sesi\xf3n"},
 gjN(){return"Cambios de participantes"},
@@ -245,7 +245,7 @@ gh9(){return"Acalar conversa"},
 gha(){return"Nova conversa"},
 ghb(){return"Nova solicitude de verificaci\xf3n!"},
 gdG(d){return"Seguinte"},
-geC(){return"Non"},
+geB(){return"Non"},
 gjQ(){return"Sen conexi\xf3n co servidor"},
 ghc(){return"Non hai emotes. \ud83d\ude15"},
 gjR(){return"S\xf3 podes activar a cifraxe tan pronto como a sala non sexa p\xfablicamente accesible."},
@@ -308,11 +308,11 @@ gkq(d){return"Responder"},
 ghm(){return"Denunciar mensaxe"},
 gks(){return"A sala foi actualizada"},
 gkt(){return"Versi\xf3n da sala"},
-geF(d){return"Buscar"},
+geE(d){return"Buscar"},
 gfz(){return"Seguridade"},
 ghj(){return"Chave de recuperaci\xf3n"},
 gkh(){return"Perdeches a chave de recuperaci\xf3n?"},
-geG(d){return"Enviar"},
+geF(d){return"Enviar"},
 ght(){return"Enviar como texto"},
 ghu(){return"Enviar audio"},
 gf1(){return"Enviar ficheiro"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HV,C.aR)})()
-A.en(b.typeUniverse,JSON.parse('{"HV":{"aR":[]}}'))};
+A.eo(b.typeUniverse,JSON.parse('{"HV":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"MQWC1GYEqtak5jqCTjw6Tit6/ac=");
+a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"p4mkPt9je/jYVndfaYAs8f3Y+/U=");
 //# sourceMappingURL=main.dart.js_247.part.js.map

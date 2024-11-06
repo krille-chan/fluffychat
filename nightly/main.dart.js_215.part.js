@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_215",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWu(){return new B.HI(A.dK("cs"))},
+cWs(){return new B.HI(A.dK("cs"))},
 HI:function HI(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" zm\u011bnili nastaven\xed pravidel p\u0159ipojen\xed na: "+e}
 ik(d){return d+" zm\u011bnili sv\u016fj avatar"},
 il(d){return d+" zm\u011bnili nastaven\xed alias\u016f m\xedstnosti"},
 im(d){return d+" zm\u011bnili odkaz k pozv\xe1n\xed do m\xedstnosti"},
-geH(){return"Zm\u011bnit heslo"},
+geG(){return"Zm\u011bnit heslo"},
 gi5(){return"Zm\u011bnit domovsk\xfd server"},
 gfO(){return"Zm\u011b\u0148te sv\u016fj styl"},
 gfN(){return"Zm\u011bnit n\xe1zev skupiny"},
@@ -175,7 +175,7 @@ jl(d){return"Chyba p\u0159i z\xedsk\xe1v\xe1n\xed polohy: "+d},
 gjm(){return"V\u0161e p\u0159ipraveno!"},
 gfY(){return"Extr\xe9mn\u011b ur\xe1\u017eliv\xe9"},
 gjo(d){return"Velikost p\xedsma"},
-geJ(d){return"P\u0159eposlat"},
+geI(d){return"P\u0159eposlat"},
 glY(){return"Od vstupu"},
 glZ(){return"Od pozv\xe1n\xed"},
 gfv(){return"P\u0159ej\xedt do nov\xe9 m\xedstnost"},
@@ -233,7 +233,7 @@ gep(){return"Na\u010d\xedt\xe1n\xed\u2026 Pros\xedme vy\u010dkejte."},
 gjJ(){return"Na\u010d\xedst dal\u0161\xed\u2026"},
 gjK(){return"Slu\u017eby ur\u010dov\xe1n\xed polohy jsou deaktivov\xe1ny. Povolte jim, aby mohli sd\xedlet va\u0161i polohu."},
 gjL(){return"Opr\xe1vn\u011bn\xed k poloze odep\u0159eno. Ud\u011blte jim pros\xedm mo\u017enost sd\xedlet va\u0161i polohu."},
-geA(){return"P\u0159ihl\xe1sit se"},
+gez(){return"P\u0159ihl\xe1sit se"},
 jM(d){return"P\u0159ihl\xe1\u0161en\xed k "+d},
 gh6(){return"Odhl\xe1sit"},
 gjN(){return"Zm\u011bny \u010dlen\u016f"},
@@ -245,7 +245,7 @@ gh9(){return"Ztlumit chat"},
 gha(){return"Nov\xfd chat"},
 ghb(){return"Nov\xe1 \u017e\xe1dost o ov\u011b\u0159en\xed!"},
 gdG(d){return"Dal\u0161\xed"},
-geC(){return"Ne"},
+geB(){return"Ne"},
 gjQ(){return"\u017d\xe1dn\xe9 p\u0159ipojen\xed k serveru"},
 ghc(){return"Nebyly nalezeny \u017e\xe1dn\xe9 emotikony. \ud83d\ude15"},
 gjR(){return"M\u016f\u017eete aktivovat \u0161ifrov\xe1n\xed jakmile m\xedstnost p\u0159estane b\xfdt ve\u0159ejn\u011b dostupn\xe1."},
@@ -308,11 +308,11 @@ gkq(d){return"Odpov\u011bd\u011bt"},
 ghm(){return"Nahl\xe1sit zpr\xe1vu"},
 gks(){return"M\xedstnost byla upgradov\xe1na"},
 gkt(){return"Verze m\xedstnosti"},
-geF(d){return"Hledat"},
+geE(d){return"Hledat"},
 gfz(){return"Bezpe\u010dnostn\xed"},
 ghj(){return"Kl\xed\u010d k obnoven\xed"},
 gkh(){return"Ztracen\xfd kl\xed\u010d k obnoven\xed?"},
-geG(d){return"Odeslat"},
+geF(d){return"Odeslat"},
 ght(){return"Odeslat jako text"},
 ghu(){return"Odeslat audio"},
 gf1(){return"Odeslat soubor"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HI,C.aR)})()
-A.en(b.typeUniverse,JSON.parse('{"HI":{"aR":[]}}'))};
+A.eo(b.typeUniverse,JSON.parse('{"HI":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_215",e:"endPart",h:b})})($__dart_deferred_initializers__,"6ahJcjKtmCdKIl80jP6ACLBCIbs=");
+a.eventLog.push({p:"main.dart.js_215",e:"endPart",h:b})})($__dart_deferred_initializers__,"LsjnfKCIRudoYkXv3sEVUjAks5I=");
 //# sourceMappingURL=main.dart.js_215.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_277",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWW(){return new B.I9(A.dK("nl"))},
+cWU(){return new B.I9(A.dK("nl"))},
 I9:function I9(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" heeft de deelnameregels gewijzigd in: "+e},
 ik(d){return d+"'s avatar is gewijzigd"},
 il(d){return d+" heeft de kameraliassen gewijzigd"},
 im(d){return d+" heeft de uitnodigingslink gewijzigd"},
-geH(){return"Wachtwoord wijzigen"},
+geG(){return"Wachtwoord wijzigen"},
 gi5(){return"Homeserver wijzigen"},
 gfO(){return"Stijl veranderen"},
 gfN(){return"Groepsnaam wijzigen"},
@@ -175,7 +175,7 @@ jl(d){return"Locatie ophalen fout: "+d},
 gjm(){return"Alles klaar!"},
 gfY(){return"Extreem beledigend"},
 gjo(d){return"Lettergrootte"},
-geJ(d){return"Stuur door"},
+geI(d){return"Stuur door"},
 glY(){return"Vanaf deelname"},
 glZ(){return"Vanaf uitnodiging"},
 gfv(){return"Ga naar de nieuwe kamer"},
@@ -233,7 +233,7 @@ gep(){return"Bezig met laden\u2026 Even geduld."},
 gjJ(){return"Meer laden\u2026"},
 gjK(){return"Locatievoorzieningen is uitgeschakeld. Zet dit eerst aan om je locatie te delen."},
 gjL(){return"Locatievoorzieningen is geweigerd. Zet hem aan om locatie delen te gebruiken."},
-geA(){return"Inloggen"},
+gez(){return"Inloggen"},
 jM(d){return"Inloggen bij "+d},
 gh6(){return"Uitloggen"},
 gjN(){return"Persoon wijzigingen"},
@@ -245,7 +245,7 @@ gh9(){return"Meldingen uitschakelen"},
 gha(){return"Nieuwe chat"},
 ghb(){return"Nieuw verificatieverzoek!"},
 gdG(d){return"Volgende"},
-geC(){return"Nee"},
+geB(){return"Nee"},
 gjQ(){return"Geen verbinding met de server"},
 ghc(){return"Geen emoticons gevonden. \ud83d\ude15"},
 gjR(){return"Je kunt de versleuteling pas activeren zodra de kamer niet meer openbaar toegankelijk is."},
@@ -308,11 +308,11 @@ gkq(d){return"Antwoord"},
 ghm(){return"Bericht rapporteren"},
 gks(){return"Kamer is ge\xfcpgrade"},
 gkt(){return"Kamerversie"},
-geF(d){return"Zoeken"},
+geE(d){return"Zoeken"},
 gfz(){return"Beveiliging"},
 ghj(){return"Herstelsleutel"},
 gkh(){return"Herstelsleutel verloren?"},
-geG(d){return"Verstuur"},
+geF(d){return"Verstuur"},
 ght(){return"Als tekst versturen"},
 ghu(){return"Audio versturen"},
 gf1(){return"Bestand versturen"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I9,C.aR)})()
-A.en(b.typeUniverse,JSON.parse('{"I9":{"aR":[]}}'))};
+A.eo(b.typeUniverse,JSON.parse('{"I9":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"2GhEfwExWrHW/roRBfwZYZRPH0k=");
+a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"3QtSM3/ZoQWBBdKy4UgbrnV9c7g=");
 //# sourceMappingURL=main.dart.js_277.part.js.map

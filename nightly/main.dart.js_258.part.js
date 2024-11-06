@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_258",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWL(){return new B.HZ(A.dK("hu"))},
+cWJ(){return new B.HZ(A.dK("hu"))},
 HZ:function HZ(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -78,7 +78,7 @@ ij(d,e){return d+" m\xf3dos\xedtotta a csatlakoz\xe1si szab\xe1lyokat erre: "+e}
 ik(d){return d+" m\xf3dos\xedtotta a profilk\xe9p\xe9t"},
 il(d){return d+" m\xf3dos\xedtotta a szoba \xe1lneveit"},
 im(d){return d+" m\xf3dos\xedtotta a megh\xedv\xf3 hivatkoz\xe1st"},
-geH(){return"Jelsz\xf3 m\xf3dos\xedt\xe1sa"},
+geG(){return"Jelsz\xf3 m\xf3dos\xedt\xe1sa"},
 gi5(){return"Matrix-kiszolg\xe1l\xf3 v\xe1lt\xe1s"},
 gfO(){return"St\xedlus m\xf3dos\xedt\xe1sa"},
 gfN(){return"Csoport nev\xe9nek m\xf3dos\xedt\xe1sa"},
@@ -175,7 +175,7 @@ jl(d){return"Hiba a tart\xf3zkod\xe1si hely meghat\xe1roz\xe1sa k\xf6zben: "+d},
 gjm(){return"Minden k\xe9sz!"},
 gfY(){return"Rendk\xedv\xfcl s\xe9rt\u0151"},
 gjo(d){return"Bet\u0171m\xe9ret"},
-geJ(d){return"Tov\xe1bb\xedt\xe1s"},
+geI(d){return"Tov\xe1bb\xedt\xe1s"},
 glY(){return"Csatlakoz\xe1s \xf3ta"},
 glZ(){return"Megh\xedv\xe1s \xf3ta"},
 gfv(){return"\xdaj szoba megnyit\xe1sa"},
@@ -233,7 +233,7 @@ gep(){return"Bet\xf6lt\xe9s\u2026 K\xe9rem, v\xe1rjon."},
 gjJ(){return"Tov\xe1bbiak bet\xf6lt\xe9se\u2026"},
 gjK(){return"A helymeghat\xe1roz\xe1s ki van kapcsolva. K\xe9rem, kapcsolja be, hogy meg tudja osztani helyzet\xe9t."},
 gjL(){return"A helymeghat\xe1roz\xe1s nem enged\xe9lyezett az alkalmaz\xe1s sz\xe1m\xe1ra. K\xe9rem enged\xe9lyezze, hogy meg tudja osztani helyzet\xe9t."},
-geA(){return"Bejelentkez\xe9s"},
+gez(){return"Bejelentkez\xe9s"},
 jM(d){return"Bejelentkez\xe9s a(z) "+d+" Matrix-kiszolg\xe1l\xf3ra"},
 gh6(){return"Kijelentkez\xe9s"},
 gjN(){return"Tags\xe1gi v\xe1ltoz\xe1sok"},
@@ -245,7 +245,7 @@ gh9(){return"Cseveg\xe9s n\xe9m\xedt\xe1sa"},
 gha(){return"\xdaj cseveg\xe9s"},
 ghb(){return"\xdaj hiteles\xedt\xe9si k\xe9relem!"},
 gdG(d){return"K\xf6vetkez\u0151"},
-geC(){return"Nem"},
+geB(){return"Nem"},
 gjQ(){return"Nem el\xe9rhet\u0151 a szerver"},
 ghc(){return"Emojik nem el\xe9rhet\u0151ek. \ud83d\ude15"},
 gjR(){return"Csak akkor kapcsolhat\xf3 be a titkos\xedt\xe1s, ha a szoba nem nyilv\xe1nosan hozz\xe1f\xe9rhet\u0151."},
@@ -308,11 +308,11 @@ gkq(d){return"V\xe1lasz"},
 ghm(){return"\xdczenet jelent\xe9se"},
 gks(){return"A szoba friss\xedtve lett"},
 gkt(){return"Szoba verzi\xf3"},
-geF(d){return"Keres\xe9s"},
+geE(d){return"Keres\xe9s"},
 gfz(){return"Biztons\xe1g"},
 ghj(){return"Vissza\xe1ll\xedt\xf3 kulcs"},
 gkh(){return"Elveszett vissza\xe1ll\xedt\xf3 kulcs?"},
-geG(d){return"K\xfcld\xe9s"},
+geF(d){return"K\xfcld\xe9s"},
 ght(){return"Sz\xf6vegk\xe9nt k\xfcld\xe9s"},
 ghu(){return"Hang\xfczenet k\xfcld\xe9se"},
 gf1(){return"F\xe1jl k\xfcld\xe9se"},
@@ -571,7 +571,7 @@ goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HZ,C.aR)})()
-A.en(b.typeUniverse,JSON.parse('{"HZ":{"aR":[]}}'))};
+A.eo(b.typeUniverse,JSON.parse('{"HZ":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_258",e:"endPart",h:b})})($__dart_deferred_initializers__,"hTHBJu9ZTDSIybL1jdMK5h/gen0=");
+a.eventLog.push({p:"main.dart.js_258",e:"endPart",h:b})})($__dart_deferred_initializers__,"sK8fC1QWEHha9/icd0WD1jOSHnU=");
 //# sourceMappingURL=main.dart.js_258.part.js.map
