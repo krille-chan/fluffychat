@@ -19,7 +19,7 @@ class Avatar extends StatelessWidget {
   final IconData? icon;
   final BorderSide? border;
 
-  Avatar({
+  const Avatar({
     this.mxContent,
     this.name,
     this.size = defaultSize,
@@ -31,129 +31,122 @@ class Avatar extends StatelessWidget {
     this.border,
     this.icon,
     super.key,
-  })  : fallbackLetters = name?.firstTwoCharsOrFallback ?? '@',
-        textColor = name?.lightColorAvatar,
-        noPic = mxContent == null ||
-            mxContent.toString().isEmpty ||
-            mxContent.toString() == 'null';
-
-  final String fallbackLetters;
-  final Color? textColor;
-  final bool noPic;
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    var fallbackLetters = '@';
+    final name = this.name;
+    if (name != null) {
+      if (name.runes.length >= 2) {
+        fallbackLetters = String.fromCharCodes(name.runes, 0, 2);
+      } else if (name.runes.length == 1) {
+        fallbackLetters = name;
+      }
+    }
+    final noPic = mxContent == null ||
+        mxContent.toString().isEmpty ||
+        mxContent.toString() == 'null';
+    final textColor = name?.lightColorAvatar;
+    final textWidget = Container(
+      color: textColor,
+      alignment: Alignment.center,
+      child: Text(
+        fallbackLetters,
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: (size / 3).roundToDouble(),
+        ),
+      ),
+    );
     final borderRadius = this.borderRadius ?? BorderRadius.circular(size / 2);
     final presenceUserId = this.presenceUserId;
-
-    return InkWell(
-      onTap: onTap,
-      borderRadius: borderRadius,
-      child: Stack(
-        children: [
-          SizedBox(
-            width: size,
-            height: size,
-            child: Material(
-              color: theme.brightness == Brightness.light
-                  ? Colors.white
-                  : Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: borderRadius,
-                side: border ?? BorderSide.none,
-              ),
-              clipBehavior: Clip.hardEdge,
-              child: noPic
-                  ? Container(
-                      color: textColor,
-                      alignment: Alignment.center,
-                      child: Text(
-                        fallbackLetters,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: (size / 3).roundToDouble(),
-                        ),
-                      ),
-                    )
-                  : MxcImage(
-                      client: client,
-                      key: ValueKey(mxContent.toString()),
-                      cacheKey: '${mxContent}_$size',
-                      uri: mxContent,
-                      fit: BoxFit.cover,
-                      width: size,
-                      height: size,
-                      placeholder: (_) => Center(
-                        child: Icon(
-                          Icons.person_2,
-                          color: theme.colorScheme.tertiary,
-                          size: size / 1.5,
-                        ),
-                      ),
-                    ),
+    final container = Stack(
+      children: [
+        SizedBox(
+          width: size,
+          height: size,
+          child: Material(
+            color: theme.brightness == Brightness.light
+                ? Colors.white
+                : Colors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: borderRadius,
+              side: border ?? BorderSide.none,
             ),
-          ),
-          if (presenceUserId != null)
-            PresenceBuilder(
-              client: client,
-              userId: presenceUserId,
-              builder: (context, presence) {
-                if (presence == null ||
-                    (presence.presence == PresenceType.offline &&
-                        presence.lastActiveTimestamp == null)) {
-                  return const SizedBox.shrink();
-                }
-                final dotColor = presence.presence.isOnline
-                    ? Colors.green
-                    : presence.presence.isUnavailable
-                        ? Colors.orange
-                        : Colors.grey;
-                return Positioned(
-                  bottom: -3,
-                  right: -3,
-                  child: Container(
-                    width: 16,
-                    height: 16,
-                    decoration: BoxDecoration(
-                      color:
-                          presenceBackgroundColor ?? theme.colorScheme.surface,
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    alignment: Alignment.center,
-                    child: Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: dotColor,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          width: 1,
-                          color: theme.colorScheme.surface,
-                        ),
+            clipBehavior: Clip.hardEdge,
+            child: noPic
+                ? textWidget
+                : MxcImage(
+                    client: client,
+                    key: ValueKey(mxContent.toString()),
+                    cacheKey: '${mxContent}_$size',
+                    uri: mxContent,
+                    fit: BoxFit.cover,
+                    width: size,
+                    height: size,
+                    placeholder: (_) => Center(
+                      child: Icon(
+                        Icons.person_2,
+                        color: theme.colorScheme.tertiary,
+                        size: size / 1.5,
                       ),
                     ),
                   ),
-                );
-              },
-            ),
-        ],
-      ),
+          ),
+        ),
+        if (presenceUserId != null)
+          PresenceBuilder(
+            client: client,
+            userId: presenceUserId,
+            builder: (context, presence) {
+              if (presence == null ||
+                  (presence.presence == PresenceType.offline &&
+                      presence.lastActiveTimestamp == null)) {
+                return const SizedBox.shrink();
+              }
+              final dotColor = presence.presence.isOnline
+                  ? Colors.green
+                  : presence.presence.isUnavailable
+                      ? Colors.orange
+                      : Colors.grey;
+              return Positioned(
+                bottom: -3,
+                right: -3,
+                child: Container(
+                  width: 16,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    color: presenceBackgroundColor ?? theme.colorScheme.surface,
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: dotColor,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        width: 1,
+                        color: theme.colorScheme.surface,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+      ],
     );
-  }
-}
-
-extension on String {
-  String get firstTwoCharsOrFallback {
-    var fallbackLetters = '@';
-    if (runes.length >= 2) {
-      fallbackLetters = String.fromCharCodes(runes, 0, 2);
-    } else if (runes.length == 1) {
-      fallbackLetters = this;
-    }
-
-    return fallbackLetters;
+    if (onTap == null) return container;
+    return InkWell(
+      onTap: onTap,
+      borderRadius: borderRadius,
+      child: container,
+    );
   }
 }
