@@ -138,10 +138,17 @@ class MessageToolbar extends StatelessWidget {
         minHeight: AppConfig.toolbarMinHeight,
         // maxWidth is set by MessageSelectionOverlay
       ),
-      child: SingleChildScrollView(
-        child: AnimatedSize(
-          duration: FluffyThemes.animationDuration,
-          child: toolbarContent(context),
+      child: Container(
+        decoration: BoxDecoration(border: Border.all(color: Colors.green)),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AnimatedSize(
+              duration: FluffyThemes.animationDuration,
+              child: toolbarContent(context),
+            ),
+          ],
         ),
       ),
     );
