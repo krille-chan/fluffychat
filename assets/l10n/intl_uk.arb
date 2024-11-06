@@ -2844,5 +2844,28 @@
   "opacity": "Прозорість:",
   "@opacity": {},
   "setWallpaper": "Встановити шпалери",
-  "@setWallpaper": {}
+  "@setWallpaper": {},
+  "aboutHomeserver": "Про {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "noContactInformationProvided": "Сервер не надає жодної дійсної контактної інформації",
+  "@noContactInformationProvided": {},
+  "contactServerSecurity": "Зв’язатися з відділом безпеки сервера",
+  "@contactServerSecurity": {},
+  "supportPage": "Сторінка підтримки",
+  "@supportPage": {},
+  "serverInformation": "Інформація про сервер:",
+  "@serverInformation": {},
+  "contactServerAdmin": "Зв’язатися з адміністратором сервера",
+  "@contactServerAdmin": {},
+  "name": "Ім'я",
+  "@name": {},
+  "version": "Версія",
+  "@version": {},
+  "website": "Вебсайт",
+  "@website": {}
 }
