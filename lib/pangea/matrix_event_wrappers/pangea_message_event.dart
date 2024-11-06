@@ -596,6 +596,7 @@ class PangeaMessageEvent {
           timeline,
           PangeaEventTypes.pangeaActivity,
         )
+        .where((event) => !event.redacted)
         .toList();
 
     final List<PracticeActivityEvent> practiceEvents = [];
