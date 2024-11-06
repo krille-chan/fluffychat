@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,6 +7,7 @@ class PressableButton extends StatefulWidget {
   final double width;
   final double height;
   final BorderRadius borderRadius;
+  final double buttonHeight;
 
   final bool enabled;
   final bool depressed;
@@ -20,6 +23,7 @@ class PressableButton extends StatefulWidget {
     required this.child,
     required this.onPressed,
     required this.color,
+    this.buttonHeight = 5,
     this.enabled = true,
     this.depressed = false,
     super.key,
@@ -33,6 +37,7 @@ class PressableButtonState extends State<PressableButton>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _tweenAnimation;
+  Completer<void>? _animationCompleter;
 
   @override
   void initState() {
@@ -41,16 +46,24 @@ class PressableButtonState extends State<PressableButton>
       duration: const Duration(milliseconds: 100),
       vsync: this,
     );
-    _tweenAnimation = Tween<double>(begin: 5, end: 0).animate(_controller);
+    _tweenAnimation =
+        Tween<double>(begin: widget.buttonHeight, end: 0).animate(_controller);
   }
 
   void _onTapDown(TapDownDetails details) {
     if (!widget.enabled) return;
-    _controller.forward();
+    _animationCompleter = Completer<void>();
+    _controller.forward().then((_) {
+      _animationCompleter?.complete();
+      _animationCompleter = null;
+    });
   }
 
-  void _onTapUp(TapUpDetails details) {
+  Future<void> _onTapUp(TapUpDetails details) async {
     if (!widget.enabled) return;
+    if (_animationCompleter != null) {
+      await _animationCompleter!.future;
+    }
     _controller.reverse();
     widget.onPressed?.call();
     HapticFeedback.mediumImpact();
@@ -73,14 +86,14 @@ class PressableButtonState extends State<PressableButton>
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
       onTapCancel: _onTapCancel,
-      child: SizedBox(
-        height: 45,
+      child: Container(
+        decoration: BoxDecoration(border: Border.all(color: Colors.green)),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             Container(
               width: widget.width,
-              height: widget.height,
+              // height: widget.height,
               decoration: BoxDecoration(
                 color: Color.alphaBlend(
                   Colors.black.withOpacity(0.25),
