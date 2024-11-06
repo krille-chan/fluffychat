@@ -4,21 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class PressableButton extends StatefulWidget {
-  final double width;
-  final double height;
   final BorderRadius borderRadius;
   final double buttonHeight;
-
   final bool enabled;
   final bool depressed;
-
   final Color color;
   final Widget child;
   final void Function()? onPressed;
 
   const PressableButton({
-    required this.width,
-    required this.height,
     required this.borderRadius,
     required this.child,
     required this.onPressed,
@@ -53,6 +47,7 @@ class PressableButtonState extends State<PressableButton>
   void _onTapDown(TapDownDetails details) {
     if (!widget.enabled) return;
     _animationCompleter = Completer<void>();
+    if (!mounted) return;
     _controller.forward().then((_) {
       _animationCompleter?.complete();
       _animationCompleter = null;
@@ -61,17 +56,17 @@ class PressableButtonState extends State<PressableButton>
 
   Future<void> _onTapUp(TapUpDetails details) async {
     if (!widget.enabled) return;
+    widget.onPressed?.call();
     if (_animationCompleter != null) {
       await _animationCompleter!.future;
     }
-    _controller.reverse();
-    widget.onPressed?.call();
+    if (mounted) _controller.reverse();
     HapticFeedback.mediumImpact();
   }
 
   void _onTapCancel() {
     if (!widget.enabled) return;
-    _controller.reverse();
+    if (mounted) _controller.reverse();
   }
 
   @override
@@ -86,28 +81,31 @@ class PressableButtonState extends State<PressableButton>
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
       onTapCancel: _onTapCancel,
-      child: Stack(
-        alignment: Alignment.bottomCenter,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Container(
-            width: widget.width,
-            height: widget.height,
-            decoration: BoxDecoration(
-              color: Color.alphaBlend(
-                Colors.black.withOpacity(0.25),
-                widget.color,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AnimatedBuilder(
+                animation: _tweenAnimation,
+                builder: (context, _) {
+                  return Container(
+                    padding: EdgeInsets.only(bottom: _tweenAnimation.value),
+                    decoration: BoxDecoration(
+                      color: Color.alphaBlend(
+                        Colors.black.withOpacity(0.25),
+                        widget.color,
+                      ),
+                      borderRadius: widget.borderRadius,
+                    ),
+                    child: widget.child,
+                  );
+                },
               ),
-              borderRadius: widget.borderRadius,
-            ),
-          ),
-          AnimatedBuilder(
-            animation: _tweenAnimation,
-            builder: (context, _) {
-              return Positioned(
-                bottom: widget.depressed ? 0 : _tweenAnimation.value,
-                child: widget.child,
-              );
-            },
+            ],
           ),
         ],
       ),

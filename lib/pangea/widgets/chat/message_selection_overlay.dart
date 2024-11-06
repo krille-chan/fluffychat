@@ -80,7 +80,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: FluffyThemes.animationDuration,
+      duration:
+          const Duration(milliseconds: AppConfig.overlayAnimationDuration),
     );
 
     activitiesLeftToComplete = activitiesLeftToComplete -
@@ -372,7 +373,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     widget.chatController.scrollController.animateTo(
       widget.chatController.scrollController.offset - scrollOffset,
-      duration: FluffyThemes.animationDuration,
+      duration:
+          const Duration(milliseconds: AppConfig.overlayAnimationDuration),
       curve: FluffyThemes.animationCurve,
     );
     _animationController.forward();

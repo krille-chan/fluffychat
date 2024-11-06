@@ -1699,7 +1699,7 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       child: overlayEntry,
       transformTargetId: "",
-      backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(150),
+      backgroundColor: Colors.black,
       closePrevOverlay:
           MatrixState.pangeaController.subscriptionController.isSubscribed,
       position: OverlayPositionEnum.centered,
