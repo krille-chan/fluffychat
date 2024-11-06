@@ -77,6 +77,7 @@ class ToolbarButtons extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: modes.mapIndexed((index, mode) {
               final enabled = mode.isUnlocked(
                 index,
