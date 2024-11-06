@@ -147,35 +147,25 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  widget.selection != null
-                      ? selectionTranslation!
-                      : repEvent!.text,
-                  style: BotStyle.text(context),
-                  textAlign: TextAlign.center,
-                ),
-                if (notGoingToTranslate && widget.selection == null)
-                  InlineTooltip(
-                    instructionsEnum: InstructionsEnum.l1Translation,
-                    onClose: () => setState(() {}),
-                  ),
-                if (widget.selection != null)
-                  InlineTooltip(
-                    instructionsEnum: InstructionsEnum.clickAgainToDeselect,
-                    onClose: () => setState(() {}),
-                  ),
-              ],
-            ),
+          Text(
+            widget.selection != null ? selectionTranslation! : repEvent!.text,
+            style: BotStyle.text(context),
+            textAlign: TextAlign.center,
           ),
+          if (notGoingToTranslate && widget.selection == null)
+            InlineTooltip(
+              instructionsEnum: InstructionsEnum.l1Translation,
+              onClose: () => setState(() {}),
+            ),
+          if (widget.selection != null)
+            InlineTooltip(
+              instructionsEnum: InstructionsEnum.clickAgainToDeselect,
+              onClose: () => setState(() {}),
+            ),
         ],
       ),
     );

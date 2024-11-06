@@ -73,12 +73,15 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   final TtsController tts = TtsController();
   bool isPlayingAudio = false;
 
+  bool get showToolbarButtons => !widget._pangeaMessageEvent.isAudioMessage;
+
   @override
   void initState() {
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: FluffyThemes.animationDuration,
+      duration:
+          const Duration(milliseconds: AppConfig.overlayAnimationDuration),
     );
 
     activitiesLeftToComplete = activitiesLeftToComplete -
@@ -281,7 +284,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
   }
 
-  final double toolbarButtonsHeight = 50;
+  double get toolbarButtonsHeight =>
+      showToolbarButtons ? AppConfig.toolbarButtonsHeight : 0;
   double get reactionsHeight => hasReactions ? 28 : 0;
   double get belowMessageHeight => toolbarButtonsHeight + reactionsHeight;
 
@@ -369,7 +373,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     widget.chatController.scrollController.animateTo(
       widget.chatController.scrollController.offset - scrollOffset,
-      duration: FluffyThemes.animationDuration,
+      duration:
+          const Duration(milliseconds: AppConfig.overlayAnimationDuration),
       curve: FluffyThemes.animationCurve,
     );
     _animationController.forward();
@@ -486,6 +491,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               overLayController: this,
               tts: tts,
             ),
+            const SizedBox(height: 8),
             SizedBox(
               height: adjustedMessageHeight,
               child: OverlayMessage(
