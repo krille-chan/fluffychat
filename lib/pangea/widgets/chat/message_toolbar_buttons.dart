@@ -94,8 +94,6 @@ class ToolbarButtons extends StatelessWidget {
               return Tooltip(
                 message: mode.tooltip(context),
                 child: PressableButton(
-                  width: buttonSize,
-                  height: buttonSize,
                   borderRadius: BorderRadius.circular(20),
                   enabled: enabled,
                   depressed: !enabled || mode == overlayController.toolbarMode,
