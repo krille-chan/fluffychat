@@ -23,8 +23,8 @@ abstract class AppConfig {
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
   static const double toolbarMaxHeight = 300.0;
-  static const double toolbarMinHeight = 70.0;
-  static const double toolbarMinWidth = 270.0;
+  static const double toolbarMinHeight = 175.0;
+  static const double toolbarMinWidth = 350.0;
   static const double toolbarButtonsHeight = 50.0;
   // #Pangea
   // static const Color primaryColor = Color(0xFF5625BA);
@@ -35,6 +35,7 @@ abstract class AppConfig {
   static const Color activeToggleColor = Color(0xFF33D057);
   static const Color success = Color(0xFF33D057);
   static const Color warning = Color.fromARGB(255, 210, 124, 12);
+  static const int overlayAnimationDuration = 250;
   // static String _privacyUrl =
   //     'https://gitlab.com/famedly/fluffychat/-/blob/main/PRIVACY.md';
   static String _privacyUrl = "https://www.pangeachat.com/privacy";

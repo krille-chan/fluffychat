@@ -75,7 +75,8 @@ class OverlayMessage extends StatelessWidget {
     );
 
     final displayEvent = pangeaMessageEvent.event.getDisplayEvent(timeline);
-    var color = theme.colorScheme.surfaceContainerHighest;
+    // ignore: deprecated_member_use
+    var color = theme.colorScheme.surfaceVariant;
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent

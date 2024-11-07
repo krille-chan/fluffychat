@@ -141,8 +141,9 @@ class IGCTextData {
     //    start is inclusive
     final startIndex = tokenIndexByOffset(pangeaMatch.match.offset);
     //    end is exclusive, hence the +1
+    // use pangeaMatch.matchContent.trim().length instead of pangeaMatch.match.length since pangeaMatch.match.length may include leading/trailing spaces
     final endIndex = tokenIndexByOffset(
-          pangeaMatch.match.offset + pangeaMatch.match.length,
+          pangeaMatch.match.offset + pangeaMatch.matchContent.trim().length,
         ) +
         1;
 
@@ -159,7 +160,6 @@ class IGCTextData {
     newTokens.replaceRange(startIndex, endIndex, replacement.tokens);
 
     final String newFullText = PangeaToken.reconstructText(newTokens);
-
     if (newFullText != originalInput && kDebugMode) {
       PangeaToken.reconstructText(newTokens, debugWalkThrough: true);
       ErrorHandler.logError(

@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:ui';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/widgets/common_widgets/overlay_container.dart';
 import 'package:flutter/foundation.dart';
@@ -219,7 +220,7 @@ class OverlayUtil {
   static bool get isOverlayOpen => MatrixState.pAnyState.entries.isNotEmpty;
 }
 
-class TransparentBackdrop extends StatelessWidget {
+class TransparentBackdrop extends StatefulWidget {
   final Color? backgroundColor;
   final Function? onDismiss;
   final bool blurBackground;
@@ -232,33 +233,90 @@ class TransparentBackdrop extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Material(
-      borderOnForeground: false,
-      color: backgroundColor ?? Colors.transparent,
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        hoverColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        focusColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        onTap: () {
-          if (onDismiss != null) {
-            onDismiss!();
-          }
-          MatrixState.pAnyState.closeOverlay();
-        },
-        child: BackdropFilter(
-          filter: blurBackground
-              ? ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5)
-              : ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-          child: Container(
-            height: double.infinity,
-            width: double.infinity,
-            color: Colors.transparent,
-          ),
-        ),
+  TransparentBackdropState createState() => TransparentBackdropState();
+}
+
+class TransparentBackdropState extends State<TransparentBackdrop>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _opacityTween;
+  late Animation<double> _blurTween;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration:
+          const Duration(milliseconds: AppConfig.overlayAnimationDuration),
+      vsync: this,
+    );
+    _opacityTween = Tween<double>(begin: 0.0, end: 0.8).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: FluffyThemes.animationCurve,
       ),
+    );
+    _blurTween = Tween<double>(begin: 0.0, end: 2.5).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: FluffyThemes.animationCurve,
+      ),
+    );
+
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (mounted) _controller.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _opacityTween,
+      builder: (context, _) {
+        return Material(
+          borderOnForeground: false,
+          color: widget.backgroundColor?.withOpacity(_opacityTween.value) ??
+              Colors.transparent,
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            hoverColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () {
+              if (widget.onDismiss != null) {
+                widget.onDismiss!();
+              }
+              MatrixState.pAnyState.closeOverlay();
+            },
+            child: AnimatedBuilder(
+              animation: _blurTween,
+              builder: (context, _) {
+                return BackdropFilter(
+                  filter: widget.blurBackground
+                      ? ImageFilter.blur(
+                          sigmaX: _blurTween.value,
+                          sigmaY: _blurTween.value,
+                        )
+                      : ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+                  child: Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    color: Colors.transparent,
+                  ),
+                );
+              },
+            ),
+          ),
+          // ),
+        );
+      },
     );
   }
 }
