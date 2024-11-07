@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_278",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cX_(){return new B.Ie(A.dK("ru"))},
-Ie:function Ie(d){this.a=d}}
+cWZ(){return new B.Id(A.dK("ru"))},
+Id:function Id(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[41],B)
-B.Ie.prototype={
+B.Id.prototype={
 go3(){return"\u043d\u0435\u0442"},
 gkp(){return"\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u043f\u0430\u0440\u043e\u043b\u044c"},
 gmy(){return"\u042d\u0442\u043e \u043d\u0435 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0430."},
@@ -570,8 +570,8 @@ goN(d){return"Version"},
 goO(){return"Website"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ie,C.aR)})()
-A.eo(b.typeUniverse,JSON.parse('{"Ie":{"aR":[]}}'))};
+y(B.Id,C.aR)})()
+A.eo(b.typeUniverse,JSON.parse('{"Id":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_278",e:"endPart",h:b})})($__dart_deferred_initializers__,"fHDtbkMv1ZwfoKIwfJCoZCdT9x8=");
+a.eventLog.push({p:"main.dart.js_278",e:"endPart",h:b})})($__dart_deferred_initializers__,"sXd988w7psoSK0iipQTdRjwS2OQ=");
 //# sourceMappingURL=main.dart.js_278.part.js.map

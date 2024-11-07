@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_236",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWz(){return new B.HP(A.dK("eu"))},
-HP:function HP(d){this.a=d}}
+cWy(){return new B.HO(A.dK("eu"))},
+HO:function HO(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[17],B)
-B.HP.prototype={
+B.HO.prototype={
 go3(){return"false"},
 gkp(){return"Idatzi berriro pasahitza"},
 gmy(){return"Ez da irudi-fitxategia."},
@@ -570,9 +570,9 @@ goN(d){return"Bertsioa"},
 goO(){return"Webgunea"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.HP,C.aR)})()
-A.eo(b.typeUniverse,JSON.parse('{"HP":{"aR":[]}}'))
+x(B.HO,C.aR)})()
+A.eo(b.typeUniverse,JSON.parse('{"HO":{"aR":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_236",e:"endPart",h:b})})($__dart_deferred_initializers__,"tfySvTiInxqN4IoaXnhLejxk+3M=");
+a.eventLog.push({p:"main.dart.js_236",e:"endPart",h:b})})($__dart_deferred_initializers__,"GsccsjpS0rk826mAvItjtLda13U=");
 //# sourceMappingURL=main.dart.js_236.part.js.map
