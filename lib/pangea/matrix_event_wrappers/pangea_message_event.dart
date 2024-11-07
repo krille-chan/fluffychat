@@ -563,13 +563,13 @@ class PangeaMessageEvent {
     return langCode ?? LanguageKeys.unknownLanguage;
   }
 
+  RepresentationEvent? get messageDisplayRepresentation =>
+      representationByLanguage(messageDisplayLangCode);
+
   /// Gets the message display text for the current language code.
   /// If the message display text is not available for the current language code,
   /// it returns the message body.
-  String get messageDisplayText {
-    final String? text = representationByLanguage(messageDisplayLangCode)?.text;
-    return text ?? body;
-  }
+  String get messageDisplayText => messageDisplayRepresentation?.text ?? body;
 
   List<PangeaMatch>? errorSteps(String lemma) {
     final RepresentationEvent? repEvent = originalSent ?? originalWritten;
