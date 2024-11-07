@@ -83,10 +83,9 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     }
     await showAdaptiveBottomSheet(
       context: context,
-      builder: (_) => WillPopScope(
-        onWillPop: () async {
+      builder: (_) => PopScope(
+        onPopInvokedWithResult:(didPop, result) {
           Navigator.of(context).pop();
-          return false;
         },
         child: QrScannerModal(
           onScan: (link) => UrlLauncher(context, link).openMatrixToUrl(),
