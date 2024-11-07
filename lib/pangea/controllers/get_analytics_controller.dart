@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
-import 'package:fluffychat/pangea/constants/match_rule_ids.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
@@ -227,25 +226,20 @@ class GetAnalyticsController {
     final List<ConstructAnalyticsEvent> constructEvents =
         await allMyConstructs();
 
-    final List<OneConstructUse> unfilteredUses = [];
+    final List<OneConstructUse> uses = [];
     for (final event in constructEvents) {
-      unfilteredUses.addAll(event.content.uses);
+      uses.addAll(event.content.uses);
     }
-
-    // filter out any constructs that are not relevant to the user
-    final List<OneConstructUse> filteredUses = await filterConstructs(
-      unfilteredConstructs: unfilteredUses,
-    );
 
     // if there isn't already a valid, local cache, cache the filtered uses
     if (local == null) {
       cacheConstructs(
         constructType: constructType,
-        uses: filteredUses,
+        uses: uses,
       );
     }
 
-    return filteredUses;
+    return uses;
   }
 
   /// Get the last time the user updated their analytics for their current l2
@@ -270,24 +264,6 @@ class GetAnalyticsController {
     final Room? analyticsRoom = client.analyticsRoomLocal(l2Code!);
     if (analyticsRoom == null) return [];
     return await analyticsRoom.getAnalyticsEvents(userId: client.userID!) ?? [];
-  }
-
-  /// Filter out constructs that are not relevant to the user, specifically those from
-  /// rooms in which the user is a teacher and those that are interative translation span constructs
-  /// @ggurdin - is this still relevant now that we're not doing grammar constructs?
-  /// maybe it should actually be filtering all grammar uses, though this is maybe more efficiently done
-  /// in the fromJson of the model reading the event content, then maybe we can get rid of that enum entry entirely
-  Future<List<OneConstructUse>> filterConstructs({
-    required List<OneConstructUse> unfilteredConstructs,
-  }) async {
-    return unfilteredConstructs
-        .where(
-          (use) =>
-              use.lemma != "Try interactive translation" &&
-                  use.lemma != "itStart" ||
-              use.lemma != MatchRuleIds.interactiveTranslation,
-        )
-        .toList();
   }
 
   /// Get the cached construct uses for the current user, if it exists
