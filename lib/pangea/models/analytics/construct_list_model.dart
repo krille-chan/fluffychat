@@ -1,84 +1,78 @@
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 
 /// A wrapper around a list of [OneConstructUse]s, used to simplify
 /// the process of filtering / sorting / displaying the events.
 /// Takes a construct type and a list of events
 class ConstructListModel {
   final ConstructTypeEnum? type;
-  final List<OneConstructUse> _uses;
-  List<ConstructUses>? _constructList;
-  List<ConstructUseTypeUses>? _typedConstructs;
 
   /// A map of lemmas to ConstructUses, each of which contains a lemma
   /// key = lemmma + constructType.string, value = ConstructUses
-  Map<String, ConstructUses>? _constructMap;
+  final Map<String, ConstructUses> _constructMap = {};
+
+  /// Storing this to avoid re-running the sort operation each time this needs to
+  /// be accessed. It contains the same information as _constructMap, but sorted.
+  List<ConstructUses> constructList = [];
 
   ConstructListModel({
     required this.type,
     required List<OneConstructUse> uses,
-  }) : _uses = uses;
+  }) {
+    updateConstructs(uses);
+  }
 
-  List<OneConstructUse> get uses =>
-      _uses.where((use) => use.constructType == type || type == null).toList();
-
-  // /// All unique lemmas used in the construct events
-  // List<String> get lemmas => constructList.map((e) => e.lemma).toSet().toList();
-
-  /// All unique lemmas used in the construct events with non-zero points
-  List<String> get lemmasWithPoints =>
-      constructListWithPoints.map((e) => e.lemma).toSet().toList();
+  /// Given a list of new construct uses, update the map of construct
+  /// IDs to ConstructUses and re-sort the list of ConstructUses
+  void updateConstructs(List<OneConstructUse> newUses) {
+    final List<OneConstructUse> filteredUses = newUses
+        .where((use) => use.constructType == type || type == null)
+        .toList();
+    _updateConstructMap(filteredUses);
+    _updateConstructList();
+  }
 
   /// A map of lemmas to ConstructUses, each of which contains a lemma
   /// key = lemmma + constructType.string, value = ConstructUses
-  void _buildConstructMap() {
-    final Map<String, List<OneConstructUse>> lemmaToUses = {};
-    for (final use in uses) {
+  void _updateConstructMap(final List<OneConstructUse> newUses) {
+    for (final use in newUses) {
       if (use.lemma == null) continue;
-      lemmaToUses[use.identifier.string] ??= [];
-      lemmaToUses[use.identifier.string]!.add(use);
+      final currentUses = _constructMap[use.identifier.string] ??
+          ConstructUses(
+            uses: [],
+            constructType: use.constructType,
+            lemma: use.lemma!,
+            category: use.category,
+          );
+      currentUses.uses.add(use);
+      _constructMap[use.identifier.string] = currentUses;
     }
-
-    _constructMap = lemmaToUses.map(
-      (key, value) => MapEntry(
-        key,
-        ConstructUses(
-          uses: value,
-          constructType: value.first.constructType,
-          lemma: value.first.lemma!,
-          category: value.first.category,
-        ),
-      ),
-    );
-  }
-
-  ConstructUses? getConstructUses(String lemma, ConstructTypeEnum type) {
-    if (_constructMap == null) _buildConstructMap();
-    return _constructMap![lemma + type.string];
   }
 
   /// A list of ConstructUses, each of which contains a lemma and
   /// a list of uses, sorted by the number of uses
-  List<ConstructUses> get constructList {
-    // the list of uses doesn't change so we don't have to re-calculate this
-    if (_constructList != null) return _constructList!;
-
-    if (_constructMap == null) _buildConstructMap();
-
-    _constructList = _constructMap!.values.toList();
-
-    _constructList!.sort((a, b) {
-      final comp = b.points.compareTo(a.points);
+  void _updateConstructList() {
+    // TODO check how expensive this is
+    constructList = _constructMap.values.toList();
+    constructList.sort((a, b) {
+      final comp = b.uses.length.compareTo(a.uses.length);
       if (comp != 0) return comp;
       return a.lemma.compareTo(b.lemma);
     });
+  }
 
-    return _constructList!;
+  ConstructUses? getConstructUses(ConstructIdentifier identifier) {
+    return _constructMap[identifier.string];
   }
 
   List<ConstructUses> get constructListWithPoints =>
       constructList.where((constructUse) => constructUse.points > 0).toList();
+
+  /// All unique lemmas used in the construct events with non-zero points
+  List<String> get lemmasWithPoints =>
+      constructListWithPoints.map((e) => e.lemma).toSet().toList();
 
   Map<String, List<ConstructUses>> get categoriesToUses {
     final Map<String, List<ConstructUses>> categoriesMap = {};
@@ -89,60 +83,16 @@ class ConstructListModel {
     return categoriesMap;
   }
 
-  get maxXPPerLemma {
-    return type != null
-        ? type!.maxXPPerLemma
-        : ConstructTypeEnum.vocab.maxXPPerLemma;
-  }
-
-  /// A list of ConstructUseTypeUses, each of which
-  /// contains a lemma, a use type, and a list of uses
-  List<ConstructUseTypeUses> get typedConstructs {
-    if (_typedConstructs != null) return _typedConstructs!;
-    final List<ConstructUseTypeUses> typedConstructs = [];
-    for (final construct in constructList) {
-      final typeToUses = <ConstructUseTypeEnum, List<OneConstructUse>>{};
-      for (final use in construct.uses) {
-        typeToUses[use.useType] ??= [];
-        typeToUses[use.useType]!.add(use);
-      }
-      for (final typeEntry in typeToUses.entries) {
-        typedConstructs.add(
-          ConstructUseTypeUses(
-            lemma: construct.lemma,
-            constructType: typeEntry.value.first.constructType,
-            useType: typeEntry.key,
-            uses: typeEntry.value,
-          ),
-        );
-      }
-    }
-    return typedConstructs;
-  }
+  int get maxXPPerLemma =>
+      type?.maxXPPerLemma ?? ConstructTypeEnum.vocab.maxXPPerLemma;
 
   /// The total number of points for all uses of this construct type
   int get points {
-    // double totalPoints = 0;
-    return typedConstructs.fold<int>(
-      0,
-      (total, typedConstruct) =>
-          total +
-          typedConstruct.useType.pointValue * typedConstruct.uses.length,
-    );
-    // Commenting this out for now
-    // Minimize the amount of points given for repeated uses of the same lemma.
-    // i.e., if a lemma is used 4 times without assistance, the point value for
-    // a use without assistance is 3. So the points would be
-    // 3/1 + 3/2 + 3/3 + 3/4 = 3 + 1.5 + 1 + 0.75 = 5.25 (instead of 12)
-    // for (final typedConstruct in typedConstructs) {
-    //   final pointValue = typedConstruct.useType.pointValue;
-    //   double calc = 0.0;
-    //   for (int k = 1; k <= typedConstruct.uses.length; k++) {
-    //     calc += pointValue / k;
-    //   }
-    //   totalPoints += calc;
-    // }
-    // return totalPoints.round();
+    int totalPoints = 0;
+    for (final constructUse in _constructMap.values.toList()) {
+      totalPoints += constructUse.points;
+    }
+    return totalPoints;
   }
 }
 
@@ -179,20 +129,4 @@ class ConstructUses {
   }
 
   String get category => _category ?? "Other";
-}
-
-/// One lemma, a use type, and a list of uses
-/// for that lemma and use type
-class ConstructUseTypeUses {
-  final ConstructUseTypeEnum useType;
-  final ConstructTypeEnum constructType;
-  final String lemma;
-  final List<OneConstructUse> uses;
-
-  ConstructUseTypeUses({
-    required this.useType,
-    required this.constructType,
-    required this.lemma,
-    required this.uses,
-  });
 }

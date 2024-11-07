@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -125,7 +125,7 @@ class SpanCardState extends State<SpanCard> {
     selectedChoiceIndex = index;
     if (selectedChoice != null) {
       if (!selectedChoice!.selected) {
-        MatrixState.pangeaController.myAnalytics.addDraftUses(
+        MatrixState.pangeaController.putAnalytics.addDraftUses(
           selectedChoice!.tokens,
           widget.roomId,
           selectedChoice!.isBestCorrection
@@ -158,7 +158,7 @@ class SpanCardState extends State<SpanCard> {
 
   /// Adds the ignored tokens to locally cached analytics
   void addIgnoredTokenUses() {
-    MatrixState.pangeaController.myAnalytics.addDraftUses(
+    MatrixState.pangeaController.putAnalytics.addDraftUses(
       ignoredTokens ?? [],
       widget.roomId,
       ConstructUseTypeEnum.ignIGC,

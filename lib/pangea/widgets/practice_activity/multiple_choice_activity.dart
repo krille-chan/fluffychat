@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
@@ -73,7 +73,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       return;
     }
 
-    MatrixState.pangeaController.myAnalytics.setState(
+    MatrixState.pangeaController.putAnalytics.setState(
       AnalyticsStream(
         // note - this maybe should be the activity event id
         eventId:

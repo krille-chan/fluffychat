@@ -19,53 +19,29 @@ class ConstructAnalyticsModel {
 
   factory ConstructAnalyticsModel.fromJson(Map<String, dynamic> json) {
     final List<OneConstructUse> uses = [];
+
     if (json[_usesKey] is List) {
       // This is the new format
-      uses.addAll(
-        (json[_usesKey] as List)
-            .map((use) => OneConstructUse.fromJson(use))
-            .cast<OneConstructUse>()
-            .toList(),
-      );
-    } else {
-      // This is the old format. No data on production should be
-      // structured this way, but it's useful for testing.
-      try {
-        final useValues = (json[_usesKey] as Map<String, dynamic>).values;
-        for (final useValue in useValues) {
-          final lemma = useValue['lemma'];
-          final lemmaUses = useValue[_usesKey];
-          for (final useData in lemmaUses) {
-            final use = OneConstructUse(
-              useType: ConstructUseTypeEnum.ga,
-              lemma: lemma,
-              form: useData["form"],
-              constructType: ConstructTypeEnum.grammar,
-              metadata: ConstructUseMetaData(
-                eventId: useData["msgId"],
-                roomId: useData["chatId"],
-                timeStamp: DateTime.parse(useData["timeStamp"]),
-              ),
-            );
-            uses.add(use);
-          }
+      for (final useJson in json[_usesKey]) {
+        // grammar construct uses are deprecated so but some are saved
+        // here we're filtering from data
+        if (["grammar", "g"].contains(useJson['constructType'])) {
+          continue;
+        } else {
+          uses.add(OneConstructUse.fromJson(useJson));
         }
-      } catch (err, s) {
-        debugPrint("Error parsing ConstructAnalyticsModel");
-        ErrorHandler.logError(
-          e: err,
-          s: s,
-          m: "Error parsing ConstructAnalyticsModel",
-        );
-        debugger(when: kDebugMode);
       }
+    } else {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(m: "Analytics room with non-list uses");
     }
+
     return ConstructAnalyticsModel(
       uses: uses,
     );
   }
 
-  toJson() {
+  Map<String, dynamic> toJson() {
     return {
       _usesKey: uses.map((use) => use.toJson()).toList(),
     };

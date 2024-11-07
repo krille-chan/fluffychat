@@ -213,14 +213,11 @@ class ConstructUsesExpansionTileState
 
     return ExpansionTile(
       title: Text(
-        widget.constructsModel.type == ConstructTypeEnum.morph
-            ? getGrammarCopy(
-                  category: widget.category,
-                  lemma: widget.constructUses.first.lemma,
-                  context: context,
-                ) ??
-                widget.category
-            : widget.category,
+        widget.constructsModel.type?.getDisplayCopy(
+              widget.category,
+              context,
+            ) ??
+            widget.category,
       ),
       children: xpTiles,
       onExpansionChanged: (expanded) {

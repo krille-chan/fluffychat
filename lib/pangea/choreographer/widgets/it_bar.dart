@@ -7,7 +7,7 @@ import 'package:fluffychat/pangea/choreographer/widgets/it_bar_buttons.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/translation_finished_flow.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -369,7 +369,7 @@ class ITChoices extends StatelessWidget {
       );
     }
     if (!continuance.wasClicked) {
-      controller.choreographer.pangeaController.myAnalytics.addDraftUses(
+      controller.choreographer.pangeaController.putAnalytics.addDraftUses(
         continuance.tokens,
         controller.choreographer.roomId,
         continuance.level > 1

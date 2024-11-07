@@ -213,7 +213,7 @@ String? getGrammarCopy({
       return L10n.of(context)!.grammarCopyCASErelativeCase;
     case 'grammarCopyPUNCTTYPEexcl':
       return L10n.of(context)!.grammarCopyPUNCTTYPEexcl;
-    case 'rammarCopyPUNCTTYPEperi':
+    case 'grammarCopyPUNCTTYPEperi':
       return L10n.of(context)!.grammarCopyPUNCTTYPEperi;
     case 'grammarCopyPERSON1':
       return L10n.of(context)!.grammarCopyPERSON1;

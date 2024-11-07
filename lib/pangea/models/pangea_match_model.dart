@@ -108,7 +108,7 @@ class PangeaMatch {
   }
 
   bool isOffsetInMatchSpan(int offset) =>
-      offset >= match.offset && offset <= match.offset + match.length;
+      offset >= match.offset && offset < match.offset + match.length;
 
   Color get underlineColor {
     switch (match.rule?.id ?? "unknown") {
