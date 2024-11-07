@@ -24,6 +24,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
   CachedStreamController<AnalyticsUpdate> analyticsUpdateStream =
       CachedStreamController<AnalyticsUpdate>();
   StreamSubscription<AnalyticsStream>? _analyticsStream;
+  StreamSubscription? _languageStream;
   Timer? _updateTimer;
 
   Client get _client => _pangeaController.matrixState.client;
@@ -57,6 +58,15 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     _analyticsStream ??=
         stateStream.listen((data) => _onNewAnalyticsData(data));
 
+    // Listen for changes to the user's language settings
+    _languageStream ??=
+        _pangeaController.userController.stateStream.listen((update) {
+      if (update is Map<String, dynamic>) {
+        final previousL2 = update['prev_target_lang'];
+        _onUpdateLanguages(previousL2);
+      }
+    });
+
     _refreshAnalyticsIfOutdated();
   }
 
@@ -68,6 +78,8 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     lastUpdatedCompleter = Completer<DateTime?>();
     _analyticsStream?.cancel();
     _analyticsStream = null;
+    _languageStream?.cancel();
+    _languageStream = null;
     _refreshAnalyticsIfOutdated();
     clearMessagesSinceUpdate();
   }
@@ -129,6 +141,13 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
         _decideWhetherToUpdateAnalyticsRoom(level, data.origin);
       },
     );
+  }
+
+  Future<void> _onUpdateLanguages(String previousL2) async {
+    await sendLocalAnalyticsToAnalyticsRoom(
+      l2Override: previousL2,
+    );
+    _pangeaController.resetAnalytics();
   }
 
   void addDraftUses(
@@ -299,6 +318,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
   /// since the last update and notifies the [analyticsUpdateStream].
   Future<void> sendLocalAnalyticsToAnalyticsRoom({
     onLogout = false,
+    String? l2Override,
   }) async {
     if (_pangeaController.matrixState.client.userID == null) return;
     if (!(_updateCompleter?.isCompleted ?? true)) {
@@ -307,7 +327,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     }
     _updateCompleter = Completer<void>();
     try {
-      await _updateAnalytics();
+      await _updateAnalytics(l2Override: l2Override);
       clearMessagesSinceUpdate();
 
       lastUpdated = DateTime.now();
@@ -331,7 +351,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
 
   /// Updates the analytics by sending cached analytics data to the analytics room.
   /// The analytics room is determined based on the user's current target language.
-  Future<void> _updateAnalytics() async {
+  Future<void> _updateAnalytics({String? l2Override}) async {
     // if there's no cached construct data, there's nothing to send
     final cachedConstructs = _pangeaController.getAnalytics.messagesSinceUpdate;
     final bool onlyDraft = cachedConstructs.length == 1 &&
@@ -339,10 +359,11 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     if (cachedConstructs.isEmpty || onlyDraft) return;
 
     // if missing important info, don't send analytics. Could happen if user just signed up.
-    if (userL2 == null || _client.userID == null) return;
+    final l2Code = l2Override ?? userL2;
+    if (l2Code == null || _client.userID == null) return;
 
     // analytics room for the user and current target language
-    final Room? analyticsRoom = await _client.getMyAnalyticsRoom(userL2!);
+    final Room? analyticsRoom = await _client.getMyAnalyticsRoom(l2Code);
 
     // and send cached analytics data to the room
     await analyticsRoom?.sendConstructsEvent(

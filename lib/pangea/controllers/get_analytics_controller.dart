@@ -128,11 +128,11 @@ class GetAnalyticsController {
       type: ConstructTypeEnum.vocab,
     );
 
-    final errors = ConstructListModel(
+    final morphs = ConstructListModel(
       uses: constructs,
       type: ConstructTypeEnum.morph,
     );
-    return words.points + errors.points;
+    return words.points + morphs.points;
   }
 
   List<OneConstructUse> get allConstructUses {

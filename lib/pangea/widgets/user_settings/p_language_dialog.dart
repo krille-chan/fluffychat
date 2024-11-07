@@ -93,35 +93,18 @@ Future<void> pLanguageDialog(
                             context: context,
                             future: () async {
                               try {
-                                //@ggurdin while this is obviously working, it feels pretty hidden
-                                //and could lead to errors if someone where to change the user L2 via some
-                                // other means. with analytics being dependent on languages, it probably
-                                // would make sense for analytics to listen to the language stateStream
-                                // and update in this case
-                                pangeaController.putAnalytics
-                                    .sendLocalAnalyticsToAnalyticsRoom()
-                                    .then((_) {
-                                  pangeaController.userController.updateProfile(
-                                    (profile) {
-                                      profile.userSettings.sourceLanguage =
-                                          selectedSourceLanguage.langCode;
-                                      profile.userSettings.targetLanguage =
-                                          selectedTargetLanguage.langCode;
-                                      return profile;
-                                    },
-                                    waitForDataInSync: true,
-                                  );
-                                }).then((_) {
-                                  // if the profile update is successful, reset cached analytics
-                                  // data, since analytics data corresponds to the user's L2
-                                  pangeaController.putAnalytics.dispose();
-                                  pangeaController.getAnalytics.dispose();
-
-                                  pangeaController.putAnalytics.initialize();
-                                  pangeaController.getAnalytics.initialize();
-
-                                  Navigator.pop(context);
-                                });
+                                await pangeaController.userController
+                                    .updateProfile(
+                                  (profile) {
+                                    profile.userSettings.sourceLanguage =
+                                        selectedSourceLanguage.langCode;
+                                    profile.userSettings.targetLanguage =
+                                        selectedTargetLanguage.langCode;
+                                    return profile;
+                                  },
+                                  waitForDataInSync: true,
+                                );
+                                Navigator.pop(context);
                               } catch (err, s) {
                                 debugger(when: kDebugMode);
                                 ErrorHandler.logError(e: err, s: s);

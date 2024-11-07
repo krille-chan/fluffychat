@@ -169,6 +169,13 @@ class PangeaController {
     GoogleAnalytics.analyticsUserUpdate(matrixState.client.userID);
   }
 
+  Future<void> resetAnalytics() async {
+    putAnalytics.dispose();
+    getAnalytics.dispose();
+    putAnalytics.initialize();
+    getAnalytics.initialize();
+  }
+
   void startChatWithBotIfNotPresent() {
     Future.delayed(const Duration(milliseconds: 10000), () async {
       // check if user is logged in

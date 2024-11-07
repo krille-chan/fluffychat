@@ -1016,9 +1016,6 @@ class ChatListController extends State<ChatList>
     }
 
     // #Pangea
-    //@ggurdin why is are these two initialized separately? why not in the _initPangeaControllers?
-    MatrixState.pangeaController.putAnalytics.initialize();
-    MatrixState.pangeaController.getAnalytics.initialize();
     await _initPangeaControllers(client);
     // Pangea#
     if (!mounted) return;
@@ -1029,6 +1026,8 @@ class ChatListController extends State<ChatList>
 
   // #Pangea
   Future<void> _initPangeaControllers(Client client) async {
+    MatrixState.pangeaController.putAnalytics.initialize();
+    MatrixState.pangeaController.getAnalytics.initialize();
     if (mounted) {
       final PangeaController pangeaController = MatrixState.pangeaController;
       GoogleAnalytics.analyticsUserUpdate(client.userID);
