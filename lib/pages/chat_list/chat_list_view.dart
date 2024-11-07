@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
+import 'package:keymap/keymap.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -138,13 +138,15 @@ class ChatListView extends StatelessWidget {
                   behavior: HitTestBehavior.translucent,
                   child: Scaffold(
                     body: ChatListViewBody(controller),
-                    floatingActionButton: KeyBoardShortcuts(
-                      keysToPress: {
-                        LogicalKeyboardKey.controlLeft,
-                        LogicalKeyboardKey.keyN,
-                      },
-                      onKeysPressed: () => context.go('/rooms/newprivatechat'),
-                      helpLabel: L10n.of(context).newChat,
+                    floatingActionButton: KeyboardWidget(
+                      bindings: [
+                        KeyAction(
+                          LogicalKeyboardKey.keyN,
+                          L10n.of(context).newChat,
+                          () => context.go('/rooms/newprivatechat'),
+                          isControlPressed: true,
+                        ),
+                      ],
                       child: selectMode == SelectMode.normal &&
                               !controller.isSearchMode &&
                               controller.activeSpaceId == null

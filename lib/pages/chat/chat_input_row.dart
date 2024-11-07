@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
+import 'package:keymap/keymap.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -96,14 +96,15 @@ class ChatInputRow extends StatelessWidget {
             ]
           : <Widget>[
               const SizedBox(width: 4),
-              KeyBoardShortcuts(
-                keysToPress: {
-                  LogicalKeyboardKey.altLeft,
-                  LogicalKeyboardKey.keyA,
-                },
-                onKeysPressed: () =>
-                    controller.onAddPopupMenuButtonSelected('file'),
-                helpLabel: L10n.of(context).sendFile,
+              KeyboardWidget(
+                bindings: [
+                  KeyAction(
+                    LogicalKeyboardKey.keyA,
+                    L10n.of(context).sendFile,
+                    () => controller.onAddPopupMenuButtonSelected('file'),
+                    isAltPressed: true,
+                  ),
+                ],
                 child: AnimatedContainer(
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,
@@ -188,13 +189,15 @@ class ChatInputRow extends StatelessWidget {
                 height: height,
                 width: height,
                 alignment: Alignment.center,
-                child: KeyBoardShortcuts(
-                  keysToPress: {
-                    LogicalKeyboardKey.altLeft,
-                    LogicalKeyboardKey.keyE,
-                  },
-                  onKeysPressed: controller.emojiPickerAction,
-                  helpLabel: L10n.of(context).emojis,
+                child: KeyboardWidget(
+                  bindings: [
+                    KeyAction(
+                      LogicalKeyboardKey.keyE,
+                      L10n.of(context).emojis,
+                      controller.emojiPickerAction,
+                      isAltPressed: true,
+                    ),
+                  ],
                   child: IconButton(
                     tooltip: L10n.of(context).emojis,
                     icon: PageTransitionSwitcher(

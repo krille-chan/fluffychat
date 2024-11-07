@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
+import 'package:keymap/keymap.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/widgets/avatar.dart';
@@ -166,34 +166,43 @@ class ClientChooserButton extends StatelessWidget {
         children: [
           ...List.generate(
             clientCount,
-            (index) => KeyBoardShortcuts(
-              keysToPress: _buildKeyboardShortcut(index + 1),
-              helpLabel: L10n.of(context).switchToAccount(index + 1),
-              onKeysPressed: () => _handleKeyboardShortcut(
-                matrix,
-                index,
-                context,
-              ),
+            (index) => KeyboardWidget(
+              bindings: [
+                KeyAction(
+                  LogicalKeyboardKey(0x00000000030 + index),
+                  L10n.of(context).switchToAccount(index + 1),
+                  () => _handleKeyboardShortcut(
+                    matrix,
+                    index,
+                    context,
+                  ),
+                  isAltPressed: true,
+                ),
+              ],
               child: const SizedBox.shrink(),
             ),
           ),
-          KeyBoardShortcuts(
-            keysToPress: {
-              LogicalKeyboardKey.controlLeft,
-              LogicalKeyboardKey.tab,
-            },
-            helpLabel: L10n.of(context).nextAccount,
-            onKeysPressed: () => _nextAccount(matrix, context),
+          KeyboardWidget(
+            bindings: [
+              KeyAction(
+                LogicalKeyboardKey.tab,
+                L10n.of(context).nextAccount,
+                () => _nextAccount(matrix, context),
+                isControlPressed: true,
+              ),
+            ],
             child: const SizedBox.shrink(),
           ),
-          KeyBoardShortcuts(
-            keysToPress: {
-              LogicalKeyboardKey.controlLeft,
-              LogicalKeyboardKey.shiftLeft,
-              LogicalKeyboardKey.tab,
-            },
-            helpLabel: L10n.of(context).previousAccount,
-            onKeysPressed: () => _previousAccount(matrix, context),
+          KeyboardWidget(
+            bindings: [
+              KeyAction(
+                LogicalKeyboardKey.tab,
+                L10n.of(context).previousAccount,
+                () => _previousAccount(matrix, context),
+                isControlPressed: true,
+                isShiftPressed: true,
+              ),
+            ],
             child: const SizedBox.shrink(),
           ),
           PopupMenuButton<Object>(
@@ -213,17 +222,6 @@ class ClientChooserButton extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Set<LogicalKeyboardKey>? _buildKeyboardShortcut(int index) {
-    if (index > 0 && index < 10) {
-      return {
-        LogicalKeyboardKey.altLeft,
-        LogicalKeyboardKey(0x00000000030 + index),
-      };
-    } else {
-      return null;
-    }
   }
 
   void _clientSelected(
