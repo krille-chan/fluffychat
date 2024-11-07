@@ -20,7 +20,7 @@ gm8(){return"\u4ece .zip \u6587\u4ef6\u5bfc\u5165"},
 glS(){return"\u4ee5 .zip \u683c\u5f0f\u5bfc\u51fa\u8868\u60c5\u5305"},
 gmX(d){return"\u66ff\u6362"},
 gf7(){return"\u5173\u4e8e"},
-o1(d){return"About "+d},
+o1(d){return"\u5173\u4e8e "+d},
 gf8(d){return"\u63a5\u53d7"},
 hJ(d){return"\ud83d\udc4d "+d+" \u63a5\u53d7\u4e86\u9080\u8bf7"},
 ghL(){return"\u8d26\u6237"},
@@ -562,14 +562,14 @@ gon(d){return"\u6a21\u7cca\uff1a"},
 gcf(d){return"\u4e0d\u900f\u660e\uff1a"},
 gl2(){return"\u8bbe\u7f6e\u58c1\u7eb8"},
 goF(){return"\u7ba1\u7406\u8d26\u6237"},
-goa(){return"Server does not provide any valid contact information"},
-gow(){return"Contact server admin"},
-gox(){return"Contact server security"},
-gol(){return"Support page"},
-goi(){return"Server information:"},
-gbD(d){return"Name"},
-goN(d){return"Version"},
-goO(){return"Website"},
+goa(){return"\u670d\u52a1\u5668\u672a\u63d0\u4f9b\u4efb\u4f55\u6709\u6548\u7684\u8054\u7cfb\u4fe1\u606f"},
+gow(){return"\u8054\u7cfb\u670d\u52a1\u5668\u7ba1\u7406\u5458"},
+gox(){return"\u8054\u7cfb\u670d\u52a1\u5668\u5b89\u5168\u7ba1\u7406"},
+gol(){return"\u652f\u6301\u9875\u9762"},
+goi(){return"\u670d\u52a1\u5668\u4fe1\u606f\uff1a"},
+gbD(d){return"\u540d\u79f0"},
+goN(d){return"\u7248\u672c"},
+goO(){return"\u7f51\u7ad9"},
 C(d,e){return this.gbp(this).$1(e)}}
 A.Io.prototype={
 go3(){return"false"},
@@ -1099,5 +1099,5 @@ y(A.CL,C.aR)
 y(A.Io,A.CL)})()
 B.eo(b.typeUniverse,JSON.parse('{"CL":{"aR":[]},"Io":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"QPaXJo/F3fP5kMlt+S2jwvPJ0cM=");
+a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"6qa9Ck8bTq01FJh4E26b5ToTu4Q=");
 //# sourceMappingURL=main.dart.js_1.part.js.map
