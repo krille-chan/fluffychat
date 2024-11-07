@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
 import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
@@ -38,13 +37,6 @@ class LearningProgressIndicatorsState
   /// A stream subscription to listen for updates to
   /// the analytics data, either locally or from events
   StreamSubscription<AnalyticsStreamUpdate>? _analyticsUpdateSubscription;
-
-  /// Vocabulary constructs model
-  ConstructListModel? words;
-
-  /// Morph constructs model
-  ConstructListModel? morphs;
-
   bool loading = true;
 
   // Some buggy stuff is happening with this data not being updated at login, so switching
@@ -81,15 +73,6 @@ class LearningProgressIndicatorsState
   /// Update the analytics data shown in the UI. This comes from a
   /// combination of stored events and locally cached data.
   Future<void> updateAnalyticsData(List<OneConstructUse> constructs) async {
-    words = ConstructListModel(
-      type: ConstructTypeEnum.vocab,
-      uses: constructs,
-    );
-    morphs = ConstructListModel(
-      type: ConstructTypeEnum.morph,
-      uses: constructs,
-    );
-
     currentConstructs = constructs;
     if (loading) loading = false;
     if (mounted) setState(() {});
@@ -99,9 +82,9 @@ class LearningProgressIndicatorsState
   ConstructListModel? getConstructsModel(ProgressIndicatorEnum indicator) {
     switch (indicator) {
       case ProgressIndicatorEnum.wordsUsed:
-        return words;
+        return _pangeaController.analytics.vocabModel;
       case ProgressIndicatorEnum.morphsUsed:
-        return morphs;
+        return _pangeaController.analytics.grammarModel;
       default:
         return null;
     }
@@ -111,9 +94,9 @@ class LearningProgressIndicatorsState
   int? getProgressPoints(ProgressIndicatorEnum indicator) {
     switch (indicator) {
       case ProgressIndicatorEnum.wordsUsed:
-        return words?.lemmasWithPoints.length;
+        return _pangeaController.analytics.vocabModel.lemmasWithPoints.length;
       case ProgressIndicatorEnum.morphsUsed:
-        return morphs?.lemmasWithPoints.length;
+        return _pangeaController.analytics.grammarModel.lemmasWithPoints.length;
       case ProgressIndicatorEnum.level:
         return level;
     }

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
@@ -157,6 +158,11 @@ class OneConstructUse {
   }
 
   int get pointValue => useType.pointValue;
+
+  ConstructIdentifier get identifier => ConstructIdentifier(
+        lemma: lemma!,
+        type: constructType,
+      );
 }
 
 class ConstructUseMetaData {

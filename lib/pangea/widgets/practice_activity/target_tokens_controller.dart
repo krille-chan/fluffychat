@@ -4,6 +4,7 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 
@@ -73,8 +74,10 @@ class TargetTokensController {
 
       for (final construct in token.constructs) {
         final constructUseModel = constructList.getConstructUses(
-          construct.id.lemma,
-          construct.id.type,
+          ConstructIdentifier(
+            lemma: construct.id.lemma,
+            type: construct.id.type,
+          ),
         );
         if (constructUseModel != null) {
           construct.xp += constructUseModel.points;

@@ -26,6 +26,27 @@ class GetAnalyticsController {
   CachedStreamController<AnalyticsStreamUpdate> analyticsStream =
       CachedStreamController<AnalyticsStreamUpdate>();
 
+  ConstructListModel vocabModel = ConstructListModel(
+    type: ConstructTypeEnum.vocab,
+    uses: [],
+  );
+  ConstructListModel grammarModel = ConstructListModel(
+    type: ConstructTypeEnum.morph,
+    uses: [],
+  );
+
+  List<OneConstructUse> get allConstructUses {
+    final List<OneConstructUse> storedUses = getConstructsLocal() ?? [];
+    final List<OneConstructUse> localUses = locallyCachedConstructs;
+
+    final List<OneConstructUse> allConstructs = [
+      ...storedUses,
+      ...localUses,
+    ];
+
+    return allConstructs;
+  }
+
   /// The previous XP points of the user, before the last update.
   /// Used for animating analytics updates.
   int? prevXP;
@@ -74,7 +95,11 @@ class GetAnalyticsController {
         .listen(onAnalyticsUpdate);
 
     _pangeaController.myAnalytics.lastUpdatedCompleter.future.then((_) {
-      getConstructs().then((_) => updateAnalyticsStream());
+      getConstructs().then((_) {
+        vocabModel.updateConstructs(allConstructUses);
+        grammarModel.updateConstructs(allConstructUses);
+        updateAnalyticsStream();
+      });
     });
   }
 
@@ -88,6 +113,8 @@ class GetAnalyticsController {
   }
 
   Future<void> onAnalyticsUpdate(AnalyticsUpdate analyticsUpdate) async {
+    vocabModel.updateConstructs(analyticsUpdate.newConstructs);
+    grammarModel.updateConstructs(analyticsUpdate.newConstructs);
     if (analyticsUpdate.isLogout) return;
     if (analyticsUpdate.type == AnalyticsUpdateType.server) {
       await getConstructs(forceUpdate: true);
@@ -132,18 +159,6 @@ class GetAnalyticsController {
       type: ConstructTypeEnum.grammar,
     );
     return words.points + errors.points;
-  }
-
-  List<OneConstructUse> get allConstructUses {
-    final List<OneConstructUse> storedUses = getConstructsLocal() ?? [];
-    final List<OneConstructUse> localUses = locallyCachedConstructs;
-
-    final List<OneConstructUse> allConstructs = [
-      ...storedUses,
-      ...localUses,
-    ];
-
-    return allConstructs;
   }
 
   /// A local cache of eventIds and construct uses for messages sent since the last update.

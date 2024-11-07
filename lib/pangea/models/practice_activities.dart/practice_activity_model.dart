@@ -51,6 +51,8 @@ class ConstructIdentifier {
   int get hashCode {
     return lemma.hashCode ^ type.hashCode;
   }
+
+  String get string => "$lemma-${type.string}";
 }
 
 class CandidateMessage {
