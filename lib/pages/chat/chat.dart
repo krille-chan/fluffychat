@@ -683,11 +683,18 @@ class ChatController extends State<ChatPageWithRoom>
             AnalyticsStream(
               eventId: msgEventId,
               roomId: room.id,
-              constructs: originalSent!.vocabUses(
-                choreo: choreo,
-                tokens: tokensSent!.tokens,
-                metadata: metadata,
-              ),
+              constructs: [
+                ...originalSent!.vocabUses(
+                  choreo: choreo,
+                  tokens: tokensSent!.tokens,
+                  metadata: metadata,
+                ),
+                ...originalSent.morphConstructUses(
+                  choreo: choreo,
+                  tokens: tokensSent.tokens,
+                  metadata: metadata,
+                ),
+              ],
               origin: AnalyticsUpdateOrigin.sendMessage,
             ),
           );

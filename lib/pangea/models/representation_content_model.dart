@@ -131,6 +131,57 @@ class PangeaRepresentation {
     return uses;
   }
 
+  List<OneConstructUse> morphConstructUses({
+    required List<PangeaToken> tokens,
+    Event? event,
+    ConstructUseMetaData? metadata,
+    ChoreoRecord? choreo,
+  }) {
+    final List<OneConstructUse> uses = [];
+
+    if (event?.roomId == null && metadata?.roomId == null) {
+      return uses;
+    }
+
+    if (choreo == null) {
+      return uses;
+    }
+
+    metadata ??= ConstructUseMetaData(
+      roomId: event!.roomId!,
+      eventId: event.eventId,
+      timeStamp: event.originServerTs,
+    );
+
+    for (final step in choreo.choreoSteps) {
+      if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted) {
+        final List<PangeaToken> tokensForMatch = [];
+        for (final token in tokens) {
+          if (step.acceptedOrIgnoredMatch!.isOffsetInMatchSpan(
+            token.text.offset,
+          )) {
+            tokensForMatch.add(token);
+          }
+        }
+
+        for (final token in tokensForMatch) {
+          token.morph.forEach((key, value) {
+            uses.add(
+              OneConstructUse(
+                useType: ConstructUseTypeEnum.ga,
+                lemma: value,
+                categories: [key],
+                constructType: ConstructTypeEnum.morph,
+                metadata: metadata!,
+              ),
+            );
+          });
+        }
+      }
+    }
+    return uses;
+  }
+
   /// Returns a [OneConstructUse] for the given [token]
   /// If there is no [choreo], the [token] is
   /// considered to be a [ConstructUseTypeEnum.wa] as long as it matches the target language.
