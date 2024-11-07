@@ -50,6 +50,13 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
         selectedCategory = category;
       });
 
+  String categoryCopy(category) =>
+      widget.constructsModel.type?.getDisplayCopy(
+        category,
+        context,
+      ) ??
+      category;
+
   @override
   Widget build(BuildContext context) {
     Widget? dialogContent;
@@ -60,40 +67,34 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
             widget.constructsModel.categoriesToUses.keys.first == "Other";
 
     if (selectedCategory != null) {
-      dialogContent = ListView.builder(
-        itemCount:
-            widget.constructsModel.categoriesToUses[selectedCategory]!.length,
-        itemBuilder: (context, index) {
-          final constructUses =
-              widget.constructsModel.categoriesToUses[selectedCategory]![index];
-          return ConstructUsesXPTile(constructUses);
-        },
+      dialogContent = Column(
+        children: [
+          Text(
+            categoryCopy(selectedCategory),
+            style: const TextStyle(fontSize: 16),
+          ),
+          Expanded(
+            child: ConstructsTileList(
+              widget.constructsModel.categoriesToUses[selectedCategory]!,
+            ),
+          ),
+        ],
       );
     } else if (hasNoData) {
       dialogContent = Center(child: Text(L10n.of(context)!.noDataFound));
     } else if (hasNoCategories || !widget.showGroups) {
-      dialogContent = ListView.builder(
-        itemCount: widget.constructsModel.constructListWithPoints.length,
-        itemBuilder: (context, index) {
-          final constructUses =
-              widget.constructsModel.constructListWithPoints[index];
-          return ConstructUsesXPTile(constructUses);
-        },
+      dialogContent = ConstructsTileList(
+        widget.constructsModel.constructListWithPoints,
       );
     } else {
       dialogContent = ListView.builder(
         itemCount: categoriesToUses.length,
         itemBuilder: (context, index) {
           final category = categoriesToUses[index];
-          final copy = widget.constructsModel.type?.getDisplayCopy(
-                category.key,
-                context,
-              ) ??
-              category.key;
           return Column(
             children: [
               ListTile(
-                title: Text(copy),
+                title: Text(categoryCopy(category.key)),
                 trailing: const Icon(Icons.chevron_right_outlined),
                 onTap: () => setSelectedCategory(category.key),
               ),
@@ -131,6 +132,19 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ConstructsTileList extends StatelessWidget {
+  final List<ConstructUses> constructs;
+  const ConstructsTileList(this.constructs, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: constructs.length,
+      itemBuilder: (context, index) => ConstructUsesXPTile(constructs[index]),
     );
   }
 }

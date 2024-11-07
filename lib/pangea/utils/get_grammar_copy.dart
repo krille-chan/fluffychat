@@ -141,6 +141,8 @@ String? getGrammarCopy({
       return L10n.of(context)!.grammarCopyPRONTYPEart;
     case 'grammarCopyPRONTYPEtot':
       return L10n.of(context)!.grammarCopyPRONTYPEtot;
+    case 'grammarCopyPRONTYPEneg':
+      return L10n.of(context)!.grammarCopyPRONTYPEneg;
     case 'grammarCopyPOLITEinfm':
       return L10n.of(context)!.grammarCopyPOLITEinfm;
     case 'grammarCopyADVTYPEtim':
