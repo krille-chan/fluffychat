@@ -2844,5 +2844,28 @@
   "setWallpaper": "设置壁纸",
   "@setWallpaper": {},
   "manageAccount": "管理账户",
-  "@manageAccount": {}
+  "@manageAccount": {},
+  "aboutHomeserver": "关于 {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "version": "版本",
+  "@version": {},
+  "noContactInformationProvided": "服务器未提供任何有效的联系信息",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "联系服务器管理员",
+  "@contactServerAdmin": {},
+  "name": "名称",
+  "@name": {},
+  "contactServerSecurity": "联系服务器安全管理",
+  "@contactServerSecurity": {},
+  "supportPage": "支持页面",
+  "@supportPage": {},
+  "serverInformation": "服务器信息：",
+  "@serverInformation": {},
+  "website": "网站",
+  "@website": {}
 }

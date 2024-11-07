@@ -2835,5 +2835,36 @@
   "welcomeText": "Halo 👋 Ini FluffyChat. Kamu bisa masuk ke homeserver mana pun, yang kompatibel dengan https://matrix.org. Lalu, chat dengan siapa pun. Ini merupakan jaringan perpesanan besar yang terdesentralisasi!",
   "@welcomeText": {},
   "continueText": "Lanjutkan",
-  "@continueText": {}
+  "@continueText": {},
+  "aboutHomeserver": "Tentang {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "blur": "Buram:",
+  "@blur": {},
+  "contactServerAdmin": "Hubungi admin server",
+  "@contactServerAdmin": {},
+  "opacity": "Opasitas:",
+  "@opacity": {},
+  "setWallpaper": "Atur later belakang",
+  "@setWallpaper": {},
+  "serverInformation": "Informasi server:",
+  "@serverInformation": {},
+  "noContactInformationProvided": "Server tidak menyediakan informasi kontak valid apa pun",
+  "@noContactInformationProvided": {},
+  "supportPage": "Laman dukungan",
+  "@supportPage": {},
+  "version": "Versi",
+  "@version": {},
+  "website": "Situs Web",
+  "@website": {},
+  "manageAccount": "Kelola akun",
+  "@manageAccount": {},
+  "contactServerSecurity": "Hubungi keamanan server",
+  "@contactServerSecurity": {},
+  "name": "Nama",
+  "@name": {}
 }

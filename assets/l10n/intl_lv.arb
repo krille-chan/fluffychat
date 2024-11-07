@@ -2814,5 +2814,36 @@
   "continueText": "Turpināt",
   "@continueText": {},
   "welcomeText": "Sveicieni! 👋 Šis ir FluffyChat. Tu vari pieteikties jebkurā mājasserverī, kas ir saderīgs ar https://matrix.org. Tad vari tērzēt ar ikvienu. Tas ir milzīgs decentralizētās saziņas tīkls!",
-  "@welcomeText": {}
+  "@welcomeText": {},
+  "blur": "Aizmiglojums:",
+  "@blur": {},
+  "setWallpaper": "Iestatīt ekrāntapeti",
+  "@setWallpaper": {},
+  "opacity": "Necaurredzamība:",
+  "@opacity": {},
+  "manageAccount": "Pārvaldīt kontu",
+  "@manageAccount": {},
+  "noContactInformationProvided": "Serveris nesniedz nekādu derīgu saziņas informāciju",
+  "@noContactInformationProvided": {},
+  "serverInformation": "Informācija par serveri:",
+  "@serverInformation": {},
+  "aboutHomeserver": "Par {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "contactServerAdmin": "Sazināties ar servera pārvaldītāju",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "Sazināties ar servera drošības uzturētājiem",
+  "@contactServerSecurity": {},
+  "supportPage": "Atbalsta lapa",
+  "@supportPage": {},
+  "name": "Nosaukums",
+  "@name": {},
+  "version": "Versija",
+  "@version": {},
+  "website": "Tīmekļvietne",
+  "@website": {}
 }
