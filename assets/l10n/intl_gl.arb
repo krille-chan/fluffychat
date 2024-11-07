@@ -2832,5 +2832,40 @@
   "oneOfYourDevicesIsNotVerified": "Un dos teus dispositivos non está verificado",
   "@oneOfYourDevicesIsNotVerified": {},
   "noticeChatBackupDeviceVerification": "Nota: Cando conectas todos os teus dispositivos á copia de apoio da conversa quedan verificados automaticamente.",
-  "@noticeChatBackupDeviceVerification": {}
+  "@noticeChatBackupDeviceVerification": {},
+  "blur": "Néboa:",
+  "@blur": {},
+  "opacity": "Opacidade:",
+  "@opacity": {},
+  "contactServerSecurity": "Contacto con Seguridade do servidor",
+  "@contactServerSecurity": {},
+  "aboutHomeserver": "Sobre {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "welcomeText": "Ola! 👋 Isto é FluffyChat. Podes iniciar sesión en calquera servidor compatible con https://matrix.org. Poderás conversar con calquera. Unha enorme rede de mensaxería descentralizada!",
+  "@welcomeText": {},
+  "setWallpaper": "Establecer fondo",
+  "@setWallpaper": {},
+  "manageAccount": "Xestionar conta",
+  "@manageAccount": {},
+  "noContactInformationProvided": "O servidor non proporciona información de contacto válida",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "Contacto con Admin do servidor",
+  "@contactServerAdmin": {},
+  "supportPage": "Páxina de axuda",
+  "@supportPage": {},
+  "serverInformation": "Información do servidor:",
+  "@serverInformation": {},
+  "name": "Nome",
+  "@name": {},
+  "version": "Versión",
+  "@version": {},
+  "website": "Páxina web",
+  "@website": {},
+  "continueText": "Continuar",
+  "@continueText": {}
 }
