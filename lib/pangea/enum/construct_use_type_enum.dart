@@ -100,7 +100,6 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.corWL:
         return 3;
 
-      case ConstructUseTypeEnum.ga:
       case ConstructUseTypeEnum.corIGC:
         return 2;
 
@@ -114,6 +113,9 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.nan:
         return 0;
+
+      case ConstructUseTypeEnum.ga:
+        return -1;
 
       case ConstructUseTypeEnum.incIt:
       case ConstructUseTypeEnum.incIGC:

@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/enum/edit_type.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -318,7 +318,7 @@ class ITController {
         .toList();
 
     // Save those choices' tokens to local construct analytics as ignored tokens
-    choreographer.pangeaController.myAnalytics.addDraftUses(
+    choreographer.pangeaController.putAnalytics.addDraftUses(
       ignoredTokens ?? [],
       choreographer.roomId,
       ConstructUseTypeEnum.ignIt,

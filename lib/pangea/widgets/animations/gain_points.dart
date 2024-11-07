@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +29,8 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
   late Animation<double> _fadeAnimation;
 
   StreamSubscription? _pointsSubscription;
-  int? get _prevXP => MatrixState.pangeaController.analytics.prevXP;
-  int? get _currentXP => MatrixState.pangeaController.analytics.currentXP;
+  int? get _prevXP => MatrixState.pangeaController.getAnalytics.prevXP;
+  int? get _currentXP => MatrixState.pangeaController.getAnalytics.currentXP;
   int? _addedPoints;
 
   @override
@@ -62,7 +62,7 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
     );
 
     _pointsSubscription = MatrixState
-        .pangeaController.analytics.analyticsStream.stream
+        .pangeaController.getAnalytics.analyticsStream.stream
         .listen(_showPointsGained);
   }
 

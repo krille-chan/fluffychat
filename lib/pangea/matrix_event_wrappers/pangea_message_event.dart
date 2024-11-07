@@ -7,7 +7,6 @@ import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
-import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
@@ -639,34 +638,4 @@ class PangeaMessageEvent {
   /// Returns a list of [PracticeActivityEvent] for the user's active l2.
   List<PracticeActivityEvent> get practiceActivities =>
       l2Code == null ? [] : practiceActivitiesByLangCode(l2Code!);
-
-  /// all construct uses for the message, including vocab and grammar
-  List<OneConstructUse> get allConstructUses => [
-        ..._grammarConstructUses,
-        ..._vocabUses,
-      ];
-
-  /// get construct uses of type vocab for the message
-  List<OneConstructUse> get _vocabUses {
-    if (originalSent?.tokens != null) {
-      return originalSent!.content.vocabUses(
-        event: event,
-        choreo: originalSent!.choreo,
-        tokens: originalSent!.tokens!,
-      );
-    }
-    return [];
-  }
-
-  /// get construct uses of type grammar for the message
-  List<OneConstructUse> get _grammarConstructUses =>
-      originalSent?.choreo?.grammarConstructUses(event: event) ?? [];
-}
-
-class URLFinder {
-  static Iterable<Match> getMatches(String text) {
-    final RegExp exp =
-        RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
-    return exp.allMatches(text);
-  }
 }

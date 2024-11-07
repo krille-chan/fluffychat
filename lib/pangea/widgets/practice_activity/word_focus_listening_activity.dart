@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
@@ -69,7 +69,7 @@ class WordFocusListeningActivityState
       return;
     }
 
-    MatrixState.pangeaController.myAnalytics.setState(
+    MatrixState.pangeaController.putAnalytics.setState(
       AnalyticsStream(
         // note - this maybe should be the activity event id
         eventId:
