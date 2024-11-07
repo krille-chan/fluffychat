@@ -12,10 +12,10 @@ import 'package:fluffychat/pangea/controllers/language_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/message_data_controller.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/permissions_controller.dart';
 import 'package:fluffychat/pangea/controllers/practice_activity_generation_controller.dart';
 import 'package:fluffychat/pangea/controllers/practice_activity_record_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/speech_to_text_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
@@ -44,11 +44,12 @@ class PangeaController {
   late LanguageController languageController;
   late ClassController classController;
   late PermissionsController permissionsController;
-  // late AnalyticsController analytics;
-  late GetAnalyticsController analytics;
-  late MyAnalyticsController myAnalytics;
+  late GetAnalyticsController getAnalytics;
+  late PutAnalyticsController putAnalytics;
   late WordController wordNet;
   late MessageDataController messageData;
+
+  // TODO: make these static so we can remove from here
   late ContextualDefinitionController definitions;
   late ITFeedbackController itFeedback;
   late InstructionsController instructions;
@@ -93,9 +94,8 @@ class PangeaController {
     languageController = LanguageController(this);
     classController = ClassController(this);
     permissionsController = PermissionsController(this);
-    // analytics = AnalyticsController(this);
-    analytics = GetAnalyticsController(this);
-    myAnalytics = MyAnalyticsController(this);
+    getAnalytics = GetAnalyticsController(this);
+    putAnalytics = PutAnalyticsController(this);
     messageData = MessageDataController(this);
     wordNet = WordController(this);
     definitions = ContextualDefinitionController(this);
@@ -146,13 +146,13 @@ class PangeaController {
       case LoginState.loggedOut:
       case LoginState.softLoggedOut:
         // Reset cached analytics data
-        MatrixState.pangeaController.myAnalytics.dispose();
-        MatrixState.pangeaController.analytics.dispose();
+        MatrixState.pangeaController.putAnalytics.dispose();
+        MatrixState.pangeaController.getAnalytics.dispose();
         break;
       case LoginState.loggedIn:
         // Initialize analytics data
-        MatrixState.pangeaController.myAnalytics.initialize();
-        MatrixState.pangeaController.analytics.initialize();
+        MatrixState.pangeaController.putAnalytics.initialize();
+        MatrixState.pangeaController.getAnalytics.initialize();
         break;
     }
     if (state != LoginState.loggedIn) {
@@ -168,28 +168,6 @@ class PangeaController {
     );
     GoogleAnalytics.analyticsUserUpdate(matrixState.client.userID);
   }
-
-  // void startChatWithBotIfNotPresent() {
-  //   Future.delayed(const Duration(milliseconds: 5000), () async {
-  //     try {
-  //       if (pStoreService.read("started_bot_chat", addClientIdToKey: false) ??
-  //           false) {
-  //         return;
-  //       }
-  //       await pStoreService.save("started_bot_chat", true,
-  //           addClientIdToKey: false);
-  //       final rooms = matrixState.client.rooms;
-
-  //       await matrixState.client.startDirectChat(
-  //         BotName.byEnvironment,
-  //         enableEncryption: false,
-  //       );
-  //     } catch (err, stack) {
-  //       debugger(when: kDebugMode);
-  //       ErrorHandler.logError(e: err, s: stack);
-  //     }
-  //   });
-  // }
 
   void startChatWithBotIfNotPresent() {
     Future.delayed(const Duration(milliseconds: 10000), () async {

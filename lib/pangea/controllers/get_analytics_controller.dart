@@ -4,8 +4,8 @@ import 'dart:math';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/match_rule_ids.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
@@ -70,10 +70,10 @@ class GetAnalyticsController {
 
   void initialize() {
     _analyticsUpdateSubscription ??= _pangeaController
-        .myAnalytics.analyticsUpdateStream.stream
+        .putAnalytics.analyticsUpdateStream.stream
         .listen(onAnalyticsUpdate);
 
-    _pangeaController.myAnalytics.lastUpdatedCompleter.future.then((_) {
+    _pangeaController.putAnalytics.lastUpdatedCompleter.future.then((_) {
       getConstructs().then((_) => updateAnalyticsStream());
     });
   }
@@ -127,9 +127,10 @@ class GetAnalyticsController {
       uses: constructs,
       type: ConstructTypeEnum.vocab,
     );
+
     final errors = ConstructListModel(
       uses: constructs,
-      type: ConstructTypeEnum.grammar,
+      type: ConstructTypeEnum.morph,
     );
     return words.points + errors.points;
   }
@@ -168,7 +169,7 @@ class GetAnalyticsController {
         return formattedCache;
       } catch (err) {
         // if something goes wrong while trying to format the local data, clear it
-        _pangeaController.myAnalytics
+        _pangeaController.putAnalytics
             .clearMessagesSinceUpdate(clearDrafts: true);
         return {};
       }
@@ -205,7 +206,7 @@ class GetAnalyticsController {
     await client.roomsLoading;
 
     // don't try to get constructs until last updated time has been loaded
-    await _pangeaController.myAnalytics.lastUpdatedCompleter.future;
+    await _pangeaController.putAnalytics.lastUpdatedCompleter.future;
 
     // if forcing a refreshing, clear the cache
     if (forceUpdate) _cache.clear();
@@ -273,6 +274,9 @@ class GetAnalyticsController {
 
   /// Filter out constructs that are not relevant to the user, specifically those from
   /// rooms in which the user is a teacher and those that are interative translation span constructs
+  /// @ggurdin - is this still relevant now that we're not doing grammar constructs?
+  /// maybe it should actually be filtering all grammar uses, though this is maybe more efficiently done
+  /// in the fromJson of the model reading the event content, then maybe we can get rid of that enum entry entirely
   Future<List<OneConstructUse>> filterConstructs({
     required List<OneConstructUse> unfilteredConstructs,
   }) async {
@@ -295,7 +299,7 @@ class GetAnalyticsController {
     );
 
     if (index > -1) {
-      final DateTime? lastUpdated = _pangeaController.myAnalytics.lastUpdated;
+      final DateTime? lastUpdated = _pangeaController.putAnalytics.lastUpdated;
       if (_cache[index].needsUpdate(lastUpdated)) {
         _cache.removeAt(index);
         return null;

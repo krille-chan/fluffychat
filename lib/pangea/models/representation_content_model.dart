@@ -120,7 +120,7 @@ class PangeaRepresentation {
         tokens.where((token) => token.lemma.saveVocab).toList();
     for (final token in tokensToSave) {
       uses.addAll(
-        getUsesForToken(
+        _getUsesForToken(
           token,
           metadata,
           choreo: choreo,
@@ -138,7 +138,7 @@ class PangeaRepresentation {
   /// If the [token] is in the [choreo.acceptedOrIgnoredMatch], it is considered to be a [ConstructUseTypeEnum.ga].
   /// If the [token] is in the [choreo.acceptedOrIgnoredMatch.choices], it is considered to be a [ConstructUseTypeEnum.corIt].
   /// If the [token] is not included in any choreoStep, it is considered to be a [ConstructUseTypeEnum.wa].
-  List<OneConstructUse> getUsesForToken(
+  List<OneConstructUse> _getUsesForToken(
     PangeaToken token,
     ConstructUseMetaData metadata, {
     ChoreoRecord? choreo,

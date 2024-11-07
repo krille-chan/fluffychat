@@ -93,7 +93,12 @@ Future<void> pLanguageDialog(
                             context: context,
                             future: () async {
                               try {
-                                pangeaController.myAnalytics
+                                //@ggurdin while this is obviously working, it feels pretty hidden
+                                //and could lead to errors if someone where to change the user L2 via some
+                                // other means. with analytics being dependent on languages, it probably
+                                // would make sense for analytics to listen to the language stateStream
+                                // and update in this case
+                                pangeaController.putAnalytics
                                     .sendLocalAnalyticsToAnalyticsRoom()
                                     .then((_) {
                                   pangeaController.userController.updateProfile(
@@ -109,11 +114,11 @@ Future<void> pLanguageDialog(
                                 }).then((_) {
                                   // if the profile update is successful, reset cached analytics
                                   // data, since analytics data corresponds to the user's L2
-                                  pangeaController.myAnalytics.dispose();
-                                  pangeaController.analytics.dispose();
+                                  pangeaController.putAnalytics.dispose();
+                                  pangeaController.getAnalytics.dispose();
 
-                                  pangeaController.myAnalytics.initialize();
-                                  pangeaController.analytics.initialize();
+                                  pangeaController.putAnalytics.initialize();
+                                  pangeaController.getAnalytics.initialize();
 
                                   Navigator.pop(context);
                                 });

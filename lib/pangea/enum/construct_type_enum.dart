@@ -1,16 +1,19 @@
+import 'dart:developer';
+
 import 'package:fluffychat/pangea/constants/analytics_constants.dart';
+import 'package:flutter/foundation.dart';
 
 enum ConstructTypeEnum {
-  grammar,
+  /// for vocabulary words
   vocab,
+
+  /// for morphs, actually called "Grammar" in the UI... :P
   morph,
 }
 
 extension ConstructExtension on ConstructTypeEnum {
   String get string {
     switch (this) {
-      case ConstructTypeEnum.grammar:
-        return 'grammar';
       case ConstructTypeEnum.vocab:
         return 'vocab';
       case ConstructTypeEnum.morph:
@@ -20,8 +23,6 @@ extension ConstructExtension on ConstructTypeEnum {
 
   int get maxXPPerLemma {
     switch (this) {
-      case ConstructTypeEnum.grammar:
-        return 0;
       case ConstructTypeEnum.vocab:
         return AnalyticsConstants.vocabUseMaxXP;
       case ConstructTypeEnum.morph:
@@ -33,9 +34,6 @@ extension ConstructExtension on ConstructTypeEnum {
 class ConstructTypeUtil {
   static ConstructTypeEnum fromString(String? string) {
     switch (string) {
-      case 'g':
-      case 'grammar':
-        return ConstructTypeEnum.grammar;
       case 'v':
       case 'vocab':
         return ConstructTypeEnum.vocab;
@@ -43,6 +41,7 @@ class ConstructTypeUtil {
       case 'morph':
         return ConstructTypeEnum.morph;
       default:
+        debugger(when: kDebugMode);
         return ConstructTypeEnum.vocab;
     }
   }

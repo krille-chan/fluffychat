@@ -20,7 +20,7 @@ void pLogoutAction(BuildContext context, {bool? isDestructiveAction}) async {
   final matrix = Matrix.of(context);
 
   // before wiping out locally cached construct data, save it to the server
-  await MatrixState.pangeaController.myAnalytics
+  await MatrixState.pangeaController.putAnalytics
       .sendLocalAnalyticsToAnalyticsRoom(onLogout: true);
 
   await showFutureLoadingDialog(
