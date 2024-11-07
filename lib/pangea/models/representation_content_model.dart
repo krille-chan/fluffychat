@@ -89,13 +89,13 @@ class PangeaRepresentation {
     return data;
   }
 
-  /// Get construct uses of type vocab for the message.
+  /// Get construct uses for the message that weren't captured during language assistance.
   /// Takes a list of tokens and a choreo record, which is searched
   /// through for each token for its construct use type.
   /// Also takes either an event (typically when the Representation itself is
   /// available) or construct use metadata (when the event is not available,
   /// i.e. immediately after message send) to create the construct use.
-  List<OneConstructUse> vocabUses({
+  List<OneConstructUse> vocabAndMorphUses({
     required List<PangeaToken> tokens,
     Event? event,
     ConstructUseMetaData? metadata,
@@ -131,64 +131,15 @@ class PangeaRepresentation {
     return uses;
   }
 
-  List<OneConstructUse> morphConstructUses({
-    required List<PangeaToken> tokens,
-    Event? event,
-    ConstructUseMetaData? metadata,
-    ChoreoRecord? choreo,
-  }) {
-    final List<OneConstructUse> uses = [];
-
-    if (event?.roomId == null && metadata?.roomId == null) {
-      return uses;
-    }
-
-    if (choreo == null) {
-      return uses;
-    }
-
-    metadata ??= ConstructUseMetaData(
-      roomId: event!.roomId!,
-      eventId: event.eventId,
-      timeStamp: event.originServerTs,
-    );
-
-    for (final step in choreo.choreoSteps) {
-      if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted) {
-        final List<PangeaToken> tokensForMatch = [];
-        for (final token in tokens) {
-          if (step.acceptedOrIgnoredMatch!.isOffsetInMatchSpan(
-            token.text.offset,
-          )) {
-            tokensForMatch.add(token);
-          }
-        }
-
-        for (final token in tokensForMatch) {
-          token.morph.forEach((key, value) {
-            uses.add(
-              OneConstructUse(
-                useType: ConstructUseTypeEnum.ga,
-                lemma: value,
-                category: key,
-                constructType: ConstructTypeEnum.morph,
-                metadata: metadata!,
-              ),
-            );
-          });
-        }
-      }
-    }
-    return uses;
-  }
-
   /// Returns a [OneConstructUse] for the given [token]
   /// If there is no [choreo], the [token] is
   /// considered to be a [ConstructUseTypeEnum.wa] as long as it matches the target language.
   /// Later on, we may want to consider putting it in some category of like 'pending'
-  /// If the [token] is in the [choreo.acceptedOrIgnoredMatch], it is considered to be a [ConstructUseTypeEnum.ga].
-  /// If the [token] is in the [choreo.acceptedOrIgnoredMatch.choices], it is considered to be a [ConstructUseTypeEnum.corIt].
-  /// If the [token] is not included in any choreoStep, it is considered to be a [ConstructUseTypeEnum.wa].
+  ///
+  /// For both vocab and morph constructs, we should
+  /// 1) give wa if no assistance was used
+  /// 2) give ga if IGC was used and
+  /// 3) make no use if IT was used
   List<OneConstructUse> _getUsesForToken(
     PangeaToken token,
     ConstructUseMetaData metadata, {
@@ -218,7 +169,7 @@ class PangeaRepresentation {
       if (lemma.saveVocab) {
         uses.add(
           token.toVocabUse(
-            inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk,
+            useType,
             metadata,
           ),
         );
@@ -231,8 +182,12 @@ class PangeaRepresentation {
       /// is in the overall step text, then token was a ga
       final bool isAcceptedMatch =
           step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted;
-      final bool isITStep = step.itStep != null;
-      if (!isAcceptedMatch && !isITStep) continue;
+
+      // if the token was in an IT match, return no uses
+      if (step.itStep != null) return [];
+
+      // if this step was not accepted, continue
+      if (!isAcceptedMatch) continue;
 
       if (isAcceptedMatch &&
           step.acceptedOrIgnoredMatch?.match.choices != null) {
@@ -240,25 +195,33 @@ class PangeaRepresentation {
         final bool stepContainedToken = choices.any(
           (choice) =>
               // if this choice contains the token's content
-              choice.value.contains(content) &&
-              // if the complete input text after this step
-              // contains the choice (why is this here?)
-              step.text.contains(choice.value),
+              choice.value.contains(content),
         );
         if (stepContainedToken) {
-          return [];
-        }
-      }
-
-      if (isITStep && step.itStep?.chosenContinuance != null) {
-        final bool pickedThroughIT =
-            step.itStep!.chosenContinuance!.text.contains(content);
-        if (pickedThroughIT) {
-          return [];
+          // give ga if IGC was used
+          uses.add(
+            token.toVocabUse(
+              ConstructUseTypeEnum.ga,
+              metadata,
+            ),
+          );
+          for (final entry in token.morph.entries) {
+            uses.add(
+              OneConstructUse(
+                useType: ConstructUseTypeEnum.ga,
+                lemma: entry.value,
+                category: entry.key,
+                constructType: ConstructTypeEnum.morph,
+                metadata: metadata,
+              ),
+            );
+          }
+          return uses;
         }
       }
     }
 
+    // the token wasn't found in any IT or IGC step, so it was wa
     for (final entry in token.morph.entries) {
       uses.add(
         OneConstructUse(

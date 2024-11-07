@@ -684,14 +684,9 @@ class ChatController extends State<ChatPageWithRoom>
               eventId: msgEventId,
               roomId: room.id,
               constructs: [
-                ...originalSent!.vocabUses(
+                ...originalSent!.vocabAndMorphUses(
                   choreo: choreo,
                   tokens: tokensSent!.tokens,
-                  metadata: metadata,
-                ),
-                ...originalSent.morphConstructUses(
-                  choreo: choreo,
-                  tokens: tokensSent.tokens,
                   metadata: metadata,
                 ),
               ],
