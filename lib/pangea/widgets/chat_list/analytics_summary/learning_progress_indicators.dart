@@ -9,7 +9,7 @@ import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar_details.dart';
-import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/analytics_popup.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/analytics_popup/analytics_popup.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/progress_indicator.dart';
 import 'package:fluffychat/pangea/widgets/flag.dart';
 import 'package:fluffychat/widgets/matrix.dart';
