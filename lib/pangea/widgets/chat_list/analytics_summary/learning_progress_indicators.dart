@@ -46,21 +46,21 @@ class LearningProgressIndicatorsState
   // int get totalXP => _pangeaController.analytics.currentXP;
   // int get level => _pangeaController.analytics.level;
   List<OneConstructUse> currentConstructs = [];
-  int get currentXP => _pangeaController.analytics.calcXP(currentConstructs);
-  int get localXP => _pangeaController.analytics.calcXP(
-        _pangeaController.analytics.locallyCachedConstructs,
+  int get currentXP => _pangeaController.getAnalytics.calcXP(currentConstructs);
+  int get localXP => _pangeaController.getAnalytics.calcXP(
+        _pangeaController.getAnalytics.locallyCachedConstructs,
       );
   int get serverXP => currentXP - localXP;
-  int get level => _pangeaController.analytics.level;
+  int get level => _pangeaController.getAnalytics.level;
 
   @override
   void initState() {
     super.initState();
     updateAnalyticsData(
-      _pangeaController.analytics.analyticsStream.value?.constructs ?? [],
+      _pangeaController.getAnalytics.analyticsStream.value?.constructs ?? [],
     );
     _analyticsUpdateSubscription = _pangeaController
-        .analytics.analyticsStream.stream
+        .getAnalytics.analyticsStream.stream
         .listen((update) => updateAnalyticsData(update.constructs));
   }
 
@@ -82,9 +82,9 @@ class LearningProgressIndicatorsState
   ConstructListModel? getConstructsModel(ProgressIndicatorEnum indicator) {
     switch (indicator) {
       case ProgressIndicatorEnum.wordsUsed:
-        return _pangeaController.analytics.vocabModel;
+        return _pangeaController.getAnalytics.vocabModel;
       case ProgressIndicatorEnum.morphsUsed:
-        return _pangeaController.analytics.grammarModel;
+        return _pangeaController.getAnalytics.grammarModel;
       default:
         return null;
     }
@@ -94,9 +94,11 @@ class LearningProgressIndicatorsState
   int? getProgressPoints(ProgressIndicatorEnum indicator) {
     switch (indicator) {
       case ProgressIndicatorEnum.wordsUsed:
-        return _pangeaController.analytics.vocabModel.lemmasWithPoints.length;
+        return _pangeaController
+            .getAnalytics.vocabModel.lemmasWithPoints.length;
       case ProgressIndicatorEnum.morphsUsed:
-        return _pangeaController.analytics.grammarModel.lemmasWithPoints.length;
+        return _pangeaController
+            .getAnalytics.grammarModel.lemmasWithPoints.length;
       case ProgressIndicatorEnum.level:
         return level;
     }
@@ -129,12 +131,12 @@ class LearningProgressIndicatorsState
               ? const Color.fromARGB(255, 0, 190, 83)
               : Theme.of(context).colorScheme.primary,
           currentPoints: currentXP,
-          widthMultiplier: _pangeaController.analytics.levelProgress,
+          widthMultiplier: _pangeaController.getAnalytics.levelProgress,
         ),
         LevelBarDetails(
           fillColor: Theme.of(context).colorScheme.primary,
           currentPoints: serverXP,
-          widthMultiplier: _pangeaController.analytics.serverLevelProgress,
+          widthMultiplier: _pangeaController.getAnalytics.serverLevelProgress,
         ),
       ],
     );

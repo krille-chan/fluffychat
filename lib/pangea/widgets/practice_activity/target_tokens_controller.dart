@@ -27,7 +27,7 @@ class TargetTokensController {
     _targetTokens = await _initialize(pangeaMessageEvent);
 
     final allConstructs = MatrixState
-        .pangeaController.analytics.analyticsStream.value?.constructs;
+        .pangeaController.getAnalytics.analyticsStream.value?.constructs;
     await updateTokensWithConstructs(
       allConstructs ?? [],
       pangeaMessageEvent,

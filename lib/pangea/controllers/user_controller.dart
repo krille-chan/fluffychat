@@ -73,8 +73,14 @@ class UserController extends BaseController {
     Profile Function(Profile) update, {
     waitForDataInSync = false,
   }) async {
+    final prevTargetLang = profile.userSettings.targetLanguage;
+
     final Profile updatedProfile = update(profile);
     await updatedProfile.saveProfileData(waitForDataInSync: waitForDataInSync);
+
+    if (prevTargetLang != updatedProfile.userSettings.targetLanguage) {
+      setState({'prev_target_lang': prevTargetLang});
+    }
   }
 
   /// Creates a new profile for the user with the given date of birth.

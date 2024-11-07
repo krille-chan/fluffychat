@@ -15,8 +15,8 @@ import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
@@ -679,17 +679,21 @@ class ChatController extends State<ChatPageWithRoom>
         );
 
         if (msgEventId != null) {
-          pangeaController.myAnalytics.setState(
+          pangeaController.putAnalytics.setState(
             AnalyticsStream(
               eventId: msgEventId,
               roomId: room.id,
               constructs: [
-                ...(choreo!.grammarConstructUses(metadata: metadata)),
-                ...(originalSent!.vocabUses(
+                ...originalSent!.vocabUses(
                   choreo: choreo,
                   tokens: tokensSent!.tokens,
                   metadata: metadata,
-                )),
+                ),
+                ...originalSent.morphConstructUses(
+                  choreo: choreo,
+                  tokens: tokensSent.tokens,
+                  metadata: metadata,
+                ),
               ],
               origin: AnalyticsUpdateOrigin.sendMessage,
             ),

@@ -37,13 +37,13 @@ import '../../models/choreo_record.dart';
 import '../../models/representation_content_model.dart';
 import '../client_extension/client_extension.dart';
 
-part "children_and_parents_extension.dart";
-part "events_extension.dart";
 part "room_analytics_extension.dart";
+part "room_children_and_parents_extension.dart";
+part "room_events_extension.dart";
 part "room_information_extension.dart";
 part "room_settings_extension.dart";
-part "space_settings_extension.dart";
-part "user_permissions_extension.dart";
+part "room_space_settings_extension.dart";
+part "room_user_permissions_extension.dart";
 
 extension PangeaRoom on Room {
 // analytics
