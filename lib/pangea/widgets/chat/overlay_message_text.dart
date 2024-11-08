@@ -70,11 +70,16 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
       );
     }
 
-// Convert the entire message into a list of characters
+    // Convert the entire message into a list of characters
     final Characters messageCharacters =
         widget.pangeaMessageEvent.messageDisplayText.characters;
 
     // When building token positions, use grapheme cluster indices
+    // We use grapheme cluster indices to avoid splitting emojis and other
+    // complex characters that requires multiple code units.
+    // For instance, the emoji 🇺🇸 is represented by two code units:
+    // - \u{1F1FA}
+    // - \u{1F1F8}
     final List<TokenPosition> tokenPositions = [];
     int globalIndex = 0;
 
