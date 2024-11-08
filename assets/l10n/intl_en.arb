@@ -2805,5 +2805,6 @@
   "serverInformation": "Server information:",
   "name": "Name",
   "version": "Version",
-  "website": "Website"
+  "website": "Website",
+  "compressBeforeSending": "Compress before sending"
 }
