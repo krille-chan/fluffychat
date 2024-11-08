@@ -138,7 +138,11 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     _addLocalMessage(eventID, constructs).then(
       (_) {
         _clearDraftUses(roomID);
-        _decideWhetherToUpdateAnalyticsRoom(level, data.origin);
+        _decideWhetherToUpdateAnalyticsRoom(
+          level,
+          data.origin,
+          data.constructs,
+        );
       },
     );
   }
@@ -202,8 +206,12 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     }
 
     final level = _pangeaController.getAnalytics.level;
+
+    // the list 'uses' gets altered in the _addLocalMessage method,
+    // so copy it here to that the list of new uses is accurate
+    final List<OneConstructUse> newUses = List.from(uses);
     _addLocalMessage('draft$roomID', uses).then(
-      (_) => _decideWhetherToUpdateAnalyticsRoom(level, origin),
+      (_) => _decideWhetherToUpdateAnalyticsRoom(level, origin, newUses),
     );
   }
 
@@ -246,6 +254,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
   void _decideWhetherToUpdateAnalyticsRoom(
     int prevLevel,
     AnalyticsUpdateOrigin? origin,
+    List<OneConstructUse> newConstructs,
   ) {
     // cancel the last timer that was set on message event and
     // reset it to fire after _minutesBeforeUpdate minutes
@@ -266,7 +275,11 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     newLevel > prevLevel
         ? sendLocalAnalyticsToAnalyticsRoom()
         : analyticsUpdateStream.add(
-            AnalyticsUpdate(AnalyticsUpdateType.local, origin: origin),
+            AnalyticsUpdate(
+              AnalyticsUpdateType.local,
+              newConstructs,
+              origin: origin,
+            ),
           );
   }
 
@@ -334,6 +347,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
       analyticsUpdateStream.add(
         AnalyticsUpdate(
           AnalyticsUpdateType.server,
+          [],
           isLogout: onLogout,
         ),
       );
@@ -397,7 +411,13 @@ enum AnalyticsUpdateOrigin {
 class AnalyticsUpdate {
   final AnalyticsUpdateType type;
   final AnalyticsUpdateOrigin? origin;
+  final List<OneConstructUse> newConstructs;
   final bool isLogout;
 
-  AnalyticsUpdate(this.type, {this.isLogout = false, this.origin});
+  AnalyticsUpdate(
+    this.type,
+    this.newConstructs, {
+    this.isLogout = false,
+    this.origin,
+  });
 }
