@@ -137,6 +137,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
                 )
                 .toList(),
             isActive: true,
+            id: currentRecordModel?.hashCode.toString(),
           ),
         ],
       ),

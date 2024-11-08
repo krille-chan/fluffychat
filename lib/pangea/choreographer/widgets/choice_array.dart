@@ -20,6 +20,10 @@ class ChoicesArray extends StatefulWidget {
   final String originalSpan;
   final String Function(int) uniqueKeyForLayerLink;
 
+  /// Used to unqiuely identify the keys for choices, in cases where multiple
+  /// choices could have identical text, like in back-to-back practice activities
+  final String? id;
+
   /// some uses of this widget want to disable clicking of the choices
   final bool isActive;
 
@@ -33,6 +37,7 @@ class ChoicesArray extends StatefulWidget {
     required this.selectedChoiceIndex,
     this.isActive = true,
     this.onLongPress,
+    this.id,
   });
 
   @override
@@ -77,6 +82,7 @@ class ChoicesArrayState extends State<ChoicesArray> {
                     enableInteraction: enableInteractions,
                     disableInteraction: disableInteraction,
                     isSelected: widget.selectedChoiceIndex == index,
+                    id: widget.id,
                   ),
                 )
                 .toList(),
@@ -107,6 +113,7 @@ class ChoiceItem extends StatelessWidget {
     required this.interactionDisabled,
     required this.enableInteraction,
     required this.disableInteraction,
+    required this.id,
   });
 
   final MapEntry<int, Choice> entry;
@@ -117,6 +124,7 @@ class ChoiceItem extends StatelessWidget {
   final bool interactionDisabled;
   final VoidCallback enableInteraction;
   final VoidCallback disableInteraction;
+  final String? id;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +135,7 @@ class ChoiceItem extends StatelessWidget {
             ? const Duration(milliseconds: 500)
             : const Duration(days: 1),
         child: ChoiceAnimationWidget(
-          key: ValueKey(entry.value.text),
+          key: ValueKey("${entry.value.text}$id"),
           selected: entry.value.color != null,
           isGold: entry.value.isGold,
           enableInteraction: enableInteraction,
