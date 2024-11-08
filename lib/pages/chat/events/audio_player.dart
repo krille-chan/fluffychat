@@ -27,8 +27,7 @@ class AudioPlayerWidget extends StatefulWidget {
   static String? currentId;
 
   // #Pangea
-  // static const int wavesCount = 40;
-  static const int wavesCount = kIsWeb ? 100 : 40;
+  static const int wavesCount = 40;
 
   final int? sectionStartMS;
   final int? sectionEndMS;
