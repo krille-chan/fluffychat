@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -52,6 +53,17 @@ extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
         return L10n.of(context)!.level;
       case ProgressIndicatorEnum.morphsUsed:
         return L10n.of(context)!.grammar;
+    }
+  }
+
+  ConstructTypeEnum get constructType {
+    switch (this) {
+      case ProgressIndicatorEnum.wordsUsed:
+        return ConstructTypeEnum.vocab;
+      case ProgressIndicatorEnum.morphsUsed:
+        return ConstructTypeEnum.morph;
+      default:
+        return ConstructTypeEnum.vocab;
     }
   }
 }

@@ -29,8 +29,10 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
   late Animation<double> _fadeAnimation;
 
   StreamSubscription? _pointsSubscription;
-  int? get _prevXP => MatrixState.pangeaController.getAnalytics.prevXP;
-  int? get _currentXP => MatrixState.pangeaController.getAnalytics.currentXP;
+  int? get _prevXP =>
+      MatrixState.pangeaController.getAnalytics.constructListModel.prevXP;
+  int? get _currentXP =>
+      MatrixState.pangeaController.getAnalytics.constructListModel.totalXP;
   int? _addedPoints;
 
   @override

@@ -5,7 +5,6 @@ import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 
 /// Seperated out the target tokens from the practice activity card
@@ -26,12 +25,12 @@ class TargetTokensController {
 
     _targetTokens = await _initialize(pangeaMessageEvent);
 
-    final allConstructs = MatrixState
-        .pangeaController.getAnalytics.analyticsStream.value?.constructs;
-    await updateTokensWithConstructs(
-      allConstructs ?? [],
-      pangeaMessageEvent,
-    );
+    // final allConstructs = MatrixState
+    //     .pangeaController.getAnalytics.analyticsStream.value?.constructs;
+    // await updateTokensWithConstructs(
+    //   allConstructs ?? [],
+    //   pangeaMessageEvent,
+    // );
 
     return _targetTokens!;
   }
@@ -60,7 +59,7 @@ class TargetTokensController {
   ) async {
     final ConstructListModel constructList = ConstructListModel(
       uses: constructUses,
-      type: null,
+      // type: null,
     );
 
     _targetTokens ??= await _initialize(pangeaMessageEvent);
@@ -76,6 +75,7 @@ class TargetTokensController {
           ConstructIdentifier(
             lemma: construct.id.lemma,
             type: construct.id.type,
+            category: construct.id.category,
           ),
         );
         if (constructUseModel != null) {
