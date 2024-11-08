@@ -1,7 +1,10 @@
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/analytics_constants.dart';
+import 'package:fluffychat/pangea/enum/analytics/morph_categories_enum.dart';
+import 'package:fluffychat/pangea/enum/analytics/parts_of_speech_enum.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 enum ConstructTypeEnum {
   /// for vocabulary words
@@ -27,6 +30,17 @@ extension ConstructExtension on ConstructTypeEnum {
         return AnalyticsConstants.vocabUseMaxXP;
       case ConstructTypeEnum.morph:
         return AnalyticsConstants.morphUseMaxXP;
+    }
+  }
+
+  String? getDisplayCopy(String category, BuildContext context) {
+    switch (this) {
+      case ConstructTypeEnum.morph:
+        return getMorphologicalCategoryCopy(category, context);
+      case ConstructTypeEnum.vocab:
+        return getVocabCategoryName(category, context);
+      default:
+        return null;
     }
   }
 }

@@ -51,7 +51,11 @@ class ConstructAnalyticsModel {
 class OneConstructUse {
   String? lemma;
   String? form;
-  List<String> categories;
+
+  /// For vocab constructs, this is the POS. For morph
+  /// constructs, this is the morphological category.
+  String? category;
+
   ConstructTypeEnum constructType;
   ConstructUseTypeEnum useType;
 
@@ -66,7 +70,7 @@ class OneConstructUse {
     required this.lemma,
     required this.constructType,
     required this.metadata,
-    this.categories = const [],
+    this.category,
     this.form,
     this.id,
   });
@@ -81,13 +85,13 @@ class OneConstructUse {
         : null;
     debugger(when: kDebugMode && constructType == null);
 
-    List<String> categories = [];
-    final categoriesEntry = json['cat'] ?? json['categories'];
-    if (categoriesEntry != null) {
-      if (categoriesEntry is List) {
-        categories = List<String>.from(categoriesEntry);
-      } else if (categoriesEntry is String) {
-        categories = [categoriesEntry];
+    final categoryEntry = json['cat'] ?? json['categories'];
+    String? category;
+    if (categoryEntry != null) {
+      if ((categoryEntry is List) && categoryEntry.isNotEmpty) {
+        category = categoryEntry.first;
+      } else if (categoryEntry is String) {
+        category = categoryEntry;
       }
     }
 
@@ -95,7 +99,7 @@ class OneConstructUse {
       useType: ConstructUseTypeUtil.fromString(json['useType']),
       lemma: json['lemma'],
       form: json['form'],
-      categories: categories,
+      category: category,
       constructType: constructType ?? ConstructTypeEnum.vocab,
       id: json['id'],
       metadata: ConstructUseMetaData(
@@ -119,7 +123,7 @@ class OneConstructUse {
     data['constructType'] = constructType.string;
 
     if (id != null) data['id'] = id;
-    data['categories'] = categories;
+    data['categories'] = category;
     return data;
   }
 
@@ -138,6 +142,7 @@ class OneConstructUse {
   ConstructIdentifier get identifier => ConstructIdentifier(
         lemma: lemma!,
         type: constructType,
+        category: category,
       );
 }
 

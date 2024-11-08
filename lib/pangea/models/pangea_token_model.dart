@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:flutter/foundation.dart';
@@ -127,6 +129,7 @@ class PangeaToken {
         id: ConstructIdentifier(
           lemma: lemma.text,
           type: ConstructTypeEnum.vocab,
+          category: pos,
         ),
       ),
     );
@@ -135,8 +138,9 @@ class PangeaToken {
       constructs.add(
         ConstructWithXP(
           id: ConstructIdentifier(
-            lemma: morph.key,
+            lemma: morph.value,
             type: ConstructTypeEnum.morph,
+            category: morph.key,
           ),
         ),
       );
@@ -145,6 +149,21 @@ class PangeaToken {
     return TokenWithXP(
       token: this,
       constructs: constructs,
+    );
+  }
+
+  /// Given a [type] and [metadata], returns a [OneConstructUse] for this lemma
+  OneConstructUse toVocabUse(
+    ConstructUseTypeEnum type,
+    ConstructUseMetaData metadata,
+  ) {
+    return OneConstructUse(
+      useType: type,
+      lemma: lemma.text,
+      form: lemma.form,
+      constructType: ConstructTypeEnum.vocab,
+      metadata: metadata,
+      category: pos,
     );
   }
 }

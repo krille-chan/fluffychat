@@ -44,6 +44,7 @@ class ConstructListModel {
             uses: [],
             constructType: use.constructType,
             lemma: use.lemma!,
+            category: use.category,
           );
       currentUses.uses.add(use);
       _constructMap[use.identifier.string] = currentUses;
@@ -73,6 +74,15 @@ class ConstructListModel {
   List<String> get lemmasWithPoints =>
       constructListWithPoints.map((e) => e.lemma).toSet().toList();
 
+  Map<String, List<ConstructUses>> get categoriesToUses {
+    final Map<String, List<ConstructUses>> categoriesMap = {};
+    for (final use in constructListWithPoints) {
+      categoriesMap[use.category] ??= [];
+      categoriesMap[use.category]!.add(use);
+    }
+    return categoriesMap;
+  }
+
   int get maxXPPerLemma =>
       type?.maxXPPerLemma ?? ConstructTypeEnum.vocab.maxXPPerLemma;
 
@@ -91,12 +101,14 @@ class ConstructUses {
   final List<OneConstructUse> uses;
   final ConstructTypeEnum constructType;
   final String lemma;
+  final String? _category;
 
   ConstructUses({
     required this.uses,
     required this.constructType,
     required this.lemma,
-  });
+    required category,
+  }) : _category = category;
 
   // Total points for all uses of this lemma
   int get points {
@@ -115,4 +127,6 @@ class ConstructUses {
     });
     return _lastUsed = lastUse;
   }
+
+  String get category => _category ?? "Other";
 }

@@ -12,16 +12,32 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class ConstructIdentifier {
   final String lemma;
   final ConstructTypeEnum type;
+  final String? category;
 
-  ConstructIdentifier({required this.lemma, required this.type});
+  ConstructIdentifier({
+    required this.lemma,
+    required this.type,
+    this.category,
+  });
 
   factory ConstructIdentifier.fromJson(Map<String, dynamic> json) {
+    final categoryEntry = json['cat'] ?? json['categories'];
+    String? category;
+    if (categoryEntry != null) {
+      if (categoryEntry is String) {
+        category = categoryEntry;
+      } else if (categoryEntry is List) {
+        category = categoryEntry.first;
+      }
+    }
+
     try {
       return ConstructIdentifier(
         lemma: json['lemma'] as String,
         type: ConstructTypeEnum.values.firstWhere(
           (e) => e.string == json['type'],
         ),
+        category: category,
       );
     } catch (e, s) {
       debugger(when: kDebugMode);
@@ -34,6 +50,7 @@ class ConstructIdentifier {
     return {
       'lemma': lemma,
       'type': type.string,
+      'cat': category,
     };
   }
 
@@ -52,7 +69,8 @@ class ConstructIdentifier {
     return lemma.hashCode ^ type.hashCode;
   }
 
-  String get string => "$lemma-${type.string}";
+  String get string =>
+      "$lemma-${type.string}${category != null ? "-$category" : "-other"}";
 }
 
 class CandidateMessage {

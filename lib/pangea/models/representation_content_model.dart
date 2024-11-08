@@ -159,7 +159,7 @@ class PangeaRepresentation {
           OneConstructUse(
             useType: useType,
             lemma: entry.value,
-            categories: [entry.key],
+            category: entry.key,
             constructType: ConstructTypeEnum.morph,
             metadata: metadata,
           ),
@@ -168,7 +168,7 @@ class PangeaRepresentation {
 
       if (lemma.saveVocab) {
         uses.add(
-          lemma.toVocabUse(
+          token.toVocabUse(
             useType,
             metadata,
           ),
@@ -200,7 +200,7 @@ class PangeaRepresentation {
         if (stepContainedToken) {
           // give ga if IGC was used
           uses.add(
-            lemma.toVocabUse(
+            token.toVocabUse(
               ConstructUseTypeEnum.ga,
               metadata,
             ),
@@ -210,7 +210,7 @@ class PangeaRepresentation {
               OneConstructUse(
                 useType: ConstructUseTypeEnum.ga,
                 lemma: entry.value,
-                categories: [entry.key],
+                category: entry.key,
                 constructType: ConstructTypeEnum.morph,
                 metadata: metadata,
               ),
@@ -227,7 +227,7 @@ class PangeaRepresentation {
         OneConstructUse(
           useType: ConstructUseTypeEnum.wa,
           lemma: entry.value,
-          categories: [entry.key],
+          category: entry.key,
           constructType: ConstructTypeEnum.morph,
           metadata: metadata,
         ),
@@ -235,7 +235,7 @@ class PangeaRepresentation {
     }
     if (lemma.saveVocab) {
       uses.add(
-        lemma.toVocabUse(
+        token.toVocabUse(
           ConstructUseTypeEnum.wa,
           metadata,
         ),
