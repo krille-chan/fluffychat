@@ -1,18 +1,18 @@
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/analytics_popup/analytics_xp_tile.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class AnalyticsPopup extends StatefulWidget {
-  final ProgressIndicatorEnum indicator;
-  final ConstructListModel constructsModel;
+  final ConstructTypeEnum type;
   final bool showGroups;
 
   const AnalyticsPopup({
-    required this.indicator,
-    required this.constructsModel,
+    required this.type,
     this.showGroups = true,
     super.key,
   });
@@ -23,9 +23,14 @@ class AnalyticsPopup extends StatefulWidget {
 
 class AnalyticsPopupState extends State<AnalyticsPopup> {
   String? selectedCategory;
+  ConstructListModel get _constructsModel =>
+      MatrixState.pangeaController.getAnalytics.constructListModel;
 
-  List<MapEntry<String, List<ConstructUses>>> get categoriesToUses {
-    final entries = widget.constructsModel.categoriesToUses.entries.toList();
+  Map<String, List<ConstructUses>> get _categoriesToUses =>
+      _constructsModel.categoriesToUses(type: widget.type);
+
+  List<MapEntry<String, List<ConstructUses>>> get _sortedEntries {
+    final entries = _categoriesToUses.entries.toList();
     // Sort the list with custom logic
     entries.sort((a, b) {
       // Check if one of the keys is 'Other'
@@ -51,7 +56,7 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
       });
 
   String categoryCopy(category) =>
-      widget.constructsModel.type?.getDisplayCopy(
+      widget.type.getDisplayCopy(
         category,
         context,
       ) ??
@@ -61,10 +66,9 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
   Widget build(BuildContext context) {
     Widget? dialogContent;
     final bool hasNoData =
-        widget.constructsModel.constructListWithPoints.isEmpty;
-    final bool hasNoCategories =
-        widget.constructsModel.categoriesToUses.length == 1 &&
-            widget.constructsModel.categoriesToUses.keys.first == "Other";
+        _constructsModel.constructList(type: widget.type).isEmpty;
+    final bool hasNoCategories = _categoriesToUses.length == 1 &&
+        _categoriesToUses.entries.first.key == "Other";
 
     if (selectedCategory != null) {
       dialogContent = Column(
@@ -75,7 +79,7 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
           ),
           Expanded(
             child: ConstructsTileList(
-              widget.constructsModel.categoriesToUses[selectedCategory]!,
+              _categoriesToUses[selectedCategory]!,
             ),
           ),
         ],
@@ -84,13 +88,17 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
       dialogContent = Center(child: Text(L10n.of(context)!.noDataFound));
     } else if (hasNoCategories || !widget.showGroups) {
       dialogContent = ConstructsTileList(
-        widget.constructsModel.constructListWithPoints,
+        _constructsModel.constructList(type: widget.type).sorted((a, b) {
+          final comp = b.points.compareTo(a.points);
+          if (comp != 0) return comp;
+          return a.lemma.compareTo(b.lemma);
+        }),
       );
     } else {
       dialogContent = ListView.builder(
-        itemCount: categoriesToUses.length,
+        itemCount: _sortedEntries.length,
         itemBuilder: (context, index) {
-          final category = categoriesToUses[index];
+          final category = _sortedEntries[index];
           return Column(
             children: [
               ListTile(
@@ -115,7 +123,7 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
           borderRadius: BorderRadius.circular(20.0),
           child: Scaffold(
             appBar: AppBar(
-              title: Text(widget.indicator.tooltip(context)),
+              title: Text(widget.type.indicator.tooltip(context)),
               leading: IconButton(
                 icon: selectedCategory == null
                     ? const Icon(Icons.close)

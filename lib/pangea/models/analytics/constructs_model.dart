@@ -142,7 +142,7 @@ class OneConstructUse {
   ConstructIdentifier get identifier => ConstructIdentifier(
         lemma: lemma!,
         type: constructType,
-        category: category,
+        category: category ?? "",
       );
 }
 
