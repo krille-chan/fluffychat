@@ -134,16 +134,25 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return null;
       }
 
+      if (widget.pangeaMessageEvent.tokensWithXP == null) {
+        debugger(when: kDebugMode);
+        _updateFetchingActivity(false);
+        return null;
+      }
+
       final PracticeActivityModelResponse? activityResponse =
           await pangeaController.practiceGenerationController
               .getPracticeActivity(
         MessageActivityRequest(
           userL1: pangeaController.languageController.userL1!.langCode,
           userL2: pangeaController.languageController.userL2!.langCode,
-          messageText: widget.pangeaMessageEvent.messageDisplayText,
-          tokensWithXP: await widget.targetTokensController.targetTokens(
-            widget.pangeaMessageEvent,
-          ),
+          messageText: widget.pangeaMessageEvent.originalSent!.text,
+          //temp change
+          // TODO - get from new controller off of pangeaController
+          tokensWithXP: widget.pangeaMessageEvent.tokensWithXP!,
+          // tokensWithXP: await targetTokensController.targetTokens(
+          //   widget.pangeaMessageEvent,
+          // ),
           messageId: widget.pangeaMessageEvent.eventId,
           existingActivities: practiceActivities
               .map((activity) => activity.activityRequestMetaData)
@@ -315,6 +324,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     switch (currentActivity?.activityType) {
       case null:
         return null;
+      case ActivityTypeEnum.wordFocusListening:
+      case ActivityTypeEnum.hiddenWordListening:
       case ActivityTypeEnum.multipleChoice:
         return MultipleChoiceActivity(
           practiceCardController: this,
@@ -322,27 +333,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
           tts: widget.ttsController,
           eventID: widget.pangeaMessageEvent.eventId,
         );
-      case ActivityTypeEnum.wordFocusListening:
-        // return WordFocusListeningActivity(
-        //     activity: currentActivity!, practiceCardController: this);
-        return MultipleChoiceActivity(
-          practiceCardController: this,
-          currentActivity: currentActivity!,
-          tts: widget.ttsController,
-          eventID: widget.pangeaMessageEvent.eventId,
-        );
-      // default:
-      //   ErrorHandler.logError(
-      //     e: Exception('Unknown activity type'),
-      //     m: 'Unknown activity type',
-      //     data: {
-      //       'activityType': currentActivity!.activityType,
-      //     },
-      //   );
-      //   return Text(
-      //     L10n.of(context)!.oopsSomethingWentWrong,
-      //     style: BotStyle.text(context),
-      //   );
     }
   }
 

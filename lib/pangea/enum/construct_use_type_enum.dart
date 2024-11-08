@@ -42,11 +42,20 @@ enum ConstructUseTypeEnum {
   /// was target lemma in word-focus listening activity and correctly selected
   corWL,
 
-  /// form of lemma was read-aloud in word-focus listening activity and incorrectly selected
+  /// a form of lemma was read-aloud in word-focus listening activity and incorrectly selected
   incWL,
 
-  /// form of lemma was read-aloud in word-focus listening activity and correctly ignored
+  /// a form of the lemma was read-aloud in word-focus listening activity and correctly ignored
   ignWL,
+
+  /// correctly chose a form of the lemma in a hidden word listening activity
+  corHWL,
+
+  /// incorrectly chose a form of the lemma in a hidden word listening activity
+  incHWL,
+
+  /// ignored a form of the lemma in a hidden word listening activity
+  ignHWL,
 
   /// not defined, likely a new construct introduced by choreo and not yet classified by an old version of the client
   nan
@@ -71,12 +80,15 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.ignPA:
       case ConstructUseTypeEnum.ignWL:
       case ConstructUseTypeEnum.incWL:
+      case ConstructUseTypeEnum.incHWL:
+      case ConstructUseTypeEnum.ignHWL:
         return Icons.close;
 
       case ConstructUseTypeEnum.ga:
       case ConstructUseTypeEnum.corIGC:
       case ConstructUseTypeEnum.corPA:
       case ConstructUseTypeEnum.corWL:
+      case ConstructUseTypeEnum.corHWL:
         return Icons.check;
 
       case ConstructUseTypeEnum.unk:
@@ -98,6 +110,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
 
       case ConstructUseTypeEnum.wa:
       case ConstructUseTypeEnum.corWL:
+      case ConstructUseTypeEnum.corHWL:
         return 3;
 
       case ConstructUseTypeEnum.corIGC:
@@ -110,6 +123,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.ignIGC:
       case ConstructUseTypeEnum.ignPA:
       case ConstructUseTypeEnum.ignWL:
+      case ConstructUseTypeEnum.ignHWL:
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.nan:
         return 0;
@@ -123,6 +137,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
 
       case ConstructUseTypeEnum.incPA:
       case ConstructUseTypeEnum.incWL:
+      case ConstructUseTypeEnum.incHWL:
         return -3;
     }
   }

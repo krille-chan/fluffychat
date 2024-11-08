@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
@@ -46,6 +47,7 @@ class ConstructWithXP {
 class TokenWithXP {
   final PangeaToken token;
   final List<ConstructWithXP> constructs;
+  ActivityTypeEnum? targetType;
 
   DateTime? get lastUsed {
     return constructs.fold<DateTime?>(
@@ -60,6 +62,21 @@ class TokenWithXP {
     );
   }
 
+  // do a listen activity if the user has done definition activity and word listening with that word and not done hidden work listening
+  bool get shouldDoHiddenWorkListening {
+    return xp > 10 &&
+        constructs.where((c) => c.id.type == ConstructTypeEnum.vocab).any(
+              (element) =>
+                  element.condensedConstructUses
+                      .contains(ConstructUseTypeEnum.corPA)
+                  // to make it
+                  // && element.condensedConstructUses.contains(ConstructUseTypeEnum.corWL)
+                  &&
+                  !element.condensedConstructUses
+                      .contains(ConstructUseTypeEnum.corHWL),
+            );
+  }
+
   int get xp {
     return constructs.fold<int>(
       0,
@@ -70,6 +87,7 @@ class TokenWithXP {
   TokenWithXP({
     required this.token,
     required this.constructs,
+    required this.targetType,
   });
 
   factory TokenWithXP.fromJson(Map<String, dynamic> json) {
@@ -78,6 +96,14 @@ class TokenWithXP {
       constructs: (json['constructs'] as List)
           .map((e) => ConstructWithXP.fromJson(e as Map<String, dynamic>))
           .toList(),
+      targetType: json['target_type'] != null
+          ? ActivityTypeEnum.values.firstWhere(
+              (element) =>
+                  element.string == json['target_type'] as String ||
+                  element.string.split('.').last ==
+                      json['target_type'] as String,
+            )
+          : null,
     );
   }
 
@@ -85,6 +111,7 @@ class TokenWithXP {
     return {
       'token': token.toJson(),
       'constructs_with_xp': constructs.map((e) => e.toJson()).toList(),
+      'target_type': targetType?.string,
     };
   }
 
@@ -205,9 +232,8 @@ class MessageActivityRequest {
     required this.messageId,
     required this.existingActivities,
     required this.activityQualityFeedback,
-    clientCompatibleActivities,
-  }) : clientCompatibleActivities =
-            clientCompatibleActivities ?? ActivityTypeEnum.values;
+    required this.clientCompatibleActivities,
+  });
 
   factory MessageActivityRequest.fromJson(Map<String, dynamic> json) {
     final clientCompatibleActivitiesEntry =
@@ -217,13 +243,8 @@ class MessageActivityRequest {
         clientCompatibleActivitiesEntry is List) {
       clientCompatibleActivities = clientCompatibleActivitiesEntry
           .map(
-            (e) => ActivityTypeEnum.values.firstWhereOrNull(
-              (element) =>
-                  element.string == e as String ||
-                  element.string.split('.').last == e,
-            ),
+            (e) => ActivityTypeEnum.wordFocusListening.fromString(e as String),
           )
-          .where((entry) => entry != null)
           .cast<ActivityTypeEnum>()
           .toList();
     }

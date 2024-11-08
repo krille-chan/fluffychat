@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/word_audio_button.dart';
@@ -118,6 +119,17 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
               text: practiceActivity.content.answer,
               ttsController: widget.tts,
               eventID: widget.eventID,
+            ),
+          if (practiceActivity.activityType ==
+              ActivityTypeEnum.hiddenWordListening)
+            MessageAudioCard(
+              messageEvent:
+                  widget.practiceCardController.widget.pangeaMessageEvent,
+              overlayController:
+                  widget.practiceCardController.widget.overlayController,
+              tts: widget.practiceCardController.widget.overlayController.tts,
+              setIsPlayingAudio: widget.practiceCardController.widget
+                  .overlayController.setIsPlayingAudio,
             ),
           ChoicesArray(
             isLoading: false,

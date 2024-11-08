@@ -4,8 +4,8 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_token_text.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar_selection_area.dart';
-import 'package:fluffychat/pangea/widgets/chat/overlay_message_text.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -306,11 +306,29 @@ class MessageContent extends StatelessWidget {
               height: 1.3,
             );
 
-            if (overlayController != null && pangeaMessageEvent != null) {
-              return OverlayMessageText(
-                pangeaMessageEvent: pangeaMessageEvent!,
-                overlayController: overlayController!,
+            if (pangeaMessageEvent != null &&
+                pangeaMessageEvent!.shouldHideTokens) {
+              return MessageTokenText(
+                ownMessage: pangeaMessageEvent!.ownMessage,
+                // fullText and tokensWithDisplay have to be from the same rep/lang as each other
+                // this could be error-prone
+                fullText: pangeaMessageEvent!.originalSent?.text ??
+                    pangeaMessageEvent!.body,
+                tokensWithDisplay: pangeaMessageEvent!.tokensWithXP
+                    ?.map(
+                      (token) => TokenWithDisplayInstructions(
+                        token: token.token,
+                        hideContent: token.targetType != null,
+                        highlight: false,
+                      ),
+                    )
+                    .toList(),
+                onClick: (token) => controller.showToolbar(pangeaMessageEvent!),
               );
+            }
+
+            if (overlayController != null && pangeaMessageEvent != null) {
+              return overlayController!.messageTokenText;
             }
 
             if (immersionMode && pangeaMessageEvent != null) {

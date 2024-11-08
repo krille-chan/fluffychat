@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
+import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
@@ -20,6 +21,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 /// A minimized version of AnalyticsController that get the logged in user's analytics
 class GetAnalyticsController {
   late PangeaController _pangeaController;
+  late MessageAnalyticsController perMessage;
   final List<AnalyticsCacheEntry> _cache = [];
   StreamSubscription<AnalyticsUpdate>? _analyticsUpdateSubscription;
   CachedStreamController<AnalyticsStreamUpdate> analyticsStream =
@@ -52,6 +54,10 @@ class GetAnalyticsController {
 
   GetAnalyticsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
+
+    perMessage = MessageAnalyticsController(
+      this,
+    );
   }
 
   String? get l2Code => _pangeaController.languageController.userL2?.langCode;
@@ -109,6 +115,7 @@ class GetAnalyticsController {
     _cache.clear();
     analyticsStream.add(AnalyticsStreamUpdate(constructs: []));
     prevXP = null;
+    perMessage.dispose();
   }
 
   Future<void> onAnalyticsUpdate(AnalyticsUpdate analyticsUpdate) async {

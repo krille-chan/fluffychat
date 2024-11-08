@@ -149,6 +149,7 @@ class PangeaToken {
     return TokenWithXP(
       token: this,
       constructs: constructs,
+      targetType: null,
     );
   }
 

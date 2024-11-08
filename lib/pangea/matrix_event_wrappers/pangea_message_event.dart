@@ -9,6 +9,7 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_ev
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
@@ -543,6 +544,31 @@ class PangeaMessageEvent {
   int get numberOfActivitiesCompleted {
     return MatrixState.pangeaController.activityRecordController
         .getCompletedActivityCount(eventId);
+  }
+
+  //TODO - call from controller in pangeaController where they're stored according to string of text
+  // or maybe event_id
+  List<TokenWithXP>? get tokensWithXP =>
+      MatrixState.pangeaController.getAnalytics.perMessage
+          .get(this, false)
+          ?.tokens;
+
+  // TODO - see if some tokens should have activity requiring hiding
+  bool get shouldHideTokens {
+    // try {
+    if (ownMessage || messageDisplayRepresentation?.tokens == null) {
+      return false;
+    }
+
+    return MatrixState.pangeaController.getAnalytics.perMessage
+            .get(this, false)
+            ?.shouldHideToken ??
+        false;
+    // } catch (e, s) {
+    //   debugger(when: kDebugMode);
+    //   ErrorHandler.logError(e: e, s: s);
+    //   return false;
+    // }
   }
 
   String? get l2Code =>
