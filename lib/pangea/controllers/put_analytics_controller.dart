@@ -21,7 +21,7 @@ enum AnalyticsUpdateType { server, local }
 class PutAnalyticsController extends BaseController<AnalyticsStream> {
   late PangeaController _pangeaController;
   StreamController<AnalyticsUpdate> analyticsUpdateStream =
-      StreamController<AnalyticsUpdate>();
+      StreamController.broadcast();
   StreamSubscription<AnalyticsStream>? _analyticsStream;
   StreamSubscription? _languageStream;
   Timer? _updateTimer;

@@ -22,7 +22,7 @@ class GetAnalyticsController {
   final List<AnalyticsCacheEntry> _cache = [];
   StreamSubscription<AnalyticsUpdate>? _analyticsUpdateSubscription;
   StreamController<AnalyticsStreamUpdate> analyticsStream =
-      StreamController<AnalyticsStreamUpdate>();
+      StreamController.broadcast();
 
   ConstructListModel constructListModel = ConstructListModel(uses: []);
 
