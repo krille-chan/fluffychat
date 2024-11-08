@@ -93,30 +93,18 @@ Future<void> pLanguageDialog(
                             context: context,
                             future: () async {
                               try {
-                                pangeaController.myAnalytics
-                                    .sendLocalAnalyticsToAnalyticsRoom()
-                                    .then((_) {
-                                  pangeaController.userController.updateProfile(
-                                    (profile) {
-                                      profile.userSettings.sourceLanguage =
-                                          selectedSourceLanguage.langCode;
-                                      profile.userSettings.targetLanguage =
-                                          selectedTargetLanguage.langCode;
-                                      return profile;
-                                    },
-                                    waitForDataInSync: true,
-                                  );
-                                }).then((_) {
-                                  // if the profile update is successful, reset cached analytics
-                                  // data, since analytics data corresponds to the user's L2
-                                  pangeaController.myAnalytics.dispose();
-                                  pangeaController.analytics.dispose();
-
-                                  pangeaController.myAnalytics.initialize();
-                                  pangeaController.analytics.initialize();
-
-                                  Navigator.pop(context);
-                                });
+                                await pangeaController.userController
+                                    .updateProfile(
+                                  (profile) {
+                                    profile.userSettings.sourceLanguage =
+                                        selectedSourceLanguage.langCode;
+                                    profile.userSettings.targetLanguage =
+                                        selectedTargetLanguage.langCode;
+                                    return profile;
+                                  },
+                                  waitForDataInSync: true,
+                                );
+                                Navigator.pop(context);
                               } catch (err, s) {
                                 debugger(when: kDebugMode);
                                 ErrorHandler.logError(e: err, s: s);

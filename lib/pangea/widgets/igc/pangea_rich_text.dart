@@ -91,12 +91,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
       debugger(when: kDebugMode);
     }
 
-    repEvent = widget.pangeaMessageEvent
-        .representationByLanguage(
-          widget.pangeaMessageEvent.messageDisplayLangCode,
-        )
-        ?.content;
-
+    repEvent = widget.pangeaMessageEvent.messageDisplayRepresentation?.content;
     if (repEvent == null) {
       setState(() => _fetchingRepresentation = true);
       widget.pangeaMessageEvent

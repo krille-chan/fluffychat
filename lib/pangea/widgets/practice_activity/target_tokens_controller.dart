@@ -26,7 +26,7 @@ class TargetTokensController {
     _targetTokens = await _initialize(pangeaMessageEvent);
 
     final allConstructs = MatrixState
-        .pangeaController.analytics.analyticsStream.value?.constructs;
+        .pangeaController.getAnalytics.analyticsStream.value?.constructs;
     await updateTokensWithConstructs(
       allConstructs ?? [],
       pangeaMessageEvent,
@@ -38,12 +38,11 @@ class TargetTokensController {
   Future<List<TokenWithXP>> _initialize(
     PangeaMessageEvent pangeaMessageEvent,
   ) async {
-    final tokens = await pangeaMessageEvent
-        .representationByLanguage(pangeaMessageEvent.messageDisplayLangCode)
-        ?.tokensGlobal(
-          pangeaMessageEvent.senderId,
-          pangeaMessageEvent.originServerTs,
-        );
+    final tokens =
+        await pangeaMessageEvent.messageDisplayRepresentation?.tokensGlobal(
+      pangeaMessageEvent.senderId,
+      pangeaMessageEvent.originServerTs,
+    );
 
     if (tokens == null || tokens.isEmpty) {
       debugger(when: kDebugMode);

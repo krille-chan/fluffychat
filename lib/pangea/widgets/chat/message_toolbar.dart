@@ -10,10 +10,13 @@ import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_speech_to_text_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
+import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
+import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/widgets/message_display_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/target_tokens_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +27,15 @@ const double minCardHeight = 70;
 class MessageToolbar extends StatelessWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overLayController;
-  final TtsController tts;
+  final TtsController ttsController;
+  final TargetTokensController targetTokensController;
 
   const MessageToolbar({
     super.key,
     required this.pangeaMessageEvent,
     required this.overLayController,
-    required this.tts,
+    required this.ttsController,
+    required this.targetTokensController,
   });
 
   Widget toolbarContent(BuildContext context) {
@@ -58,7 +63,7 @@ class MessageToolbar extends StatelessWidget {
           messageEvent: pangeaMessageEvent,
           overlayController: overLayController,
           selection: overLayController.selectedSpan,
-          tts: tts,
+          tts: ttsController,
           setIsPlayingAudio: overLayController.setIsPlayingAudio,
         );
       case MessageMode.speechToText:
@@ -67,8 +72,27 @@ class MessageToolbar extends StatelessWidget {
         );
       case MessageMode.definition:
         if (!overLayController.isSelection) {
-          return MessageDisplayCard(
-            displayText: L10n.of(context)!.selectToDefine,
+          return FutureBuilder(
+            future: targetTokensController.targetTokens(pangeaMessageEvent),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState != ConnectionState.done) {
+                return const ToolbarContentLoadingIndicator();
+              } else if (snapshot.hasError ||
+                  snapshot.data == null ||
+                  snapshot.data!.isEmpty) {
+                return const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: CardErrorWidget(
+                    error: "No tokens available",
+                    maxWidth: AppConfig.toolbarMinWidth,
+                  ),
+                );
+              } else {
+                return MessageDisplayCard(
+                  displayText: L10n.of(context)!.selectToDefine,
+                );
+              }
+            },
           );
         } else {
           try {
@@ -106,7 +130,8 @@ class MessageToolbar extends StatelessWidget {
         return PracticeActivityCard(
           pangeaMessageEvent: pangeaMessageEvent,
           overlayController: overLayController,
-          tts: tts,
+          ttsController: ttsController,
+          targetTokensController: targetTokensController,
         );
       default:
         debugger(when: kDebugMode);
@@ -124,10 +149,6 @@ class MessageToolbar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
-        border: Border.all(
-          width: 2,
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-        ),
         borderRadius: const BorderRadius.all(
           Radius.circular(AppConfig.borderRadius),
         ),
@@ -138,11 +159,15 @@ class MessageToolbar extends StatelessWidget {
         minHeight: AppConfig.toolbarMinHeight,
         // maxWidth is set by MessageSelectionOverlay
       ),
-      child: SingleChildScrollView(
-        child: AnimatedSize(
-          duration: FluffyThemes.animationDuration,
-          child: toolbarContent(context),
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          AnimatedSize(
+            duration: FluffyThemes.animationDuration,
+            child: toolbarContent(context),
+          ),
+        ],
       ),
     );
   }

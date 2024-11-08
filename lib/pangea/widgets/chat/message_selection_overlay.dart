@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_header.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/target_tokens_controller.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -73,12 +74,17 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   final TtsController tts = TtsController();
   bool isPlayingAudio = false;
 
+  bool get showToolbarButtons => !widget._pangeaMessageEvent.isAudioMessage;
+  final TargetTokensController targetTokensController =
+      TargetTokensController();
+
   @override
   void initState() {
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: FluffyThemes.animationDuration,
+      duration:
+          const Duration(milliseconds: AppConfig.overlayAnimationDuration),
     );
 
     activitiesLeftToComplete = activitiesLeftToComplete -
@@ -104,8 +110,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       },
     ).listen((_) => setState(() {}));
 
-    setInitialToolbarMode();
     tts.setupTTS();
+    setInitialToolbarMode();
   }
 
   /// We need to check if the setState call is safe to call immediately
@@ -281,7 +287,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
   }
 
-  final double toolbarButtonsHeight = 50;
+  double get toolbarButtonsHeight =>
+      showToolbarButtons ? AppConfig.toolbarButtonsHeight : 0;
   double get reactionsHeight => hasReactions ? 28 : 0;
   double get belowMessageHeight => toolbarButtonsHeight + reactionsHeight;
 
@@ -369,7 +376,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     widget.chatController.scrollController.animateTo(
       widget.chatController.scrollController.offset - scrollOffset,
-      duration: FluffyThemes.animationDuration,
+      duration:
+          const Duration(milliseconds: AppConfig.overlayAnimationDuration),
       curve: FluffyThemes.animationCurve,
     );
     _animationController.forward();
@@ -484,8 +492,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             MessageToolbar(
               pangeaMessageEvent: widget._pangeaMessageEvent,
               overLayController: this,
-              tts: tts,
+              ttsController: tts,
+              targetTokensController: targetTokensController,
             ),
+            const SizedBox(height: 8),
             SizedBox(
               height: adjustedMessageHeight,
               child: OverlayMessage(

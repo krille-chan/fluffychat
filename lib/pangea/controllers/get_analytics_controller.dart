@@ -3,9 +3,8 @@ import 'dart:math';
 
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
-import 'package:fluffychat/pangea/constants/match_rule_ids.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
@@ -70,10 +69,10 @@ class GetAnalyticsController {
 
   void initialize() {
     _analyticsUpdateSubscription ??= _pangeaController
-        .myAnalytics.analyticsUpdateStream.stream
+        .putAnalytics.analyticsUpdateStream.stream
         .listen(onAnalyticsUpdate);
 
-    _pangeaController.myAnalytics.lastUpdatedCompleter.future.then((_) {
+    _pangeaController.putAnalytics.lastUpdatedCompleter.future.then((_) {
       getConstructs().then((_) => updateAnalyticsStream());
     });
   }
@@ -127,11 +126,12 @@ class GetAnalyticsController {
       uses: constructs,
       type: ConstructTypeEnum.vocab,
     );
-    final errors = ConstructListModel(
+
+    final morphs = ConstructListModel(
       uses: constructs,
-      type: ConstructTypeEnum.grammar,
+      type: ConstructTypeEnum.morph,
     );
-    return words.points + errors.points;
+    return words.points + morphs.points;
   }
 
   List<OneConstructUse> get allConstructUses {
@@ -168,7 +168,7 @@ class GetAnalyticsController {
         return formattedCache;
       } catch (err) {
         // if something goes wrong while trying to format the local data, clear it
-        _pangeaController.myAnalytics
+        _pangeaController.putAnalytics
             .clearMessagesSinceUpdate(clearDrafts: true);
         return {};
       }
@@ -205,7 +205,7 @@ class GetAnalyticsController {
     await client.roomsLoading;
 
     // don't try to get constructs until last updated time has been loaded
-    await _pangeaController.myAnalytics.lastUpdatedCompleter.future;
+    await _pangeaController.putAnalytics.lastUpdatedCompleter.future;
 
     // if forcing a refreshing, clear the cache
     if (forceUpdate) _cache.clear();
@@ -226,25 +226,20 @@ class GetAnalyticsController {
     final List<ConstructAnalyticsEvent> constructEvents =
         await allMyConstructs();
 
-    final List<OneConstructUse> unfilteredUses = [];
+    final List<OneConstructUse> uses = [];
     for (final event in constructEvents) {
-      unfilteredUses.addAll(event.content.uses);
+      uses.addAll(event.content.uses);
     }
-
-    // filter out any constructs that are not relevant to the user
-    final List<OneConstructUse> filteredUses = await filterConstructs(
-      unfilteredConstructs: unfilteredUses,
-    );
 
     // if there isn't already a valid, local cache, cache the filtered uses
     if (local == null) {
       cacheConstructs(
         constructType: constructType,
-        uses: filteredUses,
+        uses: uses,
       );
     }
 
-    return filteredUses;
+    return uses;
   }
 
   /// Get the last time the user updated their analytics for their current l2
@@ -271,21 +266,6 @@ class GetAnalyticsController {
     return await analyticsRoom.getAnalyticsEvents(userId: client.userID!) ?? [];
   }
 
-  /// Filter out constructs that are not relevant to the user, specifically those from
-  /// rooms in which the user is a teacher and those that are interative translation span constructs
-  Future<List<OneConstructUse>> filterConstructs({
-    required List<OneConstructUse> unfilteredConstructs,
-  }) async {
-    return unfilteredConstructs
-        .where(
-          (use) =>
-              use.lemma != "Try interactive translation" &&
-                  use.lemma != "itStart" ||
-              use.lemma != MatchRuleIds.interactiveTranslation,
-        )
-        .toList();
-  }
-
   /// Get the cached construct uses for the current user, if it exists
   List<OneConstructUse>? getConstructsLocal({
     ConstructTypeEnum? constructType,
@@ -295,7 +275,7 @@ class GetAnalyticsController {
     );
 
     if (index > -1) {
-      final DateTime? lastUpdated = _pangeaController.myAnalytics.lastUpdated;
+      final DateTime? lastUpdated = _pangeaController.putAnalytics.lastUpdated;
       if (_cache[index].needsUpdate(lastUpdated)) {
         _cache.removeAt(index);
         return null;

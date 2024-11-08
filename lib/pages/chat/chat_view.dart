@@ -9,7 +9,7 @@ import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
+import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/chat/chat_floating_action_button.dart';

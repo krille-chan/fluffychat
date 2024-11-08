@@ -75,12 +75,24 @@ class OverlayMessage extends StatelessWidget {
     );
 
     final displayEvent = pangeaMessageEvent.event.getDisplayEvent(timeline);
-    var color = theme.colorScheme.surfaceContainerHighest;
+    // ignore: deprecated_member_use
+    var color = theme.colorScheme.surfaceVariant;
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent
           : theme.colorScheme.primary;
     }
+
+    final noBubble = {
+          MessageTypes.Video,
+          MessageTypes.Image,
+          MessageTypes.Sticker,
+        }.contains(pangeaMessageEvent.event.messageType) &&
+        !pangeaMessageEvent.event.redacted;
+    final noPadding = {
+      MessageTypes.File,
+      MessageTypes.Audio,
+    }.contains(pangeaMessageEvent.event.messageType);
 
     return Material(
       color: color,
@@ -95,10 +107,12 @@ class OverlayMessage extends StatelessWidget {
               AppConfig.borderRadius,
             ),
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
+          padding: noBubble || noPadding
+              ? EdgeInsets.zero
+              : const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
           width: messageWidth,
           height: messageHeight,
           child: MessageContent(
