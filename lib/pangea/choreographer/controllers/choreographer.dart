@@ -68,6 +68,7 @@ class Choreographer {
   }
 
   void send(BuildContext context) {
+    debugPrint("can send message: $canSendMessage");
     if (!canSendMessage) {
       if (igc.igcTextData != null) {
         igc.showFirstMatch(context);
@@ -145,8 +146,9 @@ class Choreographer {
     // 2)  that this call is being made after we've determined if we have an applicable choreo in order to
     // say whether correction was run on the message. we may eventually want
     // to edit the useType after
-    if (igc.igcTextData?.tokens == null ||
-        igc.igcTextData?.detectedLanguage == null) {
+    if ((l2Lang != null && l1Lang != null) &&
+        (igc.igcTextData?.tokens == null ||
+            igc.igcTextData?.detectedLanguage == null)) {
       await igc.getIGCTextData(onlyTokensAndLanguageDetection: true);
     }
 
@@ -255,6 +257,8 @@ class Choreographer {
           pangeaController.subscriptionController.subscriptionStatus;
 
       if (canSendStatus != SubscriptionStatus.subscribed ||
+          l2Lang == null ||
+          l1Lang == null ||
           (!igcEnabled && !itEnabled) ||
           (!isAutoIGCEnabled && !manual && choreoMode != ChoreoMode.it)) {
         return;
@@ -597,7 +601,7 @@ class Choreographer {
 
   bool get canSendMessage {
     // if there's an error, let them send. we don't want to block them from sending in this case
-    if (errorService.isError) return true;
+    if (errorService.isError || l2Lang == null || l1Lang == null) return true;
 
     // if they're in IT mode, don't let them send
     if (itEnabled && isRunningIT) return false;

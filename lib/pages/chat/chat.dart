@@ -678,15 +678,15 @@ class ChatController extends State<ChatPageWithRoom>
           eventId: msgEventId,
         );
 
-        if (msgEventId != null) {
+        if (msgEventId != null && originalSent != null && tokensSent != null) {
           pangeaController.putAnalytics.setState(
             AnalyticsStream(
               eventId: msgEventId,
               roomId: room.id,
               constructs: [
-                ...originalSent!.vocabAndMorphUses(
+                ...originalSent.vocabAndMorphUses(
                   choreo: choreo,
-                  tokens: tokensSent!.tokens,
+                  tokens: tokensSent.tokens,
                   metadata: metadata,
                 ),
               ],

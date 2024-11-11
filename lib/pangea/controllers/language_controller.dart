@@ -40,11 +40,19 @@ class LanguageController {
   }
 
   LanguageModel? get userL1 {
-    return _userL1Code != null ? PangeaLanguage.byLangCode(_userL1Code!) : null;
+    if (_userL1Code == null) return null;
+    final langModel = PangeaLanguage.byLangCode(_userL1Code!);
+    return langModel.langCode == LanguageKeys.unknownLanguage
+        ? null
+        : langModel;
   }
 
   LanguageModel? get userL2 {
-    return _userL2Code != null ? PangeaLanguage.byLangCode(_userL2Code!) : null;
+    if (_userL2Code == null) return null;
+    final langModel = PangeaLanguage.byLangCode(_userL2Code!);
+    return langModel.langCode == LanguageKeys.unknownLanguage
+        ? null
+        : langModel;
   }
 
   String? activeL1Code() {
