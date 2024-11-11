@@ -1290,14 +1290,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
-  new_keyboard_shortcuts:
-    dependency: "direct main"
-    description:
-      name: new_keyboard_shortcuts
-      sha256: af1389c7450c29746addfb6da5fcc5e85a83340db02a987d2012ed26c73147e3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.4"
   node_preamble:
     dependency: transitive
     description:
@@ -2319,14 +2311,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
-  visibility_detector:
-    dependency: transitive
-    description:
-      name: visibility_detector
-      sha256: ec932527913f32f65aa01d3a393504240b9e9021ecc77123f017755605e48832
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.2"
   vm_service:
     dependency: transitive
     description:

@@ -67,7 +67,6 @@ dependencies:
   matrix: ^0.34.0
   mime: ^1.0.6
   native_imaging: ^0.1.1
-  new_keyboard_shortcuts: ^0.1.4
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^8.0.2
   pasteboard: ^0.2.0
