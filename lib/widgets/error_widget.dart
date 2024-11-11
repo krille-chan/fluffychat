@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/utils/error_reporter.dart';
+import 'package:flutter/material.dart';
 
 class FluffyChatErrorWidget extends StatefulWidget {
   final FlutterErrorDetails details;
@@ -21,6 +20,10 @@ class _FluffyChatErrorWidgetState extends State<FluffyChatErrorWidget> {
     }
     knownExceptions.add(widget.details.exception.toString());
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // #Pangea
+      // related sentry issue: https://pangea-chat.sentry.io/issues/5970490357
+      if (!context.mounted) return;
+      // Pangea#
       ErrorReporter(context, 'Error Widget').onErrorCallback(
         widget.details.exception,
         widget.details.stack,

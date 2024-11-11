@@ -4493,5 +4493,6 @@
   "enterLanguageLevel": "Please enter a language level",
   "enterDiscussionTopic": "Please enter a discussion topic",
   "selectBotChatMode": "Select chat mode",
-  "messageNotInTargetLang": "Message not in target language"
+  "messageNotInTargetLang": "Message not in target language",
+  "other": "Other"
 }

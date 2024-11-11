@@ -55,12 +55,17 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
         selectedCategory = category;
       });
 
-  String categoryCopy(category) =>
-      widget.type.getDisplayCopy(
-        category,
-        context,
-      ) ??
-      category;
+  String categoryCopy(category) {
+    if (category.toLowerCase() == "other") {
+      return L10n.of(context)!.other;
+    }
+
+    return widget.type.getDisplayCopy(
+          category,
+          context,
+        ) ??
+        category;
+  }
 
   @override
   Widget build(BuildContext context) {

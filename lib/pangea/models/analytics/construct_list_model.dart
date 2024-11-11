@@ -4,6 +4,7 @@ import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 
 /// A wrapper around a list of [OneConstructUse]s, used to simplify
 /// the process of filtering / sorting / displaying the events.
@@ -104,7 +105,23 @@ class ConstructListModel {
       0,
       (total, construct) => total + construct.points,
     );
-    level = 1 + sqrt((1 + 8 * totalXP / 100) / 2).floor();
+
+    // Don't call .floor() if NaN or Infinity
+    // https://pangea-chat.sentry.io/issues/6052871310
+    final double levelCalculation = 1 + sqrt((1 + 8 * totalXP / 100) / 2);
+    if (!levelCalculation.isNaN && levelCalculation.isFinite) {
+      level = levelCalculation.floor();
+    } else {
+      level = 0;
+      ErrorHandler.logError(
+        e: "Calculated level in Nan or Infinity",
+        data: {
+          "totalXP": totalXP,
+          "prevXP": prevXP,
+          "level": levelCalculation,
+        },
+      );
+    }
   }
 
   ConstructUses? getConstructUses(ConstructIdentifier identifier) {
