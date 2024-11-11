@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_287",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWh(){return new B.Ie(A.dK("sr"))},
+cWj(){return new B.Ie(A.dK("sr"))},
 Ie:function Ie(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" chats and "+A.u(e)+" participants"},
 gmq(){return"No more chats found..."},
 goC(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go6(){return"Unread"},
-ges(){return"Space"},
+geu(){return"Space"},
 gnR(){return"Spaces"},
 gfG(){return"\u0417\u0430\u0431\u0440\u0430\u043d\u0438 \u0443 \u045b\u0430\u0441\u043a\u0430\u045a\u0443"},
 ghX(){return"\u0417\u0430\u0431\u0440\u0430\u045a\u0435\u043d"},
@@ -126,7 +126,7 @@ giO(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u043d\u043e \u0443 \u043a\u043
 gfb(d){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458"},
 giP(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458 \u0443 \u043a\u043b\u0438\u043f\u0431\u043e\u0440\u0434"},
 iQ(d){return"\u041d\u0435 \u043c\u043e\u0433\u0443 \u0434\u0430 \u0434\u0435\u0448\u0438\u0444\u0440\u0443\u0458\u0435\u043c \u043f\u043e\u0440\u0443\u043a\u0443: "+d},
-ev(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+A.u(d)},
+ew(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+A.u(d)},
 gfS(d){return"\u041d\u0430\u043f\u0440\u0430\u0432\u0438"},
 iR(d){return d+" \u043d\u0430\u043f\u0440\u0430\u0432\u0438 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
 geP(){return"Create group"},
@@ -162,7 +162,7 @@ gfc(){return"Custom emojis and stickers"},
 glD(){return"Add or share custom emojis or stickers which can be used in any chat."},
 gff(){return"\u0441\u043a\u0440\u0430\u045b\u0435\u043d\u0438\u0446\u0430"},
 gjc(){return"\u041c\u043e\u0440\u0430\u0442\u0435 \u0434\u0430 \u0438\u0437\u0430\u0431\u0435\u0440\u0435\u0442\u0435 \u0441\u043a\u0440\u0430\u045b\u0435\u043d\u0438\u0446\u0443 \u0438 \u0441\u043b\u0438\u043a\u0443 \u0437\u0430 \u0435\u043c\u043e\u0442\u0438!"},
-gew(){return"\u043f\u0440\u0430\u0437\u043d\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
+gex(){return"\u043f\u0440\u0430\u0437\u043d\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
 gjd(){return"\u0413\u043b\u043e\u0431\u0430\u043b\u043d\u043e \u0443\u043a\u0459\u0443\u0447\u0438 \u043f\u0430\u043a\u0435\u0442 \u0435\u043c\u043e\u0442\u0438\u0458\u0430"},
 geS(){return"\u0423\u043a\u0459\u0443\u0447\u0443\u0458\u0435 \u0448\u0438\u0444\u0440\u043e\u0432\u0430\u045a\u0435"},
 gje(){return"\u0428\u0438\u0444\u0440\u043e\u0432\u0430\u045a\u0435 \u0432\u0438\u0448\u0435 \u043d\u0435\u045b\u0435\u0442\u0435 \u043c\u043e\u045b\u0438 \u0434\u0430 \u0438\u0441\u043a\u0459\u0443\u0447\u0438\u0442\u0435. \u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
@@ -233,7 +233,7 @@ gep(){return"\u0423\u0447\u0438\u0442\u0430\u0432\u0430\u043c\u2026 \u0421\u0430
 gjG(){return"\u0423\u0447\u0438\u0442\u0430\u0458 \u0458\u043e\u0448\u2026"},
 gjH(){return"Location services are disabled. Please enable them to be able to share your location."},
 gjI(){return"Location permission denied. Please grant them to be able to share your location."},
-gez(){return"\u041f\u0440\u0438\u0458\u0430\u0432\u0430"},
+geA(){return"\u041f\u0440\u0438\u0458\u0430\u0432\u0430"},
 jJ(d){return"\u041f\u0440\u0438\u0458\u0430\u0432\u0430 \u043d\u0430 "+d},
 gh3(){return"\u041e\u0434\u0458\u0430\u0432\u0430"},
 gjK(){return"\u0418\u0437\u043c\u0435\u043d\u0435 \u0447\u043b\u0430\u043d\u043e\u0432\u0430"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ie,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"Ie":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"MjGYCL4QqhAIq94L2S5/vmKQRJc=");
+a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"HDd/234DN0NgBWHROflB2L1I0ws=");
 //# sourceMappingURL=main.dart.js_287.part.js.map

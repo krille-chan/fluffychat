@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_276",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cW7(){return new B.I5(A.dK("nb"))},
+cW9(){return new B.I5(A.dK("nb"))},
 I5:function I5(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" chats and "+A.u(e)+" participants"},
 gmq(){return"No more chats found..."},
 goC(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go6(){return"Unread"},
-ges(){return"Space"},
+geu(){return"Space"},
 gnR(){return"Spaces"},
 gfG(){return"Bannlys fra sludring"},
 ghX(){return"Bannlyst"},
@@ -126,7 +126,7 @@ giO(){return"Kopiert til utklippstavle"},
 gfb(d){return"Kopier"},
 giP(){return"Kopier til utklippstavle"},
 iQ(d){return"Kunne ikke dekryptere melding: "+d},
-ev(d){return A.u(d)+" deltagere"},
+ew(d){return A.u(d)+" deltagere"},
 gfS(d){return"Opprett"},
 iR(d){return d+" opprettet sludringen"},
 geP(){return"Create group"},
@@ -162,7 +162,7 @@ gfc(){return"Custom emojis and stickers"},
 glD(){return"Add or share custom emojis or stickers which can be used in any chat."},
 gff(){return"Smilefjes-kode"},
 gjc(){return"Du m\xe5 velge en smilefjes-kode og et bilde!"},
-gew(){return"Tom sludring"},
+gex(){return"Tom sludring"},
 gjd(){return"Skru p\xe5 smilefjespakke for hele programmet"},
 geS(){return"Skru p\xe5 kryptering"},
 gje(){return"Du vil ikke kunne skru av kryptering lenger. Er du sikker?"},
@@ -233,7 +233,7 @@ gep(){return"Laster inn\u2026 Vent."},
 gjG(){return"Last inn mer\u2026"},
 gjH(){return"Location services are disabled. Please enable them to be able to share your location."},
 gjI(){return"Location permission denied. Please grant them to be able to share your location."},
-gez(){return"Logg inn"},
+geA(){return"Logg inn"},
 jJ(d){return"Logg inn p\xe5 "+d},
 gh3(){return"Logg ut"},
 gjK(){return"Medlemsendringer"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I5,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I5":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"0q1LbfPFGAr8JziUGSE6Bd7VpM8=");
+a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"vJmaOIL4RhjsY4KFsgqKD5SQ9SI=");
 //# sourceMappingURL=main.dart.js_276.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_294",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWn(){return new B.Ik(A.dK("vi"))},
+cWp(){return new B.Ik(A.dK("vi"))},
 Ik:function Ik(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" chats and "+A.u(e)+" participants"},
 gmq(){return"No more chats found..."},
 goC(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go6(){return"Unread"},
-ges(){return"Space"},
+geu(){return"Space"},
 gnR(){return"Spaces"},
 gfG(){return"C\u1ea5m kh\u1ecfi cu\u1ed9c tr\xf2 chuy\u1ec7n"},
 ghX(){return"\u0110\xe3 b\u1ecb c\u1ea5m"},
@@ -126,7 +126,7 @@ giO(){return"Copied to clipboard"},
 gfb(d){return"Sao ch\xe9p"},
 giP(){return"Copy to clipboard"},
 iQ(d){return"Kh\xf4ng th\u1ec3 gi\u1ea3i m\xe3 tin nh\u1eafn: "+d},
-ev(d){return A.u(d)+" th\xe0nh vi\xean"},
+ew(d){return A.u(d)+" th\xe0nh vi\xean"},
 gfS(d){return"T\u1ea1o"},
 iR(d){return d+" \u0111\xe3 t\u1ea1o cu\u1ed9c tr\xf2 chuy\u1ec7n"},
 geP(){return"Create group"},
@@ -162,7 +162,7 @@ gfc(){return"Custom emojis and stickers"},
 glD(){return"Add or share custom emojis or stickers which can be used in any chat."},
 gff(){return"Emote shortcode"},
 gjc(){return"You need to pick an emote shortcode and an image!"},
-gew(){return"Empty chat"},
+gex(){return"Empty chat"},
 gjd(){return"Enable emote pack globally"},
 geS(){return"Enable encryption"},
 gje(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -233,7 +233,7 @@ gep(){return"Loading\u2026 Please wait."},
 gjG(){return"Load more\u2026"},
 gjH(){return"Location services are disabled. Please enable them to be able to share your location."},
 gjI(){return"Location permission denied. Please grant them to be able to share your location."},
-gez(){return"Login"},
+geA(){return"Login"},
 jJ(d){return"Log in to "+d},
 gh3(){return"Logout"},
 gjK(){return"Member changes"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ik,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"Ik":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_294",e:"endPart",h:b})})($__dart_deferred_initializers__,"dt6QMdlPo5dMfuxeSEcYrdafW40=");
+a.eventLog.push({p:"main.dart.js_294",e:"endPart",h:b})})($__dart_deferred_initializers__,"dnNiUUSrFtvF33ai+AxSsfWDyE4=");
 //# sourceMappingURL=main.dart.js_294.part.js.map

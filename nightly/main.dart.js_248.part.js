@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_248",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVU(){return new B.HS(A.dK("gl"))},
+cVW(){return new B.HS(A.dK("gl"))},
 HS:function HS(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" charlas e "+A.u(e)+" participantes"},
 gmq(){return"Non se atopan m\xe1is charlas\u2026"},
 goC(){return"Sen charlas por aqu\xed. Comeza unha nova conversa con algu\xe9n premendo no bot\xf3n de abaixo. \u2935\ufe0f"},
 go6(){return"Sen ler"},
-ges(){return"Espazo"},
+geu(){return"Espazo"},
 gnR(){return"Espazos"},
 gfG(){return"Vetar na conversa"},
 ghX(){return"Vetada"},
@@ -126,7 +126,7 @@ giO(){return"Copiado ao portapapeis"},
 gfb(d){return"Copiar"},
 giP(){return"Copiar ao portapapeis"},
 iQ(d){return"Non se descifrou a mensaxe: "+d},
-ev(d){return A.u(d)+" participantes"},
+ew(d){return A.u(d)+" participantes"},
 gfS(d){return"Crear"},
 iR(d){return"\ud83d\udcac "+d+" creou a conversa"},
 geP(){return"Crear grupo"},
@@ -162,7 +162,7 @@ gfc(){return"Emojis personais e adhesivos"},
 glD(){return"Engade ou comparte emojis personais e adhesivos que poden usarse nas charlas."},
 gff(){return"Atallo de Emote"},
 gjc(){return"Escribe un atallo e asocialle unha imaxe!"},
-gew(){return"Conversa baleira"},
+gex(){return"Conversa baleira"},
 gjd(){return"Activar paquete emote globalmente"},
 geS(){return"Activar cifraxe"},
 gje(){return"Non poder\xe1s desactivar a cifraxe posteriormente, tes certeza?"},
@@ -233,7 +233,7 @@ gep(){return"Cargando... Agarda."},
 gjG(){return"Cargar m\xe1is\u2026"},
 gjH(){return"Os servizos de localizaci\xf3n est\xe1n desactivados. Act\xedvaos para poder compartir a localizaci\xf3n."},
 gjI(){return"Permiso de localizaci\xf3n denegado. Concede este permiso para poder compartir a localizaci\xf3n."},
-gez(){return"Acceder"},
+geA(){return"Acceder"},
 jJ(d){return"Entrar en "+d},
 gh3(){return"Pechar sesi\xf3n"},
 gjK(){return"Cambios de participantes"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HS,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HS":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"5Y5fR1ik/iw3xTPCG9BiD29PKsY=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"m3tfdiGOt/on9UnD8mnpylgSBQU=");
 //# sourceMappingURL=main.dart.js_248.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_230",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVL(){return new B.HJ(A.dK("eo"))},
+cVN(){return new B.HJ(A.dK("eo"))},
 HJ:function HJ(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" chats and "+A.u(e)+" participants"},
 gmq(){return"No more chats found..."},
 goC(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go6(){return"Unread"},
-ges(){return"Space"},
+geu(){return"Space"},
 gnR(){return"Spaces"},
 gfG(){return"Forbari de babilo"},
 ghX(){return"Forbarita"},
@@ -126,7 +126,7 @@ giO(){return"Kopiite al tondujo"},
 gfb(d){return"Kopii"},
 giP(){return"Kopii al tondujo"},
 iQ(d){return"Ne povis mal\u0109ifri mesa\u011don: "+d},
-ev(d){return A.u(d)+" partoprenantoj"},
+ew(d){return A.u(d)+" partoprenantoj"},
 gfS(d){return"Krei"},
 iR(d){return d+" kreis la babilon"},
 geP(){return"Create group"},
@@ -162,7 +162,7 @@ gfc(){return"Custom emojis and stickers"},
 glD(){return"Add or share custom emojis or stickers which can be used in any chat."},
 gff(){return"Mallongigo de mieneto"},
 gjc(){return"Vi devas elekti mallongigon de mieneto kaj bildon!"},
-gew(){return"Malplena babilo"},
+gex(){return"Malplena babilo"},
 gjd(){return"\u015calti mienetaron \u0109ie"},
 geS(){return"\u015calti \u0109ifradon"},
 gje(){return"Vi ne povos mal\u015dalti la \u0109ifradon. \u0108u vi certas?"},
@@ -233,7 +233,7 @@ gep(){return"Enlegante\u2026 bonvolu atendi."},
 gjG(){return"Enlegi pli\u2026"},
 gjH(){return"Location services are disabled. Please enable them to be able to share your location."},
 gjI(){return"Location permission denied. Please grant them to be able to share your location."},
-gez(){return"Saluti"},
+geA(){return"Saluti"},
 jJ(d){return"Saluti servilon "+d},
 gh3(){return"Adia\u016di"},
 gjK(){return"\u015can\u011doj de anoj"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HJ,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HJ":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"GUYINWvHjHN+4/aYYOzE+J4sqkM=");
+a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"rb+TnTHQNUUiu06qmqNamhqq6D0=");
 //# sourceMappingURL=main.dart.js_230.part.js.map

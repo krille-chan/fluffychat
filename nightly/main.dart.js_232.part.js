@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_232",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVM(){return new B.HK(A.dK("es"))},
+cVO(){return new B.HK(A.dK("es"))},
 HK:function HK(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" chats y "+A.u(e)+" participantes"},
 gmq(){return"No se encontraron m\xe1s chats..."},
 goC(){return"No se han encontrado chats. Inicia un nuevo chat usando el bot\xf3n de abajo. \u2935\ufe0f"},
 go6(){return"No le\xeddos"},
-ges(){return"Espacio"},
+geu(){return"Espacio"},
 gnR(){return"Espacios"},
 gfG(){return"Vetar del chat"},
 ghX(){return"Vetado"},
@@ -126,7 +126,7 @@ giO(){return"Copiado al portapapeles"},
 gfb(d){return"Copiar"},
 giP(){return"Copiar al portapapeles"},
 iQ(d){return"No se pudo descifrar el mensaje: "+d},
-ev(d){return A.u(d)+" participantes"},
+ew(d){return A.u(d)+" participantes"},
 gfS(d){return"Crear"},
 iR(d){return"\ud83d\udcac"+d+" cre\xf3 el chat"},
 geP(){return"Crear grupo"},
@@ -162,7 +162,7 @@ gfc(){return"Emojis y stickers personalizados"},
 glD(){return"Agrega o comparte emojis y stickers personalizados que se pueden utilizar en cualquier chat."},
 gff(){return"Atajo de emote"},
 gjc(){return"\xa1Debes elegir un atajo de emote y una imagen!"},
-gew(){return"Chat vac\xedo"},
+gex(){return"Chat vac\xedo"},
 gjd(){return"Habilitar paquete de emoticonos a nivel general"},
 geS(){return"Habilitar la encriptaci\xf3n"},
 gje(){return"Ya no podr\xe1 deshabilitar el cifrado. \xbfEst\xe1s seguro?"},
@@ -233,7 +233,7 @@ gep(){return"Cargando\u2026 Por favor espere."},
 gjG(){return"Mostrar m\xe1s\u2026"},
 gjH(){return"Los servicios de ubicaci\xf3n est\xe1n deshabilitado. Habilite para poder compartir su ubicaci\xf3n."},
 gjI(){return"Permiso de ubicaci\xf3n denegado. Conc\xe9deles que puedan compartir tu ubicaci\xf3n."},
-gez(){return"Acceso"},
+geA(){return"Acceso"},
 jJ(d){return"Iniciar sesi\xf3n en "+d},
 gh3(){return"Cerrar sesi\xf3n"},
 gjK(){return"Cambios de miembros"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HK,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HK":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"m5FDjQ2239mG3Dh6bHFDT8afaao=");
+a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"Rjw+tjsfMtm3UGBrC9Rv+EDHK60=");
 //# sourceMappingURL=main.dart.js_232.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_251",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVV(){return new B.HT(A.dK("he"))},
+cVX(){return new B.HT(A.dK("he"))},
 HT:function HT(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" chats and "+A.u(e)+" participants"},
 gmq(){return"No more chats found..."},
 goC(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go6(){return"Unread"},
-ges(){return"Space"},
+geu(){return"Space"},
 gnR(){return"Spaces"},
 gfG(){return"\u05e6\u05d0\u05d8 \u05d7\u05e1\u05d5\u05dd"},
 ghX(){return"\u05d7\u05e1\u05d5\u05dd"},
@@ -126,7 +126,7 @@ giO(){return"\u05d4\u05d5\u05e2\u05ea\u05e7 \u05dc\u05dc\u05d5\u05d7 \u05d4\u05d
 gfb(d){return"\u05d4\u05e2\u05ea\u05e7"},
 giP(){return"\u05d4\u05e2\u05ea\u05e7 \u05dc\u05dc\u05d5\u05d7"},
 iQ(d){return"\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05e4\u05e2\u05e0\u05d7 \u05d4\u05d5\u05d3\u05e2\u05d4: "+d},
-ev(d){return A.u(d)+" \u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd"},
+ew(d){return A.u(d)+" \u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd"},
 gfS(d){return"\u05e6\u05d5\u05e8"},
 iR(d){return d+" \u05d9\u05e6\u05e8 \u05d0\u05ea \u05d4\u05e6'\u05d0\u05d8"},
 geP(){return"Create group"},
@@ -162,7 +162,7 @@ gfc(){return"Custom emojis and stickers"},
 glD(){return"Add or share custom emojis or stickers which can be used in any chat."},
 gff(){return"Emote shortcode"},
 gjc(){return"You need to pick an emote shortcode and an image!"},
-gew(){return"\u05e6'\u05d0\u05d8 \u05e8\u05d9\u05e7"},
+gex(){return"\u05e6'\u05d0\u05d8 \u05e8\u05d9\u05e7"},
 gjd(){return"Enable emote pack globally"},
 geS(){return"\u05d0\u05e4\u05e9\u05e8 \u05d4\u05e6\u05e4\u05e0\u05d4"},
 gje(){return"\u05dc\u05d0 \u05ea\u05d5\u05db\u05dc \u05dc\u05d1\u05d8\u05dc \u05d0\u05ea \u05d4\u05d4\u05e6\u05e4\u05e0\u05d4 \u05d9\u05d5\u05ea\u05e8. \u05d4\u05d0\u05dd \u05d0\u05ea\u05d4 \u05d1\u05d8\u05d5\u05d7?"},
@@ -233,7 +233,7 @@ gep(){return"\u05d8\u05d5\u05e2\u05df \u05d0\u05e0\u05d0 \u05d4\u05de\u05ea\u05d
 gjG(){return"\u05d8\u05e2\u05df \u05e2\u05d5\u05d3\u2026"},
 gjH(){return"\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9 \u05d4\u05de\u05d9\u05e7\u05d5\u05dd \u05de\u05d5\u05e9\u05d1\u05ea\u05d9\u05dd. \u05d0\u05e0\u05d0 \u05d4\u05e4\u05e2\u05dc \u05d0\u05d5\u05ea\u05dd \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3 \u05d0\u05ea \u05d4\u05de\u05d9\u05e7\u05d5\u05dd \u05e9\u05dc\u05da."},
 gjI(){return"\u05d4\u05e8\u05e9\u05d0\u05ea \u05d4\u05de\u05d9\u05e7\u05d5\u05dd \u05e0\u05d3\u05d7\u05ea\u05d4. \u05d0\u05e0\u05d0 \u05d0\u05e4\u05e9\u05e8 \u05d0\u05ea \u05d4\u05d9\u05db\u05d5\u05dc\u05ea \u05dc\u05e9\u05ea\u05e3 \u05d0\u05ea \u05de\u05d9\u05e7\u05d5\u05de\u05da."},
-gez(){return"\u05db\u05e0\u05d9\u05e1\u05d4"},
+geA(){return"\u05db\u05e0\u05d9\u05e1\u05d4"},
 jJ(d){return"\u05d4\u05d9\u05db\u05e0\u05e1 \u05d0\u05dc "+d},
 gh3(){return"\u05d9\u05e6\u05d9\u05d0\u05d4"},
 gjK(){return"\u05e9\u05d9\u05e0\u05d5\u05d9\u05d9\u05dd \u05d1\u05d7\u05d1\u05e8"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HT,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HT":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_251",e:"endPart",h:b})})($__dart_deferred_initializers__,"220F5IZdPfCvWz4EkJFCfLYpOCo=");
+a.eventLog.push({p:"main.dart.js_251",e:"endPart",h:b})})($__dart_deferred_initializers__,"BV20uo3Fj0E6FgxTmJQcBhxqs+o=");
 //# sourceMappingURL=main.dart.js_251.part.js.map

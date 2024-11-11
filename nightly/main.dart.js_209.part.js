@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_209",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVG(){return new B.HE(A.dK("ca"))},
+cVI(){return new B.HE(A.dK("ca"))},
 HE:function HE(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" xats i "+A.u(e)+" participants"},
 gmq(){return"No hi ha m\xe9s xats..."},
 goC(){return"Encara no hi ha xats. Obre una conversa amb alg\xfa picant al bot\xf3 de sota. \u2935\ufe0f"},
 go6(){return"Sense llegir"},
-ges(){return"Espai"},
+geu(){return"Espai"},
 gnR(){return"Espais"},
 gfG(){return"Veta del xat"},
 ghX(){return"Vetadi"},
@@ -126,7 +126,7 @@ giO(){return"S\u2019ha copiat al porta-retalls"},
 gfb(d){return"Copia"},
 giP(){return"Copia al porta-retalls"},
 iQ(d){return"No s'ha pogut desxifrar el missatge: "+d},
-ev(d){return A.u(d)+" participants"},
+ew(d){return A.u(d)+" participants"},
 gfS(d){return"Crea"},
 iR(d){return"\ud83d\udcac "+d+" ha creat el xat"},
 geP(){return"Crea un grup"},
@@ -162,7 +162,7 @@ gfc(){return"Emojis i stickers propis"},
 glD(){return"Afegeix o comparteix emojis o stickers. Els podr\xe0s fer servir en qualsevol conversa."},
 gff(){return"Codi d'emoticona"},
 gjc(){return"Has de seleccionar un codi d'emoticona i una imatge!"},
-gew(){return"Xat buit"},
+gex(){return"Xat buit"},
 gjd(){return"Activa el paquet d'emoticones global"},
 geS(){return"Activa el xifratge"},
 gje(){return"No podreu desactivar el xifratge mai m\xe9s. N\u2019esteu segur?"},
@@ -233,7 +233,7 @@ gep(){return"S\u2019est\xe0 carregant\u2026 Espereu."},
 gjG(){return"Carrega\u2019n m\xe9s\u2026"},
 gjH(){return"S\u2019han desactivat els serveis d\u2019ubicaci\xf3. Activeu-los per a compartir la vostra ubicaci\xf3."},
 gjI(){return"S\u2019ha rebutjat el perm\xeds d\u2019ubicaci\xf3. Atorgueu-lo per a poder compartir la vostra ubicaci\xf3."},
-gez(){return"Inicia la sessi\xf3"},
+geA(){return"Inicia la sessi\xf3"},
 jJ(d){return"Inicia sessi\xf3 a "+d},
 gh3(){return"Finalitza la sessi\xf3"},
 gjK(){return"Canvis de participants"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HE,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HE":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_209",e:"endPart",h:b})})($__dart_deferred_initializers__,"5c6NVvi9v3aufy7pHyJHLs7CqAw=");
+a.eventLog.push({p:"main.dart.js_209",e:"endPart",h:b})})($__dart_deferred_initializers__,"wZeU8W8H11x+O/bTLgLK7IVZ/9g=");
 //# sourceMappingURL=main.dart.js_209.part.js.map

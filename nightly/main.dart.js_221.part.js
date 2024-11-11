@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_221",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVI(){return new B.HG(A.dK("de"))},
+cVK(){return new B.HG(A.dK("de"))},
 HG:function HG(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" Chats und "+A.u(e)+" Teilnehmer"},
 gmq(){return"Keine weiteren Chats gefunden ..."},
 goC(){return"Hier wurden noch keine Chats gefunden. Starte einen neuen Chat mit jemandem, indem du die Schaltfl\xe4che unten verwenden. \u2935\ufe0f"},
 go6(){return"Ungelesen"},
-ges(){return"Space"},
+geu(){return"Space"},
 gnR(){return"Spaces"},
 gfG(){return"Aus dem Chat verbannen"},
 ghX(){return"Verbannt"},
@@ -126,7 +126,7 @@ giO(){return"Wurde in die Zwischenablage kopiert"},
 gfb(d){return"Kopieren"},
 giP(){return"In Zwischenablage kopieren"},
 iQ(d){return"Nachricht konnte nicht entschl\xfcsselt werden: "+d},
-ev(d){return A.u(d)+" Mitglieder"},
+ew(d){return A.u(d)+" Mitglieder"},
 gfS(d){return"Erstellen"},
 iR(d){return"\ud83d\udcac "+d+" hat den Chat erstellt"},
 geP(){return"Gruppe erstellen"},
@@ -162,7 +162,7 @@ gfc(){return"Eigene Emojis und Sticker"},
 glD(){return"Eigene Emojis oder Sticker zur Nutzung im Chat hinzuf\xfcgen oder teilen."},
 gff(){return"Emoticon-K\xfcrzel"},
 gjc(){return"W\xe4hle ein Emoticon-K\xfcrzel und ein Bild!"},
-gew(){return"Leerer Chat"},
+gex(){return"Leerer Chat"},
 gjd(){return"Aktiviere Emoticon-B\xfcndel global"},
 geS(){return"Verschl\xfcsselung anschalten"},
 gje(){return"Du wirst die Verschl\xfcsselung nicht mehr ausstellen k\xf6nnen. Bist Du sicher?"},
@@ -233,7 +233,7 @@ gep(){return"Lade \u2026 Bitte warten."},
 gjG(){return"Mehr laden \u2026"},
 gjH(){return"Standort ist deaktiviert. Bitte aktivieren, um den Standort teilen zu k\xf6nnen."},
 gjI(){return"Standort-Berechtigung wurde abgelehnt. Bitte akzeptieren, um den Standort teilen zu k\xf6nnen."},
-gez(){return"Anmelden"},
+geA(){return"Anmelden"},
 jJ(d){return"Bei "+d+" anmelden"},
 gh3(){return"Abmelden"},
 gjK(){return"\xc4nderungen der Mitglieder"},
@@ -571,5 +571,5 @@ x(B.HG,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HG":{"aR":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_221",e:"endPart",h:b})})($__dart_deferred_initializers__,"k4AAvMu5JLHuS1+La5+XLYdg5BA=");
+a.eventLog.push({p:"main.dart.js_221",e:"endPart",h:b})})($__dart_deferred_initializers__,"0O52vPdktF7MNlQ3azs4fHYzHKs=");
 //# sourceMappingURL=main.dart.js_221.part.js.map

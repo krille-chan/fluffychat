@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_279",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cW9(){return new B.I7(A.dK("pl"))},
+cWb(){return new B.I7(A.dK("pl"))},
 I7:function I7(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" chats and "+A.u(e)+" participants"},
 gmq(){return"No more chats found..."},
 goC(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go6(){return"Unread"},
-ges(){return"Space"},
+geu(){return"Space"},
 gnR(){return"Spaces"},
 gfG(){return"Ban na czacie"},
 ghX(){return"Zbanowany/-a"},
@@ -126,7 +126,7 @@ giO(){return"Skopiowano do schowka"},
 gfb(d){return"Kopiuj"},
 giP(){return"Skopiuj do schowka"},
 iQ(d){return"Nie mo\u017cna odszyfrowa\u0107 wiadomo\u015bci: "+d},
-ev(d){return A.u(d)+" uczestnik\xf3w"},
+ew(d){return A.u(d)+" uczestnik\xf3w"},
 gfS(d){return"Stw\xf3rz"},
 iR(d){return"\ud83d\udcac "+d+" zacz\u0105\u0142/-\u0119\u0142a rozmow\u0119"},
 geP(){return"Utw\xf3rz grup\u0119"},
@@ -162,7 +162,7 @@ gfc(){return"Custom emojis and stickers"},
 glD(){return"Add or share custom emojis or stickers which can be used in any chat."},
 gff(){return"Kod Emotikony"},
 gjc(){return"Musisz wybra\u0107 kod emotikony oraz obraz!"},
-gew(){return"Pusty czat"},
+gex(){return"Pusty czat"},
 gjd(){return"W\u0142\u0105cz paczk\u0119 emotikon globalnie"},
 geS(){return"Aktywuj szyfowanie"},
 gje(){return"Nie b\u0119dziesz ju\u017c m\xf3g\u0142 wy\u0142\u0105czy\u0107 szyfrowania. Jeste\u015b pewny?"},
@@ -233,7 +233,7 @@ gep(){return"\u0141adowanie\u2026 Prosz\u0119 czeka\u0107."},
 gjG(){return"Za\u0142aduj wi\u0119cej\u2026"},
 gjH(){return"Us\u0142ugi lokalizacji s\u0105 wy\u0142\u0105czone. Prosz\u0119 w\u0142\u0105cz je aby m\xf3c udost\u0119pni\u0107 swoj\u0105 lokalizacj\u0119."},
 gjI(){return"Brak uprawnie\u0144. Prosz\u0119 zezw\xf3l aplikacji na dost\u0119p do lokalizacji aby m\xf3c j\u0105 udost\u0119pni\u0107."},
-gez(){return"Zaloguj si\u0119"},
+geA(){return"Zaloguj si\u0119"},
 jJ(d){return"Zaloguj si\u0119 do "+d},
 gh3(){return"Wyloguj si\u0119"},
 gjK(){return"Zmiany cz\u0142onk\xf3w"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I7,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I7":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"Jgs5wu9MCk0EMRMUYt0Yd6sOrxE=");
+a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"94XdeCkV6EnxCHtHRdttLeaEN5I=");
 //# sourceMappingURL=main.dart.js_279.part.js.map

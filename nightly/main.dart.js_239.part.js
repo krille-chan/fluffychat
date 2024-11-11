@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_239",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVO(){return new B.HM(A.dK("eu"))},
+cVQ(){return new B.HM(A.dK("eu"))},
 HM:function HM(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" txat eta "+A.u(e)+" partaide"},
 gmq(){return"Ez da beste txatik aurkitu..."},
 goC(){return"Ez da txatik aurkitu. Hasi norbaitekin txateatzen beheko botoia erabiliz. \u2935\ufe0f"},
 go6(){return"Irakurtzeke"},
-ges(){return"Gunea"},
+geu(){return"Gunea"},
 gnR(){return"Guneak"},
 gfG(){return"Txatera batzeko debekua ezarri"},
 ghX(){return"Kanporatuta"},
@@ -126,7 +126,7 @@ giO(){return"Arbelera kopiatu da"},
 gfb(d){return"Kopiatu"},
 giP(){return"Kopiatu arbelera"},
 iQ(d){return"Ezin izan da mezua deszifratu: "+d},
-ev(d){return A.u(d)+" partaide"},
+ew(d){return A.u(d)+" partaide"},
 gfS(d){return"Sortu"},
 iR(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
 geP(){return"Sortu taldea"},
@@ -162,7 +162,7 @@ gfc(){return"Emoji eta pegatina propioak"},
 glD(){return"Gehitu edo partekatu edozein txatetan erabil daitezkeen emoji edo pegatina propioak."},
 gff(){return"Laburdura"},
 gjc(){return"Emote-laburdura eta irudi bat aukeratu behar dituzu!"},
-gew(){return"Txata hutsik dago"},
+gex(){return"Txata hutsik dago"},
 gjd(){return"Gaitu emote-sorta txat guztietarako"},
 geS(){return"Gaitu zifratzea"},
 gje(){return"Ezingo duzu zifratzea ezgaitu. Ziur zaude?"},
@@ -233,7 +233,7 @@ gep(){return"Kargatzen\u2026 itxaron."},
 gjG(){return"Kargatu gehiago\u2026"},
 gjH(){return"Kokapen zerbitzuak ezgaituta daude. Gaitu zure kokapena partekatu ahal izateko."},
 gjI(){return"Kokapen baimena ukatu da. Eman zure kokapena partekatzeko baimena."},
-gez(){return"Hasi saioa"},
+geA(){return"Hasi saioa"},
 jJ(d){return"Hasi saioa "+d+"(e)n"},
 gh3(){return"Amaitu saioa"},
 gjK(){return"Kideen aldaketak"},
@@ -571,5 +571,5 @@ x(B.HM,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HM":{"aR":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"1SQ2IpwfjiMf3ZZ54uVLXlSnSRk=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"PmA1Fn+2rMbNBSw/eDMcb4PU1os=");
 //# sourceMappingURL=main.dart.js_239.part.js.map

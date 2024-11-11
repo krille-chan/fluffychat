@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_269",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cW1(){return new B.I_(A.dK("it"))},
+cW3(){return new B.I_(A.dK("it"))},
 I_:function I_(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" chat e "+A.u(e)+" partecipanti"},
 gmq(){return"Non sono state trovate altre chat..."},
 goC(){return"Nessuna chat trovata. Inizia una nuova chat con qualcuno usando il pulsante qui sotto. \u2935\ufe0f"},
 go6(){return"Non letti"},
-ges(){return"Spazio"},
+geu(){return"Spazio"},
 gnR(){return"Spazi"},
 gfG(){return"Bandisci dalla chat"},
 ghX(){return"Bandito"},
@@ -126,7 +126,7 @@ giO(){return"Copiato negli Appunti"},
 gfb(d){return"Copia"},
 giP(){return"Copia negli appunti"},
 iQ(d){return"Impossibile decriptare messaggio: "+d},
-ev(d){return A.u(d)+" partecipanti"},
+ew(d){return A.u(d)+" partecipanti"},
 gfS(d){return"Crea"},
 iR(d){return"\ud83d\udcac "+d+" ha creato la chat"},
 geP(){return"Crea gruppo"},
@@ -162,7 +162,7 @@ gfc(){return"Emoji e adesivi personalizzati"},
 glD(){return"Aggiungi o condividi emoji o adesivi personalizzati che possono essere utilizzati in qualsiasi chat."},
 gff(){return"Scorciatoia emote"},
 gjc(){return"Devi scegliere una scorciatoia emote e aggiungere un immagine!"},
-gew(){return"Discussione vuota"},
+gex(){return"Discussione vuota"},
 gjd(){return"Abilita i pacchetti emotes globalmente"},
 geS(){return"Abilita la crittografia"},
 gje(){return"Non potrai disabilitare la crittografia in futuro. Sei sicuro?"},
@@ -233,7 +233,7 @@ gep(){return"Caricamento\u2026 Attendere prego."},
 gjG(){return"Carica di pi\xf9\u2026"},
 gjH(){return"I servizi di localizzazione sono disabilitati. Per favore abilitali per poter condividere la tua posizione."},
 gjI(){return"Permesso per accedere alla posizione negato. Per favore concedilo per essere in grado di condividere la tua posizione."},
-gez(){return"Accedi"},
+geA(){return"Accedi"},
 jJ(d){return"Accedi a "+d},
 gh3(){return"Esci"},
 gjK(){return"Cambiamenti di membri"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I_,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I_":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_269",e:"endPart",h:b})})($__dart_deferred_initializers__,"q8SeSb061Qean4ZJ3TW4ilD23Ik=");
+a.eventLog.push({p:"main.dart.js_269",e:"endPart",h:b})})($__dart_deferred_initializers__,"lDk0+IC9ixgdCp/EAF3RBKwwc14=");
 //# sourceMappingURL=main.dart.js_269.part.js.map

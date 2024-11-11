@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_216",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVH(){return new B.HF(A.dK("cs"))},
+cVJ(){return new B.HF(A.dK("cs"))},
 HF:function HF(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" konverzaci a "+A.u(e)+" \xfa\u010dastn\xedci"},
 gmq(){return"\u017d\xe1dn\xe9 dal\u0161\xed konverzace nalezeny..."},
 goC(){return"Nejsou zde \u017e\xe1dn\xe9 chaty. Za\u010dn\u011bte nov\xfd chat s n\u011bk\xfdm, pou\u017eit\xedm n\xed\u017ee uveden\xe9ho tla\u010d\xedtka. \u2935\ufe0f"},
 go6(){return"Nep\u0159e\u010dten\xe9"},
-ges(){return"Prostor"},
+geu(){return"Prostor"},
 gnR(){return"Prostory"},
 gfG(){return"Zak\xe1zat chat"},
 ghX(){return"Zak\xe1z\xe1n"},
@@ -126,7 +126,7 @@ giO(){return"Zkop\xedrov\xe1no do schr\xe1nky"},
 gfb(d){return"Kop\xedrovat"},
 giP(){return"Zkop\xedrovat do schr\xe1nky"},
 iQ(d){return"Nebylo mo\u017en\xe9 de\u0161ifrovat zpr\xe1vu: "+d},
-ev(d){return A.u(d)+" \xfa\u010dastn\xedk\u016f"},
+ew(d){return A.u(d)+" \xfa\u010dastn\xedk\u016f"},
 gfS(d){return"Vytvo\u0159it"},
 iR(d){return"\ud83d\udcac "+d+" zalo\u017eil/a chat"},
 geP(){return"Vytvo\u0159it skupinu"},
@@ -162,7 +162,7 @@ gfc(){return"Vlastn\xed emoji a n\xe1lepky"},
 glD(){return"P\u0159idat nebo sd\xedlet vlastn\xed emoji nebo n\xe1lepky, kter\xe9 mohou b\xfdt pou\u017eit\xe9 v konverzaci."},
 gff(){return"Kl\xe1vesov\xe1 zkratka emotikonu"},
 gjc(){return"Mus\xedte si vybrat kl\xe1vesovou zkratku emotikonu a obr\xe1zek!"},
-gew(){return"Pr\xe1zdn\xfd chat"},
+gex(){return"Pr\xe1zdn\xfd chat"},
 gjd(){return"Povolit bal\xed\u010dek emotikon v\u0161ude"},
 geS(){return"Povolit \u0161ifrov\xe1n\xed"},
 gje(){return"\u0160ifrov\xe1n\xed ji\u017e nebude mo\u017en\xe9 vypnout. Jste si t\xedm jisti?"},
@@ -233,7 +233,7 @@ gep(){return"Na\u010d\xedt\xe1n\xed\u2026 Pros\xedme vy\u010dkejte."},
 gjG(){return"Na\u010d\xedst dal\u0161\xed\u2026"},
 gjH(){return"Slu\u017eby ur\u010dov\xe1n\xed polohy jsou deaktivov\xe1ny. Povolte jim, aby mohli sd\xedlet va\u0161i polohu."},
 gjI(){return"Opr\xe1vn\u011bn\xed k poloze odep\u0159eno. Ud\u011blte jim pros\xedm mo\u017enost sd\xedlet va\u0161i polohu."},
-gez(){return"P\u0159ihl\xe1sit se"},
+geA(){return"P\u0159ihl\xe1sit se"},
 jJ(d){return"P\u0159ihl\xe1\u0161en\xed k "+d},
 gh3(){return"Odhl\xe1sit"},
 gjK(){return"Zm\u011bny \u010dlen\u016f"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HF,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HF":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_216",e:"endPart",h:b})})($__dart_deferred_initializers__,"lKLlkraFUSt7XPaIR1Gb9lduDio=");
+a.eventLog.push({p:"main.dart.js_216",e:"endPart",h:b})})($__dart_deferred_initializers__,"yhj5c3uuN+WWuzhmz9aTTEhJ4Hk=");
 //# sourceMappingURL=main.dart.js_216.part.js.map

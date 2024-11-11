@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_271",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cW2(){return new B.I0(A.dK("ja"))},
+cW4(){return new B.I0(A.dK("ja"))},
 I0:function I0(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" chats and "+A.u(e)+" participants"},
 gmq(){return"No more chats found..."},
 goC(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go6(){return"Unread"},
-ges(){return"Space"},
+geu(){return"Space"},
 gnR(){return"Spaces"},
 gfG(){return"\u30c1\u30e3\u30c3\u30c8\u304b\u3089BAN\u3059\u308b"},
 ghX(){return"BAN\u3055\u308c\u3066\u3044\u307e\u3059"},
@@ -126,7 +126,7 @@ giO(){return"\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u306b\u30b3\u30d4\u30fc\
 gfb(d){return"\u30b3\u30d4\u30fc"},
 giP(){return"\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u306b\u30b3\u30d4\u30fc"},
 iQ(d){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u89e3\u8aad\u3067\u304d\u307e\u305b\u3093\u3067\u3057\u305f: "+d},
-ev(d){return A.u(d)+"\u540d\u306e\u53c2\u52a0\u8005"},
+ew(d){return A.u(d)+"\u540d\u306e\u53c2\u52a0\u8005"},
 gfS(d){return"\u4f5c\u6210"},
 iR(d){return"\ud83d\udcac "+d+"\u304c\u30c1\u30e3\u30c3\u30c8\u3092\u4f5c\u6210\u3057\u307e\u3057\u305f"},
 geP(){return"Create group"},
@@ -162,7 +162,7 @@ gfc(){return"Custom emojis and stickers"},
 glD(){return"Add or share custom emojis or stickers which can be used in any chat."},
 gff(){return"Emote\u30b7\u30e7\u30fc\u30c8\u30b3\u30fc\u30c9"},
 gjc(){return"Emote\u30b7\u30e7\u30fc\u30c8\u30b3\u30fc\u30c9\u3068\u753b\u50cf\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\uff01"},
-gew(){return"\u7a7a\u306e\u30c1\u30e3\u30c3\u30c8"},
+gex(){return"\u7a7a\u306e\u30c1\u30e3\u30c3\u30c8"},
 gjd(){return"emote\u3092\u30b0\u30ed\u30fc\u30d0\u30eb\u306b\u6709\u52b9\u306b\u3059\u308b"},
 geS(){return"\u6697\u53f7\u5316\u3092\u6709\u52b9\u306b\u3059\u308b"},
 gje(){return"\u4e00\u5ea6\u6697\u53f7\u5316\u3092\u6709\u52b9\u306b\u3059\u308b\u3068\u3082\u3068\u306b\u623b\u305b\u307e\u305b\u3093\u3002\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f"},
@@ -233,7 +233,7 @@ gep(){return"\u8aad\u307f\u8fbc\u307f\u4e2d\u2026\u304a\u5f85\u3061\u304f\u3060\
 gjG(){return"\u66f4\u306b\u8aad\u307f\u8fbc\u3080\u2026"},
 gjH(){return"\u4f4d\u7f6e\u60c5\u5831\u30b5\u30fc\u30d3\u30b9\u304c\u7121\u52b9\u306b\u306a\u3063\u3066\u3044\u307e\u3059\u3002\u4f4d\u7f6e\u60c5\u5831\u3092\u5171\u6709\u3067\u304d\u308b\u3088\u3046\u306b\u3059\u308b\u306b\u306f\u3001\u4f4d\u7f6e\u60c5\u5831\u30b5\u30fc\u30d3\u30b9\u3092\u6709\u52b9\u306b\u3057\u3066\u304f\u3060\u3055\u3044\u3002"},
 gjI(){return"\u4f4d\u7f6e\u60c5\u5831\u306e\u6a29\u9650\u304c\u62d2\u5426\u3055\u308c\u307e\u3057\u305f\u3002\u4f4d\u7f6e\u60c5\u5831\u3092\u5171\u6709\u3067\u304d\u308b\u3088\u3046\u306b\u8a31\u53ef\u3057\u3066\u304f\u3060\u3055\u3044\u3002"},
-gez(){return"\u30ed\u30b0\u30a4\u30f3"},
+geA(){return"\u30ed\u30b0\u30a4\u30f3"},
 jJ(d){return d+"\u306b\u30ed\u30b0\u30a4\u30f3\u3059\u308b"},
 gh3(){return"\u30ed\u30b0\u30a2\u30a6\u30c8"},
 gjK(){return"\u30e1\u30f3\u30d0\u30fc\u306e\u5909\u66f4"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I0,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I0":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_271",e:"endPart",h:b})})($__dart_deferred_initializers__,"lMCVsvQwUaNOjCi2ZO1S4m6zq1Q=");
+a.eventLog.push({p:"main.dart.js_271",e:"endPart",h:b})})($__dart_deferred_initializers__,"hOFlE7Bsabx55PCk9q1TMZ056LQ=");
 //# sourceMappingURL=main.dart.js_271.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_253",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVX(){return new B.HV(A.dK("hr"))},
+cVZ(){return new B.HV(A.dK("hr"))},
 HV:function HV(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -53,7 +53,7 @@ ly(d,e){return A.u(d)+" chats and "+A.u(e)+" participants"},
 gmq(){return"No more chats found..."},
 goC(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 go6(){return"Unread"},
-ges(){return"Space"},
+geu(){return"Space"},
 gnR(){return"Spaces"},
 gfG(){return"Isklju\u010di iz razgovora"},
 ghX(){return"Isklju\u010den"},
@@ -126,7 +126,7 @@ giO(){return"Kopirano u me\u0111uspremnik"},
 gfb(d){return"Kopiraj"},
 giP(){return"Kopiraj u me\u0111uspremnik"},
 iQ(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
-ev(d){return A.u(d)+" sudionika"},
+ew(d){return A.u(d)+" sudionika"},
 gfS(d){return"Stvori"},
 iR(d){return"\ud83d\udcac "+d+" je zapo\u010deo/la razgovor"},
 geP(){return"Stvori grupu"},
@@ -162,7 +162,7 @@ gfc(){return"Prilago\u0111eni emojiji i naljepnice"},
 glD(){return"Dodaj ili dijeli prilago\u0111ene emojije ili naljepnice koje se mogu koristiti u bilo kojem razgovoru."},
 gff(){return"Kratica emotikona"},
 gjc(){return"Mora\u0161 odabrati jednu kraticu emotikona i sliku!"},
-gew(){return"Prazan razgovor"},
+gex(){return"Prazan razgovor"},
 gjd(){return"Aktiviraj paket emotikona globalno"},
 geS(){return"Aktiviraj \u0161ifriranje"},
 gje(){return"Vi\u0161e ne\u0107e\u0161 mo\u0107i deaktivirati \u0161ifriranje. Stvarno to \u017eeli\u0161?"},
@@ -233,7 +233,7 @@ gep(){return"U\u010ditava se \u2026 Pri\u010dekaj."},
 gjG(){return"U\u010ditaj jo\u0161 \u2026"},
 gjH(){return"Lokacijske usluge su deaktivirane. Za dijeljenje tvoje lokacije aktiviraj ih."},
 gjI(){return"Lokacijske dozvole su odbijene. Za dijeljenje tvoje lokacije dozvoli ih."},
-gez(){return"Prijava"},
+geA(){return"Prijava"},
 jJ(d){return"Prijavi se na "+d},
 gh3(){return"Odjava"},
 gjK(){return"Promjene \u010dlana"},
@@ -570,5 +570,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HV,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HV":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"Btnoxkujk/JZfBx0S4Q0ncAlXd0=");
+a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"gF/tficHaWM4V9ZSX6F+WARTM5Y=");
 //# sourceMappingURL=main.dart.js_253.part.js.map
