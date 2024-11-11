@@ -282,7 +282,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "La copia de respaldo del chat está protegida por una clave de seguridad. Procure no perderla.",
+  "chatBackupDescription": "La copia de respaldo del chat está protegida por una llave de seguridad. Procure no perderla.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -662,7 +662,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} te invitó a FluffyChat.\n1. Instale FluffyChat: https://fluffychat.im\n2. Regístrate o inicia sesión \n3. Abra el enlace de invitación: {link}",
+  "inviteText": "{username} te invitó a FluffyChat.\n1.Visita fluffychat.im e instala la app\n2. Regístrate o inicia sesión\n3. Abre el enlace de invitación:\n{link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1667,7 +1667,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Nivel de permiso predeterminado",
+  "defaultPermissionLevel": "Nivel de permiso predeterminado para nuevo usuarios",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2315,5 +2315,66 @@
     }
   },
   "commandHint_googly": "Enviar unos ojos saltones",
-  "@commandHint_googly": {}
+  "@commandHint_googly": {},
+  "noChatsFoundHere": "No se han encontrado chats. Inicia un nuevo chat usando el botón de abajo. ⤵️",
+  "@noChatsFoundHere": {},
+  "joinedChats": "Chats Unidos",
+  "@joinedChats": {},
+  "space": "Espacio",
+  "@space": {},
+  "spaces": "Espacios",
+  "@spaces": {},
+  "block": "Bloquear",
+  "@block": {},
+  "blockListDescription": "Puedes bloquear usuarios que te estén molestando. No podrás recibir mensajes ni invitaciones de chat de los usuarios de tu lista de bloqueo.",
+  "@blockListDescription": {},
+  "aboutHomeserver": "Acerca de {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "unread": "No leídos",
+  "@unread": {},
+  "swipeRightToLeftToReply": "Desliza a la izquierda para responder",
+  "@swipeRightToLeftToReply": {},
+  "hideRedactedMessagesBody": "Si alguien elimina un mensaje, este mensaje ya no será visible en el chat.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Esconde formatos de mensajes inválidos o desconocidos",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hideRedactedMessages": "Esconde mensajes eliminados",
+  "@hideRedactedMessages": {},
+  "appLockDescription": "Bloquear la aplicación cuando no se use con código pin",
+  "@appLockDescription": {},
+  "alwaysUse24HourFormat": "Falso",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "accessAndVisibility": "Acceso y visibilidad",
+  "@accessAndVisibility": {},
+  "globalChatId": "ID de chat Global",
+  "@globalChatId": {},
+  "accessAndVisibilityDescription": "A quién se le permite unirse a este chat y cómo se puede descubrir el chat.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Llamadas",
+  "@calls": {},
+  "customEmojisAndStickers": "Emojis y stickers personalizados",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Agrega o comparte emojis y stickers personalizados que se pueden utilizar en cualquier chat.",
+  "@customEmojisAndStickersBody": {},
+  "blockedUsers": "Usuarios bloqueados",
+  "@blockedUsers": {},
+  "blockUsername": "Ignorar nombre de usuario",
+  "@blockUsername": {},
+  "noMoreChatsFound": "No se encontraron más chats...",
+  "@noMoreChatsFound": {},
+  "countChatsAndCountParticipants": "{chats} chats y {participants} participantes",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  }
 }
