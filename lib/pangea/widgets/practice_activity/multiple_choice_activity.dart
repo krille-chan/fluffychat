@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/word_audio_button.dart';
@@ -68,7 +69,16 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     );
 
     if (currentRecordModel == null ||
-        currentRecordModel!.latestResponse == null) {
+        currentRecordModel?.latestResponse == null ||
+        widget.practiceCardController.currentActivity == null) {
+      ErrorHandler.logError(
+        e: "Missing necessary information to send analytics in multiple choice activity",
+        data: {
+          "currentRecordModel": currentRecordModel,
+          "latestResponse": currentRecordModel?.latestResponse,
+          "currentActivity": widget.practiceCardController.currentActivity,
+        },
+      );
       debugger(when: kDebugMode);
       return;
     }
