@@ -1167,6 +1167,13 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void sendAgainAction() {
+    // #Pangea
+    if (selectedEvents.isEmpty) {
+      ErrorHandler.logError(e: "No selected events in send again action");
+      clearSelectedEvents();
+      return;
+    }
+    // Pangea#
     final event = selectedEvents.first;
     if (event.status.isError) {
       event.sendAgain();

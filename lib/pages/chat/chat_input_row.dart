@@ -96,43 +96,67 @@ class ChatInputRow extends StatelessWidget {
                   else
                     // Pangea#
                     controller.selectedEvents.length == 1
-                        ? controller.selectedEvents.first
-                                .getDisplayEvent(controller.timeline!)
-                                .status
-                                .isSent
-                            ? SizedBox(
-                                height: height,
-                                child: TextButton(
-                                  onPressed: controller.replyAction,
-                                  child: Row(
-                                    children: <Widget>[
-                                      // #Pangea
-                                      // Text(L10n.of(context)!.reply),
-                                      // const Icon(Icons.keyboard_arrow_right),
-                                      const Icon(Symbols.reply),
-                                      const SizedBox(width: 6),
-                                      Text(L10n.of(context)!.reply),
-                                      // Pangea#
-                                    ],
-                                  ),
-                                ),
-                              )
-                            : SizedBox(
-                                height: height,
-                                child: TextButton(
-                                  onPressed: controller.sendAgainAction,
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text(L10n.of(context)!.tryToSendAgain),
-                                      const SizedBox(width: 4),
-                                      const Icon(Icons.send_outlined, size: 16),
-                                    ],
-                                  ),
-                                ),
-                              )
+                        ?
+                        // #Pangea
+                        // controller.selectedEvents.first
+                        //         .getDisplayEvent(controller.timeline!)
+                        //         .status
+                        //         .isSent
+                        //     ?
+                        // Pangea#
+                        SizedBox(
+                            height: height,
+                            child: TextButton(
+                              onPressed: controller.replyAction,
+                              child: Row(
+                                children: <Widget>[
+                                  // #Pangea
+                                  // Text(L10n.of(context)!.reply),
+                                  // const Icon(Icons.keyboard_arrow_right),
+                                  const Icon(Symbols.reply),
+                                  const SizedBox(width: 6),
+                                  Text(L10n.of(context)!.reply),
+                                  // Pangea#
+                                ],
+                              ),
+                            ),
+                          )
+                        // #Pangea
+                        // : SizedBox(
+                        //     height: height,
+                        //     child: TextButton(
+                        //       onPressed: controller.sendAgainAction,
+                        //       child: Row(
+                        //         children: <Widget>[
+                        //           Text(L10n.of(context)!.tryToSendAgain),
+                        //           const SizedBox(width: 4),
+                        //           const Icon(Icons.send_outlined, size: 16),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   )
+                        // Pangea#
                         : const SizedBox.shrink(),
                   // #Pangea
                   PangeaReactionsPicker(controller),
+                  if (controller.selectedEvents.length == 1 &&
+                      !controller.selectedEvents.first
+                          .getDisplayEvent(controller.timeline!)
+                          .status
+                          .isSent)
+                    SizedBox(
+                      height: height,
+                      child: TextButton(
+                        onPressed: controller.sendAgainAction,
+                        child: Row(
+                          children: <Widget>[
+                            Text(L10n.of(context)!.tryToSendAgain),
+                            const SizedBox(width: 4),
+                            const Icon(Icons.send_outlined, size: 16),
+                          ],
+                        ),
+                      ),
+                    ),
                   // Pangea#
                 ]
               : <Widget>[
