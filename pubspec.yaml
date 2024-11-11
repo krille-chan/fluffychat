@@ -64,7 +64,7 @@ dependencies:
   just_audio: ^0.9.39
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix: ^0.34.0
+  matrix: ^0.35.0
   mime: ^1.0.6
   native_imaging: ^0.1.1
   opus_caf_converter_dart: ^1.0.1
