@@ -2867,5 +2867,7 @@
     "placeholders": {
       "homeserver": {}
     }
-  }
+  },
+  "compressBeforeSending": "Paki enne saatmist kokku",
+  "@compressBeforeSending": {}
 }
