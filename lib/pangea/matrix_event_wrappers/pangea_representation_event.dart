@@ -130,7 +130,7 @@ class RepresentationEvent {
         data: {
           'content': content.toJson(),
           'event': _event?.toJson(),
-          'timestamp': timestamp,
+          'timestamp': timestamp.toIso8601String(),
           'senderID': senderID,
         },
       );
