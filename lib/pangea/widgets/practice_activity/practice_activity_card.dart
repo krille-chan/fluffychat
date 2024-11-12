@@ -103,78 +103,79 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   Future<PracticeActivityModel?> _fetchNewActivity([
     ActivityQualityFeedback? activityFeedback,
   ]) async {
-    // try {
-    debugPrint('Fetching new activity');
+    try {
+      debugPrint('Fetching new activity');
 
-    _updateFetchingActivity(true);
+      _updateFetchingActivity(true);
 
-    // target tokens can be empty if activities have been completed for each
-    // it's set on initialization and then removed when each activity is completed
-    if (!pangeaController.languageController.languagesSet) {
-      debugger(when: kDebugMode);
+      // target tokens can be empty if activities have been completed for each
+      // it's set on initialization and then removed when each activity is completed
+      if (!pangeaController.languageController.languagesSet) {
+        debugger(when: kDebugMode);
+        _updateFetchingActivity(false);
+        return null;
+      }
+
+      if (!mounted) {
+        debugger(when: kDebugMode);
+        _updateFetchingActivity(false);
+        return null;
+      }
+
+      if (widget.pangeaMessageEvent.messageDisplayRepresentation == null) {
+        debugger(when: kDebugMode);
+        _updateFetchingActivity(false);
+        ErrorHandler.logError(
+          e: Exception('No original message found in _fetchNewActivity'),
+          data: {
+            'event': widget.pangeaMessageEvent.event.toJson(),
+          },
+        );
+        return null;
+      }
+
+      final PracticeActivityModelResponse? activityResponse =
+          await pangeaController.practiceGenerationController
+              .getPracticeActivity(
+        MessageActivityRequest(
+          userL1: pangeaController.languageController.userL1!.langCode,
+          userL2: pangeaController.languageController.userL2!.langCode,
+          messageText: widget.pangeaMessageEvent.messageDisplayText,
+          tokensWithXP: await widget.targetTokensController.targetTokens(
+            widget.pangeaMessageEvent,
+          ),
+          messageId: widget.pangeaMessageEvent.eventId,
+          existingActivities: practiceActivities
+              .map((activity) => activity.activityRequestMetaData)
+              .toList(),
+          activityQualityFeedback: activityFeedback,
+          clientCompatibleActivities: widget
+                  .ttsController.isLanguageFullySupported
+              ? ActivityTypeEnum.values
+              : ActivityTypeEnum.values
+                  .where((type) => type != ActivityTypeEnum.wordFocusListening)
+                  .toList(),
+        ),
+        widget.pangeaMessageEvent,
+      );
+
+      currentActivityCompleter = activityResponse?.eventCompleter;
       _updateFetchingActivity(false);
-      return null;
-    }
 
-    if (!mounted) {
+      return activityResponse?.activity;
+    } catch (e, s) {
       debugger(when: kDebugMode);
-      _updateFetchingActivity(false);
-      return null;
-    }
-
-    if (widget.pangeaMessageEvent.messageDisplayRepresentation == null) {
-      debugger(when: kDebugMode);
-      _updateFetchingActivity(false);
       ErrorHandler.logError(
-        e: Exception('No original message found in _fetchNewActivity'),
+        e: e,
+        s: s,
+        m: 'Failed to get new activity',
         data: {
-          'event': widget.pangeaMessageEvent.event.toJson(),
+          'activity': currentActivity,
+          'record': currentCompletionRecord,
         },
       );
       return null;
     }
-
-    final PracticeActivityModelResponse? activityResponse =
-        await pangeaController.practiceGenerationController.getPracticeActivity(
-      MessageActivityRequest(
-        userL1: pangeaController.languageController.userL1!.langCode,
-        userL2: pangeaController.languageController.userL2!.langCode,
-        messageText: widget.pangeaMessageEvent.messageDisplayText,
-        tokensWithXP: await widget.targetTokensController.targetTokens(
-          widget.pangeaMessageEvent,
-        ),
-        messageId: widget.pangeaMessageEvent.eventId,
-        existingActivities: practiceActivities
-            .map((activity) => activity.activityRequestMetaData)
-            .toList(),
-        activityQualityFeedback: activityFeedback,
-        clientCompatibleActivities: widget
-                .ttsController.isLanguageFullySupported
-            ? ActivityTypeEnum.values
-            : ActivityTypeEnum.values
-                .where((type) => type != ActivityTypeEnum.wordFocusListening)
-                .toList(),
-      ),
-      widget.pangeaMessageEvent,
-    );
-
-    currentActivityCompleter = activityResponse?.eventCompleter;
-    _updateFetchingActivity(false);
-
-    return activityResponse?.activity;
-    // } catch (e, s) {
-    //   debugger(when: kDebugMode);
-    //   ErrorHandler.logError(
-    //     e: e,
-    //     s: s,
-    //     m: 'Failed to get new activity',
-    //     data: {
-    //       'activity': currentActivity,
-    //       'record': currentCompletionRecord,
-    //     },
-    //   );
-    //   return null;
-    // }
   }
 
   ConstructUseMetaData get metadata => ConstructUseMetaData(
