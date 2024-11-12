@@ -243,13 +243,23 @@ class PangeaController {
             ],
           );
 
-          final room = matrixState.client.getRoomById(roomId);
+          Room? room = matrixState.client.getRoomById(roomId);
           if (room == null || room.membership != Membership.join) {
             // Wait for room actually appears in sync
             await matrixState.client.waitForRoomInSync(roomId, join: true);
+            room = matrixState.client.getRoomById(roomId);
+            if (room == null) {
+              ErrorHandler.logError(
+                e: "Bot chat null after waiting for room in sync",
+                data: {
+                  "roomId": roomId,
+                },
+              );
+              return null;
+            }
           }
 
-          final botOptions = room!.getState(PangeaEventTypes.botOptions);
+          final botOptions = room.getState(PangeaEventTypes.botOptions);
           if (botOptions == null) {
             await matrixState.client.setRoomStateWithKey(
               roomId,
@@ -277,7 +287,10 @@ class PangeaController {
       }
 
       final Room botDMWithLatestActivity = botDMs.reduce((a, b) {
-        if (a.timeline == null || b.timeline == null) {
+        if (a.timeline == null ||
+            b.timeline == null ||
+            a.timeline!.events.isEmpty ||
+            b.timeline!.events.isEmpty) {
           return a;
         }
         final aLastEvent = a.timeline!.events.last;
