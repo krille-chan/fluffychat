@@ -2867,5 +2867,7 @@
     "placeholders": {
       "homeserver": {}
     }
-  }
+  },
+  "compressBeforeSending": "ضغط قبل الإرسال",
+  "@compressBeforeSending": {}
 }
