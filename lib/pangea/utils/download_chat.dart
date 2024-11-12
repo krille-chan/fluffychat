@@ -41,13 +41,8 @@ Future<void> downloadChat(
       timeline,
       room,
     );
-  } catch (err) {
-    ErrorHandler.logError(
-      e: Exception(
-        "Failed to fetch messages for chat ${room.id} in while downloading chat",
-      ),
-      s: StackTrace.current,
-    );
+  } catch (err, s) {
+    ErrorHandler.logError(e: err, s: s);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -214,12 +209,9 @@ Future<void> downloadFile(
           directory = await getExternalStorageDirectory();
         }
       }
-    } catch (err) {
+    } catch (err, s) {
       debugPrint("Failed to get download folder path");
-      ErrorHandler.logError(
-        e: Exception("Failed to get download folder path"),
-        s: StackTrace.current,
-      );
+      ErrorHandler.logError(e: err, s: s);
     }
     if (directory != null) {
       final File f = File("${directory.path}/$filename");
