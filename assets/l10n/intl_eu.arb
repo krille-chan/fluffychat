@@ -2867,5 +2867,7 @@
   "contactServerSecurity": "Jakinarazi segurtasun arazo bat",
   "@contactServerSecurity": {},
   "noContactInformationProvided": "Zerbitzariak ez du harremanetarako informaziorik zehaztu",
-  "@noContactInformationProvided": {}
+  "@noContactInformationProvided": {},
+  "compressBeforeSending": "Konprimatu bidali baino lehen",
+  "@compressBeforeSending": {}
 }
