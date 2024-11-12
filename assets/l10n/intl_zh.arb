@@ -2867,5 +2867,7 @@
   "serverInformation": "服务器信息：",
   "@serverInformation": {},
   "website": "网站",
-  "@website": {}
+  "@website": {},
+  "compressBeforeSending": "发送前压缩",
+  "@compressBeforeSending": {}
 }
