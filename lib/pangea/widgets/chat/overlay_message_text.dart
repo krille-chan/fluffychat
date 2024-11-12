@@ -1,5 +1,4 @@
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
@@ -24,26 +23,24 @@ class OverlayMessageText extends StatefulWidget {
 }
 
 class OverlayMessageTextState extends State<OverlayMessageText> {
-  final PangeaController pangeaController = MatrixState.pangeaController;
-  List<PangeaToken>? tokens;
+  List<PangeaToken>? _tokens;
 
   @override
   void initState() {
+    super.initState();
+    _setTokens();
+  }
+
+  Future<void> _setTokens() async {
     final repEvent = widget.pangeaMessageEvent.messageDisplayRepresentation;
     if (repEvent != null) {
-      tokens = repEvent.tokens;
-      if (tokens == null) {
-        repEvent
-            .tokensGlobal(
-          widget.pangeaMessageEvent.senderId,
-          widget.pangeaMessageEvent.originServerTs,
-        )
-            .then((tokens) {
-          setState(() => this.tokens = tokens);
-        });
-      }
+      _tokens = repEvent.tokens;
+      _tokens ??= await repEvent.tokensGlobal(
+        widget.pangeaMessageEvent.senderId,
+        widget.pangeaMessageEvent.originServerTs,
+      );
+      if (mounted) setState(() {});
     }
-    super.initState();
   }
 
   @override
@@ -60,7 +57,7 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
       fontSize: AppConfig.messageFontSize * AppConfig.fontSizeFactor,
     );
 
-    if (tokens == null || tokens!.isEmpty) {
+    if (_tokens == null || _tokens!.isEmpty) {
       return Text(
         widget.pangeaMessageEvent.event.calcLocalizedBodyFallback(
           MatrixLocals(L10n.of(context)!),
@@ -83,8 +80,8 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
     final List<TokenPosition> tokenPositions = [];
     int globalIndex = 0;
 
-    for (int i = 0; i < tokens!.length; i++) {
-      final token = tokens![i];
+    for (int i = 0; i < _tokens!.length; i++) {
+      final token = _tokens![i];
       final start = token.start;
       final end = token.end;
 
