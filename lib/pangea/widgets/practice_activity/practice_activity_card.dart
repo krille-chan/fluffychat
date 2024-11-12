@@ -19,7 +19,6 @@ import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/content_issue_button.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_card.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity/target_tokens_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -32,14 +31,12 @@ class PracticeActivityCard extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overlayController;
   final TtsController ttsController;
-  final TargetTokensController targetTokensController;
 
   const PracticeActivityCard({
     super.key,
     required this.pangeaMessageEvent,
     required this.overlayController,
     required this.ttsController,
-    required this.targetTokensController,
   });
 
   @override
@@ -103,88 +100,104 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   Future<PracticeActivityModel?> _fetchNewActivity([
     ActivityQualityFeedback? activityFeedback,
   ]) async {
-    try {
-      debugPrint('Fetching new activity');
+    // temporary
+    // try {
+    debugPrint('Fetching new activity');
+    // debugger();
+    _updateFetchingActivity(true);
 
-      _updateFetchingActivity(true);
-
-      // target tokens can be empty if activities have been completed for each
-      // it's set on initialization and then removed when each activity is completed
-      if (!pangeaController.languageController.languagesSet) {
-        debugger(when: kDebugMode);
-        _updateFetchingActivity(false);
-        return null;
-      }
-
-      if (!mounted) {
-        debugger(when: kDebugMode);
-        _updateFetchingActivity(false);
-        return null;
-      }
-
-      if (widget.pangeaMessageEvent.messageDisplayRepresentation == null) {
-        debugger(when: kDebugMode);
-        _updateFetchingActivity(false);
-        ErrorHandler.logError(
-          e: Exception('No original message found in _fetchNewActivity'),
-          data: {
-            'event': widget.pangeaMessageEvent.event.toJson(),
-          },
-        );
-        return null;
-      }
-
-      if (widget.pangeaMessageEvent.tokensWithXP == null) {
-        debugger(when: kDebugMode);
-        _updateFetchingActivity(false);
-        return null;
-      }
-
-      final PracticeActivityModelResponse? activityResponse =
-          await pangeaController.practiceGenerationController
-              .getPracticeActivity(
-        MessageActivityRequest(
-          userL1: pangeaController.languageController.userL1!.langCode,
-          userL2: pangeaController.languageController.userL2!.langCode,
-          messageText: widget.pangeaMessageEvent.originalSent!.text,
-          //temp change
-          // TODO - get from new controller off of pangeaController
-          tokensWithXP: widget.pangeaMessageEvent.tokensWithXP!,
-          // tokensWithXP: await targetTokensController.targetTokens(
-          //   widget.pangeaMessageEvent,
-          // ),
-          messageId: widget.pangeaMessageEvent.eventId,
-          existingActivities: practiceActivities
-              .map((activity) => activity.activityRequestMetaData)
-              .toList(),
-          activityQualityFeedback: activityFeedback,
-          clientCompatibleActivities: widget
-                  .ttsController.isLanguageFullySupported
-              ? ActivityTypeEnum.values
-              : ActivityTypeEnum.values
-                  .where((type) => type != ActivityTypeEnum.wordFocusListening)
-                  .toList(),
-        ),
-        widget.pangeaMessageEvent,
-      );
-
-      currentActivityCompleter = activityResponse?.eventCompleter;
-      _updateFetchingActivity(false);
-
-      return activityResponse?.activity;
-    } catch (e, s) {
+    // target tokens can be empty if activities have been completed for each
+    // it's set on initialization and then removed when each activity is completed
+    if (!pangeaController.languageController.languagesSet) {
       debugger(when: kDebugMode);
+      _updateFetchingActivity(false);
+      return null;
+    }
+
+    if (!mounted) {
+      debugger(when: kDebugMode);
+      _updateFetchingActivity(false);
+      return null;
+    }
+
+    if (widget.pangeaMessageEvent.messageDisplayRepresentation == null) {
+      debugger(when: kDebugMode);
+      _updateFetchingActivity(false);
       ErrorHandler.logError(
-        e: e,
-        s: s,
-        m: 'Failed to get new activity',
+        e: Exception('No original message found in _fetchNewActivity'),
         data: {
-          'activity': currentActivity,
-          'record': currentCompletionRecord,
+          'event': widget.pangeaMessageEvent.event.toJson(),
         },
       );
       return null;
     }
+
+    if (widget.pangeaMessageEvent.messageDisplayRepresentation?.tokens ==
+        null) {
+      debugger(when: kDebugMode);
+      _updateFetchingActivity(false);
+      return null;
+    }
+
+    final messageAnalyticsEntry = pangeaController.getAnalytics.perMessage
+        .get(widget.pangeaMessageEvent, false);
+    // the client is going to be choosing the next activity now
+    // if nothing is set then it must be done with practice
+    if (messageAnalyticsEntry?.nextActivityToken == null ||
+        messageAnalyticsEntry?.nextActivityType == null) {
+      debugger(when: kDebugMode);
+      _updateFetchingActivity(false);
+      return null;
+    }
+
+    debugPrint(
+      "client requesting activity type: ${messageAnalyticsEntry?.nextActivityType}",
+    );
+    debugPrint(
+      "client requesting token: ${messageAnalyticsEntry?.nextActivityToken?.token.text.content}",
+    );
+
+    final PracticeActivityModelResponse? activityResponse =
+        await pangeaController.practiceGenerationController.getPracticeActivity(
+      MessageActivityRequest(
+        userL1: pangeaController.languageController.userL1!.langCode,
+        userL2: pangeaController.languageController.userL2!.langCode,
+        messageText: widget.pangeaMessageEvent.originalSent!.text,
+        tokensWithXP: messageAnalyticsEntry!.tokensWithXp,
+        messageId: widget.pangeaMessageEvent.eventId,
+        existingActivities: practiceActivities
+            .map((activity) => activity.activityRequestMetaData)
+            .toList(),
+        activityQualityFeedback: activityFeedback,
+        clientCompatibleActivities: widget
+                .ttsController.isLanguageFullySupported
+            ? ActivityTypeEnum.values
+            : ActivityTypeEnum.values
+                .where((type) => type != ActivityTypeEnum.wordFocusListening)
+                .toList(),
+        clientTokenRequest: messageAnalyticsEntry.nextActivityToken!,
+        clientTypeRequest: messageAnalyticsEntry.nextActivityType!,
+      ),
+      widget.pangeaMessageEvent,
+    );
+
+    currentActivityCompleter = activityResponse?.eventCompleter;
+    _updateFetchingActivity(false);
+
+    return activityResponse?.activity;
+    // } catch (e, s) {
+    //   debugger(when: kDebugMode);
+    //   ErrorHandler.logError(
+    //     e: e,
+    //     s: s,
+    //     m: 'Failed to get new activity',
+    //     data: {
+    //       'activity': currentActivity,
+    //       'record': currentCompletionRecord,
+    //     },
+    //   );
+    //   return null;
+    // }
   }
 
   ConstructUseMetaData get metadata => ConstructUseMetaData(
@@ -229,12 +242,19 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
       // update the target tokens with the new construct uses
       // NOTE - multiple choice activity is handling adding these to analytics
-      await widget.targetTokensController.updateTokensWithConstructs(
+
+      // previously we would update the tokens with the constructs
+      // now the tokens themselves calculate their own points using the analytics
+      // we're going to see if this creates performance issues
+      final messageAnalytics = MatrixState
+          .pangeaController.getAnalytics.perMessage
+          .get(widget.pangeaMessageEvent, false);
+      // messageAnalytics will only be null if there are no tokens to update
+      messageAnalytics!.updateTokensWithConstructs(
         currentCompletionRecord!.usesForAllResponses(
           currentActivity!,
           metadata,
         ),
-        widget.pangeaMessageEvent,
       );
 
       widget.overlayController.onActivityFinish();
@@ -326,7 +346,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return null;
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
-      case ActivityTypeEnum.multipleChoice:
+      case ActivityTypeEnum.wordMeaning:
         return MultipleChoiceActivity(
           practiceCardController: this,
           currentActivity: currentActivity!,

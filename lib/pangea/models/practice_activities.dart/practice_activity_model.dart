@@ -12,12 +12,12 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class ConstructIdentifier {
   final String lemma;
   final ConstructTypeEnum type;
-  final String? category;
+  final String category;
 
   ConstructIdentifier({
     required this.lemma,
     required this.type,
-    this.category,
+    required this.category,
   });
 
   factory ConstructIdentifier.fromJson(Map<String, dynamic> json) {
@@ -37,7 +37,7 @@ class ConstructIdentifier {
         type: ConstructTypeEnum.values.firstWhere(
           (e) => e.string == json['type'],
         ),
-        category: category,
+        category: category ?? "",
       );
     } catch (e, s) {
       debugger(when: kDebugMode);
@@ -70,7 +70,7 @@ class ConstructIdentifier {
   }
 
   String get string =>
-      "$lemma-${type.string}${category != null ? "-$category" : "-other"}";
+      "$lemma-${type.string}${category != "" ? "-$category" : "-other"}";
 }
 
 class CandidateMessage {
@@ -224,13 +224,8 @@ class PracticeActivityModel {
           .toList(),
       langCode: json['lang_code'] as String,
       msgId: json['msg_id'] as String,
-      activityType: json['activity_type'] == "multipleChoice"
-          ? ActivityTypeEnum.multipleChoice
-          : ActivityTypeEnum.values.firstWhere(
-              (e) =>
-                  e.string == json['activity_type'] as String ||
-                  e.string.split('.').last == json['activity_type'] as String,
-            ),
+      activityType:
+          ActivityTypeEnum.wordMeaning.fromString(json['activity_type']),
       content: ActivityContent.fromJson(contentMap),
     );
   }

@@ -4,7 +4,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_token_text.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_token_text_stateful.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar_selection_area.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
@@ -306,23 +306,15 @@ class MessageContent extends StatelessWidget {
               height: 1.3,
             );
 
-            if (pangeaMessageEvent != null &&
-                pangeaMessageEvent!.shouldHideTokens) {
-              return MessageTokenText(
-                ownMessage: pangeaMessageEvent!.ownMessage,
-                // fullText and tokensWithDisplay have to be from the same rep/lang as each other
-                // this could be error-prone
-                fullText: pangeaMessageEvent!.originalSent?.text ??
-                    pangeaMessageEvent!.body,
-                tokensWithDisplay: pangeaMessageEvent!.tokensWithXP
-                    ?.map(
-                      (token) => TokenWithDisplayInstructions(
-                        token: token.token,
-                        hideContent: token.targetType != null,
-                        highlight: false,
-                      ),
-                    )
-                    .toList(),
+            if (pangeaMessageEvent?.messageDisplayRepresentation?.tokens !=
+                null) {
+              return MessageTokenTextStateful(
+                messageAnalyticsEntry:
+                    controller.pangeaController.getAnalytics.perMessage.get(
+                  pangeaMessageEvent!,
+                  false,
+                )!,
+                style: messageTextStyle,
                 onClick: (token) => controller.showToolbar(pangeaMessageEvent!),
               );
             }

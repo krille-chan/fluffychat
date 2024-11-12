@@ -12,7 +12,6 @@ import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
-import 'package:matrix/src/utils/cached_stream_controller.dart';
 
 enum AnalyticsUpdateType { server, local }
 
@@ -21,15 +20,15 @@ enum AnalyticsUpdateType { server, local }
 /// 2) constructs used by the user, both in sending messages and doing practice activities
 class PutAnalyticsController extends BaseController<AnalyticsStream> {
   late PangeaController _pangeaController;
-  CachedStreamController<AnalyticsUpdate> analyticsUpdateStream =
-      CachedStreamController<AnalyticsUpdate>();
+  StreamController<AnalyticsUpdate> analyticsUpdateStream =
+      StreamController.broadcast();
   StreamSubscription<AnalyticsStream>? _analyticsStream;
   StreamSubscription? _languageStream;
   Timer? _updateTimer;
 
   Client get _client => _pangeaController.matrixState.client;
 
-  String? get userL2 => _pangeaController.languageController.activeL2Code();
+  String? get _userL2 => _pangeaController.languageController.activeL2Code();
 
   /// the last time that matrix analytics events were updated for the user's current l2
   DateTime? lastUpdated;
@@ -133,7 +132,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
 
     if (constructs.isEmpty) return;
 
-    final level = _pangeaController.getAnalytics.level;
+    final level = _pangeaController.getAnalytics.constructListModel.level;
 
     _addLocalMessage(eventID, constructs).then(
       (_) {
@@ -175,7 +174,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
           (token) => OneConstructUse(
             useType: useType,
             lemma: token.lemma.text,
-            form: token.lemma.form,
+            form: token.text.content,
             constructType: ConstructTypeEnum.vocab,
             metadata: metadata,
             category: token.pos,
@@ -206,7 +205,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
       }
     }
 
-    final level = _pangeaController.getAnalytics.level;
+    final level = _pangeaController.getAnalytics.constructListModel.level;
 
     // the list 'uses' gets altered in the _addLocalMessage method,
     // so copy it here to that the list of new uses is accurate
@@ -272,7 +271,8 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
       return;
     }
 
-    final int newLevel = _pangeaController.getAnalytics.level;
+    final int newLevel =
+        _pangeaController.getAnalytics.constructListModel.level;
     newLevel > prevLevel
         ? sendLocalAnalyticsToAnalyticsRoom()
         : analyticsUpdateStream.add(
@@ -374,7 +374,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     if (cachedConstructs.isEmpty || onlyDraft) return;
 
     // if missing important info, don't send analytics. Could happen if user just signed up.
-    final l2Code = l2Override ?? userL2;
+    final l2Code = l2Override ?? _userL2;
     if (l2Code == null || _client.userID == null) return;
 
     // analytics room for the user and current target language

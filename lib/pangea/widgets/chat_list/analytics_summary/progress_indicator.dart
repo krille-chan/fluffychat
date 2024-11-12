@@ -3,36 +3,36 @@ import 'package:flutter/material.dart';
 
 /// A badge that represents one learning progress indicator (i.e., construct uses)
 class ProgressIndicatorBadge extends StatelessWidget {
-  final int? points;
-  final VoidCallback onTap;
-  final ProgressIndicatorEnum progressIndicator;
   final bool loading;
+  final int points;
+  final VoidCallback onTap;
+  final ProgressIndicatorEnum indicator;
 
   const ProgressIndicatorBadge({
     super.key,
-    required this.points,
     required this.onTap,
-    required this.progressIndicator,
+    required this.indicator,
     required this.loading,
+    required this.points,
   });
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: progressIndicator.tooltip(context),
+      message: indicator.tooltip(context),
       child: InkWell(
         onTap: onTap,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              progressIndicator.icon,
-              color: progressIndicator.color(context),
+              indicator.icon,
+              color: indicator.color(context),
             ),
             const SizedBox(width: 5),
             !loading
                 ? Text(
-                    points?.toString() ?? '0',
+                    points.toString(),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

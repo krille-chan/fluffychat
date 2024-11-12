@@ -1,79 +1,76 @@
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class MessageTokenText extends StatelessWidget {
+/// Question - does this need to be stateful or does this work?
+/// Need to test.
+class MessageTokenTextStateful extends StatelessWidget {
   final PangeaController pangeaController = MatrixState.pangeaController;
 
-  final bool ownMessage;
+  final MessageAnalyticsEntry messageAnalyticsEntry;
 
-  /// this must match the tokens or we've got problems
-  final String fullText;
+  final TextStyle style;
 
-  /// this must match the fullText or we've got problems
-  final List<TokenWithDisplayInstructions>? tokensWithDisplay;
   final void Function(PangeaToken)? onClick;
 
-  MessageTokenText({
+  bool get ownMessage => messageAnalyticsEntry.pmEvent.ownMessage;
+
+  MessageTokenTextStateful({
     super.key,
-    required this.ownMessage,
-    required this.fullText,
-    required this.tokensWithDisplay,
+    required this.messageAnalyticsEntry,
+    required this.style,
     required this.onClick,
   });
 
+  PangeaMessageEvent get pangeaMessageEvent => messageAnalyticsEntry.pmEvent;
+
   @override
   Widget build(BuildContext context) {
-    final style = TextStyle(
-      color: ownMessage
-          ? Theme.of(context).colorScheme.onPrimary
-          : Theme.of(context).colorScheme.onSurface,
-      height: 1.3,
-      fontSize: AppConfig.messageFontSize * AppConfig.fontSizeFactor,
-    );
-
-    if (tokensWithDisplay == null || tokensWithDisplay!.isEmpty) {
-      return Text(
-        fullText,
-        style: style,
-      );
-    }
-
     // Convert the entire message into a list of characters
-    final Characters messageCharacters = fullText.characters;
+    final Characters messageCharacters =
+        pangeaMessageEvent.messageDisplayText.characters;
 
     // When building token positions, use grapheme cluster indices
     final List<TokenPosition> tokenPositions = [];
     int globalIndex = 0;
 
-    for (int i = 0; i < tokensWithDisplay!.length; i++) {
-      final tokenWithDisplay = tokensWithDisplay![i];
-      final start = tokenWithDisplay.token.start;
-      final end = tokenWithDisplay.token.end;
+    for (final token in messageAnalyticsEntry.tokensWithXp) {
+      final start = token.token.start;
+      final end = token.token.end;
 
       // Calculate the number of grapheme clusters up to the start and end positions
       final int startIndex = messageCharacters.take(start).length;
       final int endIndex = messageCharacters.take(end).length;
 
       if (globalIndex < startIndex) {
-        tokenPositions.add(TokenPosition(start: globalIndex, end: startIndex));
+        tokenPositions.add(
+          TokenPosition(
+            start: globalIndex,
+            end: startIndex,
+            hideContent: false,
+            highlight: false,
+          ),
+        );
       }
 
       tokenPositions.add(
         TokenPosition(
           start: startIndex,
           end: endIndex,
-          tokenIndex: i,
-          token: tokenWithDisplay,
+          token: token.token,
+          hideContent:
+              token.targetTypes.contains(ActivityTypeEnum.hiddenWordListening),
+          highlight: false,
         ),
       );
       globalIndex = endIndex;
     }
 
-    //TODO - take out of build function of every message
     return RichText(
       text: TextSpan(
         children: tokenPositions.map((tokenPosition) {
@@ -85,13 +82,13 @@ class MessageTokenText extends StatelessWidget {
           if (tokenPosition.token != null) {
             return TextSpan(
               recognizer: TapGestureRecognizer()
-                ..onTap = () => onClick != null
-                    ? onClick!(tokenPosition.token!.token)
+                ..onTap = () => onClick != null && tokenPosition.token != null
+                    ? onClick!(tokenPosition.token!)
                     : null,
-              text: !tokenPosition.token!.hideContent ? substring : '_____',
+              text: !tokenPosition.hideContent ? substring : '_____',
               style: style.merge(
                 TextStyle(
-                  backgroundColor: tokenPosition.token!.highlight
+                  backgroundColor: tokenPosition.highlight
                       ? Theme.of(context).brightness == Brightness.light
                           ? Colors.black.withOpacity(0.4)
                           : Colors.white.withOpacity(0.4)
@@ -111,28 +108,18 @@ class MessageTokenText extends StatelessWidget {
   }
 }
 
-class TokenWithDisplayInstructions {
-  final PangeaToken token;
-  final bool highlight;
-  final bool hideContent;
-
-  TokenWithDisplayInstructions({
-    required this.token,
-    required this.highlight,
-    required this.hideContent,
-  });
-}
-
 class TokenPosition {
   final int start;
   final int end;
-  final TokenWithDisplayInstructions? token;
-  final int tokenIndex;
+  final bool highlight;
+  final bool hideContent;
+  final PangeaToken? token;
 
   const TokenPosition({
     required this.start,
     required this.end,
+    required this.hideContent,
+    required this.highlight,
     this.token,
-    this.tokenIndex = -1,
   });
 }

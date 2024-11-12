@@ -105,6 +105,8 @@ class PracticeGenerationController {
   ) async {
     final int cacheKey = req.hashCode;
 
+    // debugger(when: kDebugMode);
+
     if (_cache.containsKey(cacheKey)) {
       return _cache[cacheKey]!.practiceActivity;
     }
