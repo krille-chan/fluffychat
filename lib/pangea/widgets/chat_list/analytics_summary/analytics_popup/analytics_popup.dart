@@ -155,6 +155,8 @@ class ConstructsTileList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // sort list by xp
+    constructs.sort((a, b) => b.points.compareTo(a.points));
     return ListView.builder(
       itemCount: constructs.length,
       itemBuilder: (context, index) => ConstructUsesXPTile(constructs[index]),
