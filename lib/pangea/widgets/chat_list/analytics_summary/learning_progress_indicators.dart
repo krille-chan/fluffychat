@@ -36,6 +36,13 @@ class LearningProgressIndicatorsState
   @override
   void initState() {
     super.initState();
+
+    // if getAnalytics has already finished initializing,
+    // the data is loaded and should be displayed.
+    if (MatrixState.pangeaController.getAnalytics.initCompleter?.isCompleted ??
+        false) {
+      updateData(null);
+    }
     _analyticsSubscription = MatrixState
         .pangeaController.getAnalytics.analyticsStream.stream
         .listen(updateData);
@@ -48,7 +55,7 @@ class LearningProgressIndicatorsState
     super.dispose();
   }
 
-  void updateData(AnalyticsStreamUpdate _) {
+  void updateData(AnalyticsStreamUpdate? _) {
     if (_loading) _loading = false;
     if (mounted) setState(() {});
   }

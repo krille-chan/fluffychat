@@ -25,6 +25,7 @@ class GetAnalyticsController {
       StreamController.broadcast();
 
   ConstructListModel constructListModel = ConstructListModel(uses: []);
+  Completer<void>? initCompleter;
 
   GetAnalyticsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
@@ -50,20 +51,23 @@ class GetAnalyticsController {
     return progress >= 0 ? progress : 0;
   }
 
-  void initialize() {
+  Future<void> initialize() async {
+    if (initCompleter != null) return;
+    initCompleter = Completer<void>();
+
     _analyticsUpdateSubscription ??= _pangeaController
         .putAnalytics.analyticsUpdateStream.stream
         .listen(_onAnalyticsUpdate);
 
-    _pangeaController.putAnalytics.lastUpdatedCompleter.future.then((_) {
-      _getConstructs().then((_) {
-        constructListModel.updateConstructs([
-          ...(_getConstructsLocal() ?? []),
-          ..._locallyCachedConstructs,
-        ]);
-        _updateAnalyticsStream();
-      });
-    });
+    await _pangeaController.putAnalytics.lastUpdatedCompleter.future;
+    await _getConstructs();
+    constructListModel.updateConstructs([
+      ...(_getConstructsLocal() ?? []),
+      ..._locallyCachedConstructs,
+    ]);
+    _updateAnalyticsStream();
+
+    initCompleter!.complete();
   }
 
   /// Clear all cached analytics data.
@@ -71,6 +75,8 @@ class GetAnalyticsController {
     constructListModel.dispose();
     _analyticsUpdateSubscription?.cancel();
     _analyticsUpdateSubscription = null;
+    analyticsStream.close();
+    initCompleter = null;
     _cache.clear();
   }
 

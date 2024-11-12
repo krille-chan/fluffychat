@@ -28,7 +28,6 @@ import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -80,11 +79,19 @@ class PangeaController {
     _addRefInObjects();
   }
 
-  Future<void> afterSyncAndFirstLoginInitialization(
-    BuildContext context,
-  ) async {
-    await classController.checkForClassCodeAndSubscription(context);
+  /// Initializes various controllers and settings.
+  /// While many of these functions are asynchronous, they are not awaited here,
+  /// because of order of execution does not matter,
+  /// and running them at the same times speeds them up.
+  void initControllers() {
+    putAnalytics.initialize();
+    getAnalytics.initialize();
+    subscriptionController.initialize();
     classController.fixClassPowerLevels();
+
+    startChatWithBotIfNotPresent();
+    inviteBotToExistingSpaces();
+    setPangeaPushRules();
   }
 
   /// Initialize controllers

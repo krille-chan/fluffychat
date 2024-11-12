@@ -42,7 +42,7 @@ class ClassController extends BaseController {
     );
   }
 
-  Future<void> checkForClassCodeAndSubscription(BuildContext context) async {
+  Future<void> joinCachedSpaceCode(BuildContext context) async {
     final String? classCode = _pangeaController.pStoreService.read(
       PLocalKey.cachedClassCodeToJoin,
       isAccountData: false,
@@ -53,6 +53,7 @@ class ClassController extends BaseController {
         context,
         classCode,
       );
+
       await _pangeaController.pStoreService.delete(
         PLocalKey.cachedClassCodeToJoin,
         isAccountData: false,
