@@ -25,6 +25,7 @@ class GetAnalyticsController {
       StreamController.broadcast();
 
   ConstructListModel constructListModel = ConstructListModel(uses: []);
+  Completer<void>? initCompleter;
 
   GetAnalyticsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
@@ -34,13 +35,19 @@ class GetAnalyticsController {
   Client get _client => _pangeaController.matrixState.client;
 
   // the minimum XP required for a given level
-  double get _minXPForLevel {
-    return 12.5 * (2 * pow(constructListModel.level - 1, 2) - 1);
+  int get _minXPForLevel {
+    return _calculateMinXpForLevel(constructListModel.level);
   }
 
   // the minimum XP required for the next level
-  double get _minXPForNextLevel {
-    return 12.5 * (2 * pow(constructListModel.level, 2) - 1);
+  int get _minXPForNextLevel {
+    return _calculateMinXpForLevel(constructListModel.level + 1);
+  }
+
+  /// Calculates the minimum XP required for a specific level.
+  int _calculateMinXpForLevel(int level) {
+    if (level == 1) return 0; // Ensure level 1 starts at 0 XP
+    return ((100 / 8) * (2 * pow(level - 1, 2))).floor();
   }
 
   // the progress within the current level as a percentage (0.0 to 1.0)
@@ -50,20 +57,23 @@ class GetAnalyticsController {
     return progress >= 0 ? progress : 0;
   }
 
-  void initialize() {
+  Future<void> initialize() async {
+    if (initCompleter != null) return;
+    initCompleter = Completer<void>();
+
     _analyticsUpdateSubscription ??= _pangeaController
         .putAnalytics.analyticsUpdateStream.stream
         .listen(_onAnalyticsUpdate);
 
-    _pangeaController.putAnalytics.lastUpdatedCompleter.future.then((_) {
-      _getConstructs().then((_) {
-        constructListModel.updateConstructs([
-          ...(_getConstructsLocal() ?? []),
-          ..._locallyCachedConstructs,
-        ]);
-        _updateAnalyticsStream();
-      });
-    });
+    await _pangeaController.putAnalytics.lastUpdatedCompleter.future;
+    await _getConstructs();
+    constructListModel.updateConstructs([
+      ...(_getConstructsLocal() ?? []),
+      ..._locallyCachedConstructs,
+    ]);
+    _updateAnalyticsStream();
+
+    initCompleter!.complete();
   }
 
   /// Clear all cached analytics data.
@@ -71,6 +81,7 @@ class GetAnalyticsController {
     constructListModel.dispose();
     _analyticsUpdateSubscription?.cancel();
     _analyticsUpdateSubscription = null;
+    initCompleter = null;
     _cache.clear();
   }
 

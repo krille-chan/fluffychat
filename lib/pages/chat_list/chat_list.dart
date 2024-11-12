@@ -7,7 +7,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/send_file_dialog.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
@@ -1016,7 +1015,7 @@ class ChatListController extends State<ChatList>
     }
 
     // #Pangea
-    await _initPangeaControllers(client);
+    _initPangeaControllers(client);
     // Pangea#
     if (!mounted) return;
     setState(() {
@@ -1025,22 +1024,12 @@ class ChatListController extends State<ChatList>
   }
 
   // #Pangea
-  Future<void> _initPangeaControllers(Client client) async {
-    MatrixState.pangeaController.putAnalytics.initialize();
-    MatrixState.pangeaController.getAnalytics.initialize();
+  void _initPangeaControllers(Client client) {
+    GoogleAnalytics.analyticsUserUpdate(client.userID);
+    client.migrateAnalyticsRooms();
+    MatrixState.pangeaController.initControllers();
     if (mounted) {
-      final PangeaController pangeaController = MatrixState.pangeaController;
-      GoogleAnalytics.analyticsUserUpdate(client.userID);
-      pangeaController.startChatWithBotIfNotPresent();
-      await pangeaController.subscriptionController.initialize();
-      pangeaController.afterSyncAndFirstLoginInitialization(context);
-      await pangeaController.inviteBotToExistingSpaces();
-      await pangeaController.setPangeaPushRules();
-      client.migrateAnalyticsRooms();
-    } else {
-      ErrorHandler.logError(
-        m: "didn't run afterSyncAndFirstLoginInitialization because not mounted",
-      );
+      MatrixState.pangeaController.classController.joinCachedSpaceCode(context);
     }
   }
   // Pangea#

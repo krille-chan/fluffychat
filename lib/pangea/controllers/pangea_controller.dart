@@ -28,7 +28,6 @@ import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -80,11 +79,19 @@ class PangeaController {
     _addRefInObjects();
   }
 
-  Future<void> afterSyncAndFirstLoginInitialization(
-    BuildContext context,
-  ) async {
-    await classController.checkForClassCodeAndSubscription(context);
+  /// Initializes various controllers and settings.
+  /// While many of these functions are asynchronous, they are not awaited here,
+  /// because of order of execution does not matter,
+  /// and running them at the same times speeds them up.
+  void initControllers() {
+    putAnalytics.initialize();
+    getAnalytics.initialize();
+    subscriptionController.initialize();
     classController.fixClassPowerLevels();
+
+    startChatWithBotIfNotPresent();
+    inviteBotToExistingSpaces();
+    setPangeaPushRules();
   }
 
   /// Initialize controllers
@@ -243,13 +250,23 @@ class PangeaController {
             ],
           );
 
-          final room = matrixState.client.getRoomById(roomId);
+          Room? room = matrixState.client.getRoomById(roomId);
           if (room == null || room.membership != Membership.join) {
             // Wait for room actually appears in sync
             await matrixState.client.waitForRoomInSync(roomId, join: true);
+            room = matrixState.client.getRoomById(roomId);
+            if (room == null) {
+              ErrorHandler.logError(
+                e: "Bot chat null after waiting for room in sync",
+                data: {
+                  "roomId": roomId,
+                },
+              );
+              return null;
+            }
           }
 
-          final botOptions = room!.getState(PangeaEventTypes.botOptions);
+          final botOptions = room.getState(PangeaEventTypes.botOptions);
           if (botOptions == null) {
             await matrixState.client.setRoomStateWithKey(
               roomId,
@@ -277,7 +294,10 @@ class PangeaController {
       }
 
       final Room botDMWithLatestActivity = botDMs.reduce((a, b) {
-        if (a.timeline == null || b.timeline == null) {
+        if (a.timeline == null ||
+            b.timeline == null ||
+            a.timeline!.events.isEmpty ||
+            b.timeline!.events.isEmpty) {
           return a;
         }
         final aLastEvent = a.timeline!.events.last;
