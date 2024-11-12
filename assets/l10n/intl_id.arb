@@ -2866,5 +2866,7 @@
   "contactServerSecurity": "Hubungi keamanan server",
   "@contactServerSecurity": {},
   "name": "Nama",
-  "@name": {}
+  "@name": {},
+  "compressBeforeSending": "Kompres sebelum mengirim",
+  "@compressBeforeSending": {}
 }
