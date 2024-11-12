@@ -26,7 +26,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "theyMatch": "Tie sakrīt",
+  "theyMatch": "Tās sakrīt",
   "@theyMatch": {
     "type": "text",
     "placeholders": {}
@@ -1648,7 +1648,7 @@
       "user": {}
     }
   },
-  "theyDontMatch": "Tie nesakrīt",
+  "theyDontMatch": "Tās nesakrīt",
   "@theyDontMatch": {
     "type": "text",
     "placeholders": {}
@@ -2845,5 +2845,7 @@
   "version": "Versija",
   "@version": {},
   "website": "Tīmekļvietne",
-  "@website": {}
+  "@website": {},
+  "compressBeforeSending": "Saspiest pirms nosūtīšanas",
+  "@compressBeforeSending": {}
 }
