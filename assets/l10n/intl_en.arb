@@ -4158,7 +4158,9 @@
   "goToSpace": "Go to space: {space}",
   "@goToSpace": {
     "type": "text",
-    "space": {}
+    "placeholders": {
+      "space": {}
+    }
   },
   "markAsUnread": "Mark as unread",
   "userLevel": "{level} - User",

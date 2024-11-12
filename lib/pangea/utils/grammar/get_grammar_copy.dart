@@ -458,6 +458,6 @@ String? getGrammarCopy({
           'context': context,
         },
       );
-      return key; // Fallback to the key itself if no match is found
+      return lemma; // Fallback to the lemma itself if no match is found
   }
 }

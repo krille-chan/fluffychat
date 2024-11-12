@@ -159,6 +159,7 @@ class PangeaRepresentation {
           OneConstructUse(
             useType: useType,
             lemma: entry.value,
+            form: token.text.content,
             category: entry.key,
             constructType: ConstructTypeEnum.morph,
             metadata: metadata,
@@ -210,6 +211,7 @@ class PangeaRepresentation {
               OneConstructUse(
                 useType: ConstructUseTypeEnum.ga,
                 lemma: entry.value,
+                form: token.text.content,
                 category: entry.key,
                 constructType: ConstructTypeEnum.morph,
                 metadata: metadata,
@@ -227,6 +229,7 @@ class PangeaRepresentation {
         OneConstructUse(
           useType: ConstructUseTypeEnum.wa,
           lemma: entry.value,
+          form: token.text.content,
           category: entry.key,
           constructType: ConstructTypeEnum.morph,
           metadata: metadata,
