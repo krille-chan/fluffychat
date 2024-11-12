@@ -146,7 +146,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     );
   }
 
-  Future<void> _onUpdateLanguages(String previousL2) async {
+  Future<void> _onUpdateLanguages(String? previousL2) async {
     await sendLocalAnalyticsToAnalyticsRoom(
       l2Override: previousL2,
     );
