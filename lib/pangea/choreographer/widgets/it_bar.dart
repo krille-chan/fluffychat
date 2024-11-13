@@ -35,6 +35,8 @@ class ITBarState extends State<ITBar> {
   ITController get itController => widget.choreographer.itController;
   StreamSubscription? _choreoSub;
 
+  bool showedClickInstruction = false;
+
   @override
   void initState() {
     // Rebuild the widget each time there's an update from choreo.
@@ -42,6 +44,26 @@ class ITBarState extends State<ITBar> {
       setState(() {});
     });
     super.initState();
+  }
+
+  bool get showITInstructionsTooltip {
+    final toggledOff = InstructionsEnum.clickBestOption.toggledOff();
+    if (!toggledOff) {
+      setState(() => showedClickInstruction = true);
+    }
+    return !toggledOff;
+  }
+
+  bool get showTranslationsChoicesTooltip {
+    return !showedClickInstruction &&
+        !showITInstructionsTooltip &&
+        !itController.choreographer.isFetching &&
+        !itController.isLoading &&
+        !itController.isEditingSourceText &&
+        !itController.isTranslationDone &&
+        itController.currentITStep != null &&
+        itController.currentITStep!.continuances.isNotEmpty &&
+        !itController.showChoiceFeedback;
   }
 
   @override
@@ -117,6 +139,12 @@ class ITBarState extends State<ITBar> {
                             // const SizedBox(height: 40.0),
                             OriginalText(controller: itController),
                             const SizedBox(height: 7.0),
+                            if (showITInstructionsTooltip)
+                              InlineTooltip(
+                                instructionsEnum:
+                                    InstructionsEnum.clickBestOption,
+                                onClose: () => setState(() {}),
+                              ),
                             if (showTranslationsChoicesTooltip)
                               InlineTooltip(
                                 instructionsEnum:
@@ -168,16 +196,6 @@ class ITBarState extends State<ITBar> {
               // ),
             ),
     );
-  }
-
-  bool get showTranslationsChoicesTooltip {
-    return !itController.choreographer.isFetching &&
-        !itController.isLoading &&
-        !itController.isEditingSourceText &&
-        !itController.isTranslationDone &&
-        itController.currentITStep != null &&
-        itController.currentITStep!.continuances.isNotEmpty &&
-        !itController.showChoiceFeedback;
   }
 }
 
