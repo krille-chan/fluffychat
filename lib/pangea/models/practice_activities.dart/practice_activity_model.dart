@@ -224,13 +224,8 @@ class PracticeActivityModel {
           .toList(),
       langCode: json['lang_code'] as String,
       msgId: json['msg_id'] as String,
-      activityType: json['activity_type'] == "multipleChoice"
-          ? ActivityTypeEnum.multipleChoice
-          : ActivityTypeEnum.values.firstWhere(
-              (e) =>
-                  e.string == json['activity_type'] as String ||
-                  e.string.split('.').last == json['activity_type'] as String,
-            ),
+      activityType:
+          ActivityTypeEnum.wordMeaning.fromString(json['activity_type']),
       content: ActivityContent.fromJson(contentMap),
     );
   }

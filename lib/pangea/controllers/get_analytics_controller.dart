@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
+import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
@@ -19,16 +20,21 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 /// A minimized version of AnalyticsController that get the logged in user's analytics
 class GetAnalyticsController {
   late PangeaController _pangeaController;
+  late MessageAnalyticsController perMessage;
   final List<AnalyticsCacheEntry> _cache = [];
   StreamSubscription<AnalyticsUpdate>? _analyticsUpdateSubscription;
   StreamController<AnalyticsStreamUpdate> analyticsStream =
       StreamController.broadcast();
 
   ConstructListModel constructListModel = ConstructListModel(uses: []);
-  Completer<void>? initCompleter;
+  Completer<void> initCompleter = Completer<void>();
 
   GetAnalyticsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
+
+    perMessage = MessageAnalyticsController(
+      this,
+    );
   }
 
   String? get _l2Code => _pangeaController.languageController.userL2?.langCode;
@@ -58,22 +64,25 @@ class GetAnalyticsController {
   }
 
   Future<void> initialize() async {
-    if (initCompleter != null) return;
-    initCompleter = Completer<void>();
+    if (initCompleter.isCompleted) return;
 
-    _analyticsUpdateSubscription ??= _pangeaController
-        .putAnalytics.analyticsUpdateStream.stream
-        .listen(_onAnalyticsUpdate);
+    try {
+      _analyticsUpdateSubscription ??= _pangeaController
+          .putAnalytics.analyticsUpdateStream.stream
+          .listen(_onAnalyticsUpdate);
 
-    await _pangeaController.putAnalytics.lastUpdatedCompleter.future;
-    await _getConstructs();
-    constructListModel.updateConstructs([
-      ...(_getConstructsLocal() ?? []),
-      ..._locallyCachedConstructs,
-    ]);
-    _updateAnalyticsStream();
-
-    initCompleter!.complete();
+      await _pangeaController.putAnalytics.lastUpdatedCompleter.future;
+      await _getConstructs();
+      constructListModel.updateConstructs([
+        ...(_getConstructsLocal() ?? []),
+        ..._locallyCachedConstructs,
+      ]);
+      _updateAnalyticsStream();
+    } catch (err, s) {
+      ErrorHandler.logError(e: err, s: s);
+    } finally {
+      if (!initCompleter.isCompleted) initCompleter.complete();
+    }
   }
 
   /// Clear all cached analytics data.
@@ -81,8 +90,9 @@ class GetAnalyticsController {
     constructListModel.dispose();
     _analyticsUpdateSubscription?.cancel();
     _analyticsUpdateSubscription = null;
-    initCompleter = null;
+    initCompleter = Completer<void>();
     _cache.clear();
+    // perMessage.dispose();
   }
 
   Future<void> _onAnalyticsUpdate(AnalyticsUpdate analyticsUpdate) async {

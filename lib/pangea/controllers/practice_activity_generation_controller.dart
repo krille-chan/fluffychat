@@ -90,6 +90,13 @@ class PracticeGenerationController {
 
       final response = MessageActivityResponse.fromJson(json);
 
+      // workaround for the server not returning the tgtConstructs
+      // if (response.activity != null &&
+      //     response.activity!.tgtConstructs.isEmpty) {
+      //   response.activity?.tgtConstructs.addAll(
+      //     requestModel.clientTokenRequest.constructIDs,
+      //   );
+      // }
       return response;
     } else {
       debugger(when: kDebugMode);
@@ -104,6 +111,8 @@ class PracticeGenerationController {
     PangeaMessageEvent event,
   ) async {
     final int cacheKey = req.hashCode;
+
+    // debugger(when: kDebugMode);
 
     if (_cache.containsKey(cacheKey)) {
       return _cache[cacheKey]!.practiceActivity;

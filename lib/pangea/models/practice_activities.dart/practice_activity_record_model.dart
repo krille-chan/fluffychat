@@ -4,6 +4,7 @@
 // finding the answer
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
@@ -131,8 +132,22 @@ class ActivityRecordResponse {
   });
 
   //TODO - differentiate into different activity types
-  ConstructUseTypeEnum get useType =>
-      score > 0 ? ConstructUseTypeEnum.corPA : ConstructUseTypeEnum.incPA;
+  ConstructUseTypeEnum useType(ActivityTypeEnum aType) {
+    switch (aType) {
+      case ActivityTypeEnum.wordMeaning:
+        return score > 0
+            ? ConstructUseTypeEnum.corPA
+            : ConstructUseTypeEnum.incPA;
+      case ActivityTypeEnum.wordFocusListening:
+        return score > 0
+            ? ConstructUseTypeEnum.corWL
+            : ConstructUseTypeEnum.incWL;
+      case ActivityTypeEnum.hiddenWordListening:
+        return score > 0
+            ? ConstructUseTypeEnum.corHWL
+            : ConstructUseTypeEnum.incHWL;
+    }
+  }
 
   // for each target construct create a OneConstructUse object
   List<OneConstructUse> toUses(
@@ -144,7 +159,7 @@ class ActivityRecordResponse {
             (construct) => OneConstructUse(
               lemma: construct.lemma,
               constructType: construct.type,
-              useType: useType,
+              useType: useType(practiceActivity.activityType),
               metadata: metadata,
               category: construct.category,
             ),

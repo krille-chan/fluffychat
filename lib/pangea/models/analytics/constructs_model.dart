@@ -49,11 +49,19 @@ class ConstructAnalyticsModel {
 }
 
 class OneConstructUse {
+  /// the lemma of vocab or the text of a morph tag
+  /// e.g. "be" or "Present"
   String? lemma;
+
+  /// exact text as it appeared in the text
   String? form;
 
   /// For vocab constructs, this is the POS. For morph
   /// constructs, this is the morphological category.
+  /// e.g. "are" or "Tense"
+  /// TODO - for old uses without category, we should
+  /// try guessing the category from the lemma as best we can
+  /// while it's not 1-to-1, most morph tags are unique
   String? category;
 
   ConstructTypeEnum constructType;
