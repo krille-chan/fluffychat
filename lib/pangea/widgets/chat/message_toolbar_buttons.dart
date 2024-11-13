@@ -9,6 +9,7 @@ import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/pressable_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ToolbarButtons extends StatelessWidget {
   final MessageOverlayController overlayController;
@@ -93,36 +94,118 @@ class ToolbarButtons extends StatelessWidget {
               );
               return Tooltip(
                 message: mode.tooltip(context),
-                child: PressableButton(
-                  borderRadius: BorderRadius.circular(20),
-                  enabled: enabled,
-                  depressed: !enabled || mode == overlayController.toolbarMode,
-                  color: color,
-                  onPressed: enabled
-                      ? () => overlayController.updateToolbarMode(mode)
-                      : null,
-                  child: AnimatedContainer(
-                    duration: FluffyThemes.animationDuration,
-                    height: buttonSize,
-                    width: buttonSize,
-                    decoration: BoxDecoration(
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    PressableButton(
+                      borderRadius: BorderRadius.circular(20),
+                      enabled: enabled,
+                      depressed:
+                          !enabled || mode == overlayController.toolbarMode,
                       color: color,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      mode.icon,
-                      size: 20,
-                      color: mode == overlayController.toolbarMode
-                          ? Colors.white
+                      onPressed: enabled
+                          ? () => overlayController.updateToolbarMode(mode)
                           : null,
+                      child: AnimatedContainer(
+                        duration: FluffyThemes.animationDuration,
+                        height: buttonSize,
+                        width: buttonSize,
+                        decoration: BoxDecoration(
+                          color: color,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          mode.icon,
+                          size: 20,
+                          color: mode == overlayController.toolbarMode
+                              ? Colors.white
+                              : null,
+                        ),
+                      ),
                     ),
-                  ),
+                    if (!enabled) const DisabledAnimation(),
+                  ],
                 ),
               );
             }).toList(),
           ),
         ],
       ),
+    );
+  }
+}
+
+class DisabledAnimation extends StatefulWidget {
+  final double size;
+
+  const DisabledAnimation({
+    this.size = 40.0,
+    super.key,
+  });
+
+  @override
+  DisabledAnimationState createState() => DisabledAnimationState();
+}
+
+class DisabledAnimationState extends State<DisabledAnimation>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 750),
+      vsync: this,
+    );
+
+    _animation = TweenSequence<double>([
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 0, end: 1),
+        weight: 1.0,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 1, end: 1),
+        weight: 1.0,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 1, end: 0),
+        weight: 1.0,
+      ),
+    ]).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, _) {
+        return GestureDetector(
+          onTap: () {
+            _controller.forward().then((_) => _controller.reset());
+            HapticFeedback.mediumImpact();
+          },
+          child: SizedBox(
+            width: widget.size,
+            height: widget.size,
+            child: Opacity(
+              opacity: _animation.value,
+              child: const Icon(
+                Icons.lock,
+                color: Colors.red,
+                size: 28,
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
