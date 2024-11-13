@@ -164,11 +164,8 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       setSectionStartAndEndFromSelection();
       if (mounted) setState(() => _isLoading = false);
     } catch (e, s) {
-      debugger(when: kDebugMode);
       widget.onError?.call();
-      debugPrint(StackTrace.current.toString());
-      if (!mounted) return;
-      setState(() => _isLoading = false);
+      debugger(when: kDebugMode);
       ErrorHandler.logError(
         e: e,
         s: s,
@@ -178,6 +175,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
               widget.messageEvent.messageDisplayLangCode,
         },
       );
+      if (mounted) setState(() => _isLoading = false);
     }
   }
 

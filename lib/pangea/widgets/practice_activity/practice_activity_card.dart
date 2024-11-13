@@ -292,12 +292,11 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
       _setPracticeActivity(result.last as PracticeActivityModel?);
     } catch (e, s) {
-      _setPracticeActivity(null);
+      _onError();
       debugger(when: kDebugMode);
       ErrorHandler.logError(
         e: e,
         s: s,
-        m: 'Failed to get new activity',
         data: {
           'activity': currentActivity,
           'record': currentCompletionRecord,
@@ -306,7 +305,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     }
   }
 
-  void _onDownstreamError() {
+  void _onError() {
+    messageAnalyticsEntry?.revealAllTokens();
     _setPracticeActivity(null);
   }
 
@@ -377,7 +377,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
           currentActivity: currentActivity!,
           tts: widget.ttsController,
           eventID: widget.pangeaMessageEvent.eventId,
-          onError: _onDownstreamError,
+          onError: _onError,
         );
     }
   }
