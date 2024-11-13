@@ -160,7 +160,7 @@ class IGCTextData {
     newTokens.replaceRange(startIndex, endIndex, replacement.tokens);
 
     final String newFullText = PangeaToken.reconstructText(newTokens);
-    if (newFullText != originalInput && kDebugMode) {
+    if (newFullText.trim() != originalInput.trim() && kDebugMode) {
       PangeaToken.reconstructText(newTokens, debugWalkThrough: true);
       ErrorHandler.logError(
         m: "reconstructed text not working",

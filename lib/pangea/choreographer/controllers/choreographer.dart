@@ -116,8 +116,10 @@ class Choreographer {
     // we've got a rather elaborate method of updating tokens after matches are accepted
     // so we need to check if the reconstructed text matches the current text
     // if not, let's get the tokens again and log an error
+    final reconstructedText =
+        PangeaToken.reconstructText(igc.igcTextData!.tokens);
     if (igc.igcTextData?.tokens != null &&
-        PangeaToken.reconstructText(igc.igcTextData!.tokens) != currentText) {
+        reconstructedText.trim() != currentText.trim()) {
       if (kDebugMode) {
         PangeaToken.reconstructText(
           igc.igcTextData!.tokens,
