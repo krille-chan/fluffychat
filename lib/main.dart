@@ -23,7 +23,7 @@ void main() async {
 
   // #Pangea
   try {
-    await dotenv.load(fileName: ".env");
+    await dotenv.load(fileName: ".env.local_choreo");
   } catch (e) {
     Logs().e('Failed to load .env file', e);
   }

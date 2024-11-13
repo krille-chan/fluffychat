@@ -12,13 +12,13 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_token_text.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar_buttons.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_header.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity/target_tokens_controller.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -75,8 +75,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   bool isPlayingAudio = false;
 
   bool get showToolbarButtons => !widget._pangeaMessageEvent.isAudioMessage;
-  final TargetTokensController targetTokensController =
-      TargetTokensController();
+
+  List<PangeaToken>? tokens;
 
   @override
   void initState() {
@@ -86,6 +86,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       duration:
           const Duration(milliseconds: AppConfig.overlayAnimationDuration),
     );
+
+    _getTokens();
 
     activitiesLeftToComplete = activitiesLeftToComplete -
         widget._pangeaMessageEvent.numberOfActivitiesCompleted;
@@ -112,6 +114,39 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     tts.setupTTS();
     setInitialToolbarMode();
+  }
+
+  MessageTokenText get messageTokenText => MessageTokenText(
+        ownMessage: pangeaMessageEvent.ownMessage,
+        fullText: pangeaMessageEvent.messageDisplayText,
+        tokensWithDisplay: tokens
+            ?.map(
+              (token) => TokenWithDisplayInstructions(
+                token: token,
+                highlight: isTokenSelected(token),
+                //NOTE: we actually do want the controller to be aware of which
+                // tokens are currently being involved in activities and adjust here
+                hideContent: false,
+              ),
+            )
+            .toList(),
+        onClick: onClickOverlayMessageToken,
+      );
+
+  Future<void> _getTokens() async {
+    tokens = pangeaMessageEvent.originalSent?.tokens;
+
+    if (pangeaMessageEvent.originalSent != null && tokens == null) {
+      pangeaMessageEvent.originalSent!
+          .tokensGlobal(
+        pangeaMessageEvent.senderId,
+        pangeaMessageEvent.originServerTs,
+      )
+          .then((tokens) {
+        // this isn't currently working because originalSent's _event is null
+        setState(() => this.tokens = tokens);
+      });
+    }
   }
 
   /// We need to check if the setState call is safe to call immediately
@@ -493,7 +528,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               pangeaMessageEvent: widget._pangeaMessageEvent,
               overLayController: this,
               ttsController: tts,
-              targetTokensController: targetTokensController,
             ),
             const SizedBox(height: 8),
             SizedBox(

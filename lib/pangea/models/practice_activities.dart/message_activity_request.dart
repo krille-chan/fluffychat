@@ -1,83 +1,59 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
-import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/models/analytics/construct_use_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-
-class ConstructWithXP {
-  final ConstructIdentifier id;
-  int xp;
-  DateTime? lastUsed;
-  List<ConstructUseTypeEnum> condensedConstructUses;
-
-  ConstructWithXP({
-    required this.id,
-    this.xp = 0,
-    this.lastUsed,
-    this.condensedConstructUses = const [],
-  });
-
-  factory ConstructWithXP.fromJson(Map<String, dynamic> json) {
-    return ConstructWithXP(
-      id: ConstructIdentifier.fromJson(
-        json['construct_id'] as Map<String, dynamic>,
-      ),
-      xp: json['xp'] as int,
-      lastUsed: json['last_used'] != null
-          ? DateTime.parse(json['last_used'] as String)
-          : null,
-      condensedConstructUses: (json['uses'] as List<String>).map((e) {
-        return ConstructUseTypeUtil.fromString(e);
-      }).toList(),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    final json = {
-      'construct_id': id.toJson(),
-      'xp': xp,
-      'last_used': lastUsed?.toIso8601String(),
-      'uses': condensedConstructUses.map((e) => e.string).toList(),
-    };
-    return json;
-  }
-}
+import 'package:fluffychat/widgets/matrix.dart';
 
 class TokenWithXP {
   final PangeaToken token;
-  final List<ConstructWithXP> constructs;
-
-  DateTime? get lastUsed {
-    return constructs.fold<DateTime?>(
-      null,
-      (previousValue, element) {
-        if (previousValue == null) return element.lastUsed;
-        if (element.lastUsed == null) return previousValue;
-        return element.lastUsed!.isAfter(previousValue)
-            ? element.lastUsed
-            : previousValue;
-      },
-    );
-  }
-
-  int get xp {
-    return constructs.fold<int>(
-      0,
-      (previousValue, element) => previousValue + element.xp,
-    );
-  }
+  late List<ActivityTypeEnum> targetTypes;
 
   TokenWithXP({
     required this.token,
-    required this.constructs,
-  });
+  }) {
+    targetTypes = [];
+  }
+
+  List<ConstructIdentifier> get _constructIDs {
+    final List<ConstructIdentifier> ids = [];
+    ids.add(
+      ConstructIdentifier(
+        lemma: token.lemma.text,
+        type: ConstructTypeEnum.vocab,
+        category: token.pos,
+      ),
+    );
+    for (final morph in token.morph.entries) {
+      ids.add(
+        ConstructIdentifier(
+          lemma: morph.value,
+          type: ConstructTypeEnum.morph,
+          category: morph.key,
+        ),
+      );
+    }
+    return ids;
+  }
+
+  List<ConstructUses> get constructs => _constructIDs
+      .map(
+        (id) =>
+            MatrixState.pangeaController.getAnalytics.constructListModel
+                .getConstructUses(id) ??
+            ConstructUses(
+              lemma: id.lemma,
+              constructType: id.type,
+              category: id.category,
+              uses: [],
+            ),
+      )
+      .toList();
 
   factory TokenWithXP.fromJson(Map<String, dynamic> json) {
     return TokenWithXP(
       token: PangeaToken.fromJson(json['token'] as Map<String, dynamic>),
-      constructs: (json['constructs'] as List)
-          .map((e) => ConstructWithXP.fromJson(e as Map<String, dynamic>))
-          .toList(),
     );
   }
 
@@ -85,21 +61,96 @@ class TokenWithXP {
     return {
       'token': token.toJson(),
       'constructs_with_xp': constructs.map((e) => e.toJson()).toList(),
+      'target_types': targetTypes.map((e) => e.string).toList(),
     };
   }
 
+  bool eligibleForActivity(ActivityTypeEnum a) {
+    switch (a) {
+      case ActivityTypeEnum.wordMeaning:
+        return token.isContentWord;
+      case ActivityTypeEnum.wordFocusListening:
+      case ActivityTypeEnum.hiddenWordListening:
+        return token.canBeHeard;
+    }
+  }
+
+  bool didActivity(ActivityTypeEnum a) {
+    switch (a) {
+      case ActivityTypeEnum.wordMeaning:
+        return vocabConstruct.uses
+            .map((u) => u.useType)
+            .any((u) => a.associatedUseTypes.contains(u));
+      case ActivityTypeEnum.wordFocusListening:
+        return vocabConstruct.uses
+            // TODO - double-check that form is going to be available here
+            // .where((u) =>
+            //     u.form?.toLowerCase() == token.text.content.toLowerCase(),)
+            .map((u) => u.useType)
+            .any((u) => a.associatedUseTypes.contains(u));
+      case ActivityTypeEnum.hiddenWordListening:
+        return vocabConstruct.uses
+            // TODO - double-check that form is going to be available here
+            // .where((u) =>
+            //     u.form?.toLowerCase() == token.text.content.toLowerCase(),)
+            .map((u) => u.useType)
+            .any((u) => a.associatedUseTypes.contains(u));
+    }
+  }
+
+  ConstructUses get vocabConstruct {
+    final vocab = constructs.firstWhereOrNull(
+      (element) => element.id.type == ConstructTypeEnum.vocab,
+    );
+    if (vocab == null) {
+      return ConstructUses(
+        lemma: token.lemma.text,
+        constructType: ConstructTypeEnum.vocab,
+        category: token.pos,
+        uses: [],
+      );
+    }
+    return vocab;
+  }
+
+  int get xp {
+    return constructs.fold<int>(
+      0,
+      (previousValue, element) => previousValue + element.points,
+    );
+  }
+
+  ///
+  DateTime? get lastUsed => constructs.fold<DateTime?>(
+        null,
+        (previousValue, element) {
+          if (previousValue == null) return element.lastUsed;
+          if (element.lastUsed == null) return previousValue;
+          return element.lastUsed!.isAfter(previousValue)
+              ? element.lastUsed
+              : previousValue;
+        },
+      );
+
+  /// daysSinceLastUse
+  int get daysSinceLastUse {
+    if (lastUsed == null) return 1000;
+    return DateTime.now().difference(lastUsed!).inDays;
+  }
+
+  //override operator == and hashCode
+  // check that the list of constructs are the same
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is TokenWithXP &&
-        other.token.text == token.text &&
-        other.lastUsed == lastUsed;
+        const ListEquality().equals(other.constructs, constructs);
   }
 
   @override
   int get hashCode {
-    return token.text.hashCode ^ lastUsed.hashCode;
+    return const ListEquality().hash(constructs);
   }
 }
 
@@ -197,6 +248,10 @@ class MessageActivityRequest {
 
   final List<ActivityTypeEnum> clientCompatibleActivities;
 
+  final ActivityTypeEnum clientTypeRequest;
+
+  final TokenWithXP clientTokenRequest;
+
   MessageActivityRequest({
     required this.userL1,
     required this.userL2,
@@ -205,52 +260,10 @@ class MessageActivityRequest {
     required this.messageId,
     required this.existingActivities,
     required this.activityQualityFeedback,
-    clientCompatibleActivities,
-  }) : clientCompatibleActivities =
-            clientCompatibleActivities ?? ActivityTypeEnum.values;
-
-  factory MessageActivityRequest.fromJson(Map<String, dynamic> json) {
-    final clientCompatibleActivitiesEntry =
-        json['client_version_compatible_activity_types'];
-    List<ActivityTypeEnum>? clientCompatibleActivities;
-    if (clientCompatibleActivitiesEntry != null &&
-        clientCompatibleActivitiesEntry is List) {
-      clientCompatibleActivities = clientCompatibleActivitiesEntry
-          .map(
-            (e) => ActivityTypeEnum.values.firstWhereOrNull(
-              (element) =>
-                  element.string == e as String ||
-                  element.string.split('.').last == e,
-            ),
-          )
-          .where((entry) => entry != null)
-          .cast<ActivityTypeEnum>()
-          .toList();
-    }
-    return MessageActivityRequest(
-      userL1: json['user_l1'] as String,
-      userL2: json['user_l2'] as String,
-      messageText: json['message_text'] as String,
-      tokensWithXP: (json['tokens_with_xp'] as List)
-          .map((e) => TokenWithXP.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      messageId: json['message_id'] as String,
-      existingActivities: (json['existing_activities'] as List)
-          .map(
-            (e) => ExistingActivityMetaData.fromJson(e as Map<String, dynamic>),
-          )
-          .toList(),
-      activityQualityFeedback: json['activity_quality_feedback'] != null
-          ? ActivityQualityFeedback.fromJson(
-              json['activity_quality_feedback'] as Map<String, dynamic>,
-            )
-          : null,
-      clientCompatibleActivities: clientCompatibleActivities != null &&
-              clientCompatibleActivities.isNotEmpty
-          ? clientCompatibleActivities
-          : ActivityTypeEnum.values,
-    );
-  }
+    required this.clientCompatibleActivities,
+    required this.clientTokenRequest,
+    required this.clientTypeRequest,
+  });
 
   Map<String, dynamic> toJson() {
     return {
@@ -267,6 +280,8 @@ class MessageActivityRequest {
       // this for backwards compatibility with old clients
       'client_version_compatible_activity_types':
           clientCompatibleActivities.map((e) => e.string).toList(),
+      'client_type_request': clientTypeRequest.string,
+      'client_token_request': clientTokenRequest.toJson(),
     };
   }
 

@@ -145,7 +145,8 @@ class OneConstructUse {
     for (final String category in morphCategoriesAndLabels.keys) {
       if (morphCategoriesAndLabels[category]!.contains(morphLemma)) {
         debugPrint(
-            "found missing construct category for $morphLemma: $category");
+          "found missing construct category for $morphLemma: $category",
+        );
         return category;
       }
     }

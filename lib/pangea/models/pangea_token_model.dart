@@ -4,8 +4,6 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:flutter/foundation.dart';
 
 import '../constants/model_keys.dart';
@@ -13,6 +11,9 @@ import 'lemma.dart';
 
 class PangeaToken {
   PangeaTokenText text;
+
+  //TODO - make this a string and move save_vocab to this class
+  // clients have been able to handle null lemmas for 12 months so this is safe
   Lemma lemma;
 
   /// [pos] ex "VERB" - part of speech of the token
@@ -120,37 +121,21 @@ class PangeaToken {
   /// alias for the end of the token ie offset + length
   int get end => text.offset + text.length;
 
-  /// create an empty tokenWithXP object
-  TokenWithXP get emptyTokenWithXP {
-    final List<ConstructWithXP> constructs = [];
+  bool get isContentWord => ["NOUN", "VERB", "ADJ", "ADV"].contains(pos);
 
-    constructs.add(
-      ConstructWithXP(
-        id: ConstructIdentifier(
-          lemma: lemma.text,
-          type: ConstructTypeEnum.vocab,
-          category: pos,
-        ),
-      ),
-    );
-
-    for (final morph in morph.entries) {
-      constructs.add(
-        ConstructWithXP(
-          id: ConstructIdentifier(
-            lemma: morph.value,
-            type: ConstructTypeEnum.morph,
-            category: morph.key,
-          ),
-        ),
-      );
-    }
-
-    return TokenWithXP(
-      token: this,
-      constructs: constructs,
-    );
-  }
+  bool get canBeHeard => [
+        "ADJ",
+        "ADV",
+        "AUX",
+        "DET",
+        "INTJ",
+        "NOUN",
+        "NUM",
+        "PRON",
+        "PROPN",
+        "SCONJ",
+        "VERB",
+      ].contains(pos);
 
   /// Given a [type] and [metadata], returns a [OneConstructUse] for this lemma
   OneConstructUse toVocabUse(
@@ -160,7 +145,7 @@ class PangeaToken {
     return OneConstructUse(
       useType: type,
       lemma: lemma.text,
-      form: lemma.form,
+      form: text.content,
       constructType: ConstructTypeEnum.vocab,
       metadata: metadata,
       category: pos,

@@ -4,8 +4,8 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_token_text_stateful.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar_selection_area.dart';
-import 'package:fluffychat/pangea/widgets/chat/overlay_message_text.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -306,11 +306,21 @@ class MessageContent extends StatelessWidget {
               height: 1.3,
             );
 
-            if (overlayController != null && pangeaMessageEvent != null) {
-              return OverlayMessageText(
-                pangeaMessageEvent: pangeaMessageEvent!,
-                overlayController: overlayController!,
+            if (pangeaMessageEvent?.messageDisplayRepresentation?.tokens !=
+                null) {
+              return MessageTokenTextStateful(
+                messageAnalyticsEntry:
+                    controller.pangeaController.getAnalytics.perMessage.get(
+                  pangeaMessageEvent!,
+                  false,
+                )!,
+                style: messageTextStyle,
+                onClick: (token) => controller.showToolbar(pangeaMessageEvent!),
               );
+            }
+
+            if (overlayController != null && pangeaMessageEvent != null) {
+              return overlayController!.messageTokenText;
             }
 
             if (immersionMode && pangeaMessageEvent != null) {
