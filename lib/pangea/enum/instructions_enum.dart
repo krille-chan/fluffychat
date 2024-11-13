@@ -17,6 +17,7 @@ enum InstructionsEnum {
   clickAgainToDeselect,
   missingVoice,
   clickBestOption,
+  unlockedLanguageTools,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
@@ -37,6 +38,7 @@ extension InstructionsEnumExtension on InstructionsEnum {
       case InstructionsEnum.l1Translation:
       case InstructionsEnum.translationChoices:
       case InstructionsEnum.clickBestOption:
+      case InstructionsEnum.unlockedLanguageTools:
         ErrorHandler.logError(
           e: Exception("No title for this instruction"),
           m: 'InstructionsEnumExtension.title',
@@ -73,6 +75,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.voiceNotAvailable;
       case InstructionsEnum.clickBestOption:
         return l10n.clickBestOption;
+      case InstructionsEnum.unlockedLanguageTools:
+        return l10n.unlockedLanguageTools;
     }
   }
 
@@ -100,6 +104,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return instructionSettings.showedMissingVoice;
       case InstructionsEnum.clickBestOption:
         return instructionSettings.showedClickBestOption;
+      case InstructionsEnum.unlockedLanguageTools:
+        return instructionSettings.showedUnlockedLanguageTools;
     }
   }
 }

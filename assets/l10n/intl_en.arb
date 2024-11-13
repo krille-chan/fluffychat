@@ -4499,5 +4499,6 @@
   "messageNotInTargetLang": "Message not in target language",
   "other": "Other",
   "botModeValidation": "Please select a chat mode",
-  "clickBestOption": "Choose the best options to translate your message!"
+  "clickBestOption": "Choose the best options to translate your message!",
+  "unlockedLanguageTools": "You’ve unlocked the language tools for this message. Try them out by clicking below!"
 }

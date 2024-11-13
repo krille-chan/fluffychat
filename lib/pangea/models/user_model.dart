@@ -187,6 +187,7 @@ class UserInstructions {
   bool showedTooltipInstructions;
   bool showedMissingVoice;
   bool showedClickBestOption;
+  bool showedUnlockedLanguageTools;
 
   bool showedSpeechToTextTooltip;
   bool showedL1TranslationTooltip;
@@ -204,6 +205,7 @@ class UserInstructions {
     this.showedClickAgainToDeselect = false,
     this.showedMissingVoice = false,
     this.showedClickBestOption = false,
+    this.showedUnlockedLanguageTools = false,
   });
 
   factory UserInstructions.fromJson(Map<String, dynamic> json) =>
@@ -227,6 +229,8 @@ class UserInstructions {
             json[InstructionsEnum.missingVoice.toString()] ?? false,
         showedClickBestOption:
             json[InstructionsEnum.clickBestOption.toString()] ?? false,
+        showedUnlockedLanguageTools:
+            json[InstructionsEnum.unlockedLanguageTools.toString()] ?? false,
       );
 
   Map<String, dynamic> toJson() {
@@ -246,6 +250,8 @@ class UserInstructions {
         showedClickAgainToDeselect;
     data[InstructionsEnum.missingVoice.toString()] = showedMissingVoice;
     data[InstructionsEnum.clickBestOption.toString()] = showedClickBestOption;
+    data[InstructionsEnum.unlockedLanguageTools.toString()] =
+        showedUnlockedLanguageTools;
     return data;
   }
 

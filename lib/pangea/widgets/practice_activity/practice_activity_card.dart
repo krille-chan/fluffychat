@@ -23,7 +23,6 @@ import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_car
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 /// The wrapper for practice activity content.
 /// Handles the activities associated with a message,
@@ -382,11 +381,13 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     }
   }
 
+  void _closeTooltip() => setState(() {});
+
   @override
   Widget build(BuildContext context) {
     if (!fetchingActivity && currentActivity == null) {
       return GamifiedTextWidget(
-        userMessage: L10n.of(context)!.noActivitiesFound,
+        onCloseTooltip: _closeTooltip,
       );
     }
 
