@@ -59,6 +59,9 @@ class InstructionsController {
         case InstructionsEnum.missingVoice:
           profile.instructionSettings.showedMissingVoice = value;
           break;
+        case InstructionsEnum.clickBestOption:
+          profile.instructionSettings.showedClickBestOption = value;
+          break;
       }
       return profile;
     });

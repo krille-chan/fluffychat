@@ -4498,5 +4498,6 @@
   "selectBotChatMode": "Select chat mode",
   "messageNotInTargetLang": "Message not in target language",
   "other": "Other",
-  "botModeValidation": "Please select a chat mode"
+  "botModeValidation": "Please select a chat mode",
+  "clickBestOption": "Choose the best options to translate your message!"
 }
