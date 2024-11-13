@@ -189,6 +189,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
           OneConstructUse(
             useType: useType,
             lemma: entry.value,
+            form: token.text.content,
             category: entry.key,
             constructType: ConstructTypeEnum.morph,
             metadata: metadata,

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/morph_categories_and_labels.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -49,20 +50,15 @@ class ConstructAnalyticsModel {
 }
 
 class OneConstructUse {
-  /// the lemma of vocab or the text of a morph tag
-  /// e.g. "be" or "Present"
-  String? lemma;
+  String lemma;
 
-  /// exact text as it appeared in the text
+  // practice activities do not currently include form in the target_construct info
+  // for that, this is nullable
   String? form;
 
   /// For vocab constructs, this is the POS. For morph
   /// constructs, this is the morphological category.
-  /// e.g. "are" or "Tense"
-  /// TODO - for old uses without category, we should
-  /// try guessing the category from the lemma as best we can
-  /// while it's not 1-to-1, most morph tags are unique
-  String? category;
+  String category;
 
   ConstructTypeEnum constructType;
   ConstructUseTypeEnum useType;
@@ -78,8 +74,8 @@ class OneConstructUse {
     required this.lemma,
     required this.constructType,
     required this.metadata,
-    this.category,
-    this.form,
+    required this.category,
+    required this.form,
     this.id,
   });
 
@@ -88,27 +84,20 @@ class OneConstructUse {
   DateTime get timeStamp => metadata.timeStamp;
 
   factory OneConstructUse.fromJson(Map<String, dynamic> json) {
-    final constructType = json['constructType'] != null
-        ? ConstructTypeUtil.fromString(json['constructType'])
-        : null;
-    debugger(when: kDebugMode && constructType == null);
+    debugger(when: kDebugMode && json['constructType'] == null);
 
-    final categoryEntry = json['cat'] ?? json['categories'];
-    String? category;
-    if (categoryEntry != null) {
-      if ((categoryEntry is List) && categoryEntry.isNotEmpty) {
-        category = categoryEntry.first;
-      } else if (categoryEntry is String) {
-        category = categoryEntry;
-      }
-    }
+    final ConstructTypeEnum constructType = json['constructType'] != null
+        ? ConstructTypeUtil.fromString(json['constructType'])
+        : ConstructTypeEnum.vocab;
 
     return OneConstructUse(
       useType: ConstructUseTypeUtil.fromString(json['useType']),
       lemma: json['lemma'],
       form: json['form'],
-      category: category,
-      constructType: constructType ?? ConstructTypeEnum.vocab,
+      category: constructType == ConstructTypeEnum.morph
+          ? getCategory(json)
+          : "Other",
+      constructType: constructType,
       id: json['id'],
       metadata: ConstructUseMetaData(
         eventId: json['msgId'],
@@ -118,21 +107,53 @@ class OneConstructUse {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {
-      'useType': useType.string,
-      'chatId': metadata.roomId,
-      'timeStamp': metadata.timeStamp.toIso8601String(),
-      'form': form,
-      'msgId': metadata.eventId,
-    };
+  Map<String, dynamic> toJson() => {
+        'useType': useType.string,
+        'chatId': metadata.roomId,
+        'timeStamp': metadata.timeStamp.toIso8601String(),
+        'form': form,
+        'msgId': metadata.eventId,
+        'lemma': lemma,
+        'constructType': constructType.string,
+        'categories': category,
+        'id': id,
+      };
 
-    data['lemma'] = lemma!;
-    data['constructType'] = constructType.string;
+  static String getCategory(Map<String, dynamic> json) {
+    final categoryEntry = json['cat'] ?? json['categories'];
 
-    if (id != null) data['id'] = id;
-    data['categories'] = category;
-    return data;
+    if (categoryEntry == null) {
+      return _guessGrammarCategory(json["lemma"]);
+    }
+
+    if ((categoryEntry is List)) {
+      if (categoryEntry.isEmpty) {
+        return _guessGrammarCategory(json["lemma"]);
+      }
+      return categoryEntry.first;
+    } else if (categoryEntry is String) {
+      return categoryEntry;
+    }
+
+    debugPrint(
+      "Category entry is not a list or string -${json['cat'] ?? json['categories']}-",
+    );
+    return _guessGrammarCategory(json["lemma"]);
+  }
+
+  static String _guessGrammarCategory(String morphLemma) {
+    for (final String category in morphCategoriesAndLabels.keys) {
+      if (morphCategoriesAndLabels[category]!.contains(morphLemma)) {
+        debugPrint(
+          "found missing construct category for $morphLemma: $category",
+        );
+        return category;
+      }
+    }
+    ErrorHandler.logError(
+      m: "Morph construct lemma $morphLemma not found in morph categories and labels",
+    );
+    return "Other";
   }
 
   Room? getRoom(Client client) {
@@ -148,9 +169,9 @@ class OneConstructUse {
   int get pointValue => useType.pointValue;
 
   ConstructIdentifier get identifier => ConstructIdentifier(
-        lemma: lemma!,
+        lemma: lemma,
         type: constructType,
-        category: category ?? "",
+        category: category,
       );
 }
 
