@@ -158,6 +158,8 @@ class ActivityRecordResponse {
           .map(
             (construct) => OneConstructUse(
               lemma: construct.lemma,
+              // TODO - add form to practiceActivity target_construct data somehow
+              form: null,
               constructType: construct.type,
               useType: useType(practiceActivity.activityType),
               metadata: metadata,

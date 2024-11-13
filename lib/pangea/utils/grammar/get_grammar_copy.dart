@@ -411,6 +411,8 @@ String? getGrammarCopy({
       return L10n.of(context)!.grammarCopyPRONTYPEexc;
     case 'grammarCopyPRONTYPErcp':
       return L10n.of(context)!.grammarCopyPRONTYPErcp;
+    case 'grammarCopyPRONTYPEint':
+      return L10n.of(context)!.grammarCopyPRONTYPEint;
     case 'grammarCopyPRONTYPEintrel':
       return L10n.of(context)!.grammarCopyPRONTYPEintrel;
     case 'grammarCopyPRONTYPEintRelPronType':
@@ -439,6 +441,8 @@ String? getGrammarCopy({
       return L10n.of(context)!.grammarCopyVOICEinvVoice;
     case 'grammarCopyVOICErcpVoice':
       return L10n.of(context)!.grammarCopyVOICErcpVoice;
+    case "grammarCopyCASEaccdat":
+      return L10n.of(context)!.grammarCopyCASEaccdat;
     // Handle empty tag
     case '':
       ErrorHandler.logError(
@@ -458,6 +462,6 @@ String? getGrammarCopy({
           'context': context,
         },
       );
-      return key; // Fallback to the key itself if no match is found
+      return lemma; // Fallback to the lemma itself if no match is found
   }
 }
