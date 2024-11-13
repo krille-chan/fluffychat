@@ -52,16 +52,21 @@ class ConstructListModel {
     _updateMetrics();
   }
 
+  int _sortConstructs(ConstructUses a, ConstructUses b) {
+    final comp = b.points.compareTo(a.points);
+    if (comp != 0) return comp;
+    return a.lemma.compareTo(b.lemma);
+  }
+
   /// A map of lemmas to ConstructUses, each of which contains a lemma
   /// key = lemmma + constructType.string, value = ConstructUses
   void _updateConstructMap(final List<OneConstructUse> newUses) {
     for (final use in newUses) {
-      if (use.lemma == null) continue;
       final currentUses = _constructMap[use.identifier.string] ??
           ConstructUses(
             uses: [],
             constructType: use.constructType,
-            lemma: use.lemma!,
+            lemma: use.lemma,
             category: use.category,
           );
       currentUses.uses.add(use);
@@ -75,11 +80,7 @@ class ConstructListModel {
   void _updateConstructList() {
     // TODO check how expensive this is
     _constructList = _constructMap.values.toList();
-    _constructList.sort((a, b) {
-      final comp = b.uses.length.compareTo(a.uses.length);
-      if (comp != 0) return comp;
-      return a.lemma.compareTo(b.lemma);
-    });
+    _constructList.sort(_sortConstructs);
   }
 
   void _updateCategoriesToUses() {
