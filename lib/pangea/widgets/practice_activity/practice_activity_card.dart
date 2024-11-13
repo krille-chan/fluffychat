@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/practice_activity_generation_controller.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
@@ -53,10 +54,11 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   List<PracticeActivityEvent> get practiceActivities =>
       widget.pangeaMessageEvent.practiceActivities;
 
-  PracticeActivityEvent? get existingActivityMatchingNeeds {
-    final messageAnalyticsEntry = pangeaController.getAnalytics.perMessage
-        .get(widget.pangeaMessageEvent, false);
+  MessageAnalyticsEntry? get messageAnalyticsEntry =>
+      MatrixState.pangeaController.getAnalytics.perMessage
+          .get(widget.pangeaMessageEvent, false);
 
+  PracticeActivityEvent? get existingActivityMatchingNeeds {
     if (messageAnalyticsEntry?.nextActivityToken == null) {
       debugger(when: kDebugMode);
       return null;
@@ -67,7 +69,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         if (existingActivity.practiceActivity.tgtConstructs
                 .any((tc) => tc == c.id) &&
             existingActivity.practiceActivity.activityType ==
-                messageAnalyticsEntry.nextActivityType) {
+                messageAnalyticsEntry!.nextActivityType) {
           debugPrint('found existing activity');
           return existingActivity;
         }
@@ -163,9 +165,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       return null;
     }
 
-    final messageAnalyticsEntry = pangeaController.getAnalytics.perMessage
-        .get(widget.pangeaMessageEvent, false);
-
     // the client is going to be choosing the next activity now
     // if nothing is set then it must be done with practice
     if (messageAnalyticsEntry?.nextActivityToken == null ||
@@ -206,8 +205,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
             : ActivityTypeEnum.values
                 .where((type) => type != ActivityTypeEnum.wordFocusListening)
                 .toList(),
-        clientTokenRequest: messageAnalyticsEntry.nextActivityToken!,
-        clientTypeRequest: messageAnalyticsEntry.nextActivityType!,
+        clientTokenRequest: messageAnalyticsEntry!.nextActivityToken!,
+        clientTypeRequest: messageAnalyticsEntry!.nextActivityType!,
       ),
       widget.pangeaMessageEvent,
     );
@@ -277,13 +276,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       // previously we would update the tokens with the constructs
       // now the tokens themselves calculate their own points using the analytics
       // we're going to see if this creates performance issues
-      final messageAnalytics = MatrixState
-          .pangeaController.getAnalytics.perMessage
-          .get(widget.pangeaMessageEvent, false);
-      // messageAnalytics will only be null if there are no tokens to update
-
-      // set the target types for the next activity
-      messageAnalytics!.computeTargetTypesForMessageAsync();
+      messageAnalyticsEntry?.updateTargetTypesForMessage();
 
       widget.overlayController.onActivityFinish();
       pangeaController.activityRecordController.completeActivity(

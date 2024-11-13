@@ -33,24 +33,13 @@ class MessageAnalyticsEntry {
         .map((token) => TokenWithXP(token: token))
         .toList();
 
-    computeTargetTypesForMessage();
+    updateTargetTypesForMessage();
   }
 
   List<TokenWithXP> get tokensThatCanBeHeard =>
       tokensWithXp.where((t) => t.token.canBeHeard).toList();
 
-  // compute target tokens within async wrapper that adds a 250ms delay
-  // to avoid blocking the UI thread
-  Future<void> computeTargetTypesForMessageAsync() async {
-    await Future.delayed(const Duration(milliseconds: 250));
-    computeTargetTypesForMessage();
-  }
-
-  void computeTargetTypesForMessage() {
-    // reset
-    nextActivityToken = null;
-    nextActivityType = null;
-
+  void updateTokenTargetTypes() {
     // compute target types for each token
     for (final token in tokensWithXp) {
       token.targetTypes = [];
@@ -81,26 +70,39 @@ class MessageAnalyticsEntry {
         token.targetTypes.add(ActivityTypeEnum.hiddenWordListening);
       }
     }
+  }
 
-    // from the tokens with hiddenWordListening in targetTypes, pick one at random
-    final List<int> withListening = tokensWithXp
+  /// Updates the target types for each token in the message and the next
+  /// activity token and type. Called before requesting the next new activity.
+  void updateTargetTypesForMessage() {
+    // reset
+    nextActivityToken = null;
+    nextActivityType = null;
+    updateTokenTargetTypes();
+
+    // From the tokens with hiddenWordListening in targetTypes, pick one at random.
+    // Create a list of token indicies with hiddenWordListening type available.
+    final List<int> withHiddenWordIndices = tokensWithXp
         .asMap()
         .entries
         .where(
-          (entry) => entry.value.targetTypes
-              .contains(ActivityTypeEnum.hiddenWordListening),
+          (entry) => entry.value.targetTypes.contains(
+            ActivityTypeEnum.hiddenWordListening,
+          ),
         )
         .map((entry) => entry.key)
         .toList();
-    // randomly pick one entry in the list
-    if (withListening.isNotEmpty) {
+
+    // randomly pick one index in the list and set the next activity
+    if (withHiddenWordIndices.isNotEmpty) {
       final int randomIndex =
-          withListening[Random().nextInt(withListening.length)];
+          withHiddenWordIndices[Random().nextInt(withHiddenWordIndices.length)];
 
       nextActivityToken = tokensWithXp[randomIndex];
       nextActivityType = ActivityTypeEnum.hiddenWordListening;
 
-      // remove from all other tokens
+      // remove hiddenWord type from all other tokens
+      // there can only be one hidden word activity for a message
       for (int i = 0; i < tokensWithXp.length; i++) {
         if (i != randomIndex) {
           tokensWithXp[i]
