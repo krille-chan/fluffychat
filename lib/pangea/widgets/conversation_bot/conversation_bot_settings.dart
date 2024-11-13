@@ -112,6 +112,8 @@ class ConversationBotSettingsDialogState
   final TextEditingController customSystemPromptController =
       TextEditingController();
 
+  bool hasUpdatedMode = false;
+
   @override
   void initState() {
     super.initState();
@@ -126,6 +128,8 @@ class ConversationBotSettingsDialogState
     discussionKeywordsController.text = botOptions.discussionKeywords ?? "";
     discussionTopicController.text = botOptions.discussionTopic ?? "";
     customSystemPromptController.text = botOptions.customSystemPrompt ?? "";
+
+    hasUpdatedMode = widget.room.botOptions != null;
   }
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -137,6 +141,7 @@ class ConversationBotSettingsDialogState
   }
 
   void onUpdateChatMode(String? mode) {
+    hasUpdatedMode = true;
     setState(() => botOptions.mode = mode ?? BotMode.discussion);
   }
 
@@ -217,6 +222,7 @@ class ConversationBotSettingsDialogState
                             customSystemPromptController:
                                 customSystemPromptController,
                             enabled: addBot,
+                            hasUpdatedMode: hasUpdatedMode,
                             onUpdateBotMode: onUpdateChatMode,
                             onUpdateBotLanguage: onUpdateBotLanguage,
                             onUpdateBotVoice: onUpdateBotVoice,
@@ -244,6 +250,8 @@ class ConversationBotSettingsDialogState
                       if (!isValid) return;
 
                       updateFromTextControllers();
+                      botOptions.targetLanguage ??= MatrixState
+                          .pangeaController.languageController.userL2?.langCode;
 
                       Navigator.of(context).pop(botOptions);
 

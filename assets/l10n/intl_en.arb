@@ -4497,5 +4497,6 @@
   "enterDiscussionTopic": "Please enter a discussion topic",
   "selectBotChatMode": "Select chat mode",
   "messageNotInTargetLang": "Message not in target language",
-  "other": "Other"
+  "other": "Other",
+  "botModeValidation": "Please select a chat mode"
 }

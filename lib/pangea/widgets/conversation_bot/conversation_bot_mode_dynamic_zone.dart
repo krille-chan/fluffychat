@@ -1,10 +1,9 @@
 import 'package:fluffychat/pangea/constants/bot_mode.dart';
-import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ConversationBotModeDynamicZone extends StatelessWidget {
-  final BotOptionsModel botOptions;
+  final String? mode;
   final TextEditingController discussionTopicController;
   final TextEditingController discussionKeywordsController;
   final TextEditingController customSystemPromptController;
@@ -13,11 +12,11 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
 
   const ConversationBotModeDynamicZone({
     super.key,
-    required this.botOptions,
     required this.discussionTopicController,
     required this.discussionKeywordsController,
     required this.customSystemPromptController,
     this.enabled = true,
+    this.mode,
   });
 
   @override
@@ -33,7 +32,7 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
         ),
         controller: discussionTopicController,
         validator: (value) => enabled &&
-                botOptions.mode == BotMode.discussion &&
+                mode == BotMode.discussion &&
                 (value == null || value.isEmpty)
             ? L10n.of(context)!.enterDiscussionTopic
             : null,
@@ -67,7 +66,7 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 28.0),
         ),
         validator: (value) => enabled &&
-                botOptions.mode == BotMode.custom &&
+                mode == BotMode.custom &&
                 (value == null || value.isEmpty)
             ? L10n.of(context)!.enterPrompt
             : null,
@@ -81,8 +80,8 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
 
     return Column(
       children: [
-        if (botOptions.mode == BotMode.discussion) ...discussionChildren,
-        if (botOptions.mode == BotMode.custom) ...customChildren,
+        if (mode == BotMode.discussion) ...discussionChildren,
+        if (mode == BotMode.custom) ...customChildren,
         const SizedBox(height: 12),
         CheckboxListTile(
           title: Text(
@@ -90,7 +89,7 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
                 .conversationBotCustomZone_customTriggerReactionEnabledLabel,
           ),
           enabled: false,
-          value: botOptions.customTriggerReactionEnabled ?? true,
+          value: true,
           onChanged: null,
         ),
         const SizedBox(height: 12),

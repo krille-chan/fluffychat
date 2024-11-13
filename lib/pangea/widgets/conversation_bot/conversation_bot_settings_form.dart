@@ -15,6 +15,8 @@ class ConversationBotSettingsForm extends StatelessWidget {
   final TextEditingController customSystemPromptController;
 
   final bool enabled;
+  final bool hasUpdatedMode;
+
   final void Function(String?) onUpdateBotMode;
   final void Function(String?) onUpdateBotLanguage;
   final void Function(String?) onUpdateBotVoice;
@@ -31,6 +33,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
     required this.onUpdateBotVoice,
     required this.onUpdateBotLanguageLevel,
     this.enabled = true,
+    this.hasUpdatedMode = false,
   });
 
   @override
@@ -94,17 +97,20 @@ class ConversationBotSettingsForm extends StatelessWidget {
           ),
         ),
         ConversationBotModeSelect(
-          initialMode: botOptions.mode,
+          initialMode: hasUpdatedMode ? botOptions.mode : null,
           onChanged: onUpdateBotMode,
           enabled: enabled,
+          validator: (value) {
+            return value == null ? L10n.of(context)!.botModeValidation : null;
+          },
         ),
         const SizedBox(height: 12),
         ConversationBotModeDynamicZone(
-          botOptions: botOptions,
           discussionTopicController: discussionTopicController,
           discussionKeywordsController: discussionKeywordsController,
           customSystemPromptController: customSystemPromptController,
           enabled: enabled,
+          mode: hasUpdatedMode ? botOptions.mode : null,
         ),
       ],
     );

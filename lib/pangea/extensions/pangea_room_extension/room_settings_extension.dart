@@ -62,9 +62,9 @@ extension RoomSettingsRoomExtension on Room {
 
   BotOptionsModel? get _botOptions {
     if (isSpace) return null;
-    return BotOptionsModel.fromJson(
-      getState(PangeaEventTypes.botOptions)?.content ?? {},
-    );
+    final stateEvent = getState(PangeaEventTypes.botOptions);
+    if (stateEvent == null) return null;
+    return BotOptionsModel.fromJson(stateEvent.content);
   }
 
   Future<bool> _isSuggested() async {

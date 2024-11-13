@@ -7,12 +7,14 @@ class ConversationBotModeSelect extends StatelessWidget {
   final String? initialMode;
   final void Function(String?) onChanged;
   final bool enabled;
+  final String? Function(String?)? validator;
 
   const ConversationBotModeSelect({
     super.key,
     this.initialMode,
     required this.onChanged,
     this.enabled = true,
+    this.validator,
   });
 
   @override
@@ -41,6 +43,8 @@ class ConversationBotModeSelect extends StatelessWidget {
           ),
       ],
       onChanged: enabled ? onChanged : null,
+      validator: validator,
+      value: initialMode,
     );
   }
 }
