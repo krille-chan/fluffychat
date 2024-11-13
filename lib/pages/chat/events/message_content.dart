@@ -308,14 +308,16 @@ class MessageContent extends StatelessWidget {
 
             if (pangeaMessageEvent?.messageDisplayRepresentation?.tokens !=
                 null) {
-              return MessageTokenTextStateful(
+              return MessageTokenText(
                 messageAnalyticsEntry:
                     controller.pangeaController.getAnalytics.perMessage.get(
                   pangeaMessageEvent!,
                   false,
                 )!,
                 style: messageTextStyle,
-                onClick: (token) => controller.showToolbar(pangeaMessageEvent!),
+                onClick: overlayController?.onClickOverlayMessageToken ??
+                    (_) => controller.showToolbar(pangeaMessageEvent!),
+                isSelected: overlayController?.isTokenSelected,
               );
             }
 

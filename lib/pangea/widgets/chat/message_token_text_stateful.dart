@@ -9,22 +9,23 @@ import 'package:flutter/material.dart';
 
 /// Question - does this need to be stateful or does this work?
 /// Need to test.
-class MessageTokenTextStateful extends StatelessWidget {
+class MessageTokenText extends StatelessWidget {
   final PangeaController pangeaController = MatrixState.pangeaController;
 
   final MessageAnalyticsEntry messageAnalyticsEntry;
 
   final TextStyle style;
 
+  final bool Function(PangeaToken)? isSelected;
   final void Function(PangeaToken)? onClick;
-
   bool get ownMessage => messageAnalyticsEntry.pmEvent.ownMessage;
 
-  MessageTokenTextStateful({
+  MessageTokenText({
     super.key,
     required this.messageAnalyticsEntry,
     required this.style,
     required this.onClick,
+    this.isSelected,
   });
 
   PangeaMessageEvent get pangeaMessageEvent => messageAnalyticsEntry.pmEvent;
@@ -47,13 +48,16 @@ class MessageTokenTextStateful extends StatelessWidget {
       final int startIndex = messageCharacters.take(start).length;
       final int endIndex = messageCharacters.take(end).length;
 
+      final hideContent =
+          token.targetTypes.contains(ActivityTypeEnum.hiddenWordListening);
+
       if (globalIndex < startIndex) {
         tokenPositions.add(
           TokenPosition(
             start: globalIndex,
             end: startIndex,
             hideContent: false,
-            highlight: false,
+            highlight: isSelected?.call(token.token) ?? false,
           ),
         );
       }
@@ -63,9 +67,8 @@ class MessageTokenTextStateful extends StatelessWidget {
           start: startIndex,
           end: endIndex,
           token: token.token,
-          hideContent:
-              token.targetTypes.contains(ActivityTypeEnum.hiddenWordListening),
-          highlight: false,
+          hideContent: hideContent,
+          highlight: (isSelected?.call(token.token) ?? false) && !hideContent,
         ),
       );
       globalIndex = endIndex;
