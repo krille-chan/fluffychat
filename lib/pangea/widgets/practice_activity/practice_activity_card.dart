@@ -306,6 +306,10 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     }
   }
 
+  void _onDownstreamError() {
+    _setPracticeActivity(null);
+  }
+
   /// clear the current activity, record, and selection
   /// fetch a new activity, including the offending activity in the request
   Future<void> submitFeedback(String feedback) async {
@@ -373,6 +377,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
           currentActivity: currentActivity!,
           tts: widget.ttsController,
           eventID: widget.pangeaMessageEvent.eventId,
+          onError: _onDownstreamError,
         );
     }
   }

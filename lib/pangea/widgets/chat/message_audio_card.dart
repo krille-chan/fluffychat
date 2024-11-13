@@ -22,6 +22,7 @@ class MessageAudioCard extends StatefulWidget {
   final PangeaTokenText? selection;
   final TtsController tts;
   final Function(bool) setIsPlayingAudio;
+  final VoidCallback? onError;
 
   const MessageAudioCard({
     super.key,
@@ -30,6 +31,7 @@ class MessageAudioCard extends StatefulWidget {
     required this.tts,
     required this.setIsPlayingAudio,
     this.selection,
+    this.onError,
   });
 
   @override
@@ -163,6 +165,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       if (mounted) setState(() => _isLoading = false);
     } catch (e, s) {
       debugger(when: kDebugMode);
+      widget.onError?.call();
       debugPrint(StackTrace.current.toString());
       if (!mounted) return;
       setState(() => _isLoading = false);
