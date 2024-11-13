@@ -121,6 +121,12 @@ class MessageAnalyticsEntry {
     isFirstTimeComputing = false;
   }
 
+  void revealAllTokens() {
+    for (final token in tokensWithXp) {
+      token.targetTypes.remove(ActivityTypeEnum.hiddenWordListening);
+    }
+  }
+
   bool get shouldHideToken => tokensWithXp.any(
         (token) =>
             token.targetTypes.contains(ActivityTypeEnum.hiddenWordListening),

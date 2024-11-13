@@ -22,6 +22,7 @@ class MultipleChoiceActivity extends StatefulWidget {
   final PracticeActivityModel currentActivity;
   final TtsController tts;
   final String eventID;
+  final VoidCallback? onError;
 
   const MultipleChoiceActivity({
     super.key,
@@ -29,6 +30,7 @@ class MultipleChoiceActivity extends StatefulWidget {
     required this.currentActivity,
     required this.tts,
     required this.eventID,
+    this.onError,
   });
 
   @override
@@ -143,6 +145,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
               tts: widget.practiceCardController.widget.overlayController.tts,
               setIsPlayingAudio: widget.practiceCardController.widget
                   .overlayController.setIsPlayingAudio,
+              onError: widget.onError,
             ),
           ChoicesArray(
             isLoading: false,
