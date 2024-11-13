@@ -62,6 +62,9 @@ class InstructionsController {
         case InstructionsEnum.clickBestOption:
           profile.instructionSettings.showedClickBestOption = value;
           break;
+        case InstructionsEnum.unlockedLanguageTools:
+          profile.instructionSettings.showedUnlockedLanguageTools = value;
+          break;
       }
       return profile;
     });
