@@ -9,6 +9,7 @@ import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_det
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_invitation_buttons.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/utils/lock_room.dart';
+import 'package:fluffychat/pangea/widgets/chat/visibility_toggle.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -340,6 +341,14 @@ class ChatDetailsView extends StatelessWidget {
                                 '/rooms/${room.id}/details/permissions',
                               ),
                             ),
+                          // #Pangea
+                          if (room.isRoomAdmin)
+                            VisibilityToggle(
+                              room: room,
+                              setVisibility: controller.setVisibility,
+                              iconColor: iconColor,
+                            ),
+                          // Pangea#
                           Divider(color: theme.dividerColor),
                           // #Pangea
                           if (room.canInvite &&

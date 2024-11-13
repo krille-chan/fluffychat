@@ -13,6 +13,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:matrix/matrix.dart' as matrix;
 import 'package:matrix/matrix.dart';
 
 enum AliasActions { copy, delete, setCanonical }
@@ -204,6 +205,20 @@ class ChatDetailsController extends State<ChatDetails> {
   bool showEditNameIcon = false;
   void hoverEditNameIcon(bool hovering) =>
       setState(() => showEditNameIcon = !showEditNameIcon);
+
+  Future<void> setVisibility(matrix.Visibility visibility) async {
+    if (roomId == null) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        await Matrix.of(context).client.setRoomVisibilityOnDirectory(
+              roomId!,
+              visibility: visibility,
+            );
+      },
+    );
+    if (mounted) setState(() {});
+  }
 
   @override
   void initState() {

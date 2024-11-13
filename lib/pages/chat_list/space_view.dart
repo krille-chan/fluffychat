@@ -8,6 +8,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/widgets/chat/add_room_dialog.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
@@ -331,43 +332,51 @@ class _SpaceViewState extends State<SpaceView> {
     );
     if (roomType == null) return;
 
-    final names = await showTextInputDialog(
+    // #Pangea
+    final RoomResponse? response = await showDialog<RoomResponse>(
       context: context,
-      title: roomType == AddRoomType.subspace
-          ? L10n.of(context)!.createNewSpace
-          // #Pangea
-          // : L10n.of(context)!.createGroup,
-          : L10n.of(context)!.createChat,
-      // Pangea#
-      textFields: [
-        DialogTextField(
-          hintText: roomType == AddRoomType.subspace
-              ? L10n.of(context)!.spaceName
-              // #Pangea
-              // : L10n.of(context)!.groupName,
-              : L10n.of(context)!.chatName,
-          // Pangea#
-          minLines: 1,
-          maxLines: 1,
-          maxLength: 64,
-          validator: (text) {
-            if (text == null || text.isEmpty) {
-              return L10n.of(context)!.pleaseChoose;
-            }
-            return null;
-          },
-        ),
-        DialogTextField(
-          hintText: L10n.of(context)!.chatDescription,
-          minLines: 4,
-          maxLines: 8,
-          maxLength: 255,
-        ),
-      ],
-      okLabel: L10n.of(context)!.create,
-      cancelLabel: L10n.of(context)!.cancel,
+      builder: (context) {
+        return AddRoomDialog(
+          roomType: roomType,
+        );
+      },
     );
-    if (names == null) return;
+    if (response == null) return;
+
+    // final names = await showTextInputDialog(
+    //   context: context,
+    //   title: roomType == AddRoomType.subspace
+    //       ? L10n.of(context)!.createNewSpace
+    //       : L10n.of(context)!.createGroup,
+    //       : L10n.of(context)!.createChat,
+    //   textFields: [
+    //     DialogTextField(
+    //       hintText: roomType == AddRoomType.subspace
+    //           ? L10n.of(context)!.spaceName
+    //           L10n.of(context)!.groupName,
+    //           : L10n.of(context)!.chatName,
+    //       minLines: 1,
+    //       maxLines: 1,
+    //       maxLength: 64,
+    //       validator: (text) {
+    //         if (text == null || text.isEmpty) {
+    //           return L10n.of(context)!.pleaseChoose;
+    //         }
+    //         return null;
+    //       },
+    //     ),
+    //     DialogTextField(
+    //       hintText: L10n.of(context)!.chatDescription,
+    //       minLines: 4,
+    //       maxLines: 8,
+    //       maxLength: 255,
+    //     ),
+    //   ],
+    //   okLabel: L10n.of(context)!.create,
+    //   cancelLabel: L10n.of(context)!.cancel,
+    // );
+    // if (names == null) return;
+    // Pangea#
     final client = Matrix.of(context).client;
     final result = await showFutureLoadingDialog(
       context: context,
@@ -378,33 +387,46 @@ class _SpaceViewState extends State<SpaceView> {
 
         if (roomType == AddRoomType.subspace) {
           roomId = await client.createSpace(
-            name: names.first,
-            topic: names.last.isEmpty ? null : names.last,
-            visibility: activeSpace.joinRules == JoinRules.public
-                ? sdk.Visibility.public
-                : sdk.Visibility.private,
+            // #Pangea
+            // name: names.first,
+            // topic: names.last.isEmpty ? null : names.last,
+            // visibility: activeSpace.joinRules == JoinRules.public
+            //     ? sdk.Visibility.public
+            //     : sdk.Visibility.private,
+            name: response.roomName,
+            topic: response.roomDescription,
+            visibility: response.visibility,
+            // Pangea#
           );
         } else {
           roomId = await client.createGroupChat(
-            groupName: names.first,
             // #Pangea
+            // groupName: names.first,
             // preset: activeSpace.joinRules == JoinRules.public
             //     ? CreateRoomPreset.publicChat
             //     : CreateRoomPreset.privateChat,
+            // visibility: activeSpace.joinRules == JoinRules.public
+            //     ? sdk.Visibility.public
+            //     : sdk.Visibility.private,
+            // initialState: names.length > 1 && names.last.isNotEmpty
+            //     ? [
+            //         StateEvent(
+            //           type: EventTypes.RoomTopic,
+            //           content: {'topic': names.last},
+            //         ),
+            //       ]
+            //     : null,
+            groupName: response.roomName,
             preset: CreateRoomPreset.publicChat,
-            // Pangea#
-            visibility: activeSpace.joinRules == JoinRules.public
-                ? sdk.Visibility.public
-                : sdk.Visibility.private,
-            initialState: names.length > 1 && names.last.isNotEmpty
+            visibility: response.visibility,
+            initialState: response.roomDescription.isNotEmpty
                 ? [
                     StateEvent(
                       type: EventTypes.RoomTopic,
-                      content: {'topic': names.last},
+                      content: {'topic': response.roomDescription},
                     ),
                   ]
                 : null,
-            // #Pangea
             enableEncryption: false,
             // Pangea#
           );
