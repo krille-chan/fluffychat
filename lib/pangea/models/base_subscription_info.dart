@@ -1,8 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/repo/subscription_repo.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 /// Contains information about the users's current subscription
 class CurrentSubscriptionInfo {
@@ -87,28 +90,65 @@ class AvailableSubscriptionsInfo {
   SubscriptionAppIds? appIds;
   List<SubscriptionDetails>? allProducts;
 
+  AvailableSubscriptionsInfo({
+    this.appIds,
+    this.allProducts,
+  });
+
   Future<void> setAvailableSubscriptions() async {
-    appIds ??= await SubscriptionRepo.getAppIds();
-    allProducts ??= await SubscriptionRepo.getAllProducts();
+    final cachedInfo = _getCachedSubscriptionInfo();
+    appIds ??= cachedInfo?.appIds ?? await SubscriptionRepo.getAppIds();
+    allProducts ??=
+        cachedInfo?.allProducts ?? await SubscriptionRepo.getAllProducts();
+
+    if (cachedInfo == null) await _cacheSubscriptionInfo();
+
     availableSubscriptions = (allProducts ?? [])
         .where((product) => product.appId == appIds!.currentAppId)
         .sorted((a, b) => a.price.compareTo(b.price))
         .toList();
-    // //@Gabby - temporary solution to add trial to list
-    // if (currentSubscriptionId == null && !hasSubscribed) {
-    //   final id = availableSubscriptions[0].id;
-    //   final package = availableSubscriptions[0].package;
-    //   final duration = availableSubscriptions[0].duration;
-    //   availableSubscriptions.insert(
-    //     0,
-    //     SubscriptionDetails(
-    //       price: 0,
-    //       id: id,
-    //       duration: duration,
-    //       package: package,
-    //       periodType: SubscriptionPeriodType.trial,
-    //     ),
-    //   );
-    // }
+  }
+
+  Future<void> _cacheSubscriptionInfo() async {
+    await MatrixState.pangeaController.pStoreService.save(
+      PLocalKey.availableSubscriptionInfo,
+      toJson(),
+    );
+  }
+
+  static AvailableSubscriptionsInfo? _getCachedSubscriptionInfo() {
+    final json = MatrixState.pangeaController.pStoreService.read(
+      PLocalKey.availableSubscriptionInfo,
+    );
+    if (json is! Map<String, dynamic>) {
+      return null;
+    }
+
+    try {
+      return AvailableSubscriptionsInfo.fromJson(json);
+    } catch (e, s) {
+      ErrorHandler.logError(e: e, s: s);
+      return null;
+    }
+  }
+
+  factory AvailableSubscriptionsInfo.fromJson(Map<String, dynamic> json) {
+    final appIds = SubscriptionAppIds.fromJson(json['app_ids']);
+    final allProducts = (json['all_products'] as List<dynamic>)
+        .map((product) => SubscriptionDetails.fromJson(product))
+        .toList()
+        .cast<SubscriptionDetails>();
+    return AvailableSubscriptionsInfo(
+      appIds: appIds,
+      allProducts: allProducts,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['app_ids'] = appIds?.toJson();
+    data['all_products'] =
+        allProducts?.map((product) => product.toJson()).toList();
+    return data;
   }
 }

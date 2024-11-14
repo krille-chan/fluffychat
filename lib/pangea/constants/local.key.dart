@@ -7,4 +7,5 @@ class PLocalKey {
   static const String messagesSinceUpdate = 'messagesSinceLastUpdate';
   static const String completedActivities = 'completedActivities';
   static const String justInputtedCode = 'justInputtedCode';
+  static const String availableSubscriptionInfo = 'availableSubscriptionInfo';
 }

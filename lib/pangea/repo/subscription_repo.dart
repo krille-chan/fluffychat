@@ -91,16 +91,7 @@ class RCProductsResponseModel {
   ) {
     final List<dynamic> offerings = json["items"] as List<dynamic>;
     final res = offerings
-        .map(
-          (offering) => SubscriptionDetails(
-            price: offering['price'],
-            duration: SubscriptionDuration.values.firstWhereOrNull(
-              (duration) => duration.value == offering['duration'],
-            ),
-            id: offering['id'],
-            appId: offering['appId'],
-          ),
-        )
+        .map((offering) => SubscriptionDetails.fromJson(offering))
         .toList()
         .cast<SubscriptionDetails>();
     return RCProductsResponseModel(allProducts: res);
