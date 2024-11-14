@@ -358,6 +358,9 @@ class MessageContent extends StatelessWidget {
                   fontSize: bigEmotes ? fontSize * 3 : fontSize,
                   decoration:
                       event.redacted ? TextDecoration.lineThrough : null,
+                  // #Pangea
+                  height: 1.3,
+                  // Pangea#
                 ),
                 options: const LinkifyOptions(humanize: false),
                 linkStyle: TextStyle(
