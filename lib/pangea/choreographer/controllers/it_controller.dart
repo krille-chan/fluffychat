@@ -146,6 +146,8 @@ class ITController {
         //     ? _customInputTranslation(currentText)
         //     : _systemChoiceTranslation(translationId));
 
+        if (sourceText == null) return;
+
         if (res.goldContinuances != null && res.goldContinuances!.isNotEmpty) {
           goldRouteTracker = GoldRouteTracker(
             res.goldContinuances!,
