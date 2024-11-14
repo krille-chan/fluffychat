@@ -333,7 +333,7 @@ class _SpaceViewState extends State<SpaceView> {
     if (roomType == null) return;
 
     // #Pangea
-    final RoomResponse? response = await showDialog<RoomResponse>(
+    final RoomResponse? response = await showDialog<RoomResponse?>(
       context: context,
       builder: (context) {
         return AddRoomDialog(
