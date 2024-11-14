@@ -28,6 +28,14 @@ class SubscriptionAppIds {
       ..androidId = json['android_id']
       ..appleId = json['apple_id'];
   }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['stripe_id'] = stripeId;
+    data['android_id'] = androidId;
+    data['apple_id'] = appleId;
+    return data;
+  }
 }
 
 enum RCPlatform {

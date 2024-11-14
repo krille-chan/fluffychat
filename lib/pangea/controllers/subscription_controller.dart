@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
@@ -408,5 +409,25 @@ class SubscriptionDetails {
         : appId == appIds?.appleId
             ? AppConfig.appleMangementUrl
             : Environment.stripeManagementUrl;
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['price'] = price;
+    data['id'] = id;
+    data['duration'] = duration?.value;
+    data['appId'] = appId;
+    return data;
+  }
+
+  factory SubscriptionDetails.fromJson(Map<String, dynamic> json) {
+    return SubscriptionDetails(
+      price: json['price'],
+      duration: SubscriptionDuration.values.firstWhereOrNull(
+        (duration) => duration.value == json['duration'],
+      ),
+      id: json['id'],
+      appId: json['appId'],
+    );
   }
 }
