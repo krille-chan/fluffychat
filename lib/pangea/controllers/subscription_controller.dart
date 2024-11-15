@@ -45,11 +45,20 @@ class SubscriptionController extends BaseController {
     _pangeaController = pangeaController;
   }
 
-  UserController get userController => _pangeaController.userController;
-  String? get userID => _pangeaController.matrixState.client.userID;
+  UserController get _userController => _pangeaController.userController;
+  String? get _userID => _pangeaController.matrixState.client.userID;
 
-  bool get isSubscribed =>
-      currentSubscriptionInfo?.currentSubscriptionId != null;
+  bool get isSubscribed {
+    final bool hasSubscription =
+        currentSubscriptionInfo?.currentSubscriptionId != null;
+
+    if (_activatedNewUserTrial && !hasSubscription) {
+      _setNewUserTrial();
+      return true;
+    }
+
+    return hasSubscription;
+  }
 
   bool _isInitializing = false;
   Completer<void> initialized = Completer<void>();
@@ -74,7 +83,7 @@ class SubscriptionController extends BaseController {
 
   Future<void> _initialize() async {
     try {
-      if (userID == null) {
+      if (_userID == null) {
         debugPrint(
           "Attempted to initalize subscription information with null userId",
         );
@@ -86,18 +95,18 @@ class SubscriptionController extends BaseController {
 
       currentSubscriptionInfo = kIsWeb
           ? WebSubscriptionInfo(
-              userID: userID!,
+              userID: _userID!,
               availableSubscriptionInfo: availableSubscriptionInfo!,
             )
           : MobileSubscriptionInfo(
-              userID: userID!,
+              userID: _userID!,
               availableSubscriptionInfo: availableSubscriptionInfo!,
             );
 
       await currentSubscriptionInfo!.configure();
       await currentSubscriptionInfo!.setCurrentSubscription();
       if (_activatedNewUserTrial) {
-        setNewUserTrial();
+        _setNewUserTrial();
       }
 
       if (!kIsWeb) {
@@ -187,7 +196,7 @@ class SubscriptionController extends BaseController {
           return;
         }
         ErrorHandler.logError(
-          m: "Failed to purchase revenuecat package for user $userID with error code $errCode",
+          m: "Failed to purchase revenuecat package for user $_userID with error code $errCode",
           s: StackTrace.current,
         );
         return;
@@ -195,30 +204,30 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  int get currentTrialDays => userController.inTrialWindow(trialDays: 1)
+  int get _currentTrialDays => _userController.inTrialWindow(trialDays: 1)
       ? 1
-      : userController.inTrialWindow(trialDays: 7)
+      : _userController.inTrialWindow(trialDays: 7)
           ? 7
           : 0;
 
   bool get _activatedNewUserTrial =>
-      userController.inTrialWindow(trialDays: 1) ||
-      (userController.inTrialWindow() &&
-          userController.profile.userSettings.activatedFreeTrial);
+      _userController.inTrialWindow(trialDays: 1) ||
+      (_userController.inTrialWindow() &&
+          _userController.profile.userSettings.activatedFreeTrial);
 
   void activateNewUserTrial() {
-    userController.updateProfile(
+    _userController.updateProfile(
       (profile) {
         profile.userSettings.activatedFreeTrial = true;
         return profile;
       },
     );
-    setNewUserTrial();
+    _setNewUserTrial();
     trialActivationStream.add(true);
   }
 
-  void setNewUserTrial() {
-    final DateTime? createdAt = userController.profile.userSettings.createdAt;
+  void _setNewUserTrial() {
+    final DateTime? createdAt = _userController.profile.userSettings.createdAt;
     if (createdAt == null) {
       ErrorHandler.logError(
         m: "Null user profile createAt in subscription settings",
@@ -228,7 +237,7 @@ class SubscriptionController extends BaseController {
     }
 
     final DateTime expirationDate = createdAt.add(
-      Duration(days: currentTrialDays),
+      Duration(days: _currentTrialDays),
     );
     currentSubscriptionInfo?.setTrial(expirationDate);
   }
@@ -333,13 +342,13 @@ class SubscriptionController extends BaseController {
       accessToken: _pangeaController.userController.accessToken,
     );
     final String reqUrl = Uri.encodeFull(
-      "${PApiUrls.paymentLink}?pangea_user_id=$userID&duration=${duration.value}&redeem=$isPromo",
+      "${PApiUrls.paymentLink}?pangea_user_id=$_userID&duration=${duration.value}&redeem=$isPromo",
     );
     final Response res = await req.get(url: reqUrl);
     final json = jsonDecode(res.body);
     String paymentLink = json["link"]["url"];
 
-    final String? email = await userController.userEmail;
+    final String? email = await _userController.userEmail;
     if (email != null) {
       paymentLink += "?prefilled_email=${Uri.encodeComponent(email)}";
     }
