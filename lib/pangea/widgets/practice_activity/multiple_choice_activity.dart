@@ -122,6 +122,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
 
     final content = Column(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           practiceActivity.content.question,

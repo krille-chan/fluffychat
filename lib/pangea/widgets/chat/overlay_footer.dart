@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_input_row.dart';
@@ -31,7 +32,7 @@ class OverlayFooter extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             color: Theme.of(context).colorScheme.surfaceContainerHighest,
             borderRadius: const BorderRadius.all(
-              Radius.circular(24),
+              Radius.circular(AppConfig.borderRadius),
             ),
             child: ChatInputRow(controller),
           ),
