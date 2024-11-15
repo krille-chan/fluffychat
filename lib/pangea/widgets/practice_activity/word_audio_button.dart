@@ -23,7 +23,6 @@ class WordAudioButtonState extends State<WordAudioButton> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('build WordAudioButton');
     return IconButton(
       icon: const Icon(Icons.play_arrow_outlined),
       isSelected: _isPlaying,

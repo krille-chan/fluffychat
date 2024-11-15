@@ -1,4 +1,6 @@
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 
 enum ActivityTypeEnum { wordMeaning, wordFocusListening, hiddenWordListening }
 
@@ -66,6 +68,16 @@ extension ActivityTypeExtension on ActivityTypeEnum {
           ConstructUseTypeEnum.incHWL,
           ConstructUseTypeEnum.ignHWL,
         ];
+    }
+  }
+
+  /// Filters out constructs that are not relevant to the activity type
+  bool Function(ConstructIdentifier) get constructFilter {
+    switch (this) {
+      case ActivityTypeEnum.wordMeaning:
+      case ActivityTypeEnum.wordFocusListening:
+      case ActivityTypeEnum.hiddenWordListening:
+        return (id) => id.type == ConstructTypeEnum.vocab;
     }
   }
 }

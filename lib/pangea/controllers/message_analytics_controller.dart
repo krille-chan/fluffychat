@@ -27,19 +27,17 @@ class TargetTokensAndActivityType {
       return false;
     }
 
-    // check that the activity matches at least one construct in the target tokens
-    // TODO - this is complicated so we need to verify it works
-    // maybe we just verify that the target span of the activity is the same as the target span of the target
-    final allTokenConstructs =
-        tokens.map((t) => t.constructs).expand((e) => e).toList();
-    for (final c in allTokenConstructs) {
-      if (activity.tgtConstructs.any((tc) => tc == c.id)) {
-        debugPrint('found existing activity');
-        return true;
-      }
-    }
+    // This is kind of complicated
+    // if it's causing problems,
+    // maybe we just verify that the target span of the activity is the same as the target span of the target?
+    final List<ConstructIdentifier> allTokenConstructs = tokens
+        .map((t) => t.constructs)
+        .expand((e) => e)
+        .map((c) => c.id)
+        .where(activityType.constructFilter)
+        .toList();
 
-    return false;
+    return listEquals(activity.tgtConstructs, allTokenConstructs);
   }
 
   @override
