@@ -90,17 +90,10 @@ class PracticeGenerationController {
 
       final response = MessageActivityResponse.fromJson(json);
 
-      // workaround for the server not returning the tgtConstructs
-      // if (response.activity != null &&
-      //     response.activity!.tgtConstructs.isEmpty) {
-      //   response.activity?.tgtConstructs.addAll(
-      //     requestModel.clientTokenRequest.constructIDs,
-      //   );
-      // }
       return response;
     } else {
       debugger(when: kDebugMode);
-      throw Exception('Failed to convert speech to text');
+      throw Exception('Failed to create activity');
     }
   }
 
@@ -123,49 +116,15 @@ class PracticeGenerationController {
       requestModel: req,
     );
 
-    if (res.finished) {
-      debugPrint('Activity generation finished');
-      return null;
-    }
-
     final eventCompleter = Completer<PracticeActivityEvent?>();
 
-    // if the server points to an existing event, return that event
-    if (res.existingActivityEventId != null) {
-      final Event? existingEvent =
-          await event.room.getEventById(res.existingActivityEventId!);
-
-      debugPrint(
-        'Existing activity event found: ${existingEvent?.content}',
-      );
-      debugPrint(
-        "eventID: ${existingEvent?.eventId}, event is redacted: ${existingEvent?.redacted}",
-      );
-      if (existingEvent != null && !existingEvent.redacted) {
-        final activityEvent = PracticeActivityEvent(
-          event: existingEvent,
-          timeline: event.timeline,
-        );
-        eventCompleter.complete(activityEvent);
-        return PracticeActivityModelResponse(
-          activity: activityEvent.practiceActivity,
-          eventCompleter: eventCompleter,
-        );
-      }
-    }
-
-    if (res.activity == null) {
-      debugPrint('No activity generated');
-      return null;
-    }
-
-    debugPrint('Activity generated: ${res.activity!.toJson()}');
-    _sendAndPackageEvent(res.activity!, event).then((event) {
+    debugPrint('Activity generated: ${res.activity.toJson()}');
+    _sendAndPackageEvent(res.activity, event).then((event) {
       eventCompleter.complete(event);
     });
 
     final responseModel = PracticeActivityModelResponse(
-      activity: res.activity!,
+      activity: res.activity,
       eventCompleter: eventCompleter,
     );
 

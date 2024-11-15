@@ -14,6 +14,16 @@ extension ActivityTypeExtension on ActivityTypeEnum {
     }
   }
 
+  bool get hiddenType {
+    switch (this) {
+      case ActivityTypeEnum.wordMeaning:
+      case ActivityTypeEnum.wordFocusListening:
+        return false;
+      case ActivityTypeEnum.hiddenWordListening:
+        return true;
+    }
+  }
+
   ActivityTypeEnum fromString(String value) {
     final split = value.split('.').last;
     switch (split) {
@@ -42,19 +52,19 @@ extension ActivityTypeExtension on ActivityTypeEnum {
         return [
           ConstructUseTypeEnum.corPA,
           ConstructUseTypeEnum.incPA,
-          ConstructUseTypeEnum.ignPA
+          ConstructUseTypeEnum.ignPA,
         ];
       case ActivityTypeEnum.wordFocusListening:
         return [
           ConstructUseTypeEnum.corWL,
           ConstructUseTypeEnum.incWL,
-          ConstructUseTypeEnum.ignWL
+          ConstructUseTypeEnum.ignWL,
         ];
       case ActivityTypeEnum.hiddenWordListening:
         return [
           ConstructUseTypeEnum.corHWL,
           ConstructUseTypeEnum.incHWL,
-          ConstructUseTypeEnum.ignHWL
+          ConstructUseTypeEnum.ignHWL,
         ];
     }
   }

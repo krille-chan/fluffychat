@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_record_event.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
@@ -76,11 +75,4 @@ class PracticeActivityEvent {
   // DateTime? get lastCompletedAt => latestUserRecord?.event.originServerTs;
 
   String get parentMessageId => event.relationshipEventId!;
-
-  ExistingActivityMetaData get activityRequestMetaData =>
-      ExistingActivityMetaData(
-        activityEventId: event.eventId,
-        tgtConstructs: practiceActivity.tgtConstructs,
-        activityType: practiceActivity.activityType,
-      );
 }

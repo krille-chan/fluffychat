@@ -59,7 +59,7 @@ class PApiUrls {
   static String speechToText = "${PApiUrls.choreoEndpoint}/speech_to_text";
 
   static String messageActivityGeneration =
-      "${PApiUrls.choreoEndpoint}/practice/message";
+      "${PApiUrls.choreoEndpoint}/practice";
 
   ///-------------------------------- revenue cat --------------------------
 

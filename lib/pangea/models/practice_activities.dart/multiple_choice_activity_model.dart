@@ -58,4 +58,20 @@ class ActivityContent {
       'span_display_details': spanDisplayDetails?.toJson(),
     };
   }
+
+  // ovveride operator == and hashCode
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is ActivityContent &&
+        other.question == question &&
+        other.choices == choices &&
+        other.answer == answer;
+  }
+
+  @override
+  int get hashCode {
+    return question.hashCode ^ choices.hashCode ^ answer.hashCode;
+  }
 }

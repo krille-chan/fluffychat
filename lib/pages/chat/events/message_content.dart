@@ -4,7 +4,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_token_text_stateful.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_token_text.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar_selection_area.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
@@ -306,25 +306,6 @@ class MessageContent extends StatelessWidget {
               height: 1.3,
             );
 
-            if (pangeaMessageEvent?.messageDisplayRepresentation?.tokens !=
-                null) {
-              return MessageTokenText(
-                messageAnalyticsEntry:
-                    controller.pangeaController.getAnalytics.perMessage.get(
-                  pangeaMessageEvent!,
-                  false,
-                )!,
-                style: messageTextStyle,
-                onClick: overlayController?.onClickOverlayMessageToken ??
-                    (_) => controller.showToolbar(pangeaMessageEvent!),
-                isSelected: overlayController?.isTokenSelected,
-              );
-            }
-
-            if (overlayController != null && pangeaMessageEvent != null) {
-              return overlayController!.messageTokenText;
-            }
-
             if (immersionMode && pangeaMessageEvent != null) {
               return Flexible(
                 child: PangeaRichText(
@@ -336,6 +317,20 @@ class MessageContent extends StatelessWidget {
                 ),
               );
             }
+
+            if (pangeaMessageEvent != null) {
+              return MessageTokenText(
+                pangeaMessageEvent: pangeaMessageEvent!,
+                tokens:
+                    pangeaMessageEvent!.messageDisplayRepresentation?.tokens,
+                style: messageTextStyle,
+                onClick: overlayController?.onClickOverlayMessageToken ??
+                    (token) => controller.showToolbar(pangeaMessageEvent!,
+                        selectedToken: token),
+                isSelected: overlayController?.isTokenSelected,
+              );
+            }
+
             // Pangea#
 
             return

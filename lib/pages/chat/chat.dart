@@ -22,6 +22,7 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_e
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -1660,6 +1661,7 @@ class ChatController extends State<ChatPageWithRoom>
 // #Pangea
   void showToolbar(
     PangeaMessageEvent pangeaMessageEvent, {
+    PangeaToken? selectedToken,
     MessageMode? mode,
     Event? nextEvent,
     Event? prevEvent,
@@ -1692,6 +1694,7 @@ class ChatController extends State<ChatPageWithRoom>
         chatController: this,
         event: pangeaMessageEvent.event,
         pangeaMessageEvent: pangeaMessageEvent,
+        selectedTokenOnInitialization: selectedToken,
         nextEvent: nextEvent,
         prevEvent: prevEvent,
       );
