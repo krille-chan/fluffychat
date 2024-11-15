@@ -77,10 +77,10 @@ class GetAnalyticsController {
         ...(_getConstructsLocal() ?? []),
         ..._locallyCachedConstructs,
       ]);
-      _updateAnalyticsStream();
     } catch (err, s) {
       ErrorHandler.logError(e: err, s: s);
     } finally {
+      _updateAnalyticsStream();
       if (!initCompleter.isCompleted) initCompleter.complete();
     }
   }
@@ -124,8 +124,13 @@ class GetAnalyticsController {
             Map<String, List<dynamic>>.from(locallySaved);
         final Map<String, List<OneConstructUse>> formattedCache = {};
         for (final entry in cache.entries) {
-          formattedCache[entry.key] =
-              entry.value.map((e) => OneConstructUse.fromJson(e)).toList();
+          try {
+            formattedCache[entry.key] =
+                entry.value.map((e) => OneConstructUse.fromJson(e)).toList();
+          } catch (err, s) {
+            ErrorHandler.logError(e: err, s: s);
+            continue;
+          }
         }
         return formattedCache;
       } catch (err) {
