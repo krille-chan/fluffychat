@@ -226,9 +226,6 @@ class PangeaToken {
   }
 
   bool isActivityProbablyLevelAppropriate(ActivityTypeEnum a) {
-    debugger(when: kDebugMode);
-    final int points = vocabConstruct.points;
-    final int myxp = xp;
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
         return vocabConstruct.points < 15;
@@ -328,16 +325,11 @@ class PangeaToken {
 
   List<ConstructUses> get constructs => _constructIDs
       .map(
-        (id) =>
-            MatrixState.pangeaController.getAnalytics.constructListModel
-                .getConstructUses(id) ??
-            ConstructUses(
-              lemma: id.lemma,
-              constructType: id.type,
-              category: id.category,
-              uses: [],
-            ),
+        (id) => MatrixState.pangeaController.getAnalytics.constructListModel
+            .getConstructUses(id),
       )
+      .where((construct) => construct != null)
+      .cast<ConstructUses>()
       .toList();
 
   Map<String, dynamic> toServerChoiceTokenWithXP() {

@@ -33,7 +33,7 @@ class MessageSelectionOverlay extends StatefulWidget {
   final Event? _nextEvent;
   final Event? _prevEvent;
   final PangeaMessageEvent _pangeaMessageEvent;
-  final PangeaToken? _selectedTokenOnInitialization;
+  final PangeaToken? _initialSelectedToken;
 
   const MessageSelectionOverlay({
     required this.chatController,
@@ -43,7 +43,7 @@ class MessageSelectionOverlay extends StatefulWidget {
     required Event? nextEvent,
     required Event? prevEvent,
     super.key,
-  })  : _selectedTokenOnInitialization = selectedTokenOnInitialization,
+  })  : _initialSelectedToken = selectedTokenOnInitialization,
         _pangeaMessageEvent = pangeaMessageEvent,
         _nextEvent = nextEvent,
         _prevEvent = prevEvent,
@@ -78,16 +78,22 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   bool get showToolbarButtons => !widget._pangeaMessageEvent.isAudioMessage;
 
-  PangeaToken? get selectedTargetTokenForWordMeaning =>
-      widget._selectedTokenOnInitialization != null &&
-              !(messageAnalyticsEntry?.isTokenInHiddenWordActivity(
-                    widget._selectedTokenOnInitialization!,
-                  ) ??
-                  false) &&
-              widget._selectedTokenOnInitialization!
-                  .shouldDoActivity(ActivityTypeEnum.wordMeaning)
-          ? widget._selectedTokenOnInitialization
-          : null;
+  PangeaToken? get selectedTargetTokenForWordMeaning {
+    if (widget._initialSelectedToken == null || messageAnalyticsEntry == null) {
+      return null;
+    }
+
+    final isInActivity = messageAnalyticsEntry!.isTokenInHiddenWordActivity(
+      widget._initialSelectedToken!,
+    );
+
+    final shouldDoActivity = widget._initialSelectedToken!
+        .shouldDoActivity(ActivityTypeEnum.wordMeaning);
+
+    return isInActivity && shouldDoActivity
+        ? widget._initialSelectedToken
+        : null;
+  }
 
   List<PangeaToken>? tokens;
 
