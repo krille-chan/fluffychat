@@ -9,8 +9,8 @@ class ToolbarContentLoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: AppConfig.toolbarMinWidth,
-      height: AppConfig.toolbarMinHeight,
+      width: AppConfig.toolbarMinWidth / 2,
+      height: AppConfig.toolbarMinHeight / 2,
       child: Center(
         child: SizedBox(
           height: 14,

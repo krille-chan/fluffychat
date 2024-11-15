@@ -356,11 +356,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
             origin: AnalyticsUpdateOrigin.practiceActivity,
           ),
         ),
-        if (activityWidget != null)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-            child: activityWidget,
-          ),
+        if (activityWidget != null) activityWidget!,
         // Conditionally show the darkening and progress indicator based on the loading state
         if (!savoringTheJoy && fetchingActivity) ...[
           // Circular progress indicator in the center
