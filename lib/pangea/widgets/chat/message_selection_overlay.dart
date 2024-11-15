@@ -658,6 +658,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             ),
           ),
           Material(
+            type: MaterialType.transparency,
             child: OverlayHeader(controller: widget.chatController),
           ),
         ],
