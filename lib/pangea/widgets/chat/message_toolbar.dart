@@ -145,6 +145,8 @@ class MessageToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!overLayController.initialized) return const SizedBox();
+
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,

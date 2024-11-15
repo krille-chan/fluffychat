@@ -62,6 +62,9 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   MessageMode toolbarMode = MessageMode.translation;
   PangeaTokenText? _selectedSpan;
 
+  List<PangeaToken>? tokens;
+  bool initialized = false;
+
   /// The number of activities that need to be completed before the toolbar is unlocked
   /// If we don't have any good activities for them, we'll decrease this number
   static const int neededActivities = 3;
@@ -101,8 +104,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         : null;
   }
 
-  List<PangeaToken>? tokens;
-
   @override
   void initState() {
     super.initState();
@@ -113,16 +114,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     );
 
     debugPrint(
-      "selected token: ${widget._initialSelectedToken?.toJson()} total_xp:${widget._initialSelectedToken?.xp} vocab_construct_xp: ${widget._initialSelectedToken?.vocabConstruct.points} daysSincelastUseInWordMeaning ${widget._initialSelectedToken?.daysSinceLastUseByType(ActivityTypeEnum.wordMeaning)}",
+      "selected token: ${widget._initialSelectedToken?.text.content} total_xp:${widget._initialSelectedToken?.xp} vocab_construct_xp: ${widget._initialSelectedToken?.vocabConstruct.points} daysSincelastUseInWordMeaning ${widget._initialSelectedToken?.daysSinceLastUseByType(ActivityTypeEnum.wordMeaning)}",
     );
     debugPrint(
       "${widget._initialSelectedToken?.vocabConstruct.uses.map((u) => "${u.useType} ${u.timeStamp}").join(", ")}",
     );
-
-    _getTokens();
-
-    activitiesLeftToComplete = activitiesLeftToComplete -
-        widget._pangeaMessageEvent.numberOfActivitiesCompleted;
 
     _reactionSubscription =
         widget.chatController.room.client.onSync.stream.where(
@@ -146,7 +142,30 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     tts.setupTTS();
 
-    _setInitialToolbarModeAndSelectedSpan();
+    activitiesLeftToComplete = activitiesLeftToComplete -
+        widget._pangeaMessageEvent.numberOfActivitiesCompleted;
+
+    if (pangeaMessageEvent.originalSent != null) {
+      pangeaMessageEvent.originalSent!
+          .tokensGlobal(
+        pangeaMessageEvent.senderId,
+        pangeaMessageEvent.originServerTs,
+      )
+          .then(
+        (tokens) {
+          this.tokens = tokens;
+          _setInitialToolbarModeAndSelectedSpan();
+          initialized = true;
+        },
+      ).onError((e, stackTrace) {
+        ErrorHandler.logError(e: "Error getting tokens: $e", s: stackTrace);
+        _setInitialToolbarModeAndSelectedSpan();
+        initialized = true;
+      });
+    } else {
+      _setInitialToolbarModeAndSelectedSpan();
+      initialized = true;
+    }
   }
 
   MessageAnalyticsEntry? get messageAnalyticsEntry => tokens != null
@@ -157,24 +176,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               pangeaMessageEvent.messageDisplayRepresentation?.tokens != null,
         )
       : null;
-
-  Future<void> _getTokens() async {
-    tokens = pangeaMessageEvent.originalSent?.tokens;
-
-    if (pangeaMessageEvent.originalSent != null && tokens == null) {
-      debugPrint("fetching tokens");
-      pangeaMessageEvent.originalSent!
-          .tokensGlobal(
-        pangeaMessageEvent.senderId,
-        pangeaMessageEvent.originServerTs,
-      )
-          .then((tokens) {
-        // this isn't currently working because originalSent's _event is null
-        this.tokens = tokens;
-        _setInitialToolbarModeAndSelectedSpan();
-      });
-    }
-  }
 
   /// We need to check if the setState call is safe to call immediately
   /// Kept getting the error: setState() or markNeedsBuild() called during build.
