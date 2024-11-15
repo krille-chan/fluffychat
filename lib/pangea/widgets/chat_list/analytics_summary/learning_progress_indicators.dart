@@ -39,8 +39,7 @@ class LearningProgressIndicatorsState
 
     // if getAnalytics has already finished initializing,
     // the data is loaded and should be displayed.
-    if (MatrixState.pangeaController.getAnalytics.initCompleter?.isCompleted ??
-        false) {
+    if (MatrixState.pangeaController.getAnalytics.initCompleter.isCompleted) {
       updateData(null);
     }
     _analyticsSubscription = MatrixState

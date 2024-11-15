@@ -29,7 +29,12 @@ class ConstructAnalyticsModel {
         if (["grammar", "g"].contains(useJson['constructType'])) {
           continue;
         } else {
-          uses.add(OneConstructUse.fromJson(useJson));
+          try {
+            uses.add(OneConstructUse.fromJson(useJson));
+          } catch (err, s) {
+            ErrorHandler.logError(e: err, s: s);
+            continue;
+          }
         }
       }
     } else {
@@ -94,7 +99,7 @@ class OneConstructUse {
       useType: ConstructUseTypeUtil.fromString(json['useType']),
       lemma: json['lemma'],
       form: json['form'],
-      category: getCategory(json),
+      category: getCategory(json, constructType),
       constructType: constructType,
       id: json['id'],
       metadata: ConstructUseMetaData(
@@ -117,8 +122,20 @@ class OneConstructUse {
         'id': id,
       };
 
-  static String getCategory(Map<String, dynamic> json) {
+  static String getCategory(
+    Map<String, dynamic> json,
+    ConstructTypeEnum constructType,
+  ) {
     final categoryEntry = json['cat'] ?? json['categories'];
+
+    if (constructType == ConstructTypeEnum.vocab) {
+      final String? category = categoryEntry is String
+          ? categoryEntry
+          : categoryEntry is List && categoryEntry.isNotEmpty
+              ? categoryEntry.first
+              : null;
+      return category ?? "Other";
+    }
 
     if (categoryEntry == null) {
       return _guessGrammarCategory(json["lemma"]);
