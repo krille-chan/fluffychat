@@ -171,8 +171,7 @@ class PangeaToken {
   bool _isActivityBasicallyEligible(ActivityTypeEnum a) {
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
-        // return isContentWord;
-        return true;
+        return isContentWord;
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
         return canBeHeard;
