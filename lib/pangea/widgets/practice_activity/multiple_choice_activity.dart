@@ -120,6 +120,56 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   Widget build(BuildContext context) {
     final PracticeActivityModel practiceActivity = widget.currentActivity;
 
+    final content = Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          practiceActivity.content.question,
+          style: BotStyle.text(context),
+        ),
+        const SizedBox(height: 8),
+        if (practiceActivity.activityType ==
+            ActivityTypeEnum.wordFocusListening)
+          WordAudioButton(
+            text: practiceActivity.content.answer,
+            ttsController: widget.tts,
+            eventID: widget.eventID,
+          ),
+        if (practiceActivity.activityType ==
+            ActivityTypeEnum.hiddenWordListening)
+          MessageAudioCard(
+            messageEvent:
+                widget.practiceCardController.widget.pangeaMessageEvent,
+            overlayController:
+                widget.practiceCardController.widget.overlayController,
+            tts: widget.practiceCardController.widget.overlayController.tts,
+            setIsPlayingAudio: widget.practiceCardController.widget
+                .overlayController.setIsPlayingAudio,
+            onError: widget.onError,
+          ),
+        ChoicesArray(
+          isLoading: false,
+          uniqueKeyForLayerLink: (index) => "multiple_choice_$index",
+          originalSpan: "placeholder",
+          onPressed: updateChoice,
+          selectedChoiceIndex: selectedChoiceIndex,
+          choices: practiceActivity.content.choices
+              .mapIndexed(
+                (index, value) => Choice(
+                  text: value,
+                  color: currentRecordModel?.hasTextResponse(value) ?? false
+                      ? practiceActivity.content.choiceColor(index)
+                      : null,
+                  isGold: practiceActivity.content.isCorrect(value, index),
+                ),
+              )
+              .toList(),
+          isActive: true,
+          id: currentRecordModel?.hashCode.toString(),
+        ),
+      ],
+    );
+
     return Container(
       padding: const EdgeInsets.all(20),
       constraints: const BoxConstraints(
@@ -127,56 +177,10 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
         minWidth: AppConfig.toolbarMinWidth,
         minHeight: AppConfig.toolbarMinHeight,
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text(
-              practiceActivity.content.question,
-              style: BotStyle.text(context),
-            ),
-            const SizedBox(height: 8),
-            if (practiceActivity.activityType ==
-                ActivityTypeEnum.wordFocusListening)
-              WordAudioButton(
-                text: practiceActivity.content.answer,
-                ttsController: widget.tts,
-                eventID: widget.eventID,
-              ),
-            if (practiceActivity.activityType ==
-                ActivityTypeEnum.hiddenWordListening)
-              MessageAudioCard(
-                messageEvent:
-                    widget.practiceCardController.widget.pangeaMessageEvent,
-                overlayController:
-                    widget.practiceCardController.widget.overlayController,
-                tts: widget.practiceCardController.widget.overlayController.tts,
-                setIsPlayingAudio: widget.practiceCardController.widget
-                    .overlayController.setIsPlayingAudio,
-                onError: widget.onError,
-              ),
-            ChoicesArray(
-              isLoading: false,
-              uniqueKeyForLayerLink: (index) => "multiple_choice_$index",
-              originalSpan: "placeholder",
-              onPressed: updateChoice,
-              selectedChoiceIndex: selectedChoiceIndex,
-              choices: practiceActivity.content.choices
-                  .mapIndexed(
-                    (index, value) => Choice(
-                      text: value,
-                      color: currentRecordModel?.hasTextResponse(value) ?? false
-                          ? practiceActivity.content.choiceColor(index)
-                          : null,
-                      isGold: practiceActivity.content.isCorrect(value, index),
-                    ),
-                  )
-                  .toList(),
-              isActive: true,
-              id: currentRecordModel?.hashCode.toString(),
-            ),
-          ],
-        ),
-      ),
+      child:
+          practiceActivity.activityType == ActivityTypeEnum.hiddenWordListening
+              ? SingleChildScrollView(child: content)
+              : content,
     );
   }
 }
