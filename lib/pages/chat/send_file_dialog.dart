@@ -149,7 +149,7 @@ class SendFileDialogState extends State<SendFileDialog> {
 
     var sendStr = L10n.of(context).sendFile;
     final uniqueMimeType = widget.files
-        .map((file) => file.mimeType ?? lookupMimeType(file.path))
+        .map((file) => file.mimeType ?? lookupMimeType(file.name))
         .toSet()
         .singleOrNull;
 
@@ -250,23 +250,42 @@ class SendFileDialogState extends State<SendFileDialog> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      CupertinoSwitch(
-                        value: compress,
-                        onChanged: uniqueMimeType.startsWith('video') &&
-                                !PlatformInfos.isMobile
-                            ? null
-                            : (v) => setState(() => compress = v),
-                      ),
+                      if ({TargetPlatform.iOS, TargetPlatform.macOS}
+                          .contains(theme.platform))
+                        CupertinoSwitch(
+                          value: !compress,
+                          onChanged: uniqueMimeType.startsWith('video') &&
+                                  !PlatformInfos.isMobile
+                              ? null
+                              : (v) => setState(() => compress = !v),
+                        )
+                      else
+                        Switch.adaptive(
+                          value: !compress,
+                          onChanged: uniqueMimeType.startsWith('video') &&
+                                  !PlatformInfos.isMobile
+                              ? null
+                              : (v) => setState(() => compress = !v),
+                        ),
                       const SizedBox(width: 16),
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  L10n.of(context).sendUncompressed,
+                                  style: theme.textTheme.titleMedium,
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
+                            ),
                             Text(
-                              L10n.of(context).compressBeforeSending,
-                              style: theme.textTheme.labelMedium,
-                              textAlign: TextAlign.left,
+                              ' ($sizeString)',
+                              style: theme.textTheme.labelSmall,
                             ),
                           ],
                         ),

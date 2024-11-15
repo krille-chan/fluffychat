@@ -2806,5 +2806,5 @@
   "name": "Name",
   "version": "Version",
   "website": "Website",
-  "compressBeforeSending": "Compress before sending"
+  "sendUncompressed": "Send uncompressed"
 }
