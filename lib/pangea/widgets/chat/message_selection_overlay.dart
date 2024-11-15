@@ -6,13 +6,14 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_reactions.dart';
+import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_display_instructions_enum.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_token_text.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar_buttons.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
@@ -28,24 +29,25 @@ import 'package:matrix/matrix.dart';
 
 class MessageSelectionOverlay extends StatefulWidget {
   final ChatController chatController;
-  late final Event _event;
-  late final Event? _nextEvent;
-  late final Event? _prevEvent;
-  late final PangeaMessageEvent _pangeaMessageEvent;
+  final Event _event;
+  final Event? _nextEvent;
+  final Event? _prevEvent;
+  final PangeaMessageEvent _pangeaMessageEvent;
+  final PangeaToken? _selectedTokenOnInitialization;
 
-  MessageSelectionOverlay({
+  const MessageSelectionOverlay({
     required this.chatController,
     required Event event,
     required PangeaMessageEvent pangeaMessageEvent,
+    required PangeaToken? selectedTokenOnInitialization,
     required Event? nextEvent,
     required Event? prevEvent,
     super.key,
-  }) {
-    _pangeaMessageEvent = pangeaMessageEvent;
-    _nextEvent = nextEvent;
-    _prevEvent = prevEvent;
-    _event = event;
-  }
+  })  : _selectedTokenOnInitialization = selectedTokenOnInitialization,
+        _pangeaMessageEvent = pangeaMessageEvent,
+        _nextEvent = nextEvent,
+        _prevEvent = prevEvent,
+        _event = event;
 
   @override
   MessageOverlayController createState() => MessageOverlayController();
@@ -75,6 +77,17 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   bool isPlayingAudio = false;
 
   bool get showToolbarButtons => !widget._pangeaMessageEvent.isAudioMessage;
+
+  PangeaToken? get selectedTargetTokenForWordMeaning =>
+      widget._selectedTokenOnInitialization != null &&
+              !(messageAnalyticsEntry?.isTokenInHiddenWordActivity(
+                    widget._selectedTokenOnInitialization!,
+                  ) ??
+                  false) &&
+              widget._selectedTokenOnInitialization!
+                  .shouldDoActivity(ActivityTypeEnum.wordMeaning)
+          ? widget._selectedTokenOnInitialization
+          : null;
 
   List<PangeaToken>? tokens;
 
@@ -113,30 +126,24 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     ).listen((_) => setState(() {}));
 
     tts.setupTTS();
-    setInitialToolbarMode();
+
+    _setInitialToolbarModeAndSelectedSpan();
   }
 
-  MessageTokenText get messageTokenText => MessageTokenText(
-        ownMessage: pangeaMessageEvent.ownMessage,
-        fullText: pangeaMessageEvent.messageDisplayText,
-        tokensWithDisplay: tokens
-            ?.map(
-              (token) => TokenWithDisplayInstructions(
-                token: token,
-                highlight: isTokenSelected(token),
-                //NOTE: we actually do want the controller to be aware of which
-                // tokens are currently being involved in activities and adjust here
-                hideContent: false,
-              ),
-            )
-            .toList(),
-        onClick: onClickOverlayMessageToken,
-      );
+  MessageAnalyticsEntry? get messageAnalyticsEntry => tokens != null
+      ? MatrixState.pangeaController.getAnalytics.perMessage.get(
+          tokens!,
+          // this logic should be in the controller
+          !pangeaMessageEvent.ownMessage &&
+              pangeaMessageEvent.messageDisplayRepresentation?.tokens != null,
+        )
+      : null;
 
   Future<void> _getTokens() async {
     tokens = pangeaMessageEvent.originalSent?.tokens;
 
     if (pangeaMessageEvent.originalSent != null && tokens == null) {
+      debugPrint("fetching tokens");
       pangeaMessageEvent.originalSent!
           .tokensGlobal(
         pangeaMessageEvent.senderId,
@@ -144,7 +151,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       )
           .then((tokens) {
         // this isn't currently working because originalSent's _event is null
-        setState(() => this.tokens = tokens);
+        this.tokens = tokens;
+        _setInitialToolbarModeAndSelectedSpan();
       });
     }
   }
@@ -201,31 +209,38 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     setState(() {});
   }
 
-  Future<void> setInitialToolbarMode() async {
+  Future<void> _setInitialToolbarModeAndSelectedSpan() async {
+    debugPrint(
+      "setting initial toolbar mode and selected span with tokens $tokens",
+    );
+
     if (widget._pangeaMessageEvent.isAudioMessage) {
       toolbarMode = MessageMode.speechToText;
-      return;
-    }
-    // if (!messageInUserL2) {
-    //   activitiesLeftToComplete = 0;
-    //   toolbarMode = MessageMode.nullMode;
-    //   return;
-    // }
-
-    if (activitiesLeftToComplete > 0) {
-      toolbarMode = MessageMode.practiceActivity;
-      return;
+      return setState(() => toolbarMode = MessageMode.practiceActivity);
     }
 
+    // we're only going to do activities if we have tokens for the message
+    if (tokens != null) {
+      // if the user selects a span on initialization, then we want to give
+      // them a practice activity on that word
+      if (selectedTargetTokenForWordMeaning != null) {
+        _selectedSpan = selectedTargetTokenForWordMeaning?.text;
+        return setState(() => toolbarMode = MessageMode.practiceActivity);
+      }
+
+      if (activitiesLeftToComplete > 0) {
+        return setState(() => toolbarMode = MessageMode.practiceActivity);
+      }
+    }
+
+    // Note: this setting is now hidden so this will always be false
+    // leaving this here in case we want to bring it back
     if (MatrixState.pangeaController.userController.profile.userSettings
         .autoPlayMessages) {
-      toolbarMode = MessageMode.textToSpeech;
-      return;
+      return setState(() => toolbarMode = MessageMode.textToSpeech);
     }
 
-    toolbarMode = MessageMode.translation;
-
-    setState(() {});
+    setState(() => toolbarMode = MessageMode.translation);
   }
 
   updateToolbarMode(MessageMode mode) {

@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:flutter/foundation.dart';
 
 /// Picks which tokens to do activities on and what types of activities to do
@@ -11,125 +11,176 @@ import 'package:flutter/foundation.dart';
 /// Most importantly, we can't do this in the state of a message widget because the state is disposed of and recreated
 /// If we decided that the first token should have a hidden word listening, we need to remember that
 /// Otherwise, the user might leave the chat, return, and see a different word hidden
+
+class TargetTokensAndActivityType {
+  final List<PangeaToken> tokens;
+  final ActivityTypeEnum activityType;
+
+  TargetTokensAndActivityType({
+    required this.tokens,
+    required this.activityType,
+  });
+
+  bool matchesActivity(PracticeActivityModel activity) {
+    // check if the existing activity has the same type as the target
+    if (activity.activityType != activityType) {
+      return false;
+    }
+
+    // check that the activity matches at least one construct in the target tokens
+    // TODO - this is complicated so we need to verify it works
+    // maybe we just verify that the target span of the activity is the same as the target span of the target
+    final allTokenConstructs =
+        tokens.map((t) => t.constructs).expand((e) => e).toList();
+    for (final c in allTokenConstructs) {
+      if (activity.tgtConstructs.any((tc) => tc == c.id)) {
+        debugPrint('found existing activity');
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is TargetTokensAndActivityType &&
+        listEquals(other.tokens, tokens) &&
+        other.activityType == activityType;
+  }
+
+  @override
+  int get hashCode => tokens.hashCode ^ activityType.hashCode;
+}
+
 class MessageAnalyticsEntry {
   final DateTime createdAt = DateTime.now();
 
-  late List<TokenWithXP> tokensWithXp;
+  late final List<PangeaToken> _tokens;
 
-  final PangeaMessageEvent pmEvent;
+  late final bool _includeHiddenWordActivities;
 
-  //
-  bool isFirstTimeComputing = true;
+  late final List<TargetTokensAndActivityType> _activityQueue;
 
-  TokenWithXP? nextActivityToken;
-  ActivityTypeEnum? nextActivityType;
-
-  MessageAnalyticsEntry(this.pmEvent) {
-    debugPrint('making MessageAnalyticsEntry: ${pmEvent.messageDisplayText}');
-    if (pmEvent.messageDisplayRepresentation?.tokens == null) {
-      throw Exception('No tokens in message in MessageAnalyticsEntry');
-    }
-    tokensWithXp = pmEvent.messageDisplayRepresentation!.tokens!
-        .map((token) => TokenWithXP(token: token))
-        .toList();
-
-    updateTargetTypesForMessage();
+  MessageAnalyticsEntry({
+    required List<PangeaToken> tokens,
+    required bool includeHiddenWordActivities,
+  }) {
+    _tokens = tokens;
+    _includeHiddenWordActivities = includeHiddenWordActivities;
+    _activityQueue = setActivityQueue();
   }
 
-  List<TokenWithXP> get tokensThatCanBeHeard =>
-      tokensWithXp.where((t) => t.token.canBeHeard).toList();
+  TargetTokensAndActivityType? get nextActivity =>
+      _activityQueue.isNotEmpty ? _activityQueue.first : null;
 
-  void updateTokenTargetTypes() {
-    // compute target types for each token
-    for (final token in tokensWithXp) {
-      token.targetTypes = [];
+  bool get canDoWordFocusListening =>
+      _tokens.where((t) => t.canBeHeard).length > 4;
 
-      if (!token.token.lemma.saveVocab) {
-        continue;
-      }
+  /// On initialization, we pick which tokens to do activities on and what types of activities to do
+  List<TargetTokensAndActivityType> setActivityQueue() {
+    final List<TargetTokensAndActivityType> queue = [];
 
-      if (token.daysSinceLastUse < 1) {
-        continue;
-      }
+    // for each token in the message
+    // pick a random activity type from the eligible types
+    for (final token in _tokens) {
+      // get all the eligible activity types for the token
+      // based on the context of the message
+      final eligibleTypesBasedOnContext = token.eligibleActivityTypes
+          .where((type) => type != ActivityTypeEnum.hiddenWordListening)
+          .where(
+            (type) =>
+                canDoWordFocusListening ||
+                type != ActivityTypeEnum.wordFocusListening,
+          )
+          .toList();
 
-      if (token.eligibleForActivity(ActivityTypeEnum.wordMeaning) &&
-          !token.didActivity(ActivityTypeEnum.wordMeaning)) {
-        token.targetTypes.add(ActivityTypeEnum.wordMeaning);
-      }
+      // if there are no eligible types, continue to the next token
+      if (eligibleTypesBasedOnContext.isEmpty) continue;
 
-      if (token.eligibleForActivity(ActivityTypeEnum.wordFocusListening) &&
-          !token.didActivity(ActivityTypeEnum.wordFocusListening) &&
-          tokensThatCanBeHeard.length > 3) {
-        token.targetTypes.add(ActivityTypeEnum.wordFocusListening);
-      }
-
-      if (token.eligibleForActivity(ActivityTypeEnum.hiddenWordListening) &&
-          isFirstTimeComputing &&
-          !token.didActivity(ActivityTypeEnum.hiddenWordListening) &&
-          !pmEvent.ownMessage) {
-        token.targetTypes.add(ActivityTypeEnum.hiddenWordListening);
-      }
+      // chose a random activity type from the eligible types for that token
+      queue.add(
+        TargetTokensAndActivityType(
+          tokens: [token],
+          activityType: eligibleTypesBasedOnContext[
+              Random().nextInt(eligibleTypesBasedOnContext.length)],
+        ),
+      );
     }
-  }
 
-  /// Updates the target types for each token in the message and the next
-  /// activity token and type. Called before requesting the next new activity.
-  void updateTargetTypesForMessage() {
-    // reset
-    nextActivityToken = null;
-    nextActivityType = null;
-    updateTokenTargetTypes();
-
-    // From the tokens with hiddenWordListening in targetTypes, pick one at random.
-    // Create a list of token indicies with hiddenWordListening type available.
-    final List<int> withHiddenWordIndices = tokensWithXp
-        .asMap()
-        .entries
-        .where(
-          (entry) => entry.value.targetTypes.contains(
-            ActivityTypeEnum.hiddenWordListening,
+    // sort the queue by the total xp of the tokens, lowest first
+    queue.sort(
+      (a, b) => a.tokens.map((t) => t.xp).reduce((a, b) => a + b).compareTo(
+            b.tokens.map((t) => t.xp).reduce((a, b) => a + b),
           ),
-        )
-        .map((entry) => entry.key)
-        .toList();
+    );
 
-    // randomly pick one index in the list and set the next activity
-    if (withHiddenWordIndices.isNotEmpty) {
-      final int randomIndex =
-          withHiddenWordIndices[Random().nextInt(withHiddenWordIndices.length)];
+    // if applicable, add a hidden word activity to the front of the queue
+    final hiddenWordActivity = getHiddenWordActivity(queue.length);
+    if (hiddenWordActivity != null) {
+      queue.insert(0, hiddenWordActivity);
+    }
 
-      nextActivityToken = tokensWithXp[randomIndex];
-      nextActivityType = ActivityTypeEnum.hiddenWordListening;
+    // limit to 3 activities
+    return queue.take(3).toList();
+  }
 
-      // remove hiddenWord type from all other tokens
-      // there can only be one hidden word activity for a message
-      for (int i = 0; i < tokensWithXp.length; i++) {
-        if (i != randomIndex) {
-          tokensWithXp[i]
-              .targetTypes
-              .remove(ActivityTypeEnum.hiddenWordListening);
+  TargetTokensAndActivityType? getHiddenWordActivity(int numOtherActivities) {
+    // don't do hidden word listening on own messages
+    if (!_includeHiddenWordActivities) {
+      return null;
+    }
+
+    // we will only do hidden word listening 50% of the time
+    // if there are no other activities to do, we will always do hidden word listening
+    if (numOtherActivities >= 3 && Random().nextDouble() < 0.5) {
+      return null;
+    }
+
+    // We will find the longest sequence of tokens that have hiddenWordListening in their eligibleActivityTypes
+    final List<List<PangeaToken>> sequences = [];
+    List<PangeaToken> currentSequence = [];
+    for (final token in _tokens) {
+      if (token.eligibleActivityTypes
+          .contains(ActivityTypeEnum.hiddenWordListening)) {
+        currentSequence.add(token);
+      } else {
+        if (currentSequence.isNotEmpty) {
+          sequences.add(currentSequence);
+          currentSequence = [];
         }
       }
     }
 
-    // if we didn't find any hiddenWordListening,
-    // pick the first token that has a target type
-    nextActivityToken ??=
-        tokensWithXp.where((t) => t.targetTypes.isNotEmpty).firstOrNull;
-    nextActivityType ??= nextActivityToken?.targetTypes.firstOrNull;
+    if (sequences.isEmpty) {
+      return null;
+    }
 
-    isFirstTimeComputing = false;
+    final longestSequence = sequences.reduce(
+      (a, b) => a.length > b.length ? a : b,
+    );
+
+    return TargetTokensAndActivityType(
+      tokens: longestSequence,
+      activityType: ActivityTypeEnum.hiddenWordListening,
+    );
+  }
+
+  void onActivityComplete(PracticeActivityModel completed) {
+    _activityQueue.removeWhere(
+      (a) => a.matchesActivity(completed),
+    );
   }
 
   void revealAllTokens() {
-    for (final token in tokensWithXp) {
-      token.targetTypes.remove(ActivityTypeEnum.hiddenWordListening);
-    }
+    _activityQueue.removeWhere((a) => a.activityType.hiddenType);
   }
 
-  bool get shouldHideToken => tokensWithXp.any(
-        (token) =>
-            token.targetTypes.contains(ActivityTypeEnum.hiddenWordListening),
+  bool isTokenInHiddenWordActivity(PangeaToken token) => _activityQueue.any(
+        (activity) =>
+            activity.tokens.contains(token) && activity.activityType.hiddenType,
       );
 }
 
@@ -156,22 +207,25 @@ class MessageAnalyticsController {
     }
   }
 
+  String _key(List<PangeaToken> tokens) => PangeaToken.reconstructText(tokens);
+
   MessageAnalyticsEntry? get(
-    PangeaMessageEvent pmEvent,
-    bool refresh,
+    List<PangeaToken> tokens,
+    bool includeHiddenWordActivities,
   ) {
-    if (pmEvent.messageDisplayRepresentation?.tokens == null) {
-      return null;
+    final String key = _key(tokens);
+
+    if (_cache.containsKey(key)) {
+      return _cache[key];
     }
 
-    if (_cache.containsKey(pmEvent.messageDisplayText) && !refresh) {
-      return _cache[pmEvent.messageDisplayText];
-    }
-
-    _cache[pmEvent.messageDisplayText] = MessageAnalyticsEntry(pmEvent);
+    _cache[key] = MessageAnalyticsEntry(
+      tokens: tokens,
+      includeHiddenWordActivities: includeHiddenWordActivities,
+    );
 
     clean();
 
-    return _cache[pmEvent.messageDisplayText];
+    return _cache[key];
   }
 }

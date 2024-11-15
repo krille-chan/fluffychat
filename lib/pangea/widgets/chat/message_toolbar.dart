@@ -72,7 +72,8 @@ class MessageToolbar extends StatelessWidget {
           return FutureBuilder(
             //TODO - convert this to synchronous if possible
             future: Future.value(
-                pangeaMessageEvent.messageDisplayRepresentation?.tokens),
+              pangeaMessageEvent.messageDisplayRepresentation?.tokens,
+            ),
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.done) {
                 return const ToolbarContentLoadingIndicator();
@@ -127,6 +128,8 @@ class MessageToolbar extends StatelessWidget {
           );
         }
         return PracticeActivityCard(
+          selectedTargetTokenForWordMeaning:
+              overLayController.selectedTargetTokenForWordMeaning,
           pangeaMessageEvent: pangeaMessageEvent,
           overlayController: overLayController,
           ttsController: ttsController,
