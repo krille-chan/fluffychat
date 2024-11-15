@@ -2831,5 +2831,42 @@
     "space": {}
   },
   "markAsUnread": "Contrassegna come non letto",
-  "@markAsUnread": {}
+  "@markAsUnread": {},
+  "compressBeforeSending": "Comprimi prima di inviare",
+  "@compressBeforeSending": {},
+  "aboutHomeserver": "Informazioni su {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "continueText": "Continua",
+  "@continueText": {},
+  "welcomeText": "Hey Hey 👋 Questa è FluffyChat. Puoi accedere a qualsiasi homeserver compatibile con https://matrix.org. E poi chattare con chiunque. È un'enorme rete di messaggistica decentralizzata!",
+  "@welcomeText": {},
+  "blur": "Sfocatura:",
+  "@blur": {},
+  "opacity": "Opacità:",
+  "@opacity": {},
+  "setWallpaper": "Imposta sfondo",
+  "@setWallpaper": {},
+  "manageAccount": "Gestisci account",
+  "@manageAccount": {},
+  "noContactInformationProvided": "Il server non fornisce alcuna informazione di contatto valida",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "Contatta l'amministratore del server",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "Contatta la sicurezza del server",
+  "@contactServerSecurity": {},
+  "supportPage": "Pagina di supporto",
+  "@supportPage": {},
+  "serverInformation": "Informazioni sul server:",
+  "@serverInformation": {},
+  "name": "Nome",
+  "@name": {},
+  "version": "Versione",
+  "@version": {},
+  "website": "Sito web",
+  "@website": {}
 }
