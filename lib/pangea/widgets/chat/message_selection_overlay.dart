@@ -65,7 +65,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// The number of activities that need to be completed before the toolbar is unlocked
   /// If we don't have any good activities for them, we'll decrease this number
   static const int neededActivities = 3;
-  int activitiesLeftToComplete = neededActivities;
 
   bool get messageInUserL2 =>
       pangeaMessageEvent.messageDisplayLangCode ==
@@ -121,9 +120,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     _getTokens();
 
-    activitiesLeftToComplete = activitiesLeftToComplete -
-        widget._pangeaMessageEvent.numberOfActivitiesCompleted;
-
     _reactionSubscription =
         widget.chatController.room.client.onSync.stream.where(
       (update) {
@@ -146,7 +142,12 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     tts.setupTTS();
 
-    _setInitialToolbarModeAndSelectedSpan();
+    if (selectedTargetTokenForWordMeaning != null) {
+      messageAnalyticsEntry
+          ?.addForWordMeaning(selectedTargetTokenForWordMeaning!);
+    }
+
+    _setInitialToolbarMode();
   }
 
   MessageAnalyticsEntry? get messageAnalyticsEntry => tokens != null
@@ -171,7 +172,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           .then((tokens) {
         // this isn't currently working because originalSent's _event is null
         this.tokens = tokens;
-        _setInitialToolbarModeAndSelectedSpan();
+        _setInitialToolbarMode();
       });
     }
   }
@@ -209,13 +210,13 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
   }
 
+  int get activitiesLeftToComplete => messageAnalyticsEntry?.numActivities ?? 0;
   bool get isPracticeComplete => activitiesLeftToComplete <= 0;
 
   /// When an activity is completed, we need to update the state
   /// and check if the toolbar should be unlocked
   void onActivityFinish() {
     if (!mounted) return;
-    activitiesLeftToComplete -= 1;
     clearSelection();
     setState(() {});
   }
@@ -223,29 +224,25 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// In some cases, we need to exit the practice flow and let the user
   /// interact with the toolbar without completing activities
   void exitPracticeFlow() {
+    messageAnalyticsEntry?.clearActivityQueue();
     clearSelection();
-    activitiesLeftToComplete = 0;
     setState(() {});
   }
 
-  Future<void> _setInitialToolbarModeAndSelectedSpan() async {
+  Future<void> _setInitialToolbarMode() async {
     if (widget._pangeaMessageEvent.isAudioMessage) {
       toolbarMode = MessageMode.speechToText;
       return setState(() => toolbarMode = MessageMode.practiceActivity);
     }
 
-    // we're only going to do activities if we have tokens for the message
-    if (tokens != null) {
-      // if the user selects a span on initialization, then we want to give
-      // them a practice activity on that word
-      if (selectedTargetTokenForWordMeaning != null) {
-        _selectedSpan = selectedTargetTokenForWordMeaning?.text;
-        return setState(() => toolbarMode = MessageMode.practiceActivity);
-      }
-
-      if (activitiesLeftToComplete > 0) {
-        return setState(() => toolbarMode = MessageMode.practiceActivity);
-      }
+    // 1) we're only going to do activities if we have tokens for the message
+    // 2) if the user selects a span on initialization, then we want to give
+    // them a practice activity on that word
+    // 3) if the user has activities left to complete, then we want to give them
+    if (tokens != null &&
+        (selectedTargetTokenForWordMeaning != null ||
+            activitiesLeftToComplete > 0)) {
+      return setState(() => toolbarMode = MessageMode.practiceActivity);
     }
 
     // Note: this setting is now hidden so this will always be false
