@@ -30,14 +30,14 @@ class TargetTokensAndActivityType {
     // This is kind of complicated
     // if it's causing problems,
     // maybe we just verify that the target span of the activity is the same as the target span of the target?
-    final List<ConstructIdentifier> allTokenConstructs = tokens
+    final List<ConstructIdentifier> relevantConstructs = tokens
         .map((t) => t.constructs)
         .expand((e) => e)
         .map((c) => c.id)
         .where(activityType.constructFilter)
         .toList();
 
-    return listEquals(activity.tgtConstructs, allTokenConstructs);
+    return listEquals(activity.tgtConstructs, relevantConstructs);
   }
 
   @override
@@ -74,6 +74,8 @@ class MessageAnalyticsEntry {
   TargetTokensAndActivityType? get nextActivity =>
       _activityQueue.isNotEmpty ? _activityQueue.first : null;
 
+  /// If there are more than 4 tokens that can be heard, we don't want to do word focus listening
+  /// Otherwise, we don't have enough distractors
   bool get canDoWordFocusListening =>
       _tokens.where((t) => t.canBeHeard).length > 4;
 
@@ -125,6 +127,16 @@ class MessageAnalyticsEntry {
     return queue.take(3).toList();
   }
 
+  /// Removes the last activity from the queue
+  /// This should only used when there is a startingToken in practice flow
+  /// and we want to go down to 2 activities + the activity with the startingToken
+  void goDownTo2Activities() {
+    if (_activityQueue.isNotEmpty && _activityQueue.length > 2) {
+      _activityQueue.removeLast();
+    }
+  }
+
+  /// Returns a hidden word activity if there is a sequence of tokens that have hiddenWordListening in their eligibleActivityTypes
   TargetTokensAndActivityType? getHiddenWordActivity(int numOtherActivities) {
     // don't do hidden word listening on own messages
     if (!_includeHiddenWordActivities) {

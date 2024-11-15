@@ -128,8 +128,6 @@ class MessageToolbar extends StatelessWidget {
           );
         }
         return PracticeActivityCard(
-          selectedTargetTokenForWordMeaning:
-              overLayController.selectedTargetTokenForWordMeaning,
           pangeaMessageEvent: pangeaMessageEvent,
           overlayController: overLayController,
           ttsController: ttsController,

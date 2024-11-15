@@ -39,11 +39,11 @@ class MessageSelectionOverlay extends StatefulWidget {
     required this.chatController,
     required Event event,
     required PangeaMessageEvent pangeaMessageEvent,
-    required PangeaToken? selectedTokenOnInitialization,
+    required PangeaToken? initialSelectedToken,
     required Event? nextEvent,
     required Event? prevEvent,
     super.key,
-  })  : _initialSelectedToken = selectedTokenOnInitialization,
+  })  : _initialSelectedToken = initialSelectedToken,
         _pangeaMessageEvent = pangeaMessageEvent,
         _nextEvent = nextEvent,
         _prevEvent = prevEvent,
@@ -78,19 +78,25 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   bool get showToolbarButtons => !widget._pangeaMessageEvent.isAudioMessage;
 
+  /// Decides whether an _initialSelectedToken should be used
+  /// for a first practice activity on the word meaning
   PangeaToken? get selectedTargetTokenForWordMeaning {
+    // if there is no initial selected token, then we don't need to do anything
     if (widget._initialSelectedToken == null || messageAnalyticsEntry == null) {
       return null;
     }
 
-    final isInActivity = messageAnalyticsEntry!.isTokenInHiddenWordActivity(
+    // should not already be involved in a hidden word activity
+    final isInHiddenWordActivity =
+        messageAnalyticsEntry!.isTokenInHiddenWordActivity(
       widget._initialSelectedToken!,
     );
 
+    // whether the activity should generally be involved in an activity
     final shouldDoActivity = widget._initialSelectedToken!
         .shouldDoActivity(ActivityTypeEnum.wordMeaning);
 
-    return isInActivity && shouldDoActivity
+    return !isInHiddenWordActivity && shouldDoActivity
         ? widget._initialSelectedToken
         : null;
   }
@@ -104,6 +110,13 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       vsync: this,
       duration:
           const Duration(milliseconds: AppConfig.overlayAnimationDuration),
+    );
+
+    debugPrint(
+      "selected token: ${widget._initialSelectedToken?.toJson()} total_xp:${widget._initialSelectedToken?.xp} vocab_construct_xp: ${widget._initialSelectedToken?.vocabConstruct.points} daysSincelastUseInWordMeaning ${widget._initialSelectedToken?.daysSinceLastUseByType(ActivityTypeEnum.wordMeaning)}",
+    );
+    debugPrint(
+      "${widget._initialSelectedToken?.vocabConstruct.uses.map((u) => "${u.useType} ${u.timeStamp}").join(", ")}",
     );
 
     _getTokens();
@@ -216,10 +229,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   }
 
   Future<void> _setInitialToolbarModeAndSelectedSpan() async {
-    debugPrint(
-      "setting initial toolbar mode and selected span with tokens $tokens",
-    );
-
     if (widget._pangeaMessageEvent.isAudioMessage) {
       toolbarMode = MessageMode.speechToText;
       return setState(() => toolbarMode = MessageMode.practiceActivity);

@@ -137,7 +137,8 @@ class PangeaToken {
   /// alias for the end of the token ie offset + length
   int get end => text.offset + text.length;
 
-  bool get isContentWord => ["NOUN", "VERB", "ADJ", "ADV"].contains(pos);
+  bool get isContentWord =>
+      ["NOUN", "VERB", "ADJ", "ADV", "AUX", "PRON"].contains(pos);
 
   bool get canBeHeard => [
         "ADJ",
@@ -224,36 +225,31 @@ class PangeaToken {
     }
   }
 
-  bool isActivityProbablyLevelAppropriate(ActivityTypeEnum a) {
+  bool _isActivityProbablyLevelAppropriate(ActivityTypeEnum a) {
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
-        return vocabConstruct.points < 15;
+        return vocabConstruct.points < 15 || daysSinceLastUseByType(a) > 2;
       case ActivityTypeEnum.wordFocusListening:
-        return !_didActivitySuccessfully(a);
+        return !_didActivitySuccessfully(a) || daysSinceLastUseByType(a) > 2;
       case ActivityTypeEnum.hiddenWordListening:
-        return true;
+        return daysSinceLastUseByType(a) > 2;
     }
   }
 
-  bool shouldDoActivity(ActivityTypeEnum a) {
-    final bool notEmpty = text.content.trim().isNotEmpty;
-    final bool isEligible = _isActivityBasicallyEligible(a);
-    final bool isProbablyLevelAppropriate =
-        isActivityProbablyLevelAppropriate(a);
-
-    return notEmpty && isEligible && isProbablyLevelAppropriate;
-  }
+  bool shouldDoActivity(ActivityTypeEnum a) =>
+      lemma.saveVocab &&
+      _isActivityBasicallyEligible(a) &&
+      _isActivityProbablyLevelAppropriate(a);
 
   List<ActivityTypeEnum> get eligibleActivityTypes {
     final List<ActivityTypeEnum> eligibleActivityTypes = [];
 
-    if (!lemma.saveVocab || daysSinceLastUse < 1) {
+    if (!lemma.saveVocab) {
       return eligibleActivityTypes;
     }
 
     for (final type in ActivityTypeEnum.values) {
-      if (_isActivityBasicallyEligible(type) &&
-          !_didActivitySuccessfully(type)) {
+      if (shouldDoActivity(type)) {
         eligibleActivityTypes.add(type);
       }
     }
@@ -283,8 +279,9 @@ class PangeaToken {
     );
   }
 
-  ///
-  DateTime? get lastUsed => constructs.fold<DateTime?>(
+  /// lastUsed by activity type
+  DateTime? _lastUsedByActivityType(ActivityTypeEnum a) =>
+      constructs.where((c) => a.constructFilter(c.id)).fold<DateTime?>(
         null,
         (previousValue, element) {
           if (previousValue == null) return element.lastUsed;
@@ -295,10 +292,11 @@ class PangeaToken {
         },
       );
 
-  /// daysSinceLastUse
-  int get daysSinceLastUse {
+  /// daysSinceLastUse by activity type
+  int daysSinceLastUseByType(ActivityTypeEnum a) {
+    final lastUsed = _lastUsedByActivityType(a);
     if (lastUsed == null) return 1000;
-    return DateTime.now().difference(lastUsed!).inDays;
+    return DateTime.now().difference(lastUsed).inDays;
   }
 
   List<ConstructIdentifier> get _constructIDs {

@@ -1694,7 +1694,7 @@ class ChatController extends State<ChatPageWithRoom>
         chatController: this,
         event: pangeaMessageEvent.event,
         pangeaMessageEvent: pangeaMessageEvent,
-        selectedTokenOnInitialization: selectedToken,
+        initialSelectedToken: selectedToken,
         nextEvent: nextEvent,
         prevEvent: prevEvent,
       );

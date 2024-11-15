@@ -33,14 +33,12 @@ class PracticeActivityCard extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overlayController;
   final TtsController ttsController;
-  final PangeaToken? selectedTargetTokenForWordMeaning;
 
   const PracticeActivityCard({
     super.key,
     required this.pangeaMessageEvent,
     required this.overlayController,
     required this.ttsController,
-    required this.selectedTargetTokenForWordMeaning,
   });
 
   @override
@@ -56,6 +54,9 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   List<PracticeActivityEvent> get practiceActivities =>
       widget.pangeaMessageEvent.practiceActivities;
+
+  // if the user has selected a token, we're going to give them an activity on that token first
+  late PangeaToken? startingToken;
 
   // Used to show an animation when the user completes an activity
   // while simultaneously fetching a new activity and not showing the loading spinner
@@ -96,17 +97,14 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   /// Get an existing activity if there is one.
   /// If not, get a new activity from the server.
   Future<void> initialize() async {
+    startingToken = widget.overlayController.selectedTargetTokenForWordMeaning;
     _setPracticeActivity(
-      await _fetchActivity(
-        selectedTargetTokenForWordMeaning:
-            widget.selectedTargetTokenForWordMeaning,
-      ),
+      await _fetchActivity(),
     );
   }
 
   Future<PracticeActivityModel?> _fetchActivity({
     ActivityQualityFeedback? activityFeedback,
-    PangeaToken? selectedTargetTokenForWordMeaning,
   }) async {
     // try {
     debugPrint('Fetching activity');
@@ -125,13 +123,22 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     // if the user selected a token which is not already in a hidden word activity,
     // we're going to give them an activity on that token first
     // otherwise, we're going to give them an activity on the next token in the queue
-    final TargetTokensAndActivityType? nextActivitySpecs =
-        selectedTargetTokenForWordMeaning != null
-            ? TargetTokensAndActivityType(
-                tokens: [selectedTargetTokenForWordMeaning],
-                activityType: ActivityTypeEnum.wordMeaning,
-              )
-            : widget.overlayController.messageAnalyticsEntry?.nextActivity;
+    TargetTokensAndActivityType? nextActivitySpecs;
+    if (startingToken != null) {
+      // if the user selected a token, we're going to give them an activity on that token first
+      nextActivitySpecs = TargetTokensAndActivityType(
+        tokens: [startingToken!],
+        activityType: ActivityTypeEnum.wordMeaning,
+      );
+      // clear the starting token so that the next activity is not based on it
+      startingToken = null;
+      // we want to go down to 2 activities + the activity with the startingToken
+      // so we remove the last activity from the queue if there's more than 2
+      widget.overlayController.messageAnalyticsEntry?.goDownTo2Activities();
+    } else {
+      nextActivitySpecs =
+          widget.overlayController.messageAnalyticsEntry?.nextActivity;
+    }
 
     // the client is going to be choosing the next activity now
     // if nothing is set then it must be done with practice
@@ -141,11 +148,11 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       return null;
     }
 
+    // check if we already have an activity matching the specs
     final existingActivity = practiceActivities.firstWhereOrNull(
       (activity) =>
-          nextActivitySpecs.matchesActivity(activity.practiceActivity),
+          nextActivitySpecs!.matchesActivity(activity.practiceActivity),
     );
-
     if (existingActivity != null) {
       debugPrint('found existing activity');
       _updateFetchingActivity(false);
