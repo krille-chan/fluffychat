@@ -9,6 +9,7 @@ import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/markdown_context_builder.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../widgets/avatar.dart';
@@ -456,6 +457,8 @@ class InputBar extends StatelessWidget {
           builder: (context, controller, focusNode) => TextField(
             controller: controller,
             focusNode: focusNode,
+            contextMenuBuilder: (c, e) =>
+                markdownContextBuilder(c, e, controller),
             contentInsertionConfiguration: ContentInsertionConfiguration(
               onContentInserted: (KeyboardInsertedContent content) {
                 final data = content.data;

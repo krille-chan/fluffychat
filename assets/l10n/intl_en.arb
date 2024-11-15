@@ -2806,5 +2806,11 @@
   "name": "Name",
   "version": "Version",
   "website": "Website",
-  "sendUncompressed": "Send uncompressed"
+  "sendUncompressed": "Send uncompressed",
+  "boldText": "Bold text",
+  "italicText": "Italic text",
+  "strikeThrough": "Strikethrough",
+  "pleaseFillOut": "Please fill out",
+  "invalidUrl": "Invalid url",
+  "addLink": "Add link"
 }
