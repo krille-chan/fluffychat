@@ -324,16 +324,11 @@ class PangeaToken {
 
   List<ConstructUses> get constructs => _constructIDs
       .map(
-        (id) =>
-            MatrixState.pangeaController.getAnalytics.constructListModel
-                .getConstructUses(id) ??
-            ConstructUses(
-              lemma: id.lemma,
-              constructType: id.type,
-              category: id.category,
-              uses: [],
-            ),
+        (id) => MatrixState.pangeaController.getAnalytics.constructListModel
+            .getConstructUses(id),
       )
+      .where((construct) => construct != null)
+      .cast<ConstructUses>()
       .toList();
 
   Map<String, dynamic> toServerChoiceTokenWithXP() {

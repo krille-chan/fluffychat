@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_use_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
@@ -127,7 +128,28 @@ class ConstructListModel {
   }
 
   ConstructUses? getConstructUses(ConstructIdentifier identifier) {
-    return _constructMap[identifier.string];
+    final partialKey = "${identifier.lemma}-${identifier.type.string}";
+
+    if (_constructMap.containsKey(identifier.string)) {
+      // try to get construct use entry with full ID key
+      return _constructMap[identifier.string];
+    } else if (identifier.category.toLowerCase() == "other") {
+      // if the category passed to this function is "other", return the first
+      // construct use entry that starts with the partial key
+      return _constructMap.entries
+          .firstWhereOrNull((entry) => entry.key.startsWith(partialKey))
+          ?.value;
+    } else {
+      // if the category passed to this function is not "other", return the first
+      // construct use entry that starts with the partial key and ends with "other"
+      return _constructMap.entries
+          .firstWhereOrNull(
+            (entry) =>
+                entry.key.startsWith(partialKey) &&
+                entry.key.toLowerCase().endsWith("other"),
+          )
+          ?.value;
+    }
   }
 
   List<ConstructUses> constructList({ConstructTypeEnum? type}) => _constructList

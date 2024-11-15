@@ -61,7 +61,10 @@ class ConstructIdentifier {
 
     return other is ConstructIdentifier &&
         other.lemma == lemma &&
-        other.type == type;
+        other.type == type &&
+        (category == other.category ||
+            category.toLowerCase() == "other" ||
+            other.category.toLowerCase() == "other");
   }
 
   @override

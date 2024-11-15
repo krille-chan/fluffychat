@@ -94,9 +94,7 @@ class OneConstructUse {
       useType: ConstructUseTypeUtil.fromString(json['useType']),
       lemma: json['lemma'],
       form: json['form'],
-      category: constructType == ConstructTypeEnum.morph
-          ? getCategory(json)
-          : "Other",
+      category: getCategory(json),
       constructType: constructType,
       id: json['id'],
       metadata: ConstructUseMetaData(
