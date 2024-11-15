@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
-import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/practice_activity_generation_controller.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
@@ -10,7 +9,6 @@ import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
@@ -55,9 +53,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   List<PracticeActivityEvent> get practiceActivities =>
       widget.pangeaMessageEvent.practiceActivities;
 
-  // if the user has selected a token, we're going to give them an activity on that token first
-  late PangeaToken? startingToken;
-
   // Used to show an animation when the user completes an activity
   // while simultaneously fetching a new activity and not showing the loading spinner
   // until the appropriate time has passed to 'savor the joy'
@@ -97,7 +92,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   /// Get an existing activity if there is one.
   /// If not, get a new activity from the server.
   Future<void> initialize() async {
-    startingToken = widget.overlayController.selectedTargetTokenForWordMeaning;
     _setPracticeActivity(
       await _fetchActivity(),
     );
@@ -120,26 +114,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       return null;
     }
 
-    // if the user selected a token which is not already in a hidden word activity,
-    // we're going to give them an activity on that token first
-    // otherwise, we're going to give them an activity on the next token in the queue
-    TargetTokensAndActivityType? nextActivitySpecs;
-    if (startingToken != null) {
-      // if the user selected a token, we're going to give them an activity on that token first
-      nextActivitySpecs = TargetTokensAndActivityType(
-        tokens: [startingToken!],
-        activityType: ActivityTypeEnum.wordMeaning,
-      );
-      // clear the starting token so that the next activity is not based on it
-      startingToken = null;
-      // we want to go down to 2 activities + the activity with the startingToken
-      // so we remove the last activity from the queue if there's more than 2
-      widget.overlayController.messageAnalyticsEntry?.goDownTo2Activities();
-    } else {
-      nextActivitySpecs =
-          widget.overlayController.messageAnalyticsEntry?.nextActivity;
-    }
-
+    final nextActivitySpecs =
+        widget.overlayController.messageAnalyticsEntry?.nextActivity;
     // the client is going to be choosing the next activity now
     // if nothing is set then it must be done with practice
     if (nextActivitySpecs == null) {
@@ -151,7 +127,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     // check if we already have an activity matching the specs
     final existingActivity = practiceActivities.firstWhereOrNull(
       (activity) =>
-          nextActivitySpecs!.matchesActivity(activity.practiceActivity),
+          nextActivitySpecs.matchesActivity(activity.practiceActivity),
     );
     if (existingActivity != null) {
       debugPrint('found existing activity');
@@ -160,7 +136,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     }
 
     debugPrint(
-      "client requesting ${nextActivitySpecs.activityType.string} for ${nextActivitySpecs.tokens.map((t) => t.text).join(' ')}",
+      "client requesting ${nextActivitySpecs.activityType.string} for: ${nextActivitySpecs.tokens.map((t) => t.text.content).join(' ')}",
     );
 
     final PracticeActivityModelResponse? activityResponse =
