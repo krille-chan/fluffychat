@@ -171,8 +171,7 @@ class PangeaToken {
   bool _isActivityBasicallyEligible(ActivityTypeEnum a) {
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
-        // return isContentWord;
-        return true;
+        return isContentWord;
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
         return canBeHeard;
@@ -226,9 +225,6 @@ class PangeaToken {
   }
 
   bool isActivityProbablyLevelAppropriate(ActivityTypeEnum a) {
-    debugger(when: kDebugMode);
-    final int points = vocabConstruct.points;
-    final int myxp = xp;
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
         return vocabConstruct.points < 15;
