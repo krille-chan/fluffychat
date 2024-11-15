@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_221",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVK(){return new B.HG(A.dK("de"))},
+cVN(){return new B.HG(A.dK("de"))},
 HG:function HG(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -527,49 +527,49 @@ go2(){return"Als ungelesen markieren"},
 o7(d){return""+d+" - Benutzer"},
 o3(d){return""+d+" - Moderator"},
 nX(d){return""+d+" - Administrator"},
-goi(){return"Allgemeine Chat-Einstellungen \xe4ndern"},
+goj(){return"Allgemeine Chat-Einstellungen \xe4ndern"},
 goy(){return"Lade andere Benutzer in diesen Chat ein"},
-gol(){return"\xc4ndere die Chat-Berechtigungen"},
-gon(){return"Wechsele die Sichtbarkeit der Chat-Historie"},
-goj(){return"\xc4ndern der Hauptadresse f\xfcr den \xf6ffentlichen Chat"},
+gom(){return"\xc4ndere die Chat-Berechtigungen"},
+goo(){return"Wechsele die Sichtbarkeit der Chat-Historie"},
+gol(){return"\xc4ndern der Hauptadresse f\xfcr den \xf6ffentlichen Chat"},
 go9(){return"Sende eine @room-Benachrichtigung"},
-gom(){return"Chat-Beschreibung \xe4ndern"},
-gop(){return"Einstellen, welches Level f\xfcr bestimmte Aktionen in diesem Chat erforderlich ist. Die Level 0, 50 und 100 stehen \xfcblicherweise f\xfcr Benutzer, Moderatoren und Admins, aber jede Abstufung ist m\xf6glich."},
+gon(){return"Chat-Beschreibung \xe4ndern"},
+goq(){return"Einstellen, welches Level f\xfcr bestimmte Aktionen in diesem Chat erforderlich ist. Die Level 0, 50 und 100 stehen \xfcblicherweise f\xfcr Benutzer, Moderatoren und Admins, aber jede Abstufung ist m\xf6glich."},
 oI(d){return"\ud83c\udf89 Update "+d+" installiert!"},
-goo(){return"\xc4nderungsprotokoll"},
+gop(){return"\xc4nderungsprotokoll"},
 go8(){return"Senden abgebrochen"},
 goA(){return"Mit Matrix-ID anmelden"},
 gou(){return"Server suchen"},
 goM(){return"Was ist ein Homeserver?"},
 gox(){return"Alle deine Daten werden auf einem Homeserver gespeichert, so wie bei einem E-Mail Anbieter. Du kannst aussuchen, welchen Homeserver du benutzen willst und kannst trotzdem mit allen kommunizieren. Erfahre mehr auf https://matrix.org."},
 gov(){return"Scheint kein kompatibler Homeserver zu sein. Falsche URL?"},
-goh(){return"Dateigr\xf6\xdfe wird berechnet ..."},
+goi(){return"Dateigr\xf6\xdfe wird berechnet ..."},
 goG(){return"Anhang zum Senden vorbereiten ..."},
-goa(){return"Anhang wird gesendet ..."},
-ob(d,e){return"Sende Anhang "+d+" von "+e+" ..."},
-od(d){return"Server-Limit erreicht! Warte "+d+" Sekunden ..."},
+gob(){return"Anhang wird gesendet ..."},
+oc(d,e){return"Sende Anhang "+d+" von "+e+" ..."},
+oe(d){return"Server-Limit erreicht! Warte "+d+" Sekunden ..."},
 goE(){return"Eines deiner Ger\xe4te ist nicht verifiziert"},
 goD(){return"Hinweis: Wenn du alle deine Ger\xe4te mit dem Chat-Backup verbindest, sind sie automatisch verifiziert."},
 got(){return"Fortfahren"},
 goL(){return"Hey Hey \ud83d\udc4b Das ist FluffyChat. Du kannst sich bei jedem Homeserver anmelden, der mit https://matrix.org kompatibel ist. Und dann mit jedem chatten. Das hier ist ein riesiges dezentrales Nachrichtennetzwerk!"},
-gog(d){return"Verwischen:"},
+goh(d){return"Verwischen:"},
 gcg(d){return"Deckkraft:"},
 gl0(){return"Hintergrund \xe4ndern"},
 goB(){return"Konto verwalten"},
 go4(){return"Server does not provide any valid contact information"},
 gor(){return"Contact server admin"},
 gos(){return"Contact server security"},
-goe(){return"Support page"},
-goc(){return"Server information:"},
+gof(){return"Support page"},
+god(){return"Server information:"},
 gbD(d){return"Name"},
 goJ(d){return"Version"},
 goK(){return"Website"},
-goq(){return"Compress before sending"},
+goa(){return"Send uncompressed"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.HG,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HG":{"aR":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_221",e:"endPart",h:b})})($__dart_deferred_initializers__,"0O52vPdktF7MNlQ3azs4fHYzHKs=");
+a.eventLog.push({p:"main.dart.js_221",e:"endPart",h:b})})($__dart_deferred_initializers__,"IX2bEhqIz9ytVqHXF+5GFCUQnNo=");
 //# sourceMappingURL=main.dart.js_221.part.js.map

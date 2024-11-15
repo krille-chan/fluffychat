@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_241",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVR(){return new B.HN(A.dK("fa"))},
+cVU(){return new B.HN(A.dK("fa"))},
 HN:function HN(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -527,49 +527,49 @@ go2(){return"Mark as unread"},
 o7(d){return""+d+" - User"},
 o3(d){return""+d+" - Moderator"},
 nX(d){return""+d+" - Admin"},
-goi(){return"Change general chat settings"},
+goj(){return"Change general chat settings"},
 goy(){return"Invite other users to this chat"},
-gol(){return"Change the chat permissions"},
-gon(){return"Change the visibility of the chat history"},
-goj(){return"Change the main public chat address"},
+gom(){return"Change the chat permissions"},
+goo(){return"Change the visibility of the chat history"},
+gol(){return"Change the main public chat address"},
 go9(){return"Send a @room notifications"},
-gom(){return"Change the description of the chat"},
-gop(){return"Define which power level is necessary for certain actions in this chat. The power levels 0, 50 and 100 are usually representing users, moderators and admins, but any gradation is possible."},
+gon(){return"Change the description of the chat"},
+goq(){return"Define which power level is necessary for certain actions in this chat. The power levels 0, 50 and 100 are usually representing users, moderators and admins, but any gradation is possible."},
 oI(d){return"\ud83c\udf89 Update "+d+" installed!"},
-goo(){return"Changelog"},
+gop(){return"Changelog"},
 go8(){return"Sending canceled"},
 goA(){return"Login with Matrix-ID"},
 gou(){return"Discover homeservers"},
 goM(){return"What is a homeserver?"},
 gox(){return"All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org."},
 gov(){return"Doesn't seem to be a compatible homeserver. Wrong URL?"},
-goh(){return"Calculating file size..."},
+goi(){return"Calculating file size..."},
 goG(){return"Prepare sending attachment..."},
-goa(){return"Sending attachment..."},
-ob(d,e){return"Sending attachment "+d+" of "+e+"..."},
-od(d){return"Server limit reached! Waiting "+d+" seconds..."},
+gob(){return"Sending attachment..."},
+oc(d,e){return"Sending attachment "+d+" of "+e+"..."},
+oe(d){return"Server limit reached! Waiting "+d+" seconds..."},
 goE(){return"One of your devices is not verified"},
 goD(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 got(){return"Continue"},
 goL(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
-gog(d){return"Blur:"},
+goh(d){return"Blur:"},
 gcg(d){return"Opacity:"},
 gl0(){return"Set wallpaper"},
 goB(){return"Manage account"},
 go4(){return"Server does not provide any valid contact information"},
 gor(){return"Contact server admin"},
 gos(){return"Contact server security"},
-goe(){return"Support page"},
-goc(){return"Server information:"},
+gof(){return"Support page"},
+god(){return"Server information:"},
 gbD(d){return"Name"},
 goJ(d){return"Version"},
 goK(){return"Website"},
-goq(){return"Compress before sending"},
+goa(){return"Send uncompressed"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.HN,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HN":{"aR":[]}}'))
 var y={a:"\n\u0648\u0644\u06cc \u0627\u06cc\u0646 \u0628\u0631\u0646\u0627\u0645\u0647 \u0641\u0642\u0637 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u0627\u06cc\u0646\u200c\u0647\u0627 \u0631\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u06a9\u0646\u062f:\n"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"uv9/trThINpxBqgp9df4nEblRNY=");
+a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"hO98c5aTo0/uNZo6U3le2iuYyIU=");
 //# sourceMappingURL=main.dart.js_241.part.js.map

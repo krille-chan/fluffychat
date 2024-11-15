@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_248",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVW(){return new B.HS(A.dK("gl"))},
+cVZ(){return new B.HS(A.dK("gl"))},
 HS:function HS(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -527,48 +527,48 @@ go2(){return"Marcar como non lido"},
 o7(d){return""+d+" - Usuaria"},
 o3(d){return""+d+" - Moderadora"},
 nX(d){return""+d+" - Administradora"},
-goi(){return"Cambiar os axustes xerais da charla"},
+goj(){return"Cambiar os axustes xerais da charla"},
 goy(){return"Convidar a outras usuarias a esta charla"},
-gol(){return"Cambiar os permisos na charla"},
-gon(){return"Cambiar a visibilidade do historial da charla"},
-goj(){return"Cambiar o enderezo p\xfablico principal da charla"},
+gom(){return"Cambiar os permisos na charla"},
+goo(){return"Cambiar a visibilidade do historial da charla"},
+gol(){return"Cambiar o enderezo p\xfablico principal da charla"},
 go9(){return"Enviar notificaci\xf3ns a @room"},
-gom(){return"Cambiar a descrici\xf3n da charla"},
-gop(){return"Define que nivel de permisos son necesarios para realizar certas acci\xf3ns nesta charla. Os niveis de permiso 0, 50 e 100 normalmente representan, usuarias, moderadoras e administradoras, pero son posibles outras escalas."},
+gon(){return"Cambiar a descrici\xf3n da charla"},
+goq(){return"Define que nivel de permisos son necesarios para realizar certas acci\xf3ns nesta charla. Os niveis de permiso 0, 50 e 100 normalmente representan, usuarias, moderadoras e administradoras, pero son posibles outras escalas."},
 oI(d){return"\ud83c\udf89 Instalouse a actualizaci\xf3n a "+d+"!"},
-goo(){return"Novidades na versi\xf3n"},
+gop(){return"Novidades na versi\xf3n"},
 go8(){return"Cancelouse o env\xedo"},
 goA(){return"Acceder co ID-Matrix"},
 gou(){return"Atopar servidores"},
 goM(){return"Que \xe9 un servidor de inicio?"},
 gox(){return"Todos os teus datos quedan gardados no servidor de inicio, igual que co teu provedor de correo electr\xf3nico. Podes elexir o servidor que queres usar e poder\xe1s comunicarte con todos os demais. Aprende m\xe1is en https://matrix.org."},
 gov(){return"Non semella ser un servidor de inicio compatible. \xc9 o URL correcto?"},
-goh(){return"Calculando o tama\xf1o do ficheiro\u2026"},
+goi(){return"Calculando o tama\xf1o do ficheiro\u2026"},
 goG(){return"Preparando o env\xedo\u2026"},
-goa(){return"Enviando o anexo\u2026"},
-ob(d,e){return"Enviando o anexo "+d+" de "+e+"\u2026"},
-od(d){return"Acadouse o l\xedmite do servidor! Agarda "+d+" segundos\u2026"},
+gob(){return"Enviando o anexo\u2026"},
+oc(d,e){return"Enviando o anexo "+d+" de "+e+"\u2026"},
+oe(d){return"Acadouse o l\xedmite do servidor! Agarda "+d+" segundos\u2026"},
 goE(){return"Un dos teus dispositivos non est\xe1 verificado"},
 goD(){return"Nota: Cando conectas todos os teus dispositivos \xe1 copia de apoio da conversa quedan verificados automaticamente."},
 got(){return"Continuar"},
 goL(){return"Ola! \ud83d\udc4b Isto \xe9 FluffyChat. Podes iniciar sesi\xf3n en calquera servidor compatible con https://matrix.org. Poder\xe1s conversar con calquera. Unha enorme rede de mensaxer\xeda descentralizada!"},
-gog(d){return"N\xe9boa:"},
+goh(d){return"N\xe9boa:"},
 gcg(d){return"Opacidade:"},
 gl0(){return"Establecer fondo"},
 goB(){return"Xestionar conta"},
 go4(){return"O servidor non proporciona informaci\xf3n de contacto v\xe1lida"},
 gor(){return"Contacto con Admin do servidor"},
 gos(){return"Contacto con Seguridade do servidor"},
-goe(){return"P\xe1xina de axuda"},
-goc(){return"Informaci\xf3n do servidor:"},
+gof(){return"P\xe1xina de axuda"},
+god(){return"Informaci\xf3n do servidor:"},
 gbD(d){return"Nome"},
 goJ(d){return"Versi\xf3n"},
 goK(){return"P\xe1xina web"},
-goq(){return"Compress before sending"},
+goa(){return"Send uncompressed"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HS,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HS":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"m3tfdiGOt/on9UnD8mnpylgSBQU=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"tEhfzU4j7b/18LQ+OFdC82eRWPc=");
 //# sourceMappingURL=main.dart.js_248.part.js.map

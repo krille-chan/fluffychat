@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_239",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVQ(){return new B.HM(A.dK("eu"))},
+cVT(){return new B.HM(A.dK("eu"))},
 HM:function HM(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -527,49 +527,49 @@ go2(){return"Markatu irakurri gabetzat"},
 o7(d){return""+d+" - Erabiltzailea"},
 o3(d){return""+d+" - Moderatzailea"},
 nX(d){return""+d+" - Administratzailea"},
-goi(){return"Aldatu txataren ezarpen orokorrak"},
+goj(){return"Aldatu txataren ezarpen orokorrak"},
 goy(){return"Gonbidatu beste erabiltzaileak txat honetara"},
-gol(){return"Aldatu txataren baimenak"},
-gon(){return"Aldatu txataren historiaren ikusgaitasuna"},
-goj(){return"Aldatu txataren helbide publiko nagusia"},
+gom(){return"Aldatu txataren baimenak"},
+goo(){return"Aldatu txataren historiaren ikusgaitasuna"},
+gol(){return"Aldatu txataren helbide publiko nagusia"},
 go9(){return"Bidali @gela jakinarazpena"},
-gom(){return"Aldatu txataren deskribapena"},
-gop(){return"Definitu zer botere-maila behar den txat honetako ekintza jakinetarako. 0, 50 eta 100 botere-mailek erabiltzaileak, moderatzaileak eta administratzaileak ordezkatzen dituzte, baina edozein graduazio posible da."},
+gon(){return"Aldatu txataren deskribapena"},
+goq(){return"Definitu zer botere-maila behar den txat honetako ekintza jakinetarako. 0, 50 eta 100 botere-mailek erabiltzaileak, moderatzaileak eta administratzaileak ordezkatzen dituzte, baina edozein graduazio posible da."},
 oI(d){return"\ud83c\udf89 "+d+" bertsioa instalatu da!"},
-goo(){return"Aldaketak"},
+gop(){return"Aldaketak"},
 go8(){return"Bidalketa bertan behera utzi da"},
 goA(){return"Hasi saioa Matrix IDarekin"},
 gou(){return"Arakatu zerbitzariak"},
 goM(){return"Zer da zerbitzari bat?"},
 gox(){return"Zerbitzariak datuak gordetzen ditu, ePosta hornitzaileek mezuak gordetzen dituzten bezala. Nahi duzun zerbitzaria aukeratu dezakezu eta, hala ere, besteetako edonorekin hitz egin. Ikasi gehiago https://matrix.org webgunean."},
 gov(){return"Ez dirudi zerbitzaria bateragarria denik. Zuzena da URLa?"},
-goh(){return"Fitxategiaren tamaina kalkulatzen\u2026"},
+goi(){return"Fitxategiaren tamaina kalkulatzen\u2026"},
 goG(){return"Eranskinaren bidalketa prestatzen\u2026"},
-goa(){return"Eranskina bidaltzen\u2026"},
-ob(d,e){return""+d+". eranskina bidaltzen ("+e+" guztira)\u2026"},
-od(d){return"Zerbitzariaren muga gainditu da! Itxaron "+d+" segundo\u2026"},
+gob(){return"Eranskina bidaltzen\u2026"},
+oc(d,e){return""+d+". eranskina bidaltzen ("+e+" guztira)\u2026"},
+oe(d){return"Zerbitzariaren muga gainditu da! Itxaron "+d+" segundo\u2026"},
 goE(){return"Zure gailuetako bat ez dago egiaztatuta"},
 goD(){return"Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira."},
 got(){return"Jarraitu"},
 goL(){return"Ieup \ud83d\udc4b Ongi etorri FluffyChat-era. https://matrix.org-rekin bateragarria den edozein zerbitzaritan hasi dezakezu saioa eta edonorekin txateatu. Mezularitza-sare deszentralizatu eraraldoia da!"},
-gog(d){return"Lausotu:"},
+goh(d){return"Lausotu:"},
 gcg(d){return"Opakutasuna:"},
 gl0(){return"Ezarri horma-irudia"},
 goB(){return"Kudeatu kontua"},
 go4(){return"Zerbitzariak ez du harremanetarako informaziorik zehaztu"},
 gor(){return"Jarri harremanetan zerbitzariaren administratzailearekin"},
 gos(){return"Jakinarazi segurtasun arazo bat"},
-goe(){return"Laguntza orria"},
-goc(){return"Zerbitzariaren informazioa:"},
+gof(){return"Laguntza orria"},
+god(){return"Zerbitzariaren informazioa:"},
 gbD(d){return"Izena"},
 goJ(d){return"Bertsioa"},
 goK(){return"Webgunea"},
-goq(){return"Compress before sending"},
+goa(){return"Send uncompressed"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.HM,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HM":{"aR":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"PmA1Fn+2rMbNBSw/eDMcb4PU1os=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"OYJbDMAM0JouHu41SudAixHTJLA=");
 //# sourceMappingURL=main.dart.js_239.part.js.map

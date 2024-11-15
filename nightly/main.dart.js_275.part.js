@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_275",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cW8(){return new B.I4(A.dK("lv"))},
+cWb(){return new B.I4(A.dK("lv"))},
 I4:function I4(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -527,48 +527,48 @@ go2(){return"Atz\u012bm\u0113t k\u0101 nelas\u012btu"},
 o7(d){return""+d+" - Lietot\u0101js"},
 o3(d){return""+d+" - Moderators"},
 nX(d){return""+d+" - P\u0101rvald\u012bt\u0101js"},
-goi(){return"Main\u012bt visp\u0101r\u0113jos t\u0113rz\u0113\u0161anas iestat\u012bjumus"},
+goj(){return"Main\u012bt visp\u0101r\u0113jos t\u0113rz\u0113\u0161anas iestat\u012bjumus"},
 goy(){return"Uzaicin\u0101t \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101 citus lietot\u0101jus"},
-gol(){return"Main\u012bt t\u0113rz\u0113\u0161anas at\u013caujas"},
-gon(){return"Main\u012bt t\u0113rz\u0113\u0161anas v\u0113stures redzam\u012bbu"},
-goj(){return"Main\u012bt t\u0113rz\u0113\u0161anas galveno publisko adresi"},
+gom(){return"Main\u012bt t\u0113rz\u0113\u0161anas at\u013caujas"},
+goo(){return"Main\u012bt t\u0113rz\u0113\u0161anas v\u0113stures redzam\u012bbu"},
+gol(){return"Main\u012bt t\u0113rz\u0113\u0161anas galveno publisko adresi"},
 go9(){return"S\u016bt\u012bt @istaba pazi\u0146ojumus"},
-gom(){return"Main\u012bt t\u0113rz\u0113\u0161anas aprakstu"},
-gop(){return"Noteikt, kur\u0161 sp\u0113ka l\u012bmenis ir nepiecie\u0161ams noteikt\u0101m darb\u012bb\u0101m \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101. Sp\u0113ka l\u012bme\u0146i 0, 50 un 100 parasti atbilst lietot\u0101jiem, moderatoriem un p\u0101rvald\u012bt\u0101jiem, bet ir iesp\u0113jams jebk\u0101ds iedal\u012bjums."},
+gon(){return"Main\u012bt t\u0113rz\u0113\u0161anas aprakstu"},
+goq(){return"Noteikt, kur\u0161 sp\u0113ka l\u012bmenis ir nepiecie\u0161ams noteikt\u0101m darb\u012bb\u0101m \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101. Sp\u0113ka l\u012bme\u0146i 0, 50 un 100 parasti atbilst lietot\u0101jiem, moderatoriem un p\u0101rvald\u012bt\u0101jiem, bet ir iesp\u0113jams jebk\u0101ds iedal\u012bjums."},
 oI(d){return"\ud83c\udf89 Atjaunin\u0101jums "+d+" uzst\u0101d\u012bts."},
-goo(){return"Izmai\u0146u \u017eurn\u0101ls"},
+gop(){return"Izmai\u0146u \u017eurn\u0101ls"},
 go8(){return"S\u016bt\u012b\u0161ana atcelta"},
 goA(){return"Pieteikties ar Matrix-Id"},
 gou(){return"Atkl\u0101t m\u0101jasserverus"},
 goM(){return"Kas ir m\u0101jasserveris?"},
 gox(){return"Visi lietot\u0101ja dati tiek glab\u0101ti m\u0101jasserver\u012b, glu\u017ei k\u0101 ar e-pasta nodro\u0161in\u0101t\u0101ju. Ir iesp\u0113jams izv\u0113l\u0113ties, kuru m\u0101jasserveri izmantot, saglab\u0101jot iesp\u0113ju sazin\u0101ties ar ikvienu. Vair\u0101k var uzzin\u0101t https://matrix.org."},
 gov(){return"Neizskat\u0101s p\u0113c sader\u012bga m\u0101jasservera. Nepareizs URL?"},
-goh(){return"Apr\u0113\u0137ina datnes lielumu..."},
+goi(){return"Apr\u0113\u0137ina datnes lielumu..."},
 goG(){return"Sagatavo pielikuma nos\u016bt\u012b\u0161anu..."},
-goa(){return"Nos\u016bta pielikumu..."},
-ob(d,e){return"Nos\u016bta "+d+". pielikumu no "+e+"..."},
-od(d){return"Sasniegts servera ierobe\u017eojums. Gaida "+d+" sekundes..."},
+gob(){return"Nos\u016bta pielikumu..."},
+oc(d,e){return"Nos\u016bta "+d+". pielikumu no "+e+"..."},
+oe(d){return"Sasniegts servera ierobe\u017eojums. Gaida "+d+" sekundes..."},
 goE(){return"Viena no ier\u012bc\u0113m nav apliecin\u0101ta"},
 goD(){return"Piez\u012bme: kad visas ier\u012bces tiek savienotas ar t\u0113rz\u0113\u0161anas rezerves kopiju, t\u0101s tiek autom\u0101tiski apliecin\u0101tas."},
 got(){return"Turpin\u0101t"},
 goL(){return"Sveicieni! \ud83d\udc4b \u0160is ir FluffyChat. Tu vari pieteikties jebkur\u0101 m\u0101jasserver\u012b, kas ir sader\u012bgs ar https://matrix.org. Tad vari t\u0113rz\u0113t ar ikvienu. Tas ir milz\u012bgs decentraliz\u0113t\u0101s sazi\u0146as t\u012bkls!"},
-gog(d){return"Aizmiglojums:"},
+goh(d){return"Aizmiglojums:"},
 gcg(d){return"Necaurredzam\u012bba:"},
 gl0(){return"Iestat\u012bt ekr\u0101ntapeti"},
 goB(){return"P\u0101rvald\u012bt kontu"},
 go4(){return"Serveris nesniedz nek\u0101du der\u012bgu sazi\u0146as inform\u0101ciju"},
 gor(){return"Sazin\u0101ties ar servera p\u0101rvald\u012bt\u0101ju"},
 gos(){return"Sazin\u0101ties ar servera dro\u0161\u012bbas uztur\u0113t\u0101jiem"},
-goe(){return"Atbalsta lapa"},
-goc(){return"Inform\u0101cija par serveri:"},
+gof(){return"Atbalsta lapa"},
+god(){return"Inform\u0101cija par serveri:"},
 gbD(d){return"Nosaukums"},
 goJ(d){return"Versija"},
 goK(){return"T\u012bmek\u013cvietne"},
-goq(){return"Compress before sending"},
+goa(){return"Send uncompressed"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I4,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I4":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"74BbxLnRVoFTgBRLwXBy9xabeoE=");
+a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"p2tVct6TCjirA8v/DOXbxuhJKAo=");
 //# sourceMappingURL=main.dart.js_275.part.js.map

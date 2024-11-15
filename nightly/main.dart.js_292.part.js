@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_292",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWn(){return new B.Ii(A.dK("tr"))},
+cWq(){return new B.Ii(A.dK("tr"))},
 Ii:function Ii(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -527,49 +527,49 @@ go2(){return"Okunmad\u0131 olarak i\u015faretle"},
 o7(d){return""+d+" - Kullan\u0131c\u0131"},
 o3(d){return""+d+" - Moderat\xf6r"},
 nX(d){return""+d+" - Y\xf6netici"},
-goi(){return"Genel sohbet ayarlar\u0131n\u0131 de\u011fi\u015ftir"},
+goj(){return"Genel sohbet ayarlar\u0131n\u0131 de\u011fi\u015ftir"},
 goy(){return"Di\u011fer kullan\u0131c\u0131lar\u0131 bu sohbete davet et"},
-gol(){return"Sohbet izinlerini de\u011fi\u015ftir"},
-gon(){return"Sohbet ge\xe7mi\u015finin g\xf6r\xfcn\xfcrl\xfc\u011f\xfcn\xfc de\u011fi\u015ftir"},
-goj(){return"Ana herkese a\xe7\u0131k sohbet adresini de\u011fi\u015ftir"},
+gom(){return"Sohbet izinlerini de\u011fi\u015ftir"},
+goo(){return"Sohbet ge\xe7mi\u015finin g\xf6r\xfcn\xfcrl\xfc\u011f\xfcn\xfc de\u011fi\u015ftir"},
+gol(){return"Ana herkese a\xe7\u0131k sohbet adresini de\u011fi\u015ftir"},
 go9(){return"@oda bildirimleri g\xf6nder"},
-gom(){return"Sohbetin a\xe7\u0131klamas\u0131n\u0131 de\u011fi\u015ftir"},
-gop(){return"Bu sohbette belirli eylemler i\xe7in hangi g\xfc\xe7 d\xfczeyinin gerekli oldu\u011funu tan\u0131mlay\u0131n. 0, 50 ve 100 g\xfc\xe7 d\xfczeyleri genellikle kullan\u0131c\u0131lar\u0131, moderat\xf6rleri ve y\xf6neticileri temsil eder, ancak herhangi bir derecelendirme m\xfcmk\xfcnd\xfcr."},
+gon(){return"Sohbetin a\xe7\u0131klamas\u0131n\u0131 de\u011fi\u015ftir"},
+goq(){return"Bu sohbette belirli eylemler i\xe7in hangi g\xfc\xe7 d\xfczeyinin gerekli oldu\u011funu tan\u0131mlay\u0131n. 0, 50 ve 100 g\xfc\xe7 d\xfczeyleri genellikle kullan\u0131c\u0131lar\u0131, moderat\xf6rleri ve y\xf6neticileri temsil eder, ancak herhangi bir derecelendirme m\xfcmk\xfcnd\xfcr."},
 oI(d){return"\ud83c\udf89 G\xfcncelleme "+d+" kuruldu!"},
-goo(){return"De\u011fi\u015fiklik g\xfcnl\xfc\u011f\xfc"},
+gop(){return"De\u011fi\u015fiklik g\xfcnl\xfc\u011f\xfc"},
 go8(){return"G\xf6nderme iptal edildi"},
 goA(){return"Matrix kimli\u011fi ile oturum a\xe7"},
 gou(){return"Ana sunucular\u0131 ke\u015ffet"},
 goM(){return"Ana sunucu nedir?"},
 gox(){return"T\xfcm verileriniz t\u0131pk\u0131 bir e-posta sa\u011flay\u0131c\u0131s\u0131 gibi ana sunucuda saklan\u0131r. Hangi ana sunucuyu kullanmak istedi\u011finizi se\xe7ebilir ve herkesle ileti\u015fim kurmaya devam edebilirsiniz. https://matrix.org adresinden daha fazla bilgi edinin."},
 gov(){return"Uyumlu bir ana sunucu gibi g\xf6r\xfcnm\xfcyor. Yanl\u0131\u015f URL mi?"},
-goh(){return"Dosya boyutu hesaplan\u0131yor..."},
+goi(){return"Dosya boyutu hesaplan\u0131yor..."},
 goG(){return"Ek g\xf6nderilmeye haz\u0131rlan\u0131yor..."},
-goa(){return"Ek g\xf6nderiliyor..."},
-ob(d,e){return"Ek "+d+" / "+e+" g\xf6nderiliyor..."},
-od(d){return"Sunucu s\u0131n\u0131r\u0131na ula\u015f\u0131ld\u0131! "+d+" saniye bekleniyor..."},
+gob(){return"Ek g\xf6nderiliyor..."},
+oc(d,e){return"Ek "+d+" / "+e+" g\xf6nderiliyor..."},
+oe(d){return"Sunucu s\u0131n\u0131r\u0131na ula\u015f\u0131ld\u0131! "+d+" saniye bekleniyor..."},
 goE(){return"Ayg\u0131tlar\u0131n\u0131zdan biri do\u011frulanmad\u0131"},
 goD(){return"Not: T\xfcm ayg\u0131tlar\u0131n\u0131z\u0131 sohbet yedeklemesine ba\u011flad\u0131\u011f\u0131n\u0131zda, otomatik olarak do\u011frulan\u0131rlar."},
 got(){return"Continue"},
 goL(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
-gog(d){return"Blur:"},
+goh(d){return"Blur:"},
 gcg(d){return"Opacity:"},
 gl0(){return"Set wallpaper"},
 goB(){return"Manage account"},
 go4(){return"Server does not provide any valid contact information"},
 gor(){return"Contact server admin"},
 gos(){return"Contact server security"},
-goe(){return"Support page"},
-goc(){return"Server information:"},
+gof(){return"Support page"},
+god(){return"Server information:"},
 gbD(d){return"Name"},
 goJ(d){return"Version"},
 goK(){return"Website"},
-goq(){return"Compress before sending"},
+goa(){return"Send uncompressed"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Ii,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"Ii":{"aR":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_292",e:"endPart",h:b})})($__dart_deferred_initializers__,"ANVivpGi5Bu44DQ2cK+b/LQaHGs=");
+a.eventLog.push({p:"main.dart.js_292",e:"endPart",h:b})})($__dart_deferred_initializers__,"ewKzLeB4nM3DFs/DAI1RIZB1dkM=");
 //# sourceMappingURL=main.dart.js_292.part.js.map

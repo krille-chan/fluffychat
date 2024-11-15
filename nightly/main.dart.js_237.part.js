@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVP(){return new B.HL(A.dK("et"))},
+cVS(){return new B.HL(A.dK("et"))},
 HL:function HL(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -527,48 +527,48 @@ go2(){return"M\xe4rgi mitteloetuks"},
 o7(d){return""+d+" - kasutaja"},
 o3(d){return""+d+" - moderaator"},
 nX(d){return""+d+" - peakasutaja"},
-goi(){return"Muuda vestluse \xfcldiseid seadistusi"},
+goj(){return"Muuda vestluse \xfcldiseid seadistusi"},
 goy(){return"Kutsu teisi osalejaid sellesse vestlusesse"},
-gol(){return"Muuda vestluse \xf5igusi"},
-gon(){return"Muuda vestluse ajaloo n\xe4htavust"},
-goj(){return"Muuda vestluse p\xf5hilist avalikult n\xe4htavat aadressi"},
+gom(){return"Muuda vestluse \xf5igusi"},
+goo(){return"Muuda vestluse ajaloo n\xe4htavust"},
+gol(){return"Muuda vestluse p\xf5hilist avalikult n\xe4htavat aadressi"},
 go9(){return"Saada @jututuba teavitusi"},
-gom(){return"Muuda vestluse kirjeldust"},
-gop(){return"M\xe4\xe4ra erinevatele kasutajatele selles vestluses vajalikud \xf5igused. T\xfc\xfcpiliselt on need 0, 50 ja 100 (vastavalt kasutajad, moderaatorid ja peakasutajad), kuid igasugused vahepealsed variatsioonid on ka v\xf5imalikud."},
+gon(){return"Muuda vestluse kirjeldust"},
+goq(){return"M\xe4\xe4ra erinevatele kasutajatele selles vestluses vajalikud \xf5igused. T\xfc\xfcpiliselt on need 0, 50 ja 100 (vastavalt kasutajad, moderaatorid ja peakasutajad), kuid igasugused vahepealsed variatsioonid on ka v\xf5imalikud."},
 oI(d){return"\ud83c\udf89 Versiooniuuendus "+d+" on paigaldatud!"},
-goo(){return"Muudatuste logi"},
+gop(){return"Muudatuste logi"},
 go8(){return"Saatmine on katkestatud"},
 goA(){return"Logi sisse Matrix-ID alusel"},
 gou(){return"Leia koduservereid"},
 goM(){return"Mis on koduserver?"},
 gox(){return"Sarnaselt e-postiteenuse pakkujale on k\xf5ik sinu s\xf5numid salvestatud koduserveris. Sa v\xf5id valida sellise koduserveri, nagu sulle meeldib ja nad k\xf5ik suudavad teiste koduserveritega suhelda. Lisateavet leiad veebisaidist https://matrix.org."},
 gov(){return"Ei tundu olema \xfchilduv koduserver. Kas v\xf5rguaadress on ikka \xf5ige?"},
-goh(){return"Arvutame faili suurust..."},
+goi(){return"Arvutame faili suurust..."},
 goG(){return"Valmistume manuse saatmiseks..."},
-goa(){return"Saadame manust..."},
-ob(d,e){return"Saadame manust: "+d+" pikkusega "+e+"..."},
-od(d){return"Serveri poolt lubatud \xfclempiir on k\xe4es. Ootame "+d+" sekundit..."},
+gob(){return"Saadame manust..."},
+oc(d,e){return"Saadame manust: "+d+" pikkusega "+e+"..."},
+oe(d){return"Serveri poolt lubatud \xfclempiir on k\xe4es. Ootame "+d+" sekundit..."},
 goE(){return"\xdcks sinu seadmetest pole verifitseeritud"},
 goD(){return"M\xe4rkus: kui liidad k\xf5ik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud."},
 got(){return"J\xe4tka"},
 goL(){return"Tere, tere \ud83d\udc4b See on FluffyChat. Sa v\xf5id sisse logida igasse koduserverisse, mis \xfchildub https://matrix.org serveriga. Ja seej\xe4rel saad suhelda k\xf5igiga. Tegemist on ikka v\xe4ga suure detsentraliseeritud s\xf5numiv\xf5rguga!"},
-gog(d){return"H\xe4gusus:"},
+goh(d){return"H\xe4gusus:"},
 gcg(d){return"L\xe4bipaistmatus:"},
 gl0(){return"M\xe4\xe4ra taustapildiks"},
 goB(){return"Halda kasutajakontot"},
 go4(){return"Server ei jaga asjakohast kontaktteavet"},
 gor(){return"V\xf5ta \xfchendust serveri haldajaga"},
 gos(){return"V\xf5ta \xfchendust serveri andmeturbe eest vastutajaga"},
-goe(){return"Kasutajatugi"},
-goc(){return"Serveri teave:"},
+gof(){return"Kasutajatugi"},
+god(){return"Serveri teave:"},
 gbD(d){return"Nimi"},
 goJ(d){return"Versioon"},
 goK(){return"Veebisait"},
-goq(){return"Compress before sending"},
+goa(){return"Send uncompressed"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HL,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HL":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"pmI32llh+LR9cT9QQ/oVSAV4Fag=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"wA2h4KkEau/edE4No0qW/1SLP3A=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

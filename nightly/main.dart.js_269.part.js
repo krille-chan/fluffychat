@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_269",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cW3(){return new B.I_(A.dK("it"))},
+cW6(){return new B.I_(A.dK("it"))},
 I_:function I_(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -527,48 +527,48 @@ go2(){return"Contrassegna come non letto"},
 o7(d){return""+d+" - Utente"},
 o3(d){return""+d+" - Moderatore"},
 nX(d){return""+d+" - Amministratore"},
-goi(){return"Modifica le impostazioni generali della chat"},
+goj(){return"Modifica le impostazioni generali della chat"},
 goy(){return"Invita altri utenti a questa chat"},
-gol(){return"Cambia i permessi della chat"},
-gon(){return"Cambia la visibilit\xe0 della cronologia chat"},
-goj(){return"Cambia l'indirizzo principale della chat pubblica"},
+gom(){return"Cambia i permessi della chat"},
+goo(){return"Cambia la visibilit\xe0 della cronologia chat"},
+gol(){return"Cambia l'indirizzo principale della chat pubblica"},
 go9(){return"Invia notifiche alla @stanza"},
-gom(){return"Cambia la descrizione della chat"},
-gop(){return"Definisci quale livello di privilegi \xe8 necessario per determinate azioni in questa chat. I livelli di privilegi 0, 50 e 100 rappresentano solitamente utenti, moderatori e amministratori, ma qualsiasi valore intermedio \xe8 possibile."},
+gon(){return"Cambia la descrizione della chat"},
+goq(){return"Definisci quale livello di privilegi \xe8 necessario per determinate azioni in questa chat. I livelli di privilegi 0, 50 e 100 rappresentano solitamente utenti, moderatori e amministratori, ma qualsiasi valore intermedio \xe8 possibile."},
 oI(d){return"\ud83c\udf89 Aggiornamento "+d+" installato!"},
-goo(){return"Registro delle modifiche"},
+gop(){return"Registro delle modifiche"},
 go8(){return"Invio annullato"},
 goA(){return"Accedi con il Matrix ID"},
 gou(){return"Scopri gli homeserver"},
 goM(){return"Cos'\xe8 un homeserver?"},
 gox(){return"Tutti i tuoi dati sono archiviati sull'homeserver, proprio come un provider di posta elettronica. Puoi scegliere quale homeserver vuoi usare, mentre puoi comunque comunicare con tutti. Scopri di pi\xf9 su https://matrix.org."},
 gov(){return"Non sembra essere un homeserver compatibile. URL sbagliato?"},
-goh(){return"Calcolo della dimensione del file..."},
+goi(){return"Calcolo della dimensione del file..."},
 goG(){return"Preparazione per l'invio dell'allegato..."},
-goa(){return"Invio allegato..."},
-ob(d,e){return"Invio dell'allegato "+d+" di "+e+"..."},
-od(d){return"Limite server raggiunto! Attendere "+d+" secondi..."},
+gob(){return"Invio allegato..."},
+oc(d,e){return"Invio dell'allegato "+d+" di "+e+"..."},
+oe(d){return"Limite server raggiunto! Attendere "+d+" secondi..."},
 goE(){return"Uno dei tuoi dispositivi non \xe8 verificato"},
 goD(){return"Nota: quando colleghi tutti i tuoi dispositivi al backup della chat, vengono verificati automaticamente."},
 got(){return"Continue"},
 goL(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
-gog(d){return"Blur:"},
+goh(d){return"Blur:"},
 gcg(d){return"Opacity:"},
 gl0(){return"Set wallpaper"},
 goB(){return"Manage account"},
 go4(){return"Server does not provide any valid contact information"},
 gor(){return"Contact server admin"},
 gos(){return"Contact server security"},
-goe(){return"Support page"},
-goc(){return"Server information:"},
+gof(){return"Support page"},
+god(){return"Server information:"},
 gbD(d){return"Name"},
 goJ(d){return"Version"},
 goK(){return"Website"},
-goq(){return"Compress before sending"},
+goa(){return"Send uncompressed"},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I_,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I_":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_269",e:"endPart",h:b})})($__dart_deferred_initializers__,"lDk0+IC9ixgdCp/EAF3RBKwwc14=");
+a.eventLog.push({p:"main.dart.js_269",e:"endPart",h:b})})($__dart_deferred_initializers__,"5uzO93kydWEjzhNjJO6epk/7G48=");
 //# sourceMappingURL=main.dart.js_269.part.js.map
