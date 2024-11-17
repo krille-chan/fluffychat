@@ -73,10 +73,6 @@ parts:
   fluffychat:
     plugin: flutter
     source: .
-    override-build: |
-      # Workaround for Flutter build error:
-      rm -rf build
-      craftctl default
     build-packages:
       - libjsoncpp-dev
       - curl
