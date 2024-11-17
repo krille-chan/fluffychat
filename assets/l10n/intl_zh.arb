@@ -2869,5 +2869,19 @@
   "website": "网站",
   "@website": {},
   "compressBeforeSending": "发送前压缩",
-  "@compressBeforeSending": {}
+  "@compressBeforeSending": {},
+  "italicText": "文件倾斜",
+  "@italicText": {},
+  "strikeThrough": "删除线",
+  "@strikeThrough": {},
+  "pleaseFillOut": "请填写",
+  "@pleaseFillOut": {},
+  "addLink": "添加链接",
+  "@addLink": {},
+  "sendUncompressed": "无压缩发送",
+  "@sendUncompressed": {},
+  "boldText": "文本加粗",
+  "@boldText": {},
+  "invalidUrl": "无效 url",
+  "@invalidUrl": {}
 }
