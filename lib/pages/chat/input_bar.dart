@@ -276,6 +276,7 @@ class InputBar extends StatelessWidget {
                   : null,
               width: size,
               height: size,
+              isThumbnail: false,
             ),
             const SizedBox(width: 6),
             Text(suggestion['name']!),

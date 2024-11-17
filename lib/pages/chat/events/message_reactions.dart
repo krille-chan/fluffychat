@@ -122,6 +122,7 @@ class _Reaction extends StatelessWidget {
             width: 20,
             height: 20,
             animated: false,
+            isThumbnail: false,
           ),
           if (count > 1) ...[
             const SizedBox(width: 4),
