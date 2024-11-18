@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:flutter/foundation.dart';
@@ -234,13 +235,17 @@ class MessageAnalyticsController {
 
   MessageAnalyticsEntry? get(
     List<PangeaToken> tokens,
-    bool includeHiddenWordActivities,
+    PangeaMessageEvent pangeaMessageEvent,
   ) {
     final String key = _key(tokens);
 
     if (_cache.containsKey(key)) {
       return _cache[key];
     }
+
+    final bool includeHiddenWordActivities = !pangeaMessageEvent.ownMessage &&
+        pangeaMessageEvent.messageDisplayRepresentation?.tokens != null &&
+        pangeaMessageEvent.messageDisplayLangIsL2;
 
     _cache[key] = MessageAnalyticsEntry(
       tokens: tokens,

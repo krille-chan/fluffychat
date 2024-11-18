@@ -550,6 +550,10 @@ class PangeaMessageEvent {
   String? get l1Code =>
       MatrixState.pangeaController.languageController.userL1?.langCode;
 
+  /// Should almost always be true. Useful in the case that the message
+  /// display rep has the langCode "unk"
+  bool get messageDisplayLangIsL2 => messageDisplayLangCode == l2Code;
+
   String get messageDisplayLangCode {
     final bool immersionMode = MatrixState
         .pangeaController.permissionsController

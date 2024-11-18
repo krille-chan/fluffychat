@@ -153,9 +153,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   MessageAnalyticsEntry? get messageAnalyticsEntry => tokens != null
       ? MatrixState.pangeaController.getAnalytics.perMessage.get(
           tokens!,
-          // this logic should be in the controller
-          !pangeaMessageEvent.ownMessage &&
-              pangeaMessageEvent.messageDisplayRepresentation?.tokens != null,
+          pangeaMessageEvent,
         )
       : null;
 
