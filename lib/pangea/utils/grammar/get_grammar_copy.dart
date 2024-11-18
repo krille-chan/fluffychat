@@ -15,7 +15,7 @@ String? getGrammarCopy({
   required String lemma,
   required BuildContext context,
 }) {
-  if (category.toLowerCase() == 'other') {
+  if (category.toLowerCase() == "other") {
     return null;
   }
 
