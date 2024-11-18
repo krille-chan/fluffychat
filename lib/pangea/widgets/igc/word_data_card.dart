@@ -179,55 +179,63 @@ class WordDataCardView extends StatelessWidget {
       );
     }
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-      child: Column(
-        children: [
-          if (controller.widget.choiceFeedback != null)
-            Text(
-              controller.widget.choiceFeedback!,
-              style: BotStyle.text(context),
-            ),
-          const SizedBox(height: 5.0),
-          if (controller.wordData != null &&
-              controller.wordNetError == null &&
-              controller.activeL1 != null &&
-              controller.activeL2 != null)
-            WordNetInfo(
-              wordData: controller.wordData!,
-              activeL1: controller.activeL1!,
-              activeL2: controller.activeL2!,
-            ),
-          if (controller.isLoadingWordNet)
-            const ToolbarContentLoadingIndicator(),
-          const SizedBox(height: 5.0),
-          // if (controller.widget.hasInfo &&
-          //     !controller.isLoadingContextualDefinition &&
-          //     controller.contextualDefinitionRes == null)
-          //   Material(
-          //     type: MaterialType.transparency,
-          //     child: ListTile(
-          //       leading: const BotFace(
-          //           width: 40, expression: BotExpression.surprised),
-          //       title: Text(L10n.of(context)!.askPangeaBot),
-          //       onTap: controller.handleGetDefinitionButtonPress,
-          //     ),
-          //   ),
-          if (controller.isLoadingContextualDefinition)
-            const ToolbarContentLoadingIndicator(),
-          if (controller.contextualDefinitionRes != null)
-            Text(
-              controller.contextualDefinitionRes!.text,
-              style: BotStyle.text(context),
-              textAlign: TextAlign.center,
-            ),
-          if (controller.definitionError != null)
-            Text(
-              L10n.of(context)!.sorryNoResults,
-              style: BotStyle.text(context),
-              textAlign: TextAlign.center,
-            ),
-        ],
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        maxWidth: AppConfig.toolbarMinWidth,
+        maxHeight: AppConfig.toolbarMaxHeight,
+      ),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              if (controller.widget.choiceFeedback != null)
+                Text(
+                  controller.widget.choiceFeedback!,
+                  style: BotStyle.text(context),
+                ),
+              const SizedBox(height: 5.0),
+              if (controller.wordData != null &&
+                  controller.wordNetError == null &&
+                  controller.activeL1 != null &&
+                  controller.activeL2 != null)
+                WordNetInfo(
+                  wordData: controller.wordData!,
+                  activeL1: controller.activeL1!,
+                  activeL2: controller.activeL2!,
+                ),
+              if (controller.isLoadingWordNet)
+                const ToolbarContentLoadingIndicator(),
+              const SizedBox(height: 5.0),
+              // if (controller.widget.hasInfo &&
+              //     !controller.isLoadingContextualDefinition &&
+              //     controller.contextualDefinitionRes == null)
+              //   Material(
+              //     type: MaterialType.transparency,
+              //     child: ListTile(
+              //       leading: const BotFace(
+              //           width: 40, expression: BotExpression.surprised),
+              //       title: Text(L10n.of(context)!.askPangeaBot),
+              //       onTap: controller.handleGetDefinitionButtonPress,
+              //     ),
+              //   ),
+              if (controller.isLoadingContextualDefinition)
+                const ToolbarContentLoadingIndicator(),
+              if (controller.contextualDefinitionRes != null)
+                Text(
+                  controller.contextualDefinitionRes!.text,
+                  style: BotStyle.text(context),
+                  textAlign: TextAlign.center,
+                ),
+              if (controller.definitionError != null)
+                Text(
+                  L10n.of(context)!.sorryNoResults,
+                  style: BotStyle.text(context),
+                  textAlign: TextAlign.center,
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

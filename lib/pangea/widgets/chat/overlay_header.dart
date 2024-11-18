@@ -22,7 +22,8 @@ class OverlayHeader extends StatelessWidget {
           bottomLeft: Radius.circular(AppConfig.borderRadius),
           bottomRight: Radius.circular(AppConfig.borderRadius),
         ),
-        color: Theme.of(context).appBarTheme.backgroundColor,
+        color: Theme.of(context).appBarTheme.backgroundColor ??
+            Theme.of(context).colorScheme.surfaceContainerHighest,
       ),
       height: Theme.of(context).appBarTheme.toolbarHeight ?? 56,
       child: Row(
