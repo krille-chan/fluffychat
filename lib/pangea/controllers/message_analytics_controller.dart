@@ -127,13 +127,26 @@ class MessageAnalyticsEntry {
     return queue.take(3).toList();
   }
 
-  /// Removes the last activity from the queue
-  /// This should only used when there is a startingToken in practice flow
-  /// and we want to go down to 2 activities + the activity with the startingToken
-  void goDownTo2Activities() {
-    if (_activityQueue.isNotEmpty && _activityQueue.length > 2) {
-      _activityQueue.removeLast();
+  /// Adds a word focus listening activity to the front of the queue
+  /// And limits to 3 activities
+  void addForWordMeaning(PangeaToken selectedToken) {
+    _activityQueue.insert(
+      0,
+      TargetTokensAndActivityType(
+        tokens: [selectedToken],
+        activityType: ActivityTypeEnum.wordMeaning,
+      ),
+    );
+    // remove down to three activities
+    if (_activityQueue.length > 3) {
+      _activityQueue.removeRange(3, _activityQueue.length);
     }
+  }
+
+  int get numActivities => _activityQueue.length;
+
+  void clearActivityQueue() {
+    _activityQueue.clear();
   }
 
   /// Returns a hidden word activity if there is a sequence of tokens that have hiddenWordListening in their eligibleActivityTypes

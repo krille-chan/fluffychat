@@ -65,25 +65,20 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   List<PangeaToken>? tokens;
   bool initialized = false;
 
-  /// The number of activities that need to be completed before the toolbar is unlocked
-  /// If we don't have any good activities for them, we'll decrease this number
-  static const int neededActivities = 3;
-  int activitiesLeftToComplete = neededActivities;
-
-  bool get messageInUserL2 =>
-      pangeaMessageEvent.messageDisplayLangCode ==
-      MatrixState.pangeaController.languageController.userL2?.langCode;
-
   PangeaMessageEvent get pangeaMessageEvent => widget._pangeaMessageEvent;
 
   final TtsController tts = TtsController();
-  bool isPlayingAudio = false;
+  bool _isPlayingAudio = false;
 
   bool get showToolbarButtons => !widget._pangeaMessageEvent.isAudioMessage;
 
+  int get activitiesLeftToComplete => messageAnalyticsEntry?.numActivities ?? 0;
+
+  bool get isPracticeComplete => activitiesLeftToComplete <= 0;
+
   /// Decides whether an _initialSelectedToken should be used
   /// for a first practice activity on the word meaning
-  PangeaToken? get selectedTargetTokenForWordMeaning {
+  PangeaToken? get _selectedTargetTokenForWordMeaning {
     // if there is no initial selected token, then we don't need to do anything
     if (widget._initialSelectedToken == null || messageAnalyticsEntry == null) {
       return null;
@@ -107,17 +102,28 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   @override
   void initState() {
     super.initState();
+    // debugPrint(
+    //   "selected token: ${widget._initialSelectedToken?.text.content} total_xp:${widget._initialSelectedToken?.xp} vocab_construct_xp: ${widget._initialSelectedToken?.vocabConstruct.points} daysSincelastUseInWordMeaning ${widget._initialSelectedToken?.daysSinceLastUseByType(ActivityTypeEnum.wordMeaning)}",
+    // );
+    // debugPrint(
+    //   "${widget._initialSelectedToken?.vocabConstruct.uses.map((u) => "${u.useType} ${u.timeStamp}").join(", ")}",
+    // );
+
+    _getTokens();
+    _setupSubscriptions();
+
+    if (_selectedTargetTokenForWordMeaning != null) {
+      messageAnalyticsEntry?.addForWordMeaning(
+        _selectedTargetTokenForWordMeaning!,
+      );
+    }
+  }
+
+  void _setupSubscriptions() {
     _animationController = AnimationController(
       vsync: this,
       duration:
           const Duration(milliseconds: AppConfig.overlayAnimationDuration),
-    );
-
-    debugPrint(
-      "selected token: ${widget._initialSelectedToken?.text.content} total_xp:${widget._initialSelectedToken?.xp} vocab_construct_xp: ${widget._initialSelectedToken?.vocabConstruct.points} daysSincelastUseInWordMeaning ${widget._initialSelectedToken?.daysSinceLastUseByType(ActivityTypeEnum.wordMeaning)}",
-    );
-    debugPrint(
-      "${widget._initialSelectedToken?.vocabConstruct.uses.map((u) => "${u.useType} ${u.timeStamp}").join(", ")}",
     );
 
     _reactionSubscription =
@@ -141,31 +147,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     ).listen((_) => setState(() {}));
 
     tts.setupTTS();
-
-    activitiesLeftToComplete = activitiesLeftToComplete -
-        widget._pangeaMessageEvent.numberOfActivitiesCompleted;
-
-    if (pangeaMessageEvent.originalSent != null) {
-      pangeaMessageEvent.originalSent!
-          .tokensGlobal(
-        pangeaMessageEvent.senderId,
-        pangeaMessageEvent.originServerTs,
-      )
-          .then(
-        (tokens) {
-          this.tokens = tokens;
-          _setInitialToolbarModeAndSelectedSpan();
-          initialized = true;
-        },
-      ).onError((e, stackTrace) {
-        ErrorHandler.logError(e: "Error getting tokens: $e", s: stackTrace);
-        _setInitialToolbarModeAndSelectedSpan();
-        initialized = true;
-      });
-    } else {
-      _setInitialToolbarModeAndSelectedSpan();
-      initialized = true;
-    }
   }
 
   MessageAnalyticsEntry? get messageAnalyticsEntry => tokens != null
@@ -176,6 +157,48 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               pangeaMessageEvent.messageDisplayRepresentation?.tokens != null,
         )
       : null;
+
+  Future<void> _getTokens() async {
+    try {
+      final repEvent = pangeaMessageEvent.messageDisplayRepresentation;
+      if (repEvent != null) {
+        tokens = await repEvent.tokensGlobal(
+          pangeaMessageEvent.senderId,
+          pangeaMessageEvent.originServerTs,
+        );
+      }
+    } catch (e, s) {
+      ErrorHandler.logError(e: e, s: s);
+    } finally {
+      _setInitialToolbarMode();
+      initialized = true;
+      if (mounted) setState(() {});
+    }
+  }
+
+  Future<void> _setInitialToolbarMode() async {
+    if (widget._pangeaMessageEvent.isAudioMessage) {
+      toolbarMode = MessageMode.speechToText;
+      return setState(() {});
+    }
+
+    // 1) we're only going to do activities if we have tokens for the message
+    // 2) if the user selects a span on initialization, then we want to give
+    // them a practice activity on that word
+    // 3) if the user has activities left to complete, then we want to give them
+    if (tokens != null && activitiesLeftToComplete > 0) {
+      return setState(() => toolbarMode = MessageMode.practiceActivity);
+    }
+
+    // Note: this setting is now hidden so this will always be false
+    // leaving this here in case we want to bring it back
+    if (MatrixState.pangeaController.userController.profile.userSettings
+        .autoPlayMessages) {
+      return setState(() => toolbarMode = MessageMode.textToSpeech);
+    }
+
+    setState(() => toolbarMode = MessageMode.translation);
+  }
 
   /// We need to check if the setState call is safe to call immediately
   /// Kept getting the error: setState() or markNeedsBuild() called during build.
@@ -210,59 +233,31 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
   }
 
-  bool get isPracticeComplete => activitiesLeftToComplete <= 0;
-
   /// When an activity is completed, we need to update the state
   /// and check if the toolbar should be unlocked
   void onActivityFinish() {
     if (!mounted) return;
-    activitiesLeftToComplete -= 1;
-    clearSelection();
+    _clearSelection();
     setState(() {});
   }
 
   /// In some cases, we need to exit the practice flow and let the user
   /// interact with the toolbar without completing activities
   void exitPracticeFlow() {
-    clearSelection();
-    activitiesLeftToComplete = 0;
+    messageAnalyticsEntry?.clearActivityQueue();
+    _clearSelection();
     setState(() {});
   }
 
-  Future<void> _setInitialToolbarModeAndSelectedSpan() async {
-    if (widget._pangeaMessageEvent.isAudioMessage) {
-      toolbarMode = MessageMode.speechToText;
-      return setState(() => toolbarMode = MessageMode.practiceActivity);
-    }
-
-    // we're only going to do activities if we have tokens for the message
-    if (tokens != null) {
-      // if the user selects a span on initialization, then we want to give
-      // them a practice activity on that word
-      if (selectedTargetTokenForWordMeaning != null) {
-        _selectedSpan = selectedTargetTokenForWordMeaning?.text;
-        return setState(() => toolbarMode = MessageMode.practiceActivity);
-      }
-
-      if (activitiesLeftToComplete > 0) {
-        return setState(() => toolbarMode = MessageMode.practiceActivity);
-      }
-    }
-
-    // Note: this setting is now hidden so this will always be false
-    // leaving this here in case we want to bring it back
-    if (MatrixState.pangeaController.userController.profile.userSettings
-        .autoPlayMessages) {
-      return setState(() => toolbarMode = MessageMode.textToSpeech);
-    }
-
-    setState(() => toolbarMode = MessageMode.translation);
-  }
-
-  updateToolbarMode(MessageMode mode) {
+  void updateToolbarMode(MessageMode mode) {
     setState(() {
       toolbarMode = mode;
     });
+  }
+
+  void _clearSelection() {
+    _selectedSpan = null;
+    setState(() {});
   }
 
   /// The text that the toolbar should target
@@ -286,7 +281,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           MessageMode.practiceActivity,
           // MessageMode.textToSpeech
         ].contains(toolbarMode) ||
-        isPlayingAudio) {
+        _isPlayingAudio) {
       return;
     }
 
@@ -303,11 +298,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       }
     }
 
-    setState(() {});
-  }
-
-  void clearSelection() {
-    _selectedSpan = null;
     setState(() {});
   }
 
@@ -345,7 +335,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   PangeaTokenText? get selectedSpan => _selectedSpan;
 
-  bool get hasReactions {
+  bool get _hasReactions {
     final reactionsEvents = widget._pangeaMessageEvent.event.aggregatedEvents(
       widget.chatController.timeline!,
       RelationshipTypes.reaction,
@@ -353,35 +343,37 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
   }
 
-  double get toolbarButtonsHeight =>
+  double get _toolbarButtonsHeight =>
       showToolbarButtons ? AppConfig.toolbarButtonsHeight : 0;
-  double get reactionsHeight => hasReactions ? 28 : 0;
-  double get belowMessageHeight => toolbarButtonsHeight + reactionsHeight;
+  double get _reactionsHeight => _hasReactions ? 28 : 0;
+  double get _belowMessageHeight => _toolbarButtonsHeight + _reactionsHeight;
 
   void setIsPlayingAudio(bool isPlaying) {
     if (mounted) {
-      setState(() => isPlayingAudio = isPlaying);
+      setState(() => _isPlayingAudio = isPlaying);
     }
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (messageSize == null || messageOffset == null || screenHeight == null) {
+    if (_messageSize == null ||
+        _messageOffset == null ||
+        _screenHeight == null) {
       return;
     }
 
     // position the overlay directly over the underlying message
-    final headerBottomOffset = screenHeight! - headerHeight;
-    final footerBottomOffset = footerHeight;
-    final currentBottomOffset = screenHeight! -
-        messageOffset!.dy -
-        messageSize!.height -
-        belowMessageHeight;
+    final headerBottomOffset = _screenHeight! - _headerHeight;
+    final footerBottomOffset = _footerHeight;
+    final currentBottomOffset = _screenHeight! -
+        _messageOffset!.dy -
+        _messageSize!.height -
+        _belowMessageHeight;
 
     final bool hasHeaderOverflow =
-        messageOffset!.dy < (AppConfig.toolbarMaxHeight + headerHeight);
-    final bool hasFooterOverflow = footerHeight > currentBottomOffset;
+        _messageOffset!.dy < (AppConfig.toolbarMaxHeight + _headerHeight);
+    final bool hasFooterOverflow = _footerHeight > currentBottomOffset;
 
     if (!hasHeaderOverflow && !hasFooterOverflow) return;
 
@@ -392,42 +384,44 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     // if the overlay would have a footer overflow for this message,
     // check if shifting the overlay up could cause a header overflow
-    final bottomOffsetDifference = footerHeight - currentBottomOffset;
+    final bottomOffsetDifference = _footerHeight - currentBottomOffset;
     final newTopOffset =
-        messageOffset!.dy - bottomOffsetDifference - belowMessageHeight;
+        _messageOffset!.dy - bottomOffsetDifference - _belowMessageHeight;
     final bool upshiftCausesHeaderOverflow = hasFooterOverflow &&
-        newTopOffset < (headerHeight + AppConfig.toolbarMaxHeight);
+        newTopOffset < (_headerHeight + AppConfig.toolbarMaxHeight);
 
     if (hasHeaderOverflow || upshiftCausesHeaderOverflow) {
-      animationEndOffset = midpoint - messageSize!.height - belowMessageHeight;
-      final totalTopOffset =
-          animationEndOffset + messageSize!.height + AppConfig.toolbarMaxHeight;
-      final remainingSpace = screenHeight! - totalTopOffset;
-      if (remainingSpace < headerHeight) {
+      animationEndOffset =
+          midpoint - _messageSize!.height - _belowMessageHeight;
+      final totalTopOffset = animationEndOffset +
+          _messageSize!.height +
+          AppConfig.toolbarMaxHeight;
+      final remainingSpace = _screenHeight! - totalTopOffset;
+      if (remainingSpace < _headerHeight) {
         // the overlay could run over the header, so it needs to be shifted down
-        animationEndOffset -= (headerHeight - remainingSpace);
+        animationEndOffset -= (_headerHeight - remainingSpace);
       }
       scrollOffset = animationEndOffset - currentBottomOffset;
     } else if (hasFooterOverflow) {
-      scrollOffset = footerHeight - currentBottomOffset;
-      animationEndOffset = footerHeight;
+      scrollOffset = _footerHeight - currentBottomOffset;
+      animationEndOffset = _footerHeight;
     }
 
     // If, after ajusting the overlay position, the message still overflows the footer,
     // update the message height to fit the screen. The message is scrollable, so
     // this will make the both the toolbar box and the toolbar buttons visible.
-    if (animationEndOffset < footerHeight + belowMessageHeight) {
-      final double remainingSpace = screenHeight! -
+    if (animationEndOffset < _footerHeight + _belowMessageHeight) {
+      final double remainingSpace = _screenHeight! -
           AppConfig.toolbarMaxHeight -
-          headerHeight -
-          footerHeight -
-          belowMessageHeight;
+          _headerHeight -
+          _footerHeight -
+          _belowMessageHeight;
 
-      if (remainingSpace < messageSize!.height) {
-        adjustedMessageHeight = remainingSpace;
+      if (remainingSpace < _messageSize!.height) {
+        _adjustedMessageHeight = remainingSpace;
       }
 
-      animationEndOffset = footerHeight;
+      animationEndOffset = _footerHeight;
     }
 
     _overlayPositionAnimation = Tween<double>(
@@ -457,7 +451,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     super.dispose();
   }
 
-  RenderBox? get messageRenderBox {
+  RenderBox? get _messageRenderBox {
     try {
       return MatrixState.pAnyState.getRenderBox(
         widget._event.eventId,
@@ -468,39 +462,39 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
   }
 
-  Size? get messageSize {
-    if (messageRenderBox == null || !messageRenderBox!.hasSize) {
+  Size? get _messageSize {
+    if (_messageRenderBox == null || !_messageRenderBox!.hasSize) {
       return null;
     }
 
     try {
-      return messageRenderBox?.size;
+      return _messageRenderBox?.size;
     } catch (e, s) {
       ErrorHandler.logError(e: "Error getting message size: $e", s: s);
       return null;
     }
   }
 
-  Offset? get messageOffset {
-    if (messageRenderBox == null || !messageRenderBox!.hasSize) {
+  Offset? get _messageOffset {
+    if (_messageRenderBox == null || !_messageRenderBox!.hasSize) {
       return null;
     }
 
     try {
-      return messageRenderBox?.localToGlobal(Offset.zero);
+      return _messageRenderBox?.localToGlobal(Offset.zero);
     } catch (e, s) {
       ErrorHandler.logError(e: "Error getting message offset: $e", s: s);
       return null;
     }
   }
 
-  double? adjustedMessageHeight;
+  double? _adjustedMessageHeight;
 
   // height of the reply/forward bar + the reaction picker + contextual padding
-  double get footerHeight =>
+  double get _footerHeight =>
       48 + 56 + (FluffyThemes.isColumnMode(context) ? 16.0 : 8.0);
 
-  MediaQueryData? get mediaQuery {
+  MediaQueryData? get _mediaQuery {
     try {
       return MediaQuery.of(context);
     } catch (e, s) {
@@ -509,17 +503,17 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
   }
 
-  double get headerHeight =>
+  double get _headerHeight =>
       (Theme.of(context).appBarTheme.toolbarHeight ?? 56) +
-      (mediaQuery?.padding.top ?? 0);
+      (_mediaQuery?.padding.top ?? 0);
 
-  double? get screenHeight => mediaQuery?.size.height;
+  double? get _screenHeight => _mediaQuery?.size.height;
 
-  double? get screenWidth => mediaQuery?.size.width;
+  double? get _screenWidth => _mediaQuery?.size.width;
 
   @override
   Widget build(BuildContext context) {
-    if (messageSize == null) return const SizedBox.shrink();
+    if (_messageSize == null) return const SizedBox.shrink();
 
     final bool showDetails = (Matrix.of(context)
                 .store
@@ -534,8 +528,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     const totalMaxWidth = (FluffyThemes.columnWidth * 2.5) - messageMargin;
     double? maxWidth;
-    if (screenWidth != null) {
-      final chatViewWidth = screenWidth! -
+    if (_screenWidth != null) {
+      final chatViewWidth = _screenWidth! -
           (FluffyThemes.isColumnMode(context)
               ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth)
               : 0);
@@ -562,7 +556,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             ),
             const SizedBox(height: 8),
             SizedBox(
-              height: adjustedMessageHeight,
+              height: _adjustedMessageHeight,
               child: OverlayMessage(
                 pangeaMessageEvent,
                 immersionMode:
@@ -572,15 +566,15 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                 nextEvent: widget._nextEvent,
                 prevEvent: widget._prevEvent,
                 timeline: widget.chatController.timeline!,
-                messageWidth: messageSize!.width,
-                messageHeight: messageSize!.height,
+                messageWidth: _messageSize!.width,
+                messageHeight: _messageSize!.height,
               ),
             ),
-            if (hasReactions)
+            if (_hasReactions)
               Padding(
                 padding: const EdgeInsets.all(4),
                 child: SizedBox(
-                  height: reactionsHeight - 8,
+                  height: _reactionsHeight - 8,
                   child: MessageReactions(
                     widget._pangeaMessageEvent.event,
                     widget.chatController.timeline!,
@@ -601,30 +595,32 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         : 0;
 
     final double? leftPadding =
-        (widget._pangeaMessageEvent.ownMessage || messageOffset == null)
+        (widget._pangeaMessageEvent.ownMessage || _messageOffset == null)
             ? null
-            : messageOffset!.dx - horizontalPadding - columnOffset;
+            : _messageOffset!.dx - horizontalPadding - columnOffset;
 
     final double? rightPadding = (widget._pangeaMessageEvent.ownMessage &&
-            screenWidth != null &&
-            messageOffset != null &&
-            messageSize != null)
-        ? screenWidth! -
-            messageOffset!.dx -
-            messageSize!.width -
+            _screenWidth != null &&
+            _messageOffset != null &&
+            _messageSize != null)
+        ? _screenWidth! -
+            _messageOffset!.dx -
+            _messageSize!.width -
             horizontalPadding
         : null;
 
     final positionedOverlayMessage = (_overlayPositionAnimation == null)
-        ? (screenHeight == null || messageSize == null || messageOffset == null)
+        ? (_screenHeight == null ||
+                _messageSize == null ||
+                _messageOffset == null)
             ? const SizedBox.shrink()
             : Positioned(
                 left: leftPadding,
                 right: rightPadding,
-                bottom: screenHeight! -
-                    messageOffset!.dy -
-                    messageSize!.height -
-                    belowMessageHeight,
+                bottom: _screenHeight! -
+                    _messageOffset!.dy -
+                    _messageSize!.height -
+                    _belowMessageHeight,
                 child: overlayMessage,
               )
         : AnimatedBuilder(
@@ -673,28 +669,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           ),
         ],
       ),
-    );
-  }
-}
-
-class MessagePadding extends StatelessWidget {
-  const MessagePadding({
-    super.key,
-    required this.child,
-    required this.pangeaMessageEvent,
-  });
-
-  final Widget child;
-  final PangeaMessageEvent pangeaMessageEvent;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: pangeaMessageEvent.ownMessage ? 0 : Avatar.defaultSize + 16,
-        right: pangeaMessageEvent.ownMessage ? 8 : 0,
-      ),
-      child: child,
     );
   }
 }

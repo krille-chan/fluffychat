@@ -45,6 +45,10 @@ class MessageToolbar extends StatelessWidget {
       );
     }
 
+    if (!overLayController.initialized) {
+      return const ToolbarContentLoadingIndicator();
+    }
+
     // Check if the message is in the user's second language
     final bool messageInUserL2 = pangeaMessageEvent.messageDisplayLangCode ==
         MatrixState.pangeaController.languageController.userL2?.langCode;
@@ -145,8 +149,6 @@ class MessageToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!overLayController.initialized) return const SizedBox();
-
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
