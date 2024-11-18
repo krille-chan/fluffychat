@@ -2872,5 +2872,19 @@
   "redactMessageDescription": "Athrófar an teachtaireacht do gach rannpháirtí sa chomhrá seo. Ní féidir é seo a chealú.",
   "@redactMessageDescription": {},
   "noKeyForThisMessage": "Féadfaidh sé seo tarlú má seoladh an teachtaireacht sular shínigh tú isteach ar do chuntas ag an ngléas seo.\n\nIs féidir freisin gur chuir an seoltóir bac ar do ghléas nó go ndeachaigh rud éigin mícheart leis an nasc idirlín.\n\nAn bhfuil tú in ann an teachtaireacht a léamh ar sheisiún eile? Ansin is féidir leat an teachtaireacht a aistriú uaidh! Téigh go Socruithe > Gléasanna agus cinntigh go bhfuil do ghléasanna fíoraithe a chéile. Nuair a osclaíonn tú an seomra an chéad uair eile agus an dá sheisiún sa tulra, déanfar na heochracha a tharchur go huathoibríoch.\n\nNár mhaith leat na heochracha a chailleadh agus tú ag logáil amach nó ag aistriú gléasanna? Déan cinnte go bhfuil an cúltaca comhrá cumasaithe agat sna socruithe.",
-  "@noKeyForThisMessage": {}
+  "@noKeyForThisMessage": {},
+  "sendUncompressed": "Seol neamh-chomhbhrúite",
+  "@sendUncompressed": {},
+  "boldText": "Téacs trom",
+  "@boldText": {},
+  "italicText": "Téacs iodálach",
+  "@italicText": {},
+  "strikeThrough": "Stailc tríd",
+  "@strikeThrough": {},
+  "addLink": "Cuir nasc leis",
+  "@addLink": {},
+  "pleaseFillOut": "Líon amach le do thoil",
+  "@pleaseFillOut": {},
+  "invalidUrl": "URL neamhbhailí",
+  "@invalidUrl": {}
 }
