@@ -144,7 +144,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       MessageActivityRequest(
         userL1: pangeaController.languageController.userL1!.langCode,
         userL2: pangeaController.languageController.userL2!.langCode,
-        messageText: widget.pangeaMessageEvent.originalSent!.text,
+        messageText: widget.pangeaMessageEvent.messageDisplayText,
         messageTokens: widget.overlayController.tokens!,
         activityQualityFeedback: activityFeedback,
         targetTokens: nextActivitySpecs.tokens,
