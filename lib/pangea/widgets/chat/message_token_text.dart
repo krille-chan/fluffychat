@@ -102,14 +102,34 @@ class MessageTokenText extends StatelessWidget {
               .toString();
 
           if (tokenPosition.token != null) {
+            if (tokenPosition.hideContent) {
+              final TextPainter textPainter = TextPainter(
+                text: TextSpan(text: substring, style: _style),
+                textDirection: TextDirection.ltr,
+              )..layout();
+
+              final textWidth = textPainter.size.width;
+
+              return WidgetSpan(
+                child: GestureDetector(
+                  onTap: () => _onClick != null && tokenPosition.token != null
+                      ? _onClick!(tokenPosition.token!)
+                      : null,
+                  child: Container(
+                    width: textWidth,
+                    height: 1,
+                    color: _style.color,
+                    margin: const EdgeInsets.only(bottom: 2),
+                  ),
+                ),
+              );
+            }
             return TextSpan(
               recognizer: TapGestureRecognizer()
                 ..onTap = () => _onClick != null && tokenPosition.token != null
                     ? _onClick!(tokenPosition.token!)
                     : null,
-              text: !tokenPosition.hideContent
-                  ? substring
-                  : '_' * substring.length,
+              text: substring,
               style: _style.merge(
                 TextStyle(
                   backgroundColor: tokenPosition.highlight
@@ -121,12 +141,32 @@ class MessageTokenText extends StatelessWidget {
               ),
             );
           } else {
+            if ((i > 0 || i < tokenPositions.length - 1) &&
+                tokenPositions[i + 1].hideContent &&
+                tokenPositions[i - 1].hideContent) {
+              final TextPainter textPainter = TextPainter(
+                text: TextSpan(text: substring, style: _style),
+                textDirection: TextDirection.ltr,
+              )..layout();
+
+              final textWidth = textPainter.size.width;
+
+              return WidgetSpan(
+                child: GestureDetector(
+                  onTap: () => _onClick != null && tokenPosition.token != null
+                      ? _onClick!(tokenPosition.token!)
+                      : null,
+                  child: Container(
+                    width: textWidth,
+                    height: 1,
+                    color: _style.color,
+                    margin: const EdgeInsets.only(bottom: 2),
+                  ),
+                ),
+              );
+            }
             return TextSpan(
-              text: (i > 0 || i < tokenPositions.length - 1) &&
-                      tokenPositions[i + 1].hideContent &&
-                      tokenPositions[i - 1].hideContent
-                  ? '_' * substring.length
-                  : substring,
+              text: substring,
               style: _style,
             );
           }
