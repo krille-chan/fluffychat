@@ -2869,5 +2869,19 @@
   "noContactInformationProvided": "Zerbitzariak ez du harremanetarako informaziorik zehaztu",
   "@noContactInformationProvided": {},
   "compressBeforeSending": "Konprimatu bidali baino lehen",
-  "@compressBeforeSending": {}
+  "@compressBeforeSending": {},
+  "boldText": "Testu lodia",
+  "@boldText": {},
+  "italicText": "Testu etzana",
+  "@italicText": {},
+  "invalidUrl": "URL baliogabea",
+  "@invalidUrl": {},
+  "addLink": "Gehitu esteka",
+  "@addLink": {},
+  "sendUncompressed": "Bidali konprimatu gabe",
+  "@sendUncompressed": {},
+  "strikeThrough": "Zirrimarra",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Bete ezazu",
+  "@pleaseFillOut": {}
 }
