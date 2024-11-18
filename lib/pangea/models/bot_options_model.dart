@@ -64,7 +64,9 @@ class BotOptionsModel {
       //////////////////////////////////////////////////////////////////////////
       languageLevel: json[ModelKey.languageLevel] is int
           ? json[ModelKey.languageLevel]
-          : null,
+          : json[ModelKey] == "PREA1"
+              ? 0
+              : null,
       safetyModeration: json[ModelKey.safetyModeration] ?? true,
       mode: json[ModelKey.mode] ?? BotMode.discussion,
       targetLanguage: json[ModelKey.targetLanguage],
