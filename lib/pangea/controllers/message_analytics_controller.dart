@@ -186,8 +186,11 @@ class MessageAnalyticsEntry {
       (a, b) => a.length > b.length ? a : b,
     );
 
+    // Truncate the sequence to a maximum of 2 words
+    final truncatedSequence = longestSequence.take(2).toList();
+
     return TargetTokensAndActivityType(
-      tokens: longestSequence,
+      tokens: truncatedSequence,
       activityType: ActivityTypeEnum.hiddenWordListening,
     );
   }
