@@ -98,6 +98,7 @@ class TtsController {
         padding: EdgeInsets.only(top: 12),
         child: MissingVoiceButton(),
       ),
+      forceShow: true,
     );
     return;
   }
@@ -112,6 +113,13 @@ class TtsController {
     if (isLanguageFullySupported) {
       await speak(text);
     } else {
+      ErrorHandler.logError(
+        e: 'Language not supported by TTS engine',
+        data: {
+          'targetLanguage': targetLanguage,
+          'availableLangCodes': availableLangCodes,
+        },
+      );
       await showMissingVoicePopup(context, eventID);
     }
   }

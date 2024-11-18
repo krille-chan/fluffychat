@@ -27,6 +27,10 @@ class MissingVoiceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (kIsWeb || !Platform.isAndroid) {
+      return const SizedBox();
+    }
+
     return TextButton(
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all<Color>(
