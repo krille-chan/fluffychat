@@ -2869,5 +2869,19 @@
     }
   },
   "compressBeforeSending": "ضغط قبل الإرسال",
-  "@compressBeforeSending": {}
+  "@compressBeforeSending": {},
+  "sendUncompressed": "إرسال غير مضغوط",
+  "@sendUncompressed": {},
+  "boldText": "خط غامق",
+  "@boldText": {},
+  "italicText": "خط مائل",
+  "@italicText": {},
+  "strikeThrough": "يتوسطه خط",
+  "@strikeThrough": {},
+  "invalidUrl": "رابط غير صحيح",
+  "@invalidUrl": {},
+  "addLink": "إضافة رابط",
+  "@addLink": {},
+  "pleaseFillOut": "من فضلك قم بتعبئته",
+  "@pleaseFillOut": {}
 }
