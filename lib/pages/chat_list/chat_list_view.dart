@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -138,27 +136,19 @@ class ChatListView extends StatelessWidget {
                   behavior: HitTestBehavior.translucent,
                   child: Scaffold(
                     body: ChatListViewBody(controller),
-                    floatingActionButton: KeyBoardShortcuts(
-                      keysToPress: {
-                        LogicalKeyboardKey.controlLeft,
-                        LogicalKeyboardKey.keyN,
-                      },
-                      onKeysPressed: () => context.go('/rooms/newprivatechat'),
-                      helpLabel: L10n.of(context).newChat,
-                      child: selectMode == SelectMode.normal &&
-                              !controller.isSearchMode &&
-                              controller.activeSpaceId == null
-                          ? FloatingActionButton.extended(
-                              onPressed: () =>
-                                  context.go('/rooms/newprivatechat'),
-                              icon: const Icon(Icons.add_outlined),
-                              label: Text(
-                                L10n.of(context).chat,
-                                overflow: TextOverflow.fade,
-                              ),
-                            )
-                          : const SizedBox.shrink(),
-                    ),
+                    floatingActionButton: selectMode == SelectMode.normal &&
+                            !controller.isSearchMode &&
+                            controller.activeSpaceId == null
+                        ? FloatingActionButton.extended(
+                            onPressed: () =>
+                                context.go('/rooms/newprivatechat'),
+                            icon: const Icon(Icons.add_outlined),
+                            label: Text(
+                              L10n.of(context).chat,
+                              overflow: TextOverflow.fade,
+                            ),
+                          )
+                        : const SizedBox.shrink(),
                   ),
                 ),
               ),

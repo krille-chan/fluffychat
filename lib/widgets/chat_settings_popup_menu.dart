@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -52,15 +50,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        KeyBoardShortcuts(
-          keysToPress: {
-            LogicalKeyboardKey.controlLeft,
-            LogicalKeyboardKey.keyI,
-          },
-          helpLabel: L10n.of(context).chatDetails,
-          onKeysPressed: _showChatDetails,
-          child: const SizedBox.shrink(),
-        ),
+        const SizedBox.shrink(),
         PopupMenuButton<ChatPopupMenuActions>(
           onSelected: (choice) async {
             switch (choice) {

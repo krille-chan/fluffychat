@@ -1098,15 +1098,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.13"
-  keyboard_shortcuts:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: null-safety
-      resolved-ref: a3d4020911860ff091d90638ab708604b71d2c5a
-      url: "https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git"
-    source: git
-    version: "0.1.4"
   latlong2:
     dependency: "direct main"
     description:
@@ -1247,10 +1238,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: e06783394db3a49dbcd98a45803cac7d735a2fb1e3aafef65ddf01e72e16fc83
+      sha256: "94a66e563b89fabbeb67f24428f05f4547c6ee98878ec20f647530cbfb6f04db"
       url: "https://pub.dev"
     source: hosted
-    version: "0.34.0"
+    version: "0.35.0"
   meta:
     dependency: transitive
     description:
@@ -2320,14 +2311,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
-  visibility_detector:
-    dependency: transitive
-    description:
-      name: visibility_detector
-      sha256: "15c54a459ec2c17b4705450483f3d5a2858e733aee893dcee9d75fd04814940d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.3"
   vm_service:
     dependency: transitive
     description:
