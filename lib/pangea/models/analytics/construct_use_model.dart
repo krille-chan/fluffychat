@@ -39,7 +39,7 @@ class ConstructUses {
     _lastUsed = time;
   }
 
-  String get category => _category ?? "other";
+  String get category => _category ?? "Other";
 
   ConstructIdentifier get id => ConstructIdentifier(
         lemma: lemma,

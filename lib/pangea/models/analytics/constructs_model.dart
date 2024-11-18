@@ -134,7 +134,7 @@ class OneConstructUse {
           : categoryEntry is List && categoryEntry.isNotEmpty
               ? categoryEntry.first
               : null;
-      return category ?? "other";
+      return category ?? "Other";
     }
 
     if (categoryEntry == null) {
@@ -168,7 +168,7 @@ class OneConstructUse {
     ErrorHandler.logError(
       m: "Morph construct lemma $morphLemma not found in morph categories and labels",
     );
-    return "other";
+    return "Other";
   }
 
   Room? getRoom(Client client) {

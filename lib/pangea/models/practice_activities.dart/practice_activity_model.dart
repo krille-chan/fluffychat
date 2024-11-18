@@ -62,7 +62,9 @@ class ConstructIdentifier {
     return other is ConstructIdentifier &&
         other.lemma == lemma &&
         other.type == type &&
-        (category == other.category || isOther || other.isOther);
+        (category == other.category ||
+            category.toLowerCase() == "other" ||
+            other.category.toLowerCase() == "other");
   }
 
   @override
@@ -71,11 +73,7 @@ class ConstructIdentifier {
   }
 
   String get string =>
-      "$partialString${category != "" ? "-$category" : "-other"}".toLowerCase();
-
-  String get partialString => "$lemma:${type.string}".toLowerCase();
-
-  bool get isOther => category.toLowerCase() == "other";
+      "$lemma-${type.string}${category != "" ? "-$category" : "-other"}";
 }
 
 class CandidateMessage {

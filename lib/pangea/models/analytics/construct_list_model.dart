@@ -63,49 +63,14 @@ class ConstructListModel {
   /// key = lemmma + constructType.string, value = ConstructUses
   void _updateConstructMap(final List<OneConstructUse> newUses) {
     for (final use in newUses) {
-      ConstructUses? currentUses;
-      if (use.category.toLowerCase() == "other") {
-        final specificKey = _constructMap.keys.firstWhereOrNull(
-          (key) => key.startsWith(use.identifier.partialString),
-        );
-
-        if (specificKey != null) {
-          currentUses = _constructMap[specificKey];
-          use.category = currentUses!.category;
-        } else if (_constructMap.containsKey(use.identifier.string)) {
-          currentUses = _constructMap[use.identifier.string];
-        } else {
-          currentUses = ConstructUses(
+      final currentUses = _constructMap[use.identifier.string] ??
+          ConstructUses(
             uses: [],
             constructType: use.constructType,
             lemma: use.lemma,
             category: use.category,
           );
-        }
-      } else {
-        final broadKey = _constructMap.keys.firstWhereOrNull(
-          (key) =>
-              key.startsWith(use.identifier.partialString) &&
-              key.toLowerCase().endsWith("other"),
-        );
-
-        if (broadKey != null) {
-          currentUses = _constructMap[broadKey];
-          for (final broadUse in currentUses!.uses) {
-            broadUse.category = use.category;
-          }
-          _constructMap.remove(broadKey);
-        } else {
-          currentUses = _constructMap[use.identifier.string] ??
-              ConstructUses(
-                uses: [],
-                constructType: use.constructType,
-                lemma: use.lemma,
-                category: use.category,
-              );
-        }
-      }
-      currentUses!.uses.add(use);
+      currentUses.uses.add(use);
       currentUses.setLastUsed(use.timeStamp);
       _constructMap[use.identifier.string] = currentUses;
     }
@@ -162,38 +127,28 @@ class ConstructListModel {
     }
   }
 
-  ConstructUses? _getPartialSpecificMatch(ConstructIdentifier identifier) {
-    return _constructMap.entries
-        .firstWhereOrNull(
-          (entry) =>
-              entry.key.startsWith(identifier.partialString) &&
-              !entry.key.toLowerCase().endsWith("other"),
-        )
-        ?.value;
-  }
-
-  ConstructUses? _getPartialBroadMatch(ConstructIdentifier identifier) {
-    return _constructMap.entries
-        .firstWhereOrNull(
-          (entry) =>
-              entry.key.startsWith(identifier.partialString) &&
-              entry.key.toLowerCase().endsWith("other"),
-        )
-        ?.value;
-  }
-
   ConstructUses? getConstructUses(ConstructIdentifier identifier) {
+    final partialKey = "${identifier.lemma}-${identifier.type.string}";
+
     if (_constructMap.containsKey(identifier.string)) {
       // try to get construct use entry with full ID key
       return _constructMap[identifier.string];
-    } else if (identifier.isOther) {
+    } else if (identifier.category.toLowerCase() == "other") {
       // if the category passed to this function is "other", return the first
       // construct use entry that starts with the partial key
-      return _getPartialSpecificMatch(identifier);
+      return _constructMap.entries
+          .firstWhereOrNull((entry) => entry.key.startsWith(partialKey))
+          ?.value;
     } else {
       // if the category passed to this function is not "other", return the first
       // construct use entry that starts with the partial key and ends with "other"
-      return _getPartialBroadMatch(identifier);
+      return _constructMap.entries
+          .firstWhereOrNull(
+            (entry) =>
+                entry.key.startsWith(partialKey) &&
+                entry.key.toLowerCase().endsWith("other"),
+          )
+          ?.value;
     }
   }
 
