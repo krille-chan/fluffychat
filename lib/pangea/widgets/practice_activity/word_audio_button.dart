@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -47,13 +48,18 @@ class WordAudioButtonState extends State<WordAudioButton> {
           if (mounted) {
             setState(() => _isPlaying = true);
           }
-          await widget.ttsController.tryToSpeak(
-            widget.text,
-            context,
-            widget.eventID,
-          );
-          if (mounted) {
-            setState(() => _isPlaying = false);
+          try {
+            await widget.ttsController.tryToSpeak(
+              widget.text,
+              context,
+              widget.eventID,
+            );
+          } catch (e, s) {
+            ErrorHandler.logError(e: e, s: s);
+          } finally {
+            if (mounted) {
+              setState(() => _isPlaying = false);
+            }
           }
         }
       }, // Disable button if language isn't supported
