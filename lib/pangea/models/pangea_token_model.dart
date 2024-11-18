@@ -138,9 +138,11 @@ class PangeaToken {
   int get end => text.offset + text.length;
 
   bool get isContentWord =>
-      ["NOUN", "VERB", "ADJ", "ADV", "AUX", "PRON"].contains(pos);
+      ["NOUN", "VERB", "ADJ", "ADV", "AUX", "PRON"].contains(pos) &&
+      lemma.saveVocab;
 
-  bool get canBeHeard => [
+  bool get canBeHeard =>
+      [
         "ADJ",
         "ADV",
         "AUX",
@@ -152,7 +154,8 @@ class PangeaToken {
         "PROPN",
         "SCONJ",
         "VERB",
-      ].contains(pos);
+      ].contains(pos) &&
+      lemma.saveVocab;
 
   /// Given a [type] and [metadata], returns a [OneConstructUse] for this lemma
   OneConstructUse toVocabUse(
