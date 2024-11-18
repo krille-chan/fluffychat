@@ -18,7 +18,6 @@
 * Run “brew install cocoapods” to install cocoapods
 * Run “flutter doctor” and for any missing components, follow the instructions from the print out to install / setup
 * Clone the client repo
-* Copy the .env file (and the .env.prod file, if you want to run production builds), into the root folder of the client and the assets/ folder. Contact Gabby for a copy of this file.
 * Uncomment the lines in the pubspec.yaml file in the assets section with paths to .env file
 * To run on iOS:
     * Run “flutter precache --ios”
