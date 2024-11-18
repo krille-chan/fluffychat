@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:collection/collection.dart';
@@ -8,6 +9,7 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/pressable_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -190,7 +192,11 @@ class DisabledAnimationState extends State<DisabledAnimation>
         return GestureDetector(
           onTap: () {
             _controller.forward().then((_) => _controller.reset());
-            HapticFeedback.mediumImpact();
+            if (!kIsWeb) {
+              Platform.isAndroid
+                  ? HapticFeedback.mediumImpact()
+                  : HapticFeedback.vibrate();
+            }
           },
           child: SizedBox(
             width: widget.size,

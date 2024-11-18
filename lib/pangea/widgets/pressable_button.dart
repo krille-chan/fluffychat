@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -61,7 +63,11 @@ class PressableButtonState extends State<PressableButton>
       await _animationCompleter!.future;
     }
     if (mounted) _controller.reverse();
-    HapticFeedback.mediumImpact();
+    if (!kIsWeb) {
+      Platform.isAndroid
+          ? HapticFeedback.mediumImpact()
+          : HapticFeedback.vibrate();
+    }
   }
 
   void _onTapCancel() {
