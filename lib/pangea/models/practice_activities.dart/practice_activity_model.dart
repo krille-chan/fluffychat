@@ -74,6 +74,8 @@ class ConstructIdentifier {
 
   String get string =>
       "$lemma-${type.string}${category != "" ? "-$category" : "-other"}";
+
+  String get partialKey => "$lemma-${type.string}";
 }
 
 class CandidateMessage {

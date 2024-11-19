@@ -86,10 +86,39 @@ class ConstructListModel {
 
   void _updateCategoriesToUses() {
     _categoriesToUses = {};
+
+    final Map<String, List<ConstructUses>> groupedMap = {};
     for (final use in constructList()) {
-      _categoriesToUses[use.category] ??= [];
-      _categoriesToUses[use.category]!.add(use);
+      // Step 1: Create a key based on type, lemma, and category
+      String key = use.id.string;
+
+      // If category is "other", find a more specific group if it exists
+      if (use.category.toLowerCase() == 'other') {
+        final String specificKeyPrefix = use.id.partialKey;
+        final String existingSpecificKey = groupedMap.keys.firstWhere(
+          (k) => k.startsWith(specificKeyPrefix) && !k.endsWith('other'),
+          orElse: () => '',
+        );
+
+        if (existingSpecificKey.isNotEmpty) {
+          key = existingSpecificKey;
+        }
+      }
+
+      // Add the object to the grouped map
+      groupedMap.putIfAbsent(key, () => []).add(use);
     }
+
+    // Step 2: Reorganize by category only
+    final Map<String, List<ConstructUses>> groupedByCategory = {};
+    for (final entry in groupedMap.entries) {
+      // Extract the category part from the key (assuming it's at the end)
+      final category = entry.key.split('-').last;
+
+      // Add each item in this entry to the groupedByCategory map under the single category key
+      groupedByCategory.putIfAbsent(category, () => []).addAll(entry.value);
+    }
+    _categoriesToUses = groupedByCategory;
   }
 
   void _updateMetrics() {
