@@ -2868,5 +2868,19 @@
   "name": "Nama",
   "@name": {},
   "compressBeforeSending": "Kompres sebelum mengirim",
-  "@compressBeforeSending": {}
+  "@compressBeforeSending": {},
+  "strikeThrough": "Coret",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Silakan isi",
+  "@pleaseFillOut": {},
+  "addLink": "Tambahkan tautan",
+  "@addLink": {},
+  "invalidUrl": "URL tidak valid",
+  "@invalidUrl": {},
+  "sendUncompressed": "Kirim tanpa kompresi",
+  "@sendUncompressed": {},
+  "boldText": "Teks tebal",
+  "@boldText": {},
+  "italicText": "Teks miring",
+  "@italicText": {}
 }
