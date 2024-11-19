@@ -10,11 +10,13 @@ import 'package:fluffychat/pangea/widgets/chat/visibility_toggle.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
@@ -202,29 +204,50 @@ class PangeaChatDetailsView extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                  TextButton.icon(
-                                    onPressed: controller.setChatDescription,
-                                    icon: const Icon(
-                                      Icons.description_outlined,
-                                      size: 14,
-                                    ),
-                                    style: TextButton.styleFrom(
-                                      foregroundColor:
-                                          theme.colorScheme.secondary,
-                                    ),
-                                    label: Text(
-                                      room.topic.isEmpty
-                                          ? room.isSpace
-                                              ? L10n.of(context)!
-                                                  .spaceDescription
-                                              : L10n.of(context)!
-                                                  .chatDescription
-                                          : room.topic,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
                                 ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Divider(color: theme.dividerColor, height: 1),
+                        Stack(
+                          children: [
+                            if (room.isRoomAdmin)
+                              Positioned(
+                                right: 4,
+                                top: 4,
+                                child: IconButton(
+                                  onPressed: controller.setTopicAction,
+                                  icon: const Icon(Icons.edit_outlined),
+                                ),
+                              ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 24.0,
+                                right: 24.0,
+                                top: 16.0,
+                                bottom: 16.0,
+                              ),
+                              child: SelectableLinkify(
+                                text: room.topic.isEmpty
+                                    ? L10n.of(context)!.noChatDescriptionYet
+                                    : room.topic,
+                                options: const LinkifyOptions(humanize: false),
+                                linkStyle: const TextStyle(
+                                  color: Colors.blueAccent,
+                                  decorationColor: Colors.blueAccent,
+                                ),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontStyle: room.topic.isEmpty
+                                      ? FontStyle.italic
+                                      : FontStyle.normal,
+                                  color: theme.textTheme.bodyMedium!.color,
+                                  decorationColor:
+                                      theme.textTheme.bodyMedium!.color,
+                                ),
+                                onOpen: (url) =>
+                                    UrlLauncher(context, url.url).launchUrl(),
                               ),
                             ),
                           ],
