@@ -138,7 +138,24 @@ class PangeaToken {
   int get end => text.offset + text.length;
 
   bool get isContentWord =>
-      ["NOUN", "VERB", "ADJ", "ADV", "AUX", "PRON"].contains(pos) &&
+      ["NOUN", "VERB", "ADJ", "ADV"].contains(pos) && lemma.saveVocab;
+
+  bool get canBeDefined =>
+      [
+        "ADJ",
+        "ADP",
+        "ADV",
+        "AUX",
+        "CCONJ",
+        "DET",
+        "INTJ",
+        "NOUN",
+        "NUM",
+        "PRON",
+        "PROPN",
+        "SCONJ",
+        "VERB",
+      ].contains(pos) &&
       lemma.saveVocab;
 
   bool get canBeHeard =>
@@ -175,7 +192,7 @@ class PangeaToken {
   bool _isActivityBasicallyEligible(ActivityTypeEnum a) {
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
-        return isContentWord;
+        return canBeDefined;
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
         return canBeHeard;
@@ -231,18 +248,30 @@ class PangeaToken {
   bool _isActivityProbablyLevelAppropriate(ActivityTypeEnum a) {
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
-        return vocabConstruct.points < 15 || daysSinceLastUseByType(a) > 2;
+        if (isContentWord) {
+          return vocabConstruct.points < 15 || daysSinceLastUseByType(a) > 2;
+        } else {
+          return vocabConstruct.points < 5 || daysSinceLastUseByType(a) > 7;
+        }
       case ActivityTypeEnum.wordFocusListening:
-        return !_didActivitySuccessfully(a) || daysSinceLastUseByType(a) > 2;
+        return !_didActivitySuccessfully(a) || daysSinceLastUseByType(a) > 30;
       case ActivityTypeEnum.hiddenWordListening:
         return daysSinceLastUseByType(a) > 2;
     }
   }
 
+  // maybe for every 5 points of xp for a particular activity, increment the days between uses by 2
   bool shouldDoActivity(ActivityTypeEnum a) =>
       lemma.saveVocab &&
       _isActivityBasicallyEligible(a) &&
       _isActivityProbablyLevelAppropriate(a);
+
+  /// we try to guess if the user is click on a token specifically or clicking on a message in general
+  /// if we think the word might be new for the learner, then we'll assume they're clicking on the word
+  bool get shouldDoWordMeaningOnClick =>
+      lemma.saveVocab &&
+      canBeDefined &&
+      daysSinceLastUseByType(ActivityTypeEnum.wordMeaning) > 1;
 
   List<ActivityTypeEnum> get eligibleActivityTypes {
     final List<ActivityTypeEnum> eligibleActivityTypes = [];
