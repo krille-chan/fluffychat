@@ -95,30 +95,14 @@ class LoadingDialogState<T> extends State<LoadingDialog> {
         : widget.title ?? L10n.of(context).loadingPleaseWait;
 
     return AlertDialog.adaptive(
+      title: Icon(
+        Icons.error_outline_outlined,
+        color: Theme.of(context).colorScheme.error,
+        size: 48,
+      ),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (exception == null)
-              const CircularProgressIndicator.adaptive()
-            else
-              Icon(
-                Icons.error_outline_outlined,
-                color: Theme.of(context).colorScheme.error,
-                size: 48,
-              ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Text(
-                titleLabel,
-                maxLines: 2,
-                textAlign: TextAlign.left,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ],
-        ),
+        child: Text(titleLabel),
       ),
       actions: exception == null
           ? null
