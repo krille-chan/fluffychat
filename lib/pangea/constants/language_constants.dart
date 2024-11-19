@@ -20,5 +20,3 @@ final LanguageDetection unknownLanguageDetection = LanguageDetection(
   langCode: LanguageKeys.unknownLanguage,
   confidence: 0.5,
 );
-
-const double languageDetectionConfidenceThreshold = 0.95;

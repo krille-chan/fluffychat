@@ -61,7 +61,7 @@ class LanguageDetectionResponse {
   factory LanguageDetectionResponse.fromJson(Map<String, dynamic> json) {
     return LanguageDetectionResponse(
       detections: List<LanguageDetection>.from(
-        json['detections'].map(
+        (json['detections'] as Iterable).map(
           (e) => LanguageDetection.fromJson(e),
         ),
       ),
@@ -71,7 +71,7 @@ class LanguageDetectionResponse {
 
   Map<String, dynamic> toJson() {
     return {
-      'detections': detections,
+      'detections': detections.map((e) => e.toJson()).toList(),
       'full_text': fullText,
     };
   }
@@ -82,6 +82,8 @@ class LanguageDetectionResponse {
     detections.sort((a, b) => b.confidence.compareTo(a.confidence));
     return detections.firstOrNull ?? unknownLanguageDetection;
   }
+
+  static const double languageDetectionConfidenceThreshold = 0.95;
 
   /// Returns the highest validated detection based on the confidence threshold.
   /// If the highest confidence detection is below the threshold, the unknown language

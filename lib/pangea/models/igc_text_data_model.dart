@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -101,11 +102,13 @@ class IGCTextData {
   /// if we have run igc/it and there are no matches, we can relax the threshold
   /// and use the highest confidence detection
   String get detectedLanguage {
-    if (!(enableIGC && enableIT) || matches.isNotEmpty) {
-      return detections.highestValidatedDetection().langCode;
-    } else {
-      return detections.highestConfidenceDetection.langCode;
-    }
+    return detections.detections.firstOrNull?.langCode ??
+        LanguageKeys.unknownLanguage;
+    // if (!(enableIGC && enableIT) || matches.isNotEmpty) {
+    //   return detections.highestValidatedDetection().langCode;
+    // } else {
+    //   return detections.highestConfidenceDetection.langCode;
+    // }
   }
 
   // reconstruct fullText based on accepted match
