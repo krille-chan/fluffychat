@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
@@ -135,6 +136,7 @@ class ChatView extends StatelessWidget {
       showFutureLoadingDialog(
         context: context,
         future: () => controller.room.join(),
+        exceptionContext: ExceptionContext.joinRoom,
       );
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
