@@ -70,6 +70,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            subtitle: Text(L10n.of(context)!.botSettingsSubtitle),
             leading: CircleAvatar(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
@@ -78,7 +79,6 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                 expression: BotExpression.idle,
               ),
             ),
-            trailing: const Icon(Icons.settings),
             onTap: showBotOptionsDialog,
           ),
         ],

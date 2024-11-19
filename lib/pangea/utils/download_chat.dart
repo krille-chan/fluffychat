@@ -23,13 +23,12 @@ enum DownloadType { txt, csv, xlsx }
 Future<void> downloadChat(
   Room room,
   DownloadType type,
-  Client client,
   BuildContext context,
 ) async {
   List<PangeaMessageEvent> allPangeaMessages;
 
   try {
-    final List<Event> allEvents = await getAllEvents(room, client);
+    final List<Event> allEvents = await getAllEvents(room);
     final TimelineChunk chunk = TimelineChunk(events: allEvents);
     final Timeline timeline = Timeline(
       room: room,
@@ -85,14 +84,14 @@ Future<void> downloadChat(
   }
 }
 
-Future<List<Event>> getAllEvents(Room room, Client client) async {
+Future<List<Event>> getAllEvents(Room room) async {
   final GetRoomEventsResponse initalResp =
-      await client.getRoomEvents(room.id, Direction.b);
+      await room.client.getRoomEvents(room.id, Direction.b);
   if (initalResp.end == null) return [];
   String? nextStartToken = initalResp.end;
   List<MatrixEvent> allMatrixEvents = initalResp.chunk;
   while (nextStartToken != null) {
-    final GetRoomEventsResponse resp = await client.getRoomEvents(
+    final GetRoomEventsResponse resp = await room.client.getRoomEvents(
       room.id,
       Direction.b,
       from: nextStartToken,

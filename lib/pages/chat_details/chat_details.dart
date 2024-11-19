@@ -1,8 +1,8 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
+import 'package:fluffychat/pangea/pages/chat_details/pangea_chat_details.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_description_button.dart';
 import 'package:fluffychat/pangea/utils/set_class_name.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -199,7 +199,10 @@ class ChatDetailsController extends State<ChatDetails> {
   static const fixedWidth = 360.0;
 
   @override
-  Widget build(BuildContext context) => ChatDetailsView(this);
+  // #Pangea
+  Widget build(BuildContext context) => PangeaChatDetailsView(this);
+  // Widget build(BuildContext context) => ChatDetailsView(this);
+  // Pangea#
 
   // #Pangea
   bool showEditNameIcon = false;
@@ -216,6 +219,29 @@ class ChatDetailsController extends State<ChatDetails> {
               visibility: visibility,
             );
       },
+    );
+    if (mounted) setState(() {});
+  }
+
+  Future<void> toggleMute() async {
+    final client = Matrix.of(context).client;
+    final Room? room = client.getRoomById(roomId!);
+    if (room == null) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        await (room.pushRuleState == PushRuleState.notify
+            ? room.setPushRuleState(PushRuleState.mentionsOnly)
+            : room.setPushRuleState(PushRuleState.notify));
+      },
+    );
+
+    // wait for push rule update in sync
+    await client.onSync.stream.firstWhere(
+      (sync) =>
+          sync.accountData != null &&
+          sync.accountData!.isNotEmpty &&
+          sync.accountData!.any((e) => e.type == 'm.push_rules'),
     );
     if (mounted) setState(() {});
   }

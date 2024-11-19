@@ -16,7 +16,6 @@ import 'package:fluffychat/pangea/widgets/chat/chat_floating_action_button.dart'
 import 'package:fluffychat/pangea/widgets/chat/chat_view_background.dart';
 import 'package:fluffychat/pangea/widgets/chat/input_bar_wrapper.dart';
 import 'package:fluffychat/utils/account_config.dart';
-import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -117,9 +116,16 @@ class ChatView extends StatelessWidget {
       // #Pangea
     } else {
       return [
-        ChatSettingsPopupMenu(
-          controller.room,
-          (!controller.room.isDirectChat && !controller.room.isArchived),
+        IconButton(
+          icon: const Icon(Icons.info_outline),
+          tooltip: L10n.of(context)!.chatDetails,
+          onPressed: () {
+            if (GoRouterState.of(context).uri.path.endsWith('/details')) {
+              context.go('/rooms/${controller.room.id}');
+            } else {
+              context.go('/rooms/${controller.room.id}/details');
+            }
+          },
         ),
       ];
     }

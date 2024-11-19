@@ -86,11 +86,9 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
             foregroundColor: iconColor,
             child: const Icon(Icons.reduce_capacity),
           ),
-          subtitle: Text(
+          trailing: Text(
             (capacity == null)
-                ? spaceMode
-                    ? L10n.of(context)!.spaceCapacityNotSet
-                    : L10n.of(context)!.chatCapacityNotSet
+                ? L10n.of(context)!.noCapacityLimit
                 : (nonAdmins != null)
                     ? '$nonAdmins/$capacity'
                     : '$capacity',

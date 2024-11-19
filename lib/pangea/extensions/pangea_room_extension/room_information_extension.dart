@@ -58,24 +58,24 @@ extension RoomInformationRoomExtension on Room {
 
   Future<bool> get _isBotDM async => botOptions?.mode == BotMode.directChat;
 
-  bool get _isLocked {
-    if (isDirectChat) return false;
-    if (!isSpace) {
-      if (eventsDefaultPowerLevel == null) return false;
-      return (eventsDefaultPowerLevel ?? 0) >=
-          ClassDefaultValues.powerLevelOfAdmin;
-    }
-    for (final child in spaceChildren) {
-      if (child.roomId == null) continue;
-      final Room? room = client.getRoomById(child.roomId!);
-      if (room == null || room.isAnalyticsRoom || room.isArchived) continue;
-      if (!room._isLocked) {
-        return false;
-      }
-    }
-    return (eventsDefaultPowerLevel ?? 0) >=
-        ClassDefaultValues.powerLevelOfAdmin;
-  }
+  // bool get _isLocked {
+  //   if (isDirectChat) return false;
+  //   if (!isSpace) {
+  //     if (eventsDefaultPowerLevel == null) return false;
+  //     return (eventsDefaultPowerLevel ?? 0) >=
+  //         ClassDefaultValues.powerLevelOfAdmin;
+  //   }
+  //   for (final child in spaceChildren) {
+  //     if (child.roomId == null) continue;
+  //     final Room? room = client.getRoomById(child.roomId!);
+  //     if (room == null || room.isAnalyticsRoom || room.isArchived) continue;
+  //     if (!room._isLocked) {
+  //       return false;
+  //     }
+  //   }
+  //   return (eventsDefaultPowerLevel ?? 0) >=
+  //       ClassDefaultValues.powerLevelOfAdmin;
+  // }
 
   bool _isAnalyticsRoomOfUser(String userId) =>
       isAnalyticsRoom && isMadeByUser(userId);

@@ -259,7 +259,7 @@ extension PangeaRoom on Room {
 
   Future<bool> get isBotDM async => await _isBotDM;
 
-  bool get isLocked => _isLocked;
+  // bool get isLocked => _isLocked;
 
   bool isAnalyticsRoomOfUser(String userId) => _isAnalyticsRoomOfUser(userId);
 

@@ -123,7 +123,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   future: () => downloadChat(
                     widget.room,
                     DownloadType.txt,
-                    Matrix.of(context).client,
                     context,
                   ),
                 );
@@ -134,7 +133,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   future: () => downloadChat(
                     widget.room,
                     DownloadType.csv,
-                    Matrix.of(context).client,
                     context,
                   ),
                 );
@@ -145,7 +143,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   future: () => downloadChat(
                     widget.room,
                     DownloadType.xlsx,
-                    Matrix.of(context).client,
                     context,
                   ),
                 );

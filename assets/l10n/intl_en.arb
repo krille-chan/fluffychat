@@ -4024,7 +4024,7 @@
   "conversationBotCustomZone_customSystemPromptPlaceholder": "Set custom system prompt",
   "conversationBotCustomZone_customSystemPromptEmptyError": "Missing custom system prompt",
   "conversationBotCustomZone_customTriggerReactionEnabledLabel": "Responds on ⏩ reaction",
-  "botConfig": "Chat settings",
+  "botConfig": "Bot and activity settings",
   "addConversationBotDialogTitleInvite": "Confirm inviting conversation bot",
   "addConversationBotButtonInvite": "Invite",
   "addConversationBotDialogInviteConfirmation": "Invite",
@@ -4500,5 +4500,11 @@
   "other": "Other",
   "botModeValidation": "Please select a chat mode",
   "clickBestOption": "Choose the best options to translate your message!",
-  "unlockedLanguageTools": "You’ve unlocked the language tools for this message. Try them out by clicking below!"
+  "unlockedLanguageTools": "You’ve unlocked the language tools for this message. Try them out by clicking below!",
+  "botSettingsSubtitle": "Invite bot to moderate chat activity",
+  "invitePeople": "Invite users",
+  "invitePeopleChatSubtitle": "Invite users or admins to this chat",
+  "invitePeopleSpaceSubtitle": "Invite users or admins to this space",
+  "noCapacityLimit": "No capacity limit",
+  "downloadGroupText": "Download group text"
 }

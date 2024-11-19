@@ -64,9 +64,7 @@ class InvitationSelectionView extends StatelessWidget {
                     fontWeight: FontWeight.normal,
                   ),
                   // #Pangea
-                  hintText: controller.mode == InvitationSelectionMode.admin
-                      ? L10n.of(context)!.inviteUsersFromPangea
-                      : L10n.of(context)!.inviteStudentByUserName,
+                  hintText: L10n.of(context)!.inviteStudentByUserName,
                   // hintText: L10n.of(context)!.inviteContactToGroup(groupName),
                   // Pangea#
                   prefixIcon: controller.loading
@@ -93,18 +91,6 @@ class InvitationSelectionView extends StatelessWidget {
               builder: (context, snapshot) {
                 final participants =
                     room.getParticipants().map((user) => user.id).toSet();
-                if (controller.mode != InvitationSelectionMode.admin &&
-                    room.spaceParents.isEmpty) {
-                  return Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Text(
-                        L10n.of(context)!.emptyInviteWarning,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  );
-                }
                 return controller.foundProfiles.isNotEmpty
                     ? ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
@@ -126,19 +112,11 @@ class InvitationSelectionView extends StatelessWidget {
                             controller.foundProfiles[i].displayName ??
                                 controller.foundProfiles[i].userId.localpart ??
                                 L10n.of(context)!.user,
-                            // #Pangea
-                            mode: controller.mode,
-                            // Pangea#
                           ),
                         ),
                       )
                     : FutureBuilder<List<User>>(
-                        // #Pangea
-                        future: controller.mode == InvitationSelectionMode.admin
-                            ? controller.getContacts(context)
-                            : controller.eligibleStudents(context, ""),
-                        // future: controller.getContacts(context),
-                        // Pangea#
+                        future: controller.getContacts(context),
                         builder: (BuildContext context, snapshot) {
                           if (!snapshot.hasData) {
                             return const Center(
@@ -166,9 +144,6 @@ class InvitationSelectionView extends StatelessWidget {
                                 contacts[i].displayName ??
                                     contacts[i].id.localpart ??
                                     L10n.of(context)!.user,
-                                // #Pangea
-                                mode: controller.mode,
-                                // Pangea#
                               ),
                             ),
                           );
