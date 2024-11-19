@@ -85,8 +85,6 @@ jobs:
     strategy:
       matrix:
         arch: [ x64, arm64 ]
-    env:
-      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
     runs-on: ${{ matrix.arch == 'arm64' && 'self-hosted' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v4
@@ -99,7 +97,8 @@ jobs:
           ./flutter/bin/flutter doctor
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }} --release
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v3
-      - run: snapcraft
-      - run: snapcraft push ./*.snap
+      - uses: snapcore/action-build@v1
+        id: build
+      - uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
