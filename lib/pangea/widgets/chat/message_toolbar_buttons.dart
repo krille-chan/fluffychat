@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:collection/collection.dart';
@@ -193,9 +192,7 @@ class DisabledAnimationState extends State<DisabledAnimation>
           onTap: () {
             _controller.forward().then((_) => _controller.reset());
             if (!kIsWeb) {
-              Platform.isAndroid
-                  ? HapticFeedback.mediumImpact()
-                  : HapticFeedback.vibrate();
+              HapticFeedback.mediumImpact();
             }
           },
           child: SizedBox(

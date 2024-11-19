@@ -1719,9 +1719,7 @@ class ChatController extends State<ChatPageWithRoom>
     // select the message
     onSelectMessage(pangeaMessageEvent.event);
     if (!kIsWeb) {
-      Platform.isAndroid
-          ? HapticFeedback.mediumImpact()
-          : HapticFeedback.vibrate();
+      HapticFeedback.mediumImpact();
     }
   }
 
