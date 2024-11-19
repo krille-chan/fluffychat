@@ -3,27 +3,35 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/missing_voice_button.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart' as flutter_tts;
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
+import 'package:text_to_speech/text_to_speech.dart';
 
 class TtsController {
-  String? targetLanguage;
+  String? get targetLanguage =>
+      MatrixState.pangeaController.languageController.userL2?.langCode;
 
-  List<String> availableLangCodes = [];
-  final flutter_tts.FlutterTts tts = flutter_tts.FlutterTts();
+  List<String> _availableLangCodes = [];
+  final flutter_tts.FlutterTts _tts = flutter_tts.FlutterTts();
+  final TextToSpeech _alternativeTTS = TextToSpeech();
 
   TtsController() {
     setupTTS();
   }
 
-  Future<void> dispose() async {
-    await tts.stop();
+  bool get _useAlternativeTTS {
+    return PlatformInfos.getOperatingSystem() == 'Windows';
   }
 
-  onError(dynamic message) => ErrorHandler.logError(
+  Future<void> dispose() async {
+    await _tts.stop();
+  }
+
+  void _onError(dynamic message) => ErrorHandler.logError(
         e: message,
         m: (message.toString().isNotEmpty) ? message.toString() : 'TTS error',
         data: {
@@ -32,22 +40,23 @@ class TtsController {
       );
 
   Future<void> setupTTS() async {
+    if (_useAlternativeTTS) {
+      await _setupAltTTS();
+      return;
+    }
+
     try {
-      tts.setErrorHandler(onError);
-
-      targetLanguage ??=
-          MatrixState.pangeaController.languageController.userL2?.langCode;
-
+      _tts.setErrorHandler(_onError);
       debugger(when: kDebugMode && targetLanguage == null);
 
-      tts.setLanguage(
+      _tts.setLanguage(
         targetLanguage ?? "en",
       );
 
-      await tts.awaitSpeakCompletion(true);
+      await _tts.awaitSpeakCompletion(true);
 
-      final voices = (await tts.getVoices) as List?;
-      availableLangCodes = (voices ?? [])
+      final voices = (await _tts.getVoices) as List?;
+      _availableLangCodes = (voices ?? [])
           .map((v) {
             // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'
             final nameCode = v['name']?.split("-").first;
@@ -58,9 +67,34 @@ class TtsController {
           .cast<String>()
           .toList();
 
-      debugPrint("availableLangCodes: $availableLangCodes");
+      debugPrint("availableLangCodes: $_availableLangCodes");
 
-      debugger(when: kDebugMode && !isLanguageFullySupported);
+      debugger(when: kDebugMode && !_isLanguageFullySupported);
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: e, s: s);
+    }
+  }
+
+  Future<void> _setupAltTTS() async {
+    try {
+      final languages = await _alternativeTTS.getLanguages();
+      _availableLangCodes =
+          languages.map((lang) => lang.split("-").first).toSet().toList();
+
+      debugPrint("availableLangCodes: $_availableLangCodes");
+
+      final langsMatchingTarget = languages
+          .where(
+            (lang) =>
+                targetLanguage != null &&
+                lang.toLowerCase().startsWith(targetLanguage!.toLowerCase()),
+          )
+          .toList();
+
+      if (langsMatchingTarget.isNotEmpty) {
+        await _alternativeTTS.setLanguage(langsMatchingTarget.first);
+      }
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: s);
@@ -71,8 +105,10 @@ class TtsController {
     try {
       // return type is dynamic but apparent its supposed to be 1
       // https://pub.dev/packages/flutter_tts
-      final result = await tts.stop();
-      if (result != 1) {
+      final result =
+          await (_useAlternativeTTS ? _alternativeTTS.stop() : _tts.stop());
+
+      if (!_useAlternativeTTS && result != 1) {
         ErrorHandler.logError(
           m: 'Unexpected result from tts.stop',
           data: {
@@ -86,7 +122,7 @@ class TtsController {
     }
   }
 
-  Future<void> showMissingVoicePopup(
+  Future<void> _showMissingVoicePopup(
     BuildContext context,
     String eventID,
   ) async {
@@ -111,28 +147,29 @@ class TtsController {
     BuildContext context,
     String eventID,
   ) async {
-    if (isLanguageFullySupported) {
-      await speak(text);
+    if (_isLanguageFullySupported) {
+      await _speak(text);
     } else {
       ErrorHandler.logError(
         e: 'Language not supported by TTS engine',
         data: {
           'targetLanguage': targetLanguage,
-          'availableLangCodes': availableLangCodes,
+          'availableLangCodes': _availableLangCodes,
         },
       );
-      await showMissingVoicePopup(context, eventID);
+      await _showMissingVoicePopup(context, eventID);
     }
   }
 
-  Future<void> speak(String text) async {
+  Future<void> _speak(String text) async {
     try {
       stop();
-      targetLanguage ??=
-          MatrixState.pangeaController.languageController.userL2?.langCode;
 
       Logs().i('Speaking: $text');
-      final result = await tts.speak(text).timeout(
+      final result = await (_useAlternativeTTS
+              ? _alternativeTTS.speak(text)
+              : _tts.speak(text))
+          .timeout(
         const Duration(seconds: 5),
         onTimeout: () {
           ErrorHandler.logError(
@@ -160,6 +197,6 @@ class TtsController {
     }
   }
 
-  bool get isLanguageFullySupported =>
-      availableLangCodes.contains(targetLanguage);
+  bool get _isLanguageFullySupported =>
+      _availableLangCodes.contains(targetLanguage);
 }

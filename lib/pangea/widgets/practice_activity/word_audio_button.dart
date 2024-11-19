@@ -40,7 +40,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
           _isPlaying ? L10n.of(context)!.stop : L10n.of(context)!.playAudio,
       onPressed: () async {
         if (_isPlaying) {
-          await widget.ttsController.tts.stop();
+          await widget.ttsController.stop();
           if (mounted) {
             setState(() => _isPlaying = false);
           }

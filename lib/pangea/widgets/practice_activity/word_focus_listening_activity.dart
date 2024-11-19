@@ -163,7 +163,11 @@ class WordFocusListeningActivityState
     }
 
     return GestureDetector(
-      onTap: () => tts.speak(widget.activityContent.choices[index]),
+      onTap: () => tts.tryToSpeak(
+        widget.activityContent.choices[index],
+        context,
+        widget.practiceCardController.widget.pangeaMessageEvent.eventId,
+      ),
       child: CircleAvatar(
         radius: buttonSize,
         backgroundColor: dragging ? Colors.grey.withOpacity(0.5) : buttonColor,

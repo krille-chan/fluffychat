@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../config/app_config.dart';
@@ -86,4 +87,20 @@ abstract class PlatformInfos {
       applicationName: AppConfig.applicationName,
     );
   }
+
+  // #Pangea
+  static String? getOperatingSystem() {
+    if (!kIsWeb) return null;
+    final String platform = html.window.navigator.platform?.toLowerCase() ?? '';
+
+    if (platform.contains('mac')) {
+      return 'macOS';
+    } else if (platform.contains('win')) {
+      return 'Windows';
+    } else if (platform.contains('linux')) {
+      return 'Linux';
+    }
+    return null;
+  }
+// Pangea#
 }
