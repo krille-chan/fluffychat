@@ -1,4 +1,6 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LevelBadge extends StatelessWidget {
   final int level;
@@ -7,39 +9,45 @@ class LevelBadge extends StatelessWidget {
     super.key,
   });
 
-  Color levelColor(int level) {
-    final colors = [
-      const Color.fromARGB(255, 33, 97, 140), // Dark blue
-      const Color.fromARGB(255, 186, 104, 200), // Soft purple
-      const Color.fromARGB(255, 123, 31, 162), // Deep purple
-      const Color.fromARGB(255, 0, 150, 136), // Teal
-      const Color.fromARGB(255, 247, 143, 143), // Light pink
-      const Color.fromARGB(255, 220, 20, 60), // Crimson red
-    ];
-    return colors[level % colors.length];
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 32,
-      height: 32,
       decoration: BoxDecoration(
-        color: levelColor(level),
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(15),
+        color: Theme.of(context).colorScheme.surfaceBright,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 5,
-            offset: const Offset(5, 0),
+            color: Theme.of(context).colorScheme.primary,
+            spreadRadius: 1,
+            blurRadius: 1,
+            offset: const Offset(1, 1), // changes position of shadow
           ),
         ],
       ),
-      child: Center(
-        child: Text(
-          "$level",
-          style: const TextStyle(color: Colors.white, fontSize: 16),
-        ),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CircleAvatar(
+            backgroundColor: AppConfig.gold,
+            radius: 8,
+            child: Icon(
+              size: 12,
+              Icons.star,
+              color: Theme.of(context).colorScheme.surfaceBright,
+              weight: 1000,
+            ),
+          ),
+          const SizedBox(width: 4),
+          Text(
+            L10n.of(context)!.levelShort(level),
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+        ],
       ),
     );
   }

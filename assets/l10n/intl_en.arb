@@ -4498,6 +4498,13 @@
   "selectBotChatMode": "Select chat mode",
   "messageNotInTargetLang": "Message not in target language",
   "other": "Other",
+  "levelShort": "LVL {level}",
+  "@levelShort": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
   "botModeValidation": "Please select a chat mode",
   "clickBestOption": "Choose the best options to translate your message!",
   "unlockedLanguageTools": "You’ve unlocked the language tools for this message. Try them out by clicking below!",

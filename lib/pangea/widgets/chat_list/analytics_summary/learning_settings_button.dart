@@ -1,25 +1,21 @@
-import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 /// A badge that represents one learning progress indicator (i.e., construct uses)
-class ProgressIndicatorBadge extends StatelessWidget {
-  final bool loading;
-  final int points;
+class LearningSettingsButton extends StatelessWidget {
+  final String l2;
   final VoidCallback onTap;
-  final ProgressIndicatorEnum indicator;
 
-  const ProgressIndicatorBadge({
+  const LearningSettingsButton({
     super.key,
+    required this.l2,
     required this.onTap,
-    required this.indicator,
-    required this.loading,
-    required this.points,
   });
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: indicator.tooltip(context),
+      message: L10n.of(context)!.learningSettings,
       child: InkWell(
         customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -34,7 +30,7 @@ class ProgressIndicatorBadge extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
                 spreadRadius: 1,
                 blurRadius: 1,
-                offset: const Offset(-1, 1), // changes position of shadow
+                offset: const Offset(1, 1), // changes position of shadow
               ),
             ],
           ),
@@ -44,27 +40,19 @@ class ProgressIndicatorBadge extends StatelessWidget {
             children: [
               Icon(
                 size: 14,
-                indicator.icon,
-                color: indicator.color(context),
+                Icons.language,
+                color: Theme.of(context).colorScheme.primary,
                 weight: 1000,
               ),
               const SizedBox(width: 5),
-              !loading
-                  ? Text(
-                      points.toString(),
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: indicator.color(context),
-                      ),
-                    )
-                  : const SizedBox(
-                      height: 8,
-                      width: 8,
-                      child: CircularProgressIndicator.adaptive(
-                        strokeWidth: 2,
-                      ),
-                    ),
+              Text(
+                l2,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
             ],
           ),
         ),

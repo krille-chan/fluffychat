@@ -13,13 +13,9 @@ class ProgressBarBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: details.height + 4,
-      width: details.totalWidth + 4,
+      height: details.height,
+      width: details.totalWidth,
       decoration: BoxDecoration(
-        border: Border.all(
-          color: details.borderColor.withOpacity(0.5),
-          width: 2,
-        ),
         borderRadius: const BorderRadius.all(
           Radius.circular(AppConfig.borderRadius),
         ),

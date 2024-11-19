@@ -7,11 +7,12 @@ import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/analytics_popup/analytics_popup.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/learning_progress_bar.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/learning_settings_button.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/level_badge.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/progress_indicator.dart';
-import 'package:fluffychat/pangea/widgets/flag.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 /// A summary of "My Analytics" shown at the top of the chat list
 /// It shows a variety of progress indicators such as
@@ -76,22 +77,40 @@ class LearningProgressIndicatorsState
       return const SizedBox();
     }
 
+    final userL2 = MatrixState.pangeaController.languageController.userL2;
+
     return Row(
       children: [
         const ClientChooserButton(),
-        const SizedBox(width: 6),
+        const SizedBox(width: 10),
         Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                Matrix.of(context).client.userID ?? L10n.of(context)!.user,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontSize: 12,
+                ),
+              ),
+              const SizedBox(height: 6),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  LearningSettingsButton(
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (c) => const SettingsLearning(),
+                    ),
+                    l2: userL2!.getDisplayName(context) ?? userL2.langCode,
+                  ),
                   Row(
                     children: ProgressIndicatorEnum.values
                         .where((i) => i != ProgressIndicatorEnum.level)
                         .map(
                           (indicator) => Padding(
-                            padding: const EdgeInsets.only(right: 10),
+                            padding: const EdgeInsets.only(left: 6),
                             child: ProgressIndicatorBadge(
                               points: uniqueLemmas(indicator),
                               loading: _loading,
@@ -111,22 +130,11 @@ class LearningProgressIndicatorsState
                         )
                         .toList(),
                   ),
-                  InkWell(
-                    onTap: () => showDialog(
-                      context: context,
-                      builder: (c) => const SettingsLearning(),
-                    ),
-                    child: LanguageFlag(
-                      language: MatrixState
-                          .pangeaController.languageController.userL2,
-                      size: 24,
-                    ),
-                  ),
                 ],
               ),
               const SizedBox(height: 6),
               SizedBox(
-                height: 36,
+                height: 22,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [

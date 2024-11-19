@@ -35,6 +35,8 @@ abstract class AppConfig {
   static const Color activeToggleColor = Color(0xFF33D057);
   static const Color success = Color(0xFF33D057);
   static const Color warning = Color.fromARGB(255, 210, 124, 12);
+  static const Color gold = Color.fromARGB(255, 253, 191, 1);
+  static const Color goldLight = Color.fromARGB(255, 254, 223, 73);
   static const int overlayAnimationDuration = 250;
   // static String _privacyUrl =
   //     'https://gitlab.com/famedly/fluffychat/-/blob/main/PRIVACY.md';

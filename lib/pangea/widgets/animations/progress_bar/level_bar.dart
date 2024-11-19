@@ -36,19 +36,8 @@ class LevelBarState extends State<LevelBar> {
       height: widget.progressBarDetails.height,
       beginWidth: prevWidth,
       endWidth: width,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(AppConfig.borderRadius),
-        ),
-        color: widget.details.fillColor,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 5,
-            offset: const Offset(5, 0),
-          ),
-        ],
-      ),
+      primaryColor: AppConfig.gold,
+      highlightColor: AppConfig.goldLight,
     );
   }
 }

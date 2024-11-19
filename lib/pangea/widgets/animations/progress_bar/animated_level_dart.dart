@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:flutter/material.dart';
 
@@ -5,14 +6,16 @@ class AnimatedLevelBar extends StatefulWidget {
   final double height;
   final double beginWidth;
   final double endWidth;
-  final BoxDecoration? decoration;
+  final Color primaryColor;
+  final Color highlightColor;
 
   const AnimatedLevelBar({
     super.key,
     required this.height,
     required this.beginWidth,
     required this.endWidth,
-    this.decoration,
+    required this.primaryColor,
+    required this.highlightColor,
   });
 
   @override
@@ -76,10 +79,40 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, child) {
-        return Container(
-          height: widget.height,
-          width: _animation.value,
-          decoration: widget.decoration,
+        return Stack(
+          children: [
+            Container(
+              height: widget.height,
+              width: _animation.value,
+              decoration: BoxDecoration(
+                color: widget.primaryColor,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(AppConfig.borderRadius),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    spreadRadius: 0,
+                    blurRadius: 5,
+                    offset: const Offset(5, 0),
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              top: 2,
+              child: Container(
+                height: 6,
+                width: _animation.value >= 8 ? _animation.value - 8 : 0,
+                decoration: BoxDecoration(
+                  color: widget.highlightColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(AppConfig.borderRadius),
+                  ),
+                ),
+              ),
+            ),
+          ],
         );
       },
     );

@@ -275,26 +275,44 @@ class ClientChooserButton extends StatelessWidget {
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(99),
                     child:
-                        // #Pangea
-                        Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(4),
-                          child:
-                              // Pangea#
-                              Avatar(
-                            mxContent: snapshot.data?.avatarUrl,
-                            name: snapshot.data?.displayName ??
-                                matrix.client.userID!.localpart,
-                            size: 50,
+                        //   // #Pangea
+                        //   Stack(
+                        // alignment: Alignment.bottomRight,
+                        // children: [
+                        //   Padding(
+                        //     padding: const EdgeInsets.all(4),
+                        //     child:
+                        //         // Pangea#
+                        Container(
+                      decoration: BoxDecoration(
+                        // borderRadius: BorderRadius.circular(15),
+                        // color: Theme.of(context).colorScheme.surfaceBright,
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Theme.of(context).colorScheme.primary,
+                            spreadRadius: 1,
+                            blurRadius: 1,
+                            offset: const Offset(
+                              0,
+                              1,
+                            ), // changes position of shadow
                           ),
-                          // #Pangea
-                        ),
-                        const Icon(Icons.settings_outlined, size: 20),
-                      ],
+                        ],
+                      ),
+                      child: Avatar(
+                        mxContent: snapshot.data?.avatarUrl,
+                        name: snapshot.data?.displayName ??
+                            matrix.client.userID!.localpart,
+                        size: 60,
+                      ),
                     ),
-                    // Pangea#
+                    //       // #Pangea
+                    //     ),
+                    //     const Icon(Icons.settings_outlined, size: 20),
+                    //   ],
+                    // ),
+                    // // Pangea#
                   ),
                 ),
               ],

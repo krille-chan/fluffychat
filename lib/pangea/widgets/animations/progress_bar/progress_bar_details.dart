@@ -20,6 +20,6 @@ class ProgressBarDetails {
   const ProgressBarDetails({
     required this.totalWidth,
     required this.borderColor,
-    this.height = 16,
+    this.height = 14,
   });
 }
