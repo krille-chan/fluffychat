@@ -2619,7 +2619,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addStudents": "Add users",
+  "addStudents": "Invite users by link or code",
   "@addStudents": {
     "type": "text",
     "placeholders": {}
