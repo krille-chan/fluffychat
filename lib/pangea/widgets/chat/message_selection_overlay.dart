@@ -395,8 +395,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           midpoint - _messageSize!.height - _belowMessageHeight;
       final totalTopOffset = animationEndOffset +
           _messageSize!.height +
-          AppConfig.toolbarMaxHeight;
-      final remainingSpace = _screenHeight! - totalTopOffset;
+          AppConfig.toolbarMaxHeight +
+          _toolbarButtonsHeight;
+      final remainingSpace =
+          _screenHeight! - totalTopOffset - (_mediaQuery?.padding.top ?? 0);
       if (remainingSpace < _headerHeight) {
         // the overlay could run over the header, so it needs to be shifted down
         animationEndOffset -= (_headerHeight - remainingSpace);
@@ -493,6 +495,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   // height of the reply/forward bar + the reaction picker + contextual padding
   double get _footerHeight {
     return 56 +
+        16 +
         (FluffyThemes.isColumnMode(context) ? 16.0 : 8.0) +
         (_mediaQuery?.padding.bottom ?? 0);
   }

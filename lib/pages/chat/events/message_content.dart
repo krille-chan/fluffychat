@@ -299,7 +299,6 @@ class MessageContent extends StatelessWidget {
 
             // #Pangea
             final messageTextStyle = TextStyle(
-              overflow: TextOverflow.ellipsis,
               color: textColor,
               fontSize: bigEmotes ? fontSize * 3 : fontSize,
               decoration: event.redacted ? TextDecoration.lineThrough : null,
@@ -325,8 +324,10 @@ class MessageContent extends StatelessWidget {
                     pangeaMessageEvent!.messageDisplayRepresentation?.tokens,
                 style: messageTextStyle,
                 onClick: overlayController?.onClickOverlayMessageToken ??
-                    (token) => controller.showToolbar(pangeaMessageEvent!,
-                        selectedToken: token),
+                    (token) => controller.showToolbar(
+                          pangeaMessageEvent!,
+                          selectedToken: token,
+                        ),
                 isSelected: overlayController?.isTokenSelected,
               );
             }
