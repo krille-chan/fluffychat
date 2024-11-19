@@ -7,6 +7,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart' as flutter_tts;
+import 'package:matrix/matrix_api_lite/utils/logs.dart';
 
 class TtsController {
   String? targetLanguage;
@@ -130,7 +131,17 @@ class TtsController {
       targetLanguage ??=
           MatrixState.pangeaController.languageController.userL2?.langCode;
 
-      final result = await tts.speak(text);
+      Logs().i('Speaking: $text');
+      final result = await tts.speak(text).timeout(
+        const Duration(seconds: 5),
+        onTimeout: () {
+          ErrorHandler.logError(
+            e: "Timeout on tts.speak",
+            data: {"text": text},
+          );
+        },
+      );
+      Logs().i('Finished speaking: $text, result: $result');
 
       // return type is dynamic but apparent its supposed to be 1
       // https://pub.dev/packages/flutter_tts
