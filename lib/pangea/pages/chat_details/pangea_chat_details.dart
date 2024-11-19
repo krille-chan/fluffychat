@@ -202,6 +202,28 @@ class PangeaChatDetailsView extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
+                                  TextButton.icon(
+                                    onPressed: controller.setChatDescription,
+                                    icon: const Icon(
+                                      Icons.description_outlined,
+                                      size: 14,
+                                    ),
+                                    style: TextButton.styleFrom(
+                                      foregroundColor:
+                                          theme.colorScheme.secondary,
+                                    ),
+                                    label: Text(
+                                      room.topic.isEmpty
+                                          ? room.isSpace
+                                              ? L10n.of(context)!
+                                                  .spaceDescription
+                                              : L10n.of(context)!
+                                                  .chatDescription
+                                          : room.topic,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

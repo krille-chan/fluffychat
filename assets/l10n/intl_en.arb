@@ -4506,5 +4506,7 @@
   "invitePeopleChatSubtitle": "Invite users or admins to this chat",
   "invitePeopleSpaceSubtitle": "Invite users or admins to this space",
   "noCapacityLimit": "No capacity limit",
-  "downloadGroupText": "Download group text"
+  "downloadGroupText": "Download group text",
+  "spaceDescription": "Space description",
+  "addSpaceDescription": "Add a space description"
 }

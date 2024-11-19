@@ -117,6 +117,13 @@ class ChatView extends StatelessWidget {
     } else {
       return [
         IconButton(
+          icon: const Icon(Icons.search_outlined),
+          tooltip: L10n.of(context)!.search,
+          onPressed: () {
+            context.go('/rooms/${controller.room.id}/search');
+          },
+        ),
+        IconButton(
           icon: const Icon(Icons.info_outline),
           tooltip: L10n.of(context)!.chatDetails,
           onPressed: () {

@@ -2,6 +2,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/chat_details/pangea_chat_details.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_description_button.dart';
 import 'package:fluffychat/pangea/utils/set_class_name.dart';
@@ -246,10 +247,112 @@ class ChatDetailsController extends State<ChatDetails> {
     if (mounted) setState(() {});
   }
 
+  final TextEditingController _descriptionController = TextEditingController();
+
+  Future<void> setChatDescription() async {
+    if (roomId == null) return;
+    final room = Matrix.of(context).client.getRoomById(roomId!);
+    if (room == null) return;
+
+    if (room.topic.isNotEmpty) {
+      _descriptionController.text = room.topic;
+    }
+
+    final response = await showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          child: Container(
+            constraints: const BoxConstraints(
+              maxWidth: 400,
+            ),
+            padding: const EdgeInsets.all(16),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 12,
+                        ),
+                        child: Text(
+                          room.isSpace
+                              ? L10n.of(context)!.spaceDescription
+                              : L10n.of(context)!.chatDescription,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () => Navigator.of(context).pop(null),
+                      ),
+                    ],
+                  ),
+                  TextFormField(
+                    onTapOutside: (_) =>
+                        FocusManager.instance.primaryFocus?.unfocus(),
+                    decoration: InputDecoration(
+                      hintText: room.isSpace
+                          ? L10n.of(context)!.addSpaceDescription
+                          : L10n.of(context)!.addGroupDescription,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 28.0,
+                        vertical: 12.0,
+                      ),
+                    ),
+                    controller: _descriptionController,
+                    enabled: room.isRoomAdmin,
+                    minLines: 1, // Minimum number of lines
+                    maxLines:
+                        null, // Allow the field to expand based on content
+                    keyboardType: TextInputType.multiline,
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(null),
+                        child: Text(L10n.of(context)!.cancel),
+                      ),
+                      const SizedBox(width: 20),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(
+                          room.isRoomAdmin ? _descriptionController.text : null,
+                        ),
+                        child: Text(L10n.of(context)!.confirm),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+    if (response == null) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => room.setDescription(response),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
     MatrixState.pangeaController.classController.addMissingRoomRules(roomId);
+  }
+
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
   }
   // Pangea#
 }
