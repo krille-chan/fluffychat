@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:fluffychat/pangea/enum/assistance_state_enum.dart';
-import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
+import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:flutter/material.dart';
 
 import '../../../pages/chat/chat.dart';
@@ -67,6 +67,12 @@ class StartIGCButtonState extends State<StartIGCButton>
 
   Future<void> _onTap() async {
     switch (assistanceState) {
+      case AssistanceState.noMessage:
+        showDialog(
+          context: context,
+          builder: (c) => const SettingsLearning(),
+        );
+        return;
       case AssistanceState.notFetched:
         await widget.controller.choreographer.getLanguageHelp(
           onlyTokensAndLanguageDetection: false,
@@ -79,7 +85,6 @@ class StartIGCButtonState extends State<StartIGCButton>
         return;
       case AssistanceState.complete:
       case AssistanceState.fetching:
-      case AssistanceState.noMessage:
         return;
     }
   }
@@ -90,7 +95,10 @@ class StartIGCButtonState extends State<StartIGCButton>
       child: InkWell(
         onTap: _onTap,
         customBorder: const CircleBorder(),
-        onLongPress: () => pLanguageDialog(context, () {}),
+        onLongPress: () => showDialog(
+          context: context,
+          builder: (c) => const SettingsLearning(),
+        ),
         child: Stack(
           alignment: Alignment.center,
           children: [
