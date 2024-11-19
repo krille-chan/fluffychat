@@ -931,7 +931,7 @@
   },
   "chatDescription": "Chat description",
   "chatDescriptionHasBeenChanged": "Chat description changed",
-  "groupIsPublic": "Group is public",
+  "groupIsPublic": "Chat is public",
   "groupDescription": "Chat description",
   "@groupDescription": {
     "type": "text",
