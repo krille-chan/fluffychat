@@ -346,6 +346,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       showToolbarButtons ? AppConfig.toolbarButtonsHeight : 0;
   double get _reactionsHeight => _hasReactions ? 28 : 0;
   double get _belowMessageHeight => _toolbarButtonsHeight + _reactionsHeight;
+  double get _totalMessageHeight => _messageHeight + _belowMessageHeight;
+  double get _messageHeight => _adjustedMessageHeight != null &&
+          _adjustedMessageHeight! < _messageSize!.height
+      ? _adjustedMessageHeight!
+      : _messageSize!.height;
 
   void setIsPlayingAudio(bool isPlaying) {
     if (mounted) {
@@ -367,7 +372,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     final footerBottomOffset = _footerHeight;
     final currentBottomOffset = _screenHeight! -
         _messageOffset!.dy -
-        _messageSize!.height -
+        _messageHeight -
         (_mediaQuery?.padding.bottom ?? 0) -
         _belowMessageHeight;
 
@@ -391,14 +396,9 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         newTopOffset < (_headerHeight + AppConfig.toolbarMaxHeight);
 
     if (hasHeaderOverflow || upshiftCausesHeaderOverflow) {
-      animationEndOffset =
-          midpoint - _messageSize!.height - _belowMessageHeight;
-      final totalTopOffset = animationEndOffset +
-          _messageSize!.height +
-          AppConfig.toolbarMaxHeight +
-          _toolbarButtonsHeight;
-      final remainingSpace =
-          _screenHeight! - totalTopOffset - (_mediaQuery?.padding.top ?? 0);
+      animationEndOffset = midpoint - _totalMessageHeight;
+      final totalTopOffset = midpoint + AppConfig.toolbarMaxHeight;
+      final remainingSpace = _screenHeight! - totalTopOffset;
       if (remainingSpace < _headerHeight) {
         // the overlay could run over the header, so it needs to be shifted down
         animationEndOffset -= (_headerHeight - remainingSpace);
@@ -419,7 +419,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           _footerHeight -
           _belowMessageHeight;
 
-      if (remainingSpace < _messageSize!.height) {
+      if (remainingSpace < _messageHeight) {
         _adjustedMessageHeight = remainingSpace;
       }
 
@@ -494,10 +494,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   // height of the reply/forward bar + the reaction picker + contextual padding
   double get _footerHeight {
-    return 56 +
-        16 +
-        (FluffyThemes.isColumnMode(context) ? 16.0 : 8.0) +
-        (_mediaQuery?.padding.bottom ?? 0);
+    return 56 + 16 + (FluffyThemes.isColumnMode(context) ? 16.0 : 8.0);
+    // (_mediaQuery?.padding.bottom ?? 0);
   }
 
   MediaQueryData? get _mediaQuery {
@@ -574,7 +572,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                 prevEvent: widget._prevEvent,
                 timeline: widget.chatController.timeline!,
                 messageWidth: _messageSize!.width,
-                messageHeight: _messageSize!.height,
+                messageHeight: _messageHeight,
               ),
             ),
             if (_hasReactions)
@@ -626,7 +624,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                 right: rightPadding,
                 bottom: _screenHeight! -
                     _messageOffset!.dy -
-                    _messageSize!.height -
+                    _messageHeight -
                     (_mediaQuery?.padding.bottom ?? 0) -
                     _belowMessageHeight,
                 child: overlayMessage,
