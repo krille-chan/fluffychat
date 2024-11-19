@@ -2847,5 +2847,19 @@
   "website": "Tīmekļvietne",
   "@website": {},
   "compressBeforeSending": "Saspiest pirms nosūtīšanas",
-  "@compressBeforeSending": {}
+  "@compressBeforeSending": {},
+  "boldText": "Teksts treknrakstā",
+  "@boldText": {},
+  "strikeThrough": "Pārsvītrots",
+  "@strikeThrough": {},
+  "invalidUrl": "Nederīgs URL",
+  "@invalidUrl": {},
+  "addLink": "Pievienot saiti",
+  "@addLink": {},
+  "italicText": "Teksts slīprakstā",
+  "@italicText": {},
+  "pleaseFillOut": "Lūgums aizpildīt",
+  "@pleaseFillOut": {},
+  "sendUncompressed": "Sūtīt nesaspiestu",
+  "@sendUncompressed": {}
 }
