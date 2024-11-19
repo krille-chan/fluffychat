@@ -536,12 +536,12 @@ gop(){return"Muuda vestluse p\xf5hilist avalikult n\xe4htavat aadressi"},
 goa(){return"Saada @jututuba teavitusi"},
 gor(){return"Muuda vestluse kirjeldust"},
 gou(){return"M\xe4\xe4ra erinevatele kasutajatele selles vestluses vajalikud \xf5igused. T\xfc\xfcpiliselt on need 0, 50 ja 100 (vastavalt kasutajad, moderaatorid ja peakasutajad), kuid igasugused vahepealsed variatsioonid on ka v\xf5imalikud."},
-oP(d){return"\ud83c\udf89 Versiooniuuendus "+d+" on paigaldatud!"},
+oQ(d){return"\ud83c\udf89 Versiooniuuendus "+d+" on paigaldatud!"},
 got(){return"Muudatuste logi"},
 go9(){return"Saatmine on katkestatud"},
 goG(){return"Logi sisse Matrix-ID alusel"},
 goy(){return"Leia koduservereid"},
-goT(){return"Mis on koduserver?"},
+goU(){return"Mis on koduserver?"},
 goB(){return"Sarnaselt e-postiteenuse pakkujale on k\xf5ik sinu s\xf5numid salvestatud koduserveris. Sa v\xf5id valida sellise koduserveri, nagu sulle meeldib ja nad k\xf5ik suudavad teiste koduserveritega suhelda. Lisateavet leiad veebisaidist https://matrix.org."},
 goz(){return"Ei tundu olema \xfchilduv koduserver. Kas v\xf5rguaadress on ikka \xf5ige?"},
 gon(){return"Arvutame faili suurust..."},
@@ -552,7 +552,7 @@ of(d){return"Serveri poolt lubatud \xfclempiir on k\xe4es. Ootame "+d+" sekundit
 goK(){return"\xdcks sinu seadmetest pole verifitseeritud"},
 goJ(){return"M\xe4rkus: kui liidad k\xf5ik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud."},
 gox(){return"J\xe4tka"},
-goS(){return"Tere, tere \ud83d\udc4b See on FluffyChat. Sa v\xf5id sisse logida igasse koduserverisse, mis \xfchildub https://matrix.org serveriga. Ja seej\xe4rel saad suhelda k\xf5igiga. Tegemist on ikka v\xe4ga suure detsentraliseeritud s\xf5numiv\xf5rguga!"},
+goT(){return"Tere, tere \ud83d\udc4b See on FluffyChat. Sa v\xf5id sisse logida igasse koduserverisse, mis \xfchildub https://matrix.org serveriga. Ja seej\xe4rel saad suhelda k\xf5igiga. Tegemist on ikka v\xe4ga suure detsentraliseeritud s\xf5numiv\xf5rguga!"},
 gol(d){return"H\xe4gusus:"},
 gcg(d){return"L\xe4bipaistmatus:"},
 gl1(){return"M\xe4\xe4ra taustapildiks"},
@@ -563,8 +563,8 @@ gow(){return"V\xf5ta \xfchendust serveri andmeturbe eest vastutajaga"},
 goh(){return"Kasutajatugi"},
 goe(){return"Serveri teave:"},
 gbD(d){return"Nimi"},
-goQ(d){return"Versioon"},
-goR(){return"Veebisait"},
+goR(d){return"Versioon"},
+goS(){return"Veebisait"},
 gob(){return"Send uncompressed"},
 gom(){return"Bold text"},
 goE(){return"Italic text"},
@@ -572,10 +572,11 @@ gog(){return"Strikethrough"},
 goM(){return"Please fill out"},
 goC(){return"Invalid url"},
 goj(){return"Add link"},
+goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HL,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HL":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"pPluUnGzAc3MkbjuwCNkyPsPhUw=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"0Ma1lln9q/HLZpezyg0yr99K0kY=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

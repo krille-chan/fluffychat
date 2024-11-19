@@ -536,12 +536,12 @@ gop(){return"\uba54\uc778 \uacf5\uac1c \ub300\ud654 \uc8fc\uc18c \ubcc0\uacbd"},
 goa(){return"@room \uc54c\ub9bc \ubcf4\ub0b4\uae30"},
 gor(){return"\ub300\ud654\uc758 \uc124\uba85 \ubc14\uafb8\uae30"},
 gou(){return"\uc774 \ub300\ud654\uc5d0\uc11c \ud2b9\uc815 \uc791\uc5c5\uc5d0 \ud544\uc694\ud55c \ud30c\uc6cc \ub808\ubca8\uc744 \uc815\uc758\ud569\ub2c8\ub2e4. \ud30c\uc6cc \ub808\ubca8 0, 50, 100\uc740 \uc77c\ubc18\uc801\uc73c\ub85c \uc0ac\uc6a9\uc790, \uad00\ub9ac\uc790, \uad00\ub9ac\uc790\ub97c \ub098\ud0c0\ub0b4\uc9c0\ub9cc, \ubaa8\ub4e0 \ub4f1\uae09\uc774 \uac00\ub2a5\ud569\ub2c8\ub2e4."},
-oP(d){return"\ud83c\udf89 \uc0c8 "+d+" \uac00 \uc124\uce58\ub418\uc5c8\uc2b5\ub2c8\ub2e4!"},
+oQ(d){return"\ud83c\udf89 \uc0c8 "+d+" \uac00 \uc124\uce58\ub418\uc5c8\uc2b5\ub2c8\ub2e4!"},
 got(){return"\ubcc0\uacbd \uae30\ub85d"},
 go9(){return"\uc804\uc1a1 \ucd5c\uc18c\ub428"},
 goG(){return"Matrix-ID\ub85c \ub85c\uadf8\uc778"},
 goy(){return"Homeserver \ucc3e\uc544\ubcf4\uae30"},
-goT(){return"Homeserver(\uc774) \uac00 \ubb34\uc5c7\uc778\uac00\uc694?"},
+goU(){return"Homeserver(\uc774) \uac00 \ubb34\uc5c7\uc778\uac00\uc694?"},
 goB(){return"\ubaa8\ub4e0 \ub370\uc774\ud130\ub294 \uc774\uba54\uc77c \uc81c\uacf5\uc790\uc640 \ub9c8\ucc2c\uac00\uc9c0\ub85c Homeserver(\uc774) \uc5d0 \uc800\uc7a5\ub429\ub2c8\ub2e4. \ubaa8\ub4e0 \uc0ac\ub78c\uacfc \uc5ec\uc804\ud788 \uc18c\ud1b5\ud560 \uc218 \uc788\ub294 \ub3d9\uc548 \uc0ac\uc6a9\ud558\uace0 \uc2f6\uc740 Homeserver(\uc774) \ub97c \uc120\ud0dd\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4. https://matrix.org\uc5d0\uc11c \uc790\uc138\ud788 \uc54c\uc544\ubcf4\uc138\uc694."},
 goz(){return"\ud638\ud658\ub418\ub294 Homeserver(\uc774) \uac00 \uc544\ub2cc \uac83 \uac19\uc2b5\ub2c8\ub2e4. URL\uc774 \uc62c\ubc14\ub974\uac8c \uc785\ub825\ub410\ub098\uc694?"},
 gon(){return"\ud30c\uc77c \ud06c\uae30 \uacc4\uc0b0 \uc911..."},
@@ -552,7 +552,7 @@ of(d){return"\uc11c\ubc84 \ud55c\ub3c4\uc5d0 \ub3c4\ub2ec\ud588\uc2b5\ub2c8\ub2e
 goK(){return"\ub2f9\uc2e0\uc758 \uae30\uae30 \uc911 \ud558\ub098\uac00 \uc778\uc99d\ub418\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4"},
 goJ(){return"\ucc38\uace0: \ubaa8\ub4e0 \uae30\uae30\ub97c \ub300\ud654 \ubc31\uc5c5\uc5d0 \uc5f0\uacb0\ud558\uba74 \uc790\ub3d9\uc73c\ub85c \uc778\uc99d\ub429\ub2c8\ub2e4."},
 gox(){return"\uacc4\uc18d\ud558\uae30"},
-goS(){return"\uc548\ub155\ud558\uc138\uc694 \ud83d\udc4b \uc81c \uc774\ub984\uc740 FluffyChat\uc774\uc5d0\uc694. \ub2f9\uc2e0\uc740 Htpps://matrix.org\uc5d0 \ud638\ud658\ub418\ub294 \uc5b4\ub5a4 Homeserver\uc5d0\ub3c4 \uac00\uc785\ud560 \uc218 \uc788\uc5b4\uc694. \uadf8\ub9ac\uace0 \uc544\ubb34\ub098 \ub300\ud654\ud558\uc138\uc694! \uc800\ub294 \ud070 \ub300\ud654 \ub124\ud2b8\uc6cc\ud06c\ub78d\ub2c8\ub2e4! \ud83d\ude04"},
+goT(){return"\uc548\ub155\ud558\uc138\uc694 \ud83d\udc4b \uc81c \uc774\ub984\uc740 FluffyChat\uc774\uc5d0\uc694. \ub2f9\uc2e0\uc740 Htpps://matrix.org\uc5d0 \ud638\ud658\ub418\ub294 \uc5b4\ub5a4 Homeserver\uc5d0\ub3c4 \uac00\uc785\ud560 \uc218 \uc788\uc5b4\uc694. \uadf8\ub9ac\uace0 \uc544\ubb34\ub098 \ub300\ud654\ud558\uc138\uc694! \uc800\ub294 \ud070 \ub300\ud654 \ub124\ud2b8\uc6cc\ud06c\ub78d\ub2c8\ub2e4! \ud83d\ude04"},
 gol(d){return"\ube14\ub7ec:"},
 gcg(d){return"\ubd88\ud22c\uba85:"},
 gl1(){return"\ubc30\uacbd\ud654\uba74 \uc815\ud558\uae30"},
@@ -563,8 +563,8 @@ gow(){return"\uc11c\ubc84 \ubcf4\uc548\uad00 \uc5f0\ub77d\ud558\uae30"},
 goh(){return"\ud398\uc774\uc9c0 \ub3d5\uae30"},
 goe(){return"\uc11c\ubc84 \uc815\ubcf4:"},
 gbD(d){return"\uc774\ub984"},
-goQ(d){return"\ubc84\uc804"},
-goR(){return"\uc6f9\uc0ac\uc774\ud2b8"},
+goR(d){return"\ubc84\uc804"},
+goS(){return"\uc6f9\uc0ac\uc774\ud2b8"},
 gob(){return"Send uncompressed"},
 gom(){return"Bold text"},
 goE(){return"Italic text"},
@@ -572,10 +572,11 @@ gog(){return"Strikethrough"},
 goM(){return"Please fill out"},
 goC(){return"Invalid url"},
 goj(){return"Add link"},
+goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I2,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I2":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_273",e:"endPart",h:b})})($__dart_deferred_initializers__,"qsZNtt8Dy/DmWBnqHkwmOnSM+lQ=");
+a.eventLog.push({p:"main.dart.js_273",e:"endPart",h:b})})($__dart_deferred_initializers__,"+Qs+Zbjr/wXRcWS1WMTgeb2g0fo=");
 //# sourceMappingURL=main.dart.js_273.part.js.map

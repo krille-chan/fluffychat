@@ -536,12 +536,12 @@ gop(){return"Ana herkese a\xe7\u0131k sohbet adresini de\u011fi\u015ftir"},
 goa(){return"@oda bildirimleri g\xf6nder"},
 gor(){return"Sohbetin a\xe7\u0131klamas\u0131n\u0131 de\u011fi\u015ftir"},
 gou(){return"Bu sohbette belirli eylemler i\xe7in hangi g\xfc\xe7 d\xfczeyinin gerekli oldu\u011funu tan\u0131mlay\u0131n. 0, 50 ve 100 g\xfc\xe7 d\xfczeyleri genellikle kullan\u0131c\u0131lar\u0131, moderat\xf6rleri ve y\xf6neticileri temsil eder, ancak herhangi bir derecelendirme m\xfcmk\xfcnd\xfcr."},
-oP(d){return"\ud83c\udf89 G\xfcncelleme "+d+" kuruldu!"},
+oQ(d){return"\ud83c\udf89 G\xfcncelleme "+d+" kuruldu!"},
 got(){return"De\u011fi\u015fiklik g\xfcnl\xfc\u011f\xfc"},
 go9(){return"G\xf6nderme iptal edildi"},
 goG(){return"Matrix kimli\u011fi ile oturum a\xe7"},
 goy(){return"Ana sunucular\u0131 ke\u015ffet"},
-goT(){return"Ana sunucu nedir?"},
+goU(){return"Ana sunucu nedir?"},
 goB(){return"T\xfcm verileriniz t\u0131pk\u0131 bir e-posta sa\u011flay\u0131c\u0131s\u0131 gibi ana sunucuda saklan\u0131r. Hangi ana sunucuyu kullanmak istedi\u011finizi se\xe7ebilir ve herkesle ileti\u015fim kurmaya devam edebilirsiniz. https://matrix.org adresinden daha fazla bilgi edinin."},
 goz(){return"Uyumlu bir ana sunucu gibi g\xf6r\xfcnm\xfcyor. Yanl\u0131\u015f URL mi?"},
 gon(){return"Dosya boyutu hesaplan\u0131yor..."},
@@ -552,7 +552,7 @@ of(d){return"Sunucu s\u0131n\u0131r\u0131na ula\u015f\u0131ld\u0131! "+d+" saniy
 goK(){return"Ayg\u0131tlar\u0131n\u0131zdan biri do\u011frulanmad\u0131"},
 goJ(){return"Not: T\xfcm ayg\u0131tlar\u0131n\u0131z\u0131 sohbet yedeklemesine ba\u011flad\u0131\u011f\u0131n\u0131zda, otomatik olarak do\u011frulan\u0131rlar."},
 gox(){return"Continue"},
-goS(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goT(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 gol(d){return"Blur:"},
 gcg(d){return"Opacity:"},
 gl1(){return"Set wallpaper"},
@@ -563,8 +563,8 @@ gow(){return"Contact server security"},
 goh(){return"Support page"},
 goe(){return"Server information:"},
 gbD(d){return"Name"},
-goQ(d){return"Version"},
-goR(){return"Website"},
+goR(d){return"Version"},
+goS(){return"Website"},
 gob(){return"Send uncompressed"},
 gom(){return"Bold text"},
 goE(){return"Italic text"},
@@ -572,11 +572,12 @@ gog(){return"Strikethrough"},
 goM(){return"Please fill out"},
 goC(){return"Invalid url"},
 goj(){return"Add link"},
+goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Ii,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"Ii":{"aR":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_292",e:"endPart",h:b})})($__dart_deferred_initializers__,"WC7xoLpLGSMzh+dYJ/ynKXlKZc8=");
+a.eventLog.push({p:"main.dart.js_292",e:"endPart",h:b})})($__dart_deferred_initializers__,"gnXqYJcsSCILvRmnbVl5MW0mkss=");
 //# sourceMappingURL=main.dart.js_292.part.js.map

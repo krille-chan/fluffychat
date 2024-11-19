@@ -536,12 +536,12 @@ gop(){return"Cseveg\xe9s f\u0151, nyilv\xe1nos c\xedm\xe9nek v\xe1ltoztat\xe1sa"
 goa(){return"@room \xe9rtes\xedt\xe9s k\xfcld\xe9se"},
 gor(){return"Cseveg\xe9s le\xedr\xe1s\xe1nak v\xe1ltoztat\xe1sa"},
 gou(){return"Adja meg milyen er\u0151ss\xe9gi szint kell egyes cseveg\xe9si akci\xf3khoz. A 0, 50 \xe9s 100-as szintek \xe1ltal\xe1ban felhaszn\xe1l\xf3kat, moder\xe1torokat \xe9s rendszergazd\xe1kat jel\xf6lnek de b\xe1rmilyen szintez\xe9s lehets\xe9ges."},
-oP(d){return"\ud83c\udf89 "+d+" verzi\xf3j\xfa fejleszt\xe9s telep\xedtve!"},
+oQ(d){return"\ud83c\udf89 "+d+" verzi\xf3j\xfa fejleszt\xe9s telep\xedtve!"},
 got(){return"V\xe1ltoz\xe1sok"},
 go9(){return"Visszavon\xe1s k\xfcld\xe9se"},
 goG(){return"Jelentkezzen be Matrix-ID-vel"},
 goy(){return"Matrix-kiszolg\xe1l\xf3k felfedez\xe9se"},
-goT(){return"Mi az a Matrix-kiszolg\xe1l\xf3?"},
+goU(){return"Mi az a Matrix-kiszolg\xe1l\xf3?"},
 goB(){return"Az \xf6sszes adata a M\xe1trix-kiszolg\xe1l\xf3n t\xe1rol\xf3dik, pont mint egy e-mail kiszolg\xe1l\xf3n. Kiv\xe1laszthatja melyik Matrix-kiszolg\xe1l\xf3t akarja haszn\xe1lni, mik\xf6zben tud kommunik\xe1lni mindenkivel. Tudjon meg t\xf6bbet itt: https://matrix.org."},
 goz(){return"Nem t\u0171nik kompatibilisnak a M\xe1trix-kiszolg\xe1l\xf3val. Helytelen URL?"},
 gon(){return"Calculating file size..."},
@@ -552,7 +552,7 @@ of(d){return"Server limit reached! Waiting "+d+" seconds..."},
 goK(){return"One of your devices is not verified"},
 goJ(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gox(){return"Continue"},
-goS(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
+goT(){return"Hey Hey \ud83d\udc4b This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!"},
 gol(d){return"Blur:"},
 gcg(d){return"Opacity:"},
 gl1(){return"Set wallpaper"},
@@ -563,8 +563,8 @@ gow(){return"Contact server security"},
 goh(){return"Support page"},
 goe(){return"Server information:"},
 gbD(d){return"Name"},
-goQ(d){return"Version"},
-goR(){return"Website"},
+goR(d){return"Version"},
+goS(){return"Website"},
 gob(){return"Send uncompressed"},
 gom(){return"Bold text"},
 goE(){return"Italic text"},
@@ -572,10 +572,11 @@ gog(){return"Strikethrough"},
 goM(){return"Please fill out"},
 goC(){return"Invalid url"},
 goj(){return"Add link"},
+goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HW,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HW":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_259",e:"endPart",h:b})})($__dart_deferred_initializers__,"A4sjSlpFx8v4xx6EtmL7FMlzP3Q=");
+a.eventLog.push({p:"main.dart.js_259",e:"endPart",h:b})})($__dart_deferred_initializers__,"wGPMcIMCr0n1UyekrtzSTIEMeoc=");
 //# sourceMappingURL=main.dart.js_259.part.js.map

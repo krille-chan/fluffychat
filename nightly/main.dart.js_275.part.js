@@ -536,12 +536,12 @@ gop(){return"Main\u012bt t\u0113rz\u0113\u0161anas galveno publisko adresi"},
 goa(){return"S\u016bt\u012bt @istaba pazi\u0146ojumus"},
 gor(){return"Main\u012bt t\u0113rz\u0113\u0161anas aprakstu"},
 gou(){return"Noteikt, kur\u0161 sp\u0113ka l\u012bmenis ir nepiecie\u0161ams noteikt\u0101m darb\u012bb\u0101m \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101. Sp\u0113ka l\u012bme\u0146i 0, 50 un 100 parasti atbilst lietot\u0101jiem, moderatoriem un p\u0101rvald\u012bt\u0101jiem, bet ir iesp\u0113jams jebk\u0101ds iedal\u012bjums."},
-oP(d){return"\ud83c\udf89 Atjaunin\u0101jums "+d+" uzst\u0101d\u012bts."},
+oQ(d){return"\ud83c\udf89 Atjaunin\u0101jums "+d+" uzst\u0101d\u012bts."},
 got(){return"Izmai\u0146u \u017eurn\u0101ls"},
 go9(){return"S\u016bt\u012b\u0161ana atcelta"},
 goG(){return"Pieteikties ar Matrix-Id"},
 goy(){return"Atkl\u0101t m\u0101jasserverus"},
-goT(){return"Kas ir m\u0101jasserveris?"},
+goU(){return"Kas ir m\u0101jasserveris?"},
 goB(){return"Visi lietot\u0101ja dati tiek glab\u0101ti m\u0101jasserver\u012b, glu\u017ei k\u0101 ar e-pasta nodro\u0161in\u0101t\u0101ju. Ir iesp\u0113jams izv\u0113l\u0113ties, kuru m\u0101jasserveri izmantot, saglab\u0101jot iesp\u0113ju sazin\u0101ties ar ikvienu. Vair\u0101k var uzzin\u0101t https://matrix.org."},
 goz(){return"Neizskat\u0101s p\u0113c sader\u012bga m\u0101jasservera. Nepareizs URL?"},
 gon(){return"Apr\u0113\u0137ina datnes lielumu..."},
@@ -552,7 +552,7 @@ of(d){return"Sasniegts servera ierobe\u017eojums. Gaida "+d+" sekundes..."},
 goK(){return"Viena no ier\u012bc\u0113m nav apliecin\u0101ta"},
 goJ(){return"Piez\u012bme: kad visas ier\u012bces tiek savienotas ar t\u0113rz\u0113\u0161anas rezerves kopiju, t\u0101s tiek autom\u0101tiski apliecin\u0101tas."},
 gox(){return"Turpin\u0101t"},
-goS(){return"Sveicieni! \ud83d\udc4b \u0160is ir FluffyChat. Tu vari pieteikties jebkur\u0101 m\u0101jasserver\u012b, kas ir sader\u012bgs ar https://matrix.org. Tad vari t\u0113rz\u0113t ar ikvienu. Tas ir milz\u012bgs decentraliz\u0113t\u0101s sazi\u0146as t\u012bkls!"},
+goT(){return"Sveicieni! \ud83d\udc4b \u0160is ir FluffyChat. Tu vari pieteikties jebkur\u0101 m\u0101jasserver\u012b, kas ir sader\u012bgs ar https://matrix.org. Tad vari t\u0113rz\u0113t ar ikvienu. Tas ir milz\u012bgs decentraliz\u0113t\u0101s sazi\u0146as t\u012bkls!"},
 gol(d){return"Aizmiglojums:"},
 gcg(d){return"Necaurredzam\u012bba:"},
 gl1(){return"Iestat\u012bt ekr\u0101ntapeti"},
@@ -563,8 +563,8 @@ gow(){return"Sazin\u0101ties ar servera dro\u0161\u012bbas uztur\u0113t\u0101jie
 goh(){return"Atbalsta lapa"},
 goe(){return"Inform\u0101cija par serveri:"},
 gbD(d){return"Nosaukums"},
-goQ(d){return"Versija"},
-goR(){return"T\u012bmek\u013cvietne"},
+goR(d){return"Versija"},
+goS(){return"T\u012bmek\u013cvietne"},
 gob(){return"Send uncompressed"},
 gom(){return"Bold text"},
 goE(){return"Italic text"},
@@ -572,10 +572,11 @@ gog(){return"Strikethrough"},
 goM(){return"Please fill out"},
 goC(){return"Invalid url"},
 goj(){return"Add link"},
+goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I4,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"I4":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"GGU1kOvV2Qa4rMSwX6wqqErD2R4=");
+a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"zp2MOQtuffkMfl+14Ybee2WnG1o=");
 //# sourceMappingURL=main.dart.js_275.part.js.map

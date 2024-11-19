@@ -536,12 +536,12 @@ gop(){return"Aldatu txataren helbide publiko nagusia"},
 goa(){return"Bidali @gela jakinarazpena"},
 gor(){return"Aldatu txataren deskribapena"},
 gou(){return"Definitu zer botere-maila behar den txat honetako ekintza jakinetarako. 0, 50 eta 100 botere-mailek erabiltzaileak, moderatzaileak eta administratzaileak ordezkatzen dituzte, baina edozein graduazio posible da."},
-oP(d){return"\ud83c\udf89 "+d+" bertsioa instalatu da!"},
+oQ(d){return"\ud83c\udf89 "+d+" bertsioa instalatu da!"},
 got(){return"Aldaketak"},
 go9(){return"Bidalketa bertan behera utzi da"},
 goG(){return"Hasi saioa Matrix IDarekin"},
 goy(){return"Arakatu zerbitzariak"},
-goT(){return"Zer da zerbitzari bat?"},
+goU(){return"Zer da zerbitzari bat?"},
 goB(){return"Zerbitzariak datuak gordetzen ditu, ePosta hornitzaileek mezuak gordetzen dituzten bezala. Nahi duzun zerbitzaria aukeratu dezakezu eta, hala ere, besteetako edonorekin hitz egin. Ikasi gehiago https://matrix.org webgunean."},
 goz(){return"Ez dirudi zerbitzaria bateragarria denik. Zuzena da URLa?"},
 gon(){return"Fitxategiaren tamaina kalkulatzen\u2026"},
@@ -552,7 +552,7 @@ of(d){return"Zerbitzariaren muga gainditu da! Itxaron "+d+" segundo\u2026"},
 goK(){return"Zure gailuetako bat ez dago egiaztatuta"},
 goJ(){return"Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira."},
 gox(){return"Jarraitu"},
-goS(){return"Ieup \ud83d\udc4b Ongi etorri FluffyChat-era. https://matrix.org-rekin bateragarria den edozein zerbitzaritan hasi dezakezu saioa eta edonorekin txateatu. Mezularitza-sare deszentralizatu eraraldoia da!"},
+goT(){return"Ieup \ud83d\udc4b Ongi etorri FluffyChat-era. https://matrix.org-rekin bateragarria den edozein zerbitzaritan hasi dezakezu saioa eta edonorekin txateatu. Mezularitza-sare deszentralizatu eraraldoia da!"},
 gol(d){return"Lausotu:"},
 gcg(d){return"Opakutasuna:"},
 gl1(){return"Ezarri horma-irudia"},
@@ -563,8 +563,8 @@ gow(){return"Jakinarazi segurtasun arazo bat"},
 goh(){return"Laguntza orria"},
 goe(){return"Zerbitzariaren informazioa:"},
 gbD(d){return"Izena"},
-goQ(d){return"Bertsioa"},
-goR(){return"Webgunea"},
+goR(d){return"Bertsioa"},
+goS(){return"Webgunea"},
 gob(){return"Send uncompressed"},
 gom(){return"Bold text"},
 goE(){return"Italic text"},
@@ -572,11 +572,12 @@ gog(){return"Strikethrough"},
 goM(){return"Please fill out"},
 goC(){return"Invalid url"},
 goj(){return"Add link"},
+goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.HM,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HM":{"aR":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"J+WLQO0az4BQsZe/9EXrFUWOJFc=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"hb1YQaDLQ0K/mJ9eohnYEY4fL+Y=");
 //# sourceMappingURL=main.dart.js_239.part.js.map
