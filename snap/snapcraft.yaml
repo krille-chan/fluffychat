@@ -71,11 +71,9 @@ parts:
       - zenity-integration
 
   fluffychat:
-    plugin: flutter
-    source: .
-    build-packages:
-      - libjsoncpp-dev
-      - curl
+    plugin: dump
+    source: ./build/linux/*/release
+    source-type: local
     stage-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
