@@ -101,6 +101,11 @@ extension LocalizedExceptionExtension on Object {
     }
     if (this is String) return toString();
     if (this is UiaException) return toString();
+
+    if (exceptionContext == ExceptionContext.joinRoom) {
+      return L10n.of(context).unableToJoinChat;
+    }
+
     Logs().w('Something went wrong: ', this);
     return L10n.of(context).oopsSomethingWentWrong;
   }
@@ -110,4 +115,5 @@ enum ExceptionContext {
   changePassword,
   checkHomeserver,
   checkServerSupportInfo,
+  joinRoom,
 }
