@@ -156,15 +156,26 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
             style: BotStyle.text(context),
             textAlign: TextAlign.center,
           ),
-          if (notGoingToTranslate && widget.selection == null)
-            InlineTooltip(
-              instructionsEnum: InstructionsEnum.l1Translation,
-              onClose: () => setState(() {}),
+          if (notGoingToTranslate &&
+              widget.selection == null &&
+              !InstructionsEnum.l1Translation.toggledOff())
+            const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                InlineTooltip(
+                  instructionsEnum: InstructionsEnum.l1Translation,
+                ),
+              ],
             ),
-          if (widget.selection != null)
-            InlineTooltip(
-              instructionsEnum: InstructionsEnum.clickAgainToDeselect,
-              onClose: () => setState(() {}),
+          if (widget.selection != null &&
+              !InstructionsEnum.clickAgainToDeselect.toggledOff())
+            const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                InlineTooltip(
+                  instructionsEnum: InstructionsEnum.clickAgainToDeselect,
+                ),
+              ],
             ),
         ],
       ),

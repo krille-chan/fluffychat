@@ -10,13 +10,13 @@ import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
+import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../config/app_config.dart';
 import '../../controllers/it_feedback_controller.dart';
 import '../../models/it_response_model.dart';
 import '../../utils/overlay.dart';
@@ -31,19 +31,39 @@ class ITBar extends StatefulWidget {
   ITBarState createState() => ITBarState();
 }
 
-class ITBarState extends State<ITBar> {
+class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
   ITController get itController => widget.choreographer.itController;
   StreamSubscription? _choreoSub;
 
   bool showedClickInstruction = false;
 
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  bool wasOpen = false;
+
   @override
   void initState() {
+    super.initState();
+
     // Rebuild the widget each time there's an update from choreo.
     _choreoSub = widget.choreographer.stateListener.stream.listen((_) {
+      if (itController.willOpen != wasOpen) {
+        itController.willOpen ? _controller.forward() : _controller.reverse();
+      }
+      wasOpen = itController.willOpen;
       setState(() {});
     });
-    super.initState();
+
+    wasOpen = itController.willOpen;
+
+    _controller = AnimationController(
+      duration: itController.animationSpeed,
+      vsync: this,
+    );
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
+
+    // Start in the correct state
+    itController.willOpen ? _controller.forward() : _controller.reverse();
   }
 
   bool get showITInstructionsTooltip {
@@ -72,129 +92,165 @@ class ITBarState extends State<ITBar> {
     super.dispose();
   }
 
+  final double iconDimension = 36;
+  final double iconSize = 20;
+
   @override
   Widget build(BuildContext context) {
-    return AnimatedSize(
-      duration: itController.animationSpeed,
-      curve: Curves.fastOutSlowIn,
-      clipBehavior: Clip.none,
-      child: !itController.willOpen
-          ? const SizedBox()
-          : CompositedTransformTarget(
-              link: widget.choreographer.itBarLinkAndKey.link,
-              child: AnimatedOpacity(
-                duration: itController.animationSpeed,
-                opacity: itController.willOpen ? 1.0 : 0.0,
-                child: Container(
-                  key: widget.choreographer.itBarLinkAndKey.key,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).brightness == Brightness.light
-                        ? Colors.white
-                        : Colors.black,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(AppConfig.borderRadius),
-                      topRight: Radius.circular(AppConfig.borderRadius),
-                    ),
-                  ),
-                  width: double.infinity,
-                  padding: const EdgeInsets.fromLTRB(0, 3, 3, 3),
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      const Positioned(
-                        top: 60,
-                        child: PointsGainedAnimation(
-                          origin: AnalyticsUpdateOrigin.it,
-                        ),
-                      ),
-                      SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //   crossAxisAlignment: CrossAxisAlignment.start,
-                            //   children: [
-                            //     // Row(
-                            //     //   mainAxisAlignment: MainAxisAlignment.start,
-                            //     //   crossAxisAlignment: CrossAxisAlignment.start,
-                            //     //   children: [
-                            //     //     CounterDisplay(
-                            //     //       correct: controller.correctChoices,
-                            //     //       custom: controller.customChoices,
-                            //     //       incorrect: controller.incorrectChoices,
-                            //     //       yellow: controller.wildcardChoices,
-                            //     //     ),
-                            //     //     CompositedTransformTarget(
-                            //     //       link: choreographer.itBotLayerLinkAndKey.link,
-                            //     //       child: ITBotButton(
-                            //     //         key: choreographer.itBotLayerLinkAndKey.key,
-                            //     //         choreographer: choreographer,
-                            //     //       ),
-                            //     //     ),
-                            //     //   ],
-                            //     // ),
-                            //     ITCloseButton(choreographer: choreographer),
-                            //   ],
-                            // ),
-                            // const SizedBox(height: 40.0),
-                            OriginalText(controller: itController),
-                            const SizedBox(height: 7.0),
-                            if (showITInstructionsTooltip)
-                              InlineTooltip(
-                                instructionsEnum:
-                                    InstructionsEnum.clickBestOption,
-                                onClose: () => setState(() {}),
+    return SizeTransition(
+      sizeFactor: _animation,
+      axis: Axis.vertical,
+      axisAlignment: -1.0,
+      child: CompositedTransformTarget(
+        link: widget.choreographer.itBarLinkAndKey.link,
+        child: Container(
+          key: widget.choreographer.itBarLinkAndKey.key,
+          decoration: BoxDecoration(
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : Colors.black,
+          ),
+          padding: const EdgeInsets.fromLTRB(0, 3, 3, 3),
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if (!itController.isEditingSourceText &&
+                            itController.sourceText != null)
+                          SizedBox(width: iconDimension * 3),
+                        if (!itController.isEditingSourceText)
+                          Expanded(
+                            child: itController.sourceText != null
+                                ? Text(
+                                    itController.sourceText!,
+                                    textAlign: TextAlign.center,
+                                  )
+                                : const LinearProgressIndicator(),
+                          ),
+                        if (itController.isEditingSourceText)
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                left: 20,
+                                right: 10,
+                                top: 10,
                               ),
-                            if (showTranslationsChoicesTooltip)
-                              InlineTooltip(
-                                instructionsEnum:
-                                    InstructionsEnum.translationChoices,
-                                onClose: () => setState(() {}),
-                              ),
-                            IntrinsicHeight(
-                              child: Container(
-                                constraints:
-                                    const BoxConstraints(minHeight: 80),
-                                width: double.infinity,
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 4.0),
-                                child: Center(
-                                  child: itController
-                                          .choreographer.errorService.isError
-                                      ? ITError(
-                                          error: itController.choreographer
-                                              .errorService.error!,
-                                          controller: itController,
-                                        )
-                                      : itController.showChoiceFeedback
-                                          ? ChoiceFeedbackText(
-                                              controller: itController,
-                                            )
-                                          : itController.isTranslationDone
-                                              ? TranslationFeedback(
-                                                  controller: itController,
-                                                )
-                                              : ITChoices(
-                                                  controller: itController,
-                                                ),
+                              child: TextField(
+                                controller: TextEditingController(
+                                  text: itController.sourceText,
+                                ),
+                                autofocus: true,
+                                enableSuggestions: false,
+                                maxLines: null,
+                                textInputAction: TextInputAction.send,
+                                onSubmitted:
+                                    itController.onEditSourceTextSubmit,
+                                obscureText: false,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
                                 ),
                               ),
                             ),
-                          ],
+                          ),
+                        if (!itController.isEditingSourceText &&
+                            itController.sourceText != null)
+                          SizedBox(
+                            width: iconDimension,
+                            height: iconDimension,
+                            child: IconButton(
+                              iconSize: iconSize,
+                              color: Theme.of(context).colorScheme.primary,
+                              onPressed: () {
+                                if (itController.nextITStep != null) {
+                                  itController.setIsEditingSourceText(true);
+                                }
+                              },
+                              icon: const Icon(Icons.edit_outlined),
+                              // iconSize: 20,
+                            ),
+                          ),
+                        if (!itController.isEditingSourceText)
+                          SizedBox(
+                            width: iconDimension,
+                            height: iconDimension,
+                            child: IconButton(
+                              iconSize: iconSize,
+                              color: Theme.of(context).colorScheme.primary,
+                              icon: const Icon(Icons.settings_outlined),
+                              onPressed: () => showDialog(
+                                context: context,
+                                builder: (c) => const SettingsLearning(),
+                              ),
+                            ),
+                          ),
+                        SizedBox(
+                          width: iconDimension,
+                          height: iconDimension,
+                          child: IconButton(
+                            iconSize: iconSize,
+                            color: Theme.of(context).colorScheme.primary,
+                            icon: const Icon(Icons.close_outlined),
+                            onPressed: () {
+                              itController.isEditingSourceText
+                                  ? itController.setIsEditingSourceText(false)
+                                  : itController.closeIT();
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8.0),
+                    if (showITInstructionsTooltip)
+                      const InlineTooltip(
+                        instructionsEnum: InstructionsEnum.clickBestOption,
+                      ),
+                    if (showTranslationsChoicesTooltip)
+                      const InlineTooltip(
+                        instructionsEnum: InstructionsEnum.translationChoices,
+                      ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      constraints: const BoxConstraints(minHeight: 80),
+                      child: AnimatedSize(
+                        duration: itController.animationSpeed,
+                        child: Center(
+                          child: itController.choreographer.errorService.isError
+                              ? ITError(
+                                  error: itController
+                                      .choreographer.errorService.error!,
+                                  controller: itController,
+                                )
+                              : itController.showChoiceFeedback
+                                  ? ChoiceFeedbackText(
+                                      controller: itController,
+                                    )
+                                  : itController.isTranslationDone
+                                      ? TranslationFeedback(
+                                          controller: itController,
+                                        )
+                                      : ITChoices(controller: itController),
                         ),
                       ),
-                      Positioned(
-                        top: 0.0,
-                        right: 0.0,
-                        child:
-                            ITCloseButton(choreographer: widget.choreographer),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              // ),
-            ),
+              const Positioned(
+                top: 60,
+                child: PointsGainedAnimation(
+                  origin: AnalyticsUpdateOrigin.it,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -225,70 +281,6 @@ class ChoiceFeedbackText extends StatelessWidget {
     //     ),
     //   ],
     // );
-  }
-}
-
-class OriginalText extends StatelessWidget {
-  const OriginalText({
-    super.key,
-    required this.controller,
-  });
-
-  final ITController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(minHeight: 50),
-      padding: const EdgeInsets.only(left: 60.0, right: 40.0),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(AppConfig.borderRadius),
-          topRight: Radius.circular(AppConfig.borderRadius),
-        ),
-      ),
-      child: Row(
-        //PTODO - does this already update after reset or we need to setState?
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (!controller.isEditingSourceText)
-            controller.sourceText != null
-                ? Flexible(child: Text(controller.sourceText!))
-                : const LinearProgressIndicator(),
-          const SizedBox(width: 4),
-          if (controller.isEditingSourceText)
-            Expanded(
-              child: TextField(
-                controller: TextEditingController(text: controller.sourceText),
-                autofocus: true,
-                enableSuggestions: false,
-                maxLines: null,
-                textInputAction: TextInputAction.send,
-                onSubmitted: controller.onEditSourceTextSubmit,
-                obscureText: false,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-          if (!controller.isEditingSourceText && controller.sourceText != null)
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 500),
-              opacity: controller.nextITStep != null ? 0.7 : 0.0,
-              child: IconButton(
-                onPressed: () => {
-                  if (controller.nextITStep != null)
-                    {
-                      controller.setIsEditingSourceText(true),
-                    },
-                },
-                icon: const Icon(Icons.edit_outlined),
-                iconSize: 20,
-              ),
-            ),
-        ],
-      ),
-    );
   }
 }
 

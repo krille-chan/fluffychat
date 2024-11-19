@@ -42,6 +42,8 @@ class Choreographer {
   late ErrorService errorService;
 
   bool isFetching = false;
+  int _timesClicked = 0;
+
   Timer? debounceTimer;
   ChoreoRecord choreoRecord = ChoreoRecord.newRecord;
   // last checked by IGC or translation
@@ -447,6 +449,7 @@ class Choreographer {
   clear() {
     choreoMode = ChoreoMode.igc;
     _lastChecked = null;
+    _timesClicked = 0;
     isFetching = false;
     choreoRecord = ChoreoRecord.newRecord;
     itController.clear();
@@ -504,6 +507,18 @@ class Choreographer {
   void stopLoading() {
     isFetching = false;
     setState();
+  }
+
+  void incrementTimesClicked() {
+    if (assistanceState == AssistanceState.fetched) {
+      _timesClicked++;
+
+      // if user is doing IT, call closeIT here to
+      // ensure source text is replaced when needed
+      if (itController.isOpen && _timesClicked > 1) {
+        itController.closeIT();
+      }
+    }
   }
 
   get roomId => chatController.roomId;
@@ -602,7 +617,12 @@ class Choreographer {
 
   bool get canSendMessage {
     // if there's an error, let them send. we don't want to block them from sending in this case
-    if (errorService.isError || l2Lang == null || l1Lang == null) return true;
+    if (errorService.isError ||
+        l2Lang == null ||
+        l1Lang == null ||
+        _timesClicked > 1) {
+      return true;
+    }
 
     // if they're in IT mode, don't let them send
     if (itEnabled && isRunningIT) return false;

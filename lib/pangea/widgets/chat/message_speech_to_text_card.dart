@@ -187,9 +187,8 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
               ),
             ],
           ),
-          InlineTooltip(
+          const InlineTooltip(
             instructionsEnum: InstructionsEnum.speechToText,
-            onClose: () => setState(() => {}),
           ),
         ],
       ),

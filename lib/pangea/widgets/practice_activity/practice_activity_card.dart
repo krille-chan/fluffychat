@@ -320,14 +320,10 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     }
   }
 
-  void _closeTooltip() => setState(() {});
-
   @override
   Widget build(BuildContext context) {
     if (!fetchingActivity && currentActivity == null) {
-      return GamifiedTextWidget(
-        onCloseTooltip: _closeTooltip,
-      );
+      return const GamifiedTextWidget();
     }
 
     return Stack(

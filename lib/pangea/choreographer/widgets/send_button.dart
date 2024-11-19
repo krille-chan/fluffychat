@@ -40,26 +40,29 @@ class ChoreographerSendButtonState extends State<ChoreographerSendButton> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.controller.choreographer.isFetching &&
-            widget.controller.choreographer.isAutoIGCEnabled
-        ? Container(
-            height: 56,
-            width: 56,
-            padding: const EdgeInsets.all(13),
-            child: const CircularProgressIndicator(),
-          )
-        : Container(
-            height: 56,
-            alignment: Alignment.center,
-            child: IconButton(
-              icon: const Icon(Icons.send_outlined),
-              color: widget.controller.choreographer.assistanceState
-                  .stateColor(context),
-              onPressed: () {
-                widget.controller.choreographer.send(context);
-              },
-              tooltip: L10n.of(context)!.send,
-            ),
-          );
+    return
+        // widget.controller.choreographer.isFetching &&
+        //         widget.controller.choreographer.isAutoIGCEnabled
+        //     ? Container(
+        //         height: 56,
+        //         width: 56,
+        //         padding: const EdgeInsets.all(13),
+        //         child: const CircularProgressIndicator(),
+        //       )
+        //     :
+        Container(
+      height: 56,
+      alignment: Alignment.center,
+      child: IconButton(
+        icon: const Icon(Icons.send_outlined),
+        color:
+            widget.controller.choreographer.assistanceState.stateColor(context),
+        onPressed: () {
+          widget.controller.choreographer.incrementTimesClicked();
+          widget.controller.choreographer.send(context);
+        },
+        tooltip: L10n.of(context)!.send,
+      ),
+    );
   }
 }

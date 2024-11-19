@@ -67,25 +67,19 @@ class _StarAnimationWidgetState extends State<StarAnimationWidget>
 }
 
 class GamifiedTextWidget extends StatelessWidget {
-  final VoidCallback onCloseTooltip;
-
-  const GamifiedTextWidget({
-    required this.onCloseTooltip,
-    super.key,
-  });
+  const GamifiedTextWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: AppConfig.toolbarMinWidth,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+        padding: EdgeInsets.fromLTRB(16, 20, 16, 16),
         child: Column(
           children: [
-            const StarAnimationWidget(),
+            StarAnimationWidget(),
             InlineTooltip(
               instructionsEnum: InstructionsEnum.unlockedLanguageTools,
-              onClose: onCloseTooltip,
             ),
           ],
         ),

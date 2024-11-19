@@ -1,10 +1,12 @@
 import 'package:animations/animations.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/widgets/chat/pangea_reaction_picker.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -274,48 +276,54 @@ class ChatInputRow extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    height: height,
-                    width: height,
-                    alignment: Alignment.center,
-                    child:
-                        // #Pangea
-                        // KeyBoardShortcuts(
-                        //   keysToPress: {
-                        //     LogicalKeyboardKey.altLeft,
-                        //     LogicalKeyboardKey.keyE,
-                        //   },
-                        //   onKeysPressed: controller.emojiPickerAction,
-                        //   helpLabel: L10n.of(context)!.emojis,
-                        //   child:
-                        // Pangea#
-                        IconButton(
-                      tooltip: L10n.of(context)!.emojis,
-                      icon: PageTransitionSwitcher(
-                        transitionBuilder: (
-                          Widget child,
-                          Animation<double> primaryAnimation,
-                          Animation<double> secondaryAnimation,
-                        ) {
-                          return SharedAxisTransition(
-                            animation: primaryAnimation,
-                            secondaryAnimation: secondaryAnimation,
-                            transitionType: SharedAxisTransitionType.scaled,
-                            fillColor: Colors.transparent,
-                            child: child,
-                          );
-                        },
-                        child: Icon(
-                          controller.showEmojiPicker
-                              ? Icons.keyboard
-                              : Icons.add_reaction_outlined,
-                          key: ValueKey(controller.showEmojiPicker),
-                        ),
-                      ),
-                      onPressed: controller.emojiPickerAction,
-                    ),
-                  ),
                   // #Pangea
+                  kIsWeb
+                      ?
+                      // Pangea#
+                      Container(
+                          height: height,
+                          width: height,
+                          alignment: Alignment.center,
+                          child:
+                              // #Pangea
+                              // KeyBoardShortcuts(
+                              //   keysToPress: {
+                              //     LogicalKeyboardKey.altLeft,
+                              //     LogicalKeyboardKey.keyE,
+                              //   },
+                              //   onKeysPressed: controller.emojiPickerAction,
+                              //   helpLabel: L10n.of(context)!.emojis,
+                              //   child:
+                              // Pangea#
+                              IconButton(
+                            tooltip: L10n.of(context)!.emojis,
+                            icon: PageTransitionSwitcher(
+                              transitionBuilder: (
+                                Widget child,
+                                Animation<double> primaryAnimation,
+                                Animation<double> secondaryAnimation,
+                              ) {
+                                return SharedAxisTransition(
+                                  animation: primaryAnimation,
+                                  secondaryAnimation: secondaryAnimation,
+                                  transitionType:
+                                      SharedAxisTransitionType.scaled,
+                                  fillColor: Colors.transparent,
+                                  child: child,
+                                );
+                              },
+                              child: Icon(
+                                controller.showEmojiPicker
+                                    ? Icons.keyboard
+                                    : Icons.add_reaction_outlined,
+                                key: ValueKey(controller.showEmojiPicker),
+                              ),
+                            ),
+                            onPressed: controller.emojiPickerAction,
+                          ),
+                        )
+                      // #Pangea
+                      : const SizedBox(width: 10),
                   // if (Matrix.of(context).isMultiAccount &&
                   //     Matrix.of(context).hasComplexBundles &&
                   //     Matrix.of(context).currentBundle!.length > 1)
@@ -369,6 +377,11 @@ class ChatInputRow extends StatelessWidget {
                       ),
                     ),
                   ),
+                  // #Pangea
+                  StartIGCButton(
+                    controller: controller,
+                  ),
+                  // Pangea#
                   Container(
                     height: height,
                     width: height,
