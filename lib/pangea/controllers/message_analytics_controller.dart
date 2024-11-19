@@ -90,7 +90,9 @@ class MessageAnalyticsEntry {
       // get all the eligible activity types for the token
       // based on the context of the message
       final eligibleTypesBasedOnContext = token.eligibleActivityTypes
+          // we want to filter hidden word types from this part of the process
           .where((type) => type != ActivityTypeEnum.hiddenWordListening)
+          // there have to be at least 4 tokens in the message that can be heard for word focus listening
           .where(
             (type) =>
                 canDoWordFocusListening ||
