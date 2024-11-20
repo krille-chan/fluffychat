@@ -2883,5 +2883,7 @@
   "addLink": "إضافة رابط",
   "@addLink": {},
   "pleaseFillOut": "من فضلك قم بتعبئته",
-  "@pleaseFillOut": {}
+  "@pleaseFillOut": {},
+  "unableToJoinChat": "يتعذر الانضمام إلى الدردشة. ربما يكون الطرف الآخر قد أغلق المحادثة بالفعل.",
+  "@unableToJoinChat": {}
 }
