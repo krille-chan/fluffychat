@@ -298,12 +298,8 @@ class MessageContent extends StatelessWidget {
                 event.numberEmotes <= 10;
 
             // #Pangea
-            final messageTextStyle = TextStyle(
-              color: textColor,
-              fontSize: bigEmotes ? fontSize * 3 : fontSize,
-              decoration: event.redacted ? TextDecoration.lineThrough : null,
-              height: 1.3,
-            );
+            final messageTextStyle =
+                AppConfig.messageTextStyle(event, textColor);
 
             if (immersionMode && pangeaMessageEvent != null) {
               return Flexible(
@@ -349,15 +345,15 @@ class MessageContent extends StatelessWidget {
                   MatrixLocals(L10n.of(context)!),
                   hideReply: true,
                 ),
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                  decoration:
-                      event.redacted ? TextDecoration.lineThrough : null,
-                  // #Pangea
-                  height: 1.3,
-                  // Pangea#
-                ),
+                // #Pangea
+                // style: TextStyle(
+                //   color: textColor,
+                //   fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                //   decoration:
+                //       event.redacted ? TextDecoration.lineThrough : null,
+                // ),
+                style: messageTextStyle,
+                // Pangea#
                 options: const LinkifyOptions(humanize: false),
                 linkStyle: TextStyle(
                   color: textColor.withAlpha(150),

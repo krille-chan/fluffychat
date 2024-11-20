@@ -4,7 +4,6 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
-import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
@@ -145,39 +144,44 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
       return const ToolbarContentLoadingIndicator();
     }
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            widget.selection != null ? selectionTranslation! : repEvent!.text,
-            style: BotStyle.text(context),
-            textAlign: TextAlign.center,
-          ),
-          if (notGoingToTranslate &&
-              widget.selection == null &&
-              !InstructionsEnum.l1Translation.toggledOff())
-            const Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                InlineTooltip(
-                  instructionsEnum: InstructionsEnum.l1Translation,
-                ),
-              ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              widget.selection != null ? selectionTranslation! : repEvent!.text,
+              style: AppConfig.messageTextStyle(
+                widget.messageEvent.event,
+                Theme.of(context).colorScheme.primary,
+              ),
+              textAlign: TextAlign.center,
             ),
-          if (widget.selection != null &&
-              !InstructionsEnum.clickAgainToDeselect.toggledOff())
-            const Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                InlineTooltip(
-                  instructionsEnum: InstructionsEnum.clickAgainToDeselect,
-                ),
-              ],
-            ),
-        ],
+            if (notGoingToTranslate &&
+                widget.selection == null &&
+                !InstructionsEnum.l1Translation.toggledOff())
+              const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  InlineTooltip(
+                    instructionsEnum: InstructionsEnum.l1Translation,
+                  ),
+                ],
+              ),
+            if (widget.selection != null &&
+                !InstructionsEnum.clickAgainToDeselect.toggledOff())
+              const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  InlineTooltip(
+                    instructionsEnum: InstructionsEnum.clickAgainToDeselect,
+                  ),
+                ],
+              ),
+          ],
+        ),
       ),
     );
   }

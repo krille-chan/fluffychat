@@ -375,7 +375,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     final currentBottomOffset = _screenHeight! -
         _messageOffset!.dy -
         _messageHeight -
-        (_mediaQuery?.padding.bottom ?? 0) -
         _belowMessageHeight;
 
     final bool hasHeaderOverflow =
@@ -496,8 +495,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   // height of the reply/forward bar + the reaction picker + contextual padding
   double get _footerHeight {
-    return 56 + 16 + (FluffyThemes.isColumnMode(context) ? 16.0 : 8.0);
-    // (_mediaQuery?.padding.bottom ?? 0);
+    return 56 +
+        16 +
+        (FluffyThemes.isColumnMode(context) ? 16.0 : 8.0) +
+        (_mediaQuery?.padding.bottom ?? 0);
   }
 
   MediaQueryData? get _mediaQuery {
@@ -627,7 +628,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                 bottom: _screenHeight! -
                     _messageOffset!.dy -
                     _messageHeight -
-                    (_mediaQuery?.padding.bottom ?? 0) -
                     _belowMessageHeight,
                 child: overlayMessage,
               )
@@ -643,41 +643,45 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             },
           );
 
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: horizontalPadding,
-          right: horizontalPadding,
-        ),
-        child: Stack(
-          children: [
-            positionedOverlayMessage,
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        OverlayFooter(controller: widget.chatController),
-                      ],
-                    ),
+    return Padding(
+      padding: EdgeInsets.only(
+        left: horizontalPadding,
+        right: horizontalPadding,
+      ),
+      child: Stack(
+        children: [
+          positionedOverlayMessage,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      OverlayFooter(controller: widget.chatController),
+                      SizedBox(height: _mediaQuery?.padding.bottom ?? 0),
+                    ],
                   ),
-                  if (showDetails)
-                    const SizedBox(
-                      width: FluffyThemes.columnWidth,
-                    ),
-                ],
-              ),
+                ),
+                if (showDetails)
+                  const SizedBox(
+                    width: FluffyThemes.columnWidth,
+                  ),
+              ],
             ),
-            Material(
-              type: MaterialType.transparency,
-              child: OverlayHeader(controller: widget.chatController),
+          ),
+          Material(
+            type: MaterialType.transparency,
+            child: Column(
+              children: [
+                SizedBox(height: _mediaQuery?.padding.top ?? 0),
+                OverlayHeader(controller: widget.chatController),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

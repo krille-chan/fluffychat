@@ -20,6 +20,7 @@ class BotStyle {
         fontStyle: italics ? FontStyle.italic : null,
         color: setColor ? Theme.of(context).colorScheme.primary : null,
         inherit: true,
+        height: 1.3,
       );
 
       return existingStyle?.merge(botStyle) ?? botStyle;

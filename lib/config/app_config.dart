@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:fluffychat/pangea/config/environment.dart';
+import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
@@ -26,7 +25,22 @@ abstract class AppConfig {
   static const double toolbarMinHeight = 175.0;
   static const double toolbarMinWidth = 350.0;
   static const double toolbarButtonsHeight = 50.0;
-  // #Pangea
+  static TextStyle messageTextStyle(
+    Event event,
+    Color textColor,
+  ) {
+    final fontSize = messageFontSize * fontSizeFactor;
+    final bigEmotes =
+        event.onlyEmotes && event.numberEmotes > 0 && event.numberEmotes <= 10;
+
+    return TextStyle(
+      color: textColor,
+      fontSize: bigEmotes ? fontSize * 3 : fontSize,
+      decoration: event.redacted ? TextDecoration.lineThrough : null,
+      height: 1.3,
+    );
+  }
+
   // static const Color primaryColor = Color(0xFF5625BA);
   // static const Color primaryColorLight = Color(0xFFCCBDEA);
   static const Color primaryColor = Color(0xFF8560E0);

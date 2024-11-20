@@ -7,7 +7,6 @@ import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
-import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
@@ -16,13 +15,14 @@ import 'package:fluffychat/pangea/widgets/practice_activity/word_audio_button.da
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 /// The multiple choice activity view
 class MultipleChoiceActivity extends StatefulWidget {
   final PracticeActivityCardState practiceCardController;
   final PracticeActivityModel currentActivity;
   final TtsController tts;
-  final String eventID;
+  final Event event;
   final VoidCallback? onError;
 
   const MultipleChoiceActivity({
@@ -30,7 +30,7 @@ class MultipleChoiceActivity extends StatefulWidget {
     required this.practiceCardController,
     required this.currentActivity,
     required this.tts,
-    required this.eventID,
+    required this.event,
     this.onError,
   });
 
@@ -126,7 +126,10 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       children: [
         Text(
           practiceActivity.content.question,
-          style: BotStyle.text(context),
+          style: AppConfig.messageTextStyle(
+            widget.event,
+            Theme.of(context).colorScheme.primary,
+          ),
         ),
         const SizedBox(height: 8),
         if (practiceActivity.activityType ==
@@ -134,7 +137,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           WordAudioButton(
             text: practiceActivity.content.answer,
             ttsController: widget.tts,
-            eventID: widget.eventID,
+            eventID: widget.event.eventId,
           ),
         if (practiceActivity.activityType ==
             ActivityTypeEnum.hiddenWordListening)

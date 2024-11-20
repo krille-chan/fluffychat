@@ -115,7 +115,6 @@ class OverlayMessage extends StatelessWidget {
                   vertical: 8,
                 ),
           width: messageWidth,
-          height: messageHeight,
           child: MessageContent(
             pangeaMessageEvent.event,
             textColor: ownMessage

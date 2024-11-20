@@ -314,7 +314,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
           practiceCardController: this,
           currentActivity: currentActivity!,
           tts: widget.ttsController,
-          eventID: widget.pangeaMessageEvent.eventId,
+          event: widget.pangeaMessageEvent.event,
           onError: _onError,
         );
     }

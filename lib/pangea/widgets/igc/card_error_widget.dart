@@ -23,7 +23,8 @@ class CardErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ErrorCopy errorCopy = ErrorCopy(context, error);
 
-    return ConstrainedBox(
+    return Container(
+      padding: const EdgeInsets.all(8),
       constraints: maxWidth != null
           ? BoxConstraints(maxWidth: maxWidth!)
           : const BoxConstraints(),
