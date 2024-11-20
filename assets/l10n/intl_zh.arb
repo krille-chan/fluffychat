@@ -2883,5 +2883,7 @@
   "boldText": "文本加粗",
   "@boldText": {},
   "invalidUrl": "无效 url",
-  "@invalidUrl": {}
+  "@invalidUrl": {},
+  "unableToJoinChat": "无法加入聊天。可能其他方面已经关闭了对话。",
+  "@unableToJoinChat": {}
 }
