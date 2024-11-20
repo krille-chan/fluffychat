@@ -3,10 +3,6 @@ title: FluffyChat
 base: core24
 version: git
 license: AGPL-3.0
-website: https://fluffychat.im
-source-code: https://github.com/krille-chan/fluffychat
-issues: https://github.com/krille-chan/fluffychat/issues
-donation: https://ko-fi.com/krille
 summary: The cutest messenger in the Matrix network
 description: |
   FluffyChat is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
@@ -71,14 +67,20 @@ parts:
       - zenity-integration
 
   fluffychat:
-    plugin: dump
-    source: ./build/linux/release
-    source-type: local
+    plugin: flutter
+    source: .
+    override-build: |
+      # Workaround for Flutter build error:
+      rm -rf build
+      craftctl default
+    build-packages:
+      - libjsoncpp-dev
+      - curl
     stage-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
       - libssl-dev
-      - libwebkit2gtk-4.1-dev
+      #- libwebkit2gtk-4.1-dev
 
 slots:
   dbus-svc:
