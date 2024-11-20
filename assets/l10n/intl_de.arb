@@ -2849,5 +2849,38 @@
   "manageAccount": "Konto verwalten",
   "@manageAccount": {},
   "continueText": "Fortfahren",
-  "@continueText": {}
+  "@continueText": {},
+  "noContactInformationProvided": "Der Server stellt keine gültigen Kontaktinformationen bereit",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "Serveradministrator kontaktieren",
+  "@contactServerAdmin": {},
+  "name": "Name",
+  "@name": {},
+  "version": "Version",
+  "@version": {},
+  "website": "Website",
+  "@website": {},
+  "aboutHomeserver": "Über {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "sendUncompressed": "Unkomprimiert senden",
+  "@sendUncompressed": {},
+  "boldText": "Fetter Text",
+  "@boldText": {},
+  "invalidUrl": "Ungültige URL",
+  "@invalidUrl": {},
+  "addLink": "Link hinzufügen",
+  "@addLink": {},
+  "unableToJoinChat": "Chat kann nicht beigetreten werden. Möglicherweise hat die Gegenseite das Gespräch bereits beendet.",
+  "@unableToJoinChat": {},
+  "italicText": "Kursiver Text",
+  "@italicText": {},
+  "strikeThrough": "Durchgestrichen",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Bitte ausfüllen",
+  "@pleaseFillOut": {}
 }
