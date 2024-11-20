@@ -31,12 +31,20 @@ class ConstructIdentifier {
       }
     }
 
+    final type = ConstructTypeEnum.values.firstWhereOrNull(
+      (e) => e.string == json['type'],
+    );
+
+    if (type == null) {
+      Sentry.addBreadcrumb(Breadcrumb(message: "type is: ${json['type']}"));
+      Sentry.addBreadcrumb(Breadcrumb.fromJson(json));
+      throw Exception("Matching construct type not found");
+    }
+
     try {
       return ConstructIdentifier(
         lemma: json['lemma'] as String,
-        type: ConstructTypeEnum.values.firstWhere(
-          (e) => e.string == json['type'],
-        ),
+        type: type,
         category: category ?? "",
       );
     } catch (e, s) {
@@ -138,7 +146,7 @@ class PracticeActivityRequest {
 
   factory PracticeActivityRequest.fromJson(Map<String, dynamic> json) {
     return PracticeActivityRequest(
-      mode: PracticeActivityMode.values.firstWhere(
+      mode: PracticeActivityMode.values.firstWhereOrNull(
         (e) => e.value == json['mode'],
       ),
       targetConstructs: (json['target_constructs'] as List?)
@@ -148,7 +156,7 @@ class PracticeActivityRequest {
           .map((e) => CandidateMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
       userIds: (json['user_ids'] as List?)?.map((e) => e as String).toList(),
-      activityType: ActivityTypeEnum.values.firstWhere(
+      activityType: ActivityTypeEnum.values.firstWhereOrNull(
         (e) => e.toString().split('.').last == json['activity_type'],
       ),
       numActivities: json['num_activities'] as int,

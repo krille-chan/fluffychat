@@ -881,7 +881,11 @@ class ChatController extends State<ChatPageWithRoom>
           'waveform': result.waveform,
         },
       },
-    ).catchError((e) {
+      // #Pangea
+      // ).catchError((e) {
+    ).catchError((e, s) {
+      ErrorHandler.logError(e: e, s: s);
+      // Pangea#
       scaffoldMessenger.showSnackBar(
         SnackBar(
           content: Text(
@@ -891,9 +895,12 @@ class ChatController extends State<ChatPageWithRoom>
       );
       return null;
     });
-    setState(() {
-      replyEvent = null;
-    });
+    // #Pangea
+    // setState(() {
+    //   replyEvent = null;
+    // });
+    if (mounted) setState(() => replyEvent = null);
+    // Pangea#
   }
 
   void hideEmojiPicker() {
