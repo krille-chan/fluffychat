@@ -567,14 +567,14 @@ goe(){return"\u670d\u52a1\u5668\u4fe1\u606f\uff1a"},
 gbD(d){return"\u540d\u79f0"},
 goR(d){return"\u7248\u672c"},
 goS(){return"\u7f51\u7ad9"},
-gob(){return"Send uncompressed"},
-gom(){return"Bold text"},
-goE(){return"Italic text"},
-gog(){return"Strikethrough"},
-goM(){return"Please fill out"},
-goC(){return"Invalid url"},
-goj(){return"Add link"},
-goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
+gob(){return"\u65e0\u538b\u7f29\u53d1\u9001"},
+gom(){return"\u6587\u672c\u52a0\u7c97"},
+goE(){return"\u6587\u4ef6\u503e\u659c"},
+gog(){return"\u5220\u9664\u7ebf"},
+goM(){return"\u8bf7\u586b\u5199"},
+goC(){return"\u65e0\u6548 url"},
+goj(){return"\u6dfb\u52a0\u94fe\u63a5"},
+goP(){return"\u65e0\u6cd5\u52a0\u5165\u804a\u5929\u3002\u53ef\u80fd\u5176\u4ed6\u65b9\u9762\u5df2\u7ecf\u5173\u95ed\u4e86\u5bf9\u8bdd\u3002"},
 C(d,e){return this.gbp(this).$1(e)}}
 A.Im.prototype={
 gnZ(){return"false"},
@@ -1101,5 +1101,5 @@ y(A.CI,C.aR)
 y(A.Im,A.CI)})()
 B.eo(b.typeUniverse,JSON.parse('{"CI":{"aR":[]},"Im":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"TJbp3crQF/1hUEcVTx3pNKiAc9U=");
+a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"iD5CoRliICCHb1VZVQQHfv4e0BQ=");
 //# sourceMappingURL=main.dart.js_1.part.js.map

@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_207",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cVQ(){return new B.HD(A.dK("bn"))},
-HD:function HD(d){this.a=d}}
+cVR(){return new B.HE(A.dK("bo"))},
+HE:function HE(d){this.a=d}}
 A=c[0]
 C=c[51]
-B=a.updateHolder(c[7],B)
-B.HD.prototype={
+B=a.updateHolder(c[8],B)
+B.HE.prototype={
 gnZ(){return"false"},
 gko(){return"Repeat password"},
 gmu(){return"Not an image file."},
@@ -17,11 +17,11 @@ gm4(){return"Import Emojis"},
 gm5(){return"Import from .zip file"},
 glP(){return"Export Emote pack as .zip"},
 gmS(d){return"Replace"},
-gf7(){return"\u09b8\u09ae\u09cd\u09aa\u09b0\u09cd\u0995\u09c7"},
+gf7(){return"About"},
 nX(d){return"About "+d},
-gf8(d){return"\u09b8\u09cd\u09ac\u09c0\u0995\u09be\u09b0 \u0995\u09b0\u09bf"},
-hG(d){return d+" \u0986\u09ae\u09a8\u09cd\u09a4\u09cd\u09b0\u09a3 \u0997\u09cd\u09b0\u09b9\u09a3 \u0995\u09b0\u09c7\u099b\u09c7"},
-ghI(){return"\u0985\u09cd\u09af\u09be\u0995\u09be\u0989\u09a8\u09cd\u099f"},
+gf8(d){return"Accept"},
+hG(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
+ghI(){return"Account"},
 hJ(d){return"\ud83d\udd10 "+d+" activated end to end encryption"},
 ghK(){return"Add email"},
 gly(){return"Please confirm your Matrix ID in order to delete your account."},
@@ -575,8 +575,8 @@ goj(){return"Add link"},
 goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HD,C.aR)})()
-A.eo(b.typeUniverse,JSON.parse('{"HD":{"aR":[]}}'))};
+y(B.HE,C.aR)})()
+A.eo(b.typeUniverse,JSON.parse('{"HE":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_207",e:"endPart",h:b})})($__dart_deferred_initializers__,"XeW6mHi7eSO/WepkoWmetIblajA=");
+a.eventLog.push({p:"main.dart.js_207",e:"endPart",h:b})})($__dart_deferred_initializers__,"arKrLdMEDYrhiTO116EDk/0wQzI=");
 //# sourceMappingURL=main.dart.js_207.part.js.map
