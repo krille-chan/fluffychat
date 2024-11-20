@@ -72,7 +72,7 @@ parts:
 
   fluffychat:
     plugin: dump
-    source: ./build/linux/*/release
+    source: ./build/linux/release
     source-type: local
     stage-packages:
       - libsecret-1-dev

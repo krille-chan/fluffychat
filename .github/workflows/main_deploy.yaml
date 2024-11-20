@@ -97,6 +97,7 @@ jobs:
           ./flutter/bin/flutter doctor
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }} --release
+      - run: mv ./build/linux/${{ matrix.arch }}/release ./build/linux/
       - uses: snapcore/action-build@v1
         id: build
       - uses: snapcore/action-publish@v1
