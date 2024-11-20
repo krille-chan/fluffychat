@@ -114,7 +114,7 @@ class OverlayUtil {
 
         MediaQuery.of(context).size.width - (horizontalMidpoint + halfMaxWidth);
         if (hasLeftOverflow) {
-          xOffset = (transformTargetOffset.dx - halfMaxWidth) * -1;
+          xOffset = (horizontalMidpoint - halfMaxWidth) * -1;
         } else if (hasRightOverflow) {
           xOffset = MediaQuery.of(context).size.width -
               (horizontalMidpoint + halfMaxWidth);

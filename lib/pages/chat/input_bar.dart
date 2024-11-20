@@ -478,6 +478,7 @@ class InputBar extends StatelessWidget {
             enableSuggestions: false,
             readOnly:
                 controller != null && controller!.choreographer.isRunningIT,
+            autocorrect: false,
             // Pangea#
             controller: controller,
             focusNode: focusNode,
