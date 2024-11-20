@@ -132,7 +132,7 @@ class LearningProgressIndicatorsState
               ),
               const SizedBox(height: 6),
               SizedBox(
-                height: 22,
+                height: 26,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
