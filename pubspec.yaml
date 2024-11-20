@@ -49,7 +49,7 @@ dependencies:
   flutter_shortcuts:
     git: https://github.com/krille-chan/flutter_shortcuts.git
   flutter_typeahead: ^5.2.0
-  flutter_web_auth_2: ^4.0.1
+  flutter_web_auth_2: ^3.1.1
   flutter_webrtc: ^0.11.7
   geolocator: ^13.0.1
   go_router: ^14.3.0

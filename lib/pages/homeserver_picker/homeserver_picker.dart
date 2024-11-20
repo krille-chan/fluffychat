@@ -169,7 +169,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     final result = await FlutterWebAuth2.authenticate(
       url: url.toString(),
       callbackUrlScheme: urlScheme,
-      options: FlutterWebAuth2Options(useWebview: !isDefaultPlatform),
+      options: const FlutterWebAuth2Options(),
     );
     final token = Uri.parse(result).queryParameters['loginToken'];
     if (token?.isEmpty ?? false) return;
