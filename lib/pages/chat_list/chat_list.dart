@@ -748,15 +748,25 @@ class ChatListController extends State<ChatList>
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
+                // #Pangea
+                // room.pushRuleState == PushRuleState.notify
+                //     ? Icons.notifications_off_outlined
+                //     : Icons.notifications_off,
                 room.pushRuleState == PushRuleState.notify
-                    ? Icons.notifications_off_outlined
-                    : Icons.notifications_off,
+                    ? Icons.notifications_on_outlined
+                    : Icons.notifications_off_outlined,
+                // Pangea#
               ),
               const SizedBox(width: 12),
               Text(
+                // #Pangea
+                // room.pushRuleState == PushRuleState.notify
+                //     ? L10n.of(context)!.muteChat
+                //     : L10n.of(context)!.unmuteChat,
                 room.pushRuleState == PushRuleState.notify
-                    ? L10n.of(context)!.muteChat
-                    : L10n.of(context)!.unmuteChat,
+                    ? L10n.of(context)!.notificationsOn
+                    : L10n.of(context)!.notificationsOff,
+                // Pangea#
               ),
             ],
           ),

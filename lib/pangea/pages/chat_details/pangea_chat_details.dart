@@ -350,7 +350,9 @@ class PangeaChatDetailsView extends StatelessWidget {
                         if (isGroupChat)
                           ListTile(
                             title: Text(
-                              L10n.of(context)!.muteChat,
+                              room.pushRuleState == PushRuleState.notify
+                                  ? L10n.of(context)!.notificationsOn
+                                  : L10n.of(context)!.notificationsOff,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
@@ -362,8 +364,8 @@ class PangeaChatDetailsView extends StatelessWidget {
                               foregroundColor: iconColor,
                               child: Icon(
                                 room.pushRuleState == PushRuleState.notify
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
+                                    ? Icons.notifications_on_outlined
+                                    : Icons.notifications_off_outlined,
                               ),
                             ),
                             onTap: controller.toggleMute,

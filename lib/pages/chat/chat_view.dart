@@ -123,7 +123,7 @@ class ChatView extends StatelessWidget {
           },
         ),
         IconButton(
-          icon: const Icon(Icons.info_outline),
+          icon: const Icon(Icons.settings_outlined),
           tooltip: L10n.of(context)!.chatDetails,
           onPressed: () {
             if (GoRouterState.of(context).uri.path.endsWith('/details')) {

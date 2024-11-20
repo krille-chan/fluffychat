@@ -162,7 +162,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 value: ChatPopupMenuActions.details,
                 child: Row(
                   children: [
-                    const Icon(Icons.info_outline_rounded),
+                    const Icon(Icons.settings_outlined),
                     const SizedBox(width: 12),
                     Text(L10n.of(context)!.chatDetails),
                   ],
