@@ -2867,5 +2867,7 @@
   "website": "Páxina web",
   "@website": {},
   "continueText": "Continuar",
-  "@continueText": {}
+  "@continueText": {},
+  "compressBeforeSending": "Comprimir antes de enviar",
+  "@compressBeforeSending": {}
 }

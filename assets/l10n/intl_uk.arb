@@ -2867,5 +2867,7 @@
   "version": "Версія",
   "@version": {},
   "website": "Вебсайт",
-  "@website": {}
+  "@website": {},
+  "compressBeforeSending": "Стиснути перед відправленням",
+  "@compressBeforeSending": {}
 }

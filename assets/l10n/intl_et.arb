@@ -2867,5 +2867,23 @@
     "placeholders": {
       "homeserver": {}
     }
-  }
+  },
+  "compressBeforeSending": "Paki enne saatmist kokku",
+  "@compressBeforeSending": {},
+  "pleaseFillOut": "Palun täida",
+  "@pleaseFillOut": {},
+  "invalidUrl": "Vigane võrguaadress",
+  "@invalidUrl": {},
+  "addLink": "Lisa link",
+  "@addLink": {},
+  "strikeThrough": "Läbikriipsutatud kiri",
+  "@strikeThrough": {},
+  "sendUncompressed": "Saada pakkimata kujul",
+  "@sendUncompressed": {},
+  "boldText": "Paks kiri",
+  "@boldText": {},
+  "italicText": "Kaldkiri",
+  "@italicText": {},
+  "unableToJoinChat": "Vestlusega liitumine ei õnnestu. Võib-olla on teine osapool juba vestluse sulgenud.",
+  "@unableToJoinChat": {}
 }

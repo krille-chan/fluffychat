@@ -2867,5 +2867,23 @@
     "placeholders": {
       "homeserver": {}
     }
-  }
+  },
+  "compressBeforeSending": "ضغط قبل الإرسال",
+  "@compressBeforeSending": {},
+  "sendUncompressed": "إرسال غير مضغوط",
+  "@sendUncompressed": {},
+  "boldText": "خط غامق",
+  "@boldText": {},
+  "italicText": "خط مائل",
+  "@italicText": {},
+  "strikeThrough": "يتوسطه خط",
+  "@strikeThrough": {},
+  "invalidUrl": "رابط غير صحيح",
+  "@invalidUrl": {},
+  "addLink": "إضافة رابط",
+  "@addLink": {},
+  "pleaseFillOut": "من فضلك قم بتعبئته",
+  "@pleaseFillOut": {},
+  "unableToJoinChat": "يتعذر الانضمام إلى الدردشة. ربما يكون الطرف الآخر قد أغلق المحادثة بالفعل.",
+  "@unableToJoinChat": {}
 }
