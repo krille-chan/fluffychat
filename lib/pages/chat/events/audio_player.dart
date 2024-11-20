@@ -323,7 +323,12 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     if (kIsWeb) return;
     final temp = await getTemporaryDirectory();
     final tempDir = temp;
-    final file = File('${tempDir.path}/${widget.matrixFile!.name}');
+    String filename = widget.matrixFile!.name;
+    if (filename.length > 100) {
+      filename = filename.substring(filename.length - 100);
+    }
+    final file = File('${tempDir.path}/$filename');
+
     await file.writeAsBytes(widget.matrixFile!.bytes);
     audioFile = file;
   }
@@ -337,11 +342,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     if (widget.matrixFile != null) {
       _downloadMatrixFile().then((_) {
         setState(() => status = AudioPlayerStatus.downloaded);
-        if (widget.autoplay) {
-          status == AudioPlayerStatus.downloaded
-              ? _playAction()
-              : _downloadAction();
-        }
+        if (widget.autoplay) _playAction();
       });
     } else if (widget.autoplay) {
       status == AudioPlayerStatus.downloaded

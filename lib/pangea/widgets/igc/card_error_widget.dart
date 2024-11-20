@@ -25,9 +25,7 @@ class CardErrorWidget extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.all(8),
-      constraints: maxWidth != null
-          ? BoxConstraints(maxWidth: maxWidth!)
-          : const BoxConstraints(),
+      constraints: const BoxConstraints(maxWidth: 275),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

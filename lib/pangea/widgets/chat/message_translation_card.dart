@@ -144,43 +144,51 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
       return const ToolbarContentLoadingIndicator();
     }
 
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              widget.selection != null ? selectionTranslation! : repEvent!.text,
-              style: AppConfig.messageTextStyle(
-                widget.messageEvent.event,
-                Theme.of(context).colorScheme.primary,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        maxWidth: AppConfig.toolbarMinWidth,
+        maxHeight: AppConfig.toolbarMaxHeight,
+      ),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                widget.selection != null
+                    ? selectionTranslation!
+                    : repEvent!.text,
+                style: AppConfig.messageTextStyle(
+                  widget.messageEvent.event,
+                  Theme.of(context).colorScheme.primary,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            if (notGoingToTranslate &&
-                widget.selection == null &&
-                !InstructionsEnum.l1Translation.toggledOff())
-              const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  InlineTooltip(
-                    instructionsEnum: InstructionsEnum.l1Translation,
-                  ),
-                ],
-              ),
-            if (widget.selection != null &&
-                !InstructionsEnum.clickAgainToDeselect.toggledOff())
-              const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  InlineTooltip(
-                    instructionsEnum: InstructionsEnum.clickAgainToDeselect,
-                  ),
-                ],
-              ),
-          ],
+              if (notGoingToTranslate &&
+                  widget.selection == null &&
+                  !InstructionsEnum.l1Translation.toggledOff())
+                const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    InlineTooltip(
+                      instructionsEnum: InstructionsEnum.l1Translation,
+                    ),
+                  ],
+                ),
+              if (widget.selection != null &&
+                  !InstructionsEnum.clickAgainToDeselect.toggledOff())
+                const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    InlineTooltip(
+                      instructionsEnum: InstructionsEnum.clickAgainToDeselect,
+                    ),
+                  ],
+                ),
+            ],
+          ),
         ),
       ),
     );
