@@ -1212,7 +1212,7 @@
   },
   "scanQrCode": "Scan cód QR",
   "@scanQrCode": {},
-  "inviteText": "Thug {ainm úsáideora} cuireadh duit chuig FluffyChat.\n1. Tabhair cuairt ar fluffychat.im agus a shuiteáil an app\n2. Cláraigh nó sínigh isteach\n3. Oscail an nasc cuirí:\n {link}",
+  "inviteText": "Thug {username} cuireadh duit chuig FluffyChat.\n1. Tabhair cuairt ar fluffychat.im agus a shuiteáil an app\n2. Cláraigh nó sínigh isteach\n3. Oscail an nasc cuirí:\n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
