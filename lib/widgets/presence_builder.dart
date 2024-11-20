@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/widgets/matrix.dart';
 
-class PresenceBuilder extends StatelessWidget {
+class PresenceBuilder extends StatefulWidget {
   final Widget Function(BuildContext context, CachedPresence? presence) builder;
   final String? userId;
   final Client? client;
@@ -17,21 +19,38 @@ class PresenceBuilder extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final userId = this.userId;
-    if (userId == null) return builder(context, null);
+  State<PresenceBuilder> createState() => _PresenceBuilderState();
+}
 
-    final client = this.client ?? Matrix.of(context).client;
-    return FutureBuilder<CachedPresence>(
-      future: client.fetchCurrentPresence(userId),
-      builder: (context, cachedPresenceSnapshot) => StreamBuilder(
-        stream: client.onPresenceChanged.stream
-            .where((cachedPresence) => cachedPresence.userid == userId),
-        builder: (context, snapshot) => builder(
-          context,
-          snapshot.data ?? cachedPresenceSnapshot.data,
-        ),
-      ),
-    );
+class _PresenceBuilderState extends State<PresenceBuilder> {
+  CachedPresence? _presence;
+  StreamSubscription<CachedPresence>? _sub;
+
+  void _updatePresence(CachedPresence? presence) {
+    setState(() {
+      _presence = presence;
+    });
   }
+
+  @override
+  void initState() {
+    super.initState();
+    final client = widget.client ?? Matrix.of(context).client;
+    final userId = widget.userId;
+    if (userId != null) {
+      client.fetchCurrentPresence(userId).then(_updatePresence);
+      _sub = client.onPresenceChanged.stream
+          .where((presence) => presence.userid == userId)
+          .listen(_updatePresence);
+    }
+  }
+
+  @override
+  void dispose() {
+    _sub?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.builder(context, _presence);
 }
