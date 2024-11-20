@@ -2883,5 +2883,7 @@
   "boldText": "Paks kiri",
   "@boldText": {},
   "italicText": "Kaldkiri",
-  "@italicText": {}
+  "@italicText": {},
+  "unableToJoinChat": "Vestlusega liitumine ei õnnestu. Võib-olla on teine osapool juba vestluse sulgenud.",
+  "@unableToJoinChat": {}
 }
