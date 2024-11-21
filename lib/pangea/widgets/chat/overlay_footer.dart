@@ -34,7 +34,7 @@ class OverlayFooter extends StatelessWidget {
             borderRadius: const BorderRadius.all(
               Radius.circular(AppConfig.borderRadius),
             ),
-            child: ChatInputRow(controller),
+            child: ChatInputRow(controller, isOverlay: true),
           ),
         ],
       ),

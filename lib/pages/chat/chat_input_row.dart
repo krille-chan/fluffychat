@@ -18,8 +18,15 @@ import 'input_bar.dart';
 
 class ChatInputRow extends StatelessWidget {
   final ChatController controller;
+  // #Pangea
+  final bool isOverlay;
+  // Pangea#
 
-  const ChatInputRow(this.controller, {super.key});
+  const ChatInputRow(
+    this.controller, {
+    this.isOverlay = false,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +67,9 @@ class ChatInputRow extends StatelessWidget {
         CompositedTransformTarget(
           link: controller.choreographer.inputLayerLinkAndKey.link,
           child: Row(
-            key: controller.choreographer.inputLayerLinkAndKey.key,
+            key: isOverlay
+                ? null
+                : controller.choreographer.inputLayerLinkAndKey.key,
             // crossAxisAlignment: CrossAxisAlignment.end,
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
