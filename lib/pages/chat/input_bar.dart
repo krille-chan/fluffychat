@@ -458,107 +458,102 @@ class InputBar extends StatelessWidget {
                 ),
               },
         // #Pangea
-        child: CompositedTransformTarget(
-          link: controller!.choreographer.inputLayerLinkAndKey.link,
-          // child: TypeAheadField<Map<String, String?>>(
-          //   direction: VerticalDirection.up,
-          //   hideOnEmpty: true,
-          //   hideOnLoading: true,
-          //   controller: controller,
-          //   focusNode: focusNode,
-          //   hideOnSelect: false,
-          //   debounceDuration: const Duration(milliseconds: 50),
-          //   // show suggestions after 50ms idle time (default is 300)
-          //   // #Pangea
-          //   // key: controller?.choreographer.inputLayerLinkAndKey.key,
-          //   // builder: (context, controller, focusNode) => TextField(
-          //   builder: (context, _, focusNode) =>
-          child: TextField(
-            key: controller?.choreographer.inputLayerLinkAndKey.key,
-            enableSuggestions: false,
-            readOnly:
-                controller != null && controller!.choreographer.isRunningIT,
-            autocorrect: false,
-            // Pangea#
-            controller: controller,
-            focusNode: focusNode,
-            contentInsertionConfiguration: ContentInsertionConfiguration(
-              onContentInserted: (KeyboardInsertedContent content) {
-                final data = content.data;
-                if (data == null) return;
+        // child: TypeAheadField<Map<String, String?>>(
+        //   direction: VerticalDirection.up,
+        //   hideOnEmpty: true,
+        //   hideOnLoading: true,
+        //   controller: controller,
+        //   focusNode: focusNode,
+        //   hideOnSelect: false,
+        //   debounceDuration: const Duration(milliseconds: 50),
+        //   // show suggestions after 50ms idle time (default is 300)
+        //   // #Pangea
+        //   // key: controller?.choreographer.inputLayerLinkAndKey.key,
+        //   // builder: (context, controller, focusNode) => TextField(
+        //   builder: (context, _, focusNode) =>
+        child: TextField(
+          enableSuggestions: false,
+          readOnly: controller != null && controller!.choreographer.isRunningIT,
+          autocorrect: false,
+          // Pangea#
+          controller: controller,
+          focusNode: focusNode,
+          contentInsertionConfiguration: ContentInsertionConfiguration(
+            onContentInserted: (KeyboardInsertedContent content) {
+              final data = content.data;
+              if (data == null) return;
 
-                final file = MatrixFile(
-                  mimeType: content.mimeType,
-                  bytes: data,
-                  name: content.uri.split('/').last,
-                );
-                room.sendFileEvent(
-                  file,
-                  shrinkImageMaxDimension: 1600,
-                );
-              },
-            ),
-            minLines: minLines,
-            maxLines: maxLines,
-            keyboardType: keyboardType!,
-            textInputAction: textInputAction,
-            autofocus: autofocus!,
-            inputFormatters: [
-              //#Pangea
-              //LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
-              //setting max character count to 1000
-              //after max, nothing else can be typed
-              LengthLimitingTextInputFormatter(1000),
-              //Pangea#
-            ],
-            onSubmitted: (text) {
-              // fix for library for now
-              // it sets the types for the callback incorrectly
-              onSubmitted!(text);
-            },
-            // #Pangea
-            style: controller?.exceededMaxLength ?? false
-                ? const TextStyle(color: Colors.red)
-                : null,
-            onTap: () {
-              controller?.onInputTap(
-                context,
-                fNode: focusNode,
+              final file = MatrixFile(
+                mimeType: content.mimeType,
+                bytes: data,
+                name: content.uri.split('/').last,
+              );
+              room.sendFileEvent(
+                file,
+                shrinkImageMaxDimension: 1600,
               );
             },
-            // Pangea#
-            decoration: decoration!,
-            onChanged: (text) {
-              // fix for the library for now
-              // it sets the types for the callback incorrectly
-              onChanged!(text);
-            },
-            textCapitalization: TextCapitalization.sentences,
           ),
+          minLines: minLines,
+          maxLines: maxLines,
+          keyboardType: keyboardType!,
+          textInputAction: textInputAction,
+          autofocus: autofocus!,
+          inputFormatters: [
+            //#Pangea
+            //LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+            //setting max character count to 1000
+            //after max, nothing else can be typed
+            LengthLimitingTextInputFormatter(1000),
+            //Pangea#
+          ],
+          onSubmitted: (text) {
+            // fix for library for now
+            // it sets the types for the callback incorrectly
+            onSubmitted!(text);
+          },
           // #Pangea
-          // suggestionsCallback: getSuggestions,
-          // itemBuilder: (c, s) =>
-          //     buildSuggestion(c, s, Matrix.of(context).client),
-          // onSelected: (Map<String, String?> suggestion) =>
-          //     insertSuggestion(context, suggestion),
-          // errorBuilder: (BuildContext context, Object? error) =>
-          //     const SizedBox.shrink(),
-          // loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
-          // // fix loading briefly flickering a dark box
-          // emptyBuilder: (BuildContext context) => const SizedBox
-          //     .shrink(), // fix loading briefly showing no suggestions
-
-          // If we ever want to change the suggestion background color
-          // here is the code for it
-          // decorationBuilder: (context, child) => Material(
-          //   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          //   color: Theme.of(context).colorScheme.surfaceContainerHigh,
-          //   child: child,
-          // ),
-
-          // ),
+          style: controller?.exceededMaxLength ?? false
+              ? const TextStyle(color: Colors.red)
+              : null,
+          onTap: () {
+            controller?.onInputTap(
+              context,
+              fNode: focusNode,
+            );
+          },
           // Pangea#
+          decoration: decoration!,
+          onChanged: (text) {
+            // fix for the library for now
+            // it sets the types for the callback incorrectly
+            onChanged!(text);
+          },
+          textCapitalization: TextCapitalization.sentences,
         ),
+        // #Pangea
+        // suggestionsCallback: getSuggestions,
+        // itemBuilder: (c, s) =>
+        //     buildSuggestion(c, s, Matrix.of(context).client),
+        // onSelected: (Map<String, String?> suggestion) =>
+        //     insertSuggestion(context, suggestion),
+        // errorBuilder: (BuildContext context, Object? error) =>
+        //     const SizedBox.shrink(),
+        // loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
+        // // fix loading briefly flickering a dark box
+        // emptyBuilder: (BuildContext context) => const SizedBox
+        //     .shrink(), // fix loading briefly showing no suggestions
+
+        // If we ever want to change the suggestion background color
+        // here is the code for it
+        // decorationBuilder: (context, child) => Material(
+        //   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        //   color: Theme.of(context).colorScheme.surfaceContainerHigh,
+        //   child: child,
+        // ),
+
+        // ),
+        // Pangea#
       ),
     );
   }

@@ -57,371 +57,376 @@ class ChatInputRow extends StatelessWidget {
 
     return Column(
       children: [
-        Row(
-          // crossAxisAlignment: CrossAxisAlignment.end,
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          // Pangea#
-          children: controller.selectMode
-              ? <Widget>[
-                  if (controller.selectedEvents
-                      .every((event) => event.status == EventStatus.error))
-                    SizedBox(
-                      height: height,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          foregroundColor: theme.colorScheme.error,
+        CompositedTransformTarget(
+          link: controller.choreographer.inputLayerLinkAndKey.link,
+          child: Row(
+            key: controller.choreographer.inputLayerLinkAndKey.key,
+            // crossAxisAlignment: CrossAxisAlignment.end,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            // Pangea#
+            children: controller.selectMode
+                ? <Widget>[
+                    if (controller.selectedEvents
+                        .every((event) => event.status == EventStatus.error))
+                      SizedBox(
+                        height: height,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            foregroundColor: theme.colorScheme.error,
+                          ),
+                          onPressed: controller.deleteErrorEventsAction,
+                          child: Row(
+                            children: <Widget>[
+                              const Icon(Icons.delete),
+                              Text(L10n.of(context)!.delete),
+                            ],
+                          ),
                         ),
-                        onPressed: controller.deleteErrorEventsAction,
-                        child: Row(
-                          children: <Widget>[
-                            const Icon(Icons.delete),
-                            Text(L10n.of(context)!.delete),
-                          ],
-                        ),
-                      ),
-                    )
-                  // #Pangea
-                  // else
-                  //   SizedBox(
-                  //     height: height,
-                  //     child: TextButton(
-                  //       onPressed: controller.forwardEventsAction,
-                  //       child: Row(
-                  //         children: <Widget>[
-                  //           const Icon(Icons.keyboard_arrow_left_outlined),
-                  //           Text(L10n.of(context)!.forward),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  else
-                    // Pangea#
-                    controller.selectedEvents.length == 1
-                        ?
-                        // #Pangea
-                        // controller.selectedEvents.first
-                        //         .getDisplayEvent(controller.timeline!)
-                        //         .status
-                        //         .isSent
-                        //     ?
-                        // Pangea#
-                        SizedBox(
-                            height: height,
-                            child: TextButton(
-                              onPressed: controller.replyAction,
-                              child: Row(
-                                children: <Widget>[
-                                  // #Pangea
-                                  // Text(L10n.of(context)!.reply),
-                                  // const Icon(Icons.keyboard_arrow_right),
-                                  const Icon(Symbols.reply),
-                                  const SizedBox(width: 6),
-                                  Text(L10n.of(context)!.reply),
-                                  // Pangea#
-                                ],
-                              ),
-                            ),
-                          )
-                        // #Pangea
-                        // : SizedBox(
-                        //     height: height,
-                        //     child: TextButton(
-                        //       onPressed: controller.sendAgainAction,
-                        //       child: Row(
-                        //         children: <Widget>[
-                        //           Text(L10n.of(context)!.tryToSendAgain),
-                        //           const SizedBox(width: 4),
-                        //           const Icon(Icons.send_outlined, size: 16),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //   )
-                        // Pangea#
-                        : const SizedBox.shrink(),
-                  // #Pangea
-                  PangeaReactionsPicker(controller),
-                  if (controller.selectedEvents.length == 1 &&
-                      !controller.selectedEvents.first
-                          .getDisplayEvent(controller.timeline!)
-                          .status
-                          .isSent)
-                    SizedBox(
-                      height: height,
-                      child: TextButton(
-                        onPressed: controller.sendAgainAction,
-                        child: Row(
-                          children: <Widget>[
-                            Text(L10n.of(context)!.tryToSendAgain),
-                            const SizedBox(width: 4),
-                            const Icon(Icons.send_outlined, size: 16),
-                          ],
-                        ),
-                      ),
-                    ),
-                  // Pangea#
-                ]
-              : <Widget>[
-                  // #Pangea
-                  // const SizedBox(width: 4),
-                  // KeyBoardShortcuts(
-                  //   keysToPress: {
-                  //     LogicalKeyboardKey.altLeft,
-                  //     LogicalKeyboardKey.keyA,
-                  //   },
-                  //   onKeysPressed: () =>
-                  //       controller.onAddPopupMenuButtonSelected('file'),
-                  //   helpLabel: L10n.of(context)!.sendFile,
-                  //   child:
-                  // Pangea#
-                  AnimatedContainer(
-                    duration: FluffyThemes.animationDuration,
-                    curve: FluffyThemes.animationCurve,
-                    height: height,
-                    width: controller.sendController.text.isEmpty ? height : 0,
-                    alignment: Alignment.center,
-                    clipBehavior: Clip.hardEdge,
-                    decoration: const BoxDecoration(),
-                    child: PopupMenuButton<String>(
-                      icon: const Icon(Icons.add_outlined),
-                      onSelected: controller.onAddPopupMenuButtonSelected,
-                      itemBuilder: (BuildContext context) =>
-                          <PopupMenuEntry<String>>[
-                        //#Pangea
-                        if (controller.pangeaController.permissionsController
-                            .canShareFile(controller.roomId))
-                          //Pangea#
-                          PopupMenuItem<String>(
-                            value: 'file',
-                            child: ListTile(
-                              leading: const CircleAvatar(
-                                backgroundColor: Colors.green,
-                                foregroundColor: Colors.white,
-                                child: Icon(Icons.attachment_outlined),
-                              ),
-                              title: Text(L10n.of(context)!.sendFile),
-                              contentPadding: const EdgeInsets.all(0),
-                            ),
-                          ),
-                        //#Pangea
-                        if (controller.pangeaController.permissionsController
-                            .canSharePhoto(controller.roomId))
-                          //Pangea#
-                          PopupMenuItem<String>(
-                            value: 'image',
-                            child: ListTile(
-                              leading: const CircleAvatar(
-                                backgroundColor: Colors.blue,
-                                foregroundColor: Colors.white,
-                                child: Icon(Icons.image_outlined),
-                              ),
-                              title: Text(L10n.of(context)!.sendImage),
-                              contentPadding: const EdgeInsets.all(0),
-                            ),
-                          ),
-                        //#Pangea
-                        // if (PlatformInfos.isMobile)
-                        if (PlatformInfos.isMobile &&
-                            controller.pangeaController.permissionsController
-                                .canSharePhoto(controller.roomId))
-                          //Pangea#
-                          PopupMenuItem<String>(
-                            value: 'camera',
-                            child: ListTile(
-                              leading: const CircleAvatar(
-                                backgroundColor: Colors.purple,
-                                foregroundColor: Colors.white,
-                                child: Icon(Icons.camera_alt_outlined),
-                              ),
-                              title: Text(L10n.of(context)!.openCamera),
-                              contentPadding: const EdgeInsets.all(0),
-                            ),
-                          ),
-                        //#Pangea
-                        // if (PlatformInfos.isMobile)
-                        if (PlatformInfos.isMobile &&
-                            controller.pangeaController.permissionsController
-                                .canShareVideo(controller.roomId))
-                          //Pangea#
-                          PopupMenuItem<String>(
-                            value: 'camera-video',
-                            child: ListTile(
-                              leading: const CircleAvatar(
-                                backgroundColor: Colors.red,
-                                foregroundColor: Colors.white,
-                                child: Icon(Icons.videocam_outlined),
-                              ),
-                              title: Text(L10n.of(context)!.openVideoCamera),
-                              contentPadding: const EdgeInsets.all(0),
-                            ),
-                          ),
-                        //#Pangea
-                        // if (PlatformInfos.isMobile)
-                        if (PlatformInfos.isMobile &&
-                            controller.pangeaController.permissionsController
-                                .canShareLocation(controller.roomId))
-                          //Pangea#
-                          PopupMenuItem<String>(
-                            value: 'location',
-                            child: ListTile(
-                              leading: const CircleAvatar(
-                                backgroundColor: Colors.brown,
-                                foregroundColor: Colors.white,
-                                child: Icon(Icons.gps_fixed_outlined),
-                              ),
-                              title: Text(L10n.of(context)!.shareLocation),
-                              contentPadding: const EdgeInsets.all(0),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-                  // #Pangea
-                  kIsWeb
-                      ?
+                      )
+                    // #Pangea
+                    // else
+                    //   SizedBox(
+                    //     height: height,
+                    //     child: TextButton(
+                    //       onPressed: controller.forwardEventsAction,
+                    //       child: Row(
+                    //         children: <Widget>[
+                    //           const Icon(Icons.keyboard_arrow_left_outlined),
+                    //           Text(L10n.of(context)!.forward),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    else
                       // Pangea#
-                      Container(
-                          height: height,
-                          width: height,
-                          alignment: Alignment.center,
-                          child:
-                              // #Pangea
-                              // KeyBoardShortcuts(
-                              //   keysToPress: {
-                              //     LogicalKeyboardKey.altLeft,
-                              //     LogicalKeyboardKey.keyE,
-                              //   },
-                              //   onKeysPressed: controller.emojiPickerAction,
-                              //   helpLabel: L10n.of(context)!.emojis,
-                              //   child:
-                              // Pangea#
-                              IconButton(
-                            tooltip: L10n.of(context)!.emojis,
-                            icon: PageTransitionSwitcher(
-                              transitionBuilder: (
-                                Widget child,
-                                Animation<double> primaryAnimation,
-                                Animation<double> secondaryAnimation,
-                              ) {
-                                return SharedAxisTransition(
-                                  animation: primaryAnimation,
-                                  secondaryAnimation: secondaryAnimation,
-                                  transitionType:
-                                      SharedAxisTransitionType.scaled,
-                                  fillColor: Colors.transparent,
-                                  child: child,
-                                );
-                              },
-                              child: Icon(
-                                controller.showEmojiPicker
-                                    ? Icons.keyboard
-                                    : Icons.add_reaction_outlined,
-                                key: ValueKey(controller.showEmojiPicker),
+                      controller.selectedEvents.length == 1
+                          ?
+                          // #Pangea
+                          // controller.selectedEvents.first
+                          //         .getDisplayEvent(controller.timeline!)
+                          //         .status
+                          //         .isSent
+                          //     ?
+                          // Pangea#
+                          SizedBox(
+                              height: height,
+                              child: TextButton(
+                                onPressed: controller.replyAction,
+                                child: Row(
+                                  children: <Widget>[
+                                    // #Pangea
+                                    // Text(L10n.of(context)!.reply),
+                                    // const Icon(Icons.keyboard_arrow_right),
+                                    const Icon(Symbols.reply),
+                                    const SizedBox(width: 6),
+                                    Text(L10n.of(context)!.reply),
+                                    // Pangea#
+                                  ],
+                                ),
+                              ),
+                            )
+                          // #Pangea
+                          // : SizedBox(
+                          //     height: height,
+                          //     child: TextButton(
+                          //       onPressed: controller.sendAgainAction,
+                          //       child: Row(
+                          //         children: <Widget>[
+                          //           Text(L10n.of(context)!.tryToSendAgain),
+                          //           const SizedBox(width: 4),
+                          //           const Icon(Icons.send_outlined, size: 16),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   )
+                          // Pangea#
+                          : const SizedBox.shrink(),
+                    // #Pangea
+                    PangeaReactionsPicker(controller),
+                    if (controller.selectedEvents.length == 1 &&
+                        !controller.selectedEvents.first
+                            .getDisplayEvent(controller.timeline!)
+                            .status
+                            .isSent)
+                      SizedBox(
+                        height: height,
+                        child: TextButton(
+                          onPressed: controller.sendAgainAction,
+                          child: Row(
+                            children: <Widget>[
+                              Text(L10n.of(context)!.tryToSendAgain),
+                              const SizedBox(width: 4),
+                              const Icon(Icons.send_outlined, size: 16),
+                            ],
+                          ),
+                        ),
+                      ),
+                    // Pangea#
+                  ]
+                : <Widget>[
+                    // #Pangea
+                    // const SizedBox(width: 4),
+                    // KeyBoardShortcuts(
+                    //   keysToPress: {
+                    //     LogicalKeyboardKey.altLeft,
+                    //     LogicalKeyboardKey.keyA,
+                    //   },
+                    //   onKeysPressed: () =>
+                    //       controller.onAddPopupMenuButtonSelected('file'),
+                    //   helpLabel: L10n.of(context)!.sendFile,
+                    //   child:
+                    // Pangea#
+                    AnimatedContainer(
+                      duration: FluffyThemes.animationDuration,
+                      curve: FluffyThemes.animationCurve,
+                      height: height,
+                      width:
+                          controller.sendController.text.isEmpty ? height : 0,
+                      alignment: Alignment.center,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: const BoxDecoration(),
+                      child: PopupMenuButton<String>(
+                        icon: const Icon(Icons.add_outlined),
+                        onSelected: controller.onAddPopupMenuButtonSelected,
+                        itemBuilder: (BuildContext context) =>
+                            <PopupMenuEntry<String>>[
+                          //#Pangea
+                          if (controller.pangeaController.permissionsController
+                              .canShareFile(controller.roomId))
+                            //Pangea#
+                            PopupMenuItem<String>(
+                              value: 'file',
+                              child: ListTile(
+                                leading: const CircleAvatar(
+                                  backgroundColor: Colors.green,
+                                  foregroundColor: Colors.white,
+                                  child: Icon(Icons.attachment_outlined),
+                                ),
+                                title: Text(L10n.of(context)!.sendFile),
+                                contentPadding: const EdgeInsets.all(0),
                               ),
                             ),
-                            onPressed: controller.emojiPickerAction,
-                          ),
-                        )
-                      // #Pangea
-                      : const SizedBox(width: 10),
-                  // if (Matrix.of(context).isMultiAccount &&
-                  //     Matrix.of(context).hasComplexBundles &&
-                  //     Matrix.of(context).currentBundle!.length > 1)
-                  //   Container(
-                  //     width: height,
-                  //     height: height,
-                  //     alignment: Alignment.center,
-                  //     child: _ChatAccountPicker(controller),
-                  //   ),
-                  // Pangea#
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 0.0),
-                      child: InputBar(
-                        room: controller.room,
-                        minLines: 1,
-                        maxLines: 8,
-                        autofocus: !PlatformInfos.isMobile,
-                        keyboardType: TextInputType.multiline,
-                        // #Pangea
-                        // textInputAction: AppConfig.sendOnEnter == true &&
-                        //         PlatformInfos.isMobile
-                        //     ? TextInputAction.send
-                        //     : null,
-                        textInputAction: TextInputAction.send,
-                        // onSubmitted: controller.onInputBarSubmitted,
-                        onSubmitted: (String value) =>
-                            controller.onInputBarSubmitted(value, context),
-                        // Pangea#
-                        onSubmitImage: controller.sendImageFromClipBoard,
-                        focusNode: controller.inputFocus,
-                        controller: controller.sendController,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.only(
-                            left: 6.0,
-                            right: 6.0,
-                            bottom: 6.0,
-                            top: 3.0,
-                          ),
-                          // #Pangea
-                          // hintText: L10n.of(context)!.writeAMessage,
-                          hintText: hintText(),
-                          disabledBorder: InputBorder.none,
-                          // Pangea#
-                          hintMaxLines: 1,
-                          border: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          filled: false,
-                        ),
-                        onChanged: controller.onInputBarChanged,
+                          //#Pangea
+                          if (controller.pangeaController.permissionsController
+                              .canSharePhoto(controller.roomId))
+                            //Pangea#
+                            PopupMenuItem<String>(
+                              value: 'image',
+                              child: ListTile(
+                                leading: const CircleAvatar(
+                                  backgroundColor: Colors.blue,
+                                  foregroundColor: Colors.white,
+                                  child: Icon(Icons.image_outlined),
+                                ),
+                                title: Text(L10n.of(context)!.sendImage),
+                                contentPadding: const EdgeInsets.all(0),
+                              ),
+                            ),
+                          //#Pangea
+                          // if (PlatformInfos.isMobile)
+                          if (PlatformInfos.isMobile &&
+                              controller.pangeaController.permissionsController
+                                  .canSharePhoto(controller.roomId))
+                            //Pangea#
+                            PopupMenuItem<String>(
+                              value: 'camera',
+                              child: ListTile(
+                                leading: const CircleAvatar(
+                                  backgroundColor: Colors.purple,
+                                  foregroundColor: Colors.white,
+                                  child: Icon(Icons.camera_alt_outlined),
+                                ),
+                                title: Text(L10n.of(context)!.openCamera),
+                                contentPadding: const EdgeInsets.all(0),
+                              ),
+                            ),
+                          //#Pangea
+                          // if (PlatformInfos.isMobile)
+                          if (PlatformInfos.isMobile &&
+                              controller.pangeaController.permissionsController
+                                  .canShareVideo(controller.roomId))
+                            //Pangea#
+                            PopupMenuItem<String>(
+                              value: 'camera-video',
+                              child: ListTile(
+                                leading: const CircleAvatar(
+                                  backgroundColor: Colors.red,
+                                  foregroundColor: Colors.white,
+                                  child: Icon(Icons.videocam_outlined),
+                                ),
+                                title: Text(L10n.of(context)!.openVideoCamera),
+                                contentPadding: const EdgeInsets.all(0),
+                              ),
+                            ),
+                          //#Pangea
+                          // if (PlatformInfos.isMobile)
+                          if (PlatformInfos.isMobile &&
+                              controller.pangeaController.permissionsController
+                                  .canShareLocation(controller.roomId))
+                            //Pangea#
+                            PopupMenuItem<String>(
+                              value: 'location',
+                              child: ListTile(
+                                leading: const CircleAvatar(
+                                  backgroundColor: Colors.brown,
+                                  foregroundColor: Colors.white,
+                                  child: Icon(Icons.gps_fixed_outlined),
+                                ),
+                                title: Text(L10n.of(context)!.shareLocation),
+                                contentPadding: const EdgeInsets.all(0),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
-                  ),
-                  // #Pangea
-                  StartIGCButton(
-                    controller: controller,
-                  ),
-                  // Pangea#
-                  Container(
-                    height: height,
-                    width: height,
-                    alignment: Alignment.center,
-                    child: PlatformInfos.platformCanRecord &&
-                            controller.sendController.text.isEmpty
-                            // #Pangea
-                            &&
-                            !controller.choreographer.itController.willOpen
+                    // #Pangea
+                    kIsWeb
+                        ?
                         // Pangea#
-                        ? FloatingActionButton.small(
-                            tooltip: L10n.of(context)!.voiceMessage,
-                            onPressed: controller.voiceMessageAction,
-                            elevation: 0,
-                            heroTag: null,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(height),
+                        Container(
+                            height: height,
+                            width: height,
+                            alignment: Alignment.center,
+                            child:
+                                // #Pangea
+                                // KeyBoardShortcuts(
+                                //   keysToPress: {
+                                //     LogicalKeyboardKey.altLeft,
+                                //     LogicalKeyboardKey.keyE,
+                                //   },
+                                //   onKeysPressed: controller.emojiPickerAction,
+                                //   helpLabel: L10n.of(context)!.emojis,
+                                //   child:
+                                // Pangea#
+                                IconButton(
+                              tooltip: L10n.of(context)!.emojis,
+                              icon: PageTransitionSwitcher(
+                                transitionBuilder: (
+                                  Widget child,
+                                  Animation<double> primaryAnimation,
+                                  Animation<double> secondaryAnimation,
+                                ) {
+                                  return SharedAxisTransition(
+                                    animation: primaryAnimation,
+                                    secondaryAnimation: secondaryAnimation,
+                                    transitionType:
+                                        SharedAxisTransitionType.scaled,
+                                    fillColor: Colors.transparent,
+                                    child: child,
+                                  );
+                                },
+                                child: Icon(
+                                  controller.showEmojiPicker
+                                      ? Icons.keyboard
+                                      : Icons.add_reaction_outlined,
+                                  key: ValueKey(controller.showEmojiPicker),
+                                ),
+                              ),
+                              onPressed: controller.emojiPickerAction,
                             ),
-                            backgroundColor: theme.colorScheme.primary,
-                            foregroundColor: theme.colorScheme.onPrimary,
-                            child: const Icon(Icons.mic_none_outlined),
                           )
                         // #Pangea
-                        // : FloatingActionButton.small(
-                        //     tooltip: L10n.of(context)!.send,
-                        //     onPressed: controller.send,
-                        //     elevation: 0,
-                        //     heroTag: null,
-                        //     shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(height),
-                        //     ),
-                        //     backgroundColor:
-                        //         theme.colorScheme.onPrimaryContainer,
-                        //     foregroundColor: theme.colorScheme.onPrimary,
-                        //     child: const Icon(Icons.send_outlined),
-                        //   ),
-                        : ChoreographerSendButton(controller: controller),
+                        : const SizedBox(width: 10),
+                    // if (Matrix.of(context).isMultiAccount &&
+                    //     Matrix.of(context).hasComplexBundles &&
+                    //     Matrix.of(context).currentBundle!.length > 1)
+                    //   Container(
+                    //     width: height,
+                    //     height: height,
+                    //     alignment: Alignment.center,
+                    //     child: _ChatAccountPicker(controller),
+                    //   ),
                     // Pangea#
-                  ),
-                ],
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 0.0),
+                        child: InputBar(
+                          room: controller.room,
+                          minLines: 1,
+                          maxLines: 8,
+                          autofocus: !PlatformInfos.isMobile,
+                          keyboardType: TextInputType.multiline,
+                          // #Pangea
+                          // textInputAction: AppConfig.sendOnEnter == true &&
+                          //         PlatformInfos.isMobile
+                          //     ? TextInputAction.send
+                          //     : null,
+                          textInputAction: TextInputAction.send,
+                          // onSubmitted: controller.onInputBarSubmitted,
+                          onSubmitted: (String value) =>
+                              controller.onInputBarSubmitted(value, context),
+                          // Pangea#
+                          onSubmitImage: controller.sendImageFromClipBoard,
+                          focusNode: controller.inputFocus,
+                          controller: controller.sendController,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.only(
+                              left: 6.0,
+                              right: 6.0,
+                              bottom: 6.0,
+                              top: 3.0,
+                            ),
+                            // #Pangea
+                            // hintText: L10n.of(context)!.writeAMessage,
+                            hintText: hintText(),
+                            disabledBorder: InputBorder.none,
+                            // Pangea#
+                            hintMaxLines: 1,
+                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            filled: false,
+                          ),
+                          onChanged: controller.onInputBarChanged,
+                        ),
+                      ),
+                    ),
+                    // #Pangea
+                    StartIGCButton(
+                      controller: controller,
+                    ),
+                    // Pangea#
+                    Container(
+                      height: height,
+                      width: height,
+                      alignment: Alignment.center,
+                      child: PlatformInfos.platformCanRecord &&
+                              controller.sendController.text.isEmpty
+                              // #Pangea
+                              &&
+                              !controller.choreographer.itController.willOpen
+                          // Pangea#
+                          ? FloatingActionButton.small(
+                              tooltip: L10n.of(context)!.voiceMessage,
+                              onPressed: controller.voiceMessageAction,
+                              elevation: 0,
+                              heroTag: null,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(height),
+                              ),
+                              backgroundColor: theme.colorScheme.primary,
+                              foregroundColor: theme.colorScheme.onPrimary,
+                              child: const Icon(Icons.mic_none_outlined),
+                            )
+                          // #Pangea
+                          // : FloatingActionButton.small(
+                          //     tooltip: L10n.of(context)!.send,
+                          //     onPressed: controller.send,
+                          //     elevation: 0,
+                          //     heroTag: null,
+                          //     shape: RoundedRectangleBorder(
+                          //       borderRadius: BorderRadius.circular(height),
+                          //     ),
+                          //     backgroundColor:
+                          //         theme.colorScheme.onPrimaryContainer,
+                          //     foregroundColor: theme.colorScheme.onPrimary,
+                          //     child: const Icon(Icons.send_outlined),
+                          //   ),
+                          : ChoreographerSendButton(controller: controller),
+                      // Pangea#
+                    ),
+                  ],
+          ),
         ),
       ],
     );
