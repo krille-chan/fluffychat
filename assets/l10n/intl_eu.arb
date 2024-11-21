@@ -2883,5 +2883,7 @@
   "strikeThrough": "Zirrimarra",
   "@strikeThrough": {},
   "pleaseFillOut": "Bete ezazu",
-  "@pleaseFillOut": {}
+  "@pleaseFillOut": {},
+  "unableToJoinChat": "Ezin da txatera batu. Agian besteak elkarrizketa itxiko zuen honezkero.",
+  "@unableToJoinChat": {}
 }
