@@ -136,7 +136,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     }
 
     debugPrint(
-      "client requesting ${nextActivitySpecs.activityType.string} for: ${nextActivitySpecs.tokens.map((t) => t.text.content).join(' ')}",
+      "client requesting ${nextActivitySpecs.activityType.string} for: ${nextActivitySpecs.tokens.map((t) => "word: ${t.text.content} xp: ${t.xp}").join(' ')}",
     );
 
     final PracticeActivityModelResponse? activityResponse =

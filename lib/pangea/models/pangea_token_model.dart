@@ -140,6 +140,9 @@ class PangeaToken {
   bool get isContentWord =>
       ["NOUN", "VERB", "ADJ", "ADV"].contains(pos) && lemma.saveVocab;
 
+  String get analyticsDebugPrint =>
+      "content: ${text.content} isContentWord: $isContentWord total_xp:$xp vocab_construct_xp: ${vocabConstruct.points} daysSincelastUseInWordMeaning ${daysSinceLastUseByType(ActivityTypeEnum.wordMeaning)}";
+
   bool get canBeDefined =>
       [
         "ADJ",
@@ -249,9 +252,11 @@ class PangeaToken {
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
         if (isContentWord) {
-          return vocabConstruct.points < 15 || daysSinceLastUseByType(a) > 2;
+          return vocabConstruct.points < 10 || daysSinceLastUseByType(a) > 7;
+        } else if (canBeDefined) {
+          return !_didActivity(a) && vocabConstruct.points < 5;
         } else {
-          return vocabConstruct.points < 5 || daysSinceLastUseByType(a) > 7;
+          return false;
         }
       case ActivityTypeEnum.wordFocusListening:
         return !_didActivitySuccessfully(a) || daysSinceLastUseByType(a) > 30;

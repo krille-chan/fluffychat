@@ -127,14 +127,30 @@ class MessageAnalyticsEntry {
     }
 
     // limit to 3 activities
-    return queue.take(3).toList();
+    final limited = queue.take(3).toList();
+
+    debugPrint("activities for ${PangeaToken.reconstructText(_tokens)}");
+    for (final activity in limited) {
+      debugPrint("activity: ${activity.activityType}");
+      for (final token in activity.tokens) {
+        debugPrint("token: ${token.analyticsDebugPrint}");
+      }
+    }
+
+    return limited;
   }
 
   /// Adds a word focus listening activity to the front of the queue
   /// And limits to 3 activities
   void addForWordMeaning(PangeaToken selectedToken) {
+    final int index = _activityQueue.isNotEmpty &&
+            _activityQueue.first.activityType ==
+                ActivityTypeEnum.hiddenWordListening
+        ? 1
+        : 0;
+
     _activityQueue.insert(
-      0,
+      index,
       TargetTokensAndActivityType(
         tokens: [selectedToken],
         activityType: ActivityTypeEnum.wordMeaning,

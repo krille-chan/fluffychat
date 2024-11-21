@@ -86,8 +86,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     debugPrint(
-      "selected token: ${widget._initialSelectedToken?.text.content} total_xp:${widget._initialSelectedToken?.xp} vocab_construct_xp: ${widget._initialSelectedToken?.vocabConstruct.points} daysSincelastUseInWordMeaning ${widget._initialSelectedToken?.daysSinceLastUseByType(ActivityTypeEnum.wordMeaning)}",
-    );
+        "selected token ${widget._initialSelectedToken?.analyticsDebugPrint}");
     debugPrint(
       "${widget._initialSelectedToken?.vocabConstruct.uses.map((u) => "${u.useType} ${u.timeStamp}").join(", ")}",
     );
