@@ -4517,5 +4517,7 @@
   "spaceDescription": "Space description",
   "addSpaceDescription": "Add a space description",
   "notificationsOn": "Notifications on",
-  "notificationsOff": "Notifications off"
+  "notificationsOff": "Notifications off",
+  "spaceCanBeFoundViaSearch": "Space can be found via search",
+  "chatCanBeFoundViaSearch": "Chat can be found via search"
 }

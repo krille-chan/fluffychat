@@ -3,6 +3,7 @@ import 'package:fluffychat/pangea/widgets/chat/visibility_toggle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart' as matrix;
+import 'package:matrix/matrix.dart';
 
 class AddRoomDialog extends StatefulWidget {
   final AddRoomType? roomType;
@@ -23,8 +24,13 @@ class AddRoomDialogState extends State<AddRoomDialog> {
       TextEditingController();
 
   matrix.Visibility visibility = matrix.Visibility.public;
+  JoinRules joinRules = JoinRules.public;
 
-  Future<void> setVisibility(matrix.Visibility newVisibility) async {
+  Future<void> _setJoinRules(JoinRules newJoinRules) async {
+    setState(() => joinRules = newJoinRules);
+  }
+
+  Future<void> _setVisibility(matrix.Visibility newVisibility) async {
     setState(() => visibility = newVisibility);
   }
 
@@ -93,9 +99,11 @@ class AddRoomDialogState extends State<AddRoomDialog> {
                 ),
               ),
               VisibilityToggle(
-                setVisibility: setVisibility,
+                setJoinRules: _setJoinRules,
+                setVisibility: _setVisibility,
                 spaceMode: widget.roomType == AddRoomType.subspace,
                 visibility: visibility,
+                joinRules: joinRules,
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
@@ -118,6 +126,7 @@ class AddRoomDialogState extends State<AddRoomDialog> {
                           RoomResponse(
                             roomName: _roomNameController.text,
                             roomDescription: _roomDescriptionController.text,
+                            joinRules: joinRules,
                             visibility: visibility,
                           ),
                         );
@@ -138,11 +147,13 @@ class AddRoomDialogState extends State<AddRoomDialog> {
 class RoomResponse {
   final String roomName;
   final String roomDescription;
+  final JoinRules joinRules;
   final matrix.Visibility visibility;
 
   RoomResponse({
     required this.roomName,
     required this.roomDescription,
+    required this.joinRules,
     required this.visibility,
   });
 
@@ -150,6 +161,7 @@ class RoomResponse {
     return {
       'roomName': roomName,
       'roomDescripion': roomDescription,
+      'joinRules': joinRules,
       'visibility': visibility,
     };
   }

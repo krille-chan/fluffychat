@@ -386,18 +386,27 @@ class _SpaceViewState extends State<SpaceView> {
         await activeSpace.postLoad();
 
         if (roomType == AddRoomType.subspace) {
-          roomId = await client.createSpace(
-            // #Pangea
-            // name: names.first,
-            // topic: names.last.isEmpty ? null : names.last,
-            // visibility: activeSpace.joinRules == JoinRules.public
-            //     ? sdk.Visibility.public
-            //     : sdk.Visibility.private,
+          // #Pangea
+          // roomId = await client.createSpace(
+          //   name: names.first,
+          //   topic: names.last.isEmpty ? null : names.last,
+          //   visibility: activeSpace.joinRules == JoinRules.public
+          //       ? sdk.Visibility.public
+          //       : sdk.Visibility.private,
+          // );
+          roomId = await client.createRoom(
+            preset: response.joinRules == sdk.JoinRules.public
+                ? sdk.CreateRoomPreset.publicChat
+                : sdk.CreateRoomPreset.privateChat,
+            creationContent: {'type': RoomCreationTypes.mSpace},
+            visibility: response.joinRules == sdk.JoinRules.public
+                ? response.visibility
+                : null,
             name: response.roomName,
             topic: response.roomDescription,
-            visibility: response.visibility,
-            // Pangea#
+            powerLevelContentOverride: {'events_default': 100},
           );
+          // Pangea#
         } else {
           roomId = await client.createGroupChat(
             // #Pangea
@@ -417,7 +426,9 @@ class _SpaceViewState extends State<SpaceView> {
             //       ]
             //     : null,
             groupName: response.roomName,
-            preset: CreateRoomPreset.publicChat,
+            preset: response.joinRules == sdk.JoinRules.public
+                ? CreateRoomPreset.publicChat
+                : CreateRoomPreset.privateChat,
             visibility: response.visibility,
             initialState: response.roomDescription.isNotEmpty
                 ? [

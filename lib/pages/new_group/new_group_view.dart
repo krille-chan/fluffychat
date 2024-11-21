@@ -84,7 +84,10 @@ class NewGroupView extends StatelessWidget {
                       contentPadding:
                           const EdgeInsets.symmetric(horizontal: 32),
                       secondary: const Icon(Icons.search_outlined),
-                      title: Text(L10n.of(context)!.groupCanBeFoundViaSearch),
+                      // #Pangea
+                      // title: Text(L10n.of(context)!.groupCanBeFoundViaSearch),
+                      title: Text(L10n.of(context)!.chatCanBeFoundViaSearch),
+                      // Pangea#
                       value: controller.groupCanBeFound,
                       onChanged: controller.loading
                           ? null

@@ -12,7 +12,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:matrix/matrix.dart' as matrix;
 import 'package:matrix/matrix.dart';
 
 enum AliasActions { copy, delete, setCanonical }
@@ -207,18 +206,24 @@ class ChatDetailsController extends State<ChatDetails> {
   void hoverEditNameIcon(bool hovering) =>
       setState(() => showEditNameIcon = !showEditNameIcon);
 
-  Future<void> setVisibility(matrix.Visibility visibility) async {
+  Future<void> setJoinRules(JoinRules joinRules) async {
     if (roomId == null) return;
+    final room = Matrix.of(context).client.getRoomById(roomId!);
+    if (room == null) return;
+
+    final content = room.getState(EventTypes.RoomJoinRules)?.content ?? {};
+    content['join_rule'] = joinRules.toString().replaceAll('JoinRules.', '');
     await showFutureLoadingDialog(
       context: context,
       future: () async {
-        await Matrix.of(context).client.setRoomVisibilityOnDirectory(
-              roomId!,
-              visibility: visibility,
-            );
+        await room.client.setRoomStateWithKey(
+          roomId!,
+          EventTypes.RoomJoinRules,
+          '',
+          content,
+        );
       },
     );
-    if (mounted) setState(() {});
   }
 
   Future<void> toggleMute() async {

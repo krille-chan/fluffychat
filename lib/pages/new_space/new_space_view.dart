@@ -62,6 +62,15 @@ class NewSpaceView extends StatelessWidget {
               value: controller.publicGroup,
               onChanged: controller.setPublicGroup,
             ),
+            // #Pangea
+            if (controller.publicGroup)
+              SwitchListTile.adaptive(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 32),
+                title: Text(L10n.of(context)!.spaceCanBeFoundViaSearch),
+                value: controller.spaceCanBeFound,
+                onChanged: controller.setSpaceCanBeFound,
+              ),
+            // Pangea#
             ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 32),
               trailing: const Padding(

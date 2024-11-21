@@ -342,8 +342,10 @@ class ChatDetailsView extends StatelessWidget {
                           if (room.isRoomAdmin)
                             VisibilityToggle(
                               room: room,
-                              setVisibility: controller.setVisibility,
+                              setVisibility: (_) async {},
+                              setJoinRules: controller.setJoinRules,
                               iconColor: iconColor,
+                              showSearchToggle: false,
                             ),
                           // Pangea#
                           Divider(color: theme.dividerColor),
