@@ -3,12 +3,12 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 /// A badge that represents one learning progress indicator (i.e., construct uses)
 class LearningSettingsButton extends StatelessWidget {
-  final String l2;
+  final String? l2;
   final VoidCallback onTap;
 
   const LearningSettingsButton({
     super.key,
-    required this.l2,
+    this.l2,
     required this.onTap,
   });
 
@@ -46,7 +46,7 @@ class LearningSettingsButton extends StatelessWidget {
               ),
               const SizedBox(width: 5),
               Text(
-                l2,
+                l2 ?? "?",
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
