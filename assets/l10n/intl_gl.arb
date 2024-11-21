@@ -2869,5 +2869,21 @@
   "continueText": "Continuar",
   "@continueText": {},
   "compressBeforeSending": "Comprimir antes de enviar",
-  "@compressBeforeSending": {}
+  "@compressBeforeSending": {},
+  "sendUncompressed": "Enviar sen comprimir",
+  "@sendUncompressed": {},
+  "italicText": "Cursiva",
+  "@italicText": {},
+  "strikeThrough": "Riscar",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Por favor completa",
+  "@pleaseFillOut": {},
+  "invalidUrl": "URL non válido",
+  "@invalidUrl": {},
+  "boldText": "Resaltar texto",
+  "@boldText": {},
+  "addLink": "Engadir ligazón",
+  "@addLink": {},
+  "unableToJoinChat": "Non se puido acceder. Pode que a outra parte xa pechase a conversa.",
+  "@unableToJoinChat": {}
 }
