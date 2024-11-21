@@ -97,6 +97,8 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
       );
     } else {
       dialogContent = ListView.builder(
+        // Add a key to the ListView to persist the scroll position
+        key: const PageStorageKey<String>('categoryList'),
         itemCount: _sortedEntries.length,
         itemBuilder: (context, index) {
           final category = _sortedEntries[index];
