@@ -572,12 +572,12 @@ gog(){return"Zirrimarra"},
 goM(){return"Bete ezazu"},
 goC(){return"URL baliogabea"},
 goj(){return"Gehitu esteka"},
-goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
+goP(){return"Ezin da txatera batu. Agian besteak elkarrizketa itxiko zuen honezkero."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.HN,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HN":{"aR":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_238",e:"endPart",h:b})})($__dart_deferred_initializers__,"iqR7qv8r1250gNHBz+7CbIgjH6Y=");
+a.eventLog.push({p:"main.dart.js_238",e:"endPart",h:b})})($__dart_deferred_initializers__,"D5vY/1b91B0zE6qy4XyBsfVyN1k=");
 //# sourceMappingURL=main.dart.js_238.part.js.map
