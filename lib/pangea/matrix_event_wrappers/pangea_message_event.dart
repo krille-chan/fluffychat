@@ -248,6 +248,15 @@ class PangeaMessageEvent {
       return null;
     }
 
+    final rawBotTranscription =
+        event.content.tryGetMap(ModelKey.botTranscription);
+    if (rawBotTranscription != null) {
+      final botTranscription = SpeechToTextModel.fromJson(
+        Map<String, dynamic>.from(rawBotTranscription),
+      );
+      return botTranscription;
+    }
+
     final SpeechToTextModel? speechToTextLocal = representations
         .firstWhereOrNull(
           (element) => element.content.speechToText != null,

@@ -91,10 +91,7 @@ class STTToken {
 
   Color color(BuildContext context) {
     if (confidence == null) {
-      return Theme.of(context).textTheme.bodyMedium?.color ??
-          (Theme.of(context).brightness == Brightness.dark
-              ? Colors.white
-              : Colors.black);
+      return Theme.of(context).colorScheme.onSurface;
     }
     if (confidence! > THRESHOLD_FOR_GREEN) {
       return AppConfig.success;

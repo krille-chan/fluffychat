@@ -77,9 +77,20 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
     final String fullText = transcript.text;
     int lastEnd = 0;
 
+    if (transcript.sttTokens.isEmpty) {
+      return TextSpan(
+        text: fullText,
+        style: BotStyle.text(
+          context,
+          existingStyle: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+          setColor: false,
+        ),
+      );
+    }
+
     for (final token in transcript.sttTokens) {
-      // debugPrint('Token confidence: ${token.confidence}');
-      // debugPrint('color: ${token.color(context)}');
       if (token.offset > lastEnd) {
         // Add any plain text before the token
         spans.add(
@@ -187,8 +198,13 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
               ),
             ],
           ),
-          const InlineTooltip(
-            instructionsEnum: InstructionsEnum.speechToText,
+          const Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              InlineTooltip(
+                instructionsEnum: InstructionsEnum.speechToText,
+              ),
+            ],
           ),
         ],
       ),
