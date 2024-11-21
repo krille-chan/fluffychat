@@ -2969,7 +2969,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "myLanguages": "My base and target language",
+  "myLanguages": "My base and target languages",
   "@myLanguages": {
     "type": "text",
     "placeholders": {}
