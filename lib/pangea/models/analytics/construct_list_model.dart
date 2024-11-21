@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/models/analytics/construct_use_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// A wrapper around a list of [OneConstructUse]s, used to simplify
 /// the process of filtering / sorting / displaying the events.
@@ -145,14 +146,16 @@ class ConstructListModel {
       level = levelCalculation.floor();
     } else {
       level = 0;
-      ErrorHandler.logError(
-        e: "Calculated level in Nan or Infinity",
-        data: {
-          "totalXP": totalXP,
-          "prevXP": prevXP,
-          "level": levelCalculation,
-        },
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          data: {
+            "totalXP": totalXP,
+            "prevXP": prevXP,
+            "level": levelCalculation,
+          },
+        ),
       );
+      ErrorHandler.logError(e: "Calculated level in Nan or Infinity");
     }
   }
 

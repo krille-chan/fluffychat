@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 // includes feedback text and the bad activity model
 class ActivityQualityFeedback {
@@ -118,6 +119,16 @@ class MessageActivityResponse {
   });
 
   factory MessageActivityResponse.fromJson(Map<String, dynamic> json) {
+    if (!json.containsKey('activity')) {
+      Sentry.addBreadcrumb(Breadcrumb(data: {"json": json}));
+      throw Exception('Activity not found in message activity response');
+    }
+
+    if (json['activity'] is! Map<String, dynamic>) {
+      Sentry.addBreadcrumb(Breadcrumb(data: {"json": json}));
+      throw Exception('Activity is not a map in message activity response');
+    }
+
     return MessageActivityResponse(
       activity: PracticeActivityModel.fromJson(
         json['activity'] as Map<String, dynamic>,

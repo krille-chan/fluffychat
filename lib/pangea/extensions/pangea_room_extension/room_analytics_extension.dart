@@ -100,7 +100,7 @@ extension AnalyticsRoomExtension on Room {
     }
 
     final List<User> participants = analyticsRoom.getParticipants();
-    final List<User> uninvitedTeachers = teachersLocal
+    final List<User> uninvitedTeachers = (await teachers)
         .where((teacher) => !participants.contains(teacher))
         .toList();
 

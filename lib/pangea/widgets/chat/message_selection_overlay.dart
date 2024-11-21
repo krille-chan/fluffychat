@@ -26,6 +26,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class MessageSelectionOverlay extends StatefulWidget {
   final ChatController chatController;
@@ -485,8 +486,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     try {
       return _messageRenderBox?.localToGlobal(Offset.zero);
-    } catch (e, s) {
-      ErrorHandler.logError(e: "Error getting message offset: $e", s: s);
+    } catch (e) {
+      Sentry.addBreadcrumb(Breadcrumb(message: "Error getting message offset"));
       return null;
     }
   }
