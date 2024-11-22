@@ -82,7 +82,7 @@ class VisibilityToggle extends StatelessWidget {
                   child: const Icon(Icons.search_outlined),
                 ),
                 value: room != null
-                    ? room!.joinRules == matrix.JoinRules.public
+                    ? snapshot.data == matrix.Visibility.public
                     : visibility == matrix.Visibility.public,
                 onChanged: (value) => setVisibility(
                   value ? matrix.Visibility.public : matrix.Visibility.private,
