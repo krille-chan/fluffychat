@@ -95,8 +95,17 @@ extension LocalizedExceptionExtension on Object {
         exceptionContext == ExceptionContext.checkHomeserver) {
       return L10n.of(context).doesNotSeemToBeAValidHomeserver;
     }
+    if (this is FormatException &&
+        exceptionContext == ExceptionContext.checkServerSupportInfo) {
+      return L10n.of(context).noContactInformationProvided;
+    }
     if (this is String) return toString();
     if (this is UiaException) return toString();
+
+    if (exceptionContext == ExceptionContext.joinRoom) {
+      return L10n.of(context).unableToJoinChat;
+    }
+
     Logs().w('Something went wrong: ', this);
     return L10n.of(context).oopsSomethingWentWrong;
   }
@@ -105,4 +114,6 @@ extension LocalizedExceptionExtension on Object {
 enum ExceptionContext {
   changePassword,
   checkHomeserver,
+  checkServerSupportInfo,
+  joinRoom,
 }

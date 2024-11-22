@@ -92,6 +92,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                     width: 128,
                     height: 128,
                     animated: true,
+                    isThumbnail: false,
                   ),
                 ),
               );

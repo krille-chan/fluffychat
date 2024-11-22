@@ -2197,7 +2197,7 @@
       "provider": {}
     }
   },
-  "fileIsTooBigForServer": "서버가 파일을 전송하기 너무 크다고 보고합니다.",
+  "fileIsTooBigForServer": "전송에 실패했습니다. 서버는 {max}치가 넘는 파일을 지원하지 않습니다.",
   "@fileIsTooBigForServer": {},
   "callingPermissions": "통화 권한",
   "@callingPermissions": {},
@@ -2708,7 +2708,7 @@
   "@knockRestricted": {},
   "swipeRightToLeftToReply": "오른쪽에서 왼쪽으로 스와이프해서 답장",
   "@swipeRightToLeftToReply": {},
-  "alwaysUse24HourFormat": "false",
+  "alwaysUse24HourFormat": "아니요",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
@@ -2763,5 +2763,108 @@
     "placeholders": {
       "level": {}
     }
-  }
+  },
+  "noChatsFoundHere": "대화가 발견되지 않았습니다. 아래 버튼을 사용하여 새 대화를 시작해 보세요. ⤵️",
+  "@noChatsFoundHere": {},
+  "changeTheVisibilityOfChatHistory": "대화 기록 표시 여부 바꾸기",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "메인 공개 대화 주소 변경",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendCanceled": "전송 최소됨",
+  "@sendCanceled": {},
+  "homeserverDescription": "모든 데이터는 이메일 제공자와 마찬가지로 Homeserver(이) 에 저장됩니다. 모든 사람과 여전히 소통할 수 있는 동안 사용하고 싶은 Homeserver(이) 를 선택할 수 있습니다. https://matrix.org에서 자세히 알아보세요.",
+  "@homeserverDescription": {},
+  "sendingAttachmentCountOfCount": "{index} ({length}) 전송 중...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "서버 한도에 도달했습니다! {seconds}초 기다리는 중...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "noContactInformationProvided": "서버가 유효한 연락처 정보를 제공하지 않습니다",
+  "@noContactInformationProvided": {},
+  "welcomeText": "안녕하세요 👋 제 이름은 FluffyChat이에요. 당신은 Htpps://matrix.org에 호환되는 어떤 Homeserver에도 가입할 수 있어요. 그리고 아무나 대화하세요! 저는 큰 대화 네트워크랍니다! 😄",
+  "@welcomeText": {},
+  "changeGeneralChatSettings": "일반 대화 설정 번경하기",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "다른 사용자를 이 대화에 초대하기",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "대화 권한 변경하기",
+  "@changeTheChatPermissions": {},
+  "calculatingFileSize": "파일 크기 계산 중...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "첨부된 파일 전송 준비 중...",
+  "@prepareSendingAttachment": {},
+  "oneOfYourDevicesIsNotVerified": "당신의 기기 중 하나가 인증되지 않았습니다",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "참고: 모든 기기를 대화 백업에 연결하면 자동으로 인증됩니다.",
+  "@noticeChatBackupDeviceVerification": {},
+  "opacity": "불투명:",
+  "@opacity": {},
+  "setWallpaper": "배경화면 정하기",
+  "@setWallpaper": {},
+  "manageAccount": "계정 관리하기",
+  "@manageAccount": {},
+  "aboutHomeserver": "{homeserver}의 대해서",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "contactServerAdmin": "서버 관리자 연락하기",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "서버 보안관 연락하기",
+  "@contactServerSecurity": {},
+  "supportPage": "페이지 돕기",
+  "@supportPage": {},
+  "name": "이름",
+  "@name": {},
+  "serverInformation": "서버 정보:",
+  "@serverInformation": {},
+  "version": "버전",
+  "@version": {},
+  "website": "웹사이트",
+  "@website": {},
+  "changeTheDescriptionOfTheGroup": "대화의 설명 바꾸기",
+  "@changeTheDescriptionOfTheGroup": {},
+  "sendRoomNotifications": "@room 알림 보내기",
+  "@sendRoomNotifications": {},
+  "chatPermissionsDescription": "이 대화에서 특정 작업에 필요한 파워 레벨을 정의합니다. 파워 레벨 0, 50, 100은 일반적으로 사용자, 관리자, 관리자를 나타내지만, 모든 등급이 가능합니다.",
+  "@chatPermissionsDescription": {},
+  "loginWithMatrixId": "Matrix-ID로 로그인",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Homeserver 찾아보기",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Homeserver(이) 가 무엇인가요?",
+  "@whatIsAHomeserver": {},
+  "doesNotSeemToBeAValidHomeserver": "호환되는 Homeserver(이) 가 아닌 것 같습니다. URL이 올바르게 입력됐나요?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "continueText": "계속하기",
+  "@continueText": {},
+  "updateInstalled": "🎉 새 {version} 가 설치되었습니다!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "변경 기록",
+  "@changelog": {},
+  "sendingAttachment": "첨부된 파일 전송 중...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "영상 썸네일 만드는 중...",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "영상 압축 중...",
+  "@compressVideo": {},
+  "blur": "블러:",
+  "@blur": {}
 }

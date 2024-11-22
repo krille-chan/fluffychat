@@ -1180,7 +1180,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openCamera": "Ava kaamera",
+  "openCamera": "Pildista",
   "@openCamera": {
     "type": "text",
     "placeholders": {}
@@ -1981,7 +1981,7 @@
     "type": "text",
     "description": "Usage hint for the command /create"
   },
-  "openVideoCamera": "Video salvestamiseks ava kaamera",
+  "openVideoCamera": "Tee video",
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
@@ -2832,5 +2832,58 @@
   "oneOfYourDevicesIsNotVerified": "Üks sinu seadmetest pole verifitseeritud",
   "@oneOfYourDevicesIsNotVerified": {},
   "noticeChatBackupDeviceVerification": "Märkus: kui liidad kõik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud.",
-  "@noticeChatBackupDeviceVerification": {}
+  "@noticeChatBackupDeviceVerification": {},
+  "continueText": "Jätka",
+  "@continueText": {},
+  "welcomeText": "Tere, tere 👋 See on FluffyChat. Sa võid sisse logida igasse koduserverisse, mis ühildub https://matrix.org serveriga. Ja seejärel saad suhelda kõigiga. Tegemist on ikka väga suure detsentraliseeritud sõnumivõrguga!",
+  "@welcomeText": {},
+  "setWallpaper": "Määra taustapildiks",
+  "@setWallpaper": {},
+  "manageAccount": "Halda kasutajakontot",
+  "@manageAccount": {},
+  "blur": "Hägusus:",
+  "@blur": {},
+  "opacity": "Läbipaistmatus:",
+  "@opacity": {},
+  "contactServerSecurity": "Võta ühendust serveri andmeturbe eest vastutajaga",
+  "@contactServerSecurity": {},
+  "supportPage": "Kasutajatugi",
+  "@supportPage": {},
+  "serverInformation": "Serveri teave:",
+  "@serverInformation": {},
+  "name": "Nimi",
+  "@name": {},
+  "version": "Versioon",
+  "@version": {},
+  "noContactInformationProvided": "Server ei jaga asjakohast kontaktteavet",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "Võta ühendust serveri haldajaga",
+  "@contactServerAdmin": {},
+  "website": "Veebisait",
+  "@website": {},
+  "aboutHomeserver": "Koduserveri teave: {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "compressBeforeSending": "Paki enne saatmist kokku",
+  "@compressBeforeSending": {},
+  "pleaseFillOut": "Palun täida",
+  "@pleaseFillOut": {},
+  "invalidUrl": "Vigane võrguaadress",
+  "@invalidUrl": {},
+  "addLink": "Lisa link",
+  "@addLink": {},
+  "strikeThrough": "Läbikriipsutatud kiri",
+  "@strikeThrough": {},
+  "sendUncompressed": "Saada pakkimata kujul",
+  "@sendUncompressed": {},
+  "boldText": "Paks kiri",
+  "@boldText": {},
+  "italicText": "Kaldkiri",
+  "@italicText": {},
+  "unableToJoinChat": "Vestlusega liitumine ei õnnestu. Võib-olla on teine osapool juba vestluse sulgenud.",
+  "@unableToJoinChat": {}
 }

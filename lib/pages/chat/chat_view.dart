@@ -17,6 +17,7 @@ import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/utils/account_config.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -135,6 +136,7 @@ class ChatView extends StatelessWidget {
       showFutureLoadingDialog(
         context: context,
         future: () => controller.room.join(),
+        exceptionContext: ExceptionContext.joinRoom,
       );
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
@@ -287,20 +289,7 @@ class ChatView extends StatelessWidget {
                           Expanded(
                             child: GestureDetector(
                               onTap: controller.clearSingleSelectedEvent,
-                              child: Builder(
-                                builder: (context) {
-                                  if (controller.timeline == null) {
-                                    return const Center(
-                                      child: CircularProgressIndicator.adaptive(
-                                        strokeWidth: 2,
-                                      ),
-                                    );
-                                  }
-                                  return ChatEventList(
-                                    controller: controller,
-                                  );
-                                },
-                              ),
+                              child: ChatEventList(controller: controller),
                             ),
                           ),
                           if (controller.room.canSendDefaultMessages &&

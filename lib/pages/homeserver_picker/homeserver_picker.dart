@@ -73,10 +73,19 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     );
   }
 
-  tryCheckHomeserverActionWithoutCooldown([_]) {
+  void tryCheckHomeserverActionWithoutCooldown([_]) {
     _checkHomeserverCooldown?.cancel();
     _lastCheckedUrl = null;
     checkHomeserverAction();
+  }
+
+  void onSubmitted([_]) {
+    if (isLoading || _checkHomeserverCooldown?.isActive == true) {
+      return tryCheckHomeserverActionWithoutCooldown();
+    }
+    if (supportsSso) return ssoLoginAction();
+    if (supportsPasswordLogin) return login();
+    return tryCheckHomeserverActionWithoutCooldown();
   }
 
   /// Starts an analysis of the given homeserver. It uses the current domain and
@@ -160,7 +169,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     final result = await FlutterWebAuth2.authenticate(
       url: url.toString(),
       callbackUrlScheme: urlScheme,
-      options: FlutterWebAuth2Options(useWebview: !isDefaultPlatform),
+      options: const FlutterWebAuth2Options(),
     );
     final token = Uri.parse(result).queryParameters['loginToken'];
     if (token?.isEmpty ?? false) return;

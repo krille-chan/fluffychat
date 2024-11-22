@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -96,130 +94,113 @@ class ChatInputRow extends StatelessWidget {
             ]
           : <Widget>[
               const SizedBox(width: 4),
-              KeyBoardShortcuts(
-                keysToPress: {
-                  LogicalKeyboardKey.altLeft,
-                  LogicalKeyboardKey.keyA,
-                },
-                onKeysPressed: () =>
-                    controller.onAddPopupMenuButtonSelected('file'),
-                helpLabel: L10n.of(context).sendFile,
-                child: AnimatedContainer(
-                  duration: FluffyThemes.animationDuration,
-                  curve: FluffyThemes.animationCurve,
-                  height: height,
-                  width: controller.sendController.text.isEmpty ? height : 0,
-                  alignment: Alignment.center,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: const BoxDecoration(),
-                  child: PopupMenuButton<String>(
-                    icon: const Icon(Icons.add_outlined),
-                    onSelected: controller.onAddPopupMenuButtonSelected,
-                    itemBuilder: (BuildContext context) =>
-                        <PopupMenuEntry<String>>[
+              AnimatedContainer(
+                duration: FluffyThemes.animationDuration,
+                curve: FluffyThemes.animationCurve,
+                height: height,
+                width: controller.sendController.text.isEmpty ? height : 0,
+                alignment: Alignment.center,
+                clipBehavior: Clip.hardEdge,
+                decoration: const BoxDecoration(),
+                child: PopupMenuButton<String>(
+                  icon: const Icon(Icons.add_outlined),
+                  onSelected: controller.onAddPopupMenuButtonSelected,
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<String>>[
+                    PopupMenuItem<String>(
+                      value: 'file',
+                      child: ListTile(
+                        leading: const CircleAvatar(
+                          backgroundColor: Colors.green,
+                          foregroundColor: Colors.white,
+                          child: Icon(Icons.attachment_outlined),
+                        ),
+                        title: Text(L10n.of(context).sendFile),
+                        contentPadding: const EdgeInsets.all(0),
+                      ),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'image',
+                      child: ListTile(
+                        leading: const CircleAvatar(
+                          backgroundColor: Colors.blue,
+                          foregroundColor: Colors.white,
+                          child: Icon(Icons.image_outlined),
+                        ),
+                        title: Text(L10n.of(context).sendImage),
+                        contentPadding: const EdgeInsets.all(0),
+                      ),
+                    ),
+                    if (PlatformInfos.isMobile)
                       PopupMenuItem<String>(
-                        value: 'file',
+                        value: 'camera',
                         child: ListTile(
                           leading: const CircleAvatar(
-                            backgroundColor: Colors.green,
+                            backgroundColor: Colors.purple,
                             foregroundColor: Colors.white,
-                            child: Icon(Icons.attachment_outlined),
+                            child: Icon(Icons.camera_alt_outlined),
                           ),
-                          title: Text(L10n.of(context).sendFile),
+                          title: Text(L10n.of(context).openCamera),
                           contentPadding: const EdgeInsets.all(0),
                         ),
                       ),
+                    if (PlatformInfos.isMobile)
                       PopupMenuItem<String>(
-                        value: 'image',
+                        value: 'camera-video',
                         child: ListTile(
                           leading: const CircleAvatar(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: Colors.red,
                             foregroundColor: Colors.white,
-                            child: Icon(Icons.image_outlined),
+                            child: Icon(Icons.videocam_outlined),
                           ),
-                          title: Text(L10n.of(context).sendImage),
+                          title: Text(L10n.of(context).openVideoCamera),
                           contentPadding: const EdgeInsets.all(0),
                         ),
                       ),
-                      if (PlatformInfos.isMobile)
-                        PopupMenuItem<String>(
-                          value: 'camera',
-                          child: ListTile(
-                            leading: const CircleAvatar(
-                              backgroundColor: Colors.purple,
-                              foregroundColor: Colors.white,
-                              child: Icon(Icons.camera_alt_outlined),
-                            ),
-                            title: Text(L10n.of(context).openCamera),
-                            contentPadding: const EdgeInsets.all(0),
+                    if (PlatformInfos.isMobile)
+                      PopupMenuItem<String>(
+                        value: 'location',
+                        child: ListTile(
+                          leading: const CircleAvatar(
+                            backgroundColor: Colors.brown,
+                            foregroundColor: Colors.white,
+                            child: Icon(Icons.gps_fixed_outlined),
                           ),
+                          title: Text(L10n.of(context).shareLocation),
+                          contentPadding: const EdgeInsets.all(0),
                         ),
-                      if (PlatformInfos.isMobile)
-                        PopupMenuItem<String>(
-                          value: 'camera-video',
-                          child: ListTile(
-                            leading: const CircleAvatar(
-                              backgroundColor: Colors.red,
-                              foregroundColor: Colors.white,
-                              child: Icon(Icons.videocam_outlined),
-                            ),
-                            title: Text(L10n.of(context).openVideoCamera),
-                            contentPadding: const EdgeInsets.all(0),
-                          ),
-                        ),
-                      if (PlatformInfos.isMobile)
-                        PopupMenuItem<String>(
-                          value: 'location',
-                          child: ListTile(
-                            leading: const CircleAvatar(
-                              backgroundColor: Colors.brown,
-                              foregroundColor: Colors.white,
-                              child: Icon(Icons.gps_fixed_outlined),
-                            ),
-                            title: Text(L10n.of(context).shareLocation),
-                            contentPadding: const EdgeInsets.all(0),
-                          ),
-                        ),
-                    ],
-                  ),
+                      ),
+                  ],
                 ),
               ),
               Container(
                 height: height,
                 width: height,
                 alignment: Alignment.center,
-                child: KeyBoardShortcuts(
-                  keysToPress: {
-                    LogicalKeyboardKey.altLeft,
-                    LogicalKeyboardKey.keyE,
-                  },
-                  onKeysPressed: controller.emojiPickerAction,
-                  helpLabel: L10n.of(context).emojis,
-                  child: IconButton(
-                    tooltip: L10n.of(context).emojis,
-                    icon: PageTransitionSwitcher(
-                      transitionBuilder: (
-                        Widget child,
-                        Animation<double> primaryAnimation,
-                        Animation<double> secondaryAnimation,
-                      ) {
-                        return SharedAxisTransition(
-                          animation: primaryAnimation,
-                          secondaryAnimation: secondaryAnimation,
-                          transitionType: SharedAxisTransitionType.scaled,
-                          fillColor: Colors.transparent,
-                          child: child,
-                        );
-                      },
-                      child: Icon(
-                        controller.showEmojiPicker
-                            ? Icons.keyboard
-                            : Icons.add_reaction_outlined,
-                        key: ValueKey(controller.showEmojiPicker),
-                      ),
+                child: IconButton(
+                  tooltip: L10n.of(context).emojis,
+                  icon: PageTransitionSwitcher(
+                    transitionBuilder: (
+                      Widget child,
+                      Animation<double> primaryAnimation,
+                      Animation<double> secondaryAnimation,
+                    ) {
+                      return SharedAxisTransition(
+                        animation: primaryAnimation,
+                        secondaryAnimation: secondaryAnimation,
+                        transitionType: SharedAxisTransitionType.scaled,
+                        fillColor: Colors.transparent,
+                        child: child,
+                      );
+                    },
+                    child: Icon(
+                      controller.showEmojiPicker
+                          ? Icons.keyboard
+                          : Icons.add_reaction_outlined,
+                      key: ValueKey(controller.showEmojiPicker),
                     ),
-                    onPressed: controller.emojiPickerAction,
                   ),
+                  onPressed: controller.emojiPickerAction,
                 ),
               ),
               if (Matrix.of(context).isMultiAccount &&

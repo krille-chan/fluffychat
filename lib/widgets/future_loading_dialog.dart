@@ -17,9 +17,9 @@ Future<Result<T>> showFutureLoadingDialog<T>({
   required Future<T> Function() future,
   String? title,
   String? backLabel,
-  String Function(dynamic exception)? onError,
   bool barrierDismissible = false,
   bool delay = true,
+  ExceptionContext? exceptionContext,
 }) async {
   final futureExec = future();
   final resultFuture = ResultFuture(futureExec);
@@ -44,7 +44,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
       future: futureExec,
       title: title,
       backLabel: backLabel,
-      onError: onError,
+      exceptionContext: exceptionContext,
     ),
   );
   return result ??
@@ -58,14 +58,14 @@ class LoadingDialog<T> extends StatefulWidget {
   final String? title;
   final String? backLabel;
   final Future<T> future;
-  final String Function(dynamic exception)? onError;
+  final ExceptionContext? exceptionContext;
 
   const LoadingDialog({
     super.key,
     required this.future,
     this.title,
-    this.onError,
     this.backLabel,
+    this.exceptionContext,
   });
   @override
   LoadingDialogState<T> createState() => LoadingDialogState<T>();
@@ -91,30 +91,31 @@ class LoadingDialogState<T> extends State<LoadingDialog> {
   Widget build(BuildContext context) {
     final exception = this.exception;
     final titleLabel = exception != null
-        ? widget.onError?.call(exception) ??
-            exception.toLocalizedString(context)
+        ? exception.toLocalizedString(context, widget.exceptionContext)
         : widget.title ?? L10n.of(context).loadingPleaseWait;
 
     return AlertDialog.adaptive(
+      title: exception == null
+          ? null
+          : Icon(
+              Icons.error_outline_outlined,
+              color: Theme.of(context).colorScheme.error,
+              size: 48,
+            ),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if (exception == null)
-              const CircularProgressIndicator.adaptive()
-            else
-              Icon(
-                Icons.error_outline_outlined,
-                color: Theme.of(context).colorScheme.error,
-                size: 48,
-              ),
-            const SizedBox(width: 20),
+            if (exception == null) ...[
+              const CircularProgressIndicator.adaptive(),
+              const SizedBox(width: 20),
+            ],
             Expanded(
               child: Text(
                 titleLabel,
-                maxLines: 2,
-                textAlign: TextAlign.left,
+                maxLines: 4,
+                textAlign: exception == null ? TextAlign.left : null,
                 overflow: TextOverflow.ellipsis,
               ),
             ),

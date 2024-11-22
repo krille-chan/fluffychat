@@ -25,9 +25,12 @@
   "replace": "Replace",
   "@replace": {},
   "about": "About",
-  "@about": {
+  "aboutHomeserver": "About {homeserver}",
+  "@aboutHomeserver": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": {
+      "homeserver": {}
+    }
   },
   "accept": "Accept",
   "@accept": {
@@ -2794,5 +2797,21 @@
   "blur": "Blur:",
   "opacity": "Opacity:",
   "setWallpaper": "Set wallpaper",
-  "manageAccount": "Manage account"
+  "manageAccount": "Manage account",
+  "noContactInformationProvided": "Server does not provide any valid contact information",
+  "contactServerAdmin": "Contact server admin",
+  "contactServerSecurity": "Contact server security",
+  "supportPage": "Support page",
+  "serverInformation": "Server information:",
+  "name": "Name",
+  "version": "Version",
+  "website": "Website",
+  "sendUncompressed": "Send uncompressed",
+  "boldText": "Bold text",
+  "italicText": "Italic text",
+  "strikeThrough": "Strikethrough",
+  "pleaseFillOut": "Please fill out",
+  "invalidUrl": "Invalid url",
+  "addLink": "Add link",
+  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation."
 }

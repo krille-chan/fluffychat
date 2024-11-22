@@ -1,5 +1,5 @@
 diff --git a/android/app/build.gradle b/android/app/build.gradle
-index 7520ff2a..ae376d9d 100644
+index f92f73f3..6d389efb 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
 @@ -2,7 +2,7 @@ plugins {
@@ -11,7 +11,7 @@ index 7520ff2a..ae376d9d 100644
  }
  
  def localProperties = new Properties()
-@@ -83,6 +83,6 @@ flutter {
+@@ -83,10 +83,10 @@ flutter {
  }
  
  dependencies {
@@ -19,6 +19,12 @@ index 7520ff2a..ae376d9d 100644
 +    implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
      implementation 'androidx.multidex:multidex:2.0.1'
  }
+ 
+ configurations.all {
+-    exclude group: 'com.google.android.gms'
++    //exclude group: 'com.google.android.gms'
+ }
+\ No newline at end of file
 diff --git a/android/app/proguard-rules.pro b/android/app/proguard-rules.pro
 index d0e0fbc9..0a546da0 100644
 --- a/android/app/proguard-rules.pro
@@ -100,10 +106,10 @@ index b2fd960a..fdb01a4d 100644
  include ":app"
 \ No newline at end of file
 diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
-index 039dde89..1cefdd71 100644
+index 1ba2659a..989f458e 100644
 --- a/lib/utils/background_push.dart
 +++ b/lib/utils/background_push.dart
-@@ -38,7 +38,7 @@ import '../config/setting_keys.dart';
+@@ -39,7 +39,7 @@ import '../config/setting_keys.dart';
  import '../widgets/matrix.dart';
  import 'platform_infos.dart';
  
@@ -112,7 +118,7 @@ index 039dde89..1cefdd71 100644
  
  class NoTokenException implements Exception {
    String get cause => 'Cannot get firebase token';
-@@ -63,7 +63,7 @@ class BackgroundPush {
+@@ -64,7 +64,7 @@ class BackgroundPush {
  
    final pendingTests = <String, Completer<void>>{};
  
@@ -122,7 +128,7 @@ index 039dde89..1cefdd71 100644
    DateTime? lastReceivedPush;
  
 diff --git a/pubspec.yaml b/pubspec.yaml
-index 69c80d6e..efd32d89 100644
+index fb3e3ca4..039b2ccc 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
 @@ -25,7 +25,7 @@ dependencies:

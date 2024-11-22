@@ -15,7 +15,10 @@ import 'homeserver_picker.dart';
 class HomeserverPickerView extends StatelessWidget {
   final HomeserverPickerController controller;
 
-  const HomeserverPickerView(this.controller, {super.key});
+  const HomeserverPickerView(
+    this.controller, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,11 @@ class HomeserverPickerView extends StatelessWidget {
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
         centerTitle: true,
-        title: Text(L10n.of(context).addAccount),
+        title: Text(
+          controller.widget.addMultiAccount
+              ? L10n.of(context).addAccount
+              : L10n.of(context).login,
+        ),
         actions: [
           PopupMenuButton<MoreLoginActions>(
             onSelected: controller.onMoreAction,
@@ -137,10 +144,7 @@ class HomeserverPickerView extends StatelessWidget {
                           TextField(
                             onChanged:
                                 controller.tryCheckHomeserverActionWithCooldown,
-                            onEditingComplete: controller
-                                .tryCheckHomeserverActionWithoutCooldown,
-                            onSubmitted: controller
-                                .tryCheckHomeserverActionWithoutCooldown,
+                            onSubmitted: controller.onSubmitted,
                             onTap:
                                 controller.tryCheckHomeserverActionWithCooldown,
                             controller: controller.homeserverController,

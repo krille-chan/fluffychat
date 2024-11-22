@@ -247,6 +247,7 @@ class _EmoteImage extends StatelessWidget {
         fit: BoxFit.contain,
         width: size,
         height: size,
+        isThumbnail: false,
       ),
     );
   }

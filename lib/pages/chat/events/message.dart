@@ -34,7 +34,7 @@ class Message extends StatelessWidget {
   final bool highlightMarker;
   final bool animateIn;
   final void Function()? resetAnimateIn;
-  final Color? avatarPresenceBackgroundColor;
+  final bool wallpaperMode;
 
   const Message(
     this.event, {
@@ -52,7 +52,7 @@ class Message extends StatelessWidget {
     this.highlightMarker = false,
     this.animateIn = false,
     this.resetAnimateIn,
-    this.avatarPresenceBackgroundColor,
+    this.wallpaperMode = false,
     super.key,
   });
 
@@ -230,7 +230,7 @@ class Message extends StatelessWidget {
                                 name: user.calcDisplayname(),
                                 presenceUserId: user.stateKey,
                                 presenceBackgroundColor:
-                                    avatarPresenceBackgroundColor,
+                                    wallpaperMode ? Colors.transparent : null,
                                 onTap: () => onAvatarTab(event),
                               );
                             },
@@ -265,23 +265,18 @@ class Message extends StatelessWidget {
                                                     ? displayname.color
                                                     : displayname
                                                         .lightColorText),
-                                                shadows:
-                                                    avatarPresenceBackgroundColor ==
-                                                            null
-                                                        ? null
-                                                        : [
-                                                            Shadow(
-                                                              offset:
-                                                                  const Offset(
-                                                                0.0,
-                                                                0.0,
-                                                              ),
-                                                              blurRadius: 5,
-                                                              color: theme
-                                                                  .colorScheme
-                                                                  .surface,
-                                                            ),
-                                                          ],
+                                                shadows: !wallpaperMode
+                                                    ? null
+                                                    : [
+                                                        const Shadow(
+                                                          offset: Offset(
+                                                            0.0,
+                                                            0.0,
+                                                          ),
+                                                          blurRadius: 3,
+                                                          color: Colors.black,
+                                                        ),
+                                                      ],
                                               ),
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
@@ -309,13 +304,14 @@ class Message extends StatelessWidget {
                                             : 1,
                                     duration: FluffyThemes.animationDuration,
                                     curve: FluffyThemes.animationCurve,
-                                    child: Material(
-                                      color:
-                                          noBubble ? Colors.transparent : color,
-                                      clipBehavior: Clip.antiAlias,
-                                      shape: RoundedRectangleBorder(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: noBubble
+                                            ? Colors.transparent
+                                            : color,
                                         borderRadius: borderRadius,
                                       ),
+                                      clipBehavior: Clip.antiAlias,
                                       child: Container(
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
@@ -500,7 +496,8 @@ class Message extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Divider(color: theme.colorScheme.secondary),
+                  child:
+                      Divider(color: theme.colorScheme.surfaceContainerHighest),
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
@@ -509,18 +506,23 @@ class Message extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
+                    vertical: 2,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.circular(AppConfig.borderRadius / 3),
+                    color: theme.colorScheme.surface.withAlpha(128),
                   ),
                   child: Text(
                     L10n.of(context).readUpToHere,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       fontSize: 12 * AppConfig.fontSizeFactor,
-                      color: theme.colorScheme.secondary,
                     ),
                   ),
                 ),
                 Expanded(
-                  child: Divider(color: theme.colorScheme.secondary),
+                  child:
+                      Divider(color: theme.colorScheme.surfaceContainerHighest),
                 ),
               ],
             ),
