@@ -15,6 +15,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'base_controller.dart';
@@ -63,7 +64,7 @@ class ClassController extends BaseController {
 
   Future<void> joinClasswithCode(BuildContext context, String classCode) async {
     final client = Matrix.of(context).client;
-    await showFutureLoadingDialog(
+    final space = await showFutureLoadingDialog<Room?>(
       context: context,
       future: () async {
         final knockResponse = await client.httpClient.post(
@@ -76,108 +77,79 @@ class ClassController extends BaseController {
           },
           body: jsonEncode({'access_code': classCode}),
         );
+
         if (knockResponse.statusCode == 429) {
-          await showFutureLoadingDialog(
-            context: context,
-            future: () async {
-              throw L10n.of(context)!.tooManyRequest;
-            },
-          );
-          return;
+          throw L10n.of(context)!.tooManyRequest;
         }
         if (knockResponse.statusCode != 200) {
-          await showFutureLoadingDialog(
-            context: context,
-            future: () async {
-              throw L10n.of(context)!.unableToFindClass;
-            },
-          );
-          return;
+          throw L10n.of(context)!.unableToFindClass;
         }
+
         final knockResult = jsonDecode(knockResponse.body);
         final foundClasses = List<String>.from(knockResult['rooms']);
         final alreadyJoined = List<String>.from(knockResult['already_joined']);
-        if (alreadyJoined.isNotEmpty) {
-          await showFutureLoadingDialog(
-            context: context,
-            future: () async {
-              throw L10n.of(context)!.alreadyInClass;
-            },
-          );
-          return;
-        }
-        if (foundClasses.isEmpty) {
-          await showFutureLoadingDialog(
-            context: context,
-            future: () async {
-              throw L10n.of(context)!.unableToFindClass;
-            },
-          );
-          return;
-        }
-        final chosenClassId = foundClasses.first;
-        if (_pangeaController.matrixState.client.rooms
-            .any((room) => room.id == chosenClassId)) {
-          setActiveSpaceIdInChatListController(chosenClassId);
-          await showFutureLoadingDialog(
-            context: context,
-            future: () async {
-              throw L10n.of(context)!.alreadyInClass;
-            },
-          );
-          return;
-        } else {
-          await _pangeaController.pStoreService.save(
-            PLocalKey.justInputtedCode,
-            classCode,
-            isAccountData: false,
-          );
-          await client.joinRoomById(chosenClassId);
-          _pangeaController.pStoreService.delete(PLocalKey.justInputtedCode);
+
+        final bool inFoundClass = foundClasses.isNotEmpty &&
+            _pangeaController.matrixState.client.rooms.any(
+              (room) => room.id == foundClasses.first,
+            );
+
+        if (alreadyJoined.isNotEmpty || inFoundClass) {
+          context.go("/rooms/${alreadyJoined.first}/details");
+          throw L10n.of(context)!.alreadyInClass;
         }
 
-        if (_pangeaController.matrixState.client.getRoomById(chosenClassId) ==
-            null) {
+        if (foundClasses.isEmpty) {
+          throw L10n.of(context)!.unableToFindClass;
+        }
+
+        final chosenClassId = foundClasses.first;
+        await _pangeaController.pStoreService.save(
+          PLocalKey.justInputtedCode,
+          classCode,
+          isAccountData: false,
+        );
+
+        await client.joinRoomById(chosenClassId);
+        _pangeaController.pStoreService.delete(PLocalKey.justInputtedCode);
+
+        Room? room = client.getRoomById(chosenClassId);
+        if (room == null) {
           await _pangeaController.matrixState.client.waitForRoomInSync(
             chosenClassId,
             join: true,
           );
+          room = client.getRoomById(chosenClassId);
+          if (room == null) return null;
         }
-
-        // If the room is full, leave
-        final room =
-            _pangeaController.matrixState.client.getRoomById(chosenClassId);
-        if (room == null) {
-          return;
-        }
-        final joinResult = await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            if (await room.leaveIfFull()) {
-              throw L10n.of(context)!.roomFull;
-            }
-          },
-        );
-        if (joinResult.error != null) {
-          return;
-        }
-
-        setActiveSpaceIdInChatListController(chosenClassId);
-
-        // add the user's analytics room to this joined space
-        // so their teachers can join them via the space hierarchy
-        final Room? joinedSpace =
-            _pangeaController.matrixState.client.getRoomById(chosenClassId);
-
-        // when possible, add user's analytics room the to space they joined
-        joinedSpace?.addAnalyticsRoomsToSpace();
-
-        // and invite the space's teachers to the user's analytics rooms
-        joinedSpace?.inviteSpaceTeachersToAnalyticsRooms();
-        GoogleAnalytics.joinClass(classCode);
-        return;
+        return room;
       },
     );
+    if (space.isError || space.result == null) return;
+    final room = space.result!;
+    await room.join();
+    final isFull = await room.leaveIfFull();
+    if (isFull) {
+      await showFutureLoadingDialog(
+        context: context,
+        future: () async => throw L10n.of(context)!.roomFull,
+      );
+      return;
+    }
+
+    // when possible, add user's analytics room the to space they joined
+    room.addAnalyticsRoomsToSpace();
+
+    // and invite the space's teachers to the user's analytics rooms
+    room.inviteSpaceTeachersToAnalyticsRooms();
+    GoogleAnalytics.joinClass(classCode);
+
+    if (room.client.getRoomById(room.id)?.membership != Membership.join) {
+      await room.client.waitForRoomInSync(room.id, join: true);
+    }
+
+    context.go("/rooms/${room.id}/details");
+    return;
     // P-EPIC
     // prereq - server needs ability to invite to private room. how?
     // does server api have ability with admin token?

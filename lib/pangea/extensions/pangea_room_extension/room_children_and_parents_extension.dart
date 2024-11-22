@@ -108,40 +108,6 @@ extension ChildrenAndParentsRoomExtension on Room {
     return "... > $nameSoFar";
   }
 
-  // gets all space children of a given space, down the
-  // space tree.
-  List<String> get _allSpaceChildRoomIds {
-    final List<String> childIds = [];
-    for (final child in spaceChildren) {
-      if (child.roomId == null) continue;
-      childIds.add(child.roomId!);
-      final Room? room = client.getRoomById(child.roomId!);
-      if (room != null && room.isSpace) {
-        childIds.addAll(room._allSpaceChildRoomIds);
-      }
-    }
-    return childIds;
-  }
-
-  // Checks if has permissions to add child chat
-  // Or whether potential child space is ancestor of this
-  bool _canAddAsParentOf(Room? child, {bool spaceMode = false}) {
-    // don't add a room to itself
-    if (id == child?.id) return false;
-    spaceMode = child?.isSpace ?? spaceMode;
-
-    // get the bool for adding chats to spaces
-    final bool canAddChild =
-        (child?.isRoomAdmin ?? true) && canSendEvent(EventTypes.SpaceChild);
-    if (!spaceMode) return canAddChild;
-
-    // if adding space to a space, check if the child is an ancestor
-    // to prevent cycles
-    final bool isCycle =
-        child != null ? child._allSpaceChildRoomIds.contains(id) : false;
-    return canAddChild && !isCycle;
-  }
-
   /// Wrapper around call to setSpaceChild with added functionality
   /// to prevent adding one room to multiple spaces
   Future<void> _pangeaSetSpaceChild(

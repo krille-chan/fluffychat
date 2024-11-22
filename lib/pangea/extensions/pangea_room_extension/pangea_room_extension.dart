@@ -121,12 +121,6 @@ extension PangeaRoom on Room {
   String nameIncludingParents(BuildContext context) =>
       _nameIncludingParents(context);
 
-  List<String> get allSpaceChildRoomIds => _allSpaceChildRoomIds;
-
-  bool canAddAsParentOf(Room? child, {bool spaceMode = false}) {
-    return _canAddAsParentOf(child, spaceMode: spaceMode);
-  }
-
   Future<void> pangeaSetSpaceChild(
     String roomId, {
     bool? suggested,

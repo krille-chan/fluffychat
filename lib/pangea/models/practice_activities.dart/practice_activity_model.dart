@@ -228,6 +228,13 @@ class PracticeActivityModel {
       throw ("content is null in PracticeActivityModel.fromJson");
     }
 
+    if (json['lang_code'] is! String) {
+      Sentry.addBreadcrumb(
+        Breadcrumb(data: {"json": json}),
+      );
+      throw ("lang_code is not a string in PracticeActivityModel.fromJson");
+    }
+
     return PracticeActivityModel(
       tgtConstructs: ((json['tgt_constructs'] ?? json['target_constructs'])
               as List)

@@ -575,7 +575,9 @@ class ChatListController extends State<ChatList>
     classStream = MatrixState.pangeaController.classController.stateStream
         .listen((event) {
       if (mounted) {
-        setActiveSpace(event["activeSpaceId"]);
+        event["activeSpaceId"] != null
+            ? setActiveSpace(event["activeSpaceId"])
+            : clearActiveSpace();
         if (event["activeSpaceId"] != null) {
           context.go("/rooms/${event["activeSpaceId"]}/details");
         }
