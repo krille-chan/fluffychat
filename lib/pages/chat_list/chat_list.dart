@@ -127,9 +127,17 @@ class ChatListController extends State<ChatList>
     // Pangea#
   }
 
-  void clearActiveSpace() => setState(() {
-        _activeSpaceId = null;
-      });
+  // #Pangea
+  // void clearActiveSpace() => setState(() {
+  //       _activeSpaceId = null;
+  //     });
+  void clearActiveSpace() {
+    setState(() {
+      _activeSpaceId = null;
+    });
+    context.go("/rooms");
+  }
+  // Pangea#
 
   void onChatTap(Room room) async {
     if (room.membership == Membership.invite) {
