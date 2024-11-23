@@ -565,18 +565,18 @@ goe(){return"Informaci\xf3n do servidor:"},
 gbD(d){return"Nome"},
 goR(d){return"Versi\xf3n"},
 goS(){return"P\xe1xina web"},
-gob(){return"Send uncompressed"},
-gom(){return"Bold text"},
-goE(){return"Italic text"},
-gog(){return"Strikethrough"},
-goM(){return"Please fill out"},
-goC(){return"Invalid url"},
-goj(){return"Add link"},
-goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
+gob(){return"Enviar sen comprimir"},
+gom(){return"Resaltar texto"},
+goE(){return"Cursiva"},
+gog(){return"Riscar"},
+goM(){return"Por favor completa"},
+goC(){return"URL non v\xe1lido"},
+goj(){return"Engadir ligaz\xf3n"},
+goP(){return"Non se puido acceder. Pode que a outra parte xa pechase a conversa."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HT,C.aR)})()
 A.eo(b.typeUniverse,JSON.parse('{"HT":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"bPJ12L1zkSjeonirObJYS2iS5bI=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"hcRMlYN6+5XUefq2GgQ0zIrnlyo=");
 //# sourceMappingURL=main.dart.js_248.part.js.map
