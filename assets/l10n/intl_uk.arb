@@ -2869,5 +2869,21 @@
   "website": "Вебсайт",
   "@website": {},
   "compressBeforeSending": "Стиснути перед відправленням",
-  "@compressBeforeSending": {}
+  "@compressBeforeSending": {},
+  "sendUncompressed": "Відправити без стиснення",
+  "@sendUncompressed": {},
+  "boldText": "Жирний текст",
+  "@boldText": {},
+  "italicText": "Курсивний текст",
+  "@italicText": {},
+  "strikeThrough": "Перекреслений текст",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Будь ласка, заповніть",
+  "@pleaseFillOut": {},
+  "invalidUrl": "Невірний URL",
+  "@invalidUrl": {},
+  "addLink": "Додати посилання",
+  "@addLink": {},
+  "unableToJoinChat": "Неможливо приєднатися до чату. Можливо, інша сторона вже закрила розмову.",
+  "@unableToJoinChat": {}
 }
