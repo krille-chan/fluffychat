@@ -2882,5 +2882,7 @@
   "boldText": "Teks tebal",
   "@boldText": {},
   "italicText": "Teks miring",
-  "@italicText": {}
+  "@italicText": {},
+  "unableToJoinChat": "Tidak dapat bergabung dalam chat. Mungkin pihak lain telah menutup percakapan.",
+  "@unableToJoinChat": {}
 }
