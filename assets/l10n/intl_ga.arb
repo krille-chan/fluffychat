@@ -2886,5 +2886,7 @@
   "pleaseFillOut": "Líon amach le do thoil",
   "@pleaseFillOut": {},
   "invalidUrl": "URL neamhbhailí",
-  "@invalidUrl": {}
+  "@invalidUrl": {},
+  "unableToJoinChat": "Ní féidir páirt a ghlacadh sa chomhrá. B’fhéidir go bhfuil an comhrá dúnta cheana féin ag an bpáirtí eile.",
+  "@unableToJoinChat": {}
 }

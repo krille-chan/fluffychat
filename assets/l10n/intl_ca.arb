@@ -2254,7 +2254,7 @@
   },
   "importEmojis": "Importa emojis",
   "@importEmojis": {},
-  "wasDirectChatDisplayName": "La sala buida  ( va ser  {oldDisplayName})",
+  "wasDirectChatDisplayName": "La sala buida ( va ser {oldDisplayName})",
   "@wasDirectChatDisplayName": {
     "type": "text",
     "placeholders": {
