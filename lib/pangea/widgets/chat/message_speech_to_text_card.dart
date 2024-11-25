@@ -170,7 +170,7 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
 
     //TODO: find better icons
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -178,34 +178,41 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
           RichText(
             text: _buildTranscriptText(context),
           ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconNumberWidget(
-                icon: Symbols.target,
-                number:
-                    "${selectedToken?.confidence ?? speechToTextResponse!.transcript.confidence}%",
-                toolTip: L10n.of(context)!.accuracy,
-              ),
-              const SizedBox(width: 16),
-              IconNumberWidget(
-                icon: Icons.speed,
-                number: wordsPerMinuteString != null
-                    ? "$wordsPerMinuteString"
-                    : "??",
-                toolTip: L10n.of(context)!.wordsPerMinute,
-              ),
-            ],
-          ),
-          const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              InlineTooltip(
-                instructionsEnum: InstructionsEnum.speechToText,
-              ),
-            ],
-          ),
+          if (widget.messageEvent.senderId == Matrix.of(context).client.userID)
+            Column(
+              children: [
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconNumberWidget(
+                      icon: Symbols.target,
+                      number:
+                          "${selectedToken?.confidence ?? speechToTextResponse!.transcript.confidence}%",
+                      toolTip: L10n.of(context)!.accuracy,
+                    ),
+                    const SizedBox(width: 16),
+                    IconNumberWidget(
+                      icon: Icons.speed,
+                      number: wordsPerMinuteString != null
+                          ? "$wordsPerMinuteString"
+                          : "??",
+                      toolTip: L10n.of(context)!.wordsPerMinute,
+                    ),
+                  ],
+                ),
+                const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      child: InlineTooltip(
+                        instructionsEnum: InstructionsEnum.speechToText,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
         ],
       ),
     );

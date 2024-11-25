@@ -92,7 +92,7 @@ class InlineTooltipState extends State<InlineTooltip>
                         color: Theme.of(context).colorScheme.onSurface,
                         height: 1.5,
                       ),
-                      textAlign: TextAlign.left,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),

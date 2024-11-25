@@ -118,21 +118,9 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
                 child: Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        if (!itController.isEditingSourceText &&
-                            itController.sourceText != null)
-                          SizedBox(width: iconDimension * 3),
-                        if (!itController.isEditingSourceText)
-                          Expanded(
-                            child: itController.sourceText != null
-                                ? Text(
-                                    itController.sourceText!,
-                                    textAlign: TextAlign.center,
-                                  )
-                                : const LinearProgressIndicator(),
-                          ),
                         if (itController.isEditingSourceText)
                           Expanded(
                             child: Padding(
@@ -205,6 +193,16 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
                         ),
                       ],
                     ),
+                    if (!itController.isEditingSourceText)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: itController.sourceText != null
+                            ? Text(
+                                itController.sourceText!,
+                                textAlign: TextAlign.center,
+                              )
+                            : const LinearProgressIndicator(),
+                      ),
                     const SizedBox(height: 8.0),
                     if (showITInstructionsTooltip)
                       const InlineTooltip(
