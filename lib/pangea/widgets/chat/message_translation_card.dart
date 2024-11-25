@@ -172,8 +172,10 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
                 const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    InlineTooltip(
-                      instructionsEnum: InstructionsEnum.l1Translation,
+                    Expanded(
+                      child: InlineTooltip(
+                        instructionsEnum: InstructionsEnum.l1Translation,
+                      ),
                     ),
                   ],
                 ),
@@ -182,8 +184,10 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
                 const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    InlineTooltip(
-                      instructionsEnum: InstructionsEnum.clickAgainToDeselect,
+                    Expanded(
+                      child: InlineTooltip(
+                        instructionsEnum: InstructionsEnum.clickAgainToDeselect,
+                      ),
                     ),
                   ],
                 ),

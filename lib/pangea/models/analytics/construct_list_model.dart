@@ -139,13 +139,17 @@ class ConstructListModel {
       (total, construct) => total + construct.points,
     );
 
+    if (totalXP < 0) {
+      totalXP = 0;
+    }
+
     // Don't call .floor() if NaN or Infinity
     // https://pangea-chat.sentry.io/issues/6052871310
     final double levelCalculation = 1 + sqrt((1 + 8 * totalXP / 100) / 2);
     if (!levelCalculation.isNaN && levelCalculation.isFinite) {
       level = levelCalculation.floor();
     } else {
-      level = 0;
+      level = 1;
       Sentry.addBreadcrumb(
         Breadcrumb(
           data: {
