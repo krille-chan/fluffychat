@@ -1689,6 +1689,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "sendImages": "Send {count} image",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
   "sendMessages": "Send messages",
   "@sendMessages": {
     "type": "text",
@@ -2806,7 +2813,7 @@
   "name": "Name",
   "version": "Version",
   "website": "Website",
-  "sendUncompressed": "Send uncompressed",
+  "compress": "Compress",
   "boldText": "Bold text",
   "italicText": "Italic text",
   "strikeThrough": "Strikethrough",

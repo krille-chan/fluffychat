@@ -163,7 +163,11 @@ class SendFileDialogState extends State<SendFileDialog> {
         .toUpperCase();
 
     if (uniqueMimeType?.startsWith('image') ?? false) {
-      sendStr = L10n.of(context).sendImage;
+      if (widget.files.length == 1) {
+        sendStr = L10n.of(context).sendImage;
+      } else {
+        sendStr = L10n.of(context).sendImages(widget.files.length);
+      }
     } else if (uniqueMimeType?.startsWith('audio') ?? false) {
       sendStr = L10n.of(context).sendAudio;
     } else if (uniqueMimeType?.startsWith('video') ?? false) {
@@ -187,25 +191,33 @@ class SendFileDialogState extends State<SendFileDialog> {
                 if (uniqueMimeType?.startsWith('image') ?? false)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
-                    child: Material(
-                      borderRadius:
-                          BorderRadius.circular(AppConfig.borderRadius / 2),
-                      clipBehavior: Clip.hardEdge,
-                      child: kIsWeb
-                          ? Image.network(
-                              widget.files.first.path,
-                              fit: BoxFit.contain,
-                              height: 156,
-                            )
-                          : Image.file(
-                              File(widget.files.first.path),
-                              fit: BoxFit.contain,
-                              height: 156,
+                    child: SizedBox(
+                      height: 256,
+                      child: ListView.builder(
+                        itemCount: widget.files.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, i) => Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Material(
+                            borderRadius: BorderRadius.circular(
+                              AppConfig.borderRadius / 2,
                             ),
+                            clipBehavior: Clip.hardEdge,
+                            child: kIsWeb
+                                ? Image.network(
+                                    widget.files[i].path,
+                                    height: 256,
+                                  )
+                                : Image.file(
+                                    File(widget.files[i].path),
+                                    height: 256,
+                                  ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                if (uniqueMimeType?.startsWith('image') != true ||
-                    widget.files.length > 1)
+                if (uniqueMimeType?.startsWith('image') != true)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: Row(
@@ -253,19 +265,19 @@ class SendFileDialogState extends State<SendFileDialog> {
                       if ({TargetPlatform.iOS, TargetPlatform.macOS}
                           .contains(theme.platform))
                         CupertinoSwitch(
-                          value: !compress,
+                          value: compress,
                           onChanged: uniqueMimeType.startsWith('video') &&
                                   !PlatformInfos.isMobile
                               ? null
-                              : (v) => setState(() => compress = !v),
+                              : (v) => setState(() => compress = v),
                         )
                       else
                         Switch.adaptive(
-                          value: !compress,
+                          value: compress,
                           onChanged: uniqueMimeType.startsWith('video') &&
                                   !PlatformInfos.isMobile
                               ? null
-                              : (v) => setState(() => compress = !v),
+                              : (v) => setState(() => compress = v),
                         ),
                       const SizedBox(width: 16),
                       Expanded(
@@ -277,16 +289,17 @@ class SendFileDialogState extends State<SendFileDialog> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  L10n.of(context).sendUncompressed,
+                                  L10n.of(context).compress,
                                   style: theme.textTheme.titleMedium,
                                   textAlign: TextAlign.left,
                                 ),
                               ],
                             ),
-                            Text(
-                              ' ($sizeString)',
-                              style: theme.textTheme.labelSmall,
-                            ),
+                            if (!compress)
+                              Text(
+                                ' ($sizeString)',
+                                style: theme.textTheme.labelSmall,
+                              ),
                           ],
                         ),
                       ),
