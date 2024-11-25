@@ -8,7 +8,6 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_reactions.dart';
 import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_display_instructions_enum.dart';
-import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -86,7 +85,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     debugPrint(
-        "selected token ${widget._initialSelectedToken?.analyticsDebugPrint}");
+      "selected token ${widget._initialSelectedToken?.analyticsDebugPrint}",
+    );
     debugPrint(
       "${widget._initialSelectedToken?.vocabConstruct.uses.map((u) => "${u.useType} ${u.timeStamp}").join(", ")}",
     );
@@ -97,16 +97,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       widget._initialSelectedToken!,
     );
     // whether the activity should generally be involved in an activity
-    final shouldDoActivity = widget._initialSelectedToken!
-        .shouldDoActivity(ActivityTypeEnum.wordMeaning);
+    // final shouldDoActivity = widget._initialSelectedToken!
+    //     .shouldDoActivity(ActivityTypeEnum.wordMeaning);
 
-    return !isInHiddenWordActivity &&
-            widget._initialSelectedToken!.eligibleActivityTypes.isNotEmpty &&
-            widget._initialSelectedToken!
-                    .daysSinceLastUseByType(ActivityTypeEnum.wordMeaning) >
-                1
-        ? widget._initialSelectedToken
-        : null;
+    return !isInHiddenWordActivity ? widget._initialSelectedToken : null;
   }
 
   @override
