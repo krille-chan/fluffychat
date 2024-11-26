@@ -193,25 +193,28 @@ class SendFileDialogState extends State<SendFileDialog> {
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: SizedBox(
                       height: 256,
-                      child: ListView.builder(
-                        itemCount: widget.files.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, i) => Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Material(
-                            borderRadius: BorderRadius.circular(
-                              AppConfig.borderRadius / 2,
+                      child: Center(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: widget.files.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, i) => Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.borderRadius / 2,
+                              ),
+                              clipBehavior: Clip.hardEdge,
+                              child: kIsWeb
+                                  ? Image.network(
+                                      widget.files[i].path,
+                                      height: 256,
+                                    )
+                                  : Image.file(
+                                      File(widget.files[i].path),
+                                      height: 256,
+                                    ),
                             ),
-                            clipBehavior: Clip.hardEdge,
-                            child: kIsWeb
-                                ? Image.network(
-                                    widget.files[i].path,
-                                    height: 256,
-                                  )
-                                : Image.file(
-                                    File(widget.files[i].path),
-                                    height: 256,
-                                  ),
                           ),
                         ),
                       ),
