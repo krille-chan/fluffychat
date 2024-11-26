@@ -2888,5 +2888,14 @@
   "invalidUrl": "URL neamhbhailí",
   "@invalidUrl": {},
   "unableToJoinChat": "Ní féidir páirt a ghlacadh sa chomhrá. B’fhéidir go bhfuil an comhrá dúnta cheana féin ag an bpáirtí eile.",
-  "@unableToJoinChat": {}
+  "@unableToJoinChat": {},
+  "compress": "Comhbhrúigh",
+  "@compress": {},
+  "sendImages": "Seol {count} íomhá",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  }
 }
