@@ -119,6 +119,22 @@ class ConstructListModel {
       // Add each item in this entry to the groupedByCategory map under the single category key
       groupedByCategory.putIfAbsent(category, () => []).addAll(entry.value);
     }
+    final others = groupedByCategory.entries
+        .where((entry) => entry.key.toLowerCase() == 'other')
+        .toList();
+    if (others.length > 1) {
+      ErrorHandler.logError(
+        e: "More than one 'other' category in groupedByCategory",
+        data: {
+          "others": others
+              .map(
+                (entry) =>
+                    ("${entry.key}: ${entry.value.map((uses) => uses.id.string).toList()}"),
+              )
+              .toList(),
+        },
+      );
+    }
     _categoriesToUses = groupedByCategory;
   }
 
