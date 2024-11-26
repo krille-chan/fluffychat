@@ -333,7 +333,6 @@ class ChatController extends State<ChatPageWithRoom>
           ),
         );
       }
-      await Matrix.of(context).client.roomsLoading;
     });
     // Pangea#
     tryLoadTimeline();

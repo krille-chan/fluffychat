@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
@@ -92,6 +93,7 @@ class PangeaController {
     startChatWithBotIfNotPresent();
     inviteBotToExistingSpaces();
     setPangeaPushRules();
+    joinSupportSpace();
   }
 
   /// Initialize controllers
@@ -424,6 +426,41 @@ class PangeaController {
           ),
         ],
       );
+    }
+  }
+
+  /// Joins the user to the support space if they are
+  /// not already a member and have not previously left.
+  Future<void> joinSupportSpace() async {
+    // if the user is already in the space, return
+    await matrixState.client.roomsLoading;
+    final isInSupportSpace = matrixState.client.rooms.any(
+      (room) => room.id == Environment.supportSpaceId,
+    );
+    if (isInSupportSpace) return;
+
+    // if the user has previously joined the space, return
+    final bool previouslyJoined =
+        userController.profile.userSettings.hasJoinedHelpSpace ?? false;
+    if (previouslyJoined) return;
+
+    // join the space
+    try {
+      await matrixState.client.joinRoomById(Environment.supportSpaceId);
+      final room = matrixState.client.getRoomById(Environment.supportSpaceId);
+      if (room == null) {
+        await matrixState.client.waitForRoomInSync(
+          Environment.supportSpaceId,
+          join: true,
+        );
+      }
+      userController.updateProfile((profile) {
+        profile.userSettings.hasJoinedHelpSpace = true;
+        return profile;
+      });
+    } catch (err, s) {
+      ErrorHandler.logError(e: err, s: s);
+      return;
     }
   }
 }

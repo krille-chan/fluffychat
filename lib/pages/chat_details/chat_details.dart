@@ -12,6 +12,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
 enum AliasActions { copy, delete, setCanonical }
@@ -224,6 +225,23 @@ class ChatDetailsController extends State<ChatDetails> {
         );
       },
     );
+  }
+
+  Future<void> setVisibility(sdk.Visibility visibility) async {
+    if (roomId == null) return;
+    final room = Matrix.of(context).client.getRoomById(roomId!);
+    if (room == null) return;
+
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        await room.client.setRoomVisibilityOnDirectory(
+          room.id,
+          visibility: visibility,
+        );
+      },
+    );
+    setState(() {});
   }
 
   Future<void> toggleMute() async {

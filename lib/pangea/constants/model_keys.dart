@@ -11,6 +11,7 @@ class ModelKey {
   static const String userSourceLanguage = 'source_language';
   static const String userSpeaks = 'speaks';
   static const String userCountry = 'country';
+  static const String hasJoinedHelpSpace = 'has_joined_help_space';
   static const String userInterests = 'interests';
   static const String l2LanguageKey = 'target_language';
   static const String l1LanguageKey = 'source_language';

@@ -18,6 +18,7 @@ class UserSettings {
   String? targetLanguage;
   String? sourceLanguage;
   String? country;
+  bool? hasJoinedHelpSpace;
 
   UserSettings({
     this.dateOfBirth,
@@ -29,6 +30,7 @@ class UserSettings {
     this.targetLanguage,
     this.sourceLanguage,
     this.country,
+    this.hasJoinedHelpSpace,
   });
 
   factory UserSettings.fromJson(Map<String, dynamic> json) => UserSettings(
@@ -43,6 +45,7 @@ class UserSettings {
         targetLanguage: json[ModelKey.l2LanguageKey],
         sourceLanguage: json[ModelKey.l1LanguageKey],
         country: json[ModelKey.userCountry],
+        hasJoinedHelpSpace: json[ModelKey.hasJoinedHelpSpace],
       );
 
   Map<String, dynamic> toJson() {
@@ -56,6 +59,7 @@ class UserSettings {
     data[ModelKey.l2LanguageKey] = targetLanguage;
     data[ModelKey.l1LanguageKey] = sourceLanguage;
     data[ModelKey.userCountry] = country;
+    data[ModelKey.hasJoinedHelpSpace] = hasJoinedHelpSpace;
     return data;
   }
 

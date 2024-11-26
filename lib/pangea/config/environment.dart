@@ -70,6 +70,11 @@ class Environment {
         'https://billing.stripe.com/p/login/dR6dSkf5p6rBc4EcMM';
   }
 
+  static String get supportSpaceId {
+    return dotenv.env["SUPPORT_SPACE_ID"] ??
+        '!gqSNSkvwTpgumyjLsV:staging.pangea.chat';
+  }
+
   static String get supportUserId {
     return isStaging ? '@support:staging.pangea.chat' : '@support:pangea.chat';
   }
