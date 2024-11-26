@@ -2884,5 +2884,14 @@
   "italicText": "Teks miring",
   "@italicText": {},
   "unableToJoinChat": "Tidak dapat bergabung dalam chat. Mungkin pihak lain telah menutup percakapan.",
-  "@unableToJoinChat": {}
+  "@unableToJoinChat": {},
+  "sendImages": "Kirim {count} gambar",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "Kompres",
+  "@compress": {}
 }
