@@ -74,7 +74,8 @@ class Message extends StatelessWidget {
     // if overlayController is not null, the message is already in overlay mode
     if (pangeaMessageEvent != null && overlayController == null) {
       controller.showToolbar(
-        pangeaMessageEvent,
+        event,
+        pangeaMessageEvent: pangeaMessageEvent,
         nextEvent: nextEvent,
         prevEvent: previousEvent,
       );
@@ -611,6 +612,7 @@ class Message extends StatelessWidget {
                       children: [
                         if (pangeaMessageEvent?.showMessageButtons ?? false)
                           MessageButtons(
+                            event: event,
                             controller: controller,
                             pangeaMessageEvent: pangeaMessageEvent!,
                             nextEvent: nextEvent,

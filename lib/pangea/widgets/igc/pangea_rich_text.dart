@@ -133,6 +133,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
 
     //TODO - take out of build function of every message
     final Widget richText = ToolbarSelectionArea(
+      event: widget.pangeaMessageEvent.event,
       isOverlay: widget.isOverlay,
       pangeaMessageEvent: widget.pangeaMessageEvent,
       controller: widget.controller,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 class ToolbarSelectionArea extends StatelessWidget {
+  final Event event;
   final ChatController controller;
   final PangeaMessageEvent? pangeaMessageEvent;
   final bool isOverlay;
@@ -12,6 +13,7 @@ class ToolbarSelectionArea extends StatelessWidget {
   final Event? prevEvent;
 
   const ToolbarSelectionArea({
+    required this.event,
     required this.controller,
     this.pangeaMessageEvent,
     this.isOverlay = false,
@@ -27,7 +29,8 @@ class ToolbarSelectionArea extends StatelessWidget {
       onTap: () {
         if (pangeaMessageEvent != null && !isOverlay) {
           controller.showToolbar(
-            pangeaMessageEvent!,
+            event,
+            pangeaMessageEvent: pangeaMessageEvent,
             nextEvent: nextEvent,
             prevEvent: prevEvent,
           );
@@ -36,7 +39,8 @@ class ToolbarSelectionArea extends StatelessWidget {
       onLongPress: () {
         if (pangeaMessageEvent != null && !isOverlay) {
           controller.showToolbar(
-            pangeaMessageEvent!,
+            event,
+            pangeaMessageEvent: pangeaMessageEvent,
             nextEvent: nextEvent,
             prevEvent: prevEvent,
           );

@@ -210,6 +210,7 @@ class MessageContent extends StatelessWidget {
                 textColor: textColor,
                 room: event.room,
                 // #Pangea
+                event: event,
                 isOverlay: overlayController != null,
                 controller: controller,
                 pangeaMessageEvent: pangeaMessageEvent,
@@ -321,7 +322,8 @@ class MessageContent extends StatelessWidget {
                 style: messageTextStyle,
                 onClick: overlayController?.onClickOverlayMessageToken ??
                     (token) => controller.showToolbar(
-                          pangeaMessageEvent!,
+                          event,
+                          pangeaMessageEvent: pangeaMessageEvent,
                           selectedToken: token,
                         ),
                 isSelected: overlayController?.isTokenSelected,
@@ -333,6 +335,7 @@ class MessageContent extends StatelessWidget {
             return
                 // #Pangea
                 ToolbarSelectionArea(
+              event: event,
               controller: controller,
               pangeaMessageEvent: pangeaMessageEvent,
               isOverlay: overlayController != null,

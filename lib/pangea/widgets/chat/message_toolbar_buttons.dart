@@ -11,26 +11,29 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:matrix/matrix.dart';
 
 class ToolbarButtons extends StatelessWidget {
+  final Event event;
   final MessageOverlayController overlayController;
   final double width;
 
   const ToolbarButtons({
+    required this.event,
     required this.overlayController,
     required this.width,
     super.key,
   });
 
-  PangeaMessageEvent get pangeaMessageEvent =>
+  PangeaMessageEvent? get pangeaMessageEvent =>
       overlayController.pangeaMessageEvent;
 
   List<MessageMode> get modes => MessageMode.values
-      .where((mode) => mode.shouldShowAsToolbarButton(pangeaMessageEvent.event))
+      .where((mode) => mode.shouldShowAsToolbarButton(event))
       .toList();
 
   bool get messageInUserL2 =>
-      pangeaMessageEvent.messageDisplayLangCode ==
+      pangeaMessageEvent?.messageDisplayLangCode ==
       MatrixState.pangeaController.languageController.userL2?.langCode;
 
   static const double iconWidth = 36.0;
@@ -42,7 +45,7 @@ class ToolbarButtons extends StatelessWidget {
         overlayController.isPracticeComplete || !messageInUserL2;
     final double barWidth = width - iconWidth;
 
-    if (!overlayController.showToolbarButtons) {
+    if (!overlayController.showToolbarButtons || pangeaMessageEvent == null) {
       return const SizedBox();
     }
 
@@ -70,7 +73,7 @@ class ToolbarButtons extends StatelessWidget {
                     : min(
                         barWidth,
                         (barWidth / 3) *
-                            pangeaMessageEvent.numberOfActivitiesCompleted,
+                            pangeaMessageEvent!.numberOfActivitiesCompleted,
                       ),
                 color: AppConfig.success,
                 margin: const EdgeInsets.symmetric(horizontal: iconWidth / 2),
@@ -83,14 +86,14 @@ class ToolbarButtons extends StatelessWidget {
             children: modes.mapIndexed((index, mode) {
               final enabled = mode.isUnlocked(
                 index,
-                pangeaMessageEvent.numberOfActivitiesCompleted,
+                pangeaMessageEvent!.numberOfActivitiesCompleted,
                 totallyDone,
               );
               final color = mode.iconButtonColor(
                 context,
                 index,
                 overlayController.toolbarMode,
-                pangeaMessageEvent.numberOfActivitiesCompleted,
+                pangeaMessageEvent!.numberOfActivitiesCompleted,
                 totallyDone,
               );
               return Tooltip(

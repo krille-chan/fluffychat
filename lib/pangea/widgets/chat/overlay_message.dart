@@ -10,7 +10,8 @@ import 'package:matrix/matrix.dart';
 
 // @ggurdin be great to explain the need/function of a widget like this
 class OverlayMessage extends StatelessWidget {
-  final PangeaMessageEvent pangeaMessageEvent;
+  final Event event;
+  final PangeaMessageEvent? pangeaMessageEvent;
   final MessageOverlayController overlayController;
   final ChatController controller;
   final Event? nextEvent;
@@ -21,13 +22,14 @@ class OverlayMessage extends StatelessWidget {
   final double messageHeight;
 
   const OverlayMessage(
-    this.pangeaMessageEvent, {
+    this.event, {
     this.immersionMode = false,
     required this.overlayController,
     required this.controller,
     required this.timeline,
     required this.messageWidth,
     required this.messageHeight,
+    this.pangeaMessageEvent,
     this.nextEvent,
     this.prevEvent,
     super.key,
@@ -36,14 +38,11 @@ class OverlayMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final bool ownMessage =
-        pangeaMessageEvent.event.senderId == Matrix.of(context).client.userID;
+    final bool ownMessage = event.senderId == Matrix.of(context).client.userID;
 
-    final displayTime =
-        pangeaMessageEvent.event.type == EventTypes.RoomCreate ||
-            nextEvent == null ||
-            !pangeaMessageEvent.event.originServerTs
-                .sameEnvironment(nextEvent!.originServerTs);
+    final displayTime = event.type == EventTypes.RoomCreate ||
+        nextEvent == null ||
+        event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
 
     final nextEventSameSender = nextEvent != null &&
         {
@@ -51,7 +50,7 @@ class OverlayMessage extends StatelessWidget {
           EventTypes.Sticker,
           EventTypes.Encrypted,
         }.contains(nextEvent!.type) &&
-        nextEvent!.senderId == pangeaMessageEvent.event.senderId &&
+        nextEvent!.senderId == event.senderId &&
         !displayTime;
 
     final previousEventSameSender = prevEvent != null &&
@@ -60,9 +59,8 @@ class OverlayMessage extends StatelessWidget {
           EventTypes.Sticker,
           EventTypes.Encrypted,
         }.contains(prevEvent!.type) &&
-        prevEvent!.senderId == pangeaMessageEvent.event.senderId &&
-        prevEvent!.originServerTs
-            .sameEnvironment(pangeaMessageEvent.event.originServerTs);
+        prevEvent!.senderId == event.senderId &&
+        prevEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
     const hardCorner = Radius.circular(4);
     const roundedCorner = Radius.circular(AppConfig.borderRadius);
@@ -75,7 +73,7 @@ class OverlayMessage extends StatelessWidget {
           ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
     );
 
-    final displayEvent = pangeaMessageEvent.event.getDisplayEvent(timeline);
+    final displayEvent = event.getDisplayEvent(timeline);
     // ignore: deprecated_member_use
     var color = theme.colorScheme.surfaceVariant;
     if (ownMessage) {
@@ -88,12 +86,12 @@ class OverlayMessage extends StatelessWidget {
           MessageTypes.Video,
           MessageTypes.Image,
           MessageTypes.Sticker,
-        }.contains(pangeaMessageEvent.event.messageType) &&
-        !pangeaMessageEvent.event.redacted;
+        }.contains(event.messageType) &&
+        !event.redacted;
     final noPadding = {
       MessageTypes.File,
       MessageTypes.Audio,
-    }.contains(pangeaMessageEvent.event.messageType);
+    }.contains(event.messageType);
 
     return Material(
       color: color,
@@ -116,7 +114,7 @@ class OverlayMessage extends StatelessWidget {
                 ),
           width: messageWidth,
           child: MessageContent(
-            pangeaMessageEvent.event,
+            event,
             textColor: ownMessage
                 ? theme.colorScheme.onPrimary
                 : theme.colorScheme.onSurface,

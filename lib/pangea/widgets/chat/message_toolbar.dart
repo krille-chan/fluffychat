@@ -20,6 +20,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix_api_lite/model/message_types.dart';
 
 const double minCardHeight = 70;
 
@@ -149,6 +150,12 @@ class MessageToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (![MessageTypes.Text, MessageTypes.Audio].contains(
+      pangeaMessageEvent.event.messageType,
+    )) {
+      return const SizedBox();
+    }
+
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,

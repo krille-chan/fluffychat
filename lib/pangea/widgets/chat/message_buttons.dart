@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 
 class MessageButtons extends StatelessWidget {
   final ChatController controller;
+  final Event event;
   final PangeaMessageEvent pangeaMessageEvent;
   final Event? nextEvent;
   final Event? prevEvent;
@@ -13,6 +14,7 @@ class MessageButtons extends StatelessWidget {
   const MessageButtons({
     super.key,
     required this.controller,
+    required this.event,
     required this.pangeaMessageEvent,
     this.nextEvent,
     this.prevEvent,
@@ -20,7 +22,8 @@ class MessageButtons extends StatelessWidget {
 
   void showActivity(BuildContext context) {
     controller.showToolbar(
-      pangeaMessageEvent,
+      event,
+      pangeaMessageEvent: pangeaMessageEvent,
       mode: MessageMode.practiceActivity,
       nextEvent: nextEvent,
       prevEvent: prevEvent,
