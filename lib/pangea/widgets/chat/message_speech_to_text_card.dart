@@ -63,12 +63,10 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
         data: widget.messageEvent.event.content,
       );
     } finally {
-      setState(() => _fetchingTranscription = false);
+      if (mounted) {
+        setState(() => _fetchingTranscription = false);
+      }
     }
-  }
-
-  void closeHint() {
-    setState(() {});
   }
 
   TextSpan _buildTranscriptText(BuildContext context) {
@@ -114,13 +112,15 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
             ..onTap = () {
               debugPrint('Token tapped');
               debugPrint(token.toJson().toString());
-              setState(() {
-                if (selectedToken == token) {
-                  selectedToken = null;
-                } else {
-                  selectedToken = token;
-                }
-              });
+              if (mounted) {
+                setState(() {
+                  if (selectedToken == token) {
+                    selectedToken = null;
+                  } else {
+                    selectedToken = token;
+                  }
+                });
+              }
             },
         ),
       );

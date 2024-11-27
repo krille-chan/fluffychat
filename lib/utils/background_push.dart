@@ -163,14 +163,26 @@ class BackgroundPush {
     Set<String?>? oldTokens,
     bool useDeviceSpecificAppId = false,
   }) async {
-    if (PlatformInfos.isIOS) {
-      await firebase?.requestPermission();
-    } else if (PlatformInfos.isAndroid) {
-      _flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
-          ?.requestNotificationsPermission();
+    // #Pangea
+    try {
+      // Pangea#
+      if (PlatformInfos.isIOS) {
+        await firebase?.requestPermission();
+      } else if (PlatformInfos.isAndroid) {
+        _flutterLocalNotificationsPlugin
+            .resolvePlatformSpecificImplementation<
+                AndroidFlutterLocalNotificationsPlugin>()
+            ?.requestNotificationsPermission();
+      }
+      // #Pangea
+    } catch (err, s) {
+      ErrorHandler.logError(
+        e: "Error requesting notifications permission: $err",
+        s: s,
+      );
     }
+    // Pangea#
+
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
     final pushers = await (client.getPushers().catchError((e) {

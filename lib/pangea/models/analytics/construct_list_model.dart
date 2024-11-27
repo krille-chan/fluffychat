@@ -129,7 +129,7 @@ class ConstructListModel {
           "others": others
               .map(
                 (entry) =>
-                    ("${entry.key}: ${entry.value.map((uses) => uses.id.string).toList()}"),
+                    ("${entry.key}: ${entry.value.map((uses) => uses.id.string).toList().sublist(0, 10)}"),
               )
               .toList(),
         },
