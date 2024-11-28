@@ -2885,5 +2885,14 @@
   "addLink": "Engadir ligazón",
   "@addLink": {},
   "unableToJoinChat": "Non se puido acceder. Pode que a outra parte xa pechase a conversa.",
-  "@unableToJoinChat": {}
+  "@unableToJoinChat": {},
+  "sendImages": "Enviar {count} imaxe",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "Comprimir",
+  "@compress": {}
 }
