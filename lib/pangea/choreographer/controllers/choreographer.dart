@@ -17,6 +17,7 @@ import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
+import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/igc/paywall_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class Choreographer {
   late IgcController igc;
   late AlternativeTranslator altTranslator;
   late ErrorService errorService;
+  final tts = TtsController();
 
   bool isFetching = false;
   int _timesClicked = 0;
@@ -65,6 +67,8 @@ class Choreographer {
     trialStream = pangeaController
         .subscriptionController.trialActivationStream.stream
         .listen((_) => _onChangeListener);
+
+    tts.setupTTS();
 
     clear();
   }
@@ -454,6 +458,7 @@ class Choreographer {
     choreoRecord = ChoreoRecord.newRecord;
     itController.clear();
     igc.clear();
+    //@ggurdin - why is this commented out?
     // errorService.clear();
     _resetDebounceTimer();
   }
@@ -477,6 +482,7 @@ class Choreographer {
   dispose() {
     _textController.dispose();
     trialStream?.cancel();
+    tts.dispose();
   }
 
   LanguageModel? get l2Lang {

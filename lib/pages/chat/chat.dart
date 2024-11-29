@@ -140,6 +140,7 @@ class ChatController extends State<ChatPageWithRoom>
   Timer? typingTimeout;
   bool currentlyTyping = false;
   // #Pangea
+
   // bool dragging = false;
 
   // void onDragEntered(_) => setState(() => dragging = true);

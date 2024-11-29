@@ -27,14 +27,15 @@ const double minCardHeight = 70;
 class MessageToolbar extends StatelessWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overLayController;
-  final TtsController ttsController;
 
   const MessageToolbar({
     super.key,
     required this.pangeaMessageEvent,
     required this.overLayController,
-    required this.ttsController,
   });
+
+  TtsController get ttsController =>
+      overLayController.widget.chatController.choreographer.tts;
 
   Widget toolbarContent(BuildContext context) {
     final bool subscribed =
@@ -135,7 +136,6 @@ class MessageToolbar extends StatelessWidget {
         return PracticeActivityCard(
           pangeaMessageEvent: pangeaMessageEvent,
           overlayController: overLayController,
-          ttsController: ttsController,
         );
       default:
         debugger(when: kDebugMode);

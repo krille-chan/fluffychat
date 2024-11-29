@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/enum/activity_display_instructions_enum.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -200,13 +201,20 @@ class PracticeActivityRequest {
 }
 
 class PracticeActivityModel {
+  // deprecated in favor of targetTokens
   final List<ConstructIdentifier> tgtConstructs;
+
+  // being added after creation from request info
+  // TODO - replace tgtConstructs with targetTokens in server return
+  List<PangeaToken>? targetTokens;
+
   final String langCode;
   final ActivityTypeEnum activityType;
   final ActivityContent content;
 
   PracticeActivityModel({
     required this.tgtConstructs,
+    required this.targetTokens,
     required this.langCode,
     required this.activityType,
     required this.content,
@@ -244,6 +252,11 @@ class PracticeActivityModel {
       activityType:
           ActivityTypeEnum.wordMeaning.fromString(json['activity_type']),
       content: ActivityContent.fromJson(contentMap),
+      targetTokens: json['target_tokens'] is List
+          ? (json['target_tokens'] as List)
+              .map((e) => PangeaToken.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : null,
     );
   }
 
@@ -256,6 +269,7 @@ class PracticeActivityModel {
       'lang_code': langCode,
       'activity_type': activityType.string,
       'content': content.toJson(),
+      'target_tokens': targetTokens?.map((e) => e.toJson()).toList(),
     };
   }
 

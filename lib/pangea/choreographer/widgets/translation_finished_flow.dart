@@ -67,7 +67,7 @@ class AlternativeTranslations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChoicesArray(
-      originalSpan: controller.choreographer.itController.sourceText ?? "dummy",
+      originalSpan: controller.sourceText ?? "dummy",
       isLoading:
           controller.choreographer.altTranslator.loadingAlternativeTranslations,
       // choices: controller.choreographer.altTranslator.similarityResponse.scores
@@ -82,6 +82,7 @@ class AlternativeTranslations extends StatelessWidget {
       },
       uniqueKeyForLayerLink: (int index) => "altTranslation$index",
       selectedChoiceIndex: null,
+      tts: controller.choreographer.tts,
     );
   }
 }

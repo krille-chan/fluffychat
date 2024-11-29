@@ -418,6 +418,7 @@ class ITChoices extends StatelessWidget {
         onLongPress: (value, index) => showCard(context, index),
         uniqueKeyForLayerLink: (int index) => "itChoices$index",
         selectedChoiceIndex: null,
+        tts: controller.choreographer.tts,
       );
     } catch (e) {
       debugger(when: kDebugMode);

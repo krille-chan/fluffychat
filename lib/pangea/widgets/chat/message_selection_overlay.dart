@@ -18,7 +18,6 @@ import 'package:fluffychat/pangea/widgets/chat/message_toolbar_buttons.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_footer.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_header.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
-import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -67,7 +66,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   PangeaMessageEvent? get pangeaMessageEvent => widget._pangeaMessageEvent;
 
-  final TtsController tts = TtsController();
   bool _isPlayingAudio = false;
 
   bool get showToolbarButtons =>
@@ -139,8 +137,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         );
       },
     ).listen((_) => setState(() {}));
-
-    tts.setupTTS();
   }
 
   MessageAnalyticsEntry? get messageAnalyticsEntry =>
@@ -297,6 +293,14 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       }
     }
 
+    if (_selectedSpan != null) {
+      widget.chatController.choreographer.tts.tryToSpeak(
+        token.text.content,
+        context,
+        pangeaMessageEvent!.eventId,
+      );
+    }
+
     setState(() {});
   }
 
@@ -450,7 +454,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void dispose() {
     _animationController.dispose();
     _reactionSubscription?.cancel();
-    tts.dispose();
+
     super.dispose();
   }
 
@@ -562,7 +566,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               MessageToolbar(
                 pangeaMessageEvent: pangeaMessageEvent!,
                 overLayController: this,
-                ttsController: tts,
               ),
             const SizedBox(height: 8),
             SizedBox(

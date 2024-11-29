@@ -145,7 +145,8 @@ class TtsController {
   Future<void> tryToSpeak(
     String text,
     BuildContext context,
-    String eventID,
+    // TODO - make non-nullable again
+    String? eventID,
   ) async {
     if (_isLanguageFullySupported) {
       await _speak(text);
@@ -157,7 +158,9 @@ class TtsController {
           'availableLangCodes': _availableLangCodes,
         },
       );
-      await _showMissingVoicePopup(context, eventID);
+      if (eventID != null) {
+        await _showMissingVoicePopup(context, eventID);
+      }
     }
   }
 

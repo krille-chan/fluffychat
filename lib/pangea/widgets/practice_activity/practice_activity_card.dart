@@ -30,13 +30,11 @@ import 'package:flutter/material.dart';
 class PracticeActivityCard extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overlayController;
-  final TtsController ttsController;
 
   const PracticeActivityCard({
     super.key,
     required this.pangeaMessageEvent,
     required this.overlayController,
-    required this.ttsController,
   });
 
   @override
@@ -58,6 +56,9 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   // until the appropriate time has passed to 'savor the joy'
   Duration appropriateTimeForJoy = const Duration(milliseconds: 1500);
   bool savoringTheJoy = false;
+
+  TtsController get tts =>
+      widget.overlayController.widget.chatController.choreographer.tts;
 
   @override
   void initState() {
@@ -100,76 +101,86 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   Future<PracticeActivityModel?> _fetchActivity({
     ActivityQualityFeedback? activityFeedback,
   }) async {
-    // try {
-    debugPrint('Fetching activity');
-    _updateFetchingActivity(true);
+    try {
+      debugPrint('Fetching activity');
+      _updateFetchingActivity(true);
 
-    // target tokens can be empty if activities have been completed for each
-    // it's set on initialization and then removed when each activity is completed
-    if (!mounted ||
-        !pangeaController.languageController.languagesSet ||
-        widget.overlayController.messageAnalyticsEntry == null) {
+      // target tokens can be empty if activities have been completed for each
+      // it's set on initialization and then removed when each activity is completed
+      if (!mounted ||
+          !pangeaController.languageController.languagesSet ||
+          widget.overlayController.messageAnalyticsEntry == null) {
+        debugger(when: kDebugMode);
+        _updateFetchingActivity(false);
+        return null;
+      }
+
+      final nextActivitySpecs =
+          widget.overlayController.messageAnalyticsEntry?.nextActivity;
+      // the client is going to be choosing the next activity now
+      // if nothing is set then it must be done with practice
+      if (nextActivitySpecs == null) {
+        debugPrint("No next activity set, exiting practice flow");
+        _updateFetchingActivity(false);
+        return null;
+      }
+
+      // check if we already have an activity matching the specs
+      final existingActivity = practiceActivities.firstWhereOrNull(
+        (activity) =>
+            nextActivitySpecs.matchesActivity(activity.practiceActivity),
+      );
+      if (existingActivity != null) {
+        debugPrint('found existing activity');
+        _updateFetchingActivity(false);
+        existingActivity.practiceActivity.targetTokens =
+            nextActivitySpecs.tokens;
+        return existingActivity.practiceActivity;
+      }
+
+      debugPrint(
+        "client requesting ${nextActivitySpecs.activityType.string} for: ${nextActivitySpecs.tokens.map((t) => "word: ${t.text.content} xp: ${t.xp}").join(' ')}",
+      );
+
+      final PracticeActivityModelResponse? activityResponse =
+          await pangeaController.practiceGenerationController
+              .getPracticeActivity(
+        MessageActivityRequest(
+          userL1: pangeaController.languageController.userL1!.langCode,
+          userL2: pangeaController.languageController.userL2!.langCode,
+          messageText: widget.pangeaMessageEvent.messageDisplayText,
+          messageTokens: widget.overlayController.tokens!,
+          activityQualityFeedback: activityFeedback,
+          targetTokens: nextActivitySpecs.tokens,
+          targetType: nextActivitySpecs.activityType,
+        ),
+        widget.pangeaMessageEvent,
+      );
+
+      currentActivityCompleter = activityResponse?.eventCompleter;
+      _updateFetchingActivity(false);
+
+      if (activityResponse == null || activityResponse.activity == null) {
+        debugPrint('No activity found');
+        return null;
+      }
+
+      activityResponse.activity!.targetTokens = nextActivitySpecs.tokens;
+
+      return activityResponse.activity;
+    } catch (e, s) {
       debugger(when: kDebugMode);
-      _updateFetchingActivity(false);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        m: 'Failed to get new activity',
+        data: {
+          'activity': currentActivity,
+          'record': currentCompletionRecord,
+        },
+      );
       return null;
     }
-
-    final nextActivitySpecs =
-        widget.overlayController.messageAnalyticsEntry?.nextActivity;
-    // the client is going to be choosing the next activity now
-    // if nothing is set then it must be done with practice
-    if (nextActivitySpecs == null) {
-      debugPrint("No next activity set, exiting practice flow");
-      _updateFetchingActivity(false);
-      return null;
-    }
-
-    // check if we already have an activity matching the specs
-    final existingActivity = practiceActivities.firstWhereOrNull(
-      (activity) =>
-          nextActivitySpecs.matchesActivity(activity.practiceActivity),
-    );
-    if (existingActivity != null) {
-      debugPrint('found existing activity');
-      _updateFetchingActivity(false);
-      return existingActivity.practiceActivity;
-    }
-
-    debugPrint(
-      "client requesting ${nextActivitySpecs.activityType.string} for: ${nextActivitySpecs.tokens.map((t) => "word: ${t.text.content} xp: ${t.xp}").join(' ')}",
-    );
-
-    final PracticeActivityModelResponse? activityResponse =
-        await pangeaController.practiceGenerationController.getPracticeActivity(
-      MessageActivityRequest(
-        userL1: pangeaController.languageController.userL1!.langCode,
-        userL2: pangeaController.languageController.userL2!.langCode,
-        messageText: widget.pangeaMessageEvent.messageDisplayText,
-        messageTokens: widget.overlayController.tokens!,
-        activityQualityFeedback: activityFeedback,
-        targetTokens: nextActivitySpecs.tokens,
-        targetType: nextActivitySpecs.activityType,
-      ),
-      widget.pangeaMessageEvent,
-    );
-
-    currentActivityCompleter = activityResponse?.eventCompleter;
-    _updateFetchingActivity(false);
-
-    return activityResponse?.activity;
-    // } catch (e, s) {
-    //   debugger(when: kDebugMode);
-    //   ErrorHandler.logError(
-    //     e: e,
-    //     s: s,
-    //     m: 'Failed to get new activity',
-    //     data: {
-    //       'activity': currentActivity,
-    //       'record': currentCompletionRecord,
-    //     },
-    //   );
-    //   return null;
-    // }
   }
 
   ConstructUseMetaData get metadata => ConstructUseMetaData(
@@ -313,7 +324,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return MultipleChoiceActivity(
           practiceCardController: this,
           currentActivity: currentActivity!,
-          tts: widget.ttsController,
           event: widget.pangeaMessageEvent.event,
           onError: _onError,
         );

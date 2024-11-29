@@ -280,6 +280,7 @@ class WordMatchContent extends StatelessWidget {
                           uniqueKeyForLayerLink: (int index) =>
                               "wordMatch$index",
                           selectedChoiceIndex: controller.selectedChoiceIndex,
+                          tts: controller.widget.scm.choreographer.tts,
                         ),
                       const SizedBox(height: 12),
                       PromptAndFeedback(controller: controller),

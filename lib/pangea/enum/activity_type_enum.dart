@@ -26,6 +26,16 @@ extension ActivityTypeExtension on ActivityTypeEnum {
     }
   }
 
+  bool get includeTTSOnClick {
+    switch (this) {
+      case ActivityTypeEnum.wordMeaning:
+        return false;
+      case ActivityTypeEnum.wordFocusListening:
+      case ActivityTypeEnum.hiddenWordListening:
+        return true;
+    }
+  }
+
   ActivityTypeEnum fromString(String value) {
     final split = value.split('.').last;
     switch (split) {

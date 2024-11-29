@@ -197,6 +197,7 @@ class PangeaToken {
       case ActivityTypeEnum.wordMeaning:
         return canBeDefined;
       case ActivityTypeEnum.wordFocusListening:
+        return false;
       case ActivityTypeEnum.hiddenWordListening:
         return canBeHeard;
     }

@@ -59,11 +59,11 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
   @override
   void didUpdateWidget(covariant oldWidget) {
-    if (oldWidget.selection != widget.selection && widget.selection != null) {
-      debugPrint('selection changed');
-      setSectionStartAndEndFromSelection();
-      playSelectionAudio();
-    }
+    // if (oldWidget.selection != widget.selection && widget.selection != null) {
+    //   debugPrint('selection changed');
+    //   setSectionStartAndEndFromSelection();
+    //   playSelectionAudio();
+    // }
     super.didUpdateWidget(oldWidget);
   }
 

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:math';
 
 import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -20,6 +21,10 @@ class ChoicesArray extends StatefulWidget {
   final String originalSpan;
   final String Function(int) uniqueKeyForLayerLink;
 
+  /// If null then should not be used
+  /// We don't want tts in the case of L1 options
+  final TtsController? tts;
+
   /// Used to unqiuely identify the keys for choices, in cases where multiple
   /// choices could have identical text, like in back-to-back practice activities
   final String? id;
@@ -35,6 +40,7 @@ class ChoicesArray extends StatefulWidget {
     required this.originalSpan,
     required this.uniqueKeyForLayerLink,
     required this.selectedChoiceIndex,
+    required this.tts,
     this.isActive = true,
     this.onLongPress,
     this.id,
@@ -73,7 +79,11 @@ class ChoicesArrayState extends State<ChoicesArray> {
                     theme: theme,
                     onLongPress: widget.isActive ? widget.onLongPress : null,
                     onPressed: widget.isActive
-                        ? widget.onPressed
+                        ? (String value, int index) {
+                            widget.onPressed(value, index);
+                            // TODO - what to pass here as eventID?
+                            widget.tts?.tryToSpeak(value, context, null);
+                          }
                         : (String value, int index) {
                             debugger(when: kDebugMode);
                           },
