@@ -1,9 +1,9 @@
 import 'dart:io';
 
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:file_selector/file_selector.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:share_plus/share_plus.dart';
@@ -20,18 +20,27 @@ extension MatrixFileExtension on MatrixFile {
       return;
     }
 
-    final location = await getSaveLocation(
-      suggestedName: name,
-      confirmButtonText: L10n.of(context).saveFile,
-    );
-    final downloadPath = location?.path;
+    final downloadPath = !PlatformInfos.isMobile
+        ? (await getSaveLocation(
+            suggestedName: name,
+            confirmButtonText: L10n.of(context).saveFile,
+          ))
+            ?.path
+        : await FilePicker.platform.saveFile(
+            dialogTitle: L10n.of(context).saveFile,
+            fileName: name,
+            type: filePickerFileType,
+            bytes: bytes,
+          );
     if (downloadPath == null) return;
 
-    final result = await showFutureLoadingDialog(
-      context: context,
-      future: () => File(downloadPath).writeAsBytes(bytes),
-    );
-    if (result.error != null) return;
+    if (PlatformInfos.isDesktop) {
+      final result = await showFutureLoadingDialog(
+        context: context,
+        future: () => File(downloadPath).writeAsBytes(bytes),
+      );
+      if (result.error != null) return;
+    }
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
