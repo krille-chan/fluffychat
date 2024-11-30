@@ -1,9 +1,0 @@
-{
-    "m.homeserver": {
-        "base_url": "https://matrix.fluffychat.im"
-    },
-    "org.matrix.msc2965.authentication": {
-        "account": "https://matrix.fluffychat.im/auth/account",
-        "issuer": "https://matrix.fluffychat.im/auth/"
-    }
-}
