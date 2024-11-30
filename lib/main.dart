@@ -38,7 +38,7 @@ void main() async {
 
     // In the background fetch mode we do not want to waste ressources with
     // starting the Flutter engine but process incoming push notifications.
-    BackgroundPush.clientOnly(clients.first);
+    BackgroundPush.clientsOnly(clients);
     // To start the flutter engine afterwards we add an custom observer.
     WidgetsBinding.instance.addObserver(AppStarter(clients, store));
     Logs().i(
