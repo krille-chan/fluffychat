@@ -266,7 +266,7 @@ Future<void> _tryPushHelper(
     ticker: event.calcLocalizedBodyFallback(
       matrixLocals,
       plaintextBody: true,
-      withSenderNamePrefix: true,
+      withSenderNamePrefix: !event.room.isDirectChat,
       hideReply: true,
       hideEdit: true,
       removeMarkdown: true,
