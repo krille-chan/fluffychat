@@ -13,6 +13,7 @@ Future<void> showScaffoldDialog({
 }) =>
     showDialog(
       context: context,
+      useSafeArea: false,
       builder: FluffyThemes.isColumnMode(context)
           ? (context) => Center(
                 child: Container(
