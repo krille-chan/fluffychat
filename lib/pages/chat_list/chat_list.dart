@@ -386,19 +386,23 @@ class ChatListController extends State<ChatList>
     showScaffoldDialog(
       context: context,
       builder: (context) => ShareScaffoldDialog(
-        items: files
-            .map(
-              (file) => switch (file.type) {
-                SharedMediaType.file => FileShareItem(
-                    XFile(
-                      file.path.replaceFirst('file://', ''),
-                      mimeType: file.mimeType,
-                    ),
-                  ),
-                _ => TextShareItem(file.path),
-              },
-            )
-            .toList(),
+        items: files.map(
+          (file) {
+            if ({
+              SharedMediaType.image,
+              SharedMediaType.file,
+              SharedMediaType.video,
+            }.contains(file.type)) {
+              return FileShareItem(
+                XFile(
+                  file.path.replaceFirst('file://', ''),
+                  mimeType: file.mimeType,
+                ),
+              );
+            }
+            return TextShareItem(file.path);
+          },
+        ).toList(),
       ),
     );
   }
