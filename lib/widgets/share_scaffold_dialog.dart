@@ -41,7 +41,6 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
   final TextEditingController _filterController = TextEditingController();
 
   String? selectedRoomId;
-  bool isLoading = false;
 
   void _toggleRoom(String roomId) {
     setState(() {
@@ -131,7 +130,7 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Opacity(
                   opacity: filterOut ? 0.5 : 1,
-                  child: CheckboxListTile.adaptive(
+                  child: RadioListTile.adaptive(
                     shape: RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
@@ -142,14 +141,9 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
                       size: Avatar.defaultSize * 0.75,
                     ),
                     title: Text(displayname),
-                    value: value,
-                    onChanged: filterOut || isLoading
-                        ? null
-                        : (_) => _toggleRoom(room.id),
-                    checkboxShape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(AppConfig.borderRadius),
-                    ),
+                    groupValue: selectedRoomId,
+                    value: room.id,
+                    onChanged: (_) => _toggleRoom(room.id),
                   ),
                 ),
               );
@@ -160,7 +154,7 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
       bottomNavigationBar: AnimatedSize(
         duration: FluffyThemes.animationDuration,
         curve: FluffyThemes.animationCurve,
-        child: selectedRoomId == null && !isLoading
+        child: selectedRoomId == null
             ? const SizedBox.shrink()
             : Material(
                 elevation: 8,
@@ -168,10 +162,8 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
-                    onPressed: isLoading ? null : _forwardAction,
-                    child: isLoading
-                        ? const LinearProgressIndicator()
-                        : Text(L10n.of(context).forward),
+                    onPressed: _forwardAction,
+                    child: Text(L10n.of(context).forward),
                   ),
                 ),
               ),
