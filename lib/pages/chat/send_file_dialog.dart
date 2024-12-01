@@ -66,6 +66,9 @@ class SendFileDialogState extends State<SendFileDialog> {
           scaffoldMessenger.showLoadingSnackBar(l10n.generatingVideoThumbnail);
           thumbnail = await xfile.getVideoThumbnail();
         } else {
+          if (length > maxUploadSize) {
+            throw FileTooBigMatrixException(length, maxUploadSize);
+          }
           // Else we just create a MatrixFile
           file = MatrixFile(
             bytes: await xfile.readAsBytes(),
