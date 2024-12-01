@@ -176,18 +176,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   Client? getClientByName(String name) =>
       widget.clients.firstWhereOrNull((c) => c.clientName == name);
 
-  Map<String, dynamic>? get shareContent => _shareContent;
-
-  set shareContent(Map<String, dynamic>? content) {
-    _shareContent = content;
-    onShareContentChanged.add(_shareContent);
-  }
-
-  Map<String, dynamic>? _shareContent;
-
-  final StreamController<Map<String, dynamic>?> onShareContentChanged =
-      StreamController.broadcast();
-
   final onRoomKeyRequestSub = <String, StreamSubscription>{};
   final onKeyVerificationRequestSub = <String, StreamSubscription>{};
   final onNotification = <String, StreamSubscription>{};
