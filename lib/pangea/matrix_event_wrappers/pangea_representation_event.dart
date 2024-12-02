@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_choreo_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -189,5 +190,47 @@ class RepresentationEvent {
 
   String? formatBody() {
     return markdown(content.text);
+  }
+
+  /// Finds the closest non-punctuation token to the given token.
+  ///
+  /// This method checks if the provided token is a punctuation token. If it is not,
+  /// it returns the token itself. If the token is a punctuation token, it searches
+  /// through the list of tokens to find the closest non-punctuation token either to
+  /// the left or right of the given token.
+  ///
+  /// If both left and right non-punctuation tokens are found, it returns the one
+  /// that is closest to the given token. If only one of them is found, it returns
+  /// that token. If no non-punctuation tokens are found, it returns null.
+  ///
+  /// - Parameters:
+  ///   - token: The token for which to find the closest non-punctuation token.
+  ///
+  /// - Returns: The closest non-punctuation token, or null if no such token exists.
+  PangeaToken? getClosestNonPunctToken(PangeaToken token) {
+    if (token.pos != "PUNCT") return token;
+    if (tokens == null) return null;
+    final index = tokens!.indexOf(token);
+    if (index > -1) {
+      final leftTokens = tokens!.sublist(0, index);
+      final rightTokens = tokens!.sublist(index + 1);
+      final leftMostToken = leftTokens.lastWhereOrNull(
+        (element) => element.pos != "PUNCT",
+      );
+      final rightMostToken = rightTokens.firstWhereOrNull(
+        (element) => element.pos != "PUNCT",
+      );
+
+      if (leftMostToken != null && rightMostToken != null) {
+        final leftDistance = token.start - leftMostToken.end;
+        final rightDistance = rightMostToken.start - token.end;
+        return leftDistance < rightDistance ? leftMostToken : rightMostToken;
+      } else if (leftMostToken != null) {
+        return leftMostToken;
+      } else if (rightMostToken != null) {
+        return rightMostToken;
+      }
+    }
+    return null;
   }
 }

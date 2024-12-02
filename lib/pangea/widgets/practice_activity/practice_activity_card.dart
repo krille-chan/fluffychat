@@ -54,7 +54,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   // Used to show an animation when the user completes an activity
   // while simultaneously fetching a new activity and not showing the loading spinner
   // until the appropriate time has passed to 'savor the joy'
-  Duration appropriateTimeForJoy = const Duration(milliseconds: 1500);
+  Duration appropriateTimeForJoy = const Duration(milliseconds: 2500);
   bool savoringTheJoy = false;
 
   TtsController get tts =>

@@ -320,12 +320,22 @@ class MessageContent extends StatelessWidget {
                 tokens:
                     pangeaMessageEvent!.messageDisplayRepresentation?.tokens,
                 style: messageTextStyle,
-                onClick: overlayController?.onClickOverlayMessageToken ??
-                    (token) => controller.showToolbar(
-                          event,
-                          pangeaMessageEvent: pangeaMessageEvent,
-                          selectedToken: token,
-                        ),
+                onClick: (token) {
+                  token = pangeaMessageEvent?.messageDisplayRepresentation
+                          ?.getClosestNonPunctToken(token) ??
+                      token;
+
+                  if (overlayController != null) {
+                    overlayController?.onClickOverlayMessageToken(token);
+                    return;
+                  }
+
+                  controller.showToolbar(
+                    event,
+                    pangeaMessageEvent: pangeaMessageEvent,
+                    selectedToken: token,
+                  );
+                },
                 isSelected: overlayController?.isTokenSelected,
               );
             }
