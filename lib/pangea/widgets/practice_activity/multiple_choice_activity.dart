@@ -81,30 +81,30 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     final bool isCorrect =
         widget.currentActivity.content.isCorrect(value, index);
 
-    // If the activity is not set to include TTS on click, and the choice is correct, speak the target tokens
-    // We have to check if tokens
-    if (!widget.currentActivity.activityType.includeTTSOnClick &&
-        isCorrect &&
-        mounted) {
-      // should be set by now but just in case we make a mistake
-      if (widget.practiceCardController.currentActivity?.targetTokens == null) {
-        debugger(when: kDebugMode);
-        ErrorHandler.logError(
-          e: "Missing target tokens in multiple choice activity",
-          data: {
-            "currentActivity": widget.practiceCardController.currentActivity,
-          },
-        );
-      } else {
-        tts.tryToSpeak(
-          PangeaToken.reconstructText(
-            widget.practiceCardController.currentActivity!.targetTokens!,
-          ),
-          context,
-          null,
-        );
-      }
-    }
+    // // If the activity is not set to include TTS on click, and the choice is correct, speak the target tokens
+    // // We have to check if tokens
+    // if (!widget.currentActivity.activityType.includeTTSOnClick &&
+    //     isCorrect &&
+    //     mounted) {
+    //   // should be set by now but just in case we make a mistake
+    //   if (widget.practiceCardController.currentActivity?.targetTokens == null) {
+    //     debugger(when: kDebugMode);
+    //     ErrorHandler.logError(
+    //       e: "Missing target tokens in multiple choice activity",
+    //       data: {
+    //         "currentActivity": widget.practiceCardController.currentActivity,
+    //       },
+    //     );
+    //   } else {
+    //     tts.tryToSpeak(
+    //       PangeaToken.reconstructText(
+    //         widget.practiceCardController.currentActivity!.targetTokens!,
+    //       ),
+    //       context,
+    //       null,
+    //     );
+    //   }
+    // }
 
     if (currentRecordModel?.hasTextResponse(value) ?? false) {
       return;

@@ -48,10 +48,14 @@ class ConstructListModel {
   /// Given a list of new construct uses, update the map of construct
   /// IDs to ConstructUses and re-sort the list of ConstructUses
   void updateConstructs(List<OneConstructUse> newUses) {
-    _updateConstructMap(newUses);
-    _updateConstructList();
-    _updateCategoriesToUses();
-    _updateMetrics();
+    try {
+      _updateConstructMap(newUses);
+      _updateConstructList();
+      _updateCategoriesToUses();
+      _updateMetrics();
+    } catch (err, s) {
+      ErrorHandler.logError(e: "Failed to update analytics: $err", s: s);
+    }
   }
 
   int _sortConstructs(ConstructUses a, ConstructUses b) {
@@ -126,12 +130,14 @@ class ConstructListModel {
       ErrorHandler.logError(
         e: "More than one 'other' category in groupedByCategory",
         data: {
-          "others": others
-              .map(
-                (entry) =>
-                    ("${entry.key}: ${entry.value.map((uses) => uses.id.string).toList().sublist(0, 10)}"),
-              )
-              .toList(),
+          "others": others.map((entry) {
+            List<String> useKeys =
+                entry.value.map((uses) => uses.id.string).toList();
+            if (useKeys.length > 10) {
+              useKeys = useKeys.sublist(0, 10);
+            }
+            ("${entry.key}: $useKeys");
+          }).toList(),
         },
       );
     }

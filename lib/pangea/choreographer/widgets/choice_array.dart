@@ -60,10 +60,15 @@ class ChoicesArrayState extends State<ChoicesArray> {
   }
 
   void enableInteractions() {
+    if (_hasSelectedCorrectChoice) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) setState(() => interactionDisabled = false);
     });
   }
+
+  bool get _hasSelectedCorrectChoice =>
+      widget.choices?.any((choice) => choice.isGold && choice.color != null) ??
+      false;
 
   @override
   Widget build(BuildContext context) {
