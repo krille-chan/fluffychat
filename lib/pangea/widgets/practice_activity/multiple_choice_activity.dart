@@ -63,7 +63,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   }
 
   void speakTargetTokens() {
-    if (widget.practiceCardController.currentActivity?.targetTokens != null) {
+    if (widget.practiceCardController.currentActivity?.shouldPlayTargetTokens ??
+        false) {
       widget.practiceCardController.tts.tryToSpeak(
         PangeaToken.reconstructText(
           widget.practiceCardController.currentActivity!.targetTokens!,
