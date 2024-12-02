@@ -131,6 +131,7 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
                 child: Opacity(
                   opacity: filterOut ? 0.5 : 1,
                   child: RadioListTile.adaptive(
+                    controlAffinity: ListTileControlAffinity.trailing,
                     shape: RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
