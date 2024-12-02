@@ -214,6 +214,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           isActive: true,
           id: currentRecordModel?.hashCode.toString(),
           tts: practiceActivity.activityType.includeTTSOnClick ? tts : null,
+          enableAudio: !widget
+              .practiceCardController.widget.overlayController.isPlayingAudio,
         ),
       ],
     );

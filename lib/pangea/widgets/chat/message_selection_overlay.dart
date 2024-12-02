@@ -66,7 +66,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   PangeaMessageEvent? get pangeaMessageEvent => widget._pangeaMessageEvent;
 
-  bool _isPlayingAudio = false;
+  bool isPlayingAudio = false;
 
   bool get showToolbarButtons =>
       pangeaMessageEvent != null &&
@@ -276,7 +276,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           MessageMode.practiceActivity,
           // MessageMode.textToSpeech
         ].contains(toolbarMode) ||
-        _isPlayingAudio) {
+        isPlayingAudio) {
       return;
     }
 
@@ -360,7 +360,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   void setIsPlayingAudio(bool isPlaying) {
     if (mounted) {
-      setState(() => _isPlayingAudio = isPlaying);
+      setState(() => isPlayingAudio = isPlaying);
     }
   }
 
