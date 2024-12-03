@@ -139,8 +139,17 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       }
 
       debugPrint(
-        "client requesting ${nextActivitySpecs.activityType.string} for: ${nextActivitySpecs.tokens.map((t) => "word: ${t.text.content} xp: ${t.xp}").join(' ')}",
+        "client requesting ${nextActivitySpecs.activityType.string} for: ${nextActivitySpecs.tokens.map((t) => "construct: ${t.lemma.text}:${t.pos} points: ${t.vocabConstruct.points}").join(' ')}",
       );
+
+      // debugger(
+      //   when: kDebugMode &&
+      //       nextActivitySpecs.tokens
+      //               .map((a) => a.vocabConstruct.points)
+      //               .reduce((a, b) => a + b) >
+      //           30 &&
+      //       nextActivitySpecs.activityType == ActivityTypeEnum.wordMeaning,
+      // );
 
       final PracticeActivityModelResponse? activityResponse =
           await pangeaController.practiceGenerationController

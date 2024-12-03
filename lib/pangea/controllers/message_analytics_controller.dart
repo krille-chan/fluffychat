@@ -115,8 +115,13 @@ class MessageAnalyticsEntry {
 
     // sort the queue by the total xp of the tokens, lowest first
     queue.sort(
-      (a, b) => a.tokens.map((t) => t.xp).reduce((a, b) => a + b).compareTo(
-            b.tokens.map((t) => t.xp).reduce((a, b) => a + b),
+      (a, b) => a.tokens
+          .map((t) => t.vocabConstruct.points)
+          .reduce((a, b) => a + b)
+          .compareTo(
+            b.tokens
+                .map((t) => t.vocabConstruct.points)
+                .reduce((a, b) => a + b),
           ),
     );
 
@@ -129,13 +134,13 @@ class MessageAnalyticsEntry {
     // limit to 3 activities
     final limited = queue.take(3).toList();
 
-    debugPrint("activities for ${PangeaToken.reconstructText(_tokens)}");
-    for (final activity in limited) {
-      debugPrint("activity: ${activity.activityType}");
-      for (final token in activity.tokens) {
-        debugPrint("token: ${token.analyticsDebugPrint}");
-      }
-    }
+    // debugPrint("activities for ${PangeaToken.reconstructText(_tokens)}");
+    // for (final activity in limited) {
+    //   debugPrint("activity: ${activity.activityType}");
+    //   for (final token in activity.tokens) {
+    //     debugPrint("token: ${token.analyticsDebugPrint}");
+    //   }
+    // }
 
     return limited;
   }
