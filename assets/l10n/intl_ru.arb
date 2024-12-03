@@ -2883,5 +2883,14 @@
   "version": "Версия",
   "@version": {},
   "website": "Сайт",
-  "@website": {}
+  "@website": {},
+  "sendImages": "Отправить {count} изображений",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "Сжатие",
+  "@compress": {}
 }

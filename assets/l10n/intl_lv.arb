@@ -2861,5 +2861,16 @@
   "pleaseFillOut": "Lūgums aizpildīt",
   "@pleaseFillOut": {},
   "sendUncompressed": "Sūtīt nesaspiestu",
-  "@sendUncompressed": {}
+  "@sendUncompressed": {},
+  "sendImages": "Nosūtīt {count} attēlu(s)",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "Saspiest",
+  "@compress": {},
+  "unableToJoinChat": "Nevarēja pievienoties tērzēšanai. Varbūt otra puse jau ir aizvērusi sarunu.",
+  "@unableToJoinChat": {}
 }
