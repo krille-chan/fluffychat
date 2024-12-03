@@ -39,7 +39,10 @@ class ConstructUses {
     _lastUsed = time;
   }
 
-  String get category => _category ?? "Other";
+  String get category {
+    if (_category == null || _category!.isEmpty) return "other";
+    return _category!.toLowerCase();
+  }
 
   ConstructIdentifier get id => ConstructIdentifier(
         lemma: lemma,

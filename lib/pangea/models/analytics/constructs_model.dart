@@ -63,7 +63,7 @@ class OneConstructUse {
 
   /// For vocab constructs, this is the POS. For morph
   /// constructs, this is the morphological category.
-  String category;
+  String _category;
 
   ConstructTypeEnum constructType;
   ConstructUseTypeEnum useType;
@@ -79,10 +79,10 @@ class OneConstructUse {
     required this.lemma,
     required this.constructType,
     required this.metadata,
-    required this.category,
+    category,
     required this.form,
     this.id,
-  });
+  }) : _category = category ?? "other";
 
   String get chatId => metadata.roomId;
   String get msgId => metadata.eventId!;
@@ -121,6 +121,11 @@ class OneConstructUse {
         'categories': category,
         'id': id,
       };
+
+  String get category {
+    if (_category.isEmpty) return "other";
+    return _category.toLowerCase();
+  }
 
   static String getCategory(
     Map<String, dynamic> json,

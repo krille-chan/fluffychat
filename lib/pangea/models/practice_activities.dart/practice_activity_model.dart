@@ -13,13 +13,13 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class ConstructIdentifier {
   final String lemma;
   final ConstructTypeEnum type;
-  final String category;
+  final String _category;
 
   ConstructIdentifier({
     required this.lemma,
     required this.type,
-    required this.category,
-  });
+    category,
+  }) : _category = category;
 
   factory ConstructIdentifier.fromJson(Map<String, dynamic> json) {
     final categoryEntry = json['cat'] ?? json['categories'];
@@ -55,6 +55,11 @@ class ConstructIdentifier {
     }
   }
 
+  String get category {
+    if (_category.isEmpty) return "other";
+    return _category.toLowerCase();
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'lemma': lemma,
@@ -81,8 +86,9 @@ class ConstructIdentifier {
     return lemma.hashCode ^ type.hashCode;
   }
 
-  String get string =>
-      "$lemma-${type.string}${category != "" ? "-$category" : "-other"}";
+  String get string {
+    return "$lemma:${type.string}-$category".toLowerCase();
+  }
 
   String get partialKey => "$lemma-${type.string}";
 }

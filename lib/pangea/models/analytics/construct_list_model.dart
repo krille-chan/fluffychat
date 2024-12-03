@@ -79,6 +79,28 @@ class ConstructListModel {
       currentUses.setLastUsed(use.timeStamp);
       _constructMap[use.identifier.string] = currentUses;
     }
+
+    final broadKeys = _constructMap.keys.where((key) => key.endsWith('other'));
+    final replacedKeys = [];
+    for (final broadKey in broadKeys) {
+      final specificKeyPrefix = broadKey.split("-").first;
+      final specificKey = _constructMap.keys.firstWhereOrNull(
+        (key) =>
+            key != broadKey &&
+            key.startsWith(specificKeyPrefix) &&
+            !key.endsWith('other'),
+      );
+      if (specificKey == null) continue;
+      final broadConstructEntry = _constructMap[broadKey];
+      final specificConstructEntry = _constructMap[specificKey];
+      specificConstructEntry!.uses.addAll(broadConstructEntry!.uses);
+      _constructMap[specificKey] = specificConstructEntry;
+      replacedKeys.add(broadKey);
+    }
+
+    for (final key in replacedKeys) {
+      _constructMap.remove(key);
+    }
   }
 
   /// A list of ConstructUses, each of which contains a lemma and
@@ -91,57 +113,11 @@ class ConstructListModel {
 
   void _updateCategoriesToUses() {
     _categoriesToUses = {};
-
-    final Map<String, List<ConstructUses>> groupedMap = {};
-    for (final use in constructList()) {
-      // Step 1: Create a key based on type, lemma, and category
-      String key = use.id.string;
-
-      // If category is "other", find a more specific group if it exists
-      if (use.category.toLowerCase() == 'other') {
-        final String specificKeyPrefix = use.id.partialKey;
-        final String existingSpecificKey = groupedMap.keys.firstWhere(
-          (k) => k.startsWith(specificKeyPrefix) && !k.endsWith('other'),
-          orElse: () => '',
-        );
-
-        if (existingSpecificKey.isNotEmpty) {
-          key = existingSpecificKey;
-        }
-      }
-
-      // Add the object to the grouped map
-      groupedMap.putIfAbsent(key, () => []).add(use);
+    for (final ConstructUses use in constructList()) {
+      final category = use.category;
+      _categoriesToUses.putIfAbsent(category, () => []);
+      _categoriesToUses[category]!.add(use);
     }
-
-    // Step 2: Reorganize by category only
-    final Map<String, List<ConstructUses>> groupedByCategory = {};
-    for (final entry in groupedMap.entries) {
-      // Extract the category part from the key (assuming it's at the end)
-      final category = entry.key.split('-').last;
-
-      // Add each item in this entry to the groupedByCategory map under the single category key
-      groupedByCategory.putIfAbsent(category, () => []).addAll(entry.value);
-    }
-    final others = groupedByCategory.entries
-        .where((entry) => entry.key.toLowerCase() == 'other')
-        .toList();
-    if (others.length > 1) {
-      ErrorHandler.logError(
-        e: "More than one 'other' category in groupedByCategory",
-        data: {
-          "others": others.map((entry) {
-            List<String> useKeys =
-                entry.value.map((uses) => uses.id.string).toList();
-            if (useKeys.length > 10) {
-              useKeys = useKeys.sublist(0, 10);
-            }
-            ("${entry.key}: $useKeys");
-          }).toList(),
-        },
-      );
-    }
-    _categoriesToUses = groupedByCategory;
   }
 
   void _updateMetrics() {
@@ -191,7 +167,7 @@ class ConstructListModel {
     if (_constructMap.containsKey(identifier.string)) {
       // try to get construct use entry with full ID key
       return _constructMap[identifier.string];
-    } else if (identifier.category.toLowerCase() == "other") {
+    } else if (identifier.category == "other") {
       // if the category passed to this function is "other", return the first
       // construct use entry that starts with the partial key
       return _constructMap.entries
@@ -203,8 +179,7 @@ class ConstructListModel {
       return _constructMap.entries
           .firstWhereOrNull(
             (entry) =>
-                entry.key.startsWith(partialKey) &&
-                entry.key.toLowerCase().endsWith("other"),
+                entry.key.startsWith(partialKey) && entry.key.endsWith("other"),
           )
           ?.value;
     }

@@ -34,8 +34,8 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
     // Sort the list with custom logic
     entries.sort((a, b) {
       // Check if one of the keys is 'Other'
-      if (a.key == 'Other') return 1;
-      if (b.key == 'Other') return -1;
+      if (a.key.toLowerCase() == 'other') return 1;
+      if (b.key.toLowerCase() == 'other') return -1;
 
       // Sort by the length of the list in descending order
       final aTotalPoints = a.value.fold<int>(
