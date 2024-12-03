@@ -318,7 +318,7 @@ ghq(){return"Enviar como texto"},
 ghr(){return"Enviar audio"},
 gfz(){return"Enviar ficheiro"},
 gfA(){return"Enviar imaxe"},
-o9(d){return"Send "+d+" image"},
+o9(d){return"Enviar "+d+" imaxe"},
 gfB(){return"Enviar mensaxes"},
 ght(){return"Enviar v\xeddeo"},
 hu(d){return"\ud83d\udcc1 "+d+" enviou un ficheiro"},
@@ -565,7 +565,7 @@ god(){return"Informaci\xf3n do servidor:"},
 gbD(d){return"Nome"},
 goR(d){return"Versi\xf3n"},
 goS(){return"P\xe1xina web"},
-gou(){return"Compress"},
+gou(){return"Comprimir"},
 gol(){return"Resaltar texto"},
 goE(){return"Cursiva"},
 gof(){return"Riscar"},
@@ -578,5 +578,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.HX,C.aR)})()
 A.ep(b.typeUniverse,JSON.parse('{"HX":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"el9R1jZ3yhwdpUJQDcCQHHTtIMU=");
+a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"4RRRhFYVRLMtzlLJr2asdxX1vXQ=");
 //# sourceMappingURL=main.dart.js_247.part.js.map

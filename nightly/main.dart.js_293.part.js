@@ -318,7 +318,7 @@ ghq(){return"\u041d\u0430\u0434\u0456\u0441\u043b\u0430\u0442\u0438 \u044f\u043a
 ghr(){return"\u041d\u0430\u0434\u0456\u0441\u043b\u0430\u0442\u0438 \u0430\u0443\u0434\u0456\u043e"},
 gfz(){return"\u041d\u0430\u0434\u0456\u0441\u043b\u0430\u0442\u0438 \u0444\u0430\u0439\u043b"},
 gfA(){return"\u041d\u0430\u0434\u0456\u0441\u043b\u0430\u0442\u0438 \u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u043d\u044f"},
-o9(d){return"Send "+d+" image"},
+o9(d){return"\u041d\u0430\u0434\u0456\u0441\u043b\u0430\u0442\u0438 "+d+" \u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u043d\u044f"},
 gfB(){return"\u041d\u0430\u0434\u0441\u0438\u043b\u0430\u0442\u0438 \u043f\u043e\u0432\u0456\u0434\u043e\u043c\u043b\u0435\u043d\u043d\u044f"},
 ght(){return"\u041d\u0430\u0434\u0456\u0441\u043b\u0430\u0442\u0438 \u0432\u0456\u0434\u0435\u043e"},
 hu(d){return"\ud83d\udcc1 "+d+" \u043d\u0430\u0434\u0441\u0438\u043b\u0430\u0454 \u0444\u0430\u0439\u043b"},
@@ -565,7 +565,7 @@ god(){return"\u0406\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u044f \u043f
 gbD(d){return"\u0406\u043c'\u044f"},
 goR(d){return"\u0412\u0435\u0440\u0441\u0456\u044f"},
 goS(){return"\u0412\u0435\u0431\u0441\u0430\u0439\u0442"},
-gou(){return"Compress"},
+gou(){return"\u0421\u0442\u0438\u0441\u043d\u0443\u0442\u0438"},
 gol(){return"\u0416\u0438\u0440\u043d\u0438\u0439 \u0442\u0435\u043a\u0441\u0442"},
 goE(){return"\u041a\u0443\u0440\u0441\u0438\u0432\u043d\u0438\u0439 \u0442\u0435\u043a\u0441\u0442"},
 gof(){return"\u041f\u0435\u0440\u0435\u043a\u0440\u0435\u0441\u043b\u0435\u043d\u0438\u0439 \u0442\u0435\u043a\u0441\u0442"},
@@ -578,5 +578,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Io,C.aR)})()
 A.ep(b.typeUniverse,JSON.parse('{"Io":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_293",e:"endPart",h:b})})($__dart_deferred_initializers__,"TmXgKox3UYzbuVbwR36fh+ZwK60=");
+a.eventLog.push({p:"main.dart.js_293",e:"endPart",h:b})})($__dart_deferred_initializers__,"V0t95y8+LhocdBiFCga4GCmVXhM=");
 //# sourceMappingURL=main.dart.js_293.part.js.map

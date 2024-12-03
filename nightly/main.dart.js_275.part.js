@@ -318,7 +318,7 @@ ghq(){return"Nos\u016bt\u012bt k\u0101 tekstu"},
 ghr(){return"Nos\u016bt\u012bt ska\u0146u"},
 gfz(){return"Nos\u016bt\u012bt datni"},
 gfA(){return"Nos\u016bt\u012bt att\u0113lu"},
-o9(d){return"Send "+d+" image"},
+o9(d){return"Nos\u016bt\u012bt "+d+" att\u0113lu(s)"},
 gfB(){return"Nos\u016bt\u012bt zi\u0146as"},
 ght(){return"Nos\u016bt\u012bt video"},
 hu(d){return"\ud83d\udcc1 "+d+" nos\u016bt\u012bja datni"},
@@ -565,18 +565,18 @@ god(){return"Inform\u0101cija par serveri:"},
 gbD(d){return"Nosaukums"},
 goR(d){return"Versija"},
 goS(){return"T\u012bmek\u013cvietne"},
-gou(){return"Compress"},
+gou(){return"Saspiest"},
 gol(){return"Teksts treknrakst\u0101"},
 goE(){return"Teksts sl\u012bprakst\u0101"},
 gof(){return"P\u0101rsv\u012btrots"},
 goM(){return"L\u016bgums aizpild\u012bt"},
 goC(){return"Neder\u012bgs URL"},
 goi(){return"Pievienot saiti"},
-goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
+goP(){return"Nevar\u0113ja pievienoties t\u0113rz\u0113\u0161anai. Varb\u016bt otra puse jau ir aizv\u0113rusi sarunu."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I9,C.aR)})()
 A.ep(b.typeUniverse,JSON.parse('{"I9":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"/UC5usGdR8RqTiF3OjhVvdd1UUA=");
+a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"v6c90d1FqH7DXpmDivrT4yoBhtQ=");
 //# sourceMappingURL=main.dart.js_275.part.js.map

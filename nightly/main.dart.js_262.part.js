@@ -318,7 +318,7 @@ ghq(){return"Kirim sebagai teks"},
 ghr(){return"Kirim suara"},
 gfz(){return"Kirim file"},
 gfA(){return"Kirim gambar"},
-o9(d){return"Send "+d+" image"},
+o9(d){return"Kirim "+d+" gambar"},
 gfB(){return"Kirim pesan"},
 ght(){return"Kirim video"},
 hu(d){return"\ud83d\udcc1 "+d+" mengirim file"},
@@ -565,18 +565,18 @@ god(){return"Informasi server:"},
 gbD(d){return"Nama"},
 goR(d){return"Versi"},
 goS(){return"Situs Web"},
-gou(){return"Compress"},
+gou(){return"Kompres"},
 gol(){return"Teks tebal"},
 goE(){return"Teks miring"},
 gof(){return"Coret"},
 goM(){return"Silakan isi"},
 goC(){return"URL tidak valid"},
 goi(){return"Tambahkan tautan"},
-goP(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
+goP(){return"Tidak dapat bergabung dalam chat. Mungkin pihak lain telah menutup percakapan."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.I2,C.aR)})()
 A.ep(b.typeUniverse,JSON.parse('{"I2":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_262",e:"endPart",h:b})})($__dart_deferred_initializers__,"sM6/2AsNvTuY3qia5tZdkbJh0/Y=");
+a.eventLog.push({p:"main.dart.js_262",e:"endPart",h:b})})($__dart_deferred_initializers__,"J5w5pMgvy+fESYyQHyKJahjTQyk=");
 //# sourceMappingURL=main.dart.js_262.part.js.map

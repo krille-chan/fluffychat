@@ -320,7 +320,7 @@ ghq(){return"\u4ee5\u6587\u672c\u53d1\u9001"},
 ghr(){return"\u53d1\u9001\u97f3\u9891"},
 gfz(){return"\u53d1\u9001\u6587\u4ef6"},
 gfA(){return"\u53d1\u9001\u56fe\u50cf"},
-o9(d){return"Send "+d+" image"},
+o9(d){return"\u53d1\u9001 "+d+" \u5f20\u56fe\u7247"},
 gfB(){return"\u53d1\u9001\u6d88\u606f"},
 ght(){return"\u53d1\u9001\u89c6\u9891"},
 hu(d){return"\ud83d\udcc1"+d+" \u53d1\u9001\u4e86\u6587\u4ef6"},
@@ -567,7 +567,7 @@ god(){return"\u670d\u52a1\u5668\u4fe1\u606f\uff1a"},
 gbD(d){return"\u540d\u79f0"},
 goR(d){return"\u7248\u672c"},
 goS(){return"\u7f51\u7ad9"},
-gou(){return"Compress"},
+gou(){return"\u538b\u7f29"},
 gol(){return"\u6587\u672c\u52a0\u7c97"},
 goE(){return"\u6587\u4ef6\u503e\u659c"},
 gof(){return"\u5220\u9664\u7ebf"},
@@ -1100,5 +1100,5 @@ y(A.CH,C.aR)
 y(A.Iq,A.CH)})()
 B.ep(b.typeUniverse,JSON.parse('{"CH":{"aR":[]},"Iq":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"PvzIR8bl7vb1UyJEC/XuV7jVcuE=");
+a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"h+0JcnzDchf/GX8pQTqlzPqBGYA=");
 //# sourceMappingURL=main.dart.js_1.part.js.map

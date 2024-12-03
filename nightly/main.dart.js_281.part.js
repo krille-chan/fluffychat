@@ -318,7 +318,7 @@ ghq(){return"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c \u043a\u0430
 ghr(){return"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c \u0430\u0443\u0434\u0438\u043e"},
 gfz(){return"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c \u0444\u0430\u0439\u043b"},
 gfA(){return"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435"},
-o9(d){return"Send "+d+" image"},
+o9(d){return"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c "+d+" \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0439"},
 gfB(){return"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f"},
 ght(){return"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c \u0432\u0438\u0434\u0435\u043e"},
 hu(d){return"\ud83d\udcc1 "+d+" \u043e\u0442\u043f\u0440\u0430\u0432\u0438\u043b(\u0430) \u0444\u0430\u0439\u043b"},
@@ -565,7 +565,7 @@ god(){return"\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e
 gbD(d){return"\u0418\u043c\u044f"},
 goR(d){return"\u0412\u0435\u0440\u0441\u0438\u044f"},
 goS(){return"\u0421\u0430\u0439\u0442"},
-gou(){return"Compress"},
+gou(){return"\u0421\u0436\u0430\u0442\u0438\u0435"},
 gol(){return"\u0416\u0438\u0440\u043d\u044b\u0439 \u0448\u0440\u0438\u0444\u0442"},
 goE(){return"Italic"},
 gof(){return"\u041f\u0435\u0440\u0435\u0447\u0451\u0440\u043a\u043d\u0443\u0442\u044b\u0439"},
@@ -578,5 +578,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ig,C.aR)})()
 A.ep(b.typeUniverse,JSON.parse('{"Ig":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_281",e:"endPart",h:b})})($__dart_deferred_initializers__,"4SUAMy2QJtHoicTUPt0MIaG/bNs=");
+a.eventLog.push({p:"main.dart.js_281",e:"endPart",h:b})})($__dart_deferred_initializers__,"4NqDXEgBr84YJwLrBx9MXVNZ76Q=");
 //# sourceMappingURL=main.dart.js_281.part.js.map
