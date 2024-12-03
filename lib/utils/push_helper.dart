@@ -202,14 +202,16 @@ Future<void> _tryPushHelper(
   final newMessage = Message(
     body,
     event.originServerTs,
-    Person(
-      bot: event.messageType == MessageTypes.Notice,
-      key: event.senderId,
-      name: event.senderFromMemoryOrFallback.calcDisplayname(),
-      icon: senderAvatarFile == null
-          ? null
-          : ByteArrayAndroidIcon(senderAvatarFile),
-    ),
+    event.senderId == event.room.directChatMatrixID
+        ? null
+        : Person(
+            bot: event.messageType == MessageTypes.Notice,
+            key: event.senderId,
+            name: event.senderFromMemoryOrFallback.calcDisplayname(),
+            icon: senderAvatarFile == null
+                ? null
+                : ByteArrayAndroidIcon(senderAvatarFile),
+          ),
   );
 
   final messagingStyleInformation = PlatformInfos.isAndroid
