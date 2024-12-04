@@ -1,5 +1,4 @@
 import 'package:fluffychat/pages/chat_list/space_view.dart';
-import 'package:fluffychat/pangea/widgets/chat/visibility_toggle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart' as matrix;
@@ -22,17 +21,6 @@ class AddRoomDialogState extends State<AddRoomDialog> {
   final TextEditingController _roomNameController = TextEditingController();
   final TextEditingController _roomDescriptionController =
       TextEditingController();
-
-  matrix.Visibility visibility = matrix.Visibility.public;
-  JoinRules joinRules = JoinRules.public;
-
-  Future<void> _setJoinRules(JoinRules newJoinRules) async {
-    setState(() => joinRules = newJoinRules);
-  }
-
-  Future<void> _setVisibility(matrix.Visibility newVisibility) async {
-    setState(() => visibility = newVisibility);
-  }
 
   @override
   void dispose() {
@@ -98,13 +86,6 @@ class AddRoomDialogState extends State<AddRoomDialog> {
                   ],
                 ),
               ),
-              VisibilityToggle(
-                setJoinRules: _setJoinRules,
-                setVisibility: _setVisibility,
-                spaceMode: widget.roomType == AddRoomType.subspace,
-                visibility: visibility,
-                joinRules: joinRules,
-              ),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Row(
@@ -121,13 +102,12 @@ class AddRoomDialogState extends State<AddRoomDialog> {
                       onPressed: () async {
                         final isValid = _formKey.currentState!.validate();
                         if (!isValid) return;
-
                         Navigator.of(context).pop(
                           RoomResponse(
                             roomName: _roomNameController.text,
                             roomDescription: _roomDescriptionController.text,
-                            joinRules: joinRules,
-                            visibility: visibility,
+                            joinRules: JoinRules.public,
+                            visibility: matrix.Visibility.private,
                           ),
                         );
                       },

@@ -70,32 +70,32 @@ class NewGroupView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            SwitchListTile.adaptive(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 32),
-              secondary: const Icon(Icons.public_outlined),
-              title: Text(L10n.of(context)!.groupIsPublic),
-              value: controller.publicGroup,
-              onChanged: controller.loading ? null : controller.setPublicGroup,
-            ),
-            AnimatedSize(
-              duration: FluffyThemes.animationDuration,
-              child: controller.publicGroup
-                  ? SwitchListTile.adaptive(
-                      contentPadding:
-                          const EdgeInsets.symmetric(horizontal: 32),
-                      secondary: const Icon(Icons.search_outlined),
-                      // #Pangea
-                      // title: Text(L10n.of(context)!.groupCanBeFoundViaSearch),
-                      title: Text(L10n.of(context)!.chatCanBeFoundViaSearch),
-                      // Pangea#
-                      value: controller.groupCanBeFound,
-                      onChanged: controller.loading
-                          ? null
-                          : controller.setGroupCanBeFound,
-                    )
-                  : const SizedBox.shrink(),
-            ),
             // #Pangea
+            // SwitchListTile.adaptive(
+            //   contentPadding: const EdgeInsets.symmetric(horizontal: 32),
+            //   secondary: const Icon(Icons.public_outlined),
+            //   title: Text(L10n.of(context)!.groupIsPublic),
+            //   value: controller.publicGroup,
+            //   onChanged: controller.loading ? null : controller.setPublicGroup,
+            // ),
+            // AnimatedSize(
+            //   duration: FluffyThemes.animationDuration,
+            //   child: controller.publicGroup
+            //       ? SwitchListTile.adaptive(
+            //           contentPadding:
+            //               const EdgeInsets.symmetric(horizontal: 32),
+            //           secondary: const Icon(Icons.search_outlined),
+            //           // #Pangea
+            //           // title: Text(L10n.of(context)!.groupCanBeFoundViaSearch),
+            //           title: Text(L10n.of(context)!.chatCanBeFoundViaSearch),
+            //           // Pangea#
+            //           value: controller.groupCanBeFound,
+            //           onChanged: controller.loading
+            //               ? null
+            //               : controller.setGroupCanBeFound,
+            //         )
+            //       : const SizedBox.shrink(),
+            // ),
             // SwitchListTile.adaptive(
             //   contentPadding: const EdgeInsets.symmetric(horizontal: 32),
             //   secondary: Icon(

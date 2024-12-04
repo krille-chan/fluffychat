@@ -109,25 +109,35 @@ extension ChildrenAndParentsRoomExtension on Room {
   }
 
   /// Wrapper around call to setSpaceChild with added functionality
-  /// to prevent adding one room to multiple spaces
+  /// to prevent adding one room to multiple spaces, and resets the
+  /// subspace's JoinRules and Visibility to defaults.
   Future<void> _pangeaSetSpaceChild(
     String roomId, {
     bool? suggested,
   }) async {
     final Room? child = client.getRoomById(roomId);
-    if (child != null) {
-      final List<Room> spaceParents = child.pangeaSpaceParents;
-      for (final Room parent in spaceParents) {
-        try {
-          await parent.removeSpaceChild(roomId);
-        } catch (e) {
-          ErrorHandler.logError(
-            e: e,
-            m: 'Failed to remove child from parent',
-          );
-        }
+    if (child == null) return;
+    final List<Room> spaceParents = child.pangeaSpaceParents;
+    for (final Room parent in spaceParents) {
+      try {
+        await parent.removeSpaceChild(roomId);
+      } catch (e) {
+        ErrorHandler.logError(
+          e: e,
+          m: 'Failed to remove child from parent',
+        );
       }
+    }
+
+    try {
       await setSpaceChild(roomId, suggested: suggested);
+      await child.setJoinRules(JoinRules.public);
+      await child.client.setRoomVisibilityOnDirectory(
+        roomId,
+        visibility: matrix.Visibility.private,
+      );
+    } catch (err, stack) {
+      ErrorHandler.logError(e: err, s: stack);
     }
   }
 

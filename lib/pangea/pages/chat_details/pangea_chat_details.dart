@@ -313,14 +313,18 @@ class PangeaChatDetailsView extends StatelessWidget {
                           ),
                         if (isGroupChat && room.isRoomAdmin)
                           Divider(color: theme.dividerColor, height: 1),
-                        if (room.isRoomAdmin)
+                        if (room.isRoomAdmin &&
+                            room.isSpace &&
+                            room.spaceParents.isEmpty)
                           VisibilityToggle(
                             room: room,
                             setVisibility: controller.setVisibility,
                             setJoinRules: controller.setJoinRules,
                             iconColor: iconColor,
                           ),
-                        if (room.isRoomAdmin)
+                        if (room.isRoomAdmin &&
+                            room.isSpace &&
+                            room.spaceParents.isEmpty)
                           Divider(color: theme.dividerColor, height: 1),
                         RoomCapacityButton(
                           room: room,

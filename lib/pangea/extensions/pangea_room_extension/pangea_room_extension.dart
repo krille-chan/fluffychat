@@ -27,6 +27,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 // import markdown.dart
 import 'package:html_unescape/html_unescape.dart';
+import 'package:matrix/matrix.dart' as matrix;
 import 'package:matrix/matrix.dart';
 import 'package:matrix/src/utils/markdown.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';

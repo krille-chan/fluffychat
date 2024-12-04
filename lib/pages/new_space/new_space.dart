@@ -27,10 +27,13 @@ class NewSpace extends StatefulWidget {
 class NewSpaceController extends State<NewSpace> {
   TextEditingController nameController = TextEditingController();
   TextEditingController topicController = TextEditingController();
-  bool publicGroup = false;
+
   // #Pangea
-  bool spaceCanBeFound = true;
+  // bool publicGroup = false;
+  bool requiredCodeToJoin = false;
+  bool spaceCanBeFound = false;
   // Pangea#
+
   bool loading = false;
   String? nameError;
   String? topicError;
@@ -55,10 +58,13 @@ class NewSpaceController extends State<NewSpace> {
   void setSpaceCanBeFound(bool b) => setState(() => spaceCanBeFound = b);
   // Pangea#
 
-  void setPublicGroup(bool b) => setState(() => publicGroup = b);
+  // #Pangea
+  // void setPublicGroup(bool b) => setState(() => publicGroup = b);
+  void setRequireCode(bool b) => setState(() => requiredCodeToJoin = b);
+  // Pangea#
 
   // #Pangea
-  List<StateEvent> initialState(String joinCode, bool publicGroup) {
+  List<StateEvent> initialState(String joinCode) {
     return [
       StateEvent(
         type: EventTypes.RoomPowerLevels,
@@ -77,9 +83,9 @@ class NewSpaceController extends State<NewSpace> {
       StateEvent(
         type: sdk.EventTypes.RoomJoinRules,
         content: {
-          ModelKey.joinRule: publicGroup
-              ? sdk.JoinRules.public.toString().replaceAll('JoinRules.', '')
-              : sdk.JoinRules.invite.toString().replaceAll('JoinRules.', ''),
+          ModelKey.joinRule: requiredCodeToJoin
+              ? sdk.JoinRules.knock.toString().replaceAll('JoinRules.', '')
+              : sdk.JoinRules.public.toString().replaceAll('JoinRules.', ''),
           ModelKey.accessCode: joinCode,
         },
       ),
@@ -109,24 +115,25 @@ class NewSpaceController extends State<NewSpace> {
       // Pangea#
 
       final spaceId = await client.createRoom(
-        preset: publicGroup
-            ? sdk.CreateRoomPreset.publicChat
-            : sdk.CreateRoomPreset.privateChat,
         // #Pangea
-        visibility: publicGroup && spaceCanBeFound
-            ? sdk.Visibility.public
-            : sdk.Visibility.private,
+        // preset: publicGroup
+        //     ? sdk.CreateRoomPreset.publicChat
+        //     : sdk.CreateRoomPreset.privateChat,
+        visibility:
+            spaceCanBeFound ? sdk.Visibility.public : sdk.Visibility.private,
         // Pangea#
         creationContent: {'type': RoomCreationTypes.mSpace},
-        roomAliasName: publicGroup
-            ? nameController.text.trim().toLowerCase().replaceAll(' ', '_')
-            : null,
+        // #Pangea
+        // roomAliasName: publicGroup
+        //     ? nameController.text.trim().toLowerCase().replaceAll(' ', '_')
+        //     : null,
+        // Pangea#
         name: nameController.text.trim(),
         topic: topicController.text.isEmpty ? null : topicController.text,
         powerLevelContentOverride: {'events_default': 100},
         initialState: [
           // #Pangea
-          ...initialState(joinCode, publicGroup),
+          ...initialState(joinCode),
           // Pangea#
           if (avatar != null)
             sdk.StateEvent(

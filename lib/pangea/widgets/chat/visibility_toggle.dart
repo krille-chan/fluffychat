@@ -23,7 +23,7 @@ class VisibilityToggle extends StatelessWidget {
     this.iconColor,
     this.spaceMode = false,
     this.visibility = matrix.Visibility.private,
-    this.joinRules = JoinRules.invite,
+    this.joinRules = JoinRules.knock,
     this.showSearchToggle = true,
     super.key,
   });
@@ -40,9 +40,7 @@ class VisibilityToggle extends StatelessWidget {
         SwitchListTile.adaptive(
           activeColor: AppConfig.activeToggleColor,
           title: Text(
-            room?.isSpace ?? spaceMode
-                ? L10n.of(context)!.spaceIsPublic
-                : L10n.of(context)!.groupIsPublic,
+            L10n.of(context)!.requireCodeToJoin,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
@@ -51,45 +49,40 @@ class VisibilityToggle extends StatelessWidget {
           secondary: CircleAvatar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             foregroundColor: iconColor,
-            child: const Icon(Icons.public_outlined),
+            child: const Icon(Icons.key_outlined),
           ),
-          value: _isPublic,
+          value: !_isPublic,
           onChanged: (value) =>
-              setJoinRules(value ? JoinRules.public : JoinRules.invite),
+              setJoinRules(value ? JoinRules.knock : JoinRules.public),
         ),
-        if (_isPublic && showSearchToggle)
-          FutureBuilder(
-            future: room != null
-                ? Matrix.of(context)
-                    .client
-                    .getRoomVisibilityOnDirectory(room!.id)
-                : null,
-            builder: (context, snapshot) {
-              return SwitchListTile.adaptive(
-                activeColor: AppConfig.activeToggleColor,
-                title: Text(
-                  room?.isSpace ?? spaceMode
-                      ? L10n.of(context)!.spaceCanBeFoundViaSearch
-                      : L10n.of(context)!.chatCanBeFoundViaSearch,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontWeight: FontWeight.bold,
-                  ),
+        FutureBuilder(
+          future: room != null
+              ? Matrix.of(context).client.getRoomVisibilityOnDirectory(room!.id)
+              : null,
+          builder: (context, snapshot) {
+            return SwitchListTile.adaptive(
+              activeColor: AppConfig.activeToggleColor,
+              title: Text(
+                L10n.of(context)!.canFindInSearch,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontWeight: FontWeight.bold,
                 ),
-                secondary: CircleAvatar(
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  foregroundColor: iconColor,
-                  child: const Icon(Icons.search_outlined),
-                ),
-                value: room != null
-                    ? snapshot.data == matrix.Visibility.public
-                    : visibility == matrix.Visibility.public,
-                onChanged: (value) => setVisibility(
-                  value ? matrix.Visibility.public : matrix.Visibility.private,
-                ),
-              );
-            },
-          ),
+              ),
+              secondary: CircleAvatar(
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                foregroundColor: iconColor,
+                child: const Icon(Icons.search_outlined),
+              ),
+              value: room != null
+                  ? snapshot.data == matrix.Visibility.public
+                  : visibility == matrix.Visibility.public,
+              onChanged: (value) => setVisibility(
+                value ? matrix.Visibility.public : matrix.Visibility.private,
+              ),
+            );
+          },
+        ),
       ],
     );
   }
