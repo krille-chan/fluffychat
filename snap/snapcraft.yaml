@@ -71,6 +71,7 @@ parts:
     build-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
+      - libssl-dev
       - curl
     stage-packages:
       - libsecret-1-0
