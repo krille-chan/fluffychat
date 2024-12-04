@@ -275,8 +275,8 @@ extension SettingCopy on ToolSetting {
       case ToolSetting.interactiveTranslator:
       case ToolSetting.interactiveGrammar:
       case ToolSetting.definitions:
-        return false;
       case ToolSetting.immersionMode:
+        return false;
       case ToolSetting.autoIGC:
         return true;
     }

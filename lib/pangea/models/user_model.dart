@@ -141,7 +141,7 @@ class UserToolSettings {
             json[ToolSetting.interactiveTranslator.toString()] ?? true,
         interactiveGrammar:
             json[ToolSetting.interactiveGrammar.toString()] ?? true,
-        immersionMode: json[ToolSetting.immersionMode.toString()] ?? false,
+        immersionMode: false,
         definitions: json[ToolSetting.definitions.toString()] ?? true,
         autoIGC: json[ToolSetting.autoIGC.toString()] ?? true,
       );
@@ -170,9 +170,7 @@ class UserToolSettings {
                       ?.content[ToolSetting.interactiveGrammar.toString()]
                   as bool?) ??
               true,
-      immersionMode: (accountData[ToolSetting.immersionMode.toString()]
-              ?.content[ToolSetting.immersionMode.toString()] as bool?) ??
-          false,
+      immersionMode: false,
       definitions: (accountData[ToolSetting.definitions.toString()]
               ?.content[ToolSetting.definitions.toString()] as bool?) ??
           true,
