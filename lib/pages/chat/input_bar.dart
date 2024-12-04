@@ -4,10 +4,12 @@ import 'package:fluffychat/pages/chat/command_hints.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
@@ -457,102 +459,97 @@ class InputBar extends StatelessWidget {
                   },
                 ),
               },
-        // #Pangea
-        // child: TypeAheadField<Map<String, String?>>(
-        //   direction: VerticalDirection.up,
-        //   hideOnEmpty: true,
-        //   hideOnLoading: true,
-        //   controller: controller,
-        //   focusNode: focusNode,
-        //   hideOnSelect: false,
-        //   debounceDuration: const Duration(milliseconds: 50),
-        //   // show suggestions after 50ms idle time (default is 300)
-        //   // #Pangea
-        //   // key: controller?.choreographer.inputLayerLinkAndKey.key,
-        //   // builder: (context, controller, focusNode) => TextField(
-        //   builder: (context, _, focusNode) =>
-        child: TextField(
-          enableSuggestions: false,
-          readOnly: controller != null && controller!.choreographer.isRunningIT,
-          autocorrect: false,
-          // Pangea#
+        child: TypeAheadField<Map<String, String?>>(
+          direction: VerticalDirection.up,
+          hideOnEmpty: true,
+          hideOnLoading: true,
           controller: controller,
           focusNode: focusNode,
-          contentInsertionConfiguration: ContentInsertionConfiguration(
-            onContentInserted: (KeyboardInsertedContent content) {
-              final data = content.data;
-              if (data == null) return;
+          hideOnSelect: false,
+          debounceDuration: const Duration(milliseconds: 50),
+          // show suggestions after 50ms idle time (default is 300)
+          // #Pangea
+          // builder: (context, controller, focusNode) => TextField(
+          builder: (context, _, focusNode) => TextField(
+            enableSuggestions: false,
+            readOnly:
+                controller != null && controller!.choreographer.isRunningIT,
+            autocorrect: false,
+            // Pangea#
+            controller: controller,
+            focusNode: focusNode,
+            contentInsertionConfiguration: ContentInsertionConfiguration(
+              onContentInserted: (KeyboardInsertedContent content) {
+                final data = content.data;
+                if (data == null) return;
 
-              final file = MatrixFile(
-                mimeType: content.mimeType,
-                bytes: data,
-                name: content.uri.split('/').last,
-              );
-              room.sendFileEvent(
-                file,
-                shrinkImageMaxDimension: 1600,
+                final file = MatrixFile(
+                  mimeType: content.mimeType,
+                  bytes: data,
+                  name: content.uri.split('/').last,
+                );
+                room.sendFileEvent(
+                  file,
+                  shrinkImageMaxDimension: 1600,
+                );
+              },
+            ),
+            minLines: minLines,
+            maxLines: maxLines,
+            keyboardType: keyboardType!,
+            textInputAction: textInputAction,
+            autofocus: autofocus!,
+            inputFormatters: [
+              //#Pangea
+              //LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+              //setting max character count to 1000
+              //after max, nothing else can be typed
+              LengthLimitingTextInputFormatter(1000),
+              //Pangea#
+            ],
+            onSubmitted: (text) {
+              // fix for library for now
+              // it sets the types for the callback incorrectly
+              onSubmitted!(text);
+            },
+            // #Pangea
+            style: controller?.exceededMaxLength ?? false
+                ? const TextStyle(color: Colors.red)
+                : null,
+            onTap: () {
+              controller?.onInputTap(
+                context,
+                fNode: focusNode,
               );
             },
+            // Pangea#
+            decoration: decoration!,
+            onChanged: (text) {
+              // fix for the library for now
+              // it sets the types for the callback incorrectly
+              onChanged!(text);
+            },
+            textCapitalization: TextCapitalization.sentences,
           ),
-          minLines: minLines,
-          maxLines: maxLines,
-          keyboardType: keyboardType!,
-          textInputAction: textInputAction,
-          autofocus: autofocus!,
-          inputFormatters: [
-            //#Pangea
-            //LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
-            //setting max character count to 1000
-            //after max, nothing else can be typed
-            LengthLimitingTextInputFormatter(1000),
-            //Pangea#
-          ],
-          onSubmitted: (text) {
-            // fix for library for now
-            // it sets the types for the callback incorrectly
-            onSubmitted!(text);
-          },
-          // #Pangea
-          style: controller?.exceededMaxLength ?? false
-              ? const TextStyle(color: Colors.red)
-              : null,
-          onTap: () {
-            controller?.onInputTap(
-              context,
-              fNode: focusNode,
-            );
-          },
-          // Pangea#
-          decoration: decoration!,
-          onChanged: (text) {
-            // fix for the library for now
-            // it sets the types for the callback incorrectly
-            onChanged!(text);
-          },
-          textCapitalization: TextCapitalization.sentences,
+          suggestionsCallback: getSuggestions,
+          itemBuilder: (c, s) =>
+              buildSuggestion(c, s, Matrix.of(context).client),
+          onSelected: (Map<String, String?> suggestion) =>
+              insertSuggestion(context, suggestion),
+          errorBuilder: (BuildContext context, Object? error) =>
+              const SizedBox.shrink(),
+          loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
+          // fix loading briefly flickering a dark box
+          emptyBuilder: (BuildContext context) => const SizedBox
+              .shrink(), // fix loading briefly showing no suggestions
+          // If we ever want to change the suggestion background color
+          // here is the code for it
+          // decorationBuilder: (context, child) => Material(
+          //   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          //   color: Theme.of(context).colorScheme.surfaceContainerHigh,
+          //   child: child,
+          // ),
         ),
-        // #Pangea
-        // suggestionsCallback: getSuggestions,
-        // itemBuilder: (c, s) =>
-        //     buildSuggestion(c, s, Matrix.of(context).client),
-        // onSelected: (Map<String, String?> suggestion) =>
-        //     insertSuggestion(context, suggestion),
-        // errorBuilder: (BuildContext context, Object? error) =>
-        //     const SizedBox.shrink(),
-        // loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
-        // // fix loading briefly flickering a dark box
-        // emptyBuilder: (BuildContext context) => const SizedBox
-        //     .shrink(), // fix loading briefly showing no suggestions
-
-        // If we ever want to change the suggestion background color
-        // here is the code for it
-        // decorationBuilder: (context, child) => Material(
-        //   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        //   color: Theme.of(context).colorScheme.surfaceContainerHigh,
-        //   child: child,
-        // ),
-
-        // ),
         // Pangea#
       ),
     );
