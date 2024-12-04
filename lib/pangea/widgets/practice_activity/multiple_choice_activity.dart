@@ -53,10 +53,16 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   @override
   void didUpdateWidget(covariant MultipleChoiceActivity oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.practiceCardController.currentCompletionRecord?.responses
-            .isEmpty ??
-        false) {
-      speakTargetTokens();
+    if (currentRecordModel?.responses.isEmpty ?? false) {
+      // This gets triggered when the activity switches and when the activity is
+      // flagged. Only want to speak the target tokens when the activity switches.
+      final activityEventFuture =
+          widget.practiceCardController.currentActivityCompleter?.future;
+
+      activityEventFuture?.then((event) {
+        final redacted = event?.event.redacted ?? false;
+        if (mounted && !redacted) speakTargetTokens();
+      });
 
       setState(() => selectedChoiceIndex = null);
     }

@@ -23,6 +23,7 @@ import 'package:fluffychat/pangea/widgets/practice_activity/no_more_practice_car
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 /// The wrapper for practice activity content.
 /// Handles the activities associated with a message,
@@ -135,6 +136,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         _updateFetchingActivity(false);
         existingActivity.practiceActivity.targetTokens =
             nextActivitySpecs.tokens;
+        currentActivityCompleter = Completer();
+        currentActivityCompleter!.complete(existingActivity);
         return existingActivity.practiceActivity;
       }
 
@@ -268,6 +271,13 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     _setPracticeActivity(null);
   }
 
+  bool _isActivityRedaction(EventUpdate update, String activityId) {
+    return update.content.containsKey('type') &&
+        update.content['type'] == 'm.room.redaction' &&
+        update.content.containsKey('content') &&
+        update.content['content']['redacts'] == activityId;
+  }
+
   /// clear the current activity, record, and selection
   /// fetch a new activity, including the offending activity in the request
   Future<void> submitFeedback(String feedback) async {
@@ -278,7 +288,15 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
     if (currentActivityCompleter != null) {
       final activityEvent = await currentActivityCompleter!.future;
-      await activityEvent?.event.redactEvent(reason: feedback);
+      if (activityEvent != null) {
+        await activityEvent.event.redactEvent(reason: feedback);
+        final eventID = activityEvent.event.eventId;
+        await activityEvent.event.room.client.onEvent.stream
+            .firstWhere(
+              (update) => _isActivityRedaction(update, eventID),
+            )
+            .timeout(const Duration(milliseconds: 2500));
+      }
     } else {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
