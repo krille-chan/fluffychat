@@ -69,13 +69,12 @@ parts:
       rm -rf build
       craftctl default
     build-packages:
+      - libsecret-1-dev
       - libjsoncpp-dev
       - curl
     stage-packages:
-      - libsecret-1-dev
-      - libjsoncpp-dev
-      - libssl-dev
-      #- libwebkit2gtk-4.1-dev
+      - libsecret-1-0
+      - libjsoncpp25
 
 slots:
   dbus-svc:
