@@ -521,6 +521,19 @@ class _SpaceViewState extends State<SpaceView> {
     }
     return 0;
   }
+
+  List<Room>? get joinedRooms {
+    final room = Matrix.of(context).client.getRoomById(widget.spaceId);
+    if (room == null) return null;
+
+    final spaceChildIds =
+        room.spaceChildren.map((c) => c.roomId).whereType<String>().toSet();
+
+    return room.client.rooms
+        .where((room) => spaceChildIds.contains(room.id))
+        .where((room) => !room.isAnalyticsRoom)
+        .toList();
+  }
   // Pangea#
 
   @override
@@ -554,7 +567,11 @@ class _SpaceViewState extends State<SpaceView> {
               ? null
               : Text(
                   L10n.of(context)!.countChatsAndCountParticipants(
-                    room.spaceChildren.length,
+                    // #Pangea
+                    // room.spaceChildren.length,
+                    (_discoveredChildren?.length ?? 0) +
+                        (joinedRooms?.length ?? 0),
+                    // Pangea#
                     room.summary.mJoinedMemberCount ?? 1,
                   ),
                   maxLines: 1,
