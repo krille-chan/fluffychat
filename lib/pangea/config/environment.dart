@@ -71,8 +71,9 @@ class Environment {
   }
 
   static String get supportSpaceId {
-    return dotenv.env["SUPPORT_SPACE_ID"] ??
-        '!gqSNSkvwTpgumyjLsV:staging.pangea.chat';
+    return isStaging
+        ? '!gqSNSkvwTpgumyjLsV:staging.pangea.chat'
+        : '!MvJoWwKJErvFuTYOdq:pangea.chat';
   }
 
   static String get supportUserId {

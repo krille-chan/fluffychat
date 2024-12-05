@@ -14,7 +14,7 @@ prime
 !/public/.env
 *.env.local_choreo
 *.env.prod
-
+*.env
 # libolm package
 /assets/js/package
 
