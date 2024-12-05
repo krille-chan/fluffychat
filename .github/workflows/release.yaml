@@ -193,6 +193,11 @@ jobs:
         with:
           name: web
           path: build/web
+      - name: Update Website files
+        run: |
+          touch .env
+          echo "$WEB_APP_ENV" >> .env
+          cp .env assets/.env
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v4
         with:
