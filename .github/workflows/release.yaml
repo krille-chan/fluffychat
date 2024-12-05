@@ -20,7 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - run: echo "$WEB_APP_ENV" > .env
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -34,6 +33,12 @@ jobs:
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
+      - name: Update Website files
+        run: |
+          touch .env
+          touch assets/.env
+          echo "$WEB_APP_ENV" > .env
+          echo "$WEB_APP_ENV" > assets/.env
       - name: Build Release Web
         run: |
           flutter config --enable-web
@@ -193,11 +198,6 @@ jobs:
         with:
           name: web
           path: build/web
-      - name: Update Website files
-        run: |
-          touch .env
-          echo "$WEB_APP_ENV" >> .env
-          cp .env assets/.env
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v4
         with:
