@@ -191,6 +191,7 @@ class ChatEventList extends StatelessWidget {
                 // #Pangea
                 immersionMode: controller.choreographer.immersionMode,
                 controller: controller,
+                isButton: event.eventId == controller.buttonEventID,
                 // Pangea#
                 selected: controller.selectedEvents
                     .any((e) => e.eventId == event.eventId),
