@@ -117,6 +117,10 @@ extension ChildrenAndParentsRoomExtension on Room {
   }) async {
     final Room? child = client.getRoomById(roomId);
     if (child == null) return;
+    if (child.isSpace) {
+      throw NestedSpaceError();
+    }
+
     final List<Room> spaceParents = child.pangeaSpaceParents;
     for (final Room parent in spaceParents) {
       try {
@@ -150,4 +154,9 @@ extension ChildrenAndParentsRoomExtension on Room {
     }
     return suggestionStatus;
   }
+}
+
+class NestedSpaceError extends Error {
+  @override
+  String toString() => 'Cannot add a space to another space';
 }

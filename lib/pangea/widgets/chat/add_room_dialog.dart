@@ -1,14 +1,10 @@
-import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart' as matrix;
 import 'package:matrix/matrix.dart';
 
 class AddRoomDialog extends StatefulWidget {
-  final AddRoomType? roomType;
-
   const AddRoomDialog({
-    required this.roomType,
     super.key,
   });
 
@@ -47,17 +43,13 @@ class AddRoomDialogState extends State<AddRoomDialog> {
                   children: [
                     Text(
                       style: Theme.of(context).textTheme.headlineSmall,
-                      widget.roomType == AddRoomType.subspace
-                          ? L10n.of(context)!.createNewSpace
-                          : L10n.of(context)!.createChat,
+                      L10n.of(context)!.createChat,
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
                       controller: _roomNameController,
                       decoration: InputDecoration(
-                        hintText: widget.roomType == AddRoomType.subspace
-                            ? L10n.of(context)!.spaceName
-                            : L10n.of(context)!.chatName,
+                        hintText: L10n.of(context)!.chatName,
                       ),
                       minLines: 1,
                       maxLines: 1,
