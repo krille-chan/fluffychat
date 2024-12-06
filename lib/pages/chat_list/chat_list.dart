@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -389,7 +388,6 @@ class ChatListController extends State<ChatList>
       builder: (context) => ShareScaffoldDialog(
         items: files.map(
           (file) {
-            inspect(file);
             if ({
               SharedMediaType.text,
               SharedMediaType.url,

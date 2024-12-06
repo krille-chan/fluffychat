@@ -55,7 +55,9 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
         'Started forward action before room was selected. This should never happen.',
       );
     }
-    context.pop();
+    while (context.canPop()) {
+      context.pop();
+    }
     context.go('/rooms/$roomId', extra: widget.items);
   }
 
