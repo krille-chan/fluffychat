@@ -55,9 +55,11 @@ class ChatListViewBody extends StatelessWidget {
       }
     }
 
-    final publicRooms = controller.roomSearchResult?.chunk
-        .where((room) => room.roomType != 'm.space')
-        .toList();
+    // #Pangea
+    // final publicRooms = controller.roomSearchResult?.chunk
+    //     .where((room) => room.roomType != 'm.space')
+    //     .toList();
+    // Pangea#
     final publicSpaces = controller.roomSearchResult?.chunk
         .where((room) => room.roomType == 'm.space')
         .toList();
@@ -86,11 +88,13 @@ class ChatListViewBody extends StatelessWidget {
                 delegate: SliverChildListDelegate(
                   [
                     if (controller.isSearchMode) ...[
-                      SearchTitle(
-                        title: L10n.of(context)!.publicRooms,
-                        icon: const Icon(Icons.explore_outlined),
-                      ),
-                      PublicRoomsHorizontalList(publicRooms: publicRooms),
+                      // #Pangea
+                      // SearchTitle(
+                      //   title: L10n.of(context)!.publicRooms,
+                      //   icon: const Icon(Icons.explore_outlined),
+                      // ),
+                      // PublicRoomsHorizontalList(publicRooms: publicRooms),
+                      // Pangea#
                       SearchTitle(
                         title: L10n.of(context)!.publicSpaces,
                         icon: const Icon(Icons.workspaces_outlined),
