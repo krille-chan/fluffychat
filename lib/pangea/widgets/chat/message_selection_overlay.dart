@@ -170,6 +170,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
   }
 
+  bool get messageInUserL2 =>
+      pangeaMessageEvent?.messageDisplayLangCode ==
+      MatrixState.pangeaController.languageController.userL2?.langCode;
+
   Future<void> _setInitialToolbarMode() async {
     if (widget._pangeaMessageEvent?.isAudioMessage ?? false) {
       toolbarMode = MessageMode.speechToText;
@@ -180,7 +184,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // 2) if the user selects a span on initialization, then we want to give
     // them a practice activity on that word
     // 3) if the user has activities left to complete, then we want to give them
-    if (tokens != null && activitiesLeftToComplete > 0) {
+    if (tokens != null && activitiesLeftToComplete > 0 && messageInUserL2) {
       return setState(() => toolbarMode = MessageMode.practiceActivity);
     }
 

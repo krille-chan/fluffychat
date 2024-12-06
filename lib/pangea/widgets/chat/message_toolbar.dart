@@ -51,10 +51,6 @@ class MessageToolbar extends StatelessWidget {
       return const ToolbarContentLoadingIndicator();
     }
 
-    // Check if the message is in the user's second language
-    final bool messageInUserL2 = pangeaMessageEvent.messageDisplayLangCode ==
-        MatrixState.pangeaController.languageController.userL2?.langCode;
-
     switch (overLayController.toolbarMode) {
       case MessageMode.translation:
         return MessageTranslationCard(
@@ -127,7 +123,7 @@ class MessageToolbar extends StatelessWidget {
         }
       case MessageMode.practiceActivity:
         // If not in the target language show specific messsage
-        if (!messageInUserL2) {
+        if (!overLayController.messageInUserL2) {
           return MessageDisplayCard(
             displayText: L10n.of(context)!
                 .messageNotInTargetLang, // Pass the display text,
