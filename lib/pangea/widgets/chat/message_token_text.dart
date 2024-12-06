@@ -90,6 +90,12 @@ class MessageTokenText extends StatelessWidget {
       globalIndex = endIndex;
     }
 
+    void callOnClick(TokenPosition tokenPosition) {
+      _onClick != null && tokenPosition.token != null
+          ? _onClick!(tokenPosition.token!)
+          : null;
+    }
+
     return RichText(
       text: TextSpan(
         children:
@@ -101,32 +107,16 @@ class MessageTokenText extends StatelessWidget {
 
           if (tokenPosition.token != null) {
             if (tokenPosition.hideContent) {
-              final TextPainter textPainter = TextPainter(
-                text: TextSpan(text: substring, style: _style),
-                textDirection: TextDirection.ltr,
-              )..layout();
-
-              final textWidth = textPainter.size.width;
-
               return WidgetSpan(
                 child: GestureDetector(
-                  onTap: () => _onClick != null && tokenPosition.token != null
-                      ? _onClick!(tokenPosition.token!)
-                      : null,
-                  child: Container(
-                    width: textWidth,
-                    height: 1,
-                    color: _style.color,
-                    margin: const EdgeInsets.only(bottom: 2),
-                  ),
+                  onTap: () => callOnClick(tokenPosition),
+                  child: HiddenText(text: substring, style: _style),
                 ),
               );
             }
             return TextSpan(
               recognizer: TapGestureRecognizer()
-                ..onTap = () => _onClick != null && tokenPosition.token != null
-                    ? _onClick!(tokenPosition.token!)
-                    : null,
+                ..onTap = () => callOnClick(tokenPosition),
               text: substring,
               style: _style.merge(
                 TextStyle(
@@ -142,24 +132,10 @@ class MessageTokenText extends StatelessWidget {
             if ((i > 0 || i < tokenPositions.length - 1) &&
                 tokenPositions[i + 1].hideContent &&
                 tokenPositions[i - 1].hideContent) {
-              final TextPainter textPainter = TextPainter(
-                text: TextSpan(text: substring, style: _style),
-                textDirection: TextDirection.ltr,
-              )..layout();
-
-              final textWidth = textPainter.size.width;
-
               return WidgetSpan(
                 child: GestureDetector(
-                  onTap: () => _onClick != null && tokenPosition.token != null
-                      ? _onClick!(tokenPosition.token!)
-                      : null,
-                  child: Container(
-                    width: textWidth,
-                    height: 1,
-                    color: _style.color,
-                    margin: const EdgeInsets.only(bottom: 2),
-                  ),
+                  onTap: () => callOnClick(tokenPosition),
+                  child: HiddenText(text: substring, style: _style),
                 ),
               );
             }
@@ -188,4 +164,47 @@ class TokenPosition {
     required this.highlight,
     this.token,
   });
+}
+
+class HiddenText extends StatelessWidget {
+  final String text;
+  final TextStyle style;
+
+  const HiddenText({
+    super.key,
+    required this.text,
+    required this.style,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: text, style: style),
+      textDirection: TextDirection.ltr,
+    )..layout();
+
+    final textWidth = textPainter.size.width;
+    final textHeight = textPainter.size.height;
+
+    return SizedBox(
+      height: textHeight,
+      child: Stack(
+        children: [
+          Container(
+            width: textWidth,
+            height: textHeight,
+            color: Colors.transparent,
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: textWidth,
+              height: 1,
+              color: style.color,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
