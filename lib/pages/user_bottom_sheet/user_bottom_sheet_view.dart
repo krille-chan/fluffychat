@@ -277,10 +277,8 @@ class UserBottomSheetView extends StatelessWidget {
                 if (user != null) ...[
                   Divider(color: theme.dividerColor),
                   ListTile(
-                    title: Text(
-                      '${L10n.of(context).userRole} (${user.powerLevel})',
-                    ),
-                    leading: const Icon(Icons.person_outlined),
+                    title: Text(L10n.of(context).userRole),
+                    leading: const Icon(Icons.admin_panel_settings_outlined),
                     trailing: Material(
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius / 2),
@@ -302,15 +300,22 @@ class UserBottomSheetView extends StatelessWidget {
                         items: [
                           DropdownMenuItem(
                             value: 0,
-                            child: Text(L10n.of(context).user),
+                            child: Text(L10n.of(context).userLevel(
+                                user.powerLevel < 50 ? user.powerLevel : 0)),
                           ),
                           DropdownMenuItem(
                             value: 50,
-                            child: Text(L10n.of(context).moderator),
+                            child: Text(L10n.of(context).moderatorLevel(
+                                user.powerLevel >= 50 && user.powerLevel < 100
+                                    ? user.powerLevel
+                                    : 50)),
                           ),
                           DropdownMenuItem(
                             value: 100,
-                            child: Text(L10n.of(context).admin),
+                            child: Text(L10n.of(context).adminLevel(
+                                user.powerLevel >= 100
+                                    ? user.powerLevel
+                                    : 100)),
                           ),
                           DropdownMenuItem(
                             value: null,
