@@ -136,6 +136,7 @@ class _SpaceViewState extends State<SpaceView> {
           okLabel: L10n.of(context).ok,
           cancelLabel: L10n.of(context).cancel,
           message: L10n.of(context).archiveRoomDescription,
+          isDestructiveAction: true,
         );
         if (!mounted) return;
         if (confirmed != OkCancelResult.ok) return;

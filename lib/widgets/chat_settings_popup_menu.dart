@@ -62,6 +62,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   okLabel: L10n.of(context).ok,
                   cancelLabel: L10n.of(context).cancel,
                   message: L10n.of(context).archiveRoomDescription,
+                  isDestructiveAction: true,
                 );
                 if (confirmed == OkCancelResult.ok) {
                   final success = await showFutureLoadingDialog(
