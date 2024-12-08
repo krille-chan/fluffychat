@@ -7,12 +7,10 @@ import android.content.Context
 import androidx.multidex.MultiDex
 
 class MainActivity : FlutterActivity() {
-
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         MultiDex.install(this)
     }
-
 
     override fun provideFlutterEngine(context: Context): FlutterEngine? {
         return provideEngine(this)
