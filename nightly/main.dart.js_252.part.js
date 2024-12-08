@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_252",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWm(){return new B.HY(A.dL("hi"))},
-HY:function HY(d){this.a=d}}
+cWn(){return new B.HZ(A.dL("hi"))},
+HZ:function HZ(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[25],B)
-B.HY.prototype={
+B.HZ.prototype={
 go1(){return"false"},
 gkn(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gmx(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -92,7 +92,7 @@ gfM(){return"Chat details"},
 gfO(){return"Chats"},
 gip(){return"Choose a strong password"},
 gfP(){return"Clear archive"},
-gd6(d){return"Close"},
+gda(d){return"Close"},
 gls(){return"Mark as direct message room for the giving Matrix ID"},
 glt(){return"Mark as group"},
 giq(){return"Ban the given user from this room"},
@@ -576,8 +576,8 @@ gom(){return"Add link"},
 go9(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HY,C.aR)})()
-A.ep(b.typeUniverse,JSON.parse('{"HY":{"aR":[]}}'))};
+y(B.HZ,C.aR)})()
+A.ep(b.typeUniverse,JSON.parse('{"HZ":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"Cfi47hu3AVT1/syWtGqto/3X0DM=");
+a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"8/91OpYorst7Kdz9SHQWQTjVGCE=");
 //# sourceMappingURL=main.dart.js_252.part.js.map

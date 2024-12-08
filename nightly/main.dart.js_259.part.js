@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_259",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWo(){return new B.I_(A.dL("hu"))},
-I_:function I_(d){this.a=d}}
+cWp(){return new B.I0(A.dL("hu"))},
+I0:function I0(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[27],B)
-B.I_.prototype={
+B.I0.prototype={
 go1(){return"true"},
 gkn(){return"Jelsz\xf3 megism\xe9tl\xe9se"},
 gmx(){return"Nem k\xe9p f\xe1jl."},
@@ -92,7 +92,7 @@ gfM(){return"Cseveg\xe9s r\xe9szletei"},
 gfO(){return"Cseveg\xe9sek"},
 gip(){return"V\xe1lasszon egy er\u0151s jelsz\xf3t"},
 gfP(){return"Arch\xedvum t\xf6rl\xe9se"},
-gd6(d){return"Bez\xe1r\xe1s"},
+gda(d){return"Bez\xe1r\xe1s"},
 gls(){return"Szoba megjel\xf6l\xe9se mint k\xf6zvetlen cseveg\u0151 szoba az adott Matrix ID-n\xe9l"},
 glt(){return"Csoportnak jel\xf6l\xe9s"},
 giq(){return"Felhaszn\xe1l\xf3 kitilt\xe1sa ebb\u0151l a szob\xe1b\xf3l"},
@@ -576,8 +576,8 @@ gom(){return"Add link"},
 go9(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.I_,C.aR)})()
-A.ep(b.typeUniverse,JSON.parse('{"I_":{"aR":[]}}'))};
+y(B.I0,C.aR)})()
+A.ep(b.typeUniverse,JSON.parse('{"I0":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_259",e:"endPart",h:b})})($__dart_deferred_initializers__,"HQHtwxCsSxUvbw0LJ0nWJ/X0IWY=");
+a.eventLog.push({p:"main.dart.js_259",e:"endPart",h:b})})($__dart_deferred_initializers__,"HWAaYxG2nbqPVvHz2qOASkSqKog=");
 //# sourceMappingURL=main.dart.js_259.part.js.map

@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_276",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWy(){return new B.I9(A.dL("nb"))},
-I9:function I9(d){this.a=d}}
+cWz(){return new B.Ia(A.dL("nb"))},
+Ia:function Ia(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[37],B)
-B.I9.prototype={
+B.Ia.prototype={
 go1(){return"false"},
 gkn(){return"Gjenta passord"},
 gmx(){return"Ikke en bildefil."},
@@ -92,7 +92,7 @@ gfM(){return"Sludringsdetaljer"},
 gfO(){return"Chats"},
 gip(){return"Velg et sterkt passord"},
 gfP(){return"Clear archive"},
-gd6(d){return"Lukk"},
+gda(d){return"Lukk"},
 gls(){return"Mark as direct message room for the giving Matrix ID"},
 glt(){return"Mark as group"},
 giq(){return"Ban the given user from this room"},
@@ -576,8 +576,8 @@ gom(){return"Add link"},
 go9(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.I9,C.aR)})()
-A.ep(b.typeUniverse,JSON.parse('{"I9":{"aR":[]}}'))};
+y(B.Ia,C.aR)})()
+A.ep(b.typeUniverse,JSON.parse('{"Ia":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"4vAjqhuwNHeuRUwLWalN/4CqJjk=");
+a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"8njVId/Bf0Sw4oK805T76fPytb4=");
 //# sourceMappingURL=main.dart.js_276.part.js.map

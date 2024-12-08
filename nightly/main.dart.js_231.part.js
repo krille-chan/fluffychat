@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_231",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWc(){return new B.HO(A.dL("es"))},
-HO:function HO(d){this.a=d}}
+cWd(){return new B.HP(A.dL("es"))},
+HP:function HP(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[15],B)
-B.HO.prototype={
+B.HP.prototype={
 go1(){return"Falso"},
 gkn(){return"Repita la contrase\xf1a"},
 gmx(){return"El archivo no es una imagen."},
@@ -92,7 +92,7 @@ gfM(){return"Detalles del chat"},
 gfO(){return"Conversaciones"},
 gip(){return"Elija una contrase\xf1a segura"},
 gfP(){return"Borrar archivo"},
-gd6(d){return"Cerrar"},
+gda(d){return"Cerrar"},
 gls(){return"Marcar como sala de mensajes directos para el ID de Matrix"},
 glt(){return"Marcar como grupo"},
 giq(){return"Prohibir al usuario dado en esta sala"},
@@ -576,8 +576,8 @@ gom(){return"Add link"},
 go9(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HO,C.aR)})()
-A.ep(b.typeUniverse,JSON.parse('{"HO":{"aR":[]}}'))};
+y(B.HP,C.aR)})()
+A.ep(b.typeUniverse,JSON.parse('{"HP":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_231",e:"endPart",h:b})})($__dart_deferred_initializers__,"ltS+OCPuAURYLm86TGZ9NGUWKic=");
+a.eventLog.push({p:"main.dart.js_231",e:"endPart",h:b})})($__dart_deferred_initializers__,"7hhlkCuaUtKVAD8xEJu1RRlxNlg=");
 //# sourceMappingURL=main.dart.js_231.part.js.map

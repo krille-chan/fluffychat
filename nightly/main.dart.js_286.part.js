@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_286",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWH(){return new B.Ih(A.dL("sl"))},
-Ih:function Ih(d){this.a=d}}
+cWI(){return new B.Ii(A.dL("sl"))},
+Ii:function Ii(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[43],B)
-B.Ih.prototype={
+B.Ii.prototype={
 go1(){return"false"},
 gkn(){return"Ponovite geslo"},
 gmx(){return"Not an image file."},
@@ -92,7 +92,7 @@ gfM(){return"Podrobnosti klepeta"},
 gfO(){return"Klepeti"},
 gip(){return"Izberite mo\u010dno geslo"},
 gfP(){return"Po\u010disti arhiv"},
-gd6(d){return"Zapri"},
+gda(d){return"Zapri"},
 gls(){return"Mark as direct message room for the giving Matrix ID"},
 glt(){return"Mark as group"},
 giq(){return"Izklju\u010di dolo\u010denega uporabnika iz te sobe"},
@@ -576,8 +576,8 @@ gom(){return"Add link"},
 go9(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ih,C.aR)})()
-A.ep(b.typeUniverse,JSON.parse('{"Ih":{"aR":[]}}'))};
+y(B.Ii,C.aR)})()
+A.ep(b.typeUniverse,JSON.parse('{"Ii":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"T0Hsab3ZUyNSsaruqwgRUm6167k=");
+a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"fdVyx+/7qtkos307Ax9cwNIJauc=");
 //# sourceMappingURL=main.dart.js_286.part.js.map

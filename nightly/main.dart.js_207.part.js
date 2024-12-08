@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_207",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cW6(){return new B.HI(A.dL("ca"))},
-HI:function HI(d){this.a=d}}
+cW7(){return new B.HJ(A.dL("ca"))},
+HJ:function HJ(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[9],B)
-B.HI.prototype={
+B.HJ.prototype={
 go1(){return"true"},
 gkn(){return"Repetiu la contrasenya"},
 gmx(){return"No \xe9s un arxiu d'image."},
@@ -92,7 +92,7 @@ gfM(){return"Detalls del xat"},
 gfO(){return"Xats"},
 gip(){return"Trieu una contrasenya forta"},
 gfP(){return"Neteja l\u2019arxiu"},
-gd6(d){return"Tanca"},
+gda(d){return"Tanca"},
 gls(){return"Marca com a conversa directa la sala amb aquesta ID de Matrix"},
 glt(){return"Marca com un grup"},
 giq(){return"Veta uni usu\xe0ri\xef d'aquesta sala"},
@@ -576,8 +576,8 @@ gom(){return"Afegeix un enlla\xe7"},
 go9(){return"No s'ha pogut entrar al xat. Pot ser que l'altri participant hagi tancat la conversa."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HI,C.aR)})()
-A.ep(b.typeUniverse,JSON.parse('{"HI":{"aR":[]}}'))};
+y(B.HJ,C.aR)})()
+A.ep(b.typeUniverse,JSON.parse('{"HJ":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_207",e:"endPart",h:b})})($__dart_deferred_initializers__,"DP7VGSq9WowEYKNFL7Mq8ef1s4A=");
+a.eventLog.push({p:"main.dart.js_207",e:"endPart",h:b})})($__dart_deferred_initializers__,"8YlBz+D6AdijV4MRgWvmQQPA2bc=");
 //# sourceMappingURL=main.dart.js_207.part.js.map

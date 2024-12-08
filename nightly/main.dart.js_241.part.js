@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_241",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWg(){return new B.HS(A.dL("fi"))},
-HS:function HS(d){this.a=d}}
+cWh(){return new B.HT(A.dL("fi"))},
+HT:function HT(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[19],B)
-B.HS.prototype={
+B.HT.prototype={
 go1(){return"false"},
 gkn(){return"Salasana uudelleen"},
 gmx(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -92,7 +92,7 @@ gfM(){return"Keskustelun tiedot"},
 gfO(){return"Keskustelut"},
 gip(){return"Valitse vahva salasana"},
 gfP(){return"Tyhjenn\xe4 arkisto"},
-gd6(d){return"Sulje"},
+gda(d){return"Sulje"},
 gls(){return"Merkitse yksityiskeskusteluksi sy\xf6tetyn Matrix IDn kanssa"},
 glt(){return"Merkitse ryhm\xe4ksi"},
 giq(){return"Anna sy\xf6tetylle k\xe4ytt\xe4j\xe4lle porttikielto t\xe4h\xe4n huoneeseen"},
@@ -576,8 +576,8 @@ gom(){return"Add link"},
 go9(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HS,C.aR)})()
-A.ep(b.typeUniverse,JSON.parse('{"HS":{"aR":[]}}'))};
+y(B.HT,C.aR)})()
+A.ep(b.typeUniverse,JSON.parse('{"HT":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"wnkM5ZZoiqzX8yuECsQ0JkM+0Vs=");
+a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"5yYgvUfRHe3sM9unZs3rbdZ1ta4=");
 //# sourceMappingURL=main.dart.js_241.part.js.map

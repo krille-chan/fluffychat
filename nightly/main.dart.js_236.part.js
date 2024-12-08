@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_236",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWd(){return new B.HP(A.dL("et"))},
-HP:function HP(d){this.a=d}}
+cWe(){return new B.HQ(A.dL("et"))},
+HQ:function HQ(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[16],B)
-B.HP.prototype={
+B.HQ.prototype={
 go1(){return"false"},
 gkn(){return"Korda salas\xf5na"},
 gmx(){return"See pole pildifail."},
@@ -92,7 +92,7 @@ gfM(){return"Vestluse teave"},
 gfO(){return"Vestlused"},
 gip(){return"Vali korralik salas\xf5na"},
 gfP(){return"Kustuta arhiiv"},
-gd6(d){return"Sulge"},
+gda(d){return"Sulge"},
 gls(){return"M\xe4rgi otsevestusluseks antud Matrixi ID jaoks"},
 glt(){return"M\xe4rgi vestlusr\xfchmaks"},
 giq(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -576,8 +576,8 @@ gom(){return"Lisa link"},
 go9(){return"Vestlusega liitumine ei \xf5nnestu. V\xf5ib-olla on teine osapool juba vestluse sulgenud."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HP,C.aR)})()
-A.ep(b.typeUniverse,JSON.parse('{"HP":{"aR":[]}}'))};
+y(B.HQ,C.aR)})()
+A.ep(b.typeUniverse,JSON.parse('{"HQ":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_236",e:"endPart",h:b})})($__dart_deferred_initializers__,"LIs840NcuKAHOt6DehjWEto4nzI=");
+a.eventLog.push({p:"main.dart.js_236",e:"endPart",h:b})})($__dart_deferred_initializers__,"M5aO+h0JgTP5+fpx/76n5ACsnxY=");
 //# sourceMappingURL=main.dart.js_236.part.js.map

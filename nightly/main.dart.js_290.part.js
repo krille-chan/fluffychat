@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_290",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cWK(){return new B.Ik(A.dL("ta"))},
-Ik:function Ik(d){this.a=d}}
+cWL(){return new B.Il(A.dL("ta"))},
+Il:function Il(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[46],B)
-B.Ik.prototype={
+B.Il.prototype={
 go1(){return"false"},
 gkn(){return"Repeat password"},
 gmx(){return"Not an image file."},
@@ -92,7 +92,7 @@ gfM(){return"Chat details"},
 gfO(){return"Chats"},
 gip(){return"Choose a strong password"},
 gfP(){return"Clear archive"},
-gd6(d){return"Close"},
+gda(d){return"Close"},
 gls(){return"Mark as direct message room for the giving Matrix ID"},
 glt(){return"Mark as group"},
 giq(){return"Ban the given user from this room"},
@@ -576,8 +576,8 @@ gom(){return"Add link"},
 go9(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbp(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ik,C.aR)})()
-A.ep(b.typeUniverse,JSON.parse('{"Ik":{"aR":[]}}'))};
+y(B.Il,C.aR)})()
+A.ep(b.typeUniverse,JSON.parse('{"Il":{"aR":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"EVTl7I7IA/XjiAVBfQQsjkKBPwU=");
+a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"giVqEL/8U013tgOLgdWHrGUqQBM=");
 //# sourceMappingURL=main.dart.js_290.part.js.map
