@@ -92,10 +92,10 @@ class PublicRoomBottomSheet extends StatelessWidget {
             chunk?.name ?? roomAlias ?? chunk?.roomId ?? 'Unknown',
             overflow: TextOverflow.fade,
           ),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_downward_outlined),
-            onPressed: Navigator.of(context, rootNavigator: false).pop,
-            tooltip: L10n.of(context).close,
+          leading: Center(
+            child: CloseButton(
+              onPressed: Navigator.of(context, rootNavigator: false).pop,
+            ),
           ),
           actions: [
             Padding(
