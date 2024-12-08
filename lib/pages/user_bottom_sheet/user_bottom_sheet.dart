@@ -226,44 +226,9 @@ class UserBottomSheetController extends State<UserBottomSheet> {
     }
   }
 
-  bool isSending = false;
-
   Object? sendError;
 
   final TextEditingController sendController = TextEditingController();
-
-  void sendAction([_]) async {
-    final userId = widget.user?.id ?? widget.profile?.userId;
-    final client = Matrix.of(widget.outerContext).client;
-    if (userId == null) throw ('user or profile must not be null!');
-
-    final input = sendController.text.trim();
-    if (input.isEmpty) return;
-
-    setState(() {
-      isSending = true;
-      sendError = null;
-    });
-    try {
-      final roomId = await client.startDirectChat(userId);
-      if (!mounted) return;
-      final room = client.getRoomById(roomId);
-      if (room == null) {
-        throw ('DM Room found or created but room not found in client');
-      }
-      await room.sendTextEvent(input);
-      setState(() {
-        isSending = false;
-        sendController.clear();
-      });
-    } catch (e, s) {
-      Logs().d('Unable to send message', e, s);
-      setState(() {
-        isSending = false;
-        sendError = e;
-      });
-    }
-  }
 
   void knockAccept() async {
     final user = widget.user!;

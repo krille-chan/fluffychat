@@ -7,7 +7,6 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
@@ -34,24 +33,25 @@ class UserBottomSheetView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: CloseButton(
-            onPressed: Navigator.of(context, rootNavigator: false).pop,
+          leading: Center(
+            child: CloseButton(
+              onPressed: Navigator.of(context, rootNavigator: false).pop,
+            ),
           ),
           centerTitle: false,
           title: Text(displayname),
-          actions: dmRoomId == null
-              ? null
-              : [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: FloatingActionButton.small(
-                      elevation: 0,
-                      onPressed: () => controller
-                          .participantAction(UserBottomSheetAction.message),
-                      child: const Icon(Icons.chat_outlined),
-                    ),
-                  ),
-                ],
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: IconButton(
+                onPressed: () => FluffyShare.share(
+                  'https://matrix.to/#/$userId',
+                  context,
+                ),
+                icon: Icon(Icons.adaptive.share_outlined),
+              ),
+            ),
+          ],
         ),
         body: StreamBuilder<Object>(
           stream: user?.room.client.onSync.stream.where(
@@ -230,42 +230,17 @@ class UserBottomSheetView extends StatelessWidget {
                       horizontal: 16.0,
                       vertical: 8.0,
                     ),
-                    child: dmRoomId == null
-                        ? ElevatedButton.icon(
-                            onPressed: () => controller.participantAction(
-                              UserBottomSheetAction.message,
-                            ),
-                            icon: const Icon(Icons.chat_outlined),
-                            label: Text(L10n.of(context).startConversation),
-                          )
-                        : TextField(
-                            controller: controller.sendController,
-                            readOnly: controller.isSending,
-                            onSubmitted: controller.sendAction,
-                            minLines: 1,
-                            maxLines: 1,
-                            textInputAction: TextInputAction.send,
-                            decoration: InputDecoration(
-                              errorText: controller.sendError
-                                  ?.toLocalizedString(context),
-                              hintText: L10n.of(context).sendMessages,
-                              suffix: controller.isSending
-                                  ? const SizedBox(
-                                      width: 16,
-                                      height: 16,
-                                      child: CircularProgressIndicator.adaptive(
-                                        strokeWidth: 2,
-                                      ),
-                                    )
-                                  : null,
-                              suffixIcon: controller.isSending
-                                  ? null
-                                  : IconButton(
-                                      icon: const Icon(Icons.send_outlined),
-                                      onPressed: controller.sendAction,
-                                    ),
-                            ),
-                          ),
+                    child: ElevatedButton.icon(
+                      onPressed: () => controller.participantAction(
+                        UserBottomSheetAction.message,
+                      ),
+                      icon: const Icon(Icons.forum_outlined),
+                      label: Text(
+                        dmRoomId == null
+                            ? L10n.of(context).startConversation
+                            : L10n.of(context).sendAMessage,
+                      ),
+                    ),
                   ),
                 if (controller.widget.onMention != null)
                   ListTile(
@@ -300,22 +275,29 @@ class UserBottomSheetView extends StatelessWidget {
                         items: [
                           DropdownMenuItem(
                             value: 0,
-                            child: Text(L10n.of(context).userLevel(
-                                user.powerLevel < 50 ? user.powerLevel : 0)),
+                            child: Text(
+                              L10n.of(context).userLevel(
+                                user.powerLevel < 50 ? user.powerLevel : 0,
+                              ),
+                            ),
                           ),
                           DropdownMenuItem(
                             value: 50,
-                            child: Text(L10n.of(context).moderatorLevel(
+                            child: Text(
+                              L10n.of(context).moderatorLevel(
                                 user.powerLevel >= 50 && user.powerLevel < 100
                                     ? user.powerLevel
-                                    : 50)),
+                                    : 50,
+                              ),
+                            ),
                           ),
                           DropdownMenuItem(
                             value: 100,
-                            child: Text(L10n.of(context).adminLevel(
-                                user.powerLevel >= 100
-                                    ? user.powerLevel
-                                    : 100)),
+                            child: Text(
+                              L10n.of(context).adminLevel(
+                                user.powerLevel >= 100 ? user.powerLevel : 100,
+                              ),
+                            ),
                           ),
                           DropdownMenuItem(
                             value: null,
