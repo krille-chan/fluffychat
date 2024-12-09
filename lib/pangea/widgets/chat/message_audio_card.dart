@@ -197,6 +197,8 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                       sectionEndMS: sectionEndMS,
                       color: Theme.of(context).colorScheme.onPrimaryContainer,
                       setIsPlayingAudio: widget.setIsPlayingAudio,
+                      fontSize:
+                          AppConfig.messageFontSize * AppConfig.fontSizeFactor,
                     )
                   : const CardErrorWidget(
                       error: "Null audio file in message_audio_card",
