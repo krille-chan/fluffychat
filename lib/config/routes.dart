@@ -372,6 +372,17 @@ abstract class AppRoutes {
                       redirect: loggedOutRedirect,
                     ),
                     GoRoute(
+                      path: 'homeserver',
+                      pageBuilder: (context, state) {
+                        return defaultPageBuilder(
+                          context,
+                          state,
+                          const SettingsHomeserver(),
+                        );
+                      },
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
                       path: 'security',
                       redirect: loggedOutRedirect,
                       pageBuilder: (context, state) => defaultPageBuilder(

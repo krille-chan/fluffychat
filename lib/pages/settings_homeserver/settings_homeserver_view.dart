@@ -12,6 +12,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../widgets/matrix.dart';
 import 'settings_homeserver.dart';
 
+/// MERGE TODO
 class SettingsHomeserverView extends StatelessWidget {
   final SettingsHomeserverController controller;
 
