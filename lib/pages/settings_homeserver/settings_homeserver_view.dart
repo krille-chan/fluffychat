@@ -12,7 +12,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../widgets/matrix.dart';
 import 'settings_homeserver.dart';
 
-/// MERGE TODO
 class SettingsHomeserverView extends StatelessWidget {
   final SettingsHomeserverController controller;
 
@@ -48,10 +47,7 @@ class SettingsHomeserverView extends StatelessWidget {
                 ),
               ),
               FutureBuilder(
-                // #Pangea
-                // future: client.getWellknownSupport(),
-                future: Future<Object?>.value(null),
-                // Pangea#
+                future: client.getWellknownSupport(),
                 builder: (context, snapshot) {
                   final error = snapshot.error;
                   final data = snapshot.data;
@@ -74,21 +70,17 @@ class SettingsHomeserverView extends StatelessWidget {
                       ),
                     );
                   }
-                  // #Pangea
-                  const supportPage = null;
-                  const contacts = null;
-                  // final supportPage = data.supportPage;
-                  // final contacts = data.contacts;
-                  // if (supportPage == null && contacts == null) {
-                  //   return ListTile(
-                  //     leading: const Icon(Icons.error_outlined),
-                  //     title: Text(
-                  //       L10n.of(context).noContactInformationProvided,
-                  //       style: const TextStyle(fontSize: 14),
-                  //     ),
-                  //   );
-                  // }
-                  // Pangea#
+                  final supportPage = data.supportPage;
+                  final contacts = data.contacts;
+                  if (supportPage == null && contacts == null) {
+                    return ListTile(
+                      leading: const Icon(Icons.error_outlined),
+                      title: Text(
+                        L10n.of(context).noContactInformationProvided,
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    );
+                  }
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -290,15 +282,13 @@ class SettingsHomeserverView extends StatelessWidget {
   }
 }
 
-// #Pangea
-// extension on Role {
-//   String localizedString(L10n l10n) {
-//     switch (this) {
-//       case Role.mRoleAdmin:
-//         return l10n.contactServerAdmin;
-//       case Role.mRoleSecurity:
-//         return l10n.contactServerSecurity;
-//     }
-//   }
-// }
-// Pangea#
+extension on Role {
+  String localizedString(L10n l10n) {
+    switch (this) {
+      case Role.mRoleAdmin:
+        return l10n.contactServerAdmin;
+      case Role.mRoleSecurity:
+        return l10n.contactServerSecurity;
+    }
+  }
+}
