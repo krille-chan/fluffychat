@@ -87,7 +87,7 @@ class InlineTooltipState extends State<InlineTooltip>
                 Flexible(
                   child: Center(
                     child: Text(
-                      widget.instructionsEnum.body(L10n.of(context)!),
+                      widget.instructionsEnum.body(L10n.of(context)),
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onSurface,
                         height: 1.5,

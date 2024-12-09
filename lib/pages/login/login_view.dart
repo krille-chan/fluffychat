@@ -19,7 +19,7 @@ class LoginView extends StatelessWidget {
     //     .homeserver
     //     .toString()
     //     .replaceFirst('https://', '');
-    // final title = L10n.of(context)!.logInTo(homeserver);
+    // final title = L10n.of(context).logInTo(homeserver);
     // final titleParts = title.split(homeserver);
     // Pangea#
 
@@ -75,7 +75,10 @@ class LoginView extends StatelessWidget {
               children: <Widget>[
                 // #Pangea
                 const SizedBox(height: 80),
-                // Image.asset('assets/banner_transparent.png'),
+                // Hero(
+                //   tag: 'info-logo',
+                //   child: Image.asset('assets/banner_transparent.png'),
+                // ),
                 // const SizedBox(height: 16),
                 // Pangea#
                 Padding(
@@ -96,15 +99,15 @@ class LoginView extends StatelessWidget {
                       prefixIcon: const Icon(Icons.account_box_outlined),
                       errorText: controller.usernameError,
                       // #Pangea
-                      // errorStyle: const TextStyle(color: Colors.orange),
-                      // hintText: '@username:localpart',
                       errorStyle: TextStyle(
                         color: Theme.of(context).textTheme.bodyMedium?.color,
                         fontSize: 14,
                       ),
-                      hintText: L10n.of(context)!.emailOrUsername,
+                      hintText: L10n.of(context).emailOrUsername,
+                      // errorStyle,: const TextStyle(color: Colors.orange),
+                      // hintText: '@username:domain',
                       // Pangea#
-                      labelText: L10n.of(context)!.emailOrUsername,
+                      labelText: L10n.of(context).emailOrUsername,
                     ),
                   ),
                 ),
@@ -153,7 +156,7 @@ class LoginView extends StatelessWidget {
                       // ),
                       // Pangea#
                       hintText: '******',
-                      labelText: L10n.of(context)!.password,
+                      labelText: L10n.of(context).password,
                     ),
                   ),
                 ),
@@ -166,7 +169,7 @@ class LoginView extends StatelessWidget {
                         controller.loading ? null : () => controller.login(),
                     child: controller.loading
                         ? const LinearProgressIndicator()
-                        : Text(L10n.of(context)!.login),
+                        : Text(L10n.of(context).login),
                   ),
                   // child: ElevatedButton(
                   //   style: ElevatedButton.styleFrom(
@@ -176,7 +179,7 @@ class LoginView extends StatelessWidget {
                   //   onPressed: controller.loading ? null : controller.login,
                   //   child: controller.loading
                   //       ? const LinearProgressIndicator()
-                  //       : Text(L10n.of(context)!.login),
+                  //       : Text(L10n.of(context).login),
                   // ),
                   // Pangea#
                 ),
@@ -194,7 +197,7 @@ class LoginView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
-                          L10n.of(context)!.or,
+                          L10n.of(context).or,
                           style: const TextStyle(fontSize: 18),
                         ),
                       ),
@@ -216,9 +219,10 @@ class LoginView extends StatelessWidget {
                     onPressed: controller.loading
                         ? () {}
                         : controller.passwordForgotten,
-                    style:
-                        ElevatedButton.styleFrom(foregroundColor: Colors.red),
-                    child: Text(L10n.of(context)!.passwordForgotten),
+                    style: TextButton.styleFrom(
+                      foregroundColor: theme.colorScheme.error,
+                    ),
+                    child: Text(L10n.of(context).passwordForgotten),
                   ),
                   // child: TextButton(
                   //   onPressed: controller.loading
@@ -227,7 +231,7 @@ class LoginView extends StatelessWidget {
                   //   style: TextButton.styleFrom(
                   //     foregroundColor: theme.colorScheme.error,
                   //   ),
-                  //   child: Text(L10n.of(context)!.passwordForgotten),
+                  //   child: Text(L10n.of(context).passwordForgotten),
                   // ),
                   // Pangea#
                 ),

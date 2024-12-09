@@ -54,14 +54,14 @@ class FindPartnerView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      L10n.of(context)!.iWantALanguagePartnerFrom,
+                      L10n.of(context).iWantALanguagePartnerFrom,
                       style: const TextStyle(fontSize: 16),
                     ),
                     Row(
                       children: [
                         Text(
                           controller.countrySearch ??
-                              L10n.of(context)!.worldWide,
+                              L10n.of(context).worldWide,
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -115,7 +115,7 @@ class FindPartnerView extends StatelessWidget {
                         )
                       : ExpandedContainer(
                           body: Center(
-                            child: Text(L10n.of(context)!.noResults),
+                            child: Text(L10n.of(context).noResults),
                           ),
                         ),
             ],
@@ -158,7 +158,7 @@ class ProfileSearchTextField extends StatelessWidget {
     return TextField(
       autofocus: true,
       decoration: InputDecoration(
-        hintText: L10n.of(context)!.searchBy,
+        hintText: L10n.of(context).searchBy,
         suffixIconConstraints: const BoxConstraints(
           maxWidth: 48,
           maxHeight: 48,
@@ -183,7 +183,7 @@ class PageTitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return FittedBox(
       child: Text(
-        L10n.of(context)!.iWantAConversationPartner,
+        L10n.of(context).iWantAConversationPartner,
         style: TextStyle(
           color: Theme.of(context).textTheme.bodyLarge!.color,
           fontSize: 18,
@@ -214,11 +214,11 @@ class LanguageSelectionRow extends StatelessWidget {
           child: ListTile(
             title: isSource
                 ? Text(
-                    L10n.of(context)!.iWantALanguagePartnerWhoSpeaks,
+                    L10n.of(context).iWantALanguagePartnerWhoSpeaks,
                     style: const TextStyle(fontSize: 16),
                   )
                 : Text(
-                    L10n.of(context)!.iWantALanguagePartnerWhoIsLearning,
+                    L10n.of(context).iWantALanguagePartnerWhoIsLearning,
                     style: const TextStyle(fontSize: 16),
                   ),
           ),

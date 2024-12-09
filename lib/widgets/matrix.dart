@@ -8,16 +8,15 @@ import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -239,7 +238,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     } else {
       initSettings();
     }
-    initLoadingDialog();
     // #Pangea
     Sentry.configureScope(
       (scope) => scope.setUser(
@@ -250,23 +248,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       ),
     );
     pangeaController = PangeaController(matrix: widget, matrixState: this);
-    // PAuthGaurd.isLogged = client.isLogged();
     // Pangea#
-  }
-
-  void initLoadingDialog() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      LoadingDialog.defaultTitle = L10n.of(context)!.loadingPleaseWait;
-      LoadingDialog.defaultBackLabel = L10n.of(context)!.close;
-      // #Pangea
-      // LoadingDialog.defaultOnError =
-      //     (e) => (e as Object?)!.toLocalizedString(context);
-      LoadingDialog.defaultOnError = (e) =>
-          (e as Object?)?.toLocalizedString(context) ??
-          e?.toString() ??
-          L10n.of(context)!.oopsSomethingWentWrong;
-      // Pangea#
-    });
   }
 
   Future<void> initConfig() async {
@@ -310,13 +292,16 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         if (!hidPopup &&
             {KeyVerificationState.done, KeyVerificationState.error}
                 .contains(request.state)) {
-          Navigator.of(context).pop('dialog');
+          FluffyChatApp.router.pop('dialog');
         }
         hidPopup = true;
       };
       request.onUpdate = null;
       hidPopup = true;
-      await KeyVerificationDialog(request: request).show(context);
+      await KeyVerificationDialog(request: request).show(
+        FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+            context,
+      );
     });
     onLoginStateChanged[name] ??=
         c.onLoginStateChanged.stream.listen((state) async {
@@ -330,9 +315,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
         ClientManager.removeClientNameFromStore(c.clientName, store);
-        ScaffoldMessenger.of(context).showSnackBar(
+        ScaffoldMessenger.of(
+          FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+              context,
+        ).showSnackBar(
           SnackBar(
-            content: Text(L10n.of(context)!.oneClientLoggedOut),
+            content: Text(L10n.of(context).oneClientLoggedOut),
           ),
         );
 
@@ -414,14 +402,15 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             useRootNavigator: false,
             // Pangea#
             barrierDismissible: true,
-            context: context,
-            title: L10n.of(context)!.pushNotificationsNotAvailable,
+            context: FluffyChatApp
+                    .router.routerDelegate.navigatorKey.currentContext ??
+                context,
+            title: L10n.of(context).pushNotificationsNotAvailable,
             message: errorMsg,
             fullyCapitalizedForMaterial: false,
-            okLabel: link == null
-                ? L10n.of(context)!.ok
-                : L10n.of(context)!.learnMore,
-            cancelLabel: L10n.of(context)!.doNotShowAgain,
+            okLabel:
+                link == null ? L10n.of(context).ok : L10n.of(context).learnMore,
+            cancelLabel: L10n.of(context).doNotShowAgain,
           );
           if (result == OkCancelResult.ok && link != null) {
             launchUrlString(
@@ -535,12 +524,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     );
   }
 
-  Future<void> dehydrateAction() async {
+  Future<void> dehydrateAction(BuildContext context) async {
     final response = await showOkCancelAlertDialog(
       context: context,
       isDestructiveAction: true,
-      title: L10n.of(context)!.dehydrate,
-      message: L10n.of(context)!.dehydrateWarning,
+      title: L10n.of(context).dehydrate,
+      message: L10n.of(context).dehydrateWarning,
     );
     if (response != OkCancelResult.ok) {
       return;

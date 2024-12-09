@@ -37,7 +37,7 @@ class ClassNameHeader extends StatelessWidget {
       ),
       // icon: Text(
       //   room.getLocalizedDisplayname(
-      //     MatrixLocals(L10n.of(context)!),
+      //     MatrixLocals(L10n.of(context)),
       //   ),
       //   style: TextStyle(
       //     fontSize: 20,

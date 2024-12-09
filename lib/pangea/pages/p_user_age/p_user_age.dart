@@ -38,15 +38,15 @@ class PUserAgeController extends State<PUserAge> {
   String? dobValidator() {
     try {
       if (selectedDate == null) {
-        return L10n.of(context)!.yourBirthdayPleaseShort;
+        return L10n.of(context).yourBirthdayPleaseShort;
       }
       if (!selectedDate!.isAtLeastYearsOld(AgeLimits.toUseTheApp)) {
-        return L10n.of(context)!.mustBe13;
+        return L10n.of(context).mustBe13;
       }
       return null;
     } catch (err, stack) {
       ErrorHandler.logError(e: err, s: stack);
-      return L10n.of(context)!.invalidDob;
+      return L10n.of(context).invalidDob;
     }
   }
 
@@ -103,7 +103,7 @@ class PUserAgeController extends State<PUserAge> {
             child: Padding(
               padding: const EdgeInsets.all(50),
               child: Text(
-                "${L10n.of(context)!.oopsSomethingWentWrong} \n ${L10n.of(context)!.errorPleaseRefresh}",
+                "${L10n.of(context).oopsSomethingWentWrong} \n ${L10n.of(context).errorPleaseRefresh}",
               ),
             ),
           );

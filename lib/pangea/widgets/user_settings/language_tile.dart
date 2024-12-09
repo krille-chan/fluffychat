@@ -45,7 +45,7 @@ class LanguageTile extends StatelessWidget {
       //       ),
       //       Text("Target Language"),
       //     ]),
-      title: Text(L10n.of(context)!.myLanguages),
+      title: Text(L10n.of(context).myLanguages),
       subtitle: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,7 +59,7 @@ class LanguageTile extends StatelessWidget {
           ),
           Text(
             sourceLanguage?.getDisplayName(context) ??
-                L10n.of(context)!.sourceLanguage,
+                L10n.of(context).sourceLanguage,
           ),
           const SizedBox(
             width: 10,
@@ -76,7 +76,7 @@ class LanguageTile extends StatelessWidget {
           ),
           Text(
             targetLanguage?.getDisplayName(context) ??
-                L10n.of(context)!.targetLanguage,
+                L10n.of(context).targetLanguage,
           ),
         ],
       ),

@@ -7,15 +7,15 @@ extension TimeSpanFunctions on TimeSpan {
   String string(BuildContext context) {
     switch (this) {
       case TimeSpan.day:
-        return L10n.of(context)!.oneday;
+        return L10n.of(context).oneday;
       case TimeSpan.week:
-        return L10n.of(context)!.oneweek;
+        return L10n.of(context).oneweek;
       case TimeSpan.month:
-        return L10n.of(context)!.onemonth;
+        return L10n.of(context).onemonth;
       case TimeSpan.sixmonths:
-        return L10n.of(context)!.sixmonth;
+        return L10n.of(context).sixmonth;
       case TimeSpan.year:
-        return L10n.of(context)!.oneyear;
+        return L10n.of(context).oneyear;
       default:
         return "Invalid time span";
     }

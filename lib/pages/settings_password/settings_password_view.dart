@@ -16,7 +16,7 @@ class SettingsPasswordView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.changePassword),
+        title: Text(L10n.of(context).changePassword),
       ),
       body: ListTileTheme(
         iconColor: theme.colorScheme.onSurface,
@@ -35,7 +35,7 @@ class SettingsPasswordView extends StatelessWidget {
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outlined),
                     hintText: '********',
-                    labelText: L10n.of(context)!.pleaseEnterYourCurrentPassword,
+                    labelText: L10n.of(context).pleaseEnterYourCurrentPassword,
                     errorText: controller.oldPasswordError,
                   ),
                 ),
@@ -48,7 +48,7 @@ class SettingsPasswordView extends StatelessWidget {
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_reset_outlined),
                     hintText: '********',
-                    labelText: L10n.of(context)!.newPassword,
+                    labelText: L10n.of(context).newPassword,
                     errorText: controller.newPassword1Error,
                   ),
                 ),
@@ -61,7 +61,7 @@ class SettingsPasswordView extends StatelessWidget {
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.repeat_outlined),
                     hintText: '********',
-                    labelText: L10n.of(context)!.repeatPassword,
+                    labelText: L10n.of(context).repeatPassword,
                     errorText: controller.newPassword2Error,
                   ),
                 ),
@@ -73,12 +73,12 @@ class SettingsPasswordView extends StatelessWidget {
                         controller.loading ? null : controller.changePassword,
                     child: controller.loading
                         ? const LinearProgressIndicator()
-                        : Text(L10n.of(context)!.changePassword),
+                        : Text(L10n.of(context).changePassword),
                   ),
                 ),
                 const SizedBox(height: 16),
                 TextButton(
-                  child: Text(L10n.of(context)!.passwordRecoverySettings),
+                  child: Text(L10n.of(context).passwordRecoverySettings),
                   onPressed: () => context.go('/rooms/settings/security/3pid'),
                 ),
               ],

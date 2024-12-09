@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum SpanChoiceType {
@@ -23,11 +22,11 @@ extension SpanChoiceExt on SpanChoiceType {
   String defaultFeedback(BuildContext context) {
     switch (this) {
       case SpanChoiceType.bestCorrection:
-        return L10n.of(context)!.bestCorrectionFeedback;
+        return L10n.of(context).bestCorrectionFeedback;
       case SpanChoiceType.distractor:
-        return L10n.of(context)!.distractorFeedback;
+        return L10n.of(context).distractorFeedback;
       case SpanChoiceType.bestAnswer:
-        return L10n.of(context)!.bestAnswerFeedback;
+        return L10n.of(context).bestAnswerFeedback;
     }
   }
 

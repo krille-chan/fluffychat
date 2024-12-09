@@ -29,13 +29,13 @@ class SubscriptionButtons extends StatelessWidget {
           children: [
             ListTile(
               title: subscription.isTrial
-                  ? Text(L10n.of(context)!.oneWeekTrial)
+                  ? Text(L10n.of(context).oneWeekTrial)
                   : Text(
                       subscription.displayName(context),
                     ),
               subtitle: Text(
                 subscription.isTrial && !inTrialWindow
-                    ? L10n.of(context)!.trialPeriodExpired
+                    ? L10n.of(context).trialPeriodExpired
                     : subscription.displayPrice(context),
               ),
               trailing: const Icon(Icons.keyboard_arrow_right_outlined),

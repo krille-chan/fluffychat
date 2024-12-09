@@ -25,8 +25,8 @@ class EncryptionButton extends StatelessWidget {
               : Future.value(EncryptionHealthState.allVerified),
           builder: (BuildContext context, snapshot) => IconButton(
             tooltip: room.encrypted
-                ? L10n.of(context)!.encrypted
-                : L10n.of(context)!.encryptionNotEnabled,
+                ? L10n.of(context).encrypted
+                : L10n.of(context).encryptionNotEnabled,
             icon: Icon(
               room.encrypted ? Icons.lock_outlined : Icons.lock_open_outlined,
               size: 20,

@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:matrix/matrix.dart';
 
 class ButtonInfo {
   String iconPath;
@@ -29,17 +27,17 @@ class PangeaSsoButton extends StatelessWidget {
       case "oidc-google":
         return ButtonInfo(
           "assets/pangea/google.svg",
-          "${L10n.of(context)!.loginOrSignup} Google",
+          "${L10n.of(context).loginOrSignup} Google",
         );
       case "oidc-apple":
         return ButtonInfo(
           "assets/pangea/apple.svg",
-          "${L10n.of(context)!.loginOrSignup} Apple",
+          "${L10n.of(context).loginOrSignup} Apple",
         );
       default:
         return ButtonInfo(
           "assets/pangea/pangea.svg",
-          "${L10n.of(context)!.loginOrSignup} Pangea Chat",
+          "${L10n.of(context).loginOrSignup} Pangea Chat",
         );
     }
   }
@@ -75,8 +73,8 @@ class PangeaSsoButton extends StatelessWidget {
               identityProvider.name != null
                   ? buttonInfo.text
                   : (identityProvider.brand != null
-                      ? L10n.of(context)!.loginOrSignup
-                      : L10n.of(context)!.loginOrSignup),
+                      ? L10n.of(context).loginOrSignup
+                      : L10n.of(context).loginOrSignup),
             ),
           ),
         ],

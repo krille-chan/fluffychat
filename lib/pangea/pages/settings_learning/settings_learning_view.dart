@@ -18,7 +18,7 @@ class SettingsLearningView extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          L10n.of(context)!.learningSettings,
+          L10n.of(context).learningSettings,
         ),
         leading: IconButton(
           icon: const Icon(Icons.close),
@@ -35,7 +35,7 @@ class SettingsLearningView extends StatelessWidget {
               CountryPickerTile(controller),
               const Divider(height: 1),
               ListTile(
-                title: Text(L10n.of(context)!.toggleToolSettingsDescription),
+                title: Text(L10n.of(context).toggleToolSettingsDescription),
               ),
               for (final toolSetting in ToolSetting.values
                   .where((tool) => tool.isAvailableSetting))
@@ -52,8 +52,8 @@ class SettingsLearningView extends StatelessWidget {
               //   defaultValue: controller.pangeaController.userController.profile
               //       .userSettings.itAutoPlay,
               //   title:
-              //       L10n.of(context)!.interactiveTranslatorAutoPlaySliderHeader,
-              //   subtitle: L10n.of(context)!.interactiveTranslatorAutoPlayDesc,
+              //       L10n.of(context).interactiveTranslatorAutoPlaySliderHeader,
+              //   subtitle: L10n.of(context).interactiveTranslatorAutoPlayDesc,
               //   onChange: (bool value) => controller
               //       .pangeaController.userController
               //       .updateProfile((profile) {
@@ -64,8 +64,8 @@ class SettingsLearningView extends StatelessWidget {
               // ProfileSettingsSwitchListTile.adaptive(
               //   defaultValue: controller.pangeaController.userController.profile
               //       .userSettings.autoPlayMessages,
-              //   title: L10n.of(context)!.autoPlayTitle,
-              //   subtitle: L10n.of(context)!.autoPlayDesc,
+              //   title: L10n.of(context).autoPlayTitle,
+              //   subtitle: L10n.of(context).autoPlayDesc,
               //   onChange: (bool value) => controller
               //       .pangeaController.userController
               //       .updateProfile((profile) {

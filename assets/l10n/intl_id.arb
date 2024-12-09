@@ -1701,7 +1701,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Level izin default",
+  "defaultPermissionLevel": "Level izin bawaan untuk pengguna baru",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2270,7 +2270,7 @@
   "@noBackupWarning": {},
   "noOtherDevicesFound": "Tidak ada perangkat lain yang ditemukan",
   "@noOtherDevicesFound": {},
-  "fileIsTooBigForServer": "Server melaporkan bahwa file terlalu besar untuk dikirim.",
+  "fileIsTooBigForServer": "Tidak dapat mengirim! Server hanya mendukung lampiran sampai dengan {max}.",
   "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "Berkas telah disimpan di {path}",
   "@fileHasBeenSavedAt": {
@@ -2711,5 +2711,176 @@
   "alwaysUse24HourFormat": "tidak",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
-  }
+  },
+  "sendCanceled": "Pengiriman dibatalkan",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Belum ada chat di sini. Mulai chat baru dengan seseorang menggunakan tombol di bawah. ⤵️",
+  "@noChatsFoundHere": {},
+  "invitedBy": "📩 Diundang oleh {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "markAsUnread": "Tandai sebagai belum dibaca",
+  "@markAsUnread": {},
+  "goToSpace": "Pergi ke space: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "changeTheChatPermissions": "Ubah perizinan chat",
+  "@changeTheChatPermissions": {},
+  "changeTheCanonicalRoomAlias": "Ubah alamat chat publik utama",
+  "@changeTheCanonicalRoomAlias": {},
+  "changeTheVisibilityOfChatHistory": "Ubah keterlihatan riwayat chat",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheDescriptionOfTheGroup": "Ubah deskripsi chat",
+  "@changeTheDescriptionOfTheGroup": {},
+  "sendingAttachment": "Mengirim lampiran...",
+  "@sendingAttachment": {},
+  "compressVideo": "Mengompres video...",
+  "@compressVideo": {},
+  "calculatingFileSize": "Menghitung ukuran berkas...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Menyiapkan pengiriman lampiran...",
+  "@prepareSendingAttachment": {},
+  "sendingAttachmentCountOfCount": "Mengirim lampiran {index} dari {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "userLevel": "{level} - Pengguna",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Admin",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Ubah pengaturan chat umum",
+  "@changeGeneralChatSettings": {},
+  "discoverHomeservers": "Jelajahi homeserver",
+  "@discoverHomeservers": {},
+  "loginWithMatrixId": "Masuk dengan ID Matrix",
+  "@loginWithMatrixId": {},
+  "doesNotSeemToBeAValidHomeserver": "Sepertinya bukan homeserver yang kompatibel. URL salah?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "countChatsAndCountParticipants": "{chats} chat dan {participants} anggota",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "unread": "Tidak dibaca",
+  "@unread": {},
+  "space": "Space",
+  "@space": {},
+  "spaces": "Space",
+  "@spaces": {},
+  "joinedChats": "Bergabung chat",
+  "@joinedChats": {},
+  "noMoreChatsFound": "Tidak ada chat lagi yang ditemukan...",
+  "@noMoreChatsFound": {},
+  "generatingVideoThumbnail": "Membuat gambar kecil video...",
+  "@generatingVideoThumbnail": {},
+  "changelog": "Catatan perubahan",
+  "@changelog": {},
+  "whatIsAHomeserver": "Apa itu homeserver?",
+  "@whatIsAHomeserver": {},
+  "sendRoomNotifications": "Kirim notifikasi @room",
+  "@sendRoomNotifications": {},
+  "updateInstalled": "🎉 Pembaruan {version} terpasang!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "inviteOtherUsers": "Undang pengguna lain ke chat ini",
+  "@inviteOtherUsers": {},
+  "serverLimitReached": "Batasan server tercapai! Menunggu {seconds} detik...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "chatPermissionsDescription": "Tentukan tingkat kekuasaan yang diperlukan untuk tindakan tertentu dalam chat ini. Tingkat kekuasaan 0, 50 dan 100 biasanya mewakili pengguna, moderator dan admin, tetapi gradasi apa pun dimungkinkan.",
+  "@chatPermissionsDescription": {},
+  "homeserverDescription": "Semua data Anda disimpan di dalam server, seperti halnya penyedia email. Anda dapat memilih homeserver mana yang ingin Anda gunakan, sementara Anda masih dapat berkomunikasi dengan semua orang. Pelajari lebih lanjut di https://matrix.org.",
+  "@homeserverDescription": {},
+  "oneOfYourDevicesIsNotVerified": "Salah satu perangkat Anda tidak terverifikasi",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Catatan: Ketika Anda menghubungkan semua perangkat Anda ke cadangan chat, mereka akan diverifikasi secara otomatis.",
+  "@noticeChatBackupDeviceVerification": {},
+  "welcomeText": "Halo 👋 Ini FluffyChat. Kamu bisa masuk ke homeserver mana pun, yang kompatibel dengan https://matrix.org. Lalu, chat dengan siapa pun. Ini merupakan jaringan perpesanan besar yang terdesentralisasi!",
+  "@welcomeText": {},
+  "continueText": "Lanjutkan",
+  "@continueText": {},
+  "aboutHomeserver": "Tentang {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "blur": "Buram:",
+  "@blur": {},
+  "contactServerAdmin": "Hubungi admin server",
+  "@contactServerAdmin": {},
+  "opacity": "Opasitas:",
+  "@opacity": {},
+  "setWallpaper": "Atur later belakang",
+  "@setWallpaper": {},
+  "serverInformation": "Informasi server:",
+  "@serverInformation": {},
+  "noContactInformationProvided": "Server tidak menyediakan informasi kontak valid apa pun",
+  "@noContactInformationProvided": {},
+  "supportPage": "Laman dukungan",
+  "@supportPage": {},
+  "version": "Versi",
+  "@version": {},
+  "website": "Situs Web",
+  "@website": {},
+  "manageAccount": "Kelola akun",
+  "@manageAccount": {},
+  "contactServerSecurity": "Hubungi keamanan server",
+  "@contactServerSecurity": {},
+  "name": "Nama",
+  "@name": {},
+  "compressBeforeSending": "Kompres sebelum mengirim",
+  "@compressBeforeSending": {},
+  "strikeThrough": "Coret",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Silakan isi",
+  "@pleaseFillOut": {},
+  "addLink": "Tambahkan tautan",
+  "@addLink": {},
+  "invalidUrl": "URL tidak valid",
+  "@invalidUrl": {},
+  "sendUncompressed": "Kirim tanpa kompresi",
+  "@sendUncompressed": {},
+  "boldText": "Teks tebal",
+  "@boldText": {},
+  "italicText": "Teks miring",
+  "@italicText": {}
 }

@@ -45,7 +45,7 @@ Future<void> downloadChat(
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          "${L10n.of(context)!.oopsSomethingWentWrong} ${L10n.of(context)!.errorPleaseRefresh}",
+          "${L10n.of(context).oopsSomethingWentWrong} ${L10n.of(context).errorPleaseRefresh}",
         ),
       ),
     );
@@ -56,7 +56,7 @@ Future<void> downloadChat(
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          L10n.of(context)!.emptyChatDownloadWarning,
+          L10n.of(context).emptyChatDownloadWarning,
         ),
       ),
     );
@@ -242,7 +242,7 @@ String getTxtContent(
 
     if (!usageAvailable) {
       formattedInfo +=
-          "${L10n.of(context)!.sender}: $sender\n${L10n.of(context)!.time}: $timestamp\n${L10n.of(context)!.originalMessage}: $originalMsg\n${L10n.of(context)!.sentMessage}: $sentMsg\n${L10n.of(context)!.useType}: ${L10n.of(context)!.notAvailable}\n\n";
+          "${L10n.of(context).sender}: $sender\n${L10n.of(context).time}: $timestamp\n${L10n.of(context).originalMessage}: $originalMsg\n${L10n.of(context).sentMessage}: $sentMsg\n${L10n.of(context).useType}: ${L10n.of(context).notAvailable}\n\n";
       continue;
     }
 
@@ -250,15 +250,15 @@ String getTxtContent(
     final bool includedIGC = message.originalSent!.choreo!.includedIGC;
 
     formattedInfo +=
-        "${L10n.of(context)!.sender}: $sender\n${L10n.of(context)!.time}: $timestamp\n${L10n.of(context)!.originalMessage}: $originalMsg\n${L10n.of(context)!.sentMessage}: $sentMsg\n${L10n.of(context)!.useType}: ";
+        "${L10n.of(context).sender}: $sender\n${L10n.of(context).time}: $timestamp\n${L10n.of(context).originalMessage}: $originalMsg\n${L10n.of(context).sentMessage}: $sentMsg\n${L10n.of(context).useType}: ";
     if (includedIT && includedIGC) {
-      formattedInfo += L10n.of(context)!.taAndGaTooltip;
+      formattedInfo += L10n.of(context).taAndGaTooltip;
     } else if (includedIT) {
-      formattedInfo += L10n.of(context)!.taTooltip;
+      formattedInfo += L10n.of(context).taTooltip;
     } else if (includedIGC) {
-      formattedInfo += L10n.of(context)!.gaTooltip;
+      formattedInfo += L10n.of(context).gaTooltip;
     } else {
-      formattedInfo += L10n.of(context)!.waTooltip;
+      formattedInfo += L10n.of(context).waTooltip;
     }
     formattedInfo += "\n\n";
   }
@@ -273,12 +273,12 @@ String getCSVContent(
 ) {
   final List<List<String>> csvData = [
     [
-      L10n.of(context)!.sender,
-      L10n.of(context)!.time,
-      L10n.of(context)!.originalMessage,
-      L10n.of(context)!.sentMessage,
-      L10n.of(context)!.taTooltip,
-      L10n.of(context)!.gaTooltip,
+      L10n.of(context).sender,
+      L10n.of(context).time,
+      L10n.of(context).originalMessage,
+      L10n.of(context).sentMessage,
+      L10n.of(context).taTooltip,
+      L10n.of(context).gaTooltip,
     ]
   ];
   for (final PangeaMessageEvent message in messages) {
@@ -295,8 +295,8 @@ String getCSVContent(
         timestamp,
         originalMsg,
         sentMsg,
-        L10n.of(context)!.notAvailable,
-        L10n.of(context)!.notAvailable,
+        L10n.of(context).notAvailable,
+        L10n.of(context).notAvailable,
       ]);
       continue;
     }
@@ -325,12 +325,12 @@ List<int> getExcelContent(
   final Workbook workbook = Workbook();
   final Worksheet sheet = workbook.worksheets[0];
 
-  sheet.getRangeByIndex(1, 1).setValue(L10n.of(context)!.sender);
-  sheet.getRangeByIndex(1, 2).setValue(L10n.of(context)!.time);
-  sheet.getRangeByIndex(1, 3).setValue(L10n.of(context)!.originalMessage);
-  sheet.getRangeByIndex(1, 4).setValue(L10n.of(context)!.sentMessage);
-  sheet.getRangeByIndex(1, 5).setValue(L10n.of(context)!.taTooltip);
-  sheet.getRangeByIndex(1, 6).setValue(L10n.of(context)!.gaTooltip);
+  sheet.getRangeByIndex(1, 1).setValue(L10n.of(context).sender);
+  sheet.getRangeByIndex(1, 2).setValue(L10n.of(context).time);
+  sheet.getRangeByIndex(1, 3).setValue(L10n.of(context).originalMessage);
+  sheet.getRangeByIndex(1, 4).setValue(L10n.of(context).sentMessage);
+  sheet.getRangeByIndex(1, 5).setValue(L10n.of(context).taTooltip);
+  sheet.getRangeByIndex(1, 6).setValue(L10n.of(context).gaTooltip);
 
   for (int i = 0; i < messages.length; i++) {
     final PangeaMessageEvent message = messages[i];
@@ -351,8 +351,8 @@ List<int> getExcelContent(
     sheet.getRangeByIndex(i + 2, 2).setDateTime(message.originServerTs);
     sheet.getRangeByIndex(i + 2, 3).setValue(originalMsg);
     sheet.getRangeByIndex(i + 2, 4).setValue(sentMsg);
-    sheet.getRangeByIndex(i + 2, 5).setValue(L10n.of(context)!.notAvailable);
-    sheet.getRangeByIndex(i + 2, 6).setValue(L10n.of(context)!.notAvailable);
+    sheet.getRangeByIndex(i + 2, 5).setValue(L10n.of(context).notAvailable);
+    sheet.getRangeByIndex(i + 2, 6).setValue(L10n.of(context).notAvailable);
     if (usageAvailable) {
       sheet.getRangeByIndex(i + 2, 5).setValue(includedIT);
       sheet.getRangeByIndex(i + 2, 6).setValue(includedIGC);

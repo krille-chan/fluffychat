@@ -1,11 +1,10 @@
 // Flutter imports:
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/widgets/signup/tos_checkbox.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'signup.dart';
 
 class SignupPageView extends StatelessWidget {
@@ -19,7 +18,7 @@ class SignupPageView extends StatelessWidget {
         leading: controller.loading ? null : const BackButton(),
         automaticallyImplyLeading: !controller.loading,
         title: Text(
-          L10n.of(context)!.signUp,
+          L10n.of(context).signUp,
           // #Pangea
           style: const TextStyle(color: Colors.white),
           // #Pangea
@@ -43,7 +42,7 @@ class SignupPageView extends StatelessWidget {
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.vpn_key_outlined),
                   suffixIcon: IconButton(
-                    tooltip: L10n.of(context)!.showPassword,
+                    tooltip: L10n.of(context).showPassword,
                     icon: Icon(
                       controller.showPassword
                           ? Icons.visibility_off_outlined
@@ -59,7 +58,7 @@ class SignupPageView extends StatelessWidget {
                     fontSize: 14,
                   ),
                   // Pangea#
-                  hintText: L10n.of(context)!.chooseAStrongPassword,
+                  hintText: L10n.of(context).chooseAStrongPassword,
                   // #Pangea
                   fillColor: Theme.of(context)
                       .colorScheme
@@ -82,7 +81,7 @@ class SignupPageView extends StatelessWidget {
                   validator: controller.password2TextFieldValidator,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.repeat_outlined),
-                    hintText: L10n.of(context)!.repeatPassword,
+                    hintText: L10n.of(context).repeatPassword,
                     // #Pangea
                     // errorStyle: const TextStyle(color: Colors.orange),
                     errorStyle: TextStyle(
@@ -109,7 +108,7 @@ class SignupPageView extends StatelessWidget {
                 validator: controller.emailTextFieldValidator,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.mail_outlined),
-                  hintText: L10n.of(context)!.enterAnEmailAddress,
+                  hintText: L10n.of(context).enterAnEmailAddress,
                   errorText: controller.error,
                   errorMaxLines: 4,
                   // #Pangea
@@ -142,7 +141,7 @@ class SignupPageView extends StatelessWidget {
                   onPressed: controller.loading ? () {} : controller.signup,
                   child: controller.loading
                       ? const LinearProgressIndicator()
-                      : Text(L10n.of(context)!.signUp),
+                      : Text(L10n.of(context).signUp),
                 ),
                 // child: ElevatedButton.icon(
                 //   icon: const Icon(Icons.person_add_outlined),
@@ -153,7 +152,7 @@ class SignupPageView extends StatelessWidget {
                 //   onPressed: controller.loading ? () {} : controller.signup,
                 //   label: controller.loading
                 //       ? const LinearProgressIndicator()
-                //       : Text(L10n.of(context)!.signUp),
+                //       : Text(L10n.of(context).signUp),
                 // ),
                 // #Pangea
               ),

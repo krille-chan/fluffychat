@@ -57,7 +57,7 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
 
   String categoryCopy(category) {
     if (category.toLowerCase() == "other") {
-      return L10n.of(context)!.other;
+      return L10n.of(context).other;
     }
 
     return widget.type.getDisplayCopy(
@@ -90,7 +90,7 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
         ],
       );
     } else if (hasNoData) {
-      dialogContent = Center(child: Text(L10n.of(context)!.noDataFound));
+      dialogContent = Center(child: Text(L10n.of(context).noDataFound));
     } else if (hasNoCategories || !widget.showGroups) {
       dialogContent = ConstructsTileList(
         _constructsModel.constructList(type: widget.type),

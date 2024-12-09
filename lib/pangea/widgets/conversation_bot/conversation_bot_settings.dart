@@ -64,13 +64,13 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
         children: [
           ListTile(
             title: Text(
-              L10n.of(context)!.botConfig,
+              L10n.of(context).botConfig,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.secondary,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: Text(L10n.of(context)!.botSettingsSubtitle),
+            subtitle: Text(L10n.of(context).botSettingsSubtitle),
             leading: CircleAvatar(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
@@ -183,7 +183,7 @@ class ConversationBotSettingsDialogState
                       vertical: 12,
                     ),
                     child: Text(
-                      L10n.of(context)!.botConfig,
+                      L10n.of(context).botConfig,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
@@ -195,7 +195,7 @@ class ConversationBotSettingsDialogState
               ),
               SwitchListTile(
                 title: Text(
-                  L10n.of(context)!.conversationBotStatus,
+                  L10n.of(context).conversationBotStatus,
                 ),
                 value: addBot,
                 onChanged: (bool value) {
@@ -241,7 +241,7 @@ class ConversationBotSettingsDialogState
                     onPressed: () {
                       Navigator.of(context).pop(null);
                     },
-                    child: Text(L10n.of(context)!.cancel),
+                    child: Text(L10n.of(context).cancel),
                   ),
                   const SizedBox(width: 20),
                   TextButton(
@@ -263,7 +263,7 @@ class ConversationBotSettingsDialogState
                         await widget.room.kick(BotName.byEnvironment);
                       }
                     },
-                    child: Text(L10n.of(context)!.confirm),
+                    child: Text(L10n.of(context).confirm),
                   ),
                 ],
               ),

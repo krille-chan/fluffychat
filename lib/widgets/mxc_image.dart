@@ -64,7 +64,8 @@ class _MxcImageState extends State<MxcImage> {
   }
 
   Future<void> _load() async {
-    final client = widget.client ?? Matrix.of(context).client;
+    final client =
+        widget.client ?? widget.event?.room.client ?? Matrix.of(context).client;
     final uri = widget.uri;
     final event = widget.event;
 
@@ -139,7 +140,7 @@ class _MxcImageState extends State<MxcImage> {
     return AnimatedCrossFade(
       crossFadeState:
           hasData ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-      duration: FluffyThemes.animationDuration,
+      duration: const Duration(milliseconds: 128),
       firstChild: placeholder(context),
       secondChild: hasData
           ? Image.memory(

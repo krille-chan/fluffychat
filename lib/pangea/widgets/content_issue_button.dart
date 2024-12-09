@@ -17,7 +17,7 @@ class ContentIssueButton extends StatelessWidget {
     return Opacity(
       opacity: 0.8, // Slight opacity
       child: Tooltip(
-        message: L10n.of(context)!.reportContentIssueTitle,
+        message: L10n.of(context).reportContentIssueTitle,
         child: IconButton(
           icon: const Icon(Icons.flag),
           iconSize: 16,
@@ -33,7 +33,7 @@ class ContentIssueButton extends StatelessWidget {
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: Text(
-                    L10n.of(context)!.reportContentIssueTitle,
+                    L10n.of(context).reportContentIssueTitle,
                     textAlign: TextAlign.center,
                   ),
                   content: SingleChildScrollView(
@@ -47,12 +47,12 @@ class ContentIssueButton extends StatelessWidget {
                             expression: BotExpression.addled,
                           ),
                           const SizedBox(height: 10),
-                          Text(L10n.of(context)!.reportContentIssueDescription),
+                          Text(L10n.of(context).reportContentIssueDescription),
                           const SizedBox(height: 10),
                           TextField(
                             controller: feedbackController,
                             decoration: InputDecoration(
-                              labelText: L10n.of(context)!.feedback,
+                              labelText: L10n.of(context).feedback,
                               border: const OutlineInputBorder(),
                             ),
                             maxLines: 4,
@@ -66,7 +66,7 @@ class ContentIssueButton extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pop(); // Close the dialog
                       },
-                      child: Text(L10n.of(context)!.cancel),
+                      child: Text(L10n.of(context).cancel),
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -74,7 +74,7 @@ class ContentIssueButton extends StatelessWidget {
                         submitFeedback(feedbackController.text);
                         Navigator.of(context).pop(); // Close the dialog
                       },
-                      child: Text(L10n.of(context)!.submit),
+                      child: Text(L10n.of(context).submit),
                     ),
                   ],
                 );

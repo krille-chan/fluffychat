@@ -9,11 +9,11 @@ class MessageContextMenu {
   ) {
     return [
       ContextMenuButtonItem(
-        label: L10n.of(context)!.define,
+        label: L10n.of(context).define,
         onPressed: onDefine,
       ),
       ContextMenuButtonItem(
-        label: L10n.of(context)!.listen,
+        label: L10n.of(context).listen,
         onPressed: onListen,
       ),
     ];

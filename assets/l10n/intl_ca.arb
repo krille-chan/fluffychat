@@ -1606,7 +1606,7 @@
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "defaultPermissionLevel": "Nivell de permisos per defecte",
+  "defaultPermissionLevel": "Nivell de permisos per defecte per nous membres",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2212,7 +2212,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasKnocked": "{user} pica a la porta",
+  "hasKnocked": "🚪 {user} pica a la porta",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2254,7 +2254,7 @@
   },
   "importEmojis": "Importa emojis",
   "@importEmojis": {},
-  "wasDirectChatDisplayName": "La sala buida  ( va ser  {oldDisplayName})",
+  "wasDirectChatDisplayName": "La sala buida ( va ser {oldDisplayName})",
   "@wasDirectChatDisplayName": {
     "type": "text",
     "placeholders": {
@@ -2418,7 +2418,7 @@
   "@screenSharingDetail": {},
   "placeCall": "Truca",
   "@placeCall": {},
-  "block": "bloca",
+  "block": "Bloca",
   "@block": {},
   "blockUsername": "Ignora aquesti usuàrïi",
   "@blockUsername": {},
@@ -2607,5 +2607,200 @@
   "commandHint_ignore": "Ignora el compte de matrix especificat",
   "@commandHint_ignore": {},
   "commandHint_unignore": "Deixa d'ignorar el compt de matrix especificat",
-  "@commandHint_unignore": {}
+  "@commandHint_unignore": {},
+  "sendCanceled": "S'ha canceŀlat l'enviament",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Encara no hi ha xats. Obre una conversa amb algú picant al botó de sota. ⤵️",
+  "@noChatsFoundHere": {},
+  "hideMemberChangesInPublicChatsBody": "No mostres a l'històric de conversa de les sales públiques quan algú hi entra o surt. Això facilita la lectura.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "invitedBy": "📩 Convidadi per {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "knock": "Pica",
+  "@knock": {},
+  "knocking": "S'està picant",
+  "@knocking": {},
+  "restricted": "Restringit",
+  "@restricted": {},
+  "knockRestricted": "No es pot picar a la porta",
+  "@knockRestricted": {},
+  "goToSpace": "Ves a l'espai {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "adminLevel": "{level} - Admin",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Canvia les opcions generals de xat",
+  "@changeGeneralChatSettings": {},
+  "sendRoomNotifications": "Envia notificacions @room",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Canvia la descripció de la sala",
+  "@changeTheDescriptionOfTheGroup": {},
+  "changelog": "Registre de canvis",
+  "@changelog": {},
+  "userLevel": "{level} - Usuàriï",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderadori",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "inviteOtherUsers": "Convida més gent a la conversa",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Canvia els permisos de la sala",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "Canvia la visibilitat de l'historial de conversa",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Canvia l'adreça principal de la sala",
+  "@changeTheCanonicalRoomAlias": {},
+  "accessAndVisibilityDescription": "Qui pot entrar a aquesta conversa i com pot ser descoberta.",
+  "@accessAndVisibilityDescription": {},
+  "customEmojisAndStickers": "Emojis i stickers propis",
+  "@customEmojisAndStickers": {},
+  "accessAndVisibility": "Accés i visibilitat",
+  "@accessAndVisibility": {},
+  "calls": "Trucades",
+  "@calls": {},
+  "hideRedactedMessages": "Amaga els missatges estripats",
+  "@hideRedactedMessages": {},
+  "hideInvalidOrUnknownMessageFormats": "Amaga els missatges que tinguin un format desconegut",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hideMemberChangesInPublicChats": "Amaga els canvis d'estat de lis membres a les sales públiques",
+  "@hideMemberChangesInPublicChats": {},
+  "notifyMeFor": "Nofica'm que",
+  "@notifyMeFor": {},
+  "overview": "Resum",
+  "@overview": {},
+  "passwordRecoverySettings": "Recuperació de contrasenya",
+  "@passwordRecoverySettings": {},
+  "userRole": "Rol d'usuàriï",
+  "@userRole": {},
+  "minimumPowerLevel": "El nivell mínim de permisos és {level}.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "gallery": "Galeria",
+  "@gallery": {},
+  "noDatabaseEncryption": "No es pot xifrar la base de dades en aquesta plataforma",
+  "@noDatabaseEncryption": {},
+  "usersMustKnock": "Lis membres han de picar a la porta",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "Ningú s'hi pot ficar",
+  "@noOneCanJoin": {},
+  "userWouldLikeToChangeTheChat": "{user} vol entrar a la sala.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "customEmojisAndStickersBody": "Afegeix o comparteix emojis o stickers. Els podràs fer servir en qualsevol conversa.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessagesBody": "Si algú estripa un missatge, ja no apareixerà a l'historial de la conversa.",
+  "@hideRedactedMessagesBody": {},
+  "searchIn": "Cerca a la sala \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "markAsUnread": "Marca com a no llegit",
+  "@markAsUnread": {},
+  "chatPermissionsDescription": "Defineix quin nivell de permisos cal per cada acció en aquesta sala. Els nivells 0, 50 i 100 normalment representen usuàriïs, mods i admins, però es pot canviar.",
+  "@chatPermissionsDescription": {},
+  "updateInstalled": "🎉 S'ha actualitzat a la versió {version}!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "alwaysUse24HourFormat": "true",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "appLockDescription": "Bloca l'app amb un pin quan no la facis servir",
+  "@appLockDescription": {},
+  "swipeRightToLeftToReply": "Llisca de dreta esquerra per respondre",
+  "@swipeRightToLeftToReply": {},
+  "globalChatId": "Identificador global de xat",
+  "@globalChatId": {},
+  "createNewAddress": "Crea una adreça nova",
+  "@createNewAddress": {},
+  "searchMore": "Cerca més...",
+  "@searchMore": {},
+  "files": "Arxius",
+  "@files": {},
+  "publicChatAddresses": "Adreces públiques de la sala",
+  "@publicChatAddresses": {},
+  "unreadChatsInApp": "{appname}: {unread} converses pendents",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "thereAreCountUsersBlocked": "Ara mateix hi ha {count} usuàriïs bloquejadis.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "loginWithMatrixId": "Entra amb l'id de Matrix",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Descobreix servidors",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Què és un servidor de Matrix?",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Totes les teves dades s'emmagatzemen al servidor, com passa amb el e-mail. Pots triar quin servidor vols fer servir sense témer a no poder comunicar gent d'altres servidors. Llegeix-ne més a https://matrix.org.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "No sembla un servidor compatible. Pot ser que la URL estigui malament?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "countChatsAndCountParticipants": "{chats} xats i {participants} participants",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "No hi ha més xats...",
+  "@noMoreChatsFound": {},
+  "space": "Espai",
+  "@space": {},
+  "joinedChats": "Xats on has entrat",
+  "@joinedChats": {},
+  "unread": "Sense llegir",
+  "@unread": {},
+  "spaces": "Espais",
+  "@spaces": {},
+  "noPublicLinkHasBeenCreatedYet": "No s'ha creat cap enllaç públic",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "La sala es pot descobrir amb la cerca de {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  }
 }

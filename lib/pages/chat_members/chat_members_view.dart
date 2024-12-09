@@ -20,10 +20,10 @@ class ChatMembersView extends StatelessWidget {
     if (room == null) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(L10n.of(context)!.oopsSomethingWentWrong),
+          title: Text(L10n.of(context).oopsSomethingWentWrong),
         ),
         body: Center(
-          child: Text(L10n.of(context)!.youAreNoLongerParticipatingInThisChat),
+          child: Text(L10n.of(context).youAreNoLongerParticipatingInThisChat),
         ),
       );
     }
@@ -40,7 +40,7 @@ class ChatMembersView extends StatelessWidget {
       appBar: AppBar(
         leading: const Center(child: BackButton()),
         title: Text(
-          L10n.of(context)!.countParticipants(roomCount),
+          L10n.of(context).countParticipants(roomCount),
         ),
         actions: [
           if (room.canInvite)
@@ -68,7 +68,7 @@ class ChatMembersView extends StatelessWidget {
                       OutlinedButton.icon(
                         onPressed: controller.refreshMembers,
                         icon: const Icon(Icons.refresh_outlined),
-                        label: Text(L10n.of(context)!.tryAgain),
+                        label: Text(L10n.of(context).tryAgain),
                       ),
                     ],
                   ),
@@ -102,7 +102,7 @@ class ChatMembersView extends StatelessWidget {
                                   fontWeight: FontWeight.normal,
                                 ),
                                 prefixIcon: const Icon(Icons.search_outlined),
-                                hintText: L10n.of(context)!.search,
+                                hintText: L10n.of(context).search,
                               ),
                             ),
                           )

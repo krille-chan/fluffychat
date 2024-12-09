@@ -44,7 +44,7 @@ class MatchCopy {
 
   void _bySpanDataType(BuildContext context) {
     try {
-      final L10n l10n = L10n.of(context)!;
+      final L10n l10n = L10n.of(context);
       switch (match.match.type.typeName) {
         case SpanDataTypeEnum.correction:
           title = l10n.someErrorTitle;
@@ -83,7 +83,7 @@ class MatchCopy {
       if (match.match.rule?.id == null) {
         throw Exception("match.match.rule.id is null");
       }
-      final L10n l10n = L10n.of(context)!;
+      final L10n l10n = L10n.of(context);
 
       final List<String> splits = match.match.rule!.id.split(":");
       if (splits.length >= 2) {

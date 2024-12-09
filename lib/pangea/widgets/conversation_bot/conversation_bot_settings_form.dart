@@ -45,7 +45,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
             padding: EdgeInsets.zero,
           ),
           hint: Text(
-            L10n.of(context)!.selectBotLanguage,
+            L10n.of(context).selectBotLanguage,
             overflow: TextOverflow.clip,
             textAlign: TextAlign.center,
           ),
@@ -67,7 +67,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
         const SizedBox(height: 12),
         DropdownButtonFormField2<String>(
           hint: Text(
-            L10n.of(context)!.chooseVoice,
+            L10n.of(context).chooseVoice,
             overflow: TextOverflow.clip,
             textAlign: TextAlign.center,
           ),
@@ -81,7 +81,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
           initialLevel: botOptions.languageLevel,
           onChanged: onUpdateBotLanguageLevel,
           validator: (value) => enabled && value == null
-              ? L10n.of(context)!.enterLanguageLevel
+              ? L10n.of(context).enterLanguageLevel
               : null,
           enabled: enabled,
         ),
@@ -91,7 +91,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(
-              L10n.of(context)!.conversationBotModeSelectDescription,
+              L10n.of(context).conversationBotModeSelectDescription,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
@@ -101,7 +101,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
           onChanged: onUpdateBotMode,
           enabled: enabled,
           validator: (value) {
-            return value == null ? L10n.of(context)!.botModeValidation : null;
+            return value == null ? L10n.of(context).botModeValidation : null;
           },
         ),
         const SizedBox(height: 12),

@@ -1,8 +1,8 @@
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -76,7 +76,7 @@ class ProfileBottomSheet extends StatelessWidget {
                   child: OutlinedButton.icon(
                     onPressed: () => _startDirectChat(context),
                     icon: Icon(Icons.adaptive.share_outlined),
-                    label: Text(L10n.of(context)!.share),
+                    label: Text(L10n.of(context).share),
                   ),
                 ),
               ],
@@ -98,7 +98,7 @@ class ProfileBottomSheet extends StatelessWidget {
                   padding: const EdgeInsets.all(12),
                   child: FloatingActionButton.extended(
                     onPressed: () => _startDirectChat(context),
-                    label: Text(L10n.of(context)!.newChat),
+                    label: Text(L10n.of(context).newChat),
                     icon: const Icon(Icons.send_outlined),
                   ),
                 ),

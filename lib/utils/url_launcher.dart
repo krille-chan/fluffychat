@@ -4,11 +4,11 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:punycode/punycode.dart';
@@ -39,7 +39,7 @@ class UrlLauncher {
     if (uri == null) {
       // we can't open this thing
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))),
+        SnackBar(content: Text(L10n.of(context).cantOpenUri(url!))),
       );
       return;
     }
@@ -49,10 +49,10 @@ class UrlLauncher {
       // that the user can see the actual url before opening the browser.
       final consent = await showOkCancelAlertDialog(
         context: context,
-        title: L10n.of(context)!.openLinkInBrowser,
+        title: L10n.of(context).openLinkInBrowser,
         message: url,
-        okLabel: L10n.of(context)!.yes,
-        cancelLabel: L10n.of(context)!.cancel,
+        okLabel: L10n.of(context).yes,
+        cancelLabel: L10n.of(context).cancel,
       );
       if (consent != OkCancelResult.ok) return;
     }
@@ -93,7 +93,7 @@ class UrlLauncher {
     }
     if (uri.host.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))),
+        SnackBar(content: Text(L10n.of(context).cantOpenUri(url!))),
       );
       return;
     }
@@ -212,7 +212,7 @@ class UrlLauncher {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 duration: const Duration(seconds: 10),
-                content: Text(L10n.of(context)!.roomFull),
+                content: Text(L10n.of(context).roomFull),
               ),
             );
             return;

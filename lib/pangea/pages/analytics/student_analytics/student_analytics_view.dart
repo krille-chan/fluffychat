@@ -11,7 +11,7 @@
 
 //   @override
 //   Widget build(BuildContext context) {
-//     final String pageTitle = L10n.of(context)!.myLearning;
+//     final String pageTitle = L10n.of(context).myLearning;
 //     final TabData chatTabData = TabData(
 //       type: AnalyticsEntryType.room,
 //       icon: Icons.chat_bubble_outline,
@@ -20,7 +20,7 @@
 //             (c) => TabItem(
 //               avatar: c.avatar,
 //               displayName:
-//                   c.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+//                   c.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
 //               id: c.id,
 //             ),
 //           )
@@ -35,7 +35,7 @@
 //             (c) => TabItem(
 //               avatar: c.avatar,
 //               displayName:
-//                   c.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+//                   c.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
 //               id: c.id,
 //             ),
 //           )
@@ -51,13 +51,13 @@
 //             alwaysSelected: AnalyticsSelected(
 //               controller.userId!,
 //               AnalyticsEntryType.student,
-//               L10n.of(context)!.allChatsAndClasses,
+//               L10n.of(context).allChatsAndClasses,
 //             ),
 //             myAnalyticsController: controller,
 //             defaultSelected: AnalyticsSelected(
 //               controller.userId!,
 //               AnalyticsEntryType.student,
-//               L10n.of(context)!.allChatsAndClasses,
+//               L10n.of(context).allChatsAndClasses,
 //             ),
 //             targetLanguages: controller.targetLanguages,
 //           )

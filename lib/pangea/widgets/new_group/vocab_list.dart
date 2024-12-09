@@ -46,16 +46,16 @@ class ChatVocabularyList extends StatelessWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: Text(L10n.of(context)!.clearAll),
+                  title: Text(L10n.of(context).clearAll),
                   actions: [
                     TextButton(
-                      child: Text(L10n.of(context)!.cancel),
+                      child: Text(L10n.of(context).cancel),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
                     ),
                     TextButton(
-                      child: Text(L10n.of(context)!.confirm),
+                      child: Text(L10n.of(context).confirm),
                       onPressed: () {
                         onChanged([]);
                         Navigator.of(context).pop();
@@ -272,7 +272,7 @@ class GenerateVocabButtonState extends State<GenerateVocabButton> {
             width: 50.0,
             expression: BotExpression.idle,
           ),
-          label: Text(L10n.of(context)!.generateVocabulary),
+          label: Text(L10n.of(context).generateVocabulary),
           onPressed: () async {
             // if widget.topic.name is null, give error message
             if (widget.topic.name.isEmpty) {
@@ -345,8 +345,8 @@ class DescriptionField extends StatelessWidget {
     return TextFormField(
       initialValue: initialValue,
       decoration: InputDecoration(
-        labelText: L10n.of(context)!.groupDescription,
-        hintText: L10n.of(context)!.addGroupDescription,
+        labelText: L10n.of(context).groupDescription,
+        hintText: L10n.of(context).addGroupDescription,
       ),
       maxLength: 250,
       maxLines: 5,
@@ -377,8 +377,8 @@ class NameField extends StatelessWidget {
     return TextFormField(
       initialValue: topic.name,
       decoration: InputDecoration(
-        labelText: L10n.of(context)!.optionalGroupName,
-        hintText: L10n.of(context)!.enterAGroupName,
+        labelText: L10n.of(context).optionalGroupName,
+        hintText: L10n.of(context).enterAGroupName,
       ),
       maxLength: 50,
       onChanged: (value) {
@@ -467,7 +467,7 @@ class PromptsFieldState extends State<PromptsField> {
             width: 50.0,
             expression: BotExpression.idle,
           ),
-          label: Text(L10n.of(context)!.generatePrompts),
+          label: Text(L10n.of(context).generatePrompts),
           onPressed: () async {
             setState(() {
               _errorText = null;

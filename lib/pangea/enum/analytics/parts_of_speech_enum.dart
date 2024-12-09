@@ -48,43 +48,43 @@ extension GrammarCopyPOSExtension on GrammarCopyPOS {
   String getDisplayCopy(BuildContext context) {
     switch (this) {
       case GrammarCopyPOS.sconj:
-        return L10n.of(context)!.grammarCopyPOSsconj;
+        return L10n.of(context).grammarCopyPOSsconj;
       case GrammarCopyPOS.num:
-        return L10n.of(context)!.grammarCopyPOSnum;
+        return L10n.of(context).grammarCopyPOSnum;
       case GrammarCopyPOS.verb:
-        return L10n.of(context)!.grammarCopyPOSverb;
+        return L10n.of(context).grammarCopyPOSverb;
       case GrammarCopyPOS.affix:
-        return L10n.of(context)!.grammarCopyPOSaffix;
+        return L10n.of(context).grammarCopyPOSaffix;
       case GrammarCopyPOS.part:
-        return L10n.of(context)!.grammarCopyPOSpart;
+        return L10n.of(context).grammarCopyPOSpart;
       case GrammarCopyPOS.adj:
-        return L10n.of(context)!.grammarCopyPOSadj;
+        return L10n.of(context).grammarCopyPOSadj;
       case GrammarCopyPOS.cconj:
-        return L10n.of(context)!.grammarCopyPOScconj;
+        return L10n.of(context).grammarCopyPOScconj;
       case GrammarCopyPOS.punct:
-        return L10n.of(context)!.grammarCopyPOSpunct;
+        return L10n.of(context).grammarCopyPOSpunct;
       case GrammarCopyPOS.adv:
-        return L10n.of(context)!.grammarCopyPOSadv;
+        return L10n.of(context).grammarCopyPOSadv;
       case GrammarCopyPOS.aux:
-        return L10n.of(context)!.grammarCopyPOSaux;
+        return L10n.of(context).grammarCopyPOSaux;
       case GrammarCopyPOS.space:
-        return L10n.of(context)!.grammarCopyPOSspace;
+        return L10n.of(context).grammarCopyPOSspace;
       case GrammarCopyPOS.sym:
-        return L10n.of(context)!.grammarCopyPOSsym;
+        return L10n.of(context).grammarCopyPOSsym;
       case GrammarCopyPOS.det:
-        return L10n.of(context)!.grammarCopyPOSdet;
+        return L10n.of(context).grammarCopyPOSdet;
       case GrammarCopyPOS.pron:
-        return L10n.of(context)!.grammarCopyPOSpron;
+        return L10n.of(context).grammarCopyPOSpron;
       case GrammarCopyPOS.adp:
-        return L10n.of(context)!.grammarCopyPOSadp;
+        return L10n.of(context).grammarCopyPOSadp;
       case GrammarCopyPOS.propn:
-        return L10n.of(context)!.grammarCopyPOSpropn;
+        return L10n.of(context).grammarCopyPOSpropn;
       case GrammarCopyPOS.noun:
-        return L10n.of(context)!.grammarCopyPOSnoun;
+        return L10n.of(context).grammarCopyPOSnoun;
       case GrammarCopyPOS.intj:
-        return L10n.of(context)!.grammarCopyPOSintj;
+        return L10n.of(context).grammarCopyPOSintj;
       case GrammarCopyPOS.x:
-        return L10n.of(context)!.grammarCopyPOSx;
+        return L10n.of(context).grammarCopyPOSx;
     }
   }
 }

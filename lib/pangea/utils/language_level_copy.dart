@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LanguageLevelTextPicker {
   static String languageLevelText(BuildContext context, int languageLevel) {
-    final L10n copy = L10n.of(context)!;
+    final L10n copy = L10n.of(context);
     switch (languageLevel) {
       case 0:
         return copy.languageLevelPreA1;

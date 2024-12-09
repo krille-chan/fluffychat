@@ -19,7 +19,7 @@
 //       appBar: AppBar(
 //         centerTitle: true,
 //         title: Text(
-//           L10n.of(context)!.spaceAnalytics,
+//           L10n.of(context).spaceAnalytics,
 //           style: TextStyle(
 //             color: Theme.of(context).textTheme.bodyLarge!.color,
 //             fontSize: 18,

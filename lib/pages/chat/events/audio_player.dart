@@ -22,6 +22,7 @@ class AudioPlayerWidget extends StatefulWidget {
   final PangeaAudioFile? matrixFile;
   final bool autoplay;
   final Function(bool)? setIsPlayingAudio;
+  final double fontSize;
   // Pangea#
 
   static String? currentId;
@@ -42,6 +43,7 @@ class AudioPlayerWidget extends StatefulWidget {
     this.sectionStartMS,
     this.sectionEndMS,
     this.setIsPlayingAudio,
+    this.fontSize = 12,
     // Pangea#
     super.key,
   });

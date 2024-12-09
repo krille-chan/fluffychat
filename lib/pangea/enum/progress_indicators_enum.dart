@@ -31,11 +31,11 @@ extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
   String tooltip(BuildContext context) {
     switch (this) {
       case ProgressIndicatorEnum.wordsUsed:
-        return L10n.of(context)!.vocab;
+        return L10n.of(context).vocab;
       case ProgressIndicatorEnum.level:
-        return L10n.of(context)!.level;
+        return L10n.of(context).level;
       case ProgressIndicatorEnum.morphsUsed:
-        return L10n.of(context)!.grammar;
+        return L10n.of(context).grammar;
     }
   }
 

@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/pages/login/login.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/login/login.dart';
 import '../../widgets/matrix.dart';
 
 extension PangeaPasswordForgotten on LoginController {
@@ -18,30 +17,30 @@ extension PangeaPasswordForgotten on LoginController {
       builder: (BuildContext context) => Scaffold(
         backgroundColor: Colors.transparent,
         body: AlertDialog(
-          title: Text(L10n.of(context)!.passwordForgotten),
+          title: Text(L10n.of(context).passwordForgotten),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(L10n.of(context)!.enterAnEmailAddress),
+              Text(L10n.of(context).enterAnEmailAddress),
               const SizedBox(height: 12),
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
-                  hintText: L10n.of(context)!.enterAnEmailAddress,
+                  hintText: L10n.of(context).enterAnEmailAddress,
                 ),
               ),
             ],
           ),
           actions: [
             TextButton(
-              child: Text(L10n.of(context)!.cancel),
+              child: Text(L10n.of(context).cancel),
               onPressed: () {
                 Navigator.of(context).pop();
                 return;
               },
             ),
             TextButton(
-              child: Text(L10n.of(context)!.ok),
+              child: Text(L10n.of(context).ok),
               onPressed: () async {
                 if (emailController.text == "") return;
                 final clientSecret =
@@ -68,11 +67,11 @@ extension PangeaPasswordForgotten on LoginController {
                   builder: (BuildContext context) => Scaffold(
                     backgroundColor: Colors.transparent,
                     body: AlertDialog(
-                      title: Text(L10n.of(context)!.passwordForgotten),
+                      title: Text(L10n.of(context).passwordForgotten),
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(L10n.of(context)!.chooseAStrongPassword),
+                          Text(L10n.of(context).chooseAStrongPassword),
                           const SizedBox(height: 12),
                           TextField(
                             obscureText: true,
@@ -85,22 +84,22 @@ extension PangeaPasswordForgotten on LoginController {
                       ),
                       actions: [
                         TextButton(
-                          child: Text(L10n.of(context)!.cancel),
+                          child: Text(L10n.of(context).cancel),
                           onPressed: () {
                             Navigator.of(context).pop();
                             return;
                           },
                         ),
                         TextButton(
-                          child: Text(L10n.of(context)!.ok),
+                          child: Text(L10n.of(context).ok),
                           onPressed: () async {
                             if (newPasswordController.text == "") return;
                             final ok = await showOkAlertDialog(
                               useRootNavigator: false,
                               context: context,
-                              title: L10n.of(context)!.weSentYouAnEmail,
-                              message: L10n.of(context)!.pleaseClickOnLink,
-                              okLabel: L10n.of(context)!.iHaveClickedOnLink,
+                              title: L10n.of(context).weSentYouAnEmail,
+                              message: L10n.of(context).pleaseClickOnLink,
+                              okLabel: L10n.of(context).iHaveClickedOnLink,
                               fullyCapitalizedForMaterial: false,
                             );
                             if (ok != OkCancelResult.ok) return;
@@ -128,7 +127,7 @@ extension PangeaPasswordForgotten on LoginController {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    L10n.of(context)!.passwordHasBeenChanged,
+                                    L10n.of(context).passwordHasBeenChanged,
                                   ),
                                 ),
                               );

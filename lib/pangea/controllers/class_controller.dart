@@ -10,11 +10,11 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_e
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -79,10 +79,10 @@ class ClassController extends BaseController {
         );
 
         if (knockResponse.statusCode == 429) {
-          throw L10n.of(context)!.tooManyRequest;
+          throw L10n.of(context).tooManyRequest;
         }
         if (knockResponse.statusCode != 200) {
-          throw L10n.of(context)!.unableToFindClass;
+          throw L10n.of(context).unableToFindClass;
         }
 
         final knockResult = jsonDecode(knockResponse.body);
@@ -96,11 +96,11 @@ class ClassController extends BaseController {
 
         if (alreadyJoined.isNotEmpty || inFoundClass) {
           context.go("/rooms/${alreadyJoined.first}/details");
-          throw L10n.of(context)!.alreadyInClass;
+          throw L10n.of(context).alreadyInClass;
         }
 
         if (foundClasses.isEmpty) {
-          throw L10n.of(context)!.unableToFindClass;
+          throw L10n.of(context).unableToFindClass;
         }
 
         final chosenClassId = foundClasses.first;
@@ -132,7 +132,7 @@ class ClassController extends BaseController {
     if (isFull) {
       await showFutureLoadingDialog(
         context: context,
-        future: () async => throw L10n.of(context)!.roomFull,
+        future: () async => throw L10n.of(context).roomFull,
       );
       return;
     }

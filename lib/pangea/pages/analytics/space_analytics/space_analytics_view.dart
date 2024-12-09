@@ -11,7 +11,7 @@
 
 //   @override
 //   Widget build(BuildContext context) {
-//     final String pageTitle = L10n.of(context)!.spaceAnalytics;
+//     final String pageTitle = L10n.of(context).spaceAnalytics;
 //     final TabData tab1 = TabData(
 //       type: AnalyticsEntryType.room,
 //       icon: Icons.chat_bubble_outline,

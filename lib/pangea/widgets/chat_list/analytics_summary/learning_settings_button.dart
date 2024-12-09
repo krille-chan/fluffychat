@@ -15,7 +15,7 @@ class LearningSettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: L10n.of(context)!.learningSettings,
+      message: L10n.of(context).learningSettings,
       child: InkWell(
         customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),

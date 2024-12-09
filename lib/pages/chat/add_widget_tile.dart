@@ -43,14 +43,14 @@ class AddWidgetTileState extends State<AddWidgetTile> {
 
       if (name.length < 3) {
         setState(() {
-          nameError = L10n.of(context)!.widgetNameError;
+          nameError = L10n.of(context).widgetNameError;
         });
         return;
       }
 
       if (uri == null || uri.scheme != 'https') {
         setState(() {
-          urlError = L10n.of(context)!.widgetUrlError;
+          urlError = L10n.of(context).widgetUrlError;
         });
         return;
       }
@@ -75,7 +75,7 @@ class AddWidgetTileState extends State<AddWidgetTile> {
       Navigator.of(context).pop();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.errorAddingWidget)),
+        SnackBar(content: Text(L10n.of(context).errorAddingWidget)),
       );
     }
   }

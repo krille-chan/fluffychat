@@ -2196,7 +2196,7 @@
   "@callingPermissions": {},
   "callingAccount": "Conta que chama",
   "@callingAccount": {},
-  "callingAccountDetails": "Permítelle a FluffyChat usar a app marcador nativa de android.",
+  "callingAccountDetails": "Permítelle a FluffyChat usar a app de telefonía nativa de android.",
   "@callingAccountDetails": {},
   "appearOnTopDetails": "Permítelle á app aparecer por enriba (non é preciso se xa configuraches FluffyChat como unha conta para chamadas)",
   "@appearOnTopDetails": {},
@@ -2271,7 +2271,7 @@
   "@noOtherDevicesFound": {},
   "noBackupWarning": "Aviso! Se non activas a copia de apoio da conversa, perderás o acceso ás túas mensaxes cifradas. É moi recomendable activar a copia de apoio da conversa antes de pechar a sesión.",
   "@noBackupWarning": {},
-  "fileIsTooBigForServer": "O servidor informa de que o ficheiro é demasiado grande para envialo.",
+  "fileIsTooBigForServer": "Non se puido enviar! O servidor só permite anexos que non superen {max}.",
   "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "Gardouse o ficheiro en {path}",
   "@fileHasBeenSavedAt": {
@@ -2446,7 +2446,7 @@
   "@blockListDescription": {},
   "blockedUsers": "Usuarias bloqueadas",
   "@blockedUsers": {},
-  "block": "Bloquer",
+  "block": "Bloquear",
   "@block": {},
   "blockUsername": "Ignorar identificador",
   "@blockUsername": {},
@@ -2690,7 +2690,7 @@
       "level": {}
     }
   },
-  "searchIn": "Buscar na charla \"{chat}\"...",
+  "searchIn": "Buscar na conversa \"{chat}\"...",
   "@searchIn": {
     "type": "text",
     "placeholders": {
@@ -2803,5 +2803,87 @@
   "homeserverDescription": "Todos os teus datos quedan gardados no servidor de inicio, igual que co teu provedor de correo electrónico. Podes elexir o servidor que queres usar e poderás comunicarte con todos os demais. Aprende máis en https://matrix.org.",
   "@homeserverDescription": {},
   "doesNotSeemToBeAValidHomeserver": "Non semella ser un servidor de inicio compatible. É o URL correcto?",
-  "@doesNotSeemToBeAValidHomeserver": {}
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "calculatingFileSize": "Calculando o tamaño do ficheiro…",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Preparando o envío…",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "Enviando o anexo…",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Creando miniatura do vídeo…",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "Comprimindo o vídeo…",
+  "@compressVideo": {},
+  "serverLimitReached": "Acadouse o límite do servidor! Agarda {seconds} segundos…",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "sendingAttachmentCountOfCount": "Enviando o anexo {index} de {length}…",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "oneOfYourDevicesIsNotVerified": "Un dos teus dispositivos non está verificado",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Nota: Cando conectas todos os teus dispositivos á copia de apoio da conversa quedan verificados automaticamente.",
+  "@noticeChatBackupDeviceVerification": {},
+  "blur": "Néboa:",
+  "@blur": {},
+  "opacity": "Opacidade:",
+  "@opacity": {},
+  "contactServerSecurity": "Contacto con Seguridade do servidor",
+  "@contactServerSecurity": {},
+  "aboutHomeserver": "Sobre {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "welcomeText": "Ola! 👋 Isto é FluffyChat. Podes iniciar sesión en calquera servidor compatible con https://matrix.org. Poderás conversar con calquera. Unha enorme rede de mensaxería descentralizada!",
+  "@welcomeText": {},
+  "setWallpaper": "Establecer fondo",
+  "@setWallpaper": {},
+  "manageAccount": "Xestionar conta",
+  "@manageAccount": {},
+  "noContactInformationProvided": "O servidor non proporciona información de contacto válida",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "Contacto con Admin do servidor",
+  "@contactServerAdmin": {},
+  "supportPage": "Páxina de axuda",
+  "@supportPage": {},
+  "serverInformation": "Información do servidor:",
+  "@serverInformation": {},
+  "name": "Nome",
+  "@name": {},
+  "version": "Versión",
+  "@version": {},
+  "website": "Páxina web",
+  "@website": {},
+  "continueText": "Continuar",
+  "@continueText": {},
+  "compressBeforeSending": "Comprimir antes de enviar",
+  "@compressBeforeSending": {},
+  "sendUncompressed": "Enviar sen comprimir",
+  "@sendUncompressed": {},
+  "italicText": "Cursiva",
+  "@italicText": {},
+  "strikeThrough": "Riscar",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Por favor completa",
+  "@pleaseFillOut": {},
+  "invalidUrl": "URL non válido",
+  "@invalidUrl": {},
+  "boldText": "Resaltar texto",
+  "@boldText": {},
+  "addLink": "Engadir ligazón",
+  "@addLink": {},
+  "unableToJoinChat": "Non se puido acceder. Pode que a outra parte xa pechase a conversa.",
+  "@unableToJoinChat": {}
 }

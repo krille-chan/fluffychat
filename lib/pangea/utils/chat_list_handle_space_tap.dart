@@ -4,10 +4,10 @@ import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -37,13 +37,9 @@ void chatListHandleSpaceTap(
       future: () async {
         await space.join();
         if (await space.leaveIfFull()) {
-          throw L10n.of(context)!.roomFull;
+          throw L10n.of(context).roomFull;
         }
         setActiveSpaceAndCloseChat();
-      },
-      onError: (exception) {
-        ErrorHandler.logError(e: exception);
-        return exception.toString();
       },
     );
   }
@@ -55,14 +51,14 @@ void chatListHandleSpaceTap(
   Future<void> showAlertDialog(BuildContext context) async {
     final acceptInvite = await showOkCancelAlertDialog(
       context: context,
-      title: L10n.of(context)!.youreInvited,
+      title: L10n.of(context).youreInvited,
       message: space.isSpace
-          ? L10n.of(context)!
+          ? L10n.of(context)
               .invitedToSpace(space.name, space.creatorId ?? "???")
-          : L10n.of(context)!
+          : L10n.of(context)
               .invitedToChat(space.name, space.creatorId ?? "???"),
-      okLabel: L10n.of(context)!.accept,
-      cancelLabel: L10n.of(context)!.decline,
+      okLabel: L10n.of(context).accept,
+      cancelLabel: L10n.of(context).decline,
     );
 
     if (acceptInvite == OkCancelResult.ok) {
@@ -71,7 +67,7 @@ void chatListHandleSpaceTap(
         future: () async {
           await space.join();
           if (await space.leaveIfFull()) {
-            throw L10n.of(context)!.roomFull;
+            throw L10n.of(context).roomFull;
           }
           if (space.isSpace) {
             space.joinAnalyticsRoomsInSpace();
@@ -79,7 +75,7 @@ void chatListHandleSpaceTap(
           setActiveSpaceAndCloseChat();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(L10n.of(context)!.acceptedInvitation),
+              content: Text(L10n.of(context).acceptedInvitation),
               duration: const Duration(seconds: 3),
             ),
           );
@@ -89,7 +85,7 @@ void chatListHandleSpaceTap(
       await space.leave();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(L10n.of(context)!.declinedInvitation),
+          content: Text(L10n.of(context).declinedInvitation),
           duration: const Duration(seconds: 3),
         ),
       );

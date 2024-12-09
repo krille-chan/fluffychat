@@ -31,9 +31,9 @@ class SubscriptionOptions extends StatelessWidget {
                   ),
                   context,
                 ),
-                title: L10n.of(context)!.freeTrial,
-                description: L10n.of(context)!.freeTrialDesc,
-                buttonText: L10n.of(context)!.activateTrial,
+                title: L10n.of(context).freeTrial,
+                description: L10n.of(context).freeTrialDesc,
+                buttonText: L10n.of(context).activateTrial,
               ),
             ]
           : pangeaController.subscriptionController.availableSubscriptionInfo!
@@ -49,11 +49,11 @@ class SubscriptionOptions extends StatelessWidget {
                     );
                   },
                   title: subscription.isTrial
-                      ? L10n.of(context)!.oneWeekTrial
+                      ? L10n.of(context).oneWeekTrial
                       : subscription.displayName(context),
                   enabled: !subscription.isTrial,
                   description: subscription.isTrial
-                      ? L10n.of(context)!.trialPeriodExpired
+                      ? L10n.of(context).trialPeriodExpired
                       : null,
                 ),
               )
@@ -131,7 +131,7 @@ class SubscriptionCard extends StatelessWidget {
                     : null,
                 style: buttonStyle,
                 child: Text(
-                  buttonText ?? L10n.of(context)!.subscribe,
+                  buttonText ?? L10n.of(context).subscribe,
                 ),
               ),
             ],

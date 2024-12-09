@@ -120,7 +120,7 @@
 //               ),
 //             ),
 //             Tooltip(
-//               message: L10n.of(context)!.timeOfLastMessage,
+//               message: L10n.of(context).timeOfLastMessage,
 //               child: Text(
 //                 tileData?.lastMessageTime?.localizedTimeShort(context) ?? "",
 //                 style: TextStyle(

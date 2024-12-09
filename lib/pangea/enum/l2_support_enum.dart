@@ -42,7 +42,7 @@ extension L2SupportEnumExtension on L2SupportEnum {
   }
 
   String toLocalizedString(BuildContext context) {
-    final l10n = L10n.of(context)!;
+    final l10n = L10n.of(context);
 
     switch (this) {
       case L2SupportEnum.na:

@@ -47,7 +47,7 @@ class PangeaChatListHeader extends StatelessWidget
                       borderRadius: BorderRadius.circular(99),
                     ),
                     contentPadding: EdgeInsets.zero,
-                    hintText: L10n.of(context)!.searchChatsRooms,
+                    hintText: L10n.of(context).searchChatsRooms,
                     hintStyle: TextStyle(
                       color: theme.colorScheme.onPrimaryContainer,
                       fontWeight: FontWeight.normal,
@@ -55,7 +55,7 @@ class PangeaChatListHeader extends StatelessWidget
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     prefixIcon: controller.isSearchMode
                         ? IconButton(
-                            tooltip: L10n.of(context)!.cancel,
+                            tooltip: L10n.of(context).cancel,
                             icon: const Icon(Icons.close_outlined),
                             onPressed: controller.cancelSearch,
                             color: theme.colorScheme.onPrimaryContainer,

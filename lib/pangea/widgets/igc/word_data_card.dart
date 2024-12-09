@@ -215,7 +215,7 @@ class WordDataCardView extends StatelessWidget {
               //     child: ListTile(
               //       leading: const BotFace(
               //           width: 40, expression: BotExpression.surprised),
-              //       title: Text(L10n.of(context)!.askPangeaBot),
+              //       title: Text(L10n.of(context).askPangeaBot),
               //       onTap: controller.handleGetDefinitionButtonPress,
               //     ),
               //   ),
@@ -229,7 +229,7 @@ class WordDataCardView extends StatelessWidget {
                 ),
               if (controller.definitionError != null)
                 Text(
-                  L10n.of(context)!.sorryNoResults,
+                  L10n.of(context).sorryNoResults,
                   style: BotStyle.text(context),
                   textAlign: TextAlign.center,
                 ),
@@ -293,7 +293,7 @@ class SensesForLanguage extends StatelessWidget {
         ? wordData.targetWord
         : wordData.baseWord;
     String? pos = wordData.formattedPartOfSpeech(languageType);
-    if (pos == null || pos.isEmpty) pos = L10n.of(context)!.unkDisplayName;
+    if (pos == null || pos.isEmpty) pos = L10n.of(context).unkDisplayName;
     return "$word (${wordData.formattedPartOfSpeech(languageType)})";
   }
 
@@ -336,7 +336,7 @@ class SensesForLanguage extends StatelessWidget {
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: "${L10n.of(context)!.definition}: ",
+                        text: "${L10n.of(context).definition}: ",
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       TextSpan(text: definition),
@@ -354,7 +354,7 @@ class SensesForLanguage extends StatelessWidget {
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: "${L10n.of(context)!.exampleSentence}: ",
+                        text: "${L10n.of(context).exampleSentence}: ",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),

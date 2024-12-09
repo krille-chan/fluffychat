@@ -45,12 +45,12 @@ extension EventsRoomExtension on Room {
     final confirmed = await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
+          title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
           message: onlyAdmin
-              ? L10n.of(context)!.onlyAdminDescription
-              : L10n.of(context)!.archiveSpaceDescription,
+              ? L10n.of(context).onlyAdminDescription
+              : L10n.of(context).archiveSpaceDescription,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return false;
@@ -101,10 +101,10 @@ extension EventsRoomExtension on Room {
     final confirmed = await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
-          message: L10n.of(context)!.leaveSpaceDescription,
+          title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
+          message: L10n.of(context).leaveSpaceDescription,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return false;

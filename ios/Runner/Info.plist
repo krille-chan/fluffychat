@@ -35,7 +35,7 @@
 			<string>im.fluffychat.app.uris</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ShareMedia</string>
+				<string>ShareMedia-$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 				<string>im.fluffychat</string>
 				<string>matrix</string>
 			</array>

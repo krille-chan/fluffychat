@@ -90,6 +90,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                     width: 128,
                     height: 128,
                     animated: true,
+                    isThumbnail: false,
                   ),
                 ),
               );
@@ -115,7 +116,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                 child: TextField(
                   autofocus: false,
                   decoration: InputDecoration(
-                    hintText: L10n.of(context)!.search,
+                    hintText: L10n.of(context).search,
                     prefixIcon: const Icon(Icons.search_outlined),
                     contentPadding: EdgeInsets.zero,
                   ),
@@ -129,7 +130,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(L10n.of(context)!.noEmotesFound),
+                      Text(L10n.of(context).noEmotesFound),
                       // #Pangea
                       // const SizedBox(height: 12),
                       // OutlinedButton.icon(
@@ -138,7 +139,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                       //     'https://matrix.to/#/#fluffychat-stickers:janian.de',
                       //   ).launchUrl(),
                       //   icon: const Icon(Icons.explore_outlined),
-                      //   label: Text(L10n.of(context)!.discover),
+                      //   label: Text(L10n.of(context).discover),
                       // ),
                       // Pangea#
                     ],

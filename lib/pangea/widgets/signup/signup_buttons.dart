@@ -1,18 +1,16 @@
 import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:matrix/matrix.dart';
 
 class SignupButtons extends StatefulWidget {
   const SignupButtons({super.key});
@@ -29,17 +27,17 @@ class SignupButtonsState extends State<SignupButtons> {
         ? ImageSource.gallery
         : await showModalActionSheet<ImageSource>(
             context: context,
-            title: L10n.of(context)!.changeYourAvatar,
+            title: L10n.of(context).changeYourAvatar,
             actions: [
               SheetAction(
                 key: ImageSource.camera,
-                label: L10n.of(context)!.openCamera,
+                label: L10n.of(context).openCamera,
                 isDefaultAction: true,
                 icon: Icons.camera_alt_outlined,
               ),
               SheetAction(
                 key: ImageSource.gallery,
-                label: L10n.of(context)!.openGallery,
+                label: L10n.of(context).openGallery,
                 icon: Icons.photo_outlined,
               ),
             ],
@@ -65,7 +63,7 @@ class SignupButtonsState extends State<SignupButtons> {
         usernameController.text.toLowerCase().replaceAll(' ', '_');
     if (localpart.isEmpty) {
       setState(() {
-        signupError = L10n.of(context)!.pleaseChooseAUsername;
+        signupError = L10n.of(context).pleaseChooseAUsername;
       });
       return;
     }
@@ -158,7 +156,7 @@ class SignupButtonsState extends State<SignupButtons> {
             onSubmitted: (_) => signUp(),
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.account_box_outlined),
-              hintText: L10n.of(context)!.chooseAUsername,
+              hintText: L10n.of(context).chooseAUsername,
               errorText: signupError,
               errorStyle: TextStyle(
                 color: Theme.of(context).textTheme.bodyMedium?.color,
@@ -181,7 +179,7 @@ class SignupButtonsState extends State<SignupButtons> {
                   const PangeaLogoSvg(width: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(L10n.of(context)!.signUp),
+                    child: Text(L10n.of(context).signUp),
                   ),
                 ],
               ),
@@ -201,7 +199,7 @@ class SignupButtonsState extends State<SignupButtons> {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
-                  L10n.of(context)!.or,
+                  L10n.of(context).or,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,

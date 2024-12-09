@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'settings_3pid_view.dart';
 
@@ -22,12 +22,12 @@ class Settings3PidController extends State<Settings3Pid> {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.enterAnEmailAddress,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).enterAnEmailAddress,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
-          hintText: L10n.of(context)!.enterAnEmailAddress,
+          hintText: L10n.of(context).enterAnEmailAddress,
           keyboardType: TextInputType.emailAddress,
         ),
       ],
@@ -46,13 +46,14 @@ class Settings3PidController extends State<Settings3Pid> {
     final ok = await showOkAlertDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.weSentYouAnEmail,
-      message: L10n.of(context)!.pleaseClickOnLink,
-      okLabel: L10n.of(context)!.iHaveClickedOnLink,
+      title: L10n.of(context).weSentYouAnEmail,
+      message: L10n.of(context).pleaseClickOnLink,
+      okLabel: L10n.of(context).iHaveClickedOnLink,
     );
     if (ok != OkCancelResult.ok) return;
     final success = await showFutureLoadingDialog(
       context: context,
+      delay: false,
       future: () => Matrix.of(context).client.uiaRequestBackground(
             (auth) => Matrix.of(context).client.add3PID(
                   clientSecret,
@@ -71,9 +72,9 @@ class Settings3PidController extends State<Settings3Pid> {
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
+          title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
         ) !=
         OkCancelResult.ok) {
       return;

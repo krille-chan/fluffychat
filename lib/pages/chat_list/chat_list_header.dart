@@ -39,7 +39,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       // leading: selectMode == SelectMode.normal
       //     ? null
       //     : IconButton(
-      //         tooltip: L10n.of(context)!.cancel,
+      //         tooltip: L10n.of(context).cancel,
       //         icon: const Icon(Icons.close_outlined),
       //         onPressed: controller.cancelAction,
       //         color: theme.colorScheme.primary,
@@ -49,13 +49,12 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
           // #Pangea
           // selectMode == SelectMode.share
           //     ? Text(
-          //         L10n.of(context)!.share,
+          //         L10n.of(context).share,
           //         key: const ValueKey(SelectMode.share),
           //       )
-          //     :
-          // Pangea#
           Column(
         children: [
+          // Pangea#
           TextField(
             controller: controller.searchController,
             focusNode: controller.searchFocusNode,
@@ -72,7 +71,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 borderRadius: BorderRadius.circular(99),
               ),
               contentPadding: EdgeInsets.zero,
-              hintText: L10n.of(context)!.searchChatsRooms,
+              hintText: L10n.of(context).searchChatsRooms,
               hintStyle: TextStyle(
                 color: theme.colorScheme.onPrimaryContainer,
                 fontWeight: FontWeight.normal,
@@ -80,7 +79,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
               floatingLabelBehavior: FloatingLabelBehavior.never,
               prefixIcon: controller.isSearchMode
                   ? IconButton(
-                      tooltip: L10n.of(context)!.cancel,
+                      tooltip: L10n.of(context).cancel,
                       icon: const Icon(Icons.close_outlined),
                       onPressed: controller.cancelSearch,
                       color: theme.colorScheme.onPrimaryContainer,
@@ -109,11 +108,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                       // #Pangea
                       : const SizedBox(
                           width: 0,
-                          child: ClientChooserButton(
-                              // #Pangea
-                              // controller
-                              // Pangea#
-                              ),
+                          child: ClientChooserButton(),
                         )
                   // : TextButton.icon(
                   //     onPressed: controller.setServer,
@@ -130,7 +125,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   //       maxLines: 2,
                   //     ),
                   //   )
-                  // Pangea#
+                  // #Pangea
                   : const SizedBox(
                       width: 0,
                       child: ClientChooserButton(
@@ -141,11 +136,13 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     ),
             ),
           ),
+          // #Pangea
           if (!controller.isSearchMode)
             const Padding(
               padding: EdgeInsets.only(top: 16.0),
               child: LearningProgressIndicators(),
             ),
+          // Pangea#
         ],
       ),
       // #Pangea

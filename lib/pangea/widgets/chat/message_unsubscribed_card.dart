@@ -24,7 +24,7 @@ class MessageUnsubscribedCard extends StatelessWidget {
         children: [
           Text(
             style: BotStyle.text(context),
-            L10n.of(context)!.subscribedToUnlockTools,
+            L10n.of(context).subscribedToUnlockTools,
             textAlign: TextAlign.center,
           ),
           if (inTrialWindow) ...[
@@ -42,7 +42,7 @@ class MessageUnsubscribedCard extends StatelessWidget {
                     (AppConfig.primaryColor).withOpacity(0.1),
                   ),
                 ),
-                child: Text(L10n.of(context)!.activateTrial),
+                child: Text(L10n.of(context).activateTrial),
               ),
             ),
           ],
@@ -60,7 +60,7 @@ class MessageUnsubscribedCard extends StatelessWidget {
                   (AppConfig.primaryColor).withOpacity(0.1),
                 ),
               ),
-              child: Text(L10n.of(context)!.getAccess),
+              child: Text(L10n.of(context).getAccess),
             ),
           ),
         ],

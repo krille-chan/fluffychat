@@ -12,12 +12,12 @@ import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -34,19 +34,19 @@ class PangeaChatDetailsView extends StatelessWidget {
 
     final type = await showConfirmationDialog(
       context: context,
-      title: L10n.of(context)!.downloadGroupText,
+      title: L10n.of(context).downloadGroupText,
       actions: [
         AlertDialogAction(
           key: DownloadType.csv,
-          label: L10n.of(context)!.downloadCSVFile,
+          label: L10n.of(context).downloadCSVFile,
         ),
         AlertDialogAction(
           key: DownloadType.txt,
-          label: L10n.of(context)!.downloadTxtFile,
+          label: L10n.of(context).downloadTxtFile,
         ),
         AlertDialogAction(
           key: DownloadType.xlsx,
-          label: L10n.of(context)!.downloadXLSXFile,
+          label: L10n.of(context).downloadXLSXFile,
         ),
       ],
     );
@@ -62,10 +62,10 @@ class PangeaChatDetailsView extends StatelessWidget {
     if (room == null || room.membership == Membership.leave) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(L10n.of(context)!.oopsSomethingWentWrong),
+          title: Text(L10n.of(context).oopsSomethingWentWrong),
         ),
         body: Center(
-          child: Text(L10n.of(context)!.youAreNoLongerParticipatingInThisChat),
+          child: Text(L10n.of(context).youAreNoLongerParticipatingInThisChat),
         ),
       );
     }
@@ -84,7 +84,7 @@ class PangeaChatDetailsView extends StatelessWidget {
         final canRequestMoreMembers = members.length < actualMembersCount;
         final iconColor = theme.textTheme.bodyLarge!.color;
         final displayname = room.getLocalizedDisplayname(
-          MatrixLocals(L10n.of(context)!),
+          MatrixLocals(L10n.of(context)),
         );
         return Scaffold(
           appBar: AppBar(
@@ -175,7 +175,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                                     ),
                                     label: Text(
                                       room.isDirectChat
-                                          ? L10n.of(context)!.directChat
+                                          ? L10n.of(context).directChat
                                           : displayname,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -197,7 +197,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                                           theme.colorScheme.secondary,
                                     ),
                                     label: Text(
-                                      L10n.of(context)!.countParticipants(
+                                      L10n.of(context).countParticipants(
                                         actualMembersCount,
                                       ),
                                       maxLines: 1,
@@ -230,7 +230,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                               ),
                               child: SelectableLinkify(
                                 text: room.topic.isEmpty
-                                    ? L10n.of(context)!.noChatDescriptionYet
+                                    ? L10n.of(context).noChatDescriptionYet
                                     : room.topic,
                                 options: const LinkifyOptions(humanize: false),
                                 linkStyle: const TextStyle(
@@ -263,7 +263,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                         if (room.canInvite && !room.isDirectChat)
                           ListTile(
                             title: Text(
-                              L10n.of(context)!.inviteStudentByUserName,
+                              L10n.of(context).inviteStudentByUserName,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
@@ -291,14 +291,14 @@ class PangeaChatDetailsView extends StatelessWidget {
                         if (isGroupChat && room.isRoomAdmin)
                           ListTile(
                             title: Text(
-                              L10n.of(context)!.editChatPermissions,
+                              L10n.of(context).editChatPermissions,
                               style: TextStyle(
                                 color: theme.colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             subtitle: Text(
-                              L10n.of(context)!.whoCanPerformWhichAction,
+                              L10n.of(context).whoCanPerformWhichAction,
                             ),
                             leading: CircleAvatar(
                               backgroundColor: theme.scaffoldBackgroundColor,
@@ -334,7 +334,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                         if (isGroupChat)
                           ListTile(
                             title: Text(
-                              L10n.of(context)!.downloadGroupText,
+                              L10n.of(context).downloadGroupText,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
@@ -356,8 +356,8 @@ class PangeaChatDetailsView extends StatelessWidget {
                           ListTile(
                             title: Text(
                               room.pushRuleState == PushRuleState.notify
-                                  ? L10n.of(context)!.notificationsOn
-                                  : L10n.of(context)!.notificationsOff,
+                                  ? L10n.of(context).notificationsOn
+                                  : L10n.of(context).notificationsOff,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
@@ -379,7 +379,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                           Divider(color: theme.dividerColor, height: 1),
                         ListTile(
                           title: Text(
-                            L10n.of(context)!.leave,
+                            L10n.of(context).leave,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.secondary,
                               fontWeight: FontWeight.bold,
@@ -403,12 +403,12 @@ class PangeaChatDetailsView extends StatelessWidget {
                               confirmed = await showOkCancelAlertDialog(
                                 useRootNavigator: false,
                                 context: context,
-                                title: L10n.of(context)!.areYouSure,
-                                okLabel: L10n.of(context)!.ok,
-                                cancelLabel: L10n.of(context)!.cancel,
+                                title: L10n.of(context).areYouSure,
+                                okLabel: L10n.of(context).ok,
+                                cancelLabel: L10n.of(context).cancel,
                                 message: onlyAdmin
-                                    ? L10n.of(context)!.onlyAdminDescription
-                                    : L10n.of(context)!.leaveRoomDescription,
+                                    ? L10n.of(context).onlyAdminDescription
+                                    : L10n.of(context).leaveRoomDescription,
                               );
                             }
                             if (confirmed == OkCancelResult.ok) {
@@ -443,7 +443,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                         Divider(color: theme.dividerColor, height: 1),
                         ListTile(
                           title: Text(
-                            L10n.of(context)!.countParticipants(
+                            L10n.of(context).countParticipants(
                               actualMembersCount.toString(),
                             ),
                             style: TextStyle(
@@ -458,7 +458,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                       ? ParticipantListItem(members[i - 1])
                       : ListTile(
                           title: Text(
-                            L10n.of(context)!.loadCountMoreParticipants(
+                            L10n.of(context).loadCountMoreParticipants(
                               (actualMembersCount - members.length).toString(),
                             ),
                           ),

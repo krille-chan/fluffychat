@@ -31,7 +31,7 @@ class OverlayHeader extends StatelessWidget {
         children: [
           IconButton(
             icon: const Icon(Symbols.forward),
-            tooltip: L10n.of(context)!.forward,
+            tooltip: L10n.of(context).forward,
             onPressed: controller.forwardEventsAction,
             color: Theme.of(context).colorScheme.primary,
           ),
@@ -39,7 +39,7 @@ class OverlayHeader extends StatelessWidget {
               controller.selectedEvents.single.messageType == MessageTypes.Text)
             IconButton(
               icon: const Icon(Icons.copy_outlined),
-              tooltip: L10n.of(context)!.copy,
+              tooltip: L10n.of(context).copy,
               onPressed: controller.copyEventsAction,
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -47,34 +47,34 @@ class OverlayHeader extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.push_pin_outlined),
               onPressed: controller.pinEvent,
-              tooltip: L10n.of(context)!.pinMessage,
+              tooltip: L10n.of(context).pinMessage,
               color: Theme.of(context).colorScheme.primary,
             ),
           if (controller.canEditSelectedEvents)
             IconButton(
               icon: const Icon(Icons.edit_outlined),
-              tooltip: L10n.of(context)!.edit,
+              tooltip: L10n.of(context).edit,
               onPressed: controller.editSelectedEventAction,
               color: Theme.of(context).colorScheme.primary,
             ),
           if (controller.canRedactSelectedEvents)
             IconButton(
               icon: const Icon(Icons.delete_outlined),
-              tooltip: L10n.of(context)!.redactMessage,
+              tooltip: L10n.of(context).redactMessage,
               onPressed: controller.redactEventsAction,
               color: Theme.of(context).colorScheme.primary,
             ),
           if (controller.selectedEvents.length == 1)
             IconButton(
               icon: const Icon(Icons.shield_outlined),
-              tooltip: L10n.of(context)!.reportMessage,
+              tooltip: L10n.of(context).reportMessage,
               onPressed: controller.reportEventAction,
               color: Theme.of(context).colorScheme.primary,
             ),
           if (controller.selectedEvents.length == 1)
             IconButton(
               icon: const Icon(Icons.info_outlined),
-              tooltip: L10n.of(context)!.messageInfo,
+              tooltip: L10n.of(context).messageInfo,
               color: Theme.of(context).colorScheme.primary,
               onPressed: () {
                 controller.showEventInfo();

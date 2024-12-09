@@ -111,9 +111,9 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
     } catch (err) {
       showOkAlertDialog(
         context: context,
-        title: L10n.of(context)!.oopsSomethingWentWrong,
-        message: L10n.of(context)!.errorPleaseRefresh,
-        okLabel: L10n.of(context)!.close,
+        title: L10n.of(context).oopsSomethingWentWrong,
+        message: L10n.of(context).errorPleaseRefresh,
+        okLabel: L10n.of(context).close,
       );
     }
   }

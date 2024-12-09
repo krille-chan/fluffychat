@@ -395,20 +395,20 @@ class SubscriptionDetails {
   bool get isTrial => periodType == SubscriptionPeriodType.trial;
 
   String displayPrice(BuildContext context) => isTrial || price <= 0
-      ? L10n.of(context)!.freeTrial
+      ? L10n.of(context).freeTrial
       : "\$${price.toStringAsFixed(2)}";
 
   String displayName(BuildContext context) {
     if (isTrial) {
-      return L10n.of(context)!.oneWeekTrial;
+      return L10n.of(context).oneWeekTrial;
     }
     switch (duration) {
       case (SubscriptionDuration.month):
-        return L10n.of(context)!.monthlySubscription;
+        return L10n.of(context).monthlySubscription;
       case (SubscriptionDuration.year):
-        return L10n.of(context)!.yearlySubscription;
+        return L10n.of(context).yearlySubscription;
       default:
-        return L10n.of(context)!.defaultSubscription;
+        return L10n.of(context).defaultSubscription;
     }
   }
 

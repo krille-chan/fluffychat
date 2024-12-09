@@ -60,7 +60,7 @@ class OverlayMessageTextState extends State<OverlayMessageText> {
     if (_tokens == null || _tokens!.isEmpty) {
       return Text(
         widget.pangeaMessageEvent.event.calcLocalizedBodyFallback(
-          MatrixLocals(L10n.of(context)!),
+          MatrixLocals(L10n.of(context)),
           hideReply: true,
         ),
         style: style,

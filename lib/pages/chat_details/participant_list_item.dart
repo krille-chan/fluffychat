@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -16,17 +17,17 @@ class ParticipantListItem extends StatelessWidget {
     final theme = Theme.of(context);
 
     final membershipBatch = switch (user.membership) {
-      Membership.ban => L10n.of(context)!.banned,
-      Membership.invite => L10n.of(context)!.invited,
+      Membership.ban => L10n.of(context).banned,
+      Membership.invite => L10n.of(context).invited,
       Membership.join => null,
-      Membership.knock => L10n.of(context)!.knocking,
-      Membership.leave => L10n.of(context)!.leftTheChat,
+      Membership.knock => L10n.of(context).knocking,
+      Membership.leave => L10n.of(context).leftTheChat,
     };
 
-    final permissionBatch = user.powerLevel == 100
-        ? L10n.of(context)!.admin
+    final permissionBatch = user.powerLevel >= 100
+        ? L10n.of(context).admin
         : user.powerLevel >= 50
-            ? L10n.of(context)!.moderator
+            ? L10n.of(context).moderator
             : '';
 
     return Opacity(
@@ -50,30 +51,24 @@ class ParticipantListItem extends StatelessWidget {
             if (permissionBatch.isNotEmpty)
               Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 4,
-                  vertical: 2,
+                  horizontal: 12,
+                  vertical: 6,
                 ),
-                margin: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
-                  // #Pangea
-                  // color: theme.colorScheme.primaryContainer,
-                  color: theme.secondaryHeaderColor,
-                  // Pangea#
-                  borderRadius: BorderRadius.circular(8),
-                  // #Pangea
-                  // border: Border.all(
-                  //   color: theme.colorScheme.primary,
-                  // ),
-                  // Pangea#
+                  color: user.powerLevel >= 100
+                      ? theme.colorScheme.tertiary
+                      : theme.colorScheme.tertiaryContainer,
+                  borderRadius: BorderRadius.circular(
+                    AppConfig.borderRadius,
+                  ),
                 ),
                 child: Text(
                   permissionBatch,
-                  // #Pangea
-                  // style: TextStyle(
-                  //   fontSize: 14,
-                  //   color: theme.colorScheme.primary,
-                  // ),
-                  // Pangea#
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: user.powerLevel >= 100
+                        ? theme.colorScheme.onTertiary
+                        : theme.colorScheme.onTertiaryContainer,
+                  ),
                 ),
               ),
             membershipBatch == null
@@ -85,7 +80,12 @@ class ParticipantListItem extends StatelessWidget {
                       color: theme.secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Center(child: Text(membershipBatch)),
+                    child: Center(
+                      child: Text(
+                        membershipBatch,
+                        style: theme.textTheme.labelSmall,
+                      ),
+                    ),
                   ),
           ],
         ),

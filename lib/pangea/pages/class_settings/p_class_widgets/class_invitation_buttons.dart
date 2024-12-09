@@ -20,17 +20,17 @@ class ClassInvitationButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Room? room = Matrix.of(context).client.getRoomById(roomId);
-    if (room == null) return Text(L10n.of(context)!.oopsSomethingWentWrong);
+    if (room == null) return Text(L10n.of(context).oopsSomethingWentWrong);
 
     final copyClassLinkListTile = ListTile(
       title: Text(
-        L10n.of(context)!.copyClassLink,
+        L10n.of(context).copyClassLink,
         style: TextStyle(
           color: Theme.of(context).colorScheme.secondary,
           fontWeight: FontWeight.bold,
         ),
       ),
-      subtitle: Text(L10n.of(context)!.copyClassLinkDesc),
+      subtitle: Text(L10n.of(context).copyClassLinkDesc),
       leading: CircleAvatar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
@@ -50,13 +50,13 @@ class ClassInvitationButtons extends StatelessWidget {
 
     final copyCodeListTile = ListTile(
       title: Text(
-        "${L10n.of(context)!.copyClassCode}: ${room.classCode}",
+        "${L10n.of(context).copyClassCode}: ${room.classCode}",
         style: TextStyle(
           color: Theme.of(context).colorScheme.secondary,
           fontWeight: FontWeight.bold,
         ),
       ),
-      subtitle: Text(L10n.of(context)!.copyClassCodeDesc),
+      subtitle: Text(L10n.of(context).copyClassCodeDesc),
       leading: CircleAvatar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
@@ -69,7 +69,7 @@ class ClassInvitationButtons extends StatelessWidget {
         //PTODO - explore using Fluffyshare for this
         await Clipboard.setData(ClipboardData(text: room.classCode));
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.copiedToClipboard)),
+          SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
         );
       },
     );
@@ -93,13 +93,13 @@ class ClassInvitationButtons extends StatelessWidget {
     //   enabled: false,
     //   //PTODO - add to copy
     //   title: Text(
-    //     L10n.of(context)!.addFromGoogleClassroom,
+    //     L10n.of(context).addFromGoogleClassroom,
     //     style: TextStyle(
     //       color: Theme.of(context).colorScheme.secondary,
     //       fontWeight: FontWeight.bold,
     //     ),
     //   ),
-    //   subtitle: Text(L10n.of(context)!.addFromGoogleClassroomDesc),
+    //   subtitle: Text(L10n.of(context).addFromGoogleClassroomDesc),
     //   leading: CircleAvatar(
     //     backgroundColor: Theme.of(context).primaryColor,
     //     foregroundColor: Colors.white,
@@ -116,13 +116,13 @@ class ClassInvitationButtons extends StatelessWidget {
 
     final inviteStudentByUserNameTile = ListTile(
       title: Text(
-        L10n.of(context)!.inviteStudentByUserName,
+        L10n.of(context).inviteStudentByUserName,
         style: TextStyle(
           color: Theme.of(context).colorScheme.secondary,
           fontWeight: FontWeight.bold,
         ),
       ),
-      subtitle: Text(L10n.of(context)!.inviteStudentByUserNameDesc),
+      subtitle: Text(L10n.of(context).inviteStudentByUserNameDesc),
       leading: CircleAvatar(
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Colors.white,

@@ -1180,7 +1180,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openCamera": "Ava kaamera",
+  "openCamera": "Pildista",
   "@openCamera": {
     "type": "text",
     "placeholders": {}
@@ -1981,7 +1981,7 @@
     "type": "text",
     "description": "Usage hint for the command /create"
   },
-  "openVideoCamera": "Video salvestamiseks ava kaamera",
+  "openVideoCamera": "Tee video",
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
@@ -2271,7 +2271,7 @@
   "@noOtherDevicesFound": {},
   "noBackupWarning": "Hoiatus! Kui sa ei lülita sisse vestluse varundust, siis sul puudub hiljem ligipääs krüptitud sõnumitele. Me tungivalt soovitame, et palun lülita vestluse varundamine sisse enne väljalogimist.",
   "@noBackupWarning": {},
-  "fileIsTooBigForServer": "Serveri seadistuste alusel on see fail saatmiseks liiga suur.",
+  "fileIsTooBigForServer": "Saatmine ei õnnestu! Serveri vaid kuni {max} suurusega manuseid.",
   "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "Fail on salvestatud kausta: {path}",
   "@fileHasBeenSavedAt": {
@@ -2799,5 +2799,91 @@
   "discoverHomeservers": "Leia koduservereid",
   "@discoverHomeservers": {},
   "whatIsAHomeserver": "Mis on koduserver?",
-  "@whatIsAHomeserver": {}
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Sarnaselt e-postiteenuse pakkujale on kõik sinu sõnumid salvestatud koduserveris. Sa võid valida sellise koduserveri, nagu sulle meeldib ja nad kõik suudavad teiste koduserveritega suhelda. Lisateavet leiad veebisaidist https://matrix.org.",
+  "@homeserverDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "Ei tundu olema ühilduv koduserver. Kas võrguaadress on ikka õige?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "prepareSendingAttachment": "Valmistume manuse saatmiseks...",
+  "@prepareSendingAttachment": {},
+  "generatingVideoThumbnail": "Loome video pisipilti...",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "Pakime videot väiksemaks...",
+  "@compressVideo": {},
+  "sendingAttachmentCountOfCount": "Saadame manust: {index} pikkusega {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "Serveri poolt lubatud ülempiir on käes. Ootame {seconds} sekundit...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "sendingAttachment": "Saadame manust...",
+  "@sendingAttachment": {},
+  "calculatingFileSize": "Arvutame faili suurust...",
+  "@calculatingFileSize": {},
+  "oneOfYourDevicesIsNotVerified": "Üks sinu seadmetest pole verifitseeritud",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Märkus: kui liidad kõik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud.",
+  "@noticeChatBackupDeviceVerification": {},
+  "continueText": "Jätka",
+  "@continueText": {},
+  "welcomeText": "Tere, tere 👋 See on FluffyChat. Sa võid sisse logida igasse koduserverisse, mis ühildub https://matrix.org serveriga. Ja seejärel saad suhelda kõigiga. Tegemist on ikka väga suure detsentraliseeritud sõnumivõrguga!",
+  "@welcomeText": {},
+  "setWallpaper": "Määra taustapildiks",
+  "@setWallpaper": {},
+  "manageAccount": "Halda kasutajakontot",
+  "@manageAccount": {},
+  "blur": "Hägusus:",
+  "@blur": {},
+  "opacity": "Läbipaistmatus:",
+  "@opacity": {},
+  "contactServerSecurity": "Võta ühendust serveri andmeturbe eest vastutajaga",
+  "@contactServerSecurity": {},
+  "supportPage": "Kasutajatugi",
+  "@supportPage": {},
+  "serverInformation": "Serveri teave:",
+  "@serverInformation": {},
+  "name": "Nimi",
+  "@name": {},
+  "version": "Versioon",
+  "@version": {},
+  "noContactInformationProvided": "Server ei jaga asjakohast kontaktteavet",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "Võta ühendust serveri haldajaga",
+  "@contactServerAdmin": {},
+  "website": "Veebisait",
+  "@website": {},
+  "aboutHomeserver": "Koduserveri teave: {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "compressBeforeSending": "Paki enne saatmist kokku",
+  "@compressBeforeSending": {},
+  "pleaseFillOut": "Palun täida",
+  "@pleaseFillOut": {},
+  "invalidUrl": "Vigane võrguaadress",
+  "@invalidUrl": {},
+  "addLink": "Lisa link",
+  "@addLink": {},
+  "strikeThrough": "Läbikriipsutatud kiri",
+  "@strikeThrough": {},
+  "sendUncompressed": "Saada pakkimata kujul",
+  "@sendUncompressed": {},
+  "boldText": "Paks kiri",
+  "@boldText": {},
+  "italicText": "Kaldkiri",
+  "@italicText": {},
+  "unableToJoinChat": "Vestlusega liitumine ei õnnestu. Võib-olla on teine osapool juba vestluse sulgenud.",
+  "@unableToJoinChat": {}
 }

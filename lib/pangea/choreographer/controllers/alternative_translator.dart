@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
@@ -111,38 +108,35 @@ class AlternativeTranslator {
   }
 
   String translationFeedback(BuildContext context) {
-    if (L10n.of(context) == null) {
-      debugger(when: kDebugMode);
-    }
     switch (translationFeedbackKey) {
       case FeedbackKey.allCorrect:
-        return "Match: 100%\n${L10n.of(context)!.allCorrect}";
+        return "Match: 100%\n${L10n.of(context).allCorrect}";
       case FeedbackKey.newWayAllGood:
-        return "Match: 100%\n${L10n.of(context)!.newWayAllGood}";
+        return "Match: 100%\n${L10n.of(context).newWayAllGood}";
       case FeedbackKey.othersAreBetter:
         final num userScore =
             (similarityResponse!.userScore(userTranslation!) * 100).round();
         final String displayScore = userScore.toString();
         if (userScore > 90) {
-          return "Match: $displayScore%\n${L10n.of(context)!.almostPerfect}";
+          return "Match: $displayScore%\n${L10n.of(context).almostPerfect}";
         }
         if (userScore > 80) {
-          return "Match: $displayScore%\n${L10n.of(context)!.prettyGood}";
+          return "Match: $displayScore%\n${L10n.of(context).prettyGood}";
         }
-        return "Match: $displayScore%\n${L10n.of(context)!.othersAreBetter}";
+        return "Match: $displayScore%\n${L10n.of(context).othersAreBetter}";
       // case FeedbackKey.commonalityFeedback:
       //     final int count = controller.completedITSteps
       //   .where((element) => element.isCorrect)
       //   .toList()
       //   .length;
       // final int total = controller.completedITSteps.length;
-      //     return L10n.of(context)!.commonalityFeedback(count,total);
+      //     return L10n.of(context).commonalityFeedback(count,total);
       case FeedbackKey.loadingPleaseWait:
-        return L10n.of(context)!.letMeThink;
+        return L10n.of(context).letMeThink;
       case FeedbackKey.allDone:
-        return L10n.of(context)!.allDone;
+        return L10n.of(context).allDone;
       default:
-        return L10n.of(context)!.loadingPleaseWait;
+        return L10n.of(context).loadingPleaseWait;
     }
   }
 }

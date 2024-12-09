@@ -13,7 +13,7 @@ class AddWidgetTileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: Text(L10n.of(context)!.addWidget),
+      title: Text(L10n.of(context).addWidget),
       leading: const Icon(Icons.add),
       initiallyExpanded: controller.initiallyExpanded,
       children: [
@@ -21,10 +21,10 @@ class AddWidgetTileView extends StatelessWidget {
           groupValue: controller.widgetType,
           padding: const EdgeInsets.all(8),
           children: {
-            'm.etherpad': Text(L10n.of(context)!.widgetEtherpad),
-            'm.jitsi': Text(L10n.of(context)!.widgetJitsi),
-            'm.video': Text(L10n.of(context)!.widgetVideo),
-            'm.custom': Text(L10n.of(context)!.widgetCustom),
+            'm.etherpad': Text(L10n.of(context).widgetEtherpad),
+            'm.jitsi': Text(L10n.of(context).widgetJitsi),
+            'm.video': Text(L10n.of(context).widgetVideo),
+            'm.custom': Text(L10n.of(context).widgetCustom),
           }.map(
             (key, value) => MapEntry(
               key,
@@ -43,7 +43,7 @@ class AddWidgetTileView extends StatelessWidget {
             autofocus: true,
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.label),
-              label: Text(L10n.of(context)!.widgetName),
+              label: Text(L10n.of(context).widgetName),
               errorText: controller.nameError,
             ),
           ),
@@ -54,7 +54,7 @@ class AddWidgetTileView extends StatelessWidget {
             controller: controller.urlController,
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.add_link),
-              label: Text(L10n.of(context)!.link),
+              label: Text(L10n.of(context).link),
               errorText: controller.urlError,
             ),
           ),
@@ -63,7 +63,7 @@ class AddWidgetTileView extends StatelessWidget {
           children: [
             TextButton(
               onPressed: controller.addWidget,
-              child: Text(L10n.of(context)!.addWidget),
+              child: Text(L10n.of(context).addWidget),
             ),
           ],
         ),

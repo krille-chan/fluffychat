@@ -83,7 +83,7 @@ class LanguageModel {
 
   static LanguageModel multiLingual([BuildContext? context]) => LanguageModel(
         displayName: context != null
-            ? L10n.of(context)!.multiLingualSpace
+            ? L10n.of(context).multiLingualSpace
             : "Multilingual Space",
         l1: false,
         langCode: LanguageKeys.multiLanguage,
@@ -94,391 +94,391 @@ class LanguageModel {
   String? getDisplayName(BuildContext context) {
     switch (langCode) {
       case 'ab':
-        return L10n.of(context)!.abDisplayName;
+        return L10n.of(context).abDisplayName;
       case 'aa':
-        return L10n.of(context)!.aaDisplayName;
+        return L10n.of(context).aaDisplayName;
       case 'af':
-        return L10n.of(context)!.afDisplayName;
+        return L10n.of(context).afDisplayName;
       case 'ak':
-        return L10n.of(context)!.akDisplayName;
+        return L10n.of(context).akDisplayName;
       case 'sq':
-        return L10n.of(context)!.sqDisplayName;
+        return L10n.of(context).sqDisplayName;
       case 'am':
-        return L10n.of(context)!.amDisplayName;
+        return L10n.of(context).amDisplayName;
       case 'ar':
-        return L10n.of(context)!.arDisplayName;
+        return L10n.of(context).arDisplayName;
       case 'an':
-        return L10n.of(context)!.anDisplayName;
+        return L10n.of(context).anDisplayName;
       case 'hy':
-        return L10n.of(context)!.hyDisplayName;
+        return L10n.of(context).hyDisplayName;
       case 'as':
-        return L10n.of(context)!.asDisplayName;
+        return L10n.of(context).asDisplayName;
       case 'av':
-        return L10n.of(context)!.avDisplayName;
+        return L10n.of(context).avDisplayName;
       case 'ae':
-        return L10n.of(context)!.aeDisplayName;
+        return L10n.of(context).aeDisplayName;
       case 'ay':
-        return L10n.of(context)!.ayDisplayName;
+        return L10n.of(context).ayDisplayName;
       case 'az':
-        return L10n.of(context)!.azDisplayName;
+        return L10n.of(context).azDisplayName;
       case 'bm':
-        return L10n.of(context)!.bmDisplayName;
+        return L10n.of(context).bmDisplayName;
       case 'ba':
-        return L10n.of(context)!.baDisplayName;
+        return L10n.of(context).baDisplayName;
       case 'eu':
-        return L10n.of(context)!.euDisplayName;
+        return L10n.of(context).euDisplayName;
       case 'be':
-        return L10n.of(context)!.beDisplayName;
+        return L10n.of(context).beDisplayName;
       case 'bn':
-        return L10n.of(context)!.bnDisplayName;
+        return L10n.of(context).bnDisplayName;
       case 'bh':
-        return L10n.of(context)!.bhDisplayName;
+        return L10n.of(context).bhDisplayName;
       case 'bi':
-        return L10n.of(context)!.biDisplayName;
+        return L10n.of(context).biDisplayName;
       case 'bs':
-        return L10n.of(context)!.bsDisplayName;
+        return L10n.of(context).bsDisplayName;
       case 'br':
-        return L10n.of(context)!.brDisplayName;
+        return L10n.of(context).brDisplayName;
       case 'bg':
-        return L10n.of(context)!.bgDisplayName;
+        return L10n.of(context).bgDisplayName;
       case 'my':
-        return L10n.of(context)!.myDisplayName;
+        return L10n.of(context).myDisplayName;
       case 'ca':
-        return L10n.of(context)!.caDisplayName;
+        return L10n.of(context).caDisplayName;
       case 'ch':
-        return L10n.of(context)!.chDisplayName;
+        return L10n.of(context).chDisplayName;
       case 'ce':
-        return L10n.of(context)!.ceDisplayName;
+        return L10n.of(context).ceDisplayName;
       case 'ny':
-        return L10n.of(context)!.nyDisplayName;
+        return L10n.of(context).nyDisplayName;
       case 'zh':
-        return L10n.of(context)!.zhDisplayName;
+        return L10n.of(context).zhDisplayName;
       case 'cv':
-        return L10n.of(context)!.cvDisplayName;
+        return L10n.of(context).cvDisplayName;
       case 'kw':
-        return L10n.of(context)!.kwDisplayName;
+        return L10n.of(context).kwDisplayName;
       case 'co':
-        return L10n.of(context)!.coDisplayName;
+        return L10n.of(context).coDisplayName;
       case 'cr':
-        return L10n.of(context)!.crDisplayName;
+        return L10n.of(context).crDisplayName;
       case 'hr':
-        return L10n.of(context)!.hrDisplayName;
+        return L10n.of(context).hrDisplayName;
       case 'cs':
-        return L10n.of(context)!.csDisplayName;
+        return L10n.of(context).csDisplayName;
       case 'da':
-        return L10n.of(context)!.daDisplayName;
+        return L10n.of(context).daDisplayName;
       case 'dv':
-        return L10n.of(context)!.dvDisplayName;
+        return L10n.of(context).dvDisplayName;
       case 'nl':
-        return L10n.of(context)!.nlDisplayName;
+        return L10n.of(context).nlDisplayName;
       case 'en':
-        return L10n.of(context)!.enDisplayName;
+        return L10n.of(context).enDisplayName;
       case 'eo':
-        return L10n.of(context)!.eoDisplayName;
+        return L10n.of(context).eoDisplayName;
       case 'et':
-        return L10n.of(context)!.etDisplayName;
+        return L10n.of(context).etDisplayName;
       case 'ee':
-        return L10n.of(context)!.eeDisplayName;
+        return L10n.of(context).eeDisplayName;
       case 'fo':
-        return L10n.of(context)!.foDisplayName;
+        return L10n.of(context).foDisplayName;
       case 'fj':
-        return L10n.of(context)!.fjDisplayName;
+        return L10n.of(context).fjDisplayName;
       case 'fi':
-        return L10n.of(context)!.fiDisplayName;
+        return L10n.of(context).fiDisplayName;
       case 'fr':
-        return L10n.of(context)!.frDisplayName;
+        return L10n.of(context).frDisplayName;
       case 'ff':
-        return L10n.of(context)!.ffDisplayName;
+        return L10n.of(context).ffDisplayName;
       case 'gl':
-        return L10n.of(context)!.glDisplayName;
+        return L10n.of(context).glDisplayName;
       case 'ka':
-        return L10n.of(context)!.kaDisplayName;
+        return L10n.of(context).kaDisplayName;
       case 'de':
-        return L10n.of(context)!.deDisplayName;
+        return L10n.of(context).deDisplayName;
       case 'el':
-        return L10n.of(context)!.elDisplayName;
+        return L10n.of(context).elDisplayName;
       case 'gn':
-        return L10n.of(context)!.gnDisplayName;
+        return L10n.of(context).gnDisplayName;
       case 'gu':
-        return L10n.of(context)!.guDisplayName;
+        return L10n.of(context).guDisplayName;
       case 'ht':
-        return L10n.of(context)!.htDisplayName;
+        return L10n.of(context).htDisplayName;
       case 'ha':
-        return L10n.of(context)!.haDisplayName;
+        return L10n.of(context).haDisplayName;
       case 'he':
-        return L10n.of(context)!.heDisplayName;
+        return L10n.of(context).heDisplayName;
       case 'hz':
-        return L10n.of(context)!.hzDisplayName;
+        return L10n.of(context).hzDisplayName;
       case 'hi':
-        return L10n.of(context)!.hiDisplayName;
+        return L10n.of(context).hiDisplayName;
       case 'ho':
-        return L10n.of(context)!.hoDisplayName;
+        return L10n.of(context).hoDisplayName;
       case 'hu':
-        return L10n.of(context)!.huDisplayName;
+        return L10n.of(context).huDisplayName;
       case 'ia':
-        return L10n.of(context)!.iaDisplayName;
+        return L10n.of(context).iaDisplayName;
       case 'id':
-        return L10n.of(context)!.idDisplayName;
+        return L10n.of(context).idDisplayName;
       case 'ie':
-        return L10n.of(context)!.ieDisplayName;
+        return L10n.of(context).ieDisplayName;
       case 'ga':
-        return L10n.of(context)!.gaDisplayName;
+        return L10n.of(context).gaDisplayName;
       case 'ig':
-        return L10n.of(context)!.igDisplayName;
+        return L10n.of(context).igDisplayName;
       case 'ik':
-        return L10n.of(context)!.ikDisplayName;
+        return L10n.of(context).ikDisplayName;
       case 'io':
-        return L10n.of(context)!.ioDisplayName;
+        return L10n.of(context).ioDisplayName;
       case 'is':
-        return L10n.of(context)!.isDisplayName;
+        return L10n.of(context).isDisplayName;
       case 'it':
-        return L10n.of(context)!.itDisplayName;
+        return L10n.of(context).itDisplayName;
       case 'iu':
-        return L10n.of(context)!.iuDisplayName;
+        return L10n.of(context).iuDisplayName;
       case 'ja':
-        return L10n.of(context)!.jaDisplayName;
+        return L10n.of(context).jaDisplayName;
       case 'jv':
-        return L10n.of(context)!.jvDisplayName;
+        return L10n.of(context).jvDisplayName;
       case 'kl':
-        return L10n.of(context)!.klDisplayName;
+        return L10n.of(context).klDisplayName;
       case 'kn':
-        return L10n.of(context)!.knDisplayName;
+        return L10n.of(context).knDisplayName;
       case 'kr':
-        return L10n.of(context)!.krDisplayName;
+        return L10n.of(context).krDisplayName;
       case 'ks':
-        return L10n.of(context)!.ksDisplayName;
+        return L10n.of(context).ksDisplayName;
       case 'kk':
-        return L10n.of(context)!.kkDisplayName;
+        return L10n.of(context).kkDisplayName;
       case 'km':
-        return L10n.of(context)!.kmDisplayName;
+        return L10n.of(context).kmDisplayName;
       case 'ki':
-        return L10n.of(context)!.kiDisplayName;
+        return L10n.of(context).kiDisplayName;
       case 'rw':
-        return L10n.of(context)!.rwDisplayName;
+        return L10n.of(context).rwDisplayName;
       case 'ky':
-        return L10n.of(context)!.kyDisplayName;
+        return L10n.of(context).kyDisplayName;
       case 'kv':
-        return L10n.of(context)!.kvDisplayName;
+        return L10n.of(context).kvDisplayName;
       case 'kg':
-        return L10n.of(context)!.kgDisplayName;
+        return L10n.of(context).kgDisplayName;
       case 'ko':
-        return L10n.of(context)!.koDisplayName;
+        return L10n.of(context).koDisplayName;
       case 'ku':
-        return L10n.of(context)!.kuDisplayName;
+        return L10n.of(context).kuDisplayName;
       case 'kj':
-        return L10n.of(context)!.kjDisplayName;
+        return L10n.of(context).kjDisplayName;
       case 'la':
-        return L10n.of(context)!.laDisplayName;
+        return L10n.of(context).laDisplayName;
       case 'lb':
-        return L10n.of(context)!.lbDisplayName;
+        return L10n.of(context).lbDisplayName;
       case 'lg':
-        return L10n.of(context)!.lgDisplayName;
+        return L10n.of(context).lgDisplayName;
       case 'li':
-        return L10n.of(context)!.liDisplayName;
+        return L10n.of(context).liDisplayName;
       case 'ln':
-        return L10n.of(context)!.lnDisplayName;
+        return L10n.of(context).lnDisplayName;
       case 'lo':
-        return L10n.of(context)!.loDisplayName;
+        return L10n.of(context).loDisplayName;
       case 'lt':
-        return L10n.of(context)!.ltDisplayName;
+        return L10n.of(context).ltDisplayName;
       case 'lu':
-        return L10n.of(context)!.luDisplayName;
+        return L10n.of(context).luDisplayName;
       case 'lv':
-        return L10n.of(context)!.lvDisplayName;
+        return L10n.of(context).lvDisplayName;
       case 'gv':
-        return L10n.of(context)!.gvDisplayName;
+        return L10n.of(context).gvDisplayName;
       case 'mk':
-        return L10n.of(context)!.mkDisplayName;
+        return L10n.of(context).mkDisplayName;
       case 'mg':
-        return L10n.of(context)!.mgDisplayName;
+        return L10n.of(context).mgDisplayName;
       case 'ms':
-        return L10n.of(context)!.msDisplayName;
+        return L10n.of(context).msDisplayName;
       case 'ml':
-        return L10n.of(context)!.mlDisplayName;
+        return L10n.of(context).mlDisplayName;
       case 'mt':
-        return L10n.of(context)!.mtDisplayName;
+        return L10n.of(context).mtDisplayName;
       case 'mi':
-        return L10n.of(context)!.miDisplayName;
+        return L10n.of(context).miDisplayName;
       case 'mr':
-        return L10n.of(context)!.mrDisplayName;
+        return L10n.of(context).mrDisplayName;
       case 'mh':
-        return L10n.of(context)!.mhDisplayName;
+        return L10n.of(context).mhDisplayName;
       case 'mn':
-        return L10n.of(context)!.mnDisplayName;
+        return L10n.of(context).mnDisplayName;
       case 'na':
-        return L10n.of(context)!.naDisplayName;
+        return L10n.of(context).naDisplayName;
       case 'nv':
-        return L10n.of(context)!.nvDisplayName;
+        return L10n.of(context).nvDisplayName;
       case 'nb':
-        return L10n.of(context)!.nbDisplayName;
+        return L10n.of(context).nbDisplayName;
       case 'nd':
-        return L10n.of(context)!.ndDisplayName;
+        return L10n.of(context).ndDisplayName;
       case 'ne':
-        return L10n.of(context)!.neDisplayName;
+        return L10n.of(context).neDisplayName;
       case 'ng':
-        return L10n.of(context)!.ngDisplayName;
+        return L10n.of(context).ngDisplayName;
       case 'nn':
-        return L10n.of(context)!.nnDisplayName;
+        return L10n.of(context).nnDisplayName;
       case 'no':
-        return L10n.of(context)!.noDisplayName;
+        return L10n.of(context).noDisplayName;
       case 'ii':
-        return L10n.of(context)!.iiDisplayName;
+        return L10n.of(context).iiDisplayName;
       case 'nr':
-        return L10n.of(context)!.nrDisplayName;
+        return L10n.of(context).nrDisplayName;
       case 'oc':
-        return L10n.of(context)!.ocDisplayName;
+        return L10n.of(context).ocDisplayName;
       case 'oj':
-        return L10n.of(context)!.ojDisplayName;
+        return L10n.of(context).ojDisplayName;
       case 'cu':
-        return L10n.of(context)!.cuDisplayName;
+        return L10n.of(context).cuDisplayName;
       case 'om':
-        return L10n.of(context)!.omDisplayName;
+        return L10n.of(context).omDisplayName;
       case 'or':
-        return L10n.of(context)!.orDisplayName;
+        return L10n.of(context).orDisplayName;
       case 'os':
-        return L10n.of(context)!.osDisplayName;
+        return L10n.of(context).osDisplayName;
       case 'pa':
-        return L10n.of(context)!.paDisplayName;
+        return L10n.of(context).paDisplayName;
       case 'pi':
-        return L10n.of(context)!.piDisplayName;
+        return L10n.of(context).piDisplayName;
       case 'fa':
-        return L10n.of(context)!.faDisplayName;
+        return L10n.of(context).faDisplayName;
       case 'pl':
-        return L10n.of(context)!.plDisplayName;
+        return L10n.of(context).plDisplayName;
       case 'ps':
-        return L10n.of(context)!.psDisplayName;
+        return L10n.of(context).psDisplayName;
       case 'pt':
-        return L10n.of(context)!.ptDisplayName;
+        return L10n.of(context).ptDisplayName;
       case 'qu':
-        return L10n.of(context)!.quDisplayName;
+        return L10n.of(context).quDisplayName;
       case 'rm':
-        return L10n.of(context)!.rmDisplayName;
+        return L10n.of(context).rmDisplayName;
       case 'rn':
-        return L10n.of(context)!.rnDisplayName;
+        return L10n.of(context).rnDisplayName;
       case 'ro':
-        return L10n.of(context)!.roDisplayName;
+        return L10n.of(context).roDisplayName;
       case 'ru':
-        return L10n.of(context)!.ruDisplayName;
+        return L10n.of(context).ruDisplayName;
       case 'sa':
-        return L10n.of(context)!.saDisplayName;
+        return L10n.of(context).saDisplayName;
       case 'sc':
-        return L10n.of(context)!.scDisplayName;
+        return L10n.of(context).scDisplayName;
       case 'sd':
-        return L10n.of(context)!.sdDisplayName;
+        return L10n.of(context).sdDisplayName;
       case 'se':
-        return L10n.of(context)!.seDisplayName;
+        return L10n.of(context).seDisplayName;
       case 'sm':
-        return L10n.of(context)!.smDisplayName;
+        return L10n.of(context).smDisplayName;
       case 'sg':
-        return L10n.of(context)!.sgDisplayName;
+        return L10n.of(context).sgDisplayName;
       case 'sr':
-        return L10n.of(context)!.srDisplayName;
+        return L10n.of(context).srDisplayName;
       case 'gd':
-        return L10n.of(context)!.gdDisplayName;
+        return L10n.of(context).gdDisplayName;
       case 'sn':
-        return L10n.of(context)!.snDisplayName;
+        return L10n.of(context).snDisplayName;
       case 'si':
-        return L10n.of(context)!.siDisplayName;
+        return L10n.of(context).siDisplayName;
       case 'sk':
-        return L10n.of(context)!.skDisplayName;
+        return L10n.of(context).skDisplayName;
       case 'sl':
-        return L10n.of(context)!.slDisplayName;
+        return L10n.of(context).slDisplayName;
       case 'so':
-        return L10n.of(context)!.soDisplayName;
+        return L10n.of(context).soDisplayName;
       case 'st':
-        return L10n.of(context)!.stDisplayName;
+        return L10n.of(context).stDisplayName;
       case 'es':
-        return L10n.of(context)!.esDisplayName;
+        return L10n.of(context).esDisplayName;
       case 'su':
-        return L10n.of(context)!.suDisplayName;
+        return L10n.of(context).suDisplayName;
       case 'sw':
-        return L10n.of(context)!.swDisplayName;
+        return L10n.of(context).swDisplayName;
       case 'ss':
-        return L10n.of(context)!.ssDisplayName;
+        return L10n.of(context).ssDisplayName;
       case 'sv':
-        return L10n.of(context)!.svDisplayName;
+        return L10n.of(context).svDisplayName;
       case 'ta':
-        return L10n.of(context)!.taDisplayName;
+        return L10n.of(context).taDisplayName;
       case 'te':
-        return L10n.of(context)!.teDisplayName;
+        return L10n.of(context).teDisplayName;
       case 'tg':
-        return L10n.of(context)!.tgDisplayName;
+        return L10n.of(context).tgDisplayName;
       case 'th':
-        return L10n.of(context)!.thDisplayName;
+        return L10n.of(context).thDisplayName;
       case 'ti':
-        return L10n.of(context)!.tiDisplayName;
+        return L10n.of(context).tiDisplayName;
       case 'bo':
-        return L10n.of(context)!.boDisplayName;
+        return L10n.of(context).boDisplayName;
       case 'tk':
-        return L10n.of(context)!.tkDisplayName;
+        return L10n.of(context).tkDisplayName;
       case 'tl':
-        return L10n.of(context)!.tlDisplayName;
+        return L10n.of(context).tlDisplayName;
       case 'tn':
-        return L10n.of(context)!.tnDisplayName;
+        return L10n.of(context).tnDisplayName;
       case 'to':
-        return L10n.of(context)!.toDisplayName;
+        return L10n.of(context).toDisplayName;
       case 'tr':
-        return L10n.of(context)!.trDisplayName;
+        return L10n.of(context).trDisplayName;
       case 'ts':
-        return L10n.of(context)!.tsDisplayName;
+        return L10n.of(context).tsDisplayName;
       case 'tt':
-        return L10n.of(context)!.ttDisplayName;
+        return L10n.of(context).ttDisplayName;
       case 'tw':
-        return L10n.of(context)!.twDisplayName;
+        return L10n.of(context).twDisplayName;
       case 'ty':
-        return L10n.of(context)!.tyDisplayName;
+        return L10n.of(context).tyDisplayName;
       case 'ug':
-        return L10n.of(context)!.ugDisplayName;
+        return L10n.of(context).ugDisplayName;
       case 'uk':
-        return L10n.of(context)!.ukDisplayName;
+        return L10n.of(context).ukDisplayName;
       case 'ur':
-        return L10n.of(context)!.urDisplayName;
+        return L10n.of(context).urDisplayName;
       case 'uz':
-        return L10n.of(context)!.uzDisplayName;
+        return L10n.of(context).uzDisplayName;
       case 've':
-        return L10n.of(context)!.veDisplayName;
+        return L10n.of(context).veDisplayName;
       case 'vi':
-        return L10n.of(context)!.viDisplayName;
+        return L10n.of(context).viDisplayName;
       case 'vo':
-        return L10n.of(context)!.voDisplayName;
+        return L10n.of(context).voDisplayName;
       case 'wa':
-        return L10n.of(context)!.waDisplayName;
+        return L10n.of(context).waDisplayName;
       case 'cy':
-        return L10n.of(context)!.cyDisplayName;
+        return L10n.of(context).cyDisplayName;
       case 'wo':
-        return L10n.of(context)!.woDisplayName;
+        return L10n.of(context).woDisplayName;
       case 'fy':
-        return L10n.of(context)!.fyDisplayName;
+        return L10n.of(context).fyDisplayName;
       case 'xh':
-        return L10n.of(context)!.xhDisplayName;
+        return L10n.of(context).xhDisplayName;
       case 'yi':
-        return L10n.of(context)!.yiDisplayName;
+        return L10n.of(context).yiDisplayName;
       case 'yo':
-        return L10n.of(context)!.yoDisplayName;
+        return L10n.of(context).yoDisplayName;
       case 'za':
-        return L10n.of(context)!.zaDisplayName;
+        return L10n.of(context).zaDisplayName;
       case 'unk':
-        return L10n.of(context)!.unkDisplayName;
+        return L10n.of(context).unkDisplayName;
       case 'zu':
-        return L10n.of(context)!.zuDisplayName;
+        return L10n.of(context).zuDisplayName;
       case 'haw':
-        return L10n.of(context)!.hawDisplayName;
+        return L10n.of(context).hawDisplayName;
       case 'hmn':
-        return L10n.of(context)!.hmnDisplayName;
+        return L10n.of(context).hmnDisplayName;
       case 'multi':
-        return L10n.of(context)!.multiDisplayName;
+        return L10n.of(context).multiDisplayName;
       case 'ceb':
-        return L10n.of(context)!.cebDisplayName;
+        return L10n.of(context).cebDisplayName;
       case 'dz':
-        return L10n.of(context)!.dzDisplayName;
+        return L10n.of(context).dzDisplayName;
       case 'iw':
-        return L10n.of(context)!.iwDisplayName;
+        return L10n.of(context).iwDisplayName;
       case 'jw':
-        return L10n.of(context)!.jwDisplayName;
+        return L10n.of(context).jwDisplayName;
       case 'mo':
-        return L10n.of(context)!.moDisplayName;
+        return L10n.of(context).moDisplayName;
       case 'sh':
-        return L10n.of(context)!.shDisplayName;
+        return L10n.of(context).shDisplayName;
     }
     debugger(when: kDebugMode);
     ErrorHandler.logError(m: "No Display name found", s: StackTrace.current);

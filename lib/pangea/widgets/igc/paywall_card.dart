@@ -24,7 +24,7 @@ class PaywallCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CardHeader(
-          text: L10n.of(context)!.clickMessageTitle,
+          text: L10n.of(context).clickMessageTitle,
           botExpression: BotExpression.addled,
           onClose: () {
             MatrixState.pangeaController.subscriptionController
@@ -38,13 +38,13 @@ class PaywallCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                L10n.of(context)!.subscribedToUnlockTools,
+                L10n.of(context).subscribedToUnlockTools,
                 style: BotStyle.text(context),
                 textAlign: TextAlign.center,
               ),
               // if (inTrialWindow)
               //   Text(
-              //     L10n.of(context)!.noPaymentInfo,
+              //     L10n.of(context).noPaymentInfo,
               //     style: BotStyle.text(context),
               //     textAlign: TextAlign.center,
               //   ),
@@ -63,7 +63,7 @@ class PaywallCard extends StatelessWidget {
                         (AppConfig.primaryColor).withOpacity(0.1),
                       ),
                     ),
-                    child: Text(L10n.of(context)!.activateTrial),
+                    child: Text(L10n.of(context).activateTrial),
                   ),
                 ),
               ],
@@ -81,7 +81,7 @@ class PaywallCard extends StatelessWidget {
                       (AppConfig.primaryColor).withOpacity(0.1),
                     ),
                   ),
-                  child: Text(L10n.of(context)!.getAccess),
+                  child: Text(L10n.of(context).getAccess),
                 ),
               ),
               // const SizedBox(height: 5.0),
@@ -99,7 +99,7 @@ class PaywallCard extends StatelessWidget {
               //       MatrixState.pAnyState.closeOverlay();
               //     },
               //     child: Center(
-              //       child: Text(L10n.of(context)!.continuedWithoutSubscription),
+              //       child: Text(L10n.of(context).continuedWithoutSubscription),
               //     ),
               //   ),
               // ),

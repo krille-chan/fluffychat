@@ -88,7 +88,7 @@ class LearningProgressIndicatorsState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                Matrix.of(context).client.userID ?? L10n.of(context)!.user,
+                Matrix.of(context).client.userID ?? L10n.of(context).user,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 12,

@@ -2291,7 +2291,7 @@
   "@noBackupWarning": {},
   "noOtherDevicesFound": "لم يتم العثور على أجهزة أخرى",
   "@noOtherDevicesFound": {},
-  "fileIsTooBigForServer": "أبلغ الخادم أن الملف كبير جدًا بحيث لا يمكن إرساله.",
+  "fileIsTooBigForServer": "تعذر الإرسال! لا يدعم الخادم سوى المرفقات التي تصل إلى {max}.",
   "@fileIsTooBigForServer": {},
   "jumpToLastReadMessage": "الانتقال إلى آخر رسالة مقروءة",
   "@jumpToLastReadMessage": {},
@@ -2803,5 +2803,87 @@
   "homeserverDescription": "يتم تخزين جميع بياناتك على خادم المنزل، تمامًا مثل مزود خدمة البريد الإلكتروني. يمكنك اختيار خادم البيت الذي تريد استخدامه، بينما لا يزال بإمكانك التواصل مع الجميع. اعرف المزيد على https://matrix.org.",
   "@homeserverDescription": {},
   "doesNotSeemToBeAValidHomeserver": "لا يبدو أنه خادم منزلي متوافق. عنوان URL غير صحيح ؟",
-  "@doesNotSeemToBeAValidHomeserver": {}
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "calculatingFileSize": "جارٍ حساب حجم الملف...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "إعداد مرفق الإرسال...",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "جارٍ إرسال المرفق...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "جارٍ إنشاء صورة مصغرة للفيديو...",
+  "@generatingVideoThumbnail": {},
+  "compressVideo": "جارٍ ضغط الفيديو...",
+  "@compressVideo": {},
+  "sendingAttachmentCountOfCount": "جارٍ إرسال المرفق {index} من {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "تم الوصول إلى حد الخادم! انتظر {seconds} ثانية...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "oneOfYourDevicesIsNotVerified": "لم يتم التحقق من أحد أجهزتك",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "ملاحظة: عند توصيل جميع أجهزتك بنسخة احتياطية للدردشة، يتم التحقق منها تلقائيًا.",
+  "@noticeChatBackupDeviceVerification": {},
+  "continueText": "استمرار",
+  "@continueText": {},
+  "welcomeText": "مرحبًا، 👋 معك FluffyChat. يمكنك تسجيل الدخول إلى أي خادم منزلي، وهو متوافق مع https://matrix.org. ثم دردش مع أي شخص. إنها شبكة مراسلة لا مركزية ضخمة!",
+  "@welcomeText": {},
+  "blur": "الضبابية:",
+  "@blur": {},
+  "setWallpaper": "تعيين الخلفية",
+  "@setWallpaper": {},
+  "opacity": "التعتيم:",
+  "@opacity": {},
+  "manageAccount": "‫إدارة الحساب‬",
+  "@manageAccount": {},
+  "noContactInformationProvided": "لا يقدم السيرفر أي معلومات اتصال صحيحة",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "اتصل بمسؤول الخادم",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "الاتصال بمسؤول أمان ااخادم",
+  "@contactServerSecurity": {},
+  "supportPage": "صفحة الدعم",
+  "@supportPage": {},
+  "serverInformation": "معلومات الخادم:",
+  "@serverInformation": {},
+  "name": "الإسم",
+  "@name": {},
+  "version": "اﻹصدار",
+  "@version": {},
+  "website": "الموقع اﻹلكتروني",
+  "@website": {},
+  "aboutHomeserver": "حول {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "compressBeforeSending": "ضغط قبل الإرسال",
+  "@compressBeforeSending": {},
+  "sendUncompressed": "إرسال غير مضغوط",
+  "@sendUncompressed": {},
+  "boldText": "خط غامق",
+  "@boldText": {},
+  "italicText": "خط مائل",
+  "@italicText": {},
+  "strikeThrough": "يتوسطه خط",
+  "@strikeThrough": {},
+  "invalidUrl": "رابط غير صحيح",
+  "@invalidUrl": {},
+  "addLink": "إضافة رابط",
+  "@addLink": {},
+  "pleaseFillOut": "من فضلك قم بتعبئته",
+  "@pleaseFillOut": {},
+  "unableToJoinChat": "يتعذر الانضمام إلى الدردشة. ربما يكون الطرف الآخر قد أغلق المحادثة بالفعل.",
+  "@unableToJoinChat": {}
 }

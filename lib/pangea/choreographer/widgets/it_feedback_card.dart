@@ -219,7 +219,7 @@ class TranslateButton extends StatelessWidget {
                 ),
               ),
             // const SizedBox(width: 8),
-            // Text(L10n.of(context)!.translate),
+            // Text(L10n.of(context).translate),
           ],
         ),
       ),

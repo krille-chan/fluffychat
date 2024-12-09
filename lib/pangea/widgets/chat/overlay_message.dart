@@ -75,7 +75,7 @@ class OverlayMessage extends StatelessWidget {
 
     final displayEvent = event.getDisplayEvent(timeline);
     // ignore: deprecated_member_use
-    var color = theme.colorScheme.surfaceVariant;
+    var color = theme.colorScheme.surfaceContainerHigh;
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent

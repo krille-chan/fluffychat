@@ -20,25 +20,28 @@ class PUserAgeView extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Theme.of(context).colorScheme.onSecondaryContainer.withAlpha(50),
+              color: Theme.of(context)
+                  .colorScheme
+                  .onSecondaryContainer
+                  .withAlpha(50),
             ),
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: Text(
-                    L10n.of(context)!.yourBirthdayPlease,
+                    L10n.of(context).yourBirthdayPlease,
                     textAlign: TextAlign.justify,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 14,
-                      fontWeight: FontWeight.normal, 
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                 ),
                 ListTile(
                   title: Text(
-                    L10n.of(context)!.certifyAge(13),
+                    L10n.of(context).certifyAge(13),
                     style: const TextStyle(color: Colors.black, fontSize: 14),
                   ),
                   leading: Radio<int>(
@@ -50,7 +53,7 @@ class PUserAgeView extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text(
-                    L10n.of(context)!.certifyAge(18),
+                    L10n.of(context).certifyAge(18),
                     style: const TextStyle(color: Colors.black, fontSize: 14),
                   ),
                   leading: Radio<int>(
@@ -63,7 +66,7 @@ class PUserAgeView extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 20), 
+          const SizedBox(height: 20),
           Hero(
             tag: 'loginButton',
             child: Padding(
@@ -71,11 +74,11 @@ class PUserAgeView extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: controller.createUserInPangea,
                 style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50), 
+                  minimumSize: const Size.fromHeight(50),
                 ),
                 child: controller.loading
                     ? const LinearProgressIndicator()
-                    : Text(L10n.of(context)!.getStarted),
+                    : Text(L10n.of(context).getStarted),
               ),
             ),
           ),

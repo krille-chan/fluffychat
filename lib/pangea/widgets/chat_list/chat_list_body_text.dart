@@ -25,17 +25,17 @@ class ChatListBodyStartText extends StatelessWidget {
               .getRoomById(controller.activeSpaceId!)
               ?.isSpaceAdmin ??
           false) {
-        return L10n.of(context)!.welcomeToYourNewClass;
+        return L10n.of(context).welcomeToYourNewClass;
       }
 
-      return L10n.of(context)!.welcomeToClass;
+      return L10n.of(context).welcomeToClass;
     }
 
     if (pangeaController.permissionsController.isUser18()) {
-      return L10n.of(context)!.welcomeToPangea18Plus;
+      return L10n.of(context).welcomeToPangea18Plus;
     }
 
-    return L10n.of(context)!.welcomeToPangeaMinor;
+    return L10n.of(context).welcomeToPangeaMinor;
   }
 
   @override

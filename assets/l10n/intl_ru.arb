@@ -284,12 +284,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheHomeserver": "Изменить сервер Matrix",
+  "changeTheHomeserver": "Изменить домашний сервер",
   "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "changeTheme": "Тема",
+  "changeTheme": "Персонализация",
   "@changeTheme": {
     "type": "text",
     "placeholders": {}
@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Уровень разрешений по умолчанию",
+  "defaultPermissionLevel": "Уровень разрешений по умолчанию для новых пользователей",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -711,7 +711,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterYourHomeserver": "Введите адрес вашего сервера Matrix",
+  "enterYourHomeserver": "Введите адрес вашего домашнего сервера",
   "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -1919,7 +1919,7 @@
   "@scanQrCode": {},
   "sendOnEnter": "Отправлять по Enter",
   "@sendOnEnter": {},
-  "homeserver": "Сервер Matrix",
+  "homeserver": "Домашний сервер",
   "@homeserver": {},
   "serverRequiresEmail": "Этот сервер должен подтвердить ваш адрес электронной почты для регистрации.",
   "@serverRequiresEmail": {},
@@ -2215,7 +2215,7 @@
       "number": {}
     }
   },
-  "fileIsTooBigForServer": "Файл слишком большой.",
+  "fileIsTooBigForServer": "Отправка не удалась! Сервер поддерживает только вложения размером до {max}.",
   "@fileIsTooBigForServer": {},
   "hideUnimportantStateEvents": "Скрыть необязательные события статуса",
   "@hideUnimportantStateEvents": {},
@@ -2266,7 +2266,7 @@
   "@noOtherDevicesFound": {},
   "reportErrorDescription": "😭 О, нет. Что-то пошло не так. При желании вы можете сообщить об этой ошибке разработчикам.",
   "@reportErrorDescription": {},
-  "report": "пожаловаться",
+  "report": "сообщить",
   "@report": {},
   "allRooms": "Все группы",
   "@allRooms": {
@@ -2760,5 +2760,128 @@
   "@goToSpace": {
     "type": "text",
     "space": {}
-  }
+  },
+  "sendCanceled": "Отправка отменена",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Не было найдено ни одного чата. Начать с кем-нибудь новый чат можно, нажав кнопку ниже. ⤵️",
+  "@noChatsFoundHere": {},
+  "updateInstalled": "🎉 Обновление {version} успешно установлено!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Список изменений",
+  "@changelog": {},
+  "invitedBy": "📩 Приглашен(а) {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "doesNotSeemToBeAValidHomeserver": "Этот домашний сервер выглядит несовместимым. Нет ли в ссылке опечаток?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "noMoreChatsFound": "Больше чатов не обнаружено...",
+  "@noMoreChatsFound": {},
+  "alwaysUse24HourFormat": "нет",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "compressVideo": "Сжатие видео...",
+  "@compressVideo": {},
+  "oneOfYourDevicesIsNotVerified": "Одно из ваших устройств не подтверждено",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "chatPermissionsDescription": "Задайте уровень власти, необходимый для совершения определённых действий в этом чате. Уровни власти 0, 50 и 100 обычно означают пользователей, модераторов и администраторов соответственно, но любая градация также возможна.",
+  "@chatPermissionsDescription": {},
+  "prepareSendingAttachment": "Подготовка к отправке вложения...",
+  "@prepareSendingAttachment": {},
+  "sendRoomNotifications": "Упоминать @room",
+  "@sendRoomNotifications": {},
+  "calculatingFileSize": "Вычисление размера файла...",
+  "@calculatingFileSize": {},
+  "sendingAttachment": "Отправка вложения...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Создание превью видео...",
+  "@generatingVideoThumbnail": {},
+  "noticeChatBackupDeviceVerification": "Примечание: Если вы подключите все свои устройства к резервному копированию чатов, то они автоматически станут подтверждёнными.",
+  "@noticeChatBackupDeviceVerification": {},
+  "changeTheCanonicalRoomAlias": "Изменить основной общедоступный адрес чата",
+  "@changeTheCanonicalRoomAlias": {},
+  "loginWithMatrixId": "Войти через Matrix ID",
+  "@loginWithMatrixId": {},
+  "whatIsAHomeserver": "Для чего нужен домашний сервер?",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Все ваши данные хранятся на домашнем сервере, прямо как у вашего провайдера электронной почты. Вы можете выбрать, какому серверу вы их доверите, при этом сохраняя возможность общаться со всеми. Узнайте больше на https://matrix.org.",
+  "@homeserverDescription": {},
+  "discoverHomeservers": "Список домашних серверов",
+  "@discoverHomeservers": {},
+  "joinedChats": "Вступленные чаты",
+  "@joinedChats": {},
+  "serverInformation": "Информация о сервере:",
+  "@serverInformation": {},
+  "sendingAttachmentCountOfCount": "Отправляю... {index} {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "welcomeText": "Привет. Это FluffyChat. Вы можете подписаться на любой сервер, который совместим с https://matrix.org. А потом поболтать с кем нибудь. Это огромная децентрализованная сеть обмена сообщениями!",
+  "@welcomeText": {},
+  "noContactInformationProvided": "Сервер не предоставляет никакой правдивой контактной информации",
+  "@noContactInformationProvided": {},
+  "aboutHomeserver": "О сервере {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "boldText": "Жирный шрифт",
+  "@boldText": {},
+  "strikeThrough": "Перечёркнутый",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Пожалуйста, заполните",
+  "@pleaseFillOut": {},
+  "sendUncompressed": "Отправлять без зжатия",
+  "@sendUncompressed": {},
+  "invalidUrl": "Не верный URL",
+  "@invalidUrl": {},
+  "addLink": "Добавить ссылку",
+  "@addLink": {},
+  "italicText": "Italic",
+  "@italicText": {},
+  "unableToJoinChat": "Невозможно присоединиться к чату. Возможно, другая сторона уже закончила разговор.",
+  "@unableToJoinChat": {},
+  "serverLimitReached": "Ограничения сервера. Ожидайте{seconds} секунд...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "continueText": "Продолжить",
+  "@continueText": {},
+  "blur": "Размытие:",
+  "@blur": {},
+  "opacity": "Прозрачность:",
+  "@opacity": {},
+  "setWallpaper": "Установить обои",
+  "@setWallpaper": {},
+  "manageAccount": "Управление аккаунтом",
+  "@manageAccount": {},
+  "contactServerAdmin": "Админ сервера",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "Безопасность контактов сервера",
+  "@contactServerSecurity": {},
+  "supportPage": "Поддержка",
+  "@supportPage": {},
+  "name": "Имя",
+  "@name": {},
+  "version": "Версия",
+  "@version": {},
+  "website": "Сайт",
+  "@website": {}
 }

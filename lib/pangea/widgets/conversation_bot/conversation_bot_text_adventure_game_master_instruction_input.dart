@@ -30,7 +30,7 @@ class ConversationBotGameMasterInstructionsInput extends StatelessWidget {
         useRootNavigator: false,
         builder: (BuildContext context) => AlertDialog(
           title: Text(
-            L10n.of(context)!
+            L10n.of(context)
                 .conversationBotTextAdventureZone_instructionPlaceholder,
           ),
           content: Form(
@@ -55,13 +55,13 @@ class ConversationBotGameMasterInstructionsInput extends StatelessWidget {
           ),
           actions: [
             TextButton(
-              child: Text(L10n.of(context)!.cancel),
+              child: Text(L10n.of(context).cancel),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text(L10n.of(context)!.ok),
+              child: Text(L10n.of(context).ok),
               onPressed: () {
                 if (gameMasterInstructionsFormKey.currentState!.validate()) {
                   if (gameMasterInstructions !=
@@ -83,7 +83,7 @@ class ConversationBotGameMasterInstructionsInput extends StatelessWidget {
       onTap: setBotTextAdventureGameMasterInstructionsAction,
       title: Text(
         initialBotOptions.textAdventureGameMasterInstructions ??
-            L10n.of(context)!
+            L10n.of(context)
                 .conversationBotTextAdventureZone_instructionPlaceholder,
       ),
     );

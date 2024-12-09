@@ -2,15 +2,14 @@ import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
+import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +20,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../utils/localized_exception_extension.dart';
 
@@ -53,8 +53,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       (e, s) async {
         await showOkAlertDialog(
           context: context,
-          title: L10n.of(context)!.indexedDbErrorTitle,
-          message: L10n.of(context)!.indexedDbErrorLong,
+          title: L10n.of(context).indexedDbErrorTitle,
+          message: L10n.of(context).indexedDbErrorLong,
         );
         _checkTorBrowser();
       },
@@ -76,7 +76,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     );
   }
 
-  tryCheckHomeserverActionWithoutCooldown([_]) {
+  void tryCheckHomeserverActionWithoutCooldown([_]) {
     _checkHomeserverCooldown?.cancel();
     _lastCheckedUrl = null;
     checkHomeserverAction();
@@ -86,26 +86,38 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   Map<String, dynamic>? _rawLoginTypes;
   // Pangea#
 
+  // #Pangea
+  // void onSubmitted([_]) {
+  //   if (isLoading || _checkHomeserverCooldown?.isActive == true) {
+  //     return tryCheckHomeserverActionWithoutCooldown();
+  //   }
+  //   if (supportsSso) return ssoLoginAction();
+  //   if (supportsPasswordLogin) return login();
+  //   return tryCheckHomeserverActionWithoutCooldown();
+  // }
+  // Pangea#
+
   /// Starts an analysis of the given homeserver. It uses the current domain and
   /// makes sure that it is prefixed with https. Then it searches for the
   /// well-known information and forwards to the login page depending on the
   /// login type.
   Future<void> checkHomeserverAction([_]) async {
     // #Pangea
-    // homeserverController.text =
+    // final homeserverInput =
     //     homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
 
-    // if (homeserverController.text.isEmpty) {
+    // if (homeserverInput.isEmpty || !homeserverInput.contains('.')) {
     //   setState(() {
     //     error = loginFlows = null;
     //     isLoading = false;
     //     Matrix.of(context).getLoginClient().homeserver = null;
+    //     _lastCheckedUrl = null;
     //   });
     //   return;
     // }
-    // if (_lastCheckedUrl == homeserverController.text) return;
+    // if (_lastCheckedUrl == homeserverInput) return;
 
-    // _lastCheckedUrl = homeserverController.text;
+    // _lastCheckedUrl = homeserverInput;
     _lastCheckedUrl = AppConfig.defaultHomeserver;
     // Pangea#
     setState(() {
@@ -115,9 +127,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
     try {
       // #Pangea
-      // var homeserver = Uri.parse(homeserverController.text);
+      // var homeserver = Uri.parse(homeserverInput);
       // if (homeserver.scheme.isEmpty) {
-      //   homeserver = Uri.https(homeserverController.text, '');
+      //   homeserver = Uri.https(homeserverInput, '');
       // }
       var homeserver = Uri.parse(AppConfig.defaultHomeserver);
       if (homeserver.scheme.isEmpty) {
@@ -188,17 +200,18 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     final urlScheme = isDefaultPlatform
         ? Uri.parse(redirectUrl).scheme
         : "http://localhost:3001";
-
     // #Pangea
     // final result = await FlutterWebAuth2.authenticate(
     //   url: url.toString(),
     //   callbackUrlScheme: urlScheme,
+    //   options: const FlutterWebAuth2Options(),
     // );
     String result;
     try {
       result = await FlutterWebAuth2.authenticate(
         url: url.toString(),
         callbackUrlScheme: urlScheme,
+        options: const FlutterWebAuth2Options(),
       );
     } catch (err) {
       if (err is PlatformException && err.code == 'CANCELED') {
@@ -238,18 +251,23 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     } finally {
       if (mounted) {
         setState(() {
-          // #Pangea
-          // isLoading = isLoggingIn = false;
-          isLoggingIn = false;
-          // Pangea#
+          isLoading = isLoggingIn = false;
         });
       }
     }
   }
 
-  void login() => context.push(
-        '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
-      );
+  void login() async {
+    // #Pangea
+    // if (!supportsPasswordLogin) {
+    //   homeserverController.text = AppConfig.defaultHomeserver;
+    //   await checkHomeserverAction();
+    // }
+    // Pangea#
+    context.push(
+      '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
+    );
+  }
 
   @override
   void initState() {
@@ -262,10 +280,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   Widget build(BuildContext context) => HomeserverPickerView(this);
 
   Future<void> restoreBackup() async {
-    final picked = await AppLock.of(context).pauseWhile(
-      FilePicker.platform.pickFiles(withData: true),
-    );
-    final file = picked?.files.firstOrNull;
+    final picked = await selectFiles(context);
+    final file = picked.firstOrNull;
     if (file == null) return;
     setState(() {
       error = null;
@@ -273,7 +289,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     });
     try {
       final client = Matrix.of(context).getLoginClient();
-      await client.importDump(String.fromCharCodes(file.bytes!));
+      await client.importDump(String.fromCharCodes(await file.readAsBytes()));
       Matrix.of(context).initMatrix();
     } catch (e, s) {
       setState(() {
@@ -311,7 +327,20 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     return list;
   }
   // Pangea#
+
+  void onMoreAction(MoreLoginActions action) {
+    switch (action) {
+      case MoreLoginActions.passwordLogin:
+        login();
+      case MoreLoginActions.privacy:
+        launchUrlString(AppConfig.privacyUrl);
+      case MoreLoginActions.about:
+        PlatformInfos.showDialog(context);
+    }
+  }
 }
+
+enum MoreLoginActions { passwordLogin, privacy, about }
 
 class IdentityProvider {
   final String? id;

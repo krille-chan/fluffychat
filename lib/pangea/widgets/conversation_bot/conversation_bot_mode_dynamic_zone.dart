@@ -25,7 +25,7 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
       TextFormField(
         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         decoration: InputDecoration(
-          hintText: L10n.of(context)!
+          hintText: L10n.of(context)
               .conversationBotDiscussionZone_discussionTopicPlaceholder,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 28.0, vertical: 12.0),
@@ -34,7 +34,7 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
         validator: (value) => enabled &&
                 mode == BotMode.discussion &&
                 (value == null || value.isEmpty)
-            ? L10n.of(context)!.enterDiscussionTopic
+            ? L10n.of(context).enterDiscussionTopic
             : null,
         enabled: enabled,
         minLines: 1, // Minimum number of lines
@@ -45,7 +45,7 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
       TextFormField(
         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         decoration: InputDecoration(
-          hintText: L10n.of(context)!
+          hintText: L10n.of(context)
               .conversationBotDiscussionZone_discussionKeywordsPlaceholder,
           contentPadding: const EdgeInsets.symmetric(horizontal: 28.0),
         ),
@@ -61,14 +61,14 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
       TextFormField(
         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         decoration: InputDecoration(
-          hintText: L10n.of(context)!
+          hintText: L10n.of(context)
               .conversationBotCustomZone_customSystemPromptPlaceholder,
           contentPadding: const EdgeInsets.symmetric(horizontal: 28.0),
         ),
         validator: (value) => enabled &&
                 mode == BotMode.custom &&
                 (value == null || value.isEmpty)
-            ? L10n.of(context)!.enterPrompt
+            ? L10n.of(context).enterPrompt
             : null,
         controller: customSystemPromptController,
         enabled: enabled,
@@ -85,7 +85,7 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
         const SizedBox(height: 12),
         CheckboxListTile(
           title: Text(
-            L10n.of(context)!
+            L10n.of(context)
                 .conversationBotCustomZone_customTriggerReactionEnabledLabel,
           ),
           enabled: false,

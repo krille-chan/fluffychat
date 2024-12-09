@@ -15,11 +15,11 @@ import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart'
 import 'package:fluffychat/pages/login/login.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
-import 'package:fluffychat/pages/new_space/new_space.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/pages/settings_3pid/settings_3pid.dart';
 import 'package:fluffychat/pages/settings_chat/settings_chat.dart';
 import 'package:fluffychat/pages/settings_emotes/settings_emotes.dart';
+import 'package:fluffychat/pages/settings_homeserver/settings_homeserver.dart';
 import 'package:fluffychat/pages/settings_ignore_list/settings_ignore_list.dart';
 import 'package:fluffychat/pages/settings_multiple_emotes/settings_multiple_emotes.dart';
 import 'package:fluffychat/pages/settings_notifications/settings_notifications.dart';
@@ -254,7 +254,7 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const NewSpace(),
+                const NewGroup(createGroupType: CreateGroupType.space),
               ),
               redirect: loggedOutRedirect,
             ),
@@ -360,6 +360,17 @@ abstract class AppRoutes {
                     //   ],
                     // ),
                     // Pangea#
+                    GoRoute(
+                      path: 'homeserver',
+                      pageBuilder: (context, state) {
+                        return defaultPageBuilder(
+                          context,
+                          state,
+                          const SettingsHomeserver(),
+                        );
+                      },
+                      redirect: loggedOutRedirect,
+                    ),
                     GoRoute(
                       path: 'security',
                       redirect: loggedOutRedirect,

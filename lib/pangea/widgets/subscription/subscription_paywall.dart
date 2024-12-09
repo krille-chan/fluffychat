@@ -19,7 +19,7 @@ class SubscriptionPaywall extends StatelessWidget {
         centerTitle: true,
         leading: const CloseButton(),
         title: Text(
-          L10n.of(context)!.getAccess,
+          L10n.of(context).getAccess,
           style: const TextStyle(fontSize: 20),
         ),
       ),
@@ -31,14 +31,14 @@ class SubscriptionPaywall extends StatelessWidget {
             children: [
               if (pangeaController.matrixState.client.rooms.length > 1) ...[
                 Text(
-                  L10n.of(context)!.welcomeBack,
+                  L10n.of(context).welcomeBack,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 20),
               ],
               Text(
-                L10n.of(context)!.subscriptionDesc,
+                L10n.of(context).subscriptionDesc,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 16),
               ),

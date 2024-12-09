@@ -113,7 +113,7 @@ class ErrorCopy {
         );
         return;
       }
-      final L10n l10n = L10n.of(context)!;
+      final L10n l10n = L10n.of(context);
 
       switch (errorCode) {
         case 502:

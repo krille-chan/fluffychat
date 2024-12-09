@@ -3,14 +3,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/size_string.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 extension MatrixFileExtension on MatrixFile {
   void save(BuildContext context) async {
@@ -19,12 +20,18 @@ extension MatrixFileExtension on MatrixFile {
       return;
     }
 
-    final downloadPath = await FilePicker.platform.saveFile(
-      dialogTitle: L10n.of(context)!.saveFile,
-      fileName: name,
-      type: filePickerFileType,
-      bytes: bytes,
-    );
+    final downloadPath = !PlatformInfos.isMobile
+        ? (await getSaveLocation(
+            suggestedName: name,
+            confirmButtonText: L10n.of(context).saveFile,
+          ))
+            ?.path
+        : await FilePicker.platform.saveFile(
+            dialogTitle: L10n.of(context).saveFile,
+            fileName: name,
+            type: filePickerFileType,
+            bytes: bytes,
+          );
     if (downloadPath == null) return;
 
     if (PlatformInfos.isDesktop) {
@@ -38,7 +45,7 @@ extension MatrixFileExtension on MatrixFile {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          L10n.of(context)!.fileHasBeenSavedAt(downloadPath),
+          L10n.of(context).fileHasBeenSavedAt(downloadPath),
         ),
       ),
     );

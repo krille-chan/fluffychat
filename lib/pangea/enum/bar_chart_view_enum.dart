@@ -11,11 +11,11 @@ extension BarChartViewSelectionExtension on BarChartViewSelection {
   String string(BuildContext context) {
     switch (this) {
       case BarChartViewSelection.messages:
-        return L10n.of(context)!.messages;
+        return L10n.of(context).messages;
       // case BarChartViewSelection.vocab:
-      //   return L10n.of(context)!.vocab;
+      //   return L10n.of(context).vocab;
       case BarChartViewSelection.grammar:
-        return L10n.of(context)!.grammarAnalytics;
+        return L10n.of(context).grammarAnalytics;
     }
   }
 

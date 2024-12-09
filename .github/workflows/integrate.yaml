@@ -59,18 +59,21 @@ jobs:
       - run: flutter build web
 
   build_debug_linux:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [ x64, arm64 ]
+    runs-on: ${{ matrix.arch == 'arm64' && 'self-hosted' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev -y
-      - run: flutter pub get
-      - run: flutter build linux --target-platform linux-x64
+        run: sudo apt-get update && sudo apt-get install git wget curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
+      - name: Install Flutter
+        run: |
+          git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
+          ./flutter/bin/flutter doctor
+      - run: ./flutter/bin/flutter pub get
+      - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
   build_debug_ios:
     runs-on: macos-latest

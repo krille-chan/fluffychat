@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LockedChatMessage extends StatelessWidget {
   const LockedChatMessage({super.key});
@@ -22,7 +20,7 @@ class LockedChatMessage extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
           child: Text(
-            L10n.of(context)!.lockedChatWarning,
+            L10n.of(context).lockedChatWarning,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14 * AppConfig.fontSizeFactor,

@@ -90,50 +90,50 @@ class LanguagePermissionsButtons extends StatelessWidget {
 
     if (itDisabledByClass && igcDisabledByClass) {
       return _ErrorCopy(
-        L10n.of(context)!.errorDisableLanguageAssistanceClassDesc,
+        L10n.of(context).errorDisableLanguageAssistanceClassDesc,
       );
     }
 
     if (itDisabledByClass) {
       if (igcDisabled) {
         return _ErrorCopy(
-          "{L10n.of(context)!.errorDisableITClassDesc} ${L10n.of(context)!.errorDisableIGC}",
-          " ${L10n.of(context)!.errorDisableIGCUserDesc}",
+          "{L10n.of(context).errorDisableITClassDesc} ${L10n.of(context).errorDisableIGC}",
+          " ${L10n.of(context).errorDisableIGCUserDesc}",
         );
       } else {
-        return _ErrorCopy(L10n.of(context)!.errorDisableITClassDesc);
+        return _ErrorCopy(L10n.of(context).errorDisableITClassDesc);
       }
     }
 
     if (igcDisabledByClass) {
       if (itDisabled) {
         return _ErrorCopy(
-          "${L10n.of(context)!.errorDisableIGCClassDesc} ${L10n.of(context)!.errorDisableIT}",
-          " ${L10n.of(context)!.errorDisableITUserDesc}",
+          "${L10n.of(context).errorDisableIGCClassDesc} ${L10n.of(context).errorDisableIT}",
+          " ${L10n.of(context).errorDisableITUserDesc}",
         );
       } else {
-        return _ErrorCopy(L10n.of(context)!.errorDisableIGCClassDesc);
+        return _ErrorCopy(L10n.of(context).errorDisableIGCClassDesc);
       }
     }
 
     if (igcDisabled && itDisabled) {
       return _ErrorCopy(
-        L10n.of(context)!.errorDisableLanguageAssistance,
-        " ${L10n.of(context)!.errorDisableLanguageAssistanceUserDesc}",
+        L10n.of(context).errorDisableLanguageAssistance,
+        " ${L10n.of(context).errorDisableLanguageAssistanceUserDesc}",
       );
     }
 
     if (itDisabled) {
       return _ErrorCopy(
-        L10n.of(context)!.errorDisableIT,
-        " ${L10n.of(context)!.errorDisableITUserDesc}",
+        L10n.of(context).errorDisableIT,
+        " ${L10n.of(context).errorDisableITUserDesc}",
       );
     }
 
     if (igcDisabled) {
       return _ErrorCopy(
-        L10n.of(context)!.errorDisableIGC,
-        " ${L10n.of(context)!.errorDisableIGCUserDesc}",
+        L10n.of(context).errorDisableIGC,
+        " ${L10n.of(context).errorDisableIGCUserDesc}",
       );
     }
 

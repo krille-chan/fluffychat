@@ -57,7 +57,7 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
     try {
       // Send error notification:
       // #Pangea
-      // final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+      // final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
       // ClientManager.sendInitNotification(
       //   l10n.initAppError,
       //   l10n.databaseBuildErrorBody(

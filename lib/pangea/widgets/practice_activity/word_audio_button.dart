@@ -36,8 +36,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
               : Theme.of(context).colorScheme.primaryContainer,
         ),
       ),
-      tooltip:
-          _isPlaying ? L10n.of(context)!.stop : L10n.of(context)!.playAudio,
+      tooltip: _isPlaying ? L10n.of(context).stop : L10n.of(context).playAudio,
       onPressed: () async {
         if (_isPlaying) {
           await widget.ttsController.stop();

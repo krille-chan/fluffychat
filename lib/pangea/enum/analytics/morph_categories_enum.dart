@@ -63,63 +63,63 @@ extension MorphologicalCategoriesExtension on MorphologicalCategories {
   String getDisplayCopy(BuildContext context) {
     switch (this) {
       case MorphologicalCategories.Pos:
-        return L10n.of(context)!.grammarCopyPOS;
+        return L10n.of(context).grammarCopyPOS;
       case MorphologicalCategories.AdvType:
-        return L10n.of(context)!.grammarCopyADVTYPE;
+        return L10n.of(context).grammarCopyADVTYPE;
       case MorphologicalCategories.Aspect:
-        return L10n.of(context)!.grammarCopyASPECT;
+        return L10n.of(context).grammarCopyASPECT;
       case MorphologicalCategories.Case:
-        return L10n.of(context)!.grammarCopyCASE;
+        return L10n.of(context).grammarCopyCASE;
       case MorphologicalCategories.ConjType:
-        return L10n.of(context)!.grammarCopyCONJTYPE;
+        return L10n.of(context).grammarCopyCONJTYPE;
       case MorphologicalCategories.Definite:
-        return L10n.of(context)!.grammarCopyDEFINITE;
+        return L10n.of(context).grammarCopyDEFINITE;
       case MorphologicalCategories.Degree:
-        return L10n.of(context)!.grammarCopyDEGREE;
+        return L10n.of(context).grammarCopyDEGREE;
       case MorphologicalCategories.Evident:
-        return L10n.of(context)!.grammarCopyEVIDENT;
+        return L10n.of(context).grammarCopyEVIDENT;
       case MorphologicalCategories.Foreign:
-        return L10n.of(context)!.grammarCopyFOREIGN;
+        return L10n.of(context).grammarCopyFOREIGN;
       case MorphologicalCategories.Gender:
-        return L10n.of(context)!.grammarCopyGENDER;
+        return L10n.of(context).grammarCopyGENDER;
       case MorphologicalCategories.Mood:
-        return L10n.of(context)!.grammarCopyMOOD;
+        return L10n.of(context).grammarCopyMOOD;
       case MorphologicalCategories.NounType:
-        return L10n.of(context)!.grammarCopyNOUNTYPE;
+        return L10n.of(context).grammarCopyNOUNTYPE;
       case MorphologicalCategories.NumForm:
-        return L10n.of(context)!.grammarCopyNUMFORM;
+        return L10n.of(context).grammarCopyNUMFORM;
       case MorphologicalCategories.NumType:
-        return L10n.of(context)!.grammarCopyNUMTYPE;
+        return L10n.of(context).grammarCopyNUMTYPE;
       case MorphologicalCategories.Number:
-        return L10n.of(context)!.grammarCopyNUMBER;
+        return L10n.of(context).grammarCopyNUMBER;
       case MorphologicalCategories.NumberPsor:
-        return L10n.of(context)!.grammarCopyNUMBERPSOR;
+        return L10n.of(context).grammarCopyNUMBERPSOR;
       case MorphologicalCategories.Person:
-        return L10n.of(context)!.grammarCopyPERSON;
+        return L10n.of(context).grammarCopyPERSON;
       case MorphologicalCategories.Polarity:
-        return L10n.of(context)!.grammarCopyPOLARITY;
+        return L10n.of(context).grammarCopyPOLARITY;
       case MorphologicalCategories.Polite:
-        return L10n.of(context)!.grammarCopyPOLITE;
+        return L10n.of(context).grammarCopyPOLITE;
       case MorphologicalCategories.Poss:
-        return L10n.of(context)!.grammarCopyPOSS;
+        return L10n.of(context).grammarCopyPOSS;
       case MorphologicalCategories.PrepCase:
-        return L10n.of(context)!.grammarCopyPREPCASE;
+        return L10n.of(context).grammarCopyPREPCASE;
       case MorphologicalCategories.PronType:
-        return L10n.of(context)!.grammarCopyPRONTYPE;
+        return L10n.of(context).grammarCopyPRONTYPE;
       case MorphologicalCategories.PunctSide:
-        return L10n.of(context)!.grammarCopyPUNCTSIDE;
+        return L10n.of(context).grammarCopyPUNCTSIDE;
       case MorphologicalCategories.PunctType:
-        return L10n.of(context)!.grammarCopyPUNCTTYPE;
+        return L10n.of(context).grammarCopyPUNCTTYPE;
       case MorphologicalCategories.Reflex:
-        return L10n.of(context)!.grammarCopyREFLEX;
+        return L10n.of(context).grammarCopyREFLEX;
       case MorphologicalCategories.Tense:
-        return L10n.of(context)!.grammarCopyTENSE;
+        return L10n.of(context).grammarCopyTENSE;
       case MorphologicalCategories.VerbForm:
-        return L10n.of(context)!.grammarCopyVERBFORM;
+        return L10n.of(context).grammarCopyVERBFORM;
       case MorphologicalCategories.VerbType:
-        return L10n.of(context)!.grammarCopyVERBTYPE;
+        return L10n.of(context).grammarCopyVERBTYPE;
       case MorphologicalCategories.Voice:
-        return L10n.of(context)!.grammarCopyVOICE;
+        return L10n.of(context).grammarCopyVOICE;
     }
   }
 }

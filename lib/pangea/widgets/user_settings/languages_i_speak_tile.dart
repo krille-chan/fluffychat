@@ -17,7 +17,7 @@
 //   Widget build(BuildContext context) {
 //     return ListTile(
 //       trailing: const Icon(Icons.edit_outlined),
-//       title: Text(L10n.of(context)!.languagesISpeak),
+//       title: Text(L10n.of(context).languagesISpeak),
 //       //PTODO - make a nice display of flags
 //       // subtitle: Text(
 //       //   pangeaController.userController.userModel?.profile?.speaks
@@ -66,7 +66,7 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return AlertDialog(
-//       title: Text(L10n.of(context)!.languagesISpeak),
+//       title: Text(L10n.of(context).languagesISpeak),
 //       contentPadding: const EdgeInsets.only(top: 12.0),
 //       content: SingleChildScrollView(
 //         child: ListTileTheme(
@@ -88,7 +88,7 @@
 //       actions: <Widget>[
 //         TextButton(
 //           onPressed: () => Navigator.pop(context),
-//           child: Text(L10n.of(context)!.cancel),
+//           child: Text(L10n.of(context).cancel),
 //         ),
 //         TextButton(
 //           onPressed: () => showFutureLoadingDialog(
@@ -99,7 +99,7 @@
 //               Navigator.pop(context);
 //             }),
 //           ),
-//           child: Text(L10n.of(context)!.ok),
+//           child: Text(L10n.of(context).ok),
 //         )
 //       ],
 //     );

@@ -13,26 +13,30 @@ class StateMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Center(
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: Text(
-            event.calcLocalizedBodyFallback(
-              MatrixLocals(L10n.of(context)!),
-            ),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 12 * AppConfig.fontSizeFactor,
-              decoration: event.redacted ? TextDecoration.lineThrough : null,
-              shadows: [
-                Shadow(
-                  color: theme.colorScheme.surface,
-                  blurRadius: 3,
+        child: Padding(
+          padding: const EdgeInsets.all(4),
+          child: Material(
+            color: theme.colorScheme.surface.withAlpha(128),
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 3),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+              child: Text(
+                event.calcLocalizedBodyFallback(
+                  MatrixLocals(L10n.of(context)),
                 ),
-              ],
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 12 * AppConfig.fontSizeFactor,
+                  decoration:
+                      event.redacted ? TextDecoration.lineThrough : null,
+                ),
+              ),
             ),
           ),
         ),

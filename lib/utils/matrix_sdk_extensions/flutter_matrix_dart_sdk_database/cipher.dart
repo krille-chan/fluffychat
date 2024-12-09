@@ -93,17 +93,17 @@ void _sendNoEncryptionWarning(Object exception) async {
   if (isStored == true) return;
 
   // #Pangea
-  // final l10n = lookupL10n(PlatformDispatcher.instance.locale);
-  // ClientManager.sendInitNotification(
-  //   l10n.noDatabaseEncryption,
-  //   exception.toString(),
-  // );
   Sentry.addBreadcrumb(
     Breadcrumb(
       message: 'No database encryption',
       data: {'exception': exception},
     ),
   );
+  // final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
+  // ClientManager.sendInitNotification(
+  //   l10n.noDatabaseEncryption,
+  //   exception.toString(),
+  // );
   // Pangea#
 
   await store.setBool(SettingKeys.noEncryptionWarningShown, true);

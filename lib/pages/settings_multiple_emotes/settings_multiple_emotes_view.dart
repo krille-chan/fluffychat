@@ -18,7 +18,7 @@ class MultipleEmotesSettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.emotePacks),
+        title: Text(L10n.of(context).emotePacks),
       ),
       body: StreamBuilder(
         stream: room.client.onRoomState.stream

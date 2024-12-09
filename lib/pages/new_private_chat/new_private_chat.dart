@@ -74,7 +74,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              L10n.of(context)!.unsupportedAndroidVersionLong,
+              L10n.of(context).unsupportedAndroidVersionLong,
             ),
           ),
         );
@@ -94,7 +94,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       ClipboardData(text: Matrix.of(context).client.userID!),
     );
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(L10n.of(context)!.copiedToClipboard)),
+      SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
     );
   }
 

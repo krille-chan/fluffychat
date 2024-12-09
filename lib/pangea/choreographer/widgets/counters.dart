@@ -1,8 +1,7 @@
+import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import '../../../config/app_config.dart';
 
 class Counter extends StatelessWidget {
@@ -62,7 +61,7 @@ class CounterDisplay extends StatelessWidget {
       children: [
         Counter(
           count: custom,
-          label: L10n.of(context)!.customInputFeedbackChoice,
+          label: L10n.of(context).customInputFeedbackChoice,
           // color: Theme.of(context).brightness == Brightness.dark
           //     ? AppConfig.primaryColorLight
           //     : AppConfig.primaryColor,
@@ -70,17 +69,17 @@ class CounterDisplay extends StatelessWidget {
         ),
         Counter(
           count: correct,
-          label: L10n.of(context)!.greenFeedback,
+          label: L10n.of(context).greenFeedback,
           color: ChoreoConstants.green,
         ),
         Counter(
           color: ChoreoConstants.yellow,
-          label: L10n.of(context)!.yellowFeedback,
+          label: L10n.of(context).yellowFeedback,
           count: yellow,
         ),
         Counter(
           count: incorrect,
-          label: L10n.of(context)!.redFeedback,
+          label: L10n.of(context).redFeedback,
           color: ChoreoConstants.red,
         ),
       ],

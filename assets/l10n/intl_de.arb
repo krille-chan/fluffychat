@@ -1186,7 +1186,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "participant": "Mitglieder",
+  "participant": "Mitglied",
   "@participant": {
     "type": "text",
     "placeholders": {}
@@ -2184,7 +2184,7 @@
   "@hideUnimportantStateEvents": {},
   "doNotShowAgain": "Nicht mehr anzeigen",
   "@doNotShowAgain": {},
-  "appearOnTopDetails": "Ermöglicht, dass die App oben angezeigt wird (nicht erforderlich, wenn Sie Fluffychat bereits als Anrufkonto eingerichtet haben)",
+  "appearOnTopDetails": "Ermöglicht, dass die App oben angezeigt wird (nicht erforderlich, wenn du Fluffychat bereits als Anrufkonto eingerichtet haben)",
   "@appearOnTopDetails": {},
   "noKeyForThisMessage": "Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Gerät bei deinem Konto angemeldet hast.\n\nEs ist auch möglich, dass der Absender dein Gerät blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon übertragen! Gehe zu den Einstellungen > Geräte und vergewissere dich, dass sich deine Geräte gegenseitig verifiziert haben. Wenn du den Raum das nächste Mal öffnest und beide Sitzungen im Vordergrund sind, werden die Schlüssel automatisch übertragen.\n\nDu möchtest die Schlüssel beim Abmelden oder Gerätewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast.",
   "@noKeyForThisMessage": {},
@@ -2267,12 +2267,10 @@
   },
   "commandHint_googly": "Glupschaugen senden",
   "@commandHint_googly": {},
-  "disableEncryptionWarning": "Aus Sicherheitsgründen können Sie die Verschlüsselung in einem Chat nicht deaktivieren, wo sie zuvor aktiviert wurde.",
+  "disableEncryptionWarning": "Aus Sicherheitsgründen kannst du die Verschlüsselung in einem Chat nicht deaktivieren, wo sie zuvor aktiviert wurde.",
   "@disableEncryptionWarning": {},
   "reopenChat": "Chat wieder eröffnen",
   "@reopenChat": {},
-  "fileIsTooBigForServer": "Der Server meldet, dass die Datei zu groß ist für eine Übermittlung ist.",
-  "@fileIsTooBigForServer": {},
   "noBackupWarning": "Achtung! Ohne Aktivierung des Chat-Backups verlierst du den Zugriff auf deine verschlüsselten Nachrichten. Vor dem Ausloggen wird dringend empfohlen, das Chat-Backup zu aktivieren.",
   "@noBackupWarning": {},
   "noOtherDevicesFound": "Keine anderen Geräte anwesend",
@@ -2589,7 +2587,7 @@
       "sender": {}
     }
   },
-  "verifyOtherDeviceDescription": "Wenn Sie ein anderes Gerät verifizieren, können diese Geräteschlüssel austauschen, was Ihre Sicherheit insgesamt erhöht. 💪 Wenn Sie eine Verifizierung starten, erscheint ein Pop-up in der App auf beiden Geräten. Dort sehen Sie dann eine Reihe von Emojis oder Zahlen, die Sie miteinander vergleichen müssen. Am besten halten Sie beide Geräte bereit, bevor Sie die Verifizierung starten. 🤳",
+  "verifyOtherDeviceDescription": "Wenn du ein anderes Gerät verifizieren, können diese Geräteschlüssel austauschen, was die Sicherheit insgesamt erhöht. 💪\n\nSobald du eine Verifizierung starten, erscheint ein Pop-up in der App auf beiden Geräten. Dort siehst du dann eine Reihe von Emojis oder Zahlen, die du miteinander vergleichen musst.\n\nAm besten hältst du beide Geräte bereit, bevor du die Verifizierung startest. 🤳",
   "@verifyOtherDeviceDescription": {},
   "presenceStyle": "Statusmeldungen:",
   "@presenceStyle": {
@@ -2758,7 +2756,7 @@
   "@changeTheChatPermissions": {},
   "changeTheVisibilityOfChatHistory": "Wechsele die Sichtbarkeit der Chat-Historie",
   "@changeTheVisibilityOfChatHistory": {},
-  "chatPermissionsDescription": "Definieren Sie, welche Befugnisstufe für bestimmte Aktionen in diesem Chat erforderlich ist. Die Befugnisstufen 0, 50 und 100 stehen üblicherweise für Benutzer, Moderatoren und Admins, aber jede Abstufung ist möglich.",
+  "chatPermissionsDescription": "Einstellen, welches Level für bestimmte Aktionen in diesem Chat erforderlich ist. Die Level 0, 50 und 100 stehen üblicherweise für Benutzer, Moderatoren und Admins, aber jede Abstufung ist möglich.",
   "@chatPermissionsDescription": {},
   "invitedBy": "📩 Eingeladen von {user}",
   "@invitedBy": {
@@ -2777,9 +2775,9 @@
   "@inviteOtherUsers": {},
   "changeTheCanonicalRoomAlias": "Ändern der Hauptadresse für den öffentlichen Chat",
   "@changeTheCanonicalRoomAlias": {},
-  "sendRoomNotifications": "Senden Sie eine @room-Benachrichtigung",
+  "sendRoomNotifications": "Sende eine @room-Benachrichtigung",
   "@sendRoomNotifications": {},
-  "changeTheDescriptionOfTheGroup": "Ändern Sie die Beschreibung des Chats",
+  "changeTheDescriptionOfTheGroup": "Chat-Beschreibung ändern",
   "@changeTheDescriptionOfTheGroup": {},
   "updateInstalled": "🎉 Update {version} installiert!",
   "@updateInstalled": {
@@ -2792,6 +2790,97 @@
   "@changelog": {},
   "sendCanceled": "Senden abgebrochen",
   "@sendCanceled": {},
-  "noChatsFoundHere": "Hier wurden noch keine Chats gefunden. Starten Sie einen neuen Chat mit jemandem, indem Sie die Schaltfläche unten verwenden. ⤵️",
-  "@noChatsFoundHere": {}
+  "noChatsFoundHere": "Hier wurden noch keine Chats gefunden. Starte einen neuen Chat mit jemandem, indem du die Schaltfläche unten verwenden. ⤵️",
+  "@noChatsFoundHere": {},
+  "whatIsAHomeserver": "Was ist ein Homeserver?",
+  "@whatIsAHomeserver": {},
+  "doesNotSeemToBeAValidHomeserver": "Scheint kein kompatibler Homeserver zu sein. Falsche URL?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "loginWithMatrixId": "Mit Matrix-ID anmelden",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Server suchen",
+  "@discoverHomeservers": {},
+  "homeserverDescription": "Alle deine Daten werden auf einem Homeserver gespeichert, so wie bei einem E-Mail Anbieter. Du kannst aussuchen, welchen Homeserver du benutzen willst und kannst trotzdem mit allen kommunizieren. Erfahre mehr auf https://matrix.org.",
+  "@homeserverDescription": {},
+  "sendingAttachment": "Anhang wird gesendet ...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Generiere Video-Vorschaubild ...",
+  "@generatingVideoThumbnail": {},
+  "serverLimitReached": "Server-Limit erreicht! Warte {seconds} Sekunden ...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "calculatingFileSize": "Dateigröße wird berechnet ...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Anhang zum Senden vorbereiten ...",
+  "@prepareSendingAttachment": {},
+  "compressVideo": "Video wird komprimiert ...",
+  "@compressVideo": {},
+  "sendingAttachmentCountOfCount": "Sende Anhang {index} von {length} ...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "fileIsTooBigForServer": "Kann nicht gesendet werden! Der Server unterstützt nur Anhänge bis höchstens {max}.",
+  "@fileIsTooBigForServer": {
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "oneOfYourDevicesIsNotVerified": "Eines deiner Geräte ist nicht verifiziert",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Hinweis: Wenn du alle deine Geräte mit dem Chat-Backup verbindest, sind sie automatisch verifiziert.",
+  "@noticeChatBackupDeviceVerification": {},
+  "setWallpaper": "Hintergrund ändern",
+  "@setWallpaper": {},
+  "opacity": "Deckkraft:",
+  "@opacity": {},
+  "welcomeText": "Hey Hey 👋 Das ist FluffyChat. Du kannst sich bei jedem Homeserver anmelden, der mit https://matrix.org kompatibel ist. Und dann mit jedem chatten. Das hier ist ein riesiges dezentrales Nachrichtennetzwerk!",
+  "@welcomeText": {},
+  "blur": "Verwischen:",
+  "@blur": {},
+  "manageAccount": "Konto verwalten",
+  "@manageAccount": {},
+  "continueText": "Fortfahren",
+  "@continueText": {},
+  "noContactInformationProvided": "Der Server stellt keine gültigen Kontaktinformationen bereit",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "Serveradministrator kontaktieren",
+  "@contactServerAdmin": {},
+  "name": "Name",
+  "@name": {},
+  "version": "Version",
+  "@version": {},
+  "website": "Website",
+  "@website": {},
+  "aboutHomeserver": "Über {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "sendUncompressed": "Unkomprimiert senden",
+  "@sendUncompressed": {},
+  "boldText": "Fetter Text",
+  "@boldText": {},
+  "invalidUrl": "Ungültige URL",
+  "@invalidUrl": {},
+  "addLink": "Link hinzufügen",
+  "@addLink": {},
+  "unableToJoinChat": "Chat kann nicht beigetreten werden. Möglicherweise hat die Gegenseite das Gespräch bereits beendet.",
+  "@unableToJoinChat": {},
+  "italicText": "Kursiver Text",
+  "@italicText": {},
+  "strikeThrough": "Durchgestrichen",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Bitte ausfüllen",
+  "@pleaseFillOut": {}
 }

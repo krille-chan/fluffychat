@@ -22,7 +22,7 @@ class ChangeSubscription extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                L10n.of(context)!.selectYourPlan,
+                L10n.of(context).selectYourPlan,
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 16.0),
@@ -39,8 +39,8 @@ class ChangeSubscription extends StatelessWidget {
                         onPressed: () => controller.submitChange(),
                         child: Text(
                           controller.selectedSubscription!.isTrial
-                              ? L10n.of(context)!.activateTrial
-                              : L10n.of(context)!.pay,
+                              ? L10n.of(context).activateTrial
+                              : L10n.of(context).pay,
                         ),
                       ),
                       const SizedBox(height: 20),

@@ -33,17 +33,17 @@ extension MessageModeExtension on MessageMode {
   String title(BuildContext context) {
     switch (this) {
       case MessageMode.translation:
-        return L10n.of(context)!.translations;
+        return L10n.of(context).translations;
       case MessageMode.textToSpeech:
-        return L10n.of(context)!.messageAudio;
+        return L10n.of(context).messageAudio;
       case MessageMode.speechToText:
-        return L10n.of(context)!.speechToTextTooltip;
+        return L10n.of(context).speechToTextTooltip;
       case MessageMode.definition:
-        return L10n.of(context)!.definitions;
+        return L10n.of(context).definitions;
       case MessageMode.practiceActivity:
-        return L10n.of(context)!.practice;
+        return L10n.of(context).practice;
       default:
-        return L10n.of(context)!
+        return L10n.of(context)
             .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
     }
   }
@@ -51,17 +51,17 @@ extension MessageModeExtension on MessageMode {
   String tooltip(BuildContext context) {
     switch (this) {
       case MessageMode.translation:
-        return L10n.of(context)!.translationTooltip;
+        return L10n.of(context).translationTooltip;
       case MessageMode.textToSpeech:
-        return L10n.of(context)!.audioTooltip;
+        return L10n.of(context).audioTooltip;
       case MessageMode.speechToText:
-        return L10n.of(context)!.speechToTextTooltip;
+        return L10n.of(context).speechToTextTooltip;
       case MessageMode.definition:
-        return L10n.of(context)!.define;
+        return L10n.of(context).define;
       case MessageMode.practiceActivity:
-        return L10n.of(context)!.practice;
+        return L10n.of(context).practice;
       default:
-        return L10n.of(context)!
+        return L10n.of(context)
             .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
     }
   }

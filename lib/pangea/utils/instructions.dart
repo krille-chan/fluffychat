@@ -114,7 +114,7 @@ class InstructionsController {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CardHeader(
-                text: key.title(L10n.of(context)!),
+                text: key.title(L10n.of(context)),
                 botExpression: BotExpression.idle,
                 onClose: () => {_instructionsClosed[key.toString()] = true},
               ),
@@ -122,7 +122,7 @@ class InstructionsController {
               Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: Text(
-                  key.body(L10n.of(context)!),
+                  key.body(L10n.of(context)),
                   style: botStyle,
                 ),
               ),
@@ -166,7 +166,7 @@ class InstructionsToggleState extends State<InstructionsToggle> {
   Widget build(BuildContext context) {
     return SwitchListTile.adaptive(
       activeColor: AppConfig.activeToggleColor,
-      title: Text(L10n.of(context)!.doNotShowAgain),
+      title: Text(L10n.of(context).doNotShowAgain),
       value: widget.instructionsKey.toggledOff(),
       onChanged: ((value) async {
         pangeaController.instructions.setToggledOff(

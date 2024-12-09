@@ -9,8 +9,9 @@ import '../../utils/matrix_sdk_extensions/event_extension.dart';
 
 class ImageViewer extends StatefulWidget {
   final Event event;
+  final BuildContext outerContext;
 
-  const ImageViewer(this.event, {super.key});
+  const ImageViewer(this.event, {required this.outerContext, super.key});
 
   @override
   ImageViewerController createState() => ImageViewerController();
@@ -19,8 +20,9 @@ class ImageViewer extends StatefulWidget {
 class ImageViewerController extends State<ImageViewer> {
   /// Forward this image to another room.
   void forwardAction() {
-    Matrix.of(context).shareContent = widget.event.content;
-    context.go('/rooms');
+    Matrix.of(widget.outerContext).shareContent = widget.event.content;
+    Navigator.of(context).pop();
+    widget.outerContext.go('/rooms');
   }
 
   /// Save this file with a system call.

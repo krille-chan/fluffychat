@@ -18,7 +18,7 @@ class SpaceDetailsToggleAddStudentsTile extends StatelessWidget {
       children: [
         ListTile(
           title: Text(
-            L10n.of(context)!.addStudents,
+            L10n.of(context).addStudents,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,

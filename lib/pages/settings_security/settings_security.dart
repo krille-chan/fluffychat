@@ -1,9 +1,9 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -25,9 +25,9 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     final newLock = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.pleaseChooseAPasscode,
-      message: L10n.of(context)!.pleaseEnter4Digits,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).pleaseChooseAPasscode,
+      message: L10n.of(context).pleaseEnter4Digits,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           validator: (text) {
@@ -35,7 +35,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
                 (text.length == 4 && int.tryParse(text)! >= 0)) {
               return null;
             }
-            return L10n.of(context)!.pleaseEnter4Digits;
+            return L10n.of(context).pleaseEnter4Digits;
           },
           keyboardType: TextInputType.number,
           obscureText: true,
@@ -60,10 +60,10 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       final resp = await showOkCancelAlertDialog(
         useRootNavigator: false,
         context: context,
-        title: L10n.of(context)!.deleteSubscriptionWarningTitle,
-        message: L10n.of(context)!.deleteSubscriptionWarningBody,
-        okLabel: L10n.of(context)!.manageSubscription,
-        cancelLabel: L10n.of(context)!.continueText,
+        title: L10n.of(context).deleteSubscriptionWarningTitle,
+        message: L10n.of(context).deleteSubscriptionWarningBody,
+        okLabel: L10n.of(context).manageSubscription,
+        cancelLabel: L10n.of(context).continueText,
       );
       if (resp == OkCancelResult.ok) {
         launchUrlString(
@@ -77,10 +77,10 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context)!.warning,
-          message: L10n.of(context)!.deactivateAccountWarning,
-          okLabel: L10n.of(context)!.ok,
-          cancelLabel: L10n.of(context)!.cancel,
+          title: L10n.of(context).warning,
+          message: L10n.of(context).deactivateAccountWarning,
+          okLabel: L10n.of(context).ok,
+          cancelLabel: L10n.of(context).cancel,
           isDestructiveAction: true,
         ) ==
         OkCancelResult.cancel) {
@@ -90,17 +90,17 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     final mxids = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.confirmMatrixId,
+      title: L10n.of(context).confirmMatrixId,
       textFields: [
         DialogTextField(
           validator: (text) => text == supposedMxid
               ? null
-              : L10n.of(context)!.supposedMxid(supposedMxid),
+              : L10n.of(context).supposedMxid(supposedMxid),
         ),
       ],
       isDestructiveAction: true,
-      okLabel: L10n.of(context)!.delete,
-      cancelLabel: L10n.of(context)!.cancel,
+      okLabel: L10n.of(context).delete,
+      cancelLabel: L10n.of(context).cancel,
     );
     if (mxids == null || mxids.length != 1 || mxids.single != supposedMxid) {
       return;
@@ -108,9 +108,9 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.pleaseEnterYourPassword,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).pleaseEnterYourPassword,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       isDestructiveAction: true,
       textFields: [
         const DialogTextField(
@@ -141,7 +141,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     ).show(context);
   }
 
-  Future<void> dehydrateAction() => Matrix.of(context).dehydrateAction();
+  Future<void> dehydrateAction() => Matrix.of(context).dehydrateAction(context);
 
   @override
   Widget build(BuildContext context) => SettingsSecurityView(this);

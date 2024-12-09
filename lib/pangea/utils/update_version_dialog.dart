@@ -17,9 +17,9 @@ Future<bool> showUpdateVersionDialog({
     );
     await showOkAlertDialog(
       context: context,
-      title: L10n.of(context)!.oopsSomethingWentWrong,
-      message: L10n.of(context)!.updatePhoneOS,
-      okLabel: L10n.of(context)!.close,
+      title: L10n.of(context).oopsSomethingWentWrong,
+      message: L10n.of(context).updatePhoneOS,
+      okLabel: L10n.of(context).close,
     );
     return false;
   }

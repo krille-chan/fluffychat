@@ -35,9 +35,9 @@ class QrScannerModalState extends State<QrScannerModal> {
         leading: IconButton(
           icon: const Icon(Icons.close_outlined),
           onPressed: Navigator.of(context).pop,
-          tooltip: L10n.of(context)!.close,
+          tooltip: L10n.of(context).close,
         ),
-        title: Text(L10n.of(context)!.scanQrCode),
+        title: Text(L10n.of(context).scanQrCode),
       ),
       body: Stack(
         children: [

@@ -43,10 +43,10 @@ class SignupPageController extends State<SignupPage> {
 
   String? password1TextFieldValidator(String? value) {
     if (value!.isEmpty) {
-      return L10n.of(context)!.chooseAStrongPassword;
+      return L10n.of(context).chooseAStrongPassword;
     }
     if (value.length < minPassLength) {
-      return L10n.of(context)!
+      return L10n.of(context)
           .pleaseChooseAtLeastChars(minPassLength.toString());
     }
     return null;
@@ -54,10 +54,10 @@ class SignupPageController extends State<SignupPage> {
 
   String? password2TextFieldValidator(String? value) {
     if (value!.isEmpty) {
-      return L10n.of(context)!.repeatPassword;
+      return L10n.of(context).repeatPassword;
     }
     if (value != passwordController.text) {
-      return L10n.of(context)!.passwordsDoNotMatch;
+      return L10n.of(context).passwordsDoNotMatch;
     }
     return null;
   }
@@ -65,10 +65,10 @@ class SignupPageController extends State<SignupPage> {
   String? emailTextFieldValidator(String? value) {
     if (value!.isEmpty && !noEmailWarningConfirmed) {
       noEmailWarningConfirmed = true;
-      return L10n.of(context)!.noEmailWarning;
+      return L10n.of(context).noEmailWarning;
     }
     if (value.isNotEmpty && !value.contains('@')) {
-      return L10n.of(context)!.pleaseEnterValidEmail;
+      return L10n.of(context).pleaseEnterValidEmail;
     }
     return null;
   }

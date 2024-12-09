@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
@@ -122,6 +122,7 @@ class _Reaction extends StatelessWidget {
             width: 20,
             height: 20,
             animated: false,
+            isThumbnail: false,
           ),
           if (count > 1) ...[
             const SizedBox(width: 4),

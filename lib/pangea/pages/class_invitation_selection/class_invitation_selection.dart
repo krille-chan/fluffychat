@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -40,9 +40,9 @@ class ClassInvitationSelectionController
     if (OkCancelResult.ok !=
         await showOkCancelAlertDialog(
           context: context,
-          title: L10n.of(context)!.inviteContactToGroup(room.name),
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
+          title: L10n.of(context).inviteContactToGroup(room.name),
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
         )) {
       return;
     }
@@ -54,8 +54,8 @@ class ClassInvitationSelectionController
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           // #Pangea
-          // content: Text(L10n.of(context)!.contactHasBeenInvitedToTheGroup),
-          content: Text(L10n.of(context)!.contactHasBeenInvitedToTheChat),
+          // content: Text(L10n.of(context).contactHasBeenInvitedToTheGroup),
+          content: Text(L10n.of(context).contactHasBeenInvitedToTheChat),
           // Pangea#
         ),
       );

@@ -187,7 +187,7 @@
 //                                       selected: AnalyticsSelected(
 //                                         controller.widget.defaultSelected.id,
 //                                         AnalyticsEntryType.privateChats,
-//                                         L10n.of(context)!.allPrivateChats,
+//                                         L10n.of(context).allPrivateChats,
 //                                       ),
 //                                       allowNavigateOnSelect: false,
 //                                       isSelected: controller.isSelected(

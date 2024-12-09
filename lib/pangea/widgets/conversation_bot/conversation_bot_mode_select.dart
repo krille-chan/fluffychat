@@ -21,16 +21,16 @@ class ConversationBotModeSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     final Map<String, String> options = {
       BotMode.discussion:
-          L10n.of(context)!.conversationBotModeSelectOption_discussion,
-      BotMode.custom: L10n.of(context)!.conversationBotModeSelectOption_custom,
+          L10n.of(context).conversationBotModeSelectOption_discussion,
+      BotMode.custom: L10n.of(context).conversationBotModeSelectOption_custom,
       // BotMode.textAdventure:
-      //     L10n.of(context)!.conversationBotModeSelectOption_textAdventure,
+      //     L10n.of(context).conversationBotModeSelectOption_textAdventure,
       // BotMode.storyGame:
-      //     L10n.of(context)!.conversationBotModeSelectOption_storyGame,
+      //     L10n.of(context).conversationBotModeSelectOption_storyGame,
     };
 
     return DropdownButtonFormField2(
-      hint: Text(L10n.of(context)!.selectBotChatMode),
+      hint: Text(L10n.of(context).selectBotChatMode),
       items: [
         for (final entry in options.entries)
           DropdownMenuItem(

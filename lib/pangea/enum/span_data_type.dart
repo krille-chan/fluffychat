@@ -26,15 +26,15 @@ extension SpanDataTypeEnumExt on SpanDataTypeEnum {
   String defaultPrompt(BuildContext context) {
     switch (this) {
       case SpanDataTypeEnum.definition:
-        return L10n.of(context)!.definitionDefaultPrompt;
+        return L10n.of(context).definitionDefaultPrompt;
       case SpanDataTypeEnum.practice:
-        return L10n.of(context)!.practiceDefaultPrompt;
+        return L10n.of(context).practiceDefaultPrompt;
       case SpanDataTypeEnum.correction:
-        return L10n.of(context)!.correctionDefaultPrompt;
+        return L10n.of(context).correctionDefaultPrompt;
       case SpanDataTypeEnum.itStart:
-        return L10n.of(context)!.needsItMessage(
+        return L10n.of(context).needsItMessage(
           MatrixState.pangeaController.languageController.userL2?.displayName ??
-              L10n.of(context)!.targetLanguage,
+              L10n.of(context).targetLanguage,
         );
     }
   }

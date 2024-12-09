@@ -214,13 +214,13 @@ class PangeaRoomRules {
   ) {
     switch (getToolSettings(setting)) {
       case 0:
-        return L10n.of(context)!.interactiveTranslatorNotAllowed;
+        return L10n.of(context).interactiveTranslatorNotAllowed;
       case 1:
-        return L10n.of(context)!.interactiveTranslatorAllowed;
+        return L10n.of(context).interactiveTranslatorAllowed;
       case 2:
-        return L10n.of(context)!.interactiveTranslatorRequired;
+        return L10n.of(context).interactiveTranslatorRequired;
       default:
-        return L10n.of(context)!.notYetSet;
+        return L10n.of(context).notYetSet;
     }
   }
 }
@@ -238,17 +238,17 @@ extension SettingCopy on ToolSetting {
   String toolName(BuildContext context) {
     switch (this) {
       case ToolSetting.interactiveTranslator:
-        return L10n.of(context)!.interactiveTranslatorSliderHeader;
+        return L10n.of(context).interactiveTranslatorSliderHeader;
       case ToolSetting.interactiveGrammar:
-        return L10n.of(context)!.interactiveGrammarSliderHeader;
+        return L10n.of(context).interactiveGrammarSliderHeader;
       case ToolSetting.immersionMode:
-        return L10n.of(context)!.toggleImmersionMode;
+        return L10n.of(context).toggleImmersionMode;
       case ToolSetting.definitions:
-        return L10n.of(context)!.definitionsToolName;
+        return L10n.of(context).definitionsToolName;
       // case ToolSetting.translations:
-      //   return L10n.of(context)!.messageTranslationsToolName;
+      //   return L10n.of(context).messageTranslationsToolName;
       case ToolSetting.autoIGC:
-        return L10n.of(context)!.autoIGCToolName;
+        return L10n.of(context).autoIGCToolName;
     }
   }
 
@@ -256,17 +256,17 @@ extension SettingCopy on ToolSetting {
   String toolDescription(BuildContext context) {
     switch (this) {
       case ToolSetting.interactiveTranslator:
-        return L10n.of(context)!.itToggleDescription;
+        return L10n.of(context).itToggleDescription;
       case ToolSetting.interactiveGrammar:
-        return L10n.of(context)!.igcToggleDescription;
+        return L10n.of(context).igcToggleDescription;
       case ToolSetting.immersionMode:
-        return L10n.of(context)!.toggleImmersionModeDesc;
+        return L10n.of(context).toggleImmersionModeDesc;
       case ToolSetting.definitions:
-        return L10n.of(context)!.definitionsToolDescription;
+        return L10n.of(context).definitionsToolDescription;
       // case ToolSetting.translations:
-      //   return L10n.of(context)!.translationsToolDescrption;
+      //   return L10n.of(context).translationsToolDescrption;
       case ToolSetting.autoIGC:
-        return L10n.of(context)!.autoIGCToolDescription;
+        return L10n.of(context).autoIGCToolDescription;
     }
   }
 

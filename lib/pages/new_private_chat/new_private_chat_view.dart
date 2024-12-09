@@ -27,13 +27,13 @@ class NewPrivateChatView extends StatelessWidget {
       appBar: AppBar(
         scrolledUnderElevation: 0,
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.newChat),
+        title: Text(L10n.of(context).newChat),
         backgroundColor: theme.scaffoldBackgroundColor,
         actions: [
           TextButton(
             onPressed:
                 UrlLauncher(context, AppConfig.startChatTutorial).launchUrl,
-            child: Text(L10n.of(context)!.help),
+            child: Text(L10n.of(context).help),
           ),
         ],
       ),
@@ -51,7 +51,7 @@ class NewPrivateChatView extends StatelessWidget {
                 controller: controller.controller,
                 onChanged: controller.searchUsers,
                 decoration: InputDecoration(
-                  hintText: L10n.of(context)!.searchForUsers,
+                  hintText: L10n.of(context).searchForUsers,
                   filled: true,
                   fillColor: theme.colorScheme.secondaryContainer,
                   border: OutlineInputBorder(
@@ -108,7 +108,7 @@ class NewPrivateChatView extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: L10n.of(context)!.yourGlobalUserIdIs,
+                              text: L10n.of(context).yourGlobalUserIdIs,
                             ),
                             TextSpan(
                               text: Matrix.of(context).client.userID,
@@ -131,7 +131,7 @@ class NewPrivateChatView extends StatelessWidget {
                         foregroundColor: theme.colorScheme.onSecondaryContainer,
                         child: Icon(Icons.adaptive.share_outlined),
                       ),
-                      title: Text(L10n.of(context)!.shareInviteLink),
+                      title: Text(L10n.of(context).shareInviteLink),
                       onTap: controller.inviteAction,
                     ),
                     ListTile(
@@ -141,8 +141,8 @@ class NewPrivateChatView extends StatelessWidget {
                         child: const Icon(Icons.group_add_outlined),
                       ),
                       // #Pangea
-                      // title: Text(L10n.of(context)!.createGroup),
-                      title: Text(L10n.of(context)!.createChat),
+                      // title: Text(L10n.of(context).createGroup),
+                      title: Text(L10n.of(context).createChat),
                       // Pangea#
                       onTap: () => context.go('/rooms/newgroup'),
                     ),
@@ -153,7 +153,7 @@ class NewPrivateChatView extends StatelessWidget {
                           foregroundColor: theme.colorScheme.onPrimaryContainer,
                           child: const Icon(Icons.qr_code_scanner_outlined),
                         ),
-                        title: Text(L10n.of(context)!.scanQrCode),
+                        title: Text(L10n.of(context).scanQrCode),
                         onTap: controller.openScannerAction,
                       ),
                     Center(
@@ -208,7 +208,7 @@ class NewPrivateChatView extends StatelessWidget {
                           OutlinedButton.icon(
                             onPressed: controller.searchUsers,
                             icon: const Icon(Icons.refresh_outlined),
-                            label: Text(L10n.of(context)!.tryAgain),
+                            label: Text(L10n.of(context).tryAgain),
                           ),
                         ],
                       );
@@ -226,7 +226,7 @@ class NewPrivateChatView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Text(
-                              L10n.of(context)!.noUsersFoundWithQuery(
+                              L10n.of(context).noUsersFoundWithQuery(
                                 controller.controller.text,
                               ),
                               style: TextStyle(

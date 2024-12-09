@@ -16,7 +16,7 @@ class AnalyticsLanguageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<LanguageModel>(
-      tooltip: L10n.of(context)!.changeAnalyticsLanguage,
+      tooltip: L10n.of(context).changeAnalyticsLanguage,
       initialValue: value,
       onSelected: (LanguageModel? lang) {
         if (lang == null) {

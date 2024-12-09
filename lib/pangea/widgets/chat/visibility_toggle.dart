@@ -40,7 +40,7 @@ class VisibilityToggle extends StatelessWidget {
         SwitchListTile.adaptive(
           activeColor: AppConfig.activeToggleColor,
           title: Text(
-            L10n.of(context)!.requireCodeToJoin,
+            L10n.of(context).requireCodeToJoin,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
@@ -63,7 +63,7 @@ class VisibilityToggle extends StatelessWidget {
             return SwitchListTile.adaptive(
               activeColor: AppConfig.activeToggleColor,
               title: Text(
-                L10n.of(context)!.canFindInSearch,
+                L10n.of(context).canFindInSearch,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,

@@ -16,15 +16,15 @@ void findConversationPartnerDialog(
       context: context,
       useRootNavigator: false,
       builder: (context) => AlertDialog(
-        title: Text(L10n.of(context)!.setToPublicSettingsTitle),
+        title: Text(L10n.of(context).setToPublicSettingsTitle),
         content: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 250),
-          child: Text(L10n.of(context)!.setToPublicSettingsDesc),
+          child: Text(L10n.of(context).setToPublicSettingsDesc),
         ),
         actions: [
           TextButton(
             onPressed: Navigator.of(context).pop,
-            child: Text(L10n.of(context)!.cancel),
+            child: Text(L10n.of(context).cancel),
           ),
         ],
       ),

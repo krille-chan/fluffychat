@@ -4,3 +4,5 @@ output-localization-file: l10n.dart
 output-class: L10n
 preferred-supported-locales: ["en"]
 untranslated-messages-file: needed-translations.txt
+use-deferred-loading: true
+nullable-getter: false

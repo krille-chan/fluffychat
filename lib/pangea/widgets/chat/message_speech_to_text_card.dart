@@ -189,7 +189,7 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
                       icon: Symbols.target,
                       number:
                           "${selectedToken?.confidence ?? speechToTextResponse!.transcript.confidence}%",
-                      toolTip: L10n.of(context)!.accuracy,
+                      toolTip: L10n.of(context).accuracy,
                     ),
                     const SizedBox(width: 16),
                     IconNumberWidget(
@@ -197,7 +197,7 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
                       number: wordsPerMinuteString != null
                           ? "$wordsPerMinuteString"
                           : "??",
-                      toolTip: L10n.of(context)!.wordsPerMinute,
+                      toolTip: L10n.of(context).wordsPerMinute,
                     ),
                   ],
                 ),

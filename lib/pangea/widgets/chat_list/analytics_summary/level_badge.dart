@@ -40,7 +40,7 @@ class LevelBadge extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            L10n.of(context)!.levelShort(level),
+            L10n.of(context).levelShort(level),
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,

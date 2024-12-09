@@ -16,7 +16,7 @@ class TimeSpanMenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: PopupMenuButton<TimeSpan>(
-        tooltip: L10n.of(context)!.changeDateRange,
+        tooltip: L10n.of(context).changeDateRange,
         initialValue: value,
         onSelected: (TimeSpan? timeSpan) {
           if (timeSpan == null) {

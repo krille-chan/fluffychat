@@ -1,12 +1,10 @@
 // Flutter imports:
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/pages/sign_up/signup.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class TosCheckbox extends StatelessWidget {
   final SignupPageController controller;
@@ -31,15 +29,15 @@ class TosCheckbox extends StatelessWidget {
             child: RichText(
               maxLines: 2,
               text: TextSpan(
-                text: L10n.of(context)!.iAgreeToThe,
+                text: L10n.of(context).iAgreeToThe,
                 children: [
                   //PTODO - make sure this is actually a link
                   TextSpan(
-                    text: L10n.of(context)!.termsAndConditions,
+                    text: L10n.of(context).termsAndConditions,
                     style: const TextStyle(color: Colors.blue),
                   ),
                   TextSpan(
-                    text: L10n.of(context)!.andCertifyIAmAtLeast13YearsOfAge,
+                    text: L10n.of(context).andCertifyIAmAtLeast13YearsOfAge,
                   ),
                 ],
                 style: const TextStyle(color: Colors.white),

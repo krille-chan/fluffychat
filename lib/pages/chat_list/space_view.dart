@@ -13,11 +13,11 @@ import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
@@ -236,9 +236,9 @@ class _SpaceViewState extends State<SpaceView> {
   //     if (!mounted) return;
   //     setState(() {
   //       _nextBatch = hierarchy.nextBatch;
-  // if (hierarchy.nextBatch == null) {
-  //   _noMoreRooms = true;
-  // }
+  //       if (hierarchy.nextBatch == null) {
+  //         _noMoreRooms = true;
+  //       }
   //       _discoveredChildren.addAll(
   //         hierarchy.rooms
   //             .where((c) => room.client.getRoomById(c.roomId) == null),
@@ -296,10 +296,10 @@ class _SpaceViewState extends State<SpaceView> {
         final confirmed = await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.ok,
-          cancelLabel: L10n.of(context)!.cancel,
-          message: L10n.of(context)!.archiveRoomDescription,
+          title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).ok,
+          cancelLabel: L10n.of(context).cancel,
+          message: L10n.of(context).archiveRoomDescription,
         );
         if (!mounted) return;
         if (confirmed != OkCancelResult.ok) return;
@@ -318,15 +318,21 @@ class _SpaceViewState extends State<SpaceView> {
     // #Pangea
     // final roomType = await showConfirmationDialog(
     //   context: context,
-    //   title: L10n.of(context)!.addChatOrSubSpace,
+    //   title: L10n.of(context).addChatOrSubSpace,
     //   actions: [
     //     AlertDialogAction(
     //       key: AddRoomType.subspace,
-    //       label: L10n.of(context)!.createNewSpace,
+    //       // #Pangea
+    //       // label: L10n.of(context).createNewSpace,
+    //       label: L10n.of(context).newSpace,
+    //       // Pangea#
     //     ),
     //     AlertDialogAction(
     //       key: AddRoomType.chat,
-    //       label: L10n.of(context)!.createGroup,
+    //       // #Pangea
+    //       // label: L10n.of(context).createGroup,
+    //       label: L10n.of(context).newChat,
+    //       // Pangea#
     //     ),
     //   ],
     // );
@@ -345,34 +351,32 @@ class _SpaceViewState extends State<SpaceView> {
     // final names = await showTextInputDialog(
     //   context: context,
     //   title: roomType == AddRoomType.subspace
-    //       ? L10n.of(context)!.createNewSpace
-    //       : L10n.of(context)!.createGroup,
-    //       : L10n.of(context)!.createChat,
+    //       ? L10n.of(context).createNewSpace
+    //       : L10n.of(context).createGroup,
     //   textFields: [
     //     DialogTextField(
     //       hintText: roomType == AddRoomType.subspace
-    //           ? L10n.of(context)!.spaceName
-    //           L10n.of(context)!.groupName,
-    //           : L10n.of(context)!.chatName,
+    //           ? L10n.of(context).spaceName
+    //           : L10n.of(context).groupName,
     //       minLines: 1,
     //       maxLines: 1,
     //       maxLength: 64,
     //       validator: (text) {
     //         if (text == null || text.isEmpty) {
-    //           return L10n.of(context)!.pleaseChoose;
+    //           return L10n.of(context).pleaseChoose;
     //         }
     //         return null;
     //       },
     //     ),
     //     DialogTextField(
-    //       hintText: L10n.of(context)!.chatDescription,
+    //       hintText: L10n.of(context).chatDescription,
     //       minLines: 4,
     //       maxLines: 8,
     //       maxLength: 255,
     //     ),
     //   ],
-    //   okLabel: L10n.of(context)!.create,
-    //   cancelLabel: L10n.of(context)!.cancel,
+    //   okLabel: L10n.of(context).create,
+    //   cancelLabel: L10n.of(context).cancel,
     // );
     // if (names == null) return;
     // Pangea#
@@ -528,7 +532,7 @@ class _SpaceViewState extends State<SpaceView> {
 
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
     final displayname =
-        room?.getLocalizedDisplayname() ?? L10n.of(context)!.nothingFound;
+        room?.getLocalizedDisplayname() ?? L10n.of(context).nothingFound;
     return Scaffold(
       appBar: AppBar(
         leading: Center(
@@ -552,7 +556,7 @@ class _SpaceViewState extends State<SpaceView> {
           subtitle: room == null
               ? null
               : Text(
-                  L10n.of(context)!.countChatsAndCountParticipants(
+                  L10n.of(context).countChatsAndCountParticipants(
                     // #Pangea
                     // room.spaceChildren.length,
                     (_discoveredChildren?.length ?? 0) +
@@ -575,7 +579,7 @@ class _SpaceViewState extends State<SpaceView> {
                   children: [
                     const Icon(Icons.settings_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.settings),
+                    Text(L10n.of(context).settings),
                   ],
                 ),
               ),
@@ -586,7 +590,7 @@ class _SpaceViewState extends State<SpaceView> {
                   children: [
                     const Icon(Icons.person_add_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.invite),
+                    Text(L10n.of(context).invite),
                   ],
                 ),
               ),
@@ -597,7 +601,7 @@ class _SpaceViewState extends State<SpaceView> {
                   children: [
                     const Icon(Icons.delete_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.leave),
+                    Text(L10n.of(context).leave),
                   ],
                 ),
               ),
@@ -605,6 +609,16 @@ class _SpaceViewState extends State<SpaceView> {
           ),
         ],
       ),
+      floatingActionButton: room?.canChangeStateEvent(
+                EventTypes.SpaceChild,
+              ) ==
+              true
+          ? FloatingActionButton.extended(
+              onPressed: _addChatOrSubspace,
+              label: Text(L10n.of(context).group),
+              icon: const Icon(Icons.group_add_outlined),
+            )
+          : null,
       body: room == null
           ? const Center(
               child: Icon(
@@ -658,7 +672,7 @@ class _SpaceViewState extends State<SpaceView> {
                             borderRadius: BorderRadius.circular(99),
                           ),
                           contentPadding: EdgeInsets.zero,
-                          hintText: L10n.of(context)!.search,
+                          hintText: L10n.of(context).search,
                           hintStyle: TextStyle(
                             color: theme.colorScheme.onPrimaryContainer,
                             fontWeight: FontWeight.normal,
@@ -716,51 +730,8 @@ class _SpaceViewState extends State<SpaceView> {
                       },
                     ),
                     SliverList.builder(
-                      itemCount: joinedRooms.length + 1,
+                      itemCount: joinedRooms.length,
                       itemBuilder: (context, i) {
-                        if (i == 0) {
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              if (room.canChangeStateEvent(
-                                    EventTypes.SpaceChild,
-                                  ) &&
-                                  filter.isEmpty) ...[
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 1,
-                                  ),
-                                  child: Material(
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
-                                    clipBehavior: Clip.hardEdge,
-                                    child: ListTile(
-                                      onTap: _addChatOrSubspace,
-                                      leading: const CircleAvatar(
-                                        radius: Avatar.defaultSize / 2,
-                                        child: Icon(Icons.add_outlined),
-                                      ),
-                                      title: Text(
-                                        // #Pangea
-                                        // L10n.of(context)!.addChatOrSubSpace,
-                                        L10n.of(context)!.addChatToSpace,
-                                        // Pangea#
-                                        style: const TextStyle(fontSize: 14),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              SearchTitle(
-                                title: L10n.of(context)!.joinedChats,
-                                icon: const Icon(Icons.chat_outlined),
-                              ),
-                            ],
-                          );
-                        }
-                        i--;
                         final joinedRoom = joinedRooms[i];
                         return ChatListItem(
                           joinedRoom,
@@ -779,7 +750,7 @@ class _SpaceViewState extends State<SpaceView> {
                       itemBuilder: (context, i) {
                         if (i == 0) {
                           return SearchTitle(
-                            title: L10n.of(context)!.discover,
+                            title: L10n.of(context).discover,
                             icon: const Icon(Icons.explore_outlined),
                           );
                         }
@@ -790,7 +761,7 @@ class _SpaceViewState extends State<SpaceView> {
                               padding: const EdgeInsets.all(12.0),
                               child: Center(
                                 child: Text(
-                                  L10n.of(context)!.noMoreChatsFound,
+                                  L10n.of(context).noMoreChatsFound,
                                   style: const TextStyle(fontSize: 13),
                                 ),
                               ),
@@ -809,14 +780,14 @@ class _SpaceViewState extends State<SpaceView> {
                                         AppConfig.borderRadius,
                                       ),
                                     )
-                                  : Text(L10n.of(context)!.loadMore),
+                                  : Text(L10n.of(context).loadMore),
                             ),
                           );
                         }
                         final item = _discoveredChildren![i];
                         final displayname = item.name ??
                             item.canonicalAlias ??
-                            L10n.of(context)!.emptyChat;
+                            L10n.of(context).emptyChat;
                         if (!displayname.toLowerCase().contains(filter)) {
                           return const SizedBox.shrink();
                         }
@@ -830,6 +801,10 @@ class _SpaceViewState extends State<SpaceView> {
                                 BorderRadius.circular(AppConfig.borderRadius),
                             clipBehavior: Clip.hardEdge,
                             child: ListTile(
+                              visualDensity:
+                                  const VisualDensity(vertical: -0.5),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
                               onTap: () => _joinChildRoom(item),
                               leading: Avatar(
                                 mxContent: item.avatarUrl,
@@ -849,15 +824,23 @@ class _SpaceViewState extends State<SpaceView> {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                  const SizedBox(width: 8),
+                                  Text(
+                                    item.numJoinedMembers.toString(),
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: theme.textTheme.bodyMedium!.color,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 4),
                                   const Icon(
-                                    Icons.add_circle_outline_outlined,
+                                    Icons.people_outlined,
+                                    size: 14,
                                   ),
                                 ],
                               ),
                               subtitle: Text(
                                 item.topic ??
-                                    L10n.of(context)!.countParticipants(
+                                    L10n.of(context).countParticipants(
                                       item.numJoinedMembers,
                                     ),
                                 maxLines: 1,
@@ -868,6 +851,7 @@ class _SpaceViewState extends State<SpaceView> {
                         );
                       },
                     ),
+                    const SliverPadding(padding: EdgeInsets.only(top: 32)),
                   ],
                 );
               },

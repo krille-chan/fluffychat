@@ -2,11 +2,11 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_e
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -49,7 +49,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
         // #Pangea
         final room = client.getRoomById(roomId);
         if (room != null && (await room.leaveIfFull())) {
-          throw L10n.of(context)!.roomFull;
+          throw L10n.of(context).roomFull;
         }
         // Pangea#
         return roomId;
@@ -81,7 +81,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
           ),
         );
     if (!query.chunk.any(_testRoom)) {
-      throw (L10n.of(outerContext)!.noRoomsFound);
+      throw (L10n.of(outerContext).noRoomsFound);
     }
     return query.chunk.firstWhere(_testRoom);
   }
@@ -100,7 +100,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_downward_outlined),
             onPressed: Navigator.of(context, rootNavigator: false).pop,
-            tooltip: L10n.of(context)!.close,
+            tooltip: L10n.of(context).close,
           ),
           actions: [
             Padding(
@@ -175,7 +175,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                               foregroundColor: theme.colorScheme.onSurface,
                             ),
                             label: Text(
-                              L10n.of(context)!.countParticipants(
+                              L10n.of(context).countParticipants(
                                 profile?.numJoinedMembers ?? 0,
                               ),
                               maxLines: 1,
@@ -197,10 +197,10 @@ class PublicRoomBottomSheet extends StatelessWidget {
                                       .client
                                       .getRoomById(chunk!.roomId) ==
                                   null
-                          ? L10n.of(context)!.knock
+                          ? L10n.of(context).knock
                           : chunk?.roomType == 'm.space'
-                              ? L10n.of(context)!.joinSpace
-                              : L10n.of(context)!.joinRoom,
+                              ? L10n.of(context).joinSpace
+                              : L10n.of(context).joinRoom,
                     ),
                     icon: const Icon(Icons.navigate_next),
                   ),

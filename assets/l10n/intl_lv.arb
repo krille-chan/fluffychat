@@ -26,7 +26,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "theyMatch": "Tie sakrīt",
+  "theyMatch": "Tās sakrīt",
   "@theyMatch": {
     "type": "text",
     "placeholders": {}
@@ -643,7 +643,7 @@
       "count": {}
     }
   },
-  "noKeyForThisMessage": "Tas var notikt, ja ziņa tika nosūtīta, pirms pieteicies savā kontā šajā ierīcē.\n\nIr arī iespējams, ka sūtītājs noliedza Tavu ierīci vai kaut kas nogāja greizi ar interneta savienojumu.\n\nVai ziņas ir lasāmas citā sesijā? Tad Tu vari pārsūtīt ziņo no tās. Jādodas uz Iestatījumi > Ierīces un jāpārliecinās, ka ierīces viena otru ir apliecinājušas. Kad nākamreiz atvērsi istabu un abas sesijas būs priekšplānā, atslēgas tiks automātiski pārsūtītas.\n\nVai nevēlies zaudēt atslēgas, kad atsakies vai maini ierīces? Jāpārliecinās, ka iestatījumos ir iespējota tērzēšanas rezerves kopija.",
+  "noKeyForThisMessage": "Tā var notikt, ja ziņa tika nosūtīta, pirms pieteicies savā kontā šajā ierīcē.\n\nIr arī iespējams, ka sūtītājs noliedza Tavu ierīci vai kaut kas nogāja greizi ar interneta savienojumu.\n\nVai ziņas ir lasāmas citā sesijā? Tad Tu vari pārsūtīt ziņo no tās. Jādodas uz Iestatījumi > Ierīces un jāpārliecinās, ka ierīces viena otru ir apliecinājušas. Kad nākamreiz atvērsi istabu un abas sesijas būs priekšplānā, atslēgas tiks automātiski pārsūtītas.\n\nVai nevēlies zaudēt atslēgas, kad atsakies vai maini ierīces? Jāpārliecinās, ka iestatījumos ir iespējota tērzēšanas rezerves kopija.",
   "@noKeyForThisMessage": {},
   "enableEncryptionWarning": "Vairs nebūs iespējams atspējot šifrēšanu. Vai tiešām to darīt?",
   "@enableEncryptionWarning": {
@@ -1002,7 +1002,7 @@
       "username": {}
     }
   },
-  "fileIsTooBigForServer": "Serveris ziņo, ka datne ir pārāk liela, lai to nosūtītu.",
+  "fileIsTooBigForServer": "Nevar nosūtīt. Serveris nodrošina pielikums līdz {max}.",
   "@fileIsTooBigForServer": {},
   "homeserver": "Mājasserveris",
   "@homeserver": {},
@@ -1648,7 +1648,7 @@
       "user": {}
     }
   },
-  "theyDontMatch": "Tie nesakrīt",
+  "theyDontMatch": "Tās nesakrīt",
   "@theyDontMatch": {
     "type": "text",
     "placeholders": {}
@@ -1827,7 +1827,7 @@
   },
   "noChatDescriptionYet": "Vēl nav izveidots tērzēšanas apraksts.",
   "@noChatDescriptionYet": {},
-  "defaultPermissionLevel": "Noklusējuma atļauju līmenis",
+  "defaultPermissionLevel": "Noklusējuma atļauju līmenis jauniem lietotājiem",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2686,5 +2686,180 @@
   "restricted": "Ierobežots",
   "@restricted": {},
   "knockRestricted": "Pieklauvēt ierobežotajiem",
-  "@knockRestricted": {}
+  "@knockRestricted": {},
+  "sendCanceled": "Sūtīšana atcelta",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Šeit vēl nav tērzēšanu. Jauna saruna ar kādu ir uzsākama ar zemāk esošo pogu. ⤵️",
+  "@noChatsFoundHere": {},
+  "invitedBy": "📩 {user} uzaicināja",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "moderatorLevel": "{level} - Moderators",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Pārvaldītājs",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeTheVisibilityOfChatHistory": "Mainīt tērzēšanas vēstures redzamību",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Mainīt tērzēšanas galveno publisko adresi",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendRoomNotifications": "Sūtīt @istaba paziņojumus",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Mainīt tērzēšanas aprakstu",
+  "@changeTheDescriptionOfTheGroup": {},
+  "alwaysUse24HourFormat": "nē",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "userLevel": "{level} - Lietotājs",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "goToSpace": "Doties uz vietu: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "changeGeneralChatSettings": "Mainīt vispārējos tērzēšanas iestatījumus",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "Uzaicināt šajā tērzēšanā citus lietotājus",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Mainīt tērzēšanas atļaujas",
+  "@changeTheChatPermissions": {},
+  "chatPermissionsDescription": "Noteikt, kurš spēka līmenis ir nepieciešams noteiktām darbībām šajā tērzēšanā. Spēka līmeņi 0, 50 un 100 parasti atbilst lietotājiem, moderatoriem un pārvaldītājiem, bet ir iespējams jebkāds iedalījums.",
+  "@chatPermissionsDescription": {},
+  "doesNotSeemToBeAValidHomeserver": "Neizskatās pēc saderīga mājasservera. Nepareizs URL?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "loginWithMatrixId": "Pieteikties ar Matrix-Id",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Atklāt mājasserverus",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "Kas ir mājasserveris?",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Visi lietotāja dati tiek glabāti mājasserverī, gluži kā ar e-pasta nodrošinātāju. Ir iespējams izvēlēties, kuru mājasserveri izmantot, saglabājot iespēju sazināties ar ikvienu. Vairāk var uzzināt https://matrix.org.",
+  "@homeserverDescription": {},
+  "updateInstalled": "🎉 Atjauninājums {version} uzstādīts.",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Izmaiņu žurnāls",
+  "@changelog": {},
+  "countChatsAndCountParticipants": "{chats} tērzēšanas un {participants} dalībnieki",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "Vairs nav tērzēšanu...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Tērzēšanas, kurās piedalos",
+  "@joinedChats": {},
+  "unread": "Nelasītas",
+  "@unread": {},
+  "space": "Vieta",
+  "@space": {},
+  "spaces": "Vietas",
+  "@spaces": {},
+  "markAsUnread": "Atzīmēt kā nelasītu",
+  "@markAsUnread": {},
+  "sendingAttachment": "Nosūta pielikumu...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Izveido video sīktēlu...",
+  "@generatingVideoThumbnail": {},
+  "sendingAttachmentCountOfCount": "Nosūta {index}. pielikumu no {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "Sasniegts servera ierobežojums. Gaida {seconds} sekundes...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "calculatingFileSize": "Aprēķina datnes lielumu...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Sagatavo pielikuma nosūtīšanu...",
+  "@prepareSendingAttachment": {},
+  "compressVideo": "Saspiež video...",
+  "@compressVideo": {},
+  "oneOfYourDevicesIsNotVerified": "Viena no ierīcēm nav apliecināta",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Piezīme: kad visas ierīces tiek savienotas ar tērzēšanas rezerves kopiju, tās tiek automātiski apliecinātas.",
+  "@noticeChatBackupDeviceVerification": {},
+  "continueText": "Turpināt",
+  "@continueText": {},
+  "welcomeText": "Sveicieni! 👋 Šis ir FluffyChat. Tu vari pieteikties jebkurā mājasserverī, kas ir saderīgs ar https://matrix.org. Tad vari tērzēt ar ikvienu. Tas ir milzīgs decentralizētās saziņas tīkls!",
+  "@welcomeText": {},
+  "blur": "Aizmiglojums:",
+  "@blur": {},
+  "setWallpaper": "Iestatīt ekrāntapeti",
+  "@setWallpaper": {},
+  "opacity": "Necaurredzamība:",
+  "@opacity": {},
+  "manageAccount": "Pārvaldīt kontu",
+  "@manageAccount": {},
+  "noContactInformationProvided": "Serveris nesniedz nekādu derīgu saziņas informāciju",
+  "@noContactInformationProvided": {},
+  "serverInformation": "Informācija par serveri:",
+  "@serverInformation": {},
+  "aboutHomeserver": "Par {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "contactServerAdmin": "Sazināties ar servera pārvaldītāju",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "Sazināties ar servera drošības uzturētājiem",
+  "@contactServerSecurity": {},
+  "supportPage": "Atbalsta lapa",
+  "@supportPage": {},
+  "name": "Nosaukums",
+  "@name": {},
+  "version": "Versija",
+  "@version": {},
+  "website": "Tīmekļvietne",
+  "@website": {},
+  "compressBeforeSending": "Saspiest pirms nosūtīšanas",
+  "@compressBeforeSending": {},
+  "boldText": "Teksts treknrakstā",
+  "@boldText": {},
+  "strikeThrough": "Pārsvītrots",
+  "@strikeThrough": {},
+  "invalidUrl": "Nederīgs URL",
+  "@invalidUrl": {},
+  "addLink": "Pievienot saiti",
+  "@addLink": {},
+  "italicText": "Teksts slīprakstā",
+  "@italicText": {},
+  "pleaseFillOut": "Lūgums aizpildīt",
+  "@pleaseFillOut": {},
+  "sendUncompressed": "Sūtīt nesaspiestu",
+  "@sendUncompressed": {}
 }

@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/download_chat.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -63,17 +63,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        // #Pangea
-        // KeyBoardShortcuts(
-        //   keysToPress: {
-        //     LogicalKeyboardKey.controlLeft,
-        //     LogicalKeyboardKey.keyI,
-        //   },
-        //   helpLabel: L10n.of(context)!.chatDetails,
-        //   onKeysPressed: _showChatDetails,
-        //   child: const SizedBox.shrink(),
-        // ),
-        // Pangea#
+        const SizedBox.shrink(),
         PopupMenuButton<ChatPopupMenuActions>(
           onSelected: (choice) async {
             switch (choice) {
@@ -81,10 +71,10 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 final confirmed = await showOkCancelAlertDialog(
                   useRootNavigator: false,
                   context: context,
-                  title: L10n.of(context)!.areYouSure,
-                  okLabel: L10n.of(context)!.ok,
-                  cancelLabel: L10n.of(context)!.cancel,
-                  message: L10n.of(context)!.archiveRoomDescription,
+                  title: L10n.of(context).areYouSure,
+                  okLabel: L10n.of(context).ok,
+                  cancelLabel: L10n.of(context).cancel,
+                  message: L10n.of(context).archiveRoomDescription,
                 );
                 if (confirmed == OkCancelResult.ok) {
                   final success = await showFutureLoadingDialog(
@@ -164,7 +154,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   children: [
                     const Icon(Icons.settings_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.chatDetails),
+                    Text(L10n.of(context).chatDetails),
                   ],
                 ),
               ),
@@ -175,7 +165,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 children: [
                   const Icon(Icons.psychology_outlined),
                   const SizedBox(width: 12),
-                  Text(L10n.of(context)!.learningSettings),
+                  Text(L10n.of(context).learningSettings),
                 ],
               ),
             ),
@@ -187,7 +177,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   children: [
                     const Icon(Icons.notifications_off_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.muteChat),
+                    Text(L10n.of(context).muteChat),
                   ],
                 ),
               )
@@ -198,7 +188,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   children: [
                     const Icon(Icons.notifications_on_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.unmuteChat),
+                    Text(L10n.of(context).unmuteChat),
                   ],
                 ),
               ),
@@ -208,7 +198,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 children: [
                   const Icon(Icons.search_outlined),
                   const SizedBox(width: 12),
-                  Text(L10n.of(context)!.search),
+                  Text(L10n.of(context).search),
                 ],
               ),
             ),
@@ -221,7 +211,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   const Icon(Icons.arrow_forward),
                   // Pangea#
                   const SizedBox(width: 12),
-                  Text(L10n.of(context)!.leave),
+                  Text(L10n.of(context).leave),
                 ],
               ),
             ),
@@ -232,7 +222,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 children: [
                   const Icon(Icons.download_outlined),
                   const SizedBox(width: 12),
-                  Text(L10n.of(context)!.downloadTxtFile),
+                  Text(L10n.of(context).downloadTxtFile),
                 ],
               ),
             ),
@@ -242,7 +232,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 children: [
                   const Icon(Icons.download_outlined),
                   const SizedBox(width: 12),
-                  Text(L10n.of(context)!.downloadCSVFile),
+                  Text(L10n.of(context).downloadCSVFile),
                 ],
               ),
             ),
@@ -252,7 +242,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 children: [
                   const Icon(Icons.download_outlined),
                   const SizedBox(width: 12),
-                  Text(L10n.of(context)!.downloadXLSXFile),
+                  Text(L10n.of(context).downloadXLSXFile),
                 ],
               ),
             ),

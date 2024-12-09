@@ -30,7 +30,7 @@ class CountryPickerTile extends StatelessWidget {
 
     return ListTile(
       title: Text(
-        "${L10n.of(context)!.countryInformation}: $displayName $flag",
+        "${L10n.of(context).countryInformation}: $displayName $flag",
       ),
       trailing: const Icon(Icons.edit_outlined),
       onTap: () => showCountryPicker(

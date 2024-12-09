@@ -21,7 +21,7 @@ Future<void> pushHelper(
   Client? client,
   L10n? l10n,
   String? activeRoomId,
-  void Function(NotificationResponse?)? onSelectNotification,
+  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
 }) async {
   try {
     await _tryPushHelper(
@@ -29,35 +29,21 @@ Future<void> pushHelper(
       client: client,
       l10n: l10n,
       activeRoomId: activeRoomId,
-      onSelectNotification: onSelectNotification,
+      flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
     );
   } catch (e, s) {
     Logs().v('Push Helper has crashed!', e, s);
 
-    // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    await flutterLocalNotificationsPlugin.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('notifications_icon'),
-        iOS: DarwinInitializationSettings(),
-      ),
-      onDidReceiveNotificationResponse: onSelectNotification,
-      onDidReceiveBackgroundNotificationResponse: onSelectNotification,
-    );
-
-    // #Pangea
-    debugPrint('Push notification ${notification.content}');
-    // l10n ??= lookupL10n(const Locale('en'));
-    // Pangea#
+    l10n ??= await lookupL10n(const Locale('en'));
     flutterLocalNotificationsPlugin.show(
       notification.roomId?.hashCode ?? 0,
-      l10n?.newMessageInFluffyChat,
-      l10n?.openAppToReadMessages,
+      l10n.newMessageInFluffyChat,
+      l10n.openAppToReadMessages,
       NotificationDetails(
         iOS: const DarwinNotificationDetails(),
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
-          l10n!.incomingMessages,
+          l10n.incomingMessages,
           number: notification.counts?.unread,
           ticker: l10n.unreadChatsInApp(
             AppConfig.applicationName,
@@ -78,7 +64,7 @@ Future<void> _tryPushHelper(
   Client? client,
   L10n? l10n,
   String? activeRoomId,
-  void Function(NotificationResponse?)? onSelectNotification,
+  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
 }) async {
   final isBackgroundMessage = client == null;
   Logs().v(
@@ -92,17 +78,6 @@ Future<void> _tryPushHelper(
     Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }
-
-  // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-  final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  await flutterLocalNotificationsPlugin.initialize(
-    const InitializationSettings(
-      android: AndroidInitializationSettings('notifications_icon'),
-      iOS: DarwinInitializationSettings(),
-    ),
-    onDidReceiveNotificationResponse: onSelectNotification,
-    //onDidReceiveBackgroundNotificationResponse: onSelectNotification,
-  );
 
   client ??= (await ClientManager.getClients(
     initialize: false,
@@ -300,7 +275,7 @@ Future<void> _tryPushHelper(
     ),
     importance: Importance.high,
     priority: Priority.max,
-    groupKey: notificationGroupId,
+    groupKey: event.room.spaceParents.firstOrNull?.roomId ?? 'rooms',
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(

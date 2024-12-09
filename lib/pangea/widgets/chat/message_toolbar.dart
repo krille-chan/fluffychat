@@ -91,7 +91,7 @@ class MessageToolbar extends StatelessWidget {
                 );
               } else {
                 return MessageDisplayCard(
-                  displayText: L10n.of(context)!.selectToDefine,
+                  displayText: L10n.of(context).selectToDefine,
                 );
               }
             },
@@ -125,7 +125,7 @@ class MessageToolbar extends StatelessWidget {
         // If not in the target language show specific messsage
         if (!overLayController.messageInUserL2) {
           return MessageDisplayCard(
-            displayText: L10n.of(context)!
+            displayText: L10n.of(context)
                 .messageNotInTargetLang, // Pass the display text,
           );
         }

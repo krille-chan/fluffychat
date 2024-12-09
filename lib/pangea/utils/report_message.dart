@@ -24,7 +24,7 @@ Future<void> reportMessage(
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          L10n.of(context)!.noTeachersFound,
+          L10n.of(context).noTeachersFound,
         ),
       ),
     );
@@ -52,12 +52,12 @@ Future<void> reportMessage(
 
   final String reportingUserId = Matrix.of(context).client.userID ?? "";
   final String roomName = reportedInRoom.getLocalizedDisplayname();
-  final String messageTitle = L10n.of(context)!.reportMessageTitle(
+  final String messageTitle = L10n.of(context).reportMessageTitle(
     reportingUserId,
     reportedUserId,
     roomName,
   );
-  final String messageBody = L10n.of(context)!.reportMessageBody(
+  final String messageBody = L10n.of(context).reportMessageBody(
     reportedMessage,
     reason,
   );
@@ -140,7 +140,7 @@ class _TeacherSelectDialogState extends State<TeacherSelectDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        L10n.of(context)!.reportToTeacher,
+        L10n.of(context).reportToTeacher,
         style: const TextStyle(fontSize: 16),
       ),
       content: SingleChildScrollView(
@@ -160,11 +160,11 @@ class _TeacherSelectDialogState extends State<TeacherSelectDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(L10n.of(context)!.cancel),
+          child: Text(L10n.of(context).cancel),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(_selectedItems),
-          child: Text(L10n.of(context)!.submit),
+          child: Text(L10n.of(context).submit),
         ),
       ],
     );

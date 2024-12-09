@@ -47,7 +47,7 @@ class WhyButton extends StatelessWidget {
                 ),
               ),
             const SizedBox(width: 8),
-            Text(L10n.of(context)!.why),
+            Text(L10n.of(context).why),
           ],
         ),
       ),

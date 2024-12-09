@@ -41,11 +41,11 @@ class SpaceCodeUtil {
   ) async {
     final List<String>? spaceCode = await showTextInputDialog(
       context: context,
-      title: L10n.of(context)!.joinWithClassCode,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).joinWithClassCode,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
-        DialogTextField(hintText: L10n.of(context)!.joinWithClassCodeHint),
+        DialogTextField(hintText: L10n.of(context).joinWithClassCodeHint),
       ],
     );
     if (spaceCode == null || spaceCode.single.isEmpty) return;
@@ -68,7 +68,7 @@ class SpaceCodeUtil {
           actions: [
             TextButton(
               onPressed: action,
-              child: Text(L10n.of(context)!.ok),
+              child: Text(L10n.of(context).ok),
             ),
           ],
         ),

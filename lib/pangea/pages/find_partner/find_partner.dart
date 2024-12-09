@@ -74,8 +74,8 @@ class FindPartnerController extends State<FindPartner> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(L10n.of(context)!.oopsSomethingWentWrong),
-            Text(L10n.of(context)!.errorPleaseRefresh),
+            Text(L10n.of(context).oopsSomethingWentWrong),
+            Text(L10n.of(context).errorPleaseRefresh),
           ],
         ),
       );

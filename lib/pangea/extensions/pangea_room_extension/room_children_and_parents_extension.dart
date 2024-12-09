@@ -91,14 +91,14 @@ extension ChildrenAndParentsRoomExtension on Room {
       .toList();
 
   String _nameIncludingParents(BuildContext context) {
-    String nameSoFar = getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
+    String nameSoFar = getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
     Room currentRoom = this;
     if (!currentRoom._isSubspace) {
       return nameSoFar;
     }
     currentRoom = currentRoom.pangeaSpaceParents.first;
     var nameToAdd =
-        currentRoom.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
+        currentRoom.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
     nameToAdd =
         nameToAdd.length <= 10 ? nameToAdd : "${nameToAdd.substring(0, 10)}...";
     nameSoFar = '$nameToAdd > $nameSoFar';

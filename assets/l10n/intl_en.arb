@@ -15,9 +15,12 @@
   "exportEmotePack": "Export Emote pack as .zip",
   "replace": "Replace",
   "about": "About",
-  "@about": {
+  "aboutHomeserver": "About {homeserver}",
+  "@aboutHomeserver": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": {
+      "homeserver": {}
+    }
   },
   "accept": "Accept",
   "@accept": {
@@ -1725,6 +1728,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "sendImages": "Send {count} image",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
   "sendMessages": "Send messages",
   "@sendMessages": {
     "type": "text",
@@ -2452,7 +2462,14 @@
   "reopenChat": "Reopen chat",
   "noBackupWarning": "Don't forget your password!",
   "noOtherDevicesFound": "No other devices found",
-  "fileIsTooBigForServer": "The server reports that the file is too large to be sent.",
+  "@noOtherDevicesFound": {},
+  "fileIsTooBigForServer": "Unable to send! The server only supports attachments up to {max}.",
+  "@fileIsTooBigForServer": {
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
   "fileHasBeenSavedAt": "File has been saved at {path}",
   "@fileHasBeenSavedAt": {
     "type": "text",
@@ -4520,9 +4537,53 @@
   "notificationsOff": "Notifications off",
   "spaceCanBeFoundViaSearch": "Space can be found via search",
   "chatCanBeFoundViaSearch": "Chat can be found via search",
+  "calculatingFileSize": "Calculating file size...",
+  "prepareSendingAttachment": "Prepare sending attachment...",
+  "sendingAttachment": "Sending attachment...",
+  "generatingVideoThumbnail": "Generating video thumbnail...",
+  "compressVideo": "Compressing video...",
+  "sendingAttachmentCountOfCount": "Sending attachment {index} of {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "Server limit reached! Waiting {seconds} seconds...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "oneOfYourDevicesIsNotVerified": "One of your devices is not verified",
+  "noticeChatBackupDeviceVerification": "Note: When you connect all your devices to the chat backup, they are automatically verified.",
   "requireCodeToJoin": "Require code to join",
   "canFindInSearch": "Can find in search",
   "addSubspaceWarning": "Once you add this, it will not appear in public search results, and it will be visible to all members of the parent space.",
   "nestedSpaceError": "Spaces should not be added as children of other spaces",
-  "addChatToSpace": "Add chat"
+  "addChatToSpace": "Add chat",
+  "continueText": "Continue",
+  "welcomeText": "Hey Hey 👋 This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!",
+  "blur": "Blur:",
+  "opacity": "Opacity:",
+  "setWallpaper": "Set wallpaper",
+  "manageAccount": "Manage account",
+  "noContactInformationProvided": "Server does not provide any valid contact information",
+  "contactServerAdmin": "Contact server admin",
+  "contactServerSecurity": "Contact server security",
+  "supportPage": "Support page",
+  "serverInformation": "Server information:",
+  "name": "Name",
+  "version": "Version",
+  "website": "Website",
+  "compress": "Compress",
+  "boldText": "Bold text",
+  "italicText": "Italic text",
+  "strikeThrough": "Strikethrough",
+  "pleaseFillOut": "Please fill out",
+  "invalidUrl": "Invalid url",
+  "addLink": "Add link",
+  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation."
 }

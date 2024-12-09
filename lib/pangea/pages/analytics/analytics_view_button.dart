@@ -15,7 +15,7 @@ class AnalyticsViewButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: PopupMenuButton<BarChartViewSelection>(
-        tooltip: L10n.of(context)!.changeAnalyticsView,
+        tooltip: L10n.of(context).changeAnalyticsView,
         initialValue: value,
         onSelected: (BarChartViewSelection? view) {
           if (view == null) {

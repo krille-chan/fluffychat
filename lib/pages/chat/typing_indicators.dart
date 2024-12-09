@@ -81,9 +81,7 @@ class TypingIndicators extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Material(
-                  color:
-                      // ignore: deprecated_member_use
-                      theme.colorScheme.surfaceVariant,
+                  color: theme.colorScheme.surfaceContainerHigh,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(AppConfig.borderRadius),
                   ),

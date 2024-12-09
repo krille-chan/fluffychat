@@ -24,15 +24,36 @@ class NewGroupView extends StatelessWidget {
             onPressed: controller.loading ? null : Navigator.of(context).pop,
           ),
         ),
-        // #Pangea
-        // title: Text(L10n.of(context)!.createGroup),
-        title: Text(L10n.of(context)!.newChat),
-        // Pangea#
+        title: Text(
+          controller.createGroupType == CreateGroupType.space
+              ? L10n.of(context).newSpace
+              // #Pangea
+              // : L10n.of(context).createGroup,
+              : L10n.of(context).newChat,
+          // Pangea#
+        ),
       ),
       body: MaxWidthBody(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SegmentedButton<CreateGroupType>(
+                selected: {controller.createGroupType},
+                onSelectionChanged: controller.setCreateGroupType,
+                segments: [
+                  ButtonSegment(
+                    value: CreateGroupType.group,
+                    label: Text(L10n.of(context).group),
+                  ),
+                  ButtonSegment(
+                    value: CreateGroupType.space,
+                    label: Text(L10n.of(context).space),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 16),
             InkWell(
               borderRadius: BorderRadius.circular(90),
@@ -45,8 +66,8 @@ class NewGroupView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(90),
                         child: Image.memory(
                           avatar,
-                          width: Avatar.defaultSize,
-                          height: Avatar.defaultSize,
+                          width: Avatar.defaultSize * 2,
+                          height: Avatar.defaultSize * 2,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -54,7 +75,7 @@ class NewGroupView extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: TextField(
                 autofocus: true,
                 controller: controller.nameController,
@@ -62,56 +83,99 @@ class NewGroupView extends StatelessWidget {
                 readOnly: controller.loading,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.people_outlined),
-                  // #Pangea
-                  // labelText: L10n.of(context)!.groupName,
-                  labelText: L10n.of(context)!.chatName,
+                  labelText: controller.createGroupType == CreateGroupType.space
+                      ? L10n.of(context).spaceName
+                      // #Pangea
+                      // : L10n.of(context).groupName,
+                      : L10n.of(context).chatName,
                   // Pangea#
                 ),
               ),
             ),
             const SizedBox(height: 16),
             // #Pangea
-            // SwitchListTile.adaptive(
-            //   contentPadding: const EdgeInsets.symmetric(horizontal: 32),
-            //   secondary: const Icon(Icons.public_outlined),
-            //   title: Text(L10n.of(context)!.groupIsPublic),
-            //   value: controller.publicGroup,
-            //   onChanged: controller.loading ? null : controller.setPublicGroup,
-            // ),
+            if (controller.createGroupType == CreateGroupType.space)
+              // Pangea#
+              SwitchListTile.adaptive(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 32),
+                secondary: const Icon(Icons.public_outlined),
+                // #Pangea
+                // title: Text(
+                //   controller.createGroupType == CreateGroupType.space
+                //       ? L10n.of(context).spaceIsPublic
+                //       : L10n.of(context).groupIsPublic,
+                // ),
+                title: Text(L10n.of(context).requireCodeToJoin),
+                // value: controller.publicGroup,
+                // onChanged:
+                //     controller.loading ? null : controller.setPublicGroup,
+                value: controller.requiredCodeToJoin,
+                onChanged: controller.setRequireCode,
+                // Pangea#
+              ),
+            // #Pangea
+            if (controller.createGroupType == CreateGroupType.space)
+              // Pangea#
+              AnimatedSize(
+                duration: FluffyThemes.animationDuration,
+                curve: FluffyThemes.animationCurve,
+                child:
+                    // #Pangea
+                    // controller.publicGroup ?
+                    // Pangea#
+                    SwitchListTile.adaptive(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 32),
+                  secondary: const Icon(Icons.search_outlined),
+                  // #Pangea
+                  // title: Text(L10n.of(context).groupCanBeFoundViaSearch),
+                  title: Text(L10n.of(context).canFindInSearch),
+                  // Pangea#
+                  value: controller.groupCanBeFound,
+                  onChanged:
+                      controller.loading ? null : controller.setGroupCanBeFound,
+                ),
+                // #Pangea
+                // : const SizedBox.shrink(),
+                // Pangea#
+              ),
             // AnimatedSize(
             //   duration: FluffyThemes.animationDuration,
-            //   child: controller.publicGroup
-            //       ? SwitchListTile.adaptive(
+            //   curve: FluffyThemes.animationCurve,
+            //   child: controller.createGroupType == CreateGroupType.space
+            //       ? const SizedBox.shrink()
+            //       : SwitchListTile.adaptive(
             //           contentPadding:
             //               const EdgeInsets.symmetric(horizontal: 32),
-            //           secondary: const Icon(Icons.search_outlined),
-            //           // #Pangea
-            //           // title: Text(L10n.of(context)!.groupCanBeFoundViaSearch),
-            //           title: Text(L10n.of(context)!.chatCanBeFoundViaSearch),
-            //           // Pangea#
-            //           value: controller.groupCanBeFound,
-            //           onChanged: controller.loading
-            //               ? null
-            //               : controller.setGroupCanBeFound,
-            //         )
-            //       : const SizedBox.shrink(),
-            // ),
-            // SwitchListTile.adaptive(
-            //   contentPadding: const EdgeInsets.symmetric(horizontal: 32),
-            //   secondary: Icon(
-            //     Icons.lock_outlined,
-            //     color: theme.colorScheme.onSurface,
-            //   ),
-            //   title: Text(
-            //     L10n.of(context)!.enableEncryption,
-            //     style: TextStyle(
-            //       color: theme.colorScheme.onSurface,
-            //     ),
-            //   ),
-            //   value: !controller.publicGroup,
-            //   onChanged: null,
+            //           secondary: Icon(
+            //             Icons.lock_outlined,
+            //             color: theme.colorScheme.onSurface,
+            //           ),
+            //           title: Text(
+            //             L10n.of(context).enableEncryption,
+            //             style: TextStyle(
+            //               color: theme.colorScheme.onSurface,
+            //             ),
+            //           ),
+            //           value: !controller.publicGroup,
+            //           onChanged: null,
+            //         ),
             // ),
             // Pangea#
+            AnimatedSize(
+              duration: FluffyThemes.animationDuration,
+              curve: FluffyThemes.animationCurve,
+              child: controller.createGroupType == CreateGroupType.space
+                  ? ListTile(
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 32),
+                      trailing: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Icon(Icons.info_outlined),
+                      ),
+                      subtitle: Text(L10n.of(context).newSpaceDescription),
+                    )
+                  : const SizedBox.shrink(),
+            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: SizedBox(
@@ -121,12 +185,17 @@ class NewGroupView extends StatelessWidget {
                       controller.loading ? null : controller.submitAction,
                   child: controller.loading
                       ? const LinearProgressIndicator()
-                      : Text(L10n.of(context)!.createGroupAndInviteUsers),
+                      : Text(
+                          controller.createGroupType == CreateGroupType.space
+                              ? L10n.of(context).createNewSpace
+                              : L10n.of(context).createGroupAndInviteUsers,
+                        ),
                 ),
               ),
             ),
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
+              curve: FluffyThemes.animationCurve,
               child: error == null
                   ? const SizedBox.shrink()
                   : ListTile(

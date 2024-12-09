@@ -78,9 +78,7 @@ abstract class FluffyThemes {
               ? Typography.material2018().black.merge(fallbackTextTheme)
               : Typography.material2018().white.merge(fallbackTextTheme)
           : null,
-      dividerColor: brightness == Brightness.light
-          ? Colors.blueGrey.shade50
-          : Colors.blueGrey.shade900,
+      dividerColor: colorScheme.surfaceContainer,
       popupMenuTheme: PopupMenuThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
@@ -100,7 +98,7 @@ abstract class FluffyThemes {
       appBarTheme: AppBarTheme(
         toolbarHeight: FluffyThemes.isColumnMode(context) ? 72 : 56,
         shadowColor: FluffyThemes.isColumnMode(context)
-            ? Colors.grey.withAlpha(64)
+            ? colorScheme.surfaceContainer.withAlpha(128)
             : null,
         surfaceTintColor:
             FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
@@ -128,8 +126,11 @@ abstract class FluffyThemes {
       ),
       dialogTheme: DialogTheme(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

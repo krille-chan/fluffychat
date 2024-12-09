@@ -23,11 +23,18 @@ class ChatEventList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final timeline = controller.timeline;
+    if (timeline == null) {
+      return const Center(
+        child: CircularProgressIndicator.adaptive(
+          strokeWidth: 2,
+        ),
+      );
+    }
+
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
-    final events = controller.timeline!.events
-        .where((event) => event.isVisibleInGui)
-        .toList();
+    final events = timeline.events.filterByVisibleInGui();
     final animateInEventIndex = controller.animateInEventIndex;
 
     // create a map of eventId --> index to greatly improve performance of
@@ -75,12 +82,12 @@ class ChatEventList extends StatelessWidget {
           (BuildContext context, int i) {
             // Footer to display typing indicator and read receipts:
             if (i == 0) {
-              if (controller.timeline!.isRequestingFuture) {
+              if (timeline.isRequestingFuture) {
                 return const Center(
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                 );
               }
-              if (controller.timeline!.canRequestFuture) {
+              if (timeline.canRequestFuture) {
                 return Center(
                   child: IconButton(
                     onPressed: controller.requestFuture,
@@ -99,8 +106,7 @@ class ChatEventList extends StatelessWidget {
 
             // Request history button or progress indicator:
             if (i == events.length + 1) {
-              if (controller.timeline!.isRequestingHistory) {
-                // #Pangea
+              if (timeline.isRequestingHistory) {
                 // return const Center(
                 //   child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                 // );
@@ -114,7 +120,7 @@ class ChatEventList extends StatelessWidget {
                 );
                 // Pangea#
               }
-              if (controller.timeline!.canRequestHistory) {
+              if (timeline.canRequestHistory) {
                 return Builder(
                   builder: (context) {
                     // #Pangea
@@ -152,8 +158,8 @@ class ChatEventList extends StatelessWidget {
 
             final event = events[i];
             final animateIn = animateInEventIndex != null &&
-                controller.timeline!.events.length > animateInEventIndex &&
-                event == controller.timeline!.events[animateInEventIndex];
+                timeline.events.length > animateInEventIndex &&
+                event == timeline.events[animateInEventIndex];
 
             return AutoScrollTag(
               key: ValueKey(event.eventId),
@@ -195,13 +201,12 @@ class ChatEventList extends StatelessWidget {
                 // Pangea#
                 selected: controller.selectedEvents
                     .any((e) => e.eventId == event.eventId),
-                timeline: controller.timeline!,
+                timeline: timeline,
                 displayReadMarker:
                     i > 0 && controller.readMarkerEventId == event.eventId,
                 nextEvent: i + 1 < events.length ? events[i + 1] : null,
                 previousEvent: i > 0 ? events[i - 1] : null,
-                avatarPresenceBackgroundColor:
-                    hasWallpaper ? Colors.transparent : null,
+                wallpaperMode: hasWallpaper,
               ),
             );
           },

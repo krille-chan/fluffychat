@@ -16,14 +16,14 @@ class SettingsSubscriptionView extends StatelessWidget {
     final List<Widget> managementButtons = [
       if (controller.currentSubscriptionAvailable)
         ListTile(
-          title: Text(L10n.of(context)!.currentSubscription),
+          title: Text(L10n.of(context).currentSubscription),
           subtitle: Text(controller.currentSubscriptionTitle),
           trailing: Text(controller.currentSubscriptionPrice),
         ),
       Column(
         children: [
           ListTile(
-            title: Text(L10n.of(context)!.cancelSubscription),
+            title: Text(L10n.of(context).cancelSubscription),
             enabled: controller.showManagementOptions,
             onTap: () => controller.launchMangementUrl(
               ManagementOption.cancel,
@@ -32,7 +32,7 @@ class SettingsSubscriptionView extends StatelessWidget {
           ),
           const Divider(height: 1),
           ListTile(
-            title: Text(L10n.of(context)!.paymentMethod),
+            title: Text(L10n.of(context).paymentMethod),
             trailing: const Icon(Icons.credit_card),
             onTap: () => controller.launchMangementUrl(
               ManagementOption.paymentMethod,
@@ -40,7 +40,7 @@ class SettingsSubscriptionView extends StatelessWidget {
             enabled: controller.showManagementOptions,
           ),
           ListTile(
-            title: Text(L10n.of(context)!.paymentHistory),
+            title: Text(L10n.of(context).paymentHistory),
             trailing: const Icon(Icons.keyboard_arrow_right_outlined),
             onTap: () => controller.launchMangementUrl(
               ManagementOption.history,
@@ -57,7 +57,7 @@ class SettingsSubscriptionView extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          L10n.of(context)!.subscriptionManagement,
+          L10n.of(context).subscriptionManagement,
         ),
       ),
       body: ListTileTheme(
@@ -96,27 +96,27 @@ class ManagementNotAvailableWarning extends StatelessWidget {
     String getWarningText() {
       final DateFormat formatter = DateFormat('yyyy-MM-dd');
       if (controller.isNewUserTrial) {
-        return L10n.of(context)!.trialExpiration(
+        return L10n.of(context).trialExpiration(
           formatter.format(currentSubscriptionInfo!.expirationDate!),
         );
       }
       if (controller.currentSubscriptionAvailable) {
-        String warningText = L10n.of(context)!.subsciptionPlatformTooltip;
+        String warningText = L10n.of(context).subsciptionPlatformTooltip;
         if (controller.purchasePlatformDisplayName != null) {
           warningText +=
-              "\n${L10n.of(context)!.originalSubscriptionPlatform(controller.purchasePlatformDisplayName!)}";
+              "\n${L10n.of(context).originalSubscriptionPlatform(controller.purchasePlatformDisplayName!)}";
         }
         return warningText;
       }
       if (controller.currentSubscriptionIsPromotional) {
         if (currentSubscriptionInfo?.isLifetimeSubscription ?? false) {
-          return L10n.of(context)!.promotionalSubscriptionDesc;
+          return L10n.of(context).promotionalSubscriptionDesc;
         }
-        return L10n.of(context)!.promoSubscriptionExpirationDesc(
+        return L10n.of(context).promoSubscriptionExpirationDesc(
           formatter.format(currentSubscriptionInfo!.expirationDate!),
         );
       }
-      return L10n.of(context)!.subscriptionManagementUnavailable;
+      return L10n.of(context).subscriptionManagementUnavailable;
     }
 
     return Center(

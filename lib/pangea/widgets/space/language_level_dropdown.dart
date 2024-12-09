@@ -22,7 +22,7 @@ class LanguageLevelDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonFormField2(
       hint: Text(
-        L10n.of(context)!.selectLanguageLevel,
+        L10n.of(context).selectLanguageLevel,
         overflow: TextOverflow.clip,
         textAlign: TextAlign.center,
       ),

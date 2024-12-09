@@ -61,7 +61,7 @@ class ChoreographerSendButtonState extends State<ChoreographerSendButton> {
           widget.controller.choreographer.incrementTimesClicked();
           widget.controller.choreographer.send(context);
         },
-        tooltip: L10n.of(context)!.send,
+        tooltip: L10n.of(context).send,
       ),
     );
   }

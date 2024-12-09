@@ -2,6 +2,7 @@ import 'package:emojis/emoji.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/command_hints.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
+import 'package:fluffychat/utils/markdown_context_builder.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -231,7 +232,7 @@ class InputBar extends StatelessWidget {
     // Pangea#
     if (suggestion['type'] == 'command') {
       final command = suggestion['name']!;
-      final hint = commandHint(L10n.of(context)!, command);
+      final hint = commandHint(L10n.of(context), command);
       return Tooltip(
         message: hint,
         waitDuration: const Duration(days: 1), // don't show on hover
@@ -280,6 +281,7 @@ class InputBar extends StatelessWidget {
                   : null,
               width: size,
               height: size,
+              isThumbnail: false,
             ),
             const SizedBox(width: 6),
             Text(suggestion['name']!),
@@ -478,6 +480,14 @@ class InputBar extends StatelessWidget {
             // Pangea#
             controller: controller,
             focusNode: focusNode,
+            contextMenuBuilder: (c, e) => markdownContextBuilder(
+              c,
+              e,
+              // #Pangea
+              // controller,
+              _,
+              // Pangea#
+            ),
             contentInsertionConfiguration: ContentInsertionConfiguration(
               onContentInserted: (KeyboardInsertedContent content) {
                 final data = content.data;

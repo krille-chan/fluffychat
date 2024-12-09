@@ -1641,7 +1641,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Alapértelmezett hozzáférési szint",
+  "defaultPermissionLevel": "Alapértelmezett hozzáférési szint új felhasználóknak",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -2706,5 +2706,102 @@
   "gallery": "Galéria",
   "@gallery": {},
   "commandHint_ignore": "Adott matrix ID figyelmen kívül hagyása",
-  "@commandHint_ignore": {}
+  "@commandHint_ignore": {},
+  "unread": "Olvasatlan",
+  "@unread": {},
+  "space": "Tér",
+  "@space": {},
+  "spaces": "Terek",
+  "@spaces": {},
+  "invitedBy": "📩 Meghívva {user} által",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "markAsUnread": "Olvasatlannak jelölés",
+  "@markAsUnread": {},
+  "moderatorLevel": "{level} - Moderátor",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Általános csevegés beállítások módosítása",
+  "@changeGeneralChatSettings": {},
+  "updateInstalled": "🎉 {version} verziójú fejlesztés telepítve!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Változások",
+  "@changelog": {},
+  "sendCanceled": "Visszavonás küldése",
+  "@sendCanceled": {},
+  "noChatsFoundHere": "Itt még nincs csevegés. Kezdjen újat valakivel a lentebbi gombbal. ⤵️",
+  "@noChatsFoundHere": {},
+  "goToSpace": "Menj a térre: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "changeTheCanonicalRoomAlias": "Csevegés fő, nyilvános címének változtatása",
+  "@changeTheCanonicalRoomAlias": {},
+  "chatPermissionsDescription": "Adja meg milyen erősségi szint kell egyes csevegési akciókhoz. A 0, 50 és 100-as szintek általában felhasználókat, moderátorokat és rendszergazdákat jelölnek de bármilyen szintezés lehetséges.",
+  "@chatPermissionsDescription": {},
+  "whatIsAHomeserver": "Mi az a Matrix-kiszolgáló?",
+  "@whatIsAHomeserver": {},
+  "homeserverDescription": "Az összes adata a Mátrix-kiszolgálón tárolódik, pont mint egy e-mail kiszolgálón. Kiválaszthatja melyik Matrix-kiszolgálót akarja használni, miközben tud kommunikálni mindenkivel. Tudjon meg többet itt: https://matrix.org.",
+  "@homeserverDescription": {},
+  "userLevel": "{level} - Felhasználó",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "adminLevel": "{level} - Rendszergazda",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "inviteOtherUsers": "Más felhasználók meghívása a csevegésbe",
+  "@inviteOtherUsers": {},
+  "changeTheVisibilityOfChatHistory": "Csevegési előzmények láthatóságának változtatása",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheChatPermissions": "Csevegés engedélyek változtatása",
+  "@changeTheChatPermissions": {},
+  "sendRoomNotifications": "@room értesítés küldése",
+  "@sendRoomNotifications": {},
+  "changeTheDescriptionOfTheGroup": "Csevegés leírásának változtatása",
+  "@changeTheDescriptionOfTheGroup": {},
+  "swipeRightToLeftToReply": "Húzza balra a válaszoláshoz",
+  "@swipeRightToLeftToReply": {},
+  "alwaysUse24HourFormat": "true",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "loginWithMatrixId": "Jelentkezzen be Matrix-ID-vel",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Matrix-kiszolgálók felfedezése",
+  "@discoverHomeservers": {},
+  "doesNotSeemToBeAValidHomeserver": "Nem tűnik kompatibilisnak a Mátrix-kiszolgálóval. Helytelen URL?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "countChatsAndCountParticipants": "{chats} csevegések és {participants} résztvevők",
+  "@countChatsAndCountParticipants": {
+    "type": "text",
+    "placeholders": {
+      "chats": {},
+      "participants": {}
+    }
+  },
+  "noMoreChatsFound": "Nincs több csevegés...",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Csatlakozott csevegések",
+  "@joinedChats": {}
 }

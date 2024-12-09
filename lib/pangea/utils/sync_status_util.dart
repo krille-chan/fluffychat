@@ -1,11 +1,10 @@
 import 'dart:async';
 
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
 
 class PLoadingStatus extends StatefulWidget {
@@ -113,7 +112,7 @@ extension on SyncStatusUpdate {
   String toLocalizedString(BuildContext context) {
     switch (status) {
       case SyncStatus.waitingForResponse:
-        return L10n.of(context)!.loadingPleaseWait;
+        return L10n.of(context).loadingPleaseWait;
       case SyncStatus.error:
         return ((error?.exception ?? Object()) as Object)
             .toLocalizedString(context);
@@ -121,7 +120,7 @@ extension on SyncStatusUpdate {
       case SyncStatus.cleaningUp:
       case SyncStatus.finished:
       default:
-        return L10n.of(context)!.synchronizingPleaseWait;
+        return L10n.of(context).synchronizingPleaseWait;
     }
   }
 }

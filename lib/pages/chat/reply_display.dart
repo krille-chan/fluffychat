@@ -28,7 +28,7 @@ class ReplyDisplay extends StatelessWidget {
       child: Row(
         children: <Widget>[
           IconButton(
-            tooltip: L10n.of(context)!.close,
+            tooltip: L10n.of(context).close,
             icon: const Icon(Icons.close),
             onPressed: controller.cancelReplyEventAction,
           ),
@@ -70,7 +70,7 @@ class _EditContent extends StatelessWidget {
         Container(width: 15.0),
         Text(
           event.calcLocalizedBodyFallback(
-            MatrixLocals(L10n.of(context)!),
+            MatrixLocals(L10n.of(context)),
             withSenderNamePrefix: false,
             hideReply: true,
           ),

@@ -150,7 +150,7 @@ class ChoiceItem extends StatelessWidget {
   Widget build(BuildContext context) {
     try {
       return Tooltip(
-        message: onLongPress != null ? L10n.of(context)!.holdForInfo : "",
+        message: onLongPress != null ? L10n.of(context).holdForInfo : "",
         waitDuration: onLongPress != null
             ? const Duration(milliseconds: 500)
             : const Duration(days: 1),

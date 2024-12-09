@@ -1,7 +1,7 @@
 import 'package:fluffychat/pangea/models/space_model.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../../../config/app_config.dart';
@@ -80,7 +80,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
   void showNoPermission() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(L10n.of(context)!.noPermission),
+        content: Text(L10n.of(context).noPermission),
       ),
     );
   }
@@ -92,13 +92,13 @@ class RoomRulesState extends State<RoomRulesEditor> {
         // if (widget.showAdd)
         //   ListTile(
         //     title: Text(
-        //       L10n.of(context)!.studentPermissions,
+        //       L10n.of(context).studentPermissions,
         //       style: TextStyle(
         //         color: Theme.of(context).colorScheme.secondary,
         //         fontWeight: FontWeight.bold,
         //       ),
         //     ),
-        //     subtitle: Text(L10n.of(context)!.addRoomRulesDesc),
+        //     subtitle: Text(L10n.of(context).addRoomRulesDesc),
         //     leading: CircleAvatar(
         //       backgroundColor: Theme.of(context).primaryColor,
         //       foregroundColor: Colors.white,
@@ -116,13 +116,13 @@ class RoomRulesState extends State<RoomRulesEditor> {
         ListTile(
           enableFeedback: !widget.startOpen,
           title: Text(
-            L10n.of(context)!.studentPermissions,
+            L10n.of(context).studentPermissions,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
             ),
           ),
-          subtitle: Text(L10n.of(context)!.studentPermissionsDesc),
+          subtitle: Text(L10n.of(context).studentPermissionsDesc),
           leading: CircleAvatar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
@@ -190,9 +190,9 @@ class RoomRulesState extends State<RoomRulesEditor> {
                       ),
                     SwitchListTile.adaptive(
                       activeColor: AppConfig.activeToggleColor,
-                      title: Text(L10n.of(context)!.oneToOneChatsWithinClass),
+                      title: Text(L10n.of(context).oneToOneChatsWithinClass),
                       subtitle:
-                          Text(L10n.of(context)!.oneToOneChatsWithinClassDesc),
+                          Text(L10n.of(context).oneToOneChatsWithinClassDesc),
                       value: rules.oneToOneChatClass,
                       onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
@@ -202,8 +202,8 @@ class RoomRulesState extends State<RoomRulesEditor> {
                     ),
                     SwitchListTile.adaptive(
                       activeColor: AppConfig.activeToggleColor,
-                      title: Text(L10n.of(context)!.createGroupChats),
-                      subtitle: Text(L10n.of(context)!.createGroupChatsDesc),
+                      title: Text(L10n.of(context).createGroupChats),
+                      subtitle: Text(L10n.of(context).createGroupChatsDesc),
                       value: rules.isCreateRooms,
                       onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
@@ -213,8 +213,8 @@ class RoomRulesState extends State<RoomRulesEditor> {
                     ),
                     SwitchListTile.adaptive(
                       activeColor: AppConfig.activeToggleColor,
-                      title: Text(L10n.of(context)!.shareVideo),
-                      subtitle: Text(L10n.of(context)!.shareVideoDesc),
+                      title: Text(L10n.of(context).shareVideo),
+                      subtitle: Text(L10n.of(context).shareVideoDesc),
                       value: rules.isShareVideo,
                       onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
@@ -224,8 +224,8 @@ class RoomRulesState extends State<RoomRulesEditor> {
                     ),
                     SwitchListTile.adaptive(
                       activeColor: AppConfig.activeToggleColor,
-                      title: Text(L10n.of(context)!.sharePhotos),
-                      subtitle: Text(L10n.of(context)!.sharePhotosDesc),
+                      title: Text(L10n.of(context).sharePhotos),
+                      subtitle: Text(L10n.of(context).sharePhotosDesc),
                       value: rules.isSharePhoto,
                       onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
@@ -235,8 +235,8 @@ class RoomRulesState extends State<RoomRulesEditor> {
                     ),
                     SwitchListTile.adaptive(
                       activeColor: AppConfig.activeToggleColor,
-                      title: Text(L10n.of(context)!.shareFiles),
-                      subtitle: Text(L10n.of(context)!.shareFilesDesc),
+                      title: Text(L10n.of(context).shareFiles),
+                      subtitle: Text(L10n.of(context).shareFilesDesc),
                       value: rules.isShareFiles,
                       onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
@@ -246,8 +246,8 @@ class RoomRulesState extends State<RoomRulesEditor> {
                     ),
                     SwitchListTile.adaptive(
                       activeColor: AppConfig.activeToggleColor,
-                      title: Text(L10n.of(context)!.sendVoiceNotes),
-                      subtitle: Text(L10n.of(context)!.sendVoiceNotesDesc),
+                      title: Text(L10n.of(context).sendVoiceNotes),
+                      subtitle: Text(L10n.of(context).sendVoiceNotesDesc),
                       value: rules.isVoiceNotes,
                       onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
@@ -257,8 +257,8 @@ class RoomRulesState extends State<RoomRulesEditor> {
                     ),
                     SwitchListTile.adaptive(
                       activeColor: AppConfig.activeToggleColor,
-                      title: Text(L10n.of(context)!.shareLocation),
-                      subtitle: Text(L10n.of(context)!.shareLocationDesc),
+                      title: Text(L10n.of(context).shareLocation),
+                      subtitle: Text(L10n.of(context).shareLocationDesc),
                       value: rules.isShareLocation,
                       onChanged: (value) => (room?.isRoomAdmin ?? true)
                           ? updatePermission(
