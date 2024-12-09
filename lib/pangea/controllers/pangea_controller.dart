@@ -403,7 +403,6 @@ class PangeaController {
         ) ??
         false)) {
       await matrixState.client.setPushRule(
-        'global',
         PushRuleKind.override,
         PangeaEventTypes.textToSpeechRule,
         [PushRuleAction.dontNotify],
