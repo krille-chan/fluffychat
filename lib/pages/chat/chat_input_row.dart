@@ -145,7 +145,8 @@ class ChatInputRow extends StatelessWidget {
                           //         children: <Widget>[
                           //           Text(L10n.of(context).tryToSendAgain),
                           //           const SizedBox(width: 4),
-                          //           const Icon(Icons.send_outlined, size: 16),
+                          //           const Icon(Icons.send_outlined,
+                          //               size: 16),
                           //         ],
                           //       ),
                           //     ),
@@ -326,15 +327,6 @@ class ChatInputRow extends StatelessWidget {
                     //     child: _ChatAccountPicker(controller),
                     //   ),
                     // Pangea#
-                    if (Matrix.of(context).isMultiAccount &&
-                        Matrix.of(context).hasComplexBundles &&
-                        Matrix.of(context).currentBundle!.length > 1)
-                      Container(
-                        width: height,
-                        height: height,
-                        alignment: Alignment.center,
-                        child: _ChatAccountPicker(controller),
-                      ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 0.0),

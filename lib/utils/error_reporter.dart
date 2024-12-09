@@ -14,15 +14,7 @@ class ErrorReporter {
     // #Pangea
     try {
       // Attempt to retrieve the L10n instance using the current context
-      final L10n? l10n = L10n.of(context);
-
-      // Check if the L10n instance is null
-      if (l10n == null) {
-        // Log an error message saying that the localization object is null
-        Logs().e('Localization object is null, cannot show error message.');
-        // Exits early to prevent further execution
-        return;
-      }
+      final L10n l10n = L10n.of(context);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(

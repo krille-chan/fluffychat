@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:archive/archive.dart'
     if (dart.library.io) 'package:archive/archive_io.dart';
+import 'package:collection/collection.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';

@@ -34,16 +34,16 @@ class ChatPermissionsSettingsView extends StatelessWidget {
             final powerLevelsContent = Map<String, Object?>.from(
               room.getState(EventTypes.RoomPowerLevels)?.content ?? {},
             );
-            final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
-              // #Pangea
-              // ..removeWhere((k, v) => v is! int);
-              ..removeWhere(
-                (k, v) =>
-                    v is! int ||
-                    k.equals("m.call.invite") ||
-                    k.equals("historical") ||
-                    k.equals("state_default"),
-              );
+            final powerLevels =
+                Map<String, dynamic>.from(powerLevelsContent) // #Pangea
+                  // ..removeWhere((k, v) => v is! int);
+                  ..removeWhere(
+                    (k, v) =>
+                        v is! int ||
+                        k.equals("m.call.invite") ||
+                        k.equals("historical") ||
+                        k.equals("state_default"),
+                  );
             // Pangea#
             final eventsPowerLevels = Map<String, int?>.from(
               powerLevelsContent.tryGetMap<String, int?>('events') ?? {},

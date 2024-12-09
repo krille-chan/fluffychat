@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
