@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/encryption.dart';
@@ -11,6 +10,7 @@ import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../../utils/adaptive_bottom_sheet.dart';
 import '../key_verification/key_verification_dialog.dart';
@@ -366,7 +366,6 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                     .verifyOtherDeviceDescription,
                                 okLabel: L10n.of(context).ok,
                                 cancelLabel: L10n.of(context).cancel,
-                                fullyCapitalizedForMaterial: false,
                               );
                               if (consent != OkCancelResult.ok) return;
                               final req = await showFutureLoadingDialog(
@@ -404,7 +403,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                     message: L10n.of(context).wipeChatBackup,
                                     okLabel: L10n.of(context).ok,
                                     cancelLabel: L10n.of(context).cancel,
-                                    isDestructiveAction: true,
+                                    isDestructive: true,
                                   )) {
                                 setState(() => _createBootstrap(true));
                               }

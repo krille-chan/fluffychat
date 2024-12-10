@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_shortcuts/flutter_shortcuts.dart';
@@ -21,6 +20,9 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/utils/show_update_snackbar.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
@@ -188,23 +190,19 @@ class ChatListController extends State<ChatList>
       context: context,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          prefixText: 'https://',
-          hintText: Matrix.of(context).client.homeserver?.host,
-          initialText: searchServer,
-          keyboardType: TextInputType.url,
-          autocorrect: false,
-          validator: (server) => server?.contains('.') == true
-              ? null
-              : L10n.of(context).invalidServerName,
-        ),
-      ],
+      prefixText: 'https://',
+      hintText: Matrix.of(context).client.homeserver?.host,
+      initialText: searchServer,
+      keyboardType: TextInputType.url,
+      autocorrect: false,
+      validator: (server) => server.contains('.') == true
+          ? null
+          : L10n.of(context).invalidServerName,
     );
     if (newServer == null) return;
-    Matrix.of(context).store.setString(_serverStoreNamespace, newServer.single);
+    Matrix.of(context).store.setString(_serverStoreNamespace, newServer);
     setState(() {
-      searchServer = newServer.single;
+      searchServer = newServer;
     });
     _coolDown?.cancel();
     _coolDown = Timer(const Duration(milliseconds: 500), _search);
@@ -668,7 +666,7 @@ class ChatListController extends State<ChatList>
           message: L10n.of(context).archiveRoomDescription,
           okLabel: L10n.of(context).leave,
           cancelLabel: L10n.of(context).cancel,
-          isDestructiveAction: true,
+          isDestructive: true,
         );
         if (confirmed == OkCancelResult.cancel) return;
         if (!mounted) return;
@@ -677,13 +675,13 @@ class ChatListController extends State<ChatList>
 
         return;
       case ChatContextAction.addToSpace:
-        final space = await showConfirmationDialog(
+        final space = await showModalActionPopup(
           context: context,
           title: L10n.of(context).space,
           actions: spacesWithPowerLevels
               .map(
-                (space) => AlertDialogAction(
-                  key: space,
+                (space) => AdaptiveModalAction(
+                  value: space,
                   label: space
                       .getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
                 ),
@@ -724,15 +722,11 @@ class ChatListController extends State<ChatList>
       message: L10n.of(context).leaveEmptyToClearStatus,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          hintText: L10n.of(context).statusExampleMessage,
-          maxLines: 6,
-          minLines: 1,
-          maxLength: 255,
-          initialText: currentPresence.statusMsg,
-        ),
-      ],
+      hintText: L10n.of(context).statusExampleMessage,
+      maxLines: 6,
+      minLines: 1,
+      maxLength: 255,
+      initialText: currentPresence.statusMsg,
     );
     if (input == null) return;
     if (!mounted) return;
@@ -741,7 +735,7 @@ class ChatListController extends State<ChatList>
       future: () => client.setPresence(
         client.userID!,
         PresenceType.online,
-        statusMsg: input.single,
+        statusMsg: input,
       ),
     );
   }
@@ -834,17 +828,18 @@ class ChatListController extends State<ChatList>
     final client = Matrix.of(context)
         .widget
         .clients[Matrix.of(context).getClientIndexByMatrixId(userId!)];
-    final action = await showConfirmationDialog<EditBundleAction>(
+    final action = await showModalActionPopup<EditBundleAction>(
       context: context,
       title: L10n.of(context).editBundlesForAccount,
+      cancelLabel: L10n.of(context).cancel,
       actions: [
-        AlertDialogAction(
-          key: EditBundleAction.addToBundle,
+        AdaptiveModalAction(
+          value: EditBundleAction.addToBundle,
           label: L10n.of(context).addToBundle,
         ),
         if (activeBundle != client.userID)
-          AlertDialogAction(
-            key: EditBundleAction.removeFromBundle,
+          AdaptiveModalAction(
+            value: EditBundleAction.removeFromBundle,
             label: L10n.of(context).removeFromBundle,
           ),
       ],
@@ -855,12 +850,12 @@ class ChatListController extends State<ChatList>
         final bundle = await showTextInputDialog(
           context: context,
           title: l10n.bundleName,
-          textFields: [DialogTextField(hintText: l10n.bundleName)],
+          hintText: l10n.bundleName,
         );
-        if (bundle == null || bundle.isEmpty || bundle.single.isEmpty) return;
+        if (bundle == null || bundle.isEmpty || bundle.isEmpty) return;
         await showFutureLoadingDialog(
           context: context,
-          future: () => client.setAccountBundle(bundle.single),
+          future: () => client.setAccountBundle(bundle),
         );
         break;
       case EditBundleAction.removeFromBundle:
