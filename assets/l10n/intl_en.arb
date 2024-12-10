@@ -4585,5 +4585,7 @@
   "pleaseFillOut": "Please fill out",
   "invalidUrl": "Invalid url",
   "addLink": "Add link",
-  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation."
+  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation.",
+  "createChatAndInviteUsers": "Create chat and invite users",
+  "updatedNewSpaceDescription": "Spaces allow you to consolidate your chats and build private or public communities."
 }
