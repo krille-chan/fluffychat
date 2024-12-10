@@ -386,6 +386,7 @@ class Message extends StatelessWidget {
                                         (eventID) => eventID == event.eventId,
                                       ),
                                       depressed: !isButton,
+                                      enabled: isButton,
                                       borderRadius: borderRadius,
                                       onPressed: () {
                                         showToolbar(pangeaMessageEvent);
