@@ -14,7 +14,7 @@ import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/size_string.dart';
-import 'package:fluffychat/widgets/adaptive_dialog_action.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import '../../utils/resize_video.dart';
 
 class SendFileDialog extends StatefulWidget {

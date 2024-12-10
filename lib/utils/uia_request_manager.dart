@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -30,16 +31,11 @@ extension UiaRequestManager on MatrixState {
                 title: l10n.pleaseEnterYourPassword,
                 okLabel: l10n.ok,
                 cancelLabel: l10n.cancel,
-                textFields: [
-                  const DialogTextField(
-                    minLines: 1,
-                    maxLines: 1,
-                    obscureText: true,
-                    hintText: '******',
-                  ),
-                ],
-              ))
-                  ?.single;
+                minLines: 1,
+                maxLines: 1,
+                obscureText: true,
+                hintText: '******',
+              ));
           if (input == null || input.isEmpty) {
             return uiaRequest.cancel();
           }
@@ -91,7 +87,7 @@ extension UiaRequestManager on MatrixState {
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
                 useRootNavigator: false,
-                message: l10n.pleaseFollowInstructionsOnWeb,
+                title: l10n.pleaseFollowInstructionsOnWeb,
                 context: navigatorContext,
                 okLabel: l10n.next,
                 cancelLabel: l10n.cancel,

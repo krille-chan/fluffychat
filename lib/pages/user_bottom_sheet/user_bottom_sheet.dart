@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/permission_slider_dialog.dart';
 import '../../widgets/matrix.dart';
@@ -96,23 +98,22 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       case UserBottomSheetAction.report:
         if (user == null) throw ('User must not be null for this action!');
 
-        final score = await showConfirmationDialog<int>(
+        final score = await showModalActionPopup<int>(
           context: context,
           title: L10n.of(context).reportUser,
           message: L10n.of(context).howOffensiveIsThisContent,
           cancelLabel: L10n.of(context).cancel,
-          okLabel: L10n.of(context).ok,
           actions: [
-            AlertDialogAction(
-              key: -100,
+            AdaptiveModalAction(
+              value: -100,
               label: L10n.of(context).extremeOffensive,
             ),
-            AlertDialogAction(
-              key: -50,
+            AdaptiveModalAction(
+              value: -50,
               label: L10n.of(context).offensive,
             ),
-            AlertDialogAction(
-              key: 0,
+            AdaptiveModalAction(
+              value: 0,
               label: L10n.of(context).inoffensive,
             ),
           ],
@@ -124,16 +125,16 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           title: L10n.of(context).whyDoYouWantToReportThis,
           okLabel: L10n.of(context).ok,
           cancelLabel: L10n.of(context).cancel,
-          textFields: [DialogTextField(hintText: L10n.of(context).reason)],
+          hintText: L10n.of(context).reason,
         );
-        if (reason == null || reason.single.isEmpty) return;
+        if (reason == null || reason.isEmpty) return;
 
         final result = await showFutureLoadingDialog(
           context: context,
           future: () => Matrix.of(widget.outerContext).client.reportContent(
                 user.room.id,
                 user.id,
-                reason: reason.single,
+                reason: reason,
                 score: score,
               ),
         );

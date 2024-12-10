@@ -123,11 +123,6 @@ abstract class FluffyThemes {
           ),
         ),
       ),
-      dialogTheme: DialogTheme(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        ),
-      ),
       snackBarTheme: const SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
       ),

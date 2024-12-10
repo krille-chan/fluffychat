@@ -8,7 +8,6 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  adaptive_dialog: ^2.1.0
   animations: ^2.0.11
   archive: ^3.4.10
   async: ^2.11.0

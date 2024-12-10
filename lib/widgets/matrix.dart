@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -24,6 +23,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dar
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../config/app_config.dart';
@@ -344,13 +344,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         this,
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
-            barrierDismissible: true,
             context: FluffyChatApp
                     .router.routerDelegate.navigatorKey.currentContext ??
                 context,
             title: L10n.of(context).pushNotificationsNotAvailable,
             message: errorMsg,
-            fullyCapitalizedForMaterial: false,
             okLabel:
                 link == null ? L10n.of(context).ok : L10n.of(context).learnMore,
             cancelLabel: L10n.of(context).doNotShowAgain,
@@ -470,7 +468,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   Future<void> dehydrateAction(BuildContext context) async {
     final response = await showOkCancelAlertDialog(
       context: context,
-      isDestructiveAction: true,
+      isDestructive: true,
       title: L10n.of(context).dehydrate,
       message: L10n.of(context).dehydrateWarning,
     );
