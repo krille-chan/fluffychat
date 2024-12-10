@@ -1,7 +1,7 @@
 {
-  "application_name": "FluffyChat",
+  "application_name": "5S Chat",
   "application_welcome_message": null,
-  "default_homeserver": "matrix.org",
+  "default_homeserver": "m.5systems.ru",
   "web_base_url": "https://fluffychat.im/web",
   "privacy_url": "https://fluffychat.im/en/privacy.html",
   "render_html": false,

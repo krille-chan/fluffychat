@@ -39,7 +39,7 @@ import '../config/setting_keys.dart';
 import '../widgets/matrix.dart';
 import 'platform_infos.dart';
 
-//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 
 class NoTokenException implements Exception {
   String get cause => 'Cannot get firebase token';
@@ -64,7 +64,7 @@ class BackgroundPush {
 
   final pendingTests = <String, Completer<void>>{};
 
-  final dynamic firebase = null; //FcmSharedIsolate();
+  final dynamic firebase = FcmSharedIsolate();
 
   DateTime? lastReceivedPush;
 
@@ -162,6 +162,7 @@ class BackgroundPush {
           return <Pusher>[];
         })) ??
         [];
+    Logs().w('[Push] pushers $pushers');
     var setNewPusher = false;
     // Just the plain app id, we add the .data_message suffix later
     var appId = AppConfig.pushNotificationsAppId;
@@ -194,6 +195,7 @@ class BackgroundPush {
       } else {
         Logs().i('Need to set new pusher');
         oldTokens.add(token);
+        Logs().i(client.isLogged().toString());
         if (client.isLogged()) {
           setNewPusher = true;
         }
@@ -216,6 +218,7 @@ class BackgroundPush {
     }
     if (setNewPusher) {
       try {
+        //Logs().e('[Push] postPusher $token $thisAppId $clientName ${client.deviceName} $gatewayUrl');
         await client.postPusher(
           Pusher(
             pushkey: token!,
@@ -306,6 +309,7 @@ class BackgroundPush {
     if (_fcmToken?.isEmpty ?? true) {
       try {
         _fcmToken = await firebase?.getToken();
+        Logs().w('[Push] token $_fcmToken');
         if (_fcmToken == null) throw ('PushToken is null');
       } catch (e, s) {
         Logs().w('[Push] cannot get token', e, e is String ? null : s);

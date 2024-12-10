@@ -1,43 +1,26 @@
 {
   "project_info": {
-    "project_number": "865731724731",
-    "project_id": "fluffychat-ef3e8",
-    "storage_bucket": "fluffychat-ef3e8.appspot.com"
+    "project_number": "98892090280",
+    "project_id": "fluffychat-eac8a",
+    "storage_bucket": "fluffychat-eac8a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:865731724731:android:ec427b3b1dcd4a1e64309e",
+        "mobilesdk_app_id": "1:98892090280:android:58b3a75fca15638babab9d",
         "android_client_info": {
-          "package_name": "chat.fluffy.fluffychat"
+          "package_name": "com.fivesystems.fluffychat"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "865731724731-od6969v178ul9970elgacpt936v5t7qg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBLdZpGSPjcinikB4lAU6awW_h88NG17Sg"
+          "current_key": "AIzaSyCyJMXfqf1a4jm0-Cxdp4gUK5eT0oen99k"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "865731724731-od6969v178ul9970elgacpt936v5t7qg.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "865731724731-ofdr7e6m04murgb1bvchlj9oaos0q5i3.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "im.fluffychat.app"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

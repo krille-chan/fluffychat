@@ -81,7 +81,7 @@ slots:
   dbus-svc:
     interface: dbus
     bus: session
-    name: chat.fluffy.fluffychat
+    name: com.fivesystems.fluffychat
 
 apps:
   fluffychat:
