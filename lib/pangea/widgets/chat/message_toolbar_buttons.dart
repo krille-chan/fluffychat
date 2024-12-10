@@ -103,7 +103,6 @@ class ToolbarButtons extends StatelessWidget {
                   children: [
                     PressableButton(
                       borderRadius: BorderRadius.circular(20),
-                      enabled: enabled,
                       depressed:
                           !enabled || mode == overlayController.toolbarMode,
                       color: color,
