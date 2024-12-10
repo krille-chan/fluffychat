@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -10,7 +11,10 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-class PublicRoomBottomSheet extends StatelessWidget {
+// #Pangea
+// class PublicRoomBottomSheet extends StatelessWidget {
+class PublicRoomBottomSheet extends StatefulWidget {
+  // Pangea#
   final String? roomAlias;
   final BuildContext outerContext;
   final PublicRoomsChunk? chunk;
@@ -25,6 +29,37 @@ class PublicRoomBottomSheet extends StatelessWidget {
   }) {
     assert(roomAlias != null || chunk != null);
   }
+
+  // #Pangea
+  @override
+  State<StatefulWidget> createState() => PublicRoomBottomSheetState();
+}
+
+class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
+  BuildContext get outerContext => widget.outerContext;
+  String? get roomAlias => widget.roomAlias;
+  PublicRoomsChunk? get chunk => widget.chunk;
+  List<String>? get via => widget.via;
+
+  final TextEditingController _codeController = TextEditingController();
+
+  @override
+  void dispose() {
+    _codeController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _joinWithCode(String code) async {
+    await MatrixState.pangeaController.classController.joinClasswithCode(
+      context,
+      _codeController.text,
+    );
+  }
+
+  bool get _isRoomMember =>
+      chunk != null &&
+      Matrix.of(outerContext).client.getRoomById(chunk!.roomId) != null;
+  // Pangea#
 
   void _joinRoom(BuildContext context) async {
     final client = Matrix.of(outerContext).client;
@@ -187,6 +222,78 @@ class PublicRoomBottomSheet extends StatelessWidget {
                     ),
                   ],
                 ),
+                // #Pangea
+                if (!_isRoomMember)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: TextField(
+                      controller: _codeController,
+                      onSubmitted: (value) => _joinWithCode(value).then(
+                        (value) => Navigator.of(context).pop(),
+                      ),
+                      minLines: 1,
+                      maxLines: 1,
+                      decoration: InputDecoration(
+                        hintText: L10n.of(context).enterCodeToJoin,
+                      ),
+                    ),
+                  ),
+                if (!_isRoomMember)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 8,
+                    ),
+                    child: ElevatedButton.icon(
+                      onPressed: () => _joinWithCode(_codeController.text).then(
+                        (_) => Navigator.of(context).pop(),
+                      ),
+                      label: Text(L10n.of(context).joinWithCode),
+                      icon: const Icon(Icons.navigate_next),
+                    ),
+                  ),
+                if (!_isRoomMember)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            color: theme.colorScheme.surfaceContainerHighest,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 4,
+                            vertical: 16.0,
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              AppConfig.borderRadius / 3,
+                            ),
+                            color: theme.colorScheme.surface.withAlpha(128),
+                          ),
+                          child: Text(
+                            L10n.of(context).or,
+                            style: TextStyle(
+                              fontSize: AppConfig.fontSizeFactor *
+                                  AppConfig.messageFontSize,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            color: theme.colorScheme.surfaceContainerHighest,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                // Pangea#
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: ElevatedButton.icon(
