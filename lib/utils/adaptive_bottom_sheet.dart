@@ -35,7 +35,6 @@ Future<T?> showAdaptiveBottomSheet<T>({
       maxWidth: FluffyThemes.columnWidth * 1.25,
     ),
     backgroundColor: Colors.transparent,
-    showDragHandle: !dialogMode,
     clipBehavior: Clip.hardEdge,
   );
 }

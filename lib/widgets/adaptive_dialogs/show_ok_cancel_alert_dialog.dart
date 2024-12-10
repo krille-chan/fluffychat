@@ -36,6 +36,7 @@ Future<OkCancelResult?> showOkCancelAlertDialog({
           AdaptiveDialogAction(
             onPressed: () =>
                 Navigator.of(context).pop<OkCancelResult>(OkCancelResult.ok),
+            autofocus: true,
             child: Text(
               okLabel ?? L10n.of(context).ok,
               style: isDestructive
@@ -70,6 +71,7 @@ Future<OkCancelResult?> showOkAlertDialog({
           AdaptiveDialogAction(
             onPressed: () =>
                 Navigator.of(context).pop<OkCancelResult>(OkCancelResult.ok),
+            autofocus: true,
             child: Text(okLabel ?? L10n.of(context).close),
           ),
         ],

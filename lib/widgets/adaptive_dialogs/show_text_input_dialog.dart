@@ -87,6 +87,7 @@ Future<String?> showTextInputDialog({
                   }
                   Navigator.of(context).pop<String>(input);
                 },
+                autofocus: true,
                 child: Text(
                   okLabel ?? L10n.of(context).ok,
                   style: isDestructive
