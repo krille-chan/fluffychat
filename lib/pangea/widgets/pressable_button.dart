@@ -7,10 +7,10 @@ import 'package:flutter/services.dart';
 class PressableButton extends StatefulWidget {
   final BorderRadius borderRadius;
   final double buttonHeight;
-  final bool enabled;
   final bool depressed;
   final Color color;
   final Widget child;
+
   final void Function()? onPressed;
   final Stream? triggerAnimation;
 
@@ -20,7 +20,6 @@ class PressableButton extends StatefulWidget {
     required this.onPressed,
     required this.color,
     this.buttonHeight = 5,
-    this.enabled = true,
     this.depressed = false,
     this.triggerAnimation,
     super.key,
@@ -46,7 +45,7 @@ class PressableButtonState extends State<PressableButton>
     );
     _tweenAnimation =
         Tween<double>(begin: 0, end: widget.buttonHeight).animate(_controller);
-    if (widget.enabled) {
+    if (!widget.depressed) {
       _triggerAnimationSubscription = widget.triggerAnimation?.listen((_) {
         _animationCompleter = Completer<void>();
         _animateUp();
@@ -56,14 +55,14 @@ class PressableButtonState extends State<PressableButton>
   }
 
   void _onTapDown(TapDownDetails? details) {
-    if (!widget.enabled) return;
+    if (widget.depressed) return;
     _animationCompleter = Completer<void>();
     if (!mounted) return;
     _animateUp();
   }
 
   void _animateUp() {
-    if (!widget.enabled || !mounted) return;
+    if (widget.depressed || !mounted) return;
     _controller.forward().then((_) {
       _animationCompleter?.complete();
       _animationCompleter = null;
@@ -71,8 +70,8 @@ class PressableButtonState extends State<PressableButton>
   }
 
   Future<void> _onTapUp(TapUpDetails? details) async {
-    if (!widget.enabled || widget.depressed) return;
     widget.onPressed?.call();
+    if (widget.depressed) return;
     await _animateDown();
   }
 
@@ -87,7 +86,7 @@ class PressableButtonState extends State<PressableButton>
   }
 
   void _onTapCancel() {
-    if (!widget.enabled) return;
+    if (widget.depressed) return;
     if (mounted) _controller.reverse();
   }
 
@@ -116,7 +115,7 @@ class PressableButtonState extends State<PressableButton>
               borderRadius: widget.borderRadius,
             ),
             padding: EdgeInsets.only(
-              bottom: widget.enabled && !widget.depressed
+              bottom: !widget.depressed
                   ? widget.buttonHeight - _tweenAnimation.value
                   : 0,
             ),
