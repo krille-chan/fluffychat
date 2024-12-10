@@ -172,7 +172,11 @@ class NewGroupView extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: Icon(Icons.info_outlined),
                       ),
-                      subtitle: Text(L10n.of(context).newSpaceDescription),
+                      // #Pangea
+                      // subtitle: Text(L10n.of(context).newSpaceDescription),
+                      subtitle:
+                          Text(L10n.of(context).updatedNewSpaceDescription),
+                      // Pangea#
                     )
                   : const SizedBox.shrink(),
             ),
@@ -188,7 +192,10 @@ class NewGroupView extends StatelessWidget {
                       : Text(
                           controller.createGroupType == CreateGroupType.space
                               ? L10n.of(context).createNewSpace
-                              : L10n.of(context).createGroupAndInviteUsers,
+                              // #Pangea
+                              // : L10n.of(context).createGroupAndInviteUsers,
+                              : L10n.of(context).createChatAndInviteUsers,
+                          // Pangea#
                         ),
                 ),
               ),
