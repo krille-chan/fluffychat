@@ -45,7 +45,7 @@ class PressableButtonState extends State<PressableButton>
       vsync: this,
     );
     _tweenAnimation =
-        Tween<double>(begin: widget.buttonHeight, end: 0).animate(_controller);
+        Tween<double>(begin: 0, end: widget.buttonHeight).animate(_controller);
     if (widget.enabled) {
       _triggerAnimationSubscription = widget.triggerAnimation?.listen((_) {
         _animationCompleter = Completer<void>();
@@ -63,7 +63,7 @@ class PressableButtonState extends State<PressableButton>
   }
 
   void _animateUp() {
-    if (!mounted) return;
+    if (!widget.enabled || !mounted) return;
     _controller.forward().then((_) {
       _animationCompleter?.complete();
       _animationCompleter = null;
@@ -104,37 +104,32 @@ class PressableButtonState extends State<PressableButton>
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
       onTapCancel: _onTapCancel,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AnimatedBuilder(
-                animation: _tweenAnimation,
-                builder: (context, _) {
-                  return Container(
-                    padding: EdgeInsets.only(
-                      bottom: widget.enabled && !widget.depressed
-                          ? _tweenAnimation.value
-                          : 0,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Color.alphaBlend(
-                        Colors.black.withOpacity(0.25),
-                        widget.color,
-                      ),
-                      borderRadius: widget.borderRadius,
-                    ),
-                    child: widget.child,
-                  );
-                },
+      child: AnimatedBuilder(
+        animation: _tweenAnimation,
+        builder: (context, child) {
+          return Container(
+            decoration: BoxDecoration(
+              color: Color.alphaBlend(
+                Colors.black.withOpacity(0.25),
+                widget.color,
               ),
-            ],
+              borderRadius: widget.borderRadius,
+            ),
+            padding: EdgeInsets.only(
+              bottom: widget.enabled && !widget.depressed
+                  ? widget.buttonHeight - _tweenAnimation.value
+                  : 0,
+            ),
+            child: child,
+          );
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: widget.color,
+            borderRadius: widget.borderRadius,
           ),
-        ],
+          child: widget.child,
+        ),
       ),
     );
   }
