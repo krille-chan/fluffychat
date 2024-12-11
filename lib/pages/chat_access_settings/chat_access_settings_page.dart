@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart' hide Visibility;
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pages/chat_access_settings/chat_access_settings_controller.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:flutter/material.dart' hide Visibility;
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 class ChatAccessSettingsPageView extends StatelessWidget {
   final ChatAccessSettingsController controller;
@@ -238,8 +236,8 @@ class _AliasListTile extends StatelessWidget {
           'https://matrix.to/#/$alias',
           context,
         ),
-        child: Text(
-          'https://matrix.to/#/$alias',
+        child: SelectableText(
+          alias,
           style: TextStyle(
             decoration: TextDecoration.underline,
             decorationColor: theme.colorScheme.primary,
