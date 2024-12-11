@@ -4589,5 +4589,11 @@
   "createChatAndInviteUsers": "Create chat and invite users",
   "updatedNewSpaceDescription": "Spaces allow you to consolidate your chats and build private or public communities.",
   "joinWithCode": "Join with code",
-  "enterCodeToJoin": "Enter code to join"
+  "enterCodeToJoin": "Enter code to join",
+  "mandatoryUpdateRequired": "Mandatory Update Required",
+  "updateAvailable": "Update Available",
+  "mandatoryUpdateRequiredDesc": "A new version of the app is required to continue. Please update now to proceed.",
+  "updateAvailableDesc": "A new version of the app is available. Update now for the latest features and improvements!",
+  "updateNow": "Update Now",
+  "updateLater": "Later"
 }

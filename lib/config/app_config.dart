@@ -156,6 +156,9 @@ abstract class AppConfig {
   static String iosPromoCode =
       "https://apps.apple.com/redeem?ctx=offercodes&id=1445118630&code=";
   static String trialSubscriptionId = "pangea_new_user_trial";
+  static String androidUpdateURL =
+      "https://play.google.com/store/apps/details?id=com.talktolearn.chat";
+  static String iosUpdateURL = "itms-apps://itunes.apple.com/app/id1445118630";
   // Pangea#
 
   static void loadFromJson(Map<String, dynamic> json) {

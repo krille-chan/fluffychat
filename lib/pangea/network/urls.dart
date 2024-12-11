@@ -70,4 +70,6 @@ class PApiUrls {
       "${PApiUrls.subscriptionEndpoint}/all_products";
 
   static String rcSubscription = "$rcApiV1/subscribers";
+
+  static String appVersion = "${PApiUrls.choreoEndpoint}/version";
 }
