@@ -83,6 +83,8 @@ class BackgroundPush {
       // #Pangea
       onLogin ??=
           client.onLoginStateChanged.stream.listen(handleLoginStateChanged);
+      FirebaseMessaging.instance.getInitialMessage().then(_onOpenNotification);
+      FirebaseMessaging.onMessageOpenedApp.listen(_onOpenNotification);
       // Pangea#
       await _flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
@@ -122,6 +124,35 @@ class BackgroundPush {
   BackgroundPush._(this.client) {
     _init();
   }
+
+  // #Pangea
+  Future<void> _onOpenNotification(RemoteMessage? message) async {
+    if (message == null ||
+        !message.data.containsKey('room_id') ||
+        message.data['room_id'] == null ||
+        message.data['room_id'].isEmpty) {
+      return;
+    }
+
+    try {
+      final roomId = message.data['room_id'];
+      await client.roomsLoading;
+      await client.accountDataLoading;
+      if (client.getRoomById(roomId) == null) {
+        await client
+            .waitForRoomInSync(roomId)
+            .timeout(const Duration(seconds: 30));
+      }
+      FluffyChatApp.router.go(
+        client.getRoomById(roomId)?.membership == Membership.invite
+            ? '/rooms'
+            : '/rooms/$roomId',
+      );
+    } catch (err, s) {
+      ErrorHandler.logError(e: err, s: s);
+    }
+  }
+  // Pangea#
 
   factory BackgroundPush.clientOnly(Client client) {
     return _instance ??= BackgroundPush._(client);
