@@ -1,4 +1,5 @@
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -143,7 +144,10 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
               child: IconButton(
                 icon: Icon(Icons.adaptive.share_outlined),
                 onPressed: () => FluffyShare.share(
-                  'https://matrix.to/#/${roomAlias ?? chunk?.roomId}',
+                  // #Pangea
+                  // 'https://matrix.to/#/${roomAlias ?? chunk?.roomId}',
+                  '${Environment.frontendURL}/#/rooms/${chunk?.roomId}',
+                  // Pangea#
                   context,
                 ),
               ),
