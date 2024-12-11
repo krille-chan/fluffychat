@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_192",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,B={
-cRJ(){return new B.Hh(A.dJ("ar"))},
-Hh:function Hh(d){this.a=d}},C
+cRJ(){return new B.Hi(A.dJ("ar"))},
+Hi:function Hi(d){this.a=d}},C
 A=c[0]
 B=a.updateHolder(c[5],B)
 C=c[51]
-B.Hh.prototype={
+B.Hi.prototype={
 gnV(){return"false"},
 gkd(){return"\u0643\u0631\u0651\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631"},
 gmq(){return"\u0644\u064a\u0633 \u0645\u0644\u0641 \u0635\u0648\u0631\u0629."},
@@ -576,8 +576,8 @@ goe(){return"\u0625\u0636\u0627\u0641\u0629 \u0631\u0627\u0628\u0637"},
 go2(){return"\u064a\u062a\u0639\u0630\u0631 \u0627\u0644\u0627\u0646\u0636\u0645\u0627\u0645 \u0625\u0644\u0649 \u0627\u0644\u062f\u0631\u062f\u0634\u0629. \u0631\u0628\u0645\u0627 \u064a\u0643\u0648\u0646 \u0627\u0644\u0637\u0631\u0641 \u0627\u0644\u0622\u062e\u0631 \u0642\u062f \u0623\u063a\u0644\u0642 \u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0629 \u0628\u0627\u0644\u0641\u0639\u0644."},
 C(d,e){return this.gbk(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Hh,C.aQ)})()
-A.el(b.typeUniverse,JSON.parse('{"Hh":{"aQ":[]}}'))};
+y(B.Hi,C.aQ)})()
+A.el(b.typeUniverse,JSON.parse('{"Hi":{"aQ":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_192",e:"endPart",h:b})})($__dart_deferred_initializers__,"CyQuOe/+zVEhBF6w+ZpXCA33QSs=");
+a.eventLog.push({p:"main.dart.js_192",e:"endPart",h:b})})($__dart_deferred_initializers__,"CLR4xSsQW3SA148ONXlGPf7BEPc=");
 //# sourceMappingURL=main.dart.js_192.part.js.map

@@ -3,11 +3,11 @@ a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_14",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
 cSh(d){return new A.Co(B.dJ(d))},
-cSi(){return new A.HQ(B.dJ("pt_BR"))},
-cSj(){return new A.HR(B.dJ("pt_PT"))},
+cSi(){return new A.HR(B.dJ("pt_BR"))},
+cSj(){return new A.HS(B.dJ("pt_PT"))},
 Co:function Co(d){this.a=d},
-HQ:function HQ(d){this.a=d},
-HR:function HR(d){this.a=d}},C
+HR:function HR(d){this.a=d},
+HS:function HS(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[51]
@@ -579,7 +579,7 @@ goy(){return"Invalid url"},
 goe(){return"Add link"},
 go2(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbk(this).$1(e)}}
-A.HQ.prototype={
+A.HR.prototype={
 gkd(){return"Repita a senha"},
 gmq(){return"N\xe3o \xe9 uma imagem."},
 gbk(d){return"Remover"},
@@ -1087,7 +1087,7 @@ mV(d){return"Nesse momento, h\xe1 "+d+" usu\xe1rios bloqueados."},
 gmT(){return"Restrito"},
 gmb(){return"Bater na porta restrito"},
 C(d,e){return this.gbk(this).$1(e)}}
-A.HR.prototype={
+A.HS.prototype={
 gkd(){return"Repete a palavra-passe"},
 gbk(d){return"Remover"},
 gf0(){return"Acerca de"},
@@ -1345,9 +1345,9 @@ hp(d){return d+" enviou um v\xeddeo"},
 C(d,e){return this.gbk(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.Co,C.aQ)
-w(A.Co,[A.HQ,A.HR])})()
-B.el(b.typeUniverse,JSON.parse('{"Co":{"aQ":[]},"HQ":{"aQ":[]},"HR":{"aQ":[]}}'))
+w(A.Co,[A.HR,A.HS])})()
+B.el(b.typeUniverse,JSON.parse('{"Co":{"aQ":[]},"HR":{"aQ":[]},"HS":{"aQ":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_14",e:"endPart",h:b})})($__dart_deferred_initializers__,"Mn4g+ZJcCtL8yz7ZeXxp+JaX7C0=");
+a.eventLog.push({p:"main.dart.js_14",e:"endPart",h:b})})($__dart_deferred_initializers__,"7PrVKEmpIvZ6mfsXWMVC2rn7A88=");
 //# sourceMappingURL=main.dart.js_14.part.js.map

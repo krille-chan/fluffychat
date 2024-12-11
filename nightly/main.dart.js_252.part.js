@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_252",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cS2(){return new B.HB(A.dJ("hi"))},
-HB:function HB(d){this.a=d}}
+cS2(){return new B.HC(A.dJ("hi"))},
+HC:function HC(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[25],B)
-B.HB.prototype={
+B.HC.prototype={
 gnV(){return"false"},
 gkd(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gmq(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -576,8 +576,8 @@ goe(){return"Add link"},
 go2(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbk(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HB,C.aQ)})()
-A.el(b.typeUniverse,JSON.parse('{"HB":{"aQ":[]}}'))};
+y(B.HC,C.aQ)})()
+A.el(b.typeUniverse,JSON.parse('{"HC":{"aQ":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"TXeV7jN8TrbbbwnlE32hJo929Ns=");
+a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"/5/3NRlNc30PhknawIW/9RKYk18=");
 //# sourceMappingURL=main.dart.js_252.part.js.map

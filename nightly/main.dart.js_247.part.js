@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_247",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cS0(){return new B.Hz(A.dJ("gl"))},
-Hz:function Hz(d){this.a=d}}
+cS0(){return new B.HA(A.dJ("gl"))},
+HA:function HA(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[23],B)
-B.Hz.prototype={
+B.HA.prototype={
 gnV(){return"falso"},
 gkd(){return"Repite o contrasinal"},
 gmq(){return"Non \xe9 un ficheiro de imaxe."},
@@ -576,8 +576,8 @@ goe(){return"Engadir ligaz\xf3n"},
 go2(){return"Non se puido acceder. Pode que a outra parte xa pechase a conversa."},
 C(d,e){return this.gbk(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Hz,C.aQ)})()
-A.el(b.typeUniverse,JSON.parse('{"Hz":{"aQ":[]}}'))};
+y(B.HA,C.aQ)})()
+A.el(b.typeUniverse,JSON.parse('{"HA":{"aQ":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"Xb5MHX+pBfyW6cmlOTXnEE4fuNM=");
+a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"+NOYJ3+Hr/TbnC0bh8ZJ/qAXNnw=");
 //# sourceMappingURL=main.dart.js_247.part.js.map
