@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart' as b;
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -27,14 +28,14 @@ class UnreadRoomsBadge extends StatelessWidget {
     //     .where(filter)
     //     .where((r) => (r.isUnread || r.membership == Membership.invite))
     //     .length;
-    final unreadCounts = Matrix.of(context)
-        .client
-        .rooms
-        .where(filter)
-        .where((r) => (r.isUnread || r.membership == Membership.invite))
-        .map((r) => r.notificationCount);
+    final unreadCounts =
+        Matrix.of(context).client.rooms.where(filter).where((r) {
+      if (r.isAnalyticsRoom) return false;
+      return r.isUnread || r.membership == Membership.invite;
+    }).map((r) => r.notificationCount);
     final unreadCount =
         unreadCounts.isEmpty ? 0 : unreadCounts.reduce((a, b) => a + b);
+
     // Pangea#
     return b.Badge(
       badgeStyle: b.BadgeStyle(
