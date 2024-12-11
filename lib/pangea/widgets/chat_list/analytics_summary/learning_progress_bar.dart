@@ -4,15 +4,21 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
 class LearningProgressBar extends StatelessWidget {
+  final int level;
   final int totalXP;
+  final double? height;
+
   const LearningProgressBar({
+    required this.level,
     required this.totalXP,
+    this.height,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return ProgressBar(
+      height: height,
       levelBars: [
         LevelBarDetails(
           fillColor: Theme.of(context).colorScheme.primary,

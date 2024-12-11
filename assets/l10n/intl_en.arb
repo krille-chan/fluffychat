@@ -4595,5 +4595,32 @@
   "mandatoryUpdateRequiredDesc": "A new version of the app is required to continue. Please update now to proceed.",
   "updateAvailableDesc": "A new version of the app is available. Update now for the latest features and improvements!",
   "updateNow": "Update Now",
-  "updateLater": "Later"
+  "updateLater": "Later",
+  "constructUseWaDesc": "Used without help",
+  "constructUseGaDesc": "Grammar mistake",
+  "constructUseUnkDesc": "Unknown",
+  "constructUseCorITDesc": "Correct in translation",
+  "constructUseIgnITDesc": "Ignored in translation",
+  "constructUseIncITDesc": "Incorrect in translation",
+  "constructUseIgnIGCDesc": "Ignored in grammar correction",
+  "constructUseCorIGCDesc": "Correct in grammar correction",
+  "constructUseIncIGCDesc": "Incorrect in grammar correction",
+  "constructUseCorPADesc": "Correct in word meaning activity",
+  "constructUseIgnPADesc": "Ignored in word meaning activity",
+  "constructUseIncPADesc": "Incorrect in word meaning activity",
+  "constructUseCorWLDesc": "Correct in word listening activity",
+  "constructUseIncWLDesc": "Incorrect in word listening activity",
+  "constructUseIngWLDesc": "Ignored in word listening activity",
+  "constructUseCorHWLDesc": "Correct in hidden word activity",
+  "constructUseIncHWLDesc": "Incorrect in hidden word activity",
+  "constructUseIgnHWLDesc": "Ignored in hidden word activity",
+  "constructUseNanDesc": "Not applicable",
+  "xpIntoLevel": "{currentXP} / {maxXP} XP",
+  "@xpIntoLevel": {
+    "type": "text",
+    "placeholders": {
+      "currentXP": {},
+      "maxXP": {}
+    }
+  }
 }

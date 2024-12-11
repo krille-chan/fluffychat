@@ -50,6 +50,8 @@ class GetAnalyticsController {
     return _calculateMinXpForLevel(constructListModel.level + 1);
   }
 
+  int get minXPForNextLevel => _minXPForNextLevel;
+
   /// Calculates the minimum XP required for a specific level.
   int _calculateMinXpForLevel(int level) {
     if (level == 1) return 0; // Ensure level 1 starts at 0 XP

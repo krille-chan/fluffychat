@@ -101,9 +101,10 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
             ),
             Positioned(
               top: 2,
+              left: 8,
               child: Container(
                 height: 6,
-                width: _animation.value >= 8 ? _animation.value - 8 : 0,
+                width: _animation.value >= 16 ? _animation.value - 16 : 0,
                 decoration: BoxDecoration(
                   color: widget.highlightColor,
                   borderRadius: const BorderRadius.all(

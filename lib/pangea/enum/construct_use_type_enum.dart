@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum ConstructUseTypeEnum {
   /// produced in chat by user, igc was run, and we've judged it to be a correct use
@@ -63,6 +64,49 @@ enum ConstructUseTypeEnum {
 
 extension ConstructUseTypeExtension on ConstructUseTypeEnum {
   String get string => toString().split('.').last;
+
+  String description(BuildContext context) {
+    switch (this) {
+      case ConstructUseTypeEnum.wa:
+        return L10n.of(context).constructUseWaDesc;
+      case ConstructUseTypeEnum.ga:
+        return L10n.of(context).constructUseGaDesc;
+      case ConstructUseTypeEnum.unk:
+        return L10n.of(context).constructUseUnkDesc;
+      case ConstructUseTypeEnum.corIt:
+        return L10n.of(context).constructUseCorITDesc;
+      case ConstructUseTypeEnum.ignIt:
+        return L10n.of(context).constructUseIgnITDesc;
+      case ConstructUseTypeEnum.incIt:
+        return L10n.of(context).constructUseIncITDesc;
+      case ConstructUseTypeEnum.ignIGC:
+        return L10n.of(context).constructUseIgnIGCDesc;
+      case ConstructUseTypeEnum.corIGC:
+        return L10n.of(context).constructUseCorIGCDesc;
+      case ConstructUseTypeEnum.incIGC:
+        return L10n.of(context).constructUseIncIGCDesc;
+      case ConstructUseTypeEnum.corPA:
+        return L10n.of(context).constructUseCorPADesc;
+      case ConstructUseTypeEnum.ignPA:
+        return L10n.of(context).constructUseIgnPADesc;
+      case ConstructUseTypeEnum.incPA:
+        return L10n.of(context).constructUseIncPADesc;
+      case ConstructUseTypeEnum.corWL:
+        return L10n.of(context).constructUseCorWLDesc;
+      case ConstructUseTypeEnum.incWL:
+        return L10n.of(context).constructUseIncWLDesc;
+      case ConstructUseTypeEnum.ignWL:
+        return L10n.of(context).constructUseIngWLDesc;
+      case ConstructUseTypeEnum.corHWL:
+        return L10n.of(context).constructUseCorHWLDesc;
+      case ConstructUseTypeEnum.incHWL:
+        return L10n.of(context).constructUseIncHWLDesc;
+      case ConstructUseTypeEnum.ignHWL:
+        return L10n.of(context).constructUseIgnHWLDesc;
+      case ConstructUseTypeEnum.nan:
+        return L10n.of(context).constructUseNanDesc;
+    }
+  }
 
   IconData get icon {
     switch (this) {
