@@ -28,7 +28,7 @@ class LanguageController {
       _userL1Code != LanguageKeys.unknownLanguage &&
       _userL2Code != LanguageKeys.unknownLanguage;
 
-  LanguageModel get systemLanguage {
+  LanguageModel? get systemLanguage {
     final String systemLang = Platform.localeName.split('-').first;
     return PangeaLanguage.byLangCode(systemLang);
   }
@@ -36,7 +36,7 @@ class LanguageController {
   String? get _userL1Code {
     final source =
         _pangeaController.userController.profile.userSettings.sourceLanguage;
-    return source == null || source.isEmpty ? systemLanguage.langCode : source;
+    return source == null || source.isEmpty ? systemLanguage?.langCode : source;
   }
 
   String? get _userL2Code {
@@ -48,7 +48,7 @@ class LanguageController {
   LanguageModel? get userL1 {
     if (_userL1Code == null) return null;
     final langModel = PangeaLanguage.byLangCode(_userL1Code!);
-    return langModel.langCode == LanguageKeys.unknownLanguage
+    return langModel?.langCode == LanguageKeys.unknownLanguage
         ? null
         : langModel;
   }
@@ -56,7 +56,7 @@ class LanguageController {
   LanguageModel? get userL2 {
     if (_userL2Code == null) return null;
     final langModel = PangeaLanguage.byLangCode(_userL2Code!);
-    return langModel.langCode == LanguageKeys.unknownLanguage
+    return langModel?.langCode == LanguageKeys.unknownLanguage
         ? null
         : langModel;
   }

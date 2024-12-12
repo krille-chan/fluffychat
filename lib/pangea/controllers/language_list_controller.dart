@@ -94,10 +94,10 @@ class PangeaLanguage {
     return flags;
   }
 
-  static LanguageModel byLangCode(String langCode) {
+  static LanguageModel? byLangCode(String langCode) {
     for (final element in _langList) {
       if (element.langCode == langCode) return element;
     }
-    return LanguageModel.unknown;
+    return null;
   }
 }

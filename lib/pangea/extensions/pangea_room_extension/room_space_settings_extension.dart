@@ -125,7 +125,8 @@ extension SpaceRoomExtension on Room {
             langCode == LanguageKeys.unknownLanguage) {
           continue;
         }
-        final LanguageModel lang = PangeaLanguage.byLangCode(langCode);
+        final LanguageModel? lang = PangeaLanguage.byLangCode(langCode);
+        if (lang == null) continue;
         langCounts[lang] ??= 0;
         langCounts[lang] = langCounts[lang]! + 1;
       }
