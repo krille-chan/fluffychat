@@ -13,9 +13,9 @@ class LanguageController {
     _pangeaController = pangeaController;
   }
   //show diloag when user does not have languages selected
-  showDialogOnEmptyLanguage(BuildContext dialogContext, Function callback) {
+  showDialogOnEmptyLanguage(BuildContext context, Function callback) {
     if (!languagesSet) {
-      pLanguageDialog(dialogContext, callback);
+      pLanguageDialog(context, callback);
     }
   }
 

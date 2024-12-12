@@ -49,14 +49,14 @@ Future<void> pLanguageDialog(
           return Scaffold(
             backgroundColor: Colors.transparent,
             body: AlertDialog(
-              title: Text(L10n.of(parentContext).updateLanguage),
+              title: Text(L10n.of(context).updateLanguage),
               content: SizedBox(
                 width: FluffyThemes.columnWidth,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     PQuestionContainer(
-                      title: L10n.of(parentContext).whatIsYourBaseLanguage,
+                      title: L10n.of(context).whatIsYourBaseLanguage,
                     ),
                     PLanguageDropdown(
                       onChange: (p0) =>
@@ -66,7 +66,7 @@ Future<void> pLanguageDialog(
                       isL2List: false,
                     ),
                     PQuestionContainer(
-                      title: L10n.of(parentContext).whatLanguageYouWantToLearn,
+                      title: L10n.of(context).whatLanguageYouWantToLearn,
                     ),
                     PLanguageDropdown(
                       onChange: (p0) =>
@@ -80,7 +80,7 @@ Future<void> pLanguageDialog(
               ),
               actions: [
                 TextButton(
-                  child: Text(L10n.of(parentContext).cancel),
+                  child: Text(L10n.of(context).cancel),
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -117,14 +117,14 @@ Future<void> pLanguageDialog(
                         : ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                L10n.of(parentContext).noIdenticalLanguages,
+                                L10n.of(context).noIdenticalLanguages,
                               ),
                               backgroundColor:
                                   Theme.of(context).colorScheme.primary,
                             ),
                           );
                   },
-                  child: Text(L10n.of(parentContext).saveChanges),
+                  child: Text(L10n.of(context).saveChanges),
                 ),
               ],
             ),
