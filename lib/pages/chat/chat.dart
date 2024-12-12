@@ -818,7 +818,9 @@ class ChatController extends State<ChatPageWithRoom>
     for (final event in selectedEvents) {
       if (!event.status.isSent) return false;
       if (event.canRedact == false &&
-          !(clients!.any((cl) => event.senderId == cl!.userID))) return false;
+          !(clients!.any((cl) => event.senderId == cl!.userID))) {
+        return false;
+      }
     }
     return true;
   }

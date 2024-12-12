@@ -14,13 +14,13 @@ class ImageViewerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.5),
+      backgroundColor: Colors.black.withAlpha(128),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
           style: IconButton.styleFrom(
-            backgroundColor: Colors.black.withOpacity(0.5),
+            backgroundColor: Colors.black.withAlpha(128),
           ),
           icon: const Icon(Icons.close),
           onPressed: Navigator.of(context).pop,
@@ -31,7 +31,7 @@ class ImageViewerView extends StatelessWidget {
         actions: [
           IconButton(
             style: IconButton.styleFrom(
-              backgroundColor: Colors.black.withOpacity(0.5),
+              backgroundColor: Colors.black.withAlpha(128),
             ),
             icon: const Icon(Icons.reply_outlined),
             onPressed: controller.forwardAction,
@@ -41,7 +41,7 @@ class ImageViewerView extends StatelessWidget {
           const SizedBox(width: 8),
           IconButton(
             style: IconButton.styleFrom(
-              backgroundColor: Colors.black.withOpacity(0.5),
+              backgroundColor: Colors.black.withAlpha(128),
             ),
             icon: const Icon(Icons.download_outlined),
             onPressed: () => controller.saveFileAction(context),
@@ -56,7 +56,7 @@ class ImageViewerView extends StatelessWidget {
               child: Builder(
                 builder: (context) => IconButton(
                   style: IconButton.styleFrom(
-                    backgroundColor: Colors.black.withOpacity(0.5),
+                    backgroundColor: Colors.black.withAlpha(128),
                   ),
                   onPressed: () => controller.shareFileAction(context),
                   tooltip: L10n.of(context).share,

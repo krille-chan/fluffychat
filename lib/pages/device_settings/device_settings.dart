@@ -60,7 +60,9 @@ class DevicesSettingsController extends State<DevicesSettings> {
           message: L10n.of(context).removeDevicesDescription,
           isDestructive: true,
         ) ==
-        OkCancelResult.cancel) return;
+        OkCancelResult.cancel) {
+      return;
+    }
     final matrix = Matrix.of(context);
     final deviceIds = <String>[];
     for (final userDevice in devices) {

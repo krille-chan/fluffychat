@@ -126,7 +126,7 @@ class PresenceAvatar extends StatelessWidget {
 
         const statusMsgBubbleElevation = 6.0;
         final statusMsgBubbleShadowColor = theme.colorScheme.surface;
-        final statusMsgBubbleColor = Colors.white.withOpacity(0.9);
+        final statusMsgBubbleColor = Colors.white.withAlpha(230);
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: SizedBox(

@@ -86,7 +86,6 @@ extension on SyncStatusUpdate {
       case SyncStatus.processing:
       case SyncStatus.cleaningUp:
       case SyncStatus.finished:
-      default:
         return L10n.of(context).synchronizingPleaseWait;
     }
   }
