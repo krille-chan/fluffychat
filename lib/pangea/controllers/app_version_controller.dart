@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
@@ -53,10 +54,58 @@ class AppVersionController {
 
     final remoteVersion = resp.latestVersion;
     final remoteBuildNumber = resp.latestBuildNumber;
-    final mandatoryUpdate = resp.mandatoryUpdate;
+    bool mandatoryUpdate = resp.mandatoryUpdate;
 
     if (currentVersion == remoteVersion &&
         currentBuildNumber == remoteBuildNumber) {
+      return;
+    }
+
+    // convert the version number string into a list of ints
+    // and the build number string into an int
+    final currentVersionParts =
+        currentVersion.split(".").map((e) => int.parse(e)).toList();
+    final remoteVersionParts =
+        remoteVersion.split(".").map((e) => int.parse(e)).toList();
+    final currentBuildNumberInt = int.parse(currentBuildNumber);
+    final remoteBuildNumberInt = int.parse(remoteBuildNumber);
+
+    // indicates if the current version is older than the remote version
+    bool isOlderVersion = false;
+
+    // Loop through the remote and current version parts
+    // and compare them. If a part of the current version
+    // if less than the remote version, then the current
+    // version is older than the remote version.
+    // If a part of the current version is greater than the
+    // remote version, then the current version is newer than
+    // the remote version.
+    for (int i = 0;
+        i < min(currentVersionParts.length, remoteVersionParts.length);
+        i++) {
+      if (currentVersionParts[i] < remoteVersionParts[i]) {
+        isOlderVersion = true;
+        break;
+      } else if (currentVersionParts[i] > remoteVersionParts[i]) {
+        isOlderVersion = false;
+        break;
+      }
+    }
+
+    // if the first or second number in the remote version is greater than
+    // the first or second number in the current version, then the current
+    // then this is a mandatory update
+    if (remoteVersionParts[0] > currentVersionParts[0] ||
+        remoteVersionParts[1] > currentVersionParts[1]) {
+      mandatoryUpdate = true;
+    }
+
+    // also compare the build numbers
+    if (!isOlderVersion && currentBuildNumberInt < remoteBuildNumberInt) {
+      isOlderVersion = true;
+    }
+
+    if (!isOlderVersion && !mandatoryUpdate) {
       return;
     }
 
