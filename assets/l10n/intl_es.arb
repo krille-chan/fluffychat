@@ -4816,7 +4816,6 @@
   "conversationBotCustomZone_customSystemPromptLabel": "Mensaje del sistema",
   "conversationBotCustomZone_customSystemPromptPlaceholder": "Establecer mensaje del sistema personalizado",
   "conversationBotCustomZone_customSystemPromptEmptyError": "Falta mensaje del sistema personalizado",
-  "conversationBotCustomZone_customTriggerReactionEnabledLabel": "Responde a la reacción ⏩",
   "addConversationBotDialogTitleInvite": "Confirmar la invitación del bot de conversación",
   "addConversationBotButtonInvite": "Invitar",
   "addConversationBotDialogInviteConfirmation": "Invitar",

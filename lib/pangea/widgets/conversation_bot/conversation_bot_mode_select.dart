@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ConversationBotModeSelect extends StatelessWidget {
   final String? initialMode;
-  final void Function(String?) onChanged;
+  final void Function(String?)? onChanged;
   final bool enabled;
   final String? Function(String?)? validator;
 

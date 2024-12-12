@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_dynamic_zone.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_select.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_no_permission_dialog.dart';
 import 'package:fluffychat/pangea/widgets/space/language_level_dropdown.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
 
   final bool enabled;
   final bool hasUpdatedMode;
+  final bool hasPermission;
 
   final void Function(String?) onUpdateBotMode;
   final void Function(String?) onUpdateBotLanguage;
@@ -32,6 +34,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
     required this.onUpdateBotLanguage,
     required this.onUpdateBotVoice,
     required this.onUpdateBotLanguageLevel,
+    required this.hasPermission,
     this.enabled = true,
     this.hasUpdatedMode = false,
   });
@@ -40,50 +43,60 @@ class ConversationBotSettingsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        DropdownButtonFormField2(
-          dropdownStyleData: const DropdownStyleData(
-            padding: EdgeInsets.zero,
+        InkWell(
+          onTap: hasPermission ? null : () => showNoPermissionDialog(context),
+          child: DropdownButtonFormField2(
+            dropdownStyleData: const DropdownStyleData(
+              padding: EdgeInsets.zero,
+            ),
+            hint: Text(
+              L10n.of(context).selectBotLanguage,
+              overflow: TextOverflow.clip,
+              textAlign: TextAlign.center,
+            ),
+            value: botOptions.targetLanguage,
+            isExpanded: true,
+            items: MatrixState.pangeaController.pLanguageStore.targetOptions
+                .map((language) {
+              return DropdownMenuItem(
+                value: language.langCode,
+                child: Text(
+                  language.getDisplayName(context) ?? language.langCode,
+                  overflow: TextOverflow.clip,
+                  textAlign: TextAlign.center,
+                ),
+              );
+            }).toList(),
+            onChanged: hasPermission && enabled ? onUpdateBotLanguage : null,
           ),
-          hint: Text(
-            L10n.of(context).selectBotLanguage,
-            overflow: TextOverflow.clip,
-            textAlign: TextAlign.center,
-          ),
-          value: botOptions.targetLanguage,
-          isExpanded: true,
-          items: MatrixState.pangeaController.pLanguageStore.targetOptions
-              .map((language) {
-            return DropdownMenuItem(
-              value: language.langCode,
-              child: Text(
-                language.getDisplayName(context) ?? language.langCode,
-                overflow: TextOverflow.clip,
-                textAlign: TextAlign.center,
-              ),
-            );
-          }).toList(),
-          onChanged: enabled ? onUpdateBotLanguage : null,
         ),
         const SizedBox(height: 12),
-        DropdownButtonFormField2<String>(
-          hint: Text(
-            L10n.of(context).chooseVoice,
-            overflow: TextOverflow.clip,
-            textAlign: TextAlign.center,
+        InkWell(
+          onTap: hasPermission ? null : () => showNoPermissionDialog(context),
+          child: DropdownButtonFormField2<String>(
+            hint: Text(
+              L10n.of(context).chooseVoice,
+              overflow: TextOverflow.clip,
+              textAlign: TextAlign.center,
+            ),
+            value: botOptions.targetVoice,
+            isExpanded: true,
+            items: const [],
+            onChanged: hasPermission && enabled ? onUpdateBotVoice : null,
           ),
-          value: botOptions.targetVoice,
-          isExpanded: true,
-          items: const [],
-          onChanged: enabled ? onUpdateBotVoice : null,
         ),
         const SizedBox(height: 12),
-        LanguageLevelDropdown(
-          initialLevel: botOptions.languageLevel,
-          onChanged: onUpdateBotLanguageLevel,
-          validator: (value) => enabled && value == null
-              ? L10n.of(context).enterLanguageLevel
-              : null,
-          enabled: enabled,
+        InkWell(
+          onTap: hasPermission ? null : () => showNoPermissionDialog(context),
+          child: LanguageLevelDropdown(
+            initialLevel: botOptions.languageLevel,
+            onChanged:
+                hasPermission && enabled ? onUpdateBotLanguageLevel : null,
+            validator: (value) => enabled && value == null
+                ? L10n.of(context).enterLanguageLevel
+                : null,
+            enabled: enabled,
+          ),
         ),
         const SizedBox(height: 12),
         Align(
@@ -96,13 +109,16 @@ class ConversationBotSettingsForm extends StatelessWidget {
             ),
           ),
         ),
-        ConversationBotModeSelect(
-          initialMode: hasUpdatedMode ? botOptions.mode : null,
-          onChanged: onUpdateBotMode,
-          enabled: enabled,
-          validator: (value) {
-            return value == null ? L10n.of(context).botModeValidation : null;
-          },
+        InkWell(
+          onTap: hasPermission ? null : () => showNoPermissionDialog(context),
+          child: ConversationBotModeSelect(
+            initialMode: hasUpdatedMode ? botOptions.mode : null,
+            onChanged: hasPermission && enabled ? onUpdateBotMode : null,
+            enabled: enabled,
+            validator: (value) {
+              return value == null ? L10n.of(context).botModeValidation : null;
+            },
+          ),
         ),
         const SizedBox(height: 12),
         ConversationBotModeDynamicZone(
@@ -110,6 +126,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
           discussionKeywordsController: discussionKeywordsController,
           customSystemPromptController: customSystemPromptController,
           enabled: enabled,
+          hasPermission: hasPermission,
           mode: hasUpdatedMode ? botOptions.mode : null,
         ),
       ],

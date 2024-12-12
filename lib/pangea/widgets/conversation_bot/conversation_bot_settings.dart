@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_no_permission_dialog.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings_form.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -113,6 +114,7 @@ class ConversationBotSettingsDialogState
       TextEditingController();
 
   bool hasUpdatedMode = false;
+  bool hasPermission = false;
 
   @override
   void initState() {
@@ -124,6 +126,9 @@ class ConversationBotSettingsDialogState
     widget.room.botIsInRoom.then((bool isBotRoom) {
       setState(() => addBot = isBotRoom);
     });
+    hasPermission =
+        widget.room.powerForChangingStateEvent(PangeaEventTypes.botOptions) <=
+            widget.room.ownPowerLevel;
 
     discussionKeywordsController.text = botOptions.discussionKeywords ?? "";
     discussionTopicController.text = botOptions.discussionTopic ?? "";
@@ -193,15 +198,22 @@ class ConversationBotSettingsDialogState
                   ),
                 ],
               ),
-              SwitchListTile(
-                title: Text(
-                  L10n.of(context).conversationBotStatus,
+              InkWell(
+                onTap: hasPermission
+                    ? null
+                    : () => showNoPermissionDialog(context),
+                child: SwitchListTile(
+                  title: Text(
+                    L10n.of(context).conversationBotStatus,
+                  ),
+                  value: addBot,
+                  onChanged: hasPermission
+                      ? (bool value) {
+                          setState(() => addBot = value);
+                        }
+                      : null, // Keeps the switch disabled
+                  contentPadding: const EdgeInsets.all(4),
                 ),
-                value: addBot,
-                onChanged: (bool value) {
-                  setState(() => addBot = value);
-                },
-                contentPadding: const EdgeInsets.all(4),
               ),
               Expanded(
                 child: SingleChildScrollView(
@@ -221,6 +233,7 @@ class ConversationBotSettingsDialogState
                                 discussionTopicController,
                             customSystemPromptController:
                                 customSystemPromptController,
+                            hasPermission: hasPermission,
                             enabled: addBot,
                             hasUpdatedMode: hasUpdatedMode,
                             onUpdateBotMode: onUpdateChatMode,
@@ -237,15 +250,20 @@ class ConversationBotSettingsDialogState
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(null);
-                    },
-                    child: Text(L10n.of(context).cancel),
-                  ),
+                  if (hasPermission)
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(null);
+                      },
+                      child: Text(L10n.of(context).cancel),
+                    ),
                   const SizedBox(width: 20),
                   TextButton(
                     onPressed: () async {
+                      if (!hasPermission) {
+                        Navigator.of(context).pop(null);
+                        return;
+                      }
                       final isValid = formKey.currentState!.validate();
                       if (!isValid) return;
 
@@ -263,7 +281,9 @@ class ConversationBotSettingsDialogState
                         await widget.room.kick(BotName.byEnvironment);
                       }
                     },
-                    child: Text(L10n.of(context).confirm),
+                    child: hasPermission
+                        ? Text(L10n.of(context).confirm)
+                        : Text(L10n.of(context).close),
                   ),
                 ],
               ),
