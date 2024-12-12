@@ -227,7 +227,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                   ],
                 ),
                 // #Pangea
-                if (!_isRoomMember)
+                if (!_isRoomMember && chunk?.roomType == 'm.space')
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: TextField(
@@ -242,7 +242,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                       ),
                     ),
                   ),
-                if (!_isRoomMember)
+                if (!_isRoomMember && chunk?.roomType == 'm.space')
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
@@ -256,7 +256,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                       icon: const Icon(Icons.navigate_next),
                     ),
                   ),
-                if (!_isRoomMember)
+                if (!_isRoomMember && chunk?.roomType == 'm.space')
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
