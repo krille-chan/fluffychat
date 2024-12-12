@@ -457,7 +457,7 @@ class Choreographer {
     isFetching = false;
     choreoRecord = ChoreoRecord.newRecord;
     itController.clear();
-    igc.clear();
+    igc.dispose();
     //@ggurdin - why is this commented out?
     // errorService.clear();
     _resetDebounceTimer();

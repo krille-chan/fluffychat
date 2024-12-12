@@ -121,6 +121,26 @@ class PreviousMessage {
         ModelKey.prevSender: sender,
         ModelKey.prevTimestamp: timestamp.toIso8601String(),
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    if (other is! PreviousMessage) return false;
+
+    return content == other.content &&
+        sender == other.sender &&
+        timestamp == other.timestamp;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hash(
+      content,
+      sender,
+      timestamp,
+    );
+  }
 }
 
 class IGCRequestBody {
@@ -152,4 +172,29 @@ class IGCRequestBody {
         ModelKey.prevMessages:
             jsonEncode(prevMessages.map((x) => x.toJson()).toList()),
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    if (other is! IGCRequestBody) return false;
+
+    return fullText.trim() == other.fullText.trim() &&
+        fullText == other.fullText &&
+        userL1 == other.userL1 &&
+        userL2 == other.userL2 &&
+        enableIT == other.enableIT &&
+        userId == other.userId;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+        fullText.trim(),
+        userL1,
+        userL2,
+        enableIT,
+        enableIGC,
+        userId,
+        Object.hashAll(prevMessages),
+      );
 }
