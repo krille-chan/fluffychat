@@ -3,6 +3,7 @@ import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:flutter/material.dart';
+import 'package:universal_io/io.dart';
 
 import '../widgets/user_settings/p_language_dialog.dart';
 
@@ -26,6 +27,11 @@ class LanguageController {
       _userL2Code!.isNotEmpty &&
       _userL1Code != LanguageKeys.unknownLanguage &&
       _userL2Code != LanguageKeys.unknownLanguage;
+
+  LanguageModel get systemLanguage {
+    final String systemLang = Platform.localeName.split('-').first;
+    return PangeaLanguage.byLangCode(systemLang);
+  }
 
   String? get _userL1Code {
     final source =

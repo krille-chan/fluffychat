@@ -23,8 +23,8 @@ Future<void> pLanguageDialog(
   //PTODO: if source language not set by user, default to languge from device settings
   final LanguageModel? userL1 = pangeaController.languageController.userL1;
   final LanguageModel? userL2 = pangeaController.languageController.userL2;
-  final String systemLang = Localizations.localeOf(parentContext).languageCode;
-  final LanguageModel systemLanguage = PangeaLanguage.byLangCode(systemLang);
+  final LanguageModel systemLanguage =
+      pangeaController.languageController.systemLanguage;
 
   LanguageModel selectedSourceLanguage = systemLanguage;
   if (userL1 != null && userL1.langCode != LanguageKeys.unknownLanguage) {
