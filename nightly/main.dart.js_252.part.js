@@ -2,30 +2,30 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_252",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cS2(){return new B.HC(A.dJ("hi"))},
-HC:function HC(d){this.a=d}}
+cS5(){return new B.HF(A.dJ("ia"))},
+HF:function HF(d){this.a=d}}
 A=c[0]
 C=c[51]
-B=a.updateHolder(c[25],B)
-B.HC.prototype={
+B=a.updateHolder(c[28],B)
+B.HF.prototype={
 gnV(){return"false"},
-gkd(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
-gmq(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
-gbk(d){return"\u0928\u093f\u0915\u093e\u0932\u0928\u093e"},
-gm_(){return"\u0905\u092d\u0940 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
-glY(){return"\u0907\u092e\u094b\u091c\u0940 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
-glZ(){return".zip \u092b\u093c\u093e\u0907\u0932 \u0938\u0947 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
-glI(){return"\u0907\u092e\u094b\u091f \u092a\u0948\u0915 \u0915\u094b .zip \u0915\u0947 \u0930\u0942\u092a \u092e\u0947\u0902 \u0928\u093f\u0930\u094d\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
-gmO(d){return"Replace"},
-gf0(){return"About"},
+gkd(){return"Repeter le contrasigno"},
+gmq(){return"Non es un file de imagine."},
+gbk(d){return"Remover"},
+gm_(){return"Importar ora"},
+glY(){return"Importar emojis"},
+glZ(){return"Importar ab un file .zip"},
+glI(){return"Exportar pacchetto de emotes como un .zip"},
+gmO(d){return"Reimplaciar"},
+gf0(){return"A proposito de"},
 nU(d){return"About "+d},
-gfu(d){return"Accept"},
-hz(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
-ghB(){return"Account"},
+gfu(d){return"Acceptar"},
+hz(d){return"\ud83d\udc4d "+d+" acceptava tu invitation"},
+ghB(){return"Conto"},
 hC(d){return"\ud83d\udd10 "+d+" activated end to end encryption"},
-ghD(){return"Add email"},
+ghD(){return"Adder email"},
 glq(){return"Please confirm your Matrix ID in order to delete your account."},
-l1(d){return"This should be "+d},
+l1(d){return"Isto deberea esser "+d},
 ghF(){return"Add to space"},
 ghG(){return"Admin"},
 ghH(){return"alias"},
@@ -576,8 +576,8 @@ goe(){return"Add link"},
 go2(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 C(d,e){return this.gbk(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HC,C.aQ)})()
-A.el(b.typeUniverse,JSON.parse('{"HC":{"aQ":[]}}'))};
+y(B.HF,C.aQ)})()
+A.el(b.typeUniverse,JSON.parse('{"HF":{"aQ":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"/5/3NRlNc30PhknawIW/9RKYk18=");
+a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"eeNMMbQiXaqJrLGCHgO2KDb0Ko8=");
 //# sourceMappingURL=main.dart.js_252.part.js.map
