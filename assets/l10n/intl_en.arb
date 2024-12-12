@@ -4622,5 +4622,6 @@
       "currentXP": {},
       "maxXP": {}
     }
-  }
+  },
+  "registrationEmailMessage": "Please verify your email with a link sent there. In some cases, the email takes up to 5 minutes to arrive. Please also check your spam folder."
 }

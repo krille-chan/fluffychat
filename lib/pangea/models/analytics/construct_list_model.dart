@@ -22,7 +22,7 @@ class ConstructListModel {
     _uses.clear();
   }
 
-  final List<OneConstructUse> _uses = [];
+  List<OneConstructUse> _uses = [];
   List<OneConstructUse> get uses => _uses;
 
   /// A map of lemmas to ConstructUses, each of which contains a lemma
@@ -70,8 +70,9 @@ class ConstructListModel {
   }
 
   void _updateUsesList(List<OneConstructUse> newUses) {
-    newUses.sort((a, b) => a.timeStamp.compareTo(b.timeStamp));
-    _uses.addAll(newUses);
+    newUses.sort((a, b) => b.timeStamp.compareTo(a.timeStamp));
+    _uses.insertAll(0, newUses);
+    _uses = _uses.take(100).toList();
   }
 
   /// A map of lemmas to ConstructUses, each of which contains a lemma

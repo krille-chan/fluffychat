@@ -111,7 +111,7 @@ class LevelBarPopup extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: uses.length,
                     itemBuilder: (context, index) {
-                      final use = uses[(uses.length - 1) - index];
+                      final use = uses[index];
                       String lemmaCopy = use.lemma;
                       if (use.constructType == ConstructTypeEnum.morph) {
                         lemmaCopy = getGrammarCopy(
