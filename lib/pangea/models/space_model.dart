@@ -232,6 +232,7 @@ enum ToolSetting {
   definitions,
   // translations,
   autoIGC,
+  enableTTS,
 }
 
 extension SettingCopy on ToolSetting {
@@ -249,6 +250,8 @@ extension SettingCopy on ToolSetting {
       //   return L10n.of(context).messageTranslationsToolName;
       case ToolSetting.autoIGC:
         return L10n.of(context).autoIGCToolName;
+      case ToolSetting.enableTTS:
+        return L10n.of(context).enableTTSToolName;
     }
   }
 
@@ -267,6 +270,8 @@ extension SettingCopy on ToolSetting {
       //   return L10n.of(context).translationsToolDescrption;
       case ToolSetting.autoIGC:
         return L10n.of(context).autoIGCToolDescription;
+      case ToolSetting.enableTTS:
+        return L10n.of(context).enableTTSToolDescription;
     }
   }
 
@@ -278,6 +283,7 @@ extension SettingCopy on ToolSetting {
       case ToolSetting.immersionMode:
         return false;
       case ToolSetting.autoIGC:
+      case ToolSetting.enableTTS:
         return true;
     }
   }

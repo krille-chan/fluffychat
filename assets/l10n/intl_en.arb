@@ -4058,7 +4058,7 @@
   "roomDataMissing": "Some data may be missing from rooms in which you are not a member.",
   "updatePhoneOS": "You may need to update your device's OS version.",
   "wordsPerMinute": "Words per minute",
-  "autoIGCToolName": "Run Language Assistance Automatically",
+  "autoIGCToolName": "Run language assistance automatically",
   "autoIGCToolDescription": "Automatically run language assistance after typing messages",
   "runGrammarCorrection": "Check message",
   "grammarCorrectionFailed": "Issues to address",
@@ -4623,5 +4623,9 @@
       "maxXP": {}
     }
   },
-  "registrationEmailMessage": "Please verify your email with a link sent there. In some cases, the email takes up to 5 minutes to arrive. Please also check your spam folder."
+  "registrationEmailMessage": "Please verify your email with a link sent there. In some cases, the email takes up to 5 minutes to arrive. Please also check your spam folder.",
+  "enableTTSToolName": "Enabled text-to-speech",
+  "enableTTSToolDescription": "Allow the app to generate text-to-speech output for portions of text in your target language",
+  "couldNotFindTTS": "We couldn't find a text-to-speech engine for your current target language. ",
+  "ttsInstructionsHyperlink": "Click here to view instructions for downloading a new voice on your device."
 }

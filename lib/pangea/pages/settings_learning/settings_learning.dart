@@ -3,6 +3,7 @@ import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning_view.dart';
+import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,19 @@ class SettingsLearning extends StatefulWidget {
 
 class SettingsLearningController extends State<SettingsLearning> {
   PangeaController pangeaController = MatrixState.pangeaController;
+  final tts = TtsController();
+
+  @override
+  void initState() {
+    super.initState();
+    tts.setupTTS().then((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    tts.dispose();
+    super.dispose();
+  }
 
   setPublicProfile(bool isPublic) {
     pangeaController.userController.updateProfile((profile) {
@@ -50,6 +64,8 @@ class SettingsLearningController extends State<SettingsLearning> {
           return profile..toolSettings.definitions = value;
         case ToolSetting.autoIGC:
           return profile..toolSettings.autoIGC = value;
+        case ToolSetting.enableTTS:
+          return profile..toolSettings.enableTTS = value;
       }
     });
   }
@@ -67,6 +83,8 @@ class SettingsLearningController extends State<SettingsLearning> {
         return toolSettings.definitions;
       case ToolSetting.autoIGC:
         return toolSettings.autoIGC;
+      case ToolSetting.enableTTS:
+        return toolSettings.enableTTS;
     }
   }
 

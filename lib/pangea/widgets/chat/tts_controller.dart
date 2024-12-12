@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/controllers/user_controller.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/missing_voice_button.dart';
@@ -18,17 +20,24 @@ class TtsController {
   List<String> _availableLangCodes = [];
   final flutter_tts.FlutterTts _tts = flutter_tts.FlutterTts();
   final TextToSpeech _alternativeTTS = TextToSpeech();
+  StreamSubscription? _languageSubscription;
+
+  UserController get userController =>
+      MatrixState.pangeaController.userController;
 
   TtsController() {
     setupTTS();
+    _languageSubscription =
+        userController.stateStream.listen((_) => setupTTS());
   }
 
   bool get _useAlternativeTTS {
-    return PlatformInfos.getOperatingSystem() == 'Windows';
+    return PlatformInfos.isWindows;
   }
 
   Future<void> dispose() async {
     await _tts.stop();
+    await _languageSubscription?.cancel();
   }
 
   void _onError(dynamic message) => ErrorHandler.logError(
@@ -40,39 +49,46 @@ class TtsController {
       );
 
   Future<void> setupTTS() async {
-    if (_useAlternativeTTS) {
-      await _setupAltTTS();
-      return;
-    }
-
     try {
-      _tts.setErrorHandler(_onError);
-      debugger(when: kDebugMode && targetLanguage == null);
+      if (_useAlternativeTTS) {
+        await _setupAltTTS();
+      } else {
+        _tts.setErrorHandler(_onError);
+        debugger(when: kDebugMode && targetLanguage == null);
 
-      _tts.setLanguage(
-        targetLanguage ?? "en",
-      );
+        _tts.setLanguage(
+          targetLanguage ?? "en",
+        );
 
-      await _tts.awaitSpeakCompletion(true);
+        await _tts.awaitSpeakCompletion(true);
 
-      final voices = (await _tts.getVoices) as List?;
-      _availableLangCodes = (voices ?? [])
-          .map((v) {
-            // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'
-            final nameCode = v['name']?.split("-").first;
-            final localeCode = v['locale']?.split("-").first;
-            return nameCode.length == 2 ? nameCode : localeCode;
-          })
-          .toSet()
-          .cast<String>()
-          .toList();
-
-      debugPrint("availableLangCodes: $_availableLangCodes");
-
-      debugger(when: kDebugMode && !_isLanguageFullySupported);
+        final voices = (await _tts.getVoices) as List?;
+        _availableLangCodes = (voices ?? [])
+            .map((v) {
+              // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'
+              final nameCode = v['name']?.split("-").first;
+              final localeCode = v['locale']?.split("-").first;
+              return nameCode.length == 2 ? nameCode : localeCode;
+            })
+            .toSet()
+            .cast<String>()
+            .toList();
+      }
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: s);
+    } finally {
+      debugPrint("availableLangCodes: $_availableLangCodes");
+      final enableTTSSetting = userController.profile.toolSettings.enableTTS;
+      if (enableTTSSetting != isLanguageFullySupported) {
+        await userController.updateProfile(
+          (profile) {
+            profile.toolSettings.enableTTS = isLanguageFullySupported;
+            return profile;
+          },
+          waitForDataInSync: true,
+        );
+      }
     }
   }
 
@@ -148,7 +164,12 @@ class TtsController {
     // TODO - make non-nullable again
     String? eventID,
   ) async {
-    if (_isLanguageFullySupported) {
+    if (!MatrixState
+        .pangeaController.userController.profile.toolSettings.enableTTS) {
+      return;
+    }
+
+    if (isLanguageFullySupported) {
       await _speak(text);
     } else {
       ErrorHandler.logError(
@@ -200,6 +221,6 @@ class TtsController {
     }
   }
 
-  bool get _isLanguageFullySupported =>
+  bool get isLanguageFullySupported =>
       _availableLangCodes.contains(targetLanguage);
 }

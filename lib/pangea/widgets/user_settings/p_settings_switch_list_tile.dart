@@ -7,12 +7,14 @@ class ProfileSettingsSwitchListTile extends StatefulWidget {
   final String title;
   final String? subtitle;
   final Function(bool) onChange;
+  final bool enabled;
 
   const ProfileSettingsSwitchListTile.adaptive({
     super.key,
     required this.defaultValue,
     required this.title,
     required this.onChange,
+    this.enabled = true,
     this.subtitle,
   });
 
@@ -31,24 +33,34 @@ class PSettingsSwitchListTileState
   }
 
   @override
+  void didUpdateWidget(ProfileSettingsSwitchListTile oldWidget) {
+    if (oldWidget.defaultValue != widget.defaultValue) {
+      setState(() => currentValue = widget.defaultValue);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SwitchListTile.adaptive(
       value: currentValue,
       title: Text(widget.title),
       activeColor: AppConfig.activeToggleColor,
       subtitle: widget.subtitle != null ? Text(widget.subtitle!) : null,
-      onChanged: (bool newValue) async {
-        try {
-          widget.onChange(newValue);
-          setState(() => currentValue = newValue);
-        } catch (err, s) {
-          ErrorHandler.logError(
-            e: err,
-            m: "Failed to updates user setting",
-            s: s,
-          );
-        }
-      },
+      onChanged: widget.enabled
+          ? (bool newValue) async {
+              try {
+                widget.onChange(newValue);
+                setState(() => currentValue = newValue);
+              } catch (err, s) {
+                ErrorHandler.logError(
+                  e: err,
+                  m: "Failed to updates user setting",
+                  s: s,
+                );
+              }
+            }
+          : null,
     );
   }
 }
