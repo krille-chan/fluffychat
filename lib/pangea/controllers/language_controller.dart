@@ -36,7 +36,7 @@ class LanguageController {
   String? get _userL1Code {
     final source =
         _pangeaController.userController.profile.userSettings.sourceLanguage;
-    return source == null || source.isEmpty ? null : source;
+    return source == null || source.isEmpty ? systemLanguage.langCode : source;
   }
 
   String? get _userL2Code {
