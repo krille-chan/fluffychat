@@ -2885,5 +2885,14 @@
   "pleaseFillOut": "Bete ezazu",
   "@pleaseFillOut": {},
   "unableToJoinChat": "Ezin da txatera batu. Agian besteak elkarrizketa itxiko zuen honezkero.",
-  "@unableToJoinChat": {}
+  "@unableToJoinChat": {},
+  "sendImages": "Bidali {count} irudi",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "Konprimatu",
+  "@compress": {}
 }
