@@ -78,7 +78,7 @@ class Choreographer {
   void send(BuildContext context) {
     debugPrint("can send message: $canSendMessage");
     if (!canSendMessage) {
-      if (igc.igcTextData != null) {
+      if (igc.igcTextData != null && igc.igcTextData!.matches.isNotEmpty) {
         igc.showFirstMatch(context);
       }
       return;

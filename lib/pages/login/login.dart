@@ -40,7 +40,7 @@ class LoginController extends State<Login> {
         loading = false;
       });
     }).catchError((e) {
-      final String err = e as String;
+      final String err = e.toString();
       setState(() {
         loading = false;
         passwordError = err.toLocalizedString(context);

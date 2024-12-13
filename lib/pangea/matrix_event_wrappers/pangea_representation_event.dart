@@ -134,6 +134,7 @@ class RepresentationEvent {
           'timestamp': timestamp.toIso8601String(),
           'senderID': senderID,
         },
+        level: SentryLevel.warning,
       );
     }
     final List<PangeaToken> res =

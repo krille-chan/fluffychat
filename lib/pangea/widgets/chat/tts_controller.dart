@@ -11,6 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart' as flutter_tts;
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 
 class TtsController {
@@ -213,6 +214,7 @@ class TtsController {
             'result': result,
             'text': text,
           },
+          level: SentryLevel.warning,
         );
       }
     } catch (e, s) {
