@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_highlighter/flutter_highlighter.dart';
 import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html_table/flutter_html_table.dart';
+// import 'package:flutter_html_table/flutter_html_table.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:linkify/linkify.dart';
@@ -167,7 +167,9 @@ class HtmlMessage extends StatelessWidget {
             MatrixMathExtension(
               style: TextStyle(fontSize: fontSize, color: textColor),
             ),
-            const TableHtmlExtension(),
+            // #Pangea
+            // const TableHtmlExtension(),
+            // Pangea#
             SpoilerExtension(textColor: textColor),
             const ImageExtension(),
             FontColorExtension(),

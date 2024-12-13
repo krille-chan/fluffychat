@@ -77,11 +77,14 @@ class PangeaTextController extends TextEditingController {
       return;
     }
 
-    final int tokenIndex = choreographer.igc.igcTextData!.tokenIndexByOffset(
-      selection.baseOffset,
-    );
-
-    if (tokenIndex == -1) return;
+    int tokenIndex;
+    try {
+      tokenIndex = choreographer.igc.igcTextData!.tokenIndexByOffset(
+        selection.baseOffset,
+      );
+    } catch (_) {
+      return;
+    }
 
     final int matchIndex =
         choreographer.igc.igcTextData!.getTopMatchIndexForOffset(

@@ -253,9 +253,17 @@ class PracticeActivityModel {
       throw ("lang_code is not a string in PracticeActivityModel.fromJson");
     }
 
+    final targetConstructsEntry =
+        json['tgt_constructs'] ?? json['target_constructs'];
+    if (targetConstructsEntry is! List) {
+      Sentry.addBreadcrumb(
+        Breadcrumb(data: {"json": json}),
+      );
+      throw ("tgt_constructs is not a list in PracticeActivityModel.fromJson");
+    }
+
     return PracticeActivityModel(
-      tgtConstructs: ((json['tgt_constructs'] ?? json['target_constructs'])
-              as List)
+      tgtConstructs: targetConstructsEntry
           .map((e) => ConstructIdentifier.fromJson(e as Map<String, dynamic>))
           .toList(),
       langCode: json['lang_code'] as String,

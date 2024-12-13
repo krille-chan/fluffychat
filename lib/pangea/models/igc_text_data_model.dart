@@ -139,16 +139,41 @@ class IGCTextData {
       replacement.value,
     );
 
+    int startIndex;
+    int endIndex;
+
     // replace the tokens that are part of the match
     // with the tokens in the replacement
     //    start is inclusive
-    final startIndex = tokenIndexByOffset(pangeaMatch.match.offset);
-    //    end is exclusive, hence the +1
-    // use pangeaMatch.matchContent.trim().length instead of pangeaMatch.match.length since pangeaMatch.match.length may include leading/trailing spaces
-    final endIndex = tokenIndexByOffset(
-          pangeaMatch.match.offset + pangeaMatch.matchContent.trim().length,
-        ) +
-        1;
+    try {
+      startIndex = tokenIndexByOffset(pangeaMatch.match.offset);
+      //    end is exclusive, hence the +1
+      // use pangeaMatch.matchContent.trim().length instead of pangeaMatch.match.length since pangeaMatch.match.length may include leading/trailing spaces
+      endIndex = tokenIndexByOffset(
+            pangeaMatch.match.offset + pangeaMatch.matchContent.trim().length,
+          ) +
+          1;
+    } catch (err, s) {
+      matches.removeAt(matchIndex);
+
+      for (final match in matches) {
+        match.match.fullText = originalInput;
+        if (match.match.offset > pangeaMatch.match.offset) {
+          match.match.offset +=
+              replacement.value.length - pangeaMatch.match.length;
+        }
+      }
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {
+          "cursorOffset": pangeaMatch.match.offset,
+          "match": pangeaMatch.match.toJson(),
+          "tokens": tokens.map((e) => e.toJson()).toString(),
+        },
+      );
+      return;
+    }
 
     // for all tokens after the replacement, update their offsets
     for (int i = endIndex; i < tokens.length; i++) {
@@ -199,9 +224,15 @@ class IGCTextData {
     }
   }
 
-  int tokenIndexByOffset(int cursorOffset) => tokens.indexWhere(
-        (token) => token.start <= cursorOffset && cursorOffset <= token.end,
-      );
+  int tokenIndexByOffset(int cursorOffset) {
+    final tokenIndex = tokens.indexWhere(
+      (token) => token.start <= cursorOffset && cursorOffset <= token.end,
+    );
+    if (tokenIndex < 0) {
+      throw "No token found for cursor offset";
+    }
+    return tokenIndex;
+  }
 
   List<int> matchIndicesByOffset(int offset) {
     final List<int> matchesForOffset = [];
