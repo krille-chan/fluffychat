@@ -121,28 +121,54 @@ class LevelBarPopup extends StatelessWidget {
                             ) ??
                             use.lemma;
                       }
-                      return ListTile(
-                        leading: Icon(use.useType.icon),
-                        title: Text(
-                          "\"$lemmaCopy\" - ${use.useType.description(context)}",
-                          style: const TextStyle(fontSize: 14),
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 12,
+                          horizontal: 16,
                         ),
-                        trailing: Container(
-                          alignment: Alignment.centerRight,
-                          width: 60,
+                        child: IntrinsicHeight(
                           child: Row(
-                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "${use.pointValue > 0 ? '+' : ''}${use.pointValue}",
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Container(
+                                  width: 40,
+                                  alignment: Alignment.centerLeft,
+                                  child: Icon(use.useType.icon),
+                                ),
                               ),
-                              const SizedBox(width: 5),
-                              const CircleAvatar(
-                                radius: 10,
-                                child: Icon(
-                                  size: 12,
-                                  Icons.star,
-                                  color: Colors.white,
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  "\"$lemmaCopy\" - ${use.useType.description(context)}",
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topRight,
+                                width: 60,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "${use.pointValue > 0 ? '+' : ''}${use.pointValue}",
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        height: 1,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 5),
+                                    const CircleAvatar(
+                                      radius: 8,
+                                      child: Icon(
+                                        size: 10,
+                                        Icons.star,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],

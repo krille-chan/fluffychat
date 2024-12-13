@@ -110,30 +110,45 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
 
   IconData get icon {
     switch (this) {
-      case ConstructUseTypeEnum.wa:
-        return Icons.thumb_up_sharp;
-
-      case ConstructUseTypeEnum.corIt:
+      // all minus for wrong answer
       case ConstructUseTypeEnum.incIt:
-      case ConstructUseTypeEnum.ignIt:
-        return Icons.translate;
-
-      case ConstructUseTypeEnum.ignIGC:
       case ConstructUseTypeEnum.incIGC:
       case ConstructUseTypeEnum.incPA:
-      case ConstructUseTypeEnum.ignPA:
-      case ConstructUseTypeEnum.ignWL:
       case ConstructUseTypeEnum.incWL:
       case ConstructUseTypeEnum.incHWL:
-      case ConstructUseTypeEnum.ignHWL:
-        return Icons.close;
+        return Icons.dangerous_outlined;
 
-      case ConstructUseTypeEnum.ga:
-      case ConstructUseTypeEnum.corIGC:
+      // correct in word meaning
       case ConstructUseTypeEnum.corPA:
+        return Icons.add_task_outlined;
+
+      // correct in audio practice
       case ConstructUseTypeEnum.corWL:
       case ConstructUseTypeEnum.corHWL:
-        return Icons.check;
+        return Icons.volume_up_outlined;
+
+      // correct in translation
+      case ConstructUseTypeEnum.corIt:
+        return Icons.translate_outlined;
+
+      // written correctly without help
+      case ConstructUseTypeEnum.wa:
+        return Icons.thumb_up_outlined;
+
+      // correct in grammar correction
+      case ConstructUseTypeEnum.corIGC:
+        return Icons.spellcheck_outlined;
+
+      // ignored
+      case ConstructUseTypeEnum.ignIt:
+      case ConstructUseTypeEnum.ignIGC:
+      case ConstructUseTypeEnum.ignPA:
+      case ConstructUseTypeEnum.ignWL:
+      case ConstructUseTypeEnum.ignHWL:
+        return Icons.block_outlined;
+
+      case ConstructUseTypeEnum.ga:
+        return Icons.edit_outlined;
 
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.nan:
