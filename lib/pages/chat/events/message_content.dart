@@ -41,6 +41,7 @@ class MessageContent extends StatelessWidget {
   final ChatController controller;
   final Event? nextEvent;
   final Event? prevEvent;
+  final bool isButton;
   // Pangea#
 
   const MessageContent(
@@ -55,6 +56,7 @@ class MessageContent extends StatelessWidget {
     required this.controller,
     this.nextEvent,
     this.prevEvent,
+    this.isButton = false,
     // Pangea#
     required this.borderRadius,
   });
@@ -329,6 +331,10 @@ class MessageContent extends StatelessWidget {
                   if (overlayController != null) {
                     overlayController?.onClickOverlayMessageToken(token);
                     return;
+                  }
+
+                  if (isButton) {
+                    controller.choreographer.clickPlayer.play();
                   }
 
                   controller.showToolbar(

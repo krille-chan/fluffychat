@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fluffychat/pangea/utils/play_click_sound.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +14,7 @@ class PressableButton extends StatefulWidget {
 
   final void Function()? onPressed;
   final Stream? triggerAnimation;
+  final ClickPlayer? clickPlayer;
 
   const PressableButton({
     required this.borderRadius,
@@ -22,6 +24,7 @@ class PressableButton extends StatefulWidget {
     this.buttonHeight = 5,
     this.depressed = false,
     this.triggerAnimation,
+    this.clickPlayer,
     super.key,
   });
 
@@ -79,10 +82,11 @@ class PressableButtonState extends State<PressableButton>
     if (_animationCompleter != null) {
       await _animationCompleter!.future;
     }
-    if (mounted) _controller.reverse();
+    widget.clickPlayer?.play();
     if (!kIsWeb) {
       HapticFeedback.mediumImpact();
     }
+    if (mounted) _controller.reverse();
   }
 
   void _onTapCancel() {

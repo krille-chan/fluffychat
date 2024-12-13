@@ -391,6 +391,8 @@ class Message extends StatelessWidget {
                                         showToolbar(pangeaMessageEvent);
                                       },
                                       color: color,
+                                      clickPlayer:
+                                          controller.choreographer.clickPlayer,
                                       child:
                                           // Pangea#
                                           Container(
@@ -519,6 +521,7 @@ class Message extends StatelessWidget {
                                                   controller: controller,
                                                   nextEvent: nextEvent,
                                                   prevEvent: previousEvent,
+                                                  isButton: isButton,
                                                   // Pangea#
                                                 ),
                                                 if (event.hasAggregatedEvents(

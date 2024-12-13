@@ -109,6 +109,8 @@ class ToolbarButtons extends StatelessWidget {
                       onPressed: enabled
                           ? () => overlayController.updateToolbarMode(mode)
                           : null,
+                      clickPlayer: overlayController
+                          .widget.chatController.choreographer.clickPlayer,
                       child: AnimatedContainer(
                         duration: FluffyThemes.animationDuration,
                         height: buttonSize,
