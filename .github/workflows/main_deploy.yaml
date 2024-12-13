@@ -93,3 +93,62 @@ jobs:
         run: flutter pub get
       - name: Update sentry
         run: flutter packages pub run sentry_dart_plugin
+
+  deploy_playstore_internal:
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'zulu'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Set up Android SDK
+        if: ${{ env.ACT }} # Only run on local act setups, as GitHub Actions provides the Android SDK on Ubuntu
+        uses: android-actions/setup-android@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Install Fastlane
+        run: gem install fastlane -NV
+      - name: Remove Emoji Font
+        run: |
+          rm -rf fonts/NotoEmoji
+          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
+      - run: flutter pub get
+      - name: Prepare Android Release Build
+        env:
+          PLAY_STORE_UPLOAD_KEY: ${{ secrets.PLAY_STORE_UPLOAD_KEY }}
+          PLAY_STORE_KEYSTORE_KEY_ALIAS: ${{ secrets.PLAY_STORE_KEYSTORE_KEY_ALIAS }}
+          PLAY_STORE_KEYSTORE_STORE_PASSWORD: ${{ secrets.PLAY_STORE_KEYSTORE_STORE_PASSWORD }}
+          PLAY_STORE_KEYSTORE_KEY_PASSWORD: ${{ secrets.PLAY_STORE_KEYSTORE_KEY_PASSWORD }}
+          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
+        run: ./scripts/prepare-android-release.sh
+      - name: Build Android Release
+        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+      - name: Deploy Android Release
+        run: |
+          mkdir -p build/android
+          cp build/app/outputs/bundle/release/app-release.aab build/android/
+          cd android
+          bundle install
+          bundle update fastlane
+          bundle exec fastlane deploy_internal_test
+          if [[ $GITHUB_REF_NAME == rc* ]]; then
+              bundle exec fastlane deploy_candidate
+          else
+              bundle exec fastlane deploy_release
+          fi
+          cd ..
+
+  deploy_ios_testflight: # stashed on old.yml
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4

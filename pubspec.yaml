@@ -118,7 +118,7 @@ dependencies:
   fl_chart: ^0.67.0
   firebase_analytics: ^11.0.1
   firebase_core: ^3.1.0
-  firebase_messaging: ^15.0.1
+  firebase_messaging: ^15.1.5
   flutter_dotenv: ^5.1.0
   fcm_shared_isolate:
     path: pangea_packages/fcm_shared_isolate

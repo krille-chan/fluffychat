@@ -1,0 +1,79 @@
+name: build-ios
+on:
+  workflow_call:
+    inputs:
+      screenshot:
+        type: string
+        required: true
+      ipa:
+        description: 'Run IPA build'
+        type: string
+        required: true
+  workflow_dispatch:
+    inputs:
+      screenshot:
+        description: 'Run screenshot build'
+        type: choice
+        options:  ['true', 'false']
+        required: true
+      ipa:
+        description: 'Run IPA build'
+        type: choice
+        options:  ['true', 'false']
+        required: true
+
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+          working-directory: ios
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - run: 'echo "$API_KEY" | base64 --decode > AuthKey.p8'
+        shell: bash
+        env:
+          API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+
+      - run: bundle install
+
+      - run: bundle exec fastlane versioning
+
+      - name: Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          cache: true
+          cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
+      - run: flutter build ios --simulator --target=integration_test/screenshot_test.dart
+        if: ${{ inputs.screenshot == 'true' }}
+
+      - name: Archive integration ipa
+        if: ${{ inputs.screenshot == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-simulator-build
+          path: build/ios/iphonesimulator/Runner.app
+          if-no-files-found: error
+          retention-days: 3
+
+      # Build ios Release
+      - run: flutter build ios --release --config-only --no-codesign --target=lib/main.dart
+        if: ${{ inputs.ipa == 'true' }}
+
+      - run: bundle exec fastlane build
+        if: ${{ inputs.ipa == 'true' }}
+
+      - name: Archive ipa
+        if: ${{ inputs.ipa == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: Runner.ipa
+          path: ios/Runner.ipa
+          if-no-files-found: error
+          retention-days: 3

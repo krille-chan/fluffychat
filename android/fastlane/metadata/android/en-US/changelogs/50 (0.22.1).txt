@@ -1,1 +1,0 @@
-Check out https://gitlab.com/ChristianPauly/fluffychat-flutter/-/blob/main/CHANGELOG.md for the changelog.

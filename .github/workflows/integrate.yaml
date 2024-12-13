@@ -28,7 +28,7 @@ jobs:
       - run: flutter analyze
       - run: flutter test
 
-  build_debug_apk:
+  build_apk:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -40,11 +40,18 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
+          cache: false
       - run: flutter pub get
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+          # this might remove tools that are actually needed,
+          # if set to "true" but frees about 6 GB
+          tool-cache: false
+          android: false
       - run: flutter build apk --debug
 
-  build_debug_web:
+  build_web:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -52,7 +59,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
+          cache: false
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
@@ -90,4 +97,4 @@ jobs:
           xcode-version: latest
       - run: brew install sqlcipher
       - run: flutter pub get
-      - run: flutter build ios --no-codesign
+      - run: flutter build ipa --no-codesign

@@ -18,6 +18,16 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY_KEY"],
+      is_key_content_base64: ENV["APP_STORE_CONNECT_API_KEY_IS_KEY_CONTENT_BASE64"],
+      duration: 500, # maximum 1200
+      in_house: false # optional but may be required if using match/sigh
+    )
+
+    # TODO: latest_testflight_build_number Not working
     increment_build_number(
       xcodeproj: "Runner.xcodeproj",
       build_number: latest_testflight_build_number + 1
@@ -28,9 +38,10 @@ platform :ios do
     increment_version_number(version_number: version_name)
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
     upload_to_testflight(
+      ipa: "../build/ios/ipa/pangeachat.ipa", # Verify location
       distribute_external: true,
-      groups: "FluffyChat Betatest",
-      changelog: "This is a release candidate for FluffyChat. Please test if the app is overall in a good condition before we push this to production.",
+      groups: "App Store Connect Users",
+      changelog: "This is a release candidate for PangeaChat. Please test if the app is overall in a good condition before we push this to production.",
     )
   end
 end

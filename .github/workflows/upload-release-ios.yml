@@ -1,0 +1,39 @@
+name: upload-release-ios
+on:
+  workflow_call:
+    inputs:
+      new_release:
+        required: true
+        type: string
+        description: "The new release version number"
+      new_release_notes:
+        required: true
+        type: string
+        description: "The release notes for the new release"
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download app
+        uses: actions/download-artifact@v4
+        with:
+          name: Runner.ipa
+          path: ios/
+
+      - run: 'echo "$API_KEY" | base64 --decode > AuthKey.p8'
+        shell: bash
+        env:
+          API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+
+      - run: bundle install
+
+      - run: bundle exec fastlane upload_testflight
+        env:
+          RELEASE_NOTES: ${{ inputs.new_release_notes }}
+      - run: bundle exec fastlane upload_metadata_app_store

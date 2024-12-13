@@ -102,7 +102,7 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: build/app/outputs/apk/release/app-release.apk
-          asset_name: fluffychat.apk
+          asset_name: pangeachat.apk
           asset_content_type: application/vnd.android.package-archive
 
   build_linux:
@@ -122,15 +122,15 @@ jobs:
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
       - name: Create archive
-        run: tar -czf fluffychat-linux-${{ matrix.arch }}.tar.gz -C build/linux/${{ matrix.arch }}/release/bundle/ .
+        run: tar -czf pangeachat-linux-${{ matrix.arch }}.tar.gz -C build/linux/${{ matrix.arch }}/release/bundle/ .
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-linux-${{ matrix.arch }}.tar.gz
-          asset_name: fluffychat-linux-${{ matrix.arch }}.tar.gz
+          asset_path: pangeachat-linux-${{ matrix.arch }}.tar.gz
+          asset_name: pangeachat-linux-${{ matrix.arch }}.tar.gz
           asset_content_type: application/gzip
 
   deploy_playstore:
