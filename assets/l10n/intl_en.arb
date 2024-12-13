@@ -4628,5 +4628,7 @@
   "enableTTSToolName": "Enabled text-to-speech",
   "enableTTSToolDescription": "Allow the app to generate text-to-speech output for portions of text in your target language",
   "couldNotFindTTS": "We couldn't find a text-to-speech engine for your current target language. ",
-  "ttsInstructionsHyperlink": "Click here to view instructions for downloading a new voice on your device."
+  "ttsInstructionsHyperlink": "Click here to view instructions for downloading a new voice on your device.",
+  "currentVersion": "Current Version",
+  "latestVersion": "Latest Version"
 }

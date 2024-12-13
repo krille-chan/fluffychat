@@ -128,8 +128,14 @@ class AppVersionController {
       return;
     }
 
-    final OkCancelResult dialogResponse =
-        await _showDialog(context, mandatoryUpdate);
+    final OkCancelResult dialogResponse = await _showDialog(
+      context,
+      mandatoryUpdate,
+      currentVersion,
+      remoteVersion,
+      currentBuildNumber,
+      remoteBuildNumber,
+    );
 
     if (!mandatoryUpdate && dialogResponse != OkCancelResult.ok) {
       await MatrixState.pangeaController.pStoreService.save(
@@ -146,13 +152,21 @@ class AppVersionController {
   static Future<OkCancelResult> _showDialog(
     BuildContext context,
     bool mandatoryUpdate,
+    String currentVersion,
+    String remoteVersion,
+    String currentBuildNumber,
+    String remoteBuildNumber,
   ) async {
     final title = mandatoryUpdate
         ? L10n.of(context).mandatoryUpdateRequired
         : L10n.of(context).updateAvailable;
     final message = mandatoryUpdate
-        ? L10n.of(context).mandatoryUpdateRequiredDesc
-        : L10n.of(context).updateAvailableDesc;
+        ? "${L10n.of(context).mandatoryUpdateRequiredDesc}\n\n"
+            "${L10n.of(context).currentVersion}: $currentVersion+$currentBuildNumber\n"
+            "${L10n.of(context).latestVersion}: $remoteVersion+$remoteBuildNumber"
+        : "${L10n.of(context).updateAvailableDesc}\n\n"
+            "${L10n.of(context).currentVersion}: $currentVersion+$currentBuildNumber\n"
+            "${L10n.of(context).latestVersion}: $remoteVersion+$remoteBuildNumber";
     return mandatoryUpdate
         ? showOkAlertDialog(
             context: context,
