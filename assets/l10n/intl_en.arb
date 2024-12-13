@@ -4624,6 +4624,7 @@
       "maxXP": {}
     }
   },
+  "signInWithUsername": "Sign in with username and password",
   "registrationEmailMessage": "Please verify your email with a link sent there. In some cases, the email takes up to 5 minutes to arrive. Please also check your spam folder.",
   "enableTTSToolName": "Enabled text-to-speech",
   "enableTTSToolDescription": "Allow the app to generate text-to-speech output for portions of text in your target language",

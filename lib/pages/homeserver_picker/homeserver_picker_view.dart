@@ -146,7 +146,7 @@ class HomeserverPickerView extends StatelessWidget {
                                             horizontal: 10,
                                           ),
                                           child: Text(
-                                            "${L10n.of(context).loginOrSignup} Pangea Chat",
+                                            L10n.of(context).signInWithUsername,
                                           ),
                                         ),
                                       ],
