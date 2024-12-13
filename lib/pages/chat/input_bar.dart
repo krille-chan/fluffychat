@@ -472,74 +472,76 @@ class InputBar extends StatelessWidget {
           // show suggestions after 50ms idle time (default is 300)
           // #Pangea
           // builder: (context, controller, focusNode) => TextField(
-          builder: (context, _, focusNode) => TextField(
-            enableSuggestions: false,
-            readOnly:
-                controller != null && controller!.choreographer.isRunningIT,
-            autocorrect: false,
-            // Pangea#
-            controller: controller,
-            focusNode: focusNode,
-            contextMenuBuilder: (c, e) => markdownContextBuilder(
-              c,
-              e,
-              // #Pangea
-              // controller,
-              _,
+          builder: (context, _, focusNode) => SelectionArea(
+            child: TextField(
+              enableSuggestions: false,
+              readOnly:
+                  controller != null && controller!.choreographer.isRunningIT,
+              autocorrect: false,
               // Pangea#
-            ),
-            contentInsertionConfiguration: ContentInsertionConfiguration(
-              onContentInserted: (KeyboardInsertedContent content) {
-                final data = content.data;
-                if (data == null) return;
+              controller: controller,
+              focusNode: focusNode,
+              contextMenuBuilder: (c, e) => markdownContextBuilder(
+                c,
+                e,
+                // #Pangea
+                // controller,
+                _,
+                // Pangea#
+              ),
+              contentInsertionConfiguration: ContentInsertionConfiguration(
+                onContentInserted: (KeyboardInsertedContent content) {
+                  final data = content.data;
+                  if (data == null) return;
 
-                final file = MatrixFile(
-                  mimeType: content.mimeType,
-                  bytes: data,
-                  name: content.uri.split('/').last,
-                );
-                room.sendFileEvent(
-                  file,
-                  shrinkImageMaxDimension: 1600,
+                  final file = MatrixFile(
+                    mimeType: content.mimeType,
+                    bytes: data,
+                    name: content.uri.split('/').last,
+                  );
+                  room.sendFileEvent(
+                    file,
+                    shrinkImageMaxDimension: 1600,
+                  );
+                },
+              ),
+              minLines: minLines,
+              maxLines: maxLines,
+              keyboardType: keyboardType!,
+              textInputAction: textInputAction,
+              autofocus: autofocus!,
+              inputFormatters: [
+                //#Pangea
+                //LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+                //setting max character count to 1000
+                //after max, nothing else can be typed
+                LengthLimitingTextInputFormatter(1000),
+                //Pangea#
+              ],
+              onSubmitted: (text) {
+                // fix for library for now
+                // it sets the types for the callback incorrectly
+                onSubmitted!(text);
+              },
+              // #Pangea
+              style: controller?.exceededMaxLength ?? false
+                  ? const TextStyle(color: Colors.red)
+                  : null,
+              onTap: () {
+                controller?.onInputTap(
+                  context,
+                  fNode: focusNode,
                 );
               },
+              // Pangea#
+              decoration: decoration!,
+              onChanged: (text) {
+                // fix for the library for now
+                // it sets the types for the callback incorrectly
+                onChanged!(text);
+              },
+              textCapitalization: TextCapitalization.sentences,
             ),
-            minLines: minLines,
-            maxLines: maxLines,
-            keyboardType: keyboardType!,
-            textInputAction: textInputAction,
-            autofocus: autofocus!,
-            inputFormatters: [
-              //#Pangea
-              //LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
-              //setting max character count to 1000
-              //after max, nothing else can be typed
-              LengthLimitingTextInputFormatter(1000),
-              //Pangea#
-            ],
-            onSubmitted: (text) {
-              // fix for library for now
-              // it sets the types for the callback incorrectly
-              onSubmitted!(text);
-            },
-            // #Pangea
-            style: controller?.exceededMaxLength ?? false
-                ? const TextStyle(color: Colors.red)
-                : null,
-            onTap: () {
-              controller?.onInputTap(
-                context,
-                fNode: focusNode,
-              );
-            },
-            // Pangea#
-            decoration: decoration!,
-            onChanged: (text) {
-              // fix for the library for now
-              // it sets the types for the callback incorrectly
-              onChanged!(text);
-            },
-            textCapitalization: TextCapitalization.sentences,
           ),
           suggestionsCallback: getSuggestions,
           itemBuilder: (c, s) =>
