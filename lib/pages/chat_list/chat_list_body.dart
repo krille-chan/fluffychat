@@ -116,25 +116,30 @@ class ChatListViewBody extends StatelessWidget {
                         curve: FluffyThemes.animationCurve,
                         child: userSearchResult == null
                             ? null
-                            : ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: userSearchResult.results.length,
-                                itemBuilder: (context, i) => _SearchItem(
-                                  title:
-                                      userSearchResult.results[i].displayName ??
-                                          userSearchResult
-                                              .results[i].userId.localpart ??
-                                          L10n.of(context).unknownDevice,
-                                  avatar: userSearchResult.results[i].avatarUrl,
-                                  onPressed: () => showAdaptiveBottomSheet(
-                                    context: context,
-                                    builder: (c) => UserBottomSheet(
-                                      profile: userSearchResult.results[i],
-                                      outerContext: context,
-                                    ),
-                                  ),
-                                ),
+                            // #Pangea
+                            : UserSearchResultsList(
+                                userSearchResult: userSearchResult,
                               ),
+                        // : ListView.builder(
+                        //     scrollDirection: Axis.horizontal,
+                        //     itemCount: userSearchResult.results.length,
+                        //     itemBuilder: (context, i) => _SearchItem(
+                        //       title:
+                        //           userSearchResult.results[i].displayName ??
+                        //               userSearchResult
+                        //                   .results[i].userId.localpart ??
+                        //               L10n.of(context).unknownDevice,
+                        //       avatar: userSearchResult.results[i].avatarUrl,
+                        //       onPressed: () => showAdaptiveBottomSheet(
+                        //         context: context,
+                        //         builder: (c) => UserBottomSheet(
+                        //           profile: userSearchResult.results[i],
+                        //           outerContext: context,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // Pangea#
                       ),
                     ],
                     // #Pangea
@@ -338,13 +343,33 @@ class ChatListViewBody extends StatelessWidget {
   }
 }
 
-class PublicRoomsHorizontalList extends StatelessWidget {
+// #Pangea
+// class PublicRoomsHorizontalList extends StatelessWidget {
+class PublicRoomsHorizontalList extends StatefulWidget {
+  // Pangea#
   const PublicRoomsHorizontalList({
     super.key,
     required this.publicRooms,
   });
 
   final List<PublicRoomsChunk>? publicRooms;
+
+  // #Pagngea
+  @override
+  PublicRoomsHorizontalListState createState() =>
+      PublicRoomsHorizontalListState();
+}
+
+class PublicRoomsHorizontalListState extends State<PublicRoomsHorizontalList> {
+  List<PublicRoomsChunk>? get publicRooms => widget.publicRooms;
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+  // Pangea#
 
   @override
   Widget build(BuildContext context) {
@@ -357,21 +382,29 @@ class PublicRoomsHorizontalList extends StatelessWidget {
       curve: FluffyThemes.animationCurve,
       child: publicRooms == null
           ? null
-          : ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: publicRooms.length,
-              itemBuilder: (context, i) => _SearchItem(
-                title: publicRooms[i].name ??
-                    publicRooms[i].canonicalAlias?.localpart ??
-                    L10n.of(context).group,
-                avatar: publicRooms[i].avatarUrl,
-                onPressed: () => showAdaptiveBottomSheet(
-                  context: context,
-                  builder: (c) => PublicRoomBottomSheet(
-                    roomAlias:
-                        publicRooms[i].canonicalAlias ?? publicRooms[i].roomId,
-                    outerContext: context,
-                    chunk: publicRooms[i],
+          :
+          // #Pangea
+          Scrollbar(
+              thumbVisibility: true,
+              controller: _scrollController,
+              child: ListView.builder(
+                controller: _scrollController,
+                // Pangea#
+                scrollDirection: Axis.horizontal,
+                itemCount: publicRooms.length,
+                itemBuilder: (context, i) => _SearchItem(
+                  title: publicRooms[i].name ??
+                      publicRooms[i].canonicalAlias?.localpart ??
+                      L10n.of(context).group,
+                  avatar: publicRooms[i].avatarUrl,
+                  onPressed: () => showAdaptiveBottomSheet(
+                    context: context,
+                    builder: (c) => PublicRoomBottomSheet(
+                      roomAlias: publicRooms[i].canonicalAlias ??
+                          publicRooms[i].roomId,
+                      outerContext: context,
+                      chunk: publicRooms[i],
+                    ),
                   ),
                 ),
               ),
@@ -421,3 +454,52 @@ class _SearchItem extends StatelessWidget {
         ),
       );
 }
+
+// #Pangea
+class UserSearchResultsList extends StatefulWidget {
+  final SearchUserDirectoryResponse userSearchResult;
+  const UserSearchResultsList({
+    required this.userSearchResult,
+    super.key,
+  });
+
+  @override
+  UserSearchResultsListState createState() => UserSearchResultsListState();
+}
+
+class UserSearchResultsListState extends State<UserSearchResultsList> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scrollbar(
+      thumbVisibility: true,
+      controller: _scrollController,
+      child: ListView.builder(
+        controller: _scrollController,
+        scrollDirection: Axis.horizontal,
+        itemCount: widget.userSearchResult.results.length,
+        itemBuilder: (context, i) => _SearchItem(
+          title: widget.userSearchResult.results[i].displayName ??
+              widget.userSearchResult.results[i].userId.localpart ??
+              L10n.of(context).unknownDevice,
+          avatar: widget.userSearchResult.results[i].avatarUrl,
+          onPressed: () => showAdaptiveBottomSheet(
+            context: context,
+            builder: (c) => UserBottomSheet(
+              profile: widget.userSearchResult.results[i],
+              outerContext: context,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+// Pangea#
