@@ -71,7 +71,8 @@ class AppVersionController {
     final remoteBuildNumberInt = int.parse(remoteBuildNumber);
 
     // indicates if the current version is older than the remote version
-    bool isOlderVersion = false;
+    bool isOlderCurrentVersion = false;
+    bool isDifferentVersion = false;
 
     // Loop through the remote and current version parts
     // and compare them. If a part of the current version
@@ -84,10 +85,12 @@ class AppVersionController {
         i < min(currentVersionParts.length, remoteVersionParts.length);
         i++) {
       if (currentVersionParts[i] < remoteVersionParts[i]) {
-        isOlderVersion = true;
+        isOlderCurrentVersion = true;
+        isDifferentVersion = true;
         break;
       } else if (currentVersionParts[i] > remoteVersionParts[i]) {
-        isOlderVersion = false;
+        isOlderCurrentVersion = false;
+        isDifferentVersion = true;
         break;
       }
     }
@@ -101,11 +104,11 @@ class AppVersionController {
     }
 
     // also compare the build numbers
-    if (!isOlderVersion && currentBuildNumberInt < remoteBuildNumberInt) {
-      isOlderVersion = true;
+    if (!isDifferentVersion && currentBuildNumberInt < remoteBuildNumberInt) {
+      isOlderCurrentVersion = true;
     }
 
-    if (!isOlderVersion && !mandatoryUpdate) {
+    if (!isOlderCurrentVersion && !mandatoryUpdate) {
       return;
     }
 
