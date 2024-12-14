@@ -5,7 +5,6 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
@@ -15,6 +14,7 @@ import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/url_launcher.dart';
+import '../../widgets/qr_code_viewer.dart';
 
 class ChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
@@ -60,10 +60,10 @@ class ChatDetailsView extends StatelessWidget {
               if (room.canonicalAlias.isNotEmpty)
                 IconButton(
                   tooltip: L10n.of(context).share,
-                  icon: Icon(Icons.adaptive.share_outlined),
-                  onPressed: () => FluffyShare.share(
-                    AppConfig.inviteLinkPrefix + room.canonicalAlias,
+                  icon: const Icon(Icons.qr_code_rounded),
+                  onPressed: () => showQrCodeViewer(
                     context,
+                    room.canonicalAlias,
                   ),
                 ),
               if (controller.widget.embeddedCloseButton == null)

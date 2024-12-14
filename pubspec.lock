@@ -1554,6 +1554,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  qr_image:
+    dependency: "direct main"
+    description:
+      name: qr_image
+      sha256: c3cd2ac2c6cd6b14604c97b45c477b18988b6518f72120fa04418fc54e3b0d76
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   quiver:
     dependency: transitive
     description:
