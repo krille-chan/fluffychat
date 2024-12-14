@@ -76,6 +76,7 @@ dependencies:
   provider: ^6.0.2
   punycode: ^1.0.0
   qr_code_scanner: ^1.0.1
+  qr_image: ^1.0.0
   receive_sharing_intent: ^1.8.1
   record: ^5.1.2
   scroll_to_index: ^3.0.1

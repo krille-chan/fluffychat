@@ -10,6 +10,7 @@ import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/qr_code_viewer.dart';
 
 class PublicRoomBottomSheet extends StatelessWidget {
   final String? roomAlias;
@@ -98,16 +99,17 @@ class PublicRoomBottomSheet extends StatelessWidget {
             ),
           ),
           actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: IconButton(
-                icon: Icon(Icons.adaptive.share_outlined),
-                onPressed: () => FluffyShare.share(
-                  'https://matrix.to/#/${roomAlias ?? chunk?.roomId}',
-                  context,
+            if (roomAlias != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: IconButton(
+                  icon: Icon(Icons.adaptive.share_outlined),
+                  onPressed: () => showQrCodeViewer(
+                    context,
+                    roomAlias,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
         body: FutureBuilder<PublicRoomsChunk>(
