@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_267",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cSt(){return new B.HQ(A.dJ("lv"))},
-HQ:function HQ(d){this.a=d}}
+cSz(){return new B.HR(A.dJ("lv"))},
+HR:function HR(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[36],B)
-B.HQ.prototype={
+B.HR.prototype={
 gnW(){return"n\u0113"},
 gke(){return"Atk\u0101rtot paroli"},
 gmr(){return"Nav att\u0113la datne."},
@@ -576,8 +576,8 @@ gof(){return"Pievienot saiti"},
 go3(){return"Nevar\u0113ja pievienoties t\u0113rz\u0113\u0161anai. Varb\u016bt otra puse jau ir aizv\u0113rusi sarunu."},
 C(d,e){return this.gbk(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.HQ,C.aQ)})()
-A.en(b.typeUniverse,JSON.parse('{"HQ":{"aQ":[]}}'))};
+y(B.HR,C.aQ)})()
+A.en(b.typeUniverse,JSON.parse('{"HR":{"aQ":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_267",e:"endPart",h:b})})($__dart_deferred_initializers__,"C1YoTSKepQV1vI7SCgQtgL2FcaE=");
+a.eventLog.push({p:"main.dart.js_267",e:"endPart",h:b})})($__dart_deferred_initializers__,"uLeA66Tb4Cz9HcEyRzKac6MY/4I=");
 //# sourceMappingURL=main.dart.js_267.part.js.map
