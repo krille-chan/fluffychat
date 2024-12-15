@@ -6,11 +6,13 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/qr_code_viewer.dart';
+import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 
 class PublicRoomBottomSheet extends StatelessWidget {
   final String? roomAlias;
@@ -98,19 +100,35 @@ class PublicRoomBottomSheet extends StatelessWidget {
               onPressed: Navigator.of(context, rootNavigator: false).pop,
             ),
           ),
-          actions: [
-            if (roomAlias != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: IconButton(
-                  icon: Icon(Icons.adaptive.share_outlined),
-                  onPressed: () => showQrCodeViewer(
-                    context,
-                    roomAlias,
+          actions: roomAlias == null
+              ? null
+              : [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        showScaffoldDialog(
+                          context: context,
+                          builder: (context) => ShareScaffoldDialog(
+                            items: [TextShareItem(roomAlias)],
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.forward_outlined),
+                    ),
                   ),
-                ),
-              ),
-          ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: IconButton(
+                      icon: Icon(Icons.adaptive.share_outlined),
+                      onPressed: () => showQrCodeViewer(
+                        context,
+                        roomAlias,
+                      ),
+                    ),
+                  ),
+                ],
         ),
         body: FutureBuilder<PublicRoomsChunk>(
           future: _search(),

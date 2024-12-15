@@ -7,10 +7,12 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
 import 'package:fluffychat/widgets/qr_code_viewer.dart';
+import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import '../../widgets/matrix.dart';
 import 'user_bottom_sheet.dart';
 
@@ -41,6 +43,21 @@ class UserBottomSheetView extends StatelessWidget {
         centerTitle: false,
         title: Text(displayname),
         actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                showScaffoldDialog(
+                  context: context,
+                  builder: (context) => ShareScaffoldDialog(
+                    items: [TextShareItem(userId)],
+                  ),
+                );
+              },
+              icon: const Icon(Icons.forward_outlined),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: IconButton(
