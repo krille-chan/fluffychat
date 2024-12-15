@@ -9,12 +9,10 @@ import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import '../../utils/url_launcher.dart';
 import '../../widgets/qr_code_viewer.dart';
 
@@ -60,17 +58,6 @@ class ChatDetailsView extends StatelessWidget {
             elevation: theme.appBarTheme.elevation,
             actions: <Widget>[
               if (room.canonicalAlias.isNotEmpty) ...[
-                IconButton(
-                  onPressed: () {
-                    showScaffoldDialog(
-                      context: context,
-                      builder: (context) => ShareScaffoldDialog(
-                        items: [TextShareItem(room.canonicalAlias)],
-                      ),
-                    );
-                  },
-                  icon: const Icon(Icons.forward_outlined),
-                ),
                 IconButton(
                   tooltip: L10n.of(context).share,
                   icon: const Icon(Icons.qr_code_rounded),

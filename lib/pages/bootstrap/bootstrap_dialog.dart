@@ -27,7 +27,6 @@ class BootstrapDialog extends StatefulWidget {
   Future<bool?> show(BuildContext context) => showAdaptiveBottomSheet(
         context: context,
         builder: (context) => this,
-        maxHeight: 600,
       );
 
   @override

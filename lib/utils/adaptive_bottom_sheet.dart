@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -8,9 +10,9 @@ Future<T?> showAdaptiveBottomSheet<T>({
   required Widget Function(BuildContext) builder,
   bool isDismissible = true,
   bool isScrollControlled = true,
-  double maxHeight = 600,
   bool useRootNavigator = true,
 }) {
+  final maxHeight = min(MediaQuery.of(context).size.height - 32, 600);
   final dialogMode = FluffyThemes.isColumnMode(context);
   return showModalBottomSheet(
     context: context,
