@@ -56,13 +56,13 @@ class QrCodeViewer extends StatelessWidget {
     final theme = Theme.of(context);
     final inviteLink = 'https://matrix.to/#/$content';
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.5),
+      backgroundColor: Colors.black.withAlpha(128),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
           style: IconButton.styleFrom(
-            backgroundColor: Colors.black.withOpacity(0.5),
+            backgroundColor: Colors.black.withAlpha(128),
           ),
           icon: const Icon(Icons.close),
           onPressed: Navigator.of(context).pop,
@@ -73,7 +73,7 @@ class QrCodeViewer extends StatelessWidget {
         actions: [
           IconButton(
             style: IconButton.styleFrom(
-              backgroundColor: Colors.black.withOpacity(0.5),
+              backgroundColor: Colors.black.withAlpha(128),
             ),
             icon: Icon(Icons.adaptive.share_outlined),
             onPressed: () => FluffyShare.share(
@@ -86,7 +86,7 @@ class QrCodeViewer extends StatelessWidget {
           const SizedBox(width: 8),
           IconButton(
             style: IconButton.styleFrom(
-              backgroundColor: Colors.black.withOpacity(0.5),
+              backgroundColor: Colors.black.withAlpha(128),
             ),
             icon: const Icon(Icons.download_outlined),
             onPressed: () => _save(context),

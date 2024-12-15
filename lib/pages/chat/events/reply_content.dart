@@ -39,7 +39,7 @@ class ReplyContent extends StatelessWidget {
 
     return Material(
       color: backgroundColor ??
-          theme.colorScheme.surface.withOpacity(ownMessage ? 0.2 : 0.33),
+          theme.colorScheme.surface.withAlpha(ownMessage ? 50 : 80),
       borderRadius: borderRadius,
       child: Row(
         mainAxisSize: MainAxisSize.min,
