@@ -106,8 +106,11 @@ class Message extends StatelessWidget {
         previousEvent!.senderId == event.senderId &&
         previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
-    final textColor =
-        ownMessage ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface;
+    final textColor = ownMessage
+        ? theme.brightness == Brightness.light
+            ? theme.colorScheme.onPrimary
+            : theme.colorScheme.onPrimaryContainer
+        : theme.colorScheme.onSurface;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
@@ -141,7 +144,9 @@ class Message extends StatelessWidget {
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent
-          : theme.colorScheme.primary;
+          : theme.brightness == Brightness.light
+              ? theme.colorScheme.primary
+              : theme.colorScheme.primaryContainer;
     }
 
     final resetAnimateIn = this.resetAnimateIn;
