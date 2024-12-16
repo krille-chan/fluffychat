@@ -9,7 +9,6 @@ import 'package:flutter_highlighter/flutter_highlighter.dart';
 import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:flutter_html/flutter_html.dart';
 // import 'package:flutter_html_table/flutter_html_table.dart';
-import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:linkify/linkify.dart';
 import 'package:matrix/matrix.dart';
@@ -164,9 +163,6 @@ class HtmlMessage extends StatelessWidget {
           extensions: [
             RoomPillExtension(context, room, fontSize, linkColor),
             CodeExtension(fontSize: fontSize),
-            MatrixMathExtension(
-              style: TextStyle(fontSize: fontSize, color: textColor),
-            ),
             // #Pangea
             // const TableHtmlExtension(),
             // Pangea#
@@ -359,39 +355,6 @@ class SpoilerExtension extends HtmlExtension {
                 children: children,
               ),
             ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class MatrixMathExtension extends HtmlExtension {
-  final TextStyle? style;
-
-  MatrixMathExtension({this.style});
-  @override
-  Set<String> get supportedTags => {'div'};
-
-  @override
-  bool matches(ExtensionContext context) {
-    if (context.elementName != 'div') return false;
-    final mathData = context.element?.attributes['data-mx-maths'];
-    return mathData != null;
-  }
-
-  @override
-  InlineSpan build(ExtensionContext context) {
-    final data = context.element?.attributes['data-mx-maths'] ?? '';
-    return WidgetSpan(
-      child: Math.tex(
-        data,
-        textStyle: style,
-        onErrorFallback: (e) {
-          Logs().d('Flutter math parse error', e);
-          return Text(
-            data,
-            style: style,
           );
         },
       ),

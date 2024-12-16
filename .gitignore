@@ -54,6 +54,7 @@ docs/tailwind.css
 
 /key.jks
 /android/key.properties
+/android/app/build/
 **/android/app/.cxx
 android/key.jks
 android/keys.json
