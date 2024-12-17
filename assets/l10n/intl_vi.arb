@@ -629,5 +629,25 @@
   "stickers": "Nhãn dán",
   "@stickers": {},
   "roomUpgradeDescription": "Cuộc trò chuyện sẽ được tạo lại với phiên bản phòng mới. Tất cả những người tham gia sẽ được thông báo rằng họ cần chuyển sang cuộc trò chuyện mới. Bạn có thể tìm hiểu thêm về các phiên bản phòng tại https://spec.matrix.org/latest/rooms/",
-  "@roomUpgradeDescription": {}
+  "@roomUpgradeDescription": {},
+  "commandHint_hug": "Gửi một cái ôm",
+  "@commandHint_hug": {},
+  "aboutHomeserver": "Về {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "alwaysUse24HourFormat": "Không",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "hugContent": "{senderName} ôm bạn",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  }
 }
