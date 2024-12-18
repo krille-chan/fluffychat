@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class TypingIndicators extends StatelessWidget {
   final ChatController controller;
@@ -61,6 +60,9 @@ class TypingIndicators extends StatelessWidget {
                         Avatar(
                           size: avatarSize,
                           mxContent: typingUsers.first.avatarUrl,
+                          // #Pangea
+                          presenceUserId: typingUsers.first.id,
+                          // Pangea#
                           name: typingUsers.first.calcDisplayname(),
                         ),
                       if (typingUsers.length == 2)
@@ -71,6 +73,11 @@ class TypingIndicators extends StatelessWidget {
                             mxContent: typingUsers.length == 2
                                 ? typingUsers.last.avatarUrl
                                 : null,
+                            // #Pangea
+                            presenceUserId: typingUsers.length == 2
+                                ? typingUsers.last.id
+                                : null,
+                            // Pangea#
                             name: typingUsers.length == 2
                                 ? typingUsers.last.calcDisplayname()
                                 : '+${typingUsers.length - 1}',

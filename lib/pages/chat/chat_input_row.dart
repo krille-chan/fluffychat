@@ -458,6 +458,9 @@ class _ChatAccountPicker extends StatelessWidget {
                         mxContent: snapshot.data?.avatarUrl,
                         name: snapshot.data?.displayName ??
                             client.userID!.localpart,
+                        // #Pangea
+                        presenceUserId: client.userID!,
+                        // Pangea#
                         size: 20,
                       ),
                       title: Text(snapshot.data?.displayName ?? client.userID!),
@@ -471,6 +474,9 @@ class _ChatAccountPicker extends StatelessWidget {
             mxContent: snapshot.data?.avatarUrl,
             name: snapshot.data?.displayName ??
                 Matrix.of(context).client.userID!.localpart,
+            // #Pangea
+            presenceUserId: Matrix.of(context).client.userID!,
+            // Pangea#
             size: 20,
           ),
         ),

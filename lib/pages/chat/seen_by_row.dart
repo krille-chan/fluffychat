@@ -42,6 +42,9 @@ class SeenByRow extends StatelessWidget {
               (user) => Avatar(
                 mxContent: user.avatarUrl,
                 name: user.calcDisplayname(),
+                // #Pangea
+                presenceUserId: user.id,
+                // Pangea#
                 size: 16,
               ),
             ),

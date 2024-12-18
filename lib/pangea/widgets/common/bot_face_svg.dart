@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
@@ -22,11 +25,41 @@ class BotFace extends StatefulWidget {
 class BotFaceState extends State<BotFace> {
   Artboard? _artboard;
   StateMachineController? _controller;
+  final Random _random = Random();
 
   @override
   void initState() {
     super.initState();
-    _loadRiveFile();
+    _loadRiveFile().then((_) => _scheduleNextRun());
+  }
+
+  @override
+  void didUpdateWidget(BotFace oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.expression != widget.expression) {
+      _controller!.setInputValue(
+        _controller!.stateMachine.inputs[0].id,
+        mapExpressionToInput(widget.expression),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  void _scheduleNextRun() {
+    final int nextInterval =
+        _random.nextInt(21) + 20; // Random interval between 20-40 seconds
+
+    Future.delayed(Duration(seconds: nextInterval), () {
+      if (mounted) {
+        _loadRiveFile();
+        _scheduleNextRun();
+      }
+    });
   }
 
   double mapExpressionToInput(BotExpression expression) {
@@ -45,11 +78,12 @@ class BotFaceState extends State<BotFace> {
   }
 
   Future<void> _loadRiveFile() async {
-    final riveFile = await RiveFile.asset('assets/pangea/bot_faces/pangea_bot.riv');
+    final riveFile =
+        await RiveFile.asset('assets/pangea/bot_faces/pangea_bot.riv');
 
     final artboard = riveFile.mainArtboard;
-    _controller = StateMachineController
-        .fromArtboard(artboard, 'BotIconStateMachine');
+    _controller =
+        StateMachineController.fromArtboard(artboard, 'BotIconStateMachine');
 
     if (_controller != null) {
       artboard.addController(_controller!);
@@ -59,40 +93,24 @@ class BotFaceState extends State<BotFace> {
       );
     }
 
-    setState(() {
-      _artboard = artboard;
-    });
+    if (mounted) {
+      setState(() {
+        _artboard = artboard;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
       width: widget.width,
       height: widget.width,
       child: _artboard != null
-        ? Rive(
-          artboard: _artboard!,
-          fit: BoxFit.cover,
-        )
-        : Container(),
+          ? Rive(
+              artboard: _artboard!,
+              fit: BoxFit.cover,
+            )
+          : Container(),
     );
   }
-
-  @override
-  void didUpdateWidget(BotFace oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.expression != widget.expression) {
-      _controller!.setInputValue(
-        _controller!.stateMachine.inputs[0].id,
-        mapExpressionToInput(widget.expression),
-      );
-    }
-  }
 }
-
-// extension ParseToString on BotExpressions {
-//   String toShortString() {
-//     return toString().split('.').last;
-//   }
-// }

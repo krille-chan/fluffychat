@@ -150,6 +150,9 @@ class ChatListItem extends StatelessWidget {
                                 mxContent: space.avatar,
                                 size: Avatar.defaultSize * 0.75,
                                 name: space.getLocalizedDisplayname(),
+                                // #Pangea
+                                presenceUserId: space.directChatMatrixID,
+                                // Pangea#
                                 onTap: () => onLongPress?.call(context),
                               ),
                             ),

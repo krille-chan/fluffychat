@@ -231,6 +231,7 @@ class ClientChooserButton extends StatelessWidget {
                       name: snapshot.data?.displayName ??
                           matrix.client.userID!.localpart,
                       // #Pangea
+                      presenceUserId: matrix.client.userID!,
                       // size: 32,
                       size: 60,
                       // Pangea#

@@ -1,3 +1,5 @@
+import 'package:fluffychat/pangea/utils/bot_name.dart';
+import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
@@ -76,24 +78,30 @@ class Avatar extends StatelessWidget {
               side: border ?? BorderSide.none,
             ),
             clipBehavior: Clip.hardEdge,
-            child: noPic
-                ? textWidget
-                : MxcImage(
-                    client: client,
-                    key: ValueKey(mxContent.toString()),
-                    cacheKey: '${mxContent}_$size',
-                    uri: mxContent,
-                    fit: BoxFit.cover,
-                    width: size,
-                    height: size,
-                    placeholder: (_) => Center(
-                      child: Icon(
-                        Icons.person_2,
-                        color: theme.colorScheme.tertiary,
-                        size: size / 1.5,
-                      ),
-                    ),
-                  ),
+            child:
+                // #Pangea
+                presenceUserId == BotName.byEnvironment
+                    ? BotFace(width: size, expression: BotExpression.idle)
+                    :
+                    // Pangea#
+                    noPic
+                        ? textWidget
+                        : MxcImage(
+                            client: client,
+                            key: ValueKey(mxContent.toString()),
+                            cacheKey: '${mxContent}_$size',
+                            uri: mxContent,
+                            fit: BoxFit.cover,
+                            width: size,
+                            height: size,
+                            placeholder: (_) => Center(
+                              child: Icon(
+                                Icons.person_2,
+                                color: theme.colorScheme.tertiary,
+                                size: size / 1.5,
+                              ),
+                            ),
+                          ),
           ),
         ),
         if (presenceUserId != null)

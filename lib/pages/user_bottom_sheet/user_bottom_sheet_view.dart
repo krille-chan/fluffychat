@@ -118,6 +118,9 @@ class UserBottomSheetView extends StatelessWidget {
                             Matrix.of(controller.widget.outerContext).client,
                         mxContent: avatarUrl,
                         name: displayname,
+                        // #Pangea
+                        presenceUserId: user?.id,
+                        // Pangea#
                         size: Avatar.defaultSize * 2.5,
                       ),
                     ),

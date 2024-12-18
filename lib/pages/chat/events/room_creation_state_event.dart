@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 class RoomCreationStateEvent extends StatelessWidget {
   final Event event;
@@ -32,6 +30,9 @@ class RoomCreationStateEvent extends StatelessWidget {
                 Avatar(
                   mxContent: event.room.avatar,
                   name: roomName,
+                  // #Pangea
+                  presenceUserId: event.room.directChatMatrixID,
+                  // Pangea#
                   size: Avatar.defaultSize * 2,
                 ),
                 Text(

@@ -112,6 +112,9 @@ class ChatListView extends StatelessWidget {
                             icon: Avatar(
                               mxContent: rootSpaces[i].avatar,
                               name: displayname,
+                              // #Pangea
+                              presenceUserId: space.directChatMatrixID,
+                              // Pangea#
                               size: 32,
                               borderRadius: BorderRadius.circular(
                                 AppConfig.borderRadius / 4,

@@ -81,6 +81,9 @@ class SettingsIgnoreListView extends StatelessWidget {
                         leading: Avatar(
                           mxContent: s.data?.avatarUrl ?? Uri.parse(''),
                           name: s.data?.displayName ?? client.ignoredUsers[i],
+                          // #Pangea
+                          presenceUserId: s.data?.userId,
+                          // Pangea#
                         ),
                         title: Text(
                           s.data?.displayName ?? client.ignoredUsers[i],
