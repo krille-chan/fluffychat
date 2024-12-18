@@ -2,6 +2,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,10 +28,8 @@ Future<void> pangeaSSOLoginAction(
           ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
           : 'http://localhost:3001//login';
 
-  final url = Uri.parse(
-    "${AppConfig.defaultHomeserver}/_matrix/client/v3/login/sso/redirect${provider.id == null ? '' : '/${provider.id}'}",
-  ).replace(
-    scheme: "https",
+  final url = Matrix.of(context).getLoginClient().homeserver!.replace(
+    path: '/_matrix/client/v3/login/sso/redirect/${provider.id ?? ''}',
     queryParameters: {'redirectUrl': redirectUrl},
   );
 
