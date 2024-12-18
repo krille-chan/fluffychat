@@ -37,7 +37,7 @@ class SendFileDialogState extends State<SendFileDialog> {
   bool compress = true;
 
   /// Images smaller than 20kb don't need compression.
-  static const int minSizeToCompress = 20 * 1024;
+  static const int minSizeToCompress = 20 * 1000;
 
   Future<void> _send() async {
     final scaffoldMessenger = ScaffoldMessenger.of(widget.outerContext);
@@ -47,7 +47,7 @@ class SendFileDialogState extends State<SendFileDialog> {
       scaffoldMessenger.showLoadingSnackBar(l10n.prepareSendingAttachment);
       Navigator.of(context, rootNavigator: false).pop();
       final clientConfig = await widget.room.client.getConfig();
-      final maxUploadSize = clientConfig.mUploadSize ?? 100 * 1024 * 1024;
+      final maxUploadSize = clientConfig.mUploadSize ?? 100 * 1000 * 1000;
 
       for (final xfile in widget.files) {
         final MatrixFile file;

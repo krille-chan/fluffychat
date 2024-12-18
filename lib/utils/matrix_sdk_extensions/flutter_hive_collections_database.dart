@@ -109,7 +109,7 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
   }
 
   @override
-  int get maxFileSize => supportsFileStoring ? 100 * 1024 * 1024 : 0;
+  int get maxFileSize => supportsFileStoring ? 100 * 1000 * 1000 : 0;
   @override
   bool get supportsFileStoring => !kIsWeb;
 
