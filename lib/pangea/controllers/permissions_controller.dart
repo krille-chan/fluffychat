@@ -76,12 +76,12 @@ class PermissionsController extends BaseController {
   // _getRoomRules(roomID)?.isShareVideo ?? isUser18();
 
   /// works for both roomID of chat and class
-  bool canSharePhoto(String? roomID) => isUser18();
+  bool canSharePhoto(String? roomID) => true;
   // Rules can't be edited; default to true
   // _getRoomRules(roomID)?.isSharePhoto ?? isUser18();
 
   /// works for both roomID of chat and class
-  bool canShareFile(String? roomID) => isUser18();
+  bool canShareFile(String? roomID) => true;
   // Rules can't be edited; default to true
   // _getRoomRules(roomID)?.isShareFiles ?? isUser18();
 

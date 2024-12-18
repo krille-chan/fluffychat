@@ -84,7 +84,7 @@ class UserController extends BaseController {
   }
 
   /// Creates a new profile for the user with the given date of birth.
-  Future<void> createProfile({required DateTime dob}) async {
+  Future<void> createProfile({DateTime? dob}) async {
     final userSettings = UserSettings(
       dateOfBirth: dob,
       createdAt: DateTime.now(),
@@ -165,15 +165,13 @@ class UserController extends BaseController {
     return userId!.substring(0, userId!.indexOf(":")).replaceAll("@", "");
   }
 
-  /// Checks if user data is available and the date of birth is set.
-  /// Returns a [Future] that completes with a [bool] value indicating
-  /// whether the user data is available and the date of birth is set.
-  Future<bool> get isUserDataAvailableAndDateOfBirthSet async {
+  /// Checks if user data is available and the user's l2 is set.
+  Future<bool> get isUserDataAvailableAndL2Set async {
     try {
       // the function fetchUserModel() uses a completer, so it shouldn't
       // re-call the endpoint if it has already been called
       await initialize();
-      return profile.userSettings.dateOfBirth != null;
+      return profile.userSettings.targetLanguage != null;
     } catch (err, s) {
       ErrorHandler.logError(e: err, s: s);
       return false;

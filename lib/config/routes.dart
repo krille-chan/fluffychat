@@ -10,7 +10,6 @@ import 'package:fluffychat/pages/chat_members/chat_members.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
 import 'package:fluffychat/pages/chat_search/chat_search_page.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
-import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
 import 'package:fluffychat/pages/login/login.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
@@ -28,9 +27,10 @@ import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/pages/find_partner/find_partner.dart';
-import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
 import 'package:fluffychat/pangea/pages/settings_subscription/settings_subscription.dart';
+import 'package:fluffychat/pangea/pages/sign_up/login_or_signup_view.dart';
 import 'package:fluffychat/pangea/pages/sign_up/signup.dart';
+import 'package:fluffychat/pangea/pages/sign_up/user_settings.dart';
 import 'package:fluffychat/pangea/widgets/class/join_with_link.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
@@ -73,7 +73,10 @@ abstract class AppRoutes {
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
         state,
-        const HomeserverPicker(addMultiAccount: false),
+        // #Pangea
+        // const HomeserverPicker(addMultiAccount: false),
+        const LoginOrSignupView(),
+        // Pangea#
       ),
       redirect: loggedInRedirect,
       routes: [
@@ -95,6 +98,17 @@ abstract class AppRoutes {
             const SignupPage(),
           ),
           redirect: loggedInRedirect,
+          routes: [
+            GoRoute(
+              path: 'email',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                state,
+                const SignupPage(withEmail: true),
+              ),
+              redirect: loggedInRedirect,
+            ),
+          ],
         ),
         // Pangea#
       ],
@@ -121,7 +135,7 @@ abstract class AppRoutes {
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
         state,
-        const PUserAge(),
+        const UserSettingsPage(),
       ),
       redirect: loggedOutRedirect,
     ),

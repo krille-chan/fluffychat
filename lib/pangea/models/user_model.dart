@@ -34,7 +34,9 @@ class UserSettings {
   });
 
   factory UserSettings.fromJson(Map<String, dynamic> json) => UserSettings(
-        dateOfBirth: DateTime.parse(json[ModelKey.userDateOfBirth]),
+        dateOfBirth: json[ModelKey.userDateOfBirth] != null
+            ? DateTime.parse(json[ModelKey.userDateOfBirth])
+            : null,
         createdAt: json[ModelKey.userCreatedAt] != null
             ? DateTime.parse(json[ModelKey.userCreatedAt])
             : null,

@@ -1,17 +1,20 @@
 // Flutter imports:
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/enum/l2_support_enum.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../../widgets/flag.dart';
 
 class PLanguageDropdown extends StatefulWidget {
   final List<LanguageModel> languages;
-  final LanguageModel initialLanguage;
+  final LanguageModel? initialLanguage;
   final Function(LanguageModel) onChange;
   final bool showMultilingual;
   final bool isL2List;
+  final String? error;
 
   const PLanguageDropdown({
     super.key,
@@ -20,6 +23,7 @@ class PLanguageDropdown extends StatefulWidget {
     required this.initialLanguage,
     this.showMultilingual = false,
     required this.isL2List,
+    this.error,
   });
 
   @override
@@ -55,68 +59,71 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
 
     sortedLanguages.sort((a, b) => sortLanguages(a, b));
 
-    return Padding(
-      padding: const EdgeInsets.all(12),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Theme.of(context).colorScheme.secondary,
-            width: 0.5,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Theme.of(context).colorScheme.secondary,
+              width: 1,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(36)),
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-        ),
-        child: DropdownButton<LanguageModel>(
-          // Initial Value
-          hint: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: LanguageFlag(
-                  language: widget.initialLanguage,
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: DropdownButton<LanguageModel>(
+            hint: Row(
+              children: [
+                const Icon(Icons.language_outlined),
+                const SizedBox(width: 10),
+                Text(L10n.of(context).iWantToLearn),
+              ],
+            ),
+            isExpanded: true,
+            icon: const Icon(Icons.keyboard_arrow_down),
+            underline: Container(),
+            items: [
+              if (widget.showMultilingual)
+                DropdownMenuItem(
+                  value: LanguageModel.multiLingual(context),
+                  child: LanguageDropDownEntry(
+                    languageModel: LanguageModel.multiLingual(context),
+                    isL2List: widget.isL2List,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                widget.initialLanguage.getDisplayName(context) ?? "",
-                style: const TextStyle().copyWith(
-                  color: Theme.of(context).textTheme.bodyLarge!.color,
-                  fontSize: 14,
+              ...sortedLanguages.map(
+                (languageModel) => DropdownMenuItem(
+                  value: languageModel,
+                  child: LanguageDropDownEntry(
+                    languageModel: languageModel,
+                    isL2List: widget.isL2List,
+                  ),
                 ),
-                overflow: TextOverflow.clip,
-                textAlign: TextAlign.center,
               ),
             ],
+            onChanged: (value) => widget.onChange(value!),
+            value: widget.initialLanguage,
           ),
-
-          isExpanded: true,
-          // Down Arrow Icon
-          icon: const Icon(Icons.keyboard_arrow_down),
-          underline: Container(),
-          // Array list of items
-          items: [
-            if (widget.showMultilingual)
-              DropdownMenuItem(
-                value: LanguageModel.multiLingual(context),
-                child: LanguageDropDownEntry(
-                  languageModel: LanguageModel.multiLingual(context),
-                  isL2List: widget.isL2List,
-                ),
-              ),
-            ...sortedLanguages.map(
-              (languageModel) => DropdownMenuItem(
-                value: languageModel,
-                child: LanguageDropDownEntry(
-                  languageModel: languageModel,
-                  isL2List: widget.isL2List,
-                ),
-              ),
-            ),
-          ],
-          onChanged: (value) => widget.onChange(value!),
         ),
-      ),
+        AnimatedSize(
+          duration: FluffyThemes.animationDuration,
+          child: widget.error == null
+              ? const SizedBox.shrink()
+              : Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 5,
+                  ),
+                  child: Text(
+                    widget.error!,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.error,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+        ),
+      ],
     );
   }
 }

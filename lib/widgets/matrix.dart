@@ -82,8 +82,17 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       widget.clients.add(getLoginClient());
     }
     if (_activeClient < 0 || _activeClient >= widget.clients.length) {
+      // #Pangea
+      currentBundle!.first!.homeserver =
+          Uri.parse("https://${AppConfig.defaultHomeserver}");
+      // Pangea#
       return currentBundle!.first!;
     }
+
+    // #Pangea
+    widget.clients[_activeClient].homeserver =
+        Uri.parse("https://${AppConfig.defaultHomeserver}");
+    // Pangea#
     return widget.clients[_activeClient];
   }
 
@@ -175,6 +184,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         _loginClientCandidate = null;
         FluffyChatApp.router.go('/rooms');
       });
+    // #Pangea
+    candidate.homeserver = Uri.parse("https://${AppConfig.defaultHomeserver}");
+    // Pangea#
     return candidate;
   }
 
@@ -338,10 +350,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         }
         String routeDestination;
         if (state == LoginState.loggedIn) {
-          routeDestination = await pangeaController
-                  .userController.isUserDataAvailableAndDateOfBirthSet
-              ? '/rooms'
-              : "/user_age";
+          routeDestination =
+              await pangeaController.userController.isUserDataAvailableAndL2Set
+                  ? '/rooms'
+                  : "/user_age";
         } else {
           routeDestination = '/home';
         }

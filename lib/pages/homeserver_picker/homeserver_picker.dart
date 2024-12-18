@@ -4,8 +4,6 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
@@ -13,7 +11,6 @@ import 'package:fluffychat/utils/tor_stub.dart'
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:go_router/go_router.dart';
@@ -36,11 +33,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   bool isLoading = false;
   bool isLoggingIn = false;
 
-  // #Pangea
-  // final TextEditingController homeserverController = TextEditingController(
-  //   text: AppConfig.defaultHomeserver,
-  // );
-  // Pangea#
+  final TextEditingController homeserverController = TextEditingController(
+    text: AppConfig.defaultHomeserver,
+  );
 
   String? error;
 
@@ -82,71 +77,48 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     checkHomeserverAction();
   }
 
-  // #Pangea
-  Map<String, dynamic>? _rawLoginTypes;
-  // Pangea#
-
-  // #Pangea
-  // void onSubmitted([_]) {
-  //   if (isLoading || _checkHomeserverCooldown?.isActive == true) {
-  //     return tryCheckHomeserverActionWithoutCooldown();
-  //   }
-  //   if (supportsSso) return ssoLoginAction();
-  //   if (supportsPasswordLogin) return login();
-  //   return tryCheckHomeserverActionWithoutCooldown();
-  // }
-  // Pangea#
+  void onSubmitted([_]) {
+    if (isLoading || _checkHomeserverCooldown?.isActive == true) {
+      return tryCheckHomeserverActionWithoutCooldown();
+    }
+    if (supportsSso) return ssoLoginAction();
+    if (supportsPasswordLogin) return login();
+    return tryCheckHomeserverActionWithoutCooldown();
+  }
 
   /// Starts an analysis of the given homeserver. It uses the current domain and
   /// makes sure that it is prefixed with https. Then it searches for the
   /// well-known information and forwards to the login page depending on the
   /// login type.
   Future<void> checkHomeserverAction([_]) async {
-    // #Pangea
-    // final homeserverInput =
-    //     homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
+    final homeserverInput =
+        homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
 
-    // if (homeserverInput.isEmpty || !homeserverInput.contains('.')) {
-    //   setState(() {
-    //     error = loginFlows = null;
-    //     isLoading = false;
-    //     Matrix.of(context).getLoginClient().homeserver = null;
-    //     _lastCheckedUrl = null;
-    //   });
-    //   return;
-    // }
-    // if (_lastCheckedUrl == homeserverInput) return;
+    if (homeserverInput.isEmpty || !homeserverInput.contains('.')) {
+      setState(() {
+        error = loginFlows = null;
+        isLoading = false;
+        Matrix.of(context).getLoginClient().homeserver = null;
+        _lastCheckedUrl = null;
+      });
+      return;
+    }
+    if (_lastCheckedUrl == homeserverInput) return;
 
-    // _lastCheckedUrl = homeserverInput;
-    _lastCheckedUrl = AppConfig.defaultHomeserver;
-    // Pangea#
+    _lastCheckedUrl = homeserverInput;
     setState(() {
       error = loginFlows = null;
       isLoading = true;
     });
 
     try {
-      // #Pangea
-      // var homeserver = Uri.parse(homeserverInput);
-      // if (homeserver.scheme.isEmpty) {
-      //   homeserver = Uri.https(homeserverInput, '');
-      // }
-      var homeserver = Uri.parse(AppConfig.defaultHomeserver);
+      var homeserver = Uri.parse(homeserverInput);
       if (homeserver.scheme.isEmpty) {
-        homeserver = Uri.https(AppConfig.defaultHomeserver, '');
+        homeserver = Uri.https(homeserverInput, '');
       }
-      // Pangea#
       final client = Matrix.of(context).getLoginClient();
       final (_, _, loginFlows) = await client.checkHomeserver(homeserver);
       this.loginFlows = loginFlows;
-      // #Pangea
-      if (supportsSso) {
-        _rawLoginTypes = await client.request(
-          RequestType.GET,
-          '/client/v3/login',
-        );
-      }
-      // Pangea#
     } catch (e) {
       setState(
         () => error = (e).toLocalizedString(
@@ -173,11 +145,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   bool get supportsPasswordLogin => _supportsFlow('m.login.password');
 
-  void ssoLoginAction(
-    // #Pangea
-    IdentityProvider provider,
-    // Pangea#
-  ) async {
+  void ssoLoginAction() async {
     final redirectUrl = kIsWeb
         ? Uri.parse(html.window.location.href)
             .resolveUri(
@@ -189,42 +157,18 @@ class HomeserverPickerController extends State<HomeserverPicker> {
             : 'http://localhost:3001//login';
 
     final url = Matrix.of(context).getLoginClient().homeserver!.replace(
-      // #Pangea
-      // path: '/_matrix/client/v3/login/sso/redirect',
-      path:
-          '/_matrix/client/v3/login/sso/redirect${provider.id == null ? '' : '/${provider.id}'}',
-      // Pangea#
+      path: '/_matrix/client/v3/login/sso/redirect',
       queryParameters: {'redirectUrl': redirectUrl},
     );
 
     final urlScheme = isDefaultPlatform
         ? Uri.parse(redirectUrl).scheme
         : "http://localhost:3001";
-    // #Pangea
-    // final result = await FlutterWebAuth2.authenticate(
-    //   url: url.toString(),
-    //   callbackUrlScheme: urlScheme,
-    //   options: const FlutterWebAuth2Options(),
-    // );
-    String result;
-    try {
-      result = await FlutterWebAuth2.authenticate(
-        url: url.toString(),
-        callbackUrlScheme: urlScheme,
-        options: const FlutterWebAuth2Options(),
-      );
-    } catch (err) {
-      if (err is PlatformException && err.code == 'CANCELED') {
-        debugPrint("user cancelled SSO login");
-        return;
-      }
-      ErrorHandler.logError(
-        e: err,
-        s: StackTrace.current,
-      );
-      return;
-    }
-    // Pangea#
+    final result = await FlutterWebAuth2.authenticate(
+      url: url.toString(),
+      callbackUrlScheme: urlScheme,
+      options: const FlutterWebAuth2Options(),
+    );
     final token = Uri.parse(result).queryParameters['loginToken'];
     if (token?.isEmpty ?? false) return;
 
@@ -233,17 +177,11 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       isLoading = isLoggingIn = true;
     });
     try {
-      // #Pangea
-      final loginRes = await Matrix.of(context).getLoginClient().login(
-            // await Matrix.of(context).getLoginClient().login(
-            // Pangea#
+      await Matrix.of(context).getLoginClient().login(
             LoginType.mLoginToken,
             token: token,
             initialDeviceDisplayName: PlatformInfos.clientName,
           );
-      // #Pangea
-      GoogleAnalytics.login(provider.name!, loginRes.userId);
-      // Pangea#
     } catch (e) {
       setState(() {
         error = e.toLocalizedString(context);
@@ -258,12 +196,10 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   }
 
   void login() async {
-    // #Pangea
-    // if (!supportsPasswordLogin) {
-    //   homeserverController.text = AppConfig.defaultHomeserver;
-    //   await checkHomeserverAction();
-    // }
-    // Pangea#
+    if (!supportsPasswordLogin) {
+      homeserverController.text = AppConfig.defaultHomeserver;
+      await checkHomeserverAction();
+    }
     context.push(
       '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
     );
@@ -291,13 +227,10 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       final client = Matrix.of(context).getLoginClient();
       await client.importDump(String.fromCharCodes(await file.readAsBytes()));
       Matrix.of(context).initMatrix();
-    } catch (e, s) {
+    } catch (e) {
       setState(() {
         error = e.toLocalizedString(context);
       });
-      // #Pangea
-      ErrorHandler.logError(e: e, s: s);
-      // Pangea#
     } finally {
       if (mounted) {
         setState(() {
@@ -306,27 +239,6 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       }
     }
   }
-
-  // #Pangea
-  List<IdentityProvider>? get identityProviders {
-    final loginTypes = _rawLoginTypes;
-    if (loginTypes == null) return null;
-    final List? rawProviders =
-        loginTypes.tryGetList('flows')?.singleWhereOrNull(
-                  (flow) => flow['type'] == AuthenticationTypes.sso,
-                )['identity_providers'] ??
-            [
-              {'id': null},
-            ];
-    if (rawProviders == null) return null;
-    final list =
-        rawProviders.map((json) => IdentityProvider.fromJson(json)).toList();
-    if (PlatformInfos.isCupertinoStyle) {
-      list.sort((a, b) => a.brand == 'apple' ? -1 : 1);
-    }
-    return list;
-  }
-  // Pangea#
 
   void onMoreAction(MoreLoginActions action) {
     switch (action) {

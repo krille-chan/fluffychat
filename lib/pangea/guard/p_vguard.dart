@@ -16,8 +16,8 @@ class PAuthGaurd {
   ) async {
     if (pController != null) {
       if (Matrix.of(context).client.isLogged()) {
-        final bool dobIsSet = await pController!
-            .userController.isUserDataAvailableAndDateOfBirthSet;
+        final bool dobIsSet =
+            await pController!.userController.isUserDataAvailableAndL2Set;
         return dobIsSet ? '/rooms' : '/user_age';
       }
       return null;
@@ -36,8 +36,8 @@ class PAuthGaurd {
       if (!Matrix.of(context).client.isLogged()) {
         return '/home';
       }
-      final bool dobIsSet = await pController!
-          .userController.isUserDataAvailableAndDateOfBirthSet;
+      final bool dobIsSet =
+          await pController!.userController.isUserDataAvailableAndL2Set;
       return dobIsSet ? null : '/user_age';
     } else {
       debugPrint("controller is null in pguard check");

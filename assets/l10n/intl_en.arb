@@ -4631,5 +4631,21 @@
   "couldNotFindTTS": "We couldn't find a text-to-speech engine for your current target language. ",
   "ttsInstructionsHyperlink": "Click here to view instructions for downloading a new voice on your device.",
   "currentVersion": "Current Version",
-  "latestVersion": "Latest Version"
+  "latestVersion": "Latest Version",
+  "createAnAccount": "Create an account",
+  "signIn": "Sign in",
+  "signUpWithEmail": "Sign up with Email",
+  "signUpWithGoogle": "Sign up with Google",
+  "signUpWithApple": "Sign up with Apple",
+  "yourUsername": "Your username",
+  "yourEmail": "Your email",
+  "pleaseEnterAnEmail": "Please enter an email address",
+  "signInWithGoogle": "Sign in with Google",
+  "signInWithApple": "Sign in with Apple",
+  "chooseYourAvatar": "Choose your avatar",
+  "iWantToLearn": "I want to learn",
+  "letsStart": "Let's start",
+  "pleaseAgreeToTOS": "Please agree to the Terms and Conditions",
+  "pleaseEnterEmail": "Please enter a valid email address.",
+  "pleaseSelectALanguage": "Please select a language"
 }
