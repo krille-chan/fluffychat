@@ -154,6 +154,18 @@ class PangeaRepresentation {
           MatrixState.pangeaController.languageController.activeL2Code();
       final useType =
           inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk;
+
+      uses.add(
+        OneConstructUse(
+          useType: useType,
+          lemma: token.pos,
+          form: token.text.content,
+          category: "POS",
+          constructType: ConstructTypeEnum.morph,
+          metadata: metadata,
+        ),
+      );
+
       for (final entry in token.morph.entries) {
         uses.add(
           OneConstructUse(
@@ -206,6 +218,18 @@ class PangeaRepresentation {
               metadata,
             ),
           );
+
+          uses.add(
+            OneConstructUse(
+              useType: ConstructUseTypeEnum.ga,
+              lemma: token.pos,
+              form: token.text.content,
+              category: "POS",
+              constructType: ConstructTypeEnum.morph,
+              metadata: metadata,
+            ),
+          );
+
           for (final entry in token.morph.entries) {
             uses.add(
               OneConstructUse(
@@ -222,6 +246,17 @@ class PangeaRepresentation {
         }
       }
     }
+
+    uses.add(
+      OneConstructUse(
+        useType: ConstructUseTypeEnum.wa,
+        lemma: token.pos,
+        form: token.text.content,
+        category: "POS",
+        constructType: ConstructTypeEnum.morph,
+        metadata: metadata,
+      ),
+    );
 
     // the token wasn't found in any IT or IGC step, so it was wa
     for (final entry in token.morph.entries) {

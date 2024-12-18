@@ -79,7 +79,7 @@ class OneConstructUse {
     required this.lemma,
     required this.constructType,
     required this.metadata,
-    category,
+    required category,
     required this.form,
     this.id,
   }) : _category = category ?? "other";

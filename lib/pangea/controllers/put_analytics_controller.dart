@@ -184,6 +184,16 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
 
     // get all our grammar constructs
     for (final token in tokensToSave) {
+      uses.add(
+        OneConstructUse(
+          useType: useType,
+          lemma: token.pos,
+          form: token.text.content,
+          category: "POS",
+          constructType: ConstructTypeEnum.morph,
+          metadata: metadata,
+        ),
+      );
       for (final entry in token.morph.entries) {
         uses.add(
           OneConstructUse(

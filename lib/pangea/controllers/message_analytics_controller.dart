@@ -38,7 +38,15 @@ class TargetTokensAndActivityType {
         .where(activityType.constructFilter)
         .toList();
 
-    return listEquals(activity.tgtConstructs, relevantConstructs);
+    final List<ConstructIdentifier>? otherRelevantConstructs = activity
+        .targetTokens
+        ?.map((t) => t.constructs)
+        .expand((e) => e)
+        .map((c) => c.id)
+        .where(activityType.constructFilter)
+        .toList();
+
+    return listEquals(otherRelevantConstructs, relevantConstructs);
   }
 
   @override
