@@ -62,7 +62,13 @@ class FullWidthButtonState extends State<FullWidthButton> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         widget.loading
-                            ? const Expanded(child: LinearProgressIndicator())
+                            ? const Expanded(
+                                child: SizedBox(
+                                  height: 18,
+                                  child:
+                                      Center(child: LinearProgressIndicator()),
+                                ),
+                              )
                             : widget.title,
                       ],
                     ),

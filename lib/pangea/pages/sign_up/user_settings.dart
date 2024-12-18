@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
@@ -145,7 +147,12 @@ class UserSettingsState extends State<UserSettingsPage> {
           waitForDataInSync: true,
         ),
       ];
-      await Future.wait(updateFuture);
+      await Future.wait(updateFuture).timeout(
+        const Duration(seconds: 30),
+        onTimeout: () {
+          throw TimeoutException(L10n.of(context).oopsSomethingWentWrong);
+        },
+      );
       context.go('/rooms');
     } catch (err) {
       if (err is MatrixException) {
