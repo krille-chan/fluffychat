@@ -35,6 +35,7 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
   bool _fetchingTranscription = true;
   Object? error;
   STTToken? selectedToken;
+  TextSpan? transcriptText;
 
   String? get l1Code =>
       MatrixState.pangeaController.languageController.activeL1Code();
@@ -70,82 +71,91 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
   }
 
   TextSpan _buildTranscriptText(BuildContext context) {
-    final Transcript transcript = speechToTextResponse!.transcript;
-    final List<InlineSpan> spans = [];
-    String remainingFullText = transcript.text;
+    try {
+      final Transcript transcript = speechToTextResponse!.transcript;
+      final List<InlineSpan> spans = [];
+      String remainingFullText = transcript.text;
 
-    if (transcript.sttTokens.isEmpty) {
-      return TextSpan(
-        text: remainingFullText,
-        style: BotStyle.text(
-          context,
-          existingStyle: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
+      if (transcript.sttTokens.isEmpty) {
+        return TextSpan(
+          text: remainingFullText,
+          style: BotStyle.text(
+            context,
+            setColor: false,
           ),
-          setColor: false,
-        ),
-      );
-    }
-
-    for (final token in transcript.sttTokens) {
-      final offset = remainingFullText.indexOf(token.token.text.content);
-      final length = token.length;
-
-      if (remainingFullText.substring(0, offset).trim().isNotEmpty) {
-        continue;
-      }
-
-      if (offset > 0) {
-        // Add any plain text before the token
-        spans.add(
-          TextSpan(text: remainingFullText.substring(0, offset)),
         );
       }
 
-      spans.add(
-        TextSpan(
-          text: remainingFullText.substring(
-            offset,
-            offset + token.length,
+      for (final token in transcript.sttTokens) {
+        final offset = remainingFullText.indexOf(token.token.text.content);
+        if (offset == -1) continue;
+        final length = token.length;
+
+        if (remainingFullText.substring(0, offset).trim().isNotEmpty) {
+          remainingFullText = remainingFullText.substring(offset);
+          continue;
+        }
+
+        if (offset > 0) {
+          // Add any plain text before the token
+          spans.add(
+            TextSpan(text: remainingFullText.substring(0, offset)),
+          );
+        }
+
+        spans.add(
+          TextSpan(
+            text: remainingFullText.substring(
+              offset,
+              offset + token.length,
+            ),
+            style: BotStyle.text(
+              context,
+              existingStyle: TextStyle(color: token.color(context)),
+              setColor: false,
+            ),
+            // gesturRecognizer that sets selectedToken on click
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                debugPrint('Token tapped');
+                debugPrint(token.toJson().toString());
+                if (mounted) {
+                  setState(() {
+                    if (selectedToken == token) {
+                      selectedToken = null;
+                    } else {
+                      selectedToken = token;
+                    }
+                  });
+                }
+              },
           ),
-          style: BotStyle.text(
-            context,
-            existingStyle: TextStyle(color: token.color(context)),
-            setColor: false,
-          ),
-          // gesturRecognizer that sets selectedToken on click
-          recognizer: TapGestureRecognizer()
-            ..onTap = () {
-              debugPrint('Token tapped');
-              debugPrint(token.toJson().toString());
-              if (mounted) {
-                setState(() {
-                  if (selectedToken == token) {
-                    selectedToken = null;
-                  } else {
-                    selectedToken = token;
-                  }
-                });
-              }
-            },
-        ),
-      );
+        );
 
-      remainingFullText = remainingFullText.substring(offset + length);
+        remainingFullText = remainingFullText.substring(offset + length);
+      }
+
+      if (remainingFullText.isNotEmpty) {
+        // Add any remaining text after the last token
+        spans.add(TextSpan(text: remainingFullText));
+      }
+
+      return TextSpan(children: spans);
+    } catch (err, s) {
+      ErrorHandler.logError(e: err, s: s);
+      setState(() => error = err);
+      return const TextSpan(text: '');
     }
-
-    if (remainingFullText.isNotEmpty) {
-      // Add any remaining text after the last token
-      spans.add(TextSpan(text: remainingFullText));
-    }
-
-    return TextSpan(children: spans);
   }
 
   @override
   void initState() {
     super.initState();
-    getSpeechToText();
+    getSpeechToText().then((_) {
+      if (mounted) {
+        setState(() => transcriptText = _buildTranscriptText(context));
+      }
+    });
   }
 
   String? get wordsPerMinuteString =>
@@ -158,7 +168,7 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
     }
 
     // done fetchig but not results means some kind of error
-    if (speechToTextResponse == null) {
+    if (speechToTextResponse == null || error != null) {
       return CardErrorWidget(
         error: error ?? "Failed to fetch speech to text",
         maxWidth: AppConfig.toolbarMinWidth,
@@ -173,7 +183,7 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
         children: [
           const SizedBox(height: 8),
           RichText(
-            text: _buildTranscriptText(context),
+            text: transcriptText!,
           ),
           if (widget.messageEvent.senderId == Matrix.of(context).client.userID)
             Column(
