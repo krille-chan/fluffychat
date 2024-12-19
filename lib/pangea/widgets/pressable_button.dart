@@ -126,12 +126,8 @@ class PressableButtonState extends State<PressableButton>
 
   @override
   Widget build(BuildContext context) {
-    return NotificationListener<ButtonPressedNotification>(
-      onNotification: (notification) {
-        _onTapDown(null);
-        _onTapUp(null);
-        return true; // Stop the notification from bubbling further
-      },
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTapDown: _onTapDown,
         onTapUp: _onTapUp,
@@ -167,5 +163,3 @@ class PressableButtonState extends State<PressableButton>
     );
   }
 }
-
-class ButtonPressedNotification extends Notification {}

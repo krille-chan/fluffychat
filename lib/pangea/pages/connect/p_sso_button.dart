@@ -89,21 +89,15 @@ class PangeaSsoButtonState extends State<PangeaSsoButton> {
       depressed: _loading,
       error: _error,
       loading: _loading,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset(
-            widget.provider.asset,
-            height: 20,
-            width: 20,
-            colorFilter: ColorFilter.mode(
-              Theme.of(context).colorScheme.onPrimary,
-              BlendMode.srcIn,
-            ),
-          ),
-          const SizedBox(width: 10),
-          Text(widget.title),
-        ],
+      title: widget.title,
+      icon: SvgPicture.asset(
+        widget.provider.asset,
+        height: 20,
+        width: 20,
+        colorFilter: ColorFilter.mode(
+          Theme.of(context).colorScheme.onPrimary,
+          BlendMode.srcIn,
+        ),
       ),
       onPressed: _runSSOLogin,
     );

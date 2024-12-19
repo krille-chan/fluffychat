@@ -15,6 +15,8 @@ class UserSettingsView extends StatelessWidget {
     super.key,
   });
 
+  final double avatarSize = 55.0;
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> avatarOptions = controller.avatarPaths
@@ -25,6 +27,7 @@ class UserSettingsView extends StatelessWidget {
               onTap: () => controller.setSelectedAvatarPath(index),
               path: path,
               selected: controller.selectedAvatarIndex == index,
+              size: avatarSize,
             ),
           );
         })
@@ -37,8 +40,8 @@ class UserSettingsView extends StatelessWidget {
         child: InkWell(
           onTap: controller.uploadAvatar,
           child: Container(
-            width: 50,
-            height: 50,
+            width: avatarSize,
+            height: avatarSize,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
@@ -51,7 +54,7 @@ class UserSettingsView extends StatelessWidget {
             ),
             child: Icon(
               Icons.upload,
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Theme.of(context).colorScheme.primary,
               size: 30,
             ),
           ),
@@ -59,48 +62,59 @@ class UserSettingsView extends StatelessWidget {
       ),
     );
 
-    return PangeaLoginScaffold(
-      showAppName: false,
-      mainAssetPath: controller.selectedAvatarPath ?? "",
-      mainAssetBytes: controller.avatar,
-      children: [
-        Opacity(
-          opacity: 0.9,
-          child: Text(
-            L10n.of(context).chooseYourAvatar,
-            style: const TextStyle(
-              fontWeight: FontWeight.w100,
-              fontStyle: FontStyle.italic,
+    return Form(
+      key: controller.formKey,
+      child: PangeaLoginScaffold(
+        showAppName: false,
+        mainAssetPath: controller.selectedAvatarPath ?? "",
+        mainAssetBytes: controller.avatar,
+        children: [
+          Opacity(
+            opacity: 0.9,
+            child: Text(
+              L10n.of(context).chooseYourAvatar,
+              style: const TextStyle(
+                fontWeight: FontWeight.w100,
+                fontStyle: FontStyle.italic,
+              ),
             ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: avatarOptions,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8),
-          child: PLanguageDropdown(
-            languages: controller.targetOptions,
-            onChange: controller.setSelectedTargetLanguage,
-            initialLanguage: controller.selectedTargetLanguage,
-            isL2List: true,
-            error: controller.selectedLanguageError,
+          Wrap(
+            alignment: WrapAlignment.center,
+            children: avatarOptions,
           ),
-        ),
-        FullWidthButton(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text(L10n.of(context).letsStart)],
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: PLanguageDropdown(
+              languages: controller.targetOptions,
+              onChange: controller.setSelectedTargetLanguage,
+              initialLanguage: controller.selectedTargetLanguage,
+              isL2List: true,
+              error: controller.selectedLanguageError,
+            ),
           ),
-          onPressed: controller.selectedTargetLanguage != null
-              ? controller.createUserInPangea
-              : null,
-          error: controller.profileCreationError,
-          loading: controller.loading,
-          enabled: controller.selectedTargetLanguage != null,
-        ),
-      ],
+          if (controller.canSetDisplayName)
+            FullWidthTextField(
+              hintText: L10n.of(context).username,
+              validator: (username) {
+                if (username == null || username.isEmpty) {
+                  return L10n.of(context).pleaseChooseAUsername;
+                }
+                return null;
+              },
+              controller: controller.displayNameController,
+            ),
+          FullWidthButton(
+            title: L10n.of(context).letsStart,
+            onPressed: controller.selectedTargetLanguage != null
+                ? controller.createUserInPangea
+                : null,
+            error: controller.profileCreationError,
+            loading: controller.loading,
+            enabled: controller.selectedTargetLanguage != null,
+          ),
+        ],
+      ),
     );
   }
 }
@@ -115,7 +129,7 @@ class AvatarOption extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.path,
-    this.size = 50.0,
+    this.size = 40.0,
     this.selected = false,
   });
 

@@ -86,8 +86,8 @@ class LoginView extends StatelessWidget {
                   child: TextField(
                     readOnly: controller.loading,
                     autocorrect: false,
-                    autofocus: true,
                     // #Pangea
+                    // autofocus: true,
                     // onChanged: controller.checkWellKnownWithCoolDown,
                     // Pangea#
                     controller: controller.usernameController,

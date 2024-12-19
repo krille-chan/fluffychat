@@ -29,7 +29,8 @@ class LanguageController {
       _userL2Code != LanguageKeys.unknownLanguage;
 
   LanguageModel? get systemLanguage {
-    final String systemLang = Platform.localeName.split('-').first;
+    if (Platform.localeName.length < 2) return null;
+    final String systemLang = Platform.localeName.substring(0, 2);
     return PangeaLanguage.byLangCode(systemLang);
   }
 

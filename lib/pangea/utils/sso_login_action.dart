@@ -1,5 +1,6 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -42,7 +43,6 @@ Future<void> pangeaSSOLoginAction(
     result = await FlutterWebAuth2.authenticate(
       url: url.toString(),
       callbackUrlScheme: urlScheme,
-      options: const FlutterWebAuth2Options(),
     );
   } catch (err) {
     if (err is PlatformException && err.code == 'CANCELED') {
@@ -60,5 +60,6 @@ Future<void> pangeaSSOLoginAction(
     token: token,
     initialDeviceDisplayName: PlatformInfos.clientName,
   );
+  MatrixState.pangeaController.pStoreService.save(PLocalKey.loginType, 'sso');
   GoogleAnalytics.login(provider.name!, loginRes.userId);
 }

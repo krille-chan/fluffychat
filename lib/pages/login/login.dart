@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/pages/sign_up/pangea_login_view.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
@@ -146,6 +147,8 @@ class LoginController extends State<Login> {
             password: passwordController.text,
             initialDeviceDisplayName: PlatformInfos.clientName,
           );
+      MatrixState.pangeaController.pStoreService
+          .save(PLocalKey.loginType, 'password');
       // #Pangea
       GoogleAnalytics.login("pangea", loginRes.userId);
       // Pangea#

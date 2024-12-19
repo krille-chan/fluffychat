@@ -12,11 +12,11 @@ class LoginOrSignupView extends StatelessWidget {
     return PangeaLoginScaffold(
       children: [
         FullWidthButton(
-          title: Text(L10n.of(context).createAnAccount),
+          title: L10n.of(context).createAnAccount,
           onPressed: () => context.go('/home/signup'),
         ),
         FullWidthButton(
-          title: Text(L10n.of(context).signIn),
+          title: L10n.of(context).signIn,
           onPressed: () => context.go('/home/login'),
         ),
       ],

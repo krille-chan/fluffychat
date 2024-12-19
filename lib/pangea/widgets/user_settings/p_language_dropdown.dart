@@ -76,7 +76,11 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
               children: [
                 const Icon(Icons.language_outlined),
                 const SizedBox(width: 10),
-                Text(L10n.of(context).iWantToLearn),
+                Text(
+                  widget.isL2List
+                      ? L10n.of(context).iWantToLearn
+                      : L10n.of(context).myBaseLanguage,
+                ),
               ],
             ),
             isExpanded: true,

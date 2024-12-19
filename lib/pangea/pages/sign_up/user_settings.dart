@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
@@ -51,11 +52,26 @@ class UserSettingsState extends State<UserSettingsPage> {
         : PangeaLanguage.byLangCode(systemLangCode);
   }
 
+  bool canSetDisplayName = false;
+  TextEditingController displayNameController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
     selectedTargetLanguage = _pangeaController.languageController.userL2;
     selectedAvatarPath = avatarPaths.first;
+    final loginTypeEntry =
+        _pangeaController.pStoreService.read(PLocalKey.loginType);
+    if (loginTypeEntry is String && loginTypeEntry == 'sso') {
+      canSetDisplayName = true;
+    }
+  }
+
+  @override
+  void dispose() {
+    displayNameController.dispose();
+    super.dispose();
   }
 
   void setSelectedTargetLanguage(LanguageModel? language) {
@@ -118,6 +134,15 @@ class UserSettingsState extends State<UserSettingsPage> {
     }
   }
 
+  Future<void> _setDisplayName() async {
+    final displayName = displayNameController.text.trim();
+    if (displayName.isEmpty) return;
+
+    final client = Matrix.of(context).client;
+    if (client.userID == null) return;
+    await client.setDisplayName(client.userID!, displayName);
+  }
+
   Future<void> createUserInPangea() async {
     setState(() => profileCreationError = null);
 
@@ -128,10 +153,12 @@ class UserSettingsState extends State<UserSettingsPage> {
       return;
     }
 
+    if (!formKey.currentState!.validate()) return;
     setState(() => loading = true);
 
     try {
       final updateFuture = [
+        _setDisplayName(),
         _setAvatar(),
         _pangeaController.subscriptionController.reinitialize(),
         _pangeaController.userController.updateProfile(

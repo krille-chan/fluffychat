@@ -32,14 +32,14 @@ class PangeaLoginScaffold extends StatelessWidget {
                 child: Center(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(
-                      maxWidth: 450,
+                      maxWidth: 300,
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 200,
-                          height: 200,
+                          width: 175,
+                          height: 175,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.transparent,
@@ -56,13 +56,13 @@ class PangeaLoginScaffold extends StatelessWidget {
                                   ),
                           ),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 24),
                         if (showAppName)
                           Text(
                             AppConfig.applicationName,
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
-                        const SizedBox(height: 16),
+                        if (showAppName) const SizedBox(height: 12),
                         ...children,
                       ],
                     ),

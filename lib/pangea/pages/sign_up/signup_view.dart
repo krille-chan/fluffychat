@@ -19,18 +19,12 @@ class SignupPageView extends StatelessWidget {
     return PangeaLoginScaffold(
       children: [
         FullWidthButton(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              PangeaLogoSvg(
-                width: 20,
-                forceColor: Theme.of(context).colorScheme.onPrimary,
-              ),
-              const SizedBox(width: 10),
-              Text(L10n.of(context).signUpWithEmail),
-            ],
-          ),
+          title: L10n.of(context).signUpWithEmail,
           onPressed: () => context.go('/home/signup/email'),
+          icon: PangeaLogoSvg(
+            width: 20,
+            forceColor: Theme.of(context).colorScheme.onPrimary,
+          ),
         ),
         PangeaSsoButton(
           provider: SSOProvider.google,

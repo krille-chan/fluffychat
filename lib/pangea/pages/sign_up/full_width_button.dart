@@ -3,7 +3,9 @@ import 'package:fluffychat/pangea/widgets/pressable_button.dart';
 import 'package:flutter/material.dart';
 
 class FullWidthButton extends StatefulWidget {
-  final Widget title;
+  final String title;
+  final Widget? icon;
+
   final void Function()? onPressed;
   final bool depressed;
   final String? error;
@@ -13,6 +15,7 @@ class FullWidthButton extends StatefulWidget {
   const FullWidthButton({
     required this.title,
     required this.onPressed,
+    this.icon,
     this.depressed = false,
     this.error,
     this.loading = false,
@@ -31,7 +34,7 @@ class FullWidthButtonState extends State<FullWidthButton> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.fromLTRB(4, 4, 4, widget.error == null ? 4 : 0),
+          padding: EdgeInsets.fromLTRB(6, 6, 6, widget.error == null ? 6 : 0),
           child: AnimatedOpacity(
             duration: FluffyThemes.animationDuration,
             opacity: widget.enabled ? 1 : 0.5,
@@ -40,40 +43,44 @@ class FullWidthButtonState extends State<FullWidthButton> {
               onPressed: widget.onPressed,
               borderRadius: BorderRadius.circular(36),
               color: Theme.of(context).colorScheme.primary,
-              child: Builder(
-                builder: (context) {
-                  return ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: widget.enabled
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).disabledColor,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                      disabledForegroundColor:
-                          Theme.of(context).colorScheme.onPrimary,
-                      textStyle: const TextStyle(fontSize: 18),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(36),
-                      ),
-                    ),
-                    onPressed: widget.enabled
-                        ? () => ButtonPressedNotification().dispatch(context)
-                        : null,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        widget.loading
-                            ? const Expanded(
-                                child: SizedBox(
-                                  height: 18,
-                                  child:
-                                      Center(child: LinearProgressIndicator()),
+              child: Container(
+                // internal padding
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                height: 50,
+                decoration: BoxDecoration(
+                  color: widget.enabled
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).disabledColor,
+                  borderRadius: BorderRadius.circular(36),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    widget.loading
+                        ? const Expanded(
+                            child: SizedBox(
+                              height: 18,
+                              child: Center(child: LinearProgressIndicator()),
+                            ),
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if (widget.icon != null) widget.icon!,
+                              if (widget.icon != null)
+                                const SizedBox(width: 10),
+                              Text(
+                                widget.title,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  fontSize: 16,
                                 ),
-                              )
-                            : widget.title,
-                      ],
-                    ),
-                  );
-                },
+                              ),
+                            ],
+                          ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -104,7 +111,6 @@ class FullWidthButtonState extends State<FullWidthButton> {
 class FullWidthTextField extends StatelessWidget {
   final String hintText;
   final bool autocorrect;
-  final bool autofocus;
   final bool obscureText;
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
@@ -115,7 +121,6 @@ class FullWidthTextField extends StatelessWidget {
   const FullWidthTextField({
     required this.hintText,
     this.autocorrect = false,
-    this.autofocus = false,
     this.obscureText = false,
     this.textInputAction,
     this.keyboardType,
@@ -128,11 +133,10 @@ class FullWidthTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(6.0),
       child: TextFormField(
         obscureText: obscureText,
         autocorrect: autocorrect,
-        autofocus: autofocus,
         textInputAction: textInputAction,
         keyboardType: keyboardType,
         decoration: InputDecoration(
