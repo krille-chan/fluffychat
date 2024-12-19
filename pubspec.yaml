@@ -151,9 +151,4 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
-  # For Flutter 3.27 until https://github.com/flutter-webrtc/dart-webrtc/pull/54 is merged
-  dart_webrtc:
-    git:
-      url: https://github.com/flutter-webrtc/dart-webrtc.git
-      ref: f27d27c7af41ceeebe31b295af4fb38e7b4d793e
   win32: 5.5.3
