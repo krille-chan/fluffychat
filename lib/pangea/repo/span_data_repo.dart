@@ -119,7 +119,6 @@ final spanDataRepomockSpan = SpanData(
   length: 2,
   fullText: "This be a sample text",
   type: SpanDataType(typeName: SpanDataTypeEnum.correction),
-  context: null,
   choices: [SpanChoice(value: "is", type: SpanChoiceType.bestCorrection)],
   message: null,
   rule: null,

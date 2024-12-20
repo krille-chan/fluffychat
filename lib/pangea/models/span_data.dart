@@ -19,7 +19,6 @@ class SpanData {
     required this.choices,
     required this.offset,
     required this.length,
-    required this.context,
     required this.fullText,
     required this.type,
     required this.rule,
@@ -37,8 +36,6 @@ class SpanData {
           .toList(),
       offset: json['offset'] as int,
       length: json['length'] as int,
-      context:
-          json['context'] != null ? Context.fromJson(json['context']) : null,
       fullText:
           json['sentence'] ?? json['full_text'] ?? json['fullText'] as String,
       type: SpanDataType.fromJson(json['type'] as Map<String, dynamic>),
@@ -53,7 +50,6 @@ class SpanData {
   List<SpanChoice>? choices;
   int offset;
   int length;
-  Context? context;
   String fullText;
   SpanDataType type;
   Rule? rule;
@@ -66,37 +62,9 @@ class SpanData {
             : null,
         'offset': offset,
         'length': length,
-        'context': context?.toJson(),
         'full_text': fullText,
         'type': type.toJson(),
         'rule': rule?.toJson(),
-      };
-}
-
-class Context {
-  Context({
-    required this.text,
-    required this.offset,
-    required this.length,
-  });
-
-  factory Context.fromJson(Map<String, dynamic> json) {
-    return Context(
-      text: json['text'] as String,
-      offset: json['offset'] as int,
-      length: json['length'] as int,
-    );
-  }
-
-  /// full text of the message
-  String text;
-  int offset;
-  int length;
-
-  Map<String, dynamic> toJson() => {
-        'text': text,
-        'offset': offset,
-        'length': length,
       };
 }
 

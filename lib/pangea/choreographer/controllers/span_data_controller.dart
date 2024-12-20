@@ -81,7 +81,7 @@ class SpanDataController {
       choreographer.igc.igcTextData!.matches[matchIndex].match =
           (await response).span;
     } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(e: err, s: s, data: req.toJson());
     }
 
     choreographer.setState();

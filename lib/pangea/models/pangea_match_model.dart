@@ -65,7 +65,8 @@ class PangeaMatch {
 
   bool get isITStart =>
       match.rule?.id == MatchRuleIds.interactiveTranslation ||
-      match.type.typeName == SpanDataTypeEnum.itStart;
+      [SpanDataTypeEnum.itStart, SpanDataTypeEnum.itStart.name]
+          .contains(match.type.typeName);
 
   bool get needsTranslation => match.rule?.id != null
       ? [
