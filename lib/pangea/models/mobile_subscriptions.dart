@@ -29,6 +29,7 @@ class MobileSubscriptionInfo extends CurrentSubscriptionInfo {
       ErrorHandler.logError(
         m: "Failed to configure revenuecat SDK",
         s: StackTrace.current,
+        data: {},
       );
     }
   }
@@ -66,6 +67,7 @@ class MobileSubscriptionInfo extends CurrentSubscriptionInfo {
       ErrorHandler.logError(
         m: "Failed to fetch revenuecat customer info",
         s: StackTrace.current,
+        data: {},
       );
       return;
     }

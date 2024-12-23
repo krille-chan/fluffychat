@@ -301,7 +301,10 @@ class ITChoices extends StatelessWidget {
 
   String? get sourceText {
     if ((controller.sourceText == null || controller.sourceText!.isEmpty)) {
-      ErrorHandler.logError(m: "null source text in ItChoices");
+      ErrorHandler.logError(
+        m: "null source text in ItChoices",
+        data: {},
+      );
     }
     return controller.sourceText;
   }
@@ -316,6 +319,9 @@ class ITChoices extends StatelessWidget {
       ErrorHandler.logError(
         m: "currentITStep is null in showCard",
         s: StackTrace.current,
+        data: {
+          "index": index,
+        },
       );
       return;
     }

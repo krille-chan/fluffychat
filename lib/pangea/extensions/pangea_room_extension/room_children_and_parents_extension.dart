@@ -129,6 +129,10 @@ extension ChildrenAndParentsRoomExtension on Room {
         ErrorHandler.logError(
           e: e,
           m: 'Failed to remove child from parent',
+          data: {
+            "roomID": roomId,
+            "parentID": parent.id,
+          },
         );
       }
     }
@@ -141,7 +145,15 @@ extension ChildrenAndParentsRoomExtension on Room {
         visibility: matrix.Visibility.private,
       );
     } catch (err, stack) {
-      ErrorHandler.logError(e: err, s: stack);
+      ErrorHandler.logError(
+        e: err,
+        s: stack,
+        data: {
+          "roomID": roomId,
+          "childID": child.id,
+          "suggested": suggested,
+        },
+      );
     }
   }
 

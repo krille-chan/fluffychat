@@ -44,7 +44,11 @@ class ErrorHandler {
     };
 
     PlatformDispatcher.instance.onError = (exception, stack) {
-      logError(e: exception, s: stack);
+      logError(
+        e: exception,
+        s: stack,
+        data: {},
+      );
       return true;
     };
   }
@@ -53,7 +57,7 @@ class ErrorHandler {
     Object? e,
     StackTrace? s,
     String? m,
-    Map<String, dynamic>? data,
+    required Map<String, dynamic> data,
     SentryLevel level = SentryLevel.error,
   }) async {
     if (e is PangeaWarningError) {
@@ -63,10 +67,8 @@ class ErrorHandler {
       if (m != null) debugPrint("error message: $m");
     }
 
-    if (data != null) {
-      Sentry.addBreadcrumb(Breadcrumb.fromJson(data));
-      debugPrint(data.toString());
-    }
+    Sentry.addBreadcrumb(Breadcrumb.fromJson(data));
+    debugPrint(data.toString());
 
     Sentry.captureException(
       e ?? Exception(m ?? "no message supplied"),
@@ -101,17 +103,12 @@ class ErrorCopy {
       if (error is http.Response) {
         errorCode = (error as http.Response).statusCode;
       } else {
-        ErrorHandler.logError(e: error, s: StackTrace.current);
-        errorCode = null;
-      }
-      if (L10n.of(context) == null) {
-        _setDefaults();
-        Sentry.addBreadcrumb(Breadcrumb.fromJson({"error": error?.toString()}));
         ErrorHandler.logError(
-          m: "null L10n in ErrorCopy.setCopy",
+          e: error,
           s: StackTrace.current,
+          data: {},
         );
-        return;
+        errorCode = null;
       }
       final L10n l10n = L10n.of(context);
 
@@ -155,7 +152,11 @@ class ErrorCopy {
           body = l10n.errorPleaseRefresh;
       }
     } catch (e, s) {
-      ErrorHandler.logError(e: s, s: s);
+      ErrorHandler.logError(
+        e: s,
+        s: s,
+        data: {},
+      );
       _setDefaults();
     }
   }

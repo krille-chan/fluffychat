@@ -108,7 +108,11 @@ Future<void> pLanguageDialog(
                                 Navigator.pop(context);
                               } catch (err, s) {
                                 debugger(when: kDebugMode);
-                                ErrorHandler.logError(e: err, s: s);
+                                ErrorHandler.logError(
+                                  e: err,
+                                  s: s,
+                                  data: {},
+                                );
                                 rethrow;
                               } finally {
                                 callback();

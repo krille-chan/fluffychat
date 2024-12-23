@@ -31,6 +31,7 @@ class SubscriptionRepo {
       ErrorHandler.logError(
         m: "Failed to fetch app information for revenuecat API",
         s: StackTrace.current,
+        data: {},
       );
       return null;
     }
@@ -50,7 +51,11 @@ class SubscriptionRepo {
           RCProductsResponseModel.fromJson(json);
       return resp.allProducts;
     } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {},
+      );
       return null;
     }
   }

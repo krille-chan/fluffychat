@@ -103,7 +103,13 @@ class GetChatListItemSubtitle {
       return text;
     } catch (e, s) {
       // debugger(when: kDebugMode);
-      ErrorHandler.logError(e: e, s: s);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "event": event?.toJson(),
+        },
+      );
       return event?.body ?? l10n.emptyChat;
     }
   }

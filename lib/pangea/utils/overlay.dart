@@ -74,7 +74,11 @@ class OverlayUtil {
           .openOverlay(entry, context, closePrevOverlay: closePrevOverlay);
     } catch (err, stack) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: stack);
+      ErrorHandler.logError(
+        e: err,
+        s: stack,
+        data: {},
+      );
     }
   }
 
@@ -145,7 +149,11 @@ class OverlayUtil {
       );
     } catch (err, stack) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: stack);
+      ErrorHandler.logError(
+        e: err,
+        s: stack,
+        data: {},
+      );
     }
   }
 

@@ -135,7 +135,13 @@ class SubscriptionController extends BaseController {
       setState(null);
     } catch (e, s) {
       debugPrint("Failed to initialize subscription controller");
-      ErrorHandler.logError(e: e, s: s);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "availableSubscriptionInfo": availableSubscriptionInfo?.toJson(),
+        },
+      );
     }
   }
 
@@ -155,6 +161,9 @@ class SubscriptionController extends BaseController {
           ErrorHandler.logError(
             m: "Tried to subscribe to web SubscriptionDetails with Null duration",
             s: StackTrace.current,
+            data: {
+              "selectedSubscription": selectedSubscription.toJson(),
+            },
           );
           return;
         }
@@ -177,6 +186,9 @@ class SubscriptionController extends BaseController {
         ErrorHandler.logError(
           m: "Tried to subscribe to SubscriptionDetails with Null revenuecat Package",
           s: StackTrace.current,
+          data: {
+            "selectedSubscription": selectedSubscription.toJson(),
+          },
         );
         return;
       }
@@ -198,6 +210,9 @@ class SubscriptionController extends BaseController {
         ErrorHandler.logError(
           m: "Failed to purchase revenuecat package for user $_userID with error code $errCode",
           s: StackTrace.current,
+          data: {
+            "selectedSubscription": selectedSubscription.toJson(),
+          },
         );
         return;
       }
@@ -230,8 +245,9 @@ class SubscriptionController extends BaseController {
     final DateTime? createdAt = _userController.profile.userSettings.createdAt;
     if (createdAt == null) {
       ErrorHandler.logError(
-        m: "Null user profile createAt in subscription settings",
+        m: "Null user profile createdAt in subscription settings",
         s: StackTrace.current,
+        data: {},
       );
       return;
     }
@@ -329,7 +345,13 @@ class SubscriptionController extends BaseController {
       );
       dismissPaywall();
     } catch (e, s) {
-      ErrorHandler.logError(e: e, s: s);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "availableSubscriptionInfo": availableSubscriptionInfo?.toJson(),
+        },
+      );
     }
   }
 

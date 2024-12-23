@@ -29,7 +29,13 @@ extension RoomSettingsRoomExtension on Room {
           data: {"room": toJson()},
         ),
       );
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {
+          "roomID": id,
+        },
+      );
       return null;
     }
   }
@@ -109,6 +115,10 @@ extension RoomSettingsRoomExtension on Room {
       ErrorHandler.logError(
         e: "Failed to fetch suggestion status of room $id in space ${space.id}",
         s: StackTrace.current,
+        data: {
+          "spaceID": space.id,
+          "roomID": id,
+        },
       );
       return true;
     }
@@ -121,6 +131,11 @@ extension RoomSettingsRoomExtension on Room {
       ErrorHandler.logError(
         e: "Failed to set suggestion status of room $id in space ${space.id}",
         s: StackTrace.current,
+        data: {
+          "spaceID": space.id,
+          "roomID": id,
+          "suggest": suggest,
+        },
       );
       return;
     }

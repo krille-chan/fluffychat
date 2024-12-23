@@ -60,6 +60,7 @@ extension PangeaEvent on Event {
     if (transcription == null || audioContent == null) {
       ErrorHandler.logError(
         e: "Called getPangeaAudioFile on an audio message without transcription or audio content",
+        data: {},
       );
       return null;
     }

@@ -44,7 +44,13 @@ class PangeaLanguage {
       _langList.insert(0, LanguageModel.multiLingual());
     } catch (err, stack) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: stack);
+      ErrorHandler.logError(
+        e: err,
+        s: stack,
+        data: {
+          "langList": _langList.map((e) => e.toJson()),
+        },
+      );
     }
   }
 

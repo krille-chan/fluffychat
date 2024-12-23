@@ -80,7 +80,11 @@ class GetAnalyticsController {
         ..._locallyCachedConstructs,
       ]);
     } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {},
+      );
     } finally {
       _updateAnalyticsStream();
       if (!initCompleter.isCompleted) initCompleter.complete();
@@ -130,7 +134,13 @@ class GetAnalyticsController {
             formattedCache[entry.key] =
                 entry.value.map((e) => OneConstructUse.fromJson(e)).toList();
           } catch (err, s) {
-            ErrorHandler.logError(e: err, s: s);
+            ErrorHandler.logError(
+              e: err,
+              s: s,
+              data: {
+                "key": entry.key,
+              },
+            );
             continue;
           }
         }
@@ -148,6 +158,9 @@ class GetAnalyticsController {
         ),
         s: stackTrace,
         m: 'Failed to retrieve messages since update',
+        data: {
+          "messagesSinceUpdate": PLocalKey.messagesSinceUpdate,
+        },
       );
       return {};
     }

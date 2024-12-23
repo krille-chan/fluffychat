@@ -149,7 +149,13 @@ class BackgroundPush {
             : '/rooms/$roomId',
       );
     } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {
+          "roomId": message.data['room_id'],
+        },
+      );
     }
   }
   // Pangea#
@@ -226,6 +232,7 @@ class BackgroundPush {
       ErrorHandler.logError(
         e: "Error requesting notifications permission: $err",
         s: s,
+        data: {},
       );
     }
     // Pangea#
@@ -316,7 +323,11 @@ class BackgroundPush {
       } catch (e, s) {
         Logs().e('[Push] Unable to set pushers', e, s);
         // #Pangea
-        ErrorHandler.logError(e: e, s: s);
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {},
+        );
         // Pangea#
       }
     }
@@ -428,7 +439,13 @@ class BackgroundPush {
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
       // #Pangea
-      ErrorHandler.logError(e: e, s: s);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "roomID": response?.payload,
+        },
+      );
       // Pangea#
     }
   }

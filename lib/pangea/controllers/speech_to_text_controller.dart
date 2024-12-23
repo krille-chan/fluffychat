@@ -113,7 +113,14 @@ class SpeechToTextController {
       final response = SpeechToTextModel.fromJson(json);
 
       saveSpeechToTextAsRepresentationEvent(response, requestModel).onError(
-        (error, stackTrace) => ErrorHandler.logError(e: error, s: stackTrace),
+        (error, stackTrace) => ErrorHandler.logError(
+          e: error,
+          s: stackTrace,
+          data: {
+            "response": response.toJson(),
+            "requestModel": requestModel.toJson(),
+          },
+        ),
       );
 
       return response;

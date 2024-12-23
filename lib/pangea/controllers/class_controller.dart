@@ -37,7 +37,13 @@ class ClassController extends BaseController {
     Future.wait(
       _pangeaController.matrixState.client.spacesImTeaching.map(
         (space) => space.setClassPowerLevels().catchError((err, s) {
-          ErrorHandler.logError(e: err, s: s);
+          ErrorHandler.logError(
+            e: err,
+            s: s,
+            data: {
+              "spaceID": space.id,
+            },
+          );
         }),
       ),
     );
@@ -173,7 +179,13 @@ class ClassController extends BaseController {
         );
       } catch (err, stack) {
         debugger(when: kDebugMode);
-        ErrorHandler.logError(e: err, s: stack);
+        ErrorHandler.logError(
+          e: err,
+          s: stack,
+          data: {
+            "roomID": roomId,
+          },
+        );
       }
     }
   }

@@ -289,7 +289,21 @@ class Choreographer {
               onlyTokensAndLanguageDetection: onlyTokensAndLanguageDetection,
             ));
     } catch (err, stack) {
-      ErrorHandler.logError(e: err, s: stack);
+      ErrorHandler.logError(
+        e: err,
+        s: stack,
+        data: {
+          "l2Lang": l2Lang?.toJson(),
+          "l1Lang": l1Lang?.toJson(),
+          "choreoMode": choreoMode,
+          "igcEnabled": igcEnabled,
+          "itEnabled": itEnabled,
+          "isAutoIGCEnabled": isAutoIGCEnabled,
+          "isTranslationDone": itController.isTranslationDone,
+          "onlyTokensAndLanguageDetection": onlyTokensAndLanguageDetection,
+          "useCustomInput": _useCustomInput,
+        },
+      );
     } finally {
       stopLoading();
     }
@@ -317,6 +331,10 @@ class Choreographer {
         ErrorHandler.logError(
           e: "onReplacementSelect with null igcTextData",
           s: StackTrace.current,
+          data: {
+            "matchIndex": matchIndex,
+            "choiceIndex": choiceIndex,
+          },
         );
         MatrixState.pAnyState.closeOverlay();
         return;
@@ -325,6 +343,11 @@ class Choreographer {
         ErrorHandler.logError(
           e: "onReplacementSelect with null choices",
           s: StackTrace.current,
+          data: {
+            "igctextData": igc.igcTextData?.toJson(),
+            "matchIndex": matchIndex,
+            "choiceIndex": choiceIndex,
+          },
         );
         MatrixState.pAnyState.closeOverlay();
         return;
@@ -363,16 +386,15 @@ class Choreographer {
       setState();
     } catch (err, stack) {
       debugger(when: kDebugMode);
-      Sentry.addBreadcrumb(
-        Breadcrumb.fromJson(
-          {
-            "igctextDdata": igc.igcTextData?.toJson(),
-            "matchIndex": matchIndex,
-            "choiceIndex": choiceIndex,
-          },
-        ),
+      ErrorHandler.logError(
+        e: err,
+        s: stack,
+        data: {
+          "igctextData": igc.igcTextData?.toJson(),
+          "matchIndex": matchIndex,
+          "choiceIndex": choiceIndex,
+        },
       );
-      ErrorHandler.logError(e: err, s: stack);
       igc.igcTextData?.matches.clear();
     } finally {
       giveInputFocus();
@@ -387,6 +409,7 @@ class Choreographer {
         ErrorHandler.logError(
           m: "should not be in onIgnoreMatch with null igcTextData",
           s: StackTrace.current,
+          data: {},
         );
         return;
       }
@@ -397,7 +420,7 @@ class Choreographer {
 
       if (matchIndex == -1) {
         debugger(when: kDebugMode);
-        throw Exception("Cannnot find the ignored match in igcTextData");
+        throw Exception("Cannot find the ignored match in igcTextData");
       }
 
       igc.igcTextData!.matches[matchIndex].status = PangeaMatchStatus.ignored;
@@ -417,6 +440,9 @@ class Choreographer {
       ErrorHandler.logError(
         e: err,
         s: stack,
+        data: {
+          "igctextData": igc.igcTextData?.toJson(),
+        },
       );
       igc.igcTextData?.matches.clear();
     } finally {

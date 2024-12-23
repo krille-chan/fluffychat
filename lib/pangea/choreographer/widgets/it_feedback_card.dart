@@ -66,6 +66,7 @@ class ITFeedbackCardController extends State<ITFeedbackCard> {
     if (res == null) {
       ErrorHandler.logError(
         m: "Cannot translate feedback because res is null",
+        data: {},
       );
       return;
     }

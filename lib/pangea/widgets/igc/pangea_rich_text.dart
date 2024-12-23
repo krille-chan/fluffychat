@@ -73,6 +73,9 @@ class PangeaRichTextState extends State<PangeaRichText> {
         e: PangeaWarningError(error),
         s: stackTrace,
         m: "Error setting text span in PangeaRichText",
+        data: {
+          "newTextSpan": newTextSpan,
+        },
       );
     }
   }
@@ -103,6 +106,9 @@ class PangeaRichTextState extends State<PangeaRichText> {
           e: PangeaWarningError(error),
           s: stackTrace,
           m: "Error fetching representation",
+          data: {
+            "langCode": widget.pangeaMessageEvent.messageDisplayLangCode,
+          },
         );
         return null;
       }).then((event) {

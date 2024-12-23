@@ -26,7 +26,13 @@ class ChoreoEvent {
       return _content;
     } catch (err, s) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {
+          "event": event.toJson(),
+        },
+      );
       return null;
     }
   }

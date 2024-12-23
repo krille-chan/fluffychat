@@ -175,7 +175,7 @@ Future<void> _tryPushHelper(
   } catch (e, s) {
     Logs().e('Unable to get avatar picture', e, s);
     // #Pangea
-    ErrorHandler.logError(e: e, s: s);
+    ErrorHandler.logError(e: e, s: s, data: {"avatarUri": avatar.toString()});
     // Pangea#
   }
   try {

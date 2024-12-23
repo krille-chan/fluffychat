@@ -43,7 +43,11 @@ class PLoadingStatusStateV2 extends State<PLoadingStatusV2> {
         widget.onFinish?.call();
       }
     } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {},
+      );
       isFinished = true;
     }
   }

@@ -80,6 +80,10 @@ class MessageDataController extends BaseController {
         e: Exception(
           "empty tokens in tokenize response return",
         ),
+        data: {
+          "accessToken": accessToken,
+          "request": request.toJson(),
+        },
       );
     }
 

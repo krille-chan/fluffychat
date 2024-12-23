@@ -29,6 +29,7 @@ class ErrorReporter {
         e: error,
         s: stackTrace,
         m: message ?? 'Error caught',
+        data: {},
       );
     }
   }

@@ -32,14 +32,25 @@ class ConstructAnalyticsModel {
           try {
             uses.add(OneConstructUse.fromJson(useJson));
           } catch (err, s) {
-            ErrorHandler.logError(e: err, s: s);
+            ErrorHandler.logError(
+              e: err,
+              s: s,
+              data: {
+                "useJson": useJson,
+              },
+            );
             continue;
           }
         }
       }
     } else {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(m: "Analytics room with non-list uses");
+      ErrorHandler.logError(
+        m: "Analytics room with non-list uses",
+        data: {
+          "usesKey": _usesKey,
+        },
+      );
     }
 
     return ConstructAnalyticsModel(
@@ -172,6 +183,9 @@ class OneConstructUse {
     }
     ErrorHandler.logError(
       m: "Morph construct lemma $morphLemma not found in morph categories and labels",
+      data: {
+        "morphLemma": morphLemma,
+      },
     );
     return "Other";
   }

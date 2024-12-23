@@ -104,6 +104,10 @@ class _ContextualDefinitionRepo {
         e: Exception(
           "empty text in contextual definition response",
         ),
+        data: {
+          "request": request.toJson(),
+          "accessToken": accessToken,
+        },
       );
     }
 

@@ -481,7 +481,13 @@ class LanguageModel {
         return L10n.of(context).shDisplayName;
     }
     debugger(when: kDebugMode);
-    ErrorHandler.logError(m: "No Display name found", s: StackTrace.current);
+    ErrorHandler.logError(
+      m: "No Display name found",
+      s: StackTrace.current,
+      data: {
+        "langCode": langCode,
+      },
+    );
     return null;
   }
 }

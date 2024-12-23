@@ -71,7 +71,11 @@ class PangeaSsoButtonState extends State<PangeaSsoButton> {
         context,
       );
     } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {},
+      );
       if (err is MatrixException) {
         _error = err.errorMessage;
       } else {

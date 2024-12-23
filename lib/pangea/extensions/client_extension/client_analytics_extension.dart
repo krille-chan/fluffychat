@@ -22,8 +22,14 @@ extension AnalyticsClientExtension on Client {
         analyticsRoom.membership == Membership.invite) {
       debugger(when: kDebugMode);
       analyticsRoom.join().onError(
-            (error, stackTrace) =>
-                ErrorHandler.logError(e: error, s: stackTrace),
+            (error, stackTrace) => ErrorHandler.logError(
+              e: error,
+              s: stackTrace,
+              data: {
+                "langCode": langCode,
+                "userIdParam": userIdParam,
+              },
+            ),
           );
       return analyticsRoom;
     }
@@ -137,7 +143,13 @@ extension AnalyticsClientExtension on Client {
           )
           .map(
             (room) => room.join().catchError((err, s) {
-              ErrorHandler.logError(e: err, s: s);
+              ErrorHandler.logError(
+                e: err,
+                s: s,
+                data: {
+                  "roomID": room.id,
+                },
+              );
             }),
           ),
     );

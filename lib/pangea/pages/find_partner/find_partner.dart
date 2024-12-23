@@ -119,7 +119,17 @@ class FindPartnerController extends State<FindPartner> {
     } catch (err, s) {
       error = err.toString();
       setState(() => loading = false);
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {
+          "accessToken": pangeaController.userController.accessToken,
+          "targetLanguage": targetLanguageSearch.langCode,
+          "sourceLanguage": sourceLanguageSearch.langCode,
+          "country": countrySearch,
+          "pageNumber": nextPage.toString(),
+        },
+      );
       return;
     }
 

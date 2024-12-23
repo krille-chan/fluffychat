@@ -39,6 +39,9 @@ class PangeaMessageEvent {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
         m: "${event.type} should not be used to make a PangeaMessageEvent",
+        data: {
+          "event": event.toJson(),
+        },
       );
     }
     _event = event;
@@ -192,7 +195,7 @@ class PangeaMessageEvent {
           ErrorHandler.logError(
             e: e,
             s: s,
-            data: event.content.tryGetMap(ModelKey.transcription),
+            data: {},
             m: "error parsing data in getTextToSpeechLocal",
           );
           return false;
@@ -333,7 +336,7 @@ class PangeaMessageEvent {
       ErrorHandler.logError(
         e: e,
         s: s,
-        data: content,
+        data: content ?? {},
         m: "error parsing tokensSent",
       );
       return null;
@@ -392,6 +395,9 @@ class PangeaMessageEvent {
           m: "error parsing originalSent",
           e: err,
           s: s,
+          data: {
+            "event": _event.toJson(),
+          },
         );
       }
     }
@@ -417,6 +423,9 @@ class PangeaMessageEvent {
           m: "error parsing originalWritten",
           e: err,
           s: s,
+          data: {
+            "event": _event.toJson(),
+          },
         );
       }
     }
@@ -633,7 +642,13 @@ class PangeaMessageEvent {
     try {
       return practiceActivities.isNotEmpty;
     } catch (e, s) {
-      ErrorHandler.logError(e: e, s: s);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "event": _event.toJson(),
+        },
+      );
       return false;
     }
   }

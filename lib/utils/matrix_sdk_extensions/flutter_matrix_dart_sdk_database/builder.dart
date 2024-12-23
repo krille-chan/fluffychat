@@ -26,6 +26,7 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
     ErrorHandler.logError(
       e: e,
       s: s,
+      data: {"clientID": client.id},
       m: "Failed to open matrix sdk database. Openning fallback database.",
     );
     // Pangea#
@@ -37,6 +38,7 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
       ErrorHandler.logError(
         e: e,
         s: s,
+        data: {},
         m: "Failed to delete matrix database after failed construction.",
       );
     }

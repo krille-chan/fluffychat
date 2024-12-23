@@ -25,7 +25,11 @@ class BotStyle {
 
       return existingStyle?.merge(botStyle) ?? botStyle;
     } catch (err, stack) {
-      ErrorHandler.logError(m: "error getting styles", s: stack);
+      ErrorHandler.logError(
+        m: "error getting styles",
+        s: stack,
+        data: {},
+      );
       return existingStyle ?? const TextStyle();
     }
   }

@@ -37,6 +37,10 @@ class ContextualizationTranslationRepo {
         e: Exception(
           "empty translations in contextual translation response return",
         ),
+        data: {
+          "accessToken": accessToken,
+          "request": request.toJson(),
+        },
       );
     }
 

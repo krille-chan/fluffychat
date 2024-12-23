@@ -175,7 +175,15 @@ class ITController {
     } catch (e, s) {
       debugger(when: kDebugMode);
       if (e is! http.Response) {
-        ErrorHandler.logError(e: e, s: s);
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            "currentText": choreographer.currentText,
+            "sourceText": sourceText,
+            "currentITStepPayloadID": currentITStep?.payloadId,
+          },
+        );
       }
       choreographer.errorService.setErrorAndLock(
         ChoreoError(type: ChoreoErrorType.unknown, raw: e),
@@ -191,8 +199,8 @@ class ITController {
         e: Exception("sourceText is null in getNextTranslationData"),
         data: {
           "sourceText": sourceText,
-          "currentITStep": currentITStep,
-          "nextITStep": nextITStep,
+          "currentITStepPayloadID": currentITStep?.payloadId,
+          "continuances": goldRouteTracker.continuances.map((e) => e.toJson()),
         },
       );
       return;
@@ -220,7 +228,16 @@ class ITController {
     } catch (e, s) {
       debugger(when: kDebugMode);
       if (e is! http.Response) {
-        ErrorHandler.logError(e: e, s: s);
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            "sourceText": sourceText,
+            "currentITStepPayloadID": currentITStep?.payloadId,
+            "continuances":
+                goldRouteTracker.continuances.map((e) => e.toJson()),
+          },
+        );
       }
       choreographer.errorService.setErrorAndLock(
         ChoreoError(type: ChoreoErrorType.unknown, raw: e),
@@ -246,7 +263,14 @@ class ITController {
     } catch (err, stack) {
       debugger(when: kDebugMode);
       if (err is! http.Response) {
-        ErrorHandler.logError(e: err, s: stack);
+        ErrorHandler.logError(
+          e: err,
+          s: stack,
+          data: {
+            "newSourceText": newSourceText,
+            "l1Lang": choreographer.l1LangCode,
+          },
+        );
       }
       choreographer.errorService.setErrorAndLock(
         ChoreoError(type: ChoreoErrorType.unknown, raw: err),

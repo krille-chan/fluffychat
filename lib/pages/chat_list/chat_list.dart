@@ -638,6 +638,7 @@ class ChatListController extends State<ChatList>
               m: "Failed to join analytics room",
               e: err,
               s: s,
+              data: {"analyticsRoom": analyticsRoom?.id},
             );
           }
           return;

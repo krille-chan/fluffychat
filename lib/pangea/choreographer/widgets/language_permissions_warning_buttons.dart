@@ -76,6 +76,7 @@ class LanguagePermissionsButtons extends StatelessWidget {
     if (roomID == null) {
       ErrorHandler.logError(
         e: Exception("Room ID is null in language permissions"),
+        data: {},
       );
       return null;
     }
@@ -140,6 +141,9 @@ class LanguagePermissionsButtons extends StatelessWidget {
     debugger(when: kDebugMode);
     ErrorHandler.logError(
       e: Exception("Unhandled case in language permissions"),
+      data: {
+        "roomID": roomID,
+      },
     );
     return null;
   }

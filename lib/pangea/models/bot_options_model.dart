@@ -122,7 +122,11 @@ class BotOptionsModel {
       return data;
     } catch (e, s) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(e: e, s: s);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: data,
+      );
       return data;
     }
   }

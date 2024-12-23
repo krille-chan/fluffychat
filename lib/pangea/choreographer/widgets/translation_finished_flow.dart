@@ -21,7 +21,14 @@ class TranslationFeedback extends StatelessWidget {
       feedbackText = "Nice job!";
       style = null;
       debugPrint("error getting copy and styles");
-      ErrorHandler.logError(e: err, s: stack);
+      ErrorHandler.logError(
+        e: err,
+        s: stack,
+        data: {
+          "feedbackText": controller.choreographer.altTranslator
+              .translationFeedback(context),
+        },
+      );
     }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),

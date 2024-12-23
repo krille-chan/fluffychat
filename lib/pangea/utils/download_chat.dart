@@ -41,7 +41,13 @@ Future<void> downloadChat(
       room,
     );
   } catch (err, s) {
-    ErrorHandler.logError(e: err, s: s);
+    ErrorHandler.logError(
+      e: err,
+      s: s,
+      data: {
+        "roomID": room.id,
+      },
+    );
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -210,7 +216,11 @@ Future<void> downloadFile(
       }
     } catch (err, s) {
       debugPrint("Failed to get download folder path");
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {},
+      );
     }
     if (directory != null) {
       final File f = File("${directory.path}/$filename");

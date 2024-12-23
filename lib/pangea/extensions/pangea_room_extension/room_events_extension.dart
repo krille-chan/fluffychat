@@ -130,7 +130,15 @@ extension EventsRoomExtension on Room {
           await leave();
         } catch (err, stack) {
           debugger(when: kDebugMode);
-          ErrorHandler.logError(e: err, s: stack, data: powerLevels);
+          ErrorHandler.logError(
+            e: err,
+            s: stack,
+            data: {
+              "powerLevel": client.userID != null
+                  ? getPowerLevelByUserId(client.userID!)
+                  : null,
+            },
+          );
           rethrow;
         }
       },

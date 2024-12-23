@@ -115,7 +115,11 @@ class UserController extends BaseController {
       await _initialize();
       addProfileListener();
     } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {},
+      );
     } finally {
       _profileCompleter!.complete();
     }
@@ -159,6 +163,7 @@ class UserController extends BaseController {
     if (userId == null) {
       ErrorHandler.logError(
         e: "calling fullname with userId == null",
+        data: {},
       );
       return null;
     }
@@ -173,7 +178,11 @@ class UserController extends BaseController {
       await initialize();
       return profile.userSettings.targetLanguage != null;
     } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {},
+      );
       return false;
     }
   }
@@ -208,7 +217,11 @@ class UserController extends BaseController {
           srcLang != LanguageKeys.unknownLanguage &&
           tgtLang != LanguageKeys.unknownLanguage;
     } catch (err, s) {
-      ErrorHandler.logError(e: err, s: s);
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {},
+      );
       return false;
     }
   }

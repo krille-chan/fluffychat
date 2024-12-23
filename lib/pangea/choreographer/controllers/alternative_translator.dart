@@ -97,7 +97,18 @@ class AlternativeTranslator {
       translationFeedbackKey = FeedbackKey.othersAreBetter;
     } catch (err, stack) {
       if (err is! http.Response) {
-        ErrorHandler.logError(e: err, s: stack);
+        ErrorHandler.logError(
+          e: err,
+          s: stack,
+          data: {
+            "sourceText": choreographer.itController.sourceText,
+            "currentText": choreographer.currentText,
+            "userL1": choreographer.l1LangCode,
+            "userL2": choreographer.l2LangCode,
+            "goldRouteTranslation":
+                choreographer.itController.goldRouteTracker.fullTranslation,
+          },
+        );
       }
       choreographer.errorService.setError(
         ChoreoError(type: ChoreoErrorType.unknown, raw: err),

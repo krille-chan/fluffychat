@@ -14,6 +14,7 @@ Future<bool> showUpdateVersionDialog({
     ErrorHandler.logError(
       e: err,
       s: s,
+      data: {},
     );
     await showOkAlertDialog(
       context: context,

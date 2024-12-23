@@ -111,7 +111,13 @@ class SpanCardState extends State<SpanCard> {
       }
     } catch (e, s) {
       // debugger(when: kDebugMode);
-      ErrorHandler.logError(e: e, s: s);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "matchIndex": widget.scm.matchIndex,
+        },
+      );
       if (mounted) {
         setState(() {
           error = e;
@@ -377,7 +383,11 @@ class WordMatchContent extends StatelessWidget {
       );
     } on Exception catch (e) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(e: e, s: StackTrace.current);
+      ErrorHandler.logError(
+        e: e,
+        s: StackTrace.current,
+        data: {},
+      );
       rethrow;
     }
   }

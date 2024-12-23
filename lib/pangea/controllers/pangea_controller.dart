@@ -290,7 +290,14 @@ class PangeaController {
           return null;
         } catch (err, stack) {
           debugger(when: kDebugMode);
-          ErrorHandler.logError(e: err, s: stack);
+          ErrorHandler.logError(
+            e: err,
+            s: stack,
+            data: {
+              "directChatRoomId": matrixState.client
+                  .getDirectChatFromUserId(BotName.byEnvironment),
+            },
+          );
         }
       }
 
@@ -370,6 +377,9 @@ class PangeaController {
       } catch (err) {
         ErrorHandler.logError(
           e: "Failed to fetch participants for space ${space.id}",
+          data: {
+            "spaceID": space.id,
+          },
         );
         continue;
       }

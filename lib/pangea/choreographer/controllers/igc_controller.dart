@@ -120,7 +120,19 @@ class IgcController {
       choreographer.errorService.setError(
         ChoreoError(type: ChoreoErrorType.unknown, raw: err),
       );
-      ErrorHandler.logError(e: err, s: stack);
+      ErrorHandler.logError(
+        e: err,
+        s: stack,
+        data: {
+          "onlyTokensAndLanguageDetection": onlyTokensAndLanguageDetection,
+          "currentText": choreographer.currentText,
+          "userL1": choreographer.l1LangCode,
+          "userL2": choreographer.l2LangCode,
+          "igcEnabled": choreographer.igcEnabled,
+          "itEnabled": choreographer.itEnabled,
+          "matches": igcTextData?.matches.map((e) => e.toJson()),
+        },
+      );
       clear();
     }
   }
@@ -129,8 +141,11 @@ class IgcController {
     if (igcTextData == null || igcTextData!.matches.isEmpty) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
-        m: "should not be calling showFirstMatch with this igcTextData ${igcTextData?.toJson().toString()}",
+        m: "should not be calling showFirstMatch with this igcTextData.",
         s: StackTrace.current,
+        data: {
+          "igcTextData": igcTextData?.toJson(),
+        },
       );
       return;
     }

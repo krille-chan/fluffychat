@@ -39,7 +39,14 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
           );
     } catch (err, stack) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: stack);
+      ErrorHandler.logError(
+        e: err,
+        s: stack,
+        data: {
+          "botOptions": botOptions.toJson(),
+          "roomID": widget.room.id,
+        },
+      );
     }
   }
 

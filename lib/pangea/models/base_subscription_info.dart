@@ -127,7 +127,13 @@ class AvailableSubscriptionsInfo {
     try {
       return AvailableSubscriptionsInfo.fromJson(json);
     } catch (e, s) {
-      ErrorHandler.logError(e: e, s: s);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "json": json,
+        },
+      );
       return null;
     }
   }

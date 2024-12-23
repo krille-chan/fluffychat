@@ -96,6 +96,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
         s: s,
         e: err,
         m: "Failed to get last updated time for analytics",
+        data: {},
       );
     } finally {
       // if this is the initial load, complete the lastUpdatedCompleter
@@ -254,6 +255,9 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
         e: PangeaWarningError("Failed to add message since update: $e"),
         s: s,
         m: 'Failed to add message since update for eventId: $cacheKey',
+        data: {
+          "cacheKey": cacheKey,
+        },
       );
     }
   }
@@ -368,6 +372,9 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
         e: err,
         m: "Failed to update analytics",
         s: s,
+        data: {
+          "l2Override": l2Override,
+        },
       );
     } finally {
       _updateCompleter?.complete();

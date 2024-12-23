@@ -11,7 +11,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../constants/model_keys.dart';
 
@@ -127,6 +126,9 @@ class IGCTextData {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
         m: "pangeaMatch.match.choices is null in acceptReplacement",
+        data: {
+          "match": pangeaMatch.match.toJson(),
+        },
       );
       return;
     }
@@ -268,16 +270,12 @@ class IGCTextData {
       final spaceBetween = tokens[tokenIndex + 1].text.offset - endOfToken;
 
       if (spaceBetween < 0) {
-        Sentry.addBreadcrumb(
-          Breadcrumb.fromJson(
-            {
-              "fullText": originalInput,
-              "tokens": tokens.map((e) => e.toJson()).toString(),
-            },
-          ),
-        );
         ErrorHandler.logError(
           m: "weird token lengths for ${tokens[tokenIndex].text.content} and ${tokens[tokenIndex + 1].text.content}",
+          data: {
+            "fullText": originalInput,
+            "tokens": tokens.map((e) => e.toJson()).toString(),
+          },
         );
         return 0;
       }

@@ -85,16 +85,14 @@ class RepresentationEvent {
 
     if (tokenEvents.length > 1) {
       debugger(when: kDebugMode);
-      Sentry.addBreadcrumb(
-        Breadcrumb(
-          message: "Token events for representation ${_event?.eventId}: "
-              "Content: ${tokenEvents.map((e) => e.content).toString()}"
-              "Type: ${tokenEvents.map((e) => e.type).toString()}",
-        ),
-      );
       ErrorHandler.logError(
         m: 'should not have more than one tokenEvent per representation ${_event?.eventId}',
         s: StackTrace.current,
+        data: {
+          "eventID": _event?.eventId,
+          "content": tokenEvents.map((e) => e.content).toString(),
+          "type": tokenEvents.map((e) => e.type).toString(),
+        },
       );
     }
 
@@ -180,7 +178,7 @@ class RepresentationEvent {
       ErrorHandler.logError(
         m: 'should not have more than one choreoEvent per representation ${_event?.eventId}',
         s: StackTrace.current,
-        data: _event?.toJson(),
+        data: {"event": _event?.toJson()},
       );
     }
 

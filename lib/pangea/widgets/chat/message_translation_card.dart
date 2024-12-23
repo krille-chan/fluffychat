@@ -99,7 +99,10 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
           ? fetchSelectedTextTranslation()
           : fetchRepresentationText());
     } catch (err) {
-      ErrorHandler.logError(e: err);
+      ErrorHandler.logError(
+        e: err,
+        data: {},
+      );
     }
 
     if (mounted) {

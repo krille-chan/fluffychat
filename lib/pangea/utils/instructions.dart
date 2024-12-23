@@ -8,7 +8,6 @@ import '../controllers/pangea_controller.dart';
 import '../widgets/common/bot_face_svg.dart';
 import '../widgets/igc/card_header.dart';
 import 'bot_style.dart';
-import 'error_handler.dart';
 import 'overlay.dart';
 
 class InstructionsController {
@@ -92,13 +91,6 @@ class InstructionsController {
     _instructionsShown[key.toString()] = true;
 
     if (key.toggledOff() && !forceShow) {
-      return;
-    }
-    if (L10n.of(context) == null) {
-      ErrorHandler.logError(
-        m: "null context in ITBotButton.showCard",
-        s: StackTrace.current,
-      );
       return;
     }
 

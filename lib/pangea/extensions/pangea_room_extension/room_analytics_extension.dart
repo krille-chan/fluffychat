@@ -29,6 +29,10 @@ extension AnalyticsRoomExtension on Room {
               e: err,
               m: "Failed to join analytics room $roomID in space $id",
               s: s,
+              data: {
+                "roomID": roomID,
+                "spaceID": id,
+              },
             );
           }),
         ),
@@ -37,6 +41,9 @@ extension AnalyticsRoomExtension on Room {
       ErrorHandler.logError(
         e: err,
         s: s,
+        data: {
+          "spaceID": id,
+        },
       );
       return;
     }
@@ -112,6 +119,10 @@ extension AnalyticsRoomExtension on Room {
               e: err,
               m: "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
               s: s,
+              data: {
+                "teacherID": teacher.id,
+                "analyticsRoomID": analyticsRoom.id,
+              },
             );
           }),
         ),
