@@ -1,0 +1,17 @@
+diff --git a/pubspec.yaml b/pubspec.yaml
+index d57765b2f..6b4bec0d4 100644
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+@@ -168,10 +168,8 @@ flutter:
+   assets:
+     - assets/
+     # #Pangea
+-    # uncomment this to enable mobile builds
+-    # causes error with github actions
+-    # - .env
+-    # - assets/.env
++    - .env
++    - assets/.env
+     - assets/pangea/
+     - assets/pangea/bot_faces/
+     # Pangea#

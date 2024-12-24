@@ -45,6 +45,7 @@ keys.json
 # Gitlab runner locally
 /builds/
 .fvm/
+.fvmrc
 # Web related
 docs/tailwind.css
 
