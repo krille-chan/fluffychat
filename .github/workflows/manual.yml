@@ -56,3 +56,17 @@ jobs:
         run: ./scripts/prepare-android-release.sh
       - name: Build Android Release
         run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+      - name: Deploy Android Release
+        run: |
+          mkdir -p build/android
+          cp build/app/outputs/bundle/release/app-release.aab build/android/
+          cd android
+          bundle install
+          bundle update fastlane
+          bundle exec fastlane deploy_internal_test
+          if [[ $GITHUB_REF_NAME == rc* ]]; then
+              bundle exec fastlane deploy_candidate
+          else
+              bundle exec fastlane deploy_release
+          fi
+          cd ..
