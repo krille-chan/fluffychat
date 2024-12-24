@@ -20,8 +20,39 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: 'zulu'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Set up Android SDK
+        if: ${{ env.ACT }} # Only run on local act setups, as GitHub Actions provides the Android SDK on Ubuntu
+        uses: android-actions/setup-android@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
       - name: Update env files to selected environment
         run: |
           rm .env
           rm assets/.env
-          echo "$WEB_APP_ENV"
+          echo "$WEB_APP_ENV" >> .env
+          cp .env assets/.env
+      - name: Apply .env patch
+        run: git apply ./scripts/enable_mobile_env.patch
+      - name: Install Fastlane
+        run: gem install fastlane -NV
+      - name: Remove Emoji Font
+        run: |
+          rm -rf fonts/NotoEmoji
+          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
+      - run: flutter pub get
+      - name: Prepare Android Release Build
+        env:
+          PLAY_STORE_UPLOAD_KEY: ${{ secrets.PLAY_STORE_UPLOAD_KEY }}
+          PLAY_STORE_KEYSTORE_KEY_ALIAS: ${{ secrets.PLAY_STORE_KEYSTORE_KEY_ALIAS }}
+          PLAY_STORE_KEYSTORE_STORE_PASSWORD: ${{ secrets.PLAY_STORE_KEYSTORE_STORE_PASSWORD }}
+          PLAY_STORE_KEYSTORE_KEY_PASSWORD: ${{ secrets.PLAY_STORE_KEYSTORE_KEY_PASSWORD }}
+          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
+        run: ./scripts/prepare-android-release.sh
+      - name: Build Android Release
+        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
