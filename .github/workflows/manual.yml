@@ -3,8 +3,12 @@ on:
   workflow_dispatch:
     inputs:
      environment:
-        type: environment
+        type: choice
         description: Select the environment
+        options:
+          - staging
+          - production
+        default: 'staging'
      new_release_notes:
         required: true
         type: string
