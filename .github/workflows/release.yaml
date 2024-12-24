@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -49,12 +49,12 @@ jobs:
       - name: Create archive
         run: tar -czf pangeachat-web.tar.gz build/web/
       - name: Upload Web Build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Web Build
           path: pangeachat-web.tar.gz
       - name: Upload files for deploy stage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: web
           path: build/web
@@ -130,7 +130,7 @@ jobs:
         arch: [ x64, arm64 ]
     runs-on: ${{ matrix.arch == 'arm64' && 'self-hosted' || 'ubuntu-latest'}}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
@@ -162,9 +162,9 @@ jobs:
       WEBAPP_S3_BUCKET: ${{ vars.WEBAPP_S3_BUCKET }}
       CF_DISTRIBUTION_ID: ${{ vars.CF_DISTRIBUTION_ID }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Download web
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: web
           path: build/web

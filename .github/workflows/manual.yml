@@ -5,6 +5,10 @@ on:
      environment:
         type: environment
         description: Select the environment
+    new_release_notes:
+      required: true
+      type: string
+      description: "The release notes for the new release (Unused atm)"
 
 jobs:
   deploy_playstore_internal:
@@ -57,6 +61,8 @@ jobs:
       - name: Build Android Release
         run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
       - name: Deploy Android Release
+        env:
+          RELEASE_NOTES: ${{ inputs.new_release_notes }}
         run: |
           mkdir -p build/android
           cp build/app/outputs/bundle/release/app-release.aab build/android/
@@ -70,3 +76,12 @@ jobs:
               bundle exec fastlane deploy_release
           fi
           cd ..
+
+  deploy_ios_testflight: # stashed on old.yml
+    environment: 
+      name: ${{ inputs.environment }}
+    env:
+      WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
