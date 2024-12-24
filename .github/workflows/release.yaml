@@ -73,7 +73,6 @@ jobs:
     environment: production
     env:
       WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
