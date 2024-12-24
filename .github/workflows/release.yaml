@@ -12,6 +12,7 @@ concurrency:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
 
 jobs:
   build_web:
@@ -70,8 +71,11 @@ jobs:
   build_apk:
     runs-on: ubuntu-latest
     environment: production
+    env:
+      WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v4
         with:
@@ -81,8 +85,23 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
+      - name: Set up Android SDK
+        if: ${{ env.ACT }} # Only run on local act setups, as GitHub Actions provides the Android SDK on Ubuntu
+        uses: android-actions/setup-android@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Update env files to selected environment
+        run: |
+          rm .env
+          rm assets/.env
+          echo "$WEB_APP_ENV" >> .env
+          cp .env assets/.env
+      - name: Apply .env patch
+        run: git apply ./scripts/enable_mobile_env.patch
+      - name: Install Fastlane
+        run: gem install fastlane -NV
       - name: Remove Emoji Font
         run: |
           rm -rf fonts/NotoEmoji
@@ -90,9 +109,11 @@ jobs:
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
-          FDROID_KEY: ${{ secrets.FDROID_KEY }}
-          FDROID_KEY_PASS: ${{ secrets.FDROID_KEY_PASS }}
-          PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
+          PLAY_STORE_UPLOAD_KEY: ${{ secrets.PLAY_STORE_UPLOAD_KEY }}
+          PLAY_STORE_KEYSTORE_KEY_ALIAS: ${{ secrets.PLAY_STORE_KEYSTORE_KEY_ALIAS }}
+          PLAY_STORE_KEYSTORE_STORE_PASSWORD: ${{ secrets.PLAY_STORE_KEYSTORE_STORE_PASSWORD }}
+          PLAY_STORE_KEYSTORE_KEY_PASSWORD: ${{ secrets.PLAY_STORE_KEYSTORE_KEY_PASSWORD }}
+          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
         run: ./scripts/prepare-android-release.sh
       - run: flutter build apk --release
       - name: Upload to release
@@ -104,7 +125,6 @@ jobs:
           asset_path: build/app/outputs/apk/release/app-release.apk
           asset_name: pangeachat.apk
           asset_content_type: application/vnd.android.package-archive
-
   build_linux:
     strategy:
       matrix:
@@ -115,6 +135,8 @@ jobs:
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
+      - name: Install dependencies for audio-player
+        run: sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
       - name: Install Flutter
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
