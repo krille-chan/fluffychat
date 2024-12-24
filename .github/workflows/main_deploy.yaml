@@ -3,7 +3,7 @@ name: Main Deploy Workflow
 on:
   push:
     branches:
-      - main
+      - main-2
   workflow_dispatch:
 
 env:
