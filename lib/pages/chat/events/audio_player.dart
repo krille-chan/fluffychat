@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -334,7 +335,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                               ? widget.color.withAlpha(128)
                               : Colors.transparent,
                           max: maxPosition,
-                          value: currentPosition,
+                          value: max(0, currentPosition),
                           onChanged: (position) => audioPlayer == null
                               ? _startAction()
                               : audioPlayer.seek(

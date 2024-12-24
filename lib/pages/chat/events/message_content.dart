@@ -13,7 +13,6 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
-import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
 import '../../bootstrap/bootstrap_dialog.dart';
 import 'audio_player.dart';
@@ -141,25 +140,15 @@ class MessageContent extends StatelessWidget {
           case CuteEventContent.eventType:
             return CuteContent(event);
           case MessageTypes.Audio:
-            if (PlatformInfos.isMobile ||
-                    PlatformInfos.isMacOS ||
-                    PlatformInfos.isWeb
-                // Disabled until https://github.com/bleonard252/just_audio_mpv/issues/3
-                // is fixed
-                //   || PlatformInfos.isLinux
-                ) {
-              return AudioPlayerWidget(
-                event,
-                color: textColor,
-                fontSize: fontSize,
-              );
-            }
-            return MessageDownloadContent(event, textColor);
+            return AudioPlayerWidget(
+              event,
+              color: textColor,
+              fontSize: fontSize,
+            );
           case MessageTypes.Video:
             return EventVideoPlayer(event);
           case MessageTypes.File:
             return MessageDownloadContent(event, textColor);
-
           case MessageTypes.Text:
           case MessageTypes.Notice:
           case MessageTypes.Emote:
