@@ -10,6 +10,8 @@ jobs:
   deploy_playstore_internal:
     environment: 
       name: ${{ inputs.environment }}
+    env:
+      WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,10 +20,6 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: 'zulu'
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
       - name: Update env files to selected environment
         run: |
           rm .env
