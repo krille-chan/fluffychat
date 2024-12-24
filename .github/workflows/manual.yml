@@ -5,10 +5,10 @@ on:
      environment:
         type: environment
         description: Select the environment
-    new_release_notes:
-      required: true
-      type: string
-      description: "The release notes for the new release (Unused atm)"
+     new_release_notes:
+        required: true
+        type: string
+        description: "The release notes for the new release (Unused atm)"
 
 jobs:
   deploy_playstore_internal:
