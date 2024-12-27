@@ -110,6 +110,13 @@ class SettingsLearningView extends StatelessWidget {
                           ),
                       ],
                     ),
+                  SwitchListTile.adaptive(
+                    value: controller.publicProfile,
+                    onChanged: controller.setPublicProfile,
+                    title: Text(L10n.of(context).publicProfileTitle),
+                    subtitle: Text(L10n.of(context).publicProfileDesc),
+                    activeColor: AppConfig.activeToggleColor,
+                  ),
                 ],
               ),
             ),

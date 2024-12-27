@@ -4655,5 +4655,7 @@
   "pleaseAgreeToTOS": "Please agree to the Terms and Conditions",
   "pleaseEnterEmail": "Please enter a valid email address.",
   "pleaseSelectALanguage": "Please select a language",
-  "myBaseLanguage": "My base language"
+  "myBaseLanguage": "My base language",
+  "publicProfileTitle": "Allow my profile to be found in search",
+  "publicProfileDesc": "By enabling this option, I confirm that I am of legal age in my country of residence"
 }

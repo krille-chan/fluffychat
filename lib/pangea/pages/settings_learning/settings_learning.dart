@@ -32,10 +32,12 @@ class SettingsLearningController extends State<SettingsLearning> {
   }
 
   setPublicProfile(bool isPublic) {
-    pangeaController.userController.updateProfile((profile) {
-      profile.userSettings.publicProfile = isPublic;
-      return profile;
-    });
+    pangeaController.userController.updateProfile(
+      (profile) {
+        profile.userSettings.publicProfile = isPublic;
+        return profile;
+      },
+    );
     setState(() {});
   }
 
@@ -87,6 +89,9 @@ class SettingsLearningController extends State<SettingsLearning> {
         return toolSettings.enableTTS;
     }
   }
+
+  bool get publicProfile =>
+      pangeaController.userController.profile.userSettings.publicProfile;
 
   @override
   Widget build(BuildContext context) {
