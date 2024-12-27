@@ -142,6 +142,7 @@ dependencies:
   rive: 0.11.11
   text_to_speech: ^0.2.3
   flutter_tts: ^4.2.0
+  dart_levenshtein: ^1.0.1
   # Pangea#
 
 dev_dependencies:

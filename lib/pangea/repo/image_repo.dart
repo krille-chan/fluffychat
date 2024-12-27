@@ -26,6 +26,7 @@ class GenerateImageeResponse {
   }
 
   factory GenerateImageeResponse.error() {
+    // TODO: Implement better error handling
     return GenerateImageeResponse(
       imageUrl: 'https://i.imgur.com/2L2JYqk.png',
       prompt: 'Error',

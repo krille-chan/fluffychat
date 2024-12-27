@@ -1,18 +1,25 @@
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 class PangeaReactionsPicker extends StatelessWidget {
   final ChatController controller;
+  final MessageOverlayController? overlayController;
 
-  const PangeaReactionsPicker(this.controller, {super.key});
+  const PangeaReactionsPicker(
+    this.controller,
+    this.overlayController, {
+    super.key,
+  });
+
+  PangeaToken? get token => overlayController?.selectedToken;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     if (controller.showEmojiPicker) return const SizedBox.shrink();
     final display = controller.editEvent == null &&
         controller.replyEvent == null &&
@@ -39,6 +46,15 @@ class PangeaReactionsPicker extends StatelessWidget {
         emojis.remove(event.content.tryGetMap('m.relates_to')!['key']);
       } catch (_) {}
     }
+
+    for (final event in allReactionEvents) {
+      try {
+        emojis.remove(
+          event.content.tryGetMap('m.relates_to')!['key'],
+        );
+      } catch (_) {}
+    }
+
     return Flexible(
       child: Row(
         children: [
@@ -64,20 +80,6 @@ class PangeaReactionsPicker extends StatelessWidget {
                     .toList(),
               ),
             ),
-          ),
-          InkWell(
-            borderRadius: BorderRadius.circular(8),
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              width: 36,
-              height: 56,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.onInverseSurface,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.add_outlined),
-            ),
-            onTap: () => controller.pickEmojiReactionAction(allReactionEvents),
           ),
         ],
       ),

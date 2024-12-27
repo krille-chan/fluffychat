@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
@@ -9,7 +8,9 @@ import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/grammar/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/word_audio_button.dart';
@@ -24,12 +25,14 @@ class MultipleChoiceActivity extends StatefulWidget {
   final PracticeActivityModel currentActivity;
   final Event event;
   final VoidCallback? onError;
+  final MessageOverlayController overlayController;
 
   const MultipleChoiceActivity({
     super.key,
     required this.practiceCardController,
     required this.currentActivity,
     required this.event,
+    required this.overlayController,
     this.onError,
   });
 
@@ -62,7 +65,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   void speakTargetTokens() {
     if (widget.practiceCardController.currentActivity?.shouldPlayTargetTokens ??
         false) {
-      widget.practiceCardController.tts.tryToSpeak(
+      tts.tryToSpeak(
         PangeaToken.reconstructText(
           widget.practiceCardController.currentActivity!.targetTokens!,
         ),
@@ -72,7 +75,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     }
   }
 
-  TtsController get tts => widget.practiceCardController.tts;
+  TtsController get tts =>
+      widget.overlayController.widget.chatController.choreographer.tts;
 
   void updateChoice(String value, int index) {
     final bool isCorrect =
@@ -145,7 +149,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     if (widget.currentActivity.content.isCorrect(value, index)) {
       MatrixState.pangeaController.getAnalytics.analyticsStream.stream.first
           .then((_) {
-        widget.practiceCardController.onActivityFinish();
+        widget.practiceCardController.onActivityFinish(correctAnswer: value);
       });
     }
 
@@ -154,6 +158,40 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
         () => selectedChoiceIndex = index,
       );
     }
+  }
+
+  List<Choice> choices(BuildContext context) {
+    final activity = widget.currentActivity.content;
+    final List<Choice> choices = [];
+    for (int i = 0; i < activity.choices.length; i++) {
+      final String value = activity.choices[i];
+      final color = currentRecordModel?.hasTextResponse(value) ?? false
+          ? activity.choiceColor(i)
+          : null;
+      final isGold = activity.isCorrect(value, i);
+      choices.add(
+        Choice(
+          text: value,
+          color: color,
+          isGold: isGold,
+        ),
+      );
+    }
+    return choices;
+  }
+
+  String _getDisplayCopy(String value) {
+    if (widget.currentActivity.activityType != ActivityTypeEnum.morphId) {
+      return value;
+    }
+    final morphFeature = widget.practiceCardController.widget.morphFeature;
+    if (morphFeature == null) return value;
+    return getGrammarCopy(
+          category: morphFeature,
+          lemma: value,
+          context: context,
+        ) ??
+        value;
   }
 
   @override
@@ -175,7 +213,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
         if (practiceActivity.activityType ==
             ActivityTypeEnum.wordFocusListening)
           WordAudioButton(
-            text: practiceActivity.content.answer,
+            text: practiceActivity.content.answers.first,
             ttsController: tts,
             eventID: widget.event.eventId,
           ),
@@ -184,11 +222,9 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           MessageAudioCard(
             messageEvent:
                 widget.practiceCardController.widget.pangeaMessageEvent,
-            overlayController:
-                widget.practiceCardController.widget.overlayController,
+            overlayController: widget.overlayController,
             tts: tts,
-            setIsPlayingAudio: widget.practiceCardController.widget
-                .overlayController.setIsPlayingAudio,
+            setIsPlayingAudio: widget.overlayController.setIsPlayingAudio,
             onError: widget.onError,
           ),
         ChoicesArray(
@@ -197,37 +233,27 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           originalSpan: "placeholder",
           onPressed: updateChoice,
           selectedChoiceIndex: selectedChoiceIndex,
-          choices: practiceActivity.content.choices
-              .mapIndexed(
-                (index, value) => Choice(
-                  text: value,
-                  color: currentRecordModel?.hasTextResponse(value) ?? false
-                      ? practiceActivity.content.choiceColor(index)
-                      : null,
-                  isGold: practiceActivity.content.isCorrect(value, index),
-                ),
-              )
-              .toList(),
+          choices: choices(context),
           isActive: true,
           id: currentRecordModel?.hashCode.toString(),
           tts: practiceActivity.activityType.includeTTSOnClick ? tts : null,
-          enableAudio: !widget
-              .practiceCardController.widget.overlayController.isPlayingAudio,
+          enableAudio: !widget.overlayController.isPlayingAudio,
+          getDisplayCopy: _getDisplayCopy,
         ),
       ],
     );
 
-    return Container(
-      padding: const EdgeInsets.all(20),
+    return ConstrainedBox(
       constraints: const BoxConstraints(
+        maxWidth: AppConfig.toolbarMinWidth,
         maxHeight: AppConfig.toolbarMaxHeight,
-        minWidth: AppConfig.toolbarMinWidth,
-        minHeight: AppConfig.toolbarMinHeight,
       ),
-      child:
-          practiceActivity.activityType == ActivityTypeEnum.hiddenWordListening
-              ? SingleChildScrollView(child: content)
-              : content,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: content,
+        ),
+      ),
     );
   }
 }

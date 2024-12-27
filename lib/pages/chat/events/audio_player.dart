@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -27,6 +26,7 @@ class AudioPlayerWidget extends StatefulWidget {
   final PangeaAudioFile? matrixFile;
   final bool autoplay;
   final Function(bool)? setIsPlayingAudio;
+  final double padding;
   // Pangea#
 
   static String? currentId;
@@ -48,6 +48,7 @@ class AudioPlayerWidget extends StatefulWidget {
     this.sectionStartMS,
     this.sectionEndMS,
     this.setIsPlayingAudio,
+    this.padding = 12.0,
     // Pangea#
     super.key,
   });
@@ -354,15 +355,18 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     return Padding(
       // #Pangea
       // padding: const EdgeInsets.all(12.0),
-      padding: const EdgeInsets.all(5.0),
+      padding: EdgeInsets.all(widget.padding),
       // Pangea#
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ConstrainedBox(
-            constraints:
-                const BoxConstraints(maxWidth: FluffyThemes.columnWidth),
+            // #Pangea
+            // constraints:
+            //     const BoxConstraints(maxWidth: FluffyThemes.columnWidth),
+            constraints: const BoxConstraints(maxWidth: 250),
+            // Pangea#
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -393,7 +397,9 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                           ),
                         ),
                 ),
-                const SizedBox(width: 8),
+                // #Pangea
+                // const SizedBox(width: 8),
+                // Pangea#
                 Expanded(
                   child: Stack(
                     children: [
@@ -410,9 +416,14 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                                     height: 32,
                                     alignment: Alignment.center,
                                     child: Container(
-                                      margin: const EdgeInsets.symmetric(
-                                        horizontal: 1,
+                                      // #Pangea
+                                      // margin: const EdgeInsets.symmetric(
+                                      //   horizontal: 1,
+                                      // ),
+                                      margin: const EdgeInsets.only(
+                                        right: 0.5,
                                       ),
+                                      // Pangea#
                                       decoration: BoxDecoration(
                                         color: i < wavePosition
                                             ? widget.color
@@ -453,7 +464,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                 ),
                 // #Pangea
                 // const SizedBox(width: 8),
-                const SizedBox(width: 5),
                 // SizedBox(
                 //   width: 36,
                 //   child:

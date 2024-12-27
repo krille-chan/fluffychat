@@ -230,7 +230,8 @@ class PracticeActivityModel {
 
   bool get shouldPlayTargetTokens =>
       targetTokens != null &&
-      activityType != ActivityTypeEnum.hiddenWordListening;
+      activityType != ActivityTypeEnum.hiddenWordListening &&
+      activityType != ActivityTypeEnum.morphId;
 
   factory PracticeActivityModel.fromJson(Map<String, dynamic> json) {
     // moving from multiple_choice to content as the key

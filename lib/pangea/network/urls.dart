@@ -20,6 +20,9 @@ class PApiUrls {
   static String accountEndpoint =
       "${Environment.choreoApi}${PApiUrls.accountPrefix}";
 
+  ///  ---------------------- Util --------------------------------------
+  static String appVersion = "${PApiUrls.choreoEndpoint}/version";
+
   ///   ---------------------- Languages --------------------------------------
   static String getLanguages = "${PApiUrls.choreoEndpoint}/languages";
 
@@ -61,6 +64,8 @@ class PApiUrls {
   static String messageActivityGeneration =
       "${PApiUrls.choreoEndpoint}/practice";
 
+  static String lemmaDictionary = "${PApiUrls.choreoEndpoint}/lemma_definition";
+
   ///-------------------------------- revenue cat --------------------------
 
   static String rcApiV1 = "https://api.revenuecat.com/v1";
@@ -70,6 +75,4 @@ class PApiUrls {
       "${PApiUrls.subscriptionEndpoint}/all_products";
 
   static String rcSubscription = "$rcApiV1/subscribers";
-
-  static String appVersion = "${PApiUrls.choreoEndpoint}/version";
 }

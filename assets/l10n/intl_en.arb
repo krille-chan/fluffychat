@@ -4615,6 +4615,13 @@
   "constructUseCorHWLDesc": "Correct in hidden word activity",
   "constructUseIncHWLDesc": "Incorrect in hidden word activity",
   "constructUseIgnHWLDesc": "Ignored in hidden word activity",
+  "constructUseCorLDesc": "Correct in lemma activity",
+  "constructUseIncLDesc": "Incorrect in lemma activity",
+  "constructUseIgnLDesc": "Ignored in lemma activity",
+  "constructUseCorMDesc": "Correct in grammar activity",
+  "constructUseIncMDesc": "Incorrect in grammar activity",
+  "constructUseIgnMDesc": "Ignored in grammar activity",
+  "constructUseEmojiDesc": "Correct in emoji activity",
   "constructUseNanDesc": "Not applicable",
   "xpIntoLevel": "{currentXP} / {maxXP} XP",
   "@xpIntoLevel": {

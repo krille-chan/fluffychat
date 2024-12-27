@@ -4,10 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/pressable_button.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,36 +14,27 @@ import 'package:matrix/matrix.dart';
 class ToolbarButtons extends StatelessWidget {
   final Event event;
   final MessageOverlayController overlayController;
-  final double width;
 
   const ToolbarButtons({
     required this.event,
     required this.overlayController,
-    required this.width,
     super.key,
   });
 
-  PangeaMessageEvent? get pangeaMessageEvent =>
-      overlayController.pangeaMessageEvent;
+  int? get activitiesCompleted =>
+      overlayController.pangeaMessageEvent?.numberOfActivitiesCompleted;
 
   List<MessageMode> get modes => MessageMode.values
       .where((mode) => mode.shouldShowAsToolbarButton(event))
       .toList();
 
-  bool get messageInUserL2 =>
-      pangeaMessageEvent?.messageDisplayLangCode ==
-      MatrixState.pangeaController.languageController.userL2?.langCode;
-
   static const double iconWidth = 36.0;
-  static const buttonSize = 40.0;
+  static const double buttonSize = 40.0;
+  static const double width = 250.0;
 
   @override
   Widget build(BuildContext context) {
-    final totallyDone =
-        overlayController.isPracticeComplete || !messageInUserL2;
-    final double barWidth = width - iconWidth;
-
-    if (!overlayController.showToolbarButtons || pangeaMessageEvent == null) {
+    if (!overlayController.showToolbarButtons) {
       return const SizedBox();
     }
 
@@ -62,6 +51,7 @@ class ToolbarButtons extends StatelessWidget {
                 height: 12,
                 decoration: BoxDecoration(
                   color: MessageModeExtension.barAndLockedButtonColor(context),
+                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                 ),
                 margin: const EdgeInsets.symmetric(horizontal: iconWidth / 2),
               ),
@@ -69,13 +59,12 @@ class ToolbarButtons extends StatelessWidget {
                 duration: FluffyThemes.animationDuration,
                 height: 12,
                 width: overlayController.isPracticeComplete
-                    ? barWidth
-                    : min(
-                        barWidth,
-                        (barWidth / 3) *
-                            pangeaMessageEvent!.numberOfActivitiesCompleted,
-                      ),
-                color: AppConfig.success,
+                    ? width
+                    : min(width, (width / 2) * activitiesCompleted!),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                  color: AppConfig.success,
+                ),
                 margin: const EdgeInsets.symmetric(horizontal: iconWidth / 2),
               ),
             ],
@@ -86,52 +75,25 @@ class ToolbarButtons extends StatelessWidget {
             children: modes.mapIndexed((index, mode) {
               final enabled = mode.isUnlocked(
                 index,
-                pangeaMessageEvent!.numberOfActivitiesCompleted,
-                totallyDone,
+                activitiesCompleted!,
+                overlayController.isPracticeComplete,
               );
               final color = mode.iconButtonColor(
                 context,
                 index,
                 overlayController.toolbarMode,
-                pangeaMessageEvent!.numberOfActivitiesCompleted,
-                totallyDone,
+                activitiesCompleted!,
+                overlayController.isPracticeComplete,
               );
-              return Tooltip(
-                message: mode.tooltip(context),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    PressableButton(
-                      borderRadius: BorderRadius.circular(20),
-                      depressed:
-                          !enabled || mode == overlayController.toolbarMode,
+              return mode.showButton
+                  ? ToolbarButton(
+                      mode: mode,
+                      overlayController: overlayController,
+                      enabled: enabled,
+                      buttonSize: buttonSize,
                       color: color,
-                      onPressed: enabled
-                          ? () => overlayController.updateToolbarMode(mode)
-                          : null,
-                      clickPlayer: overlayController
-                          .widget.chatController.choreographer.clickPlayer,
-                      child: AnimatedContainer(
-                        duration: FluffyThemes.animationDuration,
-                        height: buttonSize,
-                        width: buttonSize,
-                        decoration: BoxDecoration(
-                          color: color,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          mode.icon,
-                          size: 20,
-                          color: mode == overlayController.toolbarMode
-                              ? Colors.white
-                              : null,
-                        ),
-                      ),
-                    ),
-                    if (!enabled) const DisabledAnimation(),
-                  ],
-                ),
-              );
+                    )
+                  : const SizedBox(width: buttonSize);
             }).toList(),
           ),
         ],
@@ -213,6 +175,59 @@ class DisabledAnimationState extends State<DisabledAnimation>
           ),
         );
       },
+    );
+  }
+}
+
+class ToolbarButton extends StatelessWidget {
+  final MessageMode mode;
+  final MessageOverlayController overlayController;
+  final bool enabled;
+  final double buttonSize;
+  final Color color;
+
+  const ToolbarButton({
+    required this.mode,
+    required this.overlayController,
+    required this.enabled,
+    required this.buttonSize,
+    required this.color,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: mode.tooltip(context),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          PressableButton(
+            borderRadius: BorderRadius.circular(20),
+            depressed: !enabled || mode == overlayController.toolbarMode,
+            color: color,
+            onPressed: enabled
+                ? () => overlayController.updateToolbarMode(mode)
+                : null,
+            child: AnimatedContainer(
+              duration: FluffyThemes.animationDuration,
+              height: buttonSize,
+              width: buttonSize,
+              decoration: BoxDecoration(
+                color: color,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                mode.icon,
+                size: 20,
+                color:
+                    mode == overlayController.toolbarMode ? Colors.white : null,
+              ),
+            ),
+          ),
+          if (!enabled) const DisabledAnimation(),
+        ],
+      ),
     );
   }
 }

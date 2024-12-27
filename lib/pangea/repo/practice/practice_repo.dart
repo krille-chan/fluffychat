@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
@@ -12,14 +13,19 @@ import 'package:fluffychat/pangea/models/practice_activities.dart/message_activi
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
+import 'package:fluffychat/pangea/repo/practice/emoji_activity_generator.dart';
+import 'package:fluffychat/pangea/repo/practice/lemma_activity_generator.dart';
+import 'package:fluffychat/pangea/repo/practice/morph_activity_generator.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:matrix/matrix.dart';
 
 /// Represents an item in the completion cache.
 class _RequestCacheItem {
-  MessageActivityRequest req;
-  PracticeActivityModelResponse? practiceActivity;
+  final MessageActivityRequest req;
+  final PracticeActivityModelResponse practiceActivity;
+  final DateTime createdAt = DateTime.now();
 
   _RequestCacheItem({
     required this.req,
@@ -34,18 +40,29 @@ class PracticeGenerationController {
 
   late PangeaController _pangeaController;
 
-  PracticeGenerationController(PangeaController pangeaController) {
-    _pangeaController = pangeaController;
+  final MorphActivityGenerator _morph = MorphActivityGenerator();
+  final EmojiActivityGenerator _emoji = EmojiActivityGenerator();
+  final LemmaActivityGenerator _lemma = LemmaActivityGenerator();
+
+  PracticeGenerationController() {
+    _pangeaController = MatrixState.pangeaController;
     _initializeCacheClearing();
   }
 
   void _initializeCacheClearing() {
-    const duration = Duration(minutes: 2);
+    const duration = Duration(minutes: 10);
     _cacheClearTimer = Timer.periodic(duration, (Timer t) => _clearCache());
   }
 
   void _clearCache() {
-    _cache.clear();
+    final now = DateTime.now();
+    final keys = _cache.keys.toList();
+    for (final key in keys) {
+      final item = _cache[key]!;
+      if (now.difference(item.createdAt) > const Duration(minutes: 10)) {
+        _cache.remove(key);
+      }
+    }
   }
 
   void dispose() {
@@ -72,7 +89,7 @@ class PracticeGenerationController {
     );
   }
 
-  Future<MessageActivityResponse> _fetch({
+  Future<MessageActivityResponse> _fetchFromServer({
     required String accessToken,
     required MessageActivityRequest requestModel,
   }) async {
@@ -97,9 +114,31 @@ class PracticeGenerationController {
     }
   }
 
-  //TODO - allow return of activity content before sending the event
-  // this requires some downstream changes to the way the event is handled
-  Future<PracticeActivityModelResponse?> getPracticeActivity(
+  Future<MessageActivityResponse> _routePracticeActivity({
+    required String accessToken,
+    required MessageActivityRequest req,
+  }) async {
+    // some activities we'll get from the server and others we'll generate locally
+    switch (req.targetType) {
+      case ActivityTypeEnum.emoji:
+        return _emoji.get(req);
+      case ActivityTypeEnum.lemmaId:
+        return _lemma.get(req);
+      case ActivityTypeEnum.morphId:
+        return _morph.get(req);
+      case ActivityTypeEnum.wordFocusListening:
+      // TODO bring clientside because more efficient
+      case ActivityTypeEnum.wordMeaning:
+      // TODO get correct answer with translation and distractors with distractor service
+      case ActivityTypeEnum.hiddenWordListening:
+        return _fetchFromServer(
+          accessToken: accessToken,
+          requestModel: req,
+        );
+    }
+  }
+
+  Future<PracticeActivityModelResponse> getPracticeActivity(
     MessageActivityRequest req,
     PangeaMessageEvent event,
   ) async {
@@ -111,10 +150,12 @@ class PracticeGenerationController {
       return _cache[cacheKey]!.practiceActivity;
     }
 
-    final MessageActivityResponse res = await _fetch(
+    final MessageActivityResponse res = await _routePracticeActivity(
       accessToken: _pangeaController.userController.accessToken,
-      requestModel: req,
+      req: req,
     );
+
+    // TODO resolve some wierdness here whereby the activity can be null but then... it's not
 
     final eventCompleter = Completer<PracticeActivityEvent?>();
 

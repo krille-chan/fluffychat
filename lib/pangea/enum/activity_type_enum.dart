@@ -1,8 +1,17 @@
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
+import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
-enum ActivityTypeEnum { wordMeaning, wordFocusListening, hiddenWordListening }
+enum ActivityTypeEnum {
+  wordMeaning,
+  wordFocusListening,
+  hiddenWordListening,
+  lemmaId,
+  emoji,
+  morphId
+}
 
 extension ActivityTypeExtension on ActivityTypeEnum {
   String get string {
@@ -13,6 +22,12 @@ extension ActivityTypeExtension on ActivityTypeEnum {
         return 'word_focus_listening';
       case ActivityTypeEnum.hiddenWordListening:
         return 'hidden_word_listening';
+      case ActivityTypeEnum.lemmaId:
+        return 'lemma_id';
+      case ActivityTypeEnum.emoji:
+        return 'emoji';
+      case ActivityTypeEnum.morphId:
+        return 'morph_id';
     }
   }
 
@@ -20,6 +35,9 @@ extension ActivityTypeExtension on ActivityTypeEnum {
     switch (this) {
       case ActivityTypeEnum.wordMeaning:
       case ActivityTypeEnum.wordFocusListening:
+      case ActivityTypeEnum.lemmaId:
+      case ActivityTypeEnum.emoji:
+      case ActivityTypeEnum.morphId:
         return false;
       case ActivityTypeEnum.hiddenWordListening:
         return true;
@@ -29,6 +47,9 @@ extension ActivityTypeExtension on ActivityTypeEnum {
   bool get includeTTSOnClick {
     switch (this) {
       case ActivityTypeEnum.wordMeaning:
+      case ActivityTypeEnum.lemmaId:
+      case ActivityTypeEnum.emoji:
+      case ActivityTypeEnum.morphId:
         return false;
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
@@ -53,6 +74,12 @@ extension ActivityTypeExtension on ActivityTypeEnum {
       case 'hidden_word_listening':
       case 'hiddenWordListening':
         return ActivityTypeEnum.hiddenWordListening;
+      case 'lemma_id':
+        return ActivityTypeEnum.lemmaId;
+      case 'emoji':
+        return ActivityTypeEnum.emoji;
+      case 'morph_id':
+        return ActivityTypeEnum.morphId;
       default:
         throw Exception('Unknown activity type: $split');
     }
@@ -78,6 +105,37 @@ extension ActivityTypeExtension on ActivityTypeEnum {
           ConstructUseTypeEnum.incHWL,
           ConstructUseTypeEnum.ignHWL,
         ];
+      case ActivityTypeEnum.lemmaId:
+        return [
+          ConstructUseTypeEnum.corL,
+          ConstructUseTypeEnum.incL,
+          ConstructUseTypeEnum.ignL,
+        ];
+      case ActivityTypeEnum.emoji:
+        return [ConstructUseTypeEnum.em];
+      case ActivityTypeEnum.morphId:
+        return [
+          ConstructUseTypeEnum.corM,
+          ConstructUseTypeEnum.incM,
+          ConstructUseTypeEnum.ignM,
+        ];
+    }
+  }
+
+  ConstructUseTypeEnum get correctUse {
+    switch (this) {
+      case ActivityTypeEnum.wordMeaning:
+        return ConstructUseTypeEnum.corPA;
+      case ActivityTypeEnum.wordFocusListening:
+        return ConstructUseTypeEnum.corWL;
+      case ActivityTypeEnum.hiddenWordListening:
+        return ConstructUseTypeEnum.corHWL;
+      case ActivityTypeEnum.lemmaId:
+        return ConstructUseTypeEnum.corL;
+      case ActivityTypeEnum.emoji:
+        return ConstructUseTypeEnum.em;
+      case ActivityTypeEnum.morphId:
+        return ConstructUseTypeEnum.corM;
     }
   }
 
@@ -87,7 +145,27 @@ extension ActivityTypeExtension on ActivityTypeEnum {
       case ActivityTypeEnum.wordMeaning:
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
+      case ActivityTypeEnum.lemmaId:
+      case ActivityTypeEnum.emoji:
         return (id) => id.type == ConstructTypeEnum.vocab;
+      case ActivityTypeEnum.morphId:
+        return (id) => id.type == ConstructTypeEnum.morph;
+    }
+  }
+
+  IconData get icon {
+    switch (this) {
+      case ActivityTypeEnum.wordMeaning:
+        return Icons.translate;
+      case ActivityTypeEnum.wordFocusListening:
+      case ActivityTypeEnum.hiddenWordListening:
+        return Icons.hearing;
+      case ActivityTypeEnum.lemmaId:
+        return Symbols.dictionary;
+      case ActivityTypeEnum.emoji:
+        return Icons.emoji_emotions;
+      case ActivityTypeEnum.morphId:
+        return Icons.format_shapes;
     }
   }
 }

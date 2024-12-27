@@ -6,7 +6,7 @@ import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
@@ -185,7 +185,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          padding: const EdgeInsets.all(8),
           alignment: Alignment.center,
           child: _isLoading
               ? const ToolbarContentLoadingIndicator()
@@ -199,6 +198,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                       setIsPlayingAudio: widget.setIsPlayingAudio,
                       fontSize:
                           AppConfig.messageFontSize * AppConfig.fontSizeFactor,
+                      padding: 0,
                     )
                   : const CardErrorWidget(
                       error: "Null audio file in message_audio_card",

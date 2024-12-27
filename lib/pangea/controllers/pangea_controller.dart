@@ -13,7 +13,6 @@ import 'package:fluffychat/pangea/controllers/language_detection_controller.dart
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/message_data_controller.dart';
 import 'package:fluffychat/pangea/controllers/permissions_controller.dart';
-import 'package:fluffychat/pangea/controllers/practice_activity_generation_controller.dart';
 import 'package:fluffychat/pangea/controllers/practice_activity_record_controller.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/speech_to_text_controller.dart';
@@ -57,7 +56,6 @@ class PangeaController {
   late SpeechToTextController speechToText;
   late LanguageDetectionController languageDetection;
   late PracticeActivityRecordController activityRecordController;
-  late PracticeGenerationController practiceGenerationController;
 
   ///store Services
   late PStore pStoreService;
@@ -114,7 +112,6 @@ class PangeaController {
     speechToText = SpeechToTextController(this);
     languageDetection = LanguageDetectionController(this);
     activityRecordController = PracticeActivityRecordController(this);
-    practiceGenerationController = PracticeGenerationController(this);
     PAuthGaurd.pController = this;
   }
 

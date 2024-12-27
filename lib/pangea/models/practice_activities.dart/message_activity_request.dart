@@ -54,6 +54,7 @@ class MessageActivityRequest {
 
   final List<PangeaToken> targetTokens;
   final ActivityTypeEnum targetType;
+  final String? targetMorphFeature;
 
   final ActivityQualityFeedback? activityQualityFeedback;
 
@@ -65,6 +66,7 @@ class MessageActivityRequest {
     required this.activityQualityFeedback,
     required this.targetTokens,
     required this.targetType,
+    required this.targetMorphFeature,
   }) {
     if (targetTokens.isEmpty) {
       throw Exception('Target tokens must not be empty');
@@ -87,6 +89,7 @@ class MessageActivityRequest {
       'activity_quality_feedback': activityQualityFeedback?.toJson(),
       'target_tokens': targetTokens.map((e) => e.toJson()).toList(),
       'target_type': targetType.string,
+      'target_morph_feature': targetMorphFeature,
     };
   }
 
@@ -99,7 +102,8 @@ class MessageActivityRequest {
         other.targetType == targetType &&
         other.activityQualityFeedback?.feedbackText ==
             activityQualityFeedback?.feedbackText &&
-        const ListEquality().equals(other.targetTokens, targetTokens);
+        const ListEquality().equals(other.targetTokens, targetTokens) &&
+        other.targetMorphFeature == targetMorphFeature;
   }
 
   @override
@@ -107,7 +111,8 @@ class MessageActivityRequest {
     return messageText.hashCode ^
         targetType.hashCode ^
         activityQualityFeedback.hashCode ^
-        targetTokens.hashCode;
+        targetTokens.hashCode ^
+        targetMorphFeature.hashCode;
   }
 }
 

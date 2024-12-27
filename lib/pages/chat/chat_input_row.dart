@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/pangea_reaction_picker.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -19,13 +20,13 @@ import 'input_bar.dart';
 class ChatInputRow extends StatelessWidget {
   final ChatController controller;
   // #Pangea
-  final bool isOverlay;
+  final MessageOverlayController? overlayController;
   // Pangea#
 
   const ChatInputRow(
     this.controller, {
     // #Pangea
-    this.isOverlay = false,
+    this.overlayController,
     // Pangea#
     super.key,
   });
@@ -68,7 +69,7 @@ class ChatInputRow extends StatelessWidget {
         CompositedTransformTarget(
           link: controller.choreographer.inputLayerLinkAndKey.link,
           child: Row(
-            key: isOverlay
+            key: overlayController != null
                 ? null
                 : controller.choreographer.inputLayerLinkAndKey.key,
             // crossAxisAlignment: CrossAxisAlignment.end,
@@ -154,7 +155,7 @@ class ChatInputRow extends StatelessWidget {
                           // Pangea#
                           : const SizedBox.shrink(),
                     // #Pangea
-                    PangeaReactionsPicker(controller),
+                    PangeaReactionsPicker(controller, overlayController),
                     if (controller.selectedEvents.length == 1 &&
                         !controller.selectedEvents.first
                             .getDisplayEvent(controller.timeline!)

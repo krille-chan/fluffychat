@@ -6,9 +6,10 @@ import 'package:matrix/matrix.dart';
 enum MessageMode {
   practiceActivity,
   textToSpeech,
-  definition,
   translation,
   speechToText,
+  wordZoom,
+  noneSelected,
 }
 
 extension MessageModeExtension on MessageMode {
@@ -20,13 +21,12 @@ extension MessageModeExtension on MessageMode {
         return Symbols.text_to_speech;
       case MessageMode.speechToText:
         return Symbols.speech_to_text;
-      //TODO change icon for audio messages
-      case MessageMode.definition:
-        return Icons.book;
       case MessageMode.practiceActivity:
         return Symbols.fitness_center;
-      default:
-        return Icons.error; // Icon to indicate an error or unsupported mode
+      case MessageMode.wordZoom:
+        return Symbols.dictionary;
+      case MessageMode.noneSelected:
+        return Icons.error;
     }
   }
 
@@ -38,13 +38,12 @@ extension MessageModeExtension on MessageMode {
         return L10n.of(context).messageAudio;
       case MessageMode.speechToText:
         return L10n.of(context).speechToTextTooltip;
-      case MessageMode.definition:
-        return L10n.of(context).definitions;
       case MessageMode.practiceActivity:
         return L10n.of(context).practice;
-      default:
-        return L10n.of(context)
-            .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
+      case MessageMode.wordZoom:
+        return L10n.of(context).vocab;
+      case MessageMode.noneSelected:
+        return '';
     }
   }
 
@@ -56,28 +55,27 @@ extension MessageModeExtension on MessageMode {
         return L10n.of(context).audioTooltip;
       case MessageMode.speechToText:
         return L10n.of(context).speechToTextTooltip;
-      case MessageMode.definition:
-        return L10n.of(context).define;
       case MessageMode.practiceActivity:
         return L10n.of(context).practice;
-      default:
-        return L10n.of(context)
-            .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
+      case MessageMode.wordZoom:
+        return L10n.of(context).vocab;
+      case MessageMode.noneSelected:
+        return '';
     }
   }
 
   bool shouldShowAsToolbarButton(Event event) {
     switch (this) {
       case MessageMode.translation:
-        return event.messageType == MessageTypes.Text;
       case MessageMode.textToSpeech:
-        return event.messageType == MessageTypes.Text;
-      case MessageMode.definition:
         return event.messageType == MessageTypes.Text;
       case MessageMode.speechToText:
         return event.messageType == MessageTypes.Audio;
       case MessageMode.practiceActivity:
         return true;
+      case MessageMode.wordZoom:
+      case MessageMode.noneSelected:
+        return false;
     }
   }
 
@@ -87,6 +85,8 @@ extension MessageModeExtension on MessageMode {
     bool totallyDone,
   ) =>
       numActivitiesCompleted >= index || totallyDone;
+
+  bool get showButton => this != MessageMode.practiceActivity;
 
   Color iconButtonColor(
     BuildContext context,

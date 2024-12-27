@@ -353,6 +353,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  dart_levenshtein:
+    dependency: "direct main"
+    description:
+      name: dart_levenshtein
+      sha256: f38182278b774cbb0d5993de50848e65da5a9f722b7f07787f0c26de009e0322
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   dart_webrtc:
     dependency: "direct overridden"
     description:

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:flutter/foundation.dart';
@@ -7,14 +8,16 @@ import 'package:flutter/material.dart';
 
 class ActivityContent {
   final String question;
+
+  /// choices, including the correct answer
   final List<String> choices;
-  final String answer;
+  final List<String> answers;
   final RelevantSpanDisplayDetails? spanDisplayDetails;
 
   ActivityContent({
     required this.question,
     required this.choices,
-    required this.answer,
+    required this.answers,
     required this.spanDisplayDetails,
   });
 
@@ -25,27 +28,45 @@ class ActivityContent {
     if (value != choices[index]) {
       debugger(when: kDebugMode);
     }
-    return value == answer || index == correctAnswerIndex;
+    return answers.contains(value) || correctAnswerIndices.contains(index);
   }
 
-  bool get isValidQuestion => choices.contains(answer);
+  bool get isValidQuestion => choices.toSet().containsAll(answers);
 
-  int get correctAnswerIndex => choices.indexOf(answer);
+  List<int> get correctAnswerIndices {
+    final List<int> indices = [];
+    for (var i = 0; i < choices.length; i++) {
+      if (answers.contains(choices[i])) {
+        indices.add(i);
+      }
+    }
+    return indices;
+  }
 
   int choiceIndex(String choice) => choices.indexOf(choice);
 
-  Color choiceColor(int index) =>
-      index == correctAnswerIndex ? AppConfig.success : AppConfig.warning;
+  Color choiceColor(int index) => correctAnswerIndices.contains(index)
+      ? AppConfig.success
+      : AppConfig.warning;
 
   factory ActivityContent.fromJson(Map<String, dynamic> json) {
     final spanDisplay = json['span_display_details'] != null &&
             json['span_display_details'] is Map
         ? RelevantSpanDisplayDetails.fromJson(json['span_display_details'])
         : null;
+
+    final answerEntry = json['answer'] ?? json['correct_answer'] ?? "";
+    List<String> answers = [];
+    if (answerEntry is String) {
+      answers = [answerEntry];
+    } else if (answerEntry is List) {
+      answers = answerEntry.map((e) => e as String).toList();
+    }
+
     return ActivityContent(
       question: json['question'] as String,
       choices: (json['choices'] as List).map((e) => e as String).toList(),
-      answer: json['answer'] ?? json['correct_answer'] as String,
+      answers: answers,
       spanDisplayDetails: spanDisplay,
     );
   }
@@ -54,7 +75,7 @@ class ActivityContent {
     return {
       'question': question,
       'choices': choices,
-      'answer': answer,
+      'answer': answers,
       'span_display_details': spanDisplayDetails?.toJson(),
     };
   }
@@ -67,11 +88,11 @@ class ActivityContent {
     return other is ActivityContent &&
         other.question == question &&
         other.choices == choices &&
-        other.answer == answer;
+        const ListEquality().equals(other.answers.sorted(), answers.sorted());
   }
 
   @override
   int get hashCode {
-    return question.hashCode ^ choices.hashCode ^ answer.hashCode;
+    return question.hashCode ^ choices.hashCode ^ Object.hashAll(answers);
   }
 }

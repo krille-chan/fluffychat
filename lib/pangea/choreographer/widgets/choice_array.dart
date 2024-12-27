@@ -34,6 +34,8 @@ class ChoicesArray extends StatefulWidget {
   /// some uses of this widget want to disable clicking of the choices
   final bool isActive;
 
+  final String Function(String)? getDisplayCopy;
+
   const ChoicesArray({
     super.key,
     required this.isLoading,
@@ -46,6 +48,7 @@ class ChoicesArray extends StatefulWidget {
     this.enableAudio = true,
     this.isActive = true,
     this.onLongPress,
+    this.getDisplayCopy,
     this.id,
   });
 
@@ -103,6 +106,7 @@ class ChoicesArrayState extends State<ChoicesArray> {
                     disableInteraction: disableInteraction,
                     isSelected: widget.selectedChoiceIndex == index,
                     id: widget.id,
+                    getDisplayCopy: widget.getDisplayCopy,
                   ),
                 )
                 .toList(),
@@ -134,6 +138,7 @@ class ChoiceItem extends StatelessWidget {
     required this.enableInteraction,
     required this.disableInteraction,
     required this.id,
+    this.getDisplayCopy,
   });
 
   final MapEntry<int, Choice> entry;
@@ -145,6 +150,7 @@ class ChoiceItem extends StatelessWidget {
   final VoidCallback enableInteraction;
   final VoidCallback disableInteraction;
   final String? id;
+  final String Function(String)? getDisplayCopy;
 
   @override
   Widget build(BuildContext context) {
@@ -201,7 +207,9 @@ class ChoiceItem extends StatelessWidget {
                   ? null
                   : () => onPressed(entry.value.text, entry.key),
               child: Text(
-                entry.value.text,
+                getDisplayCopy != null
+                    ? getDisplayCopy!(entry.value.text)
+                    : entry.value.text,
                 style: BotStyle.text(context),
               ),
             ),

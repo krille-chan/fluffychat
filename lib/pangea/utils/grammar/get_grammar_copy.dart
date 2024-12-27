@@ -1,9 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-import 'dart:developer';
-
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -454,7 +451,7 @@ String? getGrammarCopy({
       );
       return L10n.of(context).grammarCopyUnknown;
     default:
-      debugger(when: kDebugMode);
+      // debugger(when: kDebugMode);
       ErrorHandler.logError(
         e: 'Need to add copy to intl_en.arb',
         data: {
