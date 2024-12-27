@@ -239,26 +239,23 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
                 ),
               ),
               if (_activityType != null)
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (_showActivityCard(_activityType))
-                      PracticeActivityCard(
-                        pangeaMessageEvent: widget.messageEvent,
-                        targetTokensAndActivityType:
-                            TargetTokensAndActivityType(
-                          tokens: [widget.token],
-                          activityType: _activityType!,
-                        ),
-                        overlayController: widget.overlayController,
-                        morphFeature: _selectedMorphFeature,
-                        wordDetailsController: this,
-                      )
-                    else
-                      _activityAnswer,
-                  ],
-                )
+                if (_showActivityCard(_activityType))
+                  PracticeActivityCard(
+                    pangeaMessageEvent: widget.messageEvent,
+                    targetTokensAndActivityType: TargetTokensAndActivityType(
+                      tokens: [widget.token],
+                      activityType: _activityType!,
+                    ),
+                    overlayController: widget.overlayController,
+                    morphFeature: _selectedMorphFeature,
+                    wordDetailsController: this,
+                  )
+                else
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [_activityAnswer],
+                  )
               else
                 ContextualTranslationWidget(
                   token: widget.token,
@@ -269,16 +266,11 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
                   definition: _definition,
                   setDefinition: _setDefinition,
                 ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  MorphologicalListWidget(
-                    token: widget.token,
-                    setMorphFeature: _setSelectedMorphFeature,
-                    selectedMorphFeature: _selectedMorphFeature,
-                    completedActivities: completedMorphActivities,
-                  ),
-                ],
+              MorphologicalListWidget(
+                token: widget.token,
+                setMorphFeature: _setSelectedMorphFeature,
+                selectedMorphFeature: _selectedMorphFeature,
+                completedActivities: completedMorphActivities,
               ),
             ],
           ),
