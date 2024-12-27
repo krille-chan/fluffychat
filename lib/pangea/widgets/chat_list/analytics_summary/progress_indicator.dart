@@ -1,4 +1,5 @@
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
+import 'package:fluffychat/pangea/widgets/pressable_button.dart';
 import 'package:flutter/material.dart';
 
 /// A badge that represents one learning progress indicator (i.e., construct uses)
@@ -20,23 +21,15 @@ class ProgressIndicatorBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tooltip(
       message: indicator.tooltip(context),
-      child: InkWell(
-        customBorder: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        onTap: onTap,
+      child: PressableButton(
+        color: Theme.of(context).colorScheme.surfaceBright,
+        borderRadius: BorderRadius.circular(15),
+        onPressed: onTap,
+        buttonHeight: 2.5,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Theme.of(context).colorScheme.surfaceBright,
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).colorScheme.primary,
-                spreadRadius: 1,
-                blurRadius: 1,
-                offset: const Offset(-1, 1), // changes position of shadow
-              ),
-            ],
           ),
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
           child: Row(

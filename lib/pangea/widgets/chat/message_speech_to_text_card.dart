@@ -79,10 +79,7 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
       if (transcript.sttTokens.isEmpty) {
         return TextSpan(
           text: remainingFullText,
-          style: BotStyle.text(
-            context,
-            setColor: false,
-          ),
+          style: BotStyle.text(context),
         );
       }
 

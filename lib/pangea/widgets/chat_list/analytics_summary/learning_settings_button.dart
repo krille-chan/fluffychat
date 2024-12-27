@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/widgets/pressable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -16,23 +17,15 @@ class LearningSettingsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tooltip(
       message: L10n.of(context).learningSettings,
-      child: InkWell(
-        customBorder: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        onTap: onTap,
+      child: PressableButton(
+        buttonHeight: 2.5,
+        borderRadius: BorderRadius.circular(15),
+        onPressed: onTap,
+        color: Theme.of(context).colorScheme.surfaceBright,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Theme.of(context).colorScheme.surfaceBright,
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).colorScheme.primary,
-                spreadRadius: 1,
-                blurRadius: 1,
-                offset: const Offset(1, 1), // changes position of shadow
-              ),
-            ],
           ),
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
           child: Row(

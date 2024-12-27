@@ -138,7 +138,9 @@ class PressableButtonState extends State<PressableButton>
             return Container(
               decoration: BoxDecoration(
                 color: Color.alphaBlend(
-                  Colors.black.withOpacity(0.25),
+                  Theme.of(context).brightness == Brightness.light
+                      ? Colors.black.withOpacity(0.25)
+                      : Colors.white.withOpacity(0.25),
                   widget.color,
                 ),
                 borderRadius: widget.borderRadius,
