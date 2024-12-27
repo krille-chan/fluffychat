@@ -631,6 +631,10 @@ class Choreographer {
       );
 
   AssistanceState get assistanceState {
+    if (!pangeaController.subscriptionController.isSubscribed) {
+      return AssistanceState.noSub;
+    }
+
     if (currentText.isEmpty && itController.sourceText == null) {
       return AssistanceState.noMessage;
     }
