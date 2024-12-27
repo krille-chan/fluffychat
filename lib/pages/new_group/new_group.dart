@@ -25,7 +25,7 @@ class NewGroupController extends State<NewGroup> {
   TextEditingController nameController = TextEditingController();
 
   bool publicGroup = false;
-  bool groupCanBeFound = true;
+  bool groupCanBeFound = false;
 
   Uint8List? avatar;
 
@@ -43,7 +43,8 @@ class NewGroupController extends State<NewGroup> {
   void setCreateGroupType(Set<CreateGroupType> b) =>
       setState(() => _createGroupType = b.single);
 
-  void setPublicGroup(bool b) => setState(() => publicGroup = b);
+  void setPublicGroup(bool b) =>
+      setState(() => publicGroup = groupCanBeFound = b);
 
   void setGroupCanBeFound(bool b) => setState(() => groupCanBeFound = b);
 
