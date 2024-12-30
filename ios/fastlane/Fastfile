@@ -41,7 +41,7 @@ platform :ios do
       ipa: "../build/ios/ipa/pangeachat.ipa", # Verify location
       distribute_external: true,
       groups: "App Store Connect Users",
-      changelog: "This is a release candidate for PangeaChat. Please test if the app is overall in a good condition before we push this to production.",
+      changelog: "This is a release candidate for Pangea Chat. Please test if the app is overall in a good condition before we push this to production.",
     )
   end
 end
