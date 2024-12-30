@@ -2885,5 +2885,14 @@
   "pleaseFillOut": "من فضلك قم بتعبئته",
   "@pleaseFillOut": {},
   "unableToJoinChat": "يتعذر الانضمام إلى الدردشة. ربما يكون الطرف الآخر قد أغلق المحادثة بالفعل.",
-  "@unableToJoinChat": {}
+  "@unableToJoinChat": {},
+  "sendImages": "إرسال {count} صورة",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "ضغط",
+  "@compress": {}
 }
