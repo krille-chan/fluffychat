@@ -14,11 +14,10 @@ jobs:
   deploy_web:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - uses: actions/checkout@v4      
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: pubspec.yaml
       - name: Remove Emoji Font
         run: |
           rm -rf fonts/NotoEmoji
@@ -41,14 +40,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v4
         with:
-          java-version: ${{ env.JAVA_VERSION }}
+          java-version: 17
           distribution: 'zulu'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: pubspec.yaml
           cache: true
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
