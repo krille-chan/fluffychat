@@ -72,6 +72,16 @@ class LoginController extends State<Login> {
     });
   }
 
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    loading = false;
+    usernameError = null;
+    passwordError = null;
+    super.dispose();
+  }
+
   void _setStateOnTextChange(String? oldText, String newText) {
     if ((oldText == null || oldText.isEmpty) && (newText.isNotEmpty)) {
       setState(() {});

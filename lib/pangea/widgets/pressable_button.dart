@@ -16,6 +16,8 @@ class PressableButton extends StatefulWidget {
   final Stream? triggerAnimation;
   final ClickPlayer? clickPlayer;
 
+  final bool? isShadow;
+
   const PressableButton({
     required this.borderRadius,
     required this.child,
@@ -25,6 +27,7 @@ class PressableButton extends StatefulWidget {
     this.depressed = false,
     this.triggerAnimation,
     this.clickPlayer,
+    this.isShadow,
     super.key,
   });
 
@@ -53,6 +56,7 @@ class PressableButtonState extends State<PressableButton>
     );
     _tweenAnimation =
         Tween<double>(begin: 0, end: widget.buttonHeight).animate(_controller);
+
     if (!_depressed) {
       _triggerAnimationSubscription = widget.triggerAnimation?.listen((_) {
         _animationCompleter = Completer<void>();
@@ -76,6 +80,9 @@ class PressableButtonState extends State<PressableButton>
       });
     }
   }
+
+  bool get _isShadow =>
+      widget.isShadow ?? Theme.of(context).brightness == Brightness.light;
 
   void _onTapDown(TapDownDetails? details) {
     if (_depressed) return;
@@ -138,7 +145,7 @@ class PressableButtonState extends State<PressableButton>
             return Container(
               decoration: BoxDecoration(
                 color: Color.alphaBlend(
-                  Theme.of(context).brightness == Brightness.light
+                  _isShadow
                       ? Colors.black.withOpacity(0.25)
                       : Colors.white.withOpacity(0.25),
                   widget.color,

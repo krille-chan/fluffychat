@@ -29,11 +29,14 @@ class UserSettingsState extends State<UserSettingsPage> {
 
   String? selectedLanguageError;
   String? profileCreationError;
+  String? tncError;
 
   bool loading = false;
 
   Uint8List? avatar;
   String? _selectedFilePath;
+
+  bool isTncChecked = false;
 
   List<String> avatarPaths = const [
     "assets/pangea/Avatar_1.png",
@@ -52,7 +55,6 @@ class UserSettingsState extends State<UserSettingsPage> {
         : PangeaLanguage.byLangCode(systemLangCode);
   }
 
-  bool canSetDisplayName = false;
   TextEditingController displayNameController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -61,17 +63,29 @@ class UserSettingsState extends State<UserSettingsPage> {
     super.initState();
     selectedTargetLanguage = _pangeaController.languageController.userL2;
     selectedAvatarPath = avatarPaths.first;
-    final loginTypeEntry =
-        _pangeaController.pStoreService.read(PLocalKey.loginType);
-    if (loginTypeEntry is String && loginTypeEntry == 'sso') {
-      canSetDisplayName = true;
-    }
   }
 
   @override
   void dispose() {
     displayNameController.dispose();
+    loading = false;
+    selectedLanguageError = null;
+    profileCreationError = null;
+    tncError = null;
     super.dispose();
+  }
+
+  bool get isSSOSignup {
+    final loginTypeEntry =
+        _pangeaController.pStoreService.read(PLocalKey.loginType);
+    return loginTypeEntry is String && loginTypeEntry == 'sso';
+  }
+
+  void setTncChecked(bool? value) {
+    setState(() {
+      isTncChecked = value ?? false;
+      tncError = null;
+    });
   }
 
   void setSelectedTargetLanguage(LanguageModel? language) {
@@ -150,11 +164,22 @@ class UserSettingsState extends State<UserSettingsPage> {
   }
 
   Future<void> createUserInPangea() async {
-    setState(() => profileCreationError = null);
+    setState(() {
+      profileCreationError = null;
+      selectedLanguageError = null;
+      tncError = null;
+    });
 
     if (selectedTargetLanguage == null) {
       setState(() {
         selectedLanguageError = L10n.of(context).pleaseSelectALanguage;
+      });
+      return;
+    }
+
+    if (isSSOSignup && !isTncChecked) {
+      setState(() {
+        tncError = L10n.of(context).pleaseAgreeToTOS;
       });
       return;
     }

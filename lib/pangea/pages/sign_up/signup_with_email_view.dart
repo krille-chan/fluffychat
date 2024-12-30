@@ -44,7 +44,11 @@ class SignupWithEmailView extends StatelessWidget {
             validator: controller.password1TextFieldValidator,
             controller: controller.passwordController,
           ),
-          TosCheckbox(controller),
+          TosCheckbox(
+            controller.isTnCChecked,
+            controller.onTncChange,
+            error: controller.signupError,
+          ),
           FullWidthButton(
             title: L10n.of(context).signUp,
             icon: PangeaLogoSvg(

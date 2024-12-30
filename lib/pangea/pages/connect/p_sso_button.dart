@@ -55,6 +55,30 @@ class PangeaSsoButton extends StatefulWidget {
 class PangeaSsoButtonState extends State<PangeaSsoButton> {
   bool _loading = false;
   String? _error;
+  AppLifecycleListener? _listener;
+
+  @override
+  void initState() {
+    _listener = AppLifecycleListener(
+      onStateChange: _onAppLifecycleChange,
+    );
+    super.initState();
+  }
+
+  // when the SSO login launches, stop the loading indicator
+  void _onAppLifecycleChange(AppLifecycleState state) {
+    if ((state == AppLifecycleState.inactive ||
+            state == AppLifecycleState.hidden) &&
+        _loading) {
+      setState(() => _loading = false);
+    }
+  }
+
+  @override
+  void dispose() {
+    _listener?.dispose();
+    super.dispose();
+  }
 
   Future<void> _runSSOLogin() async {
     try {

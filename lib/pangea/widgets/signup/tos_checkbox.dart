@@ -2,16 +2,19 @@
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pangea/pages/sign_up/signup.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class TosCheckbox extends StatefulWidget {
-  final SignupPageController controller;
+  final bool value;
+  final Function(bool?) onChange;
+  final String? error;
 
   const TosCheckbox(
-    this.controller, {
+    this.value,
+    this.onChange, {
+    this.error,
     super.key,
   });
 
@@ -57,12 +60,12 @@ class TosCheckboxState extends State<TosCheckbox>
               ),
               AnimatedSize(
                 duration: FluffyThemes.animationDuration,
-                child: widget.controller.signupError == null
+                child: widget.error == null
                     ? const SizedBox.shrink()
                     : Padding(
                         padding: const EdgeInsets.only(top: 4, left: 30),
                         child: Text(
-                          widget.controller.signupError!,
+                          widget.error!,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.error,
                             fontSize: 12,
@@ -74,9 +77,9 @@ class TosCheckboxState extends State<TosCheckbox>
           ),
         ),
         Checkbox(
-          value: widget.controller.isTnCChecked,
+          value: widget.value,
           activeColor: Theme.of(context).colorScheme.primary,
-          onChanged: widget.controller.onTncChange,
+          onChanged: widget.onChange,
         ),
       ],
     );

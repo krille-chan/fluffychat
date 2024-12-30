@@ -55,6 +55,16 @@ class SignupPageController extends State<SignupPage> {
     });
   }
 
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+    loading = false;
+    error = null;
+    super.dispose();
+  }
+
   bool get enableSignUp =>
       !loading &&
       isTnCChecked &&
