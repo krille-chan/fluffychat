@@ -48,6 +48,8 @@ class Choreographer {
   bool isFetching = false;
   int _timesClicked = 0;
 
+  final int msBeforeIGCStart = 10000;
+
   Timer? debounceTimer;
   ChoreoRecord choreoRecord = ChoreoRecord.newRecord;
   // last checked by IGC or translation
@@ -77,10 +79,13 @@ class Choreographer {
 
   void send(BuildContext context) {
     debugPrint("can send message: $canSendMessage");
-    if (!canSendMessage) {
-      if (igc.igcTextData != null && igc.igcTextData!.matches.isNotEmpty) {
-        igc.showFirstMatch(context);
-      }
+    if (igc.igcTextData != null && igc.igcTextData!.matches.isNotEmpty) {
+      igc.showFirstMatch(context);
+      return;
+    } else if (isRunningIT) {
+      // If the user is in the middle of IT, don't send the message.
+      // If they've already clicked the send button once, this will
+      // not be true, so they can still send it if they want.
       return;
     }
 
@@ -107,7 +112,11 @@ class Choreographer {
 
   Future<void> _sendWithIGC(BuildContext context) async {
     if (!canSendMessage) {
-      igc.showFirstMatch(context);
+      // It's possible that the reason user can't send message is because they're in the middle of IT. If this is the case,
+      // do nothing (there's no matches to show). The user can click the send button again to override this.
+      if (!isRunningIT) {
+        igc.showFirstMatch(context);
+      }
       return;
     }
 
@@ -237,7 +246,7 @@ class Choreographer {
 
     if (editTypeIsKeyboard) {
       debounceTimer ??= Timer(
-        const Duration(milliseconds: 1500),
+        Duration(milliseconds: msBeforeIGCStart),
         () => getLanguageHelp(),
       );
     } else {

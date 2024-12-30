@@ -16,7 +16,7 @@ class FullTextTranslationRepo {
 
   // start a timer to clear the cache
   static void startCacheTimer() {
-    _cacheTimer = Timer.periodic(const Duration(minutes: 3), (timer) {
+    _cacheTimer = Timer.periodic(const Duration(minutes: 10), (timer) {
       clearCache();
     });
   }
