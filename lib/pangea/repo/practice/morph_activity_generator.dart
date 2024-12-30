@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
+import 'package:fluffychat/pangea/enum/analytics/morph_categories_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
@@ -30,14 +31,15 @@ class MorphActivityGenerator {
       "SCONJ": [],
       "PUNCT": [],
       "VERB": ["Tense", "Aspect"],
+      "X": [],
     },
   };
 
   /// Get the sequence of activities for a given part of speech
   /// The sequence is a list of morphological features that should be practiced
   /// in order for the given part of speech
-  Future<POSActivitySequence> getSequence(String langCode, String pos) async {
-    if (!sequence.containsKey(langCode)) {
+  POSActivitySequence getSequence(String? langCode, String pos) {
+    if (langCode == null || !sequence.containsKey(langCode)) {
       langCode = "en";
     }
     final MorphActivitySequence morphActivitySequence = sequence[langCode]!;
@@ -89,7 +91,8 @@ class MorphActivityGenerator {
         langCode: req.userL2,
         activityType: ActivityTypeEnum.morphId,
         content: ActivityContent(
-          question: "",
+          question:
+              "${getMorphologicalCategoryCopy(morphFeature, MatrixState.pangeaController.matrixState.context) ?? ""}?",
           choices: distractors + [morphTag],
           answers: [morphTag],
           spanDisplayDetails: null,

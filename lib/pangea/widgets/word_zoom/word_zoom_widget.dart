@@ -38,7 +38,7 @@ class WordZoomWidget extends StatefulWidget {
 }
 
 class WordZoomWidgetState extends State<WordZoomWidget> {
-  ActivityTypeEnum? _activityType;
+  ActivityTypeEnum _activityType = ActivityTypeEnum.wordMeaning;
 
   // morphological activities
   String? _selectedMorphFeature;
@@ -72,6 +72,8 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
         });
       }
     });
+
+    // if learner should do translation activity then setActivityType to wordMeaning
   }
 
   @override
@@ -89,23 +91,10 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
     }
   }
 
-  bool _showActivityCard(ActivityTypeEnum? activityType) {
-    if (activityType == null) return false;
-    final shouldDo = widget.token.shouldDoActivity(
-      a: activityType,
-      feature: _selectedMorphFeature,
-      tag: _selectedMorphFeature == null
-          ? null
-          : widget.token.morph[_selectedMorphFeature],
-    );
-
-    return canGenerateActivity[activityType]! && shouldDo;
-  }
-
   void _clean() {
     if (mounted) {
       setState(() {
-        _activityType = null;
+        _activityType = ActivityTypeEnum.wordMeaning;
         _selectedMorphFeature = null;
         _definition = null;
         _lemma = null;
@@ -117,11 +106,13 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
   void _setSelectedMorphFeature(String? feature) {
     _selectedMorphFeature = _selectedMorphFeature == feature ? null : feature;
     _setActivityType(
-      _selectedMorphFeature == null ? null : ActivityTypeEnum.morphId,
+      _selectedMorphFeature == null
+          ? ActivityTypeEnum.wordMeaning
+          : ActivityTypeEnum.morphId,
     );
   }
 
-  void _setActivityType(ActivityTypeEnum? activityType) {
+  void _setActivityType(ActivityTypeEnum activityType) {
     if (mounted) setState(() => _activityType = activityType);
   }
 
@@ -164,6 +155,45 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
     }
   }
 
+  Widget get _wordZoomCenterWidget {
+    if (widget.token.shouldDoActivity(
+          a: _activityType,
+          feature: _selectedMorphFeature,
+          tag: _selectedMorphFeature == null
+              ? null
+              : widget.token.morph[_selectedMorphFeature],
+        ) &&
+        canGenerateActivity[_activityType]!) {
+      PracticeActivityCard(
+        pangeaMessageEvent: widget.messageEvent,
+        targetTokensAndActivityType: TargetTokensAndActivityType(
+          tokens: [widget.token],
+          activityType: _activityType,
+        ),
+        overlayController: widget.overlayController,
+        morphFeature: _selectedMorphFeature,
+        wordDetailsController: this,
+      );
+    }
+
+    if (_activityType == ActivityTypeEnum.wordMeaning) {
+      return ContextualTranslationWidget(
+        token: widget.token,
+        fullText: widget.messageEvent.messageDisplayText,
+        langCode: widget.messageEvent.messageDisplayLangCode,
+        onPressed: () => _setActivityType(ActivityTypeEnum.wordMeaning),
+        definition: _definition,
+        setDefinition: _setDefinition,
+      );
+    }
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [_activityAnswer],
+    );
+  }
+
   Widget get _activityAnswer {
     switch (_activityType) {
       case ActivityTypeEnum.morphId:
@@ -180,7 +210,7 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
       case ActivityTypeEnum.wordMeaning:
         return _definition != null
             ? Text(_definition!)
-            : const Text("defintion is null");
+            : const Text("definition is null");
       case ActivityTypeEnum.lemmaId:
         return _lemma != null ? Text(_lemma!) : const Text("lemma is null");
       case ActivityTypeEnum.emoji:
@@ -215,7 +245,7 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
                       token: widget.token,
                       onPressed: () => _setActivityType(
                         _activityType == ActivityTypeEnum.emoji
-                            ? null
+                            ? ActivityTypeEnum.wordMeaning
                             : ActivityTypeEnum.emoji,
                       ),
                       setEmoji: _setEmoji,
@@ -229,7 +259,7 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
                       token: widget.token,
                       onPressed: () => _setActivityType(
                         _activityType == ActivityTypeEnum.lemmaId
-                            ? null
+                            ? ActivityTypeEnum.wordMeaning
                             : ActivityTypeEnum.lemmaId,
                       ),
                       lemma: _lemma,
@@ -238,34 +268,7 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
                   ],
                 ),
               ),
-              if (_activityType != null)
-                if (_showActivityCard(_activityType))
-                  PracticeActivityCard(
-                    pangeaMessageEvent: widget.messageEvent,
-                    targetTokensAndActivityType: TargetTokensAndActivityType(
-                      tokens: [widget.token],
-                      activityType: _activityType!,
-                    ),
-                    overlayController: widget.overlayController,
-                    morphFeature: _selectedMorphFeature,
-                    wordDetailsController: this,
-                  )
-                else
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [_activityAnswer],
-                  )
-              else
-                ContextualTranslationWidget(
-                  token: widget.token,
-                  fullText: widget.messageEvent.messageDisplayText,
-                  langCode: widget.messageEvent.messageDisplayLangCode,
-                  onPressed: () =>
-                      _setActivityType(ActivityTypeEnum.wordMeaning),
-                  definition: _definition,
-                  setDefinition: _setDefinition,
-                ),
+              _wordZoomCenterWidget,
               MorphologicalListWidget(
                 token: widget.token,
                 setMorphFeature: _setSelectedMorphFeature,

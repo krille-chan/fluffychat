@@ -30,14 +30,11 @@ class EmojiPracticeButtonState extends State<EmojiPracticeButton> {
     }
   }
 
-  bool get _canDoActivity {
-    final canDo = widget.token.shouldDoActivity(
-      a: ActivityTypeEnum.emoji,
-      feature: null,
-      tag: null,
-    );
-    return canDo;
-  }
+  bool get _shouldDoActivity => widget.token.shouldDoActivity(
+        a: ActivityTypeEnum.emoji,
+        feature: null,
+        tag: null,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +42,20 @@ class EmojiPracticeButtonState extends State<EmojiPracticeButton> {
     return SizedBox(
       height: 40,
       width: 40,
-      child: _canDoActivity || emoji != null
-          ? IconButton(
-              onPressed: () {
-                widget.onPressed();
-                if (widget.emoji == null && emoji != null) {
-                  widget.setEmoji(emoji);
-                }
-              },
-              icon: emoji == null
-                  ? const Icon(Icons.add_reaction_outlined)
-                  : Text(emoji),
+      child: _shouldDoActivity || emoji != null
+          ? Opacity(
+              opacity: _shouldDoActivity ? 0.5 : 1,
+              child: IconButton(
+                onPressed: () {
+                  widget.onPressed();
+                  if (widget.emoji == null && emoji != null) {
+                    widget.setEmoji(emoji);
+                  }
+                },
+                icon: emoji == null
+                    ? const Icon(Icons.add_reaction_outlined)
+                    : Text(emoji),
+              ),
             )
           : const SizedBox.shrink(),
     );

@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:fluffychat/pangea/repo/practice/emoji_activity_generator.dart';
 import 'package:fluffychat/pangea/repo/practice/lemma_activity_generator.dart';
 import 'package:fluffychat/pangea/repo/practice/morph_activity_generator.dart';
+import 'package:fluffychat/pangea/repo/practice/word_meaning_activity_generator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
@@ -40,9 +41,10 @@ class PracticeGenerationController {
 
   late PangeaController _pangeaController;
 
-  final MorphActivityGenerator _morph = MorphActivityGenerator();
-  final EmojiActivityGenerator _emoji = EmojiActivityGenerator();
-  final LemmaActivityGenerator _lemma = LemmaActivityGenerator();
+  final _morph = MorphActivityGenerator();
+  final _emoji = EmojiActivityGenerator();
+  final _lemma = LemmaActivityGenerator();
+  final _wordMeaning = WordMeaningActivityGenerator();
 
   PracticeGenerationController() {
     _pangeaController = MatrixState.pangeaController;
@@ -126,10 +128,9 @@ class PracticeGenerationController {
         return _lemma.get(req);
       case ActivityTypeEnum.morphId:
         return _morph.get(req);
-      case ActivityTypeEnum.wordFocusListening:
-      // TODO bring clientside because more efficient
       case ActivityTypeEnum.wordMeaning:
-      // TODO get correct answer with translation and distractors with distractor service
+        return _wordMeaning.get(req);
+      case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
         return _fetchFromServer(
           accessToken: accessToken,

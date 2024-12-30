@@ -229,12 +229,13 @@ class ConstructListModel {
     final List<ConstructUses> morphConstructs = constructList(
       type: ConstructTypeEnum.morph,
     );
-
     final List<String> possibleDistractors = morphConstructs
         .where(
           (c) =>
               c.category == morphFeature.toLowerCase() &&
-              c.lemma.toLowerCase() != morphTag.toLowerCase(),
+              c.lemma.toLowerCase() != morphTag.toLowerCase() &&
+              c.lemma.isNotEmpty &&
+              c.lemma != "X",
         )
         .map((c) => c.lemma)
         .toList();

@@ -322,7 +322,7 @@ class PangeaToken {
     }
   }
 
-  bool get shouldDoPosActivity => shouldDoMorphActivity("Pos");
+  bool get shouldDoPosActivity => shouldDoMorphActivity("pos");
 
   bool shouldDoMorphActivity(String feature) {
     return shouldDoActivity(
@@ -582,11 +582,14 @@ class PangeaToken {
   }
 
   String get xpEmoji {
-    if (xp < 5) {
+    if (xp < 30) {
+      // bean emoji
+      return "🫛";
+    } else if (xp < 100) {
+      // sprout emoji
       return "🌱";
-    } else if (xp < 10) {
-      return "🌿";
     } else {
+      // flower emoji
       return "🌺";
     }
   }

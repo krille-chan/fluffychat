@@ -84,12 +84,14 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
                       color: _isPlaying
                           ? Theme.of(context).colorScheme.secondary
                           : null,
+                      fontSize:
+                          Theme.of(context).textTheme.titleLarge?.fontSize,
                     ),
               ),
               const SizedBox(width: 4),
               Icon(
                 _isPlaying ? Icons.play_arrow : Icons.play_arrow_outlined,
-                size: Theme.of(context).textTheme.bodyMedium?.fontSize,
+                size: Theme.of(context).textTheme.titleLarge?.fontSize,
               ),
             ],
           ),
