@@ -32,7 +32,10 @@ class PangeaLoginView extends StatelessWidget {
           FullWidthTextField(
             hintText: L10n.of(context).password,
             obscureText: true,
-            textInputAction: TextInputAction.done,
+            textInputAction: TextInputAction.go,
+            onSubmitted: (_) {
+              controller.enabledSignIn ? controller.login() : null;
+            },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return L10n.of(context).pleaseEnterYourPassword;

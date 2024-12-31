@@ -45,6 +45,9 @@ class SettingsController extends State<Settings> {
               Matrix.of(context).client.userID!.localpart,
         ),
       ],
+      // #Pangea
+      autoSubmit: true,
+      // Pangea#
     );
     if (input == null) return;
     final matrix = Matrix.of(context);

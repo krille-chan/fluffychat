@@ -43,6 +43,7 @@ class SignupWithEmailView extends StatelessWidget {
             obscureText: true,
             validator: controller.password1TextFieldValidator,
             controller: controller.passwordController,
+            onSubmitted: controller.enableSignUp ? controller.signup : null,
           ),
           TosCheckbox(
             controller.isTnCChecked,

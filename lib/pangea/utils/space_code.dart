@@ -47,6 +47,7 @@ class SpaceCodeUtil {
       textFields: [
         DialogTextField(hintText: L10n.of(context).joinWithClassCodeHint),
       ],
+      autoSubmit: true,
     );
     if (spaceCode == null || spaceCode.single.isEmpty) return;
     await pangeaController.classController.joinClasswithCode(

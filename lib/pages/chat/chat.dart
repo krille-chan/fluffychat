@@ -979,6 +979,9 @@ class ChatController extends State<ChatPageWithRoom>
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
       textFields: [DialogTextField(hintText: L10n.of(context).reason)],
+      // #Pangea
+      autoSubmit: true,
+      // Pangea#
     );
     if (reason == null || reason.single.isEmpty) return;
     // #Pangea
@@ -1062,6 +1065,9 @@ class ChatController extends State<ChatPageWithRoom>
             ],
             okLabel: L10n.of(context).remove,
             cancelLabel: L10n.of(context).cancel,
+            // #Pangea
+            autoSubmit: true,
+            // Pangea#
           )
         : <String>[];
     if (reasonInput == null) {
@@ -1164,9 +1170,10 @@ class ChatController extends State<ChatPageWithRoom>
     // #Pangea
     if (selectedEvents.isEmpty) {
       ErrorHandler.logError(
-          e: "No selected events in send again action",
-          s: StackTrace.current,
-          data: {"roomId": roomId});
+        e: "No selected events in send again action",
+        s: StackTrace.current,
+        data: {"roomId": roomId},
+      );
       clearSelectedEvents();
       return;
     }

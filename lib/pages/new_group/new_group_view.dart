@@ -90,6 +90,11 @@ class NewGroupView extends StatelessWidget {
                       : L10n.of(context).chatName,
                   // Pangea#
                 ),
+                // #Pangea
+                onSubmitted: (value) {
+                  controller.loading ? null : controller.submitAction();
+                },
+                // Pangea#
               ),
             ),
             const SizedBox(height: 16),
