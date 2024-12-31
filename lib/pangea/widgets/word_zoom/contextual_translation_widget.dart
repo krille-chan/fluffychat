@@ -48,7 +48,10 @@ class ContextualTranslationWidget extends StatelessWidget {
                         padding: 0,
                         maxWidth: 500,
                       )
-                    : Text(snapshot.data ?? "..."),
+                    : Text(
+                        snapshot.data ?? "...",
+                        textAlign: TextAlign.center,
+                      ),
           ),
         );
       },

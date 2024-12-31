@@ -260,12 +260,15 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         savorTheJoyDuration: _savorTheJoyDuration,
       );
 
-      widget.overlayController.onActivityFinish();
       pangeaController.activityRecordController.completeActivity(
         widget.pangeaMessageEvent.eventId,
       );
 
       await _savorTheJoy();
+
+      // wait for savor the joy before popping from the activity queue
+      // to keep the completed activity on screen for a moment
+      widget.overlayController.onActivityFinish();
     } catch (e, s) {
       _onError();
       debugger(when: kDebugMode);

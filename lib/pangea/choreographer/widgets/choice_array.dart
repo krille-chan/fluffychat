@@ -211,6 +211,7 @@ class ChoiceItem extends StatelessWidget {
                     ? getDisplayCopy!(entry.value.text)
                     : entry.value.text,
                 style: BotStyle.text(context),
+                textAlign: TextAlign.center,
               ),
             ),
           ),

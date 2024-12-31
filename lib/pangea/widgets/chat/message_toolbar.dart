@@ -74,11 +74,23 @@ class MessageToolbar extends StatelessWidget {
           messageEvent: pangeaMessageEvent,
         );
       case MessageMode.noneSelected:
-        return Text(L10n.of(context).clickWordsInstructions);
+        return Padding(
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            L10n.of(context).clickWordsInstructions,
+            textAlign: TextAlign.center,
+          ),
+        );
       case MessageMode.practiceActivity:
       case MessageMode.wordZoom:
         if (overlayController.selectedToken == null) {
-          return Text(L10n.of(context).clickWordsInstructions);
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              L10n.of(context).clickWordsInstructions,
+              textAlign: TextAlign.center,
+            ),
+          );
         }
         return WordZoomWidget(
           token: overlayController.selectedToken!,

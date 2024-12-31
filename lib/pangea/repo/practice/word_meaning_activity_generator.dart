@@ -30,7 +30,7 @@ class WordMeaningActivityGenerator {
     final res = await LemmaDictionaryRepo.get(lemmaDefReq);
 
     final choices =
-        LemmaDictionaryRepo.getDistractorDefinitions(lemmaDefReq, 3);
+        LemmaDictionaryRepo.getDistractorDefinitions(lemmaDefReq.lemma, 3);
 
     if (!choices.contains(res.definition)) {
       choices.add(res.definition);
@@ -44,7 +44,7 @@ class WordMeaningActivityGenerator {
         langCode: req.userL2,
         activityType: ActivityTypeEnum.wordMeaning,
         content: ActivityContent(
-          question: "${L10n.of(context).definition}?",
+          question: L10n.of(context).chooseBestDefinition,
           choices: choices,
           answers: [res.definition],
           spanDisplayDetails: null,

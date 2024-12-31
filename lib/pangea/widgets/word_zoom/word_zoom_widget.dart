@@ -3,6 +3,7 @@ import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart'
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/repo/lemma_definition_repo.dart';
 import 'package:fluffychat/pangea/utils/grammar/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
@@ -72,7 +73,13 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
 
   // The function to determine if lemma distractors can be generated
   // is computationally expensive, so we only do it once
-  bool canGenerateLemmaActivity = false;
+  bool _canGenerateLemmaActivity = false;
+
+  bool get _canGenerateDefintionActivity =>
+      LemmaDictionaryRepo.getDistractorDefinitions(
+        widget.token.lemma.text,
+        1,
+      ).isNotEmpty;
 
   @override
   void initState() {
@@ -101,7 +108,7 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
 
   void _setCanGenerateLemmaActivity() {
     widget.token.canGenerateDistractors(ActivityTypeEnum.lemmaId).then((value) {
-      if (mounted) setState(() => canGenerateLemmaActivity = value);
+      if (mounted) setState(() => _canGenerateLemmaActivity = value);
     });
   }
 
@@ -152,7 +159,10 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
               ? null
               : widget.token.morph[_selectedMorphFeature],
         ) &&
-        (_selectionType != WordZoomSelection.lemma || canGenerateLemmaActivity);
+        (_selectionType != WordZoomSelection.lemma ||
+            _canGenerateLemmaActivity) &&
+        (_selectionType != WordZoomSelection.translation ||
+            _canGenerateDefintionActivity);
 
     if (showActivity || _forceShowActivity) {
       return PracticeActivityCard(
@@ -196,9 +206,9 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
           lemma: morphTag,
           context: context,
         );
-        return Text(copy ?? morphTag);
+        return Text(copy ?? morphTag, textAlign: TextAlign.center);
       case WordZoomSelection.lemma:
-        return Text(widget.token.lemma.text);
+        return Text(widget.token.lemma.text, textAlign: TextAlign.center);
       case WordZoomSelection.emoji:
         return widget.token.getEmoji() != null
             ? Text(widget.token.getEmoji()!)
