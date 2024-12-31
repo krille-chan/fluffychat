@@ -1,6 +1,7 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
+import 'package:fluffychat/pages/chat/events/reply_content.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -93,6 +94,9 @@ class OverlayMessage extends StatelessWidget {
       MessageTypes.Audio,
     }.contains(event.messageType);
 
+    final textColor =
+        ownMessage ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface;
+
     return Material(
       color: color,
       clipBehavior: Clip.antiAlias,
@@ -113,18 +117,98 @@ class OverlayMessage extends StatelessWidget {
                   vertical: 8,
                 ),
           width: messageWidth,
-          child: MessageContent(
-            event,
-            textColor: ownMessage
-                ? theme.colorScheme.onPrimary
-                : theme.colorScheme.onSurface,
-            pangeaMessageEvent: pangeaMessageEvent,
-            immersionMode: immersionMode,
-            overlayController: overlayController,
-            controller: controller,
-            nextEvent: nextEvent,
-            prevEvent: prevEvent,
-            borderRadius: borderRadius,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              if (event.relationshipType == RelationshipTypes.reply)
+                FutureBuilder<Event?>(
+                  future: event.getReplyEvent(
+                    timeline,
+                  ),
+                  builder: (
+                    BuildContext context,
+                    snapshot,
+                  ) {
+                    final replyEvent = snapshot.hasData
+                        ? snapshot.data!
+                        : Event(
+                            eventId: event.relationshipEventId!,
+                            content: {
+                              'msgtype': 'm.text',
+                              'body': '...',
+                            },
+                            senderId: event.senderId,
+                            type: 'm.room.message',
+                            room: event.room,
+                            status: EventStatus.sent,
+                            originServerTs: DateTime.now(),
+                          );
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 4.0,
+                      ),
+                      child: InkWell(
+                        borderRadius: ReplyContent.borderRadius,
+                        onTap: () => controller.scrollToEventId(
+                          replyEvent.eventId,
+                        ),
+                        child: AbsorbPointer(
+                          child: ReplyContent(
+                            replyEvent,
+                            ownMessage: ownMessage,
+                            timeline: timeline,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              MessageContent(
+                event,
+                textColor: textColor,
+                pangeaMessageEvent: pangeaMessageEvent,
+                immersionMode: immersionMode,
+                overlayController: overlayController,
+                controller: controller,
+                nextEvent: nextEvent,
+                prevEvent: prevEvent,
+                borderRadius: borderRadius,
+              ),
+              if (event.hasAggregatedEvents(
+                timeline,
+                RelationshipTypes.edit,
+              ))
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 4.0,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (event.hasAggregatedEvents(
+                        timeline,
+                        RelationshipTypes.edit,
+                      )) ...[
+                        Icon(
+                          Icons.edit_outlined,
+                          color: textColor.withAlpha(164),
+                          size: 14,
+                        ),
+                        Text(
+                          ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                          style: TextStyle(
+                            color: textColor.withAlpha(
+                              164,
+                            ),
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+            ],
           ),
         ),
       ),

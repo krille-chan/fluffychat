@@ -332,7 +332,7 @@ class MessageContent extends StatelessWidget {
                   }
 
                   controller.showToolbar(
-                    event,
+                    pangeaMessageEvent!.event,
                     pangeaMessageEvent: pangeaMessageEvent,
                     selectedToken: token,
                   );
