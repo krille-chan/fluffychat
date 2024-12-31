@@ -144,22 +144,28 @@ class PressableButtonState extends State<PressableButton>
         child: AnimatedBuilder(
           animation: _tweenAnimation,
           builder: (context, child) {
-            return Container(
-              decoration: BoxDecoration(
-                color: Color.alphaBlend(
-                  _isShadow
-                      ? Colors.black.withOpacity(0.25)
-                      : Colors.white.withOpacity(0.25),
-                  widget.color,
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: _tweenAnimation.value),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color.alphaBlend(
+                      _isShadow
+                          ? Colors.black.withOpacity(0.25)
+                          : Colors.white.withOpacity(0.25),
+                      widget.color,
+                    ),
+                    borderRadius: widget.borderRadius,
+                  ),
+                  padding: EdgeInsets.only(
+                    bottom: !_depressed
+                        ? widget.buttonHeight - _tweenAnimation.value
+                        : 0,
+                  ),
+                  child: child,
                 ),
-                borderRadius: widget.borderRadius,
-              ),
-              padding: EdgeInsets.only(
-                bottom: !_depressed
-                    ? widget.buttonHeight - _tweenAnimation.value
-                    : 0,
-              ),
-              child: child,
+              ],
             );
           },
           child: Container(
