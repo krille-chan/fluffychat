@@ -165,26 +165,38 @@ class ActivityRecordResponse {
     PracticeActivityModel practiceActivity,
     ConstructUseMetaData metadata,
   ) {
-    if (practiceActivity.activityType == ActivityTypeEnum.emoji) {
-      if (practiceActivity.targetTokens != null &&
-          practiceActivity.targetTokens!.isNotEmpty) {
-        final token = practiceActivity.targetTokens!.first;
-        return [
-          OneConstructUse(
-            lemma: token.lemma.text,
-            form: token.text.content,
-            constructType: ConstructTypeEnum.vocab,
-            useType: useType(practiceActivity.activityType),
-            metadata: metadata,
-            category: token.pos,
-          ),
-        ];
-      }
+    if (practiceActivity.targetTokens == null ||
+        practiceActivity.targetTokens!.isEmpty) {
       return [];
     }
 
-    if (practiceActivity.targetTokens == null) {
-      return [];
+    if (practiceActivity.activityType == ActivityTypeEnum.emoji) {
+      final token = practiceActivity.targetTokens!.first;
+      return [
+        OneConstructUse(
+          lemma: token.lemma.text,
+          form: token.text.content,
+          constructType: ConstructTypeEnum.vocab,
+          useType: useType(practiceActivity.activityType),
+          metadata: metadata,
+          category: token.pos,
+        ),
+      ];
+    }
+
+    if (practiceActivity.activityType == ActivityTypeEnum.morphId) {
+      return practiceActivity.tgtConstructs
+          .map(
+            (token) => OneConstructUse(
+              lemma: token.lemma,
+              form: practiceActivity.targetTokens!.first.text.content,
+              constructType: ConstructTypeEnum.morph,
+              useType: useType(practiceActivity.activityType),
+              metadata: metadata,
+              category: token.category,
+            ),
+          )
+          .toList();
     }
 
     final uses = practiceActivity.targetTokens!

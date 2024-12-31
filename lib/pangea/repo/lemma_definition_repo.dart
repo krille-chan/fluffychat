@@ -134,7 +134,9 @@ class LemmaDictionaryRepo {
 
   /// From the cache, get a random set of cached definitions that are not for a specific lemma
   static List<String> getDistractorDefinitions(
-      LemmaDefinitionRequest req, int count) {
+    LemmaDefinitionRequest req,
+    int count,
+  ) {
     _clearExpiredEntries();
 
     final List<String> definitions = [];

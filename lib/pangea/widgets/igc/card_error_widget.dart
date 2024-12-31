@@ -9,14 +9,16 @@ class CardErrorWidget extends StatelessWidget {
   final Object error;
   final Choreographer? choreographer;
   final int? offset;
-  final double? maxWidth;
+  final double maxWidth;
+  final double padding;
 
   const CardErrorWidget({
     super.key,
     required this.error,
     this.choreographer,
     this.offset,
-    this.maxWidth,
+    this.maxWidth = 275,
+    this.padding = 8,
   });
 
   @override
@@ -24,8 +26,8 @@ class CardErrorWidget extends StatelessWidget {
     final ErrorCopy errorCopy = ErrorCopy(context, error);
 
     return Container(
-      padding: const EdgeInsets.all(8),
-      constraints: const BoxConstraints(maxWidth: 275),
+      padding: EdgeInsets.all(padding),
+      constraints: BoxConstraints(maxWidth: maxWidth),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -36,7 +38,7 @@ class CardErrorWidget extends StatelessWidget {
               cursorOffset: offset,
             ),
           ),
-          const SizedBox(height: 12.0),
+          const SizedBox(height: 6.0),
           Padding(
             padding: const EdgeInsets.all(12),
             child: Text(

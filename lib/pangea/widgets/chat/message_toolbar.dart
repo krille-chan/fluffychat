@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_ca
 import 'package:fluffychat/pangea/widgets/word_zoom/word_zoom_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix_api_lite/model/message_types.dart';
 
 const double minCardHeight = 70;
@@ -73,11 +74,11 @@ class MessageToolbar extends StatelessWidget {
           messageEvent: pangeaMessageEvent,
         );
       case MessageMode.noneSelected:
-        return const SizedBox();
+        return Text(L10n.of(context).clickWordsInstructions);
       case MessageMode.practiceActivity:
       case MessageMode.wordZoom:
         if (overlayController.selectedToken == null) {
-          return const SizedBox();
+          return Text(L10n.of(context).clickWordsInstructions);
         }
         return WordZoomWidget(
           token: overlayController.selectedToken!,

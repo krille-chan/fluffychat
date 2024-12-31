@@ -19,6 +19,7 @@ import 'package:fluffychat/pangea/repo/practice/morph_activity_generator.dart';
 import 'package:fluffychat/pangea/repo/practice/word_meaning_activity_generator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:matrix/matrix.dart';
 
@@ -119,6 +120,7 @@ class PracticeGenerationController {
   Future<MessageActivityResponse> _routePracticeActivity({
     required String accessToken,
     required MessageActivityRequest req,
+    required BuildContext context,
   }) async {
     // some activities we'll get from the server and others we'll generate locally
     switch (req.targetType) {
@@ -129,7 +131,7 @@ class PracticeGenerationController {
       case ActivityTypeEnum.morphId:
         return _morph.get(req);
       case ActivityTypeEnum.wordMeaning:
-        return _wordMeaning.get(req);
+        return _wordMeaning.get(req, context);
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
         return _fetchFromServer(
@@ -142,6 +144,7 @@ class PracticeGenerationController {
   Future<PracticeActivityModelResponse> getPracticeActivity(
     MessageActivityRequest req,
     PangeaMessageEvent event,
+    BuildContext context,
   ) async {
     final int cacheKey = req.hashCode;
 
@@ -154,6 +157,7 @@ class PracticeGenerationController {
     final MessageActivityResponse res = await _routePracticeActivity(
       accessToken: _pangeaController.userController.accessToken,
       req: req,
+      context: context,
     );
 
     // TODO resolve some wierdness here whereby the activity can be null but then... it's not

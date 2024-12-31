@@ -1,35 +1,25 @@
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/word_zoom_activity_button.dart';
 import 'package:flutter/material.dart';
 
 class LemmaWidget extends StatelessWidget {
   final PangeaToken token;
   final VoidCallback onPressed;
-
-  final String? lemma;
-  final Function(String) setLemma;
+  final bool isSelected;
 
   const LemmaWidget({
     super.key,
     required this.token,
     required this.onPressed,
-    this.lemma,
-    required this.setLemma,
+    this.isSelected = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 40,
-      height: 40,
-      child: IconButton(
-        onPressed: () {
-          onPressed();
-          if (lemma == null) {
-            setLemma(token.lemma.text);
-          }
-        },
-        icon: Text(token.xpEmoji),
-      ),
+    return WordZoomActivityButton(
+      icon: Text(token.xpEmoji),
+      isSelected: isSelected,
+      onPressed: onPressed,
     );
   }
 }

@@ -110,11 +110,13 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void _updateSelectedSpan(PangeaTokenText selectedSpan) {
     _selectedSpan = selectedSpan;
 
-    widget.chatController.choreographer.tts.tryToSpeak(
-      selectedSpan.content,
-      context,
-      widget._pangeaMessageEvent?.eventId,
-    );
+    if (!(messageAnalyticsEntry?.hasHiddenWordActivity ?? false)) {
+      widget.chatController.choreographer.tts.tryToSpeak(
+        selectedSpan.content,
+        context,
+        widget._pangeaMessageEvent?.eventId,
+      );
+    }
 
     // if a token is selected, then the toolbar should be in wordZoom mode
     if (toolbarMode != MessageMode.wordZoom) {

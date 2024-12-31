@@ -1,9 +1,7 @@
 import 'package:fluffychat/pangea/constants/morph_categories_and_labels.dart';
 import 'package:fluffychat/pangea/enum/analytics/morph_categories_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/repo/practice/morph_activity_generator.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity/word_zoom_activity_button.dart';
 import 'package:flutter/material.dart';
 
 class ActivityMorph {
@@ -22,63 +20,49 @@ class MorphologicalListWidget extends StatelessWidget {
   final PangeaToken token;
   final String? selectedMorphFeature;
   final Function(String?) setMorphFeature;
-  final int completedActivities;
 
   const MorphologicalListWidget({
     super.key,
     required this.selectedMorphFeature,
     required this.token,
     required this.setMorphFeature,
-    required this.completedActivities,
   });
 
   List<ActivityMorph> get _visibleMorphs {
-    // we always start with the part of speech
-    final visibleMorphs = [
-      ActivityMorph(
-        morphFeature: "pos",
-        morphTag: token.pos,
-        revealed: !token.shouldDoPosActivity,
-        // revealed: !shouldDoActivity || !canGenerateDistractors,
-      ),
-    ];
-
-    // each pos has a defined set of morphological features to display and do activities for
-    final List<String> seq = MorphActivityGenerator().getSequence(
-      MatrixState.pangeaController.languageController.userL2?.langCode,
-      token.pos,
-    );
-
-    for (final String feature in seq) {
-      // don't add any more if the last one is not revealed yet
-      if (!visibleMorphs.last.revealed) {
-        break;
-      }
-
-      // check that the feature is in token.morph
-      if (!token.morph.containsKey(feature)) {
-        ErrorHandler.logError(
-          m: "Morphological feature suggested for pos but not found in token",
-          data: {
-            "feature": feature,
-            "token": token,
-            "lang_code": MatrixState
-                .pangeaController.languageController.userL2?.langCode,
-          },
-        );
-        continue;
-      }
-
-      visibleMorphs.add(
-        ActivityMorph(
-          morphFeature: feature,
-          morphTag: token.morph[feature],
-          revealed: !token.shouldDoMorphActivity(feature),
-        ),
+    final activityMorphs = token.morph.entries.map((entry) {
+      return ActivityMorph(
+        morphFeature: entry.key,
+        morphTag: entry.value,
+        revealed: !token.shouldDoMorphActivity(entry.key),
       );
-    }
+    }).toList();
 
-    return visibleMorphs;
+    activityMorphs.sort((a, b) {
+      if (a.morphFeature.toLowerCase() == "pos") {
+        return -1;
+      } else if (b.morphFeature.toLowerCase() == "pos") {
+        return 1;
+      }
+
+      if (a.revealed && !b.revealed) {
+        return -1;
+      } else if (!a.revealed && b.revealed) {
+        return 1;
+      }
+
+      return a.morphFeature.compareTo(b.morphFeature);
+    });
+
+    final lastRevealedIndex =
+        activityMorphs.lastIndexWhere((morph) => morph.revealed);
+
+    if (lastRevealedIndex == -1) {
+      return activityMorphs;
+    } else if (lastRevealedIndex >= (activityMorphs.length - 1)) {
+      return activityMorphs;
+    } else {
+      return activityMorphs.take(lastRevealedIndex + 2).toList();
+    }
   }
 
   @override
@@ -119,23 +103,15 @@ class MorphologicalActivityButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Tooltip(
-          message: getMorphologicalCategoryCopy(
-            morphCategory,
-            context,
-          ),
-          child: Opacity(
-            opacity: isSelected ? 1 : 0.5,
-            child: IconButton(
-              onPressed: () => onPressed(morphCategory),
-              icon: Icon(icon),
-              color: isSelected ? Theme.of(context).colorScheme.primary : null,
-            ),
-          ),
-        ),
-      ],
+    return WordZoomActivityButton(
+      icon: Icon(icon),
+      isSelected: isSelected,
+      onPressed: () => onPressed(morphCategory),
+      tooltip: getMorphologicalCategoryCopy(
+        morphCategory,
+        context,
+      ),
+      opacity: (isSelected || !isUnlocked) ? 1 : 0.5,
     );
   }
 }

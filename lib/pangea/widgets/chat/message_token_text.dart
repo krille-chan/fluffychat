@@ -67,13 +67,16 @@ class MessageTokenText extends StatelessWidget {
       final hideContent =
           messageAnalyticsEntry?.isTokenInHiddenWordActivity(token) ?? false;
 
+      final hasHiddenContent =
+          messageAnalyticsEntry?.hasHiddenWordActivity ?? false;
+
       if (globalIndex < startIndex) {
         tokenPositions.add(
           TokenPosition(
             start: globalIndex,
             end: startIndex,
             hideContent: false,
-            highlight: _isSelected?.call(token) ?? false,
+            highlight: (_isSelected?.call(token) ?? false) && !hasHiddenContent,
           ),
         );
       }
@@ -84,7 +87,9 @@ class MessageTokenText extends StatelessWidget {
           end: endIndex,
           token: token,
           hideContent: hideContent,
-          highlight: (_isSelected?.call(token) ?? false) && !hideContent,
+          highlight: (_isSelected?.call(token) ?? false) &&
+              !hideContent &&
+              !hasHiddenContent,
         ),
       );
       globalIndex = endIndex;

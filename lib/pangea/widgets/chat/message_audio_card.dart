@@ -202,7 +202,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                     )
                   : const CardErrorWidget(
                       error: "Null audio file in message_audio_card",
-                      maxWidth: AppConfig.toolbarMinWidth,
                     ),
         ),
       ],

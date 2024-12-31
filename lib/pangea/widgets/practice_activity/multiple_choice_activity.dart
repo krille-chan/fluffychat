@@ -147,9 +147,21 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
 
     // If the selected choice is correct, send the record and get the next activity
     if (widget.currentActivity.content.isCorrect(value, index)) {
-      MatrixState.pangeaController.getAnalytics.analyticsStream.stream.first
-          .then((_) {
-        widget.practiceCardController.onActivityFinish(correctAnswer: value);
+      // If the activity is an emoji activity, set the emoji value
+      if (widget.currentActivity.activityType == ActivityTypeEnum.emoji) {
+        if (widget.currentActivity.targetTokens?.length != 1) {
+          debugger(when: kDebugMode);
+        } else {
+          widget.currentActivity.targetTokens!.first.setEmoji(value);
+        }
+      }
+
+      // The next entry in the analytics stream should be from the above putAnalytics.setState.
+      // So we can wait for the stream to update before calling onActivityFinish.
+      final streamFuture = MatrixState
+          .pangeaController.getAnalytics.analyticsStream.stream.first;
+      streamFuture.then((_) {
+        widget.practiceCardController.onActivityFinish();
       });
     }
 

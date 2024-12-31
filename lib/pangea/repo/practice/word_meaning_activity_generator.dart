@@ -4,10 +4,13 @@ import 'package:fluffychat/pangea/models/practice_activities.dart/message_activi
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/repo/lemma_definition_repo.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class WordMeaningActivityGenerator {
   Future<MessageActivityResponse> get(
     MessageActivityRequest req,
+    BuildContext context,
   ) async {
     final ConstructIdentifier lemmaId = ConstructIdentifier(
       lemma: req.targetTokens[0].lemma.text,
@@ -29,6 +32,11 @@ class WordMeaningActivityGenerator {
     final choices =
         LemmaDictionaryRepo.getDistractorDefinitions(lemmaDefReq, 3);
 
+    if (!choices.contains(res.definition)) {
+      choices.add(res.definition);
+      choices.shuffle();
+    }
+
     return MessageActivityResponse(
       activity: PracticeActivityModel(
         tgtConstructs: [lemmaId],
@@ -36,7 +44,7 @@ class WordMeaningActivityGenerator {
         langCode: req.userL2,
         activityType: ActivityTypeEnum.wordMeaning,
         content: ActivityContent(
-          question: "?",
+          question: "${L10n.of(context).definition}?",
           choices: choices,
           answers: [res.definition],
           spanDisplayDetails: null,

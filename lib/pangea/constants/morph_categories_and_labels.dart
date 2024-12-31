@@ -213,6 +213,10 @@ IconData getIconForMorphFeature(String feature) {
       return Symbols.abc;
     case 'pos':
       return Symbols.toys_and_games;
+    case 'polarity':
+      return Icons.swap_vert;
+    case 'definite':
+      return Icons.check_circle_outline;
     default:
       debugger(when: kDebugMode);
       return Icons.help_outline;
