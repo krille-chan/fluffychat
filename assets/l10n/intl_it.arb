@@ -240,7 +240,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} ha cambiato il loro avatar",
+  "changedTheProfileAvatar": "{username} ha cambiato il suo avatar",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {

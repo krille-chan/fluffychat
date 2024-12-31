@@ -2437,5 +2437,12 @@
   "@presencesToggle": {
     "type": "text",
     "placeholders": {}
+  },
+  "aboutHomeserver": "O {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
   }
 }
