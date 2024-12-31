@@ -14,7 +14,7 @@ class PressableButton extends StatefulWidget {
 
   final void Function()? onPressed;
   final Stream? triggerAnimation;
-  final ClickPlayer? clickPlayer;
+  final bool playSound;
 
   final bool? isShadow;
 
@@ -26,8 +26,8 @@ class PressableButton extends StatefulWidget {
     this.buttonHeight = 5,
     this.depressed = false,
     this.triggerAnimation,
-    this.clickPlayer,
     this.isShadow,
+    this.playSound = false,
     super.key,
   });
 
@@ -41,6 +41,7 @@ class PressableButtonState extends State<PressableButton>
   late Animation<double> _tweenAnimation;
   Completer<void>? _animationCompleter;
   StreamSubscription? _triggerAnimationSubscription;
+  final ClickPlayer clickPlayer = ClickPlayer();
 
   // seperate the widget's depressed state from the internal
   // state to enable animations when this changes
@@ -112,7 +113,7 @@ class PressableButtonState extends State<PressableButton>
     if (_animationCompleter != null) {
       await _animationCompleter!.future;
     }
-    widget.clickPlayer?.play();
+    if (widget.playSound) clickPlayer.play();
     if (!kIsWeb) {
       HapticFeedback.mediumImpact();
     }
@@ -128,6 +129,7 @@ class PressableButtonState extends State<PressableButton>
   void dispose() {
     _controller.dispose();
     _triggerAnimationSubscription?.cancel();
+    clickPlayer.dispose();
     super.dispose();
   }
 

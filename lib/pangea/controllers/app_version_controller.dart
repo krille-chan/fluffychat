@@ -117,7 +117,7 @@ class AppVersionController {
       isOlderCurrentVersion = true;
     }
 
-    if (!isOlderCurrentVersion && !mandatoryUpdate) {
+    if (!isOlderCurrentVersion) {
       return;
     }
 
