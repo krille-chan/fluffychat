@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/utils/custom_http_client.dart';
 import 'package:fluffychat/utils/custom_image_resizer.dart';
@@ -145,6 +146,11 @@ abstract class ClientManager {
           ),
         ),
       ),
+      shouldReplaceRoomLastEvent: (_, event) {
+        return event.content.tryGet(ModelKey.transcription) == null &&
+            !event.type.startsWith("p.") &&
+            !event.type.startsWith("pangea.");
+      },
       // Pangea#
     );
   }
