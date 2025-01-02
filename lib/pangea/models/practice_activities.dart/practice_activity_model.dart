@@ -228,11 +228,6 @@ class PracticeActivityModel {
 
   String get question => content.question;
 
-  bool get shouldPlayTargetTokens =>
-      targetTokens != null &&
-      activityType != ActivityTypeEnum.hiddenWordListening &&
-      activityType != ActivityTypeEnum.morphId;
-
   factory PracticeActivityModel.fromJson(Map<String, dynamic> json) {
     // moving from multiple_choice to content as the key
     // this is to make the model more generic

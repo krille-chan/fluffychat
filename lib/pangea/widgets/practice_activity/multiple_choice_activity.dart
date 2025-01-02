@@ -4,7 +4,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -47,31 +46,10 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       widget.practiceCardController.currentCompletionRecord;
 
   @override
-  void initState() {
-    speakTargetTokens();
-
-    super.initState();
-  }
-
-  @override
   void didUpdateWidget(covariant MultipleChoiceActivity oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.currentActivity.hashCode != oldWidget.currentActivity.hashCode) {
-      speakTargetTokens();
       setState(() => selectedChoiceIndex = null);
-    }
-  }
-
-  void speakTargetTokens() {
-    if (widget.practiceCardController.currentActivity?.shouldPlayTargetTokens ??
-        false) {
-      tts.tryToSpeak(
-        PangeaToken.reconstructText(
-          widget.practiceCardController.currentActivity!.targetTokens!,
-        ),
-        context,
-        null,
-      );
     }
   }
 
