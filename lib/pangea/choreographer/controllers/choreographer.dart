@@ -87,17 +87,21 @@ class Choreographer {
       return;
     }
 
-    if (pangeaController.subscriptionController.subscriptionStatus ==
-        SubscriptionStatus.showPaywall) {
-      OverlayUtil.showPositionedCard(
-        context: context,
-        cardToShow: PaywallCard(
-          chatController: chatController,
-        ),
-        maxHeight: 325,
-        maxWidth: 325,
-        transformTargetId: inputTransformTargetKey,
-      );
+    if (!pangeaController.subscriptionController.isSubscribed) {
+      // don't want to run IGC if user isn't subscribed, so either
+      // show the paywall if applicable or just send the message
+      final status = pangeaController.subscriptionController.subscriptionStatus;
+      status == SubscriptionStatus.showPaywall
+          ? OverlayUtil.showPositionedCard(
+              context: context,
+              cardToShow: PaywallCard(
+                chatController: chatController,
+              ),
+              maxHeight: 325,
+              maxWidth: 325,
+              transformTargetId: inputTransformTargetKey,
+            )
+          : chatController.send();
       return;
     }
 
