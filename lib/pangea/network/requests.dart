@@ -1,20 +1,18 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class Requests {
   late String? baseUrl;
+  // Matrix access token
   late String? accessToken;
-  late String? matrixAccessToken;
   late String? choreoApiKey;
   //Question: How can we make baseUrl optional?
   Requests({
     this.accessToken,
     this.baseUrl = '',
-    this.matrixAccessToken,
     this.choreoApiKey,
   });
 
@@ -134,9 +132,7 @@ class Requests {
     };
     if (accessToken != null) {
       headers["Authorization"] = 'Bearer ${accessToken!}';
-    }
-    if (matrixAccessToken != null) {
-      headers["Matrix-Access-Token"] = matrixAccessToken!;
+      //headers["Matrix-Access-Token"] = accessToken!;
     }
     if (choreoApiKey != null) {
       headers['api_key'] = choreoApiKey!;

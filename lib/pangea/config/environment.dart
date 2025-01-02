@@ -46,14 +46,6 @@ class Environment {
         'https://c2fd19ab2cdc4ebb939a32d01c0e9fa1@o225078.ingest.sentry.io/1376295';
   }
 
-  static String get rcProjectId {
-    return dotenv.env["RC_PROJECT"] ?? 'a499dc21';
-  }
-
-  static String get rcKey {
-    return dotenv.env["RC_KEY"] ?? 'sk_eVGBdPyInaOfJrKlPBgFVnRynqKJB';
-  }
-
   static String get rcGoogleKey {
     return dotenv.env["RC_GOOGLE_KEY"] ?? 'goog_paQMrzFKGzuWZvcMTPkkvIsifJe';
   }

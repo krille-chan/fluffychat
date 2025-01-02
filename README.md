@@ -26,6 +26,7 @@
     * Download Android File Transfer here: ​​https://www.android.com/filetransfer/
 * To run the app from VSCode terminal:
     * On web, run `flutter run -d chrome –hot`
+    * Or as a web server (Usage with WSL or remote connect) `flutter run --release -d web-server -web-port=3000`
     * On mobile device or simulator, run `flutter run –hot -d <DEVICE_NAME>`
 
 # Special thanks

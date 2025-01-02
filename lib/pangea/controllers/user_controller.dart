@@ -21,10 +21,6 @@ class UserController extends BaseController {
   /// Convenience function that returns the user ID currently stored in the client.
   String? get userId => _pangeaController.matrixState.client.userID;
 
-  /// Convenience function that returns the accessToken currently stored in the client.
-  String? get _matrixAccessToken =>
-      _pangeaController.matrixState.client.accessToken;
-
   /// Cached version of the user profile, so it doesn't have
   /// to be read in from client's account data each time it is accessed.
   Profile? _cachedProfile;
