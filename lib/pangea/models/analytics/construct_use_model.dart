@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/constants/analytics_constants.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
@@ -60,5 +61,20 @@ class ConstructUses {
       'uses': uses.map((e) => e.useType.string).toList(),
     };
     return json;
+  }
+
+  String get xpEmoji {
+    if (points < AnalyticsConstants.xpForGreens) {
+      // bean emoji
+      return "🫛";
+    }
+
+    if (points < AnalyticsConstants.xpForFlower) {
+      // sprout emoji
+      return "🌱";
+    }
+
+    // flower emoji
+    return "🌺";
   }
 }

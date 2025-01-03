@@ -2,26 +2,26 @@ import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_use_model.dart';
-import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/analytics_popup/analytics_xp_tile.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/morph_analytics_popup/morph_analytics_xp_tile.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class AnalyticsPopup extends StatefulWidget {
+class MorphAnalyticsPopup extends StatefulWidget {
   final ConstructTypeEnum type;
   final bool showGroups;
 
-  const AnalyticsPopup({
+  const MorphAnalyticsPopup({
     required this.type,
     this.showGroups = true,
     super.key,
   });
 
   @override
-  AnalyticsPopupState createState() => AnalyticsPopupState();
+  MorphAnalyticsPopupState createState() => MorphAnalyticsPopupState();
 }
 
-class AnalyticsPopupState extends State<AnalyticsPopup> {
+class MorphAnalyticsPopupState extends State<MorphAnalyticsPopup> {
   String? selectedCategory;
   ConstructListModel get _constructsModel =>
       MatrixState.pangeaController.getAnalytics.constructListModel;

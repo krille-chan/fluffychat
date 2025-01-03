@@ -581,16 +581,5 @@ class PangeaToken {
         .tryGet<String>(ModelKey.emoji);
   }
 
-  String get xpEmoji {
-    if (xp < 30) {
-      // bean emoji
-      return "🫛";
-    } else if (xp < 100) {
-      // sprout emoji
-      return "🌱";
-    } else {
-      // flower emoji
-      return "🌺";
-    }
-  }
+  String get xpEmoji => vocabConstruct.xpEmoji;
 }

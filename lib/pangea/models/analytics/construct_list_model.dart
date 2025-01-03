@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/constants/analytics_constants.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_use_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
@@ -309,4 +310,25 @@ class ConstructListModel {
 
     return dp[m][n];
   }
+
+  // uses where points < AnalyticConstants.xpForGreens
+  List<ConstructUses> get seeds => _constructList
+      .where(
+        (use) => use.points < AnalyticsConstants.xpForGreens,
+      )
+      .toList();
+
+  List<ConstructUses> get greens => _constructList
+      .where(
+        (use) =>
+            use.points >= AnalyticsConstants.xpForGreens &&
+            use.points < AnalyticsConstants.xpForFlower,
+      )
+      .toList();
+
+  List<ConstructUses> get flowers => _constructList
+      .where(
+        (use) => use.points >= AnalyticsConstants.xpForFlower,
+      )
+      .toList();
 }
