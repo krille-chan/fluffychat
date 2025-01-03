@@ -6,10 +6,13 @@ import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choic
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LemmaActivityGenerator {
   Future<MessageActivityResponse> get(
     MessageActivityRequest req,
+    BuildContext context,
   ) async {
     debugger(when: kDebugMode && req.targetTokens.length != 1);
 
@@ -26,7 +29,7 @@ class LemmaActivityGenerator {
         tgtConstructs: [token.vocabConstructID],
         langCode: req.userL2,
         content: ActivityContent(
-          question: "",
+          question: L10n.of(context).chooseBaseForm,
           choices: choices,
           answers: [token.lemma.text],
           spanDisplayDetails: null,

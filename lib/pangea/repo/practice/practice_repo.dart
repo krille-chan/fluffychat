@@ -127,7 +127,7 @@ class PracticeGenerationController {
       case ActivityTypeEnum.emoji:
         return _emoji.get(req);
       case ActivityTypeEnum.lemmaId:
-        return _lemma.get(req);
+        return _lemma.get(req, context);
       case ActivityTypeEnum.morphId:
         return _morph.get(req);
       case ActivityTypeEnum.wordMeaning:
