@@ -10,6 +10,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:just_audio_media_kit/just_audio_media_kit.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
@@ -216,6 +217,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     initMatrix();
+    if (PlatformInfos.isLinux || PlatformInfos.isWindows) {
+      JustAudioMediaKit.ensureInitialized();
+      JustAudioMediaKit.title = AppConfig.applicationName;
+    }
     if (PlatformInfos.isWeb) {
       initConfig().then((_) => initSettings());
     } else {
