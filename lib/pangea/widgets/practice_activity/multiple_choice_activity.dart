@@ -197,7 +197,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           style: AppConfig.messageTextStyle(
             widget.event,
             Theme.of(context).colorScheme.primary,
-          ),
+          ).merge(const TextStyle(fontStyle: FontStyle.italic)),
         ),
         const SizedBox(height: 8),
         if (practiceActivity.activityType ==

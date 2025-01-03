@@ -213,7 +213,8 @@ class PangeaToken {
       case ActivityTypeEnum.wordMeaning:
         return canBeDefined;
       case ActivityTypeEnum.lemmaId:
-        return lemma.saveVocab;
+        return lemma.saveVocab &&
+            text.content.toLowerCase() != lemma.text.toLowerCase();
       case ActivityTypeEnum.emoji:
         return true;
       case ActivityTypeEnum.morphId:
