@@ -1883,10 +1883,10 @@ packages:
     dependency: "direct main"
     description:
       name: swipe_to_action
-      sha256: "0914f78df07a15b5fd97e800036fd63a2bcd4dbe67a4a514a597303806a361ea"
+      sha256: "05289a2bff6a0227deeff382afa1c46643d1f077e678d78f76440e153ea1ef7d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   sync_http:
     dependency: transitive
     description:

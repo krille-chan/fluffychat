@@ -84,7 +84,7 @@ dependencies:
   slugify: ^2.0.0
   sqflite_common_ffi: ^2.3.3
   sqlcipher_flutter_libs: ^0.6.1
-  swipe_to_action: ^0.2.0
+  swipe_to_action: ^0.3.0
   tor_detector_web: ^1.1.0
   uni_links: ^0.5.1
   unifiedpush: ^5.0.1
