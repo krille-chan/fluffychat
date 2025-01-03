@@ -310,7 +310,8 @@ class PangeaToken {
       case ActivityTypeEnum.hiddenWordListening:
         return daysSinceLastUseByType(a) > 7;
       case ActivityTypeEnum.lemmaId:
-        return daysSinceLastUseByType(a) > 7;
+        return _didActivitySuccessfully(ActivityTypeEnum.wordMeaning) &&
+            daysSinceLastUseByType(a) > 7;
       case ActivityTypeEnum.emoji:
         return getEmoji() == null;
       case ActivityTypeEnum.morphId:
