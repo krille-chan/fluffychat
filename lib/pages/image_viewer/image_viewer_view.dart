@@ -16,7 +16,7 @@ class ImageViewerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconButtonStyle = IconButton.styleFrom(
-      backgroundColor: Colors.black.withAlpha(128),
+      backgroundColor: Colors.black.withAlpha(200),
       foregroundColor: Colors.white,
     );
     return GestureDetector(
@@ -96,24 +96,30 @@ class ImageViewerView extends StatelessWidget {
               if (hovered && controller.canGoBack)
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    style: iconButtonStyle,
-                    icon: const Icon(Icons.chevron_left_outlined),
-                    onPressed: () => controller.pageController.previousPage(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: IconButton(
+                      style: iconButtonStyle,
+                      icon: const Icon(Icons.chevron_left_outlined),
+                      onPressed: () => controller.pageController.previousPage(
+                        duration: FluffyThemes.animationDuration,
+                        curve: FluffyThemes.animationCurve,
+                      ),
                     ),
                   ),
                 ),
               if (hovered && controller.canGoNext)
                 Align(
                   alignment: Alignment.centerRight,
-                  child: IconButton(
-                    style: iconButtonStyle,
-                    icon: const Icon(Icons.chevron_right_outlined),
-                    onPressed: () => controller.pageController.nextPage(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: IconButton(
+                      style: iconButtonStyle,
+                      icon: const Icon(Icons.chevron_right_outlined),
+                      onPressed: () => controller.pageController.nextPage(
+                        duration: FluffyThemes.animationDuration,
+                        curve: FluffyThemes.animationCurve,
+                      ),
                     ),
                   ),
                 ),
