@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_233",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cFG(){return new B.Fp(A.dr("eu"))},
-Fp:function Fp(d){this.a=d}}
+cFO(){return new B.Fq(A.dr("eu"))},
+Fq:function Fq(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[17],B)
-B.Fp.prototype={
+B.Fq.prototype={
 gnN(){return"false"},
 gk_(){return"Idatzi berriro pasahitza"},
 gmg(){return"Ez da irudi-fitxategia."},
@@ -576,9 +576,9 @@ go5(){return"Gehitu esteka"},
 gnU(){return"Ezin da txatera batu. Agian besteak elkarrizketa itxiko zuen honezkero."},
 D(d,e){return this.gbh(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Fp,C.aG)})()
-A.e4(b.typeUniverse,JSON.parse('{"Fp":{"aG":[]}}'))
+x(B.Fq,C.aG)})()
+A.e4(b.typeUniverse,JSON.parse('{"Fq":{"aG":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_233",e:"endPart",h:b})})($__dart_deferred_initializers__,"U9D7wKnAgVbF2mqIGQn0mX3UzTI=");
+a.eventLog.push({p:"main.dart.js_233",e:"endPart",h:b})})($__dart_deferred_initializers__,"xCTQZ5qgNpRUQsdrwJeYaBjYCGw=");
 //# sourceMappingURL=main.dart.js_233.part.js.map
