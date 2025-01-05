@@ -28,11 +28,13 @@ class MessageContent extends StatelessWidget {
   final Color textColor;
   final void Function(Event)? onInfoTab;
   final BorderRadius borderRadius;
+  final Timeline timeline;
 
   const MessageContent(
     this.event, {
     this.onInfoTab,
     super.key,
+    required this.timeline,
     required this.textColor,
     required this.borderRadius,
   });
@@ -137,6 +139,7 @@ class MessageContent extends StatelessWidget {
               height: height,
               fit: fit,
               borderRadius: borderRadius,
+              timeline: timeline,
             );
           case CuteEventContent.eventType:
             return CuteContent(event);

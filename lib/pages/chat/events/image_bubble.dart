@@ -19,6 +19,7 @@ class ImageBubble extends StatelessWidget {
   final double height;
   final void Function()? onTap;
   final BorderRadius? borderRadius;
+  final Timeline? timeline;
 
   const ImageBubble(
     this.event, {
@@ -32,6 +33,7 @@ class ImageBubble extends StatelessWidget {
     this.animated = false,
     this.onTap,
     this.borderRadius,
+    this.timeline,
     super.key,
   });
 
@@ -62,6 +64,7 @@ class ImageBubble extends StatelessWidget {
       context: context,
       builder: (_) => ImageViewer(
         event,
+        timeline: timeline,
         outerContext: context,
       ),
     );
