@@ -78,6 +78,8 @@ String? getGrammarCopy({
       return L10n.of(context).grammarCopyPUNCTTYPEbrck;
     case 'grammarCopyNOUNTYPEart':
       return L10n.of(context).grammarCopyNOUNTYPEart;
+    case 'grammarCopyNOUNTYPEcomm':
+      return L10n.of(context).grammarCopyNOUNTYPEcomm;
     case 'grammarCopyNUMBERPSORsing':
       return L10n.of(context).grammarCopyNUMBERPSORsing;
     case 'grammarCopyNUMBERPSORplur':
