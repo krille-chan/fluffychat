@@ -150,6 +150,13 @@ class MessageTextWidget extends StatelessWidget {
       isSelected: isSelected,
     );
 
+    if (tokenPositions == null) {
+      return Text(
+        pangeaMessageEvent.messageDisplayText,
+        style: style,
+      );
+    }
+
     return RichText(
       text: TextSpan(
         children:
