@@ -45,22 +45,22 @@ class ImageViewerController extends State<ImageViewer> {
 
   late final List<Event> allEvents;
 
-  void prevImage() {
-    setState(() {
-      pageController.previousPage(
-        duration: FluffyThemes.animationDuration,
-        curve: FluffyThemes.animationCurve,
-      );
-    });
+  void prevImage() async {
+    await pageController.previousPage(
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
+    );
+    if (!mounted) return;
+    setState(() {});
   }
 
-  void nextImage() {
-    setState(() {
-      pageController.nextPage(
-        duration: FluffyThemes.animationDuration,
-        curve: FluffyThemes.animationCurve,
-      );
-    });
+  void nextImage() async {
+    await pageController.nextPage(
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
+    );
+    if (!mounted) return;
+    setState(() {});
   }
 
   int get _index => pageController.page?.toInt() ?? 0;
