@@ -131,8 +131,6 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
       }
     }
 
-    if (constructs.isEmpty) return;
-
     final level = _pangeaController.getAnalytics.constructListModel.level;
 
     _addLocalMessage(eventID, constructs).then(

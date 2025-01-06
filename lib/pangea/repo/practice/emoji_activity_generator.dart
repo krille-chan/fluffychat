@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
@@ -16,6 +17,12 @@ class EmojiActivityGenerator {
     final PangeaToken token = req.targetTokens.first;
 
     final List<String> emojis = await token.getEmojiChoices();
+    final tokenEmoji = token.getEmoji();
+    if (tokenEmoji != null && !emojis.contains(tokenEmoji)) {
+      final Random random = Random();
+      final int randomIndex = random.nextInt(emojis.length);
+      emojis[randomIndex] = tokenEmoji;
+    }
 
     // TODO - modify MultipleChoiceActivity flow to allow no correct answer
     return MessageActivityResponse(

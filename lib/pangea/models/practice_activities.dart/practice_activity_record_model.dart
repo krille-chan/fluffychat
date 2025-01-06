@@ -81,6 +81,10 @@ class PracticeActivityRecordModel {
     }
   }
 
+  void clearResponses() {
+    responses.clear();
+  }
+
   /// Returns a list of [OneConstructUse] objects representing the uses of the practice activity.
   ///
   /// The [practiceActivity] parameter is the parent event, representing the activity itself.
@@ -172,6 +176,8 @@ class ActivityRecordResponse {
 
     if (practiceActivity.activityType == ActivityTypeEnum.emoji) {
       final token = practiceActivity.targetTokens!.first;
+      // if the emoji is already set, don't give points
+      if (token.getEmoji() != null) return [];
       return [
         OneConstructUse(
           lemma: token.lemma.text,

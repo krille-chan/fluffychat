@@ -313,7 +313,7 @@ class PangeaToken {
         return _didActivitySuccessfully(ActivityTypeEnum.wordMeaning) &&
             daysSinceLastUseByType(a) > 7;
       case ActivityTypeEnum.emoji:
-        return getEmoji() == null;
+        return true;
       case ActivityTypeEnum.morphId:
         if (morphFeature == null || morphTag == null) {
           debugger(when: kDebugMode);

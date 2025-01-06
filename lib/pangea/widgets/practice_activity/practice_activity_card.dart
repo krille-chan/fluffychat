@@ -303,12 +303,20 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       case ActivityTypeEnum.lemmaId:
       case ActivityTypeEnum.emoji:
       case ActivityTypeEnum.morphId:
+        final selectedChoice =
+            currentActivity?.activityType == ActivityTypeEnum.emoji &&
+                    (currentActivity?.targetTokens?.isNotEmpty ?? false)
+                ? currentActivity?.targetTokens?.first.getEmoji()
+                : null;
         return MultipleChoiceActivity(
           practiceCardController: this,
           currentActivity: currentActivity!,
           event: widget.pangeaMessageEvent.event,
           onError: _onError,
           overlayController: widget.overlayController,
+          initialSelectedChoice: selectedChoice,
+          clearResponsesOnUpdate:
+              currentActivity?.activityType == ActivityTypeEnum.emoji,
         );
     }
   }

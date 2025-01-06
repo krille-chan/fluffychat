@@ -25,6 +25,8 @@ class MultipleChoiceActivity extends StatefulWidget {
   final Event event;
   final VoidCallback? onError;
   final MessageOverlayController overlayController;
+  final String? initialSelectedChoice;
+  final bool clearResponsesOnUpdate;
 
   const MultipleChoiceActivity({
     super.key,
@@ -32,6 +34,8 @@ class MultipleChoiceActivity extends StatefulWidget {
     required this.currentActivity,
     required this.event,
     required this.overlayController,
+    this.initialSelectedChoice,
+    this.clearResponsesOnUpdate = false,
     this.onError,
   });
 
@@ -44,6 +48,17 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
 
   PracticeActivityRecordModel? get currentRecordModel =>
       widget.practiceCardController.currentCompletionRecord;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialSelectedChoice != null) {
+      currentRecordModel?.addResponse(
+        text: widget.initialSelectedChoice,
+        score: 1,
+      );
+    }
+  }
 
   @override
   void didUpdateWidget(covariant MultipleChoiceActivity oldWidget) {
@@ -87,6 +102,10 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
 
     if (currentRecordModel?.hasTextResponse(value) ?? false) {
       return;
+    }
+
+    if (widget.clearResponsesOnUpdate) {
+      currentRecordModel?.clearResponses();
     }
 
     currentRecordModel?.addResponse(
@@ -229,6 +248,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           tts: practiceActivity.activityType.includeTTSOnClick ? tts : null,
           enableAudio: !widget.overlayController.isPlayingAudio,
           getDisplayCopy: _getDisplayCopy,
+          enableMultiSelect:
+              widget.currentActivity.activityType == ActivityTypeEnum.emoji,
         ),
       ],
     );
