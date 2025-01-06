@@ -4660,5 +4660,6 @@
   "publicProfileDesc": "By enabling this option, I confirm that I am of legal age in my country of residence",
   "clickWordsInstructions": "Click on individual words for more activities.",
   "chooseBestDefinition": "Choose the best definition",
-  "chooseBaseForm": "Choose the base form"
+  "chooseBaseForm": "Choose the base form",
+  "notTheCodeError": "Sorry, that's not the code!"
 }

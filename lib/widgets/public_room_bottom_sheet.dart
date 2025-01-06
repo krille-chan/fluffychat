@@ -54,6 +54,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
     await MatrixState.pangeaController.classController.joinClasswithCode(
       context,
       _codeController.text,
+      notFoundError: L10n.of(context).notTheCodeError,
     );
   }
 

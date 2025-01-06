@@ -68,7 +68,11 @@ class ClassController extends BaseController {
     }
   }
 
-  Future<void> joinClasswithCode(BuildContext context, String classCode) async {
+  Future<void> joinClasswithCode(
+    BuildContext context,
+    String classCode, {
+    String? notFoundError,
+  }) async {
     final client = Matrix.of(context).client;
     final space = await showFutureLoadingDialog<Room?>(
       context: context,
@@ -88,7 +92,7 @@ class ClassController extends BaseController {
           throw L10n.of(context).tooManyRequest;
         }
         if (knockResponse.statusCode != 200) {
-          throw L10n.of(context).unableToFindClass;
+          throw notFoundError ?? L10n.of(context).unableToFindClass;
         }
 
         final knockResult = jsonDecode(knockResponse.body);
@@ -106,7 +110,7 @@ class ClassController extends BaseController {
         }
 
         if (foundClasses.isEmpty) {
-          throw L10n.of(context).unableToFindClass;
+          throw notFoundError ?? L10n.of(context).unableToFindClass;
         }
 
         final chosenClassId = foundClasses.first;
