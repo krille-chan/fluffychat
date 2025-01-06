@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -104,10 +103,7 @@ class ImageViewerView extends StatelessWidget {
                       style: iconButtonStyle,
                       tooltip: L10n.of(context).previous,
                       icon: const Icon(Icons.chevron_left_outlined),
-                      onPressed: () => controller.pageController.previousPage(
-                        duration: FluffyThemes.animationDuration,
-                        curve: FluffyThemes.animationCurve,
-                      ),
+                      onPressed: controller.prevImage,
                     ),
                   ),
                 ),
@@ -120,10 +116,7 @@ class ImageViewerView extends StatelessWidget {
                       style: iconButtonStyle,
                       tooltip: L10n.of(context).next,
                       icon: const Icon(Icons.chevron_right_outlined),
-                      onPressed: () => controller.pageController.nextPage(
-                        duration: FluffyThemes.animationDuration,
-                        curve: FluffyThemes.animationCurve,
-                      ),
+                      onPressed: controller.nextImage,
                     ),
                   ),
                 ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer_view.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
@@ -43,6 +44,24 @@ class ImageViewerController extends State<ImageViewer> {
   late final PageController pageController;
 
   late final List<Event> allEvents;
+
+  void prevImage() {
+    setState(() {
+      pageController.previousPage(
+        duration: FluffyThemes.animationDuration,
+        curve: FluffyThemes.animationCurve,
+      );
+    });
+  }
+
+  void nextImage() {
+    setState(() {
+      pageController.nextPage(
+        duration: FluffyThemes.animationDuration,
+        curve: FluffyThemes.animationCurve,
+      );
+    });
+  }
 
   int get _index => pageController.page?.toInt() ?? 0;
 
