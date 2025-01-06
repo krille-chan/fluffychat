@@ -40,13 +40,20 @@ class TtsController {
     await _languageSubscription?.cancel();
   }
 
-  void _onError(dynamic message) => ErrorHandler.logError(
-        e: message,
-        m: (message.toString().isNotEmpty) ? message.toString() : 'TTS error',
-        data: {
-          'message': message,
-        },
-      );
+  void _onError(dynamic message) {
+    // the package treats this as an error, but it's not
+    // don't send to sentry
+    if (message == 'canceled' || message == 'interrupted') {
+      return;
+    }
+
+    ErrorHandler.logError(
+      e: 'TTS error',
+      data: {
+        'message': message,
+      },
+    );
+  }
 
   Future<void> setupTTS() async {
     try {
