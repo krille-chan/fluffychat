@@ -25,6 +25,7 @@ packageLicenseOverride:
   latlong2: Apache-2.0
   platform_detect: Apache-2.0
   rxdart: Apache-2.0
+  just_audio_media_kit: Apache-2.0
 
   # flutter's internal packages
   flutter_driver: BSD-3-Clause
