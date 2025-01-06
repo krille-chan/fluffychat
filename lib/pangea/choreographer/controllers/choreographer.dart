@@ -77,6 +77,11 @@ class Choreographer {
 
   void send(BuildContext context) {
     debugPrint("can send message: $canSendMessage");
+
+    // if isFetching, already called to getLanguageHelp and hasn't completed yet
+    // could happen if user clicked send button multiple times in a row
+    if (isFetching) return;
+
     if (igc.igcTextData != null && igc.igcTextData!.matches.isNotEmpty) {
       igc.showFirstMatch(context);
       return;
