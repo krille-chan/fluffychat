@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/utils/message_text_util.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -47,110 +48,18 @@ class MessageTokenText extends StatelessWidget {
       );
     }
 
-    // Convert the entire message into a list of characters
-    final Characters messageCharacters =
-        _pangeaMessageEvent.messageDisplayText.characters;
-
-    // When building token positions, use grapheme cluster indices
-    final List<TokenPosition> tokenPositions = [];
-    int globalIndex = 0;
-
-    for (final token
-        in _pangeaMessageEvent.messageDisplayRepresentation!.tokens!) {
-      final start = token.start;
-      final end = token.end;
-
-      // Calculate the number of grapheme clusters up to the start and end positions
-      final int startIndex = messageCharacters.take(start).length;
-      final int endIndex = messageCharacters.take(end).length;
-
-      final hideContent =
-          messageAnalyticsEntry?.isTokenInHiddenWordActivity(token) ?? false;
-
-      final hasHiddenContent =
-          messageAnalyticsEntry?.hasHiddenWordActivity ?? false;
-
-      if (globalIndex < startIndex) {
-        tokenPositions.add(
-          TokenPosition(
-            start: globalIndex,
-            end: startIndex,
-            hideContent: false,
-            highlight: (_isSelected?.call(token) ?? false) && !hasHiddenContent,
-          ),
-        );
-      }
-
-      tokenPositions.add(
-        TokenPosition(
-          start: startIndex,
-          end: endIndex,
-          token: token,
-          hideContent: hideContent,
-          highlight: (_isSelected?.call(token) ?? false) &&
-              !hideContent &&
-              !hasHiddenContent,
-        ),
-      );
-      globalIndex = endIndex;
-    }
-
     void callOnClick(TokenPosition tokenPosition) {
       _onClick != null && tokenPosition.token != null
           ? _onClick!(tokenPosition.token!)
           : null;
     }
 
-    return RichText(
-      text: TextSpan(
-        children:
-            tokenPositions.mapIndexed((int i, TokenPosition tokenPosition) {
-          final substring = messageCharacters
-              .skip(tokenPosition.start)
-              .take(tokenPosition.end - tokenPosition.start)
-              .toString();
-
-          if (tokenPosition.token != null) {
-            if (tokenPosition.hideContent) {
-              return WidgetSpan(
-                child: GestureDetector(
-                  onTap: () => callOnClick(tokenPosition),
-                  child: HiddenText(text: substring, style: _style),
-                ),
-              );
-            }
-            return TextSpan(
-              recognizer: TapGestureRecognizer()
-                ..onTap = () => callOnClick(tokenPosition),
-              text: substring,
-              style: _style.merge(
-                TextStyle(
-                  backgroundColor: tokenPosition.highlight
-                      ? Theme.of(context).brightness == Brightness.light
-                          ? Colors.black.withOpacity(0.4)
-                          : Colors.white.withOpacity(0.4)
-                      : Colors.transparent,
-                ),
-              ),
-            );
-          } else {
-            if ((i > 0 || i < tokenPositions.length - 1) &&
-                tokenPositions[i + 1].hideContent &&
-                tokenPositions[i - 1].hideContent) {
-              return WidgetSpan(
-                child: GestureDetector(
-                  onTap: () => callOnClick(tokenPosition),
-                  child: HiddenText(text: substring, style: _style),
-                ),
-              );
-            }
-            return TextSpan(
-              text: substring,
-              style: _style,
-            );
-          }
-        }).toList(),
-      ),
+    return MessageTextWidget(
+      pangeaMessageEvent: _pangeaMessageEvent,
+      style: _style,
+      messageAnalyticsEntry: messageAnalyticsEntry,
+      isSelected: _isSelected,
+      onClick: callOnClick,
     );
   }
 }
@@ -209,6 +118,92 @@ class HiddenText extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class MessageTextWidget extends StatelessWidget {
+  final PangeaMessageEvent pangeaMessageEvent;
+  final TextStyle style;
+  final MessageAnalyticsEntry? messageAnalyticsEntry;
+  final bool Function(PangeaToken)? isSelected;
+  final void Function(TokenPosition tokenPosition)? onClick;
+
+  const MessageTextWidget({
+    super.key,
+    required this.pangeaMessageEvent,
+    required this.style,
+    this.messageAnalyticsEntry,
+    this.isSelected,
+    this.onClick,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Characters messageCharacters =
+        pangeaMessageEvent.messageDisplayText.characters;
+
+    final tokenPositions = MessageTextUtil.getTokenPositions(
+      pangeaMessageEvent,
+      messageAnalyticsEntry: messageAnalyticsEntry,
+      isSelected: isSelected,
+    );
+
+    return RichText(
+      text: TextSpan(
+        children:
+            tokenPositions.mapIndexed((int i, TokenPosition tokenPosition) {
+          final substring = messageCharacters
+              .skip(tokenPosition.start)
+              .take(tokenPosition.end - tokenPosition.start)
+              .toString();
+
+          if (tokenPosition.token != null) {
+            if (tokenPosition.hideContent) {
+              return WidgetSpan(
+                child: GestureDetector(
+                  onTap: onClick != null
+                      ? () => onClick?.call(tokenPosition)
+                      : null,
+                  child: HiddenText(text: substring, style: style),
+                ),
+              );
+            }
+            return TextSpan(
+              recognizer: TapGestureRecognizer()
+                ..onTap =
+                    onClick != null ? () => onClick?.call(tokenPosition) : null,
+              text: substring,
+              style: style.merge(
+                TextStyle(
+                  backgroundColor: tokenPosition.highlight
+                      ? Theme.of(context).brightness == Brightness.light
+                          ? Colors.black.withOpacity(0.4)
+                          : Colors.white.withOpacity(0.4)
+                      : Colors.transparent,
+                ),
+              ),
+            );
+          } else {
+            if ((i > 0 || i < tokenPositions.length - 1) &&
+                tokenPositions[i + 1].hideContent &&
+                tokenPositions[i - 1].hideContent) {
+              return WidgetSpan(
+                child: GestureDetector(
+                  onTap: onClick != null
+                      ? () => onClick?.call(tokenPosition)
+                      : null,
+                  child: HiddenText(text: substring, style: style),
+                ),
+              );
+            }
+            return TextSpan(
+              text: substring,
+              style: style,
+            );
+          }
+        }).toList(),
       ),
     );
   }
