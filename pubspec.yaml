@@ -58,7 +58,7 @@ dependencies:
   flutter_olm: 1.3.2 # Keep in sync with scripts/prepare-web.sh ! 1.4.0 does currently not build on Android
   flutter_openssl_crypto: ^0.3.0
   flutter_ringtone_player: ^4.0.0+2
-  flutter_secure_storage: ^9.2.2
+  flutter_secure_storage: ^9.2.3
   flutter_shortcuts:
     git: https://github.com/krille-chan/flutter_shortcuts.git
   flutter_typeahead: ^5.2.0
