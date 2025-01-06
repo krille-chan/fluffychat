@@ -57,9 +57,7 @@ class ImageViewerView extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Builder(
                   builder: (context) => IconButton(
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.black.withAlpha(128),
-                    ),
+                    style: iconButtonStyle,
                     onPressed: () => controller.shareFileAction(context),
                     tooltip: L10n.of(context).share,
                     color: Colors.white,
@@ -82,12 +80,16 @@ class ImageViewerView extends StatelessWidget {
                   child: Center(
                     child: Hero(
                       tag: controller.allEvents[i].eventId,
-                      child: MxcImage(
-                        key: ValueKey(controller.allEvents[i].eventId),
-                        event: controller.allEvents[i],
-                        fit: BoxFit.contain,
-                        isThumbnail: false,
-                        animated: true,
+                      child: GestureDetector(
+                        // Ignore taps to not go back here:
+                        onTap: () {},
+                        child: MxcImage(
+                          key: ValueKey(controller.allEvents[i].eventId),
+                          event: controller.allEvents[i],
+                          fit: BoxFit.contain,
+                          isThumbnail: false,
+                          animated: true,
+                        ),
                       ),
                     ),
                   ),
@@ -100,6 +102,7 @@ class ImageViewerView extends StatelessWidget {
                     padding: const EdgeInsets.all(12.0),
                     child: IconButton(
                       style: iconButtonStyle,
+                      tooltip: L10n.of(context).previous,
                       icon: const Icon(Icons.chevron_left_outlined),
                       onPressed: () => controller.pageController.previousPage(
                         duration: FluffyThemes.animationDuration,
@@ -115,6 +118,7 @@ class ImageViewerView extends StatelessWidget {
                     padding: const EdgeInsets.all(12.0),
                     child: IconButton(
                       style: iconButtonStyle,
+                      tooltip: L10n.of(context).next,
                       icon: const Icon(Icons.chevron_right_outlined),
                       onPressed: () => controller.pageController.nextPage(
                         duration: FluffyThemes.animationDuration,

@@ -2820,5 +2820,6 @@
   "pleaseFillOut": "Please fill out",
   "invalidUrl": "Invalid url",
   "addLink": "Add link",
-  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation."
+  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation.",
+  "previous": "Previous"
 }
