@@ -7,7 +7,6 @@ import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart'
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/repo/lemma_definition_repo.dart';
 import 'package:fluffychat/pangea/utils/grammar/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
@@ -79,12 +78,6 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
   // is computationally expensive, so we only do it once
   bool _canGenerateLemmaActivity = false;
 
-  bool get _canGenerateDefintionActivity =>
-      LemmaDictionaryRepo.getDistractorDefinitions(
-        widget.token.lemma.text,
-        1,
-      ).isNotEmpty;
-
   @override
   void initState() {
     super.initState();
@@ -111,8 +104,7 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
   }
 
   Future<void> _setCanGenerateLemmaActivity() async {
-    final canGenerate =
-        await widget.token.canGenerateDistractors(ActivityTypeEnum.lemmaId);
+    final canGenerate = await widget.token.canGenerateLemmaDistractors();
     if (mounted) setState(() => _canGenerateLemmaActivity = canGenerate);
   }
 
@@ -181,17 +173,32 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
     });
   }
 
-  bool _shouldShowActivity(WordZoomSelection selection) =>
-      widget.token.shouldDoActivity(
-        a: selection.activityType,
-        feature: _selectedMorphFeature,
-        tag: _selectedMorphFeature == null
-            ? null
-            : widget.token.morph[_selectedMorphFeature],
-      ) &&
-      (selection != WordZoomSelection.lemma || _canGenerateLemmaActivity) &&
-      (selection != WordZoomSelection.translation ||
-          _canGenerateDefintionActivity);
+  bool _shouldShowActivity(WordZoomSelection selection) {
+    final shouldDo = widget.token.shouldDoActivity(
+      a: selection.activityType,
+      feature: _selectedMorphFeature,
+      tag: _selectedMorphFeature == null
+          ? null
+          : widget.token.morph[_selectedMorphFeature],
+    );
+    if (!shouldDo) return false;
+
+    switch (selection) {
+      case WordZoomSelection.lemma:
+        return _canGenerateLemmaActivity;
+      case WordZoomSelection.translation:
+      case WordZoomSelection.morph:
+        return widget.token.canGenerateDistractors(
+          selection.activityType,
+          morphFeature: _selectedMorphFeature,
+          morphTag: _selectedMorphFeature == null
+              ? null
+              : widget.token.morph[_selectedMorphFeature],
+        );
+      case WordZoomSelection.emoji:
+        return true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

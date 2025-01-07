@@ -351,30 +351,45 @@ class PangeaToken {
         ?.value;
   }
 
-  Future<bool> canGenerateDistractors(
+  /// Syncronously determine if a distractor can be generated for a given activity type.
+  /// WARNING - do not use this function to determine if lemma activities can be generated.
+  /// Use [canGenerateLemmaDistractors] instead.
+  bool canGenerateDistractors(
     ActivityTypeEnum type, {
     String? morphFeature,
     String? morphTag,
-  }) async {
+  }) {
     final constructListModel =
         MatrixState.pangeaController.getAnalytics.constructListModel;
     switch (type) {
       case ActivityTypeEnum.lemmaId:
-        final distractors =
-            await constructListModel.lemmaActivityDistractors(this);
-        return distractors.isNotEmpty;
+        // the function to determine this for lemmas is async
+        // do not use this function for lemma activities
+        debugger(when: kDebugMode);
+        return false;
       case ActivityTypeEnum.morphId:
         final distractors = constructListModel.morphActivityDistractors(
           morphFeature!,
           morphTag!,
         );
         return distractors.isNotEmpty;
+      case ActivityTypeEnum.wordMeaning:
+        return LemmaDictionaryRepo.getDistractorDefinitions(
+          lemma.text,
+          1,
+        ).isNotEmpty;
       case ActivityTypeEnum.emoji:
       case ActivityTypeEnum.wordFocusListening:
-      case ActivityTypeEnum.wordMeaning:
       case ActivityTypeEnum.hiddenWordListening:
         return true;
     }
+  }
+
+  Future<bool> canGenerateLemmaDistractors() async {
+    final constructListModel =
+        MatrixState.pangeaController.getAnalytics.constructListModel;
+    final distractors = await constructListModel.lemmaActivityDistractors(this);
+    return distractors.isNotEmpty;
   }
 
   // maybe for every 5 points of xp for a particular activity, increment the days between uses by 2
