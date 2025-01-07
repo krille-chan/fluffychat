@@ -60,16 +60,16 @@ class ITShimmerElement extends StatelessWidget {
         imageFilter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: TextButton(
           style: ButtonStyle(
-            padding: MaterialStateProperty.all(
+            padding: WidgetStateProperty.all(
               const EdgeInsets.symmetric(horizontal: 7),
             ),
-            shape: MaterialStateProperty.all(
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(
-              AppConfig.primaryColor.withOpacity(0.2),
+            backgroundColor: WidgetStateProperty.all<Color>(
+              AppConfig.primaryColor.withAlpha(50),
             ),
           ),
           onPressed: () {},

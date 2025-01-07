@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 
 class ChatViewBackground extends StatefulWidget {
   final Choreographer choreographer;

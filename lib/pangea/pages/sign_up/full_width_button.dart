@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/widgets/pressable_button.dart';
-import 'package:flutter/material.dart';
 
 class FullWidthButton extends StatefulWidget {
   final String title;

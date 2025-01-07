@@ -1,11 +1,12 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../constants/class_default_values.dart';
 import '../constants/language_constants.dart';
 import '../constants/pangea_event_types.dart';

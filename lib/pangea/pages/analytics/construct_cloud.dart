@@ -1,6 +1,6 @@
-import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
 import '../../word_cloud/word_cloud_data.dart';
 import '../../word_cloud/word_cloud_shape.dart';
 import '../../word_cloud/word_cloud_tap.dart';

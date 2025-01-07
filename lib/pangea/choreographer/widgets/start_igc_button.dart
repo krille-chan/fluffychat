@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/enum/assistance_state_enum.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/widgets/igc/paywall_card.dart';
-import 'package:flutter/material.dart';
-
 import '../../../pages/chat/chat.dart';
 
 class StartIGCButton extends StatefulWidget {

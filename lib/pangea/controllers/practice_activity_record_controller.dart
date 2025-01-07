@@ -2,14 +2,15 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
 
 /// Represents an item in the completion cache.
 class _RecordCacheItem {
@@ -24,9 +25,8 @@ class _RecordCacheItem {
 class PracticeActivityRecordController {
   static const int maxStoredEvents = 100;
   static final Map<int, _RecordCacheItem> _cache = {};
-  late final PangeaController _pangeaController;
 
-  PracticeActivityRecordController(this._pangeaController);
+  PracticeActivityRecordController();
 
   int getCompletedActivityCount(String messageID) {
     return _completedActivities[messageID] ?? 0;

@@ -1,6 +1,11 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
@@ -13,9 +18,6 @@ import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// A minimized version of AnalyticsController that get the logged in user's analytics
 class GetAnalyticsController {

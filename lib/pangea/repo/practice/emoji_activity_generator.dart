@@ -1,12 +1,13 @@
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:flutter/foundation.dart';
 
 class EmojiActivityGenerator {
   Future<MessageActivityResponse> get(

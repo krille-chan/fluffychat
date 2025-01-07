@@ -1,9 +1,10 @@
-import 'package:fluffychat/pangea/models/space_model.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/models/space_model.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../../../../config/app_config.dart';
 import '../../../../widgets/matrix.dart';
 import '../../../constants/pangea_event_types.dart';

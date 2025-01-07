@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
-import 'package:flutter/material.dart';
 
 class WordTextWithAudioButton extends StatefulWidget {
   final String text;

@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar_details.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 
 class LearningProgressBar extends StatelessWidget {
   final int level;

@@ -1,7 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:collection/collection.dart';
+import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
@@ -15,10 +20,6 @@ import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import '../../widgets/matrix.dart';
 import '../constants/language_constants.dart';
 import '../constants/pangea_event_types.dart';
@@ -477,7 +478,9 @@ class PangeaMessageEvent {
     if (repLocal != null ||
         langCode == LanguageKeys.unknownLanguage ||
         langCode == LanguageKeys.mixedLanguage ||
-        langCode == LanguageKeys.multiLanguage) return repLocal?.content;
+        langCode == LanguageKeys.multiLanguage) {
+      return repLocal?.content;
+    }
 
     if (eventId.contains("web")) return null;
 
@@ -628,7 +631,6 @@ class PangeaMessageEvent {
             event: event,
           ),
         );
-        final content = practiceEvents.last.practiceActivity;
       } catch (e, s) {
         ErrorHandler.logError(e: e, s: s, data: event.toJson());
       }

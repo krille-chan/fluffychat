@@ -1,10 +1,11 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/pages/login/login.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
+
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pages/login/login.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../../widgets/matrix.dart';
 
 extension PangeaPasswordForgotten on LoginController {
@@ -59,8 +60,6 @@ extension PangeaPasswordForgotten on LoginController {
                   return;
                 }
                 Navigator.of(context).pop();
-                final TextEditingController textFieldController =
-                    TextEditingController();
                 showDialog(
                   context: context,
                   useRootNavigator: false,

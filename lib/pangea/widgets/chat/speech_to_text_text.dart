@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
-import 'package:flutter/material.dart';
 
 class SpeechToTextText extends StatelessWidget {
   final Transcript transcript;

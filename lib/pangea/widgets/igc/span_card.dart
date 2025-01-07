@@ -1,5 +1,10 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
@@ -11,10 +16,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/match_copy.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import '../../../widgets/matrix.dart';
 import '../../choreographer/widgets/choice_array.dart';
 import '../../controllers/pangea_controller.dart';
@@ -304,7 +305,7 @@ class WordMatchContent extends StatelessWidget {
                       child: TextButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                            AppConfig.primaryColor.withOpacity(0.1),
+                            AppConfig.primaryColor.withAlpha(25),
                           ),
                         ),
                         onPressed: controller.onIgnoreMatch,
@@ -329,7 +330,7 @@ class WordMatchContent extends StatelessWidget {
                               (controller.selectedChoice != null
                                       ? controller.selectedChoice!.color
                                       : AppConfig.primaryColor)
-                                  .withOpacity(0.2),
+                                  .withAlpha(50),
                             ),
                             // Outline if Replace button enabled
                             side: controller.selectedChoice != null
@@ -359,7 +360,7 @@ class WordMatchContent extends StatelessWidget {
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                            (AppConfig.primaryColor).withOpacity(0.1),
+                            (AppConfig.primaryColor).withAlpha(25),
                           ),
                         ),
                         child: Text(L10n.of(context).helpMeTranslate),
@@ -458,10 +459,10 @@ class LoadingText extends StatefulWidget {
   });
 
   @override
-  _LoadingTextState createState() => _LoadingTextState();
+  LoadingTextState createState() => LoadingTextState();
 }
 
-class _LoadingTextState extends State<LoadingText>
+class LoadingTextState extends State<LoadingText>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 1),

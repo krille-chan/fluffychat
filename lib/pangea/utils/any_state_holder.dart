@@ -1,6 +1,8 @@
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/material.dart';
+
 import 'package:sentry_flutter/sentry_flutter.dart';
+
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 
 class PangeaAnyState {
   final Map<String, LayerLinkAndKey> _layerLinkAndKeys = {};

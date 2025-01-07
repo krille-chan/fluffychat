@@ -70,7 +70,9 @@ extension InitWithRestoreExtension on Client {
 
     try {
       await init(
-        onMigration: onMigration,
+        onInitStateChanged: (state) {
+          if (state == InitState.migratingDatabase) onMigration?.call();
+        },
         waitForFirstSync: false,
         waitUntilLoadCompletedLoaded: false,
       );
@@ -122,7 +124,9 @@ extension InitWithRestoreExtension on Client {
           newUserID: sessionBackup.userId,
           waitForFirstSync: false,
           waitUntilLoadCompletedLoaded: false,
-          onMigration: onMigration,
+          onInitStateChanged: (state) {
+            if (state == InitState.migratingDatabase) onMigration?.call();
+          },
         );
         ClientManager.sendInitNotification(
           l10n.initAppError,

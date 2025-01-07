@@ -1,3 +1,10 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
@@ -8,11 +15,6 @@ import 'package:fluffychat/pangea/widgets/user_settings/p_settings_switch_list_t
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class SettingsLearningView extends StatelessWidget {
   final SettingsLearningController controller;

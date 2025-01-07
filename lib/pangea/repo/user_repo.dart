@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:fluffychat/pangea/config/environment.dart';
-import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:http/http.dart';
 
+import 'package:fluffychat/pangea/config/environment.dart';
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import '../models/user_profile_search_model.dart';
 import '../network/requests.dart';
 import '../network/urls.dart';

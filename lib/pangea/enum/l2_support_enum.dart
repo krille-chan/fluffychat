@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum L2SupportEnum {
@@ -63,20 +64,19 @@ extension L2SupportEnumExtension on L2SupportEnum {
 
     switch (this) {
       case L2SupportEnum.na:
-        color = theme.colorScheme.onSurface.withOpacity(0.4); // Muted grey
+        color = theme.colorScheme.onSurface.withAlpha(100); // Muted grey
         label = toLocalizedString(context);
         break;
       case L2SupportEnum.alpha:
-        color = theme.colorScheme.primary.withOpacity(0.4); // Subtle primary
+        color = theme.colorScheme.primary.withAlpha(100); // Subtle primary
         label = toLocalizedString(context);
         break;
       case L2SupportEnum.beta:
-        color =
-            theme.colorScheme.secondary.withOpacity(0.4); // Subtle secondary
+        color = theme.colorScheme.secondary.withAlpha(100); // Subtle secondary
         label = toLocalizedString(context);
         break;
       case L2SupportEnum.full:
-        color = theme.colorScheme.tertiary.withOpacity(0.4); // Subtle tertiary
+        color = theme.colorScheme.tertiary.withAlpha(100); // Subtle tertiary
         label = toLocalizedString(context);
         break;
     }
@@ -85,7 +85,7 @@ extension L2SupportEnumExtension on L2SupportEnum {
       label: Text(
         label,
         style: theme.textTheme.bodySmall?.copyWith(
-          color: theme.colorScheme.onSurface.withOpacity(0.8), // Dimmed text
+          color: theme.colorScheme.onSurface.withAlpha(200), // Dimmed text
           fontWeight: FontWeight.w500,
         ),
       ),

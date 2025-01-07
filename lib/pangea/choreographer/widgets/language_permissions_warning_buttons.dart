@@ -1,23 +1,24 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import '../../../widgets/matrix.dart';
 
-class _ErrorCopy {
+class ErrorCopy {
   final String title;
   final String? description;
 
-  _ErrorCopy(this.title, [this.description]);
+  ErrorCopy(this.title, [this.description]);
 }
 
 class LanguagePermissionsButtons extends StatelessWidget {
@@ -33,7 +34,7 @@ class LanguagePermissionsButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (roomID == null) return const SizedBox.shrink();
-    final _ErrorCopy? copy = getCopy(context);
+    final ErrorCopy? copy = getCopy(context);
     if (copy == null) return const SizedBox.shrink();
 
     final Widget text = RichText(
@@ -70,7 +71,7 @@ class LanguagePermissionsButtons extends StatelessWidget {
     );
   }
 
-  _ErrorCopy? getCopy(BuildContext context) {
+  ErrorCopy? getCopy(BuildContext context) {
     final bool itDisabled = !choreographer.itEnabled;
     final bool igcDisabled = !choreographer.igcEnabled;
     if (roomID == null) {
@@ -90,49 +91,49 @@ class LanguagePermissionsButtons extends StatelessWidget {
         .isToolDisabledByClass(ToolSetting.interactiveGrammar, room);
 
     if (itDisabledByClass && igcDisabledByClass) {
-      return _ErrorCopy(
+      return ErrorCopy(
         L10n.of(context).errorDisableLanguageAssistanceClassDesc,
       );
     }
 
     if (itDisabledByClass) {
       if (igcDisabled) {
-        return _ErrorCopy(
+        return ErrorCopy(
           "{L10n.of(context).errorDisableITClassDesc} ${L10n.of(context).errorDisableIGC}",
           " ${L10n.of(context).errorDisableIGCUserDesc}",
         );
       } else {
-        return _ErrorCopy(L10n.of(context).errorDisableITClassDesc);
+        return ErrorCopy(L10n.of(context).errorDisableITClassDesc);
       }
     }
 
     if (igcDisabledByClass) {
       if (itDisabled) {
-        return _ErrorCopy(
+        return ErrorCopy(
           "${L10n.of(context).errorDisableIGCClassDesc} ${L10n.of(context).errorDisableIT}",
           " ${L10n.of(context).errorDisableITUserDesc}",
         );
       } else {
-        return _ErrorCopy(L10n.of(context).errorDisableIGCClassDesc);
+        return ErrorCopy(L10n.of(context).errorDisableIGCClassDesc);
       }
     }
 
     if (igcDisabled && itDisabled) {
-      return _ErrorCopy(
+      return ErrorCopy(
         L10n.of(context).errorDisableLanguageAssistance,
         " ${L10n.of(context).errorDisableLanguageAssistanceUserDesc}",
       );
     }
 
     if (itDisabled) {
-      return _ErrorCopy(
+      return ErrorCopy(
         L10n.of(context).errorDisableIT,
         " ${L10n.of(context).errorDisableITUserDesc}",
       );
     }
 
     if (igcDisabled) {
-      return _ErrorCopy(
+      return ErrorCopy(
         L10n.of(context).errorDisableIGC,
         " ${L10n.of(context).errorDisableIGCUserDesc}",
       );

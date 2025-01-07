@@ -1,12 +1,13 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:collection/collection.dart';
-import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import '../../utils/bot_style.dart';
 import 'it_shimmer.dart';
 
@@ -192,7 +193,7 @@ class ChoiceItem extends StatelessWidget {
                 //if index is selected, then give the background a slight primary color
                 backgroundColor: entry.value.color != null
                     ? WidgetStateProperty.all<Color>(
-                        entry.value.color!.withOpacity(0.2),
+                        entry.value.color!.withAlpha(50),
                       )
                     // : theme.colorScheme.primaryFixed,
                     : null,

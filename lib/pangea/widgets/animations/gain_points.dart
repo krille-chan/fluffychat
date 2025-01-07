@@ -1,10 +1,11 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 
 class PointsGainedAnimation extends StatefulWidget {
   final Color? gainColor;

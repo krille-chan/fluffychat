@@ -1,12 +1,14 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/models/base_subscription_info.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/material.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 class MobileSubscriptionInfo extends CurrentSubscriptionInfo {
   MobileSubscriptionInfo({

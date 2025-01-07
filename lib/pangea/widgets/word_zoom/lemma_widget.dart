@@ -1,5 +1,6 @@
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 
 class LemmaWidget extends StatelessWidget {
   final PangeaToken token;

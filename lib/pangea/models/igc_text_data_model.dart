@@ -1,6 +1,11 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:collection/collection.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
@@ -8,10 +13,6 @@ import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/span_card_model.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
-
 import '../constants/model_keys.dart';
 
 // import 'package:language_tool/language_tool.dart';

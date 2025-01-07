@@ -2,14 +2,16 @@
 // note that this is not the same as the correct answer
 // the user might have selected multiple options before
 // finding the answer
+
 import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:flutter/foundation.dart';
 
 class PracticeActivityRecordModel {
   final String? question;

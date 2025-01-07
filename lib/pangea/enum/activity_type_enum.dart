@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:material_symbols_icons/symbols.dart';
+
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 enum ActivityTypeEnum {
   wordMeaning,

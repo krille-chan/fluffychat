@@ -12,7 +12,6 @@ class WidgetMeasurements {
       );
     }
 
-    final WidgetMeasurements? weg = _fromKey[key];
     return _fromKey[key]!;
   }
 

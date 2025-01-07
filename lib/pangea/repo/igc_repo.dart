@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:http/http.dart';
+
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/models/language_detection_model.dart';
@@ -8,8 +10,6 @@ import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/repo/span_data_repo.dart';
-import 'package:http/http.dart';
-
 import '../constants/model_keys.dart';
 import '../models/igc_text_data_model.dart';
 import '../network/requests.dart';

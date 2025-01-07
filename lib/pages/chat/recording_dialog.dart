@@ -1,17 +1,18 @@
 import 'dart:async';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/utils/update_version_dialog.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/utils/update_version_dialog.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {

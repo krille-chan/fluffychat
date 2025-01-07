@@ -1,7 +1,8 @@
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import '../../../pages/chat_list/chat_list.dart';
 import '../../../widgets/matrix.dart';
 import '../../extensions/pangea_room_extension/pangea_room_extension.dart';

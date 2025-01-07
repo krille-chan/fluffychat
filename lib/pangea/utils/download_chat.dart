@@ -1,11 +1,13 @@
+// ignore_for_file: implementation_imports
+
 import 'dart:async';
 import 'dart:io';
 
-import 'package:csv/csv.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:csv/csv.dart';
+import 'package:excel/excel.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
 import 'package:matrix/matrix.dart';
@@ -13,9 +15,10 @@ import 'package:matrix/src/models/timeline_chunk.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:syncfusion_flutter_xlsio/xlsio.dart';
-import 'package:universal_html/html.dart' as webFile;
+import 'package:universal_html/html.dart' as webfile;
 
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../models/choreo_record.dart';
 
 enum DownloadType { txt, csv, xlsx }
@@ -195,9 +198,9 @@ Future<void> downloadFile(
   DownloadType fileType,
 ) async {
   if (kIsWeb) {
-    final blob = webFile.Blob([contents], mimetype(fileType), 'native');
-    webFile.AnchorElement(
-      href: webFile.Url.createObjectUrlFromBlob(blob).toString(),
+    final blob = webfile.Blob([contents], mimetype(fileType), 'native');
+    webfile.AnchorElement(
+      href: webfile.Url.createObjectUrlFromBlob(blob).toString(),
     )
       ..setAttribute("download", filename)
       ..click();
@@ -332,15 +335,26 @@ List<int> getExcelContent(
   BuildContext context,
   String filename,
 ) {
-  final Workbook workbook = Workbook();
-  final Worksheet sheet = workbook.worksheets[0];
-
-  sheet.getRangeByIndex(1, 1).setValue(L10n.of(context).sender);
-  sheet.getRangeByIndex(1, 2).setValue(L10n.of(context).time);
-  sheet.getRangeByIndex(1, 3).setValue(L10n.of(context).originalMessage);
-  sheet.getRangeByIndex(1, 4).setValue(L10n.of(context).sentMessage);
-  sheet.getRangeByIndex(1, 5).setValue(L10n.of(context).taTooltip);
-  sheet.getRangeByIndex(1, 6).setValue(L10n.of(context).gaTooltip);
+  final excel = Excel.createExcel();
+  final Sheet sheetObject = excel['Sheet1'];
+  sheetObject
+      .cell(CellIndex.indexByColumnRow(columnIndex: 0, rowIndex: 0))
+      .value = TextCellValue(L10n.of(context).sender);
+  sheetObject
+      .cell(CellIndex.indexByColumnRow(columnIndex: 1, rowIndex: 0))
+      .value = TextCellValue(L10n.of(context).time);
+  sheetObject
+      .cell(CellIndex.indexByColumnRow(columnIndex: 2, rowIndex: 0))
+      .value = TextCellValue(L10n.of(context).originalMessage);
+  sheetObject
+      .cell(CellIndex.indexByColumnRow(columnIndex: 3, rowIndex: 0))
+      .value = TextCellValue(L10n.of(context).sentMessage);
+  sheetObject
+      .cell(CellIndex.indexByColumnRow(columnIndex: 4, rowIndex: 0))
+      .value = TextCellValue(L10n.of(context).taTooltip);
+  sheetObject
+      .cell(CellIndex.indexByColumnRow(columnIndex: 5, rowIndex: 0))
+      .value = TextCellValue(L10n.of(context).gaTooltip);
 
   for (int i = 0; i < messages.length; i++) {
     final PangeaMessageEvent message = messages[i];
@@ -357,18 +371,35 @@ List<int> getExcelContent(
       includedIGC = message.originalSent!.choreo!.includedIGC;
     }
 
-    sheet.getRangeByIndex(i + 2, 1).setValue(sender);
-    sheet.getRangeByIndex(i + 2, 2).setDateTime(message.originServerTs);
-    sheet.getRangeByIndex(i + 2, 3).setValue(originalMsg);
-    sheet.getRangeByIndex(i + 2, 4).setValue(sentMsg);
-    sheet.getRangeByIndex(i + 2, 5).setValue(L10n.of(context).notAvailable);
-    sheet.getRangeByIndex(i + 2, 6).setValue(L10n.of(context).notAvailable);
+    sheetObject
+        .cell(CellIndex.indexByColumnRow(columnIndex: 0, rowIndex: i + 2))
+        .value = TextCellValue(sender);
+    sheetObject
+        .cell(CellIndex.indexByColumnRow(columnIndex: 1, rowIndex: i + 2))
+        .value = DateTimeCellValue(
+      year: message.originServerTs.year,
+      month: message.originServerTs.month,
+      day: message.originServerTs.day,
+      hour: message.originServerTs.hour,
+      minute: message.originServerTs.minute,
+      second: message.originServerTs.second,
+    );
+    sheetObject
+        .cell(CellIndex.indexByColumnRow(columnIndex: 2, rowIndex: i + 2))
+        .value = TextCellValue(originalMsg);
+    sheetObject
+        .cell(CellIndex.indexByColumnRow(columnIndex: 3, rowIndex: i + 2))
+        .value = TextCellValue(sentMsg);
     if (usageAvailable) {
-      sheet.getRangeByIndex(i + 2, 5).setValue(includedIT);
-      sheet.getRangeByIndex(i + 2, 6).setValue(includedIGC);
+      sheetObject
+          .cell(CellIndex.indexByColumnRow(columnIndex: 4, rowIndex: i + 2))
+          .value = TextCellValue(includedIT.toString());
+      sheetObject
+          .cell(CellIndex.indexByColumnRow(columnIndex: 5, rowIndex: i + 2))
+          .value = TextCellValue(includedIGC.toString());
     }
   }
 
-  final List<int> bytes = workbook.saveAsStream();
-  return bytes;
+  final List<int>? bytes = excel.encode();
+  return bytes ?? [];
 }

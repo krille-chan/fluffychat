@@ -1,9 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
-import 'package:flutter/material.dart';
 
 class ChatInputRowWrapper extends StatefulWidget {
   final ChatController controller;

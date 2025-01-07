@@ -1,12 +1,13 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 import 'package:country_picker/country_picker.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import '../../../widgets/matrix.dart';
 import '../../controllers/pangea_controller.dart';
 import '../../models/user_profile_search_model.dart';

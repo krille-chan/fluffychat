@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../../../config/app_config.dart';
@@ -19,7 +20,7 @@ class WhyButton extends StatelessWidget {
       onPressed: loading ? null : onPress,
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all<Color>(
-          AppConfig.primaryColor.withOpacity(0.1),
+          AppConfig.primaryColor.withAlpha(25),
         ),
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(

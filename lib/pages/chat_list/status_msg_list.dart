@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
@@ -6,8 +10,6 @@ import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
 
 class StatusMessageList extends StatelessWidget {
   final void Function() onStatusEdit;
@@ -124,7 +126,7 @@ class PresenceAvatar extends StatelessWidget {
 
         const statusMsgBubbleElevation = 6.0;
         final statusMsgBubbleShadowColor = theme.colorScheme.surface;
-        final statusMsgBubbleColor = Colors.white.withOpacity(0.9);
+        final statusMsgBubbleColor = Colors.white.withAlpha(230);
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: SizedBox(

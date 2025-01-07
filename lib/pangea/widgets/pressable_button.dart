@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:fluffychat/pangea/utils/play_click_sound.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:fluffychat/pangea/utils/play_click_sound.dart';
 
 class PressableButton extends StatefulWidget {
   final BorderRadius borderRadius;
@@ -152,8 +153,8 @@ class PressableButtonState extends State<PressableButton>
                   decoration: BoxDecoration(
                     color: Color.alphaBlend(
                       _isShadow
-                          ? Colors.black.withOpacity(0.25)
-                          : Colors.white.withOpacity(0.25),
+                          ? Colors.black.withAlpha(65)
+                          : Colors.white.withAlpha(65),
                       widget.color,
                     ),
                     borderRadius: widget.borderRadius,

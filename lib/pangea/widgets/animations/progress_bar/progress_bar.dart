@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/level_bar.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar_background.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar_details.dart';
-import 'package:flutter/material.dart';
 
 // Provide an order list of level indicators, each with it's color
 // and stream. Also provide an overall width and pointsPerLevel.
@@ -30,7 +31,7 @@ class ProgressBarState extends State<ProgressBar> {
 
   get progressBarDetails => ProgressBarDetails(
         totalWidth: width,
-        borderColor: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+        borderColor: Theme.of(context).colorScheme.primary.withAlpha(128),
         height: widget.height ?? 14,
       );
 

@@ -10,6 +10,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/events/state_message.dart';
 import 'package:fluffychat/utils/account_config.dart';
+import 'package:fluffychat/utils/color_value.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -100,7 +101,7 @@ class SettingsStyleView extends StatelessWidget {
                       child: Tooltip(
                         message: color == null
                             ? L10n.of(context).systemTheme
-                            : '#${color.value.toRadixString(16).toUpperCase()}',
+                            : '#${color.hexValue.toRadixString(16).toUpperCase()}',
                         child: InkWell(
                           borderRadius: BorderRadius.circular(colorPickerSize),
                           onTap: () => controller.setChatColor(color),

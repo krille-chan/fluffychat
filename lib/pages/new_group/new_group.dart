@@ -1,5 +1,11 @@
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
+
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart' as sdk;
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
@@ -10,10 +16,6 @@ import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/utils/space_code.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart' as sdk;
-import 'package:matrix/matrix.dart';
 
 class NewGroup extends StatefulWidget {
   final CreateGroupType createGroupType;

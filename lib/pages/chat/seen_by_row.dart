@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 
 class SeenByRow extends StatelessWidget {
   final ChatController controller;

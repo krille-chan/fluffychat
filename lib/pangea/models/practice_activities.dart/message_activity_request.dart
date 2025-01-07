@@ -1,8 +1,9 @@
 import 'package:collection/collection.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 // includes feedback text and the bad activity model
 class ActivityQualityFeedback {

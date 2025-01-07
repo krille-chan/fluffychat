@@ -1,6 +1,6 @@
-import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import '../../config/app_config.dart';
 
 extension VisibleInGuiExtension on List<Event> {

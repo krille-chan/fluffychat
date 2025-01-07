@@ -1,11 +1,12 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_record_event.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
-
 import '../constants/pangea_event_types.dart';
 
 class PracticeActivityEvent {

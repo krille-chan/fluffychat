@@ -1,11 +1,12 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/constants/analytics_constants.dart';
 import 'package:fluffychat/pangea/enum/analytics/morph_categories_enum.dart';
 import 'package:fluffychat/pangea/enum/analytics/parts_of_speech_enum.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 enum ConstructTypeEnum {
   /// for vocabulary words
@@ -40,8 +41,6 @@ extension ConstructExtension on ConstructTypeEnum {
         return getMorphologicalCategoryCopy(category, context);
       case ConstructTypeEnum.vocab:
         return getVocabCategoryName(category, context);
-      default:
-        return null;
     }
   }
 

@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
 import 'package:fluffychat/pangea/repo/span_data_repo.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
 
 class _SpanDetailsCacheItem {
   Future<SpanDetailsRepoReqAndRes> data;

@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
 
 /// The ChatListBody often appears to load forever if prevBatch is null when it first loads.
 /// This wrapper triggers a rebuild when the client has finished its first sync.

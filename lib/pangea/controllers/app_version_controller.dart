@@ -1,7 +1,16 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:universal_html/html.dart' as html;
+import 'package:url_launcher/url_launcher_string.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
@@ -10,13 +19,6 @@ import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:http/http.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:universal_html/html.dart' as html;
-import 'package:url_launcher/url_launcher_string.dart';
 
 class AppVersionController {
   static Future<AppVersionResponse> _getAppVersion(

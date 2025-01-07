@@ -1,12 +1,14 @@
 import 'dart:async';
 
-import 'package:fluffychat/pangea/config/environment.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
+
+import 'package:fluffychat/pangea/config/environment.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 
 class PangeaWarningError implements Exception {
   final String message;

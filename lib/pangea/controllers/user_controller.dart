@@ -1,14 +1,14 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
+import 'package:jwt_decode/jwt_decode.dart';
+import 'package:matrix/matrix.dart' as matrix;
+
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:jwt_decode/jwt_decode.dart';
-import 'package:matrix/matrix.dart' as matrix;
-
 import '../models/user_model.dart';
 
 /// Controller that manages saving and reading of user/profile information

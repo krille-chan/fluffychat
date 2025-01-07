@@ -1,6 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:http/http.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -11,11 +17,6 @@ import 'package:fluffychat/pangea/models/token_api_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:matrix/matrix.dart';
-
 import '../constants/pangea_event_types.dart';
 import '../repo/full_text_translation_repo.dart';
 import '../utils/error_handler.dart';

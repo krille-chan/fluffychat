@@ -2,6 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:http/http.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -18,10 +24,6 @@ import 'package:fluffychat/pangea/repo/practice/lemma_activity_generator.dart';
 import 'package:fluffychat/pangea/repo/practice/morph_activity_generator.dart';
 import 'package:fluffychat/pangea/repo/practice/word_meaning_activity_generator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:matrix/matrix.dart';
 
 /// Represents an item in the completion cache.
 class _RequestCacheItem {

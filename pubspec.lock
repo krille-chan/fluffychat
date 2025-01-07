@@ -458,6 +458,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.5"
+  excel:
+    dependency: "direct main"
+    description:
+      name: excel
+      sha256: "1a15327dcad260d5db21d1f6e04f04838109b39a2f6a84ea486ceda36e468780"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.6"
   fake_async:
     dependency: transitive
     description:
@@ -1318,14 +1326,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
-  jiffy:
-    dependency: transitive
-    description:
-      name: jiffy
-      sha256: "3497caaa36d36a29033e66803c9739ce6bccbc7e241ca46070f76ee9e6f6eb0c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.3.1"
   js:
     dependency: transitive
     description:
@@ -1711,6 +1711,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  pedantic:
+    dependency: "direct dev"
+    description:
+      name: pedantic
+      sha256: "67fc27ed9639506c856c840ccce7594d0bdcd91bc8d53d6e52359449a1d50602"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.11.1"
   permission_handler:
     dependency: "direct main"
     description:
@@ -2324,30 +2332,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.1"
-  syncfusion_flutter_core:
-    dependency: transitive
-    description:
-      name: syncfusion_flutter_core
-      sha256: fc61878342caee6da7979ca0ca9bb178f1eb5ca9b836dada34b83caa39e4bfed
-      url: "https://pub.dev"
-    source: hosted
-    version: "25.1.42"
-  syncfusion_flutter_xlsio:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_xlsio
-      sha256: "92e37c48fcbf20d87d5f7355d9434b004772bd9d9813c2243a48bce3b6a9e8a9"
-      url: "https://pub.dev"
-    source: hosted
-    version: "25.1.42"
-  syncfusion_officecore:
-    dependency: transitive
-    description:
-      name: syncfusion_officecore
-      sha256: b9115cebc37a452f97ab80de17fdafb7b0cedc4b38e90e588871c47d4fb9e91d
-      url: "https://pub.dev"
-    source: hosted
-    version: "25.1.42"
   synchronized:
     dependency: transitive
     description:

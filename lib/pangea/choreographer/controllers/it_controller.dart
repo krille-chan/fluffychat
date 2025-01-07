@@ -1,6 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
@@ -8,15 +14,9 @@ import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/enum/edit_type.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import '../../models/custom_input_translation_model.dart';
 import '../../models/it_response_model.dart';
 import '../../models/it_step.dart';
-import '../../models/system_choice_translation_model.dart';
 import '../../repo/interactive_translation_repo.dart';
 import 'choreographer.dart';
 
@@ -296,20 +296,6 @@ class ITController {
       ),
     );
   }
-
-  // used when user selects a choice
-  Future<ITResponseModel> _systemChoiceTranslation(String translationId) =>
-      ITRepo.systemChoiceTranslate(
-        SystemChoiceRequestModel(
-          userId: choreographer.userId!,
-          nextWordIndex:
-              completedITSteps.last.chosenContinuance?.indexSavedByServer,
-          roomId: choreographer.roomId!,
-          translationId: translationId,
-          targetLangCode: targetLangCode,
-          sourceLangCode: sourceLangCode,
-        ),
-      );
 
   // MessageServiceModel? messageServiceModelWithMessageId() =>
   //     usedInteractiveTranslation

@@ -121,6 +121,7 @@ dependencies:
   country_picker: ^2.0.25
   csv: ^6.0.0
   dropdown_button2: ^2.3.9
+  excel: ^4.0.6
   fl_chart: ^0.67.0
   firebase_analytics: ^11.0.1
   firebase_core: ^3.1.0
@@ -138,7 +139,6 @@ dependencies:
   purchases_flutter: ^6.26.0
   sentry_flutter: ^8.2.0
   shimmer: ^3.0.0
-  syncfusion_flutter_xlsio: ^25.1.40
   rive: 0.11.11
   text_to_speech: ^0.2.3
   flutter_tts: ^4.2.0
@@ -155,6 +155,7 @@ dev_dependencies:
     sdk: flutter
   license_checker: ^1.6.0
   msix: ^3.6.2
+  pedantic: ^1.11.0
   sentry_dart_plugin: ^1.0.0
   translations_cleaner: ^0.0.5
 

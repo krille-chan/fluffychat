@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_no_permission_dialog.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ConversationBotModeDynamicZone extends StatelessWidget {
   final String? mode;

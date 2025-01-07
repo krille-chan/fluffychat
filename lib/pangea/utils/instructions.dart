@@ -1,7 +1,8 @@
-import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import '../../config/app_config.dart';
 import '../../widgets/matrix.dart';
 import '../controllers/pangea_controller.dart';

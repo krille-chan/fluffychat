@@ -1,12 +1,13 @@
 // Flutter imports:
 
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/pages/sign_up/full_width_button.dart';
 import 'package:fluffychat/pangea/pages/sign_up/pangea_login_scaffold.dart';
 import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 import 'package:fluffychat/pangea/widgets/signup/tos_checkbox.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'signup.dart';
 
 class SignupWithEmailView extends StatelessWidget {

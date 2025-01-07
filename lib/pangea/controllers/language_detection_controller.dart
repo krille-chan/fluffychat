@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
+
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
-import 'package:http/http.dart' as http;
-
 import '../network/requests.dart';
 
 class LanguageDetectionRequest {

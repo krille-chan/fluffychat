@@ -1,7 +1,8 @@
-import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_invitation_buttons.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_invitation_buttons.dart';
 import '../../../../pages/chat_details/chat_details.dart';
 
 class SpaceDetailsToggleAddStudentsTile extends StatelessWidget {

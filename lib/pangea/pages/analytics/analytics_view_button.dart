@@ -1,6 +1,8 @@
-import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 
 class AnalyticsViewButton extends StatelessWidget {
   final BarChartViewSelection value;

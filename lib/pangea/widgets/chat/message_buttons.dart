@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
 
 class MessageButtons extends StatelessWidget {
   final ChatController controller;
@@ -65,10 +67,10 @@ class HoverIconButton extends StatefulWidget {
   });
 
   @override
-  _HoverIconButtonState createState() => _HoverIconButtonState();
+  HoverIconButtonState createState() => HoverIconButtonState();
 }
 
-class _HoverIconButtonState extends State<HoverIconButton> {
+class HoverIconButtonState extends State<HoverIconButton> {
   bool _isHovered = false;
 
   @override

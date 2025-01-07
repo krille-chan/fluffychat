@@ -1,13 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
 
-const int THRESHOLD_FOR_GREEN = 80;
+const int thresholdForGreen = 80;
 
 class SpeechToTextAudioConfigModel {
   final AudioEncodingEnum encoding;
@@ -93,7 +95,7 @@ class STTToken {
     if (confidence == null) {
       return Theme.of(context).colorScheme.onSurface;
     }
-    if (confidence! > THRESHOLD_FOR_GREEN) {
+    if (confidence! > thresholdForGreen) {
       return AppConfig.success;
     }
     return AppConfig.warning;
@@ -181,7 +183,7 @@ class Transcript {
       };
 
   Color color(BuildContext context) {
-    if (confidence > THRESHOLD_FOR_GREEN) {
+    if (confidence > thresholdForGreen) {
       return AppConfig.success;
     }
     return AppConfig.warning;

@@ -1,6 +1,8 @@
-import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+import 'package:fluffychat/pangea/models/bot_options_model.dart';
 
 class ConversationBotGameMasterInstructionsInput extends StatelessWidget {
   final BotOptionsModel initialBotOptions;

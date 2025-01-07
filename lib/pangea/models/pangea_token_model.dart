@@ -1,6 +1,10 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:collection/collection.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
@@ -14,9 +18,6 @@ import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activ
 import 'package:fluffychat/pangea/repo/lemma_definition_repo.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
-
 import '../constants/model_keys.dart';
 import 'lemma.dart';
 
@@ -225,36 +226,36 @@ class PangeaToken {
     }
   }
 
-  bool _didActivity(
-    ActivityTypeEnum a, [
-    String? morphFeature,
-    String? morphTag,
-  ]) {
-    if ((morphFeature == null || morphTag == null) &&
-        a == ActivityTypeEnum.morphId) {
-      debugger(when: kDebugMode);
-      return true;
-    }
-    switch (a) {
-      case ActivityTypeEnum.wordMeaning:
-      case ActivityTypeEnum.wordFocusListening:
-      case ActivityTypeEnum.hiddenWordListening:
-      case ActivityTypeEnum.lemmaId:
-      case ActivityTypeEnum.emoji:
-        return vocabConstruct.uses
-            .map((u) => u.useType)
-            .any((u) => a.associatedUseTypes.contains(u));
-      case ActivityTypeEnum.morphId:
-        return morph.entries
-            .map((e) => morphConstruct(morphFeature!, morphTag!).uses)
-            .expand((e) => e)
-            .any(
-              (u) =>
-                  a.associatedUseTypes.contains(u.useType) &&
-                  u.form == text.content,
-            );
-    }
-  }
+  // bool _didActivity(
+  //   ActivityTypeEnum a, [
+  //   String? morphFeature,
+  //   String? morphTag,
+  // ]) {
+  //   if ((morphFeature == null || morphTag == null) &&
+  //       a == ActivityTypeEnum.morphId) {
+  //     debugger(when: kDebugMode);
+  //     return true;
+  //   }
+  //   switch (a) {
+  //     case ActivityTypeEnum.wordMeaning:
+  //     case ActivityTypeEnum.wordFocusListening:
+  //     case ActivityTypeEnum.hiddenWordListening:
+  //     case ActivityTypeEnum.lemmaId:
+  //     case ActivityTypeEnum.emoji:
+  //       return vocabConstruct.uses
+  //           .map((u) => u.useType)
+  //           .any((u) => a.associatedUseTypes.contains(u));
+  //     case ActivityTypeEnum.morphId:
+  //       return morph.entries
+  //           .map((e) => morphConstruct(morphFeature!, morphTag!).uses)
+  //           .expand((e) => e)
+  //           .any(
+  //             (u) =>
+  //                 a.associatedUseTypes.contains(u.useType) &&
+  //                 u.form == text.content,
+  //           );
+  //   }
+  // }
 
   bool _didActivitySuccessfully(
     ActivityTypeEnum a, [

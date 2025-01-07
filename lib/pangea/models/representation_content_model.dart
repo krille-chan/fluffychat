@@ -1,3 +1,5 @@
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
@@ -6,7 +8,6 @@ import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:matrix/matrix.dart';
 
 /// this class is contained within a [RepresentationEvent]
 /// this event is the child of a [EventTypes.Message]

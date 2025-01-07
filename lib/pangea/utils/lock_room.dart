@@ -1,5 +1,6 @@
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:matrix/matrix.dart';
+
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 
 Future<void> lockRoom(Room room, Client client) async {
   room.isSpace ? await lockSpace(room, client) : await lockChat(room, client);

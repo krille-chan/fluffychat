@@ -1,6 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/span_data_controller.dart';
@@ -9,10 +14,6 @@ import 'package:fluffychat/pangea/models/igc_text_data_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
-
 import '../../models/span_card_model.dart';
 import '../../utils/error_handler.dart';
 import '../../utils/overlay.dart';

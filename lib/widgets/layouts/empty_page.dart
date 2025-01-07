@@ -1,7 +1,8 @@
 import 'dart:math';
 
-import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 
 class EmptyPage extends StatelessWidget {
   static const double _width = 400;
@@ -9,7 +10,9 @@ class EmptyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = min(MediaQuery.of(context).size.width, EmptyPage._width) / 2;
-    final theme = Theme.of(context);
+    // #Pangea
+    // final theme = Theme.of(context);
+    // Pangea#
     return Scaffold(
       // Add invisible appbar to make status bar on Android tablets bright.
       appBar: AppBar(

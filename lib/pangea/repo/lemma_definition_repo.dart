@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:fluffychat/pangea/network/urls.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:http/http.dart';
 
+import 'package:fluffychat/pangea/network/urls.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../config/environment.dart';
 import '../network/requests.dart';
 

@@ -1,12 +1,12 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/models/igc_text_data_model.dart';
 import 'package:fluffychat/pangea/widgets/igc/paywall_card.dart';
 import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import '../../choreographer/controllers/choreographer.dart';
 import '../../enum/edit_type.dart';
 import '../../models/span_card_model.dart';

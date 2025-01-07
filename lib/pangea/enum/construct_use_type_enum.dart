@@ -1,9 +1,11 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 
 enum ConstructUseTypeEnum {
   /// produced in chat by user, igc was run, and we've judged it to be a correct use

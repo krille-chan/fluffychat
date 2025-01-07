@@ -1,19 +1,20 @@
-import 'package:emojis/emoji.dart';
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/chat/command_hints.dart';
-import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
-import 'package:fluffychat/utils/markdown_context_builder.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:emojis/emoji.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
+
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/chat/command_hints.dart';
+import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
+import 'package:fluffychat/utils/markdown_context_builder.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 
 class InputBar extends StatelessWidget {
   final Room room;
@@ -412,7 +413,10 @@ class InputBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final useShortCuts = (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile);
+    // #Pangea
+    // final useShortCuts = (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile);
+    final useShortCuts = AppConfig.sendOnEnter;
+    // Pangea#
     return Shortcuts(
       shortcuts: !useShortCuts
           ? {}

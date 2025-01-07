@@ -1,10 +1,11 @@
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/constants/age_limits.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/utils/p_extension.dart';
-import 'package:matrix/matrix.dart';
 
 class PermissionsController extends BaseController {
   late PangeaController _pangeaController;
@@ -16,9 +17,6 @@ class PermissionsController extends BaseController {
   Room? _getRoomById(String? roomId) => roomId == null
       ? null
       : _pangeaController.matrixState.client.getRoomById(roomId);
-
-  PangeaRoomRules? _getRoomRules(String? roomId) =>
-      roomId == null ? null : _getRoomById(roomId)?.firstRules;
 
   Room? firstRoomWithState({required String? roomID, required String type}) {
     final Room? room = _getRoomById(roomID);

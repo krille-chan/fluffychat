@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -66,26 +67,6 @@ class Requests {
 
   Uri _uriBuilder(url) =>
       baseUrl != null ? Uri.parse(baseUrl! + url) : Uri.parse(url);
-
-  Map<dynamic, dynamic> _parseEachToString(Map<dynamic, dynamic> json) {
-    for (final String key in json.keys) {
-      if (json[key].runtimeType != String) {
-        if (json[key].runtimeType == List) {
-          json[key].forEach((item) {
-            _parseEachToString(json[key]);
-          });
-        }
-        if (json[key].runtimeType == Map) {
-          _parseEachToString(json[key]);
-        }
-        if (json[key].runtimeType == int || json[key].runtimeType == double) {
-          json[key] = json[key].toString();
-        }
-      }
-    }
-
-    return json;
-  }
 
   void handleError(
     http.Response response, {

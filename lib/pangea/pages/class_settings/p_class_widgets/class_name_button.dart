@@ -1,8 +1,10 @@
-import 'package:fluffychat/pages/chat_details/chat_details.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+
+import 'package:fluffychat/pages/chat_details/chat_details.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 
 class ClassNameButton extends StatelessWidget {
   final Room room;

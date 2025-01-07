@@ -1,13 +1,15 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:collection/collection.dart';
+
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_use_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
 
 /// A wrapper around a list of [OneConstructUse]s, used to simplify
 /// the process of filtering / sorting / displaying the events.

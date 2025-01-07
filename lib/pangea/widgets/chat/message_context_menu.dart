@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class MessageContextMenu {
@@ -36,7 +37,10 @@ class MessageContextMenu {
       return 0;
     });
     return MessageContextMenu.customToolbarOptions(
-            context, onDefine, onListen) +
+          context,
+          onDefine,
+          onListen,
+        ) +
         menuItems;
   }
 

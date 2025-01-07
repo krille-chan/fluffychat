@@ -1,5 +1,8 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
@@ -8,8 +11,6 @@ import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activ
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 class WordFocusListeningActivity extends StatefulWidget {
   final PracticeActivityModel activity;
@@ -113,7 +114,7 @@ class WordFocusListeningActivityState
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: AppConfig.primaryColor.withOpacity(0.4),
+                    color: AppConfig.primaryColor.withAlpha(100),
                     width: 2,
                     style: BorderStyle.solid,
                   ),
@@ -155,11 +156,11 @@ class WordFocusListeningActivityState
     Color buttonColor;
     if (selectedChoiceIndex == index) {
       buttonColor = isAnswerCorrect
-          ? theme.colorScheme.secondary.withOpacity(0.7) // Correct: Green
-          : theme.colorScheme.error.withOpacity(0.7); // Incorrect: Red
+          ? theme.colorScheme.secondary.withAlpha(180) // Correct: Green
+          : theme.colorScheme.error.withAlpha(180); // Incorrect: Red
     } else {
       buttonColor =
-          AppConfig.primaryColor.withOpacity(0.4); // Default: Primary color
+          AppConfig.primaryColor.withAlpha(100); // Default: Primary color
     }
 
     return GestureDetector(
@@ -170,7 +171,7 @@ class WordFocusListeningActivityState
       ),
       child: CircleAvatar(
         radius: buttonSize,
-        backgroundColor: dragging ? Colors.grey.withOpacity(0.5) : buttonColor,
+        backgroundColor: dragging ? Colors.grey.withAlpha(128) : buttonColor,
         child: const Icon(Icons.play_arrow),
       ),
     );

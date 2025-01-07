@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:material_symbols_icons/symbols.dart';
 
 const Map<String, List<String>> morphCategoriesAndLabels = {

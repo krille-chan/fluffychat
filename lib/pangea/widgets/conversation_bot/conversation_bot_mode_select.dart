@@ -1,7 +1,9 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+import 'package:fluffychat/pangea/constants/bot_mode.dart';
 
 class ConversationBotModeSelect extends StatelessWidget {
   final String? initialMode;

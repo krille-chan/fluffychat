@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:fluffychat/config/setting_keys.dart';
 
 const _passwordStorageKey = 'database_password';
 

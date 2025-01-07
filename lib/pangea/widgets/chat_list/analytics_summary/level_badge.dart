@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/level_bar_popup.dart';
 import 'package:fluffychat/pangea/widgets/pressable_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LevelBadge extends StatelessWidget {
   final int level;

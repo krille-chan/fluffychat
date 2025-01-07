@@ -2,6 +2,11 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
@@ -27,10 +32,6 @@ import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import '../../config/app_config.dart';
 import '../utils/firebase_analytics.dart';
 import '../utils/p_store.dart';
@@ -111,7 +112,7 @@ class PangeaController {
     textToSpeech = TextToSpeechController(this);
     speechToText = SpeechToTextController(this);
     languageDetection = LanguageDetectionController(this);
-    activityRecordController = PracticeActivityRecordController(this);
+    activityRecordController = PracticeActivityRecordController();
     PAuthGaurd.pController = this;
   }
 
@@ -326,21 +327,6 @@ class PangeaController {
         await botDMWithLatestActivity.invite(BotName.byEnvironment);
       }
     });
-  }
-
-  _handleJoinEvent(SyncUpdate syncUpdate) {
-    // for (final joinedRoomUpdate in syncUpdate.rooms!.join!.entries) {
-    //   debugPrint(
-    //       "room update for ${joinedRoomUpdate.key} - ${joinedRoomUpdate.value}");
-    // }
-  }
-
-  _handleOnSyncUpdate(SyncUpdate syncUpdate) {
-    // debugPrint(syncUpdate.toString());
-  }
-
-  _handleSyncStatusFinished(SyncStatusUpdate event) {
-    //might be useful to do something periodically, probably be overkill
   }
 
   void _subscribeToMatrixStreams() {

@@ -1,17 +1,18 @@
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/config/environment.dart';
-import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/config/environment.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'settings.dart';
 
 class SettingsView extends StatelessWidget {
@@ -22,7 +23,9 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final showChatBackupBanner = controller.showChatBackupBanner;
+    // #Pangea
+    // final showChatBackupBanner = controller.showChatBackupBanner;
+    // Pangea#
     return Scaffold(
       appBar: AppBar(
         leading: Center(
@@ -37,7 +40,9 @@ class SettingsView extends StatelessWidget {
         child: FutureBuilder(
           future: controller.getOidcAccountManageUrl(),
           builder: (context, snapshot) {
-            final accountManageUrl = snapshot.data;
+            // #Pangea
+            // final accountManageUrl = snapshot.data;
+            // Pangea#
             return ListView(
               key: const Key('SettingsListViewContent'),
               children: <Widget>[

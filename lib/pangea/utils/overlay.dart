@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'dart:ui';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/utils/any_state_holder.dart';
-import 'package:fluffychat/pangea/widgets/common_widgets/overlay_container.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/utils/any_state_holder.dart';
+import 'package:fluffychat/pangea/widgets/common_widgets/overlay_container.dart';
 import '../../config/themes.dart';
 import '../../widgets/matrix.dart';
 import 'error_handler.dart';
@@ -289,7 +289,8 @@ class TransparentBackdropState extends State<TransparentBackdrop>
       builder: (context, _) {
         return Material(
           borderOnForeground: false,
-          color: widget.backgroundColor?.withOpacity(_opacityTween.value) ??
+          color: widget.backgroundColor
+                  ?.withAlpha((_opacityTween.value * 255).round()) ??
               Colors.transparent,
           clipBehavior: Clip.antiAlias,
           child: InkWell(

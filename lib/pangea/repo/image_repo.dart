@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
+
 import 'package:http/http.dart';
 
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../config/environment.dart';
 import '../network/requests.dart';
 

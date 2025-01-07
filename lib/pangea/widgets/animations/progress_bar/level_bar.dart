@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/animated_level_dart.dart';
 import 'package:fluffychat/pangea/widgets/animations/progress_bar/progress_bar_details.dart';
-import 'package:flutter/material.dart';
 
 class LevelBar extends StatefulWidget {
   final LevelBarDetails details;

@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
-import 'package:fluffychat/pangea/constants/language_constants.dart';
-import 'package:fluffychat/pangea/repo/word_repo.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:fluffychat/pangea/constants/language_constants.dart';
+import 'package:fluffychat/pangea/repo/word_repo.dart';
 import '../models/word_data_model.dart';
 import 'base_controller.dart';
 import 'pangea_controller.dart';

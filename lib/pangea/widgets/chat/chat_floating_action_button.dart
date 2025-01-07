@@ -1,10 +1,11 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/has_error_button.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/language_permissions_warning_buttons.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
-import 'package:flutter/material.dart';
 
 class ChatFloatingActionButton extends StatefulWidget {
   final ChatController controller;

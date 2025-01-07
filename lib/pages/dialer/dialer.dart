@@ -19,13 +19,10 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/voip/video_renderer.dart';
-import 'package:fluffychat/widgets/avatar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' hide VideoRenderer;
@@ -33,6 +30,10 @@ import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/voip/video_renderer.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'pip/pip_view.dart';
 
 class _StreamView extends StatelessWidget {

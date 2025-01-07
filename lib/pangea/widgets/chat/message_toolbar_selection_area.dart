@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
 
 class ToolbarSelectionArea extends StatelessWidget {
   final Event event;

@@ -1,8 +1,10 @@
-import 'package:fluffychat/pangea/pages/sign_up/full_width_button.dart';
-import 'package:fluffychat/pangea/pages/sign_up/pangea_login_scaffold.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:fluffychat/pangea/pages/sign_up/full_width_button.dart';
+import 'package:fluffychat/pangea/pages/sign_up/pangea_login_scaffold.dart';
 
 class LoginOrSignupView extends StatelessWidget {
   const LoginOrSignupView({super.key});

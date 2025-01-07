@@ -1,11 +1,12 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
-
 import '../constants/pangea_event_types.dart';
 
 class TokensEvent {

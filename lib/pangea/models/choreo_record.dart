@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
-
 import 'it_step.dart';
 
 /// this class lives within a [PangeaIGCEvent]

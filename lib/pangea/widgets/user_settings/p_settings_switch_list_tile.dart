@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/material.dart';
 
 class ProfileSettingsSwitchListTile extends StatefulWidget {
   final bool defaultValue;

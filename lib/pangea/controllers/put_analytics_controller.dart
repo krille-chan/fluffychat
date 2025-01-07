@@ -1,5 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -10,8 +14,6 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_e
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
 
 enum AnalyticsUpdateType { server, local }
 

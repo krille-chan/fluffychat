@@ -1,6 +1,6 @@
-import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import '../controllers/error_service.dart';
 
 class ChoreographerHasErrorButton extends StatelessWidget {

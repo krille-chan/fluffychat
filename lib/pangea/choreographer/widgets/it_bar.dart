@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar_buttons.dart';
@@ -14,9 +17,6 @@ import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import '../../controllers/it_feedback_controller.dart';
 import '../../models/it_response_model.dart';
 import '../../utils/overlay.dart';

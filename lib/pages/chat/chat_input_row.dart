@@ -1,18 +1,17 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:animations/animations.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/pangea_reaction_picker.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:material_symbols_icons/symbols.dart';
-import 'package:matrix/matrix.dart';
-
 import '../../config/themes.dart';
 import 'chat.dart';
 import 'input_bar.dart';
@@ -423,65 +422,67 @@ class ChatInputRow extends StatelessWidget {
   }
 }
 
-class _ChatAccountPicker extends StatelessWidget {
-  final ChatController controller;
+// #Pangea
+// class _ChatAccountPicker extends StatelessWidget {
+//   final ChatController controller;
 
-  const _ChatAccountPicker(this.controller);
+//   const _ChatAccountPicker(this.controller);
 
-  void _popupMenuButtonSelected(String mxid, BuildContext context) {
-    final client = Matrix.of(context)
-        .currentBundle!
-        .firstWhere((cl) => cl!.userID == mxid, orElse: () => null);
-    if (client == null) {
-      Logs().w('Attempted to switch to a non-existing client $mxid');
-      return;
-    }
-    controller.setSendingClient(client);
-  }
+//   void _popupMenuButtonSelected(String mxid, BuildContext context) {
+//     final client = Matrix.of(context)
+//         .currentBundle!
+//         .firstWhere((cl) => cl!.userID == mxid, orElse: () => null);
+//     if (client == null) {
+//       Logs().w('Attempted to switch to a non-existing client $mxid');
+//       return;
+//     }
+//     controller.setSendingClient(client);
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    final clients = controller.currentRoomBundle;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: FutureBuilder<Profile>(
-        future: controller.sendingClient.fetchOwnProfile(),
-        builder: (context, snapshot) => PopupMenuButton<String>(
-          onSelected: (mxid) => _popupMenuButtonSelected(mxid, context),
-          itemBuilder: (BuildContext context) => clients
-              .map(
-                (client) => PopupMenuItem<String>(
-                  value: client!.userID,
-                  child: FutureBuilder<Profile>(
-                    future: client.fetchOwnProfile(),
-                    builder: (context, snapshot) => ListTile(
-                      leading: Avatar(
-                        mxContent: snapshot.data?.avatarUrl,
-                        name: snapshot.data?.displayName ??
-                            client.userID!.localpart,
-                        // #Pangea
-                        presenceUserId: client.userID!,
-                        // Pangea#
-                        size: 20,
-                      ),
-                      title: Text(snapshot.data?.displayName ?? client.userID!),
-                      contentPadding: const EdgeInsets.all(0),
-                    ),
-                  ),
-                ),
-              )
-              .toList(),
-          child: Avatar(
-            mxContent: snapshot.data?.avatarUrl,
-            name: snapshot.data?.displayName ??
-                Matrix.of(context).client.userID!.localpart,
-            // #Pangea
-            presenceUserId: Matrix.of(context).client.userID!,
-            // Pangea#
-            size: 20,
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     final clients = controller.currentRoomBundle;
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: FutureBuilder<Profile>(
+//         future: controller.sendingClient.fetchOwnProfile(),
+//         builder: (context, snapshot) => PopupMenuButton<String>(
+//           onSelected: (mxid) => _popupMenuButtonSelected(mxid, context),
+//           itemBuilder: (BuildContext context) => clients
+//               .map(
+//                 (client) => PopupMenuItem<String>(
+//                   value: client!.userID,
+//                   child: FutureBuilder<Profile>(
+//                     future: client.fetchOwnProfile(),
+//                     builder: (context, snapshot) => ListTile(
+//                       leading: Avatar(
+//                         mxContent: snapshot.data?.avatarUrl,
+//                         name: snapshot.data?.displayName ??
+//                             client.userID!.localpart,
+//                         // #Pangea
+//                         presenceUserId: client.userID!,
+//                         // Pangea#
+//                         size: 20,
+//                       ),
+//                       title: Text(snapshot.data?.displayName ?? client.userID!),
+//                       contentPadding: const EdgeInsets.all(0),
+//                     ),
+//                   ),
+//                 ),
+//               )
+//               .toList(),
+//           child: Avatar(
+//             mxContent: snapshot.data?.avatarUrl,
+//             name: snapshot.data?.displayName ??
+//                 Matrix.of(context).client.userID!.localpart,
+//             // #Pangea
+//             presenceUserId: Matrix.of(context).client.userID!,
+//             // Pangea#
+//             size: 20,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+// Pangea#

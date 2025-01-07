@@ -14,10 +14,13 @@ class PangeaLogoSvg extends StatelessWidget {
       'assets/pangea/pangea_logo.svg',
       width: width,
       height: width,
-      color: forceColor ??
-          (Theme.of(context).brightness == Brightness.light
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.primary),
+      colorFilter: ColorFilter.mode(
+        forceColor ??
+            (Theme.of(context).brightness == Brightness.light
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.primary),
+        BlendMode.srcIn,
+      ),
     );
   }
 }

@@ -1,8 +1,9 @@
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:flutter/widgets.dart';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import '../../config/firebase_options.dart';
 
 // PageRoute import
@@ -30,7 +31,7 @@ class GoogleAnalytics {
   }
 
   static analyticsUserUpdate(String? userID) {
-    print("user update $userID");
+    debugPrint("user update $userID");
     analytics?.setUserId(id: userID);
   }
 

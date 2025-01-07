@@ -1,16 +1,17 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:collection/collection.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
 import '../network/urls.dart';
 
 class SubscriptionRepo {
@@ -68,7 +69,7 @@ class SubscriptionRepo {
       choreoApiKey: Environment.choreoApiKey,
       accessToken: MatrixState.pangeaController.userController.accessToken,
     );
-    
+
     final http.Response res = await req.get(url: PApiUrls.rcSubscription);
     final Map<String, dynamic> json = jsonDecode(res.body);
     final RCSubscriptionResponseModel resp =

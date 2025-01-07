@@ -1,17 +1,16 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+import 'package:universal_html/html.dart' as html;
+
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/url_query_parameter_keys.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-import 'package:universal_html/html.dart' as html;
-
 import '../../../../utils/fluffy_share.dart';
-import '../../../../widgets/avatar.dart';
 
 class ClassInvitationButtons extends StatelessWidget {
   final String roomId;
@@ -113,24 +112,6 @@ class ClassInvitationButtons extends StatelessWidget {
     //   //PTODO: Add via google classroom functionality
     //   //  onTap: () => VRouter.of(context).to('invite'),
     // );
-
-    final inviteStudentByUserNameTile = ListTile(
-      title: Text(
-        L10n.of(context).inviteStudentByUserName,
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.secondary,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      subtitle: Text(L10n.of(context).inviteStudentByUserNameDesc),
-      leading: CircleAvatar(
-        backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: Colors.white,
-        radius: Avatar.defaultSize / 2,
-        child: const Icon(Icons.add_outlined),
-      ),
-      onTap: () => context.go('/rooms/$roomId/invite'),
-    );
 
     return Column(
       children: [

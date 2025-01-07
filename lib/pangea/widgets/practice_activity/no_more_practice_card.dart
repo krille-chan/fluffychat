@@ -1,16 +1,17 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/instructions_enum.dart';
 import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
-import 'package:flutter/material.dart';
 
 class StarAnimationWidget extends StatefulWidget {
   const StarAnimationWidget({super.key});
 
   @override
-  _StarAnimationWidgetState createState() => _StarAnimationWidgetState();
+  StarAnimationWidgetState createState() => StarAnimationWidgetState();
 }
 
-class _StarAnimationWidgetState extends State<StarAnimationWidget>
+class StarAnimationWidgetState extends State<StarAnimationWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;

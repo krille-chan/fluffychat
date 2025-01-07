@@ -1,7 +1,8 @@
 import 'dart:typed_data';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fluffychat/config/app_config.dart';
 
 class PangeaLoginScaffold extends StatelessWidget {
   final String mainAssetPath;

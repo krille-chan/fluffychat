@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/learning_progress_indicators.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class PangeaChatListHeader extends StatelessWidget
     implements PreferredSizeWidget {

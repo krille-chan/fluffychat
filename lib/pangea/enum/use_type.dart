@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../utils/bot_style.dart';
@@ -10,7 +11,6 @@ extension UseTypeMethods on UseType {
 
   String tooltipString(BuildContext context) {
     final l10n = L10n.of(context);
-    if (l10n == null) return string;
     switch (this) {
       case UseType.ga:
         return l10n.gaTooltip;

@@ -1,3 +1,8 @@
+import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -10,9 +15,6 @@ import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
 
 class ChatEventList extends StatelessWidget {
   final ChatController controller;

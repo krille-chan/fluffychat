@@ -1,6 +1,6 @@
-import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import '../../constants/pangea_event_types.dart';
 
 class ConstructAnalyticsEvent {

@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
 import 'package:collection/collection.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/extensions/my_list_extension.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ITResponseModel {
   String fullTextTranslation;
@@ -157,10 +159,7 @@ class Continuance {
   }
 
   String? feedbackText(BuildContext context) {
-    final L10n? l10n = L10n.of(context);
-    if (l10n == null) {
-      return null;
-    }
+    final L10n l10n = L10n.of(context);
     switch (level) {
       case ChoreoConstants.levelThresholdForGreen:
         return l10n.greenFeedback;

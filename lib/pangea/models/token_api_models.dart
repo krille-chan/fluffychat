@@ -1,5 +1,4 @@
 import 'package:fluffychat/pangea/constants/model_keys.dart';
-
 import 'pangea_token_model.dart';
 
 class TokensRequestModel {

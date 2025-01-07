@@ -1,6 +1,7 @@
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 
 /// Utility to save and read data both in the matrix profile (this is the default
 /// behavior) and in the local storage (local needs to be specificied). An

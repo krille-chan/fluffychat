@@ -1,7 +1,9 @@
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:fluffychat/utils/platform_infos.dart';
 
 abstract class UpdateNotifier {
   static const String versionStoreKey = 'last_known_version';

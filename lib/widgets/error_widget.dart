@@ -1,5 +1,6 @@
-import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fluffychat/utils/error_reporter.dart';
 
 class FluffyChatErrorWidget extends StatefulWidget {
   final FlutterErrorDetails details;
@@ -38,7 +39,7 @@ class _FluffyChatErrorWidgetState extends State<FluffyChatErrorWidget> {
       child: Placeholder(
         child: Center(
           child: Material(
-            color: Colors.white.withOpacity(0.9),
+            color: Colors.white.withAlpha(225),
             borderRadius: BorderRadius.circular(8),
           ),
         ),

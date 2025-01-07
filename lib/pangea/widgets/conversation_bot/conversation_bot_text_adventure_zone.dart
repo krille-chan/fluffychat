@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_text_adventure_game_master_instruction_input.dart';
-import 'package:flutter/material.dart';
 
 // TODO check how this looks
 class ConversationBotTextAdventureZone extends StatelessWidget {

@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/repo/lemma_definition_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 
 class LemmaDefinitionWidget extends StatefulWidget {
   final PangeaToken token;
