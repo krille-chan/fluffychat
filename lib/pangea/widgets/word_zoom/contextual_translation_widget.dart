@@ -20,7 +20,7 @@ class ContextualTranslationWidget extends StatelessWidget {
 
   Future<String> _fetchDefinition() async {
     final LemmaDefinitionRequest lemmaDefReq = LemmaDefinitionRequest(
-      lemma: token.lemma.text,
+      lemma: token.lemma,
       partOfSpeech: token.pos,
 
       /// This assumes that the user's L2 is the language of the lemma

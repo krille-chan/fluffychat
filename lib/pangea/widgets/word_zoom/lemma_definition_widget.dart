@@ -36,7 +36,7 @@ class LemmaDefinitionWidgetState extends State<LemmaDefinitionWidget> {
     } else {
       final res = await LemmaDictionaryRepo.get(
         LemmaDefinitionRequest(
-          lemma: widget.token.lemma.text,
+          lemma: widget.token.lemma,
           partOfSpeech: widget.token.pos,
           lemmaLang: widget.tokenLang,
           userL1: MatrixState

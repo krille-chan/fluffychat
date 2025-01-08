@@ -21,7 +21,7 @@ class WordMeaningActivityGenerator {
     );
 
     final LemmaDefinitionRequest lemmaDefReq = LemmaDefinitionRequest(
-      lemma: lemmaId.lemma,
+      lemma: req.targetTokens[0].lemma,
       partOfSpeech: lemmaId.category,
 
       /// This assumes that the user's L2 is the language of the lemma

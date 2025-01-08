@@ -2,31 +2,40 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
+import 'package:fluffychat/pangea/models/lemma.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../config/environment.dart';
 import '../network/requests.dart';
 
 class LemmaDefinitionRequest {
-  final String lemma;
+  final Lemma _lemma;
   final String partOfSpeech;
   final String lemmaLang;
   final String userL1;
 
   LemmaDefinitionRequest({
-    required this.lemma,
     required this.partOfSpeech,
     required this.lemmaLang,
     required this.userL1,
-  });
+    required Lemma lemma,
+  }) : _lemma = lemma;
 
-  factory LemmaDefinitionRequest.fromJson(Map<String, dynamic> json) {
-    return LemmaDefinitionRequest(
-      lemma: json['lemma'] as String,
-      partOfSpeech: json['part_of_speech'] as String,
-      lemmaLang: json['lemma_lang'] as String,
-      userL1: json['user_l1'] as String,
+  String get lemma {
+    if (_lemma.text.isNotEmpty) {
+      return _lemma.text;
+    }
+    ErrorHandler.logError(
+      e: "Found lemma with empty text",
+      data: {
+        'lemma': _lemma,
+        'part_of_speech': partOfSpeech,
+        'lemma_lang': lemmaLang,
+        'user_l1': userL1,
+      },
     );
+    return _lemma.form;
   }
 
   Map<String, dynamic> toJson() {
