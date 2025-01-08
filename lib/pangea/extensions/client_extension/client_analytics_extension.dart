@@ -85,16 +85,25 @@ extension AnalyticsClientExtension on Client {
   // so they will appear in the space hierarchy
   Future<void> _updateAnalyticsRoomVisibility() async {
     if (userID == null || userID == BotName.byEnvironment) return;
+
+    final visibilityFutures = allMyAnalyticsRooms.map((room) async {
+      final visability = await getRoomVisibilityOnDirectory(room.id);
+      if (visability != Visibility.private) {
+        await setRoomVisibilityOnDirectory(
+          room.id,
+          visibility: Visibility.private,
+        );
+      }
+    }).toList();
+
+    final joinRulesFutures = allMyAnalyticsRooms.map((room) async {
+      if (room.joinRules != JoinRules.public) {
+        await room.setJoinRules(JoinRules.public);
+      }
+    }).toList();
+
     await Future.wait(
-      allMyAnalyticsRooms.map((room) async {
-        final visability = await getRoomVisibilityOnDirectory(room.id);
-        if (visability != Visibility.public) {
-          await setRoomVisibilityOnDirectory(
-            room.id,
-            visibility: Visibility.public,
-          );
-        }
-      }),
+      visibilityFutures + joinRulesFutures,
     );
   }
 

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
+import 'package:fluffychat/pangea/enum/analytics/analytics_summary_enum.dart';
 
 enum ConstructUseTypeEnum {
   /// produced in chat by user, igc was run, and we've judged it to be a correct use
@@ -213,6 +214,78 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.incWL:
       case ConstructUseTypeEnum.incHWL:
         return -3;
+    }
+  }
+
+  bool get sentByUser {
+    switch (this) {
+      case ConstructUseTypeEnum.wa:
+      case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.unk:
+      case ConstructUseTypeEnum.corIt:
+      case ConstructUseTypeEnum.ignIt:
+      case ConstructUseTypeEnum.incIt:
+      case ConstructUseTypeEnum.corIGC:
+      case ConstructUseTypeEnum.incIGC:
+      case ConstructUseTypeEnum.ignIGC:
+        return true;
+
+      case ConstructUseTypeEnum.corPA:
+      case ConstructUseTypeEnum.ignPA:
+      case ConstructUseTypeEnum.incPA:
+      case ConstructUseTypeEnum.corWL:
+      case ConstructUseTypeEnum.incWL:
+      case ConstructUseTypeEnum.ignWL:
+      case ConstructUseTypeEnum.corHWL:
+      case ConstructUseTypeEnum.incHWL:
+      case ConstructUseTypeEnum.ignHWL:
+      case ConstructUseTypeEnum.corL:
+      case ConstructUseTypeEnum.incL:
+      case ConstructUseTypeEnum.ignL:
+      case ConstructUseTypeEnum.corM:
+      case ConstructUseTypeEnum.incM:
+      case ConstructUseTypeEnum.ignM:
+      case ConstructUseTypeEnum.em:
+      case ConstructUseTypeEnum.nan:
+        return false;
+    }
+  }
+
+  AnalyticsSummaryEnum? get summaryEnumType {
+    switch (this) {
+      case ConstructUseTypeEnum.wa:
+      case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.unk:
+        return AnalyticsSummaryEnum.numWordsTyped;
+
+      case ConstructUseTypeEnum.corIt:
+      case ConstructUseTypeEnum.corPA:
+      case ConstructUseTypeEnum.corIGC:
+      case ConstructUseTypeEnum.corWL:
+      case ConstructUseTypeEnum.corHWL:
+      case ConstructUseTypeEnum.corL:
+      case ConstructUseTypeEnum.corM:
+      case ConstructUseTypeEnum.em:
+        return AnalyticsSummaryEnum.numChoicesCorrect;
+
+      case ConstructUseTypeEnum.incIt:
+      case ConstructUseTypeEnum.incIGC:
+      case ConstructUseTypeEnum.incPA:
+      case ConstructUseTypeEnum.incWL:
+      case ConstructUseTypeEnum.incHWL:
+      case ConstructUseTypeEnum.incL:
+      case ConstructUseTypeEnum.incM:
+        return AnalyticsSummaryEnum.numChoicesIncorrect;
+
+      case ConstructUseTypeEnum.ignIt:
+      case ConstructUseTypeEnum.ignPA:
+      case ConstructUseTypeEnum.ignIGC:
+      case ConstructUseTypeEnum.ignWL:
+      case ConstructUseTypeEnum.ignHWL:
+      case ConstructUseTypeEnum.ignL:
+      case ConstructUseTypeEnum.ignM:
+      case ConstructUseTypeEnum.nan:
+        return null;
     }
   }
 }

@@ -22,7 +22,7 @@ class LevelBarPopup extends StatelessWidget {
   int get totalXP => getAnalyticsController.constructListModel.totalXP;
   int get maxLevelXP => getAnalyticsController.minXPForNextLevel;
   List<OneConstructUse> get uses =>
-      getAnalyticsController.constructListModel.uses;
+      getAnalyticsController.constructListModel.truncatedUses;
 
   @override
   Widget build(BuildContext context) {

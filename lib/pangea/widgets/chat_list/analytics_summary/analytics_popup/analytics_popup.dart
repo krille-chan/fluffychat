@@ -86,7 +86,9 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
           ),
           Expanded(
             child: ConstructsTileList(
-              _categoriesToUses[selectedCategory]!,
+              _categoriesToUses[selectedCategory]!
+                  .where((use) => use.points > 0)
+                  .toList(),
             ),
           ),
         ],
@@ -95,7 +97,10 @@ class AnalyticsPopupState extends State<AnalyticsPopup> {
       dialogContent = Center(child: Text(L10n.of(context).noDataFound));
     } else if (hasNoCategories || !widget.showGroups) {
       dialogContent = ConstructsTileList(
-        _constructsModel.constructList(type: widget.type),
+        _constructsModel
+            .constructList(type: widget.type)
+            .where((uses) => uses.points > 0)
+            .toList(),
       );
     } else {
       dialogContent = ListView.builder(

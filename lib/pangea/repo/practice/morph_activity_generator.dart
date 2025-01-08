@@ -75,9 +75,8 @@ class MorphActivityGenerator {
       throw "No morph tag found for morph feature";
     }
 
-    final List<String> distractors = MatrixState
-        .pangeaController.getAnalytics.constructListModel
-        .morphActivityDistractors(morphFeature, morphTag);
+    final List<String> distractors =
+        token.morphActivityDistractors(morphFeature, morphTag);
 
     return MessageActivityResponse(
       activity: PracticeActivityModel(

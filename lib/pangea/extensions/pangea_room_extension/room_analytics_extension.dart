@@ -152,7 +152,8 @@ extension AnalyticsRoomExtension on Room {
   }
 
   Future<DateTime?> _analyticsLastUpdated(String userId) async {
-    final List<Event> events = await getRoomAnalyticsEvents(count: 1);
+    final List<Event> events =
+        await getRoomAnalyticsEvents(count: 1, userID: userId);
     if (events.isEmpty) return null;
     return events.first.originServerTs;
   }
@@ -161,7 +162,7 @@ extension AnalyticsRoomExtension on Room {
     required String userId,
     DateTime? since,
   }) async {
-    final events = await getRoomAnalyticsEvents();
+    final events = await getRoomAnalyticsEvents(userID: userId);
     final List<ConstructAnalyticsEvent> analyticsEvents = [];
     for (final Event event in events) {
       analyticsEvents.add(ConstructAnalyticsEvent(event: event));

@@ -247,6 +247,17 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     try {
       final currentCache = _pangeaController.getAnalytics.messagesSinceUpdate;
       constructs.addAll(currentCache[cacheKey] ?? []);
+
+      // if this is not a draft message, add the eventId to the metadata
+      // if it's missing (it will be missing for draft constructs)
+      if (!cacheKey.startsWith('draft')) {
+        constructs = constructs.map((construct) {
+          if (construct.metadata.eventId != null) return construct;
+          construct.metadata.eventId = cacheKey;
+          return construct;
+        }).toList();
+      }
+
       currentCache[cacheKey] = constructs;
 
       await _setMessagesSinceUpdate(currentCache);

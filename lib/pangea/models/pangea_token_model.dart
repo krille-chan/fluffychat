@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 
@@ -359,8 +360,6 @@ class PangeaToken {
     String? morphFeature,
     String? morphTag,
   }) {
-    final constructListModel =
-        MatrixState.pangeaController.getAnalytics.constructListModel;
     switch (type) {
       case ActivityTypeEnum.lemmaId:
         // the function to determine this for lemmas is async
@@ -368,7 +367,7 @@ class PangeaToken {
         debugger(when: kDebugMode);
         return false;
       case ActivityTypeEnum.morphId:
-        final distractors = constructListModel.morphActivityDistractors(
+        final distractors = morphActivityDistractors(
           morphFeature!,
           morphTag!,
         );
@@ -386,9 +385,7 @@ class PangeaToken {
   }
 
   Future<bool> canGenerateLemmaDistractors() async {
-    final constructListModel =
-        MatrixState.pangeaController.getAnalytics.constructListModel;
-    final distractors = await constructListModel.lemmaActivityDistractors(this);
+    final distractors = await lemmaActivityDistractors(this);
     return distractors.isNotEmpty;
   }
 
@@ -610,5 +607,95 @@ class PangeaToken {
       // flower emoji
       return "🌺";
     }
+  }
+
+  List<String> morphActivityDistractors(
+    String morphFeature,
+    String morphTag,
+  ) {
+    final List<ConstructUses> morphConstructs = MatrixState
+        .pangeaController.getAnalytics.constructListModel
+        .constructList(type: ConstructTypeEnum.morph);
+    final List<String> possibleDistractors = morphConstructs
+        .where(
+          (c) =>
+              c.category == morphFeature.toLowerCase() &&
+              c.lemma.toLowerCase() != morphTag.toLowerCase() &&
+              c.lemma.isNotEmpty &&
+              c.lemma != "X",
+        )
+        .map((c) => c.lemma)
+        .toList();
+
+    possibleDistractors.shuffle();
+    return possibleDistractors.take(3).toList();
+  }
+
+  Future<List<String>> lemmaActivityDistractors(PangeaToken token) async {
+    final List<String> lemmas = MatrixState
+        .pangeaController.getAnalytics.constructListModel
+        .constructList(type: ConstructTypeEnum.vocab)
+        .map((c) => c.lemma)
+        .toSet()
+        .toList();
+
+    // Offload computation to an isolate
+    final Map<String, int> distances =
+        await compute(_computeDistancesInIsolate, {
+      'lemmas': lemmas,
+      'target': token.lemma.text,
+    });
+
+    // Sort lemmas by distance
+    final sortedLemmas = distances.keys.toList()
+      ..sort((a, b) => distances[a]!.compareTo(distances[b]!));
+
+    // Take the shortest 4
+    final choices = sortedLemmas.take(4).toList();
+    if (!choices.contains(token.lemma.text)) {
+      final random = Random();
+      choices[random.nextInt(4)] = token.lemma.text;
+    }
+    return choices;
+  }
+
+  // isolate helper function
+  Map<String, int> _computeDistancesInIsolate(Map<String, dynamic> params) {
+    final List<String> lemmas = params['lemmas'];
+    final String target = params['target'];
+
+    // Calculate Levenshtein distances
+    final Map<String, int> distances = {};
+    for (final lemma in lemmas) {
+      distances[lemma] = levenshteinDistanceSync(target, lemma);
+    }
+    return distances;
+  }
+
+  int levenshteinDistanceSync(String s, String t) {
+    final int m = s.length;
+    final int n = t.length;
+    final List<List<int>> dp = List.generate(
+      m + 1,
+      (_) => List.generate(n + 1, (_) => 0),
+    );
+
+    for (int i = 0; i <= m; i++) {
+      for (int j = 0; j <= n; j++) {
+        if (i == 0) {
+          dp[i][j] = j;
+        } else if (j == 0) {
+          dp[i][j] = i;
+        } else if (s[i - 1] == t[j - 1]) {
+          dp[i][j] = dp[i - 1][j - 1];
+        } else {
+          dp[i][j] = 1 +
+              [dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]]
+                  .reduce((a, b) => a < b ? a : b);
+        }
+      }
+    }
+
+    return dp[m][n];
   }
 }

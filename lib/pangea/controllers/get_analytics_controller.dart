@@ -23,6 +23,7 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 class GetAnalyticsController {
   late PangeaController _pangeaController;
   late MessageAnalyticsController perMessage;
+
   final List<AnalyticsCacheEntry> _cache = [];
   StreamSubscription<AnalyticsUpdate>? _analyticsUpdateSubscription;
   StreamController<AnalyticsStreamUpdate> analyticsStream =

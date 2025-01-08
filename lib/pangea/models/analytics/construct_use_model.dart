@@ -44,6 +44,9 @@ class ConstructUses {
     return _category!.toLowerCase();
   }
 
+  bool get hasCorrectUse => uses.any((use) => use.pointValue > 0);
+  bool get hasIncorrectUse => uses.any((use) => use.pointValue < 0);
+
   ConstructIdentifier get id => ConstructIdentifier(
         lemma: lemma,
         type: constructType,
