@@ -8,7 +8,6 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/enum/analytics/analytics_summary_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/analytics/analytics_summary_model.dart';
@@ -63,12 +62,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
 
   List<User> get _usersToDownload => widget.space
       .getParticipants()
-      .where(
-        (member) =>
-            widget.space.getPowerLevelByUserId(member.id) <
-                ClassDefaultValues.powerLevelOfAdmin &&
-            member.id != BotName.byEnvironment,
-      )
+      .where((member) => member.id != BotName.byEnvironment)
       .toList();
 
   Color _downloadStatusColor(String userID) {
