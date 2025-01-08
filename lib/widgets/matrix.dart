@@ -305,15 +305,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
-        onNotification[name] ??= c.onEvent.stream
-            .where(
-              (e) =>
-                  e.type == EventUpdateType.timeline &&
-                  [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
-                      .contains(e.content['type']) &&
-                  e.content['sender'] != c.userID,
-            )
-            .listen(showLocalNotification);
+        onNotification[name] ??=
+            c.onNotification.stream.listen(showLocalNotification);
       });
     }
   }

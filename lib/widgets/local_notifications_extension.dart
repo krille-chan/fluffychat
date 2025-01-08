@@ -20,8 +20,9 @@ extension LocalNotificationsExtension on MatrixState {
     ..src = 'assets/assets/sounds/notification.ogg'
     ..load();
 
-  void showLocalNotification(EventUpdate eventUpdate) async {
-    final roomId = eventUpdate.roomID;
+  void showLocalNotification(Event event) async {
+    Logs().wtf('NOTIFICATION', event.toJson());
+    final roomId = event.room.id;
     if (activeRoomId == roomId) {
       if (kIsWeb && webHasFocus) return;
       if (PlatformInfos.isDesktop &&
@@ -29,19 +30,13 @@ extension LocalNotificationsExtension on MatrixState {
         return;
       }
     }
-    final room = client.getRoomById(roomId);
-    if (room == null) {
-      Logs().w('Can not display notification for unknown room $roomId');
-      return;
-    }
-    if (room.notificationCount == 0) return;
 
-    final event = Event.fromJson(eventUpdate.content, room);
-    final title = room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
+    final title =
+        event.room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
     final body = await event.calcLocalizedBody(
       MatrixLocals(L10n.of(context)),
-      withSenderNamePrefix:
-          !room.isDirectChat || room.lastEvent?.senderId == client.userID,
+      withSenderNamePrefix: !event.room.isDirectChat ||
+          event.room.lastEvent?.senderId == client.userID,
       plaintextBody: true,
       hideReply: true,
       hideEdit: true,
@@ -107,14 +102,14 @@ extension LocalNotificationsExtension on MatrixState {
             .singleWhere((a) => a.name == actionStr);
         switch (action) {
           case DesktopNotificationActions.seen:
-            room.setReadMarker(
+            event.room.setReadMarker(
               event.eventId,
               mRead: event.eventId,
               public: AppConfig.sendPublicReadReceipts,
             );
             break;
           case DesktopNotificationActions.openChat:
-            context.go('/rooms/${room.id}');
+            context.go('/rooms/${event.room.id}');
             break;
         }
       });
