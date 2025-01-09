@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/start_igc_button.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
@@ -336,12 +337,11 @@ class ChatInputRow extends StatelessWidget {
                           maxLines: 8,
                           autofocus: !PlatformInfos.isMobile,
                           keyboardType: TextInputType.multiline,
+                          textInputAction: AppConfig.sendOnEnter == true &&
+                                  PlatformInfos.isMobile
+                              ? TextInputAction.send
+                              : null,
                           // #Pangea
-                          // textInputAction: AppConfig.sendOnEnter == true &&
-                          //         PlatformInfos.isMobile
-                          //     ? TextInputAction.send
-                          //     : null,
-                          textInputAction: TextInputAction.send,
                           // onSubmitted: controller.onInputBarSubmitted,
                           onSubmitted: (String value) =>
                               controller.onInputBarSubmitted(value, context),

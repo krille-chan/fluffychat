@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'settings_chat.dart';
@@ -60,13 +61,13 @@ class SettingsChatView extends StatelessWidget {
               //     storeKey: SettingKeys.autoplayImages,
               //     defaultValue: AppConfig.autoplayImages,
               //   ),
-              // SettingsSwitchListTile.adaptive(
-              //   title: L10n.of(context).sendOnEnter,
-              //   onChanged: (b) => AppConfig.sendOnEnter = b,
-              //   storeKey: SettingKeys.sendOnEnter,
-              //   defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
-              // ),
               // Pangea#
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context).sendOnEnter,
+                onChanged: (b) => AppConfig.sendOnEnter = b,
+                storeKey: SettingKeys.sendOnEnter,
+                defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
+              ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).swipeRightToLeftToReply,
                 onChanged: (b) => AppConfig.swipeRightToLeftToReply = b,
