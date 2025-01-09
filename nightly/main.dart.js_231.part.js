@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_231",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cFF(){return new B.Fo(A.dr("et"))},
-Fo:function Fo(d){this.a=d}}
+cFD(){return new B.Fn(A.dr("et"))},
+Fn:function Fn(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[16],B)
-B.Fo.prototype={
+B.Fn.prototype={
 gnN(){return"false"},
 gk_(){return"Korda salas\xf5na"},
 gmg(){return"See pole pildifail."},
@@ -577,8 +577,8 @@ gnS(){return"Vestlusega liitumine ei \xf5nnestu. V\xf5ib-olla on teine osapool j
 gjQ(){return"Previous"},
 D(d,e){return this.gbi(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Fo,C.aG)})()
-A.e3(b.typeUniverse,JSON.parse('{"Fo":{"aG":[]}}'))};
+y(B.Fn,C.aG)})()
+A.e3(b.typeUniverse,JSON.parse('{"Fn":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_231",e:"endPart",h:b})})($__dart_deferred_initializers__,"hxCGAkaJFksmtZEu69wmEpLmMF8=");
+a.eventLog.push({p:"main.dart.js_231",e:"endPart",h:b})})($__dart_deferred_initializers__,"VJSNxPye/uGSI9+Sp1gwPi6hYoA=");
 //# sourceMappingURL=main.dart.js_231.part.js.map
