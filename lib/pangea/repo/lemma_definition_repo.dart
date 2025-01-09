@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-import 'package:http/http.dart';
-
+import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/models/lemma.dart';
+import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../config/environment.dart';
-import '../network/requests.dart';
+import 'package:http/http.dart';
 
 class LemmaDefinitionRequest {
   final Lemma _lemma;
@@ -67,24 +66,24 @@ class LemmaDefinitionRequest {
 
 class LemmaDefinitionResponse {
   final List<String> emoji;
-  final String definition;
+  final String meaning;
 
   LemmaDefinitionResponse({
     required this.emoji,
-    required this.definition,
+    required this.meaning,
   });
 
   factory LemmaDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return LemmaDefinitionResponse(
       emoji: (json['emoji'] as List<dynamic>).map((e) => e as String).toList(),
-      definition: json['definition'] as String,
+      meaning: json['meaning'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'emoji': emoji,
-      'definition': definition,
+      'meaning': meaning,
     };
   }
 
@@ -95,12 +94,12 @@ class LemmaDefinitionResponse {
           runtimeType == other.runtimeType &&
           emoji.length == other.emoji.length &&
           emoji.every((element) => other.emoji.contains(element)) &&
-          definition == other.definition;
+          meaning == other.meaning;
 
   @override
   int get hashCode =>
       emoji.fold(0, (prev, element) => prev ^ element.hashCode) ^
-      definition.hashCode;
+      meaning.hashCode;
 }
 
 class LemmaDictionaryRepo {
@@ -151,7 +150,7 @@ class LemmaDictionaryRepo {
     final List<String> definitions = [];
     for (final entry in _cache.entries) {
       if (entry.key.lemma != lemma) {
-        definitions.add(entry.value.definition);
+        definitions.add(entry.value.meaning);
       }
     }
 
