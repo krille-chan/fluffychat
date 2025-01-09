@@ -1,12 +1,11 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
+import 'package:flutter/foundation.dart';
 
 /// Picks which tokens to do activities on and what types of activities to do
 /// Caches result so that we don't have to recompute it
@@ -160,9 +159,11 @@ class MessageAnalyticsEntry {
       return null;
     }
 
-    // we will only do hidden word listening 50% of the time
+    // we will only do hidden word listening 30% of the time
     // if there are no other activities to do, we will always do hidden word listening
-    if (numOtherActivities >= _maxQueueLength && Random().nextDouble() < 0.5) {
+    if (Random().nextDouble() < 0.7) {
+      // @ggurdin - just want you to review this change. i'm not sure what numOtherActivities >= _maxQueueLength was doing
+      // if (numOtherActivities >= _maxQueueLength && Random().nextDouble() < 0.5) {
       return null;
     }
 

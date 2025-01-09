@@ -1,11 +1,7 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:collection/collection.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
@@ -16,9 +12,13 @@ import 'package:fluffychat/pangea/models/analytics/construct_use_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:fluffychat/pangea/repo/lemma_definition_repo.dart';
+import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_repo.dart';
+import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_request.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
+
 import '../constants/model_keys.dart';
 import 'lemma.dart';
 
@@ -373,7 +373,7 @@ class PangeaToken {
         );
         return distractors.isNotEmpty;
       case ActivityTypeEnum.wordMeaning:
-        return LemmaDictionaryRepo.getDistractorDefinitions(
+        return LemmaInfoRepo.getDistractorDefinitions(
           lemma.text,
           1,
         ).isNotEmpty;
@@ -519,9 +519,9 @@ class PangeaToken {
     };
   }
 
-  Future<List<String>> getEmojiChoices() => LemmaDictionaryRepo.get(
-        LemmaDefinitionRequest(
-          lemma: lemma,
+  Future<List<String>> getEmojiChoices() => LemmaInfoRepo.get(
+        LemmaInfoRequest(
+          lemma: lemma.text,
           partOfSpeech: pos,
           lemmaLang: MatrixState
                   .pangeaController.languageController.userL2?.langCode ??
