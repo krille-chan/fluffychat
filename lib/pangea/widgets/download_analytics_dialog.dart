@@ -324,43 +324,48 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
 
                     return Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: Tooltip(
-                        message: tooltip,
-                        triggerMode: TooltipTriggerMode.tap,
-                        child: Opacity(
-                          opacity: analyticsAvailable &&
-                                  _downloadStatues[user.id] != -1
-                              ? 1
-                              : 0.5,
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 30,
-                                child: !analyticsAvailable
-                                    ? const Icon(
-                                        Icons.error_outline,
-                                        size: 16,
-                                      )
-                                    : Center(
-                                        child: AnimatedContainer(
-                                          duration:
-                                              FluffyThemes.animationDuration,
-                                          height: 12,
-                                          width: 12,
-                                          decoration: BoxDecoration(
-                                            color:
-                                                _downloadStatusColor(user.id),
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                          ),
+                      child: Opacity(
+                        opacity: analyticsAvailable &&
+                                _downloadStatues[user.id] != -1
+                            ? 1
+                            : 0.5,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 30,
+                              child: !analyticsAvailable
+                                  ? const Icon(
+                                      Icons.error_outline,
+                                      size: 16,
+                                    )
+                                  : Center(
+                                      child: AnimatedContainer(
+                                        duration:
+                                            FluffyThemes.animationDuration,
+                                        height: 12,
+                                        width: 12,
+                                        decoration: BoxDecoration(
+                                          color: _downloadStatusColor(user.id),
+                                          borderRadius:
+                                              BorderRadius.circular(100),
                                         ),
                                       ),
+                                    ),
+                            ),
+                            Flexible(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(user.displayName ?? user.id),
+                                  if (tooltip.isNotEmpty)
+                                    Text(
+                                      tooltip,
+                                      style: const TextStyle(fontSize: 10),
+                                    ),
+                                ],
                               ),
-                              Flexible(
-                                child: Text(user.displayName ?? user.id),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     );

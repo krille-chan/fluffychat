@@ -7,21 +7,15 @@ enum AnalyticsSummaryEnum {
   numLemmas,
   numLemmasUsedCorrectly,
   numLemmasUsedIncorrectly,
-  // listLemmas,
-  // listLemmasUsedCorrectly,
-  // listLemmasUsedIncorrectly,
 
   /// 0 - 30 XP
   numLemmasSmallXP,
-  // listLemmasSmallXP,
 
   /// 31 - 200 XP
   numLemmasMediumXP,
-  // listLemmasMediumXP,
 
   /// > 200 XP
   numLemmasLargeXP,
-  // listLemmasLargeXP,
 
   numMorphConstructs,
   listMorphConstructs,
@@ -61,24 +55,12 @@ extension AnalyticsSummaryEnumExtension on AnalyticsSummaryEnum {
         return l10n.numLemmasUsedCorrectly;
       case AnalyticsSummaryEnum.numLemmasUsedIncorrectly:
         return l10n.numLemmasUsedIncorrectly;
-      // case AnalyticsSummaryEnum.listLemmas:
-      //   return l10n.listOfLemmas;
-      // case AnalyticsSummaryEnum.listLemmasUsedCorrectly:
-      //   return l10n.listLemmasUsedCorrectly;
-      // case AnalyticsSummaryEnum.listLemmasUsedIncorrectly:
-      //   return l10n.listLemmasUsedIncorrectly;
       case AnalyticsSummaryEnum.numLemmasSmallXP:
         return l10n.numLemmasSmallXP;
       case AnalyticsSummaryEnum.numLemmasMediumXP:
         return l10n.numLemmasMediumXP;
       case AnalyticsSummaryEnum.numLemmasLargeXP:
         return l10n.numLemmasLargeXP;
-      // case AnalyticsSummaryEnum.listLemmasSmallXP:
-      //   return l10n.listLemmasSmallXP;
-      // case AnalyticsSummaryEnum.listLemmasMediumXP:
-      //   return l10n.listLemmasMediumXP;
-      // case AnalyticsSummaryEnum.listLemmasLargeXP:
-      //   return l10n.listLemmasLargeXP;
       case AnalyticsSummaryEnum.numMorphConstructs:
         return l10n.numGrammarConcepts;
       case AnalyticsSummaryEnum.listMorphConstructs:

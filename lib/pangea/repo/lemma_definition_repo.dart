@@ -1,12 +1,13 @@
 import 'dart:convert';
 
+import 'package:http/http.dart';
+
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/models/lemma.dart';
 import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:http/http.dart';
 
 class LemmaDefinitionRequest {
   final Lemma _lemma;

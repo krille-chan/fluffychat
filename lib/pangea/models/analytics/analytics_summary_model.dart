@@ -14,21 +14,15 @@ class AnalyticsSummaryModel {
   int numLemmas;
   int numLemmasUsedCorrectly;
   int numLemmasUsedIncorrectly;
-  // List<String> listLemmas;
-  // List<String> listLemmasUsedCorrectly;
-  // List<String> listLemmasUsedIncorrectly;
 
   /// 0 - 30 XP
   int numLemmasSmallXP;
-  // List<String> listLemmasSmallXP;
 
   /// 31 - 200 XP
   int numLemmasMediumXP;
-  // List<String> listLemmasMediumXP;
 
   /// > 200 XP
   int numLemmasLargeXP;
-  // List<String> listLemmasLargeXP;
 
   int numMorphConstructs;
   List<String> listMorphConstructs;
@@ -59,15 +53,9 @@ class AnalyticsSummaryModel {
     required this.numLemmas,
     required this.numLemmasUsedCorrectly,
     required this.numLemmasUsedIncorrectly,
-    // required this.listLemmas,
-    // required this.listLemmasUsedCorrectly,
-    // required this.listLemmasUsedIncorrectly,
     required this.numLemmasSmallXP,
     required this.numLemmasMediumXP,
     required this.numLemmasLargeXP,
-    // required this.listLemmasSmallXP,
-    // required this.listLemmasMediumXP,
-    // required this.listLemmasLargeXP,
     required this.numMorphConstructs,
     required this.listMorphConstructs,
     required this.listMorphConstructsUsedCorrectly,
@@ -180,24 +168,12 @@ class AnalyticsSummaryModel {
         return numLemmasUsedCorrectly;
       case AnalyticsSummaryEnum.numLemmasUsedIncorrectly:
         return numLemmasUsedIncorrectly;
-      // case AnalyticsSummaryEnum.listLemmas:
-      //   return listLemmas;
-      // case AnalyticsSummaryEnum.listLemmasUsedCorrectly:
-      //   return listLemmasUsedCorrectly;
-      // case AnalyticsSummaryEnum.listLemmasUsedIncorrectly:
-      //   return listLemmasUsedIncorrectly;
       case AnalyticsSummaryEnum.numLemmasSmallXP:
         return numLemmasSmallXP;
       case AnalyticsSummaryEnum.numLemmasMediumXP:
         return numLemmasMediumXP;
       case AnalyticsSummaryEnum.numLemmasLargeXP:
         return numLemmasLargeXP;
-      // case AnalyticsSummaryEnum.listLemmasSmallXP:
-      //   return listLemmasSmallXP;
-      // case AnalyticsSummaryEnum.listLemmasMediumXP:
-      //   return listLemmasMediumXP;
-      // case AnalyticsSummaryEnum.listLemmasLargeXP:
-      //   return listLemmasLargeXP;
       case AnalyticsSummaryEnum.numMorphConstructs:
         return numMorphConstructs;
       case AnalyticsSummaryEnum.listMorphConstructs:
@@ -233,15 +209,9 @@ class AnalyticsSummaryModel {
       'numLemmas': numLemmas,
       'numLemmasUsedCorrectly': numLemmasUsedCorrectly,
       'numLemmasUsedIncorrectly': numLemmasUsedIncorrectly,
-      // 'listLemmas': listLemmas,
-      // 'listLemmasUsedCorrectly': listLemmasUsedCorrectly,
-      // 'listLemmasUsedIncorrectly': listLemmasUsedIncorrectly,
       'numLemmasSmallXP': numLemmasSmallXP,
       'numLemmasMediumXP': numLemmasMediumXP,
       'numLemmasLargeXP': numLemmasLargeXP,
-      // 'listLemmasSmallXP': listLemmasSmallXP,
-      // 'listLemmasMediumXP': listLemmasMediumXP,
-      // 'listLemmasLargeXP': listLemmasLargeXP,
       'numMorphConstructs': numMorphConstructs,
       'listMorphConstructs': listMorphConstructs,
       'listMorphConstructsUsedCorrectly': listMorphConstructsUsedCorrectly,
