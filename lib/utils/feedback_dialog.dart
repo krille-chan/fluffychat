@@ -1,7 +1,8 @@
-import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import '../pangea/widgets/common/bot_face_svg.dart';
 
 Future<dynamic> showFeedbackDialog(

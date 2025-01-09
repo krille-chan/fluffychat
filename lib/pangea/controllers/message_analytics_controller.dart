@@ -1,11 +1,12 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
-import 'package:flutter/foundation.dart';
 
 /// Picks which tokens to do activities on and what types of activities to do
 /// Caches result so that we don't have to recompute it

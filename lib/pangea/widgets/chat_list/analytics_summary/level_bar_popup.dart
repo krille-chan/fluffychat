@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
@@ -6,8 +10,6 @@ import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/utils/grammar/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/learning_progress_bar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LevelBarPopup extends StatelessWidget {
   const LevelBarPopup({

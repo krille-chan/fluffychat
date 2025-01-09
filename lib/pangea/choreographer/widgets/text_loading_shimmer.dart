@@ -1,6 +1,8 @@
-import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
+
 import 'package:shimmer/shimmer.dart';
+
+import 'package:fluffychat/config/app_config.dart';
 
 class TextLoadingShimmer extends StatelessWidget {
   final double width;

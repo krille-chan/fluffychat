@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
@@ -12,7 +14,6 @@ import 'package:fluffychat/pangea/widgets/practice_activity/word_text_with_audio
 import 'package:fluffychat/pangea/widgets/word_zoom/lemma_widget.dart';
 import 'package:fluffychat/pangea/widgets/word_zoom/morphological_widget.dart';
 import 'package:fluffychat/pangea/widgets/word_zoom/word_zoom_center_widget.dart';
-import 'package:flutter/material.dart';
 
 enum WordZoomSelection {
   meaning,

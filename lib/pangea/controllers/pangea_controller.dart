@@ -185,7 +185,9 @@ class PangeaController {
   void startChatWithBotIfNotPresent() {
     Future.delayed(const Duration(milliseconds: 10000), () async {
       // check if user is logged in
-      if (!matrixState.client.isLogged()) {
+      if (!matrixState.client.isLogged() ||
+          matrixState.client.userID == null ||
+          matrixState.client.userID == BotName.byEnvironment) {
         return;
       }
 
