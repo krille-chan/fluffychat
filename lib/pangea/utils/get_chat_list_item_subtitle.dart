@@ -71,6 +71,9 @@ class ChatListItemSubtitle extends StatelessWidget {
                 ? snapshot.data!
                 : L10n.of(context).emptyChat,
             style: style,
+            softWrap: false,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           );
         },
       );
@@ -97,6 +100,9 @@ class ChatListItemSubtitle extends StatelessWidget {
             messageAnalyticsEntry: analyticsEntry,
             isSelected: null,
             onClick: null,
+            softWrap: false,
+            maxLines: pangeaMessageEvent.room.notificationCount >= 1 ? 2 : 1,
+            overflow: TextOverflow.ellipsis,
           );
         }
 

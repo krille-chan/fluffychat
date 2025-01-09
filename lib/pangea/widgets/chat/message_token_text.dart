@@ -132,6 +132,10 @@ class MessageTextWidget extends StatelessWidget {
   final bool Function(PangeaToken)? isSelected;
   final void Function(TokenPosition tokenPosition)? onClick;
 
+  final bool? softWrap;
+  final int? maxLines;
+  final TextOverflow? overflow;
+
   const MessageTextWidget({
     super.key,
     required this.pangeaMessageEvent,
@@ -139,6 +143,9 @@ class MessageTextWidget extends StatelessWidget {
     this.messageAnalyticsEntry,
     this.isSelected,
     this.onClick,
+    this.softWrap,
+    this.maxLines,
+    this.overflow,
   });
 
   @override
@@ -156,10 +163,16 @@ class MessageTextWidget extends StatelessWidget {
       return Text(
         pangeaMessageEvent.messageDisplayText,
         style: style,
+        softWrap: softWrap,
+        maxLines: maxLines,
+        overflow: overflow,
       );
     }
 
     return RichText(
+      softWrap: softWrap ?? true,
+      maxLines: maxLines,
+      overflow: overflow ?? TextOverflow.clip,
       text: TextSpan(
         children:
             tokenPositions.mapIndexed((int i, TokenPosition tokenPosition) {
