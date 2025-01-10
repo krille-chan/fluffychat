@@ -8,6 +8,7 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
+import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -130,6 +131,7 @@ class Message extends StatelessWidget {
               MessageTypes.Image,
               MessageTypes.Sticker,
             }.contains(event.messageType) &&
+            event.fileDescription == null &&
             !event.redacted) ||
         (event.messageType == MessageTypes.Text &&
             event.relationshipType == null &&
