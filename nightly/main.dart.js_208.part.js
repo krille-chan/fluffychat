@@ -218,7 +218,7 @@ gjg(){return"P\u0159ipojte se k m\xedstnosti"},
 jh(d,e){return"\ud83d\udc5e "+d+" vyhodil/a "+e},
 gfM(){return"Vyhodit z chatu"},
 f3(d){return"Naposledy aktivn\xed: "+d},
-gdJ(){return"Opustit"},
+gdQ(){return"Opustit"},
 gji(){return"Opustil chat"},
 gjj(){return"Sv\u011btl\xe9"},
 jk(d){return"Na\u010d\xedst dal\u0161\xedch "+d+" \xfa\u010dastn\xedk\u016f"},
@@ -260,7 +260,7 @@ gjA(){return"Z\xedsk\xe1v\xe1n\xed polohy\u2026"},
 gfU(){return"Ur\xe1\u017eliv\xe9"},
 gcC(){return"Ok"},
 gjC(){return"Online z\xe1loha k\xed\u010d\u016f je zapnuta"},
-gdL(){return"Jejda, n\u011bco se pokazilo\u2026"},
+gdK(){return"Jejda, n\u011bco se pokazilo\u2026"},
 gjB(){return"Jeden z va\u0161ich klient\u016f byl odhl\xe1\u0161en"},
 geQ(){return"P\u0159idat \xfa\u010det"},
 giP(){return"Upravit bal\xed\u010dky pro tento \xfa\u010det"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Fh,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Fh":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_208",e:"endPart",h:b})})($__dart_deferred_initializers__,"lOg9K3Y2ZSHo3sytt362OwhVRVI=");
+a.eventLog.push({p:"main.dart.js_208",e:"endPart",h:b})})($__dart_deferred_initializers__,"k/X79JKZ27YIBv2ayioeKxANkSU=");
 //# sourceMappingURL=main.dart.js_208.part.js.map

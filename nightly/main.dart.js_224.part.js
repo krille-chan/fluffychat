@@ -218,7 +218,7 @@ gjg(){return"Ali\u011di al \u0109ambro"},
 jh(d,e){return d+" forpelis uzanton "+e},
 gfM(){return"Forpeli de babilo"},
 f3(d){return"Lastafoje aktiva: "+d},
-gdJ(){return"Foriri"},
+gdQ(){return"Foriri"},
 gji(){return"Foriris de la \u0109ambro"},
 gjj(){return"Hela"},
 jk(d){return"Enlegi "+d+" pliajn partoprenantojn"},
@@ -260,7 +260,7 @@ gjA(){return"Akirante lokon\u2026"},
 gfU(){return"Ofenda"},
 gcC(){return"bone"},
 gjC(){return"Enreta savkopiado de \u015dlosiloj estas \u015daltita"},
-gdL(){return"Oj! Io misokazis\u2026"},
+gdK(){return"Oj! Io misokazis\u2026"},
 gjB(){return"One of your clients has been logged out"},
 geQ(){return"Add account"},
 giP(){return"Edit bundles for this account"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Fl,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Fl":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_224",e:"endPart",h:b})})($__dart_deferred_initializers__,"kAqH2D3D1uqD0gh9nAjtJ6wFjN4=");
+a.eventLog.push({p:"main.dart.js_224",e:"endPart",h:b})})($__dart_deferred_initializers__,"F//aa6P7Ki1Rx93YEL3joVlbcWw=");
 //# sourceMappingURL=main.dart.js_224.part.js.map

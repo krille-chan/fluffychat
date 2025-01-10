@@ -218,7 +218,7 @@ gjg(){return"Ta del i rom"},
 jh(d,e){return d+" kastet ut "+e},
 gfM(){return"Kast ut av sludringen"},
 f3(d){return"Sist aktiv: "+d},
-gdJ(){return"Forlat"},
+gdQ(){return"Forlat"},
 gji(){return"Forlat sludringen"},
 gjj(){return"Lys"},
 jk(d){return"Last inn "+d+" deltagere til"},
@@ -260,7 +260,7 @@ gjA(){return"Obtaining location\u2026"},
 gfU(){return"St\xf8tende"},
 gcC(){return"OK"},
 gjC(){return"Nettbasert sikkerhetskopiering av n\xf8kler p\xe5"},
-gdL(){return"Oida, noe gikk galt \u2026"},
+gdK(){return"Oida, noe gikk galt \u2026"},
 gjB(){return"One of your clients has been logged out"},
 geQ(){return"Add account"},
 giP(){return"Edit bundles for this account"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.FI,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"FI":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_271",e:"endPart",h:b})})($__dart_deferred_initializers__,"csY03292B+RoFE6YK4FtdeyvFLA=");
+a.eventLog.push({p:"main.dart.js_271",e:"endPart",h:b})})($__dart_deferred_initializers__,"m/FnVo1z/XDKNZNyqDTqn7uYiAU=");
 //# sourceMappingURL=main.dart.js_271.part.js.map

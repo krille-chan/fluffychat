@@ -218,7 +218,7 @@ gjg(){return"Odaya kat\u0131l"},
 jh(d,e){return"\ud83d\udc5e "+d+", "+e+" ki\u015fisini att\u0131"},
 gfM(){return"Sohbetten at"},
 f3(d){return"Son g\xf6r\xfclen: "+d},
-gdJ(){return"Ayr\u0131l"},
+gdQ(){return"Ayr\u0131l"},
 gji(){return"Sohbetten ayr\u0131ld\u0131"},
 gjj(){return"A\xe7\u0131k"},
 jk(d){return d+" kat\u0131l\u0131mc\u0131 daha y\xfckle"},
@@ -260,7 +260,7 @@ gjA(){return"Konum al\u0131n\u0131yor\u2026"},
 gfU(){return"Rahats\u0131z edici"},
 gcC(){return"Tamam"},
 gjC(){return"\xc7evrim i\xe7i anahtar yedekleme etkinle\u015ftirildi"},
-gdL(){return"T\xfch, bir \u015feyler yanl\u0131\u015f gitti\u2026"},
+gdK(){return"T\xfch, bir \u015feyler yanl\u0131\u015f gitti\u2026"},
 gjB(){return"\u0130stemcilerinizden birinin oturumu kapat\u0131ld\u0131"},
 geQ(){return"Hesap ekle"},
 giP(){return"Bu hesap i\xe7in paketleri d\xfczenle"},
@@ -581,5 +581,5 @@ x(B.FV,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"FV":{"aG":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"aYNVjzy+JFGgltf4/cz/b2HwqKU=");
+a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"9XzuV4r9SJHrYP376Aail4bpdIE=");
 //# sourceMappingURL=main.dart.js_287.part.js.map

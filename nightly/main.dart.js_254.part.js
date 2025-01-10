@@ -218,7 +218,7 @@ gjg(){return"Csatlakoz\xe1s a szob\xe1hoz"},
 jh(d,e){return"\ud83d\udc5e "+d+" kir\xfagta "+e+"-t"},
 gfM(){return"Kir\xfag\xe1s a cseveg\xe9sb\u0151l"},
 f3(d){return"Utolj\xe1ra akt\xedv: "+d},
-gdJ(){return"Elhagy\xe1s"},
+gdQ(){return"Elhagy\xe1s"},
 gji(){return"Elhagyta a cseveg\xe9st"},
 gjj(){return"Vil\xe1gos"},
 jk(d){return"Tov\xe1bbi "+d+" r\xe9sztvev\u0151 bet\xf6lt\xe9se"},
@@ -260,7 +260,7 @@ gjA(){return"Tart\xf3zkod\xe1si hely lek\xe9r\xe9se\u2026"},
 gfU(){return"S\xe9rt\u0151"},
 gcC(){return"Rendben"},
 gjC(){return"Online kulcsment\xe9s enged\xe9lyezve"},
-gdL(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
+gdK(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
 gjB(){return"Az egyik kliense kijelentkezett"},
 geQ(){return"Fi\xf3k hozz\xe1ad\xe1sa"},
 giP(){return"Fi\xf3kcsoportok szerkeszt\xe9se ehhez a fi\xf3khoz"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Fy,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Fy":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"y3Am8MG/9sEf6/MOD5Y17/vLrQI=");
+a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"6OyQMOATy149BHJb16PRKo0lPxk=");
 //# sourceMappingURL=main.dart.js_254.part.js.map

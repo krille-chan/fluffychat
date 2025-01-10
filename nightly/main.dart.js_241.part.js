@@ -218,7 +218,7 @@ gjg(){return"T\xe9igh isteach sa seomra"},
 jh(d,e){return"\ud83d\udc5e chice\xe1il "+d+" "+e},
 gfM(){return"Caith \xe9 amach as an comhr\xe1"},
 f3(d){return"Gn\xedomhach deireanach: "+d},
-gdJ(){return"F\xe1g"},
+gdQ(){return"F\xe1g"},
 gji(){return"F\xe1gadh an comhr\xe1"},
 gjj(){return"Solas"},
 jk(d){return"L\xf3d\xe1il "+d+" n\xedos m\xf3 rannph\xe1irtithe"},
@@ -260,7 +260,7 @@ gjA(){return"ag Aimsi\xfa an su\xedomh\u2026"},
 gfU(){return"Maslach"},
 gcC(){return"Ceart go leor"},
 gjC(){return"T\xe1 C\xfaltaca Eochair Ar L\xedne cumasaithe"},
-gdL(){return"\xdaps, chuaigh rud \xe9igin m\xedcheart \u2026"},
+gdK(){return"\xdaps, chuaigh rud \xe9igin m\xedcheart \u2026"},
 gjB(){return"T\xe1 duine de do chliaint log\xe1ilte amach"},
 geQ(){return"Breisigh cuntas"},
 giP(){return"Cuir cuachta in eagar don chuntas seo"},
@@ -581,5 +581,5 @@ x(B.Ft,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Ft":{"aG":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"dy2I9NWAwf0yKwCB4Ox9YUWGsno=");
+a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"09FC3BZy2wMuQxgxu8BNRtkKiOQ=");
 //# sourceMappingURL=main.dart.js_241.part.js.map

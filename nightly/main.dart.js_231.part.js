@@ -218,7 +218,7 @@ gjg(){return"Liitu jututoaga"},
 jh(d,e){return"\ud83d\udc5e "+d+" m\xfcksas kasutaja "+e+" v\xe4lja"},
 gfM(){return"M\xfcksa vestlusest v\xe4lja"},
 f3(d){return"Viimati n\xe4htud: "+d},
-gdJ(){return"Lahku"},
+gdQ(){return"Lahku"},
 gji(){return"Lahkus vestlusest"},
 gjj(){return"Hele"},
 jk(d){return"Lisa veel "+d+" osalejat"},
@@ -260,7 +260,7 @@ gjA(){return"Tuvastan asukohta\u2026"},
 gfU(){return"Solvav"},
 gcC(){return"Sobib"},
 gjC(){return"Kr\xfcptov\xf5tmete veebip\xf5hine varundus on kasutusel"},
-gdL(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
+gdK(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
 gjB(){return"\xdcks sinu klientrakendustest on Matrix'i v\xf5rgust v\xe4lja loginud"},
 geQ(){return"Lisa kasutajakonto"},
 giP(){return"Muuda selle kasutajakonto k\xf6iteid"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Fn,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Fn":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_231",e:"endPart",h:b})})($__dart_deferred_initializers__,"VJSNxPye/uGSI9+Sp1gwPi6hYoA=");
+a.eventLog.push({p:"main.dart.js_231",e:"endPart",h:b})})($__dart_deferred_initializers__,"DLXC4GJO7MqeSgZ2tBGmL92D/YY=");
 //# sourceMappingURL=main.dart.js_231.part.js.map

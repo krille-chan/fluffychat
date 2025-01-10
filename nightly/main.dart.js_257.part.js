@@ -218,7 +218,7 @@ gjg(){return"Bergabung dengan ruangan"},
 jh(d,e){return"\ud83d\udc5e "+d+" mengeluarkan "+e},
 gfM(){return"Keluarkan dari obrolan"},
 f3(d){return"Terakhir aktif: "+d},
-gdJ(){return"Tinggalkan"},
+gdQ(){return"Tinggalkan"},
 gji(){return"Keluar dari obrolan"},
 gjj(){return"Terang"},
 jk(d){return"Muat "+d+" anggota"},
@@ -260,7 +260,7 @@ gjA(){return"Mendapatkan lokasi\u2026"},
 gfU(){return"Menyinggung"},
 gcC(){return"Ok"},
 gjC(){return"Cadangan Kunci Online dinyalakan"},
-gdL(){return"Ups, ada yang salah\u2026"},
+gdK(){return"Ups, ada yang salah\u2026"},
 gjB(){return"Salah satu klienmu telah keluar"},
 geQ(){return"Tambah akun"},
 giP(){return"Edit bundel untuk akun ini"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.FA,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"FA":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_257",e:"endPart",h:b})})($__dart_deferred_initializers__,"FGUhIbJAdY0oHP75gri9/d3gEEo=");
+a.eventLog.push({p:"main.dart.js_257",e:"endPart",h:b})})($__dart_deferred_initializers__,"ngMRYiwRPzilm8qIlfa5fFy581c=");
 //# sourceMappingURL=main.dart.js_257.part.js.map

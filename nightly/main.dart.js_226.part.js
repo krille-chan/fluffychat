@@ -218,7 +218,7 @@ gjg(){return"Unirse a la sala"},
 jh(d,e){return"\ud83d\udc5e"+d+" ech\xf3 a "+e},
 gfM(){return"Echar del chat"},
 f3(d){return"\xdaltima vez activo: "+d},
-gdJ(){return"Abandonar"},
+gdQ(){return"Abandonar"},
 gji(){return"Abandon\xf3 el chat"},
 gjj(){return"Claro"},
 jk(d){return"Mostrar "+d+" participantes m\xe1s"},
@@ -260,7 +260,7 @@ gjA(){return"Obteniendo ubicaci\xf3n\u2026"},
 gfU(){return"Ofensiva"},
 gcC(){return"Ok"},
 gjC(){return"La copia de seguridad de la clave en l\xednea est\xe1 habilitada"},
-gdL(){return"Ups, algo sali\xf3 mal\u2026"},
+gdK(){return"Ups, algo sali\xf3 mal\u2026"},
 gjB(){return"Se ha cerrado en la sesi\xf3n de uno de sus clientes"},
 geQ(){return"A\xf1adir cuenta"},
 giP(){return"Editar paquetes para esta cuenta"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Fm,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Fm":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_226",e:"endPart",h:b})})($__dart_deferred_initializers__,"706gGUnOddn4E+LMfZTG1UVWBd0=");
+a.eventLog.push({p:"main.dart.js_226",e:"endPart",h:b})})($__dart_deferred_initializers__,"zPfjAYeCT0WrX0RM9Q4WZKQlQyM=");
 //# sourceMappingURL=main.dart.js_226.part.js.map

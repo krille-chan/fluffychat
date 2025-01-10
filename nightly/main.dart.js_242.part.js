@@ -218,7 +218,7 @@ gjg(){return"Unirse \xe1 sala"},
 jh(d,e){return"\ud83d\udc5e "+d+" expulsou a "+e},
 gfM(){return"Expulsar da conversa"},
 f3(d){return"\xdaltima actividade: "+d},
-gdJ(){return"Sa\xedr"},
+gdQ(){return"Sa\xedr"},
 gji(){return"Deixar a conversa"},
 gjj(){return"Claro"},
 jk(d){return"Cargar "+d+" participantes m\xe1is"},
@@ -260,7 +260,7 @@ gjA(){return"Obtendo a localizaci\xf3n\u2026"},
 gfU(){return"Ofensivo"},
 gcC(){return"Ok"},
 gjC(){return"Copia de Apoio en li\xf1a das Chaves activada"},
-gdL(){return"Ooooi, algo fallou\u2026"},
+gdK(){return"Ooooi, algo fallou\u2026"},
 gjB(){return"Un dos teus clientes foi desconectado"},
 geQ(){return"Engadir conta"},
 giP(){return"Editar os feixes desta conta"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Fu,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Fu":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"aE/q/1fXHTB/xBWkj0aAwgSdzyg=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"svom18vFjOL4dSZs3m984fIcybQ=");
 //# sourceMappingURL=main.dart.js_242.part.js.map

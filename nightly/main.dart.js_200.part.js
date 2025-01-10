@@ -218,7 +218,7 @@ gjg(){return"Uneix-te a la sala"},
 jh(d,e){return"\ud83d\udc5e "+d+" ha expulsat a "+e},
 gfM(){return"Expulsa del xat"},
 f3(d){return"Actiu per \xfaltima vegada: "+d},
-gdJ(){return"Abandona"},
+gdQ(){return"Abandona"},
 gji(){return"Ha marxat del xat"},
 gjj(){return"Clar"},
 jk(d){return"Carrega "+d+" participants m\xe9s"},
@@ -260,7 +260,7 @@ gjA(){return"S\u2019est\xe0 obtenint la ubicaci\xf3\u2026"},
 gfU(){return"Ofensiu"},
 gcC(){return"D'acord"},
 gjC(){return"La c\xf2pia de seguretat de claus en l\xednia est\xe0 activada"},
-gdL(){return"Alguna cosa ha anat malament\u2026"},
+gdK(){return"Alguna cosa ha anat malament\u2026"},
 gjB(){return"Una de les teves aplicacions ha tancat la sessi\xf3"},
 geQ(){return"Afegeix un compte"},
 giP(){return"Edita paquets per aquest compte"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Fg,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Fg":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_200",e:"endPart",h:b})})($__dart_deferred_initializers__,"lBw8r8wP8NyydFMO0itPiDY7b8M=");
+a.eventLog.push({p:"main.dart.js_200",e:"endPart",h:b})})($__dart_deferred_initializers__,"TPIPh9WAZlxLu/rvdidUL9xQ3y0=");
 //# sourceMappingURL=main.dart.js_200.part.js.map

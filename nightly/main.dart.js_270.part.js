@@ -218,7 +218,7 @@ gjg(){return"Pievienoties istabai"},
 jh(d,e){return"\ud83d\udc5e "+d+" izmeta "+e},
 gfM(){return"Izmest no t\u0113rz\u0113\u0161anas"},
 f3(d){return"P\u0113d\u0113joreiz redz\u0113ts: "+d},
-gdJ(){return"Pamest"},
+gdQ(){return"Pamest"},
 gji(){return"Pameta t\u0113rz\u0113\u0161anu"},
 gjj(){return"Gai\u0161s"},
 jk(d){return"Iel\u0101d\u0113t v\u0113l "+d+" dal\u012bbniekus"},
@@ -260,7 +260,7 @@ gjA(){return"Ieg\u016bst atra\u0161an\u0101s vietu\u2026"},
 gfU(){return"Aizskaro\u0161s"},
 gcC(){return"Labi"},
 gjC(){return"Tie\u0161saistes atsl\u0113gas rezerves kop\u0113\u0161ana ir iesp\u0113jota"},
-gdL(){return"Ups! Kaut kas nog\u0101ja greizi\u2026"},
+gdK(){return"Ups! Kaut kas nog\u0101ja greizi\u2026"},
 gjB(){return"Viens no klientiem ir atteicies"},
 geQ(){return"Pievienot kontu"},
 giP(){return"Labot \u0161\u012b konta komplektus"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.FH,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"FH":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"YX3walujURc27aC2PCT3qLtozSY=");
+a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"3ZnBh7v0YuIFytgaS8kc32XbiIc=");
 //# sourceMappingURL=main.dart.js_270.part.js.map

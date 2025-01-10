@@ -218,7 +218,7 @@ gjg(){return"Liity huoneeseen"},
 jh(d,e){return"\ud83d\udc5e "+d+" potki k\xe4ytt\xe4j\xe4n "+e},
 gfM(){return"Potki keskustelusta"},
 f3(d){return"Aktiivinen viimeksi: "+d},
-gdJ(){return"Poistu"},
+gdQ(){return"Poistu"},
 gji(){return"Poistui keskustelusta"},
 gjj(){return"Vaalea"},
 jk(d){return"Lataa viel\xe4 "+d+" osallistujaa"},
@@ -260,7 +260,7 @@ gjA(){return"Paikannetaan sijantia\u2026"},
 gfU(){return"Loukkaava"},
 gcC(){return"ok"},
 gjC(){return"Verkkkoavainvarmuuskopio on k\xe4yt\xf6ss\xe4"},
-gdL(){return"Hups, jotakin meni pieleen\u2026"},
+gdK(){return"Hups, jotakin meni pieleen\u2026"},
 gjB(){return"Yksi tunnuksistasi on kirjattu ulos"},
 geQ(){return"Lis\xe4\xe4 tili"},
 giP(){return"Muokkaa t\xe4m\xe4n tilin k\xe4\xe4r\xf6j\xe4"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Fq,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Fq":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_236",e:"endPart",h:b})})($__dart_deferred_initializers__,"RVYHYzK2PngAry+3oz2FJV/AEMA=");
+a.eventLog.push({p:"main.dart.js_236",e:"endPart",h:b})})($__dart_deferred_initializers__,"ytt7feXJlhgbItL4AgOMM5kxNzY=");
 //# sourceMappingURL=main.dart.js_236.part.js.map

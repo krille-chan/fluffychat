@@ -218,7 +218,7 @@ gjg(){return"Pripoji\u0165 sa k miestnosti"},
 jh(d,e){return d+" vyhodili "+e},
 gfM(){return"Vyhodi\u0165 z chatu"},
 f3(d){return"Naposledy pr\xedtomn\xed: "+d},
-gdJ(){return"Opusti\u0165"},
+gdQ(){return"Opusti\u0165"},
 gji(){return"Opustili chat"},
 gjj(){return"Svetl\xe1"},
 jk(d){return"Na\u010d\xedta\u0165 \u010fal\u0161\xedch "+d+" \xfa\u010dastn\xedkov"},
@@ -260,7 +260,7 @@ gjA(){return"Obtaining location\u2026"},
 gfU(){return"Offensive"},
 gcC(){return"ok"},
 gjC(){return"Online z\xe1loha k\u013e\xfa\u010dov je zapnut\xe1"},
-gdL(){return"Och! Nie\u010do sa pokazilo\u2026"},
+gdK(){return"Och! Nie\u010do sa pokazilo\u2026"},
 gjB(){return"One of your clients has been logged out"},
 geQ(){return"Add account"},
 giP(){return"Edit bundles for this account"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.FP,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"FP":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"eFvMKrELyC5M/Sdw+ukwu/k+vwg=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"Y+Zv+eXc9vd9ajC2E1C5SjkWzvk=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

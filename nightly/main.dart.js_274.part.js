@@ -218,7 +218,7 @@ gjg(){return"Do\u0142\u0105cz do pokoju"},
 jh(d,e){return"\ud83d\udc5e "+d+" wyrzuci\u0142/-a "+e},
 gfM(){return"Wyrzu\u0107 z czatu"},
 f3(d){return"Ostatnio widziano "+d},
-gdJ(){return"Opu\u015b\u0107"},
+gdQ(){return"Opu\u015b\u0107"},
 gji(){return"Opu\u015bci\u0142/-a czat"},
 gjj(){return"Jasny"},
 jk(d){return"Za\u0142aduj jeszcze "+d+" uczestnik\xf3w"},
@@ -260,7 +260,7 @@ gjA(){return"Uzyskiwanie lokalizacji\u2026"},
 gfU(){return"Obra\u017aliwe"},
 gcC(){return"Ok"},
 gjC(){return"Kopia zapasowa kluczy online jest w\u0142\u0105czona"},
-gdL(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
+gdK(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
 gjB(){return"Jedno z twoich urz\u0105dze\u0144 zosta\u0142o wylogowane"},
 geQ(){return"Dodaj konto"},
 giP(){return"Edytuj pakiety dla tego konta"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.FK,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"FK":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"Amt53wfzfMYDLuBkCRXfd950WqI=");
+a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"BCOl6eCHCxgk3sobWqqJwpVMIew=");
 //# sourceMappingURL=main.dart.js_274.part.js.map

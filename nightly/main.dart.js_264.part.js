@@ -218,7 +218,7 @@ gjg(){return"Unisciti alla stanza"},
 jh(d,e){return"\ud83d\udc5e "+d+" ha espulso "+e},
 gfM(){return"Espelli dalla chat"},
 f3(d){return"Ultima attivit\xe0: "+d},
-gdJ(){return"Lascia"},
+gdQ(){return"Lascia"},
 gji(){return"Ha lasciato la chat"},
 gjj(){return"Chiaro"},
 jk(d){return"Carica altri "+d+" partecipanti"},
@@ -260,7 +260,7 @@ gjA(){return"Ottengo la posizione\u2026"},
 gfU(){return"Offensivo"},
 gcC(){return"Ok"},
 gjC(){return"Il backup delle chiavi in linea \xe8 abilitato"},
-gdL(){return"Ops, qualcosa \xe8 andato storto\u2026"},
+gdK(){return"Ops, qualcosa \xe8 andato storto\u2026"},
 gjB(){return"Uno dei tuoi client \xe8 stato disconnesso"},
 geQ(){return"Aggiungi account"},
 giP(){return"Modifica i bundle per questo account"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.FC,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"FC":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_264",e:"endPart",h:b})})($__dart_deferred_initializers__,"7yRV56UAzsU5M7nye2vEFRk37Xg=");
+a.eventLog.push({p:"main.dart.js_264",e:"endPart",h:b})})($__dart_deferred_initializers__,"EJJDHRJAODJLxPNiILz/5kwFRko=");
 //# sourceMappingURL=main.dart.js_264.part.js.map

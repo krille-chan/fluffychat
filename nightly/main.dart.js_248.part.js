@@ -218,7 +218,7 @@ gjg(){return"Pridru\u017ei se sobi"},
 jh(d,e){return"\ud83d\udc5e "+d+" je izbacio/la "+e},
 gfM(){return"Izbaci iz razgovora"},
 f3(d){return"Zadnja aktivnost: "+d},
-gdJ(){return"Napusti"},
+gdQ(){return"Napusti"},
 gji(){return"Napustio/la je razgovor"},
 gjj(){return"Svijetla"},
 jk(d){return"U\u010ditaj jo\u0161 "+d+" sudionika"},
@@ -260,7 +260,7 @@ gjA(){return"Dohva\u0107anje lokacije \u2026"},
 gfU(){return"Uvredljiv"},
 gcC(){return"U redu"},
 gjC(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
-gdL(){return"Ups, dogodila se gre\u0161ka \u2026"},
+gdK(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gjB(){return"Jedan od tvojih klijenata je odjavljen"},
 geQ(){return"Dodaj ra\u010dun"},
 giP(){return"Uredi pakete za ovaj ra\u010dun"},
@@ -580,5 +580,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Fx,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Fx":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"LDgfVULfkNqSZMNhqsth9ZP8brw=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"kcQt2vYXuiXs8oJ84Oqc74iQCjk=");
 //# sourceMappingURL=main.dart.js_248.part.js.map

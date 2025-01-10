@@ -218,7 +218,7 @@ gjg(){return"Batu gelara"},
 jh(d,e){return"\ud83d\udc5e "+d+"(e)k "+e+" kanporatu du"},
 gfM(){return"Txatetik kanporatu"},
 f3(d){return"Azkenekoz aktibo: "+d},
-gdJ(){return"Irten"},
+gdQ(){return"Irten"},
 gji(){return"Txatetik irten da"},
 gjj(){return"Argia"},
 jk(d){return"Kargatu "+d+" partaide gehiago"},
@@ -260,7 +260,7 @@ gjA(){return"Kokapena atzitzen\u2026"},
 gfU(){return"Iraingarria"},
 gcC(){return"Ados"},
 gjC(){return"Gakoen online babeskopia gaituta dago"},
-gdL(){return"Hara, zerbaitek huts egin du\u2026"},
+gdK(){return"Hara, zerbaitek huts egin du\u2026"},
 gjB(){return"Zure gailuetako batek saioa amaitu du"},
 geQ(){return"Gehitu kontua"},
 giP(){return"Editatu kontu honetarako sortak"},
@@ -581,5 +581,5 @@ x(B.Fo,C.aG)})()
 A.e3(b.typeUniverse,JSON.parse('{"Fo":{"aG":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_233",e:"endPart",h:b})})($__dart_deferred_initializers__,"d6d5cDJmx90dvlzeTjCElkSkCgk=");
+a.eventLog.push({p:"main.dart.js_233",e:"endPart",h:b})})($__dart_deferred_initializers__,"9fVLH5v4E7hrzjvTpLY0DbHM4jY=");
 //# sourceMappingURL=main.dart.js_233.part.js.map
