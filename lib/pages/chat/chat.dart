@@ -1061,16 +1061,16 @@ class ChatController extends State<ChatPageWithRoom>
     }
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => room.client.joinRoom(
-        room
-            .getState(EventTypes.RoomTombstone)!
-            .parsedTombstoneContent
-            .replacementRoom,
-      ),
-    );
-    await showFutureLoadingDialog(
-      context: context,
-      future: room.leave,
+      future: () async {
+        final roomId = room.client.joinRoom(
+          room
+              .getState(EventTypes.RoomTombstone)!
+              .parsedTombstoneContent
+              .replacementRoom,
+        );
+        await room.leave();
+        return roomId;
+      },
     );
     if (result.error == null) {
       context.go('/rooms/${result.result!}');
