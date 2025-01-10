@@ -19,14 +19,11 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/constants/class_code_constants.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
-import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
-import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
-import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
@@ -38,7 +35,6 @@ import '../../../config/app_config.dart';
 import '../../constants/pangea_event_types.dart';
 import '../../models/choreo_record.dart';
 import '../../models/representation_content_model.dart';
-import '../client_extension/client_extension.dart';
 
 part "room_analytics_extension.dart";
 part "room_children_and_parents_extension.dart";
@@ -51,35 +47,7 @@ part "room_user_permissions_extension.dart";
 extension PangeaRoom on Room {
 // analytics
 
-  /// Join analytics rooms in space.
-  /// Allows teachers to join analytics rooms without being invited.
-  Future<void> joinAnalyticsRoomsInSpace() async =>
-      await _joinAnalyticsRoomsInSpace();
-
-  Future<void> addAnalyticsRoomToSpace(Room analyticsRoom) async =>
-      await _addAnalyticsRoomToSpace(analyticsRoom);
-
-  /// Add analytics room to all spaces the user is a student in (1 analytics room to all spaces).
-  /// Enables teachers to join student analytics rooms via space hierarchy.
-  /// Will not always work, as there may be spaces where students don't have permission to add chats,
-  /// but allows teachers to join analytics rooms without being invited.
-  void addAnalyticsRoomToSpaces() => _addAnalyticsRoomToSpaces();
-
-  /// Add all the user's analytics rooms to 1 space.
-  void addAnalyticsRoomsToSpace() => _addAnalyticsRoomsToSpace();
-
-  /// Invite teachers of 1 space to 1 analytics room
-  Future<void> inviteSpaceTeachersToAnalyticsRoom(Room analyticsRoom) async =>
-      await _inviteSpaceTeachersToAnalyticsRoom(analyticsRoom);
-
-  /// Invite all the user's teachers to 1 analytics room.
-  /// Handles case when students cannot add analytics room to space
-  /// so teacher is still able to get analytics data for this student.
-  void inviteTeachersToAnalyticsRoom() => _inviteTeachersToAnalyticsRoom();
-
-  /// Invite teachers of 1 space to all users' analytics rooms
-  void inviteSpaceTeachersToAnalyticsRooms() =>
-      _inviteSpaceTeachersToAnalyticsRooms();
+  Future<void> joinAnalyticsRooms() async => await _joinAnalyticsRooms();
 
   Future<DateTime?> analyticsLastUpdated(String userId) async {
     return await _analyticsLastUpdated(userId);
@@ -164,9 +132,6 @@ extension PangeaRoom on Room {
   Future<void> setClassPowerLevels() async => await _setClassPowerLevels();
 
   Event? get pangeaRoomRulesStateEvent => _pangeaRoomRulesStateEvent;
-
-  Future<List<LanguageModel>> targetLanguages() async =>
-      await _targetLanguages();
 
 // events
 

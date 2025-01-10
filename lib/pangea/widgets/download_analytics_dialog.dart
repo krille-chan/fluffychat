@@ -33,21 +33,30 @@ class DownloadAnalyticsDialog extends StatefulWidget {
 
 class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
   bool _initialized = false;
-  bool _loading = false;
-  bool _finishedDownload = false;
+  bool _downloaded = false;
+  bool _joiningRooms = false;
+  bool _downloading = false;
+
+  bool get _loading => _joiningRooms || _downloading || !_initialized;
+
   String? _error;
 
-  Map<String, int> _downloadStatues = {};
+  Map<String, int> _downloadStatuses = {};
 
   @override
   void initState() {
     super.initState();
-    widget.space
-        .requestParticipants([Membership.join], false, true).whenComplete(() {
-      _resetDownloadStatuses();
-      _initialized = true;
-      if (mounted) setState(() {});
-    }).catchError((e, s) {
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
+    try {
+      await widget.space.requestParticipants(
+        [Membership.join],
+        false,
+        true,
+      );
+    } catch (e, s) {
       ErrorHandler.logError(
         e: e,
         s: s,
@@ -55,9 +64,26 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
           "spaceID": widget.space.id,
         },
       );
-      if (mounted) setState(() => _error = e.toString());
-      return <User>[];
-    });
+    } finally {
+      if (mounted) setState(() => _initialized = true);
+    }
+  }
+
+  DownloadType _downloadType = DownloadType.csv;
+
+  void _setDownloadType(DownloadType type) {
+    _clean();
+    if (mounted) setState(() => _downloadType = type);
+  }
+
+  void _clean() {
+    _error = null;
+    _joiningRooms = false;
+    _downloading = false;
+    _downloaded = false;
+    _downloadStatuses = Map.fromEntries(
+      _usersToDownload.map((user) => MapEntry(user.id, 0)),
+    );
   }
 
   List<User> get _usersToDownload => widget.space
@@ -66,11 +92,18 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
       .toList();
 
   Color _downloadStatusColor(String userID) {
-    final status = _downloadStatues[userID];
+    final status = _downloadStatuses[userID];
     if (status == 1) return Colors.yellow;
     if (status == 2) return Colors.green;
-    if (status == -1) return Colors.red;
+    if ((status ?? 0) < 0) return Colors.red;
     return Colors.grey;
+  }
+
+  String? get _statusText {
+    if (_joiningRooms) return L10n.of(context).accessingMemberAnalytics;
+    if (_downloading) return L10n.of(context).downloading;
+    if (_downloaded) return L10n.of(context).downloadComplete;
+    return null;
   }
 
   Room? _userAnalyticsRoom(String userID) {
@@ -84,12 +117,27 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
 
   Future<void> _runDownload() async {
     try {
-      _loading = true;
-      _error = null;
-      _resetDownloadStatuses();
-      if (mounted) setState(() {});
+      if (!mounted) return;
+      setState(() {
+        _error = null;
+        _joiningRooms = true;
+      });
+
+      await widget.space.joinAnalyticsRooms();
+      if (mounted) {
+        setState(() {
+          _joiningRooms = false;
+          _downloading = true;
+        });
+      }
+
       await _downloadSpaceAnalytics();
-      if (mounted) setState(() => _finishedDownload = true);
+      if (mounted) {
+        setState(() {
+          _downloading = false;
+          _downloaded = true;
+        });
+      }
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
@@ -98,11 +146,10 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
           "spaceID": widget.space.id,
         },
       );
-      _resetDownloadStatuses();
+
+      _clean();
       _error = e.toString();
       if (mounted) setState(() {});
-    } finally {
-      if (mounted) setState(() => _loading = false);
     }
   }
 
@@ -131,14 +178,17 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
 
   Future<AnalyticsSummaryModel?> _getUserAnalyticsModel(String userID) async {
     try {
-      setState(() => _downloadStatues[userID] = 1);
       final userAnalyticsRoom = _userAnalyticsRoom(userID);
+      _downloadStatuses[userID] = userAnalyticsRoom != null ? 1 : -1;
+      if (mounted) setState(() {});
+
       final constructEvents = await userAnalyticsRoom?.getAnalyticsEvents(
         userId: userID,
       );
+
       if (constructEvents == null) {
-        setState(() => _downloadStatues[userID] = 0);
-        return null;
+        if (mounted) setState(() => _downloadStatuses[userID] = -1);
+        return AnalyticsSummaryModel.emptyModel(userID);
       }
 
       final List<OneConstructUse> uses = [];
@@ -148,12 +198,12 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
 
       final constructs = ConstructListModel(uses: uses);
       final summary = AnalyticsSummaryModel.fromConstructListModel(
-        constructs,
         userID,
+        constructs,
         getCopy,
         context,
       );
-      setState(() => _downloadStatues[userID] = 2);
+      if (mounted) setState(() => _downloadStatuses[userID] = 2);
       return summary;
     } catch (e, s) {
       ErrorHandler.logError(
@@ -164,7 +214,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
           "userID": userID,
         },
       );
-      setState(() => _downloadStatues[userID] = -1);
+      if (mounted) setState(() => _downloadStatuses[userID] = -2);
     }
     return null;
   }
@@ -175,7 +225,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
     final List<CellValue> row = [];
     for (int i = 0; i < AnalyticsSummaryEnum.values.length; i++) {
       final key = AnalyticsSummaryEnum.values[i];
-      final value = summary.getValue(key);
+      final value = summary.getValue(key, context);
       if (value is int) {
         row.add(IntCellValue(value));
       } else if (value is String) {
@@ -232,7 +282,8 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
       final row = [];
       for (int i = 0; i < AnalyticsSummaryEnum.values.length; i++) {
         final key = AnalyticsSummaryEnum.values[i];
-        final value = summary.getValue(key);
+        final value = summary.getValue(key, context);
+        if (value == null) continue;
         value is List<String> ? row.add(value.join(", ")) : row.add(value);
       }
       rows.add(row);
@@ -249,21 +300,6 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
           context: context,
         ) ??
         use.lemma;
-  }
-
-  DownloadType _downloadType = DownloadType.csv;
-
-  void _setDownloadType(DownloadType type) {
-    _resetDownloadStatuses();
-    setState(() => _downloadType = type);
-  }
-
-  void _resetDownloadStatuses() {
-    _error = null;
-    _finishedDownload = false;
-    _downloadStatues = Map.fromEntries(
-      _usersToDownload.map((user) => MapEntry(user.id, 0)),
-    );
   }
 
   @override
@@ -312,28 +348,26 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
                   itemCount: _usersToDownload.length,
                   itemBuilder: (context, index) {
                     final user = _usersToDownload[index];
-                    final analyticsAvailable =
-                        _userAnalyticsRoom(user.id) != null;
 
                     String tooltip = "";
-                    if (!analyticsAvailable) {
+                    if (_downloadStatuses[user.id] == -1) {
                       tooltip = L10n.of(context).analyticsNotAvailable;
-                    } else if (_downloadStatues[user.id] == -1) {
+                    } else if (_downloadStatuses[user.id] == -2) {
                       tooltip = L10n.of(context).failedFetchUserAnalytics;
                     }
 
                     return Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: Opacity(
-                        opacity: analyticsAvailable &&
-                                _downloadStatues[user.id] != -1
-                            ? 1
-                            : 0.5,
+                      child: AnimatedOpacity(
+                        duration: FluffyThemes.animationDuration,
+                        opacity:
+                            (_downloadStatuses[user.id] ?? 0) > 0 ? 1 : 0.5,
                         child: Row(
                           children: [
                             SizedBox(
-                              width: 30,
-                              child: !analyticsAvailable
+                              width: 40,
+                              height: 30,
+                              child: (_downloadStatuses[user.id] ?? 0) < 0
                                   ? const Icon(
                                       Icons.error_outline,
                                       size: 16,
@@ -377,7 +411,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
               padding: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 8.0),
               child: OutlinedButton(
                 onPressed: _loading || !_initialized ? null : _runDownload,
-                child: _initialized
+                child: _initialized && !_loading
                     ? Text(
                         _loading
                             ? L10n.of(context).downloading
@@ -385,17 +419,17 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
                       )
                     : const SizedBox(
                         height: 10,
-                        width: 10,
-                        child: CircularProgressIndicator.adaptive(),
+                        width: 100,
+                        child: LinearProgressIndicator(),
                       ),
               ),
             ),
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
-              child: _finishedDownload
+              child: _statusText != null
                   ? Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(L10n.of(context).downloadComplete),
+                      child: Text(_statusText!),
                     )
                   : const SizedBox(),
             ),

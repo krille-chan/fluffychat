@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/enum/analytics/analytics_summary_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
@@ -8,104 +10,150 @@ import 'package:fluffychat/pangea/models/analytics/construct_use_model.dart';
 
 class AnalyticsSummaryModel {
   String username;
-  int level;
-  int totalXP;
+  bool dataAvailable;
+  int? level;
+  int? totalXP;
 
-  int numLemmas;
-  int numLemmasUsedCorrectly;
-  int numLemmasUsedIncorrectly;
+  int? numLemmas;
+  int? numLemmasUsedCorrectly;
+  int? numLemmasUsedIncorrectly;
 
   /// 0 - 30 XP
-  int numLemmasSmallXP;
+  int? numLemmasSmallXP;
 
   /// 31 - 200 XP
-  int numLemmasMediumXP;
+  int? numLemmasMediumXP;
 
   /// > 200 XP
-  int numLemmasLargeXP;
+  int? numLemmasLargeXP;
 
-  int numMorphConstructs;
-  List<String> listMorphConstructs;
-  List<String> listMorphConstructsUsedCorrectly;
-  List<String> listMorphConstructsUsedIncorrectly;
+  int? numMorphConstructs;
+  List<String>? listMorphConstructs;
+  List<String>? listMorphConstructsUsedCorrectlyOriginal;
+  List<String>? listMorphConstructsUsedIncorrectlyOriginal;
+  List<String>? listMorphConstructsUsedCorrectlySystem;
+  List<String>? listMorphConstructsUsedIncorrectlySystem;
 
   // list morph 0 - 30 XP
-  List<String> listMorphSmallXP;
+  List<String>? listMorphSmallXP;
 
   // list morph 31 - 200 XP
-  List<String> listMorphMediumXP;
+  List<String>? listMorphMediumXP;
 
   // list morph 200 - 500 XP
-  List<String> listMorphLargeXP;
+  List<String>? listMorphLargeXP;
 
   // list morph > 500 XP
-  List<String> listMorphHugeXP;
+  List<String>? listMorphHugeXP;
 
-  int numMessagesSent;
-  int numWordsTyped;
-  int numChoicesCorrect;
-  int numChoicesIncorrect;
+  int? numMessagesSent;
+  int? numWordsTyped;
+  int? numChoicesCorrect;
+  int? numChoicesIncorrect;
 
   AnalyticsSummaryModel({
     required this.username,
-    required this.level,
-    required this.totalXP,
-    required this.numLemmas,
-    required this.numLemmasUsedCorrectly,
-    required this.numLemmasUsedIncorrectly,
-    required this.numLemmasSmallXP,
-    required this.numLemmasMediumXP,
-    required this.numLemmasLargeXP,
-    required this.numMorphConstructs,
-    required this.listMorphConstructs,
-    required this.listMorphConstructsUsedCorrectly,
-    required this.listMorphConstructsUsedIncorrectly,
-    required this.listMorphSmallXP,
-    required this.listMorphMediumXP,
-    required this.listMorphLargeXP,
-    required this.listMorphHugeXP,
-    required this.numMessagesSent,
-    required this.numWordsTyped,
-    required this.numChoicesCorrect,
-    required this.numChoicesIncorrect,
+    required this.dataAvailable,
+    this.level,
+    this.totalXP,
+    this.numLemmas,
+    this.numLemmasUsedCorrectly,
+    this.numLemmasUsedIncorrectly,
+    this.numLemmasSmallXP,
+    this.numLemmasMediumXP,
+    this.numLemmasLargeXP,
+    this.numMorphConstructs,
+    this.listMorphConstructs,
+    this.listMorphConstructsUsedCorrectlyOriginal,
+    this.listMorphConstructsUsedIncorrectlyOriginal,
+    this.listMorphConstructsUsedCorrectlySystem,
+    this.listMorphConstructsUsedIncorrectlySystem,
+    this.listMorphSmallXP,
+    this.listMorphMediumXP,
+    this.listMorphLargeXP,
+    this.listMorphHugeXP,
+    this.numMessagesSent,
+    this.numWordsTyped,
+    this.numChoicesCorrect,
+    this.numChoicesIncorrect,
   });
 
+  static AnalyticsSummaryModel emptyModel(String userID) {
+    return AnalyticsSummaryModel(
+      username: userID,
+      dataAvailable: false,
+    );
+  }
+
   static AnalyticsSummaryModel fromConstructListModel(
-    ConstructListModel model,
     String userID,
+    ConstructListModel? model,
     String Function(ConstructUses) getCopy,
     BuildContext context,
   ) {
-    final vocabLemmas = LemmasToUsesWrapper(
-      model.lemmasToUses(type: ConstructTypeEnum.vocab),
-    );
-    final morphLemmas = LemmasToUsesWrapper(
-      model.lemmasToUses(type: ConstructTypeEnum.morph),
-    );
+    final vocabLemmas = model != null
+        ? LemmasToUsesWrapper(
+            model.lemmasToUses(type: ConstructTypeEnum.vocab),
+          )
+        : null;
+    final morphLemmas = model != null
+        ? LemmasToUsesWrapper(
+            model.lemmasToUses(type: ConstructTypeEnum.morph),
+          )
+        : null;
 
-    final morphLemmasPercentCorrect = morphLemmas.lemmasByPercent(
-      percent: 0.8,
-      getCopy: getCopy,
-    );
+    final List<String> correctOriginalUseLemmas = [];
+    final List<String> correctSystemUseLemmas = [];
+    final List<String> incorrectOriginalUseLemmas = [];
+    final List<String> incorrectSystemUseLemmas = [];
 
-    final vocabLemmasCorrect = vocabLemmas.lemmasByCorrectUse(getCopy: getCopy);
+    if (morphLemmas != null) {
+      final originalWrittenUses = morphLemmas.lemmasByPercent(
+        filter: (use) =>
+            use.useType == ConstructUseTypeEnum.wa ||
+            use.useType == ConstructUseTypeEnum.ga,
+        percent: 0.8,
+      );
 
-    int numWordsTyped = 0;
-    int numChoicesCorrect = 0;
-    int numChoicesIncorrect = 0;
-    for (final use in model.uses) {
-      if (use.useType.summaryEnumType == AnalyticsSummaryEnum.numWordsTyped) {
-        numWordsTyped++;
-      } else if (use.useType.summaryEnumType ==
-          AnalyticsSummaryEnum.numChoicesCorrect) {
-        numChoicesCorrect++;
-      } else if (use.useType.summaryEnumType ==
-          AnalyticsSummaryEnum.numChoicesIncorrect) {
-        numChoicesIncorrect++;
+      correctSystemUseLemmas.addAll(originalWrittenUses.over);
+      incorrectSystemUseLemmas.addAll(originalWrittenUses.under);
+
+      final systemGeneratedUses = morphLemmas.lemmasByPercent(
+        filter: (use) =>
+            use.useType != ConstructUseTypeEnum.wa &&
+            use.useType != ConstructUseTypeEnum.ga &&
+            use.useType != ConstructUseTypeEnum.unk &&
+            use.pointValue != 0,
+        percent: 0.8,
+      );
+
+      correctSystemUseLemmas.addAll(systemGeneratedUses.over);
+      incorrectSystemUseLemmas.addAll(systemGeneratedUses.under);
+    }
+
+    final vocabLemmasCorrect = vocabLemmas?.lemmasByCorrectUse();
+
+    int? numWordsTyped;
+    int? numChoicesCorrect;
+    int? numChoicesIncorrect;
+    if (model != null) {
+      numWordsTyped = 0;
+      numChoicesCorrect = 0;
+      numChoicesIncorrect = 0;
+      for (final use in model.uses) {
+        if (use.useType.summaryEnumType == AnalyticsSummaryEnum.numWordsTyped) {
+          numWordsTyped = numWordsTyped! + 1;
+        } else if (use.useType.summaryEnumType ==
+            AnalyticsSummaryEnum.numChoicesCorrect) {
+          numChoicesCorrect = numChoicesCorrect! + 1;
+        } else if (use.useType.summaryEnumType ==
+            AnalyticsSummaryEnum.numChoicesIncorrect) {
+          numChoicesIncorrect = numChoicesIncorrect! + 1;
+        }
       }
     }
 
-    final numMessageSent = model.uses
+    final numMessageSent = model?.uses
         .where((use) => use.useType.sentByUser)
         .map((use) => use.metadata.eventId)
         .toSet()
@@ -113,37 +161,41 @@ class AnalyticsSummaryModel {
 
     return AnalyticsSummaryModel(
       username: userID,
-      level: model.level,
-      totalXP: model.totalXP,
-      numLemmas: model.vocabLemmas,
-      numLemmasUsedCorrectly: vocabLemmasCorrect.over.length,
-      numLemmasUsedIncorrectly: vocabLemmasCorrect.under.length,
-      numLemmasSmallXP: vocabLemmas.thresholdedLemmas(start: 0, end: 30).length,
+      dataAvailable: model != null,
+      level: model?.level,
+      totalXP: model?.totalXP,
+      numLemmas: model?.vocabLemmas,
+      numLemmasUsedCorrectly: vocabLemmasCorrect?.over.length,
+      numLemmasUsedIncorrectly: vocabLemmasCorrect?.under.length,
+      numLemmasSmallXP:
+          vocabLemmas?.thresholdedLemmas(start: 0, end: 30).length,
       numLemmasMediumXP:
-          vocabLemmas.thresholdedLemmas(start: 31, end: 200).length,
-      numLemmasLargeXP: vocabLemmas.thresholdedLemmas(start: 201).length,
-      numMorphConstructs: model.grammarLemmas,
-      listMorphConstructs: morphLemmas.lemmasToUses.entries
+          vocabLemmas?.thresholdedLemmas(start: 31, end: 200).length,
+      numLemmasLargeXP: vocabLemmas?.thresholdedLemmas(start: 201).length,
+      numMorphConstructs: model?.grammarLemmas,
+      listMorphConstructs: morphLemmas?.lemmasToUses.entries
           .map((entry) => getCopy(entry.value.first))
           .toList(),
-      listMorphConstructsUsedCorrectly: morphLemmasPercentCorrect.over,
-      listMorphConstructsUsedIncorrectly: morphLemmasPercentCorrect.under,
-      listMorphSmallXP: morphLemmas.thresholdedLemmas(
+      listMorphConstructsUsedCorrectlyOriginal: correctOriginalUseLemmas,
+      listMorphConstructsUsedIncorrectlyOriginal: incorrectOriginalUseLemmas,
+      listMorphConstructsUsedCorrectlySystem: correctSystemUseLemmas,
+      listMorphConstructsUsedIncorrectlySystem: incorrectSystemUseLemmas,
+      listMorphSmallXP: morphLemmas?.thresholdedLemmas(
         start: 0,
         end: 30,
         getCopy: getCopy,
       ),
-      listMorphMediumXP: morphLemmas.thresholdedLemmas(
+      listMorphMediumXP: morphLemmas?.thresholdedLemmas(
         start: 31,
         end: 200,
         getCopy: getCopy,
       ),
-      listMorphLargeXP: morphLemmas.thresholdedLemmas(
+      listMorphLargeXP: morphLemmas?.thresholdedLemmas(
         start: 201,
         end: 500,
         getCopy: getCopy,
       ),
-      listMorphHugeXP: morphLemmas.thresholdedLemmas(
+      listMorphHugeXP: morphLemmas?.thresholdedLemmas(
         start: 501,
         getCopy: getCopy,
       ),
@@ -154,10 +206,14 @@ class AnalyticsSummaryModel {
     );
   }
 
-  dynamic getValue(AnalyticsSummaryEnum key) {
+  dynamic getValue(AnalyticsSummaryEnum key, BuildContext context) {
     switch (key) {
       case AnalyticsSummaryEnum.username:
         return username;
+      case AnalyticsSummaryEnum.dataAvailable:
+        return dataAvailable
+            ? L10n.of(context).available
+            : L10n.of(context).unavailable;
       case AnalyticsSummaryEnum.level:
         return level;
       case AnalyticsSummaryEnum.totalXP:
@@ -178,10 +234,14 @@ class AnalyticsSummaryModel {
         return numMorphConstructs;
       case AnalyticsSummaryEnum.listMorphConstructs:
         return listMorphConstructs;
-      case AnalyticsSummaryEnum.listMorphConstructsUsedCorrectly:
-        return listMorphConstructsUsedCorrectly;
-      case AnalyticsSummaryEnum.listMorphConstructsUsedIncorrectly:
-        return listMorphConstructsUsedIncorrectly;
+      case AnalyticsSummaryEnum.listMorphConstructsUsedCorrectlyOriginal:
+        return listMorphConstructsUsedCorrectlyOriginal;
+      case AnalyticsSummaryEnum.listMorphConstructsUsedIncorrectlyOriginal:
+        return listMorphConstructsUsedIncorrectlyOriginal;
+      case AnalyticsSummaryEnum.listMorphConstructsUsedCorrectlySystem:
+        return listMorphConstructsUsedCorrectlySystem;
+      case AnalyticsSummaryEnum.listMorphConstructsUsedIncorrectlySystem:
+        return listMorphConstructsUsedIncorrectlySystem;
       case AnalyticsSummaryEnum.listMorphSmallXP:
         return listMorphSmallXP;
       case AnalyticsSummaryEnum.listMorphMediumXP:
@@ -214,8 +274,10 @@ class AnalyticsSummaryModel {
       'numLemmasLargeXP': numLemmasLargeXP,
       'numMorphConstructs': numMorphConstructs,
       'listMorphConstructs': listMorphConstructs,
-      'listMorphConstructsUsedCorrectly': listMorphConstructsUsedCorrectly,
-      'listMorphConstructsUsedIncorrectly': listMorphConstructsUsedIncorrectly,
+      'listMorphConstructsUsedCorrectly':
+          listMorphConstructsUsedCorrectlyOriginal,
+      'listMorphConstructsUsedIncorrectly':
+          listMorphConstructsUsedIncorrectlyOriginal,
       'listMorphSmallXP': listMorphSmallXP,
       'listMorphMediumXP': listMorphMediumXP,
       'listMorphLargeXP': listMorphLargeXP,

@@ -4668,7 +4668,7 @@
   "numLemmasUsedCorrectly": "Number of lemmas used correctly at least once",
   "listLemmasUsedCorrectly": "List of lemmas used correctly at least once",
   "numLemmasUsedIncorrectly": "Number of lemmas used incorrectly at least once",
-  "listLemmasUsedIncorrectly": "List of lemmas used incorrectly at least once",
+  "listLemmasUsedIncorrectly": "Number of lemmas used correctly 0 times",
   "numLemmasSmallXP": "Number of lemmas with 0 - 30 XP",
   "numLemmasMediumXP": "Number of lemmas with 31 - 200 XP",
   "numLemmasLargeXP": "Number of lemmas with > 200 XP",
@@ -4677,8 +4677,10 @@
   "listLemmasLargeXP": "List of lemmas with > 200 XP",
   "numGrammarConcepts": "Number of grammar concepts",
   "listGrammarConcepts": "List of grammar concepts",
-  "listGrammarConceptsUsedCorrectly": "List of grammar concepts used correctly at least 80% of the time",
-  "listGrammarConceptsUsedIncorrectly": "List of grammar concepts used correctly less than 80% of the time",
+  "listGrammarConceptsUsedCorrectly": "List of grammar concepts used correctly in original messages at least 80% of the time",
+  "listGrammarConceptsUsedIncorrectly": "List of grammar concepts used correctly in original messages less than 80% of the time",
+  "listGrammarConceptsUseCorrectlySystemGenerated": "List of grammar concepts chosen correctly from system-generated suggestions at least 80% of the time",
+  "listGrammarConceptsUseIncorrectlySystemGenerated": "List of grammar concepts chosen correctly from system-generated suggestions less than 80% of the time",
   "incorrectGrammarConceptsUseCases": "Use cases of grammar concepts used incorrectly",
   "listGrammarConceptsSmallXP": "List of grammar concepts with 0 - 30 XP",
   "listGrammarConceptsMediumXP": "List of grammar concepts with 31 - 200 XP",
@@ -4696,5 +4698,10 @@
   "analyticsNotAvailable": "User analytics not available",
   "downloading": "Downloading...",
   "failedFetchUserAnalytics": "Failed to download user analytics",
-  "downloadComplete": "Download complete!"
+  "downloadComplete": "Download complete!",
+  "dataAvailable": "Data availability",
+  "lemmasNeverUsedCorrectly": "Number of lemmas used correctly 0 times",
+  "available": "Available",
+  "unavailable": "Unavailable",
+  "accessingMemberAnalytics": "Accessing member analytics..."
 }

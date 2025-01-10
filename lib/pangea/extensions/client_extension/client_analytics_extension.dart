@@ -53,24 +53,15 @@ extension AnalyticsClientExtension on Client {
       },
       name: "$userID $langCode Analytics",
       topic: "This room stores learning analytics for $userID.",
-      invite: [
-        ...(await myTeachers).map((e) => e.id),
-        BotName.byEnvironment,
-      ],
+      preset: CreateRoomPreset.publicChat,
+      visibility: Visibility.private,
     );
     if (getRoomById(roomID) == null) {
       // Wait for room actually appears in sync
       await waitForRoomInSync(roomID, join: true);
     }
 
-    final Room? analyticsRoom = getRoomById(roomID);
-
-    // add this analytics room to all spaces so teachers can join them
-    // via the space hierarchy
-    analyticsRoom?.addAnalyticsRoomToSpaces();
-
-    // and invite all teachers to new analytics room
-    analyticsRoom?.inviteTeachersToAnalyticsRoom();
+    _addAnalyticsRoomsToSpaces();
     return getRoomById(roomID)!;
   }
 
@@ -81,97 +72,96 @@ extension AnalyticsClientExtension on Client {
       )
       .toList();
 
-  // migration function to change analytics rooms' vsibility to public
-  // so they will appear in the space hierarchy
+  /// Update the visibility of all analytics rooms to private (do they don't show in search
+  /// results) and set the join rules to public (so they come through in space hierarchy response)
   Future<void> _updateAnalyticsRoomVisibility() async {
     if (userID == null || userID == BotName.byEnvironment) return;
+    final Random random = Random();
 
-    final visibilityFutures = allMyAnalyticsRooms.map((room) async {
-      final visability = await getRoomVisibilityOnDirectory(room.id);
-      if (visability != Visibility.private) {
+    for (final analyticsRoom in allMyAnalyticsRooms) {
+      if (userID == null) return;
+      final visibility = await getRoomVisibilityOnDirectory(analyticsRoom.id);
+
+      // if making a call to the server (either to update visibility or join rules)
+      // add a delay at the end of this interaction to prevent overloading the server
+      int delay = 0;
+      if (visibility != Visibility.private ||
+          analyticsRoom.joinRules != JoinRules.public) {
+        delay = random.nextInt(10);
+      }
+
+      // don't show in search results
+      if (visibility != Visibility.private) {
         await setRoomVisibilityOnDirectory(
-          room.id,
+          analyticsRoom.id,
           visibility: Visibility.private,
         );
       }
-    }).toList();
 
-    final joinRulesFutures = allMyAnalyticsRooms.map((room) async {
-      if (room.joinRules != JoinRules.public) {
-        await room.setJoinRules(JoinRules.public);
+      // do show in space hierarchy
+      if (analyticsRoom.joinRules != JoinRules.public) {
+        await analyticsRoom.setJoinRules(JoinRules.public);
       }
-    }).toList();
 
-    await Future.wait(
-      visibilityFutures + joinRulesFutures,
-    );
-  }
-
-  /// Add all the users' analytics room to all the spaces the user is studying in
-  /// so teachers can join them via space hierarchy.
-  /// Allows teachers to join analytics rooms without being invited.
-  void _addAnalyticsRoomsToAllSpaces() {
-    if (userID == null || userID == BotName.byEnvironment) return;
-    for (final Room room in allMyAnalyticsRooms) {
-      room.addAnalyticsRoomToSpaces();
+      await Future.delayed(Duration(seconds: delay));
     }
   }
 
-  /// Invite teachers to all my analytics room.
-  /// Handles case when students cannot add analytics room to space(s)
-  /// so teacher is still able to get analytics data for this student
-  void _inviteAllTeachersToAllAnalyticsRooms() {
+  /// Space admins join analytics rooms in spaces via the space hierarchy,
+  /// so other members of the space need to add their analytics rooms to the space.
+  Future<void> _addAnalyticsRoomsToSpaces() async {
     if (userID == null || userID == BotName.byEnvironment) return;
-    for (final Room room in allMyAnalyticsRooms) {
-      room.inviteTeachersToAnalyticsRoom();
-    }
-  }
+    final spaces = rooms.where((room) => room.isSpace).toList();
 
-  // Join all analytics rooms in all spaces
-  // Allows teachers to join analytics rooms without being invited
-  Future<void> _joinAnalyticsRoomsInAllSpaces() async {
-    for (final Room space in _spacesImTeaching) {
-      // Each call to joinAnalyticsRoomsInSpace calls getSpaceHierarchy, which has a
-      // strict rate limit. So we wait a second between each call to prevent a 429 error.
-      await Future.delayed(
-        const Duration(seconds: 1),
-        () => space.joinAnalyticsRoomsInSpace(),
+    final Random random = Random();
+    for (final space in spaces) {
+      if (userID == null) return;
+      final List<Room> roomsNotAdded = allMyAnalyticsRooms.where((room) {
+        return !space.spaceChildren.any((child) => child.roomId == room.id);
+      }).toList();
+
+      if (roomsNotAdded.isEmpty) continue;
+
+      for (final analyticsRoom in roomsNotAdded) {
+        if (userID == null) return;
+        try {
+          await space.setSpaceChild(analyticsRoom.id);
+        } catch (e, s) {
+          ErrorHandler.logError(
+            e: e,
+            s: s,
+            data: {
+              "spaceID": space.id,
+              "analyticsRoomID": analyticsRoom.id,
+              "userID": userID,
+            },
+          );
+        }
+      }
+
+      // add a delay before checking the next space to prevent overloading the server
+      final delay = random.nextInt(10);
+      debugPrint(
+        "added ${roomsNotAdded.length} rooms to space ${space.id}, delay: $delay",
       );
+      await Future.delayed(Duration(seconds: delay));
     }
   }
 
-  /// Join invited analytics rooms.
-  /// Checks for invites to any student analytics rooms.
-  /// Handles case of analytics rooms that can't be added to some space(s).
-  void _joinInvitedAnalyticsRooms() {
-    Future.wait(
-      rooms
-          .where(
-            (room) =>
-                room.membership == Membership.invite && room.isAnalyticsRoom,
-          )
-          .map(
-            (room) => room.join().catchError((err, s) {
-              ErrorHandler.logError(
-                e: err,
-                s: s,
-                data: {
-                  "roomID": room.id,
-                },
-              );
-            }),
-          ),
-    );
-  }
-
-  /// Helper function to join all relevant analytics rooms
-  /// and set up those rooms to be joined by other users.
-  void _migrateAnalyticsRooms() {
-    _updateAnalyticsRoomVisibility().then((_) {
-      _addAnalyticsRoomsToAllSpaces();
-      _inviteAllTeachersToAllAnalyticsRooms();
-      _joinInvitedAnalyticsRooms();
-      _joinAnalyticsRoomsInAllSpaces();
-    });
+  /// Check if sync update includes newly joined room. Used by the
+  /// GetAnalyticsController to add analytics rooms to newly joined spaces.
+  bool _isJoinSpaceSyncUpdate(SyncUpdate update) {
+    if (update.rooms?.join == null) return false;
+    return update.rooms!.join!.values
+        .where(
+          (e) =>
+              e.state != null &&
+              e.state!.any(
+                (e) =>
+                    e.type == EventTypes.RoomCreate &&
+                    e.content['type'] == 'm.space',
+              ),
+        )
+        .isNotEmpty;
   }
 }

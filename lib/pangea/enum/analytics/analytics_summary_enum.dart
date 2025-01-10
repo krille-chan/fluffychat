@@ -2,6 +2,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum AnalyticsSummaryEnum {
   username,
+  dataAvailable,
   level,
   totalXP,
   numLemmas,
@@ -19,8 +20,10 @@ enum AnalyticsSummaryEnum {
 
   numMorphConstructs,
   listMorphConstructs,
-  listMorphConstructsUsedCorrectly,
-  listMorphConstructsUsedIncorrectly,
+  listMorphConstructsUsedCorrectlyOriginal,
+  listMorphConstructsUsedIncorrectlyOriginal,
+  listMorphConstructsUsedCorrectlySystem,
+  listMorphConstructsUsedIncorrectlySystem,
 
   // list morph 0 - 30 XP
   listMorphSmallXP,
@@ -45,6 +48,8 @@ extension AnalyticsSummaryEnumExtension on AnalyticsSummaryEnum {
     switch (this) {
       case AnalyticsSummaryEnum.username:
         return l10n.username;
+      case AnalyticsSummaryEnum.dataAvailable:
+        return l10n.dataAvailable;
       case AnalyticsSummaryEnum.level:
         return l10n.level;
       case AnalyticsSummaryEnum.totalXP:
@@ -65,10 +70,14 @@ extension AnalyticsSummaryEnumExtension on AnalyticsSummaryEnum {
         return l10n.numGrammarConcepts;
       case AnalyticsSummaryEnum.listMorphConstructs:
         return l10n.listGrammarConcepts;
-      case AnalyticsSummaryEnum.listMorphConstructsUsedCorrectly:
+      case AnalyticsSummaryEnum.listMorphConstructsUsedCorrectlyOriginal:
         return l10n.listGrammarConceptsUsedCorrectly;
-      case AnalyticsSummaryEnum.listMorphConstructsUsedIncorrectly:
+      case AnalyticsSummaryEnum.listMorphConstructsUsedIncorrectlyOriginal:
         return l10n.listGrammarConceptsUsedIncorrectly;
+      case AnalyticsSummaryEnum.listMorphConstructsUsedCorrectlySystem:
+        return l10n.listGrammarConceptsUseCorrectlySystemGenerated;
+      case AnalyticsSummaryEnum.listMorphConstructsUsedIncorrectlySystem:
+        return l10n.listGrammarConceptsUseIncorrectlySystemGenerated;
       case AnalyticsSummaryEnum.listMorphSmallXP:
         return l10n.listGrammarConceptsSmallXP;
       case AnalyticsSummaryEnum.listMorphMediumXP:

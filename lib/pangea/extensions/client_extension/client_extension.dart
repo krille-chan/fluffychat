@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 
@@ -9,13 +10,11 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 
 part "client_analytics_extension.dart";
 part "general_info_extension.dart";
-part "space_extension.dart";
 
 extension PangeaClient on Client {
 // analytics
@@ -33,22 +32,18 @@ extension PangeaClient on Client {
 
   List<Room> get allMyAnalyticsRooms => _allMyAnalyticsRooms;
 
+  /// Update the visibility of all analytics rooms to private (do they don't show in search
+  /// results) and set the join rules to public (so they come through in space hierarchy response)
   Future<void> updateAnalyticsRoomVisibility() async =>
-      await _updateAnalyticsRoomVisibility();
+      _updateAnalyticsRoomVisibility();
 
-  /// Helper function to join all relevant analytics rooms
-  /// and set up those rooms to be joined by other users.
-  void migrateAnalyticsRooms() => _migrateAnalyticsRooms();
+  /// Space admins join analytics rooms in spaces via the space hierarchy,
+  /// so other members of the space need to add their analytics rooms to the space.
+  Future<void> addAnalyticsRoomsToSpaces() async =>
+      _addAnalyticsRoomsToSpaces();
 
-  // spaces
-
-  List<Room> get spacesImTeaching => _spacesImTeaching;
-
-  List<Room> get spacesImAStudentIn => _spacesImStudyingIn;
-
-  List<Room> get spacesImIn => _spacesImIn;
-
-  PangeaRoomRules? get lastUpdatedRoomRules => _lastUpdatedRoomRules;
+  bool isJoinSpaceSyncUpdate(SyncUpdate update) =>
+      _isJoinSpaceSyncUpdate(update);
 
 // general_info
 

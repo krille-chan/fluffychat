@@ -3,7 +3,8 @@ part of "client_extension.dart";
 extension GeneralInfoClientExtension on Client {
   Future<List<User>> get _myTeachers async {
     final List<User> teachers = [];
-    for (final classRoom in spacesImIn) {
+    final spaces = rooms.where((room) => room.isSpace);
+    for (final classRoom in spaces) {
       for (final teacher in await classRoom.teachers) {
         // If person requesting list of teachers is a teacher in another classroom, don't add them to the list
         if (!teachers.any((e) => e.id == teacher.id) && userID != teacher.id) {

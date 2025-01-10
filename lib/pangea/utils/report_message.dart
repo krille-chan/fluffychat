@@ -103,8 +103,8 @@ Future<List<SpaceTeacher>> getReportTeachers(
 
   final List<Room> otherSpaces = Matrix.of(context)
       .client
-      .spacesImIn
-      .where((space) => !reportRoomParentSpaces.contains(space))
+      .rooms
+      .where((room) => room.isSpace && !reportRoomParentSpaces.contains(room))
       .toList();
 
   for (final space in otherSpaces) {

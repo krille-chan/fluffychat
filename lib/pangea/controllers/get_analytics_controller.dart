@@ -28,6 +28,7 @@ class GetAnalyticsController {
   StreamSubscription<AnalyticsUpdate>? _analyticsUpdateSubscription;
   StreamController<AnalyticsStreamUpdate> analyticsStream =
       StreamController.broadcast();
+  StreamSubscription? _joinSpaceSubscription;
 
   ConstructListModel constructListModel = ConstructListModel(uses: []);
   Completer<void> initCompleter = Completer<void>();
@@ -72,9 +73,18 @@ class GetAnalyticsController {
     if (initCompleter.isCompleted) return;
 
     try {
+      _client.updateAnalyticsRoomVisibility();
+      _client.addAnalyticsRoomsToSpaces();
+
       _analyticsUpdateSubscription ??= _pangeaController
           .putAnalytics.analyticsUpdateStream.stream
           .listen(_onAnalyticsUpdate);
+
+      // When a newly-joined space comes through in a sync
+      // update, add the analytics rooms to the space
+      _joinSpaceSubscription ??= _client.onSync.stream
+          .where(_client.isJoinSpaceSyncUpdate)
+          .listen((_) => _client.addAnalyticsRoomsToSpaces());
 
       await _pangeaController.putAnalytics.lastUpdatedCompleter.future;
       await _getConstructs();
@@ -99,6 +109,8 @@ class GetAnalyticsController {
     constructListModel.dispose();
     _analyticsUpdateSubscription?.cancel();
     _analyticsUpdateSubscription = null;
+    _joinSpaceSubscription?.cancel();
+    _joinSpaceSubscription = null;
     initCompleter = Completer<void>();
     _cache.clear();
     // perMessage.dispose();

@@ -12,7 +12,6 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -36,17 +35,19 @@ class ClassController extends BaseController {
   /// to enable all other users to add child rooms to the space.
   void fixClassPowerLevels() {
     Future.wait(
-      _pangeaController.matrixState.client.spacesImTeaching.map(
-        (space) => space.setClassPowerLevels().catchError((err, s) {
-          ErrorHandler.logError(
-            e: err,
-            s: s,
-            data: {
-              "spaceID": space.id,
-            },
-          );
-        }),
-      ),
+      _pangeaController.matrixState.client.rooms
+          .where((room) => room.isSpace && room.isRoomAdmin)
+          .map(
+            (space) => space.setClassPowerLevels().catchError((err, s) {
+              ErrorHandler.logError(
+                e: err,
+                s: s,
+                data: {
+                  "spaceID": space.id,
+                },
+              );
+            }),
+          ),
     );
   }
 
@@ -148,11 +149,6 @@ class ClassController extends BaseController {
       return;
     }
 
-    // when possible, add user's analytics room the to space they joined
-    room.addAnalyticsRoomsToSpace();
-
-    // and invite the space's teachers to the user's analytics rooms
-    room.inviteSpaceTeachersToAnalyticsRooms();
     GoogleAnalytics.joinClass(classCode);
 
     if (room.client.getRoomById(room.id)?.membership != Membership.join) {

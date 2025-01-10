@@ -1,154 +1,75 @@
 part of "pangea_room_extension.dart";
 
 extension AnalyticsRoomExtension on Room {
-  /// Join analytics rooms in space.
-  /// Allows teachers to join analytics rooms without being invited.
-  Future<void> _joinAnalyticsRoomsInSpace() async {
-    try {
-      if (!isSpace) {
-        debugger(when: kDebugMode);
-        return;
-      }
+  Future<List<SpaceRoomsChunk>> _getFullSpaceHierarchy() async {
+    final resp = await client.getSpaceHierarchy(
+      id,
+      limit: 100,
+      maxDepth: 1,
+    );
 
-      if (client.userID == null || !isRoomAdmin) return;
-      final spaceHierarchy = await client.getSpaceHierarchy(
+    final List<SpaceRoomsChunk> rooms = resp.rooms;
+    String? nextBatch = resp.nextBatch;
+    int tries = 0;
+
+    while (nextBatch != null && tries <= 5) {
+      final nextResp = await client.getSpaceHierarchy(
         id,
+        from: nextBatch,
+        limit: 100,
         maxDepth: 1,
       );
-
-      final List<String> analyticsRoomIds = spaceHierarchy.rooms
-          .where((r) => r.roomType == PangeaRoomTypes.analytics)
-          .map((r) => r.roomId)
-          .toList();
-
-      await Future.wait(
-        analyticsRoomIds.map(
-          (roomID) => joinSpaceChild(roomID).catchError((err, s) {
-            debugPrint("Failed to join analytics room $roomID in space $id");
-            ErrorHandler.logError(
-              e: err,
-              m: "Failed to join analytics room $roomID in space $id",
-              s: s,
-              data: {
-                "roomID": roomID,
-                "spaceID": id,
-              },
-            );
-          }),
-        ),
-      );
-    } catch (err, s) {
-      ErrorHandler.logError(
-        e: err,
-        s: s,
-        data: {
-          "spaceID": id,
-        },
-      );
-      return;
-    }
-  }
-
-  // add 1 analytics room to 1 space
-  Future<void> _addAnalyticsRoomToSpace(Room analyticsRoom) async {
-    if (!isSpace) {
-      debugPrint("addAnalyticsRoomToSpace called on non-space room");
-      Sentry.addBreadcrumb(
-        Breadcrumb(
-          message: "addAnalyticsRoomToSpace called on non-space room",
-        ),
-      );
-      return Future.value();
+      rooms.addAll(nextResp.rooms);
+      nextBatch = nextResp.nextBatch;
+      tries++;
     }
 
-    // Checks that user has permission to add child to space
-    if (!canSendEvent(EventTypes.SpaceChild)) return;
-    if (spaceChildren.any((sc) => sc.roomId == analyticsRoom.id)) return;
+    return rooms;
+  }
 
-    try {
-      await setSpaceChild(analyticsRoom.id);
-    } catch (err) {
-      debugPrint(
-        "Failed to add analytics room ${analyticsRoom.id} for student to space $id",
-      );
-      Sentry.addBreadcrumb(
-        Breadcrumb(
-          message: "Failed to add analytics room to space $id",
-        ),
-      );
+  Future<void> _joinAnalyticsRooms() async {
+    final List<SpaceRoomsChunk> rooms = await _getFullSpaceHierarchy();
+
+    final unjoinedAnalyticsRooms = rooms.where(
+      (room) {
+        if (room.roomType != PangeaRoomTypes.analytics) return false;
+        final matchingRoom = client.rooms.firstWhereOrNull(
+          (r) => r.id == room.roomId,
+        );
+        return matchingRoom == null ||
+            matchingRoom.membership != Membership.join;
+      },
+    ).toList();
+
+    const batchSize = 5;
+    int batchNum = 0;
+    while (batchSize * batchNum < unjoinedAnalyticsRooms.length) {
+      final batch =
+          unjoinedAnalyticsRooms.sublist(batchSize * batchNum).take(batchSize);
+
+      batchNum++;
+      for (final analyticsRoom in batch) {
+        try {
+          final syncFuture =
+              client.waitForRoomInSync(analyticsRoom.roomId, join: true);
+          await client.joinRoom(analyticsRoom.roomId);
+          await syncFuture;
+        } catch (e, s) {
+          ErrorHandler.logError(
+            e: e,
+            s: s,
+            data: {
+              "spaceID": id,
+              "roomID": analyticsRoom.roomId,
+            },
+          );
+        }
+      }
+
+      if (batchSize * batchNum < unjoinedAnalyticsRooms.length) {
+        await Future.delayed(const Duration(milliseconds: 7500));
+      }
     }
-  }
-
-  /// Add analytics room to all spaces the user is a student in (1 analytics room to all spaces).
-  /// Enables teachers to join student analytics rooms via space hierarchy.
-  /// Will not always work, as there may be spaces where students don't have permission to add chats,
-  /// but allows teachers to join analytics rooms without being invited.
-  void _addAnalyticsRoomToSpaces() {
-    if (!isAnalyticsRoomOfUser(client.userID!)) return;
-    Future.wait(
-      client.spacesImAStudentIn
-          .where((space) => !space.spaceChildren.any((sc) => sc.roomId == id))
-          .map((space) => space.addAnalyticsRoomToSpace(this)),
-    );
-  }
-
-  /// Add all the user's analytics rooms to 1 space.
-  void _addAnalyticsRoomsToSpace() {
-    Future.wait(
-      client.allMyAnalyticsRooms.map((room) => addAnalyticsRoomToSpace(room)),
-    );
-  }
-
-  /// Invite teachers of 1 space to 1 analytics room
-  Future<void> _inviteSpaceTeachersToAnalyticsRoom(Room analyticsRoom) async {
-    if (!isSpace) return;
-    if (!analyticsRoom.participantListComplete) {
-      await analyticsRoom.requestParticipants();
-    }
-
-    final List<User> participants = analyticsRoom.getParticipants();
-    final List<User> uninvitedTeachers = (await teachers)
-        .where((teacher) => !participants.contains(teacher))
-        .toList();
-
-    if (analyticsRoom.canSendEvent(EventTypes.RoomMember)) {
-      Future.wait(
-        uninvitedTeachers.map(
-          (teacher) => analyticsRoom.invite(teacher.id).catchError((err, s) {
-            ErrorHandler.logError(
-              e: err,
-              m: "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
-              s: s,
-              data: {
-                "teacherID": teacher.id,
-                "analyticsRoomID": analyticsRoom.id,
-              },
-            );
-          }),
-        ),
-      );
-    }
-  }
-
-  /// Invite all the user's teachers to 1 analytics room.
-  /// Handles case when students cannot add analytics room to space
-  /// so teacher is still able to get analytics data for this student.
-  void _inviteTeachersToAnalyticsRoom() {
-    if (client.userID == null || !isAnalyticsRoomOfUser(client.userID!)) return;
-    Future.wait(
-      client.spacesImAStudentIn.map(
-        (space) => inviteSpaceTeachersToAnalyticsRoom(this),
-      ),
-    );
-  }
-
-  /// Invite teachers of 1 space to all users' analytics rooms
-  void _inviteSpaceTeachersToAnalyticsRooms() {
-    Future.wait(
-      client.allMyAnalyticsRooms.map(
-        (room) => inviteSpaceTeachersToAnalyticsRoom(room),
-      ),
-    );
   }
 
   Future<DateTime?> _analyticsLastUpdated(String userId) async {
