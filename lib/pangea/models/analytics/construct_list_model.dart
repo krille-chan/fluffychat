@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
 import 'package:collection/collection.dart';
 
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
@@ -7,6 +9,7 @@ import 'package:fluffychat/pangea/models/analytics/construct_use_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/grammar/get_grammar_copy.dart';
 
 /// A wrapper around a list of [OneConstructUse]s, used to simplify
 /// the process of filtering / sorting / displaying the events.
@@ -263,16 +266,23 @@ class LemmasToUsesWrapper {
   LemmasOverUnderList lemmasByPercent({
     required bool Function(OneConstructUse) filter,
     required double percent,
+    required BuildContext context,
   }) {
     final List<String> correctUseLemmas = [];
     final List<String> incorrectUseLemmas = [];
 
     final uses = lemmasToFilteredUses(filter);
     for (final entry in uses.entries) {
+      if (entry.value.isEmpty) continue;
       final List<OneConstructUse> correctUses = [];
       final List<OneConstructUse> incorrectUses = [];
 
-      final lemma = entry.key;
+      final lemma = getGrammarCopy(
+            category: entry.value.first.category,
+            lemma: entry.key,
+            context: context,
+          ) ??
+          entry.key;
       final uses = entry.value.toList();
 
       for (final use in uses) {
