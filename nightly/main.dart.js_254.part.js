@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_254",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cFO(){return new B.Fy(A.dr("hu"))},
-Fy:function Fy(d){this.a=d}}
+cFO(){return new B.Fz(A.dr("hu"))},
+Fz:function Fz(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[27],B)
-B.Fy.prototype={
+B.Fz.prototype={
 gnN(){return"true"},
 gk_(){return"Jelsz\xf3 megism\xe9tl\xe9se"},
 gmg(){return"Nem k\xe9p f\xe1jl."},
@@ -577,8 +577,8 @@ gnS(){return"Unable to join chat. Maybe the other party has already closed the c
 gjQ(){return"Previous"},
 D(d,e){return this.gbi(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Fy,C.aG)})()
-A.e3(b.typeUniverse,JSON.parse('{"Fy":{"aG":[]}}'))};
+y(B.Fz,C.aG)})()
+A.e3(b.typeUniverse,JSON.parse('{"Fz":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"6OyQMOATy149BHJb16PRKo0lPxk=");
+a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"5OWHtLxDdzHTDCGgts/DWKWIadw=");
 //# sourceMappingURL=main.dart.js_254.part.js.map
