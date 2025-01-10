@@ -6,13 +6,12 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/utils/grammar/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/tts_controller.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/emoji_practice_button.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/word_text_with_audio_button.dart';
 import 'package:fluffychat/pangea/widgets/word_zoom/lemma_widget.dart';
-import 'package:fluffychat/pangea/widgets/word_zoom/morphological_widget.dart';
+import 'package:fluffychat/pangea/widgets/word_zoom/morphs/morphological_list_widget.dart';
 import 'package:fluffychat/pangea/widgets/word_zoom/word_zoom_center_widget.dart';
 
 enum WordZoomSelection {
@@ -278,43 +277,5 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
         ),
       ),
     );
-  }
-}
-
-class ActivityAnswerWidget extends StatelessWidget {
-  final PangeaToken token;
-  final WordZoomSelection selectionType;
-  final String? selectedMorphFeature;
-
-  const ActivityAnswerWidget({
-    super.key,
-    required this.token,
-    required this.selectionType,
-    required this.selectedMorphFeature,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    switch (selectionType) {
-      case WordZoomSelection.morph:
-        if (selectedMorphFeature == null) {
-          return const Text("There should be a selected morph feature");
-        }
-        final String morphTag = token.morph[selectedMorphFeature!];
-        final copy = getGrammarCopy(
-          category: selectedMorphFeature!,
-          lemma: morphTag,
-          context: context,
-        );
-        return Text(copy ?? morphTag, textAlign: TextAlign.center);
-      case WordZoomSelection.lemma:
-        return Text(token.lemma.text, textAlign: TextAlign.center);
-      case WordZoomSelection.emoji:
-        return token.getEmoji() != null
-            ? Text(token.getEmoji()!)
-            : const Text("emoji is null");
-      case WordZoomSelection.meaning:
-        return const SizedBox();
-    }
   }
 }

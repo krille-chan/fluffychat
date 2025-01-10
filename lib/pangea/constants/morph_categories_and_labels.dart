@@ -225,3 +225,12 @@ IconData getIconForMorphFeature(String feature) {
       return Icons.help_outline;
   }
 }
+
+List<String> getLabelsForMorphCategory(String category) {
+  for (final feat in morphCategoriesAndLabels.keys) {
+    if (feat.toLowerCase() == category.toLowerCase()) {
+      return morphCategoriesAndLabels[feat]!;
+    }
+  }
+  return [];
+}

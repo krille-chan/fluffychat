@@ -1,9 +1,14 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/word_zoom/lemma_meaning_widget.dart';
+import 'package:fluffychat/pangea/widgets/word_zoom/morphs/morphological_center_widget.dart';
 import 'package:fluffychat/pangea/widgets/word_zoom/word_zoom_widget.dart';
 
 class WordZoomCenterWidget extends StatelessWidget {
@@ -22,17 +27,44 @@ class WordZoomCenterWidget extends StatelessWidget {
     super.key,
   });
 
+  PangeaToken get token => wordDetailsController.widget.token;
+
+  Widget content(BuildContext context, WordZoomSelection selectionType) {
+    switch (selectionType) {
+      case WordZoomSelection.morph:
+        if (selectedMorphFeature == null) {
+          debugger(when: kDebugMode);
+          return const Text("Morphological feature is null");
+        }
+        return MorphologicalCenterWidget(
+          token: token,
+          morphFeature: selectedMorphFeature!,
+          pangeaMessageEvent: wordDetailsController.widget.messageEvent,
+        );
+      case WordZoomSelection.lemma:
+        return Text(token.lemma.text, textAlign: TextAlign.center);
+      case WordZoomSelection.emoji:
+        return token.getEmoji() != null
+            ? Text(token.getEmoji()!)
+            : const Text("emoji is null");
+      case WordZoomSelection.meaning:
+        return LemmaMeaningWidget(
+          lemma:
+              token.lemma.text.isNotEmpty ? token.lemma.text : token.lemma.form,
+          pos: token.pos,
+          langCode:
+              wordDetailsController.widget.messageEvent.messageDisplayLangCode,
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (selectionType == null) {
-      return const ToolbarContentLoadingIndicator();
-    }
-
     if (shouldDoActivity || locked) {
       return PracticeActivityCard(
         pangeaMessageEvent: wordDetailsController.widget.messageEvent,
         targetTokensAndActivityType: TargetTokensAndActivityType(
-          tokens: [wordDetailsController.widget.token],
+          tokens: [token],
           activityType: selectionType!.activityType,
         ),
         overlayController: wordDetailsController.widget.overlayController,
@@ -41,20 +73,8 @@ class WordZoomCenterWidget extends StatelessWidget {
       );
     }
 
-    if (selectionType == WordZoomSelection.meaning) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: LemmaMeaningWidget(
-            lemma: wordDetailsController.widget.token.lemma.text.isNotEmpty
-                ? wordDetailsController.widget.token.lemma.text
-                : wordDetailsController.widget.token.lemma.form,
-            pos: wordDetailsController.widget.token.pos,
-            langCode: wordDetailsController
-                .widget.messageEvent.messageDisplayLangCode,
-          ),
-        ),
-      );
+    if (selectionType == null) {
+      return const ToolbarContentLoadingIndicator();
     }
 
     return Padding(
@@ -62,13 +82,7 @@ class WordZoomCenterWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ActivityAnswerWidget(
-            token: wordDetailsController.widget.token,
-            selectionType: selectionType!,
-            selectedMorphFeature: selectedMorphFeature,
-          ),
-        ],
+        children: [content(context, selectionType!)],
       ),
     );
   }

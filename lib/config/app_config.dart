@@ -23,7 +23,7 @@ abstract class AppConfig {
   static const double messageFontSize = 16.0;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
-  static const double toolbarMaxHeight = 300.0;
+  static const double toolbarMaxHeight = 440.0;
   static const double toolbarMinHeight = 175.0;
   static const double toolbarMinWidth = 350.0;
   static const double toolbarButtonsHeight = 50.0;

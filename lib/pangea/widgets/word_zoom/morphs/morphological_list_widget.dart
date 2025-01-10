@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/pangea/constants/morph_categories_and_labels.dart';
-import 'package:fluffychat/pangea/enum/analytics/morph_categories_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/widgets/practice_activity/word_zoom_activity_button.dart';
+import 'package:fluffychat/pangea/widgets/word_zoom/morphs/morphological_list_item.dart';
 
 class ActivityMorph {
   final String morphFeature;
@@ -72,7 +71,7 @@ class MorphologicalListWidget extends StatelessWidget {
       children: _visibleMorphs.map((morph) {
         return Padding(
           padding: const EdgeInsets.all(2.0),
-          child: MorphologicalActivityButton(
+          child: MorphologicalListItem(
             onPressed: setMorphFeature,
             morphCategory: morph.morphFeature,
             icon: getIconForMorphFeature(morph.morphFeature),
@@ -81,38 +80,6 @@ class MorphologicalListWidget extends StatelessWidget {
           ),
         );
       }).toList(),
-    );
-  }
-}
-
-class MorphologicalActivityButton extends StatelessWidget {
-  final Function(String) onPressed;
-  final String morphCategory;
-  final IconData icon;
-
-  final bool isUnlocked;
-  final bool isSelected;
-
-  const MorphologicalActivityButton({
-    required this.onPressed,
-    required this.morphCategory,
-    required this.icon,
-    this.isUnlocked = true,
-    this.isSelected = false,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return WordZoomActivityButton(
-      icon: Icon(icon),
-      isSelected: isSelected,
-      onPressed: () => onPressed(morphCategory),
-      tooltip: getMorphologicalCategoryCopy(
-        morphCategory,
-        context,
-      ),
-      opacity: (isSelected || !isUnlocked) ? 1 : 0.5,
     );
   }
 }
