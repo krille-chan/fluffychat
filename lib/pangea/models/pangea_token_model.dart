@@ -1,11 +1,7 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:collection/collection.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
@@ -20,6 +16,9 @@ import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_request.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
+
 import '../constants/model_keys.dart';
 import 'lemma.dart';
 
@@ -313,8 +312,15 @@ class PangeaToken {
       case ActivityTypeEnum.hiddenWordListening:
         return daysSinceLastUseByType(a) > 7;
       case ActivityTypeEnum.lemmaId:
-        return _didActivitySuccessfully(ActivityTypeEnum.wordMeaning) &&
-            daysSinceLastUseByType(a) > 7;
+        return false;
+      // disabling lemma activities for now
+      // It has 2 purposes:• learning value• triangulating our determination of the lemma with
+      // AI plus user verification.However, displaying the lemma during the meaning activity helps
+      // disambiguate what the meaning activity is about. This is probably more valuable than the
+      // lemma activity itself. The piping for the lemma activity will stay there if we want to turn
+      //it back on, maybe in select instances.
+      // return _didActivitySuccessfully(ActivityTypeEnum.wordMeaning) &&
+      //     daysSinceLastUseByType(a) > 7;
       case ActivityTypeEnum.emoji:
         return true;
       case ActivityTypeEnum.morphId:

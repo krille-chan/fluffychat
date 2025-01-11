@@ -1,10 +1,10 @@
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/enum/instructions_enum.dart';
+import 'package:fluffychat/pangea/instructions/instruction_settings.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:matrix/matrix.dart';
+
 import 'language_model.dart';
 
 /// The user's settings learning settings.
@@ -187,142 +187,20 @@ class UserToolSettings {
   }
 }
 
-/// The user's settings for whether or not to show instuction messages.
-class UserInstructions {
-  bool showedItInstructions;
-  bool showedClickMessage;
-  bool showedBlurMeansTranslate;
-  bool showedTooltipInstructions;
-  bool showedMissingVoice;
-  bool showedClickBestOption;
-  bool showedUnlockedLanguageTools;
-
-  bool showedSpeechToTextTooltip;
-  bool showedL1TranslationTooltip;
-  bool showedTranslationChoicesTooltip;
-  bool showedClickAgainToDeselect;
-
-  UserInstructions({
-    this.showedItInstructions = false,
-    this.showedClickMessage = false,
-    this.showedBlurMeansTranslate = false,
-    this.showedTooltipInstructions = false,
-    this.showedSpeechToTextTooltip = false,
-    this.showedL1TranslationTooltip = false,
-    this.showedTranslationChoicesTooltip = false,
-    this.showedClickAgainToDeselect = false,
-    this.showedMissingVoice = false,
-    this.showedClickBestOption = false,
-    this.showedUnlockedLanguageTools = false,
-  });
-
-  factory UserInstructions.fromJson(Map<String, dynamic> json) =>
-      UserInstructions(
-        showedItInstructions: json[InstructionsEnum.itInstructions.toString()],
-        showedClickMessage:
-            json[InstructionsEnum.clickMessage.toString()] ?? false,
-        showedBlurMeansTranslate:
-            json[InstructionsEnum.blurMeansTranslate.toString()] ?? false,
-        showedTooltipInstructions:
-            json[InstructionsEnum.tooltipInstructions.toString()] ?? false,
-        showedL1TranslationTooltip:
-            json[InstructionsEnum.l1Translation.toString()] ?? false,
-        showedTranslationChoicesTooltip:
-            json[InstructionsEnum.translationChoices.toString()] ?? false,
-        showedSpeechToTextTooltip:
-            json[InstructionsEnum.speechToText.toString()] ?? false,
-        showedClickAgainToDeselect:
-            json[InstructionsEnum.clickAgainToDeselect.toString()] ?? false,
-        showedMissingVoice:
-            json[InstructionsEnum.missingVoice.toString()] ?? false,
-        showedClickBestOption:
-            json[InstructionsEnum.clickBestOption.toString()] ?? false,
-        showedUnlockedLanguageTools:
-            json[InstructionsEnum.unlockedLanguageTools.toString()] ?? false,
-      );
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data[InstructionsEnum.itInstructions.toString()] = showedItInstructions;
-    data[InstructionsEnum.clickMessage.toString()] = showedClickMessage;
-    data[InstructionsEnum.blurMeansTranslate.toString()] =
-        showedBlurMeansTranslate;
-    data[InstructionsEnum.tooltipInstructions.toString()] =
-        showedTooltipInstructions;
-    data[InstructionsEnum.l1Translation.toString()] =
-        showedL1TranslationTooltip;
-    data[InstructionsEnum.translationChoices.toString()] =
-        showedTranslationChoicesTooltip;
-    data[InstructionsEnum.speechToText.toString()] = showedSpeechToTextTooltip;
-    data[InstructionsEnum.clickAgainToDeselect.toString()] =
-        showedClickAgainToDeselect;
-    data[InstructionsEnum.missingVoice.toString()] = showedMissingVoice;
-    data[InstructionsEnum.clickBestOption.toString()] = showedClickBestOption;
-    data[InstructionsEnum.unlockedLanguageTools.toString()] =
-        showedUnlockedLanguageTools;
-    return data;
-  }
-
-  factory UserInstructions.migrateFromAccountData() {
-    final accountData =
-        MatrixState.pangeaController.matrixState.client.accountData;
-    return UserInstructions(
-      showedItInstructions:
-          (accountData[InstructionsEnum.itInstructions.toString()]
-                      ?.content[InstructionsEnum.itInstructions.toString()]
-                  as bool?) ??
-              false,
-      showedClickMessage: (accountData[InstructionsEnum.clickMessage.toString()]
-              ?.content[InstructionsEnum.clickMessage.toString()] as bool?) ??
-          false,
-      showedBlurMeansTranslate:
-          (accountData[InstructionsEnum.blurMeansTranslate.toString()]
-                      ?.content[InstructionsEnum.blurMeansTranslate.toString()]
-                  as bool?) ??
-              false,
-      showedTooltipInstructions:
-          (accountData[InstructionsEnum.tooltipInstructions.toString()]
-                      ?.content[InstructionsEnum.tooltipInstructions.toString()]
-                  as bool?) ??
-              false,
-      showedL1TranslationTooltip:
-          (accountData[InstructionsEnum.l1Translation.toString()]
-                      ?.content[InstructionsEnum.l1Translation.toString()]
-                  as bool?) ??
-              false,
-      showedTranslationChoicesTooltip:
-          (accountData[InstructionsEnum.translationChoices.toString()]
-                      ?.content[InstructionsEnum.translationChoices.toString()]
-                  as bool?) ??
-              false,
-      showedSpeechToTextTooltip:
-          (accountData[InstructionsEnum.speechToText.toString()]
-                      ?.content[InstructionsEnum.speechToText.toString()]
-                  as bool?) ??
-              false,
-      showedClickAgainToDeselect: (accountData[
-                      InstructionsEnum.clickAgainToDeselect.toString()]
-                  ?.content[InstructionsEnum.clickAgainToDeselect.toString()]
-              as bool?) ??
-          false,
-    );
-  }
-}
-
 /// A wrapper around the matrix account data for the user profile.
 /// Enables easy access to the profile data and saving new data.
 class Profile {
   late UserSettings userSettings;
   late UserToolSettings toolSettings;
-  late UserInstructions instructionSettings;
+  late InstructionSettings instructionSettings;
 
   Profile({
     required this.userSettings,
     UserToolSettings? toolSettings,
-    UserInstructions? instructionSettings,
+    InstructionSettings? instructionSettings,
   }) {
     this.toolSettings = toolSettings ?? UserToolSettings();
-    this.instructionSettings = instructionSettings ?? UserInstructions();
+    this.instructionSettings = instructionSettings ?? InstructionSettings();
   }
 
   /// Load an instance of profile from the client's account data.
@@ -347,10 +225,10 @@ class Profile {
             )
           : UserToolSettings(),
       instructionSettings: instructionSettingsContent != null
-          ? UserInstructions.fromJson(
+          ? InstructionSettings.fromJson(
               instructionSettingsContent as Map<String, dynamic>,
             )
-          : UserInstructions(),
+          : InstructionSettings(),
     );
   }
 
@@ -370,7 +248,7 @@ class Profile {
     if (userSettings == null) return null;
 
     final toolSettings = UserToolSettings.migrateFromAccountData();
-    final instructionSettings = UserInstructions.migrateFromAccountData();
+    final instructionSettings = InstructionSettings.migrateFromAccountData();
     return Profile(
       userSettings: userSettings,
       toolSettings: toolSettings,
@@ -417,7 +295,7 @@ class Profile {
     return Profile(
       userSettings: UserSettings(),
       toolSettings: UserToolSettings(),
-      instructionSettings: UserInstructions(),
+      instructionSettings: InstructionSettings(),
     );
   }
 }

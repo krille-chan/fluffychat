@@ -4660,7 +4660,6 @@
   "publicProfileTitle": "Allow my profile to be found in search",
   "publicProfileDesc": "By enabling this option, I confirm that I am of legal age in my country of residence",
   "clickWordsInstructions": "Click on individual words for more activities.",
-  "chooseBestDefinition": "What does this word mean?",
   "chooseBaseForm": "Choose the base form",
   "notTheCodeError": "Sorry, that's not the code!",
   "totalXP": "Total XP",
@@ -4700,11 +4699,43 @@
   "downloading": "Downloading...",
   "failedFetchUserAnalytics": "Failed to download user analytics",
   "downloadComplete": "Download complete!",
-  "editMorphologicalLabel": "Pangea Bot makes mistakes too! What should this label be?",
+  "whatIsTheMorphTag": "What is the {morphologicalFeature} of '{wordForm}'?",
+  "@whatIsTheMorphTag": {
+    "type": "text",
+    "placeholders": {
+      "morphologicalFeature": {},
+      "wordForm": {}
+    }
+  },
   "dataAvailable": "Data availability",
   "lemmasNeverUsedCorrectly": "Number of lemmas used correctly 0 times",
   "available": "Available",
   "unavailable": "Unavailable",
   "accessingMemberAnalytics": "Accessing member analytics...",
-  "editLemmaMeaning": "Pangea Bot makes mistakes too! What should be the definition of this lemma?"
+  "pangeaBotIsFallible": "Pangea Bot makes mistakes too!",
+  "whatIsMeaning": "What does '{lemma}' mean?",
+  "@whatIsMeaning": {
+    "type": "text",
+    "placeholders": {
+      "lemma": {},
+      "partOfSpeech": {}
+    }
+  },
+  "pickAnEmoji": "What's your favorite emoji for '{lemma}'?",
+  "@pickAnEmoji": {
+    "type": "text",
+    "placeholders": {
+      "lemma": {},
+      "partOfSpeech": {}
+    }
+  },
+  "lemmaMeaningInstructionsBody": "Above is the meaning of the lemma. Double-click to edit.",
+  "doubleClickToEdit": "Double-click to edit.",
+  "removeFeature": "Remove {feature}",
+  "@removeFeature": {
+    "type": "text",
+    "placeholders": {
+      "feature": {}
+    }
+  }
 }

@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/enum/instructions_enum.dart';
+import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
+import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/utils/inline_tooltip.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class MessageTranslationCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
@@ -172,24 +171,24 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
               ),
               if (notGoingToTranslate &&
                   widget.selection == null &&
-                  !InstructionsEnum.l1Translation.toggledOff())
+                  !InstructionsEnum.l1Translation.isToggledOff)
                 const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Expanded(
-                      child: InlineTooltip(
+                      child: InstructionsInlineTooltip(
                         instructionsEnum: InstructionsEnum.l1Translation,
                       ),
                     ),
                   ],
                 ),
               if (widget.selection != null &&
-                  !InstructionsEnum.clickAgainToDeselect.toggledOff())
+                  !InstructionsEnum.clickAgainToDeselect.isToggledOff)
                 const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Expanded(
-                      child: InlineTooltip(
+                      child: InstructionsInlineTooltip(
                         instructionsEnum: InstructionsEnum.clickAgainToDeselect,
                       ),
                     ),

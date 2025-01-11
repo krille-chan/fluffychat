@@ -1,16 +1,17 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:collection/collection.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/enum/activity_display_instructions_enum.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
+import 'package:fluffychat/pangea/enum/analytics/morph_categories_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class ConstructIdentifier {
   final String lemma;
@@ -228,7 +229,47 @@ class PracticeActivityModel {
     required this.content,
   });
 
-  String get question => content.question;
+  String get targetLemma =>
+      targetTokens?.first.lemma.text ??
+      tgtConstructs
+          .firstWhereOrNull(
+            (element) => element.type == ConstructTypeEnum.vocab,
+          )
+          ?.lemma ??
+      "___";
+
+  String get partOfSpeech =>
+      targetTokens?.first.pos ??
+      tgtConstructs
+          .firstWhereOrNull(
+            (element) => element.type == ConstructTypeEnum.vocab,
+          )
+          ?.category ??
+      "___";
+
+  String get targetWordForm => targetTokens?.first.text.content ?? "___";
+
+  /// we were setting the question copy on creation of the activity
+  /// but, in order to localize the question using the same system
+  /// as other copy, we should do it with context, when it is built
+  /// some types are doing this now, others should be migrated
+  String question(BuildContext context, String? morphFeature) {
+    switch (activityType) {
+      case ActivityTypeEnum.hiddenWordListening:
+      case ActivityTypeEnum.wordFocusListening:
+      case ActivityTypeEnum.lemmaId:
+        return content.question;
+      case ActivityTypeEnum.emoji:
+        return L10n.of(context).pickAnEmoji(targetLemma, partOfSpeech);
+      case ActivityTypeEnum.wordMeaning:
+        return L10n.of(context).whatIsMeaning(targetLemma, partOfSpeech);
+      case ActivityTypeEnum.morphId:
+        return L10n.of(context).whatIsTheMorphTag(
+          getMorphologicalCategoryCopy(morphFeature!, context) ?? morphFeature,
+          targetWordForm,
+        );
+    }
+  }
 
   factory PracticeActivityModel.fromJson(Map<String, dynamic> json) {
     // moving from multiple_choice to content as the key

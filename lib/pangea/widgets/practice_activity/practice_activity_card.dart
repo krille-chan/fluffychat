@@ -1,11 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-
 import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
@@ -26,6 +22,8 @@ import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/widgets/word_zoom/word_zoom_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 /// The wrapper for practice activity content.
 /// Handles the activities associated with a message,
@@ -69,6 +67,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   PangeaController get pangeaController => MatrixState.pangeaController;
   String? _error;
+
+  String? activityQuestion;
 
   @override
   void initState() {
@@ -122,7 +122,9 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       }
 
       currentCompletionRecord = PracticeActivityRecordModel(
-        question: activity.question,
+        question: mounted
+            ? currentActivity?.question(context, widget.morphFeature)
+            : currentActivity?.content.question,
       );
     } catch (e, s) {
       ErrorHandler.logError(

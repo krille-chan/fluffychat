@@ -1,25 +1,23 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pangea/enum/instructions_enum.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class InlineTooltip extends StatefulWidget {
+class InstructionsInlineTooltip extends StatefulWidget {
   final InstructionsEnum instructionsEnum;
 
-  const InlineTooltip({
+  const InstructionsInlineTooltip({
     super.key,
     required this.instructionsEnum,
   });
 
   @override
-  InlineTooltipState createState() => InlineTooltipState();
+  InstructionsInlineTooltipState createState() =>
+      InstructionsInlineTooltipState();
 }
 
-class InlineTooltipState extends State<InlineTooltip>
+class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
     with SingleTickerProviderStateMixin {
   bool _isToggledOff = true;
   late AnimationController _controller;
@@ -28,7 +26,7 @@ class InlineTooltipState extends State<InlineTooltip>
   @override
   void initState() {
     super.initState();
-    _isToggledOff = widget.instructionsEnum.toggledOff();
+    _isToggledOff = widget.instructionsEnum.isToggledOff;
 
     // Initialize AnimationController and Animation
     _controller = AnimationController(
@@ -52,10 +50,7 @@ class InlineTooltipState extends State<InlineTooltip>
   }
 
   void _closeTooltip() {
-    MatrixState.pangeaController.instructions.setToggledOff(
-      widget.instructionsEnum,
-      true,
-    );
+    widget.instructionsEnum.setToggledOff(true);
     setState(() {
       _isToggledOff = true;
       _controller.reverse();

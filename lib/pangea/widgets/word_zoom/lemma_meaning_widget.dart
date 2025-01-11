@@ -96,7 +96,7 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
             child: Column(
               children: [
                 Text(
-                  L10n.of(context).editLemmaMeaning,
+                  "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(widget.lemma, widget.pos)}",
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontStyle: FontStyle.italic),
                 ),
@@ -138,9 +138,13 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
         return GestureDetector(
           onLongPress: () => _toggleEditMode(true),
           onDoubleTap: () => _toggleEditMode(true),
-          child: Text(
-            snapshot.data!.meaning,
-            textAlign: TextAlign.center,
+          child: Tooltip(
+            message: L10n.of(context).doubleClickToEdit,
+            waitDuration: const Duration(milliseconds: 2000),
+            child: Text(
+              snapshot.data!.meaning,
+              textAlign: TextAlign.center,
+            ),
           ),
         );
       },

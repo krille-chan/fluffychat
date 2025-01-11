@@ -1,12 +1,10 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum InstructionsEnum {
   itInstructions,
@@ -20,6 +18,7 @@ enum InstructionsEnum {
   missingVoice,
   clickBestOption,
   unlockedLanguageTools,
+  lemmaMeaning,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
@@ -41,6 +40,7 @@ extension InstructionsEnumExtension on InstructionsEnum {
       case InstructionsEnum.translationChoices:
       case InstructionsEnum.clickBestOption:
       case InstructionsEnum.unlockedLanguageTools:
+      case InstructionsEnum.lemmaMeaning:
         ErrorHandler.logError(
           e: Exception("No title for this instruction"),
           m: 'InstructionsEnumExtension.title',
@@ -79,35 +79,18 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.clickBestOption;
       case InstructionsEnum.unlockedLanguageTools:
         return l10n.unlockedLanguageTools;
+      case InstructionsEnum.lemmaMeaning:
+        return l10n.lemmaMeaningInstructionsBody;
     }
   }
 
-  bool toggledOff() {
-    final instructionSettings =
-        MatrixState.pangeaController.userController.profile.instructionSettings;
-    switch (this) {
-      case InstructionsEnum.itInstructions:
-        return instructionSettings.showedItInstructions;
-      case InstructionsEnum.clickMessage:
-        return instructionSettings.showedClickMessage;
-      case InstructionsEnum.blurMeansTranslate:
-        return instructionSettings.showedBlurMeansTranslate;
-      case InstructionsEnum.tooltipInstructions:
-        return instructionSettings.showedTooltipInstructions;
-      case InstructionsEnum.speechToText:
-        return instructionSettings.showedSpeechToTextTooltip;
-      case InstructionsEnum.l1Translation:
-        return instructionSettings.showedL1TranslationTooltip;
-      case InstructionsEnum.translationChoices:
-        return instructionSettings.showedTranslationChoicesTooltip;
-      case InstructionsEnum.clickAgainToDeselect:
-        return instructionSettings.showedClickAgainToDeselect;
-      case InstructionsEnum.missingVoice:
-        return instructionSettings.showedMissingVoice;
-      case InstructionsEnum.clickBestOption:
-        return instructionSettings.showedClickBestOption;
-      case InstructionsEnum.unlockedLanguageTools:
-        return instructionSettings.showedUnlockedLanguageTools;
-    }
-  }
+  bool get isToggledOff =>
+      MatrixState.pangeaController.userController.profile.instructionSettings
+          .getStatus(this);
+
+  void setToggledOff(bool value) =>
+      MatrixState.pangeaController.userController.updateProfile((profile) {
+        profile.instructionSettings.setStatus(this, value);
+        return profile;
+      });
 }

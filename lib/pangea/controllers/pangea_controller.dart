@@ -2,11 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
@@ -30,8 +25,11 @@ import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../../config/app_config.dart';
 import '../utils/firebase_analytics.dart';
 import '../utils/p_store.dart';
@@ -51,7 +49,6 @@ class PangeaController {
   // TODO: make these static so we can remove from here
   late ContextualDefinitionController definitions;
   late ITFeedbackController itFeedback;
-  late InstructionsController instructions;
   late SubscriptionController subscriptionController;
   late TextToSpeechController textToSpeech;
   late SpeechToTextController speechToText;
@@ -106,7 +103,6 @@ class PangeaController {
     messageData = MessageDataController(this);
     wordNet = WordController(this);
     definitions = ContextualDefinitionController(this);
-    instructions = InstructionsController(this);
     subscriptionController = SubscriptionController(this);
     itFeedback = ITFeedbackController(this);
     textToSpeech = TextToSpeechController(this);
