@@ -1,15 +1,15 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/word_zoom/lemma_meaning_widget.dart';
 import 'package:fluffychat/pangea/widgets/word_zoom/morphs/morphological_center_widget.dart';
 import 'package:fluffychat/pangea/widgets/word_zoom/word_zoom_widget.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class WordZoomCenterWidget extends StatelessWidget {
   final WordZoomSelection? selectionType;
@@ -27,6 +27,9 @@ class WordZoomCenterWidget extends StatelessWidget {
     super.key,
   });
 
+  MessageOverlayController get overlayController =>
+      wordDetailsController.widget.overlayController;
+
   PangeaToken get token => wordDetailsController.widget.token;
 
   Widget content(BuildContext context, WordZoomSelection selectionType) {
@@ -40,6 +43,7 @@ class WordZoomCenterWidget extends StatelessWidget {
           token: token,
           morphFeature: selectedMorphFeature!,
           pangeaMessageEvent: wordDetailsController.widget.messageEvent,
+          overlayController: overlayController,
         );
       case WordZoomSelection.lemma:
         return Text(token.lemma.text, textAlign: TextAlign.center);

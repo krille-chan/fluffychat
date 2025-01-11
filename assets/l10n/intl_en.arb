@@ -4705,5 +4705,6 @@
   "lemmasNeverUsedCorrectly": "Number of lemmas used correctly 0 times",
   "available": "Available",
   "unavailable": "Unavailable",
-  "accessingMemberAnalytics": "Accessing member analytics..."
+  "accessingMemberAnalytics": "Accessing member analytics...",
+  "editLemmaMeaning": "Pangea Bot makes mistakes too! What should be the definition of this lemma?"
 }

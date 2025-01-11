@@ -1,29 +1,30 @@
 // stateful widget that displays morphological label and a shimmer effect while the text is loading
 // takes a token and morphological feature as input
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/morph_categories_and_labels.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
-import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/grammar/get_grammar_copy.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class MorphologicalCenterWidget extends StatefulWidget {
   final PangeaToken token;
   final String morphFeature;
   final PangeaMessageEvent pangeaMessageEvent;
+  final MessageOverlayController overlayController;
 
   const MorphologicalCenterWidget({
     required this.token,
     required this.morphFeature,
     required this.pangeaMessageEvent,
+    required this.overlayController,
     super.key,
   });
 
@@ -88,6 +89,8 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
 
       // send a new message as an edit to original message to the server
       // including the new tokens
+      // marking the message as a morphological edit will allow use to filter
+      // from some processing and potentially find the data for LLM fine-tuning
       await pm.room.pangeaSendTextEvent(
         pm.messageDisplayText,
         editEventId: pm.eventId,
@@ -98,7 +101,12 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
             ? PangeaMessageTokens(tokens: pm.originalWritten!.tokens!)
             : null,
         choreo: pm.originalSent?.choreo,
+        messageTag: ModelKey.messageTagMorphEdit,
       );
+
+      setState(() {
+        editMode = false;
+      });
     } catch (e) {
       SnackBar(
         content: Text(L10n.of(context).oopsSomethingWentWrong),
@@ -117,8 +125,10 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
 
   List<String> get allMorphTagsForEdit {
     final List<String> tags = getLabelsForMorphCategory(widget.morphFeature)
-        .where((tag) => !["punct", "space", "sym", "x", "other"]
-            .contains(tag.toLowerCase()))
+        .where(
+          (tag) => !["punct", "space", "sym", "x", "other"]
+              .contains(tag.toLowerCase()),
+        )
         .toList();
 
     // as long as the feature is not POS, add a nan tag
@@ -153,6 +163,7 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
         Text(
           L10n.of(context).editMorphologicalLabel,
           textAlign: TextAlign.center,
+          style: const TextStyle(fontStyle: FontStyle.italic),
         ),
         const SizedBox(height: 10),
         Container(
@@ -206,7 +217,6 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
                               context: context,
                             ) ??
                             tag,
-                        style: BotStyle.text(context),
                         textAlign: TextAlign.center,
                       ),
                     ),

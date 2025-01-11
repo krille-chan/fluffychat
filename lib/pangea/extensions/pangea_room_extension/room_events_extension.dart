@@ -236,6 +236,7 @@ extension EventsRoomExtension on Room {
     PangeaMessageTokens? tokensSent,
     PangeaMessageTokens? tokensWritten,
     ChoreoRecord? choreo,
+    String? messageTag,
   }) {
     // if (parseCommands) {
     //   return client.parseAndRunCommand(this, message,
@@ -248,12 +249,26 @@ extension EventsRoomExtension on Room {
     final event = <String, dynamic>{
       'msgtype': msgtype,
       'body': message,
-      ModelKey.choreoRecord: choreo?.toJson(),
-      ModelKey.originalSent: originalSent?.toJson(),
-      ModelKey.originalWritten: originalWritten?.toJson(),
-      ModelKey.tokensSent: tokensSent?.toJson(),
-      ModelKey.tokensWritten: tokensWritten?.toJson(),
     };
+    if (choreo != null) {
+      event[ModelKey.choreoRecord] = choreo.toJson();
+    }
+    if (originalSent != null) {
+      event[ModelKey.originalSent] = originalSent.toJson();
+    }
+    if (originalWritten != null) {
+      event[ModelKey.originalWritten] = originalWritten.toJson();
+    }
+    if (tokensSent != null) {
+      event[ModelKey.tokensSent] = tokensSent.toJson();
+    }
+    if (tokensWritten != null) {
+      event[ModelKey.tokensWritten] = tokensWritten.toJson();
+    }
+    if (messageTag != null) {
+      event[ModelKey.messageTags] = messageTag;
+    }
+
     if (parseMarkdown) {
       final html = markdown(
         event['body'],

@@ -1,16 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
-import 'package:http/http.dart';
-
 import 'package:fluffychat/pangea/models/content_feedback.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_request.dart';
 import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_response.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart';
+
 import '../../config/environment.dart';
 import '../../network/requests.dart';
 
@@ -19,7 +18,14 @@ class LemmaInfoRepo {
   static final Map<LemmaInfoRequest, LemmaInfoResponse> _cache = {};
   static final Map<LemmaInfoRequest, DateTime> _cacheTimestamps = {};
 
-  static const Duration _cacheDuration = Duration(days: 2);
+  static const Duration _cacheDuration = Duration(days: 30);
+
+  static void set(LemmaInfoRequest request, LemmaInfoResponse response) {
+    _cache[request] = response;
+
+    // set it to sometime in the future so we keep it in the cache for a while
+    _cacheTimestamps[request] = DateTime.now().add(const Duration(days: 365));
+  }
 
   static Future<LemmaInfoResponse> get(
     LemmaInfoRequest request, [

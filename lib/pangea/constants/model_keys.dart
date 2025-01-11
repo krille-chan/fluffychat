@@ -81,6 +81,15 @@ class ModelKey {
   static const String tokensWritten = "tokens_written";
   static const String choreoRecord = "choreo_record";
 
+  /// This is strictly for use in message content jsons
+  /// in order to flag that the message edit was done in order
+  /// to edit some message data such as tokens, morph tags, etc.
+  /// This will help us know to omit the message from notifications,
+  /// bot responses, etc. It will also help use find the message if
+  /// we want to gather user edits for LLM fine-tuning.
+  static const String messageTags = "p.tag";
+  static const String messageTagMorphEdit = "morph_edit";
+
   static const String baseDefinition = "base_definition";
   static const String targetDefinition = "target_definition";
   static const String basePartOfSpeech = "base_part_of_speech";
