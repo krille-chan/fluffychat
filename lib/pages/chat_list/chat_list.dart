@@ -773,7 +773,9 @@ class ChatListController extends State<ChatList>
       controller = ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           duration: const Duration(seconds: 15),
+          showCloseIcon: true,
           backgroundColor: theme.colorScheme.errorContainer,
+          closeIconColor: theme.colorScheme.onErrorContainer,
           content: Text(
             L10n.of(context).oneOfYourDevicesIsNotVerified,
             style: TextStyle(
