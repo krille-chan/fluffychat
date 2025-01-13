@@ -569,20 +569,21 @@ class PangeaMessageEvent {
     }
 
     final eligibleTokens = messageDisplayRepresentation!.tokens!.where(
-      (token) =>
-          token.isActivityBasicallyEligible(ActivityTypeEnum.wordMeaning),
+      (token) => token.shouldDoActivity(
+        a: ActivityTypeEnum.wordMeaning,
+        feature: null,
+        tag: null,
+      ),
     );
 
     final int total = eligibleTokens.length;
+    if (total == 0) return 1;
 
-    final int toDo = eligibleTokens
-        .where(
-          (token) =>
-              token.didActivitySuccessfully(ActivityTypeEnum.wordMeaning),
-        )
-        .length;
+    final didActivity = eligibleTokens.where(
+      (token) => token.didActivitySuccessfully(ActivityTypeEnum.wordMeaning),
+    );
 
-    final double proportion = 1 - ((total - toDo) / total);
+    final double proportion = 1 - ((total - didActivity.length) / total);
 
     if (proportion < 0) {
       debugger(when: kDebugMode);
@@ -591,7 +592,7 @@ class PangeaMessageEvent {
         data: {
           "proportion": proportion,
           "total": total,
-          "toDo": toDo,
+          "toDo": didActivity,
           "tokens": messageDisplayRepresentation!.tokens,
         },
       );

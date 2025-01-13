@@ -211,20 +211,34 @@ class PangeaToken {
     );
   }
 
-  bool isActivityBasicallyEligible(ActivityTypeEnum a) {
+  bool _isActivityBasicallyEligible(
+    ActivityTypeEnum a, [
+    String? morphFeature,
+    String? morphTag,
+  ]) {
     if (!lemma.saveVocab) {
       return false;
     }
+
+    bool canGenerate = false;
+    if (a != ActivityTypeEnum.lemmaId) {
+      canGenerate = _canGenerateDistractors(
+        a,
+        morphFeature: morphFeature,
+        morphTag: morphTag,
+      );
+    }
+
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
-        return canBeDefined;
+        return canBeDefined && canGenerate;
       case ActivityTypeEnum.lemmaId:
         return lemma.saveVocab &&
             text.content.toLowerCase() != lemma.text.toLowerCase();
       case ActivityTypeEnum.emoji:
         return true;
       case ActivityTypeEnum.morphId:
-        return morph.isNotEmpty;
+        return morph.isNotEmpty && canGenerate;
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
         return canBeHeard;
@@ -366,7 +380,7 @@ class PangeaToken {
   /// Syncronously determine if a distractor can be generated for a given activity type.
   /// WARNING - do not use this function to determine if lemma activities can be generated.
   /// Use [canGenerateLemmaDistractors] instead.
-  bool canGenerateDistractors(
+  bool _canGenerateDistractors(
     ActivityTypeEnum type, {
     String? morphFeature,
     String? morphTag,
@@ -406,7 +420,7 @@ class PangeaToken {
     required String? feature,
     required String? tag,
   }) {
-    return isActivityBasicallyEligible(a) &&
+    return _isActivityBasicallyEligible(a, feature, tag) &&
         _isActivityProbablyLevelAppropriate(a, feature, tag);
   }
 

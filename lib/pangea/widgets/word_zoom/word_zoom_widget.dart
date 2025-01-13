@@ -179,21 +179,9 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
     );
     if (!shouldDo) return false;
 
-    switch (selection) {
-      case WordZoomSelection.lemma:
-        return _canGenerateLemmaActivity;
-      case WordZoomSelection.meaning:
-      case WordZoomSelection.morph:
-        return widget.token.canGenerateDistractors(
-          selection.activityType,
-          morphFeature: _selectedMorphFeature,
-          morphTag: _selectedMorphFeature == null
-              ? null
-              : widget.token.morph[_selectedMorphFeature],
-        );
-      case WordZoomSelection.emoji:
-        return true;
-    }
+    return selection == WordZoomSelection.lemma
+        ? _canGenerateLemmaActivity
+        : true;
   }
 
   @override
