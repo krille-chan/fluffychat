@@ -414,7 +414,6 @@ class Choreographer {
       );
       igc.igcTextData?.matches.clear();
     } finally {
-      giveInputFocus();
       setState();
     }
   }
@@ -464,7 +463,6 @@ class Choreographer {
       igc.igcTextData?.matches.clear();
     } finally {
       setState();
-      giveInputFocus();
     }
   }
 

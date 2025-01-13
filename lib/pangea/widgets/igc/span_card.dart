@@ -81,6 +81,19 @@ class SpanCardState extends State<SpanCard> {
     if (widget.scm.pangeaMatch?.match.choices == null) {
       return;
     }
+
+    // if user ever selected the correct choice, automatically select it
+    final selectedCorrectIndex =
+        widget.scm.pangeaMatch!.match.choices!.indexWhere((choice) {
+      return choice.selected && choice.isBestCorrection;
+    });
+
+    if (selectedCorrectIndex != -1) {
+      selectedChoiceIndex = selectedCorrectIndex;
+      currentExpression = BotExpression.gold;
+      return;
+    }
+
     if (selectedChoiceIndex == null) {
       DateTime? mostRecent;
       final numChoices = widget.scm.pangeaMatch!.match.choices!.length;
@@ -173,26 +186,34 @@ class SpanCardState extends State<SpanCard> {
     );
   }
 
-  void onReplaceSelected() {
+  Future<void> onReplaceSelected() async {
     addIgnoredTokenUses();
-    widget.scm
-        .onReplacementSelect(
-          matchIndex: widget.scm.matchIndex,
-          choiceIndex: selectedChoiceIndex!,
-        )
-        .then((value) => setState(() {}));
+    await widget.scm.onReplacementSelect(
+      matchIndex: widget.scm.matchIndex,
+      choiceIndex: selectedChoiceIndex!,
+    );
+    _showFirstMatch();
   }
 
   void onIgnoreMatch() {
-    MatrixState.pAnyState.closeOverlay();
     addIgnoredTokenUses();
 
     Future.delayed(
       Duration.zero,
       () {
         widget.scm.onIgnore();
+        _showFirstMatch();
       },
     );
+  }
+
+  void _showFirstMatch() {
+    if (widget.scm.choreographer.igc.igcTextData != null &&
+        widget.scm.choreographer.igc.igcTextData!.matches.isNotEmpty) {
+      widget.scm.choreographer.igc.showFirstMatch(context);
+    } else {
+      MatrixState.pAnyState.closeOverlay();
+    }
   }
 
   @override
