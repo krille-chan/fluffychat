@@ -76,7 +76,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   int get activitiesLeftToComplete => messageAnalyticsEntry?.numActivities ?? 0;
 
   bool get isPracticeComplete =>
-      activitiesLeftToComplete <= 0 || !messageInUserL2;
+      (pangeaMessageEvent?.proportionOfActivitiesCompleted ?? 1) >= 1 ||
+      !messageInUserL2;
 
   /// Decides whether an _initialSelectedToken should be used
   /// for a first practice activity on the word meaning

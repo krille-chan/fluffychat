@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/message_analytics_controller.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/utils/message_text_util.dart';
@@ -69,7 +71,7 @@ class MessageTokenText extends StatelessWidget {
 class TokenPosition {
   final int start;
   final int end;
-  final bool highlight;
+  final bool selected;
   final bool hideContent;
   final PangeaToken? token;
 
@@ -77,7 +79,7 @@ class TokenPosition {
     required this.start,
     required this.end,
     required this.hideContent,
-    required this.highlight,
+    required this.selected,
     this.token,
   });
 }
@@ -176,6 +178,19 @@ class MessageTextWidget extends StatelessWidget {
       text: TextSpan(
         children:
             tokenPositions.mapIndexed((int i, TokenPosition tokenPosition) {
+          final shouldDo = tokenPosition.token?.shouldDoActivity(
+                a: ActivityTypeEnum.wordMeaning,
+                feature: null,
+                tag: null,
+              ) ??
+              false;
+
+          final didMeaningActivity =
+              tokenPosition.token?.didActivitySuccessfully(
+                    ActivityTypeEnum.wordMeaning,
+                  ) ??
+                  true;
+
           final substring = messageCharacters
               .skip(tokenPosition.start)
               .take(tokenPosition.end - tokenPosition.start)
@@ -199,11 +214,13 @@ class MessageTextWidget extends StatelessWidget {
               text: substring,
               style: style.merge(
                 TextStyle(
-                  backgroundColor: tokenPosition.highlight
-                      ? Theme.of(context).brightness == Brightness.light
-                          ? Colors.black.withAlpha(100)
-                          : Colors.white.withAlpha(100)
-                      : Colors.transparent,
+                  backgroundColor: tokenPosition.selected
+                      ? AppConfig.primaryColor.withAlpha(80)
+                      : (isSelected != null && shouldDo)
+                          ? !didMeaningActivity
+                              ? AppConfig.success.withAlpha(60)
+                              : AppConfig.gold.withAlpha(60)
+                          : Colors.transparent,
                 ),
               ),
             );

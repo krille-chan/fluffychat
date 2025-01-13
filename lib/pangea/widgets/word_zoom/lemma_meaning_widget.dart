@@ -1,5 +1,10 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/text_loading_shimmer.dart';
 import 'package:fluffychat/pangea/constants/language_constants.dart';
@@ -7,9 +12,6 @@ import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_request.dart';
 import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_response.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LemmaMeaningWidget extends StatefulWidget {
   final String lemma;

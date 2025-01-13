@@ -46,8 +46,7 @@ class MessageTextUtil {
               start: globalIndex,
               end: startIndex,
               hideContent: false,
-              highlight:
-                  (isSelected?.call(token) ?? false) && !hasHiddenContent,
+              selected: (isSelected?.call(token) ?? false) && !hasHiddenContent,
             ),
           );
         }
@@ -58,7 +57,7 @@ class MessageTextUtil {
             end: endIndex,
             token: token,
             hideContent: hideContent,
-            highlight: (isSelected?.call(token) ?? false) &&
+            selected: (isSelected?.call(token) ?? false) &&
                 !hideContent &&
                 !hasHiddenContent,
           ),

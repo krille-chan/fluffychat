@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/practice_activities.dart/message_activity_request.dart';
@@ -5,8 +9,6 @@ import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choic
 import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_request.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class WordMeaningActivityGenerator {
   Future<MessageActivityResponse> get(

@@ -1,6 +1,13 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_tts/flutter_tts.dart' as flutter_tts;
+import 'package:matrix/matrix_api_lite/utils/logs.dart';
+import 'package:text_to_speech/text_to_speech.dart';
+
 import 'package:fluffychat/pangea/controllers/user_controller.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
@@ -8,11 +15,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/missing_voice_button.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart' as flutter_tts;
-import 'package:matrix/matrix_api_lite/utils/logs.dart';
-import 'package:text_to_speech/text_to_speech.dart';
 
 class TtsController {
   String? get targetLanguage =>

@@ -220,6 +220,8 @@ IconData getIconForMorphFeature(String feature) {
       return Icons.check_circle_outline;
     case 'prepcase':
       return Icons.location_on_outlined;
+    case 'conjtype':
+      return Icons.compare_arrows;
     default:
       debugger(when: kDebugMode);
       return Icons.help_outline;

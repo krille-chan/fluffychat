@@ -1,10 +1,10 @@
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/instructions/instruction_settings.dart';
 import 'package:fluffychat/pangea/models/space_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:matrix/matrix.dart';
-
 import 'language_model.dart';
 
 /// The user's settings learning settings.

@@ -1,7 +1,11 @@
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:collection/collection.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/constants/language_constants.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
@@ -16,9 +20,6 @@ import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_request.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
-
 import '../constants/model_keys.dart';
 import 'lemma.dart';
 
@@ -210,7 +211,10 @@ class PangeaToken {
     );
   }
 
-  bool _isActivityBasicallyEligible(ActivityTypeEnum a) {
+  bool isActivityBasicallyEligible(ActivityTypeEnum a) {
+    if (!lemma.saveVocab) {
+      return false;
+    }
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
         return canBeDefined;
@@ -258,7 +262,7 @@ class PangeaToken {
   //   }
   // }
 
-  bool _didActivitySuccessfully(
+  bool didActivitySuccessfully(
     ActivityTypeEnum a, [
     String? morphFeature,
     String? morphTag,
@@ -308,7 +312,7 @@ class PangeaToken {
           return false;
         }
       case ActivityTypeEnum.wordFocusListening:
-        return !_didActivitySuccessfully(a) || daysSinceLastUseByType(a) > 30;
+        return !didActivitySuccessfully(a) || daysSinceLastUseByType(a) > 30;
       case ActivityTypeEnum.hiddenWordListening:
         return daysSinceLastUseByType(a) > 7;
       case ActivityTypeEnum.lemmaId:
@@ -402,8 +406,7 @@ class PangeaToken {
     required String? feature,
     required String? tag,
   }) {
-    return lemma.saveVocab &&
-        _isActivityBasicallyEligible(a) &&
+    return isActivityBasicallyEligible(a) &&
         _isActivityProbablyLevelAppropriate(a, feature, tag);
   }
 
@@ -428,13 +431,13 @@ class PangeaToken {
           .getConstructUses(
         ConstructIdentifier(
           lemma: lemma.text,
-          type: ConstructTypeEnum.morph,
+          type: ConstructTypeEnum.vocab,
           category: pos,
         ),
       ) ??
       ConstructUses(
         lemma: lemma.text,
-        constructType: ConstructTypeEnum.morph,
+        constructType: ConstructTypeEnum.vocab,
         category: pos,
         uses: [],
       );
@@ -604,10 +607,10 @@ class PangeaToken {
   }
 
   String get xpEmoji {
-    if (xp < 30) {
+    if (vocabConstruct.points < 30) {
       // bean emoji
       return "🫛";
-    } else if (xp < 100) {
+    } else if (vocabConstruct.points < 100) {
       // sprout emoji
       return "🌱";
     } else {

@@ -9,6 +9,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
+import 'package:fluffychat/pangea/enum/activity_type_enum.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
@@ -560,9 +561,43 @@ class PangeaMessageEvent {
   //   return practiceActivities.any((activity) => !(activity.isComplete));
   // }
 
-  int get numberOfActivitiesCompleted {
-    return MatrixState.pangeaController.activityRecordController
-        .getCompletedActivityCount(eventId);
+  /// value from 0 to 1 indicating the proportion of activities completed
+  double get proportionOfActivitiesCompleted {
+    if (messageDisplayRepresentation == null ||
+        messageDisplayRepresentation?.tokens == null) {
+      return 1;
+    }
+    final int total = messageDisplayRepresentation!.tokens!
+        .where(
+          (token) =>
+              token.isActivityBasicallyEligible(ActivityTypeEnum.wordMeaning),
+        )
+        .length;
+
+    final int toDo = messageDisplayRepresentation!.tokens!
+        .where(
+          (token) =>
+              token.didActivitySuccessfully(ActivityTypeEnum.wordMeaning),
+        )
+        .length;
+
+    final double proportion =
+        (total - toDo) / messageDisplayRepresentation!.tokens!.length;
+
+    if (proportion < 0) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        m: "proportion of activities completed is less than 0",
+        data: {
+          "proportion": proportion,
+          "total": total,
+          "toDo": toDo,
+          "tokens": messageDisplayRepresentation!.tokens,
+        },
+      );
+    }
+
+    return proportion;
   }
 
   String? get l2Code =>

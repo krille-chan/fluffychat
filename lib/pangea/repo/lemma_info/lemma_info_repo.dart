@@ -1,15 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:http/http.dart';
+
 import 'package:fluffychat/pangea/models/content_feedback.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_request.dart';
 import 'package:fluffychat/pangea/repo/lemma_info/lemma_info_response.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:http/http.dart';
-
 import '../../config/environment.dart';
 import '../../network/requests.dart';
 
