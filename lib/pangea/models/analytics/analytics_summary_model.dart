@@ -184,11 +184,11 @@ class AnalyticsSummaryModel {
       listMorphConstructsUsedIncorrectlySystem: incorrectSystemUseLemmas,
       listMorphSmallXP: morphLemmas?.thresholdedLemmas(
         start: 0,
-        end: 30,
+        end: 50,
         getCopy: getCopy,
       ),
       listMorphMediumXP: morphLemmas?.thresholdedLemmas(
-        start: 31,
+        start: 51,
         end: 200,
         getCopy: getCopy,
       ),

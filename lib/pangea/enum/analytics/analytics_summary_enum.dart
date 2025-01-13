@@ -5,6 +5,12 @@ enum AnalyticsSummaryEnum {
   dataAvailable,
   level,
   totalXP,
+
+  numMessagesSent,
+  numWordsTyped,
+  numChoicesCorrect,
+  numChoicesIncorrect,
+
   numLemmas,
   numLemmasUsedCorrectly,
   numLemmasUsedIncorrectly,
@@ -36,11 +42,6 @@ enum AnalyticsSummaryEnum {
 
   // list morph > 500 XP
   listMorphHugeXP,
-
-  numMessagesSent,
-  numWordsTyped,
-  numChoicesCorrect,
-  numChoicesIncorrect,
 }
 
 extension AnalyticsSummaryEnumExtension on AnalyticsSummaryEnum {
