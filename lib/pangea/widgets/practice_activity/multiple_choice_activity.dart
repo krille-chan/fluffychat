@@ -259,7 +259,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     return practiceActivity.activityType == ActivityTypeEnum.hiddenWordListening
         ? ConstrainedBox(
             constraints: const BoxConstraints(
-              maxWidth: AppConfig.toolbarMinWidth,
+              // Not sure why this was set
+              // maxWidth: AppConfig.toolbarMinWidth,
               maxHeight: AppConfig.toolbarMaxHeight,
             ),
             child: SingleChildScrollView(
