@@ -218,7 +218,8 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
                 children: [
                   ConstrainedBox(
                     constraints: const BoxConstraints(
-                      minWidth: AppConfig.toolbarMinWidth,
+                      // subtracting 16.0 to account for the padding
+                      minWidth: AppConfig.toolbarMinWidth - 16.0,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
