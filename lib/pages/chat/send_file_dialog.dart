@@ -131,9 +131,15 @@ class SendFileDialogState extends State<SendFileDialog> {
       scaffoldMessenger.clearSnackBars();
     } catch (e) {
       scaffoldMessenger.clearSnackBars();
+      final theme = Theme.of(context);
       scaffoldMessenger.showSnackBar(
         SnackBar(
-          content: Text(e.toLocalizedString(widget.outerContext)),
+          backgroundColor: theme.colorScheme.errorContainer,
+          closeIconColor: theme.colorScheme.onErrorContainer,
+          content: Text(
+            e.toLocalizedString(widget.outerContext),
+            style: TextStyle(color: theme.colorScheme.onErrorContainer),
+          ),
           duration: const Duration(seconds: 30),
           showCloseIcon: true,
         ),
