@@ -24,6 +24,26 @@ class _IGCTextDataCacheItem {
   _IGCTextDataCacheItem({required this.data});
 }
 
+class _IgnoredMatchCacheItem {
+  PangeaMatch match;
+
+  String get spanText => match.match.fullText.substring(
+        match.match.offset,
+        match.match.offset + match.match.length,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is _IgnoredMatchCacheItem && other.spanText == spanText;
+  }
+
+  @override
+  int get hashCode => spanText.hashCode;
+
+  _IgnoredMatchCacheItem({required this.match});
+}
+
 class IgcController {
   Choreographer choreographer;
   IGCTextData? igcTextData;
@@ -34,7 +54,9 @@ class IgcController {
   // cache for IGC data and prev message
   final Map<int, _IGCTextDataCacheItem> _igcTextDataCache = {};
 
-  Timer? _igcCacheClearTimer;
+  final Map<int, _IgnoredMatchCacheItem> _ignoredMatchCache = {};
+
+  Timer? _cacheClearTimer;
 
   IgcController(this.choreographer) {
     spanDataController = SpanDataController(choreographer);
@@ -42,9 +64,11 @@ class IgcController {
   }
 
   void _initializeCacheClearing() {
-    const duration = Duration(minutes: 1);
-    _igcCacheClearTimer =
-        Timer.periodic(duration, (Timer t) => _igcTextDataCache.clear());
+    const duration = Duration(minutes: 2);
+    _cacheClearTimer = Timer.periodic(duration, (Timer t) {
+      _igcTextDataCache.clear();
+      _ignoredMatchCache.clear();
+    });
   }
 
   Future<void> getIGCTextData({
@@ -68,7 +92,7 @@ class IgcController {
         prevMessages: prevMessages(),
       );
 
-      if (_igcCacheClearTimer == null || !_igcCacheClearTimer!.isActive) {
+      if (_cacheClearTimer == null || !_cacheClearTimer!.isActive) {
         _initializeCacheClearing();
       }
 
@@ -101,6 +125,17 @@ class IgcController {
       // checks for duplicate input
 
       igcTextData = igcTextDataResponse;
+
+      final List<PangeaMatch> filteredMatches = List.from(igcTextData!.matches);
+      for (final PangeaMatch match in igcTextData!.matches) {
+        final _IgnoredMatchCacheItem cacheEntry =
+            _IgnoredMatchCacheItem(match: match);
+
+        if (_ignoredMatchCache.containsKey(cacheEntry.hashCode)) {
+          filteredMatches.remove(match);
+        }
+      }
+      igcTextData!.matches = filteredMatches;
 
       // TODO - for each new match,
       // check if existing igcTextData has one and only one match with the same error text and correction
@@ -135,6 +170,13 @@ class IgcController {
         },
       );
       clear();
+    }
+  }
+
+  void onIgnoreMatch(PangeaMatch match) {
+    final cacheEntry = _IgnoredMatchCacheItem(match: match);
+    if (!_ignoredMatchCache.containsKey(cacheEntry.hashCode)) {
+      _ignoredMatchCache[cacheEntry.hashCode] = cacheEntry;
     }
   }
 
@@ -252,6 +294,7 @@ class IgcController {
   dispose() {
     clear();
     _igcTextDataCache.clear();
-    _igcCacheClearTimer?.cancel();
+    _ignoredMatchCache.clear();
+    _cacheClearTimer?.cancel();
   }
 }

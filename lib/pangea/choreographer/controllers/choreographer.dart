@@ -439,6 +439,7 @@ class Choreographer {
         throw Exception("Cannot find the ignored match in igcTextData");
       }
 
+      igc.onIgnoreMatch(igc.igcTextData!.matches[matchIndex]);
       igc.igcTextData!.matches[matchIndex].status = PangeaMatchStatus.ignored;
       choreoRecord.addRecord(
         _textController.text,
