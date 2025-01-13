@@ -582,7 +582,7 @@ class PangeaMessageEvent {
         )
         .length;
 
-    final double proportion = (total - toDo) / total;
+    final double proportion = 1 - ((total - toDo) / total);
 
     if (proportion < 0) {
       debugger(when: kDebugMode);
