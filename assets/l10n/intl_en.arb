@@ -2821,5 +2821,6 @@
   "invalidUrl": "Invalid url",
   "addLink": "Add link",
   "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation.",
-  "previous": "Previous"
+  "previous": "Previous",
+  "otherPartyNotLoggedIn": "The other party is currently not logged in and therefore cannot receive messages!"
 }
