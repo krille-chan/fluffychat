@@ -466,17 +466,20 @@ class PangeaToken {
   }
 
   /// lastUsed by activity type
-  DateTime? _lastUsedByActivityType(ActivityTypeEnum a) =>
-      constructs.where((c) => a.constructFilter(c.id)).fold<DateTime?>(
-        null,
-        (previousValue, element) {
-          if (previousValue == null) return element.lastUsed;
-          if (element.lastUsed == null) return previousValue;
-          return element.lastUsed!.isAfter(previousValue)
-              ? element.lastUsed
-              : previousValue;
-        },
-      );
+  DateTime? _lastUsedByActivityType(ActivityTypeEnum a) {
+    final List<ConstructUses> filteredConstructs =
+        constructs.where((c) => a.constructFilter(c.id)).toList();
+    final correctUseTimestamps = filteredConstructs
+        .expand((c) => c.uses)
+        .where((u) => u.useType == a.correctUse)
+        .map((u) => u.timeStamp)
+        .toList();
+
+    if (correctUseTimestamps.isEmpty) return null;
+
+    // return the most recent timestamp
+    return correctUseTimestamps.reduce((a, b) => a.isAfter(b) ? a : b);
+  }
 
   /// daysSinceLastUse by activity type
   int daysSinceLastUseByType(ActivityTypeEnum a) {
