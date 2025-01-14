@@ -2,24 +2,50 @@ part of "pangea_room_extension.dart";
 
 extension AnalyticsRoomExtension on Room {
   Future<List<SpaceRoomsChunk>> _getFullSpaceHierarchy() async {
-    final resp = await client.getSpaceHierarchy(
-      id,
-      limit: 100,
-      maxDepth: 1,
-    );
+    final List<SpaceRoomsChunk> rooms = [];
+    String? nextBatch;
 
-    final List<SpaceRoomsChunk> rooms = resp.rooms;
-    String? nextBatch = resp.nextBatch;
-    int tries = 0;
-
-    while (nextBatch != null && tries <= 5) {
-      final nextResp = await client.getSpaceHierarchy(
+    try {
+      final resp = await client.getSpaceHierarchy(
         id,
-        from: nextBatch,
         limit: 100,
         maxDepth: 1,
       );
-      rooms.addAll(nextResp.rooms);
+      rooms.addAll(resp.rooms);
+      nextBatch = resp.nextBatch;
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "spaceID": id,
+        },
+      );
+      return rooms;
+    }
+
+    int tries = 0;
+    while (nextBatch != null && tries <= 5) {
+      GetSpaceHierarchyResponse nextResp;
+      try {
+        nextResp = await client.getSpaceHierarchy(
+          id,
+          from: nextBatch,
+          limit: 100,
+          maxDepth: 1,
+        );
+        rooms.addAll(nextResp.rooms);
+      } catch (e, s) {
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            "spaceID": id,
+          },
+        );
+        break;
+      }
+
       nextBatch = nextResp.nextBatch;
       tries++;
     }
