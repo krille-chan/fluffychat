@@ -305,7 +305,7 @@ class ChatListItem extends StatelessWidget {
                                 )
                               : FutureBuilder(
                                   key: ValueKey(
-                                    '${lastEvent?.eventId}_${lastEvent?.type}',
+                                    '${lastEvent?.eventId}_${lastEvent?.type}_${lastEvent?.redacted}',
                                   ),
                                   future: needLastEventSender
                                       ? lastEvent.calcLocalizedBody(
