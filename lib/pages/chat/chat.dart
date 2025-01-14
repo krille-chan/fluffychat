@@ -742,7 +742,7 @@ class ChatController extends State<ChatPageWithRoom>
     if (reason == null || reason.isEmpty) return;
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.reportContent(
+      future: () => Matrix.of(context).client.reportEvent(
             event.roomId!,
             event.eventId,
             reason: reason,

@@ -131,7 +131,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
 
         final result = await showFutureLoadingDialog(
           context: context,
-          future: () => Matrix.of(widget.outerContext).client.reportContent(
+          future: () => Matrix.of(widget.outerContext).client.reportEvent(
                 user.room.id,
                 user.id,
                 reason: reason,
