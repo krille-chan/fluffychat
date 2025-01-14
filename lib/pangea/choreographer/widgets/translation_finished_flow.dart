@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/bot_style.dart';
-import '../../utils/error_handler.dart';
+import '../../bot/utils/bot_style.dart';
+import '../../common/utils/error_handler.dart';
 import '../controllers/it_controller.dart';
 import 'choice_array.dart';
 

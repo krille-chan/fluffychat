@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../widgets/common/bot_face_svg.dart';
+import '../../bot/widgets/bot_face_svg.dart';
 import '../controllers/choreographer.dart';
 import '../controllers/it_controller.dart';
 

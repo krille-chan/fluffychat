@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
+import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/igc/card_header.dart';
+import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_toggle.dart';
-import 'package:fluffychat/pangea/utils/bot_style.dart';
-import 'package:fluffychat/pangea/utils/overlay.dart';
-import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
-import 'package:fluffychat/pangea/widgets/igc/card_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 /// Instruction Card gives users tips on

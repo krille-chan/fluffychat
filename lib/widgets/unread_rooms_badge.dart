@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as b;
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'matrix.dart';
 
 class UnreadRoomsBadge extends StatelessWidget {

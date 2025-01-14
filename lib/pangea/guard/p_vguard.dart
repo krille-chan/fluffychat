@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/widgets/matrix.dart';
-import '../controllers/pangea_controller.dart';
+import '../common/controllers/pangea_controller.dart';
 
 class PAuthGaurd {
   static bool isPublicLeaving = false;

@@ -7,17 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'package:fluffychat/pangea/analytics/controllers/put_analytics_controller.dart';
+import 'package:fluffychat/pangea/analytics/enums/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/choreographer/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
-import 'package:fluffychat/pangea/constants/choreo_constants.dart';
-import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
-import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
-import 'package:fluffychat/pangea/enum/edit_type.dart';
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
-import '../../models/custom_input_translation_model.dart';
-import '../../models/it_response_model.dart';
-import '../../models/it_step.dart';
-import '../../repo/interactive_translation_repo.dart';
+import 'package:fluffychat/pangea/choreographer/enums/edit_type.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import '../models/custom_input_translation_model.dart';
+import '../models/it_response_model.dart';
+import '../models/it_step.dart';
+import '../repo/interactive_translation_repo.dart';
 import 'choreographer.dart';
 
 class ITController {

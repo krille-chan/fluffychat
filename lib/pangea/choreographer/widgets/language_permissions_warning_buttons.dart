@@ -5,14 +5,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
-import 'package:fluffychat/pangea/models/space_model.dart';
-import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
-import '../../../widgets/matrix.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 
 class ErrorCopy {
   final String title;
@@ -80,42 +77,6 @@ class LanguagePermissionsButtons extends StatelessWidget {
         data: {},
       );
       return null;
-    }
-    final Room? room = Matrix.of(context).client.getRoomById(roomID!);
-
-    final bool itDisabledByClass = choreographer
-        .pangeaController.permissionsController
-        .isToolDisabledByClass(ToolSetting.interactiveTranslator, room);
-    final bool igcDisabledByClass = choreographer
-        .pangeaController.permissionsController
-        .isToolDisabledByClass(ToolSetting.interactiveGrammar, room);
-
-    if (itDisabledByClass && igcDisabledByClass) {
-      return ErrorCopy(
-        L10n.of(context).errorDisableLanguageAssistanceClassDesc,
-      );
-    }
-
-    if (itDisabledByClass) {
-      if (igcDisabled) {
-        return ErrorCopy(
-          "{L10n.of(context).errorDisableITClassDesc} ${L10n.of(context).errorDisableIGC}",
-          " ${L10n.of(context).errorDisableIGCUserDesc}",
-        );
-      } else {
-        return ErrorCopy(L10n.of(context).errorDisableITClassDesc);
-      }
-    }
-
-    if (igcDisabledByClass) {
-      if (itDisabled) {
-        return ErrorCopy(
-          "${L10n.of(context).errorDisableIGCClassDesc} ${L10n.of(context).errorDisableIT}",
-          " ${L10n.of(context).errorDisableITUserDesc}",
-        );
-      } else {
-        return ErrorCopy(L10n.of(context).errorDisableIGCClassDesc);
-      }
     }
 
     if (igcDisabled && itDisabled) {

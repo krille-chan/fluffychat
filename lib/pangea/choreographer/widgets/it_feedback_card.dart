@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart';
 
-import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
+import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.dart';
 import '../../../config/app_config.dart';
 import '../../../widgets/matrix.dart';
-import '../../controllers/it_feedback_controller.dart';
-import '../../controllers/pangea_controller.dart';
-import '../../utils/bot_style.dart';
-import '../../widgets/igc/card_error_widget.dart';
+import '../../bot/utils/bot_style.dart';
+import '../../common/controllers/pangea_controller.dart';
+import '../controllers/it_feedback_controller.dart';
+import 'igc/card_error_widget.dart';
 
 class ITFeedbackCard extends StatefulWidget {
   final ITFeedbackRequestModel req;

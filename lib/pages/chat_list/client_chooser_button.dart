@@ -5,9 +5,9 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
-import 'package:fluffychat/pangea/utils/logout.dart';
-import 'package:fluffychat/pangea/utils/space_code.dart';
+import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
+import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
+import 'package:fluffychat/pangea/user/utils/logout.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 

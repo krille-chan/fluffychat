@@ -3,10 +3,10 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/enum/assistance_state_enum.dart';
-import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
-import 'package:fluffychat/pangea/utils/overlay.dart';
-import 'package:fluffychat/pangea/widgets/igc/paywall_card.dart';
+import 'package:fluffychat/pangea/choreographer/enums/assistance_state_enum.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/igc/paywall_card.dart';
+import 'package:fluffychat/pangea/common/utils/overlay.dart';
+import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import '../../../pages/chat/chat.dart';
 
 class StartIGCButton extends StatefulWidget {

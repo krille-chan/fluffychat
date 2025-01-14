@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
+import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 
 class EmptyPage extends StatelessWidget {
   static const double _width = 400;

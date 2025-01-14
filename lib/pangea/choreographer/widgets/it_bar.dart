@@ -4,24 +4,24 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/analytics/controllers/put_analytics_controller.dart';
+import 'package:fluffychat/pangea/analytics/enums/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/analytics/widgets/gain_points.dart';
+import 'package:fluffychat/pangea/choreographer/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar_buttons.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/translation_finished_flow.dart';
-import 'package:fluffychat/pangea/constants/choreo_constants.dart';
-import 'package:fluffychat/pangea/controllers/put_analytics_controller.dart';
-import 'package:fluffychat/pangea/enum/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
-import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/widgets/animations/gain_points.dart';
-import '../../controllers/it_feedback_controller.dart';
-import '../../models/it_response_model.dart';
-import '../../utils/overlay.dart';
-import '../../widgets/igc/word_data_card.dart';
+import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
+import '../../common/utils/overlay.dart';
+import '../controllers/it_feedback_controller.dart';
+import '../models/it_response_model.dart';
 import 'choice_array.dart';
+import 'igc/word_data_card.dart';
 
 class ITBar extends StatefulWidget {
   final Choreographer choreographer;

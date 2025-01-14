@@ -8,11 +8,11 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_token_text.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar_selection_area.dart';
-import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_rich_text.dart';
+import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_token_text.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_toolbar_selection_area.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../../../config/app_config.dart';
 import '../../../utils/platform_infos.dart';

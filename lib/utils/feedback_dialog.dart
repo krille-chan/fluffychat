@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import '../pangea/widgets/common/bot_face_svg.dart';
+import '../pangea/bot/widgets/bot_face_svg.dart';
 
 Future<dynamic> showFeedbackDialog(
   BuildContext context,

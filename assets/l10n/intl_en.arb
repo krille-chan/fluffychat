@@ -4746,5 +4746,7 @@
     "placeholders": {
       "feature": {}
     }
-  }
+  },
+  "notInClass": "Not in a class!",
+  "noClassCode": "No class code!"
 }

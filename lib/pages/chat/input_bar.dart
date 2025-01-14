@@ -10,7 +10,7 @@ import 'package:slugify/slugify.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/command_hints.dart';
-import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';

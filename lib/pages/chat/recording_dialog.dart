@@ -11,7 +11,7 @@ import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/utils/update_version_dialog.dart';
+import 'package:fluffychat/pangea/toolbar/utils/update_version_dialog.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'events/audio_player.dart';
 
