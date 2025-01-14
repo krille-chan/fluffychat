@@ -197,56 +197,60 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
             child: SingleChildScrollView(
               controller: _scrollController,
               scrollDirection: Axis.vertical,
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                children: allMorphTagsForEdit.map((tag) {
-                  return Container(
-                    margin: const EdgeInsets.all(2),
-                    padding: EdgeInsets.zero,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      border: Border.all(
-                        color: selectedMorphTag == tag
-                            ? Theme.of(context).colorScheme.primary
-                            : Colors.transparent,
-                        style: BorderStyle.solid,
-                        width: 2.0,
-                      ),
-                    ),
-                    child: TextButton(
-                      style: ButtonStyle(
-                        padding: WidgetStateProperty.all(
-                          const EdgeInsets.symmetric(horizontal: 7),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  children: allMorphTagsForEdit.map((tag) {
+                    return Container(
+                      margin: const EdgeInsets.all(2),
+                      padding: EdgeInsets.zero,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        border: Border.all(
+                          color: selectedMorphTag == tag
+                              ? Theme.of(context).colorScheme.primary
+                              : Colors.transparent,
+                          style: BorderStyle.solid,
+                          width: 2.0,
                         ),
-                        backgroundColor: selectedMorphTag == tag
-                            ? WidgetStateProperty.all<Color>(
-                                Theme.of(context)
-                                    .colorScheme
-                                    .primary
-                                    .withAlpha(50),
-                              )
-                            : null,
-                        shape: WidgetStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: TextButton(
+                        style: ButtonStyle(
+                          padding: WidgetStateProperty.all(
+                            const EdgeInsets.symmetric(horizontal: 7),
+                          ),
+                          backgroundColor: selectedMorphTag == tag
+                              ? WidgetStateProperty.all<Color>(
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withAlpha(50),
+                                )
+                              : null,
+                          shape: WidgetStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                           ),
                         ),
+                        onPressed: () {
+                          setState(() => selectedMorphTag = tag);
+                        },
+                        child: Text(
+                          getGrammarCopy(
+                                category: widget.morphFeature,
+                                lemma: tag,
+                                context: context,
+                              ) ??
+                              tag,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                      onPressed: () {
-                        setState(() => selectedMorphTag = tag);
-                      },
-                      child: Text(
-                        getGrammarCopy(
-                              category: widget.morphFeature,
-                              lemma: tag,
-                              context: context,
-                            ) ??
-                            tag,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  );
-                }).toList(),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
           ),
