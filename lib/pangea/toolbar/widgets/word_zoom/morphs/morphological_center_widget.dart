@@ -62,6 +62,12 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
     resetMorphTag();
   }
 
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   void enterEditMode() {
     setState(() {
       editMode = true;
@@ -153,6 +159,8 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
       ) ??
       selectedMorphTag;
 
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     if (!editMode) {
@@ -184,8 +192,10 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
         Container(
           constraints: const BoxConstraints(maxWidth: 400, maxHeight: 170),
           child: Scrollbar(
+            controller: _scrollController,
             thumbVisibility: true,
             child: SingleChildScrollView(
+              controller: _scrollController,
               scrollDirection: Axis.vertical,
               child: Wrap(
                 alignment: WrapAlignment.center,
