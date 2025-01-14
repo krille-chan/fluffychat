@@ -93,9 +93,11 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
           return Container(
             constraints: const BoxConstraints(
               maxWidth: AppConfig.toolbarMinWidth,
-              maxHeight: 160,
+              maxHeight: 225,
+              minHeight: 100,
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(widget.lemma, widget.pos)}",
@@ -106,6 +108,8 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: TextField(
+                    minLines: 1,
+                    maxLines: 3,
                     controller: _controller,
                     onSubmitted: editLemmaMeaning,
                     decoration: InputDecoration(
