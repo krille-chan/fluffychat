@@ -9,12 +9,13 @@ import 'package:fluffychat/pangea/controllers/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/enum/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_list_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
-import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/analytics_popup/analytics_popup.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/learning_progress_bar.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/learning_settings_button.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/level_badge.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/level_bar_popup.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/morph_analytics_popup/morph_analytics_popup.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/progress_indicator.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/analytics_summary/vocab_analytics_popup/vocab_analytics_popup.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 /// A summary of "My Analytics" shown at the top of the chat list
@@ -109,27 +110,33 @@ class LearningProgressIndicatorsState
                     l2: userL2?.getDisplayName(context) ?? userL2?.langCode,
                   ),
                   Row(
-                    children: ProgressIndicatorEnum.values
-                        .where((i) => i != ProgressIndicatorEnum.level)
-                        .map(
-                          (indicator) => Padding(
-                            padding: const EdgeInsets.only(left: 6),
-                            child: ProgressIndicatorBadge(
-                              points: uniqueLemmas(indicator),
-                              loading: _loading,
-                              onTap: () {
-                                showDialog<AnalyticsPopup>(
-                                  context: context,
-                                  builder: (c) => AnalyticsPopup(
-                                    type: indicator.constructType,
-                                  ),
-                                );
-                              },
-                              indicator: indicator,
+                    children: [
+                      ProgressIndicatorBadge(
+                        points: uniqueLemmas(ProgressIndicatorEnum.wordsUsed),
+                        loading: _loading,
+                        onTap: () {
+                          showDialog<VocabAnalyticsPopup>(
+                            context: context,
+                            builder: (c) => const VocabAnalyticsPopup(),
+                          );
+                        },
+                        indicator: ProgressIndicatorEnum.wordsUsed,
+                      ),
+                      ProgressIndicatorBadge(
+                        points: uniqueLemmas(ProgressIndicatorEnum.morphsUsed),
+                        loading: _loading,
+                        onTap: () {
+                          showDialog<MorphAnalyticsPopup>(
+                            context: context,
+                            builder: (c) => MorphAnalyticsPopup(
+                              type: ProgressIndicatorEnum
+                                  .morphsUsed.constructType,
                             ),
-                          ),
-                        )
-                        .toList(),
+                          );
+                        },
+                        indicator: ProgressIndicatorEnum.morphsUsed,
+                      ),
+                    ],
                   ),
                 ],
               ),

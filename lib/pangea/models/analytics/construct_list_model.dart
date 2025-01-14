@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
+import 'package:fluffychat/pangea/constants/analytics_constants.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/analytics/construct_use_model.dart';
 import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
@@ -28,7 +29,7 @@ class ConstructListModel {
   List<OneConstructUse> get truncatedUses => _uses.take(100).toList();
 
   /// A map of lemmas to ConstructUses, each of which contains a lemma
-  /// key = lemmma + constructType.string, value = ConstructUses
+  /// key = lemma + constructType.string, value = ConstructUses
   Map<String, ConstructUses> _constructMap = {};
 
   /// Storing this to avoid re-running the sort operation each time this needs to
@@ -229,6 +230,26 @@ class ConstructListModel {
     );
   }
 
+  // uses where points < AnalyticConstants.xpForGreens
+  List<ConstructUses> get seeds => _constructList
+      .where(
+        (use) => use.points < AnalyticsConstants.xpForGreens,
+      )
+      .toList();
+
+  List<ConstructUses> get greens => _constructList
+      .where(
+        (use) =>
+            use.points >= AnalyticsConstants.xpForGreens &&
+            use.points < AnalyticsConstants.xpForFlower,
+      )
+      .toList();
+
+  List<ConstructUses> get flowers => _constructList
+      .where(
+        (use) => use.points >= AnalyticsConstants.xpForFlower,
+      )
+      .toList();
   // Not storing this for now to reduce memory load
   // It's only used by downloads, so doesn't need to be accessible on the fly
   Map<String, List<ConstructUses>> lemmasToUses({
