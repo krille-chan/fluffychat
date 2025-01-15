@@ -6,12 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_card_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
 import 'package:fluffychat/pangea/choreographer/repo/language_detection_request.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import '../../common/constants/model_keys.dart';
 
@@ -77,6 +80,42 @@ class IGCTextData {
       userL2: json[ModelKey.userL2],
       enableIT: json["enable_it"],
       enableIGC: json["enable_igc"],
+    );
+  }
+
+  factory IGCTextData.fromRepresentationEvent(
+    RepresentationEvent event,
+    String userL1,
+    String userL2,
+  ) {
+    final PangeaRepresentation content = event.content;
+    final List<PangeaToken> tokens = event.tokens ?? [];
+    final List<PangeaMatch> matches = event.choreo?.choreoSteps
+            .map((step) => step.acceptedOrIgnoredMatch)
+            .whereType<PangeaMatch>()
+            .toList() ??
+        [];
+
+    String originalInput = content.text;
+    if (matches.isNotEmpty) {
+      originalInput = matches.first.match.fullText;
+    }
+
+    return IGCTextData(
+      detections: LanguageDetectionRequest(
+        detections: [
+          LanguageDetection(langCode: content.langCode, confidence: 1),
+        ],
+        fullText: content.text,
+      ),
+      originalInput: originalInput,
+      fullTextCorrection: content.text,
+      tokens: tokens,
+      matches: matches,
+      userL1: userL1,
+      userL2: userL2,
+      enableIT: true,
+      enableIGC: true,
     );
   }
 
