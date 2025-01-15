@@ -91,8 +91,11 @@ class MorphActivityGenerator {
         langCode: req.userL2,
         activityType: ActivityTypeEnum.morphId,
         content: ActivityContent(
-          question:
-              "${getMorphologicalCategoryCopy(morphFeature, MatrixState.pangeaController.matrixState.context) ?? ""}?",
+          question: getMorphologicalCategoryCopy(
+                morphFeature,
+                MatrixState.pangeaController.matrixState.context,
+              ) ??
+              morphFeature,
           choices: distractors + [morphTag],
           answers: [morphTag],
           spanDisplayDetails: null,
