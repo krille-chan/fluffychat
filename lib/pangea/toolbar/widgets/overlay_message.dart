@@ -82,7 +82,10 @@ class OverlayMessage extends StatelessWidget {
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent
-          : theme.colorScheme.primary;
+          : Color.alphaBlend(
+              Colors.white.withAlpha(180),
+              ThemeData.dark().colorScheme.primary,
+            );
     }
 
     final noBubble = {
@@ -96,8 +99,9 @@ class OverlayMessage extends StatelessWidget {
       MessageTypes.Audio,
     }.contains(event.messageType);
 
-    final textColor =
-        ownMessage ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface;
+    final textColor = ownMessage
+        ? ThemeData.dark().colorScheme.onPrimary
+        : theme.colorScheme.onSurface;
 
     return Material(
       color: color,
