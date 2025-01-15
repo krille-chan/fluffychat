@@ -158,6 +158,7 @@ class Choreographer {
           "choreoRecord": choreoRecord.toJson(),
         },
       );
+
       await igc.getIGCTextData(onlyTokensAndLanguageDetection: true);
     }
 

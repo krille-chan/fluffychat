@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages, implementation_imports
+
 import 'dart:async';
 import 'dart:core';
 import 'dart:developer';
@@ -386,6 +388,14 @@ class ChatController extends State<ChatPageWithRoom>
 
   void onInsert(int i) {
     // setState will be called by updateView() anyway
+    // #Pangea
+    // If fake event was sent, don't animate in the next event.
+    // It makes the replacement of the fake event jumpy.
+    if (_fakeEventID != null) {
+      animateInEventIndex = null;
+      return;
+    }
+    // Pangea#
     animateInEventIndex = i;
   }
 
@@ -552,6 +562,7 @@ class ChatController extends State<ChatPageWithRoom>
     clearSelectedEvents();
     MatrixState.pAnyState.closeOverlay();
     showToolbarStream.close();
+    hideTextController.dispose();
     //Pangea#
     super.dispose();
   }
@@ -559,6 +570,10 @@ class ChatController extends State<ChatPageWithRoom>
   // #Pangea
   // TextEditingController sendController = TextEditingController();
   PangeaTextController get sendController => choreographer.textController;
+
+  /// used to obscure text in text field after sending fake message without
+  /// changing the actual text in the sendController
+  final TextEditingController hideTextController = TextEditingController();
   // #Pangea
 
   void setSendingClient(Client c) {
@@ -591,6 +606,29 @@ class ChatController extends State<ChatPageWithRoom>
   Event? pangeaEditingEvent;
   void clearEditingEvent() {
     pangeaEditingEvent = null;
+  }
+
+  String? _fakeEventID;
+  bool get obscureText => _fakeEventID != null;
+
+  /// Add a fake event to the timeline to visually indicate that a message is being sent.
+  /// Used when tokenizing after message send, specifically because tokenization for some
+  /// languages takes some time.
+  void sendFakeMessage() {
+    final eventID = room.sendFakeMessage(
+      text: sendController.text,
+      inReplyTo: replyEvent,
+      editEventId: editEvent?.eventId,
+    );
+    setState(() => _fakeEventID = eventID);
+  }
+
+  void clearFakeEvent() {
+    if (_fakeEventID == null) return;
+    timeline?.events.removeWhere((e) => e.eventId == _fakeEventID);
+    setState(() {
+      _fakeEventID = null;
+    });
   }
 
   // Future<void> send() async {
@@ -635,6 +673,11 @@ class ChatController extends State<ChatPageWithRoom>
     //   parseCommands: parseCommands,
     // );
     final previousEdit = editEvent;
+
+    // wait for the next event to come through before clearing any fake event,
+    // to make the replacement look smooth
+    room.client.onEvent.stream.first.then((_) => clearFakeEvent());
+
     room
         .pangeaSendTextEvent(
       sendController.text,

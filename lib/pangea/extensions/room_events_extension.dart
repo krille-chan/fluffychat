@@ -221,6 +221,94 @@ extension EventsRoomExtension on Room {
     }
   }
 
+  String _sendFakeMessage({
+    required String text,
+    Event? inReplyTo,
+    String? editEventId,
+  }) {
+    final content = <String, dynamic>{
+      'msgtype': MessageTypes.Text,
+      'body': text,
+    };
+
+    final html = markdown(
+      content['body'],
+      getEmotePacks: () => getImagePacksFlat(ImagePackUsage.emoticon),
+      getMention: getMention,
+    );
+    // if the decoded html is the same as the body, there is no need in sending a formatted message
+    if (HtmlUnescape().convert(html.replaceAll(RegExp(r'<br />\n?'), '\n')) !=
+        content['body']) {
+      content['format'] = 'org.matrix.custom.html';
+      content['formatted_body'] = html;
+    }
+
+    // Create new transaction id
+    final messageID = client.generateUniqueTransactionId();
+
+    if (inReplyTo != null) {
+      var replyText = '<${inReplyTo.senderId}> ${inReplyTo.body}';
+      replyText = replyText.split('\n').map((line) => '> $line').join('\n');
+      content['format'] = 'org.matrix.custom.html';
+      // be sure that we strip any previous reply fallbacks
+      final replyHtml = (inReplyTo.formattedText.isNotEmpty
+              ? inReplyTo.formattedText
+              : htmlEscape.convert(inReplyTo.body).replaceAll('\n', '<br>'))
+          .replaceAll(
+        RegExp(
+          r'<mx-reply>.*</mx-reply>',
+          caseSensitive: false,
+          multiLine: false,
+          dotAll: true,
+        ),
+        '',
+      );
+      final repliedHtml = content.tryGet<String>('formatted_body') ??
+          htmlEscape
+              .convert(content.tryGet<String>('body') ?? '')
+              .replaceAll('\n', '<br>');
+      content['formatted_body'] =
+          '<mx-reply><blockquote><a href="https://matrix.to/#/${inReplyTo.roomId!}/${inReplyTo.eventId}">In reply to</a> <a href="https://matrix.to/#/${inReplyTo.senderId}">${inReplyTo.senderId}</a><br>$replyHtml</blockquote></mx-reply>$repliedHtml';
+      // We escape all @room-mentions here to prevent accidental room pings when an admin
+      // replies to a message containing that!
+      content['body'] =
+          '${replyText.replaceAll('@room', '@\u200broom')}\n\n${content.tryGet<String>('body') ?? ''}';
+      content['m.relates_to'] = {
+        'm.in_reply_to': {
+          'event_id': inReplyTo.eventId,
+        },
+      };
+    }
+
+    if (editEventId != null) {
+      final newContent = content.copy();
+      content['m.new_content'] = newContent;
+      content['m.relates_to'] = {
+        'event_id': editEventId,
+        'rel_type': RelationshipTypes.edit,
+      };
+      if (content['body'] is String) {
+        content['body'] = '* ${content['body']}';
+      }
+      if (content['formatted_body'] is String) {
+        content['formatted_body'] = '* ${content['formatted_body']}';
+      }
+    }
+
+    final Event event = Event(
+      content: content,
+      type: EventTypes.Message,
+      senderId: client.userID!,
+      eventId: messageID,
+      room: this,
+      originServerTs: DateTime.now(),
+      status: EventStatus.sending,
+    );
+
+    timeline?.events.insert(0, event);
+    return messageID;
+  }
+
   Future<String?> _pangeaSendTextEvent(
     String message, {
     String? txid,

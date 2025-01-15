@@ -172,6 +172,17 @@ extension PangeaRoom on Room {
         messageTag: messageTag,
       );
 
+  String sendFakeMessage({
+    required String text,
+    Event? inReplyTo,
+    String? editEventId,
+  }) =>
+      _sendFakeMessage(
+        text: text,
+        inReplyTo: inReplyTo,
+        editEventId: editEventId,
+      );
+
 // room_information
 
   Future<int> get numNonAdmins async => await _numNonAdmins;

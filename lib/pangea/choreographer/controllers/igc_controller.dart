@@ -77,6 +77,12 @@ class IgcController {
     try {
       if (choreographer.currentText.isEmpty) return clear();
 
+      // if tokenizing on message send, tokenization might take a while
+      // so add a fake event to the timeline to visually indicate that the message is being sent
+      if (onlyTokensAndLanguageDetection) {
+        choreographer.chatController.sendFakeMessage();
+      }
+
       debugPrint('getIGCTextData called with ${choreographer.currentText}');
       debugPrint(
         'getIGCTextData called with tokensOnly = $onlyTokensAndLanguageDetection',

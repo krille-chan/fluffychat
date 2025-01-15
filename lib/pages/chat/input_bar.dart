@@ -467,7 +467,16 @@ class InputBar extends StatelessWidget {
           direction: VerticalDirection.up,
           hideOnEmpty: true,
           hideOnLoading: true,
-          controller: controller,
+          // #Pangea
+          // if should obscure text (to make it looks that a message has been sent after sending fake message),
+          // use hideTextController
+
+          // controller: controller,
+          controller:
+              (controller?.choreographer.chatController.obscureText) ?? false
+                  ? controller?.choreographer.chatController.hideTextController
+                  : controller,
+          // Pangea#
           focusNode: focusNode,
           hideOnSelect: false,
           debounceDuration: const Duration(milliseconds: 50),
@@ -480,8 +489,13 @@ class InputBar extends StatelessWidget {
               readOnly:
                   controller != null && controller!.choreographer.isRunningIT,
               autocorrect: false,
+              // controller: controller,
+              controller: (controller
+                          ?.choreographer.chatController.obscureText) ??
+                      false
+                  ? controller?.choreographer.chatController.hideTextController
+                  : controller,
               // Pangea#
-              controller: controller,
               focusNode: focusNode,
               contextMenuBuilder: (c, e) => markdownContextBuilder(
                 c,
