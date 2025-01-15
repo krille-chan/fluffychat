@@ -190,7 +190,7 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
         ),
         const SizedBox(height: 10),
         Container(
-          constraints: const BoxConstraints(maxWidth: 400, maxHeight: 170),
+          constraints: const BoxConstraints(maxWidth: 400, maxHeight: 120),
           child: Scrollbar(
             controller: _scrollController,
             thumbVisibility: true,
@@ -272,6 +272,12 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
             //     child: Text(L10n.of(context).removeFeature(morphCopy)),
             //   ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+              ),
               onPressed: () {
                 setState(() {
                   editMode = false;
@@ -280,6 +286,12 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
               child: Text(L10n.of(context).cancel),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+              ),
               onPressed: selectedMorphTag ==
                       widget.token.morph[widget.morphFeature]
                   ? null
