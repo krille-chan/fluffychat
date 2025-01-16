@@ -105,10 +105,9 @@ class MessageToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (overlayController.toolbarMode == MessageMode.noneSelected ||
-        ![MessageTypes.Text, MessageTypes.Audio].contains(
-          pangeaMessageEvent.event.messageType,
-        )) {
+    if (![MessageTypes.Text, MessageTypes.Audio].contains(
+      pangeaMessageEvent.event.messageType,
+    )) {
       return const SizedBox();
     }
 
