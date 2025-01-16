@@ -188,7 +188,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
         ),
       );
     }
-    choices.sort((a, b) => a.text.length.compareTo(b.text.length));
     return choices;
   }
 
