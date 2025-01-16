@@ -40,4 +40,8 @@ class LemmaInfoRequest {
   @override
   int get hashCode =>
       lemma.hashCode ^ partOfSpeech.hashCode ^ feedback.hashCode;
+
+  String get storageKey {
+    return 'l:$lemma,p:$partOfSpeech,lang:$lemmaLang,l1:$userL1';
+  }
 }

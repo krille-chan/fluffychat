@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/analytics/enums/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics/models/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_request.dart';
+import 'package:fluffychat/pangea/analytics/repo/lemma_info_response.dart';
 import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/models/message_activity_request.dart';
 import 'package:fluffychat/pangea/toolbar/models/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/toolbar/models/practice_activity_model.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
-class WordMeaningActivityGenerator {
+class LemmaMeaningActivityGenerator {
   Future<MessageActivityResponse> get(
     MessageActivityRequest req,
     BuildContext context,
@@ -33,8 +36,7 @@ class WordMeaningActivityGenerator {
 
     final res = await LemmaInfoRepo.get(lemmaDefReq);
 
-    final choices =
-        LemmaInfoRepo.getDistractorDefinitions(lemmaDefReq.lemma, 3);
+    final choices = await getDistractorMeanings(lemmaDefReq, 3);
 
     if (!choices.contains(res.meaning)) {
       choices.add(res.meaning);
@@ -57,4 +59,51 @@ class WordMeaningActivityGenerator {
       ),
     );
   }
+
+  static List<OneConstructUse> eligibleDistractors(String lemma, String pos) {
+    return MatrixState.pangeaController.getAnalytics.constructListModel.uses
+        .where(
+          (c) =>
+              c.lemma.toLowerCase() != lemma.toLowerCase() &&
+              c.category.toLowerCase() == pos.toLowerCase() &&
+              c.constructType == ConstructTypeEnum.vocab,
+        )
+        .toList();
+  }
+
+  /// From the cache, get a random set of cached definitions that are not for a specific lemma
+  static Future<List<String>> getDistractorMeanings(
+    LemmaInfoRequest req,
+    int count,
+  ) async {
+    final eligible = eligibleDistractors(req.lemma, req.partOfSpeech);
+    eligible.shuffle();
+
+    final List<OneConstructUse> distractorConstructUses =
+        eligible.take(count).toList();
+
+    final List<Future<LemmaInfoResponse>> futureDefs = [];
+    for (final construct in distractorConstructUses) {
+      futureDefs.add(
+        LemmaInfoRepo.get(
+          LemmaInfoRequest(
+            lemma: construct.lemma,
+            partOfSpeech: construct.category,
+            lemmaLang: req.lemmaLang,
+            userL1: req.userL1,
+          ),
+        ),
+      );
+    }
+
+    final Set<String> distractorDefs = {};
+    for (final def in await Future.wait(futureDefs)) {
+      distractorDefs.add(def.meaning);
+    }
+
+    return distractorDefs.toList();
+  }
+
+  static bool canGenerateDistractors(String lemma, String pos) =>
+      eligibleDistractors(lemma, pos).isNotEmpty;
 }
