@@ -79,7 +79,8 @@ class IgcController {
 
       // if tokenizing on message send, tokenization might take a while
       // so add a fake event to the timeline to visually indicate that the message is being sent
-      if (onlyTokensAndLanguageDetection) {
+      if (onlyTokensAndLanguageDetection &&
+          choreographer.choreoMode != ChoreoMode.it) {
         choreographer.chatController.sendFakeMessage();
       }
 
