@@ -171,6 +171,8 @@ class MessageTextWidget extends StatelessWidget {
       );
     }
 
+    final hasHiddenTokens = tokenPositions.any((t) => t.hideContent);
+
     return RichText(
       softWrap: softWrap ?? true,
       maxLines: maxLines,
@@ -196,6 +198,17 @@ class MessageTextWidget extends StatelessWidget {
               .take(tokenPosition.end - tokenPosition.start)
               .toString();
 
+          Color backgroundColor = Colors.transparent;
+          if (!hasHiddenTokens) {
+            if (tokenPosition.selected) {
+              backgroundColor = AppConfig.primaryColor.withAlpha(80);
+            } else if (isSelected != null && shouldDo) {
+              backgroundColor = !didMeaningActivity
+                  ? AppConfig.success.withAlpha(60)
+                  : AppConfig.gold.withAlpha(60);
+            }
+          }
+
           if (tokenPosition.token != null) {
             if (tokenPosition.hideContent) {
               return WidgetSpan(
@@ -214,13 +227,7 @@ class MessageTextWidget extends StatelessWidget {
               text: substring,
               style: style.merge(
                 TextStyle(
-                  backgroundColor: tokenPosition.selected
-                      ? AppConfig.primaryColor.withAlpha(80)
-                      : (isSelected != null && shouldDo)
-                          ? !didMeaningActivity
-                              ? AppConfig.success.withAlpha(60)
-                              : AppConfig.gold.withAlpha(60)
-                          : Colors.transparent,
+                  backgroundColor: backgroundColor,
                 ),
               ),
             );

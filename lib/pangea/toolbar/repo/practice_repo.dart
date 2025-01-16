@@ -161,9 +161,9 @@ class PracticeGenerationController {
       req: req,
       context: context,
     );
+    res.activity.content.choices.sort((a, b) => a.length.compareTo(b.length));
 
     // TODO resolve some wierdness here whereby the activity can be null but then... it's not
-
     final eventCompleter = Completer<PracticeActivityEvent?>();
 
     debugPrint('Activity generated: ${res.activity.toJson()}');
