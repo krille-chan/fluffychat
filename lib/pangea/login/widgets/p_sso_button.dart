@@ -41,57 +41,34 @@ extension on SSOProvider {
   }
 }
 
-class PangeaSsoButton extends StatefulWidget {
+class PangeaSsoButton extends StatelessWidget {
   final String title;
   final SSOProvider provider;
+
+  final Function(bool, SSOProvider) setLoading;
+  final Function(String?, SSOProvider) setError;
+
+  final bool loading;
+  final String? error;
+
   const PangeaSsoButton({
     required this.title,
     required this.provider,
+    required this.setLoading,
+    required this.setError,
+    this.loading = false,
+    this.error,
     super.key,
   });
 
-  @override
-  PangeaSsoButtonState createState() => PangeaSsoButtonState();
-}
-
-class PangeaSsoButtonState extends State<PangeaSsoButton> {
-  bool _loading = false;
-  String? _error;
-  AppLifecycleListener? _listener;
-
-  @override
-  void initState() {
-    _listener = AppLifecycleListener(
-      onStateChange: _onAppLifecycleChange,
-    );
-    super.initState();
-  }
-
-  // when the SSO login launches, stop the loading indicator
-  void _onAppLifecycleChange(AppLifecycleState state) {
-    if ((state == AppLifecycleState.inactive ||
-            state == AppLifecycleState.hidden) &&
-        _loading) {
-      setState(() => _loading = false);
-    }
-  }
-
-  @override
-  void dispose() {
-    _listener?.dispose();
-    super.dispose();
-  }
-
-  Future<void> _runSSOLogin() async {
+  Future<void> _runSSOLogin(BuildContext context) async {
     try {
-      setState(() {
-        _loading = true;
-        _error = null;
-      });
+      setLoading(true, provider);
+      setError(null, provider);
       await pangeaSSOLoginAction(
         IdentityProvider(
-          id: widget.provider.id,
-          name: widget.provider.name,
+          id: provider.id,
+          name: provider.name,
         ),
         Matrix.of(context).getLoginClient(),
         context,
@@ -102,26 +79,24 @@ class PangeaSsoButtonState extends State<PangeaSsoButton> {
         s: s,
         data: {},
       );
-      if (err is MatrixException) {
-        _error = err.errorMessage;
-      } else {
-        _error = L10n.of(context).oopsSomethingWentWrong;
-      }
-      _error = err.toString();
+      final error = err is MatrixException
+          ? err.errorMessage
+          : L10n.of(context).oopsSomethingWentWrong;
+      setError(error, provider);
     } finally {
-      if (mounted) setState(() => _loading = false);
+      setLoading(false, provider);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return FullWidthButton(
-      depressed: _loading,
-      error: _error,
-      loading: _loading,
-      title: widget.title,
+      depressed: loading,
+      error: error,
+      loading: loading,
+      title: title,
       icon: SvgPicture.asset(
-        widget.provider.asset,
+        provider.asset,
         height: 20,
         width: 20,
         colorFilter: ColorFilter.mode(
@@ -129,7 +104,7 @@ class PangeaSsoButtonState extends State<PangeaSsoButton> {
           BlendMode.srcIn,
         ),
       ),
-      onPressed: _runSSOLogin,
+      onPressed: () => _runSSOLogin(context),
     );
   }
 }

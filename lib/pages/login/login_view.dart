@@ -26,9 +26,10 @@ class LoginView extends StatelessWidget {
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
-        leading: controller.loading ? null : const Center(child: BackButton()),
-        automaticallyImplyLeading: !controller.loading,
-        titleSpacing: !controller.loading ? 0 : null,
+        leading:
+            controller.loadingSignIn ? null : const Center(child: BackButton()),
+        automaticallyImplyLeading: !controller.loadingSignIn,
+        titleSpacing: !controller.loadingSignIn ? 0 : null,
         title: Text.rich(
           TextSpan(
             children: [
@@ -57,15 +58,16 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextField(
-                    readOnly: controller.loading,
+                    readOnly: controller.loadingSignIn,
                     autocorrect: false,
                     autofocus: true,
                     onChanged: controller.checkWellKnownWithCoolDown,
                     controller: controller.usernameController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.username],
+                    autofillHints: controller.loadingSignIn
+                        ? null
+                        : [AutofillHints.username],
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.account_box_outlined),
                       errorText: controller.usernameError,
@@ -79,10 +81,11 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextField(
-                    readOnly: controller.loading,
+                    readOnly: controller.loadingSignIn,
                     autocorrect: false,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.password],
+                    autofillHints: controller.loadingSignIn
+                        ? null
+                        : [AutofillHints.password],
                     controller: controller.passwordController,
                     textInputAction: TextInputAction.go,
                     obscureText: !controller.showPassword,
@@ -113,8 +116,9 @@ class LoginView extends StatelessWidget {
                       backgroundColor: theme.colorScheme.primary,
                       foregroundColor: theme.colorScheme.onPrimary,
                     ),
-                    onPressed: controller.loading ? null : controller.login,
-                    child: controller.loading
+                    onPressed:
+                        controller.loadingSignIn ? null : controller.login,
+                    child: controller.loadingSignIn
                         ? const LinearProgressIndicator()
                         : Text(L10n.of(context).login),
                   ),
@@ -123,7 +127,7 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextButton(
-                    onPressed: controller.loading
+                    onPressed: controller.loadingSignIn
                         ? () {}
                         : controller.passwordForgotten,
                     style: TextButton.styleFrom(

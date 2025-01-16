@@ -59,7 +59,7 @@ class SignupWithEmailView extends StatelessWidget {
             ),
             onPressed: controller.enableSignUp ? controller.signup : null,
             error: controller.error,
-            loading: controller.loading,
+            loading: controller.loadingSignup,
             enabled: controller.enableSignUp,
           ),
         ],

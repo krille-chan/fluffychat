@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/login/pages/signup_view.dart';
 import 'package:fluffychat/pangea/login/pages/signup_with_email_view.dart';
+import 'package:fluffychat/pangea/login/widgets/p_sso_button.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -32,7 +33,12 @@ class SignupPageController extends State<SignupPage> {
   String? emailText;
 
   String? error;
-  bool loading = false;
+  bool loadingSignup = false;
+  bool loadingAppleSSO = false;
+  bool loadingGoogleSSO = false;
+  String? appleSSOError;
+  String? googleSSOError;
+
   bool showPassword = false;
   bool noEmailWarningConfirmed = false;
   bool displaySecondPasswordField = false;
@@ -62,13 +68,35 @@ class SignupPageController extends State<SignupPage> {
     usernameController.dispose();
     passwordController.dispose();
     emailController.dispose();
-    loading = false;
+    loadingSignup = false;
     error = null;
     super.dispose();
   }
 
+  void setSSOError(String? error, SSOProvider provider) {
+    if (provider == SSOProvider.apple) {
+      appleSSOError = error;
+      googleSSOError = null;
+    } else if (provider == SSOProvider.google) {
+      googleSSOError = error;
+      appleSSOError = null;
+    }
+    if (mounted) setState(() {});
+  }
+
+  void setLoadingSSO(bool loading, SSOProvider provider) {
+    if (provider == SSOProvider.apple) {
+      loadingAppleSSO = loading;
+      loadingGoogleSSO = false;
+    } else if (provider == SSOProvider.google) {
+      loadingGoogleSSO = loading;
+      loadingAppleSSO = false;
+    }
+    if (mounted) setState(() {});
+  }
+
   bool get enableSignUp =>
-      !loading &&
+      !loadingSignup &&
       isTnCChecked &&
       emailController.text.isNotEmpty &&
       usernameController.text.isNotEmpty &&
@@ -158,7 +186,7 @@ class SignupPageController extends State<SignupPage> {
     }
 
     setState(() {
-      loading = true;
+      loadingSignup = true;
     });
 
     try {
@@ -216,7 +244,7 @@ class SignupPageController extends State<SignupPage> {
       error = (e).toLocalizedString(context);
     } finally {
       if (mounted) {
-        setState(() => loading = false);
+        setState(() => loadingSignup = false);
       }
     }
   }

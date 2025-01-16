@@ -54,7 +54,7 @@ class PangeaLoginView extends StatelessWidget {
               forceColor: Theme.of(context).colorScheme.onPrimary,
             ),
             onPressed: controller.enabledSignIn ? controller.login : null,
-            loading: controller.loading,
+            loading: controller.loadingSignIn,
             enabled: controller.enabledSignIn,
           ),
           Padding(
@@ -73,10 +73,18 @@ class PangeaLoginView extends StatelessWidget {
           PangeaSsoButton(
             provider: SSOProvider.google,
             title: L10n.of(context).signInWithGoogle,
+            loading: controller.loadingGoogleSSO,
+            error: controller.googleSSOError,
+            setLoading: controller.setLoadingSSO,
+            setError: controller.setSSOError,
           ),
           PangeaSsoButton(
             provider: SSOProvider.apple,
             title: L10n.of(context).signInWithApple,
+            loading: controller.loadingAppleSSO,
+            error: controller.appleSSOError,
+            setLoading: controller.setLoadingSSO,
+            setError: controller.setSSOError,
           ),
         ],
       ),

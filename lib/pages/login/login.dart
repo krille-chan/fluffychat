@@ -10,6 +10,7 @@ import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/login/pages/pangea_login_view.dart';
+import 'package:fluffychat/pangea/login/widgets/p_sso_button.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -31,7 +32,12 @@ class LoginController extends State<Login> {
   String? usernameError;
   String? passwordError;
 
-  bool loading = false;
+  bool loadingSignIn = false;
+  bool loadingAppleSSO = false;
+  bool loadingGoogleSSO = false;
+  String? appleSSOError;
+  String? googleSSOError;
+
   bool showPassword = false;
 
   // #Pangea
@@ -39,7 +45,7 @@ class LoginController extends State<Login> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool get enabledSignIn =>
-      !loading &&
+      !loadingSignIn &&
       usernameText != null &&
       usernameText!.isNotEmpty &&
       passwordText != null &&
@@ -49,15 +55,15 @@ class LoginController extends State<Login> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    loading = true;
+    loadingSignIn = true;
     pangeaController.checkHomeServerAction().then((value) {
       setState(() {
-        loading = false;
+        loadingSignIn = false;
       });
     }).catchError((e) {
       final String err = e.toString();
       setState(() {
-        loading = false;
+        loadingSignIn = false;
         passwordError = err.toLocalizedString(context);
       });
     });
@@ -77,10 +83,32 @@ class LoginController extends State<Login> {
   void dispose() {
     usernameController.dispose();
     passwordController.dispose();
-    loading = false;
+    loadingSignIn = false;
     usernameError = null;
     passwordError = null;
     super.dispose();
+  }
+
+  void setSSOError(String? error, SSOProvider provider) {
+    if (provider == SSOProvider.apple) {
+      appleSSOError = error;
+      googleSSOError = null;
+    } else if (provider == SSOProvider.google) {
+      googleSSOError = error;
+      appleSSOError = null;
+    }
+    if (mounted) setState(() {});
+  }
+
+  void setLoadingSSO(bool loading, SSOProvider provider) {
+    if (provider == SSOProvider.apple) {
+      loadingAppleSSO = loading;
+      loadingGoogleSSO = false;
+    } else if (provider == SSOProvider.google) {
+      loadingGoogleSSO = loading;
+      loadingAppleSSO = false;
+    }
+    if (mounted) setState(() {});
   }
 
   void _setStateOnTextChange(String? oldText, String newText) {
@@ -94,7 +122,7 @@ class LoginController extends State<Login> {
   // Pangea#
 
   void toggleShowPassword() =>
-      setState(() => showPassword = !loading && !showPassword);
+      setState(() => showPassword = !loadingSignIn && !showPassword);
 
   void login() async {
     // #Pangea
@@ -118,7 +146,7 @@ class LoginController extends State<Login> {
       return;
     }
 
-    setState(() => loading = true);
+    setState(() => loadingSignIn = true);
 
     _coolDown?.cancel();
 
@@ -171,7 +199,7 @@ class LoginController extends State<Login> {
         usernameError = exception.errorMessage;
       });
       // Pangea#
-      return setState(() => loading = false);
+      return setState(() => loadingSignIn = false);
     } catch (exception) {
       // #Pangea
       // setState(() => passwordError = exception.toString());
@@ -180,7 +208,7 @@ class LoginController extends State<Login> {
         usernameError = exception.toString();
       });
       // Pangea#
-      return setState(() => loading = false);
+      return setState(() => loadingSignIn = false);
     }
 
     // #Pangea
