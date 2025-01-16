@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
 import 'package:csv/csv.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -34,10 +33,9 @@ class DownloadAnalyticsDialog extends StatefulWidget {
 class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
   bool _initialized = false;
   bool _downloaded = false;
-  bool _joiningRooms = false;
   bool _downloading = false;
 
-  bool get _loading => _joiningRooms || _downloading || !_initialized;
+  bool get _loading => _downloading || !_initialized;
 
   String? _error;
 
@@ -65,6 +63,9 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
         },
       );
     } finally {
+      _downloadStatuses = Map.fromEntries(
+        _usersToDownload.map((user) => MapEntry(user.id, 0)),
+      );
       if (mounted) setState(() => _initialized = true);
     }
   }
@@ -78,7 +79,6 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
 
   void _clean() {
     _error = null;
-    _joiningRooms = false;
     _downloading = false;
     _downloaded = false;
     _downloadStatuses = Map.fromEntries(
@@ -88,7 +88,11 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
 
   List<User> get _usersToDownload => widget.space
       .getParticipants()
-      .where((member) => member.id != BotName.byEnvironment)
+      .where(
+        (member) =>
+            member.id != BotName.byEnvironment &&
+            member.membership == Membership.join,
+      )
       .toList();
 
   Color _downloadStatusColor(String userID) {
@@ -100,38 +104,41 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
   }
 
   String? get _statusText {
-    if (_joiningRooms) return L10n.of(context).accessingMemberAnalytics;
     if (_downloading) return L10n.of(context).downloading;
     if (_downloaded) return L10n.of(context).downloadComplete;
     return null;
   }
 
-  Room? _userAnalyticsRoom(String userID) {
-    final rooms = widget.space.client.rooms;
-    final l2 = MatrixState.pangeaController.languageController.userL2?.langCode;
-    if (l2 == null) return null;
-    return rooms.firstWhereOrNull((room) {
-      return room.isAnalyticsRoomOfUser(userID) && room.isMadeForLang(l2);
-    });
-  }
+  String? get userL2 =>
+      MatrixState.pangeaController.languageController.userL2?.langCode;
 
   Future<void> _runDownload() async {
     try {
-      if (!mounted) return;
+      if (!mounted || userL2 == null) return;
       setState(() {
         _error = null;
-        _joiningRooms = true;
+        _downloading = true;
       });
 
-      await widget.space.joinAnalyticsRooms();
-      if (mounted) {
-        setState(() {
-          _joiningRooms = false;
-          _downloading = true;
-        });
+      final List<AnalyticsSummaryModel> summaries = [];
+      await for (final batch
+          in widget.space.getNextAnalyticsRoomBatch(userL2!)) {
+        if (batch.isEmpty) continue;
+        final List<AnalyticsSummaryModel?> batchSummaries = await Future.wait(
+          batch.map((r) => _getAnalyticsModel(r)),
+        );
+        summaries.addAll(batchSummaries.whereType<AnalyticsSummaryModel>());
       }
 
-      await _downloadSpaceAnalytics();
+      for (final userID in _downloadStatuses.keys) {
+        if (_downloadStatuses[userID] == 0) {
+          _downloadStatuses[userID] = -1;
+          summaries.add(AnalyticsSummaryModel.emptyModel(userID));
+        }
+      }
+
+      await _downloadSpaceAnalytics(summaries);
+
       if (mounted) {
         setState(() {
           _downloading = false;
@@ -153,18 +160,12 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
     }
   }
 
-  Future<void> _downloadSpaceAnalytics() async {
-    final l2 = MatrixState.pangeaController.languageController.userL2?.langCode;
-    if (l2 == null) return;
-
-    final List<AnalyticsSummaryModel?> summaries = await Future.wait(
-      _usersToDownload.map((user) => _getUserAnalyticsModel(user.id)),
-    );
-
-    final allSummaries = summaries.whereType<AnalyticsSummaryModel>().toList();
+  Future<void> _downloadSpaceAnalytics(
+    List<AnalyticsSummaryModel> summaries,
+  ) async {
     final content = _downloadType == DownloadType.xlsx
-        ? _getExcelFileContent(allSummaries)
-        : _getCSVFileContent(allSummaries);
+        ? _getExcelFileContent(summaries)
+        : _getCSVFileContent(summaries);
 
     final fileName =
         "analytics_${widget.space.name}_${DateTime.now().toIso8601String()}.${_downloadType == DownloadType.xlsx ? 'xlsx' : 'csv'}";
@@ -176,13 +177,16 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
     );
   }
 
-  Future<AnalyticsSummaryModel?> _getUserAnalyticsModel(String userID) async {
+  Future<AnalyticsSummaryModel?> _getAnalyticsModel(Room analyticsRoom) async {
+    final String? userID = analyticsRoom.creatorId;
+    if (userID == null) return null;
+
+    AnalyticsSummaryModel? summary;
     try {
-      final userAnalyticsRoom = _userAnalyticsRoom(userID);
-      _downloadStatuses[userID] = userAnalyticsRoom != null ? 1 : -1;
+      _downloadStatuses[userID] = 1;
       if (mounted) setState(() {});
 
-      final constructEvents = await userAnalyticsRoom?.getAnalyticsEvents(
+      final constructEvents = await analyticsRoom.getAnalyticsEvents(
         userId: userID,
       );
 
@@ -197,14 +201,13 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
       }
 
       final constructs = ConstructListModel(uses: uses);
-      final summary = AnalyticsSummaryModel.fromConstructListModel(
+      summary = AnalyticsSummaryModel.fromConstructListModel(
         userID,
         constructs,
         getCopy,
         context,
       );
       if (mounted) setState(() => _downloadStatuses[userID] = 2);
-      return summary;
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
@@ -215,8 +218,23 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
         },
       );
       if (mounted) setState(() => _downloadStatuses[userID] = -2);
+    } finally {
+      if (userID != widget.space.client.userID) {
+        try {
+          await analyticsRoom.leave();
+        } catch (e, s) {
+          ErrorHandler.logError(
+            e: e,
+            s: s,
+            data: {
+              "spaceID": widget.space.id,
+              "userID": userID,
+            },
+          );
+        }
+      }
     }
-    return null;
+    return summary;
   }
 
   List<CellValue> _formatExcelRow(

@@ -44,8 +44,6 @@ part "room_user_permissions_extension.dart";
 extension PangeaRoom on Room {
 // analytics
 
-  Future<void> joinAnalyticsRooms() async => await _joinAnalyticsRooms();
-
   Future<DateTime?> analyticsLastUpdated(String userId) async {
     return await _analyticsLastUpdated(userId);
   }

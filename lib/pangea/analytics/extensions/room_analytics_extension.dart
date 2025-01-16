@@ -1,100 +1,176 @@
 part of "../../extensions/pangea_room_extension.dart";
 
 extension AnalyticsRoomExtension on Room {
-  Future<List<SpaceRoomsChunk>> _getFullSpaceHierarchy() async {
+  /// Get next n analytics rooms via the space hierarchy
+  ///     If joined
+  ///       If not in target language
+  ///           If not created by user, leave
+  ///       Else, add to list
+  ///     Else
+  ///       If room name does not match L2, skip
+  ///       Join and wait for room in sync.
+  ///     Repeat the same procedure as above.
+  ///
+  /// If not n analytics rooms in list, and nextBatch != null, repeat the above
+  /// procedure with nextBatch until n analytics rooms are found or nextBatch == null
+  ///
+  /// Yield this list of rooms.
+  /// Once analytics have been retrieved, leave analytics rooms not created by self.
+  Stream<List<Room>> getNextAnalyticsRoomBatch(String userL2) async* {
     final List<SpaceRoomsChunk> rooms = [];
     String? nextBatch;
+    int spaceHierarchyCalls = 0;
+    int callsToServer = 0;
 
+    while (spaceHierarchyCalls <= 5 &&
+        (nextBatch != null || spaceHierarchyCalls == 0)) {
+      spaceHierarchyCalls++;
+      final resp = await _getNextBatch(nextBatch);
+      callsToServer++;
+      if (resp == null) return;
+
+      rooms.addAll(resp.rooms);
+      nextBatch = resp.nextBatch;
+
+      final List<Room> roomsBatch = [];
+      while (rooms.isNotEmpty) {
+        // prevent rate-limiting
+        if (callsToServer >= 5) {
+          callsToServer = 0;
+          await Future.delayed(const Duration(milliseconds: 7500));
+        }
+
+        final nextRoomChunk = rooms.removeAt(0);
+        if (nextRoomChunk.roomType != PangeaRoomTypes.analytics) {
+          continue;
+        }
+
+        final matchingRoom = client.rooms.firstWhereOrNull(
+          (r) => r.id == nextRoomChunk.roomId,
+        );
+
+        final (analyticsRoom, calls) = matchingRoom != null
+            ? await _handleJoinedAnalyticsRoom(matchingRoom, userL2)
+            : await _handleUnjoinedAnalyticsRoom(nextRoomChunk, userL2);
+
+        callsToServer += calls;
+        if (analyticsRoom == null) continue;
+        roomsBatch.add(analyticsRoom);
+
+        if (roomsBatch.length >= 5) {
+          final roomsBatchCopy = List<Room>.from(roomsBatch);
+          roomsBatch.clear();
+          yield roomsBatchCopy;
+        }
+      }
+
+      yield roomsBatch;
+    }
+  }
+
+  /// Return analytics room, given unjoined member of space hierarchy,
+  /// if should get analytics for that room, and number of call made
+  /// to the server to help prevent rate-limiting
+  Future<(Room?, int)> _handleUnjoinedAnalyticsRoom(
+    SpaceRoomsChunk chunk,
+    String l2,
+  ) async {
+    int callsToServer = 0;
+    final nameParts = chunk.name?.split(" ");
+    if (nameParts != null && nameParts.length >= 2) {
+      final roomLangCode = nameParts[1];
+      if (roomLangCode != l2) return (null, callsToServer);
+    }
+
+    Room? analyticsRoom = await _joinAnalyticsRoomChunk(chunk);
+    callsToServer++;
+
+    if (analyticsRoom == null) return (null, callsToServer);
+    final (room, calls) = await _handleJoinedAnalyticsRoom(analyticsRoom, l2);
+    analyticsRoom = room;
+    callsToServer += calls;
+
+    return (analyticsRoom, callsToServer);
+  }
+
+  /// Return analytics room if should add to returned list
+  /// and the number of calls made to the server (used to prevent rate-limiting)
+  Future<(Room?, int)> _handleJoinedAnalyticsRoom(
+    Room analyticsRoom,
+    String l2,
+  ) async {
+    if (client.userID == null) return (null, 0);
+    if (analyticsRoom.madeForLang != l2) {
+      await _leaveNonTargetAnalyticsRoom(analyticsRoom, l2);
+      return (null, 1);
+    }
+    return (analyticsRoom, 0);
+  }
+
+  Future<Room?> _joinAnalyticsRoomChunk(
+    SpaceRoomsChunk chunk,
+  ) async {
+    final matchingRoom = client.rooms.firstWhereOrNull(
+      (r) => r.id == chunk.roomId,
+    );
+    if (matchingRoom != null) return matchingRoom;
+
+    try {
+      final syncFuture = client.waitForRoomInSync(chunk.roomId, join: true);
+      await client.joinRoom(chunk.roomId);
+      await syncFuture;
+      return client.getRoomById(chunk.roomId);
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "roomID": chunk.roomId,
+        },
+      );
+      return null;
+    }
+  }
+
+  Future<void> _leaveNonTargetAnalyticsRoom(Room room, String userL2) async {
+    if (client.userID == null ||
+        room.isMadeByUser(client.userID!) ||
+        room.madeForLang == userL2) {
+      return;
+    }
+
+    try {
+      await room.leave();
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "roomID": room.id,
+        },
+      );
+    }
+  }
+
+  Future<GetSpaceHierarchyResponse?> _getNextBatch(String? nextBatch) async {
     try {
       final resp = await client.getSpaceHierarchy(
         id,
+        from: nextBatch,
         limit: 100,
         maxDepth: 1,
       );
-      rooms.addAll(resp.rooms);
-      nextBatch = resp.nextBatch;
+      return resp;
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
         s: s,
         data: {
           "spaceID": id,
+          "nextBatch": nextBatch,
         },
       );
-      return rooms;
-    }
-
-    int tries = 0;
-    while (nextBatch != null && tries <= 5) {
-      GetSpaceHierarchyResponse nextResp;
-      try {
-        nextResp = await client.getSpaceHierarchy(
-          id,
-          from: nextBatch,
-          limit: 100,
-          maxDepth: 1,
-        );
-        rooms.addAll(nextResp.rooms);
-      } catch (e, s) {
-        ErrorHandler.logError(
-          e: e,
-          s: s,
-          data: {
-            "spaceID": id,
-          },
-        );
-        break;
-      }
-
-      nextBatch = nextResp.nextBatch;
-      tries++;
-    }
-
-    return rooms;
-  }
-
-  Future<void> _joinAnalyticsRooms() async {
-    final List<SpaceRoomsChunk> rooms = await _getFullSpaceHierarchy();
-
-    final unjoinedAnalyticsRooms = rooms.where(
-      (room) {
-        if (room.roomType != PangeaRoomTypes.analytics) return false;
-        final matchingRoom = client.rooms.firstWhereOrNull(
-          (r) => r.id == room.roomId,
-        );
-        return matchingRoom == null ||
-            matchingRoom.membership != Membership.join;
-      },
-    ).toList();
-
-    const batchSize = 5;
-    int batchNum = 0;
-    while (batchSize * batchNum < unjoinedAnalyticsRooms.length) {
-      final batch =
-          unjoinedAnalyticsRooms.sublist(batchSize * batchNum).take(batchSize);
-
-      batchNum++;
-      for (final analyticsRoom in batch) {
-        try {
-          final syncFuture =
-              client.waitForRoomInSync(analyticsRoom.roomId, join: true);
-          await client.joinRoom(analyticsRoom.roomId);
-          await syncFuture;
-        } catch (e, s) {
-          ErrorHandler.logError(
-            e: e,
-            s: s,
-            data: {
-              "spaceID": id,
-              "roomID": analyticsRoom.roomId,
-            },
-          );
-        }
-      }
-
-      if (batchSize * batchNum < unjoinedAnalyticsRooms.length) {
-        await Future.delayed(const Duration(milliseconds: 7500));
-      }
+      return null;
     }
   }
 
