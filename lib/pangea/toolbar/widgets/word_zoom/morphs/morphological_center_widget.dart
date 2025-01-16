@@ -164,151 +164,157 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
   @override
   Widget build(BuildContext context) {
     if (!editMode) {
-      return GestureDetector(
-        onLongPress: enterEditMode,
-        onDoubleTap: enterEditMode,
-        child: Tooltip(
-          message: L10n.of(context).doubleClickToEdit,
-          waitDuration: const Duration(milliseconds: 2000),
-          child: Text(
-            "$morphCopy: $tagCopy",
-            textAlign: TextAlign.center,
+      return Flexible(
+        child: GestureDetector(
+          onLongPress: enterEditMode,
+          onDoubleTap: enterEditMode,
+          child: Tooltip(
+            message: L10n.of(context).doubleClickToEdit,
+            waitDuration: const Duration(milliseconds: 2000),
+            child: Text(
+              "$morphCopy: $tagCopy",
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       );
     }
 
-    return Column(
-      children: [
-        Text(
-          "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsTheMorphTag(
-            morphCopy,
-            widget.token.text.content,
-          )}",
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontStyle: FontStyle.italic),
-        ),
-        const SizedBox(height: 10),
-        Container(
-          constraints: const BoxConstraints(maxWidth: 400, maxHeight: 120),
-          child: Scrollbar(
-            controller: _scrollController,
-            thumbVisibility: true,
-            child: SingleChildScrollView(
+    return Expanded(
+      child: Column(
+        children: [
+          Text(
+            "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsTheMorphTag(
+              morphCopy,
+              widget.token.text.content,
+            )}",
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontStyle: FontStyle.italic),
+          ),
+          const SizedBox(height: 10),
+          Container(
+            constraints: const BoxConstraints(maxHeight: 120),
+            child: Scrollbar(
               controller: _scrollController,
-              scrollDirection: Axis.vertical,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  children: allMorphTagsForEdit.map((tag) {
-                    return Container(
-                      margin: const EdgeInsets.all(2),
-                      padding: EdgeInsets.zero,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                        border: Border.all(
-                          color: selectedMorphTag == tag
-                              ? Theme.of(context).colorScheme.primary
-                              : Colors.transparent,
-                          style: BorderStyle.solid,
-                          width: 2.0,
-                        ),
-                      ),
-                      child: TextButton(
-                        style: ButtonStyle(
-                          padding: WidgetStateProperty.all(
-                            const EdgeInsets.symmetric(horizontal: 7),
+              thumbVisibility: true,
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                scrollDirection: Axis.vertical,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    children: allMorphTagsForEdit.map((tag) {
+                      return Container(
+                        margin: const EdgeInsets.all(2),
+                        padding: EdgeInsets.zero,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          border: Border.all(
+                            color: selectedMorphTag == tag
+                                ? Theme.of(context).colorScheme.primary
+                                : Colors.transparent,
+                            style: BorderStyle.solid,
+                            width: 2.0,
                           ),
-                          backgroundColor: selectedMorphTag == tag
-                              ? WidgetStateProperty.all<Color>(
-                                  Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withAlpha(50),
-                                )
-                              : null,
-                          shape: WidgetStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            padding: WidgetStateProperty.all(
+                              const EdgeInsets.symmetric(horizontal: 7),
+                            ),
+                            backgroundColor: selectedMorphTag == tag
+                                ? WidgetStateProperty.all<Color>(
+                                    Theme.of(context)
+                                        .colorScheme
+                                        .primary
+                                        .withAlpha(50),
+                                  )
+                                : null,
+                            shape: WidgetStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
                           ),
+                          onPressed: () {
+                            setState(() => selectedMorphTag = tag);
+                          },
+                          child: Text(
+                            getGrammarCopy(
+                                  category: widget.morphFeature,
+                                  lemma: tag,
+                                  context: context,
+                                ) ??
+                                tag,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                        onPressed: () {
-                          setState(() => selectedMorphTag = tag);
-                        },
-                        child: Text(
-                          getGrammarCopy(
-                                category: widget.morphFeature,
-                                lemma: tag,
-                                context: context,
-                              ) ??
-                              tag,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    );
-                  }).toList(),
+                      );
+                    }).toList(),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          spacing: 10,
-          children: [
-            // this would allow the user to totally remove the morphological feature from the token
-            // disabled and let's see if someone asks for it
-            // if (widget.morphFeature.toLowerCase() != "pos")
-            //   TextButton(
-            //     onPressed: () => saveChanges(
-            //       (token) {
-            //         token.morph.remove(widget.morphFeature);
-            //         return token;
-            //       },
-            //     ),
-            //     child: Text(L10n.of(context).removeFeature(morphCopy)),
-            //   ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 10,
+            children: [
+              // this would allow the user to totally remove the morphological feature from the token
+              // disabled and let's see if someone asks for it
+              // if (widget.morphFeature.toLowerCase() != "pos")
+              //   TextButton(
+              //     onPressed: () => saveChanges(
+              //       (token) {
+              //         token.morph.remove(widget.morphFeature);
+              //         return token;
+              //       },
+              //     ),
+              //     child: Text(L10n.of(context).removeFeature(morphCopy)),
+              //   ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                onPressed: () {
+                  setState(() {
+                    editMode = false;
+                  });
+                },
+                child: Text(L10n.of(context).cancel),
               ),
-              onPressed: () {
-                setState(() {
-                  editMode = false;
-                });
-              },
-              child: Text(L10n.of(context).cancel),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                onPressed:
+                    selectedMorphTag == widget.token.morph[widget.morphFeature]
+                        ? null
+                        : () => showFutureLoadingDialog(
+                              context: context,
+                              future: () => saveChanges(
+                                (token) {
+                                  token.morph[widget.morphFeature] =
+                                      selectedMorphTag;
+                                  return token;
+                                },
+                              ),
+                            ),
+                child: Text(L10n.of(context).saveChanges),
               ),
-              onPressed: selectedMorphTag ==
-                      widget.token.morph[widget.morphFeature]
-                  ? null
-                  : () => showFutureLoadingDialog(
-                        context: context,
-                        future: () => saveChanges(
-                          (token) {
-                            token.morph[widget.morphFeature] = selectedMorphTag;
-                            return token;
-                          },
-                        ),
-                      ),
-              child: Text(L10n.of(context).saveChanges),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

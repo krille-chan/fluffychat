@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_request.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_response.dart';
@@ -90,12 +89,7 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
 
         if (_editMode) {
           _controller.text = snapshot.data!.meaning;
-          return Container(
-            constraints: const BoxConstraints(
-              maxWidth: AppConfig.toolbarMinWidth,
-              maxHeight: 225,
-              minHeight: 100,
-            ),
+          return Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -119,10 +113,16 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
                 ),
                 const SizedBox(height: 10),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
                       onPressed: () => _toggleEditMode(false),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                      ),
                       child: Text(L10n.of(context).cancel),
                     ),
                     const SizedBox(width: 10),
@@ -132,6 +132,12 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
                                   _controller.text.isNotEmpty
                               ? editLemmaMeaning(_controller.text)
                               : null,
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                      ),
                       child: Text(L10n.of(context).saveChanges),
                     ),
                   ],
