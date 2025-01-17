@@ -175,7 +175,6 @@ class PangeaToken {
         "NOUN",
         "NUM",
         "PRON",
-        "PROPN",
         "SCONJ",
         "VERB",
       ].contains(pos) &&
