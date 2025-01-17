@@ -337,8 +337,12 @@ class ChatInputRow extends StatelessWidget {
                           maxLines: 8,
                           autofocus: !PlatformInfos.isMobile,
                           keyboardType: TextInputType.multiline,
-                          textInputAction: AppConfig.sendOnEnter == true &&
-                                  PlatformInfos.isMobile
+                          // #Pangea
+                          // textInputAction: AppConfig.sendOnEnter == true &&
+                          textInputAction: AppConfig.sendOnEnter ??
+                                  true &&
+                                      // Pangea#
+                                      PlatformInfos.isMobile
                               ? TextInputAction.send
                               : null,
                           // #Pangea

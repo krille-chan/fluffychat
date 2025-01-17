@@ -118,7 +118,9 @@ class ConversationBotSettingsForm extends StatelessWidget {
             onChanged: hasPermission && enabled ? onUpdateBotMode : null,
             enabled: enabled,
             validator: (value) {
-              return value == null ? L10n.of(context).botModeValidation : null;
+              return value == null && enabled
+                  ? L10n.of(context).botModeValidation
+                  : null;
             },
           ),
         ),

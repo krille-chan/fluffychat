@@ -157,7 +157,8 @@ class LevelBarPopup extends StatelessWidget {
                                     Text(
                                       "${use.pointValue > 0 ? '+' : ''}${use.pointValue}",
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 14,
                                         height: 1,
                                         color: use.pointValue > 0
                                             ? AppConfig.gold

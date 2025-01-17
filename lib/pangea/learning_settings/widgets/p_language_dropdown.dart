@@ -154,14 +154,16 @@ class LanguageDropDownEntry extends StatelessWidget {
             language: languageModel,
           ),
           const SizedBox(width: 10),
-          Text(
-            languageModel.getDisplayName(context) ?? "",
-            style: const TextStyle().copyWith(
-              color: Theme.of(context).textTheme.bodyLarge!.color,
-              fontSize: 14,
+          Flexible(
+            child: Text(
+              languageModel.getDisplayName(context) ?? "",
+              style: const TextStyle().copyWith(
+                color: Theme.of(context).textTheme.bodyLarge!.color,
+                fontSize: 14,
+              ),
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
             ),
-            overflow: TextOverflow.clip,
-            textAlign: TextAlign.center,
           ),
           const SizedBox(width: 10),
           if (isL2List && languageModel.l2Support != L2SupportEnum.full)
