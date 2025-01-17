@@ -569,37 +569,22 @@ class PangeaMessageEvent {
     }
 
     final eligibleTokens = messageDisplayRepresentation!.tokens!.where(
-      (token) => token.shouldDoActivity(
+      (token) => token.isActivityBasicallyEligible(
+        ActivityTypeEnum.wordMeaning,
+      ),
+    );
+
+    if (eligibleTokens.isEmpty) return 1;
+
+    final alreadyDid = eligibleTokens.where(
+      (token) => !token.shouldDoActivity(
         a: ActivityTypeEnum.wordMeaning,
         feature: null,
         tag: null,
       ),
     );
 
-    final int total = eligibleTokens.length;
-    if (total == 0) return 1;
-
-    final didActivity = eligibleTokens.where(
-      (token) => token.didActivitySuccessfully(ActivityTypeEnum.wordMeaning),
-    );
-
-    final double proportion = 1 - ((total - didActivity.length) / total);
-
-    if (proportion < 0) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        m: "proportion of activities completed is less than 0",
-        data: {
-          "proportion": proportion,
-          "total": total,
-          "toDo": didActivity,
-          "tokens": messageDisplayRepresentation!.tokens,
-        },
-      );
-      return 0;
-    }
-
-    return proportion;
+    return alreadyDid.length / eligibleTokens.length;
   }
 
   String? get l2Code =>

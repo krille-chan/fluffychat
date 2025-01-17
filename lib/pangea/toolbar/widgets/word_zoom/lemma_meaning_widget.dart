@@ -75,20 +75,8 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
     return FutureBuilder<LemmaInfoResponse>(
       future: _lemmaMeaning(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState != ConnectionState.done) {
-          return const TextLoadingShimmer();
-        }
-
-        if (snapshot.hasError || snapshot.data == null) {
-          debugger(when: kDebugMode);
-          return Text(
-            snapshot.error.toString(),
-            textAlign: TextAlign.center,
-          );
-        }
-
         if (_editMode) {
-          _controller.text = snapshot.data!.meaning;
+          _controller.text = snapshot.data?.meaning ?? "";
           return Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -105,7 +93,6 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
                     minLines: 1,
                     maxLines: 3,
                     controller: _controller,
-                    onSubmitted: editLemmaMeaning,
                     decoration: InputDecoration(
                       hintText: snapshot.data!.meaning,
                     ),
@@ -144,6 +131,18 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
                 ),
               ],
             ),
+          );
+        }
+
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const TextLoadingShimmer();
+        }
+
+        if (snapshot.hasError || snapshot.data == null) {
+          debugger(when: kDebugMode);
+          return Text(
+            snapshot.error.toString(),
+            textAlign: TextAlign.center,
           );
         }
 

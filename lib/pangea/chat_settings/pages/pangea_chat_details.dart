@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -337,7 +338,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                           room: room,
                           controller: controller,
                         ),
-                        if (room.isSpace && room.isRoomAdmin)
+                        if (room.isSpace && room.isRoomAdmin && kIsWeb)
                           DownloadAnalyticsButton(space: room),
                         Divider(color: theme.dividerColor, height: 1),
                         if (isGroupChat)

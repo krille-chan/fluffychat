@@ -211,7 +211,7 @@ class PangeaToken {
     );
   }
 
-  bool _isActivityBasicallyEligible(
+  bool isActivityBasicallyEligible(
     ActivityTypeEnum a, [
     String? morphFeature,
     String? morphTag,
@@ -421,7 +421,7 @@ class PangeaToken {
     required String? feature,
     required String? tag,
   }) {
-    return _isActivityBasicallyEligible(a, feature, tag) &&
+    return isActivityBasicallyEligible(a, feature, tag) &&
         _isActivityProbablyLevelAppropriate(a, feature, tag);
   }
 
