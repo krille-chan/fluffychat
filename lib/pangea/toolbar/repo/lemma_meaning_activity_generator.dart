@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/analytics/enums/construct_type_enum.dart';
@@ -16,7 +14,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 class LemmaMeaningActivityGenerator {
   Future<MessageActivityResponse> get(
     MessageActivityRequest req,
-    BuildContext context,
   ) async {
     final ConstructIdentifier lemmaId = ConstructIdentifier(
       lemma: req.targetTokens[0].lemma.text.isNotEmpty
@@ -50,8 +47,8 @@ class LemmaMeaningActivityGenerator {
         langCode: req.userL2,
         activityType: ActivityTypeEnum.wordMeaning,
         content: ActivityContent(
-          question:
-              L10n.of(context).whatIsMeaning(lemmaId.lemma, lemmaId.category),
+          question: L10n.of(MatrixState.pangeaController.matrixState.context)
+              .whatIsMeaning(lemmaId.lemma, lemmaId.category),
           choices: choices,
           answers: [res.meaning],
           spanDisplayDetails: null,

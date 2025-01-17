@@ -133,7 +133,7 @@ class PracticeGenerationController {
       case ActivityTypeEnum.morphId:
         return _morph.get(req);
       case ActivityTypeEnum.wordMeaning:
-        return _wordMeaning.get(req, context);
+        return _wordMeaning.get(req);
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
         return _fetchFromServer(

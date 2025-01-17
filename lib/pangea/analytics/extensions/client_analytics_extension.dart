@@ -127,7 +127,7 @@ extension AnalyticsClientExtension on Client {
 
     final Random random = Random();
     for (final space in spaces) {
-      if (userID == null) return;
+      if (userID == null || !space.canSendEvent(EventTypes.SpaceChild)) return;
       final List<Room> roomsNotAdded = _allMyAnalyticsRooms.where((room) {
         return !space.spaceChildren.any((child) => child.roomId == room.id);
       }).toList();
