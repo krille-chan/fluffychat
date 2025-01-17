@@ -171,45 +171,27 @@ class ActivityRecordResponse {
     PracticeActivityModel practiceActivity,
     ConstructUseMetaData metadata,
   ) {
-    if (practiceActivity.targetTokens == null ||
-        practiceActivity.targetTokens!.isEmpty) {
+    if (practiceActivity.tgtConstructs.isEmpty ||
+        practiceActivity.targetTokens == null) {
+      debugger();
       return [];
     }
 
-    if (practiceActivity.activityType == ActivityTypeEnum.emoji) {
-      final token = practiceActivity.targetTokens!.first;
-      // if the emoji is already set, don't give points
-      if (token.getEmoji() != null) return [];
-      return [
-        OneConstructUse(
-          lemma: token.lemma.text,
-          form: token.text.content,
-          constructType: ConstructTypeEnum.vocab,
-          useType: useType(practiceActivity.activityType),
-          metadata: metadata,
-          category: token.pos,
-        ),
-      ];
+    // if the emoji is already set, don't give points
+    // IMPORTANT: This assumes that scoring is happening before saving of the user's emoji choice.
+    if (practiceActivity.activityType == ActivityTypeEnum.emoji &&
+        practiceActivity.targetTokens?.first.getEmoji() != null) {
+      return [];
     }
 
-    if (practiceActivity.activityType == ActivityTypeEnum.morphId) {
-      return practiceActivity.tgtConstructs
-          .map(
-            (token) => OneConstructUse(
-              lemma: token.lemma,
-              form: practiceActivity.targetTokens!.first.text.content,
-              constructType: ConstructTypeEnum.morph,
-              useType: useType(practiceActivity.activityType),
-              metadata: metadata,
-              category: token.category,
-            ),
-          )
-          .toList();
-    }
-
-    final uses = practiceActivity.targetTokens!
-        .map(
-          (token) => OneConstructUse(
+    switch (practiceActivity.activityType) {
+      case ActivityTypeEnum.emoji:
+      case ActivityTypeEnum.wordMeaning:
+      case ActivityTypeEnum.wordFocusListening:
+      case ActivityTypeEnum.lemmaId:
+        final token = practiceActivity.targetTokens!.first;
+        return [
+          OneConstructUse(
             lemma: token.lemma.text,
             form: token.text.content,
             constructType: ConstructTypeEnum.vocab,
@@ -217,38 +199,34 @@ class ActivityRecordResponse {
             metadata: metadata,
             category: token.pos,
           ),
-        )
-        .toList();
-
-    uses.addAll(
-      practiceActivity.targetTokens!.map((token) {
-        return OneConstructUse(
-          lemma: token.pos,
-          form: token.text.content,
-          constructType: ConstructTypeEnum.morph,
-          useType: useType(practiceActivity.activityType),
-          metadata: metadata,
-          category: "POS",
-        );
-      }),
-    );
-
-    for (final token in practiceActivity.targetTokens!) {
-      for (final entry in token.morph.entries) {
-        uses.add(
-          OneConstructUse(
-            useType: useType(practiceActivity.activityType),
-            lemma: entry.value,
-            form: token.text.content,
-            category: entry.key,
-            constructType: ConstructTypeEnum.morph,
-            metadata: metadata,
-          ),
-        );
-      }
+        ];
+      case ActivityTypeEnum.hiddenWordListening:
+        return practiceActivity.targetTokens!
+            .map(
+              (token) => OneConstructUse(
+                lemma: token.lemma.text,
+                form: practiceActivity.targetTokens!.first.text.content,
+                constructType: ConstructTypeEnum.vocab,
+                useType: useType(practiceActivity.activityType),
+                metadata: metadata,
+                category: token.pos,
+              ),
+            )
+            .toList();
+      case ActivityTypeEnum.morphId:
+        return practiceActivity.tgtConstructs
+            .map(
+              (c) => OneConstructUse(
+                lemma: c.lemma,
+                form: practiceActivity.targetTokens!.first.text.content,
+                constructType: c.type,
+                useType: useType(practiceActivity.activityType),
+                metadata: metadata,
+                category: c.category,
+              ),
+            )
+            .toList();
     }
-
-    return uses;
   }
 
   factory ActivityRecordResponse.fromJson(Map<String, dynamic> json) {

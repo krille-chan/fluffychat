@@ -212,11 +212,8 @@ class PracticeActivityRequest {
 }
 
 class PracticeActivityModel {
-  // deprecated in favor of targetTokens
   final List<ConstructIdentifier> tgtConstructs;
 
-  // being added after creation from request info
-  // TODO - replace tgtConstructs with targetTokens in server return
   List<PangeaToken>? targetTokens;
 
   final String langCode;
