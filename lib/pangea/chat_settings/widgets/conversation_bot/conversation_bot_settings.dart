@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_no_permission_dialog.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_settings_form.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -175,135 +176,125 @@ class ConversationBotSettingsDialogState
   Widget build(BuildContext context) {
     final dialogContent = Form(
       key: formKey,
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(16),
-        constraints: kIsWeb
-            ? const BoxConstraints(
-                maxWidth: 450,
-                maxHeight: 725,
-              )
-            : null,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12,
-                    ),
-                    child: Text(
-                      L10n.of(context).botConfig,
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: () => Navigator.of(context).pop(null),
+                  child: Text(
+                    L10n.of(context).botConfig,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                ],
-              ),
-              InkWell(
-                onTap: hasPermission
-                    ? null
-                    : () => showNoPermissionDialog(context),
-                child: SwitchListTile(
-                  title: Text(
-                    L10n.of(context).conversationBotStatus,
-                  ),
-                  value: addBot,
-                  onChanged: hasPermission
-                      ? (bool value) {
-                          setState(() => addBot = value);
-                        }
-                      : null, // Keeps the switch disabled
-                  contentPadding: const EdgeInsets.all(4),
                 ),
+                IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () => Navigator.of(context).pop(null),
+                ),
+              ],
+            ),
+            InkWell(
+              onTap:
+                  hasPermission ? null : () => showNoPermissionDialog(context),
+              child: SwitchListTile(
+                title: Text(
+                  L10n.of(context).conversationBotStatus,
+                ),
+                value: addBot,
+                onChanged: hasPermission
+                    ? (bool value) {
+                        setState(() => addBot = value);
+                      }
+                    : null, // Keeps the switch disabled
+                contentPadding: const EdgeInsets.all(4),
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 20),
-                        AnimatedOpacity(
-                          duration: FluffyThemes.animationDuration,
-                          opacity: addBot ? 1.0 : 0.5,
-                          child: ConversationBotSettingsForm(
-                            botOptions: botOptions,
-                            discussionKeywordsController:
-                                discussionKeywordsController,
-                            discussionTopicController:
-                                discussionTopicController,
-                            customSystemPromptController:
-                                customSystemPromptController,
-                            hasPermission: hasPermission,
-                            enabled: addBot,
-                            hasUpdatedMode: hasUpdatedMode,
-                            onUpdateBotMode: onUpdateChatMode,
-                            onUpdateBotLanguage: onUpdateBotLanguage,
-                            onUpdateBotVoice: onUpdateBotVoice,
-                            onUpdateBotLanguageLevel: onUpdateBotLanguageLevel,
-                          ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      AnimatedOpacity(
+                        duration: FluffyThemes.animationDuration,
+                        opacity: addBot ? 1.0 : 0.5,
+                        child: ConversationBotSettingsForm(
+                          botOptions: botOptions,
+                          discussionKeywordsController:
+                              discussionKeywordsController,
+                          discussionTopicController: discussionTopicController,
+                          customSystemPromptController:
+                              customSystemPromptController,
+                          hasPermission: hasPermission,
+                          enabled: addBot,
+                          hasUpdatedMode: hasUpdatedMode,
+                          onUpdateBotMode: onUpdateChatMode,
+                          onUpdateBotLanguage: onUpdateBotLanguage,
+                          onUpdateBotVoice: onUpdateBotVoice,
+                          onUpdateBotLanguageLevel: onUpdateBotLanguageLevel,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  if (hasPermission)
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop(null);
-                      },
-                      child: Text(L10n.of(context).cancel),
-                    ),
-                  const SizedBox(width: 20),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (hasPermission)
                   TextButton(
-                    onPressed: () async {
-                      if (!hasPermission) {
-                        Navigator.of(context).pop(null);
-                        return;
-                      }
-                      final isValid = formKey.currentState!.validate();
-                      if (!isValid) return;
-
-                      updateFromTextControllers();
-                      botOptions.targetLanguage ??= MatrixState
-                          .pangeaController.languageController.userL2?.langCode;
-
-                      Navigator.of(context).pop(botOptions);
-
-                      final bool isBotRoomMember =
-                          await widget.room.botIsInRoom;
-                      if (addBot && !isBotRoomMember) {
-                        await widget.room.invite(BotName.byEnvironment);
-                      } else if (!addBot && isBotRoomMember) {
-                        await widget.room.kick(BotName.byEnvironment);
-                      }
+                    onPressed: () {
+                      Navigator.of(context).pop(null);
                     },
-                    child: hasPermission
-                        ? Text(L10n.of(context).confirm)
-                        : Text(L10n.of(context).close),
+                    child: Text(L10n.of(context).cancel),
                   ),
-                ],
-              ),
-            ],
-          ),
+                const SizedBox(width: 20),
+                TextButton(
+                  onPressed: () async {
+                    if (!hasPermission) {
+                      Navigator.of(context).pop(null);
+                      return;
+                    }
+                    final isValid = formKey.currentState!.validate();
+                    if (!isValid) return;
+
+                    updateFromTextControllers();
+                    botOptions.targetLanguage ??= MatrixState
+                        .pangeaController.languageController.userL2?.langCode;
+
+                    Navigator.of(context).pop(botOptions);
+
+                    final bool isBotRoomMember = await widget.room.botIsInRoom;
+                    if (addBot && !isBotRoomMember) {
+                      await widget.room.invite(BotName.byEnvironment);
+                    } else if (!addBot && isBotRoomMember) {
+                      await widget.room.kick(BotName.byEnvironment);
+                    }
+                  },
+                  child: hasPermission
+                      ? Text(L10n.of(context).confirm)
+                      : Text(L10n.of(context).close),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
 
-    return kIsWeb
-        ? Dialog(child: dialogContent)
-        : Dialog.fullscreen(child: dialogContent);
+    return FullWidthDialog(
+      dialogContent: dialogContent,
+      maxWidth: 450,
+      maxHeight: 725,
+    );
   }
 }

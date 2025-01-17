@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +6,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
+import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/country_picker_tile.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/language_tile.dart';
@@ -125,25 +125,11 @@ class SettingsLearningView extends StatelessWidget {
           ),
         );
 
-        return kIsWeb
-            ? Dialog(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 600,
-                    maxHeight: 600,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: dialogContent,
-                  ),
-                ),
-              )
-            : Dialog.fullscreen(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 600),
-                  child: dialogContent,
-                ),
-              );
+        return FullWidthDialog(
+          dialogContent: dialogContent,
+          maxWidth: 600,
+          maxHeight: 600,
+        );
       },
     );
   }

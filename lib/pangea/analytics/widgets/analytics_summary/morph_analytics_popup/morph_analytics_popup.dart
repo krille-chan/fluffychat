@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/analytics/enums/progress_indicators_enum.dart'
 import 'package:fluffychat/pangea/analytics/models/construct_list_model.dart';
 import 'package:fluffychat/pangea/analytics/models/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics/widgets/analytics_summary/morph_analytics_popup/morph_analytics_xp_tile.dart';
+import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class MorphAnalyticsPopup extends StatefulWidget {
@@ -123,33 +124,26 @@ class MorphAnalyticsPopupState extends State<MorphAnalyticsPopup> {
       );
     }
 
-    return Dialog(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: 400,
-          maxHeight: 600,
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20.0),
-          child: Scaffold(
-            appBar: AppBar(
-              title: Text(widget.type.indicator.tooltip(context)),
-              leading: IconButton(
-                icon: selectedCategory == null
-                    ? const Icon(Icons.close)
-                    : const Icon(Icons.chevron_left_outlined),
-                onPressed: selectedCategory == null
-                    ? Navigator.of(context).pop
-                    : () => setSelectedCategory(null),
-              ),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: dialogContent,
-            ),
+    return FullWidthDialog(
+      dialogContent: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.type.indicator.tooltip(context)),
+          leading: IconButton(
+            icon: selectedCategory == null
+                ? const Icon(Icons.close)
+                : const Icon(Icons.chevron_left_outlined),
+            onPressed: selectedCategory == null
+                ? Navigator.of(context).pop
+                : () => setSelectedCategory(null),
           ),
         ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: dialogContent,
+        ),
       ),
+      maxWidth: 600,
+      maxHeight: 800,
     );
   }
 }

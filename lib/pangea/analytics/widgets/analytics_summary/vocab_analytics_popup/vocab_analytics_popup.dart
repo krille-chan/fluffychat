@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/analytics/models/construct_list_model.dart';
 import 'package:fluffychat/pangea/analytics/models/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics/utils/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/analytics/widgets/analytics_summary/vocab_analytics_popup/vocab_definition_popup.dart';
+import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 /// Displays vocab analytics, sorted into categories
@@ -159,8 +160,21 @@ class VocabAnalyticsPopupState extends State<VocabAnalyticsPopup> {
     final Widget greens = dialogWidget(LemmaCategoryEnum.greens, greenLemmas);
     final Widget seeds = dialogWidget(LemmaCategoryEnum.seeds, seedLemmas);
 
-    return ListView(
-      children: [flowers, greens, seeds],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(ProgressIndicatorEnum.wordsUsed.tooltip(context)),
+        leading: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: Navigator.of(context).pop,
+        ),
+        // TODO: add search and training buttons?
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: ListView(
+          children: [flowers, greens, seeds],
+        ),
+      ),
     );
   }
 
@@ -238,30 +252,10 @@ class VocabAnalyticsPopupState extends State<VocabAnalyticsPopup> {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: 400,
-          maxHeight: 600,
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20.0),
-          child: Scaffold(
-            appBar: AppBar(
-              title: Text(ProgressIndicatorEnum.wordsUsed.tooltip(context)),
-              leading: IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: Navigator.of(context).pop,
-              ),
-              // TODO: add search and training buttons?
-            ),
-            body: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: dialogContent,
-            ),
-          ),
-        ),
-      ),
+    return FullWidthDialog(
+      dialogContent: dialogContent,
+      maxWidth: 600,
+      maxHeight: 800,
     );
   }
 }
