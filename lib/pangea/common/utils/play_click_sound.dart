@@ -11,7 +11,7 @@ class ClickPlayer {
 
   Future<void> play() async {
     await _player.stop();
-    _player.play(AssetSource('sounds/click.ogg'));
+    _player.play(AssetSource('sounds/click.mp3'));
   }
 
   void dispose() {
