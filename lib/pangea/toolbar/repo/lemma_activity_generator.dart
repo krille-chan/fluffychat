@@ -64,7 +64,7 @@ class LemmaActivityGenerator {
     final choices = sortedLemmas.take(4).toList();
     if (!choices.contains(token.lemma.text)) {
       final random = Random();
-      choices[random.nextInt(4)] = token.lemma.text;
+      choices[random.nextInt(choices.length - 1)] = token.lemma.text;
     }
     return choices;
   }

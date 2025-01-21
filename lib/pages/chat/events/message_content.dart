@@ -337,7 +337,12 @@ class MessageContent extends StatelessWidget {
                     selectedToken: token,
                   );
                 },
-                isSelected: overlayController?.isTokenSelected,
+                isSelected: overlayController != null
+                    ? (token) {
+                        return overlayController!.isTokenSelected(token) ||
+                            overlayController!.isTokenHighlighted(token);
+                      }
+                    : null,
               );
             }
 

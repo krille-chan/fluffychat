@@ -13,6 +13,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -28,6 +29,7 @@ class AudioPlayerWidget extends StatefulWidget {
   final bool autoplay;
   final Function(bool)? setIsPlayingAudio;
   final double padding;
+  final MessageOverlayController? overlayController;
   // Pangea#
 
   static String? currentId;
@@ -50,6 +52,7 @@ class AudioPlayerWidget extends StatefulWidget {
     this.sectionEndMS,
     this.setIsPlayingAudio,
     this.padding = 12.0,
+    this.overlayController,
     // Pangea#
     super.key,
   });
@@ -187,6 +190,15 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         audioPlayer.stop();
         audioPlayer.seek(null);
       }
+      // #Pangea
+      // Pass current timestamp to overlay, so it can highlight as necessary
+      if (widget.matrixFile != null) {
+        widget.overlayController?.highlightCurrentText(
+          state.inMilliseconds,
+          widget.matrixFile!.tokens,
+        );
+      }
+      // Pangea#
     });
     onDurationChanged ??= audioPlayer.durationStream.listen((max) {
       if (max == null || max == Duration.zero) return;
