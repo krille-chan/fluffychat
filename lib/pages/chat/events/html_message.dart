@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -10,7 +11,9 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
@@ -26,6 +29,9 @@ class HtmlMessage extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
   final Event? prevEvent;
+
+  final bool Function(PangeaToken)? isSelected;
+  final void Function(PangeaToken)? onClick;
   // Pangea#
 
   const HtmlMessage({
@@ -40,6 +46,8 @@ class HtmlMessage extends StatelessWidget {
     required this.controller,
     this.nextEvent,
     this.prevEvent,
+    this.isSelected,
+    this.onClick,
     // Pangea#
   });
 
@@ -73,6 +81,73 @@ class HtmlMessage extends StatelessWidget {
     return element;
   }
 
+  // #Pangea
+  List<PangeaToken>? get tokens =>
+      pangeaMessageEvent!.messageDisplayRepresentation?.tokens;
+
+  PangeaToken? getToken(
+    String text,
+    int offset,
+    int length,
+  ) =>
+      tokens?.firstWhereOrNull(
+        (token) => token.text.offset == offset && token.text.length == length,
+      );
+
+  /// Wrap token spans in token tags so styling / functions can be applied
+  dom.Node _tokenizeHtml(
+    dom.Node element,
+    String fullHtml,
+    List<PangeaToken> remainingTokens,
+  ) {
+    for (final node in element.nodes) {
+      node.replaceWith(_tokenizeHtml(node, fullHtml, remainingTokens));
+    }
+
+    if (element is dom.Text) {
+      // once a text element in reached in the HTML tree, find and
+      // wrap all the spans with matching tokens until all tokens
+      // have been wrapped or no more text elements remain
+      String tokenizedText = element.text;
+      while (remainingTokens.isNotEmpty) {
+        final tokenText = remainingTokens.first.text.content;
+
+        int startIndex = tokenizedText.lastIndexOf('</token>');
+        startIndex = startIndex == -1 ? 0 : startIndex + 8;
+        final int tokenIndex = tokenizedText.indexOf(
+          tokenText,
+          startIndex,
+        );
+
+        // if the token is not found in the text, check if the token exist in the full HTML.
+        // If not, remove the token and continue. If so, break to move on to the next node in the HTML.
+        if (tokenIndex == -1) {
+          final fullHtmlIndex = fullHtml.indexOf(tokenText);
+          if (fullHtmlIndex == -1) {
+            remainingTokens.removeAt(0);
+            continue;
+          } else {
+            break;
+          }
+        }
+
+        final token = remainingTokens.removeAt(0);
+        final tokenEnd = tokenIndex + tokenText.length;
+        final before = tokenizedText.substring(0, tokenIndex);
+        final after = tokenizedText.substring(tokenEnd);
+
+        tokenizedText =
+            "$before<token offset=\"${token.text.offset}\" length=\"${token.text.length}\">$tokenText</token>$after";
+      }
+
+      final newElement = dom.Element.html('<span>$tokenizedText</span>');
+      return newElement;
+    }
+
+    return element;
+  }
+  // Pangea#
+
   @override
   Widget build(BuildContext context) {
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
@@ -89,7 +164,24 @@ class HtmlMessage extends StatelessWidget {
       padding: HtmlPaddings.only(left: 6, bottom: 0),
     );
 
-    final element = _linkifyHtml(HtmlParser.parseHTML(html));
+    // #Pangea
+    // final element = _linkifyHtml(HtmlParser.parseHTML(html));
+    dom.Node element = _linkifyHtml(HtmlParser.parseHTML(html));
+    if (tokens != null && element is dom.Element) {
+      try {
+        element = _tokenizeHtml(element, element.innerHtml, List.from(tokens!));
+      } catch (e, s) {
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            'html': html,
+            'tokens': tokens,
+          },
+        );
+      }
+    }
+    // Pangea#
 
     // there is no need to pre-validate the html, as we validate it while rendering
     // #Pangea
@@ -170,6 +262,18 @@ class HtmlMessage extends StatelessWidget {
             const ImageExtension(),
             FontColorExtension(),
             FallbackTextExtension(fontSize: fontSize),
+            // #Pangea
+            if (pangeaMessageEvent != null)
+              TokenExtension(
+                style: AppConfig.messageTextStyle(
+                  pangeaMessageEvent!.event,
+                  textColor,
+                ),
+                getToken: getToken,
+                isSelected: isSelected,
+                onClick: onClick,
+              ),
+            // Pangea#
           ],
           onLinkTap: (url, _, element) => UrlLauncher(
             context,
@@ -236,8 +340,54 @@ class HtmlMessage extends StatelessWidget {
     'rt',
     // Workaround for https://github.com/krille-chan/fluffychat/issues/507
     ...fallbackTextTags,
+    // #Pangea
+    'token',
+    // Pangea#
   };
 }
+
+// #Pangea
+class TokenExtension extends HtmlExtension {
+  final TextStyle style;
+  final PangeaToken? Function(String, int, int) getToken;
+  final bool Function(PangeaToken)? isSelected;
+  final void Function(PangeaToken)? onClick;
+
+  const TokenExtension({
+    required this.style,
+    required this.getToken,
+    this.isSelected,
+    this.onClick,
+  });
+
+  @override
+  Set<String> get supportedTags => {'token'};
+
+  @override
+  InlineSpan build(ExtensionContext context) {
+    final token = getToken(
+      context.attributes['offset'] ?? '',
+      int.tryParse(context.attributes['offset'] ?? '') ?? 0,
+      int.tryParse(context.attributes['length'] ?? '') ?? 0,
+    );
+
+    final selected =
+        token != null && isSelected != null ? isSelected!.call(token) : false;
+
+    final backgroundColor =
+        selected ? AppConfig.primaryColor.withAlpha(80) : Colors.transparent;
+
+    return TextSpan(
+      recognizer: TapGestureRecognizer()
+        ..onTap = onClick != null && token != null
+            ? () => onClick?.call(token)
+            : null,
+      text: context.innerHtml,
+      style: style.merge(TextStyle(backgroundColor: backgroundColor)),
+    );
+  }
+}
+// Pangea#
 
 class FontColorExtension extends HtmlExtension {
   static const String colorAttribute = 'color';
