@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/analytics/enums/construct_type_enum.dart';
-import 'package:fluffychat/pangea/analytics/models/constructs_model.dart';
+import 'package:fluffychat/pangea/analytics/models/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_request.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_response.dart';
@@ -12,6 +14,10 @@ import 'package:fluffychat/pangea/toolbar/models/practice_activity_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class LemmaMeaningActivityGenerator {
+  /// Cache whether a lemma has distractors for a given part of speech
+  static final Map<String, bool> _hasDistractorsCache = {};
+  static Timer? _cacheClearTimer;
+
   Future<MessageActivityResponse> get(
     MessageActivityRequest req,
   ) async {
@@ -57,15 +63,25 @@ class LemmaMeaningActivityGenerator {
     );
   }
 
-  static List<OneConstructUse> eligibleDistractors(String lemma, String pos) {
-    return MatrixState.pangeaController.getAnalytics.constructListModel.uses
-        .where(
-          (c) =>
-              c.lemma.toLowerCase() != lemma.toLowerCase() &&
-              c.category.toLowerCase() == pos.toLowerCase() &&
-              c.constructType == ConstructTypeEnum.vocab,
-        )
-        .toList();
+  static List<ConstructUses> eligibleDistractors(String lemma, String pos) {
+    final distractors =
+        MatrixState.pangeaController.getAnalytics.constructListModel
+            .constructList(type: ConstructTypeEnum.vocab)
+            .where(
+              (c) =>
+                  c.lemma.toLowerCase() != lemma.toLowerCase() &&
+                  c.category.toLowerCase() == pos.toLowerCase(),
+            )
+            .toList();
+
+    _hasDistractorsCache['${lemma.toLowerCase()}-${pos.toLowerCase()}'] =
+        distractors.isNotEmpty;
+
+    _cacheClearTimer ??= Timer.periodic(const Duration(minutes: 2), (Timer t) {
+      _hasDistractorsCache.clear();
+    });
+
+    return distractors;
   }
 
   /// From the cache, get a random set of cached definitions that are not for a specific lemma
@@ -76,7 +92,7 @@ class LemmaMeaningActivityGenerator {
     final eligible = eligibleDistractors(req.lemma, req.partOfSpeech);
     eligible.shuffle();
 
-    final List<OneConstructUse> distractorConstructUses =
+    final List<ConstructUses> distractorConstructUses =
         eligible.take(count).toList();
 
     final List<Future<LemmaInfoResponse>> futureDefs = [];
@@ -101,6 +117,13 @@ class LemmaMeaningActivityGenerator {
     return distractorDefs.toList();
   }
 
-  static bool canGenerateDistractors(String lemma, String pos) =>
-      eligibleDistractors(lemma, pos).isNotEmpty;
+  static bool canGenerateDistractors(String lemma, String pos) {
+    final cacheKey = '${lemma.toLowerCase()}-${pos.toLowerCase()}';
+    if (_hasDistractorsCache.containsKey(cacheKey)) {
+      return _hasDistractorsCache[cacheKey]!;
+    }
+
+    final distractors = eligibleDistractors(lemma, pos);
+    return distractors.isNotEmpty;
+  }
 }
