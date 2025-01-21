@@ -4748,5 +4748,6 @@
     }
   },
   "notInClass": "Not in a class!",
-  "noClassCode": "No class code!"
+  "noClassCode": "No class code!",
+  "chooseCorrectLabel": "Choose the correct label"
 }

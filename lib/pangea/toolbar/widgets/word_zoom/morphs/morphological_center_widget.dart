@@ -184,10 +184,7 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
       child: Column(
         children: [
           Text(
-            "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsTheMorphTag(
-              morphCopy,
-              widget.token.text.content,
-            )}",
+            "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).chooseCorrectLabel}",
             textAlign: TextAlign.center,
             style: const TextStyle(fontStyle: FontStyle.italic),
           ),
