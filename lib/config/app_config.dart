@@ -164,6 +164,8 @@ abstract class AppConfig {
       "https://support.microsoft.com/en-us/topic/download-languages-and-voices-for-immersive-reader-read-mode-and-read-aloud-4c83a8d8-7486-42f7-8e46-2b0fdf753130";
   static String androidTTSDownloadInstructions =
       "https://support.google.com/accessibility/android/answer/6006983?hl=en";
+  static String svgAssetsBaseURL =
+      "https://pangea-chat-client-assets.s3.us-east-1.amazonaws.com";
   // Pangea#
 
   static void loadFromJson(Map<String, dynamic> json) {

@@ -36,6 +36,17 @@ extension LemmaCategoryExtension on LemmaCategoryEnum {
     }
   }
 
+  String get svgURL {
+    switch (this) {
+      case LemmaCategoryEnum.seeds:
+        return "${AppConfig.svgAssetsBaseURL}/${AnalyticsConstants.seedSvgFileName}";
+      case LemmaCategoryEnum.greens:
+        return "${AppConfig.svgAssetsBaseURL}/${AnalyticsConstants.leafSvgFileName}";
+      case LemmaCategoryEnum.flowers:
+        return "${AppConfig.svgAssetsBaseURL}/${AnalyticsConstants.flowerSvgFileName}";
+    }
+  }
+
   String get emoji {
     switch (this) {
       case LemmaCategoryEnum.flowers:

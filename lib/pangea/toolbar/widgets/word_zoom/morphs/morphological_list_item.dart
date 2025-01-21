@@ -36,14 +36,13 @@ class MorphologicalListItem extends StatelessWidget {
         icon: svgLink != null
             ? CustomizedSvg(
                 svgUrl: svgLink!,
-                cacheKey: svgLink!,
                 colorReplacements: {
                   "white": Theme.of(context).cardColor.hexValue.toString(),
                   "black": Theme.of(context).brightness == Brightness.dark
                       ? "white"
                       : "black",
                 },
-                errorIcon: icon,
+                errorIcon: Icon(icon),
               )
             : Icon(icon),
         isSelected: isSelected,

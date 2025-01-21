@@ -6,22 +6,20 @@ import 'package:http/http.dart' as http;
 
 class CustomizedSvg extends StatelessWidget {
   final String svgUrl;
-  final String cacheKey;
   final Map<String, String> colorReplacements;
-  final IconData? errorIcon;
+  final Widget errorIcon;
 
   const CustomizedSvg({
     super.key,
     required this.svgUrl,
-    required this.cacheKey,
     required this.colorReplacements,
-    this.errorIcon = Icons.error_outline,
+    this.errorIcon = const Icon(Icons.error_outline),
   });
 
   static final GetStorage _svgStorage = GetStorage('svg_cache');
 
   Future<String> _fetchSvg() async {
-    final cachedSvg = _svgStorage.read(cacheKey);
+    final cachedSvg = _svgStorage.read(svgUrl);
     if (cachedSvg != null) {
       return cachedSvg;
     }
@@ -32,7 +30,7 @@ class CustomizedSvg extends StatelessWidget {
     }
 
     final String svgContent = response.body;
-    await _svgStorage.write(cacheKey, svgContent);
+    await _svgStorage.write(svgUrl, svgContent);
 
     return svgContent;
   }
@@ -55,7 +53,7 @@ class CustomizedSvg extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
-          return Icon(errorIcon);
+          return errorIcon;
         } else if (snapshot.hasData) {
           return SvgPicture.string(snapshot.data!);
         } else {

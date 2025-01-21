@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/analytics/repo/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_request.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_response.dart';
 import 'package:fluffychat/pangea/analytics/utils/get_grammar_copy.dart';
+import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
@@ -469,12 +470,30 @@ class VocabDefinitionPopupState extends State<VocabDefinitionPopup> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      "${widget.type.emoji} ${widget.points} XP",
-                      style: TextStyle(
-                        color: textColor,
-                        fontSize: 20,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: CustomizedSvg(
+                            svgUrl: widget.type.svgURL,
+                            colorReplacements: const {},
+                            errorIcon: Text(
+                              widget.type.emoji,
+                              style: const TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "${widget.points} XP",
+                          style: TextStyle(
+                            color: textColor,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 20,

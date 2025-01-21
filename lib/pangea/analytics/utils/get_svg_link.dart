@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 
 String? getMorphSvgLink({
@@ -7,9 +8,6 @@ String? getMorphSvgLink({
   String? morphTag,
   required BuildContext context,
 }) {
-  const baseURL =
-      "https://pangea-chat-client-assets.s3.us-east-1.amazonaws.com";
-
   if (morphTag == null) {
     final key = morphFeature.toLowerCase();
     String? filename;
@@ -51,7 +49,7 @@ String? getMorphSvgLink({
       return null;
     }
 
-    return "$baseURL/$filename";
+    return "${AppConfig.svgAssetsBaseURL}/$filename";
   }
 
   final key = "${morphFeature.toLowerCase()}${morphTag.toLowerCase()}";
@@ -180,5 +178,5 @@ String? getMorphSvgLink({
     return null;
   }
 
-  return "$baseURL/$filename";
+  return "${AppConfig.svgAssetsBaseURL}/$filename";
 }

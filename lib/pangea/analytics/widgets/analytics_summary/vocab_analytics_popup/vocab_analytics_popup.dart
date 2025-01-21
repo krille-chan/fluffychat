@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/analytics/models/construct_list_model.dart';
 import 'package:fluffychat/pangea/analytics/models/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics/utils/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/analytics/widgets/analytics_summary/vocab_analytics_popup/vocab_definition_popup.dart';
+import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -216,11 +217,10 @@ class VocabAnalyticsPopupState extends State<VocabAnalyticsPopup> {
                             ? Colors.white
                             : Colors.black,
                     radius: 16,
-                    child: Text(
-                      " ${type.emoji}",
-                      style: const TextStyle(
-                        fontSize: 14,
-                      ),
+                    child: CustomizedSvg(
+                      svgUrl: type.svgURL,
+                      colorReplacements: const {},
+                      errorIcon: Text(type.emoji),
                     ),
                   ),
                   Text(
