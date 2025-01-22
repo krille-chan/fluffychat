@@ -5,8 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/analytics/constants/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics/enums/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics/enums/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/analytics/enums/lemma_category_enum.dart';
 import 'package:fluffychat/pangea/analytics/extensions/client_analytics_extension.dart';
 import 'package:fluffychat/pangea/analytics/models/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics/models/constructs_model.dart';
@@ -619,6 +621,16 @@ class PangeaToken {
     } else {
       // flower emoji
       return "🌺";
+    }
+  }
+
+  LemmaCategoryEnum get lemmaXPCategory {
+    if (vocabConstruct.points >= AnalyticsConstants.xpForFlower) {
+      return LemmaCategoryEnum.flowers;
+    } else if (vocabConstruct.points >= AnalyticsConstants.xpForGreens) {
+      return LemmaCategoryEnum.greens;
+    } else {
+      return LemmaCategoryEnum.seeds;
     }
   }
 
