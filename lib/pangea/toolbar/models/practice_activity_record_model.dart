@@ -173,7 +173,6 @@ class ActivityRecordResponse {
   ) {
     if (practiceActivity.tgtConstructs.isEmpty ||
         practiceActivity.targetTokens == null) {
-      debugger();
       return [];
     }
 
