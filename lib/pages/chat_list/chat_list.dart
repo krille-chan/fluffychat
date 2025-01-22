@@ -21,6 +21,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/chat_list/utils/app_version_util.dart';
 import 'package:fluffychat/pangea/chat_list/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -40,6 +41,7 @@ import '../../widgets/matrix.dart';
 
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
+
 
 enum SelectMode {
   normal,
@@ -620,6 +622,15 @@ class ChatListController extends State<ChatList>
               MatrixState.pangeaController.matrixState.client.getRoomById(
             spaceId,
           );
+
+          final String? justInputtedCode =
+              MatrixState.pangeaController.pStoreService.read(
+            PLocalKey.justInputtedCode,
+            isAccountData: false,
+          );
+          final newSpaceCode = space?.classCode(context);
+          if (newSpaceCode == justInputtedCode) return;
+
           if (space != null) {
             chatListHandleSpaceTap(
               context,

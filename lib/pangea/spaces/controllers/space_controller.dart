@@ -97,8 +97,6 @@ class ClassController extends BaseController {
           classCode,
           isAccountData: false,
         );
-
-        _pangeaController.pStoreService.delete(PLocalKey.justInputtedCode);
         return chosenClassId;
       },
     );
