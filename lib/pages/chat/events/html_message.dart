@@ -14,6 +14,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
@@ -374,8 +375,26 @@ class TokenExtension extends HtmlExtension {
     final selected =
         token != null && isSelected != null ? isSelected!.call(token) : false;
 
-    final backgroundColor =
-        selected ? AppConfig.primaryColor.withAlpha(80) : Colors.transparent;
+    final shouldDo = token?.shouldDoActivity(
+          a: ActivityTypeEnum.wordMeaning,
+          feature: null,
+          tag: null,
+        ) ??
+        false;
+
+    final didMeaningActivity = token?.didActivitySuccessfully(
+          ActivityTypeEnum.wordMeaning,
+        ) ??
+        true;
+
+    Color backgroundColor = Colors.transparent;
+    if (selected) {
+      backgroundColor = AppConfig.primaryColor.withAlpha(80);
+    } else if (isSelected != null && shouldDo) {
+      backgroundColor = !didMeaningActivity
+          ? AppConfig.success.withAlpha(60)
+          : AppConfig.gold.withAlpha(60);
+    }
 
     return TextSpan(
       recognizer: TapGestureRecognizer()

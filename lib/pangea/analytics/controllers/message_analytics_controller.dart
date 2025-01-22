@@ -254,7 +254,8 @@ class MessageAnalyticsController {
 
     final bool includeHiddenWordActivities = !pangeaMessageEvent.ownMessage &&
         pangeaMessageEvent.messageDisplayRepresentation?.tokens != null &&
-        pangeaMessageEvent.messageDisplayLangIsL2;
+        pangeaMessageEvent.messageDisplayLangIsL2 &&
+        !pangeaMessageEvent.event.isRichMessage;
 
     _cache[key] = MessageAnalyticsEntry(
       tokens: tokens,
