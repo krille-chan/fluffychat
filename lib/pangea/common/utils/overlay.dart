@@ -29,6 +29,7 @@ class OverlayUtil {
     Function? onDismiss,
     OverlayPositionEnum position = OverlayPositionEnum.transform,
     Offset? offset,
+    String? overlayKey,
   }) {
     try {
       if (closePrevOverlay) {
@@ -70,8 +71,12 @@ class OverlayUtil {
         ),
       );
 
-      MatrixState.pAnyState
-          .openOverlay(entry, context, closePrevOverlay: closePrevOverlay);
+      MatrixState.pAnyState.openOverlay(
+        entry,
+        context,
+        closePrevOverlay: closePrevOverlay,
+        overlayKey: overlayKey,
+      );
     } catch (err, stack) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -91,6 +96,7 @@ class OverlayUtil {
     backDropToDismiss = true,
     Color? borderColor,
     bool closePrevOverlay = true,
+    String? overlayKey,
   }) {
     try {
       final LayerLinkAndKey layerLinkAndKey =
@@ -114,14 +120,15 @@ class OverlayUtil {
         final hasLeftOverflow = (horizontalMidpoint - halfMaxWidth) < 0;
         final hasRightOverflow = (horizontalMidpoint + halfMaxWidth) >
             MediaQuery.of(context).size.width;
+
         double xOffset = 0;
 
         MediaQuery.of(context).size.width - (horizontalMidpoint + halfMaxWidth);
         if (hasLeftOverflow) {
-          xOffset = (horizontalMidpoint - halfMaxWidth) * -1;
+          xOffset = (horizontalMidpoint - halfMaxWidth - 10) * -1;
         } else if (hasRightOverflow) {
           xOffset = MediaQuery.of(context).size.width -
-              (horizontalMidpoint + halfMaxWidth);
+              (horizontalMidpoint + halfMaxWidth + 10);
         }
         offset = Offset(xOffset, 0);
       }
@@ -146,6 +153,7 @@ class OverlayUtil {
         borderColor: borderColor,
         closePrevOverlay: closePrevOverlay,
         offset: offset,
+        overlayKey: overlayKey,
       );
     } catch (err, stack) {
       debugger(when: kDebugMode);

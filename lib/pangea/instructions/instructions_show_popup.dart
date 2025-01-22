@@ -67,6 +67,7 @@ Future<void> instructionsShowPopup(
         maxWidth: 300,
         transformTargetId: transformTargetKey,
         closePrevOverlay: false,
+        overlayKey: key.toString(),
       );
     },
   );

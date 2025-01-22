@@ -4,9 +4,16 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 
+class OverlayListEntry {
+  final OverlayEntry entry;
+  final String? key;
+
+  OverlayListEntry(this.entry, {this.key});
+}
+
 class PangeaAnyState {
   final Map<String, LayerLinkAndKey> _layerLinkAndKeys = {};
-  List<OverlayEntry> entries = [];
+  List<OverlayListEntry> entries = [];
 
   dispose() {
     closeOverlay();
@@ -38,18 +45,24 @@ class PangeaAnyState {
     OverlayEntry entry,
     BuildContext context, {
     bool closePrevOverlay = true,
+    String? overlayKey,
   }) {
+    if (overlayKey != null &&
+        entries.any((element) => element.key == overlayKey)) {
+      return;
+    }
+
     if (closePrevOverlay) {
       closeOverlay();
     }
-    entries.add(entry);
+    entries.add(OverlayListEntry(entry, key: overlayKey));
     Overlay.of(context).insert(entry);
   }
 
   void closeOverlay() {
     if (entries.isNotEmpty) {
       try {
-        entries.last.remove();
+        entries.last.entry.remove();
       } catch (err, s) {
         ErrorHandler.logError(
           e: err,
@@ -66,7 +79,7 @@ class PangeaAnyState {
   void closeAllOverlays() {
     for (int i = 0; i < entries.length; i++) {
       try {
-        entries.last.remove();
+        entries.last.entry.remove();
       } catch (err, s) {
         ErrorHandler.logError(
           e: err,
