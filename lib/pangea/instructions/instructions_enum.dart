@@ -21,6 +21,7 @@ enum InstructionsEnum {
   clickBestOption,
   unlockedLanguageTools,
   lemmaMeaning,
+  activityPlannerOverview,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
@@ -36,6 +37,7 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.tooltipInstructionsTitle;
       case InstructionsEnum.missingVoice:
         return l10n.missingVoiceTitle;
+      case InstructionsEnum.activityPlannerOverview:
       case InstructionsEnum.clickAgainToDeselect:
       case InstructionsEnum.speechToText:
       case InstructionsEnum.l1Translation:
@@ -83,6 +85,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.unlockedLanguageTools;
       case InstructionsEnum.lemmaMeaning:
         return l10n.lemmaMeaningInstructionsBody;
+      case InstructionsEnum.activityPlannerOverview:
+        return l10n.activityPlannerOverviewInstructionsBody;
     }
   }
 

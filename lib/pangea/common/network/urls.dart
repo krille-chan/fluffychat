@@ -66,6 +66,12 @@ class PApiUrls {
 
   static String lemmaDictionary = "${PApiUrls.choreoEndpoint}/lemma_definition";
 
+  static String activityPlanGeneration =
+      "${PApiUrls.choreoEndpoint}/activity_plan";
+  static String activityModeList = "${PApiUrls.choreoEndpoint}/modes";
+  static String objectiveList = "${PApiUrls.choreoEndpoint}/objectives";
+  static String topicList = "${PApiUrls.choreoEndpoint}/topics";
+
   ///-------------------------------- revenue cat --------------------------
   static String rcAppsChoreo = "${PApiUrls.subscriptionEndpoint}/app_ids";
   static String rcProductsChoreo =

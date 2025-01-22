@@ -16,6 +16,7 @@ import 'package:fluffychat/pages/chat/chat_emoji_picker.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_page_launch_icon_button.dart';
 import 'package:fluffychat/pangea/analytics/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics/widgets/gain_points.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_floating_action_button.dart';
@@ -127,6 +128,7 @@ class ChatView extends StatelessWidget {
             context.go('/rooms/${controller.room.id}/search');
           },
         ),
+        ActivityPlanPageLaunchIconButton(controller: controller),
         IconButton(
           icon: const Icon(Icons.settings_outlined),
           tooltip: L10n.of(context).chatDetails,

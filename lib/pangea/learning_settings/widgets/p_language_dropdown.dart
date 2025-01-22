@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/l2_support_enum.dart';
@@ -15,6 +15,7 @@ class PLanguageDropdown extends StatefulWidget {
   final Function(LanguageModel) onChange;
   final bool showMultilingual;
   final bool isL2List;
+  final String decorationText;
   final String? error;
 
   const PLanguageDropdown({
@@ -23,7 +24,8 @@ class PLanguageDropdown extends StatefulWidget {
     required this.onChange,
     required this.initialLanguage,
     this.showMultilingual = false,
-    required this.isL2List,
+    required this.decorationText,
+    this.isL2List = false,
     this.error,
   });
 
@@ -63,52 +65,30 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Theme.of(context).colorScheme.secondary,
-              width: 1,
-            ),
-            borderRadius: const BorderRadius.all(Radius.circular(36)),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: DropdownButton<LanguageModel>(
-            hint: Row(
-              children: [
-                const Icon(Icons.language_outlined),
-                const SizedBox(width: 10),
-                Text(
-                  widget.isL2List
-                      ? L10n.of(context).iWantToLearn
-                      : L10n.of(context).myBaseLanguage,
-                ),
-              ],
-            ),
-            isExpanded: true,
-            icon: const Icon(Icons.keyboard_arrow_down),
-            underline: Container(),
-            items: [
-              if (widget.showMultilingual)
-                DropdownMenuItem(
-                  value: LanguageModel.multiLingual(context),
-                  child: LanguageDropDownEntry(
-                    languageModel: LanguageModel.multiLingual(context),
-                    isL2List: widget.isL2List,
-                  ),
-                ),
-              ...sortedLanguages.map(
-                (languageModel) => DropdownMenuItem(
-                  value: languageModel,
-                  child: LanguageDropDownEntry(
-                    languageModel: languageModel,
-                    isL2List: widget.isL2List,
-                  ),
+        DropdownButtonFormField2<LanguageModel>(
+          decoration: InputDecoration(labelText: widget.decorationText),
+          isExpanded: true,
+          items: [
+            if (widget.showMultilingual)
+              DropdownMenuItem(
+                value: LanguageModel.multiLingual(context),
+                child: LanguageDropDownEntry(
+                  languageModel: LanguageModel.multiLingual(context),
+                  isL2List: widget.isL2List,
                 ),
               ),
-            ],
-            onChanged: (value) => widget.onChange(value!),
-            value: widget.initialLanguage,
-          ),
+            ...sortedLanguages.map(
+              (languageModel) => DropdownMenuItem(
+                value: languageModel,
+                child: LanguageDropDownEntry(
+                  languageModel: languageModel,
+                  isL2List: widget.isL2List,
+                ),
+              ),
+            ),
+          ],
+          onChanged: (value) => widget.onChange(value!),
+          value: widget.initialLanguage,
         ),
         AnimatedSize(
           duration: FluffyThemes.animationDuration,

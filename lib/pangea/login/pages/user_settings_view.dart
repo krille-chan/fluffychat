@@ -94,6 +94,7 @@ class UserSettingsView extends StatelessWidget {
               initialLanguage: controller.selectedTargetLanguage,
               isL2List: true,
               error: controller.selectedLanguageError,
+              decorationText: L10n.of(context).iWantToLearn,
             ),
           ),
           if (controller.isSSOSignup)

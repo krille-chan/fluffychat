@@ -87,8 +87,11 @@ class ModelKey {
   /// This will help us know to omit the message from notifications,
   /// bot responses, etc. It will also help use find the message if
   /// we want to gather user edits for LLM fine-tuning.
+  /// @ggurdin: Maybe this not the way to do this and we should be using
+  /// something built in to matrix? should talk about this
   static const String messageTags = "p.tag";
   static const String messageTagMorphEdit = "morph_edit";
+  static const String messageTagActivityPlan = "activity_plan";
 
   static const String baseDefinition = "base_definition";
   static const String targetDefinition = "target_definition";

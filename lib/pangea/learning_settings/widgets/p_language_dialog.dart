@@ -66,6 +66,7 @@ Future<void> pLanguageDialog(
                           selectedSourceLanguage ?? LanguageModel.unknown,
                       languages: pangeaController.pLanguageStore.baseOptions,
                       isL2List: false,
+                      decorationText: L10n.of(context).myBaseLanguage,
                     ),
                     PQuestionContainer(
                       title: L10n.of(context).whatLanguageYouWantToLearn,
@@ -76,6 +77,7 @@ Future<void> pLanguageDialog(
                       initialLanguage: selectedTargetLanguage,
                       languages: pangeaController.pLanguageStore.targetOptions,
                       isL2List: true,
+                      decorationText: L10n.of(context).iWantToLearn,
                     ),
                   ],
                 ),

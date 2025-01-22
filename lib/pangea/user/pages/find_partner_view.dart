@@ -239,6 +239,9 @@ class LanguageSelectionRow extends StatelessWidget {
             initialLanguage: isSource
                 ? controller.sourceLanguageSearch
                 : controller.targetLanguageSearch,
+            decorationText: isSource
+                ? L10n.of(context).myBaseLanguage
+                : L10n.of(context).iWantToLearn,
           ),
         ),
       ],

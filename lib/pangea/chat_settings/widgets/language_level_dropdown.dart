@@ -23,6 +23,7 @@ class LanguageLevelDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField2(
+      decoration: InputDecoration(labelText: L10n.of(context).cefrLevelLabel),
       hint: Text(
         L10n.of(context).selectLanguageLevel,
         overflow: TextOverflow.clip,
