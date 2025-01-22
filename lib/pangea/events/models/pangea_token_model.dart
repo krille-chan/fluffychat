@@ -566,37 +566,20 @@ class PangeaToken {
         category: pos,
       );
 
-  Room? get analyticsRoom {
-    final String? l2 =
-        MatrixState.pangeaController.languageController.userL2?.langCode;
-
-    if (l2 == null) {
-      debugger(when: kDebugMode);
-      return null;
-    }
-
-    final Room? analyticsRoom =
-        MatrixState.pangeaController.matrixState.client.analyticsRoomLocal(l2);
-
-    if (analyticsRoom == null) {
-      debugger(when: kDebugMode);
-    }
-
-    return analyticsRoom;
-  }
-
   /// [setEmoji] sets the emoji for the lemma
   /// NOTE: assumes that the language of the lemma is the same as the user's current l2
   Future<void> setEmoji(String emoji) async {
+    final analyticsRoom =
+        MatrixState.pangeaController.matrixState.client.analyticsRoomLocal();
     if (analyticsRoom == null) return;
     try {
       final client = MatrixState.pangeaController.matrixState.client;
       final syncFuture = client.onRoomState.stream.firstWhere((event) {
-        return event.roomId == analyticsRoom!.id &&
+        return event.roomId == analyticsRoom.id &&
             event.state.type == PangeaEventTypes.userChosenEmoji;
       });
       client.setRoomStateWithKey(
-        analyticsRoom!.id,
+        analyticsRoom.id,
         PangeaEventTypes.userChosenEmoji,
         vocabConstructID.string,
         {ModelKey.emoji: emoji},
@@ -618,6 +601,8 @@ class PangeaToken {
   /// [getEmoji] gets the emoji for the lemma
   /// NOTE: assumes that the language of the lemma is the same as the user's current l2
   String? getEmoji() {
+    final analyticsRoom =
+        MatrixState.pangeaController.matrixState.client.analyticsRoomLocal();
     return analyticsRoom
         ?.getState(PangeaEventTypes.userChosenEmoji, vocabConstructID.string)
         ?.content
