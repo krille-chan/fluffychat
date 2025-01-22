@@ -33,9 +33,13 @@ class ReplyContent extends StatelessWidget {
     final displayEvent =
         timeline != null ? replyEvent.getDisplayEvent(timeline) : replyEvent;
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
-    final color = ownMessage
-        ? theme.colorScheme.tertiaryContainer
-        : theme.colorScheme.tertiary;
+    final color = theme.brightness == Brightness.light
+        ? ownMessage
+            ? theme.colorScheme.onTertiaryContainer
+            : theme.colorScheme.onTertiary
+        : ownMessage
+            ? theme.colorScheme.tertiaryContainer
+            : theme.colorScheme.tertiary;
 
     return Material(
       color: backgroundColor ??
