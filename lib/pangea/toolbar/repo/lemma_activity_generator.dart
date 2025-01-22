@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -62,9 +61,13 @@ class LemmaActivityGenerator {
 
     // Take the shortest 4
     final choices = sortedLemmas.take(4).toList();
+    if (choices.isEmpty) {
+      return [token.lemma.text];
+    }
+
     if (!choices.contains(token.lemma.text)) {
-      final random = Random();
-      choices[random.nextInt(choices.length - 1)] = token.lemma.text;
+      choices.add(token.lemma.text);
+      choices.shuffle();
     }
     return choices;
   }
