@@ -1,11 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/span_data_controller.dart';
@@ -14,6 +9,10 @@ import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/span_card.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../common/utils/error_handler.dart';
 import '../../common/utils/overlay.dart';
 import '../models/span_card_model.dart';
@@ -103,18 +102,16 @@ class IgcController {
         _initializeCacheClearing();
       }
 
-      // Check if cached data exists
-      if (_igcTextDataCache.containsKey(reqBody.hashCode)) {
-        igcTextData = await _igcTextDataCache[reqBody.hashCode]!.data;
-        return;
+      // if the request is not in the cache, add it
+      if (!_igcTextDataCache.containsKey(reqBody.hashCode)) {
+        _igcTextDataCache[reqBody.hashCode] = _IGCTextDataCacheItem(
+          data: IgcRepo.getIGC(
+            choreographer.accessToken,
+            igcRequest: reqBody,
+          ),
+        );
       }
 
-      final igcFuture = IgcRepo.getIGC(
-        choreographer.accessToken,
-        igcRequest: reqBody,
-      );
-      _igcTextDataCache[reqBody.hashCode] =
-          _IGCTextDataCacheItem(data: igcFuture);
       final IGCTextData igcTextDataResponse =
           await _igcTextDataCache[reqBody.hashCode]!.data;
 
