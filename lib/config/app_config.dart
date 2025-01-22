@@ -27,6 +27,9 @@ abstract class AppConfig {
   static const double toolbarMinHeight = 175.0;
   static const double toolbarMinWidth = 350.0;
   static const double toolbarButtonsHeight = 50.0;
+  static const double defaultHeaderHeight = 56.0;
+  static const double defaultFooterHeight = 48.0;
+  static const double toolbarSpacing = 8.0;
   static TextStyle messageTextStyle(
     Event event,
     Color textColor,

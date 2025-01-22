@@ -27,7 +27,8 @@ class OverlayHeader extends StatelessWidget {
         color: Theme.of(context).appBarTheme.backgroundColor ??
             Theme.of(context).colorScheme.surfaceContainerHighest,
       ),
-      height: Theme.of(context).appBarTheme.toolbarHeight ?? 56,
+      height: Theme.of(context).appBarTheme.toolbarHeight ??
+          AppConfig.defaultHeaderHeight,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
