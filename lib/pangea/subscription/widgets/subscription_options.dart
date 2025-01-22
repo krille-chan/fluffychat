@@ -50,9 +50,7 @@ class SubscriptionOptions extends StatelessWidget {
                       context,
                     );
                   },
-                  title: subscription.isTrial
-                      ? L10n.of(context).oneWeekTrial
-                      : subscription.displayName(context),
+                  title: subscription.displayName(context),
                   enabled: !subscription.isTrial,
                   description: subscription.isTrial
                       ? L10n.of(context).trialPeriodExpired

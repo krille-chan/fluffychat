@@ -30,11 +30,9 @@ class SubscriptionButtons extends StatelessWidget {
         return Column(
           children: [
             ListTile(
-              title: subscription.isTrial
-                  ? Text(L10n.of(context).oneWeekTrial)
-                  : Text(
-                      subscription.displayName(context),
-                    ),
+              title: Text(
+                subscription.displayName(context),
+              ),
               subtitle: Text(
                 subscription.isTrial && !inTrialWindow
                     ? L10n.of(context).trialPeriodExpired

@@ -71,7 +71,9 @@ class CurrentSubscriptionInfo {
   void setTrial(DateTime expiration) {
     expirationDate = expiration;
     currentSubscriptionId = AppConfig.trialSubscriptionId;
-    if (currentSubscription == null) {
+    if (currentSubscription == null &&
+        !availableSubscriptionInfo.availableSubscriptions
+            .any((sub) => sub.isTrial)) {
       availableSubscriptionInfo.availableSubscriptions.add(
         SubscriptionDetails(
           price: 0,

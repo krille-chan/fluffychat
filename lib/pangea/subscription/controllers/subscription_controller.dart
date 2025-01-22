@@ -221,11 +221,8 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  int get _currentTrialDays => _userController.inTrialWindow(trialDays: 1)
-      ? 1
-      : _userController.inTrialWindow(trialDays: 7)
-          ? 7
-          : 0;
+  int get _currentTrialDays =>
+      _userController.inTrialWindow(trialDays: 7) ? 7 : 0;
 
   bool get _activatedNewUserTrial =>
       _userController.inTrialWindow(trialDays: 1) ||
