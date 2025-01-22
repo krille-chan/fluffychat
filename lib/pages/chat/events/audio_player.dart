@@ -12,6 +12,7 @@ import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
@@ -30,6 +31,7 @@ class AudioPlayerWidget extends StatefulWidget {
   final Function(bool)? setIsPlayingAudio;
   final double padding;
   final MessageOverlayController? overlayController;
+  final ChatController? chatController;
   // Pangea#
 
   static String? currentId;
@@ -53,6 +55,7 @@ class AudioPlayerWidget extends StatefulWidget {
     this.setIsPlayingAudio,
     this.padding = 12.0,
     this.overlayController,
+    this.chatController,
     // Pangea#
     super.key,
   });
@@ -79,6 +82,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   MatrixFile? matrixFile;
   File? audioFile;
 
+  // #Pangea
+  StreamSubscription? _onShowToolbar;
+  // Pangea#
+
   @override
   void dispose() {
     if (audioPlayer?.playerState.playing == true) {
@@ -88,6 +95,9 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     onDurationChanged?.cancel();
     onPlayerStateChanged?.cancel();
     onPlayerError?.cancel();
+    // #Pangea
+    _onShowToolbar?.cancel();
+    // Pangea#
 
     super.dispose();
   }
@@ -345,6 +355,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           ? _playAction()
           : _downloadAction();
     }
+
+    _onShowToolbar = widget.chatController?.showToolbarStream.stream
+        .where((eventID) => eventID == widget.event?.eventId)
+        .listen((eventID) {
+      audioPlayer?.pause();
+      audioPlayer?.seek(Duration.zero);
+    });
     // Pangea#
   }
 

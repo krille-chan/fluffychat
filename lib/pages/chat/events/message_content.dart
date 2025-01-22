@@ -209,6 +209,9 @@ class MessageContent extends StatelessWidget {
                 event,
                 color: textColor,
                 fontSize: fontSize,
+                // #Pangea
+                chatController: controller,
+                // Pangea#
               );
             }
             return MessageDownloadContent(event, textColor);
