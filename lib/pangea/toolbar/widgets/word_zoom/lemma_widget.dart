@@ -17,12 +17,13 @@ class LemmaWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(token.lemma.text),
           const SizedBox(width: 6),
           SizedBox(
-            width: 30,
-            height: 30,
+            width: 20,
+            height: 20,
             child: CustomizedSvg(
               svgUrl: token.lemmaXPCategory.svgURL,
               colorReplacements: const {},
