@@ -151,7 +151,8 @@ abstract class ClientManager {
       shouldReplaceRoomLastEvent: (_, event) {
         return event.content.tryGet(ModelKey.transcription) == null &&
             !event.type.startsWith("p.") &&
-            !event.type.startsWith("pangea.");
+            !event.type.startsWith("pangea.") &&
+            event.type != EventTypes.RoomPinnedEvents;
       },
       // Pangea#
     );
