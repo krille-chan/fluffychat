@@ -6,7 +6,6 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
-import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
@@ -29,17 +28,8 @@ class ActivityPlanMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PangeaMessageEvent? pangeaMessageEvent;
-    if (event.type == EventTypes.Message) {
-      pangeaMessageEvent = PangeaMessageEvent(
-        event: event,
-        timeline: timeline,
-        ownMessage: event.senderId == Matrix.of(context).client.userID,
-      );
-    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (controller.pangeaEditingEvent?.eventId == event.eventId) {
-        pangeaMessageEvent?.updateLatestEdit();
         controller.clearEditingEvent();
       }
     });
@@ -125,7 +115,6 @@ class ActivityPlanMessage extends StatelessWidget {
                                 displayEvent,
                                 textColor: textColor,
                                 borderRadius: borderRadius,
-                                pangeaMessageEvent: pangeaMessageEvent,
                                 controller: controller,
                                 immersionMode: false,
                               ),
