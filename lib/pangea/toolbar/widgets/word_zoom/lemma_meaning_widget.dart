@@ -146,9 +146,9 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
           );
         }
 
-        return Tooltip(
-          message: L10n.of(context).doubleClickToEdit,
-          child: Flexible(
+        return Flexible(
+          child: Tooltip(
+            message: L10n.of(context).doubleClickToEdit,
             child: GestureDetector(
               onLongPress: () => _toggleEditMode(true),
               onDoubleTap: () => _toggleEditMode(true),
