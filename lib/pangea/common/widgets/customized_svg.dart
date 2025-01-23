@@ -5,8 +5,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class CustomizedSvg extends StatelessWidget {
+  /// URL of the SVG file
   final String svgUrl;
+
+  /// Map of color replacements
   final Map<String, String> colorReplacements;
+
+  /// Icon to show in case of error
   final Widget errorIcon;
 
   const CustomizedSvg({
@@ -38,6 +43,8 @@ class CustomizedSvg extends StatelessWidget {
   Future<String> _getModifiedSvg() async {
     final svgContent = await _fetchSvg();
     String modifiedSvg = svgContent;
+    // find the white and replace with black
+    // or find black and replace with white
     modifiedSvg = modifiedSvg.replaceAll("fill=\"none\"", '');
     for (final entry in colorReplacements.entries) {
       modifiedSvg = modifiedSvg.replaceAll(entry.key, entry.value);

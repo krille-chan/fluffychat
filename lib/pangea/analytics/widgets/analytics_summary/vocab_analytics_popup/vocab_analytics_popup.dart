@@ -211,17 +211,10 @@ class VocabAnalyticsPopupState extends State<VocabAnalyticsPopup> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).brightness == Brightness.light
-                            ? Colors.white
-                            : Colors.black,
-                    radius: 16,
-                    child: CustomizedSvg(
-                      svgUrl: type.svgURL,
-                      colorReplacements: const {},
-                      errorIcon: Text(type.emoji),
-                    ),
+                  CustomizedSvg(
+                    svgUrl: type.svgURL,
+                    colorReplacements: const {},
+                    errorIcon: Text(type.emoji),
                   ),
                   Text(
                     " ${type.xpString} XP",

@@ -23,6 +23,7 @@ class WordZoomActivityButton extends StatelessWidget {
     Widget buttonContent = IconButton(
       onPressed: onPressed,
       icon: icon,
+      iconSize: 24,
       color: isSelected ? Theme.of(context).colorScheme.primary : null,
       style: IconButton.styleFrom(
         backgroundColor: isSelected

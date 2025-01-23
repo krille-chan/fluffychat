@@ -33,6 +33,6 @@ class EmojiPracticeButton extends StatelessWidget {
             isSelected: isSelected,
             onPressed: onPressed,
           )
-        : const SizedBox(width: 40);
+        : const SizedBox(width: 60);
   }
 }
