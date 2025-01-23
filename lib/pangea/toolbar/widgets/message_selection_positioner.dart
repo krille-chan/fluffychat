@@ -11,6 +11,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_reactions.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_toolbar.dart';
@@ -152,8 +153,10 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
       _adjustedMessageHeight ?? _messageSize?.height ?? 0;
 
   double get _messageMaxWidth {
-    const double messageMargin = Avatar.defaultSize + 16 + 8;
-    const totalMaxWidth = (FluffyThemes.columnWidth * 2.5) - messageMargin;
+    final double messageMargin =
+        widget.event.isActivityMessage ? 0 : Avatar.defaultSize + 16 + 8;
+    final double totalMaxWidth =
+        (FluffyThemes.columnWidth * 2.5) - messageMargin;
     double? maxWidth;
 
     if (_mediaQuery != null) {
