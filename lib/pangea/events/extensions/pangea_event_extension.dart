@@ -88,4 +88,7 @@ extension PangeaEvent on Event {
       waveform: waveform,
     );
   }
+
+  bool get isActivityMessage =>
+      content[ModelKey.messageTags] == ModelKey.messageTagActivityPlan;
 }

@@ -252,6 +252,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   bool get showToolbarButtons =>
       widget.pangeaMessageEvent != null &&
+      widget.pangeaMessageEvent!.shouldShowToolbar &&
       widget.pangeaMessageEvent!.event.messageType == MessageTypes.Text;
 
   double get _toolbarButtonsHeight =>
@@ -374,6 +375,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
             overlayController: widget.overlayController,
             chatController: widget.chatController,
             hasReactions: _hasReactions,
+            shouldShowToolbarButtons: showToolbarButtons,
           ),
         );
       },
@@ -436,6 +438,8 @@ class ToolbarOverlay extends StatelessWidget {
   final Event? prevEvent;
 
   final bool hasReactions;
+  final bool shouldShowToolbarButtons;
+
   final PangeaMessageEvent? pangeaMessageEvent;
   final MessageOverlayController overlayController;
   final ChatController chatController;
@@ -449,6 +453,7 @@ class ToolbarOverlay extends StatelessWidget {
     required this.overlayController,
     required this.chatController,
     required this.hasReactions,
+    required this.shouldShowToolbarButtons,
     this.pangeaMessageEvent,
     this.nextEvent,
     this.prevEvent,
@@ -466,7 +471,8 @@ class ToolbarOverlay extends StatelessWidget {
               ? CrossAxisAlignment.end
               : CrossAxisAlignment.start,
           children: [
-            if (pangeaMessageEvent != null)
+            if (pangeaMessageEvent != null &&
+                pangeaMessageEvent!.shouldShowToolbar)
               MessageToolbar(
                 pangeaMessageEvent: pangeaMessageEvent!,
                 overlayController: overlayController,
@@ -498,10 +504,11 @@ class ToolbarOverlay extends StatelessWidget {
                   ),
                 ),
               ),
-            ToolbarButtons(
-              event: event,
-              overlayController: overlayController,
-            ),
+            if (shouldShowToolbarButtons)
+              ToolbarButtons(
+                event: event,
+                overlayController: overlayController,
+              ),
           ],
         ),
       ),

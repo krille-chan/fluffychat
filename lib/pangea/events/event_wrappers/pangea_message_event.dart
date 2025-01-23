@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
+import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/spaces/models/space_model.dart';
@@ -689,4 +690,6 @@ class PangeaMessageEvent {
   /// Returns a list of [PracticeActivityEvent] for the user's active l2.
   List<PracticeActivityEvent> get practiceActivities =>
       l2Code == null ? [] : practiceActivitiesByLangCode(l2Code!);
+
+  bool get shouldShowToolbar => !event.isActivityMessage;
 }

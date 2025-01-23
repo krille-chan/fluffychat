@@ -10,6 +10,8 @@ import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_message.dart';
+import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
 import 'package:fluffychat/utils/account_config.dart';
@@ -168,49 +170,64 @@ class ChatEventList extends StatelessWidget {
               key: ValueKey(event.eventId),
               index: i,
               controller: controller.scrollController,
-              child: Message(
-                event,
-                animateIn: animateIn,
-                resetAnimateIn: () {
-                  controller.animateInEventIndex = null;
-                },
-                onSwipe: () => controller.replyAction(replyTo: event),
-                // #Pangea
-                onInfoTab: (_) => {},
-                // onInfoTab: controller.showEventInfo,
-                // Pangea#
-                onAvatarTab: (Event event) => showAdaptiveBottomSheet(
-                  context: context,
-                  builder: (c) => UserBottomSheet(
-                    user: event.senderFromMemoryOrFallback,
-                    outerContext: context,
-                    onMention: () => controller.sendController.text +=
-                        '${event.senderFromMemoryOrFallback.mention} ',
-                  ),
-                ),
-                highlightMarker:
-                    controller.scrollToEventIdMarker == event.eventId,
-                // #Pangea
-                // onSelect: controller.onSelectMessage,
-                onSelect: (_) {},
-                // Pangea#
-                scrollToEventId: (String eventId) =>
-                    controller.scrollToEventId(eventId),
-                longPressSelect: controller.selectedEvents.isNotEmpty,
-                // #Pangea
-                immersionMode: controller.choreographer.immersionMode,
-                controller: controller,
-                isButton: event.eventId == controller.buttonEventID,
-                // Pangea#
-                selected: controller.selectedEvents
-                    .any((e) => e.eventId == event.eventId),
-                timeline: timeline,
-                displayReadMarker:
-                    i > 0 && controller.readMarkerEventId == event.eventId,
-                nextEvent: i + 1 < events.length ? events[i + 1] : null,
-                previousEvent: i > 0 ? events[i - 1] : null,
-                wallpaperMode: hasWallpaper,
-              ),
+              child:
+                  // #Pangea
+                  event.isActivityMessage
+                      ? ActivityPlanMessage(
+                          event,
+                          controller: controller,
+                          timeline: timeline,
+                          animateIn: animateIn,
+                          resetAnimateIn: () {
+                            controller.animateInEventIndex = null;
+                          },
+                        )
+                      :
+                      // Pangea#
+                      Message(
+                          event,
+                          animateIn: animateIn,
+                          resetAnimateIn: () {
+                            controller.animateInEventIndex = null;
+                          },
+                          onSwipe: () => controller.replyAction(replyTo: event),
+                          // #Pangea
+                          onInfoTab: (_) => {},
+                          // onInfoTab: controller.showEventInfo,
+                          // Pangea#
+                          onAvatarTab: (Event event) => showAdaptiveBottomSheet(
+                            context: context,
+                            builder: (c) => UserBottomSheet(
+                              user: event.senderFromMemoryOrFallback,
+                              outerContext: context,
+                              onMention: () => controller.sendController.text +=
+                                  '${event.senderFromMemoryOrFallback.mention} ',
+                            ),
+                          ),
+                          highlightMarker:
+                              controller.scrollToEventIdMarker == event.eventId,
+                          // #Pangea
+                          // onSelect: controller.onSelectMessage,
+                          onSelect: (_) {},
+                          // Pangea#
+                          scrollToEventId: (String eventId) =>
+                              controller.scrollToEventId(eventId),
+                          longPressSelect: controller.selectedEvents.isNotEmpty,
+                          // #Pangea
+                          immersionMode: controller.choreographer.immersionMode,
+                          controller: controller,
+                          isButton: event.eventId == controller.buttonEventID,
+                          // Pangea#
+                          selected: controller.selectedEvents
+                              .any((e) => e.eventId == event.eventId),
+                          timeline: timeline,
+                          displayReadMarker: i > 0 &&
+                              controller.readMarkerEventId == event.eventId,
+                          nextEvent:
+                              i + 1 < events.length ? events[i + 1] : null,
+                          previousEvent: i > 0 ? events[i - 1] : null,
+                          wallpaperMode: hasWallpaper,
+                        ),
             );
           },
           childCount: events.length + 2,
