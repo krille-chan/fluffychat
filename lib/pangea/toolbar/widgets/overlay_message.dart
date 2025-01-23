@@ -7,6 +7,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
 import 'package:fluffychat/pages/chat/events/reply_content.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -88,6 +89,10 @@ class OverlayMessage extends StatelessWidget {
             );
     }
 
+    if (event.isActivityMessage) {
+      color = ThemeData.light().colorScheme.primary;
+    }
+
     final noBubble = {
           MessageTypes.Video,
           MessageTypes.Image,
@@ -99,9 +104,11 @@ class OverlayMessage extends StatelessWidget {
       MessageTypes.Audio,
     }.contains(event.messageType);
 
-    final textColor = ownMessage
-        ? ThemeData.dark().colorScheme.onPrimary
-        : theme.colorScheme.onSurface;
+    final textColor = event.isActivityMessage
+        ? ThemeData.light().colorScheme.onPrimary
+        : ownMessage
+            ? ThemeData.dark().colorScheme.onPrimary
+            : theme.colorScheme.onSurface;
 
     return Material(
       color: color,
