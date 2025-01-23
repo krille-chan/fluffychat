@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -123,42 +120,41 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
     }
   }
 
-  ActivityTypeEnum get activityType => ActivityTypeEnum.values.firstWhere(
-        (e) => e.associatedUseTypes.contains(this),
-        orElse: () {
-          debugger(when: kDebugMode);
-          return ActivityTypeEnum.wordMeaning;
-        },
-      );
-
   IconData get icon {
     switch (this) {
       case ConstructUseTypeEnum.wa:
+        return Icons.thumb_up_sharp;
       case ConstructUseTypeEnum.corIt:
       case ConstructUseTypeEnum.incIt:
       case ConstructUseTypeEnum.ignIt:
+        return Icons.translate;
       case ConstructUseTypeEnum.ignIGC:
       case ConstructUseTypeEnum.incIGC:
+      case ConstructUseTypeEnum.corIGC:
+      case ConstructUseTypeEnum.ga:
+        return Icons.spellcheck;
+      case ConstructUseTypeEnum.corPA:
       case ConstructUseTypeEnum.incPA:
       case ConstructUseTypeEnum.ignPA:
+        return ActivityTypeEnum.wordMeaning.icon;
       case ConstructUseTypeEnum.ignWL:
       case ConstructUseTypeEnum.incWL:
+      case ConstructUseTypeEnum.corWL:
+        return ActivityTypeEnum.wordFocusListening.icon;
       case ConstructUseTypeEnum.incHWL:
       case ConstructUseTypeEnum.ignHWL:
-      case ConstructUseTypeEnum.ga:
-      case ConstructUseTypeEnum.corIGC:
-      case ConstructUseTypeEnum.corPA:
-      case ConstructUseTypeEnum.corWL:
       case ConstructUseTypeEnum.corHWL:
+        return ActivityTypeEnum.hiddenWordListening.icon;
       case ConstructUseTypeEnum.corL:
       case ConstructUseTypeEnum.incL:
       case ConstructUseTypeEnum.ignL:
+        return ActivityTypeEnum.lemmaId.icon;
       case ConstructUseTypeEnum.corM:
       case ConstructUseTypeEnum.incM:
       case ConstructUseTypeEnum.ignM:
+        return ActivityTypeEnum.morphId.icon;
       case ConstructUseTypeEnum.em:
-        return activityType.icon;
-
+        return ActivityTypeEnum.emoji.icon;
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.nan:
         return Icons.help;

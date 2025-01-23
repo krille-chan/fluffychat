@@ -4,20 +4,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/toolbar_button.dart';
 
-class ToolbarButtons extends StatelessWidget {
+class ToolbarButtonAndProgressRow extends StatelessWidget {
   final Event event;
   final MessageOverlayController overlayController;
 
-  const ToolbarButtons({
+  const ToolbarButtonAndProgressRow({
     required this.event,
     required this.overlayController,
     super.key,
@@ -32,16 +31,20 @@ class ToolbarButtons extends StatelessWidget {
 
   static const double iconWidth = 36.0;
   static const double buttonSize = 40.0;
-  static const double width = 250.0;
+  static const double totalRowWidth = 250.0;
 
   @override
   Widget build(BuildContext context) {
+    if (event.messageType == MessageTypes.Audio) {
+      return const SizedBox();
+    }
+
     if (!overlayController.showToolbarButtons) {
       return const SizedBox();
     }
 
     return SizedBox(
-      width: width,
+      width: totalRowWidth,
       height: AppConfig.toolbarButtonsHeight,
       child: Stack(
         alignment: Alignment.center,
@@ -49,7 +52,7 @@ class ToolbarButtons extends StatelessWidget {
           Stack(
             children: [
               Container(
-                width: width,
+                width: totalRowWidth,
                 height: 12,
                 decoration: BoxDecoration(
                   color: MessageModeExtension.barAndLockedButtonColor(context),
@@ -61,8 +64,11 @@ class ToolbarButtons extends StatelessWidget {
                 duration: FluffyThemes.animationDuration,
                 height: 12,
                 width: overlayController.isPracticeComplete
-                    ? width
-                    : min(width, width * proportionOfActivitiesCompleted!),
+                    ? totalRowWidth
+                    : min(
+                        totalRowWidth,
+                        totalRowWidth * proportionOfActivitiesCompleted!,
+                      ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                   color: AppConfig.success,
@@ -74,27 +80,28 @@ class ToolbarButtons extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: modes.mapIndexed((index, mode) {
-              final enabled = mode.isUnlocked(
-                proportionOfActivitiesCompleted!,
-                overlayController.isPracticeComplete,
-              );
-              final color = mode.iconButtonColor(
-                context,
-                overlayController.toolbarMode,
-                proportionOfActivitiesCompleted!,
-                overlayController.isPracticeComplete,
-              );
-              return mode.showButton
-                  ? ToolbarButton(
-                      mode: mode,
-                      overlayController: overlayController,
-                      enabled: enabled,
-                      buttonSize: buttonSize,
-                      color: color,
-                    )
-                  : const SizedBox(width: buttonSize);
-            }).toList(),
+            children: [
+              SizedBox(
+                width: MessageMode.textToSpeech.pointOnBar * totalRowWidth -
+                    buttonSize / 2,
+              ),
+              ToolbarButton(
+                mode: MessageMode.textToSpeech,
+                overlayController: overlayController,
+                buttonSize: buttonSize,
+              ),
+              SizedBox(
+                width: MessageMode.translation.pointOnBar * totalRowWidth -
+                    MessageMode.textToSpeech.pointOnBar * totalRowWidth -
+                    buttonSize / 2 -
+                    buttonSize,
+              ),
+              ToolbarButton(
+                mode: MessageMode.translation,
+                overlayController: overlayController,
+                buttonSize: buttonSize,
+              ),
+            ],
           ),
         ],
       ),
@@ -175,60 +182,6 @@ class DisabledAnimationState extends State<DisabledAnimation>
           ),
         );
       },
-    );
-  }
-}
-
-class ToolbarButton extends StatelessWidget {
-  final MessageMode mode;
-  final MessageOverlayController overlayController;
-  final bool enabled;
-  final double buttonSize;
-  final Color color;
-
-  const ToolbarButton({
-    required this.mode,
-    required this.overlayController,
-    required this.enabled,
-    required this.buttonSize,
-    required this.color,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Tooltip(
-      message: mode.tooltip(context),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          PressableButton(
-            borderRadius: BorderRadius.circular(20),
-            depressed: !enabled || mode == overlayController.toolbarMode,
-            color: color,
-            onPressed: enabled
-                ? () => overlayController.updateToolbarMode(mode)
-                : null,
-            playSound: true,
-            child: AnimatedContainer(
-              duration: FluffyThemes.animationDuration,
-              height: buttonSize,
-              width: buttonSize,
-              decoration: BoxDecoration(
-                color: color,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                mode.icon,
-                size: 20,
-                color:
-                    mode == overlayController.toolbarMode ? Colors.white : null,
-              ),
-            ),
-          ),
-          if (!enabled) const DisabledAnimation(),
-        ],
-      ),
     );
   }
 }

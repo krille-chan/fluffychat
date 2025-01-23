@@ -14,10 +14,10 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_toolbar.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_toolbar_buttons.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_footer.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_header.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_message.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/toolbar_button_and_progress_row.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -505,7 +505,7 @@ class ToolbarOverlay extends StatelessWidget {
                 ),
               ),
             if (shouldShowToolbarButtons)
-              ToolbarButtons(
+              ToolbarButtonAndProgressRow(
                 event: event,
                 overlayController: overlayController,
               ),

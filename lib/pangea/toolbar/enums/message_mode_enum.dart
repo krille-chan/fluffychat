@@ -80,6 +80,21 @@ extension MessageModeExtension on MessageMode {
     }
   }
 
+  double get pointOnBar {
+    switch (this) {
+      case MessageMode.practiceActivity:
+        return 0;
+      case MessageMode.textToSpeech:
+        return 0.33;
+      case MessageMode.translation:
+        return 1;
+      case MessageMode.speechToText:
+      case MessageMode.wordZoom:
+      case MessageMode.noneSelected:
+        return 0;
+    }
+  }
+
   bool isUnlocked(
     double proportionOfActivitiesCompleted,
     bool totallyDone,
@@ -88,9 +103,8 @@ extension MessageModeExtension on MessageMode {
 
     switch (this) {
       case MessageMode.translation:
-        return proportionOfActivitiesCompleted >= 1;
       case MessageMode.textToSpeech:
-        return proportionOfActivitiesCompleted >= 0.5;
+        return proportionOfActivitiesCompleted >= pointOnBar;
       case MessageMode.speechToText:
       case MessageMode.practiceActivity:
       case MessageMode.wordZoom:

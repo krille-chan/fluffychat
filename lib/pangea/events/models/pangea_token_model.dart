@@ -323,7 +323,7 @@ class PangeaToken {
         if (isContentWord) {
           return vocabConstruct.points < 3;
         } else if (canBeDefined) {
-          return vocabConstruct.points < 1;
+          return vocabConstruct.points < 2;
         } else {
           return false;
         }
