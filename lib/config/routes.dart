@@ -29,6 +29,7 @@ import 'package:fluffychat/pages/settings_notifications/settings_notifications.d
 import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/login/pages/login_or_signup_view.dart';
 import 'package:fluffychat/pangea/login/pages/signup.dart';
@@ -483,6 +484,17 @@ abstract class AppRoutes {
                   redirect: loggedOutRedirect,
                 ),
                 // #Pangea
+                GoRoute(
+                  path: 'planner',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    ActivityPlannerPage(
+                      roomID: state.pathParameters['roomid']!,
+                    ),
+                  ),
+                  redirect: loggedOutRedirect,
+                ),
                 // GoRoute(
                 //   path: 'encryption',
                 //   pageBuilder: (context, state) => defaultPageBuilder(

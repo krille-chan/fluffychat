@@ -58,8 +58,8 @@ enum _PageMode {
 }
 
 class ActivityPlannerPage extends StatefulWidget {
-  final Room room;
-  const ActivityPlannerPage({super.key, required this.room});
+  final String roomID;
+  const ActivityPlannerPage({super.key, required this.roomID});
 
   @override
   ActivityPlannerPageState createState() => ActivityPlannerPageState();
@@ -92,10 +92,16 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
   final _objectiveSearchController = TextEditingController();
 
   final List<TextEditingController> _activityControllers = [];
+  Room? get room => Matrix.of(context).client.getRoomById(widget.roomID);
 
   @override
   void initState() {
     super.initState();
+    if (room == null) {
+      Navigator.of(context).pop();
+      return;
+    }
+
     _loadDropdownData();
 
     _selectedLanguageOfInstructions =
@@ -147,7 +153,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
         context: context,
         future: () async {
           // this shouldn't often error but just in case since it's not necessary for the activity to be sent
-          late List<PangeaToken> tokens;
+          List<PangeaToken>? tokens;
           try {
             tokens = await MatrixState.pangeaController.messageData.getTokens(
               repEventId: null,
@@ -163,7 +169,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
             debugger(when: kDebugMode);
           }
 
-          final eventId = await widget.room.pangeaSendTextEvent(
+          final eventId = await room?.pangeaSendTextEvent(
             _activities[index],
             messageTag: ModelKey.messageTagActivityPlan,
             originalSent: PangeaRepresentation(
@@ -172,7 +178,8 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
               originalSent: true,
               originalWritten: false,
             ),
-            tokensSent: PangeaMessageTokens(tokens: tokens),
+            tokensSent:
+                tokens != null ? PangeaMessageTokens(tokens: tokens) : null,
           );
 
           if (eventId == null) {
@@ -180,7 +187,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
             return;
           }
 
-          await widget.room.setPinnedEvents([eventId]);
+          await room?.setPinnedEvents([eventId]);
 
           Navigator.of(context).pop();
         },
@@ -215,7 +222,14 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
     }
   }
 
+  bool get _canRandomizeSelections =>
+      _topicItems.isNotEmpty &&
+      _objectiveItems.isNotEmpty &&
+      _modeItems.isNotEmpty;
+
   void _randomizeSelections() {
+    if (!_canRandomizeSelections) return;
+
     setState(() {
       _selectedTopic = (_topicItems..shuffle()).first.name;
       _selectedObjective = (_objectiveItems..shuffle()).first.name;
@@ -391,7 +405,8 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.shuffle),
-                    onPressed: _randomizeSelections,
+                    onPressed:
+                        _canRandomizeSelections ? _randomizeSelections : null,
                   ),
                   const SizedBox(width: 16),
                   Expanded(
