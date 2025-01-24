@@ -3102,7 +3102,7 @@
   "setToPublicSettingsTitle": "¿Quiere encontrar un compañero de conversación?",
   "setToPublicSettingsDesc": "Antes de que pueda buscar un compañero de conversación, debe configurar la visibilidad de su perfil como pública.",
   "publicProfileTitle": "Perfil público",
-  "publicProfileDesc": "Su perfil debe ser público para poder buscar o ser encontrado como compañero de conversación.",
+  "publicProfileDesc": "Al activarlo, permite que otros usuarios encuentren su perfil en la barra de búsqueda global y envíen solicitudes para chatear. En este punto, puede optar por aceptar o rechazar la solicitud.",
   "countryInformationDesc": "Si lo desea, puede dejar que la gente sepa de dónde es.",
   "notYetSet": "Aún no está establecido.",
   "allSuggestedRoomsJoined": "",
