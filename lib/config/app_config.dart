@@ -31,17 +31,20 @@ abstract class AppConfig {
   static const double defaultFooterHeight = 48.0;
   static const double toolbarSpacing = 8.0;
   static TextStyle messageTextStyle(
-    Event event,
+    Event? event,
     Color textColor,
   ) {
     final fontSize = messageFontSize * fontSizeFactor;
-    final bigEmotes =
-        event.onlyEmotes && event.numberEmotes > 0 && event.numberEmotes <= 10;
+    final bigEmotes = event != null &&
+        event.onlyEmotes &&
+        event.numberEmotes > 0 &&
+        event.numberEmotes <= 10;
 
     return TextStyle(
       color: textColor,
       fontSize: bigEmotes ? fontSize * 5 : fontSize,
-      decoration: event.redacted ? TextDecoration.lineThrough : null,
+      decoration:
+          (event?.redacted ?? false) ? TextDecoration.lineThrough : null,
       height: 1.3,
     );
   }

@@ -4,7 +4,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/toolbar_button_and_progress_row.dart';
 
 class ToolbarButton extends StatelessWidget {
   final MessageMode mode;
@@ -39,11 +38,9 @@ class ToolbarButton extends StatelessWidget {
         children: [
           PressableButton(
             borderRadius: BorderRadius.circular(20),
-            depressed: !enabled || mode == overlayController.toolbarMode,
+            depressed: mode == overlayController.toolbarMode,
             color: color(context),
-            onPressed: enabled
-                ? () => overlayController.updateToolbarMode(mode)
-                : null,
+            onPressed: () => overlayController.updateToolbarMode(mode),
             playSound: true,
             child: AnimatedContainer(
               duration: FluffyThemes.animationDuration,
@@ -61,7 +58,6 @@ class ToolbarButton extends StatelessWidget {
               ),
             ),
           ),
-          if (!enabled) const DisabledAnimation(),
         ],
       ),
     );

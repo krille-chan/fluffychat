@@ -4767,5 +4767,6 @@
   "video": "Video",
   "voiceMessage": "Voice message",
   "nan": "Not applicable",
-  "activityPlannerOverviewInstructionsBody": "Choose a topic, mode, learning objective and generate an activity for the chat!"
+  "activityPlannerOverviewInstructionsBody": "Choose a topic, mode, learning objective and generate an activity for the chat!",
+  "completeActivitiesToUnlock": "Complete the highlighted word activities to unlock"
 }

@@ -9,6 +9,7 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
@@ -55,6 +56,15 @@ class MessageToolbar extends StatelessWidget {
 
     if (!overlayController.initialized) {
       return const ToolbarContentLoadingIndicator();
+    }
+
+    final unlocked = overlayController.toolbarMode.isUnlocked(
+      overlayController.pangeaMessageEvent!.proportionOfActivitiesCompleted,
+      overlayController.isPracticeComplete,
+    );
+
+    if (!unlocked) {
+      return const MessageModeLockedCard();
     }
 
     switch (overlayController.toolbarMode) {

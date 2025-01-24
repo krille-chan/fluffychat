@@ -1,8 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:matrix/matrix.dart';
 
@@ -105,83 +103,6 @@ class ToolbarButtonAndProgressRow extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class DisabledAnimation extends StatefulWidget {
-  final double size;
-
-  const DisabledAnimation({
-    this.size = 40.0,
-    super.key,
-  });
-
-  @override
-  DisabledAnimationState createState() => DisabledAnimationState();
-}
-
-class DisabledAnimationState extends State<DisabledAnimation>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  late final Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 1000),
-      vsync: this,
-    );
-
-    _animation = TweenSequence<double>([
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 0, end: 0.9),
-        weight: 1.0,
-      ),
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 0.9, end: 0.9),
-        weight: 1.0,
-      ),
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 0.9, end: 0),
-        weight: 1.0,
-      ),
-    ]).animate(_controller);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, _) {
-        return GestureDetector(
-          onTap: () {
-            _controller.forward().then((_) => _controller.reset());
-            if (!kIsWeb) {
-              HapticFeedback.mediumImpact();
-            }
-          },
-          child: SizedBox(
-            width: widget.size,
-            height: widget.size,
-            child: Opacity(
-              opacity: _animation.value,
-              child: const Icon(
-                Icons.lock,
-                color: AppConfig.primaryColor,
-                size: 28,
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }
