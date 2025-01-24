@@ -4749,7 +4749,7 @@
   },
   "notInClass": "Not in a class!",
   "noClassCode": "No class code!",
-  "chooseCorrectLabel": "Choose the correct label",
+  "chooseCorrectLabel": "Choose the correct label.",
   "activityPlannerTitle": "Activity Planner",
   "topicLabel": "Topic",
   "topicPlaceholder": "Choose a topic...",
