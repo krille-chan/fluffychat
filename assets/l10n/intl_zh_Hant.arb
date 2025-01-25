@@ -1990,7 +1990,7 @@
       "count": {}
     }
   },
-  "screenSharingDetail": "您正在 FuffyChat 中分享您的螢幕",
+  "screenSharingDetail": "您正在 FluffyChat 中分享您的螢幕",
   "@screenSharingDetail": {},
   "wrongPinEntered": "輸入的密碼錯誤！ {seconds} 秒後再試一次......",
   "@wrongPinEntered": {
