@@ -55,6 +55,7 @@ class ChatEmojiPicker extends StatelessWidget {
                                   theme.colorScheme.primary.withAlpha(128),
                               iconColorSelected: theme.colorScheme.primary,
                               indicatorColor: theme.colorScheme.primary,
+                              backgroundColor: theme.colorScheme.surface,
                             ),
                             skinToneConfig: SkinToneConfig(
                               dialogBackgroundColor: Color.lerp(
@@ -96,9 +97,14 @@ class NoRecent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      L10n.of(context).emoteKeyboardNoRecents,
-      style: Theme.of(context).textTheme.bodyLarge,
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          L10n.of(context).emoteKeyboardNoRecents,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+      ),
     );
   }
 }
