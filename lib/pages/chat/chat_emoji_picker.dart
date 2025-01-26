@@ -103,6 +103,7 @@ class NoRecent extends StatelessWidget {
         child: Text(
           L10n.of(context).emoteKeyboardNoRecents,
           style: Theme.of(context).textTheme.bodyLarge,
+          textAlign: TextAlign.center,
         ),
       ),
     );
