@@ -184,13 +184,10 @@ class Message extends StatelessWidget {
                         child: Material(
                           borderRadius:
                               BorderRadius.circular(AppConfig.borderRadius / 2),
-                          color: selected
+                          color: selected || highlightMarker
                               ? theme.colorScheme.secondaryContainer
-                                  .withAlpha(100)
-                              : highlightMarker
-                                  ? theme.colorScheme.tertiaryContainer
-                                      .withAlpha(100)
-                                  : Colors.transparent,
+                                  .withAlpha(128)
+                              : Colors.transparent,
                         ),
                       ),
                     ),
