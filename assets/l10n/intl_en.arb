@@ -4768,5 +4768,7 @@
   "voiceMessage": "Voice message",
   "nan": "Not applicable",
   "activityPlannerOverviewInstructionsBody": "Choose a topic, mode, learning objective and generate an activity for the chat!",
-  "completeActivitiesToUnlock": "Complete the highlighted word activities to unlock"
+  "completeActivitiesToUnlock": "Complete the highlighted word activities to unlock",
+  "myBookmarkedActivities": "My Bookmarked Activities",
+  "noBookmarkedActivities": "No bookmarked activities"
 }

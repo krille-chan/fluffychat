@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum MediaEnum {
@@ -11,7 +10,7 @@ enum MediaEnum {
 
 extension MediaEnumExtension on MediaEnum {
   //fromString
-  static MediaEnum fromString(String value) {
+  MediaEnum fromString(String value) {
     switch (value) {
       case 'images':
         return MediaEnum.images;
