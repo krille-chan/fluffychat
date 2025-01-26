@@ -121,10 +121,12 @@ abstract class FluffyThemes {
           ),
         ),
       ),
-      snackBarTheme: SnackBarThemeData(
-        behavior: SnackBarBehavior.floating,
-        width: isColumnMode ? null : FluffyThemes.columnWidth * 1.5,
-      ),
+      snackBarTheme: isColumnMode
+          ? const SnackBarThemeData(
+              behavior: SnackBarBehavior.floating,
+              width: FluffyThemes.columnWidth * 1.5,
+            )
+          : const SnackBarThemeData(behavior: SnackBarBehavior.floating),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: colorScheme.secondaryContainer,
