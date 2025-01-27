@@ -211,6 +211,12 @@ class ConstructListModel {
     }
   }
 
+  List<ConstructUses> getConstructUsesByLemma(String lemma) {
+    return _constructList.where((constructUse) {
+      return constructUse.lemma == lemma;
+    }).toList();
+  }
+
   List<ConstructUses> constructList({ConstructTypeEnum? type}) => _constructList
       .where(
         (constructUse) => type == null || constructUse.constructType == type,

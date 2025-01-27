@@ -4664,9 +4664,9 @@
   "meaningSectionHeader": "Meaning:",
   "formSectionHeader": "Forms used in chats:",
   "noEmojiSelectedTooltip": "No emoji selected",
-  "writingExercisesTooltip": "Writing exercises",
-  "listeningExercisesTooltip": "Listening exercises",
-  "readingExercisesTooltip": "Reading exercises",
+  "writingExercisesTooltip": "Writing activities",
+  "listeningExercisesTooltip": "Listening activities",
+  "readingExercisesTooltip": "Reading activities",
   "meaningNotFound": "Meaning could not be found.",
   "formsNotFound": "Forms could not be found.",
   "chooseBestDefinition": "What does this word mean?",
@@ -4770,5 +4770,6 @@
   "activityPlannerOverviewInstructionsBody": "Choose a topic, mode, learning objective and generate an activity for the chat!",
   "completeActivitiesToUnlock": "Complete the highlighted word activities to unlock",
   "myBookmarkedActivities": "My Bookmarked Activities",
-  "noBookmarkedActivities": "No bookmarked activities"
+  "noBookmarkedActivities": "No bookmarked activities",
+  "noLemmasFound": "No lemmas found"
 }

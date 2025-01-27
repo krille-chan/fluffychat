@@ -8,13 +8,15 @@ import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 class WordAudioButton extends StatefulWidget {
   final String text;
   final TtsController ttsController;
-  final String eventID;
+  final String? eventID;
+  final double size;
 
   const WordAudioButton({
     super.key,
     required this.text,
     required this.ttsController,
-    required this.eventID,
+    this.eventID,
+    this.size = 24,
   });
 
   @override
@@ -31,14 +33,8 @@ class WordAudioButtonState extends State<WordAudioButton> {
       isSelected: _isPlaying,
       selectedIcon: const Icon(Icons.pause_outlined),
       color: _isPlaying ? Colors.white : null,
-      style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all(
-          _isPlaying
-              ? Theme.of(context).colorScheme.secondary
-              : Theme.of(context).colorScheme.primaryContainer,
-        ),
-      ),
       tooltip: _isPlaying ? L10n.of(context).stop : L10n.of(context).playAudio,
+      iconSize: widget.size,
       onPressed: () async {
         if (_isPlaying) {
           await widget.ttsController.stop();

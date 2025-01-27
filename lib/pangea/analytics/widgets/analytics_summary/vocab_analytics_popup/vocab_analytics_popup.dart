@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
@@ -40,126 +41,208 @@ class VocabAnalyticsPopupState extends State<VocabAnalyticsPopup> {
     return entries;
   }
 
-  /// Produces list of chips with lemma content,
-  /// and assigns them to flowers, greens, and seeds tiles
-  Widget get dialogContent {
-    if (_constructsModel.constructList(type: ConstructTypeEnum.vocab).isEmpty) {
+  ConstructUses? _selectedConstruct;
+
+  void _setSelectedConstruct(ConstructUses? construct) {
+    if (mounted) {
+      setState(() {
+        _selectedConstruct = construct;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FullWidthDialog(
+      dialogContent: _selectedConstruct == null
+          ? LemmaListDialogContent(
+              lemmas: _sortedEntries,
+              onTap: _setSelectedConstruct,
+            )
+          : VocabDefinitionPopup(
+              construct: _selectedConstruct!,
+              onClose: () => _setSelectedConstruct(null),
+            ),
+      maxWidth: 600,
+      maxHeight: 800,
+    );
+  }
+}
+
+class VocabChip {
+  final ConstructUses construct;
+  final String? displayText;
+
+  VocabChip({
+    required this.construct,
+    this.displayText,
+  });
+}
+
+class LemmaListSection extends StatelessWidget {
+  final LemmaCategoryEnum type;
+  final List<VocabChip> lemmas;
+  final Function(ConstructUses) onTap;
+
+  const LemmaListSection({
+    super.key,
+    required this.type,
+    required this.lemmas,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 16.0),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(AppConfig.borderRadius),
+        ),
+        color: type.color,
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomizedSvg(
+                svgUrl: type.svgURL,
+                colorReplacements: const {},
+                errorIcon: Text(type.emoji),
+              ),
+              Text(
+                " ${type.xpString} XP",
+                style: TextStyle(
+                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                  color: Theme.of(context).colorScheme.onPrimaryFixed,
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: lemmas.isEmpty
+                ? Text(
+                    L10n.of(context).noLemmasFound,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimaryFixed,
+                    ),
+                  )
+                : Wrap(
+                    spacing: 0,
+                    runSpacing: 0,
+                    children: lemmas.mapIndexed((index, lemma) {
+                      return MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => onTap(lemma.construct),
+                          child: Text(
+                            "${lemma.displayText ?? lemma.construct.lemma}${index < lemmas.length - 1 ? ', ' : ''}",
+                            style: TextStyle(
+                              color: Colors.transparent,
+                              shadows: [
+                                Shadow(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryFixed,
+                                  offset: const Offset(0, -3),
+                                ),
+                              ],
+                              decoration: TextDecoration.underline,
+                              decorationStyle: TextDecorationStyle.dashed,
+                              decorationColor:
+                                  Theme.of(context).colorScheme.onPrimaryFixed,
+                              decorationThickness: 1,
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LemmaListDialogContent extends StatelessWidget {
+  final List<ConstructUses> lemmas;
+  final Function(ConstructUses) onTap;
+
+  const LemmaListDialogContent({
+    super.key,
+    required this.lemmas,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (lemmas.isEmpty) {
       return Center(child: Text(L10n.of(context).noDataFound));
     }
-    final sortedEntries = _sortedEntries;
 
     // Get lists of lemmas by category
-    final List<Widget> flowerLemmas = [];
-    final List<Widget> greenLemmas = [];
-    final List<Widget> seedLemmas = [];
-    for (int i = 0; i < sortedEntries.length; i++) {
-      final construct = sortedEntries[i];
+    final List<VocabChip> flowerLemmas = [];
+    final List<VocabChip> greenLemmas = [];
+    final List<VocabChip> seedLemmas = [];
+
+    for (int i = 0; i < lemmas.length; i++) {
+      final construct = lemmas[i];
       if (construct.lemma.isEmpty) {
         continue;
       }
+
       final int points = construct.points;
       String? displayText;
 
       // Check if previous or next entry has same lemma as this entry
-      if ((i > 0 && sortedEntries[i - 1].lemma.equals(construct.lemma)) ||
-          ((i < sortedEntries.length - 1 &&
-              sortedEntries[i + 1].lemma.equals(construct.lemma)))) {
+      if ((i > 0 && lemmas[i - 1].lemma.equals(construct.lemma)) ||
+          ((i < lemmas.length - 1 &&
+              lemmas[i + 1].lemma.equals(construct.lemma)))) {
         final String pos = getGrammarCopy(
               category: "pos",
               lemma: construct.category,
               context: context,
             ) ??
             construct.category;
-        displayText = "${sortedEntries[i].lemma} (${pos.toLowerCase()})";
+        displayText = "${lemmas[i].lemma} (${pos.toLowerCase()})";
       }
 
-      // Add VocabChip for lemma to relevant widget list, followed by comma
+      final lemma = VocabChip(
+        construct: construct,
+        displayText: displayText,
+      );
+
       if (points < AnalyticsConstants.xpForGreens) {
-        seedLemmas.add(
-          VocabChip(
-            construct: construct,
-            displayText: displayText,
-            onTap: () {
-              showDialog<VocabDefinitionPopup>(
-                context: context,
-                builder: (c) => VocabDefinitionPopup(
-                  construct: construct,
-                  type: LemmaCategoryEnum.seeds,
-                  points: points,
-                ),
-              );
-            },
-          ),
-        );
-        seedLemmas.add(
-          const Text(
-            ", ",
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.black,
-            ),
-          ),
-        );
+        seedLemmas.add(lemma);
       } else if (points >= AnalyticsConstants.xpForFlower) {
-        flowerLemmas.add(
-          VocabChip(
-            construct: construct,
-            displayText: displayText,
-            onTap: () {
-              showDialog<VocabDefinitionPopup>(
-                context: context,
-                builder: (c) => VocabDefinitionPopup(
-                  construct: construct,
-                  type: LemmaCategoryEnum.flowers,
-                  points: points,
-                ),
-              );
-            },
-          ),
-        );
-        flowerLemmas.add(
-          const Text(
-            ", ",
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.black,
-            ),
-          ),
-        );
+        flowerLemmas.add(lemma);
       } else {
-        greenLemmas.add(
-          VocabChip(
-            construct: construct,
-            displayText: displayText,
-            onTap: () {
-              showDialog<VocabDefinitionPopup>(
-                context: context,
-                builder: (c) => VocabDefinitionPopup(
-                  construct: construct,
-                  type: LemmaCategoryEnum.greens,
-                  points: points,
-                ),
-              );
-            },
-          ),
-        );
-        greenLemmas.add(
-          const Text(
-            ", ",
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.black,
-            ),
-          ),
-        );
+        greenLemmas.add(lemma);
       }
     }
 
     // Pass sorted lemmas to background tile widgets
-    final Widget flowers =
-        dialogWidget(LemmaCategoryEnum.flowers, flowerLemmas);
-    final Widget greens = dialogWidget(LemmaCategoryEnum.greens, greenLemmas);
-    final Widget seeds = dialogWidget(LemmaCategoryEnum.seeds, seedLemmas);
+    final Widget flowers = LemmaListSection(
+      type: LemmaCategoryEnum.flowers,
+      lemmas: flowerLemmas,
+      onTap: onTap,
+    );
+
+    final Widget greens = LemmaListSection(
+      type: LemmaCategoryEnum.greens,
+      lemmas: greenLemmas,
+      onTap: onTap,
+    );
+
+    final Widget seeds = LemmaListSection(
+      type: LemmaCategoryEnum.seeds,
+      lemmas: seedLemmas,
+      onTap: onTap,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -174,122 +257,6 @@ class VocabAnalyticsPopupState extends State<VocabAnalyticsPopup> {
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: ListView(
           children: [flowers, greens, seeds],
-        ),
-      ),
-    );
-  }
-
-  /// Tile that contains flowers, greens, or seeds chips
-  Widget dialogWidget(LemmaCategoryEnum type, List<Widget> lemmaList) {
-    // Remove extraneous commas from lemmaList
-    if (lemmaList.isNotEmpty) {
-      lemmaList.removeLast();
-    } else {
-      lemmaList.add(
-        const Text(
-          "No lemmas",
-          style: TextStyle(
-            fontSize: 15,
-            color: Colors.black,
-          ),
-        ),
-      );
-    }
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-      child: Material(
-        borderRadius:
-            const BorderRadius.all(Radius.circular(AppConfig.borderRadius)),
-        color: type.color,
-        child: Padding(
-          padding: const EdgeInsets.all(
-            10,
-          ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomizedSvg(
-                    svgUrl: type.svgURL,
-                    colorReplacements: const {},
-                    errorIcon: Text(type.emoji),
-                  ),
-                  Text(
-                    " ${type.xpString} XP",
-                    style: const TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Wrap(
-                spacing: 0,
-                runSpacing: 0,
-                children: lemmaList,
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FullWidthDialog(
-      dialogContent: dialogContent,
-      maxWidth: 600,
-      maxHeight: 800,
-    );
-  }
-}
-
-/// A simple chip with the text of the lemma
-// TODO: highlights on hover
-// callback on click
-// has some padding to separate from other chips
-// otherwise, is very visually simple with transparent border/background/etc
-class VocabChip extends StatelessWidget {
-  final ConstructUses construct;
-  final String? displayText;
-  final VoidCallback onTap;
-
-  const VocabChip({
-    super.key,
-    required this.construct,
-    required this.onTap,
-    this.displayText,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Text(
-        displayText ?? construct.lemma,
-        style: const TextStyle(
-          // Workaround to add space between text and underline
-          color: Colors.transparent,
-          shadows: [
-            Shadow(
-              color: Colors.black,
-              offset: Offset(0, -3),
-            ),
-          ],
-          decoration: TextDecoration.underline,
-          decorationStyle: TextDecorationStyle.dashed,
-          decorationColor: Colors.black,
-          decorationThickness: 1,
-          fontSize: 15,
         ),
       ),
     );

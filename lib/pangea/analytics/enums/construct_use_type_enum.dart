@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/analytics/enums/analytics_summary_enum.dart';
+import 'package:fluffychat/pangea/analytics/enums/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
 
 enum ConstructUseTypeEnum {
@@ -244,6 +245,41 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.em:
       case ConstructUseTypeEnum.nan:
         return false;
+    }
+  }
+
+  /// Categorize construct use types as writing, reading, speaking, hearing, and other
+  LearningSkillsEnum get skillsEnumType {
+    switch (this) {
+      case ConstructUseTypeEnum.wa:
+      case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.unk:
+      case ConstructUseTypeEnum.corIt:
+      case ConstructUseTypeEnum.ignIt:
+      case ConstructUseTypeEnum.incIt:
+      case ConstructUseTypeEnum.corIGC:
+      case ConstructUseTypeEnum.ignIGC:
+      case ConstructUseTypeEnum.incIGC:
+      case ConstructUseTypeEnum.corL:
+      case ConstructUseTypeEnum.ignL:
+      case ConstructUseTypeEnum.incL:
+      case ConstructUseTypeEnum.corM:
+      case ConstructUseTypeEnum.ignM:
+      case ConstructUseTypeEnum.incM:
+        return LearningSkillsEnum.writing;
+      case ConstructUseTypeEnum.corWL:
+      case ConstructUseTypeEnum.ignWL:
+      case ConstructUseTypeEnum.incWL:
+      case ConstructUseTypeEnum.corHWL:
+      case ConstructUseTypeEnum.ignHWL:
+      case ConstructUseTypeEnum.incHWL:
+        return LearningSkillsEnum.hearing;
+      case ConstructUseTypeEnum.corPA:
+      case ConstructUseTypeEnum.ignPA:
+      case ConstructUseTypeEnum.incPA:
+        return LearningSkillsEnum.reading;
+      default:
+        return LearningSkillsEnum.other;
     }
   }
 
