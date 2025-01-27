@@ -1,5 +1,4 @@
 import 'package:get_storage/get_storage.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 
@@ -64,13 +63,5 @@ class PStore {
     return isAccountData
         ? pangeaController.matrixState.client.userID! + key
         : key;
-  }
-
-  /// Clears the storage by erasing all data in the box.
-  void clearStorage() {
-    // this could potenitally be interfering with openning database
-    // at the start of the session, which is causing auto log outs on iOS
-    Sentry.addBreadcrumb(Breadcrumb(message: 'Clearing local storage'));
-    _box.erase();
   }
 }

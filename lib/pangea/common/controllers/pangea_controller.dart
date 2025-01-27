@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:get_storage/get_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -58,6 +59,8 @@ class PangeaController {
   late PStore pStoreService;
   final pLanguageStore = PangeaLanguage();
 
+  StreamSubscription? _languageStream;
+
   ///Matrix Variables
   MatrixState matrixState;
   Matrix matrix;
@@ -65,7 +68,7 @@ class PangeaController {
   int? randomint;
   PangeaController({required this.matrix, required this.matrixState}) {
     _setup();
-    _subscribeToMatrixStreams();
+    _subscribeToStreams();
     randomint = Random().nextInt(2000);
   }
 
@@ -112,7 +115,17 @@ class PangeaController {
   _logOutfromPangea() {
     debugPrint("Pangea logout");
     GoogleAnalytics.logout();
-    pStoreService.clearStorage();
+    _clearCachedData();
+  }
+
+  void _clearCachedData() {
+    GetStorage('mode_list_storage').erase();
+    GetStorage('activity_plan_storage').erase();
+    GetStorage('bookmarked_activities').erase();
+    GetStorage('objective_list_storage').erase();
+    GetStorage('topic_list_storage').erase();
+    GetStorage('lemma_storage').erase();
+    GetStorage().erase();
   }
 
   Future<void> checkHomeServerAction() async {
@@ -147,6 +160,7 @@ class PangeaController {
         // Reset cached analytics data
         MatrixState.pangeaController.putAnalytics.dispose();
         MatrixState.pangeaController.getAnalytics.dispose();
+        _languageStream?.cancel();
         break;
       case LoginState.loggedIn:
         // Initialize analytics data
@@ -324,9 +338,17 @@ class PangeaController {
     });
   }
 
-  void _subscribeToMatrixStreams() {
+  void _subscribeToStreams() {
     matrixState.client.onLoginStateChanged.stream
         .listen(_handleLoginStateChange);
+
+    // Listen for changes to the user's language settings
+    _languageStream ??= userController.stateStream.listen((update) {
+      if (update is Map<String, dynamic> &&
+          update['prev_target_lang'] != null) {
+        _clearCachedData();
+      }
+    });
 
     // matrixState.client.onSyncStatus.stream
     //     .where((SyncStatusUpdate event) => event.status == SyncStatus.finished)
