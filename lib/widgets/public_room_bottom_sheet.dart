@@ -156,6 +156,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                             ),
                             style: TextButton.styleFrom(
                               foregroundColor: theme.colorScheme.onSurface,
+                              iconColor: theme.colorScheme.onSurface,
                             ),
                             label: Text(
                               roomLink ?? '...',
@@ -171,6 +172,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                             ),
                             style: TextButton.styleFrom(
                               foregroundColor: theme.colorScheme.onSurface,
+                              iconColor: theme.colorScheme.onSurface,
                             ),
                             label: Text(
                               L10n.of(context).countParticipants(

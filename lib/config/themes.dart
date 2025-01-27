@@ -84,6 +84,12 @@ abstract class FluffyThemes {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
       ),
+      segmentedButtonTheme: SegmentedButtonThemeData(
+        style: SegmentedButton.styleFrom(
+          iconColor: colorScheme.onSurface,
+          disabledIconColor: colorScheme.onSurface,
+        ),
+      ),
       textSelectionTheme: TextSelectionThemeData(
         selectionColor: colorScheme.onSurface.withAlpha(128),
         selectionHandleColor: colorScheme.secondary,

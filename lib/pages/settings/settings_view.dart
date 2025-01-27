@@ -86,6 +86,7 @@ class SettingsView extends StatelessWidget {
                                 ),
                                 style: TextButton.styleFrom(
                                   foregroundColor: theme.colorScheme.onSurface,
+                                  iconColor: theme.colorScheme.onSurface,
                                 ),
                                 label: Text(
                                   displayname,
@@ -105,6 +106,7 @@ class SettingsView extends StatelessWidget {
                                 ),
                                 style: TextButton.styleFrom(
                                   foregroundColor: theme.colorScheme.secondary,
+                                  iconColor: theme.colorScheme.secondary,
                                 ),
                                 label: Text(
                                   mxid,
