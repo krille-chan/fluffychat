@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
@@ -49,6 +50,13 @@ class SettingsLearningView extends StatelessWidget {
                 children: [
                   LanguageTile(controller),
                   CountryPickerTile(controller),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0, bottom: 24.0),
+                    child: LanguageLevelDropdown(
+                      initialLevel: controller.cefrLevel,
+                      onChanged: controller.setCefrLevel,
+                    ),
+                  ),
                   const Divider(height: 1),
                   ListTile(
                     title: Text(L10n.of(context).toggleToolSettingsDescription),

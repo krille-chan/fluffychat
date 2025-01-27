@@ -20,6 +20,7 @@ class ModelKey {
   static const String toolSettings = 'tool_settings';
   static const String userSettings = 'user_settings';
   static const String instructionsSettings = 'instructions_settings';
+  static const String cefrLevel = 'cefr_level';
 
   // matrix profile keys
   // making this a random string so that it's harder to guess

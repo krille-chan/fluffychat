@@ -28,6 +28,7 @@ class UserSettingsState extends State<UserSettingsPage> {
   PangeaController get _pangeaController => MatrixState.pangeaController;
 
   LanguageModel? selectedTargetLanguage;
+  int selectedCefrLevel = 0;
 
   String? selectedLanguageError;
   String? profileCreationError;
@@ -94,6 +95,12 @@ class UserSettingsState extends State<UserSettingsPage> {
     setState(() {
       selectedTargetLanguage = language;
       selectedLanguageError = null;
+    });
+  }
+
+  void setSelectedCefrLevel(int? cefrLevel) {
+    setState(() {
+      selectedCefrLevel = cefrLevel ?? 0;
     });
   }
 
@@ -201,6 +208,7 @@ class UserSettingsState extends State<UserSettingsPage> {
             }
             profile.userSettings.targetLanguage =
                 selectedTargetLanguage!.langCode;
+            profile.userSettings.cefrLevel = selectedCefrLevel;
             profile.userSettings.createdAt = DateTime.now();
             return profile;
           },

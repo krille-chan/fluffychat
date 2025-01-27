@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dropdown.dart';
 import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
 import 'package:fluffychat/pangea/login/pages/user_settings.dart';
@@ -95,6 +96,13 @@ class UserSettingsView extends StatelessWidget {
               isL2List: true,
               error: controller.selectedLanguageError,
               decorationText: L10n.of(context).iWantToLearn,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: LanguageLevelDropdown(
+              onChanged: controller.setSelectedCefrLevel,
+              initialLevel: controller.selectedCefrLevel ?? 0,
             ),
           ),
           if (controller.isSSOSignup)

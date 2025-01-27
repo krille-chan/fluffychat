@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'package:fluffychat/pangea/common/constants/model_keys.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+
 class Requests {
   late String? baseUrl;
   // Matrix access token
@@ -21,6 +24,9 @@ class Requests {
     required String url,
     required Map<dynamic, dynamic> body,
   }) async {
+    body[ModelKey.cefrLevel] = MatrixState
+        .pangeaController.userController.profile.userSettings.cefrLevel;
+
     dynamic encoded;
     encoded = jsonEncode(body);
 
@@ -40,6 +46,9 @@ class Requests {
     required String url,
     required Map<dynamic, dynamic> body,
   }) async {
+    body[ModelKey.cefrLevel] = MatrixState
+        .pangeaController.userController.profile.userSettings.cefrLevel;
+
     dynamic encoded;
     encoded = jsonEncode(body);
 

@@ -19,6 +19,7 @@ class UserSettings {
   String? sourceLanguage;
   String? country;
   bool? hasJoinedHelpSpace;
+  int? cefrLevel;
 
   UserSettings({
     this.dateOfBirth,
@@ -31,6 +32,7 @@ class UserSettings {
     this.sourceLanguage,
     this.country,
     this.hasJoinedHelpSpace,
+    this.cefrLevel,
   });
 
   factory UserSettings.fromJson(Map<String, dynamic> json) => UserSettings(
@@ -48,6 +50,7 @@ class UserSettings {
         sourceLanguage: json[ModelKey.l1LanguageKey],
         country: json[ModelKey.userCountry],
         hasJoinedHelpSpace: json[ModelKey.hasJoinedHelpSpace],
+        cefrLevel: json[ModelKey.cefrLevel],
       );
 
   Map<String, dynamic> toJson() {
@@ -62,6 +65,7 @@ class UserSettings {
     data[ModelKey.l1LanguageKey] = sourceLanguage;
     data[ModelKey.userCountry] = country;
     data[ModelKey.hasJoinedHelpSpace] = hasJoinedHelpSpace;
+    data[ModelKey.cefrLevel] = cefrLevel;
     return data;
   }
 
