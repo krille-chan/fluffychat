@@ -3065,7 +3065,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "andCertifyIAmAtLeast13YearsOfAge": " and certify I am at least 13 years of age.",
+  "andCertifyIAmAtLeast13YearsOfAge": " and certify I am at least 16 years of age.",
   "@andCertifyIAmAtLeast13YearsOfAge": {
     "type": "text",
     "placeholders": {}
