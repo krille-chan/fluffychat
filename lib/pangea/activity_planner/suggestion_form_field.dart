@@ -1,5 +1,6 @@
-import 'package:fluffychat/pangea/activity_planner/list_request_schema.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fluffychat/pangea/activity_planner/list_request_schema.dart';
 
 class SuggestionFormField extends StatelessWidget {
   final Future<List<ActivitySettingResponseSchema>> suggestions;

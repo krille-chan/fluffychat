@@ -1,6 +1,9 @@
-import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:get_storage/get_storage.dart';
 import 'package:uuid/uuid.dart';
+
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 
 class BookmarkedActivitiesRepo {
   static final GetStorage _storage = GetStorage('bookmarked_activities');

@@ -1,5 +1,11 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/activity_planner/activity_plan_generation_repo.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
@@ -9,11 +15,6 @@ import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'activity_plan_card.dart';
 
 class ActivityListView extends StatefulWidget {
@@ -29,10 +30,10 @@ class ActivityListView extends StatefulWidget {
   });
 
   @override
-  _ActivityListViewState createState() => _ActivityListViewState();
+  ActivityListViewState createState() => ActivityListViewState();
 }
 
-class _ActivityListViewState extends State<ActivityListView> {
+class ActivityListViewState extends State<ActivityListView> {
   bool get showBookmarkedActivities => widget.activityPlanRequest == null;
 
   Future<List<ActivityPlanModel>> get savedActivities =>
@@ -95,8 +96,6 @@ class _ActivityListViewState extends State<ActivityListView> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          print(snapshot.error);
-          print(snapshot.stackTrace);
           // debugger(when: kDebugMode);
           ErrorHandler.logError(
             e: snapshot.error,
