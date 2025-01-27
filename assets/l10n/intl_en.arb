@@ -4757,7 +4757,7 @@
   "modePlaceholder": "Choose a mode...",
   "learningObjectiveLabel": "Learning Objective",
   "learningObjectivePlaceholder": "Choose a learning objective...",
-  "mediaLabel": "Media students should share",
+  "mediaLabel": "Media learners should share",
   "languageOfInstructionsLabel": "Language of activity instructions",
   "targetLanguageLabel": "Target language",
   "cefrLevelLabel": "CEFR Level",
@@ -4770,6 +4770,13 @@
   "activityPlannerOverviewInstructionsBody": "Choose a topic, mode, learning objective and generate an activity for the chat!",
   "completeActivitiesToUnlock": "Complete the highlighted word activities to unlock",
   "myBookmarkedActivities": "My Bookmarked Activities",
+  "noBookmarkedActivities": "When you bookmark activities, they will appear here. Bookmarked activities can be re-used across spaces and chats.",
+  "activityTitle": "Activity Title",
+  "addVocabulary": "Add Vocabulary",
+  "instructions": "Instructions",
+  "bookmark": "Bookmark this activity",
+  "numberOfLearners": "Number of learners",
+  "mustBeInteger": "Must be an integer e.g. 1, 2, 3, ...",
   "noBookmarkedActivities": "No bookmarked activities",
   "noLemmasFound": "No lemmas found"
 }

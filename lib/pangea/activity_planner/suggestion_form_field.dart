@@ -43,6 +43,9 @@ class SuggestionFormField extends StatelessWidget {
         VoidCallback onFieldSubmitted,
       ) {
         textEditingController.value = controller.value;
+        textEditingController.addListener(() {
+          onSelected(textEditingController.text);
+        });
         return TextFormField(
           controller: textEditingController,
           focusNode: focusNode,

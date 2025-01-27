@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 
 class OverlayHeader extends StatelessWidget {
   final ChatController controller;
@@ -53,7 +54,9 @@ class OverlayHeader extends StatelessWidget {
               tooltip: L10n.of(context).pinMessage,
               color: Theme.of(context).colorScheme.primary,
             ),
-          if (controller.canEditSelectedEvents)
+          if (controller.canEditSelectedEvents &&
+              controller.selectedEvents.first.content[ModelKey.messageTags] !=
+                  ModelKey.messageTagActivityPlan)
             IconButton(
               icon: const Icon(Icons.edit_outlined),
               tooltip: L10n.of(context).edit,

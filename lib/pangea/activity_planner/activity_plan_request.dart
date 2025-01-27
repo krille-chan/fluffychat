@@ -9,6 +9,7 @@ class ActivityPlanRequest {
   final String languageOfInstructions;
   final String targetLanguage;
   final int count;
+  final int numberOfParticipants;
 
   ActivityPlanRequest({
     required this.topic,
@@ -19,6 +20,7 @@ class ActivityPlanRequest {
     required this.languageOfInstructions,
     required this.targetLanguage,
     this.count = 3,
+    required this.numberOfParticipants,
   });
 
   Map<String, dynamic> toJson() {
@@ -31,6 +33,7 @@ class ActivityPlanRequest {
       'language_of_instructions': languageOfInstructions,
       'target_language': targetLanguage,
       'count': count,
+      'number_of_participants': numberOfParticipants,
     };
   }
 
@@ -68,11 +71,12 @@ class ActivityPlanRequest {
       languageOfInstructions: json['language_of_instructions'],
       targetLanguage: json['target_language'],
       count: json['count'],
+      numberOfParticipants: json['number_of_participants'],
     );
   }
 
   String get storageKey =>
-      '$topic-$mode-$objective-${media.string}-$cefrLevel-$languageOfInstructions-$targetLanguage';
+      '$topic-$mode-$objective-${media.string}-$cefrLevel-$languageOfInstructions-$targetLanguage-$numberOfParticipants';
 
   String get cefrLanguageLevel {
     switch (cefrLevel) {

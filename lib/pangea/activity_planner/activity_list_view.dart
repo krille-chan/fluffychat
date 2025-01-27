@@ -124,7 +124,15 @@ class ActivityListViewState extends State<ActivityListView> {
           );
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
           if (showBookmarkedActivities) {
-            return Center(child: Text(l10n.noBookmarkedActivities));
+            return Center(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 200),
+                child: Text(
+                  l10n.noBookmarkedActivities,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
           }
           return Center(child: Text(l10n.noDataFound));
         } else {
