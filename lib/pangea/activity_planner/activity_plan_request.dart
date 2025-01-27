@@ -30,7 +30,7 @@ class ActivityPlanRequest {
       'mode': mode,
       'objective': objective,
       'media': media.string,
-      'cefr_level': cefrLevel,
+      'activity_cefr_level': cefrLevel,
       'language_of_instructions': languageOfInstructions,
       'target_language': targetLanguage,
       'count': count,
@@ -38,43 +38,21 @@ class ActivityPlanRequest {
     };
   }
 
-  factory ActivityPlanRequest.fromJson(Map<String, dynamic> json) {
-    LanguageLevelTypeEnum cefrLevel = LanguageLevelTypeEnum.a1;
-    switch (json['cefr_level']) {
-      case 'Pre-A1':
-        cefrLevel = LanguageLevelTypeEnum.preA1;
-        break;
-      case 'A1':
-        cefrLevel = LanguageLevelTypeEnum.a1;
-        break;
-      case 'A2':
-        cefrLevel = LanguageLevelTypeEnum.a2;
-        break;
-      case 'B1':
-        cefrLevel = LanguageLevelTypeEnum.b1;
-        break;
-      case 'B2':
-        cefrLevel = LanguageLevelTypeEnum.b2;
-        break;
-      case 'C1':
-        cefrLevel = LanguageLevelTypeEnum.c1;
-        break;
-      case 'C2':
-        cefrLevel = LanguageLevelTypeEnum.c2;
-        break;
-    }
-    return ActivityPlanRequest(
-      topic: json['topic'],
-      mode: json['mode'],
-      objective: json['objective'],
-      media: MediaEnum.nan.fromString(json['media']),
-      cefrLevel: cefrLevel,
-      languageOfInstructions: json['language_of_instructions'],
-      targetLanguage: json['target_language'],
-      count: json['count'],
-      numberOfParticipants: json['number_of_participants'],
-    );
-  }
+  factory ActivityPlanRequest.fromJson(Map<String, dynamic> json) =>
+      ActivityPlanRequest(
+        topic: json['topic'],
+        mode: json['mode'],
+        objective: json['objective'],
+        media: MediaEnum.nan.fromString(json['media']),
+        cefrLevel: json['activity_cefr_level'] != null
+            ? LanguageLevelTypeEnumExtension.fromString(
+                json['activity_cefr_level'])
+            : LanguageLevelTypeEnum.a1,
+        languageOfInstructions: json['language_of_instructions'],
+        targetLanguage: json['target_language'],
+        count: json['count'],
+        numberOfParticipants: json['number_of_participants'],
+      );
 
   String get storageKey =>
       '$topic-$mode-$objective-${media.string}-$cefrLevel-$languageOfInstructions-$targetLanguage-$numberOfParticipants';
