@@ -95,6 +95,10 @@ class ChatDetailsController extends State<ChatDetails> {
     );
     if (input == null) return;
     // #Pangea
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => room.setDescription(input.single),
+    );
     // final success = await showFutureLoadingDialog(
     //   context: context,
     //   future: () => room.setDescription(input.single),
