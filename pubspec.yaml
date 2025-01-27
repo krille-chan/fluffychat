@@ -29,6 +29,7 @@ dependencies:
   # Pangea#
   desktop_notifications: ^0.6.3
   device_info_plus: ^10.0.1
+  diacritic: ^0.1.6
   dynamic_color: ^1.7.0
   emoji_picker_flutter: ^3.1.0
   emojis: ^0.9.9

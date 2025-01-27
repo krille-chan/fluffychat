@@ -383,12 +383,17 @@ class Choreographer {
       igc.igcTextData!.matches[matchIndex].match.choices![choiceIndex]
           .selected = true;
 
+      final isNormalizationError =
+          igc.spanDataController.isNormalizationError(matchIndex);
+
       //if it's the right choice, replace in text
-      choreoRecord.addRecord(
-        _textController.text,
-        match: igc.igcTextData!.matches[matchIndex].copyWith
-          ..status = PangeaMatchStatus.accepted,
-      );
+      if (!isNormalizationError) {
+        choreoRecord.addRecord(
+          _textController.text,
+          match: igc.igcTextData!.matches[matchIndex].copyWith
+            ..status = PangeaMatchStatus.accepted,
+        );
+      }
 
       igc.igcTextData!.acceptReplacement(
         matchIndex,
@@ -442,10 +447,16 @@ class Choreographer {
 
       igc.onIgnoreMatch(igc.igcTextData!.matches[matchIndex]);
       igc.igcTextData!.matches[matchIndex].status = PangeaMatchStatus.ignored;
-      choreoRecord.addRecord(
-        _textController.text,
-        match: igc.igcTextData!.matches[matchIndex],
-      );
+
+      final isNormalizationError =
+          igc.spanDataController.isNormalizationError(matchIndex);
+
+      if (!isNormalizationError) {
+        choreoRecord.addRecord(
+          _textController.text,
+          match: igc.igcTextData!.matches[matchIndex],
+        );
+      }
 
       igc.igcTextData!.matches.removeAt(matchIndex);
     } catch (err, stack) {
