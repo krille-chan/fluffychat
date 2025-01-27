@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dropdown.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -48,7 +49,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
   MediaEnum _selectedMedia = MediaEnum.nan;
   String? _selectedLanguageOfInstructions;
   String? _selectedTargetLanguage;
-  int? _selectedCefrLevel;
+  LanguageLevelTypeEnum? _selectedCefrLevel;
   int? _selectedNumberOfParticipants;
 
   List<String> activities = [];
@@ -67,7 +68,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
         MatrixState.pangeaController.languageController.userL1?.langCode;
     _selectedTargetLanguage =
         MatrixState.pangeaController.languageController.userL2?.langCode;
-    _selectedCefrLevel = 0;
+    _selectedCefrLevel = LanguageLevelTypeEnum.a1;
     _selectedNumberOfParticipants = max(room?.getParticipants().length ?? 1, 1);
   }
 
@@ -278,7 +279,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                       ),
                       const SizedBox(height: 24),
                       LanguageLevelDropdown(
-                        initialLevel: 0,
+                        initialLevel: _selectedCefrLevel,
                         onChanged: (val) => _selectedCefrLevel = val,
                       ),
                       const SizedBox(height: 24),

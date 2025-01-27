@@ -16,14 +16,12 @@ class LanguageSettingsModel {
   String? city;
   String? country;
   String? schoolName;
-  int? languageLevel;
   String dominantLanguage;
   String targetLanguage;
 
   LanguageSettingsModel({
     this.dominantLanguage = SpaceConstants.defaultDominantLanguage,
     this.targetLanguage = SpaceConstants.defaultTargetLanguage,
-    this.languageLevel,
     this.city,
     this.country,
     this.schoolName,
@@ -39,7 +37,6 @@ class LanguageSettingsModel {
       targetLanguage: LanguageModel.codeFromNameOrCode(
         json['target_language'] ?? LanguageKeys.unknownLanguage,
       ),
-      languageLevel: json['language_level'],
       schoolName: json['school_name'],
     );
   }
@@ -53,7 +50,6 @@ class LanguageSettingsModel {
       data['dominant_language'] = dominantLanguage;
       //check for and do "english" => en and "spanish" => es
       data['target_language'] = targetLanguage;
-      data['language_level'] = languageLevel;
       data['school_name'] = schoolName;
       return data;
     } catch (e, s) {

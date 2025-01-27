@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/convers
 import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_mode_select.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_no_permission_dialog.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ConversationBotSettingsForm extends StatelessWidget {
@@ -24,7 +25,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
   final void Function(String?) onUpdateBotMode;
   final void Function(String?) onUpdateBotLanguage;
   final void Function(String?) onUpdateBotVoice;
-  final void Function(int?) onUpdateBotLanguageLevel;
+  final void Function(LanguageLevelTypeEnum?) onUpdateBotLanguageLevel;
 
   const ConversationBotSettingsForm({
     super.key,
@@ -92,8 +93,10 @@ class ConversationBotSettingsForm extends StatelessWidget {
           onTap: hasPermission ? null : () => showNoPermissionDialog(context),
           child: LanguageLevelDropdown(
             initialLevel: botOptions.languageLevel,
-            onChanged:
-                hasPermission && enabled ? onUpdateBotLanguageLevel : null,
+            onChanged: hasPermission && enabled
+                ? (value) =>
+                    onUpdateBotLanguageLevel(value as LanguageLevelTypeEnum?)
+                : null,
             validator: (value) => enabled && value == null
                 ? L10n.of(context).enterLanguageLevel
                 : null,

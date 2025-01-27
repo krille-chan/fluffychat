@@ -8,9 +8,10 @@ import 'package:fluffychat/pangea/chat_settings/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 
 class BotOptionsModel {
-  int? languageLevel;
+  LanguageLevelTypeEnum languageLevel;
   String topic;
   List<String> keywords;
   bool safetyModeration;
@@ -30,7 +31,7 @@ class BotOptionsModel {
     ////////////////////////////////////////////////////////////////////////////
     // General Bot Options
     ////////////////////////////////////////////////////////////////////////////
-    this.languageLevel,
+    this.languageLevel = LanguageLevelTypeEnum.a1,
     this.topic = "General Conversation",
     this.keywords = const [],
     this.safetyModeration = true,
@@ -65,10 +66,12 @@ class BotOptionsModel {
       // General Bot Options
       //////////////////////////////////////////////////////////////////////////
       languageLevel: json[ModelKey.languageLevel] is int
-          ? json[ModelKey.languageLevel]
-          : json[ModelKey] == "PREA1"
-              ? 0
-              : null,
+          ? LanguageLevelTypeEnumExtension.fromInt(json[ModelKey.languageLevel])
+          : json[ModelKey.languageLevel] is String
+              ? LanguageLevelTypeEnumExtension.fromString(
+                  json[ModelKey.languageLevel],
+                )
+              : LanguageLevelTypeEnum.a1,
       safetyModeration: json[ModelKey.safetyModeration] ?? true,
       mode: json[ModelKey.mode] ?? BotMode.discussion,
       targetLanguage: json[ModelKey.targetLanguage],
@@ -104,7 +107,7 @@ class BotOptionsModel {
     final data = <String, dynamic>{};
     try {
       // data[ModelKey.isConversationBotChat] = isConversationBotChat;
-      data[ModelKey.languageLevel] = languageLevel;
+      data[ModelKey.languageLevel] = languageLevel.storageInt;
       data[ModelKey.safetyModeration] = safetyModeration;
       data[ModelKey.mode] = mode;
       data[ModelKey.targetLanguage] = targetLanguage;

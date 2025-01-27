@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class Requests {
@@ -25,7 +26,7 @@ class Requests {
     required Map<dynamic, dynamic> body,
   }) async {
     body[ModelKey.cefrLevel] = MatrixState
-        .pangeaController.userController.profile.userSettings.cefrLevel;
+        .pangeaController.userController.profile.userSettings.cefrLevel.string;
 
     dynamic encoded;
     encoded = jsonEncode(body);
@@ -47,7 +48,7 @@ class Requests {
     required Map<dynamic, dynamic> body,
   }) async {
     body[ModelKey.cefrLevel] = MatrixState
-        .pangeaController.userController.profile.userSettings.cefrLevel;
+        .pangeaController.userController.profile.userSettings.cefrLevel.string;
 
     dynamic encoded;
     encoded = jsonEncode(body);

@@ -3,6 +3,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/instructions/instruction_settings.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/spaces/models/space_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../learning_settings/models/language_model.dart';
@@ -19,7 +20,7 @@ class UserSettings {
   String? sourceLanguage;
   String? country;
   bool? hasJoinedHelpSpace;
-  int? cefrLevel;
+  LanguageLevelTypeEnum cefrLevel;
 
   UserSettings({
     this.dateOfBirth,
@@ -32,7 +33,7 @@ class UserSettings {
     this.sourceLanguage,
     this.country,
     this.hasJoinedHelpSpace,
-    this.cefrLevel,
+    this.cefrLevel = LanguageLevelTypeEnum.a1,
   });
 
   factory UserSettings.fromJson(Map<String, dynamic> json) => UserSettings(
@@ -50,7 +51,11 @@ class UserSettings {
         sourceLanguage: json[ModelKey.l1LanguageKey],
         country: json[ModelKey.userCountry],
         hasJoinedHelpSpace: json[ModelKey.hasJoinedHelpSpace],
-        cefrLevel: json[ModelKey.cefrLevel],
+        cefrLevel: json[ModelKey.cefrLevel] is String
+            ? LanguageLevelTypeEnumExtension.fromString(
+                json[ModelKey.cefrLevel],
+              )
+            : LanguageLevelTypeEnum.a1,
       );
 
   Map<String, dynamic> toJson() {
@@ -65,7 +70,7 @@ class UserSettings {
     data[ModelKey.l1LanguageKey] = sourceLanguage;
     data[ModelKey.userCountry] = country;
     data[ModelKey.hasJoinedHelpSpace] = hasJoinedHelpSpace;
-    data[ModelKey.cefrLevel] = cefrLevel;
+    data[ModelKey.cefrLevel] = cefrLevel.string;
     return data;
   }
 

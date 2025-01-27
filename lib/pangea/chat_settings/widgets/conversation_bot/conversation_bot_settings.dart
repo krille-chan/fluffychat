@@ -17,6 +17,7 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ConversationBotSettings extends StatefulWidget {
@@ -168,8 +169,8 @@ class ConversationBotSettingsDialogState
     setState(() => botOptions.targetVoice = voice);
   }
 
-  void onUpdateBotLanguageLevel(int? level) {
-    setState(() => botOptions.languageLevel = level);
+  void onUpdateBotLanguageLevel(LanguageLevelTypeEnum? level) {
+    setState(() => botOptions.languageLevel = level!);
   }
 
   @override

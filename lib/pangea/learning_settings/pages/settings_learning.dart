@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
 
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning_view.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dialog.dart';
 import 'package:fluffychat/pangea/spaces/models/space_model.dart';
@@ -44,10 +45,10 @@ class SettingsLearningController extends State<SettingsLearning> {
     setState(() {});
   }
 
-  void setCefrLevel(int? cefrLevel) {
+  void setCefrLevel(LanguageLevelTypeEnum? cefrLevel) {
     pangeaController.userController.updateProfile(
       (profile) {
-        profile.userSettings.cefrLevel = cefrLevel;
+        profile.userSettings.cefrLevel = cefrLevel ?? LanguageLevelTypeEnum.a1;
         return profile;
       },
     );
@@ -106,7 +107,7 @@ class SettingsLearningController extends State<SettingsLearning> {
   bool get publicProfile =>
       pangeaController.userController.profile.userSettings.publicProfile;
 
-  int? get cefrLevel =>
+  LanguageLevelTypeEnum get cefrLevel =>
       pangeaController.userController.profile.userSettings.cefrLevel;
 
   @override

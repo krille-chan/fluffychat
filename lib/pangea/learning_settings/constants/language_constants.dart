@@ -7,10 +7,6 @@ class LanguageKeys {
   static const multiLanguage = "multi";
 }
 
-class LanguageLevelType {
-  static List<int> get allInts => [0, 1, 2, 3, 4, 5, 6];
-}
-
 class PrefKey {
   static const lastFetched = 'p_lang_lastfetched';
   static const flags = 'p_lang_flag';

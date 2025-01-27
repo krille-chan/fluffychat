@@ -102,7 +102,7 @@ class UserSettingsView extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: LanguageLevelDropdown(
               onChanged: controller.setSelectedCefrLevel,
-              initialLevel: controller.selectedCefrLevel ?? 0,
+              initialLevel: controller.selectedCefrLevel,
             ),
           ),
           if (controller.isSSOSignup)

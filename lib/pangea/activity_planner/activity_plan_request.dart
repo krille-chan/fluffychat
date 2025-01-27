@@ -1,11 +1,12 @@
 import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 
 class ActivityPlanRequest {
   final String topic;
   final String mode;
   final String objective;
   final MediaEnum media;
-  final int cefrLevel;
+  final LanguageLevelTypeEnum cefrLevel;
   final String languageOfInstructions;
   final String targetLanguage;
   final int count;
@@ -29,7 +30,7 @@ class ActivityPlanRequest {
       'mode': mode,
       'objective': objective,
       'media': media.string,
-      'cefr_level': cefrLanguageLevel,
+      'cefr_level': cefrLevel,
       'language_of_instructions': languageOfInstructions,
       'target_language': targetLanguage,
       'count': count,
@@ -38,28 +39,28 @@ class ActivityPlanRequest {
   }
 
   factory ActivityPlanRequest.fromJson(Map<String, dynamic> json) {
-    int cefrLevel = 0;
+    LanguageLevelTypeEnum cefrLevel = LanguageLevelTypeEnum.a1;
     switch (json['cefr_level']) {
       case 'Pre-A1':
-        cefrLevel = 0;
+        cefrLevel = LanguageLevelTypeEnum.preA1;
         break;
       case 'A1':
-        cefrLevel = 1;
+        cefrLevel = LanguageLevelTypeEnum.a1;
         break;
       case 'A2':
-        cefrLevel = 2;
+        cefrLevel = LanguageLevelTypeEnum.a2;
         break;
       case 'B1':
-        cefrLevel = 3;
+        cefrLevel = LanguageLevelTypeEnum.b1;
         break;
       case 'B2':
-        cefrLevel = 4;
+        cefrLevel = LanguageLevelTypeEnum.b2;
         break;
       case 'C1':
-        cefrLevel = 5;
+        cefrLevel = LanguageLevelTypeEnum.c1;
         break;
       case 'C2':
-        cefrLevel = 6;
+        cefrLevel = LanguageLevelTypeEnum.c2;
         break;
     }
     return ActivityPlanRequest(
@@ -77,25 +78,4 @@ class ActivityPlanRequest {
 
   String get storageKey =>
       '$topic-$mode-$objective-${media.string}-$cefrLevel-$languageOfInstructions-$targetLanguage-$numberOfParticipants';
-
-  String get cefrLanguageLevel {
-    switch (cefrLevel) {
-      case 0:
-        return 'Pre-A1';
-      case 1:
-        return 'A1';
-      case 2:
-        return 'A2';
-      case 3:
-        return 'B1';
-      case 4:
-        return 'B2';
-      case 5:
-        return 'C1';
-      case 6:
-        return 'C2';
-      default:
-        return 'Pre-A1';
-    }
-  }
 }
