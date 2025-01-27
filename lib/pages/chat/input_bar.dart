@@ -360,7 +360,10 @@ class InputBar extends StatelessWidget {
     if (suggestion['type'] == 'emoji') {
       insertText = '${suggestion['emoji']!} ';
       startText = replaceText.replaceAllMapped(
-        suggestion['current_word']!,
+        // #Pangea
+        RegExp(suggestion['current_word']!, caseSensitive: false),
+        // suggestion['current_word']!,
+        // Pangea#
         (Match m) => insertText,
       );
     }
