@@ -141,20 +141,17 @@ class LemmaListSection extends StatelessWidget {
                           child: Text(
                             "${lemma.displayText ?? lemma.construct.lemma}${index < lemmas.length - 1 ? ', ' : ''}",
                             style: TextStyle(
-                              color: Colors.transparent,
-                              shadows: [
-                                Shadow(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onPrimaryFixed,
-                                  offset: const Offset(0, -3),
-                                ),
-                              ],
+                              color:
+                                  Theme.of(context).colorScheme.onPrimaryFixed,
                               decoration: TextDecoration.underline,
                               decorationStyle: TextDecorationStyle.dashed,
                               decorationColor:
                                   Theme.of(context).colorScheme.onPrimaryFixed,
                               decorationThickness: 1,
+                              fontSize: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.fontSize,
                             ),
                           ),
                         ),

@@ -118,9 +118,7 @@ class VocabDefinitionPopup extends StatelessWidget {
             const SizedBox(width: 10.0),
             Text(
               construct.lemma,
-              style: TextStyle(
-                color: textColor,
-              ),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(width: 10.0),
             WordAudioButton(
@@ -162,10 +160,9 @@ class VocabDefinitionPopup extends StatelessWidget {
                           context: context,
                         ) ??
                         construct.category,
-                    style: TextStyle(
-                      fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                      color: textColor,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: textColor,
+                        ),
                   ),
                 ],
               ),
@@ -189,11 +186,17 @@ class VocabDefinitionPopup extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                 text: L10n.of(context).meaningSectionHeader,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
-                              TextSpan(text: "  ${snapshot.data!}"),
+                              TextSpan(
+                                text: "  ${snapshot.data!}",
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
                             ],
                           ),
                         );
@@ -202,10 +205,12 @@ class VocabDefinitionPopup extends StatelessWidget {
                           children: [
                             Text(
                               L10n.of(context).meaningSectionHeader,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.onSurface,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                             const SizedBox(
                               width: 10,
@@ -226,9 +231,7 @@ class VocabDefinitionPopup extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: RichText(
                     text: TextSpan(
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge,
                       children: <TextSpan>[
                         TextSpan(
                           text: L10n.of(context).formSectionHeader,
@@ -270,17 +273,14 @@ class VocabDefinitionPopup extends StatelessWidget {
                   ),
                   Text(
                     "${construct.points} XP",
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: textColor,
+                        ),
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: LemmaUseExampleMessages(construct: construct),
-              ),
+              const SizedBox(height: 20),
+              LemmaUseExampleMessages(construct: construct),
               // Writing exercise section
               LemmaUsageDots(
                 construct: construct,
@@ -378,6 +378,8 @@ class LemmaUseExampleMessages extends StatelessWidget {
                     text: TextSpan(
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onPrimaryFixed,
+                        fontSize: AppConfig.fontSizeFactor *
+                            AppConfig.messageFontSize,
                       ),
                       children: [
                         TextSpan(text: e.message.substring(0, e.offset)),
@@ -478,15 +480,10 @@ class LemmaUsageDots extends StatelessWidget {
           ),
           const SizedBox(width: 8.0),
           Flexible(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 90),
-              child: SingleChildScrollView(
-                child: Wrap(
-                  spacing: 3,
-                  runSpacing: 5,
-                  children: dots,
-                ),
-              ),
+            child: Wrap(
+              spacing: 3,
+              runSpacing: 5,
+              children: dots,
             ),
           ),
         ],
