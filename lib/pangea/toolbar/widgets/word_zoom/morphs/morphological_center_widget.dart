@@ -166,6 +166,7 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
     if (!editMode) {
       return Flexible(
         child: Tooltip(
+          triggerMode: TooltipTriggerMode.tap,
           message: L10n.of(context).doubleClickToEdit,
           child: GestureDetector(
             onLongPress: enterEditMode,

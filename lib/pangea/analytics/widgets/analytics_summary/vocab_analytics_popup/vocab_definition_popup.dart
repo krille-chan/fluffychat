@@ -471,6 +471,7 @@ class LemmaUsageDots extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Tooltip(
+            triggerMode: TooltipTriggerMode.tap,
             message: tooltip,
             child: Icon(
               icon,
