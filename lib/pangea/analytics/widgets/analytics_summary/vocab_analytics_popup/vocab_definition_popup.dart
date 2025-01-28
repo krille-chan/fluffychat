@@ -469,7 +469,7 @@ class LemmaUsageDots extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Tooltip(
-            message: L10n.of(context).writingExercisesTooltip,
+            message: tooltip,
             child: Icon(
               icon,
               size: 24,

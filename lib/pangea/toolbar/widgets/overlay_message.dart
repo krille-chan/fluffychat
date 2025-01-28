@@ -90,7 +90,7 @@ class OverlayMessage extends StatelessWidget {
     }
 
     if (event.isActivityMessage) {
-      color = ThemeData.light().colorScheme.primary;
+      color = ThemeData.dark().colorScheme.onSecondary;
     }
 
     final noBubble = {
