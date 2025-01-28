@@ -4118,7 +4118,7 @@
   "noLanguagesSet": "No languages set",
   "noActivitiesFound": "That's enough on this for now! Come back later for more.",
   "hintTitle": "Hint:",
-  "speechToTextBody": "See how well you did by looking at your Accuracy and Words Per Minute scores",
+  "speechToTextBody": "For voice messages, you can see a transcript as well as the speaker's Words Per Minute score.",
   "previous": "Previous",
   "versionNotFound": "Version Not Found",
   "fetchingVersion": "Fetching version...",
@@ -4778,5 +4778,6 @@
   "numberOfLearners": "Number of learners",
   "mustBeInteger": "Must be an integer e.g. 1, 2, 3, ...",
   "noBookmarkedActivities": "No bookmarked activities",
-  "noLemmasFound": "No lemmas found"
+  "noLemmasFound": "No lemmas found",
+  "constructUsePvmDesc": "Produced in voice message"
 }

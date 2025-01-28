@@ -4833,7 +4833,7 @@
   "practice": "Práctica",
   "noLanguagesSet": "No hay idiomas configurados",
   "hintTitle": "Sugerencia:",
-  "speechToTextBody": "Ve qué tan bien lo hiciste al mirar tus puntajes de Precisión y Palabras Por Minuto.",
+  "speechToTextBody": "Para los mensajes de voz, puedes ver una transcripción y la puntuación de palabras por minuto del orador.",
   "previous": "Anterior",
   "languageButtonLabel": "Idioma: {currentLanguage}",
   "@languageButtonLabel": {

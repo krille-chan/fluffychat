@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/analytics/enums/analytics_summary_enum.dart';
 import 'package:fluffychat/pangea/analytics/enums/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum ConstructUseTypeEnum {
   /// produced in chat by user, igc was run, and we've judged it to be a correct use
@@ -16,6 +14,9 @@ enum ConstructUseTypeEnum {
 
   /// produced in chat by user and igc was not run
   unk,
+
+  /// produced in voice message
+  pvm,
 
   /// interactive translation activity
   corIt,
@@ -116,6 +117,8 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
         return L10n.of(context).constructUseIgnMDesc;
       case ConstructUseTypeEnum.em:
         return L10n.of(context).constructUseEmojiDesc;
+      case ConstructUseTypeEnum.pvm:
+        return L10n.of(context).constructUsePvmDesc;
       case ConstructUseTypeEnum.nan:
         return L10n.of(context).constructUseNanDesc;
     }
@@ -156,6 +159,8 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
         return ActivityTypeEnum.morphId.icon;
       case ConstructUseTypeEnum.em:
         return ActivityTypeEnum.emoji.icon;
+      case ConstructUseTypeEnum.pvm:
+        return Icons.mic;
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.nan:
         return Icons.help;
@@ -172,6 +177,9 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
     switch (this) {
       case ConstructUseTypeEnum.corPA:
         return 5;
+
+      case ConstructUseTypeEnum.pvm:
+        return 4;
 
       case ConstructUseTypeEnum.wa:
       case ConstructUseTypeEnum.corWL:
@@ -225,6 +233,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.corIGC:
       case ConstructUseTypeEnum.incIGC:
       case ConstructUseTypeEnum.ignIGC:
+      case ConstructUseTypeEnum.pvm:
         return true;
 
       case ConstructUseTypeEnum.corPA:
@@ -260,12 +269,6 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.corIGC:
       case ConstructUseTypeEnum.ignIGC:
       case ConstructUseTypeEnum.incIGC:
-      case ConstructUseTypeEnum.corL:
-      case ConstructUseTypeEnum.ignL:
-      case ConstructUseTypeEnum.incL:
-      case ConstructUseTypeEnum.corM:
-      case ConstructUseTypeEnum.ignM:
-      case ConstructUseTypeEnum.incM:
         return LearningSkillsEnum.writing;
       case ConstructUseTypeEnum.corWL:
       case ConstructUseTypeEnum.ignWL:
@@ -277,8 +280,17 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.corPA:
       case ConstructUseTypeEnum.ignPA:
       case ConstructUseTypeEnum.incPA:
+      case ConstructUseTypeEnum.corL:
+      case ConstructUseTypeEnum.ignL:
+      case ConstructUseTypeEnum.incL:
+      case ConstructUseTypeEnum.corM:
+      case ConstructUseTypeEnum.ignM:
+      case ConstructUseTypeEnum.incM:
+      case ConstructUseTypeEnum.em:
         return LearningSkillsEnum.reading;
-      default:
+      case ConstructUseTypeEnum.pvm:
+        return LearningSkillsEnum.speaking;
+      case ConstructUseTypeEnum.nan:
         return LearningSkillsEnum.other;
     }
   }
@@ -288,6 +300,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.wa:
       case ConstructUseTypeEnum.ga:
       case ConstructUseTypeEnum.unk:
+      case ConstructUseTypeEnum.pvm:
         return AnalyticsSummaryEnum.numWordsTyped;
 
       case ConstructUseTypeEnum.corIt:
