@@ -36,7 +36,9 @@ class ActivityPlanMessage extends StatelessWidget {
     });
 
     final theme = Theme.of(context);
-    final color = ThemeData.dark().colorScheme.onSecondary;
+    final color = theme.brightness == Brightness.dark
+        ? theme.colorScheme.onSecondary
+        : theme.colorScheme.primary;
     final textColor = ThemeData.light().colorScheme.onPrimary;
 
     final displayEvent = event.getDisplayEvent(timeline);
