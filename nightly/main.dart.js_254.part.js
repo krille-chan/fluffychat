@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_254",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cGe(){return new B.FD(A.dr("hu"))},
-FD:function FD(d){this.a=d}}
+cGf(){return new B.FF(A.dr("hu"))},
+FF:function FF(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[27],B)
-B.FD.prototype={
+B.FF.prototype={
 gnO(){return"true"},
 gk_(){return"Jelsz\xf3 megism\xe9tl\xe9se"},
 gmg(){return"Nem k\xe9p f\xe1jl."},
@@ -578,8 +578,8 @@ gjQ(){return"Previous"},
 gmk(){return"The other party is currently not logged in and therefore cannot receive messages!"},
 D(d,e){return this.gbh(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.FD,C.aG)})()
-A.e3(b.typeUniverse,JSON.parse('{"FD":{"aG":[]}}'))};
+y(B.FF,C.aG)})()
+A.e3(b.typeUniverse,JSON.parse('{"FF":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"KH+kiw38IPcpMih6xmiMm7FCvdo=");
+a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"bYc6K7Djbfq4DXrUkX4Ky9vcqy4=");
 //# sourceMappingURL=main.dart.js_254.part.js.map

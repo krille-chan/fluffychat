@@ -2,16 +2,16 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_14",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cGr(d){return new A.As(B.dr(d))},
-cGs(){return new A.FQ(B.dr("pt_BR"))},
-cGt(){return new A.FR(B.dr("pt_PT"))},
-As:function As(d){this.a=d},
-FQ:function FQ(d){this.a=d},
-FR:function FR(d){this.a=d}},C
+cGs(d){return new A.At(B.dr(d))},
+cGt(){return new A.FS(B.dr("pt_BR"))},
+cGu(){return new A.FT(B.dr("pt_PT"))},
+At:function At(d){this.a=d},
+FS:function FS(d){this.a=d},
+FT:function FT(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[51]
-A.As.prototype={
+A.At.prototype={
 gnO(){return"false"},
 gk_(){return"Repeat password"},
 gmg(){return"Not an image file."},
@@ -581,7 +581,7 @@ gnT(){return"Unable to join chat. Maybe the other party has already closed the c
 gjQ(){return"Previous"},
 gmk(){return"The other party is currently not logged in and therefore cannot receive messages!"},
 D(d,e){return this.gbh(this).$1(e)}}
-A.FQ.prototype={
+A.FS.prototype={
 gk_(){return"Repita a senha"},
 gmg(){return"N\xe3o \xe9 uma imagem."},
 gbh(d){return"Remover"},
@@ -1089,7 +1089,7 @@ mN(d){return"Nesse momento, h\xe1 "+d+" usu\xe1rios bloqueados."},
 gmL(){return"Restrito"},
 gm1(){return"Bater na porta restrito"},
 D(d,e){return this.gbh(this).$1(e)}}
-A.FR.prototype={
+A.FT.prototype={
 gk_(){return"Repete a palavra-passe"},
 gbh(d){return"Remover"},
 geM(){return"Acerca de"},
@@ -1346,10 +1346,10 @@ fe(d){return d+" enviou um autocolante"},
 he(d){return d+" enviou um v\xeddeo"},
 D(d,e){return this.gbh(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.As,C.aG)
-w(A.As,[A.FQ,A.FR])})()
-B.e3(b.typeUniverse,JSON.parse('{"As":{"aG":[]},"FQ":{"aG":[]},"FR":{"aG":[]}}'))
+x(A.At,C.aG)
+w(A.At,[A.FS,A.FT])})()
+B.e3(b.typeUniverse,JSON.parse('{"At":{"aG":[]},"FS":{"aG":[]},"FT":{"aG":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_14",e:"endPart",h:b})})($__dart_deferred_initializers__,"jmnm6vsqe3t//YdDMFqiFi3diTw=");
+a.eventLog.push({p:"main.dart.js_14",e:"endPart",h:b})})($__dart_deferred_initializers__,"EuhmK/JQkGrtTMnTkA5HfuTEIeQ=");
 //# sourceMappingURL=main.dart.js_14.part.js.map
