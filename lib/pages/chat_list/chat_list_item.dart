@@ -90,6 +90,12 @@ class ChatListItem extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
+    // #Pangea
+    if (filter != null && filter.isNotEmpty && room.isSpace) {
+      return const SizedBox.shrink();
+    }
+    // Pangea#
+
     final needLastEventSender = lastEvent == null
         ? false
         : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;

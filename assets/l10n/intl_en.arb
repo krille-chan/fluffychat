@@ -426,7 +426,7 @@
   },
   "chatHasBeenAddedToThisSpace": "Chat has been added to this space",
   "@chatHasBeenAddedToThisSpace": {},
-  "chats": "Group Chats",
+  "chats": "Chats",
   "@chats": {
     "type": "text",
     "placeholders": {}
