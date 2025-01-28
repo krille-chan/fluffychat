@@ -30,7 +30,7 @@ class ActivityPlanRequest {
       'mode': mode,
       'objective': objective,
       'media': media.string,
-      'activity_cefr_level': cefrLevel,
+      'activity_cefr_level': cefrLevel.string,
       'language_of_instructions': languageOfInstructions,
       'target_language': targetLanguage,
       'count': count,
@@ -46,7 +46,8 @@ class ActivityPlanRequest {
         media: MediaEnum.nan.fromString(json['media']),
         cefrLevel: json['activity_cefr_level'] != null
             ? LanguageLevelTypeEnumExtension.fromString(
-                json['activity_cefr_level'])
+                json['activity_cefr_level'],
+              )
             : LanguageLevelTypeEnum.a1,
         languageOfInstructions: json['language_of_instructions'],
         targetLanguage: json['target_language'],
