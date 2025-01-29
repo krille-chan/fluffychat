@@ -7,8 +7,6 @@ class SuggestionFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String label;
   final String placeholder;
-  final void Function(String) onSelected;
-  final String? initialValue;
   final TextEditingController controller;
 
   const SuggestionFormField({
@@ -17,16 +15,13 @@ class SuggestionFormField extends StatelessWidget {
     required this.placeholder,
     this.validator,
     required this.label,
-    required this.onSelected,
-    required this.initialValue,
     required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return Autocomplete<String>(
-      initialValue:
-          initialValue != null ? TextEditingValue(text: initialValue!) : null,
+      initialValue: TextEditingValue(text: controller.text),
       optionsBuilder: (TextEditingValue textEditingValue) async {
         return (await suggestions)
             .where((ActivitySettingResponseSchema option) {
@@ -35,7 +30,7 @@ class SuggestionFormField extends StatelessWidget {
               .contains(textEditingValue.text.toLowerCase());
         }).map((ActivitySettingResponseSchema e) => e.name);
       },
-      onSelected: onSelected,
+      onSelected: (val) => controller.text = val,
       fieldViewBuilder: (
         BuildContext context,
         TextEditingController textEditingController,
@@ -44,7 +39,7 @@ class SuggestionFormField extends StatelessWidget {
       ) {
         textEditingController.value = controller.value;
         textEditingController.addListener(() {
-          onSelected(textEditingController.text);
+          controller.value = textEditingController.value;
         });
         return TextFormField(
           controller: textEditingController,

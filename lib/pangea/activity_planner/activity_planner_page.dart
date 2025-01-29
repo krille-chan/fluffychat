@@ -42,10 +42,6 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
   /// Index of the content to display
   _PageMode _pageMode = _PageMode.settings;
 
-  /// Selected values from the form
-  String? _selectedTopic;
-  String? _selectedMode;
-  String? _selectedObjective;
   MediaEnum _selectedMedia = MediaEnum.nan;
   String? _selectedLanguageOfInstructions;
   String? _selectedTargetLanguage;
@@ -120,14 +116,14 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
   }
 
   void _randomizeSelections() async {
-    _selectedTopic = await _randomTopic();
-    _selectedObjective = await _randomObjective();
-    _selectedMode = await _randomMode();
+    final selectedTopic = await _randomTopic();
+    final selectedObjective = await _randomObjective();
+    final selectedMode = await _randomMode();
 
     setState(() {
-      _topicController.text = _selectedTopic!;
-      _objectiveController.text = _selectedObjective!;
-      _modeController.text = _selectedMode!;
+      _topicController.text = selectedTopic;
+      _objectiveController.text = selectedObjective;
+      _modeController.text = selectedMode;
     });
   }
 
@@ -191,9 +187,9 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
               activityPlanRequest: _PageMode.savedActivities == _pageMode
                   ? null
                   : ActivityPlanRequest(
-                      topic: _selectedTopic!,
-                      mode: _selectedMode!,
-                      objective: _selectedObjective!,
+                      topic: _topicController.text,
+                      mode: _modeController.text,
+                      objective: _objectiveController.text,
                       media: _selectedMedia,
                       languageOfInstructions: _selectedLanguageOfInstructions!,
                       targetLanguage: _selectedTargetLanguage!,
@@ -223,8 +219,6 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                                   validator: _validateNotNull,
                                   label: l10n.topicLabel,
                                   placeholder: l10n.topicPlaceholder,
-                                  onSelected: (val) => _selectedTopic = val,
-                                  initialValue: _selectedTopic,
                                   controller: _topicController,
                                 ),
                                 const SizedBox(height: 24),
@@ -234,8 +228,6 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                                   label: l10n.learningObjectiveLabel,
                                   placeholder:
                                       l10n.learningObjectivePlaceholder,
-                                  onSelected: (val) => _selectedObjective = val,
-                                  initialValue: _selectedObjective,
                                   controller: _objectiveController,
                                 ),
                                 const SizedBox(height: 24),
@@ -244,8 +236,6 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                                   validator: _validateNotNull,
                                   label: l10n.modeLabel,
                                   placeholder: l10n.modePlaceholder,
-                                  onSelected: (val) => _selectedMode = val,
-                                  initialValue: _selectedMode,
                                   controller: _modeController,
                                 ),
                               ],
