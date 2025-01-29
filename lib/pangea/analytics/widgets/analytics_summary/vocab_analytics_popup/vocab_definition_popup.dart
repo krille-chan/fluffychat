@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
@@ -17,6 +18,7 @@ import 'package:fluffychat/pangea/analytics/repo/lemma_info_request.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_response.dart';
 import 'package:fluffychat/pangea/analytics/utils/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
+import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
@@ -329,21 +331,36 @@ class LemmaUseExampleMessages extends StatelessWidget {
       }
       final Room? room = MatrixState.pangeaController.matrixState.client
           .getRoomById(use.metadata.roomId);
+      if (room == null) continue;
 
-      final Event? event = await room?.getEventById(use.metadata.eventId!);
-      final String? messageText = event?.text;
-
-      if (messageText != null && messageText.contains(use.form!)) {
-        final int offset = messageText.indexOf(use.form!);
-        examples.add(
-          ExampleMessage(
-            message: messageText,
-            offset: offset,
-            length: use.form!.length,
-          ),
-        );
-        if (examples.length > 4) break;
+      Timeline? timeline = room.timeline;
+      if (room.timeline == null) {
+        timeline = await room.getTimeline();
       }
+
+      final Event? event = await room.getEventById(use.metadata.eventId!);
+      if (event == null) continue;
+      final PangeaMessageEvent pangeaMessageEvent = PangeaMessageEvent(
+        event: event,
+        timeline: timeline!,
+        ownMessage: event.senderId ==
+            MatrixState.pangeaController.matrixState.client.userID,
+      );
+      final tokens = pangeaMessageEvent.messageDisplayRepresentation?.tokens;
+      if (tokens == null || tokens.isEmpty) continue;
+      final token =
+          tokens.firstWhereOrNull((token) => token.text.content == use.form);
+      if (token == null) continue;
+
+      final int offset = token.text.offset;
+      examples.add(
+        ExampleMessage(
+          message: pangeaMessageEvent.messageDisplayText,
+          offset: offset,
+          length: use.form!.length,
+        ),
+      );
+      if (examples.length > 4) break;
     }
 
     return examples.toList();

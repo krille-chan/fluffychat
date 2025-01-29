@@ -204,7 +204,7 @@ class ActivityRecordResponse {
             .map(
               (token) => OneConstructUse(
                 lemma: token.lemma.text,
-                form: practiceActivity.targetTokens!.first.text.content,
+                form: token.text.content,
                 constructType: ConstructTypeEnum.vocab,
                 useType: useType(practiceActivity.activityType),
                 metadata: metadata,
