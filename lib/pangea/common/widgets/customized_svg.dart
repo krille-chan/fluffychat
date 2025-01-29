@@ -1,5 +1,5 @@
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -31,7 +31,14 @@ class CustomizedSvg extends StatelessWidget {
 
     final response = await http.get(Uri.parse(svgUrl));
     if (response.statusCode != 200) {
-      throw Exception('Failed to load SVG: ${response.statusCode}');
+      final e = Exception('Failed to load SVG: ${response.statusCode}');
+      ErrorHandler.logError(
+        e: e,
+        data: {
+          "svgUrl": svgUrl,
+        },
+      );
+      throw e;
     }
 
     final String svgContent = response.body;
