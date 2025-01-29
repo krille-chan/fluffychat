@@ -98,7 +98,7 @@ class Requests {
         ),
       );
       Sentry.addBreadcrumb(
-        Breadcrumb.fromJson({"body": body, "objectId": objectId}),
+        Breadcrumb(data: {"body": body, "objectId": objectId}),
       );
     }
 

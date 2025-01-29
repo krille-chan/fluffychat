@@ -69,7 +69,7 @@ class ErrorHandler {
       if (m != null) debugPrint("error message: $m");
     }
 
-    Sentry.addBreadcrumb(Breadcrumb.fromJson(data));
+    Sentry.addBreadcrumb(Breadcrumb(data: data));
     debugPrint(data.toString());
 
     Sentry.captureException(

@@ -462,8 +462,11 @@ class Choreographer {
     } catch (err, stack) {
       debugger(when: kDebugMode);
       Sentry.addBreadcrumb(
-        Breadcrumb.fromJson(
-          {"igcTextData": igc.igcTextData?.toJson(), "offset": cursorOffset},
+        Breadcrumb(
+          data: {
+            "igcTextData": igc.igcTextData?.toJson(),
+            "offset": cursorOffset,
+          },
         ),
       );
       ErrorHandler.logError(

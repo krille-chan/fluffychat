@@ -43,7 +43,7 @@ class ConstructIdentifier {
 
     if (type == null) {
       Sentry.addBreadcrumb(Breadcrumb(message: "type is: ${json['type']}"));
-      Sentry.addBreadcrumb(Breadcrumb.fromJson(json));
+      Sentry.addBreadcrumb(Breadcrumb(data: json));
       throw Exception("Matching construct type not found");
     }
 

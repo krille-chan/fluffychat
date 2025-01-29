@@ -127,16 +127,16 @@ class RepresentationEvent {
 
     if (_event == null && timestamp.isAfter(DateTime(2024, 9, 25))) {
       Sentry.addBreadcrumb(
-        Breadcrumb.fromJson({
-          'message':
+        Breadcrumb(
+          message:
               'representation with no _event and no tokens got tokens directly. This means an original_sent with no tokens. This should not happen in messages sent after September 25',
-          'data': {
+          data: {
             'content': content.toJson(),
             'event': _event?.toJson(),
             'timestamp': timestamp.toIso8601String(),
             'senderID': senderID,
           },
-        }),
+        ),
       );
     }
     final List<PangeaToken> res =

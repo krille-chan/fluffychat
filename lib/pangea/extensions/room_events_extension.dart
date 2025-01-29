@@ -175,7 +175,7 @@ extension EventsRoomExtension on Room {
     required String type,
   }) async {
     try {
-      Sentry.addBreadcrumb(Breadcrumb.fromJson(content));
+      Sentry.addBreadcrumb(Breadcrumb(data: content));
       if (parentEventId.contains("web")) {
         debugger(when: kDebugMode);
         Sentry.addBreadcrumb(

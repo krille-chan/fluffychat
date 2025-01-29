@@ -26,7 +26,7 @@ class PangeaAnyState {
   ]) {
     if (_layerLinkAndKeys[transformTargetId] == null) {
       if (throwErrorIfNotThere) {
-        Sentry.addBreadcrumb(Breadcrumb.fromJson(_layerLinkAndKeys));
+        Sentry.addBreadcrumb(Breadcrumb(data: _layerLinkAndKeys));
         throw Exception("layerLinkAndKey with null for $transformTargetId");
       } else {
         _layerLinkAndKeys[transformTargetId] =
