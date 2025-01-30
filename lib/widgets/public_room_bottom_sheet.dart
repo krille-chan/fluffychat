@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -141,21 +140,23 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
             onPressed: Navigator.of(context, rootNavigator: false).pop,
             tooltip: L10n.of(context).close,
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: IconButton(
-                icon: Icon(Icons.adaptive.share_outlined),
-                onPressed: () => FluffyShare.share(
-                  // #Pangea
-                  // 'https://matrix.to/#/${roomAlias ?? chunk?.roomId}',
-                  '${Environment.frontendURL}/#/rooms/${chunk?.roomId}',
-                  // Pangea#
-                  context,
-                ),
-              ),
-            ),
-          ],
+          // #Pangea
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          //     child: IconButton(
+          //       icon: Icon(Icons.adaptive.share_outlined),
+          //       onPressed: () => FluffyShare.share(
+          //         // #Pangea
+          //         // 'https://matrix.to/#/${roomAlias ?? chunk?.roomId}',
+          //         '${Environment.frontendURL}/#/rooms/${chunk?.roomId}',
+          //         // Pangea#
+          //         context,
+          //       ),
+          //     ),
+          //   ),
+          // ],
+          // Pangea#
         ),
         body: FutureBuilder<PublicRoomsChunk>(
           future: _search(),
