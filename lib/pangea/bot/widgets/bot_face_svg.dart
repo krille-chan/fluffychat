@@ -5,18 +5,22 @@ import 'package:flutter/material.dart';
 
 import 'package:rive/rive.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+
 enum BotExpression { gold, nonGold, addled, idle, surprised }
 
 class BotFace extends StatefulWidget {
   final double width;
   final Color? forceColor;
   final BotExpression expression;
+  final bool useRive;
 
   const BotFace({
     super.key,
     required this.width,
     required this.expression,
     this.forceColor,
+    this.useRive = true,
   });
 
   @override
@@ -27,17 +31,20 @@ class BotFaceState extends State<BotFace> {
   Artboard? _artboard;
   StateMachineController? _controller;
   final Random _random = Random();
+  final String svgURL = "${AppConfig.svgAssetsBaseURL}/bot_face_neutral.png";
 
   @override
   void initState() {
     super.initState();
-    _loadRiveFile().then((_) => _scheduleNextRun());
+    if (widget.useRive) {
+      _loadRiveFile().then((_) => _scheduleNextRun());
+    }
   }
 
   @override
   void didUpdateWidget(BotFace oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.expression != widget.expression) {
+    if (widget.useRive && oldWidget.expression != widget.expression) {
       _controller!.setInputValue(
         _controller!.stateMachine.inputs[0].id,
         mapExpressionToInput(widget.expression),
@@ -52,6 +59,8 @@ class BotFaceState extends State<BotFace> {
   }
 
   void _scheduleNextRun() {
+    if (!widget.useRive) return;
+
     final int nextInterval =
         _random.nextInt(21) + 20; // Random interval between 20-40 seconds
 
@@ -79,6 +88,8 @@ class BotFaceState extends State<BotFace> {
   }
 
   Future<void> _loadRiveFile() async {
+    if (!widget.useRive) return;
+
     final riveFile =
         await RiveFile.asset('assets/pangea/bot_faces/pangea_bot.riv');
 
@@ -111,7 +122,7 @@ class BotFaceState extends State<BotFace> {
               artboard: _artboard!,
               fit: BoxFit.cover,
             )
-          : Container(),
+          : Image.network(svgURL),
     );
   }
 }

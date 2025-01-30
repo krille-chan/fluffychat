@@ -185,7 +185,17 @@ class LemmaListDialogContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (lemmas.isEmpty) {
-      return Center(child: Text(L10n.of(context).noDataFound));
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(ProgressIndicatorEnum.wordsUsed.tooltip(context)),
+          leading: IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: Navigator.of(context).pop,
+          ),
+          // TODO: add search and training buttons?
+        ),
+        body: Center(child: Text(L10n.of(context).noDataFound)),
+      );
     }
 
     // Get lists of lemmas by category

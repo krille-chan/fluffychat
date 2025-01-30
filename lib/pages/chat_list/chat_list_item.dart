@@ -158,6 +158,7 @@ class ChatListItem extends StatelessWidget {
                                 name: space.getLocalizedDisplayname(),
                                 // #Pangea
                                 presenceUserId: space.directChatMatrixID,
+                                useRive: true,
                                 // Pangea#
                                 onTap: () => onLongPress?.call(context),
                               ),

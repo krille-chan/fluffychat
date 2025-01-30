@@ -20,6 +20,9 @@ class Avatar extends StatelessWidget {
   final BorderRadius? borderRadius;
   final IconData? icon;
   final BorderSide? border;
+  // #Pangea
+  final bool useRive;
+  // Pangea#
 
   const Avatar({
     this.mxContent,
@@ -32,6 +35,9 @@ class Avatar extends StatelessWidget {
     this.borderRadius,
     this.border,
     this.icon,
+    // #Pangea
+    this.useRive = false,
+    // Pangea#
     super.key,
   });
 
@@ -83,7 +89,11 @@ class Avatar extends StatelessWidget {
             child:
                 // #Pangea
                 presenceUserId == BotName.byEnvironment
-                    ? BotFace(width: size, expression: BotExpression.idle)
+                    ? BotFace(
+                        width: size,
+                        expression: BotExpression.idle,
+                        useRive: useRive,
+                      )
                     :
                     // Pangea#
                     noPic
