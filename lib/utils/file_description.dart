@@ -13,7 +13,7 @@ extension FileDescriptionExtension on Event {
 
     final filename = content.tryGet<String>('filename');
     final body = content.tryGet<String>('body');
-    if (filename != body && body != null) return body;
+    if (filename != body && body != null && filename != null) return body;
     return null;
   }
 }
