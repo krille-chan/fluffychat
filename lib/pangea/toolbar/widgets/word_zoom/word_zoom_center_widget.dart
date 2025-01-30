@@ -54,9 +54,7 @@ class WordZoomCenterWidget extends StatelessWidget {
             : const Text("emoji is null");
       case WordZoomSelection.meaning:
         return LemmaMeaningWidget(
-          lemma:
-              token.lemma.text.isNotEmpty ? token.lemma.text : token.lemma.form,
-          pos: token.pos,
+          token: token,
           langCode:
               wordDetailsController.widget.messageEvent.messageDisplayLangCode,
         );

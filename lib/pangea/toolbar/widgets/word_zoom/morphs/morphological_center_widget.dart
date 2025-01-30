@@ -293,19 +293,22 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                 ),
-                onPressed:
-                    selectedMorphTag == widget.token.morph[widget.morphFeature]
-                        ? null
-                        : () => showFutureLoadingDialog(
-                              context: context,
-                              future: () => saveChanges(
-                                (token) {
-                                  token.morph[widget.morphFeature] =
-                                      selectedMorphTag;
-                                  return token;
-                                },
-                              ),
-                            ),
+                onPressed: selectedMorphTag ==
+                        widget.token.morph[widget.morphFeature]
+                    ? null
+                    : () => showFutureLoadingDialog(
+                          context: context,
+                          future: () => saveChanges(
+                            (token) {
+                              token.morph[widget.morphFeature] =
+                                  selectedMorphTag;
+                              if (widget.morphFeature.toLowerCase() == 'pos') {
+                                token.pos = selectedMorphTag;
+                              }
+                              return token;
+                            },
+                          ),
+                        ),
                 child: Text(L10n.of(context).saveChanges),
               ),
             ],

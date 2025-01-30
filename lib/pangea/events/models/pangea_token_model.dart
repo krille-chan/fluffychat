@@ -35,7 +35,7 @@ class PangeaToken {
 
   /// [pos] ex "VERB" - part of speech of the token
   /// https://universaldependencies.org/u/pos/
-  final String pos;
+  String pos;
 
   /// [_morph] ex {} - morphological features of the token
   /// https://universaldependencies.org/u/feat/

@@ -9,18 +9,17 @@ import 'package:fluffychat/pangea/analytics/repo/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_request.dart';
 import 'package:fluffychat/pangea/analytics/repo/lemma_info_response.dart';
 import 'package:fluffychat/pangea/analytics/widgets/text_loading_shimmer.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class LemmaMeaningWidget extends StatefulWidget {
-  final String lemma;
-  final String pos;
+  final PangeaToken token;
   final String langCode;
 
   const LemmaMeaningWidget({
     super.key,
-    required this.lemma,
-    required this.pos,
+    required this.token,
     required this.langCode,
   });
 
@@ -31,6 +30,10 @@ class LemmaMeaningWidget extends StatefulWidget {
 class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
   bool _editMode = false;
   late TextEditingController _controller;
+
+  String get _lemma => widget.token.lemma.text.isNotEmpty
+      ? widget.token.lemma.text
+      : widget.token.lemma.form;
 
   @override
   void initState() {
@@ -45,8 +48,8 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
   }
 
   LemmaInfoRequest get _request => LemmaInfoRequest(
-        lemma: widget.lemma,
-        partOfSpeech: widget.pos,
+        lemma: _lemma,
+        partOfSpeech: widget.token.pos,
 
         /// This assumes that the user's L2 is the language of the lemma
         lemmaLang: widget.langCode,
@@ -82,7 +85,7 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(widget.lemma, widget.pos)}",
+                  "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(_lemma, widget.token.pos)}",
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontStyle: FontStyle.italic),
                 ),
