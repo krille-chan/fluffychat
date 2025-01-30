@@ -112,6 +112,13 @@ class Message extends StatelessWidget {
             ? theme.colorScheme.onPrimary
             : theme.colorScheme.onPrimaryContainer
         : theme.colorScheme.onSurface;
+
+    final linkColor = ownMessage
+        ? theme.brightness == Brightness.light
+            ? theme.colorScheme.primaryFixed
+            : theme.colorScheme.onTertiaryContainer
+        : theme.colorScheme.primary;
+
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
@@ -393,6 +400,7 @@ class Message extends StatelessWidget {
                                             MessageContent(
                                               displayEvent,
                                               textColor: textColor,
+                                              linkColor: linkColor,
                                               onInfoTab: onInfoTab,
                                               borderRadius: borderRadius,
                                               timeline: timeline,

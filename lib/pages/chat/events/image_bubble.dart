@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/chat/events/html_message.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
 import 'package:fluffychat/utils/file_description.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../widgets/blur_hash.dart';
 
@@ -16,6 +17,7 @@ class ImageBubble extends StatelessWidget {
   final bool maxSize;
   final Color? backgroundColor;
   final Color? textColor;
+  final Color? linkColor;
   final bool thumbnailOnly;
   final bool animated;
   final double width;
@@ -38,6 +40,7 @@ class ImageBubble extends StatelessWidget {
     this.borderRadius,
     this.timeline,
     this.textColor,
+    this.linkColor,
     super.key,
   });
 
@@ -121,10 +124,20 @@ class ImageBubble extends StatelessWidget {
         if (fileDescription != null && textColor != null)
           SizedBox(
             width: width,
-            child: HtmlMessage(
-              html: fileDescription,
-              textColor: textColor,
-              room: event.room,
+            child: Linkify(
+              text: fileDescription,
+              style: TextStyle(
+                color: textColor,
+                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+              ),
+              options: const LinkifyOptions(humanize: false),
+              linkStyle: TextStyle(
+                color: linkColor,
+                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                decoration: TextDecoration.underline,
+                decorationColor: linkColor,
+              ),
+              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             ),
           ),
       ],
