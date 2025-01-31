@@ -7,4 +7,4 @@ String getMorphSvgLink({
   String? morphTag,
   required BuildContext context,
 }) =>
-    "${AppConfig.svgAssetsBaseURL}/${morphFeature.toLowerCase()}_${morphTag?.toLowerCase() ?? ''}.svg";
+    "${AppConfig.assetsBaseURL}/${morphFeature.toLowerCase()}_${morphTag?.toLowerCase() ?? ''}.svg";

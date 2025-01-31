@@ -31,6 +31,7 @@ import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/analytics/controllers/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics/models/constructs_model.dart';
+import 'package:fluffychat/pangea/analytics/widgets/level_up/level_up.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controller.dart';
@@ -120,8 +121,8 @@ class ChatController extends State<ChatPageWithRoom>
     with WidgetsBindingObserver {
   // #Pangea
   final PangeaController pangeaController = MatrixState.pangeaController;
-
   late Choreographer choreographer = Choreographer(pangeaController, this);
+  StreamSubscription? _levelSubscription;
   // Pangea#
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
@@ -309,6 +310,15 @@ class ChatController extends State<ChatPageWithRoom>
         );
       }
     });
+
+    _levelSubscription = pangeaController.getAnalytics.analyticsStream.stream
+        .where((update) => update.levelUp)
+        .listen(
+          (update) => LevelUpUtil.showLevelUpDialog(
+            pangeaController.getAnalytics.constructListModel.level,
+            context,
+          ),
+        );
     // Pangea#
     tryLoadTimeline();
     if (kIsWeb) {
@@ -553,6 +563,7 @@ class ChatController extends State<ChatPageWithRoom>
     MatrixState.pAnyState.closeOverlay();
     showToolbarStream.close();
     hideTextController.dispose();
+    _levelSubscription?.cancel();
     //Pangea#
     super.dispose();
   }

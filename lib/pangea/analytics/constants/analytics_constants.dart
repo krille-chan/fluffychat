@@ -10,4 +10,6 @@ class AnalyticsConstants {
   static const String emojiForSeed = "🫛";
   static const String emojiForGreen = "🌱";
   static const String emojiForFlower = "🌸";
+  static const levelUpAudioFileName = "LevelUp_chime.mp3";
+  static const levelUpImageFileName = "LvL_Up_Full_Banner.png";
 }

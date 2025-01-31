@@ -31,7 +31,7 @@ class BotFaceState extends State<BotFace> {
   Artboard? _artboard;
   StateMachineController? _controller;
   final Random _random = Random();
-  final String svgURL = "${AppConfig.svgAssetsBaseURL}/bot_face_neutral.png";
+  final String svgURL = "${AppConfig.assetsBaseURL}/bot_face_neutral.png";
 
   @override
   void initState() {

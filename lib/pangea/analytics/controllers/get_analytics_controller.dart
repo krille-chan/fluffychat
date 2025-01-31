@@ -115,17 +115,28 @@ class GetAnalyticsController {
     // perMessage.dispose();
   }
 
-  Future<void> _onAnalyticsUpdate(AnalyticsUpdate analyticsUpdate) async {
+  Future<void> _onAnalyticsUpdate(
+    AnalyticsUpdate analyticsUpdate,
+  ) async {
     if (analyticsUpdate.isLogout) return;
+    final oldLevel = constructListModel.level;
     constructListModel.updateConstructs(analyticsUpdate.newConstructs);
     if (analyticsUpdate.type == AnalyticsUpdateType.server) {
       await _getConstructs(forceUpdate: true);
     }
-    _updateAnalyticsStream(origin: analyticsUpdate.origin);
+    _updateAnalyticsStream(
+      origin: analyticsUpdate.origin,
+      levelUp: oldLevel < constructListModel.level,
+    );
   }
 
-  void _updateAnalyticsStream({AnalyticsUpdateOrigin? origin}) {
-    analyticsStream.add(AnalyticsStreamUpdate(origin: origin));
+  void _updateAnalyticsStream({
+    bool levelUp = false,
+    AnalyticsUpdateOrigin? origin,
+  }) {
+    analyticsStream.add(
+      AnalyticsStreamUpdate(origin: origin, levelUp: levelUp),
+    );
   }
 
   /// A local cache of eventIds and construct uses for messages sent since the last update.
@@ -331,8 +342,10 @@ class AnalyticsCacheEntry {
 
 class AnalyticsStreamUpdate {
   final AnalyticsUpdateOrigin? origin;
+  final bool levelUp;
 
   AnalyticsStreamUpdate({
     this.origin,
+    this.levelUp = false,
   });
 }

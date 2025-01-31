@@ -39,11 +39,11 @@ extension LemmaCategoryExtension on LemmaCategoryEnum {
   String get svgURL {
     switch (this) {
       case LemmaCategoryEnum.seeds:
-        return "${AppConfig.svgAssetsBaseURL}/${AnalyticsConstants.seedSvgFileName}";
+        return "${AppConfig.assetsBaseURL}/${AnalyticsConstants.seedSvgFileName}";
       case LemmaCategoryEnum.greens:
-        return "${AppConfig.svgAssetsBaseURL}/${AnalyticsConstants.leafSvgFileName}";
+        return "${AppConfig.assetsBaseURL}/${AnalyticsConstants.leafSvgFileName}";
       case LemmaCategoryEnum.flowers:
-        return "${AppConfig.svgAssetsBaseURL}/${AnalyticsConstants.flowerSvgFileName}";
+        return "${AppConfig.assetsBaseURL}/${AnalyticsConstants.flowerSvgFileName}";
     }
   }
 
