@@ -2894,5 +2894,9 @@
     }
   },
   "compress": "压缩",
-  "@compress": {}
+  "@compress": {},
+  "previous": "前一个",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "另一方当前未登录，因而无法接收消息！",
+  "@otherPartyNotLoggedIn": {}
 }
