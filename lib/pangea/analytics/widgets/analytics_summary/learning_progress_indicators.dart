@@ -128,10 +128,7 @@ class LearningProgressIndicatorsState
                         onTap: () {
                           showDialog<MorphAnalyticsPopup>(
                             context: context,
-                            builder: (c) => MorphAnalyticsPopup(
-                              type: ProgressIndicatorEnum
-                                  .morphsUsed.constructType,
-                            ),
+                            builder: (c) => const MorphAnalyticsPopup(),
                           );
                         },
                         indicator: ProgressIndicatorEnum.morphsUsed,

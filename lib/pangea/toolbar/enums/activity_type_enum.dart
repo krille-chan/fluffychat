@@ -4,7 +4,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:fluffychat/pangea/analytics/enums/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics/enums/construct_use_type_enum.dart';
-import 'package:fluffychat/pangea/toolbar/models/practice_activity_model.dart';
+import 'package:fluffychat/pangea/analytics/models/construct_identifier.dart';
 
 enum ActivityTypeEnum {
   wordMeaning,

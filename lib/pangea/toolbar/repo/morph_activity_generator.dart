@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:fluffychat/pangea/analytics/enums/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics/enums/morph_categories_enum.dart';
+import 'package:fluffychat/pangea/analytics/models/construct_identifier.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';

@@ -6,8 +6,8 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/analytics/constants/morph_categories_and_labels.dart';
 import 'package:fluffychat/pangea/analytics/enums/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/analytics/models/construct_identifier.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/toolbar/models/practice_activity_model.dart';
 import '../enums/construct_type_enum.dart';
 
 class ConstructAnalyticsModel {
