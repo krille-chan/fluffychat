@@ -3764,7 +3764,7 @@
   },
   "noTeachersFound": "No teachers found to report to",
   "pleaseEnterANumber": "Please enter a number greater than 0",
-  "archiveRoomDescription": "The chat will be moved to the archive for yourself and other non-admin users.",
+  "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
   "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
   "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
   "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
@@ -4064,10 +4064,6 @@
   "runGrammarCorrection": "Check message",
   "grammarCorrectionFailed": "Issues to address",
   "grammarCorrectionComplete": "Looks good!",
-  "leaveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
-  "archiveSpaceDescription": "All chats within this space will be moved to the archive for yourself and other non-admin users.",
-  "leaveSpaceDescription": "All chats within this space will be moved to the archive. Other users will be able to see that you have left the space.",
-  "onlyAdminDescription": "Since there are no other admins, all other participants will also be removed.",
   "tooltipInstructionsTitle": "Not sure what that does?",
   "tooltipInstructionsMobileBody": "Press and hold items to view tooltips.",
   "tooltipInstructionsBrowserBody": "Hover over items to view tooltips.",
@@ -4780,5 +4776,6 @@
   "noBookmarkedActivities": "No bookmarked activities",
   "noLemmasFound": "No lemmas found",
   "constructUsePvmDesc": "Produced in voice message",
-  "lockedMorphFeature": "Waiting to be unlocked"
+  "lockedMorphFeature": "Waiting to be unlocked",
+  "leaveSpaceDescription": "The space will be moved to the archive. Other users will be able to see that you have left the chat."
 }

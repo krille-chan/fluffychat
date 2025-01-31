@@ -7,25 +7,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
-import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
-import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'matrix.dart';
 
-enum ChatPopupMenuActions {
-  details,
-  mute,
-  unmute,
-  leave,
-  search,
-  // #Pangea
-  downloadTxt,
-  downloadCsv,
-  downloadXlsx,
-  learningSettings,
-  // Pangea#
-}
+enum ChatPopupMenuActions { details, mute, unmute, leave, search }
 
 class ChatSettingsPopupMenu extends StatefulWidget {
   final Room room;
@@ -108,44 +93,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               case ChatPopupMenuActions.search:
                 context.go('/rooms/${widget.room.id}/search');
                 break;
-              // #Pangea
-              case ChatPopupMenuActions.downloadTxt:
-                showFutureLoadingDialog(
-                  context: context,
-                  future: () => downloadChat(
-                    widget.room,
-                    DownloadType.txt,
-                    context,
-                  ),
-                );
-                break;
-              case ChatPopupMenuActions.downloadCsv:
-                showFutureLoadingDialog(
-                  context: context,
-                  future: () => downloadChat(
-                    widget.room,
-                    DownloadType.csv,
-                    context,
-                  ),
-                );
-                break;
-              case ChatPopupMenuActions.downloadXlsx:
-                showFutureLoadingDialog(
-                  context: context,
-                  future: () => downloadChat(
-                    widget.room,
-                    DownloadType.xlsx,
-                    context,
-                  ),
-                );
-                break;
-              case ChatPopupMenuActions.learningSettings:
-                showDialog(
-                  context: context,
-                  builder: (c) => const SettingsLearning(),
-                );
-                break;
-              // Pangea#
             }
           },
           itemBuilder: (BuildContext context) => [
@@ -154,24 +101,12 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 value: ChatPopupMenuActions.details,
                 child: Row(
                   children: [
-                    const Icon(Icons.settings_outlined),
+                    const Icon(Icons.info_outline_rounded),
                     const SizedBox(width: 12),
                     Text(L10n.of(context).chatDetails),
                   ],
                 ),
               ),
-            // #Pangea
-            PopupMenuItem<ChatPopupMenuActions>(
-              value: ChatPopupMenuActions.learningSettings,
-              child: Row(
-                children: [
-                  const Icon(Icons.psychology_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).learningSettings),
-                ],
-              ),
-            ),
-            // Pangea#
             if (widget.room.pushRuleState == PushRuleState.notify)
               PopupMenuItem<ChatPopupMenuActions>(
                 value: ChatPopupMenuActions.mute,
@@ -208,47 +143,12 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               value: ChatPopupMenuActions.leave,
               child: Row(
                 children: [
-                  // #Pangea
-                  // const Icon(Icons.delete_outlined),
-                  const Icon(Icons.arrow_forward),
-                  // Pangea#
+                  const Icon(Icons.delete_outlined),
                   const SizedBox(width: 12),
                   Text(L10n.of(context).leave),
                 ],
               ),
             ),
-            // #Pangea
-            PopupMenuItem<ChatPopupMenuActions>(
-              value: ChatPopupMenuActions.downloadTxt,
-              child: Row(
-                children: [
-                  const Icon(Icons.download_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).downloadTxtFile),
-                ],
-              ),
-            ),
-            PopupMenuItem<ChatPopupMenuActions>(
-              value: ChatPopupMenuActions.downloadCsv,
-              child: Row(
-                children: [
-                  const Icon(Icons.download_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).downloadCSVFile),
-                ],
-              ),
-            ),
-            PopupMenuItem<ChatPopupMenuActions>(
-              value: ChatPopupMenuActions.downloadXlsx,
-              child: Row(
-                children: [
-                  const Icon(Icons.download_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).downloadXLSXFile),
-                ],
-              ),
-            ),
-            // Pangea#
           ],
         ),
       ],

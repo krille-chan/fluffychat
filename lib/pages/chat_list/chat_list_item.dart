@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/chat_list/utils/get_chat_list_item_subtitle.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -51,13 +52,21 @@ class ChatListItem extends StatelessWidget {
         title: L10n.of(context).areYouSure,
         okLabel: L10n.of(context).leave,
         cancelLabel: L10n.of(context).cancel,
-        message: L10n.of(context).archiveRoomDescription,
+        // #Pangea
+        // message: L10n.of(context).archiveRoomDescription,
+        message: room.isSpace
+            ? L10n.of(context).leaveSpaceDescription
+            : L10n.of(context).archiveRoomDescription,
+        // Pangea#
         isDestructiveAction: true,
       );
       if (confirmed != OkCancelResult.ok) return false;
       final leaveResult = await showFutureLoadingDialog(
         context: context,
-        future: () => room.leave(),
+        // #Pangea
+        // future: () => room.leave(),
+        future: () => room.isSpace ? room.leaveSpace() : room.leave(),
+        // Pangea#
       );
       return leaveResult.isValue;
     }
