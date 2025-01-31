@@ -2591,5 +2591,34 @@
   "discover": "Ontdek",
   "@discover": {},
   "commandHint_ignore": "Negeer de gegeven matrix ID",
-  "@commandHint_ignore": {}
+  "@commandHint_ignore": {},
+  "noChatsFoundHere": "Hier zijn nog geen chats. Begin een nieuwe chat met iemand door op de onderstaande knop te klikken. ⤵️",
+  "@noChatsFoundHere": {},
+  "unableToJoinChat": "Kan niet deelnemen aan chat. Misschien heeft de andere partij het gesprek al afgesloten.",
+  "@unableToJoinChat": {},
+  "aboutHomeserver": "Over {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "boldText": "Vet gedrukte tekst",
+  "@boldText": {},
+  "italicText": "Cursieve tekst",
+  "@italicText": {},
+  "strikeThrough": "Doorhalen",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Vul alsjeblieft in",
+  "@pleaseFillOut": {},
+  "invalidUrl": "Ongeldige url",
+  "@invalidUrl": {},
+  "addLink": "Koppeling toevoegen",
+  "@addLink": {},
+  "compress": "Comprimeren",
+  "@compress": {},
+  "previous": "Vorige",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "De andere partij is momenteel niet ingelogd en kan daarom geen berichten ontvangen!",
+  "@otherPartyNotLoggedIn": {}
 }
