@@ -26,13 +26,16 @@ class EmojiPracticeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final emoji = token.getEmoji();
     return _shouldDoActivity || emoji != null
-        ? WordZoomActivityButton(
-            icon: emoji == null
-                ? const Icon(Icons.add_reaction_outlined)
-                : Text(emoji),
-            isSelected: isSelected,
-            onPressed: onPressed,
+        ? SizedBox(
+            width: 30,
+            child: WordZoomActivityButton(
+              icon: emoji == null
+                  ? const Icon(Icons.add_reaction_outlined)
+                  : Text(emoji),
+              isSelected: isSelected,
+              onPressed: onPressed,
+            ),
           )
-        : const SizedBox(width: 60);
+        : const SizedBox(width: 30);
   }
 }

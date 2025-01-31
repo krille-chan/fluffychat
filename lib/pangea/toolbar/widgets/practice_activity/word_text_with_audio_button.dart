@@ -66,28 +66,24 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
           decoration: BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(4),
-            boxShadow: _isHovering
-                ? [
-                    BoxShadow(
-                      color: Theme.of(context).colorScheme.secondary,
-                      blurRadius: 4,
-                      spreadRadius: 1,
-                    ),
-                  ]
-                : [],
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                widget.text,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: _isPlaying
-                          ? Theme.of(context).colorScheme.secondary
-                          : null,
-                      fontSize:
-                          Theme.of(context).textTheme.titleLarge?.fontSize,
-                    ),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 180),
+                child: Text(
+                  widget.text,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: _isPlaying
+                            ? Theme.of(context).colorScheme.secondary
+                            : null,
+                        fontSize:
+                            Theme.of(context).textTheme.titleLarge?.fontSize,
+                      ),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               const SizedBox(width: 4),
               Icon(
@@ -100,6 +96,4 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
       ),
     );
   }
-
-  final bool _isHovering = false;
 }

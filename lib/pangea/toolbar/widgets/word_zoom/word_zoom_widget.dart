@@ -237,7 +237,7 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
                               ),
                           ],
                         ),
-                        const SizedBox(width: 40),
+                        const SizedBox(width: 30),
                       ],
                     ),
                   ),
