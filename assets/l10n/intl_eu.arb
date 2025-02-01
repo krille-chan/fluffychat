@@ -2894,5 +2894,9 @@
     }
   },
   "compress": "Konprimatu",
-  "@compress": {}
+  "@compress": {},
+  "previous": "Aurrekoa",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "Besteak ez du saiorik hasita eta, beraz, ezin du mezurik jaso!",
+  "@otherPartyNotLoggedIn": {}
 }
