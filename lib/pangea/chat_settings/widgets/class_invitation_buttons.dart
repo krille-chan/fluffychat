@@ -1,15 +1,14 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-import 'package:universal_html/html.dart' as html;
-
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+import 'package:universal_html/html.dart' as html;
+
 import '../../../utils/fluffy_share.dart';
 
 class ClassInvitationButtons extends StatelessWidget {
@@ -41,7 +40,7 @@ class ClassInvitationButtons extends StatelessWidget {
         final String initialUrl =
             kIsWeb ? html.window.origin! : Environment.frontendURL;
         FluffyShare.share(
-          "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode}",
+          "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode(context)}",
           context,
         );
       },
