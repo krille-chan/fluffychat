@@ -2894,5 +2894,9 @@
     }
   },
   "compress": "Comprimir",
-  "@compress": {}
+  "@compress": {},
+  "previous": "Anterior",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "A outra parte non está conectada neste momento e pode que non reciba as mensaxes!",
+  "@otherPartyNotLoggedIn": {}
 }
