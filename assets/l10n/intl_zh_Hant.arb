@@ -2056,7 +2056,7 @@
   "@hidePresences": {},
   "signInWithPassword": "使用密碼登入",
   "@signInWithPassword": {},
-  "setColorTheme": "設定顏色主題：",
+  "setColorTheme": "設定主題顏色：",
   "@setColorTheme": {},
   "makeAdminDescription": "一旦您讓這個使用者成為管理員，您可能無法撤銷此操作，因為他們將擁有與您相同的權限。",
   "@makeAdminDescription": {},
