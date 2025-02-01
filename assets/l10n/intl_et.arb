@@ -190,7 +190,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} muutis oma uueks kuvatavaks nimeks „{chatname}“",
+  "changedTheChatNameTo": "{username} muutis oma uueks vestlusnimeks „{chatname}“",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -205,7 +205,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} muutis uueks kuvatavaks nimeks: {displayname}",
+  "changedTheDisplaynameTo": "{username} muutis oma uueks kuvatavaks nimeks: „{displayname}“",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -2894,5 +2894,9 @@
     }
   },
   "compress": "Paki kokku",
-  "@compress": {}
+  "@compress": {},
+  "previous": "Eelmine",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "Vestluse teine osapool pole hetkel võrku loginud ega seega saa neid sõnumeid kohe kätte!",
+  "@otherPartyNotLoggedIn": {}
 }
