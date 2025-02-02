@@ -465,6 +465,10 @@ class InputBar extends StatelessWidget {
                 final data = content.data;
                 if (data == null) return;
 
+                if (content.mimeType.startsWith("image/")) {
+                  onSubmitImage!(data);
+                  return;
+                }
                 final file = MatrixFile(
                   mimeType: content.mimeType,
                   bytes: data,
