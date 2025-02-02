@@ -130,9 +130,10 @@ class HtmlMessage extends StatelessWidget {
     if (node is! dom.Element) {
       // Inside of a list so we add some prefix text:
       var text = node.text ?? '';
+      if (text == '\n') text = '';
       if (node.parent?.localName == 'li') {
         if (node.parent?.parent?.localName == 'ul') {
-          text = '◦ $text';
+          text = '• $text';
         }
         if (node.parent?.parent?.localName == 'ol') {
           text =
@@ -172,7 +173,7 @@ class HtmlMessage extends StatelessWidget {
                 uri: href,
                 outerContext: context,
                 fontSize: fontSize,
-                color: textColor,
+                color: linkStyle.color,
               ),
             );
           }
@@ -187,7 +188,7 @@ class HtmlMessage extends StatelessWidget {
                 uri: href,
                 outerContext: context,
                 fontSize: fontSize,
-                color: textColor,
+                color: linkStyle.color,
               ),
             );
           }
@@ -410,16 +411,18 @@ class HtmlMessage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => Text.rich(
-        _renderHtml(
-          parser.parse(html).body ?? dom.Element.html(''),
-          context,
-        ),
-        style: TextStyle(
-          fontSize: fontSize,
-          color: textColor,
-        ),
-      );
+  Widget build(BuildContext context) {
+    return Text.rich(
+      _renderHtml(
+        parser.parse(html).body ?? dom.Element.html(''),
+        context,
+      ),
+      style: TextStyle(
+        fontSize: fontSize,
+        color: textColor,
+      ),
+    );
+  }
 }
 
 class MatrixPill extends StatelessWidget {
