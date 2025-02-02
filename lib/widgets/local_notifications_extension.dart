@@ -21,7 +21,6 @@ extension LocalNotificationsExtension on MatrixState {
     ..load();
 
   void showLocalNotification(Event event) async {
-    Logs().wtf('NOTIFICATION', event.toJson());
     final roomId = event.room.id;
     if (activeRoomId == roomId) {
       if (kIsWeb && webHasFocus) return;
