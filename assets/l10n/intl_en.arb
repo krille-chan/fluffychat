@@ -2822,5 +2822,13 @@
   "addLink": "Add link",
   "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation.",
   "previous": "Previous",
-  "otherPartyNotLoggedIn": "The other party is currently not logged in and therefore cannot receive messages!"
+  "otherPartyNotLoggedIn": "The other party is currently not logged in and therefore cannot receive messages!",
+  "appWantsToUseForLogin": "Use '{server}' to log in",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "appWantsToUseForLoginDescription": "You hereby allow the app and website to share information about you."
 }

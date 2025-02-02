@@ -142,30 +142,13 @@ class HomeserverPickerView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           TextField(
-                            onChanged:
-                                controller.tryCheckHomeserverActionWithCooldown,
-                            onSubmitted: controller.onSubmitted,
-                            onTap:
-                                controller.tryCheckHomeserverActionWithCooldown,
+                            onSubmitted: (_) =>
+                                controller.checkHomeserverAction(),
                             controller: controller.homeserverController,
                             autocorrect: false,
                             keyboardType: TextInputType.url,
                             decoration: InputDecoration(
-                              prefixIcon: controller.isLoading
-                                  ? Container(
-                                      width: 16,
-                                      height: 16,
-                                      alignment: Alignment.center,
-                                      child: const SizedBox(
-                                        width: 16,
-                                        height: 16,
-                                        child:
-                                            CircularProgressIndicator.adaptive(
-                                          strokeWidth: 2,
-                                        ),
-                                      ),
-                                    )
-                                  : const Icon(Icons.search_outlined),
+                              prefixIcon: const Icon(Icons.search_outlined),
                               filled: false,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(
@@ -219,25 +202,21 @@ class HomeserverPickerView extends StatelessWidget {
                               backgroundColor: theme.colorScheme.primary,
                               foregroundColor: theme.colorScheme.onPrimary,
                             ),
-                            onPressed:
-                                controller.isLoggingIn || controller.isLoading
-                                    ? null
-                                    : controller.supportsSso
-                                        ? controller.ssoLoginAction
-                                        : controller.supportsPasswordLogin
-                                            ? controller.login
-                                            : null,
-                            child: Text(L10n.of(context).continueText),
+                            onPressed: controller.isLoading
+                                ? null
+                                : controller.checkHomeserverAction,
+                            child: controller.isLoading
+                                ? const LinearProgressIndicator()
+                                : Text(L10n.of(context).continueText),
                           ),
                           TextButton(
                             style: TextButton.styleFrom(
                               foregroundColor: theme.colorScheme.secondary,
                               textStyle: theme.textTheme.labelMedium,
                             ),
-                            onPressed:
-                                controller.isLoggingIn || controller.isLoading
-                                    ? null
-                                    : controller.restoreBackup,
+                            onPressed: controller.isLoading
+                                ? null
+                                : controller.restoreBackup,
                             child: Text(L10n.of(context).hydrate),
                           ),
                         ],
