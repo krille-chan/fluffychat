@@ -2866,5 +2866,16 @@
   "compressVideo": "영상 압축 중...",
   "@compressVideo": {},
   "blur": "블러:",
-  "@blur": {}
+  "@blur": {},
+  "sendImages": "이미지 {count}개 보내기",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "italicText": "기울어진 글꼴",
+  "@italicText": {},
+  "boldText": "두꺼운 글꼴",
+  "@boldText": {}
 }
