@@ -5,25 +5,32 @@ import 'package:flutter/material.dart';
 
 import 'package:chewie/chewie.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/chat/events/html_message.dart';
 import 'package:fluffychat/pages/chat/events/image_bubble.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/blur_hash.dart';
 import '../../../utils/error_reporter.dart';
 
 class EventVideoPlayer extends StatefulWidget {
   final Event event;
   final Color? textColor;
-  const EventVideoPlayer(this.event, {this.textColor, super.key});
+  final Color? linkColor;
+  const EventVideoPlayer(
+    this.event, {
+    this.textColor,
+    this.linkColor,
+    super.key,
+  });
 
   @override
   EventVideoPlayerState createState() => EventVideoPlayerState();
@@ -107,6 +114,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         fallbackBlurHash;
     final fileDescription = widget.event.fileDescription;
     final textColor = widget.textColor;
+    final linkColor = widget.linkColor;
 
     const width = 300.0;
 
@@ -164,13 +172,23 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
                   ),
           ),
         ),
-        if (fileDescription != null && textColor != null)
+        if (fileDescription != null && textColor != null && linkColor != null)
           SizedBox(
             width: width,
-            child: HtmlMessage(
-              html: fileDescription,
-              textColor: textColor,
-              room: widget.event.room,
+            child: Linkify(
+              text: fileDescription,
+              style: TextStyle(
+                color: textColor,
+                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+              ),
+              options: const LinkifyOptions(humanize: false),
+              linkStyle: TextStyle(
+                color: linkColor,
+                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                decoration: TextDecoration.underline,
+                decorationColor: linkColor,
+              ),
+              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             ),
           ),
       ],
