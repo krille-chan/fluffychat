@@ -1881,6 +1881,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "synchronizingPleaseWaitCounter": " Synchronizing… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
   "systemTheme": "System",
   "@systemTheme": {
     "type": "text",
@@ -2831,5 +2838,6 @@
     }
   },
   "appWantsToUseForLoginDescription": "You hereby allow the app and website to share information about you.",
-  "open": "Open"
+  "open": "Open",
+  "waitingForServer": "Waiting for server..."
 }
