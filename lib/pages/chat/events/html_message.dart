@@ -131,7 +131,8 @@ class HtmlMessage extends StatelessWidget {
       // Inside of a list so we add some prefix text:
       var text = node.text ?? '';
       if (text == '\n') text = '';
-      if (node.parent?.localName == 'li') {
+      if (node.parent?.localName == 'li' &&
+          node.parent?.nodes.indexOf(node) == 0) {
         if (node.parent?.parent?.localName == 'ul') {
           text = '• $text';
         }
@@ -383,12 +384,12 @@ class HtmlMessage extends StatelessWidget {
             'strikethrough' =>
               const TextStyle(decoration: TextDecoration.lineThrough),
             'u' => const TextStyle(decoration: TextDecoration.underline),
-            'h1' => TextStyle(fontSize: fontSize * 1.6),
-            'h2' => TextStyle(fontSize: fontSize * 1.5),
-            'h3' => TextStyle(fontSize: fontSize * 1.4),
-            'h4' => TextStyle(fontSize: fontSize * 1.3),
-            'h5' => TextStyle(fontSize: fontSize * 1.2),
-            'h6' => TextStyle(fontSize: fontSize * 1.1),
+            'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
+            'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
+            'h3' => TextStyle(fontSize: fontSize * 1.4, height: 2),
+            'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
+            'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
+            'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
             'span' => TextStyle(
                 color: node.attributes['color']?.hexToColor ??
                     node.attributes['data-mx-color']?.hexToColor ??
