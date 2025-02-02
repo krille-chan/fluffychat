@@ -20,7 +20,7 @@ extension SyncStatusLocalization on SyncStatusUpdate {
         return progress == null
             ? L10n.of(context).synchronizingPleaseWait
             : L10n.of(context).synchronizingPleaseWaitCounter(
-                progress.round().toString(),
+                (progress * 100).round().toString(),
               );
     }
   }
