@@ -55,36 +55,31 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 borderRadius: BorderRadius.circular(99),
               ),
               contentPadding: EdgeInsets.zero,
-              label: hide
-                  ? null
-                  : Center(
-                      child: Text(
-                        status.calcLocalizedString(context),
-                        style: TextStyle(
-                          color: status.error != null
-                              ? theme.colorScheme.onErrorContainer
-                              : null,
-                        ),
-                      ),
-                    ),
-              hintText: L10n.of(context).searchChatsRooms,
+              hintText: hide
+                  ? L10n.of(context).searchChatsRooms
+                  : status.calcLocalizedString(context),
               hintStyle: TextStyle(
                 color: theme.colorScheme.onPrimaryContainer,
                 fontWeight: FontWeight.normal,
               ),
-              prefixIcon: controller.isSearchMode
-                  ? IconButton(
-                      tooltip: L10n.of(context).cancel,
-                      icon: const Icon(Icons.close_outlined),
-                      onPressed: controller.cancelSearch,
-                      color: theme.colorScheme.onPrimaryContainer,
-                    )
-                  : IconButton(
-                      onPressed: controller.startSearch,
-                      icon: Icon(
-                        Icons.search_outlined,
-                        color: theme.colorScheme.onPrimaryContainer,
-                      ),
+              prefixIcon: hide
+                  ? controller.isSearchMode
+                      ? IconButton(
+                          tooltip: L10n.of(context).cancel,
+                          icon: const Icon(Icons.close_outlined),
+                          onPressed: controller.cancelSearch,
+                          color: theme.colorScheme.onPrimaryContainer,
+                        )
+                      : IconButton(
+                          onPressed: controller.startSearch,
+                          icon: Icon(
+                            Icons.search_outlined,
+                            color: theme.colorScheme.onPrimaryContainer,
+                          ),
+                        )
+                  : Icon(
+                      status.icon,
+                      size: 18,
                     ),
               suffixIcon: controller.isSearchMode && globalSearch
                   ? controller.isSearching

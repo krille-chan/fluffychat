@@ -61,9 +61,10 @@ class ChatAppBarTitle extends StatelessWidget {
                   builder: (context, snapshot) {
                     final status = room.client.onSyncStatus.value ??
                         const SyncStatusUpdate(SyncStatus.waitingForResponse);
-                    final hide = room.client.onSync.value != null &&
-                        status.status != SyncStatus.error &&
-                        room.client.prevBatch != null;
+                    final hide = FluffyThemes.isColumnMode(context) ||
+                        (room.client.onSync.value != null &&
+                            status.status != SyncStatus.error &&
+                            room.client.prevBatch != null);
                     return AnimatedSize(
                       duration: FluffyThemes.animationDuration,
                       child: hide
@@ -94,18 +95,16 @@ class ChatAppBarTitle extends StatelessWidget {
                             )
                           : Row(
                               children: [
-                                if (status.error != null) ...[
-                                  Icon(
-                                    Icons.cloud_off_outlined,
-                                    size: 12,
-                                    color: status.error != null
-                                        ? Theme.of(context)
-                                            .colorScheme
-                                            .onErrorContainer
-                                        : null,
-                                  ),
-                                  const SizedBox(width: 4),
-                                ],
+                                Icon(
+                                  status.icon,
+                                  size: 12,
+                                  color: status.error != null
+                                      ? Theme.of(context)
+                                          .colorScheme
+                                          .onErrorContainer
+                                      : null,
+                                ),
+                                const SizedBox(width: 4),
                                 Expanded(
                                   child: Text(
                                     status.calcLocalizedString(context),
