@@ -2897,5 +2897,6 @@
   "supportPage": "Support-Seite",
   "@supportPage": {},
   "serverInformation": "Server-Informationen:",
-  "@serverInformation": {}
+  "@serverInformation": {},
+  "appIntroduction": "Mit FluffyChat kannst du über verschiedene Messenger hinweg mit deinen Freunden chatten. Erfahre mehr dazu auf https://matrix.org oder tippe einfach auf *Fortfahren*."
 }
