@@ -132,7 +132,10 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Opacity(
                   opacity: filterOut ? 0.5 : 1,
-                  child: RadioListTile.adaptive(
+                  child: CheckboxListTile.adaptive(
+                    checkboxShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(90),
+                    ),
                     controlAffinity: ListTileControlAffinity.trailing,
                     shape: RoundedRectangleBorder(
                       borderRadius:
@@ -144,8 +147,7 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
                       size: Avatar.defaultSize * 0.75,
                     ),
                     title: Text(displayname),
-                    groupValue: selectedRoomId,
-                    value: room.id,
+                    value: selectedRoomId == room.id,
                     onChanged: (_) => _toggleRoom(room.id),
                   ),
                 ),
