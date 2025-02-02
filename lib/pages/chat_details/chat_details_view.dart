@@ -207,6 +207,8 @@ class ChatDetailsView extends StatelessWidget {
                               label: Text(L10n.of(context).setChatDescription),
                               icon: const Icon(Icons.edit_outlined),
                               style: TextButton.styleFrom(
+                                iconColor:
+                                    theme.colorScheme.onSecondaryContainer,
                                 backgroundColor:
                                     theme.colorScheme.secondaryContainer,
                                 foregroundColor:

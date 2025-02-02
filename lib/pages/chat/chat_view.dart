@@ -7,6 +7,7 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
@@ -114,7 +115,8 @@ class ChatView extends StatelessWidget {
       ];
     } else if (!controller.room.isArchived) {
       return [
-        if (Matrix.of(context).voipPlugin != null &&
+        if (AppConfig.experimentalVoip &&
+            Matrix.of(context).voipPlugin != null &&
             controller.room.isDirectChat)
           IconButton(
             onPressed: controller.onPhoneButtonTap,
