@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {
-  static const double columnWidth = 360.0;
+  static const double columnWidth = 380.0;
 
   static const double navRailWidth = 64.0;
 

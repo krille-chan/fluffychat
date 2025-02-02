@@ -207,7 +207,7 @@ class HtmlMessage extends StatelessWidget {
                 ),
                 style: linkStyle,
               ),
-              style: const TextStyle(height: 1),
+              style: const TextStyle(height: 1.25),
             ),
           ),
         );

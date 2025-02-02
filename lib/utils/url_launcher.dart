@@ -51,7 +51,7 @@ class UrlLauncher {
         context: context,
         title: L10n.of(context).openLinkInBrowser,
         message: url,
-        okLabel: L10n.of(context).yes,
+        okLabel: L10n.of(context).open,
         cancelLabel: L10n.of(context).cancel,
       );
       if (consent != OkCancelResult.ok) return;

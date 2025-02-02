@@ -2830,5 +2830,6 @@
       "server": {}
     }
   },
-  "appWantsToUseForLoginDescription": "You hereby allow the app and website to share information about you."
+  "appWantsToUseForLoginDescription": "You hereby allow the app and website to share information about you.",
+  "open": "Open"
 }
