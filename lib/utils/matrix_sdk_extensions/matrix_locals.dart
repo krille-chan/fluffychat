@@ -350,4 +350,7 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String get cancelledSend => l10n.sendCanceled;
+
+  @override
+  String startedAPoll(String senderName) => l10n.startedAPoll(senderName);
 }

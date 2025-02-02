@@ -2821,5 +2821,27 @@
   "invalidUrl": "Invalid url",
   "addLink": "Add link",
   "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation.",
-  "previous": "Previous"
+  "previous": "Previous",
+  "poll": "Poll",
+  "question": "Question",
+  "answer": "Answer",
+  "resultsDisclosed": "Results disclosed",
+  "resultsUndisclosed": "Results undisclosed",
+  "addAnswer": "Add answer",
+  "deleteAnswer": "Delete answer",
+  "startedAPoll": "{sender} started a poll",
+  "@startedAPoll": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "countVotes": "{votes, plural, =1{1 vote} other{{votes} votes}} - {percentage}%",
+  "@countVotes": {
+    "type": "integer",
+    "placeholders": {
+      "votes": {},
+      "percentage": {}
+    }
+  }
 }

@@ -59,5 +59,6 @@ extension IsStateExtension on Event {
         EventTypes.Message,
         EventTypes.Sticker,
         EventTypes.Encrypted,
+        'org.matrix.msc3381.poll.start',
       }.contains(type);
 }

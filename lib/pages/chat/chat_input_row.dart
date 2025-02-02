@@ -102,13 +102,12 @@ class ChatInputRow extends StatelessWidget {
                 alignment: Alignment.center,
                 clipBehavior: Clip.hardEdge,
                 decoration: const BoxDecoration(),
-                child: PopupMenuButton<String>(
+                child: PopupMenuButton<AttachmentButtonAction>(
                   icon: const Icon(Icons.add_outlined),
                   onSelected: controller.onAddPopupMenuButtonSelected,
-                  itemBuilder: (BuildContext context) =>
-                      <PopupMenuEntry<String>>[
-                    PopupMenuItem<String>(
-                      value: 'file',
+                  itemBuilder: (BuildContext context) => [
+                    PopupMenuItem(
+                      value: AttachmentButtonAction.file,
                       child: ListTile(
                         leading: const CircleAvatar(
                           backgroundColor: Colors.green,
@@ -119,8 +118,8 @@ class ChatInputRow extends StatelessWidget {
                         contentPadding: const EdgeInsets.all(0),
                       ),
                     ),
-                    PopupMenuItem<String>(
-                      value: 'image',
+                    PopupMenuItem(
+                      value: AttachmentButtonAction.image,
                       child: ListTile(
                         leading: const CircleAvatar(
                           backgroundColor: Colors.blue,
@@ -132,8 +131,8 @@ class ChatInputRow extends StatelessWidget {
                       ),
                     ),
                     if (PlatformInfos.isMobile)
-                      PopupMenuItem<String>(
-                        value: 'camera',
+                      PopupMenuItem(
+                        value: AttachmentButtonAction.camera,
                         child: ListTile(
                           leading: const CircleAvatar(
                             backgroundColor: Colors.purple,
@@ -145,8 +144,8 @@ class ChatInputRow extends StatelessWidget {
                         ),
                       ),
                     if (PlatformInfos.isMobile)
-                      PopupMenuItem<String>(
-                        value: 'camera-video',
+                      PopupMenuItem(
+                        value: AttachmentButtonAction.video,
                         child: ListTile(
                           leading: const CircleAvatar(
                             backgroundColor: Colors.red,
@@ -158,8 +157,8 @@ class ChatInputRow extends StatelessWidget {
                         ),
                       ),
                     if (PlatformInfos.isMobile)
-                      PopupMenuItem<String>(
-                        value: 'location',
+                      PopupMenuItem(
+                        value: AttachmentButtonAction.location,
                         child: ListTile(
                           leading: const CircleAvatar(
                             backgroundColor: Colors.brown,
@@ -170,6 +169,18 @@ class ChatInputRow extends StatelessWidget {
                           contentPadding: const EdgeInsets.all(0),
                         ),
                       ),
+                    PopupMenuItem(
+                      value: AttachmentButtonAction.poll,
+                      child: ListTile(
+                        leading: const CircleAvatar(
+                          backgroundColor: Colors.deepOrange,
+                          foregroundColor: Colors.white,
+                          child: Icon(Icons.ballot_outlined),
+                        ),
+                        title: Text(L10n.of(context).poll),
+                        contentPadding: const EdgeInsets.all(0),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -309,7 +320,7 @@ class _ChatAccountPicker extends StatelessWidget {
           onSelected: (mxid) => _popupMenuButtonSelected(mxid, context),
           itemBuilder: (BuildContext context) => clients
               .map(
-                (client) => PopupMenuItem<String>(
+                (client) => PopupMenuItem(
                   value: client!.userID,
                   child: FutureBuilder<Profile>(
                     future: client.fetchOwnProfile(),
@@ -338,3 +349,5 @@ class _ChatAccountPicker extends StatelessWidget {
     );
   }
 }
+
+enum AttachmentButtonAction { file, image, camera, video, location, poll }

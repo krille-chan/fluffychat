@@ -1158,8 +1158,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: "928f6ba96f259ab586ccfeb6c1674aa61ea6d16a"
+      ref: "krille/implement-polls-msc"
+      resolved-ref: "2d08d24c87c3baa02e6a73e58d790df29a8546fd"
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "0.36.0"

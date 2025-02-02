@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:matrix/msc_extensions/msc_3381_polls/models/poll_event_content.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
 import 'package:fluffychat/config/themes.dart';
@@ -66,6 +67,7 @@ class Message extends StatelessWidget {
       EventTypes.Sticker,
       EventTypes.Encrypted,
       EventTypes.CallInvite,
+      PollEventContent.startType,
     }.contains(event.type)) {
       if (event.type.startsWith('m.call.')) {
         return const SizedBox.shrink();

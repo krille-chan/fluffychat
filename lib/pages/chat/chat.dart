@@ -13,6 +13,8 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
+import 'package:matrix/msc_extensions/msc_3381_polls/models/poll_event_content.dart';
+import 'package:matrix/msc_extensions/msc_3381_polls/poll_room_extension.dart';
 import 'package:record/record.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,10 +23,13 @@ import 'package:universal_html/html.dart' as html;
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
+import 'package:fluffychat/pages/chat/poll_edit_bottom_sheet.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
@@ -1117,22 +1122,42 @@ class ChatController extends State<ChatPageWithRoom>
     FocusScope.of(context).requestFocus(inputFocus);
   }
 
-  void onAddPopupMenuButtonSelected(String choice) {
-    if (choice == 'file') {
-      sendFileAction();
+  void onAddPopupMenuButtonSelected(AttachmentButtonAction choice) {
+    switch (choice) {
+      case AttachmentButtonAction.file:
+        sendFileAction();
+        break;
+      case AttachmentButtonAction.image:
+        sendImageAction();
+        break;
+      case AttachmentButtonAction.camera:
+        openCameraAction();
+        break;
+      case AttachmentButtonAction.video:
+        openVideoCameraAction();
+        break;
+      case AttachmentButtonAction.location:
+        sendLocationAction();
+        break;
+      case AttachmentButtonAction.poll:
+        sendPollAction();
+        break;
     }
-    if (choice == 'image') {
-      sendImageAction();
-    }
-    if (choice == 'camera') {
-      openCameraAction();
-    }
-    if (choice == 'camera-video') {
-      openVideoCameraAction();
-    }
-    if (choice == 'location') {
-      sendLocationAction();
-    }
+  }
+
+  void sendPollAction() async {
+    final poll = await showAdaptiveBottomSheet<PollStartContent>(
+      context: context,
+      builder: (context) => const PollEditBottomSheet(),
+    );
+
+    if (poll == null) return;
+    await room.startPoll(
+      question: poll.question.mText,
+      answers: poll.answers,
+      maxSelections: poll.maxSelections,
+      kind: poll.kind ?? PollKind.undisclosed,
+    );
   }
 
   unpinEvent(String eventId) async {

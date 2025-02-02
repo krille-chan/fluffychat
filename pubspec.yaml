@@ -63,7 +63,9 @@ dependencies:
   latlong2: ^0.9.1
   linkify: ^5.0.0
   matrix:
-    git: https://github.com/famedly/matrix-dart-sdk.git
+    git: 
+      url: https://github.com/famedly/matrix-dart-sdk.git
+      ref: krille/implement-polls-msc
   mime: ^1.0.6
   native_imaging: ^0.1.1
   opus_caf_converter_dart: ^1.0.1

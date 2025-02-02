@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:fluffychat/pages/chat/events/poll_event.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -12,6 +13,7 @@ import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:matrix/msc_extensions/msc_3381_polls/models/poll_event_content.dart';
 import '../../../config/app_config.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
@@ -292,6 +294,8 @@ class MessageContent extends StatelessWidget {
             );
           },
         );
+      case PollEventContent.startType:
+        return PollEvent(event, textColor: textColor, timeline: timeline);
       default:
         return FutureBuilder<User?>(
           future: event.fetchSenderUser(),
