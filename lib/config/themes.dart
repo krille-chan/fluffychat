@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {
@@ -19,7 +18,7 @@ abstract class FluffyThemes {
       MediaQuery.of(context).size.width > FluffyThemes.columnWidth * 3.5;
 
   static const fallbackTextStyle = TextStyle(
-    fontFamily: 'Roboto',
+    fontFamily: 'Ubuntu',
     fontFamilyFallback: ['NotoEmoji'],
   );
 
@@ -73,11 +72,7 @@ abstract class FluffyThemes {
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
-      textTheme: PlatformInfos.isDesktop
-          ? brightness == Brightness.light
-              ? Typography.material2018().black.merge(fallbackTextTheme)
-              : Typography.material2018().white.merge(fallbackTextTheme)
-          : null,
+      textTheme: fallbackTextTheme,
       dividerColor: colorScheme.surfaceContainer,
       popupMenuTheme: PopupMenuThemeData(
         shape: RoundedRectangleBorder(

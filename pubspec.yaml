@@ -121,16 +121,19 @@ flutter:
     - assets/js/package/
 
   fonts:
-    - family: Roboto
+    - family: Ubuntu
       fonts:
-        - asset: fonts/Roboto/Roboto-Regular.ttf
-        - asset: fonts/Roboto/Roboto-Italic.ttf
+        - asset: fonts/Ubuntu/Ubuntu-Regular.ttf
+        - asset: fonts/Ubuntu/Ubuntu-Bold.ttf
+          weight: 600
+        - asset: fonts/Ubuntu/Ubuntu-Italic.ttf
           style: italic
-        - asset: fonts/Roboto/Roboto-Bold.ttf
-          weight: 700
-    - family: RobotoMono
+        - asset: fonts/Ubuntu/Ubuntu-BoldItalic.ttf
+          weight: 600
+          style: italic
+    - family: UbuntuMono
       fonts:
-        - asset: fonts/Roboto/RobotoMono-Regular.ttf
+        - asset: fonts/Ubuntu/UbuntuMono-Regular.ttf
     - family: NotoEmoji
       fonts:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf

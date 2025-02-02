@@ -132,7 +132,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                   minLines: 2,
                   maxLines: 4,
                   readOnly: true,
-                  style: const TextStyle(fontFamily: 'RobotoMono'),
+                  style: const TextStyle(fontFamily: 'UbuntuMono'),
                   controller: TextEditingController(text: key),
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(16),
@@ -257,7 +257,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                           ? null
                           : [AutofillHints.password],
                       controller: _recoveryKeyTextEditingController,
-                      style: const TextStyle(fontFamily: 'RobotoMono'),
+                      style: const TextStyle(fontFamily: 'UbuntuMono'),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16),
                         hintStyle: TextStyle(
