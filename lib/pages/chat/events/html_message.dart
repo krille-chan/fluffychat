@@ -131,22 +131,6 @@ class HtmlMessage extends StatelessWidget {
       // Inside of a list so we add some prefix text:
       var text = node.text ?? '';
       if (text == '\n') text = '';
-      if (node.parent?.localName == 'li' &&
-          node.parent?.nodes.indexOf(node) == 0) {
-        if (node.parent?.parent?.localName == 'ul') {
-          text = '• $text';
-        }
-        if (node.parent?.parent?.localName == 'ol') {
-          final start =
-              int.tryParse(node.parent?.parent?.attributes['start'] ?? '1') ??
-                  1;
-          text =
-              '${(node.parent?.parent?.nodes.indexOf(node.parent) ?? 0) + start}. $text';
-        }
-        if (node.parent?.parent?.parent?.localName == 'li') {
-          text = '    $text';
-        }
-      }
 
       return LinkifySpan(
         text: text,
@@ -213,6 +197,34 @@ class HtmlMessage extends StatelessWidget {
                 style: linkStyle,
               ),
               style: const TextStyle(height: 1.25),
+            ),
+          ),
+        );
+      case 'li':
+        if (!{'ol', 'ul'}.contains(node.parent?.localName)) {
+          continue block;
+        }
+        return WidgetSpan(
+          child: Padding(
+            padding: EdgeInsets.only(left: fontSize),
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  if (node.parent?.localName == 'ul')
+                    const TextSpan(text: '• '),
+                  if (node.parent?.localName == 'ol')
+                    TextSpan(
+                      text:
+                          '${(node.parent?.nodes.indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
+                    ),
+                  ..._renderWithLineBreaks(
+                    node.nodes,
+                    context,
+                    depth: depth,
+                  ),
+                ],
+                style: TextStyle(fontSize: fontSize, color: textColor),
+              ),
             ),
           ),
         );
