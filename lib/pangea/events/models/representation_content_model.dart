@@ -103,6 +103,8 @@ class PangeaRepresentation {
     ChoreoRecord? choreo,
   }) {
     final List<OneConstructUse> uses = [];
+    final l2 = MatrixState.pangeaController.languageController.activeL2Code();
+    if (langCode != l2) return uses;
 
     // missing vital info so return
     if (event?.roomId == null && metadata?.roomId == null) {
@@ -151,14 +153,9 @@ class PangeaRepresentation {
     final content = token.text.content;
 
     if (choreo == null) {
-      final bool inUserL2 = langCode ==
-          MatrixState.pangeaController.languageController.activeL2Code();
-      final useType =
-          inUserL2 ? ConstructUseTypeEnum.wa : ConstructUseTypeEnum.unk;
-
       uses.add(
         OneConstructUse(
-          useType: useType,
+          useType: ConstructUseTypeEnum.wa,
           lemma: token.pos,
           form: token.text.content,
           category: "POS",
@@ -170,7 +167,7 @@ class PangeaRepresentation {
       for (final entry in token.morph.entries) {
         uses.add(
           OneConstructUse(
-            useType: useType,
+            useType: ConstructUseTypeEnum.wa,
             lemma: entry.value,
             form: token.text.content,
             category: entry.key,
@@ -183,7 +180,7 @@ class PangeaRepresentation {
       if (lemma.saveVocab) {
         uses.add(
           token.toVocabUse(
-            useType,
+            ConstructUseTypeEnum.wa,
             metadata,
           ),
         );
