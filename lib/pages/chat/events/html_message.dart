@@ -182,21 +182,22 @@ class HtmlMessage extends StatelessWidget {
           }
         }
         return WidgetSpan(
-          child: InkWell(
-            splashColor: Colors.transparent,
-            onTap: () =>
-                UrlLauncher(context, node.attributes['href'], node.text)
-                    .launchUrl(),
-            child: Text.rich(
-              TextSpan(
-                children: _renderWithLineBreaks(
-                  node.nodes,
-                  context,
-                  depth: depth,
+          child: Tooltip(
+            message: href,
+            child: InkWell(
+              splashColor: Colors.transparent,
+              onTap: () => UrlLauncher(context, href, node.text).launchUrl(),
+              child: Text.rich(
+                TextSpan(
+                  children: _renderWithLineBreaks(
+                    node.nodes,
+                    context,
+                    depth: depth,
+                  ),
+                  style: linkStyle,
                 ),
-                style: linkStyle,
+                style: const TextStyle(height: 1.25),
               ),
-              style: const TextStyle(height: 1.25),
             ),
           ),
         );
