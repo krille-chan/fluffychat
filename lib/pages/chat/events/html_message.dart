@@ -137,8 +137,11 @@ class HtmlMessage extends StatelessWidget {
           text = '• $text';
         }
         if (node.parent?.parent?.localName == 'ol') {
+          final start =
+              int.tryParse(node.parent?.parent?.attributes['start'] ?? '1') ??
+                  1;
           text =
-              '${(node.parent?.parent?.nodes.indexOf(node.parent) ?? 0) + 1}. $text';
+              '${(node.parent?.parent?.nodes.indexOf(node.parent) ?? 0) + start}. $text';
         }
         if (node.parent?.parent?.parent?.localName == 'li') {
           text = '    $text';
