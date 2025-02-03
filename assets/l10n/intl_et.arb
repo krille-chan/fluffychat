@@ -2898,5 +2898,16 @@
   "previous": "Eelmine",
   "@previous": {},
   "otherPartyNotLoggedIn": "Vestluse teine osapool pole hetkel võrku loginud ega seega saa neid sõnumeid kohe kätte!",
-  "@otherPartyNotLoggedIn": {}
+  "@otherPartyNotLoggedIn": {},
+  "open": "Ava",
+  "@open": {},
+  "appWantsToUseForLoginDescription": "Järgnevaga lubad sa, et rakendus ja veebisait jagavad teavet sinu kohta.",
+  "@appWantsToUseForLoginDescription": {},
+  "appWantsToUseForLogin": "Sisselogimiseks kasuta serverit „{server}“",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  }
 }
