@@ -128,8 +128,8 @@ class HtmlMessage extends StatelessWidget {
 
     // This is a text node, so we render it as text:
     if (node is! dom.Element) {
-      // Inside of a list so we add some prefix text:
       var text = node.text ?? '';
+      // Single linebreak nodes between Elements are ignored:
       if (text == '\n') text = '';
 
       return LinkifySpan(
