@@ -41,7 +41,7 @@ class ClassInvitationButtons extends StatelessWidget {
         final String initialUrl =
             kIsWeb ? html.window.origin! : Environment.frontendURL;
         FluffyShare.share(
-          "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode}",
+          "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode(context)}",
           context,
         );
       },
