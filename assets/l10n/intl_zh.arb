@@ -2885,5 +2885,14 @@
   "invalidUrl": "无效 url",
   "@invalidUrl": {},
   "unableToJoinChat": "无法加入聊天。可能其他方面已经关闭了对话。",
-  "@unableToJoinChat": {}
+  "@unableToJoinChat": {},
+  "sendImages": "发送 {count} 张图片",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "压缩",
+  "@compress": {}
 }

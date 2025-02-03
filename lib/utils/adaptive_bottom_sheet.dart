@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -8,25 +10,34 @@ Future<T?> showAdaptiveBottomSheet<T>({
   required Widget Function(BuildContext) builder,
   bool isDismissible = true,
   bool isScrollControlled = true,
-  double maxHeight = 512,
   bool useRootNavigator = true,
-}) =>
-    showModalBottomSheet(
-      context: context,
-      builder: builder,
-      // this sadly is ugly on desktops but otherwise breaks `.of(context)` calls
-      useRootNavigator: useRootNavigator,
-      isDismissible: isDismissible,
-      isScrollControlled: isScrollControlled,
-      constraints: BoxConstraints(
-        maxHeight: maxHeight,
-        maxWidth: FluffyThemes.columnWidth * 1.25,
+}) {
+  final maxHeight = min(MediaQuery.of(context).size.height - 32, 600);
+  final dialogMode = FluffyThemes.isColumnMode(context);
+  return showModalBottomSheet(
+    context: context,
+    builder: (context) => Padding(
+      padding: dialogMode
+          ? const EdgeInsets.symmetric(vertical: 32.0)
+          : EdgeInsets.zero,
+      child: ClipRRect(
+        borderRadius: dialogMode
+            ? BorderRadius.circular(AppConfig.borderRadius)
+            : const BorderRadius.only(
+                topLeft: Radius.circular(AppConfig.borderRadius),
+                topRight: Radius.circular(AppConfig.borderRadius),
+              ),
+        child: builder(context),
       ),
-      clipBehavior: Clip.hardEdge,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(AppConfig.borderRadius),
-          topRight: Radius.circular(AppConfig.borderRadius),
-        ),
-      ),
-    );
+    ),
+    useRootNavigator: useRootNavigator,
+    isDismissible: isDismissible,
+    isScrollControlled: isScrollControlled,
+    constraints: BoxConstraints(
+      maxHeight: maxHeight + (dialogMode ? 64 : 0),
+      maxWidth: FluffyThemes.columnWidth * 1.25,
+    ),
+    backgroundColor: Colors.transparent,
+    clipBehavior: Clip.hardEdge,
+  );
+}

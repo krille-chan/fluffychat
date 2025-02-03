@@ -10,16 +10,20 @@ import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dar
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 
 class AnalyticsPopupWrapper extends StatefulWidget {
-  AnalyticsPopupWrapper({super.key, this.constructZoom, required this.view});
+  const AnalyticsPopupWrapper({
+    super.key,
+    this.constructZoom,
+    required this.view,
+  });
 
-  ConstructTypeEnum view;
-  ConstructIdentifier? constructZoom;
+  final ConstructTypeEnum view;
+  final ConstructIdentifier? constructZoom;
 
   @override
-  _AnalyticsPopupWrapperState createState() => _AnalyticsPopupWrapperState();
+  AnalyticsPopupWrapperState createState() => AnalyticsPopupWrapperState();
 }
 
-class _AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
+class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
   ConstructIdentifier? localConstructZoom;
   ConstructTypeEnum localView = ConstructTypeEnum.vocab;
 

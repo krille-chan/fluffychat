@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -12,7 +12,6 @@ void pLogoutAction(BuildContext context, {bool? isDestructiveAction}) async {
         context: context,
         title: L10n.of(context).areYouSureYouWantToLogout,
         message: L10n.of(context).noBackupWarning,
-        isDestructiveAction: isDestructiveAction ?? false,
         okLabel: L10n.of(context).logout,
         cancelLabel: L10n.of(context).cancel,
       ) ==

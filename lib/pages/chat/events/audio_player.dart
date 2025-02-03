@@ -11,17 +11,18 @@ import 'package:matrix/matrix.dart';
 import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
+import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import '../../../utils/matrix_sdk_extensions/event_extension.dart';
 
 class AudioPlayerWidget extends StatefulWidget {
   final Color color;
+  final Color linkColor;
   final double fontSize;
   // #Pangea
   // final Event event;
@@ -30,8 +31,9 @@ class AudioPlayerWidget extends StatefulWidget {
   final bool autoplay;
   final Function(bool)? setIsPlayingAudio;
   final double padding;
+  final ChatController chatController;
+  final bool isOverlay;
   final MessageOverlayController? overlayController;
-  final ChatController? chatController;
   // Pangea#
 
   static String? currentId;
@@ -45,7 +47,8 @@ class AudioPlayerWidget extends StatefulWidget {
 
   const AudioPlayerWidget(
     this.event, {
-    this.color = Colors.black,
+    required this.color,
+    required this.linkColor,
     required this.fontSize,
     // #Pangea
     this.matrixFile,
@@ -54,8 +57,9 @@ class AudioPlayerWidget extends StatefulWidget {
     this.sectionEndMS,
     this.setIsPlayingAudio,
     this.padding = 12.0,
+    required this.chatController,
+    required this.isOverlay,
     this.overlayController,
-    this.chatController,
     // Pangea#
     super.key,
   });
@@ -356,7 +360,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           : _downloadAction();
     }
 
-    _onShowToolbar = widget.chatController?.showToolbarStream.stream
+    _onShowToolbar = widget.chatController.showToolbarStream.stream
         .where((eventID) => eventID == widget.event?.eventId)
         .listen((eventID) {
       audioPlayer?.pause();
@@ -373,16 +377,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final statusText = this.statusText ??= _durationString ?? '00:00';
     final audioPlayer = this.audioPlayer;
 
-    final body = widget.event?.content.tryGet<String>('body') ??
-        widget.event?.content.tryGet<String>('filename');
-    final displayBody = body != null &&
-        body.isNotEmpty &&
-        widget.event?.content['org.matrix.msc1767.audio'] == null;
+    // #Pangea
+    // final fileDescription = widget.event.fileDescription;
+    final fileDescription = widget.event?.fileDescription;
+    // Pangea#
 
     final wavePosition =
         (currentPosition / maxPosition) * AudioPlayerWidget.wavesCount;
-
-    final fontSize = 12 * AppConfig.fontSizeFactor;
 
     return Padding(
       // #Pangea
@@ -508,46 +509,66 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                   ),
                 ),
                 // #Pangea
-                // ),
                 // const SizedBox(width: 8),
-                // Badge(
-                //   isLabelVisible: audioPlayer != null,
-                //   label: audioPlayer == null
-                //       ? null
-                //       : Text(
-                //           '${audioPlayer.speed.toString()}x',
-                //         ),
-                //   backgroundColor: theme.colorScheme.secondary,
-                //   textColor: theme.colorScheme.onSecondary,
-                //   child: InkWell(
-                //     splashColor: widget.color.withAlpha(128),
-                //     borderRadius: BorderRadius.circular(64),
-                //     onTap: audioPlayer == null ? null : _toggleSpeed,
+                // AnimatedCrossFade(
+                //   firstChild: Padding(
+                //     padding: const EdgeInsets.only(right: 8.0),
                 //     child: Icon(
                 //       Icons.mic_none_outlined,
                 //       color: widget.color,
                 //     ),
                 //   ),
+                //   secondChild: Material(
+                //     color: widget.color.withAlpha(64),
+                //     borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                //     child: InkWell(
+                //       borderRadius:
+                //           BorderRadius.circular(AppConfig.borderRadius),
+                //       onTap: _toggleSpeed,
+                //       child: SizedBox(
+                //         width: 32,
+                //         height: 20,
+                //         child: Center(
+                //           child: Text(
+                //             '${audioPlayer?.speed.toString()}x',
+                //             style: TextStyle(
+                //               color: widget.color,
+                //               fontSize: 9,
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                //   alignment: Alignment.center,
+                //   crossFadeState: audioPlayer == null
+                //       ? CrossFadeState.showFirst
+                //       : CrossFadeState.showSecond,
+                //   duration: FluffyThemes.animationDuration,
                 // ),
-                // const SizedBox(width: 8),
                 // Pangea#
               ],
             ),
           ),
-          if (displayBody) ...[
+          if (fileDescription != null
+                  // #Pangea
+                  &&
+                  widget.event != null
+              // Pangea#
+              ) ...[
             const SizedBox(height: 8),
             Linkify(
-              text: body,
+              text: fileDescription,
               style: TextStyle(
                 color: widget.color,
-                fontSize: fontSize,
+                fontSize: widget.fontSize,
               ),
               options: const LinkifyOptions(humanize: false),
               linkStyle: TextStyle(
-                color: widget.color.withAlpha(150),
-                fontSize: fontSize,
+                color: widget.linkColor,
+                fontSize: widget.fontSize,
                 decoration: TextDecoration.underline,
-                decorationColor: widget.color.withAlpha(150),
+                decorationColor: widget.linkColor,
               ),
               onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             ),

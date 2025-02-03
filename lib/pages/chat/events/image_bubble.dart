@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
+import 'package:fluffychat/utils/file_description.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../widgets/blur_hash.dart';
 
@@ -13,12 +16,15 @@ class ImageBubble extends StatelessWidget {
   final BoxFit fit;
   final bool maxSize;
   final Color? backgroundColor;
+  final Color? textColor;
+  final Color? linkColor;
   final bool thumbnailOnly;
   final bool animated;
   final double width;
   final double height;
   final void Function()? onTap;
   final BorderRadius? borderRadius;
+  final Timeline? timeline;
 
   const ImageBubble(
     this.event, {
@@ -32,6 +38,9 @@ class ImageBubble extends StatelessWidget {
     this.animated = false,
     this.onTap,
     this.borderRadius,
+    this.timeline,
+    this.textColor,
+    this.linkColor,
     super.key,
   });
 
@@ -62,6 +71,7 @@ class ImageBubble extends StatelessWidget {
       context: context,
       builder: (_) => ImageViewer(
         event,
+        timeline: timeline,
         outerContext: context,
       ),
     );
@@ -73,35 +83,64 @@ class ImageBubble extends StatelessWidget {
 
     final borderRadius =
         this.borderRadius ?? BorderRadius.circular(AppConfig.borderRadius);
-    return Material(
-      color: Colors.transparent,
-      clipBehavior: Clip.hardEdge,
-      shape: RoundedRectangleBorder(
-        borderRadius: borderRadius,
-        side: BorderSide(
-          color: event.messageType == MessageTypes.Sticker
-              ? Colors.transparent
-              : theme.dividerColor,
-        ),
-      ),
-      child: InkWell(
-        onTap: () => _onTap(context),
-        borderRadius: borderRadius,
-        child: Hero(
-          tag: event.eventId,
-          child: MxcImage(
-            event: event,
-            width: width,
-            height: height,
-            fit: fit,
-            animated: animated,
-            isThumbnail: thumbnailOnly,
-            placeholder: event.messageType == MessageTypes.Sticker
-                ? null
-                : _buildPlaceholder,
+
+    final fileDescription = event.fileDescription;
+    final textColor = this.textColor;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      spacing: 8,
+      children: [
+        Material(
+          color: Colors.transparent,
+          clipBehavior: Clip.hardEdge,
+          shape: RoundedRectangleBorder(
+            borderRadius: borderRadius,
+            side: BorderSide(
+              color: event.messageType == MessageTypes.Sticker
+                  ? Colors.transparent
+                  : theme.dividerColor,
+            ),
+          ),
+          child: InkWell(
+            onTap: () => _onTap(context),
+            borderRadius: borderRadius,
+            child: Hero(
+              tag: event.eventId,
+              child: MxcImage(
+                event: event,
+                width: width,
+                height: height,
+                fit: fit,
+                animated: animated,
+                isThumbnail: thumbnailOnly,
+                placeholder: event.messageType == MessageTypes.Sticker
+                    ? null
+                    : _buildPlaceholder,
+              ),
+            ),
           ),
         ),
-      ),
+        if (fileDescription != null && textColor != null)
+          SizedBox(
+            width: width,
+            child: Linkify(
+              text: fileDescription,
+              style: TextStyle(
+                color: textColor,
+                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+              ),
+              options: const LinkifyOptions(humanize: false),
+              linkStyle: TextStyle(
+                color: linkColor,
+                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                decoration: TextDecoration.underline,
+                decorationColor: linkColor,
+              ),
+              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+            ),
+          ),
+      ],
     );
   }
 }

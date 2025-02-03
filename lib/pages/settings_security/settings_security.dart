@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -29,25 +30,20 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       title: L10n.of(context).pleaseChooseAPasscode,
       message: L10n.of(context).pleaseEnter4Digits,
       cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          validator: (text) {
-            if (text!.isEmpty ||
-                (text.length == 4 && int.tryParse(text)! >= 0)) {
-              return null;
-            }
-            return L10n.of(context).pleaseEnter4Digits;
-          },
-          keyboardType: TextInputType.number,
-          obscureText: true,
-          maxLines: 1,
-          minLines: 1,
-          maxLength: 4,
-        ),
-      ],
+      validator: (text) {
+        if (text.isEmpty || (text.length == 4 && int.tryParse(text)! >= 0)) {
+          return null;
+        }
+        return L10n.of(context).pleaseEnter4Digits;
+      },
+      keyboardType: TextInputType.number,
+      obscureText: true,
+      maxLines: 1,
+      minLines: 1,
+      maxLength: 4,
     );
     if (newLock != null) {
-      await AppLock.of(context).changePincode(newLock.single);
+      await AppLock.of(context).changePincode(newLock);
     }
   }
 
@@ -82,7 +78,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
           message: L10n.of(context).deactivateAccountWarning,
           okLabel: L10n.of(context).ok,
           cancelLabel: L10n.of(context).cancel,
-          isDestructiveAction: true,
+          isDestructive: true,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -92,18 +88,14 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       useRootNavigator: false,
       context: context,
       title: L10n.of(context).confirmMatrixId,
-      textFields: [
-        DialogTextField(
-          validator: (text) => text == supposedMxid
-              ? null
-              : L10n.of(context).supposedMxid(supposedMxid),
-        ),
-      ],
-      isDestructiveAction: true,
+      validator: (text) => text == supposedMxid
+          ? null
+          : L10n.of(context).supposedMxid(supposedMxid),
+      isDestructive: true,
       okLabel: L10n.of(context).delete,
       cancelLabel: L10n.of(context).cancel,
     );
-    if (mxids == null || mxids.length != 1 || mxids.single != supposedMxid) {
+    if (mxids == null || mxids.length != 1 || mxids != supposedMxid) {
       return;
     }
     final input = await showTextInputDialog(
@@ -112,22 +104,18 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       title: L10n.of(context).pleaseEnterYourPassword,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      isDestructiveAction: true,
-      textFields: [
-        const DialogTextField(
-          obscureText: true,
-          hintText: '******',
-          minLines: 1,
-          maxLines: 1,
-        ),
-      ],
+      isDestructive: true,
+      obscureText: true,
+      hintText: '******',
+      minLines: 1,
+      maxLines: 1,
     );
     if (input == null) return;
     await showFutureLoadingDialog(
       context: context,
       future: () => Matrix.of(context).client.deactivateAccount(
             auth: AuthenticationPassword(
-              password: input.single,
+              password: input,
               identifier: AuthenticationUserIdentifier(
                 user: Matrix.of(context).client.userID!,
               ),

@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 
 class AdaptiveDialogAction extends StatelessWidget {
   final VoidCallback? onPressed;
+  final bool autofocus;
   final Widget child;
 
   const AdaptiveDialogAction({
     super.key,
     required this.onPressed,
     required this.child,
+    this.autofocus = false,
   });
 
   @override
@@ -19,10 +21,18 @@ class AdaptiveDialogAction extends StatelessWidget {
       case TargetPlatform.fuchsia:
       case TargetPlatform.linux:
       case TargetPlatform.windows:
-        return TextButton(onPressed: onPressed, child: child);
+        return TextButton(
+          onPressed: onPressed,
+          autofocus: autofocus,
+          child: child,
+        );
       case TargetPlatform.iOS:
       case TargetPlatform.macOS:
-        return CupertinoDialogAction(onPressed: onPressed, child: child);
+        return CupertinoDialogAction(
+          onPressed: onPressed,
+          isDefaultAction: autofocus,
+          child: child,
+        );
     }
   }
 }

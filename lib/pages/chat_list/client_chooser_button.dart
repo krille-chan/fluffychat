@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
@@ -8,6 +7,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
 import 'package:fluffychat/pangea/user/utils/logout.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 

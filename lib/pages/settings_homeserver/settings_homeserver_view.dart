@@ -88,7 +88,7 @@ class SettingsHomeserverView extends StatelessWidget {
                       if (supportPage != null)
                         ListTile(
                           title: Text(L10n.of(context).supportPage),
-                          subtitle: Text(supportPage),
+                          subtitle: Text(supportPage.toString()),
                         ),
                       if (contacts != null)
                         ...contacts.map(

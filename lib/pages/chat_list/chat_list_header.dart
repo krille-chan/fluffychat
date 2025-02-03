@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
-import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicators.dart';
+import 'package:fluffychat/utils/sync_status_localization.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
   final ChatListController controller;
@@ -20,44 +22,24 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-    final selectMode = controller.selectMode;
+    final client = Matrix.of(context).client;
 
     return SliverAppBar(
       floating: true,
-      // #Pangea
-      // toolbarHeight: 72,
-      toolbarHeight: controller.isSearchMode ? 72 : 175,
-      // Pangea#
-      pinned:
-          FluffyThemes.isColumnMode(context) || selectMode != SelectMode.normal,
-      scrolledUnderElevation: selectMode == SelectMode.normal ? 0 : null,
-      // #Pangea
-      // backgroundColor:
-      //     selectMode == SelectMode.normal ? Colors.transparent : null,
-      // Pangea#
+      toolbarHeight: 72,
+      pinned: FluffyThemes.isColumnMode(context),
+      scrolledUnderElevation: 0,
+      backgroundColor: Colors.transparent,
       automaticallyImplyLeading: false,
-      // #Pangea
-      // leading: selectMode == SelectMode.normal
-      //     ? null
-      //     : IconButton(
-      //         tooltip: L10n.of(context).cancel,
-      //         icon: const Icon(Icons.close_outlined),
-      //         onPressed: controller.cancelAction,
-      //         color: theme.colorScheme.primary,
-      //       ),
-      // Pangea#
-      title:
-          // #Pangea
-          // selectMode == SelectMode.share
-          //     ? Text(
-          //         L10n.of(context).share,
-          //         key: const ValueKey(SelectMode.share),
-          //       )
-          Column(
-        children: [
-          // Pangea#
-          TextField(
+      title: StreamBuilder(
+        stream: client.onSyncStatus.stream,
+        builder: (context, snapshot) {
+          final status = client.onSyncStatus.value ??
+              const SyncStatusUpdate(SyncStatus.waitingForResponse);
+          final hide = client.onSync.value != null &&
+              status.status != SyncStatus.error &&
+              client.prevBatch != null;
+          return TextField(
             controller: controller.searchController,
             focusNode: controller.searchFocusNode,
             textInputAction: TextInputAction.search,
@@ -73,25 +55,36 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 borderRadius: BorderRadius.circular(99),
               ),
               contentPadding: EdgeInsets.zero,
-              hintText: L10n.of(context).searchChatsRooms,
+              hintText: hide
+                  ? L10n.of(context).searchChatsRooms
+                  : status.calcLocalizedString(context),
               hintStyle: TextStyle(
-                color: theme.colorScheme.onPrimaryContainer,
+                color: status.error != null
+                    ? theme.colorScheme.error
+                    : theme.colorScheme.onPrimaryContainer,
                 fontWeight: FontWeight.normal,
               ),
-              floatingLabelBehavior: FloatingLabelBehavior.never,
-              prefixIcon: controller.isSearchMode
-                  ? IconButton(
-                      tooltip: L10n.of(context).cancel,
-                      icon: const Icon(Icons.close_outlined),
-                      onPressed: controller.cancelSearch,
-                      color: theme.colorScheme.onPrimaryContainer,
-                    )
-                  : IconButton(
-                      onPressed: controller.startSearch,
-                      icon: Icon(
-                        Icons.search_outlined,
-                        color: theme.colorScheme.onPrimaryContainer,
-                      ),
+              prefixIcon: hide
+                  ? controller.isSearchMode
+                      ? IconButton(
+                          tooltip: L10n.of(context).cancel,
+                          icon: const Icon(Icons.close_outlined),
+                          onPressed: controller.cancelSearch,
+                          color: theme.colorScheme.onPrimaryContainer,
+                        )
+                      : IconButton(
+                          onPressed: controller.startSearch,
+                          icon: Icon(
+                            Icons.search_outlined,
+                            color: theme.colorScheme.onPrimaryContainer,
+                          ),
+                        )
+                  : Icon(
+                      status.icon,
+                      color: status.error != null
+                          ? theme.colorScheme.error
+                          : theme.colorScheme.onPrimaryContainer,
+                      size: 18,
                     ),
               suffixIcon: controller.isSearchMode && globalSearch
                   ? controller.isSearching
@@ -107,59 +100,33 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           ),
                         )
-                      // #Pangea
-                      : const SizedBox(
-                          width: 0,
-                          child: ClientChooserButton(),
+                      : TextButton.icon(
+                          onPressed: controller.setServer,
+                          style: TextButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(99),
+                            ),
+                            textStyle: const TextStyle(fontSize: 12),
+                          ),
+                          icon: const Icon(Icons.edit_outlined, size: 16),
+                          label: Text(
+                            controller.searchServer ??
+                                Matrix.of(context).client.homeserver!.host,
+                            maxLines: 2,
+                          ),
                         )
-                  // : TextButton.icon(
-                  //     onPressed: controller.setServer,
-                  //     style: TextButton.styleFrom(
-                  //       shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(99),
-                  //       ),
-                  //       textStyle: const TextStyle(fontSize: 12),
-                  //     ),
-                  //     icon: const Icon(Icons.edit_outlined, size: 16),
-                  //     label: Text(
-                  //       controller.searchServer ??
-                  //           Matrix.of(context).client.homeserver!.host,
-                  //       maxLines: 2,
-                  //     ),
-                  //   )
-                  // #Pangea
                   : const SizedBox(
                       width: 0,
                       child: ClientChooserButton(
                           // #Pangea
-                          // controller
+                          // controller,
                           // Pangea#
                           ),
                     ),
             ),
-          ),
-          // #Pangea
-          if (!controller.isSearchMode)
-            const Padding(
-              padding: EdgeInsets.only(top: 16.0),
-              child: LearningProgressIndicators(),
-            ),
-          // Pangea#
-        ],
+          );
+        },
       ),
-      // #Pangea
-      // actions: selectMode == SelectMode.share
-      //     ? [
-      //         Padding(
-      //           padding: const EdgeInsets.symmetric(
-      //             horizontal: 16.0,
-      //             vertical: 8.0,
-      //           ),
-      //           child: ClientChooserButton(controller),
-      //         ),
-      //       ]
-      //     : null,
-      // Pangea#
     );
   }
 

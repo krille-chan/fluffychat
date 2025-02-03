@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,6 +11,8 @@ import 'package:fluffychat/pangea/chat_settings/pages/pangea_chat_details.dart';
 import 'package:fluffychat/pangea/spaces/utils/set_class_name.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -54,20 +55,16 @@ class ChatDetailsController extends State<ChatDetails> {
   //     title: L10n.of(context).changeTheNameOfTheGroup,
   //     okLabel: L10n.of(context).ok,
   //     cancelLabel: L10n.of(context).cancel,
-  //     textFields: [
-  //       DialogTextField(
-  //         initialText: room.getLocalizedDisplayname(
-  //           MatrixLocals(
-  //             L10n.of(context),
-  //           ),
-  //         ),
+  //     initialText: room.getLocalizedDisplayname(
+  //       MatrixLocals(
+  //         L10n.of(context),
   //       ),
-  //     ],
+  //     ),
   //   );
   //   if (input == null) return;
   //   final success = await showFutureLoadingDialog(
   //     context: context,
-  //     future: () => room.setName(input.single),
+  //     future: () => room.setName(input),
   //   );
   //   if (success.error == null) {
   //     ScaffoldMessenger.of(context).showSnackBar(
@@ -84,20 +81,16 @@ class ChatDetailsController extends State<ChatDetails> {
       title: L10n.of(context).setChatDescription,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          hintText: L10n.of(context).noChatDescriptionYet,
-          initialText: room.topic,
-          minLines: 4,
-          maxLines: 8,
-        ),
-      ],
+      hintText: L10n.of(context).noChatDescriptionYet,
+      initialText: room.topic,
+      minLines: 4,
+      maxLines: 8,
     );
     if (input == null) return;
     // #Pangea
     await showFutureLoadingDialog(
       context: context,
-      future: () => room.setDescription(input.single),
+      future: () => room.setDescription(input),
     );
     // final success = await showFutureLoadingDialog(
     //   context: context,
@@ -131,30 +124,31 @@ class ChatDetailsController extends State<ChatDetails> {
     final room = Matrix.of(context).client.getRoomById(roomId!);
     final actions = [
       if (PlatformInfos.isMobile)
-        SheetAction(
-          key: AvatarAction.camera,
+        AdaptiveModalAction(
+          value: AvatarAction.camera,
           label: L10n.of(context).openCamera,
           isDefaultAction: true,
-          icon: Icons.camera_alt_outlined,
+          icon: const Icon(Icons.camera_alt_outlined),
         ),
-      SheetAction(
-        key: AvatarAction.file,
+      AdaptiveModalAction(
+        value: AvatarAction.file,
         label: L10n.of(context).openGallery,
-        icon: Icons.photo_outlined,
+        icon: const Icon(Icons.photo_outlined),
       ),
       if (room?.avatar != null)
-        SheetAction(
-          key: AvatarAction.remove,
+        AdaptiveModalAction(
+          value: AvatarAction.remove,
           label: L10n.of(context).delete,
-          isDestructiveAction: true,
-          icon: Icons.delete_outlined,
+          isDestructive: true,
+          icon: const Icon(Icons.delete_outlined),
         ),
     ];
     final action = actions.length == 1
-        ? actions.single.key
-        : await showModalActionSheet<AvatarAction>(
+        ? actions.single.value
+        : await showModalActionPopup<AvatarAction>(
             context: context,
             title: L10n.of(context).editRoomAvatar,
+            cancelLabel: L10n.of(context).cancel,
             actions: actions,
           );
     if (action == null) return;

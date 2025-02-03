@@ -1918,6 +1918,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "synchronizingPleaseWaitCounter": " Synchronizing… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
   "systemTheme": "System",
   "@systemTheme": {
     "type": "text",
@@ -4668,6 +4675,7 @@
   "chooseBestDefinition": "What does this word mean?",
   "chooseBaseForm": "Choose the base form",
   "notTheCodeError": "Sorry, that's not the code!",
+  "previous": "Previous",
   "totalXP": "Total XP",
   "numLemmas": "Total number of lemmas",
   "listOfLemmas": "List of lemmas",
@@ -4745,6 +4753,8 @@
   },
   "notInClass": "Not in a class!",
   "noClassCode": "No class code!",
+  "previous": "Previous",
+  "otherPartyNotLoggedIn": "The other party is currently not logged in and therefore cannot receive messages!",
   "chooseCorrectLabel": "Choose the correct label",
   "levelPopupTitle": "Congratulations on reaching\nLevel {level}",
   "@levelPopupTitle": {
@@ -4774,6 +4784,7 @@
   "activityPlannerOverviewInstructionsBody": "Choose a topic, mode, learning objective and generate an activity for the chat!",
   "completeActivitiesToUnlock": "Complete the highlighted word activities to unlock",
   "myBookmarkedActivities": "My Bookmarked Activities",
+  "noBookmarkedActivities": "No bookmarked activities",
   "noBookmarkedActivities": "When you bookmark activities, they will appear here. Bookmarked activities can be re-used across spaces and chats.",
   "activityTitle": "Activity Title",
   "addVocabulary": "Add Vocabulary",
@@ -4791,5 +4802,17 @@
   },
   "constructUsePvmDesc": "Produced in voice message",
   "lockedMorphFeature": "Waiting to be unlocked",
-  "leaveSpaceDescription": "The space will be moved to the archive. Other users will be able to see that you have left the chat."
+  "leaveSpaceDescription": "The space will be moved to the archive. Other users will be able to see that you have left the chat.",
+  "otherPartyNotLoggedIn": "The other party is currently not logged in and therefore cannot receive messages!",
+  "appWantsToUseForLogin": "Use '{server}' to log in",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "appWantsToUseForLoginDescription": "You hereby allow the app and website to share information about you.",
+  "open": "Open",
+  "waitingForServer": "Waiting for server...",
+  "appIntroduction": "FluffyChat lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*."
 }

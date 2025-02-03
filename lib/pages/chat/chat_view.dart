@@ -12,7 +12,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
-import 'package:fluffychat/pages/chat/chat_emoji_picker.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
@@ -26,12 +25,12 @@ import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import '../../utils/stream_extension.dart';
+import 'chat_emoji_picker.dart';
 
 enum _EventContextAction { info, report }
 
@@ -144,7 +143,8 @@ class ChatView extends StatelessWidget {
     }
     // } else if (!controller.room.isArchived) {
     //   return [
-    //     if (Matrix.of(context).voipPlugin != null &&
+    //     if (AppConfig.experimentalVoip &&
+    //         Matrix.of(context).voipPlugin != null &&
     //         controller.room.isDirectChat)
     //       IconButton(
     //         onPressed: controller.onPhoneButtonTap,
@@ -287,6 +287,8 @@ class ChatView extends StatelessWidget {
                 ),
               ),
               // #Pangea
+              // floatingActionButtonLocation:
+              //     FloatingActionButtonLocation.miniCenterFloat,
               // floatingActionButton: controller.showScrollDownButton &&
               //         controller.selectedEvents.isEmpty
               //     ? Padding(
@@ -295,20 +297,19 @@ class ChatView extends StatelessWidget {
               //           onPressed: controller.scrollDown,
               //           heroTag: null,
               //           mini: true,
+              //           backgroundColor: theme.colorScheme.surface,
+              //           foregroundColor: theme.colorScheme.onSurface,
               //           child: const Icon(Icons.arrow_downward_outlined),
               //         ),
               //       )
               //     : null,
-              // Pangea#
-              body:
-                  // #Pangea
-                  // DropTarget(
-                  //   onDragDone: controller.onDragDone,
-                  //   onDragEntered: controller.onDragEntered,
-                  //   onDragExited: controller.onDragExited,
-                  //   child:
-                  // Pangea#
-                  Stack(
+              // body: DropTarget(
+              //   onDragDone: controller.onDragDone,
+              //   onDragEntered: controller.onDragEntered,
+              //   onDragExited: controller.onDragExited,
+              //   child: Stack(
+              body: Stack(
+                // Pangea#
                 children: <Widget>[
                   if (accountConfig.wallpaperUrl != null)
                     Opacity(
@@ -405,7 +406,6 @@ class ChatView extends StatelessWidget {
                                   // : Column(
                                   //     mainAxisSize: MainAxisSize.min,
                                   //     children: [
-                                  //       const ConnectionStatusHeader(),
                                   //       ReactionsPicker(controller),
                                   //       ReplyDisplay(controller),
                                   //       ChatInputRow(controller),
@@ -424,9 +424,7 @@ class ChatView extends StatelessWidget {
                           ],
                         ),
                         // #Pangea
-                        ChatViewBackground(
-                          choreographer: controller.choreographer,
-                        ),
+                        ChatViewBackground(controller.choreographer),
                         Positioned(
                           left: 0,
                           right: 0,
@@ -484,7 +482,6 @@ class ChatView extends StatelessWidget {
 
                                   child: Column(
                                     children: [
-                                      const ConnectionStatusHeader(),
                                       ITBar(
                                         choreographer: controller.choreographer,
                                       ),
@@ -518,7 +515,7 @@ class ChatView extends StatelessWidget {
                   // #Pangea
                   // if (controller.dragging)
                   //   Container(
-                  //     color: theme.scaffoldBackgroundColor.withOpacity(0.9),
+                  //     color: theme.scaffoldBackgroundColor.withAlpha(230),
                   //     alignment: Alignment.center,
                   //     child: const Icon(
                   //       Icons.upload_outlined,

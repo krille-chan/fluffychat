@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/toolbar/widgets/message_buttons.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
+import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -157,10 +158,19 @@ class Message extends StatelessWidget {
     final textColor = ownMessage
         ?
         // #Pangea
-        // theme.colorScheme.onPrimary
+        // theme.brightness == Brightness.light
+        //     ? theme.colorScheme.onPrimary
+        //     : theme.colorScheme.onPrimaryContainer
         ThemeData.dark().colorScheme.onPrimary
         // Pangea#
         : theme.colorScheme.onSurface;
+
+    final linkColor = ownMessage
+        ? theme.brightness == Brightness.light
+            ? theme.colorScheme.primaryFixed
+            : theme.colorScheme.onTertiaryContainer
+        : theme.colorScheme.primary;
+
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
@@ -180,6 +190,7 @@ class Message extends StatelessWidget {
               MessageTypes.Image,
               MessageTypes.Sticker,
             }.contains(event.messageType) &&
+            event.fileDescription == null &&
             !event.redacted) ||
         (event.messageType == MessageTypes.Text &&
             event.relationshipType == null &&
@@ -195,7 +206,9 @@ class Message extends StatelessWidget {
       color = displayEvent.status.isError
           ? Colors.redAccent
           // #Pangea
-          // : ThemeData.dark().colorScheme.primary;
+          // : theme.brightness == Brightness.light
+          //     ? theme.colorScheme.primary
+          //     : theme.colorScheme.primaryContainer;
           : Color.alphaBlend(
               Colors.white.withAlpha(180),
               ThemeData.dark().colorScheme.primary,
@@ -212,10 +225,9 @@ class Message extends StatelessWidget {
           WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
             animateIn = false;
             // #Pangea
-            if (context.mounted) {
-              // Pangea#
-              setState(resetAnimateIn);
-            }
+            // setState(resetAnimateIn);
+            if (context.mounted) setState(resetAnimateIn);
+            // Pangea#
           });
         }
         return AnimatedSize(
@@ -248,13 +260,10 @@ class Message extends StatelessWidget {
                         child: Material(
                           borderRadius:
                               BorderRadius.circular(AppConfig.borderRadius / 2),
-                          color: selected
+                          color: selected || highlightMarker
                               ? theme.colorScheme.secondaryContainer
-                                  .withAlpha(100)
-                              : highlightMarker
-                                  ? theme.colorScheme.tertiaryContainer
-                                      .withAlpha(100)
-                                  : Colors.transparent,
+                                  .withAlpha(128)
+                              : Colors.transparent,
                         ),
                       ),
                     ),
@@ -520,8 +529,10 @@ class Message extends StatelessWidget {
                                                 MessageContent(
                                                   displayEvent,
                                                   textColor: textColor,
+                                                  linkColor: linkColor,
                                                   onInfoTab: onInfoTab,
                                                   borderRadius: borderRadius,
+                                                  timeline: timeline,
                                                   // #Pangea
                                                   pangeaMessageEvent:
                                                       pangeaMessageEvent,

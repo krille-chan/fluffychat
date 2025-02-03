@@ -17,6 +17,8 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		A10584DF00E2CBE024A7FEB1 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F30C00BA233E7CA67AFBED5 /* Pods_Runner.framework */; };
+		BCFA6E528F0B53B71B652C77 /* Pods_FluffyChat_Share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1F89C23F73F2B8E7922A37 /* Pods_FluffyChat_Share.framework */; };
 		C1005C45261071B5002F4F32 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1005C44261071B5002F4F32 /* ShareViewController.swift */; };
 		C1005C48261071B5002F4F32 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1005C46261071B5002F4F32 /* MainInterface.storyboard */; };
 		C1005C4C261071B5002F4F32 /* FluffyChat Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C1005C42261071B5002F4F32 /* FluffyChat Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -60,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		09545B0C8C397F94966EA956 /* Pods-FluffyChat Share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluffyChat Share.debug.xcconfig"; path = "Target Support Files/Pods-FluffyChat Share/Pods-FluffyChat Share.debug.xcconfig"; sourceTree = "<group>"; };
+		0BDDCB1746F84339AF1A5F40 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		23120B990D2B5081843FB313 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +81,8 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B1F89C23F73F2B8E7922A37 /* Pods_FluffyChat_Share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FluffyChat_Share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F30C00BA233E7CA67AFBED5 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1005C42261071B5002F4F32 /* FluffyChat Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FluffyChat Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1005C44261071B5002F4F32 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C1005C47261071B5002F4F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };

@@ -12,9 +12,10 @@ import 'package:mime/mime.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:fluffychat/utils/other_party_can_receive.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/size_string.dart';
-import 'package:fluffychat/widgets/adaptive_dialog_action.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import '../../utils/resize_video.dart';
 
 class SendFileDialog extends StatefulWidget {
@@ -37,17 +38,20 @@ class SendFileDialogState extends State<SendFileDialog> {
   bool compress = true;
 
   /// Images smaller than 20kb don't need compression.
-  static const int minSizeToCompress = 20 * 1024;
+  static const int minSizeToCompress = 20 * 1000;
 
   Future<void> _send() async {
     final scaffoldMessenger = ScaffoldMessenger.of(widget.outerContext);
     final l10n = L10n.of(context);
 
     try {
+      if (!widget.room.otherPartyCanReceiveMessages) {
+        throw OtherPartyCanNotReceiveMessages();
+      }
       scaffoldMessenger.showLoadingSnackBar(l10n.prepareSendingAttachment);
       Navigator.of(context, rootNavigator: false).pop();
       final clientConfig = await widget.room.client.getConfig();
-      final maxUploadSize = clientConfig.mUploadSize ?? 100 * 1024 * 1024;
+      final maxUploadSize = clientConfig.mUploadSize ?? 100 * 1000 * 1000;
 
       for (final xfile in widget.files) {
         final MatrixFile file;
@@ -66,6 +70,9 @@ class SendFileDialogState extends State<SendFileDialog> {
           scaffoldMessenger.showLoadingSnackBar(l10n.generatingVideoThumbnail);
           thumbnail = await xfile.getVideoThumbnail();
         } else {
+          if (length > maxUploadSize) {
+            throw FileTooBigMatrixException(length, maxUploadSize);
+          }
           // Else we just create a MatrixFile
           file = MatrixFile(
             bytes: await xfile.readAsBytes(),
@@ -124,9 +131,15 @@ class SendFileDialogState extends State<SendFileDialog> {
       scaffoldMessenger.clearSnackBars();
     } catch (e) {
       scaffoldMessenger.clearSnackBars();
+      final theme = Theme.of(context);
       scaffoldMessenger.showSnackBar(
         SnackBar(
-          content: Text(e.toLocalizedString(widget.outerContext)),
+          backgroundColor: theme.colorScheme.errorContainer,
+          closeIconColor: theme.colorScheme.onErrorContainer,
+          content: Text(
+            e.toLocalizedString(widget.outerContext),
+            style: TextStyle(color: theme.colorScheme.onErrorContainer),
+          ),
           duration: const Duration(seconds: 30),
           showCloseIcon: true,
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
@@ -21,6 +20,8 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -37,20 +38,20 @@ class PangeaChatDetailsView extends StatelessWidget {
         Matrix.of(context).client.getRoomById(controller.roomId!);
     if (room == null) return;
 
-    final type = await showConfirmationDialog(
+    final type = await showModalActionPopup(
       context: context,
       title: L10n.of(context).downloadGroupText,
       actions: [
-        AlertDialogAction(
-          key: DownloadType.csv,
+        AdaptiveModalAction(
+          value: DownloadType.csv,
           label: L10n.of(context).downloadCSVFile,
         ),
-        AlertDialogAction(
-          key: DownloadType.txt,
+        AdaptiveModalAction(
+          value: DownloadType.txt,
           label: L10n.of(context).downloadTxtFile,
         ),
-        AlertDialogAction(
-          key: DownloadType.xlsx,
+        AdaptiveModalAction(
+          value: DownloadType.xlsx,
           label: L10n.of(context).downloadXLSXFile,
         ),
       ],
@@ -413,7 +414,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                               message: room.isSpace
                                   ? L10n.of(context).leaveSpaceDescription
                                   : L10n.of(context).archiveRoomDescription,
-                              isDestructiveAction: true,
+                              isDestructive: true,
                             );
                             if (confirmed == OkCancelResult.cancel) return;
                             final resp = await showFutureLoadingDialog(

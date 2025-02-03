@@ -7,10 +7,7 @@ import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 
 class ChatViewBackground extends StatefulWidget {
   final Choreographer choreographer;
-  const ChatViewBackground({
-    super.key,
-    required this.choreographer,
-  });
+  const ChatViewBackground(this.choreographer, {super.key});
 
   @override
   ChatViewBackgroundState createState() => ChatViewBackgroundState();

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
@@ -17,6 +16,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
@@ -33,7 +33,6 @@ class HomeserverPicker extends StatefulWidget {
 
 class HomeserverPickerController extends State<HomeserverPicker> {
   bool isLoading = false;
-  bool isLoggingIn = false;
 
   final TextEditingController homeserverController = TextEditingController(
     text: AppConfig.defaultHomeserver,
@@ -61,57 +60,28 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     isTorBrowser = isTor;
   }
 
-  String? _lastCheckedUrl;
-
-  Timer? _checkHomeserverCooldown;
-
-  tryCheckHomeserverActionWithCooldown([_]) {
-    _checkHomeserverCooldown?.cancel();
-    _checkHomeserverCooldown = Timer(
-      const Duration(milliseconds: 500),
-      checkHomeserverAction,
-    );
-  }
-
-  void tryCheckHomeserverActionWithoutCooldown([_]) {
-    _checkHomeserverCooldown?.cancel();
-    _lastCheckedUrl = null;
-    checkHomeserverAction();
-  }
-
-  void onSubmitted([_]) {
-    if (isLoading || _checkHomeserverCooldown?.isActive == true) {
-      return tryCheckHomeserverActionWithoutCooldown();
-    }
-    if (supportsSso) return ssoLoginAction();
-    if (supportsPasswordLogin) return login();
-    return tryCheckHomeserverActionWithoutCooldown();
-  }
-
   /// Starts an analysis of the given homeserver. It uses the current domain and
   /// makes sure that it is prefixed with https. Then it searches for the
   /// well-known information and forwards to the login page depending on the
   /// login type.
-  Future<void> checkHomeserverAction([_]) async {
+  Future<void> checkHomeserverAction({bool legacyPasswordLogin = false}) async {
     final homeserverInput =
         homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
 
-    if (homeserverInput.isEmpty || !homeserverInput.contains('.')) {
+    if (homeserverInput.isEmpty) {
       setState(() {
         error = loginFlows = null;
         isLoading = false;
         Matrix.of(context).getLoginClient().homeserver = null;
-        _lastCheckedUrl = null;
       });
       return;
     }
-    if (_lastCheckedUrl == homeserverInput) return;
-
-    _lastCheckedUrl = homeserverInput;
     setState(() {
       error = loginFlows = null;
       isLoading = true;
     });
+
+    final l10n = L10n.of(context);
 
     try {
       var homeserver = Uri.parse(homeserverInput);
@@ -121,6 +91,21 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       final client = Matrix.of(context).getLoginClient();
       final (_, _, loginFlows) = await client.checkHomeserver(homeserver);
       this.loginFlows = loginFlows;
+      if (supportsSso && !legacyPasswordLogin) {
+        if (!PlatformInfos.isMobile) {
+          final consent = await showOkCancelAlertDialog(
+            context: context,
+            title: l10n.appWantsToUseForLogin(homeserverInput),
+            message: l10n.appWantsToUseForLoginDescription,
+            okLabel: l10n.continueText,
+          );
+          if (consent != OkCancelResult.ok) return;
+        }
+        return ssoLoginAction();
+      }
+      context.push(
+        '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
+      );
     } catch (e) {
       setState(
         () => error = (e).toLocalizedString(
@@ -176,7 +161,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
     setState(() {
       error = null;
-      isLoading = isLoggingIn = true;
+      isLoading = true;
     });
     try {
       await Matrix.of(context).getLoginClient().login(
@@ -191,27 +176,16 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     } finally {
       if (mounted) {
         setState(() {
-          isLoading = isLoggingIn = false;
+          isLoading = false;
         });
       }
     }
-  }
-
-  void login() async {
-    if (!supportsPasswordLogin) {
-      homeserverController.text = AppConfig.defaultHomeserver;
-      await checkHomeserverAction();
-    }
-    context.push(
-      '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
-    );
   }
 
   @override
   void initState() {
     _checkTorBrowser();
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(checkHomeserverAction);
   }
 
   @override
@@ -223,7 +197,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     if (file == null) return;
     setState(() {
       error = null;
-      isLoading = isLoggingIn = true;
+      isLoading = true;
     });
     try {
       final client = Matrix.of(context).getLoginClient();
@@ -236,7 +210,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     } finally {
       if (mounted) {
         setState(() {
-          isLoading = isLoggingIn = false;
+          isLoading = false;
         });
       }
     }
@@ -245,7 +219,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   void onMoreAction(MoreLoginActions action) {
     switch (action) {
       case MoreLoginActions.passwordLogin:
-        login();
+        checkHomeserverAction(legacyPasswordLogin: true);
       case MoreLoginActions.privacy:
         launchUrlString(AppConfig.privacyUrl);
       case MoreLoginActions.about:

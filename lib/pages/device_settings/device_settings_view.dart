@@ -99,6 +99,7 @@ class DevicesSettingsView extends StatelessWidget {
                                 L10n.of(context).removeAllOtherDevices,
                               ),
                               style: TextButton.styleFrom(
+                                iconColor: theme.colorScheme.onErrorContainer,
                                 foregroundColor:
                                     theme.colorScheme.onErrorContainer,
                                 backgroundColor:

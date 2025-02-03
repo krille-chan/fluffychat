@@ -2885,5 +2885,14 @@
   "addLink": "Додати посилання",
   "@addLink": {},
   "unableToJoinChat": "Неможливо приєднатися до чату. Можливо, інша сторона вже закрила розмову.",
-  "@unableToJoinChat": {}
+  "@unableToJoinChat": {},
+  "sendImages": "Надіслати {count} зображення",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "Стиснути",
+  "@compress": {}
 }

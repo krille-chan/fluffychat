@@ -143,7 +143,7 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
   return MatrixSdkDatabase(
     client.clientName,
     database: database,
-    maxFileSize: 1024 * 1024 * 10,
+    maxFileSize: 1000 * 1000 * 10,
     fileStorageLocation: fileStorageLocation?.uri,
     deleteFilesAfterDuration: const Duration(days: 30),
   );

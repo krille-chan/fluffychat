@@ -35,7 +35,7 @@ class NewGroupController extends State<NewGroup> {
   bool requiredCodeToJoin = false;
   // bool publicGroup = false;
   // Pangea#
-  bool groupCanBeFound = true;
+  bool groupCanBeFound = false;
 
   Uint8List? avatar;
 
@@ -54,7 +54,8 @@ class NewGroupController extends State<NewGroup> {
       setState(() => _createGroupType = b.single);
 
   // #Pangea
-  // void setPublicGroup(bool b) => setState(() => publicGroup = b);
+  // void setPublicGroup(bool b) =>
+  //     setState(() => publicGroup = groupCanBeFound = b);
   void setRequireCode(bool b) => setState(() => requiredCodeToJoin = b);
   // Pangea#
 

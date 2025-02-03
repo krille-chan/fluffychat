@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
@@ -12,6 +11,8 @@ import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/login/pages/pangea_login_view.dart';
 import 'package:fluffychat/pangea/login/widgets/p_sso_button.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/platform_infos.dart';
@@ -255,7 +256,7 @@ class LoginController extends State<Login> {
           final dialogResult = await showOkCancelAlertDialog(
             context: context,
             useRootNavigator: false,
-            message: L10n.of(context).noMatrixServer(newDomain, oldHomeserver!),
+            title: L10n.of(context).noMatrixServer(newDomain, oldHomeserver!),
             okLabel: L10n.of(context).ok,
             cancelLabel: L10n.of(context).cancel,
           );
@@ -289,15 +290,10 @@ class LoginController extends State<Login> {
       message: L10n.of(context).enterAnEmailAddress,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      fullyCapitalizedForMaterial: false,
-      textFields: [
-        DialogTextField(
-          initialText:
-              usernameController.text.isEmail ? usernameController.text : '',
-          hintText: L10n.of(context).enterAnEmailAddress,
-          keyboardType: TextInputType.emailAddress,
-        ),
-      ],
+      initialText:
+          usernameController.text.isEmail ? usernameController.text : '',
+      hintText: L10n.of(context).enterAnEmailAddress,
+      keyboardType: TextInputType.emailAddress,
     );
     if (input == null) return;
     final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
@@ -306,7 +302,7 @@ class LoginController extends State<Login> {
       future: () =>
           Matrix.of(context).getLoginClient().requestTokenToResetPasswordEmail(
                 clientSecret,
-                input.single,
+                input,
                 sendAttempt++,
               ),
     );
@@ -318,15 +314,10 @@ class LoginController extends State<Login> {
       message: L10n.of(context).chooseAStrongPassword,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      fullyCapitalizedForMaterial: false,
-      textFields: [
-        const DialogTextField(
-          hintText: '******',
-          obscureText: true,
-          minLines: 1,
-          maxLines: 1,
-        ),
-      ],
+      hintText: '******',
+      obscureText: true,
+      minLines: 1,
+      maxLines: 1,
     );
     if (password == null) return;
     final ok = await showOkAlertDialog(
@@ -335,11 +326,10 @@ class LoginController extends State<Login> {
       title: L10n.of(context).weSentYouAnEmail,
       message: L10n.of(context).pleaseClickOnLink,
       okLabel: L10n.of(context).iHaveClickedOnLink,
-      fullyCapitalizedForMaterial: false,
     );
     if (ok != OkCancelResult.ok) return;
     final data = <String, dynamic>{
-      'new_password': password.single,
+      'new_password': password,
       'logout_devices': false,
       "auth": AuthenticationThreePidCreds(
         type: AuthenticationTypes.emailIdentity,
@@ -361,8 +351,8 @@ class LoginController extends State<Login> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)),
       );
-      usernameController.text = input.single;
-      passwordController.text = password.single;
+      usernameController.text = input;
+      passwordController.text = password;
       login();
     }
   }

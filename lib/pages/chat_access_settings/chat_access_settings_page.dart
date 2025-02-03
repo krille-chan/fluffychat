@@ -238,8 +238,8 @@ class _AliasListTile extends StatelessWidget {
           'https://matrix.to/#/$alias',
           context,
         ),
-        child: Text(
-          'https://matrix.to/#/$alias',
+        child: SelectableText(
+          alias,
           style: TextStyle(
             decoration: TextDecoration.underline,
             decorationColor: theme.colorScheme.primary,

@@ -12,7 +12,8 @@ enum ActivityTypeEnum {
   hiddenWordListening,
   lemmaId,
   emoji,
-  morphId
+  morphId,
+  // correctionPuzzle,
 }
 
 extension ActivityTypeExtension on ActivityTypeEnum {

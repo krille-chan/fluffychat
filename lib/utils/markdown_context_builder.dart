@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 
 Widget markdownContextBuilder(
   BuildContext context,
@@ -26,27 +27,21 @@ Widget markdownContextBuilder(
               title: l10n.addLink,
               okLabel: l10n.ok,
               cancelLabel: l10n.cancel,
-              textFields: [
-                DialogTextField(
-                  validator: (text) {
-                    if (text == null || text.isEmpty) {
-                      return l10n.pleaseFillOut;
-                    }
-                    try {
-                      text.startsWith('http')
-                          ? Uri.parse(text)
-                          : Uri.https(text);
-                    } catch (_) {
-                      return l10n.invalidUrl;
-                    }
-                    return null;
-                  },
-                  hintText: 'www...',
-                  keyboardType: TextInputType.url,
-                ),
-              ],
+              validator: (text) {
+                if (text.isEmpty) {
+                  return l10n.pleaseFillOut;
+                }
+                try {
+                  text.startsWith('http') ? Uri.parse(text) : Uri.https(text);
+                } catch (_) {
+                  return l10n.invalidUrl;
+                }
+                return null;
+              },
+              hintText: 'www...',
+              keyboardType: TextInputType.url,
             );
-            final urlString = input?.singleOrNull;
+            final urlString = input;
             if (urlString == null) return;
             final url = urlString.startsWith('http')
                 ? Uri.parse(urlString)

@@ -22,133 +22,119 @@ class ChatListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
-    return StreamBuilder<Object?>(
-      stream: Matrix.of(context).onShareContentChanged.stream,
-      builder: (_, __) {
-        final selectMode = controller.selectMode;
-        return PopScope(
-          canPop: controller.selectMode == SelectMode.normal &&
-              !controller.isSearchMode &&
-              controller.activeSpaceId == null,
-          onPopInvokedWithResult: (pop, _) {
-            if (pop) return;
-            if (controller.activeSpaceId != null) {
-              controller.clearActiveSpace();
-              return;
-            }
-            final selMode = controller.selectMode;
-            if (controller.isSearchMode) {
-              controller.cancelSearch();
-              return;
-            }
-            if (selMode != SelectMode.normal) {
-              controller.cancelAction();
-              return;
-            }
-          },
-          child: Row(
-            children: [
-              if (FluffyThemes.isColumnMode(context) &&
-                  controller.widget.displayNavigationRail) ...[
-                StreamBuilder(
-                  key: ValueKey(
-                    client.userID.toString(),
-                  ),
-                  stream: client.onSync.stream
-                      .where((s) => s.hasRoomUpdate)
-                      .rateLimit(const Duration(seconds: 1)),
-                  builder: (context, _) {
-                    final allSpaces = Matrix.of(context)
-                        .client
-                        .rooms
-                        .where((room) => room.isSpace);
-                    final rootSpaces = allSpaces
-                        .where(
-                          (space) => !allSpaces.any(
-                            (parentSpace) => parentSpace.spaceChildren
-                                .any((child) => child.roomId == space.id),
-                          ),
-                        )
-                        .toList();
-
-                    return SizedBox(
-                      width: FluffyThemes.navRailWidth,
-                      child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: rootSpaces.length + 2,
-                        itemBuilder: (context, i) {
-                          if (i == 0) {
-                            return NaviRailItem(
-                              isSelected: controller.activeSpaceId == null,
-                              onTap: controller.clearActiveSpace,
-                              icon: const Icon(Icons.forum_outlined),
-                              selectedIcon: const Icon(Icons.forum),
-                              toolTip: L10n.of(context).chats,
-                              unreadBadgeFilter: (room) => true,
-                            );
-                          }
-                          i--;
-                          if (i == rootSpaces.length) {
-                            return NaviRailItem(
-                              isSelected: false,
-                              onTap: () => context.go('/rooms/newspace'),
-                              icon: const Icon(Icons.add),
-                              toolTip: L10n.of(context).createNewSpace,
-                            );
-                          }
-                          final space = rootSpaces[i];
-                          final displayname =
-                              rootSpaces[i].getLocalizedDisplayname(
-                            MatrixLocals(L10n.of(context)),
-                          );
-                          final spaceChildrenIds =
-                              space.spaceChildren.map((c) => c.roomId).toSet();
-                          return NaviRailItem(
-                            toolTip: displayname,
-                            isSelected: controller.activeSpaceId == space.id,
-                            onTap: () =>
-                                controller.setActiveSpace(rootSpaces[i].id),
-                            unreadBadgeFilter: (room) =>
-                                spaceChildrenIds.contains(room.id),
-                            icon: Avatar(
-                              mxContent: rootSpaces[i].avatar,
-                              name: displayname,
-                              // #Pangea
-                              presenceUserId: space.directChatMatrixID,
-                              // Pangea#
-                              size: 32,
-                              borderRadius: BorderRadius.circular(
-                                AppConfig.borderRadius / 4,
-                              ),
-                            ),
-                          );
-                        },
+    return PopScope(
+      canPop: !controller.isSearchMode && controller.activeSpaceId == null,
+      onPopInvokedWithResult: (pop, _) {
+        if (pop) return;
+        if (controller.activeSpaceId != null) {
+          controller.clearActiveSpace();
+          return;
+        }
+        if (controller.isSearchMode) {
+          controller.cancelSearch();
+          return;
+        }
+      },
+      child: Row(
+        children: [
+          if (FluffyThemes.isColumnMode(context) &&
+              controller.widget.displayNavigationRail) ...[
+            StreamBuilder(
+              key: ValueKey(
+                client.userID.toString(),
+              ),
+              stream: client.onSync.stream
+                  .where((s) => s.hasRoomUpdate)
+                  .rateLimit(const Duration(seconds: 1)),
+              builder: (context, _) {
+                final allSpaces = Matrix.of(context)
+                    .client
+                    .rooms
+                    .where((room) => room.isSpace);
+                final rootSpaces = allSpaces
+                    .where(
+                      (space) => !allSpaces.any(
+                        (parentSpace) => parentSpace.spaceChildren
+                            .any((child) => child.roomId == space.id),
                       ),
-                    );
-                  },
-                ),
-                Container(
-                  color: Theme.of(context).dividerColor,
-                  width: 1,
-                ),
-              ],
-              Expanded(
-                child: GestureDetector(
-                  onTap: FocusManager.instance.primaryFocus?.unfocus,
-                  excludeFromSemantics: true,
-                  behavior: HitTestBehavior.translucent,
-                  child: Scaffold(
-                    // #Pangea
-                    // body: ChatListViewBody(controller),
-                    body: ChatListViewBodyWrapper(controller: controller),
-                    // Pangea#
-                    floatingActionButton: selectMode == SelectMode.normal &&
-                            !controller.isSearchMode &&
-                            controller.activeSpaceId == null
+                    )
+                    .toList();
+
+                return SizedBox(
+                  width: FluffyThemes.navRailWidth,
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: rootSpaces.length + 2,
+                    itemBuilder: (context, i) {
+                      if (i == 0) {
+                        return NaviRailItem(
+                          isSelected: controller.activeSpaceId == null,
+                          onTap: controller.clearActiveSpace,
+                          icon: const Icon(Icons.forum_outlined),
+                          selectedIcon: const Icon(Icons.forum),
+                          toolTip: L10n.of(context).chats,
+                          unreadBadgeFilter: (room) => true,
+                        );
+                      }
+                      i--;
+                      if (i == rootSpaces.length) {
+                        return NaviRailItem(
+                          isSelected: false,
+                          onTap: () => context.go('/rooms/newspace'),
+                          icon: const Icon(Icons.add),
+                          toolTip: L10n.of(context).createNewSpace,
+                        );
+                      }
+                      final space = rootSpaces[i];
+                      final displayname = rootSpaces[i].getLocalizedDisplayname(
+                        MatrixLocals(L10n.of(context)),
+                      );
+                      final spaceChildrenIds =
+                          space.spaceChildren.map((c) => c.roomId).toSet();
+                      return NaviRailItem(
+                        toolTip: displayname,
+                        isSelected: controller.activeSpaceId == space.id,
+                        onTap: () =>
+                            controller.setActiveSpace(rootSpaces[i].id),
+                        unreadBadgeFilter: (room) =>
+                            spaceChildrenIds.contains(room.id),
+                        icon: Avatar(
+                          mxContent: rootSpaces[i].avatar,
+                          name: displayname,
+                          // #Pangea
+                          presenceUserId: space.directChatMatrixID,
+                          // Pangea#
+                          size: 32,
+                          borderRadius: BorderRadius.circular(
+                            AppConfig.borderRadius / 4,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+            Container(
+              color: Theme.of(context).dividerColor,
+              width: 1,
+            ),
+          ],
+          Expanded(
+            child: GestureDetector(
+              onTap: FocusManager.instance.primaryFocus?.unfocus,
+              excludeFromSemantics: true,
+              behavior: HitTestBehavior.translucent,
+              child: Scaffold(
+                // #Pangea
+                // body: ChatListViewBody(controller),
+                body: ChatListViewBodyWrapper(controller: controller),
+                // Pangea#
+                floatingActionButton:
+                    !controller.isSearchMode && controller.activeSpaceId == null
                         ? FloatingActionButton.extended(
                             // #Pangea
-                            // onPressed: () =>
-                            //     context.go('/rooms/newprivatechat'),
+                            // onPressed: () => context.go('/rooms/newprivatechat'),
                             onPressed: () => context.go('/rooms/newgroup'),
                             // Pangea#
                             icon: const Icon(Icons.add_outlined),
@@ -158,13 +144,11 @@ class ChatListView extends StatelessWidget {
                             ),
                           )
                         : const SizedBox.shrink(),
-                  ),
-                ),
               ),
-            ],
+            ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

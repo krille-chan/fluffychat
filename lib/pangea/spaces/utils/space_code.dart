@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 
 class SpaceCodeUtil {
   static const codeLength = 7;
@@ -41,20 +41,18 @@ class SpaceCodeUtil {
     BuildContext context,
     PangeaController pangeaController,
   ) async {
-    final List<String>? spaceCode = await showTextInputDialog(
+    final String? spaceCode = await showTextInputDialog(
       context: context,
       title: L10n.of(context).joinWithClassCode,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(hintText: L10n.of(context).joinWithClassCodeHint),
-      ],
+      hintText: L10n.of(context).joinWithClassCodeHint,
       autoSubmit: true,
     );
-    if (spaceCode == null || spaceCode.single.isEmpty) return;
+    if (spaceCode == null || spaceCode.isEmpty) return;
     await pangeaController.classController.joinClasswithCode(
       context,
-      spaceCode.first,
+      spaceCode,
     );
   }
 

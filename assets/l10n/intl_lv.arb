@@ -643,7 +643,7 @@
       "count": {}
     }
   },
-  "noKeyForThisMessage": "Tā var notikt, ja ziņa tika nosūtīta, pirms pieteicies savā kontā šajā ierīcē.\n\nIr arī iespējams, ka sūtītājs noliedza Tavu ierīci vai kaut kas nogāja greizi ar interneta savienojumu.\n\nVai ziņas ir lasāmas citā sesijā? Tad Tu vari pārsūtīt ziņo no tās. Jādodas uz Iestatījumi > Ierīces un jāpārliecinās, ka ierīces viena otru ir apliecinājušas. Kad nākamreiz atvērsi istabu un abas sesijas būs priekšplānā, atslēgas tiks automātiski pārsūtītas.\n\nVai nevēlies zaudēt atslēgas, kad atsakies vai maini ierīces? Jāpārliecinās, ka iestatījumos ir iespējota tērzēšanas rezerves kopija.",
+  "noKeyForThisMessage": "Tā var notikt, ja ziņa tika nosūtīta, pirms pieteicies savā kontā šajā ierīcē.\n\nIr arī iespējams, ka sūtītājs noliedza Tavu ierīci vai kaut kas nogāja greizi ar interneta savienojumu.\n\nVai ziņas ir lasāmas citā sesijā? Tad Tu vari pārsūtīt ziņo no tās. Jādodas uz Iestatījumi > Ierīces un jāpārliecinās, ka ierīces viena otru ir apliecinājušas. Kad nākamreiz atvērsi istabu un abas sesijas būs priekšplānā, atslēgas tiks automātiski pārsūtītas.\n\nVai nevēlies zaudēt atslēgas, kad atsakies vai maini ierīces? Jāpārliecinās, ka iestatījumos ir iespējota tērzēšanu rezerves kopija.",
   "@noKeyForThisMessage": {},
   "enableEncryptionWarning": "Vairs nebūs iespējams atspējot šifrēšanu. Vai tiešām to darīt?",
   "@enableEncryptionWarning": {
@@ -712,7 +712,7 @@
       "supportedVersions": {}
     }
   },
-  "wipeChatBackup": "Notīrīt tērzēšanas rezerves kopiju, lai izveidotu jaunu atkopšanas atslēgu?",
+  "wipeChatBackup": "Notīrīt tērzēšanu rezerves kopiju, lai izveidotu jaunu atkopšanas atslēgu?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -911,9 +911,9 @@
   },
   "storeSecurlyOnThisDevice": "Droši uzglabāt šajā ierīcē",
   "@storeSecurlyOnThisDevice": {},
-  "yourChatBackupHasBeenSetUp": "Tērzēšanas rezerves kopēšana tika iestatīta.",
+  "yourChatBackupHasBeenSetUp": "Tērzēšanu rezerves kopēšana tika iestatīta.",
   "@yourChatBackupHasBeenSetUp": {},
-  "chatBackup": "Tērzēšanas rezerves kopēšana",
+  "chatBackup": "Tērzēšanu rezerves kopēšana",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2320,7 +2320,7 @@
   },
   "custom": "Pielāgots",
   "@custom": {},
-  "noBackupWarning": "Uzmanību! Bez tērzēšanas rezerves kopijas iespējošanas tiks zaudēta piekļuve savām šifrētajām ziņām. Ir ļoti ieteicams iespējot tērzēšanas rezerves kopiju pirms atteikšanās.",
+  "noBackupWarning": "Uzmanību! Bez tērzēšanu rezerves kopiju veidošanas iespējošanas tiks zaudēta piekļuve savām šifrētajām ziņām. Ir ļoti ieteicams iespējot tērzēšanu rezerves kopiju veidošanu pirms atteikšanās.",
   "@noBackupWarning": {},
   "fromJoining": "No pievienošanās",
   "@fromJoining": {
@@ -2809,7 +2809,7 @@
   "@compressVideo": {},
   "oneOfYourDevicesIsNotVerified": "Viena no ierīcēm nav apliecināta",
   "@oneOfYourDevicesIsNotVerified": {},
-  "noticeChatBackupDeviceVerification": "Piezīme: kad visas ierīces tiek savienotas ar tērzēšanas rezerves kopiju, tās tiek automātiski apliecinātas.",
+  "noticeChatBackupDeviceVerification": "Piezīme: kad visas ierīces tiek savienotas ar tērzēšanu rezerves kopiju, tās tiek automātiski apliecinātas.",
   "@noticeChatBackupDeviceVerification": {},
   "continueText": "Turpināt",
   "@continueText": {},
@@ -2861,5 +2861,16 @@
   "pleaseFillOut": "Lūgums aizpildīt",
   "@pleaseFillOut": {},
   "sendUncompressed": "Sūtīt nesaspiestu",
-  "@sendUncompressed": {}
+  "@sendUncompressed": {},
+  "sendImages": "Nosūtīt {count} attēlu(s)",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "Saspiest",
+  "@compress": {},
+  "unableToJoinChat": "Nevarēja pievienoties tērzēšanai. Varbūt otra puse jau ir aizvērusi sarunu.",
+  "@unableToJoinChat": {}
 }

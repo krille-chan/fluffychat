@@ -240,7 +240,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} ha cambiato il loro avatar",
+  "changedTheProfileAvatar": "{username} ha cambiato il suo avatar",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -764,7 +764,7 @@
       "targetName": {}
     }
   },
-  "invitedUsersOnly": "Solo per gli utenti invitati",
+  "invitedUsersOnly": "Solo utenti invitati",
   "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
@@ -815,7 +815,7 @@
       "targetName": {}
     }
   },
-  "kickFromChat": "Espulsa dalla discussione",
+  "kickFromChat": "Espelli dalla chat",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2884,5 +2884,14 @@
   "addLink": "Aggiungi collegamento",
   "@addLink": {},
   "unableToJoinChat": "Impossibile partecipare alla chat. Forse l'altra parte ha già chiuso la conversazione.",
-  "@unableToJoinChat": {}
+  "@unableToJoinChat": {},
+  "sendImages": "Invia {count} immagine",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "Comprimere",
+  "@compress": {}
 }

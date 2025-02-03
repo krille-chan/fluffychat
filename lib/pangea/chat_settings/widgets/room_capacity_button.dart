@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 class RoomCapacityButton extends StatefulWidget {
@@ -124,35 +124,28 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
           : L10n.of(context).chatCapacityExplanation,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          initialText: ((capacity != null) ? '$capacity' : ''),
-          keyboardType: TextInputType.number,
-          maxLength: 3,
-          validator: (value) {
-            if (value == null ||
-                value.isEmpty ||
-                int.tryParse(value) == null ||
-                int.parse(value) < 0) {
-              return L10n.of(context).enterNumber;
-            }
-            if (nonAdmins != null && int.parse(value) < int.parse(nonAdmins!)) {
-              return spaceMode
-                  ? L10n.of(context).spaceCapacitySetTooLow
-                  : L10n.of(context).chatCapacitySetTooLow;
-            }
-            return null;
-          },
-        ),
-      ],
+      initialText: ((capacity != null) ? '$capacity' : ''),
+      keyboardType: TextInputType.number,
+      maxLength: 3,
+      validator: (value) {
+        if (value.isEmpty ||
+            int.tryParse(value) == null ||
+            int.parse(value) < 0) {
+          return L10n.of(context).enterNumber;
+        }
+        if (nonAdmins != null && int.parse(value) < int.parse(nonAdmins!)) {
+          return spaceMode
+              ? L10n.of(context).spaceCapacitySetTooLow
+              : L10n.of(context).chatCapacitySetTooLow;
+        }
+        return null;
+      },
     );
-    if (input == null ||
-        input.first == "" ||
-        int.tryParse(input.first) == null) {
+    if (input == null || input.isEmpty || int.tryParse(input) == null) {
       return;
     }
 
-    final newCapacity = int.parse(input.first);
+    final newCapacity = int.parse(input);
     final success = await showFutureLoadingDialog(
       context: context,
       future: () => ((widget.room != null)

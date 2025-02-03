@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -19,7 +18,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/utils/client_manager.dart';
@@ -27,14 +25,15 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dar
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/local_notifications_extension.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
-import 'local_notifications_extension.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -193,18 +192,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   Client? getClientByName(String name) =>
       widget.clients.firstWhereOrNull((c) => c.clientName == name);
-
-  Map<String, dynamic>? get shareContent => _shareContent;
-
-  set shareContent(Map<String, dynamic>? content) {
-    _shareContent = content;
-    onShareContentChanged.add(_shareContent);
-  }
-
-  Map<String, dynamic>? _shareContent;
-
-  final StreamController<Map<String, dynamic>?> onShareContentChanged =
-      StreamController.broadcast();
 
   final onRoomKeyRequestSub = <String, StreamSubscription>{};
   final onKeyVerificationRequestSub = <String, StreamSubscription>{};
@@ -368,19 +355,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
-        onNotification[name] ??= c.onEvent.stream
-            .where(
-              (e) =>
-                  e.type == EventUpdateType.timeline &&
-                  [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
-                      .contains(e.content['type']) &&
-                  e.content['sender'] != c.userID
-                  // #Pangea
-                  &&
-                  !e.content['content']?.containsKey(ModelKey.transcription),
-              // Pangea#,
-            )
-            .listen(showLocalNotification);
+        onNotification[name] ??=
+            c.onNotification.stream.listen(showLocalNotification);
       });
     }
   }
@@ -411,16 +387,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         this,
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
-            // #Pangea
-            useRootNavigator: false,
-            // Pangea#
-            barrierDismissible: true,
             context: FluffyChatApp
                     .router.routerDelegate.navigatorKey.currentContext ??
                 context,
             title: L10n.of(context).pushNotificationsNotAvailable,
             message: errorMsg,
-            fullyCapitalizedForMaterial: false,
             okLabel:
                 link == null ? L10n.of(context).ok : L10n.of(context).learnMore,
             cancelLabel: L10n.of(context).doNotShowAgain,
@@ -540,7 +511,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   Future<void> dehydrateAction(BuildContext context) async {
     final response = await showOkCancelAlertDialog(
       context: context,
-      isDestructiveAction: true,
+      isDestructive: true,
       title: L10n.of(context).dehydrate,
       message: L10n.of(context).dehydrateWarning,
     );

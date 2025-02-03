@@ -12,7 +12,6 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  adaptive_dialog: ^2.1.0
   animations: ^2.0.11
   archive: ^3.6.1
   async: ^2.11.0
@@ -42,15 +41,6 @@ dependencies:
   flutter_cache_manager: ^3.4.1
   flutter_foreground_task: ^6.1.3
   flutter_highlighter: ^0.1.1
-  # #Pangea
-  # Fix for https://github.com/Sub6Resources/flutter_html/issues/1314
-  # flutter_html: ^3.0.0-beta.2
-  flutter_html:
-    git:
-      url: https://github.com/SherpaMiguel/flutter_html
-      ref: master
-  # flutter_html_table: ^3.0.0-beta.2
-  # Pangea#
   flutter_linkify: ^6.0.0
   flutter_local_notifications: ^17.2.3
   flutter_localizations:
@@ -83,7 +73,7 @@ dependencies:
     git:
       url: https://github.com/pangeachat/matrix-dart-sdk.git # repo
       ref: main # branch
-  # matrix: ^0.35.0
+  # matrix: ^0.37.0
   # Pangea#
   mime: ^1.0.6
   native_imaging: ^0.1.1
@@ -97,6 +87,7 @@ dependencies:
   provider: ^6.0.2
   punycode: ^1.0.0
   qr_code_scanner: ^1.0.1
+  qr_image: ^1.0.0
   receive_sharing_intent: ^1.8.1
   record: ^5.1.2
   scroll_to_index: ^3.0.1
@@ -105,7 +96,7 @@ dependencies:
   slugify: ^2.0.0
   sqflite_common_ffi: ^2.3.3
   sqlcipher_flutter_libs: ^0.6.1
-  swipe_to_action: ^0.2.0
+  swipe_to_action: ^0.3.0
   tor_detector_web: ^1.1.0
   uni_links: ^0.5.1
   unifiedpush: ^5.0.1
@@ -183,16 +174,19 @@ flutter:
     - assets/js/package/
 
   fonts:
-    - family: Roboto
+    - family: Ubuntu
       fonts:
-        - asset: fonts/Roboto/Roboto-Regular.ttf
-        - asset: fonts/Roboto/Roboto-Italic.ttf
+        - asset: fonts/Ubuntu/Ubuntu-Regular.ttf
+        - asset: fonts/Ubuntu/Ubuntu-Bold.ttf
+          weight: 600
+        - asset: fonts/Ubuntu/Ubuntu-Italic.ttf
           style: italic
-        - asset: fonts/Roboto/Roboto-Bold.ttf
-          weight: 700
-    - family: RobotoMono
+        - asset: fonts/Ubuntu/Ubuntu-BoldItalic.ttf
+          weight: 600
+          style: italic
+    - family: UbuntuMono
       fonts:
-        - asset: fonts/Roboto/RobotoMono-Regular.ttf
+        - asset: fonts/Ubuntu/UbuntuMono-Regular.ttf
     - family: NotoEmoji
       fonts:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
@@ -223,9 +217,4 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
-  # For Flutter 3.27 until https://github.com/flutter-webrtc/dart-webrtc/pull/54 is merged
-  dart_webrtc:
-    git:
-      url: https://github.com/flutter-webrtc/dart-webrtc.git
-      ref: f27d27c7af41ceeebe31b295af4fb38e7b4d793e
   win32: 5.5.3

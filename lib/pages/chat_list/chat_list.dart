@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_shortcuts/flutter_shortcuts.dart';
@@ -15,8 +14,6 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:uni_links/uni_links.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/chat/send_file_dialog.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/chat_list/utils/app_version_util.dart';
 import 'package:fluffychat/pangea/chat_list/utils/chat_list_handle_space_tap.dart';
@@ -29,23 +26,23 @@ import 'package:fluffychat/pangea/subscription/widgets/subscription_snackbar.dar
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/utils/show_update_snackbar.dart';
-import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import '../../../utils/account_bundles.dart';
 import '../../config/setting_keys.dart';
+import '../../utils/url_launcher.dart';
 import '../../utils/voip/callkeep_manager.dart';
 import '../../widgets/fluffy_chat_app.dart';
 import '../../widgets/matrix.dart';
 
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
-
-enum SelectMode {
-  normal,
-  share,
-}
 
 enum PopupMenuAction {
   settings,
@@ -117,12 +114,6 @@ class ChatListController extends State<ChatList>
     setState(() {
       _activeSpaceId = spaceId;
     });
-
-    // #Pangea
-    if (FluffyThemes.isColumnMode(context)) {
-      context.go('/rooms/$spaceId/details');
-    }
-    // Pangea#
   }
 
   // #Pangea
@@ -139,50 +130,6 @@ class ChatListController extends State<ChatList>
 
   void onChatTap(Room room) async {
     if (room.membership == Membership.invite) {
-      final inviterId =
-          room.getState(EventTypes.RoomMember, room.client.userID!)?.senderId;
-      final inviteAction = await showModalActionSheet<InviteActions>(
-        context: context,
-        message: room.isDirectChat
-            ? L10n.of(context).invitePrivateChat
-            // #Pangea
-            // : L10n.of(context).inviteGroupChat,
-            : L10n.of(context).inviteChat,
-        // Pangea#
-        title: room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
-        actions: [
-          SheetAction(
-            key: InviteActions.accept,
-            label: L10n.of(context).accept,
-            icon: Icons.check_outlined,
-            isDefaultAction: true,
-          ),
-          SheetAction(
-            key: InviteActions.decline,
-            label: L10n.of(context).decline,
-            icon: Icons.close_outlined,
-            isDestructiveAction: true,
-          ),
-          SheetAction(
-            key: InviteActions.block,
-            label: L10n.of(context).block,
-            icon: Icons.block_outlined,
-            isDestructiveAction: true,
-          ),
-        ],
-      );
-      if (inviteAction == null) return;
-      if (inviteAction == InviteActions.block) {
-        context.go('/rooms/settings/security/ignorelist', extra: inviterId);
-        return;
-      }
-      if (inviteAction == InviteActions.decline) {
-        await showFutureLoadingDialog(
-          context: context,
-          future: room.leave,
-        );
-        return;
-      }
       final joinResult = await showFutureLoadingDialog(
         context: context,
         future: () async {
@@ -216,42 +163,6 @@ class ChatListController extends State<ChatList>
       setActiveSpace(room.id);
       return;
     }
-    // Share content into this room
-    final shareContent = Matrix.of(context).shareContent;
-    if (shareContent != null) {
-      final shareFile = shareContent.tryGet<XFile>('file');
-      if (shareContent.tryGet<String>('msgtype') == 'chat.fluffy.shared_file' &&
-          shareFile != null) {
-        await showDialog(
-          context: context,
-          useRootNavigator: false,
-          builder: (c) => SendFileDialog(
-            files: [shareFile],
-            room: room,
-            outerContext: context,
-          ),
-        );
-        Matrix.of(context).shareContent = null;
-      } else {
-        final consent = await showOkCancelAlertDialog(
-          context: context,
-          title: L10n.of(context).forward,
-          message: L10n.of(context).forwardMessageTo(
-            room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
-          ),
-          okLabel: L10n.of(context).forward,
-          cancelLabel: L10n.of(context).cancel,
-        );
-        if (consent == OkCancelResult.cancel) {
-          Matrix.of(context).shareContent = null;
-          return;
-        }
-        if (consent == OkCancelResult.ok) {
-          room.sendEvent(shareContent);
-          Matrix.of(context).shareContent = null;
-        }
-      }
-    }
 
     context.go('/rooms/${room.id}');
   }
@@ -274,16 +185,18 @@ class ChatListController extends State<ChatList>
       case ActiveFilter.groups:
         return (room) =>
             !room.isSpace &&
-            !room.isDirectChat // #Pangea
+            !room.isDirectChat
+            // #Pangea
             &&
             !room.isAnalyticsRoom;
-      // Pangea#;
+      // Pangea#
       case ActiveFilter.unread:
         return (room) =>
-            room.isUnreadOrInvited // #Pangea
+            room.isUnreadOrInvited
+            // #Pangea
             &&
             !room.isAnalyticsRoom;
-      // Pangea#;
+      // Pangea#
       case ActiveFilter.spaces:
         return (room) => room.isSpace;
     }
@@ -312,23 +225,19 @@ class ChatListController extends State<ChatList>
       context: context,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          prefixText: 'https://',
-          hintText: Matrix.of(context).client.homeserver?.host,
-          initialText: searchServer,
-          keyboardType: TextInputType.url,
-          autocorrect: false,
-          validator: (server) => server?.contains('.') == true
-              ? null
-              : L10n.of(context).invalidServerName,
-        ),
-      ],
+      prefixText: 'https://',
+      hintText: Matrix.of(context).client.homeserver?.host,
+      initialText: searchServer,
+      keyboardType: TextInputType.url,
+      autocorrect: false,
+      validator: (server) => server.contains('.') == true
+          ? null
+          : L10n.of(context).invalidServerName,
     );
     if (newServer == null) return;
-    Matrix.of(context).store.setString(_serverStoreNamespace, newServer.single);
+    Matrix.of(context).store.setString(_serverStoreNamespace, newServer);
     setState(() {
-      searchServer = newServer.single;
+      searchServer = newServer;
     });
     _coolDown?.cancel();
     _coolDown = Timer(const Duration(milliseconds: 500), _search);
@@ -463,53 +372,30 @@ class ChatListController extends State<ChatList>
 
   String? get activeChat => widget.activeChat;
 
-  SelectMode get selectMode => Matrix.of(context).shareContent != null
-      ? SelectMode.share
-      : SelectMode.normal;
-
   void _processIncomingSharedMedia(List<SharedMediaFile> files) {
     if (files.isEmpty) return;
 
-    if (files.length > 1) {
-      Logs().w(
-        'Received ${files.length} incoming shared media but app can only handle the first one',
-      );
-    }
-
-    // We only handle the first file currently
-    final sharedMedia = files.first;
-
-    // Handle URIs and Texts, which are also passed in path
-    if (sharedMedia.type case SharedMediaType.text || SharedMediaType.url) {
-      return _processIncomingSharedText(sharedMedia.path);
-    }
-
-    final file = XFile(
-      sharedMedia.path.replaceFirst('file://', ''),
-      mimeType: sharedMedia.mimeType,
+    showScaffoldDialog(
+      context: context,
+      builder: (context) => ShareScaffoldDialog(
+        items: files.map(
+          (file) {
+            if ({
+              SharedMediaType.text,
+              SharedMediaType.url,
+            }.contains(file.type)) {
+              return TextShareItem(file.path);
+            }
+            return FileShareItem(
+              XFile(
+                file.path.replaceFirst('file://', ''),
+                mimeType: file.mimeType,
+              ),
+            );
+          },
+        ).toList(),
+      ),
     );
-
-    Matrix.of(context).shareContent = {
-      'msgtype': 'chat.fluffy.shared_file',
-      'file': file,
-      if (sharedMedia.message != null) 'body': sharedMedia.message,
-    };
-    context.go('/rooms');
-  }
-
-  void _processIncomingSharedText(String? text) {
-    if (text == null) return;
-    if (text.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
-        text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
-        (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
-            !RegExp(r'\s').hasMatch(text))) {
-      return _processIncomingUris(text);
-    }
-    Matrix.of(context).shareContent = {
-      'msgtype': 'm.text',
-      'body': text,
-    };
-    context.go('/rooms');
   }
 
   void _processIncomingUris(String? text) async {
@@ -573,8 +459,9 @@ class ChatListController extends State<ChatList>
             Matrix.of(context).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
         UpdateNotifier.showUpdateSnackBar(context);
-
+        // #Pangea
         AppVersionUtil.showAppVersionDialog(context);
+        // Pangea#
       }
 
       // Workaround for system UI overlay style not applied on app start
@@ -699,10 +586,6 @@ class ChatListController extends State<ChatList>
     BuildContext posContext, [
     Room? space,
   ]) async {
-    if (room.membership == Membership.invite) {
-      return onChatTap(room);
-    }
-
     final overlay =
         Overlay.of(posContext).context.findRenderObject() as RenderBox;
 
@@ -781,114 +664,146 @@ class ChatListController extends State<ChatList>
               ],
             ),
           ),
-        PopupMenuItem(
-          value: ChatContextAction.mute,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                // #Pangea
-                // room.pushRuleState == PushRuleState.notify
-                //     ? Icons.notifications_off_outlined
-                //     : Icons.notifications_off,
-                room.pushRuleState == PushRuleState.notify
-                    ? Icons.notifications_on_outlined
-                    : Icons.notifications_off_outlined,
-                // Pangea#
-              ),
-              const SizedBox(width: 12),
-              Text(
-                // #Pangea
-                // room.pushRuleState == PushRuleState.notify
-                //     ? L10n.of(context).muteChat
-                //     : L10n.of(context).unmuteChat,
-                room.pushRuleState == PushRuleState.notify
-                    ? L10n.of(context).notificationsOn
-                    : L10n.of(context).notificationsOff,
-                // Pangea#
-              ),
-            ],
-          ),
-        ),
-        PopupMenuItem(
-          value: ChatContextAction.markUnread,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                room.markedUnread
-                    ? Icons.mark_as_unread
-                    : Icons.mark_as_unread_outlined,
-              ),
-              const SizedBox(width: 12),
-              Text(
-                room.markedUnread
-                    ? L10n.of(context).markAsRead
-                    : L10n.of(context).markAsUnread,
-              ),
-            ],
-          ),
-        ),
-        PopupMenuItem(
-          value: ChatContextAction.favorite,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(room.isFavourite ? Icons.push_pin : Icons.push_pin_outlined),
-              const SizedBox(width: 12),
-              Text(
-                room.isFavourite
-                    ? L10n.of(context).unpin
-                    : L10n.of(context).pin,
-              ),
-            ],
-          ),
-        ),
-        if (spacesWithPowerLevels.isNotEmpty
-                // #Pangea
-                &&
-                !room.isSpace
-            // Pangea#
-            )
+        if (room.membership == Membership.join) ...[
           PopupMenuItem(
-            value: ChatContextAction.addToSpace,
+            value: ChatContextAction.mute,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.group_work_outlined),
+                Icon(
+                  // #Pangea
+                  // room.pushRuleState == PushRuleState.notify
+                  //     ? Icons.notifications_off_outlined
+                  //     : Icons.notifications_off,
+                  room.pushRuleState == PushRuleState.notify
+                      ? Icons.notifications_on_outlined
+                      : Icons.notifications_off_outlined,
+                  // Pangea#
+                ),
                 const SizedBox(width: 12),
-                Text(L10n.of(context).addToSpace),
+                Text(
+                  // #Pangea
+                  // room.pushRuleState == PushRuleState.notify
+                  //     ? L10n.of(context).muteChat
+                  //     : L10n.of(context).unmuteChat,
+                  room.pushRuleState == PushRuleState.notify
+                      ? L10n.of(context).notificationsOn
+                      : L10n.of(context).notificationsOff,
+                  // Pangea#
+                ),
               ],
             ),
           ),
-        // #Pangea
-        // if the room has a parent for which the user has a high enough power level
-        // to set parent's space child events, show option to remove the room from the space
-        if (room.spaceParents.isNotEmpty &&
-            room.pangeaSpaceParents.any(
-              (r) => r.canChangeStateEvent(EventTypes.SpaceChild),
-            ) &&
-            activeSpaceId != null)
           PopupMenuItem(
-            value: ChatContextAction.removeFromSpace,
+            value: ChatContextAction.markUnread,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.delete_sweep_outlined),
+                Icon(
+                  room.markedUnread
+                      ? Icons.mark_as_unread
+                      : Icons.mark_as_unread_outlined,
+                ),
                 const SizedBox(width: 12),
-                Text(L10n.of(context).removeFromSpace),
+                Text(
+                  room.markedUnread
+                      ? L10n.of(context).markAsRead
+                      : L10n.of(context).markAsUnread,
+                ),
               ],
             ),
           ),
-        // Pangea#
+          PopupMenuItem(
+            value: ChatContextAction.favorite,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  room.isFavourite ? Icons.push_pin : Icons.push_pin_outlined,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  room.isFavourite
+                      ? L10n.of(context).unpin
+                      : L10n.of(context).pin,
+                ),
+              ],
+            ),
+          ),
+          if (spacesWithPowerLevels.isNotEmpty
+                  // #Pangea
+                  &&
+                  !room.isSpace
+              // Pangea#
+              )
+            PopupMenuItem(
+              value: ChatContextAction.addToSpace,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.group_work_outlined),
+                  const SizedBox(width: 12),
+                  Text(L10n.of(context).addToSpace),
+                ],
+              ),
+            ),
+          // #Pangea
+          // if the room has a parent for which the user has a high enough power level
+          // to set parent's space child events, show option to remove the room from the space
+          if (room.spaceParents.isNotEmpty &&
+              room.pangeaSpaceParents.any(
+                (r) => r.canChangeStateEvent(EventTypes.SpaceChild),
+              ) &&
+              activeSpaceId != null)
+            PopupMenuItem(
+              value: ChatContextAction.removeFromSpace,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.delete_sweep_outlined),
+                  const SizedBox(width: 12),
+                  Text(L10n.of(context).removeFromSpace),
+                ],
+              ),
+            ),
+          // Pangea#
+        ],
+        if (room.membership == Membership.invite)
+          PopupMenuItem(
+            value: ChatContextAction.block,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.block_outlined,
+                  color: Theme.of(context).colorScheme.error,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  L10n.of(context).block,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ],
+            ),
+          ),
         PopupMenuItem(
           value: ChatContextAction.leave,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.delete_outlined),
+              Icon(
+                Icons.delete_outlined,
+                color: Theme.of(context).colorScheme.onErrorContainer,
+              ),
               const SizedBox(width: 12),
-              Text(L10n.of(context).leave),
+              Text(
+                room.membership == Membership.invite
+                    ? L10n.of(context).delete
+                    : L10n.of(context).leave,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onErrorContainer,
+                ),
+              ),
             ],
           ),
         ),
@@ -932,15 +847,15 @@ class ChatListController extends State<ChatList>
           useRootNavigator: false,
           context: context,
           title: L10n.of(context).areYouSure,
-          okLabel: L10n.of(context).leave,
-          cancelLabel: L10n.of(context).no,
           // #Pangea
           // message: L10n.of(context).archiveRoomDescription,
           message: room.isSpace
               ? L10n.of(context).leaveSpaceDescription
               : L10n.of(context).archiveRoomDescription,
           // Pangea#
-          isDestructiveAction: true,
+          okLabel: L10n.of(context).leave,
+          cancelLabel: L10n.of(context).cancel,
+          isDestructive: true,
         );
         if (confirmed == OkCancelResult.cancel) return;
         if (!mounted) return;
@@ -955,13 +870,13 @@ class ChatListController extends State<ChatList>
 
         return;
       case ChatContextAction.addToSpace:
-        final space = await showConfirmationDialog(
+        final space = await showModalActionPopup(
           context: context,
           title: L10n.of(context).space,
           actions: spacesWithPowerLevels
               .map(
-                (space) => AlertDialogAction(
-                  key: space,
+                (space) => AdaptiveModalAction(
+                  value: space,
                   label: space
                       .getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
                 ),
@@ -1009,6 +924,10 @@ class ChatListController extends State<ChatList>
         );
         return;
       // Pangea#
+      case ChatContextAction.block:
+        final userId =
+            room.getState(EventTypes.RoomMember, room.client.userID!)?.senderId;
+        context.go('/rooms/settings/security/ignorelist', extra: userId);
     }
   }
 
@@ -1050,15 +969,11 @@ class ChatListController extends State<ChatList>
       message: L10n.of(context).leaveEmptyToClearStatus,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          hintText: L10n.of(context).statusExampleMessage,
-          maxLines: 6,
-          minLines: 1,
-          maxLength: 255,
-          initialText: currentPresence.statusMsg,
-        ),
-      ],
+      hintText: L10n.of(context).statusExampleMessage,
+      maxLines: 6,
+      minLines: 1,
+      maxLength: 255,
+      initialText: currentPresence.statusMsg,
     );
     if (input == null) return;
     if (!mounted) return;
@@ -1067,7 +982,7 @@ class ChatListController extends State<ChatList>
       future: () => client.setPresence(
         client.userID!,
         PresenceType.online,
-        statusMsg: input.single,
+        statusMsg: input,
       ),
     );
   }
@@ -1118,7 +1033,9 @@ class ChatListController extends State<ChatList>
     //   controller = ScaffoldMessenger.of(context).showSnackBar(
     //     SnackBar(
     //       duration: const Duration(seconds: 15),
+    //       showCloseIcon: true,
     //       backgroundColor: theme.colorScheme.errorContainer,
+    //       closeIconColor: theme.colorScheme.onErrorContainer,
     //       content: Text(
     //         L10n.of(context).oneOfYourDevicesIsNotVerified,
     //         style: TextStyle(
@@ -1148,12 +1065,6 @@ class ChatListController extends State<ChatList>
     }
   }
   // Pangea#
-
-  void cancelAction() {
-    if (selectMode == SelectMode.share) {
-      setState(() => Matrix.of(context).shareContent = null);
-    }
-  }
 
   void setActiveFilter(ActiveFilter filter) {
     setState(() {
@@ -1190,17 +1101,18 @@ class ChatListController extends State<ChatList>
     final client = Matrix.of(context)
         .widget
         .clients[Matrix.of(context).getClientIndexByMatrixId(userId!)];
-    final action = await showConfirmationDialog<EditBundleAction>(
+    final action = await showModalActionPopup<EditBundleAction>(
       context: context,
       title: L10n.of(context).editBundlesForAccount,
+      cancelLabel: L10n.of(context).cancel,
       actions: [
-        AlertDialogAction(
-          key: EditBundleAction.addToBundle,
+        AdaptiveModalAction(
+          value: EditBundleAction.addToBundle,
           label: L10n.of(context).addToBundle,
         ),
         if (activeBundle != client.userID)
-          AlertDialogAction(
-            key: EditBundleAction.removeFromBundle,
+          AdaptiveModalAction(
+            value: EditBundleAction.removeFromBundle,
             label: L10n.of(context).removeFromBundle,
           ),
       ],
@@ -1211,12 +1123,12 @@ class ChatListController extends State<ChatList>
         final bundle = await showTextInputDialog(
           context: context,
           title: l10n.bundleName,
-          textFields: [DialogTextField(hintText: l10n.bundleName)],
+          hintText: l10n.bundleName,
         );
-        if (bundle == null || bundle.isEmpty || bundle.single.isEmpty) return;
+        if (bundle == null || bundle.isEmpty || bundle.isEmpty) return;
         await showFutureLoadingDialog(
           context: context,
-          future: () => client.setAccountBundle(bundle.single),
+          future: () => client.setAccountBundle(bundle),
         );
         break;
       case EditBundleAction.removeFromBundle:
@@ -1282,6 +1194,7 @@ enum ChatContextAction {
   mute,
   leave,
   addToSpace,
+  block,
   // #Pangea
   removeFromSpace,
   // Pangea#

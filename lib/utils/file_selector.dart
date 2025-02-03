@@ -5,6 +5,7 @@ import 'package:file_selector/file_selector.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 Future<List<XFile>> selectFiles(
   BuildContext context, {
@@ -14,14 +15,17 @@ Future<List<XFile>> selectFiles(
 }) async {
   if (!PlatformInfos.isLinux) {
     final result = await AppLock.of(context).pauseWhile(
-      FilePicker.platform.pickFiles(
-        compressionQuality: 0,
-        allowMultiple: allowMultiple,
-        type: type.filePickerType,
-        allowedExtensions: type.extensions,
+      showFutureLoadingDialog(
+        context: context,
+        future: () => FilePicker.platform.pickFiles(
+          compressionQuality: 0,
+          allowMultiple: allowMultiple,
+          type: type.filePickerType,
+          allowedExtensions: type.extensions,
+        ),
       ),
     );
-    return result?.xFiles ?? [];
+    return result.result?.xFiles ?? [];
   }
 
   if (allowMultiple) {

@@ -66,7 +66,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Es pot entrar a la sala com a convidadi",
+  "areGuestsAllowedToJoin": "Es pot entrar al xat com a convidadi",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
@@ -1939,7 +1939,7 @@
       "user": {}
     }
   },
-  "banUserDescription": "Es vetarà li usuàriï vetadi a la sala i no podrà tornar-hi a entrar fins que se li aixequi el veto.",
+  "banUserDescription": "Es vetarà li usuàriï al xat i no podrà tornar-hi a entrar fins que se li aixequi el veto.",
   "@banUserDescription": {},
   "widgetEtherpad": "Nota de text",
   "@widgetEtherpad": {},
@@ -1958,7 +1958,7 @@
       "user": {}
     }
   },
-  "unbanUserDescription": "L'usuàrïi ja pot tornar a entrar a la sala.",
+  "unbanUserDescription": "L'usuàrïi ja pot tornar a entrar al xat.",
   "@unbanUserDescription": {},
   "youRejectedTheInvitation": "Has rebutjat la invitació",
   "@youRejectedTheInvitation": {},
@@ -2077,7 +2077,7 @@
       "provider": {}
     }
   },
-  "fileIsTooBigForServer": "El servidor ha rebutjat l'arxiu perquè és massa gran.",
+  "fileIsTooBigForServer": "No s'ha pogut enviar! El servidor només accepta adjunts de fins a {max}.",
   "@fileIsTooBigForServer": {},
   "homeserver": "Servidor",
   "@homeserver": {},
@@ -2105,7 +2105,7 @@
   "@optionalRedactReason": {},
   "dehydrate": "Exporta la sessió i neteja el dispositiu",
   "@dehydrate": {},
-  "archiveRoomDescription": "Aquest xat serà arxivat. Els altres contactes del grup ho veuran com si haguessis abandonat la sala.",
+  "archiveRoomDescription": "Aquest xat serà arxivat. Els altres contactes del grup ho veuran com si haguessis abandonat el xat.",
   "@archiveRoomDescription": {},
   "exportEmotePack": "Exporta com un pack Emote en .zip",
   "@exportEmotePack": {},
@@ -2170,7 +2170,7 @@
       "path": {}
     }
   },
-  "redactMessageDescription": "S'estriparà el missatge per a totser d'aquesta sala. Aquesta acció és irreversible.",
+  "redactMessageDescription": "S'estriparà el missatge per a totser d'aquesta conversa. Aquesta acció és irreversible.",
   "@redactMessageDescription": {},
   "recoveryKey": "Clau de recuperació",
   "@recoveryKey": {},
@@ -2254,7 +2254,7 @@
   },
   "importEmojis": "Importa emojis",
   "@importEmojis": {},
-  "wasDirectChatDisplayName": "La sala buida ( va ser {oldDisplayName})",
+  "wasDirectChatDisplayName": "Xat buit ( era {oldDisplayName})",
   "@wasDirectChatDisplayName": {
     "type": "text",
     "placeholders": {
@@ -2285,7 +2285,7 @@
   "@dehydrateTor": {},
   "removeFromSpace": "Esborra de l'espai",
   "@removeFromSpace": {},
-  "roomUpgradeDescription": "El xat serà recreat amb una versió de sala nova. Totis lis participants seran notificadis que han de canviar a la nova sala. Pots llegir més sobre les versions de sala a https://spec.matrix.org/latest/rooms/",
+  "roomUpgradeDescription": "El xat serà recreat amb una versió de sala nova. Totis lis participants seran notificadis que han de canviar al nou xat. Pots llegir més sobre les versions de sala a https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
   "pleaseEnterANumber": "Introdueix un número major que 0",
   "@pleaseEnterANumber": {},
@@ -2501,7 +2501,7 @@
   "@searchForUsers": {},
   "subspace": "Subespai",
   "@subspace": {},
-  "addChatOrSubSpace": "Afegeix una sala o un subespai",
+  "addChatOrSubSpace": "Afegeix un xat o un subespai",
   "@addChatOrSubSpace": {},
   "decline": "Denega",
   "@decline": {},
@@ -2644,7 +2644,7 @@
   "@changeGeneralChatSettings": {},
   "sendRoomNotifications": "Envia notificacions @room",
   "@sendRoomNotifications": {},
-  "changeTheDescriptionOfTheGroup": "Canvia la descripció de la sala",
+  "changeTheDescriptionOfTheGroup": "Canvia la descripció del xat",
   "@changeTheDescriptionOfTheGroup": {},
   "changelog": "Registre de canvis",
   "@changelog": {},
@@ -2664,11 +2664,11 @@
   },
   "inviteOtherUsers": "Convida més gent a la conversa",
   "@inviteOtherUsers": {},
-  "changeTheChatPermissions": "Canvia els permisos de la sala",
+  "changeTheChatPermissions": "Canvia els permisos del xat",
   "@changeTheChatPermissions": {},
   "changeTheVisibilityOfChatHistory": "Canvia la visibilitat de l'historial de conversa",
   "@changeTheVisibilityOfChatHistory": {},
-  "changeTheCanonicalRoomAlias": "Canvia l'adreça principal de la sala",
+  "changeTheCanonicalRoomAlias": "Canvia l'adreça principal del xat",
   "@changeTheCanonicalRoomAlias": {},
   "accessAndVisibilityDescription": "Qui pot entrar a aquesta conversa i com pot ser descoberta.",
   "@accessAndVisibilityDescription": {},
@@ -2707,7 +2707,7 @@
   "@usersMustKnock": {},
   "noOneCanJoin": "Ningú s'hi pot ficar",
   "@noOneCanJoin": {},
-  "userWouldLikeToChangeTheChat": "{user} vol entrar a la sala.",
+  "userWouldLikeToChangeTheChat": "{user} vol entrar al xat.",
   "@userWouldLikeToChangeTheChat": {
     "placeholders": {
       "user": {}
@@ -2717,7 +2717,7 @@
   "@customEmojisAndStickersBody": {},
   "hideRedactedMessagesBody": "Si algú estripa un missatge, ja no apareixerà a l'historial de la conversa.",
   "@hideRedactedMessagesBody": {},
-  "searchIn": "Cerca a la sala \"{chat}\"...",
+  "searchIn": "Cerca al xat \"{chat}\"...",
   "@searchIn": {
     "type": "text",
     "placeholders": {
@@ -2726,7 +2726,7 @@
   },
   "markAsUnread": "Marca com a no llegit",
   "@markAsUnread": {},
-  "chatPermissionsDescription": "Defineix quin nivell de permisos cal per cada acció en aquesta sala. Els nivells 0, 50 i 100 normalment representen usuàriïs, mods i admins, però es pot canviar.",
+  "chatPermissionsDescription": "Defineix quin nivell de permisos cal per cada acció en aquest xat. Els nivells 0, 50 i 100 normalment representen usuàriïs, mods i admins, però es pot canviar.",
   "@chatPermissionsDescription": {},
   "updateInstalled": "🎉 S'ha actualitzat a la versió {version}!",
   "@updateInstalled": {
@@ -2751,7 +2751,7 @@
   "@searchMore": {},
   "files": "Arxius",
   "@files": {},
-  "publicChatAddresses": "Adreces públiques de la sala",
+  "publicChatAddresses": "Adreces públiques del xat",
   "@publicChatAddresses": {},
   "unreadChatsInApp": "{appname}: {unread} converses pendents",
   "@unreadChatsInApp": {
@@ -2796,11 +2796,98 @@
   "@spaces": {},
   "noPublicLinkHasBeenCreatedYet": "No s'ha creat cap enllaç públic",
   "@noPublicLinkHasBeenCreatedYet": {},
-  "chatCanBeDiscoveredViaSearchOnServer": "La sala es pot descobrir amb la cerca de {server}",
+  "chatCanBeDiscoveredViaSearchOnServer": "El xat es pot descobrir amb la cerca de {server}",
   "@chatCanBeDiscoveredViaSearchOnServer": {
     "type": "text",
     "placeholders": {
       "server": {}
     }
-  }
+  },
+  "calculatingFileSize": "S'està calculant la mida de l'arxiu...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "S'està preparant per enviar l'adjunt...",
+  "@prepareSendingAttachment": {},
+  "generatingVideoThumbnail": "S'està generant la miniatura del vídeo...",
+  "@generatingVideoThumbnail": {},
+  "noticeChatBackupDeviceVerification": "Nota: quan connectes tots els dispositius al backup del xat, es verifiquen automàticament.",
+  "@noticeChatBackupDeviceVerification": {},
+  "continueText": "Continua",
+  "@continueText": {},
+  "strikeThrough": "Text ratllat",
+  "@strikeThrough": {},
+  "addLink": "Afegeix un enllaç",
+  "@addLink": {},
+  "noContactInformationProvided": "El servidor no ofereix cap informació de contacte vàlida",
+  "@noContactInformationProvided": {},
+  "setWallpaper": "Tria imatge de fons",
+  "@setWallpaper": {},
+  "sendImages": "Envia {count} imatge",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "sendingAttachment": "S'està enviant l'adjunt...",
+  "@sendingAttachment": {},
+  "compressVideo": "S'està comprimint el vídeo...",
+  "@compressVideo": {},
+  "sendingAttachmentCountOfCount": "S'està enviant l'adjunt {index} de {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "serverLimitReached": "S'ha arribat al límit del servidor! Esperant {seconds} segons...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "oneOfYourDevicesIsNotVerified": "Un dels teus dispositius no està verificat",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "welcomeText": "Hola hola! 👋 Això és FluffyChat. Pots iniciar sessió en qualsevol servidor compatible amb https://matrix.org. I llavors xatejar amb qualsevol. És una xarxa enorme de missatgeria descentralitzada !",
+  "@welcomeText": {},
+  "blur": "Difumina:",
+  "@blur": {},
+  "opacity": "Opacitat:",
+  "@opacity": {},
+  "manageAccount": "Gestiona el compte",
+  "@manageAccount": {},
+  "contactServerAdmin": "Contacta l'admin del servidor",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "Contacta l'equip de seguretat del servidor",
+  "@contactServerSecurity": {},
+  "version": "Versió",
+  "@version": {},
+  "website": "Lloc web",
+  "@website": {},
+  "compress": "Comprimeix",
+  "@compress": {},
+  "pleaseFillOut": "Emplena",
+  "@pleaseFillOut": {},
+  "invalidUrl": "URL invàlida",
+  "@invalidUrl": {},
+  "unableToJoinChat": "No s'ha pogut entrar al xat. Pot ser que l'altri participant hagi tancat la conversa.",
+  "@unableToJoinChat": {},
+  "aboutHomeserver": "Quant a {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "supportPage": "Pàgina de suport",
+  "@supportPage": {},
+  "serverInformation": "Informació del servidor:",
+  "@serverInformation": {},
+  "name": "Nom",
+  "@name": {},
+  "boldText": "Text en negreta",
+  "@boldText": {},
+  "italicText": "Text en cursiva",
+  "@italicText": {}
 }

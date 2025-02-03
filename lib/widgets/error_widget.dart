@@ -39,7 +39,7 @@ class _FluffyChatErrorWidgetState extends State<FluffyChatErrorWidget> {
       child: Placeholder(
         child: Center(
           child: Material(
-            color: Colors.white.withAlpha(225),
+            color: Colors.white.withAlpha(230),
             borderRadius: BorderRadius.circular(8),
           ),
         ),

@@ -17,14 +17,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.46"
-  adaptive_dialog:
-    dependency: "direct main"
-    description:
-      name: adaptive_dialog
-      sha256: "817ff9b4bb441434d1fcb39a8d4492e50be456cd3507e4f19c5c7455c9e279e0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
   analyzer:
     dependency: transitive
     description:
@@ -57,14 +49,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
-  appkit_ui_element_colors:
-    dependency: transitive
-    description:
-      name: appkit_ui_element_colors
-      sha256: c3e50f900aae314d339de489535736238627071457c4a4a2dbbb1545b4f04f22
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   archive:
     dependency: "direct main"
     description:
@@ -362,14 +346,13 @@ packages:
     source: hosted
     version: "1.0.1"
   dart_webrtc:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "."
-      ref: f27d27c7af41ceeebe31b295af4fb38e7b4d793e
-      resolved-ref: f27d27c7af41ceeebe31b295af4fb38e7b4d793e
-      url: "https://github.com/flutter-webrtc/dart-webrtc.git"
-    source: git
-    version: "1.4.9"
+      name: dart_webrtc
+      sha256: e65506edb452148220efab53d8d2f8bb9d827bd8bcd53cf3a3e6df70b27f3d86
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.10"
   dbus:
     dependency: transitive
     description:
@@ -462,10 +445,10 @@ packages:
     dependency: transitive
     description:
       name: equatable
-      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      sha256: "567c64b3cb4cf82397aac55f4f0cbd3ca20d77c6c03bedbc4ceaddc08904aef7"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.5"
+    version: "2.0.7"
   excel:
     dependency: "direct main"
     description:
@@ -715,15 +698,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.1"
-  flutter_html:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: master
-      resolved-ref: e07b904d70a98d678882ac5c4c2da896a67a688c
-      url: "https://github.com/SherpaMiguel/flutter_html"
-    source: git
-    version: "3.0.0-beta.2"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -1097,14 +1071,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.3.0"
-  gradient_borders:
-    dependency: transitive
-    description:
-      name: gradient_borders
-      sha256: b1cd969552c83f458ff755aa68e13a0327d09f06c3f42f471b423b01427f21f8
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   graphs:
     dependency: transitive
     description:
@@ -1310,14 +1276,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  intersperse:
-    dependency: transitive
-    description:
-      name: intersperse
-      sha256: "2f8a905c96f6cbba978644a3d5b31b8d86ddc44917662df7d27a61f3df66a576"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   intl:
     dependency: "direct main"
     description:
@@ -1446,14 +1404,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
-  list_counter:
-    dependency: transitive
-    description:
-      name: list_counter
-      sha256: c447ae3dfcd1c55f0152867090e67e219d42fe6d4f2807db4bbe8b8d69912237
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   lists:
     dependency: transitive
     description:
@@ -1478,22 +1428,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  macos_ui:
-    dependency: transitive
-    description:
-      name: macos_ui
-      sha256: "91c7f3427f763fd96b65831342b896b18751140e6bf55f8572fcb41f7b30bcab"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.7"
-  macos_window_utils:
-    dependency: transitive
-    description:
-      name: macos_window_utils
-      sha256: "230be594d26f6dee92c5a1544f4242d25138a5bfb9f185b27f14de3949ef0be8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.5.0"
   markdown:
     dependency: transitive
     description:
@@ -1531,10 +1465,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "16a089ad229671f2367c8927b9edae776004a3ae"
+      resolved-ref: "03be44cc13cb15a1b6fa586589eb8c243979d381"
       url: "https://github.com/pangeachat/matrix-dart-sdk.git"
     source: git
-    version: "0.36.0"
+    version: "0.37.0"
   meta:
     dependency: transitive
     description:
@@ -1595,10 +1529,10 @@ packages:
     dependency: transitive
     description:
       name: olm
-      sha256: "37948a6576949256f3ee1d0063d5b408634ff7e452b9a5c2f6410f9d7ced1c20"
+      sha256: "3306bf534ceb914fd148b3b4a3d603fb5e067b2e6da8304025b47c24cfdf6b46"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   open_file:
     dependency: "direct main"
     description:
@@ -1667,10 +1601,10 @@ packages:
     dependency: transitive
     description:
       name: path_parsing
-      sha256: e3e67b1629e6f7e8100b367d3db6ba6af4b1f0bb80f64db18ef1fbabd2fa9ccf
+      sha256: "883402936929eac138ee0a45da5b0f2c80f89913e6dc3bf77eb65b84b409c6ca"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1"
+    version: "1.1.0"
   path_provider:
     dependency: "direct main"
     description:
@@ -1943,6 +1877,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  qr_image:
+    dependency: "direct main"
+    description:
+      name: qr_image
+      sha256: c3cd2ac2c6cd6b14604c97b45c477b18988b6518f72120fa04418fc54e3b0d76
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   random_string:
     dependency: transitive
     description:
@@ -2328,10 +2270,10 @@ packages:
     dependency: "direct main"
     description:
       name: swipe_to_action
-      sha256: "0914f78df07a15b5fd97e800036fd63a2bcd4dbe67a4a514a597303806a361ea"
+      sha256: "05289a2bff6a0227deeff382afa1c46643d1f077e678d78f76440e153ea1ef7d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   sync_http:
     dependency: transitive
     description:

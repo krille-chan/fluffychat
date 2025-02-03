@@ -86,15 +86,6 @@
                <data android:scheme="com.talktolearn.chat" android:host="chat" />
             </intent-filter>
 
-            <!-- App can receive shared files -->
-            <intent-filter>
-              <action android:name="android.intent.action.VIEW" />
-              <category android:name="android.intent.category.DEFAULT" />
-              <data
-                   android:mimeType="*/*"
-                   android:scheme="content" />
-            </intent-filter>
-
             <!-- App can receive shared text -->
             <intent-filter>
                <action android:name="android.intent.action.SEND" />
@@ -102,32 +93,16 @@
                <data android:mimeType="text/*" />
             </intent-filter>
 
-            <!-- App can receive shared documents -->
+            <!-- App can receive shared any type of files -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="document/*" />
+                <data android:mimeType="*/*" />
             </intent-filter>
-
-            <!-- App can receive shared images -->
             <intent-filter>
-                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="image/*" />
-            </intent-filter>
-
-            <!-- App can receive shared videos -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="video/*" />
-            </intent-filter>
-
-            <!-- App can receive shared audios -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="audio/*" />
+                <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
 

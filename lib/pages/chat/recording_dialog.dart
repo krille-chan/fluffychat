@@ -206,7 +206,7 @@ class RecordingDialogState extends State<RecordingDialog> {
           CupertinoDialogAction(
             onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
             child: Text(
-              L10n.of(context).cancel.toUpperCase(),
+              L10n.of(context).cancel,
               style: TextStyle(
                 color: theme.textTheme.bodyMedium?.color?.withAlpha(150),
               ),
@@ -215,7 +215,7 @@ class RecordingDialogState extends State<RecordingDialog> {
           if (error != true)
             CupertinoDialogAction(
               onPressed: _stopAndSend,
-              child: Text(L10n.of(context).send.toUpperCase()),
+              child: Text(L10n.of(context).send),
             ),
         ],
       );
@@ -226,23 +226,16 @@ class RecordingDialogState extends State<RecordingDialog> {
         TextButton(
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
           child: Text(
-            L10n.of(context).cancel.toUpperCase(),
+            L10n.of(context).cancel,
             style: TextStyle(
-              color: theme.textTheme.bodyMedium?.color?.withAlpha(150),
+              color: theme.colorScheme.error,
             ),
           ),
         ),
         if (error != true)
           TextButton(
             onPressed: _stopAndSend,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(L10n.of(context).send.toUpperCase()),
-                const SizedBox(width: 4),
-                const Icon(Icons.send_outlined, size: 15),
-              ],
-            ),
+            child: Text(L10n.of(context).send),
           ),
       ],
     );

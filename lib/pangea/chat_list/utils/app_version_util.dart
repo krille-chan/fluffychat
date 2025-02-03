@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -18,6 +17,7 @@ import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class AppVersionUtil {
@@ -130,7 +130,7 @@ class AppVersionUtil {
       return;
     }
 
-    final OkCancelResult dialogResponse = await _showDialog(
+    final OkCancelResult? dialogResponse = await _showDialog(
       context,
       mandatoryUpdate,
       currentVersion,
@@ -151,7 +151,7 @@ class AppVersionUtil {
     }
   }
 
-  static Future<OkCancelResult> _showDialog(
+  static Future<OkCancelResult?> _showDialog(
     BuildContext context,
     bool mandatoryUpdate,
     String currentVersion,
@@ -174,16 +174,16 @@ class AppVersionUtil {
             context: context,
             title: title,
             message: message,
-            canPop: false,
-            barrierDismissible: false,
+            // canPop: false,
+            // barrierDismissible: false,
             okLabel: L10n.of(context).updateNow,
           )
         : showOkCancelAlertDialog(
             context: context,
             title: title,
             message: message,
-            canPop: false,
-            barrierDismissible: false,
+            // canPop: false,
+            // barrierDismissible: false,
             okLabel: L10n.of(context).updateNow,
             cancelLabel: L10n.of(context).updateLater,
           );

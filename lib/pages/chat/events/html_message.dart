@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_highlighter/flutter_highlighter.dart';
 import 'package:flutter_highlighter/themes/shades-of-purple.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:html/dom.dart' as dom;
-import 'package:linkify/linkify.dart';
+import 'package:html/parser.dart' as parser;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
@@ -23,6 +22,9 @@ class HtmlMessage extends StatelessWidget {
   final String html;
   final Room room;
   final Color textColor;
+  final double fontSize;
+  final TextStyle linkStyle;
+  final void Function(LinkableElement) onOpen;
   // #Pangea
   final bool isOverlay;
   final PangeaMessageEvent? pangeaMessageEvent;
@@ -39,7 +41,10 @@ class HtmlMessage extends StatelessWidget {
     super.key,
     required this.html,
     required this.room,
+    required this.fontSize,
+    required this.linkStyle,
     this.textColor = Colors.black,
+    required this.onOpen,
     // #Pangea
     required this.isOverlay,
     required this.event,
@@ -52,35 +57,78 @@ class HtmlMessage extends StatelessWidget {
     // Pangea#
   });
 
-  dom.Node _linkifyHtml(dom.Node element) {
-    for (final node in element.nodes) {
-      if (node is! dom.Text ||
-          (element is dom.Element && element.localName == 'code')) {
-        node.replaceWith(_linkifyHtml(node));
-        continue;
-      }
+  /// Keep in sync with: https://spec.matrix.org/latest/client-server-api/#mroommessage-msgtypes
+  static const Set<String> allowedHtmlTags = {
+    'font',
+    'del',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'blockquote',
+    'p',
+    'a',
+    'ul',
+    'ol',
+    'sup',
+    'sub',
+    'li',
+    'b',
+    'i',
+    'u',
+    'strong',
+    'em',
+    'strike',
+    'code',
+    'hr',
+    'br',
+    'div',
+    'table',
+    'thead',
+    'tbody',
+    'tr',
+    'th',
+    'td',
+    'caption',
+    'pre',
+    'span',
+    'img',
+    'details',
+    'summary',
+    // Not in the allowlist of the matrix spec yet but should be harmless:
+    'ruby',
+    'rp',
+    'rt',
+    'html',
+    'body',
+    // Workaround for https://github.com/krille-chan/fluffychat/issues/507
+    'tg-forward',
+    // #Pangea
+    'token',
+    // Pangea#
+  };
 
-      final parts = linkify(
-        node.text,
-        options: const LinkifyOptions(humanize: false),
-      );
-
-      if (!parts.any((part) => part is UrlElement)) {
-        continue;
-      }
-
-      final newHtml = parts
-          .map(
-            (linkifyElement) => linkifyElement is! UrlElement
-                ? linkifyElement.text.replaceAll('<', '&#60;')
-                : '<a href="${linkifyElement.text}">${linkifyElement.text}</a>',
-          )
-          .join(' ');
-
-      node.replaceWith(dom.Element.html('<p>$newHtml</p>'));
-    }
-    return element;
-  }
+  /// We add line breaks before these tags:
+  static const Set<String> blockHtmlTags = {
+    'p',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'ul',
+    'ol',
+    'li',
+    'pre',
+    'br',
+    'div',
+    'table',
+    'blockquote',
+    'details',
+  };
 
   // #Pangea
   List<PangeaToken>? get tokens =>
@@ -149,43 +197,385 @@ class HtmlMessage extends StatelessWidget {
   }
   // Pangea#
 
+  /// Adding line breaks before block elements.
+  List<InlineSpan> _renderWithLineBreaks(
+    dom.NodeList nodes,
+    BuildContext context, {
+    int depth = 1,
+  }) =>
+      [
+        for (var i = 0; i < nodes.length; i++) ...[
+          if (i > 0 &&
+              nodes[i] is dom.Element &&
+              blockHtmlTags.contains((nodes[i] as dom.Element).localName))
+            const TextSpan(text: '\n'), // Add linebreak
+          // Actually render the node child:
+          _renderHtml(nodes[i], context, depth: depth + 1),
+        ],
+      ];
+
+  /// Transforms a Node to an InlineSpan.
+  InlineSpan _renderHtml(
+    dom.Node node,
+    BuildContext context, {
+    int depth = 1,
+  }) {
+    // We must not render elements nested more than 100 elements deep:
+    if (depth >= 100) return const TextSpan();
+
+    // This is a text node, so we render it as text:
+    if (node is! dom.Element) {
+      var text = node.text ?? '';
+      // Single linebreak nodes between Elements are ignored:
+      if (text == '\n') text = '';
+
+      return LinkifySpan(
+        text: text,
+        options: const LinkifyOptions(humanize: false),
+        linkStyle: linkStyle,
+        onOpen: onOpen,
+      );
+    }
+
+    // We must not render tags which are not in the allow list:
+    if (!allowedHtmlTags.contains(node.localName)) return const TextSpan();
+
+    switch (node.localName) {
+      // #Pangea
+      case 'token':
+        final token = getToken(
+          node.attributes['offset'] ?? '',
+          int.tryParse(node.attributes['offset'] ?? '') ?? 0,
+          int.tryParse(node.attributes['length'] ?? '') ?? 0,
+        );
+
+        final selected = token != null && isSelected != null
+            ? isSelected!.call(token)
+            : false;
+
+        final shouldDo = token?.shouldDoActivity(
+              a: ActivityTypeEnum.wordMeaning,
+              feature: null,
+              tag: null,
+            ) ??
+            false;
+
+        final didMeaningActivity = token?.didActivitySuccessfully(
+              ActivityTypeEnum.wordMeaning,
+            ) ??
+            true;
+
+        Color backgroundColor = Colors.transparent;
+        if (selected) {
+          backgroundColor = AppConfig.primaryColor.withAlpha(80);
+        } else if (isSelected != null && shouldDo) {
+          backgroundColor = !didMeaningActivity
+              ? AppConfig.success.withAlpha(60)
+              : AppConfig.gold.withAlpha(60);
+        }
+
+        return TextSpan(
+          recognizer: TapGestureRecognizer()
+            ..onTap = onClick != null && token != null
+                ? () => onClick?.call(token)
+                : null,
+          text: node.innerHtml,
+          style: AppConfig.messageTextStyle(
+            pangeaMessageEvent!.event,
+            textColor,
+          ).merge(TextStyle(backgroundColor: backgroundColor)),
+        );
+      // Pangea#
+      case 'a':
+        final href = node.attributes['href'];
+        if (href == null) continue block;
+        final matrixId = node.attributes['href']
+            ?.parseIdentifierIntoParts()
+            ?.primaryIdentifier;
+        if (matrixId != null) {
+          if (matrixId.sigil == '@') {
+            final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
+            return WidgetSpan(
+              child: MatrixPill(
+                key: Key('user_pill_$matrixId'),
+                name: user.calcDisplayname(),
+                avatar: user.avatarUrl,
+                uri: href,
+                outerContext: context,
+                fontSize: fontSize,
+                color: linkStyle.color,
+              ),
+            );
+          }
+          if (matrixId.sigil == '#' || matrixId.sigil == '!') {
+            final room = matrixId.sigil == '!'
+                ? this.room.client.getRoomById(matrixId)
+                : this.room.client.getRoomByAlias(matrixId);
+            return WidgetSpan(
+              child: MatrixPill(
+                name: room?.getLocalizedDisplayname() ?? matrixId,
+                avatar: room?.avatar,
+                uri: href,
+                outerContext: context,
+                fontSize: fontSize,
+                color: linkStyle.color,
+              ),
+            );
+          }
+        }
+        return WidgetSpan(
+          child: Tooltip(
+            message: href,
+            child: InkWell(
+              splashColor: Colors.transparent,
+              onTap: () => UrlLauncher(context, href, node.text).launchUrl(),
+              child: Text.rich(
+                TextSpan(
+                  children: _renderWithLineBreaks(
+                    node.nodes,
+                    context,
+                    depth: depth,
+                  ),
+                  style: linkStyle,
+                ),
+                style: const TextStyle(height: 1.25),
+              ),
+            ),
+          ),
+        );
+      case 'li':
+        if (!{'ol', 'ul'}.contains(node.parent?.localName)) {
+          continue block;
+        }
+        return WidgetSpan(
+          child: Padding(
+            padding: EdgeInsets.only(left: fontSize),
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  if (node.parent?.localName == 'ul')
+                    const TextSpan(text: '• '),
+                  if (node.parent?.localName == 'ol')
+                    TextSpan(
+                      text:
+                          '${(node.parent?.nodes.indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
+                    ),
+                  ..._renderWithLineBreaks(
+                    node.nodes,
+                    context,
+                    depth: depth,
+                  ),
+                ],
+                style: TextStyle(fontSize: fontSize, color: textColor),
+              ),
+            ),
+          ),
+        );
+      case 'blockquote':
+        return WidgetSpan(
+          child: Container(
+            padding: const EdgeInsets.only(left: 8.0),
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(
+                  color: textColor,
+                  width: 3,
+                ),
+              ),
+            ),
+            child: Text.rich(
+              TextSpan(
+                children: _renderWithLineBreaks(
+                  node.nodes,
+                  context,
+                  depth: depth,
+                ),
+              ),
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                fontSize: fontSize,
+                color: textColor,
+              ),
+            ),
+          ),
+        );
+      case 'code':
+        final isInline = node.parent?.localName != 'pre';
+        return WidgetSpan(
+          child: Material(
+            clipBehavior: Clip.hardEdge,
+            borderRadius: BorderRadius.circular(4),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: HighlightView(
+                node.text,
+                language: node.className
+                        .split(' ')
+                        .singleWhereOrNull(
+                          (className) => className.startsWith('language-'),
+                        )
+                        ?.split('language-')
+                        .last ??
+                    'md',
+                theme: shadesOfPurpleTheme,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: isInline ? 0 : 8,
+                ),
+                textStyle: TextStyle(fontSize: fontSize),
+              ),
+            ),
+          ),
+        );
+      case 'img':
+        final mxcUrl = Uri.tryParse(node.attributes['src'] ?? '');
+        if (mxcUrl == null || mxcUrl.scheme != 'mxc') {
+          return TextSpan(text: node.attributes['alt']);
+        }
+
+        final width = double.tryParse(node.attributes['width'] ?? '');
+        final height = double.tryParse(node.attributes['height'] ?? '');
+        const defaultDimension = 64.0;
+        final actualWidth = width ?? height ?? defaultDimension;
+        final actualHeight = height ?? width ?? defaultDimension;
+
+        return WidgetSpan(
+          child: SizedBox(
+            width: actualWidth,
+            height: actualHeight,
+            child: MxcImage(
+              uri: mxcUrl,
+              width: actualWidth,
+              height: actualHeight,
+              isThumbnail: (actualWidth * actualHeight) > (256 * 256),
+            ),
+          ),
+        );
+      case 'hr':
+        return const WidgetSpan(child: Divider());
+      case 'details':
+        var obscure = true;
+        return WidgetSpan(
+          child: StatefulBuilder(
+            builder: (context, setState) => InkWell(
+              splashColor: Colors.transparent,
+              onTap: () => setState(() {
+                obscure = !obscure;
+              }),
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    WidgetSpan(
+                      child: Icon(
+                        obscure ? Icons.arrow_right : Icons.arrow_drop_down,
+                        size: fontSize * 1.2,
+                        color: textColor,
+                      ),
+                    ),
+                    if (obscure)
+                      ...node.nodes
+                          .where(
+                            (node) =>
+                                node is dom.Element &&
+                                node.localName == 'summary',
+                          )
+                          .map(
+                            (node) => _renderHtml(node, context, depth: depth),
+                          )
+                    else
+                      ..._renderWithLineBreaks(
+                        node.nodes,
+                        context,
+                        depth: depth,
+                      ),
+                  ],
+                ),
+                style: TextStyle(
+                  fontSize: fontSize,
+                  color: textColor,
+                ),
+              ),
+            ),
+          ),
+        );
+      case 'span':
+        if (!node.attributes.containsKey('data-mx-spoiler')) {
+          continue block;
+        }
+        var obscure = true;
+        return WidgetSpan(
+          child: StatefulBuilder(
+            builder: (context, setState) => InkWell(
+              splashColor: Colors.transparent,
+              onTap: () => setState(() {
+                obscure = !obscure;
+              }),
+              child: Text.rich(
+                TextSpan(
+                  children: _renderWithLineBreaks(
+                    node.nodes,
+                    context,
+                    depth: depth,
+                  ),
+                ),
+                style: TextStyle(
+                  fontSize: fontSize,
+                  color: textColor,
+                  backgroundColor: obscure ? textColor : null,
+                ),
+              ),
+            ),
+          ),
+        );
+      block:
+      default:
+        return TextSpan(
+          style: switch (node.localName) {
+            'body' => TextStyle(
+                fontSize: fontSize,
+                color: textColor,
+              ),
+            'a' => linkStyle,
+            'strong' => const TextStyle(fontWeight: FontWeight.bold),
+            'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
+            'del' ||
+            'strikethrough' =>
+              const TextStyle(decoration: TextDecoration.lineThrough),
+            'u' => const TextStyle(decoration: TextDecoration.underline),
+            'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
+            'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
+            'h3' => TextStyle(fontSize: fontSize * 1.4, height: 2),
+            'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
+            'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
+            'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
+            'span' => TextStyle(
+                color: node.attributes['color']?.hexToColor ??
+                    node.attributes['data-mx-color']?.hexToColor ??
+                    textColor,
+                backgroundColor:
+                    node.attributes['data-mx-bg-color']?.hexToColor,
+              ),
+            'sup' =>
+              const TextStyle(fontFeatures: [FontFeature.superscripts()]),
+            'sub' => const TextStyle(fontFeatures: [FontFeature.subscripts()]),
+            _ => null,
+          },
+          children: _renderWithLineBreaks(
+            node.nodes,
+            context,
+            depth: depth,
+          ),
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
-
-    final linkColor = textColor.withAlpha(150);
-
-    final blockquoteStyle = Style(
-      border: Border(
-        left: BorderSide(
-          width: 3,
-          color: textColor,
-        ),
-      ),
-      padding: HtmlPaddings.only(left: 6, bottom: 0),
-    );
-
     // #Pangea
-    // final element = _linkifyHtml(HtmlParser.parseHTML(html));
-    dom.Node element = _linkifyHtml(HtmlParser.parseHTML(html));
-    if (tokens != null && element is dom.Element) {
-      try {
-        element = _tokenizeHtml(element, element.innerHtml, List.from(tokens!));
-      } catch (e, s) {
-        ErrorHandler.logError(
-          e: e,
-          s: s,
-          data: {
-            'html': html,
-            'tokens': tokens,
-          },
-        );
-      }
+    dom.Node parsed = parser.parse(html).body ?? dom.Element.html('');
+    if (tokens != null) {
+      parsed = _tokenizeHtml(parsed, html, List.from(tokens!));
     }
-    // Pangea#
-
-    // there is no need to pre-validate the html, as we validate it while rendering
-    // #Pangea
     return SelectionArea(
       child: GestureDetector(
         onTap: () {
@@ -199,458 +589,21 @@ class HtmlMessage extends StatelessWidget {
           }
         },
         // Pangea#
-        child: Html.fromElement(
-          documentElement: element as dom.Element,
-          style: {
-            '*': Style(
-              color: textColor,
-              margin: Margins.all(0),
-              fontSize: FontSize(fontSize),
-            ),
-            'a': Style(color: linkColor, textDecorationColor: linkColor),
-            'h1': Style(
-              fontSize: FontSize(fontSize * 2),
-              lineHeight: LineHeight.number(1.5),
-              fontWeight: FontWeight.w600,
-            ),
-            'h2': Style(
-              fontSize: FontSize(fontSize * 1.75),
-              lineHeight: LineHeight.number(1.5),
-              fontWeight: FontWeight.w500,
-            ),
-            'h3': Style(
-              fontSize: FontSize(fontSize * 1.5),
-              lineHeight: LineHeight.number(1.5),
-            ),
-            'h4': Style(
-              fontSize: FontSize(fontSize * 1.25),
-              lineHeight: LineHeight.number(1.5),
-            ),
-            'h5': Style(
-              fontSize: FontSize(fontSize * 1.25),
-              lineHeight: LineHeight.number(1.5),
-            ),
-            'h6': Style(
-              fontSize: FontSize(fontSize),
-              lineHeight: LineHeight.number(1.5),
-            ),
-            'blockquote': blockquoteStyle,
-            'tg-forward': blockquoteStyle,
-            'hr': Style(
-              border: Border.all(color: textColor, width: 0.5),
-            ),
-            'table': Style(
-              border: Border.all(color: textColor, width: 0.5),
-            ),
-            'tr': Style(
-              border: Border.all(color: textColor, width: 0.5),
-            ),
-            'td': Style(
-              border: Border.all(color: textColor, width: 0.5),
-              padding: HtmlPaddings.all(2),
-            ),
-            'th': Style(
-              border: Border.all(color: textColor, width: 0.5),
-            ),
-          },
-          extensions: [
-            RoomPillExtension(context, room, fontSize, linkColor),
-            CodeExtension(fontSize: fontSize),
+        child: Text.rich(
+          _renderHtml(
             // #Pangea
-            // const TableHtmlExtension(),
+            // parser.parse(html).body ?? dom.Element.html(''),
+            parsed,
             // Pangea#
-            SpoilerExtension(textColor: textColor),
-            const ImageExtension(),
-            FontColorExtension(),
-            FallbackTextExtension(fontSize: fontSize),
-            // #Pangea
-            if (pangeaMessageEvent != null)
-              TokenExtension(
-                style: AppConfig.messageTextStyle(
-                  pangeaMessageEvent!.event,
-                  textColor,
-                ),
-                getToken: getToken,
-                isSelected: isSelected,
-                onClick: onClick,
-              ),
-            // Pangea#
-          ],
-          onLinkTap: (url, _, element) => UrlLauncher(
             context,
-            url,
-            element?.text,
-          ).launchUrl(),
-          onlyRenderTheseTags: const {
-            ...allowedHtmlTags,
-            // Needed to make it work properly
-            'body',
-            'html',
-          },
-          shrinkWrap: true,
-        ),
-      ),
-    );
-  }
-
-  static const Set<String> fallbackTextTags = {'tg-forward'};
-
-  /// Keep in sync with: https://spec.matrix.org/v1.6/client-server-api/#mroommessage-msgtypes
-  static const Set<String> allowedHtmlTags = {
-    'font',
-    'del',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'blockquote',
-    'p',
-    'a',
-    'ul',
-    'ol',
-    'sup',
-    'sub',
-    'li',
-    'b',
-    'i',
-    'u',
-    'strong',
-    'em',
-    'strike',
-    'code',
-    'hr',
-    'br',
-    'div',
-    'table',
-    'thead',
-    'tbody',
-    'tr',
-    'th',
-    'td',
-    'caption',
-    'pre',
-    'span',
-    'img',
-    'details',
-    'summary',
-    // Not in the allowlist of the matrix spec yet but should be harmless:
-    'ruby',
-    'rp',
-    'rt',
-    // Workaround for https://github.com/krille-chan/fluffychat/issues/507
-    ...fallbackTextTags,
-    // #Pangea
-    'token',
-    // Pangea#
-  };
-}
-
-// #Pangea
-class TokenExtension extends HtmlExtension {
-  final TextStyle style;
-  final PangeaToken? Function(String, int, int) getToken;
-  final bool Function(PangeaToken)? isSelected;
-  final void Function(PangeaToken)? onClick;
-
-  const TokenExtension({
-    required this.style,
-    required this.getToken,
-    this.isSelected,
-    this.onClick,
-  });
-
-  @override
-  Set<String> get supportedTags => {'token'};
-
-  @override
-  InlineSpan build(ExtensionContext context) {
-    final token = getToken(
-      context.attributes['offset'] ?? '',
-      int.tryParse(context.attributes['offset'] ?? '') ?? 0,
-      int.tryParse(context.attributes['length'] ?? '') ?? 0,
-    );
-
-    final selected =
-        token != null && isSelected != null ? isSelected!.call(token) : false;
-
-    final shouldDo = token?.shouldDoActivity(
-          a: ActivityTypeEnum.wordMeaning,
-          feature: null,
-          tag: null,
-        ) ??
-        false;
-
-    final didMeaningActivity = token?.didActivitySuccessfully(
-          ActivityTypeEnum.wordMeaning,
-        ) ??
-        true;
-
-    Color backgroundColor = Colors.transparent;
-    if (selected) {
-      backgroundColor = AppConfig.primaryColor.withAlpha(80);
-    } else if (isSelected != null && shouldDo) {
-      backgroundColor = !didMeaningActivity
-          ? AppConfig.success.withAlpha(60)
-          : AppConfig.gold.withAlpha(60);
-    }
-
-    return TextSpan(
-      recognizer: TapGestureRecognizer()
-        ..onTap = onClick != null && token != null
-            ? () => onClick?.call(token)
-            : null,
-      text: context.innerHtml,
-      style: style.merge(TextStyle(backgroundColor: backgroundColor)),
-    );
-  }
-}
-// Pangea#
-
-class FontColorExtension extends HtmlExtension {
-  static const String colorAttribute = 'color';
-  static const String mxColorAttribute = 'data-mx-color';
-  static const String bgColorAttribute = 'data-mx-bg-color';
-
-  @override
-  Set<String> get supportedTags => {'font', 'span'};
-
-  @override
-  bool matches(ExtensionContext context) {
-    if (!supportedTags.contains(context.elementName)) return false;
-    return context.element?.attributes.keys.any(
-          {
-            colorAttribute,
-            mxColorAttribute,
-            bgColorAttribute,
-          }.contains,
-        ) ??
-        false;
-  }
-
-  Color? hexToColor(String? hexCode) {
-    if (hexCode == null) return null;
-    if (hexCode.startsWith('#')) hexCode = hexCode.substring(1);
-    if (hexCode.length == 6) hexCode = 'FF$hexCode';
-    final colorValue = int.tryParse(hexCode, radix: 16);
-    return colorValue == null ? null : Color(colorValue);
-  }
-
-  @override
-  InlineSpan build(
-    ExtensionContext context,
-  ) {
-    final colorText = context.element?.attributes[colorAttribute] ??
-        context.element?.attributes[mxColorAttribute];
-    final bgColor = context.element?.attributes[bgColorAttribute];
-    return TextSpan(
-      style: TextStyle(
-        color: hexToColor(colorText),
-        backgroundColor: hexToColor(bgColor),
-      ),
-      text: context.innerHtml,
-    );
-  }
-}
-
-class ImageExtension extends HtmlExtension {
-  final double defaultDimension;
-
-  const ImageExtension({this.defaultDimension = 64});
-
-  @override
-  Set<String> get supportedTags => {'img'};
-
-  @override
-  InlineSpan build(ExtensionContext context) {
-    final mxcUrl = Uri.tryParse(context.attributes['src'] ?? '');
-    if (mxcUrl == null || mxcUrl.scheme != 'mxc') {
-      return TextSpan(text: context.attributes['alt']);
-    }
-
-    final width = double.tryParse(context.attributes['width'] ?? '');
-    final height = double.tryParse(context.attributes['height'] ?? '');
-
-    final actualWidth = width ?? height ?? defaultDimension;
-    final actualHeight = height ?? width ?? defaultDimension;
-
-    return WidgetSpan(
-      child: SizedBox(
-        width: actualWidth,
-        height: actualHeight,
-        child: MxcImage(
-          uri: mxcUrl,
-          width: actualWidth,
-          height: actualHeight,
-          isThumbnail: (actualWidth * actualHeight) > (256 * 256),
-        ),
-      ),
-    );
-  }
-}
-
-class SpoilerExtension extends HtmlExtension {
-  final Color textColor;
-
-  const SpoilerExtension({required this.textColor});
-
-  @override
-  Set<String> get supportedTags => {'span'};
-
-  static const String customDataAttribute = 'data-mx-spoiler';
-
-  @override
-  bool matches(ExtensionContext context) {
-    if (context.elementName != 'span') return false;
-    return context.element?.attributes.containsKey(customDataAttribute) ??
-        false;
-  }
-
-  @override
-  InlineSpan build(ExtensionContext context) {
-    var obscure = true;
-    final children = context.inlineSpanChildren;
-    return WidgetSpan(
-      child: StatefulBuilder(
-        builder: (context, setState) {
-          return InkWell(
-            onTap: () => setState(() {
-              obscure = !obscure;
-            }),
-            child: RichText(
-              text: TextSpan(
-                style: obscure ? TextStyle(backgroundColor: textColor) : null,
-                children: children,
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class CodeExtension extends HtmlExtension {
-  final double fontSize;
-
-  CodeExtension({required this.fontSize});
-  @override
-  Set<String> get supportedTags => {'code'};
-
-  @override
-  InlineSpan build(ExtensionContext context) => WidgetSpan(
-        child: Material(
-          clipBehavior: Clip.hardEdge,
-          borderRadius: BorderRadius.circular(4),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: HighlightView(
-              context.element?.text ?? '',
-              language: context.element?.className
-                      .split(' ')
-                      .singleWhereOrNull(
-                        (className) => className.startsWith('language-'),
-                      )
-                      ?.split('language-')
-                      .last ??
-                  'md',
-              theme: shadesOfPurpleTheme,
-              padding: EdgeInsets.symmetric(
-                horizontal: 6,
-                vertical: context.element?.parent?.localName == 'pre' ? 6 : 0,
-              ),
-              textStyle: TextStyle(fontSize: fontSize),
-            ),
           ),
-        ),
-      );
-}
-
-class FallbackTextExtension extends HtmlExtension {
-  final double fontSize;
-
-  FallbackTextExtension({required this.fontSize});
-  @override
-  Set<String> get supportedTags => HtmlMessage.fallbackTextTags;
-
-  @override
-  InlineSpan build(ExtensionContext context) => TextSpan(
-        text: context.element?.text ?? '',
-        style: TextStyle(
-          fontSize: fontSize,
-        ),
-      );
-}
-
-class RoomPillExtension extends HtmlExtension {
-  final Room room;
-  final BuildContext context;
-  final double fontSize;
-  final Color color;
-
-  RoomPillExtension(this.context, this.room, this.fontSize, this.color);
-  @override
-  Set<String> get supportedTags => {'a'};
-
-  @override
-  bool matches(ExtensionContext context) {
-    if (context.elementName != 'a') return false;
-    final userId = context.element?.attributes['href']
-        ?.parseIdentifierIntoParts()
-        ?.primaryIdentifier;
-    return userId != null;
-  }
-
-  static final _cachedUsers = <String, User?>{};
-
-  Future<User?> _fetchUser(String matrixId) async =>
-      _cachedUsers[room.id + matrixId] ??= await room.requestUser(matrixId);
-
-  @override
-  InlineSpan build(ExtensionContext context) {
-    final href = context.element?.attributes['href'];
-    final matrixId = href?.parseIdentifierIntoParts()?.primaryIdentifier;
-    if (href == null || matrixId == null) {
-      return TextSpan(text: context.innerHtml);
-    }
-    if (matrixId.sigil == '@') {
-      return WidgetSpan(
-        child: FutureBuilder<User?>(
-          future: _fetchUser(matrixId),
-          builder: (context, snapshot) => MatrixPill(
-            key: Key('user_pill_$matrixId'),
-            name: _cachedUsers[room.id + matrixId]?.calcDisplayname() ??
-                matrixId.localpart ??
-                matrixId,
-            avatar: _cachedUsers[room.id + matrixId]?.avatarUrl,
-            uri: href,
-            outerContext: this.context,
+          style: TextStyle(
             fontSize: fontSize,
-            color: color,
+            color: textColor,
           ),
         ),
-      );
-    }
-    if (matrixId.sigil == '#' || matrixId.sigil == '!') {
-      final room = matrixId.sigil == '!'
-          ? this.room.client.getRoomById(matrixId)
-          : this.room.client.getRoomByAlias(matrixId);
-      if (room != null) {
-        return WidgetSpan(
-          child: MatrixPill(
-            name: room.getLocalizedDisplayname(),
-            avatar: room.avatar,
-            uri: href,
-            outerContext: this.context,
-            fontSize: fontSize,
-            color: color,
-          ),
-        );
-      }
-    }
-
-    return TextSpan(text: context.innerHtml);
+      ),
+    );
   }
 }
 
@@ -675,6 +628,7 @@ class MatrixPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Colors.transparent,
       onTap: UrlLauncher(outerContext, uri).launchUrl,
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -698,5 +652,15 @@ class MatrixPill extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+extension on String {
+  Color? get hexToColor {
+    var hexCode = this;
+    if (hexCode.startsWith('#')) hexCode = hexCode.substring(1);
+    if (hexCode.length == 6) hexCode = 'FF$hexCode';
+    final colorValue = int.tryParse(hexCode, radix: 16);
+    return colorValue == null ? null : Color(colorValue);
   }
 }

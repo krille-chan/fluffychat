@@ -2882,5 +2882,21 @@
   "strikeThrough": "Durchgestrichen",
   "@strikeThrough": {},
   "pleaseFillOut": "Bitte ausfüllen",
-  "@pleaseFillOut": {}
+  "@pleaseFillOut": {},
+  "sendImages": "Sende {count} Bilder",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "contactServerSecurity": "Server-Sicherheit kontaktieren",
+  "@contactServerSecurity": {},
+  "compress": "Komprimieren",
+  "@compress": {},
+  "supportPage": "Support-Seite",
+  "@supportPage": {},
+  "serverInformation": "Server-Informationen:",
+  "@serverInformation": {},
+  "appIntroduction": "Mit FluffyChat kannst du über verschiedene Messenger hinweg mit deinen Freunden chatten. Erfahre mehr dazu auf https://matrix.org oder tippe einfach auf *Fortfahren*."
 }

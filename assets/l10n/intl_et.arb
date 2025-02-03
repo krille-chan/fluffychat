@@ -2885,5 +2885,14 @@
   "italicText": "Kaldkiri",
   "@italicText": {},
   "unableToJoinChat": "Vestlusega liitumine ei õnnestu. Võib-olla on teine osapool juba vestluse sulgenud.",
-  "@unableToJoinChat": {}
+  "@unableToJoinChat": {},
+  "sendImages": "Saada {count} pilti",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "compress": "Paki kokku",
+  "@compress": {}
 }

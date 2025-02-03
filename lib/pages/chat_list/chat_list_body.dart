@@ -18,7 +18,6 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import '../../config/themes.dart';
-import '../../widgets/connection_status_header.dart';
 import '../../widgets/matrix.dart';
 
 class ChatListViewBody extends StatelessWidget {
@@ -152,7 +151,6 @@ class ChatListViewBody extends StatelessWidget {
                     //     ),
                     //   ),
                     // Pangea#
-                    const ConnectionStatusHeader(),
                     AnimatedContainer(
                       height: controller.isTorBrowser ? 64 : 0,
                       duration: FluffyThemes.animationDuration,

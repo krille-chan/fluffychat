@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -13,6 +12,7 @@ import 'package:fluffychat/pangea/subscription/controllers/subscription_controll
 import 'package:fluffychat/pangea/subscription/pages/settings_subscription_view.dart';
 import 'package:fluffychat/pangea/subscription/utils/subscription_app_id.dart';
 import 'package:fluffychat/pangea/subscription/widgets/subscription_snackbar.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class SubscriptionManagement extends StatefulWidget {
