@@ -153,7 +153,7 @@ class LoginController extends State<Login> {
 
     try {
       // #Pangea
-      String username = usernameController.text;
+      String username = usernameController.text.trim();
       if (RegExp(r'^@(\w+):').hasMatch(username)) {
         username =
             RegExp(r'^@(\w+):').allMatches(username).elementAt(0).group(1)!;
@@ -184,7 +184,10 @@ class LoginController extends State<Login> {
             user: identifier.type == AuthenticationIdentifierTypes.userId
                 ? username
                 : null,
-            password: passwordController.text,
+            // #Pangea
+            // password: passwordController.text,
+            password: passwordController.text.trim(),
+            // Pangea#
             initialDeviceDisplayName: PlatformInfos.clientName,
           );
       MatrixState.pangeaController.pStoreService
