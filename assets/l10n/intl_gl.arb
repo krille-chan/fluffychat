@@ -2898,5 +2898,14 @@
   "previous": "Anterior",
   "@previous": {},
   "otherPartyNotLoggedIn": "A outra parte non está conectada neste momento e pode que non reciba as mensaxes!",
-  "@otherPartyNotLoggedIn": {}
+  "@otherPartyNotLoggedIn": {},
+  "open": "Abrir",
+  "@open": {},
+  "appWantsToUseForLogin": "Usar '{server}' para acceder",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  }
 }
