@@ -59,7 +59,9 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   ? L10n.of(context).searchChatsRooms
                   : status.calcLocalizedString(context),
               hintStyle: TextStyle(
-                color: theme.colorScheme.onPrimaryContainer,
+                color: status.error != null
+                    ? theme.colorScheme.error
+                    : theme.colorScheme.onPrimaryContainer,
                 fontWeight: FontWeight.normal,
               ),
               prefixIcon: hide
@@ -79,6 +81,9 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                         )
                   : Icon(
                       status.icon,
+                      color: status.error != null
+                          ? theme.colorScheme.error
+                          : theme.colorScheme.onPrimaryContainer,
                       size: 18,
                     ),
               suffixIcon: controller.isSearchMode && globalSearch

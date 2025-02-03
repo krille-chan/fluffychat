@@ -99,9 +99,7 @@ class ChatAppBarTitle extends StatelessWidget {
                                   status.icon,
                                   size: 12,
                                   color: status.error != null
-                                      ? Theme.of(context)
-                                          .colorScheme
-                                          .onErrorContainer
+                                      ? Theme.of(context).colorScheme.error
                                       : null,
                                 ),
                                 const SizedBox(width: 4),
@@ -111,9 +109,7 @@ class ChatAppBarTitle extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: status.error != null
-                                          ? Theme.of(context)
-                                              .colorScheme
-                                              .onErrorContainer
+                                          ? Theme.of(context).colorScheme.error
                                           : null,
                                     ),
                                   ),
