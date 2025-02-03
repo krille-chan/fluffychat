@@ -2898,5 +2898,16 @@
   "previous": "前一个",
   "@previous": {},
   "otherPartyNotLoggedIn": "另一方当前未登录，因而无法接收消息！",
-  "@otherPartyNotLoggedIn": {}
+  "@otherPartyNotLoggedIn": {},
+  "appWantsToUseForLoginDescription": "您特此允许本应用和网站分享关于您的信息。",
+  "@appWantsToUseForLoginDescription": {},
+  "open": "打开",
+  "@open": {},
+  "appWantsToUseForLogin": "使用 '{server}'服务器登录",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  }
 }
