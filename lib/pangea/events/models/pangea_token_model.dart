@@ -5,26 +5,26 @@ import 'package:flutter/foundation.dart';
 import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/analytics/constants/analytics_constants.dart';
-import 'package:fluffychat/pangea/analytics/enums/construct_type_enum.dart';
-import 'package:fluffychat/pangea/analytics/enums/construct_use_type_enum.dart';
-import 'package:fluffychat/pangea/analytics/enums/lemma_category_enum.dart';
-import 'package:fluffychat/pangea/analytics/extensions/client_analytics_extension.dart';
-import 'package:fluffychat/pangea/analytics/models/construct_identifier.dart';
-import 'package:fluffychat/pangea/analytics/models/construct_use_model.dart';
-import 'package:fluffychat/pangea/analytics/models/constructs_model.dart';
-import 'package:fluffychat/pangea/analytics/repo/lemma_info_repo.dart';
-import 'package:fluffychat/pangea/analytics/repo/lemma_info_request.dart';
+import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
+import 'package:fluffychat/pangea/analytics_misc/client_analytics_extension.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_level_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
+import 'package:fluffychat/pangea/lemmas/lemma_info_repo.dart';
+import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
 import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/repo/lemma_activity_generator.dart';
 import 'package:fluffychat/pangea/toolbar/repo/lemma_meaning_activity_generator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../analytics/models/lemma.dart';
 import '../../common/constants/model_keys.dart';
+import '../../lemmas/lemma.dart';
 
 class PangeaToken {
   PangeaTokenText text;
@@ -624,13 +624,13 @@ class PangeaToken {
     }
   }
 
-  LemmaCategoryEnum get lemmaXPCategory {
+  ConstructLevelEnum get lemmaXPCategory {
     if (vocabConstruct.points >= AnalyticsConstants.xpForFlower) {
-      return LemmaCategoryEnum.flowers;
+      return ConstructLevelEnum.flowers;
     } else if (vocabConstruct.points >= AnalyticsConstants.xpForGreens) {
-      return LemmaCategoryEnum.greens;
+      return ConstructLevelEnum.greens;
     } else {
-      return LemmaCategoryEnum.seeds;
+      return ConstructLevelEnum.seeds;
     }
   }
 

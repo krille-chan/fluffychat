@@ -72,6 +72,8 @@ class PApiUrls {
   static String objectiveList = "${PApiUrls.choreoEndpoint}/objectives";
   static String topicList = "${PApiUrls.choreoEndpoint}/topics";
 
+  static String morphFeaturesAndTags = "${PApiUrls.choreoEndpoint}/morphs";
+
   ///-------------------------------- revenue cat --------------------------
   static String rcAppsChoreo = "${PApiUrls.subscriptionEndpoint}/app_ids";
   static String rcProductsChoreo =

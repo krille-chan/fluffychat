@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/analytics/constants/morph_categories_and_labels.dart';
-import 'package:fluffychat/pangea/analytics/enums/morph_categories_enum.dart';
-import 'package:fluffychat/pangea/analytics/utils/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
+import 'package:fluffychat/pangea/morphs/morph_categories_enum.dart';
+import 'package:fluffychat/pangea/morphs/morph_repo.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
@@ -140,12 +140,7 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
   /// all morphological tags for the selected morphological category
   /// that are eligible for setting as the morphological tag
   List<String> get allMorphTagsForEdit =>
-      getLabelsForMorphCategory(widget.morphFeature)
-          .where(
-            (tag) => !["punct", "space", "sym", "x", "other"]
-                .contains(tag.toLowerCase()),
-          )
-          .toList();
+      MorphsRepo.get().getDisplayTags(widget.morphFeature);
 
   String get morphCopy =>
       getMorphologicalCategoryCopy(widget.morphFeature, context) ??

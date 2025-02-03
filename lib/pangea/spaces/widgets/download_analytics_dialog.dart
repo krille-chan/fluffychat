@@ -7,16 +7,16 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pangea/analytics/enums/analytics_summary_enum.dart';
-import 'package:fluffychat/pangea/analytics/models/analytics_summary_model.dart';
-import 'package:fluffychat/pangea/analytics/models/construct_list_model.dart';
-import 'package:fluffychat/pangea/analytics/models/construct_use_model.dart';
-import 'package:fluffychat/pangea/analytics/models/constructs_model.dart';
-import 'package:fluffychat/pangea/analytics/utils/get_grammar_copy.dart';
+import 'package:fluffychat/pangea/analytics_downloads/analytics_summary_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/analytics_summary_model.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_list_model.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
+import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class DownloadAnalyticsDialog extends StatefulWidget {

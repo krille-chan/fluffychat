@@ -4782,7 +4782,13 @@
   "numberOfLearners": "Number of learners",
   "mustBeInteger": "Must be an integer e.g. 1, 2, 3, ...",
   "noBookmarkedActivities": "No bookmarked activities",
-  "noLemmasFound": "No lemmas found",
+  "noLemmasFound": "There are no vocabulary with more than {xp} XP. Keep practicing!",
+  "@noLemmasFound": {
+    "type": "text",
+    "placeholders": {
+      "xp": {}
+    }
+  },
   "constructUsePvmDesc": "Produced in voice message",
   "lockedMorphFeature": "Waiting to be unlocked",
   "leaveSpaceDescription": "The space will be moved to the archive. Other users will be able to see that you have left the chat."
