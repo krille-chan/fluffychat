@@ -210,9 +210,9 @@ class PublicRoomBottomSheet extends StatelessWidget {
                   ListTile(
                     subtitle: SelectableLinkify(
                       text: profile!.topic!,
-                      linkStyle: const TextStyle(
-                        color: Colors.blueAccent,
-                        decorationColor: Colors.blueAccent,
+                      linkStyle: TextStyle(
+                        color: theme.colorScheme.primary,
+                        decorationColor: theme.colorScheme.primary,
                       ),
                       style: TextStyle(
                         fontSize: 14,
