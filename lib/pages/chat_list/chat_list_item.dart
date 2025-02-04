@@ -259,6 +259,7 @@ class ChatListItem extends StatelessWidget {
                   ],
                 ),
                 subtitle: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     if (typingText.isEmpty &&
@@ -363,6 +364,7 @@ class ChatListItem extends StatelessWidget {
                     AnimatedContainer(
                       duration: FluffyThemes.animationDuration,
                       curve: FluffyThemes.animationCurve,
+                      alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(horizontal: 7),
                       height: unreadBubbleSize,
                       width:
@@ -374,29 +376,27 @@ class ChatListItem extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: room.highlightCount > 0 ||
                                 room.membership == Membership.invite
-                            ? Colors.red
+                            ? theme.colorScheme.error
                             : hasNotifications || room.markedUnread
                                 ? theme.colorScheme.primary
                                 : theme.colorScheme.primaryContainer,
-                        borderRadius:
-                            BorderRadius.circular(AppConfig.borderRadius),
+                        borderRadius: BorderRadius.circular(7),
                       ),
-                      child: Center(
-                        child: hasNotifications
-                            ? Text(
-                                room.notificationCount.toString(),
-                                style: TextStyle(
-                                  color: room.highlightCount > 0
-                                      ? Colors.white
-                                      : hasNotifications
-                                          ? theme.colorScheme.onPrimary
-                                          : theme
-                                              .colorScheme.onPrimaryContainer,
-                                  fontSize: 13,
-                                ),
-                              )
-                            : const SizedBox.shrink(),
-                      ),
+                      child: hasNotifications
+                          ? Text(
+                              room.notificationCount.toString(),
+                              style: TextStyle(
+                                color: room.highlightCount > 0
+                                    ? Colors.white
+                                    : hasNotifications
+                                        ? theme.colorScheme.onPrimary
+                                        : theme.colorScheme.onPrimaryContainer,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            )
+                          : const SizedBox.shrink(),
                     ),
                   ],
                 ),
