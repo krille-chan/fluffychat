@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/message_analytics_controller.dart';
@@ -9,6 +10,7 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/utils/message_text_util.dart';
 import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 /// Question - does this need to be stateful or does this work?
@@ -220,7 +222,8 @@ class MessageTextWidget extends StatelessWidget {
                 ),
               );
             }
-            return TextSpan(
+            return LinkifySpan(
+              mouseCursor: SystemMouseCursors.click,
               recognizer: TapGestureRecognizer()
                 ..onTap =
                     onClick != null ? () => onClick?.call(tokenPosition) : null,
@@ -230,6 +233,10 @@ class MessageTextWidget extends StatelessWidget {
                   backgroundColor: backgroundColor,
                 ),
               ),
+              linkStyle: const TextStyle(
+                decoration: TextDecoration.underline,
+              ),
+              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             );
           } else {
             if ((i > 0 || i < tokenPositions.length - 1) &&
@@ -244,9 +251,14 @@ class MessageTextWidget extends StatelessWidget {
                 ),
               );
             }
-            return TextSpan(
+            return LinkifySpan(
               text: substring,
               style: style,
+              options: const LinkifyOptions(humanize: false),
+              linkStyle: const TextStyle(
+                decoration: TextDecoration.underline,
+              ),
+              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             );
           }
         }).toList(),
