@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_277",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cz5(){return new B.EN(A.dg("ru"))},
+cz8(){return new B.EN(A.dg("ru"))},
 EN:function EN(d){this.a=d}}
 A=c[0]
 C=c[51]
@@ -586,5 +586,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.EN,C.aF)})()
 A.dV(b.typeUniverse,JSON.parse('{"EN":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"KMep9+T3sudBYrVTtCnQx+zIU44=");
+a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"cYV9OMhUk/Ge0emDVtWwc+WOUD8=");
 //# sourceMappingURL=main.dart.js_277.part.js.map
