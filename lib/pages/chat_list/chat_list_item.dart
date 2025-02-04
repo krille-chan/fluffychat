@@ -93,9 +93,6 @@ class ChatListItem extends StatelessWidget {
         ? false
         : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
     final space = this.space;
-    final subtitleColor = theme.brightness == Brightness.light
-        ? theme.colorScheme.outline
-        : theme.colorScheme.onSurfaceVariant;
 
     return Dismissible(
       key: ValueKey(room.id),
@@ -255,7 +252,7 @@ class ChatListItem extends StatelessWidget {
                           lastEvent.originServerTs.localizedTimeShort(context),
                           style: TextStyle(
                             fontSize: 12,
-                            color: subtitleColor,
+                            color: theme.colorScheme.outline,
                           ),
                         ),
                       ),
@@ -296,9 +293,8 @@ class ChatListItem extends StatelessWidget {
                                 (room.summary.mJoinedMemberCount ?? 1)
                                     .toString(),
                               ),
-                              style: TextStyle(
-                                color: subtitleColor,
-                              ),
+                              style:
+                                  TextStyle(color: theme.colorScheme.outline),
                             )
                           : typingText.isNotEmpty
                               ? Text(
@@ -354,7 +350,7 @@ class ChatListItem extends StatelessWidget {
                                           : null,
                                       color: unread || room.hasNewMessages
                                           ? theme.colorScheme.onSurface
-                                          : subtitleColor,
+                                          : theme.colorScheme.outline,
                                       decoration:
                                           room.lastEvent?.redacted == true
                                               ? TextDecoration.lineThrough
