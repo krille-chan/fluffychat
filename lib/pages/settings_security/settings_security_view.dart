@@ -102,7 +102,7 @@ class SettingsSecurityView extends StatelessWidget {
                     leading: const Icon(Icons.vpn_key_outlined),
                     subtitle: SelectableText(
                       Matrix.of(context).client.fingerprintKey.beautified,
-                      style: const TextStyle(fontFamily: 'monospace'),
+                      style: const TextStyle(fontFamily: 'UbuntuMono'),
                     ),
                   ),
                   if (capabilities?.mChangePassword?.enabled != false ||
