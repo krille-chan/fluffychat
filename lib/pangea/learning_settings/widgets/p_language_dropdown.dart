@@ -2,14 +2,12 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:dropdown_button2/dropdown_button2.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/l2_support_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'flag.dart';
 
-class PLanguageDropdown extends StatefulWidget {
+class PLanguageDropdown extends StatelessWidget {
   final List<LanguageModel> languages;
   final LanguageModel? initialLanguage;
   final Function(LanguageModel) onChange;
@@ -17,6 +15,7 @@ class PLanguageDropdown extends StatefulWidget {
   final bool isL2List;
   final String decorationText;
   final String? error;
+  final String? Function(LanguageModel?)? validator;
 
   const PLanguageDropdown({
     super.key,
@@ -27,16 +26,12 @@ class PLanguageDropdown extends StatefulWidget {
     required this.decorationText,
     this.isL2List = false,
     this.error,
+    this.validator,
   });
 
   @override
-  State<PLanguageDropdown> createState() => _PLanguageDropdownState();
-}
-
-class _PLanguageDropdownState extends State<PLanguageDropdown> {
-  @override
   Widget build(BuildContext context) {
-    final List<LanguageModel> sortedLanguages = widget.languages;
+    final List<LanguageModel> sortedLanguages = languages;
     final String systemLang = Localizations.localeOf(context).languageCode;
     final List<String> languagePriority = [systemLang, 'en', 'es'];
 
@@ -65,16 +60,16 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DropdownButtonFormField2<LanguageModel>(
-          decoration: InputDecoration(labelText: widget.decorationText),
+        DropdownButtonFormField<LanguageModel>(
+          decoration: InputDecoration(labelText: decorationText),
           isExpanded: true,
           items: [
-            if (widget.showMultilingual)
+            if (showMultilingual)
               DropdownMenuItem(
                 value: LanguageModel.multiLingual(context),
                 child: LanguageDropDownEntry(
                   languageModel: LanguageModel.multiLingual(context),
-                  isL2List: widget.isL2List,
+                  isL2List: isL2List,
                 ),
               ),
             ...sortedLanguages.map(
@@ -82,17 +77,18 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
                 value: languageModel,
                 child: LanguageDropDownEntry(
                   languageModel: languageModel,
-                  isL2List: widget.isL2List,
+                  isL2List: isL2List,
                 ),
               ),
             ),
           ],
-          onChanged: (value) => widget.onChange(value!),
-          value: widget.initialLanguage,
+          onChanged: (value) => onChange(value!),
+          value: initialLanguage,
+          validator: (value) => validator?.call(value),
         ),
         AnimatedSize(
           duration: FluffyThemes.animationDuration,
-          child: widget.error == null
+          child: error == null
               ? const SizedBox.shrink()
               : Padding(
                   padding: const EdgeInsets.symmetric(
@@ -100,7 +96,7 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
                     vertical: 5,
                   ),
                   child: Text(
-                    widget.error!,
+                    error!,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.error,
                       fontSize: 12,
