@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -140,22 +141,29 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
               onPressed: Navigator.of(context, rootNavigator: false).pop,
             ),
           ),
-          // #Pangea
-          // actions: roomAlias == null
-          //     ? null
-          //     : [
-          //         Padding(
-          //           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          //           child: IconButton(
-          //             icon: const Icon(Icons.qr_code_rounded),
-          //             onPressed: () => showQrCodeViewer(
-          //               context,
-          //               roomAlias,
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          // Pangea#
+          actions: roomAlias == null
+              ? null
+              : [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: IconButton(
+                      icon: const Icon(Icons.qr_code_rounded),
+                      // #Pangea
+                      // onPressed: () => showQrCodeViewer(
+                      //   context,
+                      //   roomAlias,
+                      // ),
+                      onPressed: () {
+                        FluffyShare.share(
+                          "${Environment.frontendURL}/#/join_with_alias?alias=${Uri.encodeComponent(roomAlias)}",
+                          context,
+                        );
+                        Navigator.of(context).pop();
+                      },
+                      // Pangea#
+                    ),
+                  ),
+                ],
         ),
         body: FutureBuilder<PublicRoomsChunk>(
           future: _search(),

@@ -34,6 +34,7 @@ import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/login/pages/login_or_signup_view.dart';
 import 'package:fluffychat/pangea/login/pages/signup.dart';
 import 'package:fluffychat/pangea/login/pages/user_settings.dart';
+import 'package:fluffychat/pangea/spaces/utils/join_with_alias.dart';
 import 'package:fluffychat/pangea/spaces/utils/join_with_link.dart';
 import 'package:fluffychat/pangea/subscription/pages/settings_subscription.dart';
 import 'package:fluffychat/pangea/user/pages/find_partner.dart';
@@ -135,6 +136,20 @@ abstract class AppRoutes {
       ),
     ),
     GoRoute(
+      path: '/join_with_alias',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        state,
+        const JoinWithAlias(),
+      ),
+      redirect: (context, state) {
+        if (Matrix.of(context).client.isLogged()) {
+          return '/rooms/join_with_alias?alias=${state.uri.queryParameters['alias']}';
+        }
+        return null;
+      },
+    ),
+    GoRoute(
       path: '/user_age',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
@@ -209,6 +224,14 @@ abstract class AppRoutes {
             //     ),
             //   ],
             // ),
+            GoRoute(
+              path: '/join_with_alias',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                state,
+                const JoinWithAlias(),
+              ),
+            ),
             // Pangea#
             GoRoute(
               path: 'archive',

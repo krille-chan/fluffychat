@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -23,6 +24,8 @@ class ClassController extends BaseController {
     _pangeaController = pangeaController;
   }
 
+  static final GetStorage _aliasStorage = GetStorage('alias_storage');
+
   void setActiveSpaceIdInChatListController(String? classId) {
     setState({"activeSpaceId": classId});
   }
@@ -32,6 +35,8 @@ class ClassController extends BaseController {
       PLocalKey.cachedClassCodeToJoin,
       isAccountData: false,
     );
+
+    final String? alias = _aliasStorage.read(PLocalKey.cachedAliasToJoin);
 
     if (classCode != null) {
       await joinClasswithCode(
@@ -43,7 +48,50 @@ class ClassController extends BaseController {
         PLocalKey.cachedClassCodeToJoin,
         isAccountData: false,
       );
+    } else if (alias != null) {
+      await joinCachedRoomAlias(alias, context);
+      await _aliasStorage.remove(PLocalKey.cachedAliasToJoin);
     }
+  }
+
+  Future<void> joinCachedRoomAlias(
+    String alias,
+    BuildContext context,
+  ) async {
+    if (alias.isEmpty) {
+      context.go("/rooms");
+      return;
+    }
+
+    final client = Matrix.of(context).client;
+    if (!client.isLogged()) {
+      await _aliasStorage.write(PLocalKey.cachedAliasToJoin, alias);
+      context.go("/home");
+      return;
+    }
+
+    Room? room = client.getRoomByAlias(alias) ?? client.getRoomById(alias);
+    if (room != null) {
+      room.isSpace
+          ? context.push("/rooms/${room.id}/details")
+          : context.go("/rooms/${room.id}");
+      return;
+    }
+
+    final roomID = await client.joinRoom(alias);
+    room = client.getRoomById(roomID);
+    if (room == null) {
+      await client.waitForRoomInSync(roomID);
+      room = client.getRoomById(roomID);
+      if (room == null) {
+        context.go("/rooms");
+        return;
+      }
+    }
+
+    room.isSpace
+        ? context.push("/rooms/${room.id}/details")
+        : context.go("/rooms/${room.id}");
   }
 
   Future<void> joinClasswithCode(
