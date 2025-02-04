@@ -203,7 +203,7 @@ class ChatView extends StatelessWidget {
                               child: const Center(child: BackButton()),
                             ),
                           ),
-                titleSpacing: FluffyThemes.isColumnMode(context) ? 32 : 0,
+                titleSpacing: FluffyThemes.isColumnMode(context) ? 24 : 0,
                 title: ChatAppBarTitle(controller),
                 actions: _appBarActions(context),
                 bottom: PreferredSize(
