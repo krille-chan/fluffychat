@@ -37,21 +37,32 @@ Future<Result<T>> showFutureLoadingDialog<T>({
     }
   }
 
-  final result = await showAdaptiveDialog<Result<T>>(
-    context: context,
-    barrierDismissible: barrierDismissible,
-    builder: (BuildContext context) => LoadingDialog<T>(
-      future: futureExec,
-      title: title,
-      backLabel: backLabel,
-      exceptionContext: exceptionContext,
-    ),
+  // #Pangea
+  if (context.mounted) {
+    // Pangea#
+    final result = await showAdaptiveDialog<Result<T>>(
+      context: context,
+      barrierDismissible: barrierDismissible,
+      builder: (BuildContext context) => LoadingDialog<T>(
+        future: futureExec,
+        title: title,
+        backLabel: backLabel,
+        exceptionContext: exceptionContext,
+      ),
+    );
+    return result ??
+        Result.error(
+          Exception('FutureDialog canceled'),
+          StackTrace.current,
+        );
+  }
+
+  // #Pangea
+  return Result.error(
+    Exception('FutureDialog canceled'),
+    StackTrace.current,
   );
-  return result ??
-      Result.error(
-        Exception('FutureDialog canceled'),
-        StackTrace.current,
-      );
+  // Pangea#
 }
 
 class LoadingDialog<T> extends StatefulWidget {

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/common/constants/local.key.dart';
@@ -176,20 +177,27 @@ class LoginController extends State<Login> {
       // #Pangea
       // await matrix.getLoginClient().login(
       final loginRes = await matrix.getLoginClient().login(
-            // Pangea#
-            LoginType.mLoginPassword,
-            identifier: identifier,
-            // To stay compatible with older server versions
-            // ignore: deprecated_member_use
-            user: identifier.type == AuthenticationIdentifierTypes.userId
-                ? username
-                : null,
-            // #Pangea
-            // password: passwordController.text,
-            password: passwordController.text.trim(),
-            // Pangea#
-            initialDeviceDisplayName: PlatformInfos.clientName,
-          );
+        // Pangea#
+        LoginType.mLoginPassword,
+        identifier: identifier,
+        // To stay compatible with older server versions
+        // ignore: deprecated_member_use
+        user: identifier.type == AuthenticationIdentifierTypes.userId
+            ? username
+            : null,
+        // #Pangea
+        // password: passwordController.text,
+        password: passwordController.text.trim(),
+        // Pangea#
+        initialDeviceDisplayName: PlatformInfos.clientName,
+        // #Pangea
+        onInitStateChanged: (state) {
+          if (state == InitState.settingUpEncryption) {
+            context.go("/rooms");
+          }
+        },
+        // Pangea#
+      );
       MatrixState.pangeaController.pStoreService
           .save(PLocalKey.loginType, 'password');
       // #Pangea

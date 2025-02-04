@@ -123,7 +123,9 @@ class UserController extends BaseController {
         data: {},
       );
     } finally {
-      _profileCompleter!.complete();
+      if (!_profileCompleter!.isCompleted) {
+        _profileCompleter!.complete();
+      }
     }
 
     return _profileCompleter!.future;
