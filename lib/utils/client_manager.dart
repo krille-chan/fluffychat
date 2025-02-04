@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:collection/collection.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:desktop_notifications/desktop_notifications.dart';
@@ -43,7 +45,8 @@ abstract class ClientManager {
       clientNames.add(PlatformInfos.clientName);
       await store.setStringList(clientNamespace, clientNames.toList());
     }
-    final clients = clientNames.map(createClient).toList();
+    final clients =
+        clientNames.map((name) => createClient(name, store)).toList();
     if (initialize) {
       await Future.wait(
         clients.map(
@@ -97,7 +100,9 @@ abstract class ClientManager {
       ? const NativeImplementationsDummy()
       : NativeImplementationsIsolate(compute);
 
-  static Client createClient(String clientName) {
+  static Client createClient(String clientName, SharedPreferences store) {
+    final shareKeysWith = store.getString(SettingKeys.shareKeysWith) ?? 'all';
+
     return Client(
       clientName,
       httpClient:
@@ -122,6 +127,9 @@ abstract class ClientManager {
       customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
       defaultNetworkRequestTimeout: const Duration(minutes: 30),
       enableDehydratedDevices: true,
+      shareKeysWith: ShareKeysWith.values
+              .singleWhereOrNull((share) => share.name == shareKeysWith) ??
+          ShareKeysWith.all,
     );
   }
 

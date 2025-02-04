@@ -1125,10 +1125,9 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: "519e1d18623f741de5aa984a9d04cf3f660149d1e167fa06e17ddec8cec5f52d"
-      url: "https://pub.dev"
-    source: hosted
+      path: "../matrix-dart-sdk"
+      relative: true
+    source: path
     version: "0.37.0"
   meta:
     dependency: transitive

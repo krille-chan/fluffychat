@@ -153,3 +153,5 @@ msix_config:
 
 dependency_overrides:
   win32: 5.5.3
+  matrix:
+    path: ../matrix-dart-sdk/

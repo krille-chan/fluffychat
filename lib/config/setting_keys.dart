@@ -34,4 +34,5 @@ abstract class SettingKeys {
       'chat.fluffy.display_chat_details_column';
   static const String noEncryptionWarningShown =
       'chat.fluffy.no_encryption_warning_shown';
+  static const String shareKeysWith = 'chat.fluffy.share_keys_with';
 }

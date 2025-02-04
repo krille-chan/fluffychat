@@ -10,6 +10,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
+import 'package:matrix/matrix.dart';
 import 'settings_security.dart';
 
 class SettingsSecurityView extends StatelessWidget {
@@ -87,6 +88,43 @@ class SettingsSecurityView extends StatelessWidget {
                         onTap: controller.setAppLockAction,
                       ),
                   },
+                  Divider(color: theme.dividerColor),
+                  ListTile(
+                    title: Text(
+                      'Share keys with',
+                      style: TextStyle(
+                        color: theme.colorScheme.secondary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Which devices should be trusted so that they can read along your messages in encrypted chats?',
+                    ),
+                  ),
+                  ListTile(
+                    title: Material(
+                      borderRadius:
+                          BorderRadius.circular(AppConfig.borderRadius / 2),
+                      color: theme.colorScheme.onInverseSurface,
+                      child: DropdownButton<ShareKeysWith>(
+                        isExpanded: true,
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius / 2),
+                        underline: const SizedBox.shrink(),
+                        value: Matrix.of(context).client.shareKeysWith,
+                        items: ShareKeysWith.values
+                            .map(
+                              (share) => DropdownMenuItem(
+                                value: share,
+                                child: Text(share.name),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: controller.changeShareKeysWith,
+                      ),
+                    ),
+                  ),
                   Divider(color: theme.dividerColor),
                   ListTile(
                     title: Text(
