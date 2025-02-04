@@ -660,7 +660,6 @@ class ChatListController extends State<ChatList>
         return;
       case ChatContextAction.leave:
         final confirmed = await showOkCancelAlertDialog(
-          useRootNavigator: false,
           context: context,
           title: L10n.of(context).areYouSure,
           message: L10n.of(context).archiveRoomDescription,

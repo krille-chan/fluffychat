@@ -45,7 +45,6 @@ class ChatListItem extends StatelessWidget {
         return forgetResult.isValue;
       }
       final confirmed = await showOkCancelAlertDialog(
-        useRootNavigator: false,
         context: context,
         title: L10n.of(context).areYouSure,
         okLabel: L10n.of(context).leave,
@@ -231,8 +230,7 @@ class ChatListItem extends StatelessWidget {
                           size: 16,
                         ),
                       ),
-                    if (room.isFavourite ||
-                        room.membership == Membership.invite)
+                    if (room.isFavourite)
                       Padding(
                         padding: EdgeInsets.only(
                           right: hasNotifications ? 4.0 : 0.0,
@@ -336,9 +334,18 @@ class ChatListItem extends StatelessWidget {
                                   ),
                                   builder: (context, snapshot) => Text(
                                     room.membership == Membership.invite
-                                        ? isDirectChat
-                                            ? L10n.of(context).invitePrivateChat
-                                            : L10n.of(context).inviteGroupChat
+                                        ? room
+                                                .getState(
+                                                  EventTypes.RoomMember,
+                                                  room.client.userID!,
+                                                )
+                                                ?.content
+                                                .tryGet<String>('reason') ??
+                                            (isDirectChat
+                                                ? L10n.of(context)
+                                                    .newChatRequest
+                                                : L10n.of(context)
+                                                    .inviteGroupChat)
                                         : snapshot.data ??
                                             L10n.of(context).emptyChat,
                                     softWrap: false,
