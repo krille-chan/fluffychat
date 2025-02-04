@@ -16,7 +16,7 @@ import '../common/network/requests.dart';
 
 class _APICallCacheItem {
   final DateTime time;
-  final Future<MorphFeatuuresAndTags> future;
+  final Future<MorphFeaturesAndTags> future;
 
   _APICallCacheItem(this.time, this.future);
 }
@@ -30,18 +30,18 @@ class MorphsRepo {
   static final shortTermCache = <String, _APICallCacheItem>{};
   static const int _cacheDurationMinutes = 1;
 
-  static void set(String languageCode, MorphFeatuuresAndTags response) {
+  static void set(String languageCode, MorphFeaturesAndTags response) {
     _morphsStorage.write(
       languageCode,
       response.toJson(),
     );
   }
 
-  static MorphFeatuuresAndTags fromJson(Map<String, dynamic> json) {
-    return MorphFeatuuresAndTags.fromJson(json);
+  static MorphFeaturesAndTags fromJson(Map<String, dynamic> json) {
+    return MorphFeaturesAndTags.fromJson(json);
   }
 
-  static Future<MorphFeatuuresAndTags> _fetch(String languageCode) async {
+  static Future<MorphFeaturesAndTags> _fetch(String languageCode) async {
     try {
       final Requests req = Requests(
         choreoApiKey: Environment.choreoApiKey,
@@ -76,7 +76,7 @@ class MorphsRepo {
   /// if the morphs are not yet fetched. we'll see if this works well
   /// if not, we can make it async and update uses of this function
   /// to be async as well
-  static MorphFeatuuresAndTags get([String? languageCode]) {
+  static Future<MorphFeaturesAndTags> get([String? languageCode]) async {
     languageCode ??=
         MatrixState.pangeaController.languageController.userL2?.langCode;
 
@@ -95,7 +95,7 @@ class MorphsRepo {
     if (cachedCall != null) {
       if (DateTime.now().difference(cachedCall.time).inMinutes <
           _cacheDurationMinutes) {
-        return defaultMorphMapping;
+        return cachedCall.future;
       } else {
         shortTermCache.remove(languageCode);
       }
@@ -104,7 +104,6 @@ class MorphsRepo {
     // fetch the morphs but don't wait for it
     final future = _fetch(languageCode);
     shortTermCache[languageCode] = _APICallCacheItem(DateTime.now(), future);
-
-    return defaultMorphMapping;
+    return future;
   }
 }

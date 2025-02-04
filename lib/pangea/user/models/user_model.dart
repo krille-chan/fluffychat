@@ -213,9 +213,7 @@ class Profile {
   }
 
   /// Load an instance of profile from the client's account data.
-  static Profile? fromAccountData() {
-    final profileData = MatrixState.pangeaController.matrixState.client
-        .accountData[ModelKey.userProfile]?.content;
+  static Profile? fromAccountData(Map<String, Object?>? profileData) {
     if (profileData == null) return null;
 
     final userSettingsContent = profileData[ModelKey.userSettings];

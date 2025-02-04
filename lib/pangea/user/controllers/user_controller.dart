@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
 
+import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -32,7 +33,9 @@ class UserController extends BaseController {
     _profileListener ??= _pangeaController.matrixState.client.onSync.stream
         .where((sync) => sync.accountData != null)
         .listen((sync) {
-      final Profile? fromAccountData = Profile.fromAccountData();
+      final profileData = _pangeaController
+          .matrixState.client.accountData[ModelKey.userProfile]?.content;
+      final Profile? fromAccountData = Profile.fromAccountData(profileData);
       if (fromAccountData != null) {
         _cachedProfile = fromAccountData;
       }
@@ -52,7 +55,11 @@ class UserController extends BaseController {
     }
 
     /// try to get the account data in the up-to-date format
-    final Profile? fromAccountData = Profile.fromAccountData();
+    final Profile? fromAccountData = Profile.fromAccountData(
+      _pangeaController
+          .matrixState.client.accountData[ModelKey.userProfile]?.content,
+    );
+
     if (fromAccountData != null) {
       _cachedProfile = fromAccountData;
       return fromAccountData;

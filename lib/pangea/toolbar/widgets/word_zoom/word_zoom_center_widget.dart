@@ -45,6 +45,7 @@ class WordZoomCenterWidget extends StatelessWidget {
           morphFeature: selectedMorphFeature!,
           pangeaMessageEvent: wordDetailsController.widget.messageEvent,
           overlayController: overlayController,
+          onEditDone: wordDetailsController.onEditDone,
         );
       case WordZoomSelection.lemma:
         return Text(token.lemma.text, textAlign: TextAlign.center);

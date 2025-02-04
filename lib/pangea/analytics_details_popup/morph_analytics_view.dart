@@ -1,17 +1,18 @@
+import 'package:flutter/material.dart';
+
 import 'package:collection/collection.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_level_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
+import 'package:fluffychat/pangea/morphs/default_morph_mapping.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
-import 'package:fluffychat/pangea/morphs/morph_models.dart';
 import 'package:fluffychat/pangea/user/client_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import '../morphs/morph_repo.dart';
 
 class MorphAnalyticsView extends StatelessWidget {
@@ -19,32 +20,48 @@ class MorphAnalyticsView extends StatelessWidget {
     super.key,
   });
 
-  List<MorphFeature> get availableFeatures => MorphsRepo.get().displayFeatures;
-
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
-        child: ListView.builder(
-          itemCount: availableFeatures.length,
-          itemBuilder: (context, index) =>
-              availableFeatures[index].displayTags.isNotEmpty
-                  ? MorphFeatureBox(
-                      morphFeature: availableFeatures[index].feature,
-                    )
-                  : const SizedBox.shrink(),
+        child: FutureBuilder(
+          future: MorphsRepo.get(),
+          builder: (context, snapshot) {
+            final morphs = snapshot.data ?? defaultMorphMapping;
+
+            return snapshot.connectionState == ConnectionState.done
+                ? ListView.builder(
+                    itemCount: morphs.displayFeatures.length,
+                    itemBuilder: (context, index) => morphs
+                            .displayFeatures[index].displayTags.isNotEmpty
+                        ? MorphFeatureBox(
+                            morphFeature: morphs.displayFeatures[index].feature,
+                            allTags: snapshot.data
+                                    ?.getDisplayTags(
+                                      morphs.displayFeatures[index].feature,
+                                    )
+                                    .map((tag) => tag.toLowerCase())
+                                    .toSet() ??
+                                {},
+                          )
+                        : const SizedBox.shrink(),
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  );
+          },
         ),
       );
 }
 
 class MorphFeatureBox extends StatelessWidget {
   final String morphFeature;
+  final Set<String> allTags;
 
   const MorphFeatureBox({
     super.key,
     required this.morphFeature,
+    required this.allTags,
   });
-
-  // get constructData => MatrixState.pangeaController.
 
   String _categoryCopy(
     String category,
@@ -60,11 +77,6 @@ class MorphFeatureBox extends StatelessWidget {
         ) ??
         category;
   }
-
-  Set<String> get allTags => MorphsRepo.get()
-      .getDisplayTags(morphFeature)
-      .map((tag) => tag.toLowerCase())
-      .toSet();
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +145,9 @@ class MorphFeatureBox extends StatelessWidget {
                               ),
                         ),
                       )
-                      .sortedBy<num>((chip) => chip.constructAnalytics.points)
+                      .sortedBy<num>(
+                        (chip) => chip.constructAnalytics.points,
+                      )
                       .reversed
                       .toList(),
                 ),

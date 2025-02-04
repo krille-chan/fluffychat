@@ -30,14 +30,14 @@ class MorphFeature {
   }
 }
 
-class MorphFeatuuresAndTags {
+class MorphFeaturesAndTags {
   final String languageCode;
   final List<MorphFeature> features;
 
-  MorphFeatuuresAndTags({required this.languageCode, required this.features});
+  MorphFeaturesAndTags({required this.languageCode, required this.features});
 
-  factory MorphFeatuuresAndTags.fromJson(Map<String, dynamic> json) {
-    return MorphFeatuuresAndTags(
+  factory MorphFeaturesAndTags.fromJson(Map<String, dynamic> json) {
+    return MorphFeaturesAndTags(
       languageCode: json['language_code'],
       features: List<MorphFeature>.from(
         json['features'].map((x) => MorphFeature.fromJson(x)),
@@ -63,7 +63,9 @@ class MorphFeatuuresAndTags {
   /// i.e. minus punc, space, x, etc
   List<String> getDisplayTags(String feature) =>
       features
-          .firstWhereOrNull((element) => element.feature == feature)
+          .firstWhereOrNull(
+            (element) => element.feature.toLowerCase() == feature.toLowerCase(),
+          )
           ?.displayTags ??
       [];
 

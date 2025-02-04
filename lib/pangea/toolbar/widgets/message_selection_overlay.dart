@@ -24,22 +24,22 @@ class MessageSelectionOverlay extends StatefulWidget {
   final Event _event;
   final Event? _nextEvent;
   final Event? _prevEvent;
-  final PangeaMessageEvent? _pangeaMessageEvent;
   final PangeaToken? _initialSelectedToken;
+  final Timeline _timeline;
 
   const MessageSelectionOverlay({
     required this.chatController,
     required Event event,
-    required PangeaMessageEvent? pangeaMessageEvent,
     required PangeaToken? initialSelectedToken,
     required Event? nextEvent,
     required Event? prevEvent,
+    required Timeline timeline,
     super.key,
   })  : _initialSelectedToken = initialSelectedToken,
-        _pangeaMessageEvent = pangeaMessageEvent,
         _nextEvent = nextEvent,
         _prevEvent = prevEvent,
-        _event = event;
+        _event = event,
+        _timeline = timeline;
 
   @override
   MessageOverlayController createState() => MessageOverlayController();
@@ -54,7 +54,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   List<PangeaToken>? tokens;
   bool initialized = false;
 
-  PangeaMessageEvent? get pangeaMessageEvent => widget._pangeaMessageEvent;
+  PangeaMessageEvent? get pangeaMessageEvent => PangeaMessageEvent(
+        event: widget._event,
+        timeline: widget._timeline,
+        ownMessage: widget._event.room.client.userID == widget._event.senderId,
+      );
 
   bool isPlayingAudio = false;
 
@@ -94,7 +98,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   @override
   void initState() {
     super.initState();
-    _initializeTokensAndMode();
+    initializeTokensAndMode();
   }
 
   void _updateSelectedSpan(PangeaTokenText selectedSpan) {
@@ -104,7 +108,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       widget.chatController.choreographer.tts.tryToSpeak(
         selectedSpan.content,
         context,
-        widget._pangeaMessageEvent?.eventId,
+        pangeaMessageEvent?.eventId,
       );
     }
 
@@ -144,7 +148,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             )
           : null;
 
-  Future<void> _initializeTokensAndMode() async {
+  Future<void> initializeTokensAndMode() async {
     try {
       final repEvent = pangeaMessageEvent?.messageDisplayRepresentation;
       if (repEvent != null) {
@@ -174,7 +178,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       MatrixState.pangeaController.languageController.userL2?.langCode;
 
   Future<void> _setInitialToolbarMode() async {
-    if (widget._pangeaMessageEvent?.isAudioMessage ?? false) {
+    if (pangeaMessageEvent?.isAudioMessage ?? false) {
       toolbarMode = MessageMode.speechToText;
       return setState(() {});
     }
@@ -269,11 +273,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// If there is a selectedSpan, then the target is the selected text
   String get targetText {
     if (_selectedSpan == null || pangeaMessageEvent == null) {
-      return widget._pangeaMessageEvent?.messageDisplayText ??
-          widget._event.body;
+      return pangeaMessageEvent?.messageDisplayText ?? widget._event.body;
     }
 
-    return widget._pangeaMessageEvent!.messageDisplayText.substring(
+    return pangeaMessageEvent!.messageDisplayText.substring(
       _selectedSpan!.offset,
       _selectedSpan!.offset + _selectedSpan!.length,
     );

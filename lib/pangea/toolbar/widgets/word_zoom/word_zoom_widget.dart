@@ -74,6 +74,8 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
   // is computationally expensive, so we only do it once
   bool _canGenerateLemmaActivity = false;
 
+  bool _hideCenterContent = false;
+
   @override
   void initState() {
     super.initState();
@@ -154,6 +156,10 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
     if (mounted) setState(() {});
   }
 
+  void _setHideCenterContent(bool value) {
+    if (mounted) setState(() => _hideCenterContent = value);
+  }
+
   /// This function should be called before overlayController.onActivityFinish to
   /// prevent shouldDoActivity being set to false before _forceShowActivity is set to true.
   /// This keep the completed actvity visible to the user for a short time.
@@ -183,6 +189,8 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
         ? _canGenerateLemmaActivity
         : true;
   }
+
+  void onEditDone() => widget.overlayController.initializeTokensAndMode();
 
   @override
   Widget build(BuildContext context) {
@@ -220,37 +228,49 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
                               _setSelectionType(WordZoomSelection.emoji),
                           isSelected: _selectionType == WordZoomSelection.emoji,
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            WordTextWithAudioButton(
-                              text: widget.token.text.content,
-                              ttsController: widget.tts,
-                              eventID: widget.messageEvent.eventId,
-                            ),
-                            // if _selectionType is null, we don't know if the lemma activity
-                            // can be shown yet, so we don't show the lemma definition
-                            if (!_shouldShowActivity(WordZoomSelection.lemma) &&
-                                _selectionType != null)
-                              LemmaWidget(
-                                token: widget.token,
+                        Expanded(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              WordTextWithAudioButton(
+                                text: widget.token.text.content,
+                                ttsController: widget.tts,
+                                eventID: widget.messageEvent.eventId,
                               ),
-                          ],
+                              // if _selectionType is null, we don't know if the lemma activity
+                              // can be shown yet, so we don't show the lemma definition
+                              if (!_shouldShowActivity(
+                                    WordZoomSelection.lemma,
+                                  ) &&
+                                  _selectionType != null)
+                                LemmaWidget(
+                                  token: widget.token,
+                                  pangeaMessageEvent: widget.messageEvent,
+                                  onEdit: () => _setHideCenterContent(true),
+                                  onEditDone: () {
+                                    _setHideCenterContent(false);
+                                    onEditDone();
+                                  },
+                                ),
+                            ],
+                          ),
                         ),
                         const SizedBox(width: 30),
                       ],
                     ),
                   ),
-                  WordZoomCenterWidget(
-                    selectionType: _selectionType,
-                    selectedMorphFeature: _selectedMorphFeature,
-                    shouldDoActivity: _selectionType != null
-                        ? _shouldShowActivity(_selectionType!)
-                        : false,
-                    locked:
-                        _activityLock != null && !_activityLock!.isCompleted,
-                    wordDetailsController: this,
-                  ),
+                  if (!_hideCenterContent)
+                    WordZoomCenterWidget(
+                      selectionType: _selectionType,
+                      selectedMorphFeature: _selectedMorphFeature,
+                      shouldDoActivity: _selectionType != null
+                          ? _shouldShowActivity(_selectionType!)
+                          : false,
+                      locked:
+                          _activityLock != null && !_activityLock!.isCompleted,
+                      wordDetailsController: this,
+                    ),
                   MorphologicalListWidget(
                     token: widget.token,
                     setMorphFeature: (feature) => _setSelectionType(

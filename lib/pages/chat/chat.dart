@@ -1772,7 +1772,7 @@ class ChatController extends State<ChatPageWithRoom>
       overlayEntry = MessageSelectionOverlay(
         chatController: this,
         event: event,
-        pangeaMessageEvent: pangeaMessageEvent,
+        timeline: timeline!,
         initialSelectedToken: selectedToken,
         nextEvent: nextEvent,
         prevEvent: prevEvent,

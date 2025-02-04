@@ -1,7 +1,7 @@
 /// Represents a lemma object
 class Lemma {
   /// [text] ex "ir" - text of the lemma of the word
-  final String text;
+  String text;
 
   /// [form] ex "vamos" - conjugated form of the lemma and as it appeared in some original text
   final String form;

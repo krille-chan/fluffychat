@@ -1,7 +1,6 @@
 import 'package:fluffychat/pangea/morphs/morph_models.dart';
 
-final MorphFeatuuresAndTags defaultMorphMapping =
-    MorphFeatuuresAndTags.fromJson({
+final MorphFeaturesAndTags defaultMorphMapping = MorphFeaturesAndTags.fromJson({
   "language_code": "default",
   "features": [
     {

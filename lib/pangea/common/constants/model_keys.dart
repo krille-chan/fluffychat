@@ -92,6 +92,7 @@ class ModelKey {
   /// something built in to matrix? should talk about this
   static const String messageTags = "p.tag";
   static const String messageTagMorphEdit = "morph_edit";
+  static const String messageTagLemmaEdit = "lemma_edit";
   static const String messageTagActivityPlan = "activity_plan";
 
   static const String baseDefinition = "base_definition";
