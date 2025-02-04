@@ -181,6 +181,7 @@ class ChatView extends StatelessWidget {
                       ? null
                       : theme.colorScheme.primary,
                 ),
+                automaticallyImplyLeading: false,
                 leading: controller.selectMode
                     ? IconButton(
                         icon: const Icon(Icons.close),
@@ -188,19 +189,21 @@ class ChatView extends StatelessWidget {
                         tooltip: L10n.of(context).close,
                         color: theme.colorScheme.primary,
                       )
-                    : StreamBuilder<Object>(
-                        stream: Matrix.of(context)
-                            .client
-                            .onSync
-                            .stream
-                            .where((syncUpdate) => syncUpdate.hasRoomUpdate),
-                        builder: (context, _) => UnreadRoomsBadge(
-                          filter: (r) => r.id != controller.roomId,
-                          badgePosition: BadgePosition.topEnd(end: 8, top: 4),
-                          child: const Center(child: BackButton()),
-                        ),
-                      ),
-                titleSpacing: 0,
+                    : FluffyThemes.isColumnMode(context)
+                        ? null
+                        : StreamBuilder<Object>(
+                            stream:
+                                Matrix.of(context).client.onSync.stream.where(
+                                      (syncUpdate) => syncUpdate.hasRoomUpdate,
+                                    ),
+                            builder: (context, _) => UnreadRoomsBadge(
+                              filter: (r) => r.id != controller.roomId,
+                              badgePosition:
+                                  BadgePosition.topEnd(end: 8, top: 4),
+                              child: const Center(child: BackButton()),
+                            ),
+                          ),
+                titleSpacing: FluffyThemes.isColumnMode(context) ? 32 : 0,
                 title: ChatAppBarTitle(controller),
                 actions: _appBarActions(context),
                 bottom: PreferredSize(

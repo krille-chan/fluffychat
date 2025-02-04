@@ -34,12 +34,18 @@ class MaxWidthBody extends StatelessWidget {
                       maxWidth: FluffyThemes.columnWidth * 1.5,
                     ),
                     child: Material(
-                      elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius),
+                        side: BorderSide(
+                          color: theme.dividerColor,
+                        ),
+                      ),
                       clipBehavior: Clip.hardEdge,
-                      borderRadius:
-                          BorderRadius.circular(AppConfig.borderRadius),
-                      shadowColor: theme.appBarTheme.shadowColor,
-                      child: child,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: child,
+                      ),
                     ),
                   ),
                 );
