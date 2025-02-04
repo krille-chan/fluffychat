@@ -210,7 +210,7 @@ class ChatListViewBody extends StatelessWidget {
                                             style: TextStyle(
                                               fontWeight: filter ==
                                                       controller.activeFilter
-                                                  ? FontWeight.bold
+                                                  ? FontWeight.w500
                                                   : FontWeight.normal,
                                               color: filter ==
                                                       controller.activeFilter

@@ -216,9 +216,7 @@ class ChatListItem extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         softWrap: false,
-                        style: unread || room.hasNewMessages
-                            ? const TextStyle(fontWeight: FontWeight.bold)
-                            : null,
+                        style: const TextStyle(fontWeight: FontWeight.w500),
                       ),
                     ),
                     if (isMuted)
@@ -249,10 +247,8 @@ class ChatListItem extends StatelessWidget {
                         child: Text(
                           lastEvent.originServerTs.localizedTimeShort(context),
                           style: TextStyle(
-                            fontSize: 13,
-                            color: unread
-                                ? theme.colorScheme.secondary
-                                : theme.textTheme.bodyMedium!.color,
+                            fontSize: 12,
+                            color: theme.colorScheme.outline,
                           ),
                         ),
                       ),
@@ -293,6 +289,8 @@ class ChatListItem extends StatelessWidget {
                                 (room.summary.mJoinedMemberCount ?? 1)
                                     .toString(),
                               ),
+                              style:
+                                  TextStyle(color: theme.colorScheme.outline),
                             )
                           : typingText.isNotEmpty
                               ? Text(
@@ -344,9 +342,11 @@ class ChatListItem extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       fontWeight: unread || room.hasNewMessages
-                                          ? FontWeight.bold
+                                          ? FontWeight.w500
                                           : null,
-                                      color: theme.colorScheme.onSurfaceVariant,
+                                      color: unread || room.hasNewMessages
+                                          ? theme.colorScheme.onSurfaceVariant
+                                          : theme.colorScheme.outline,
                                       decoration:
                                           room.lastEvent?.redacted == true
                                               ? TextDecoration.lineThrough
