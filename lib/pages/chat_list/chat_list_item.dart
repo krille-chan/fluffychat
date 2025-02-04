@@ -93,6 +93,9 @@ class ChatListItem extends StatelessWidget {
         ? false
         : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
     final space = this.space;
+    final subtitleColor = theme.brightness == Brightness.light
+        ? theme.colorScheme.outline
+        : theme.colorScheme.onSurfaceVariant;
 
     return Dismissible(
       key: ValueKey(room.id),
@@ -216,7 +219,11 @@ class ChatListItem extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         softWrap: false,
-                        style: const TextStyle(fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                          fontWeight: unread || room.hasNewMessages
+                              ? FontWeight.w500
+                              : null,
+                        ),
                       ),
                     ),
                     if (isMuted)
@@ -248,7 +255,7 @@ class ChatListItem extends StatelessWidget {
                           lastEvent.originServerTs.localizedTimeShort(context),
                           style: TextStyle(
                             fontSize: 12,
-                            color: theme.colorScheme.outline,
+                            color: subtitleColor,
                           ),
                         ),
                       ),
@@ -289,8 +296,9 @@ class ChatListItem extends StatelessWidget {
                                 (room.summary.mJoinedMemberCount ?? 1)
                                     .toString(),
                               ),
-                              style:
-                                  TextStyle(color: theme.colorScheme.outline),
+                              style: TextStyle(
+                                color: subtitleColor,
+                              ),
                             )
                           : typingText.isNotEmpty
                               ? Text(
@@ -345,8 +353,8 @@ class ChatListItem extends StatelessWidget {
                                           ? FontWeight.w500
                                           : null,
                                       color: unread || room.hasNewMessages
-                                          ? theme.colorScheme.onSurfaceVariant
-                                          : theme.colorScheme.outline,
+                                          ? theme.colorScheme.onSurface
+                                          : subtitleColor,
                                       decoration:
                                           room.lastEvent?.redacted == true
                                               ? TextDecoration.lineThrough
