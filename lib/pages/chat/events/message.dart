@@ -39,6 +39,7 @@ class Message extends StatelessWidget {
   final void Function()? resetAnimateIn;
   final bool wallpaperMode;
   final ScrollController scrollController;
+  final List<Color> colors;
 
   const Message(
     this.event, {
@@ -58,6 +59,7 @@ class Message extends StatelessWidget {
     this.resetAnimateIn,
     this.wallpaperMode = false,
     required this.scrollController,
+    required this.colors,
     super.key,
   });
 
@@ -328,13 +330,7 @@ class Message extends StatelessWidget {
                                       ),
                                       clipBehavior: Clip.antiAlias,
                                       child: BubbleBackground(
-                                        colors: [
-                                          theme.brightness == Brightness.light
-                                              ? theme.colorScheme.tertiary
-                                              : theme.colorScheme
-                                                  .tertiaryContainer,
-                                          color,
-                                        ],
+                                        colors: colors,
                                         ignore: noBubble || !ownMessage,
                                         scrollController: scrollController,
                                         child: Container(
