@@ -34,20 +34,10 @@ class ChatEventList extends StatelessWidget {
 
     final theme = Theme.of(context);
 
-    const saturation = 0.85;
-    final colors = theme.brightness == Brightness.light
-        ? [
-            HSLColor.fromColor(theme.colorScheme.tertiary)
-                .withSaturation(saturation)
-                .toColor(),
-            theme.colorScheme.primary,
-          ]
-        : [
-            HSLColor.fromColor(theme.colorScheme.tertiaryContainer)
-                .withSaturation(saturation)
-                .toColor(),
-            theme.colorScheme.primaryContainer,
-          ];
+    final colors = [
+      theme.secondaryBubbleColor,
+      theme.bubbleColor,
+    ];
 
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 

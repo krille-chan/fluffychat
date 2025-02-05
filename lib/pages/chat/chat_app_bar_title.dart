@@ -20,7 +20,12 @@ class ChatAppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final room = controller.room;
     if (controller.selectedEvents.isNotEmpty) {
-      return Text(controller.selectedEvents.length.toString());
+      return Text(
+        controller.selectedEvents.length.toString(),
+        style: TextStyle(
+          color: Theme.of(context).secondaryBubbleColor,
+        ),
+      );
     }
     return InkWell(
       hoverColor: Colors.transparent,

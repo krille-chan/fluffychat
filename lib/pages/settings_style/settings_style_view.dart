@@ -214,9 +214,7 @@ class SettingsStyleView extends StatelessWidget {
                                 ),
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
-                                    color: theme.brightness == Brightness.light
-                                        ? theme.colorScheme.primary
-                                        : theme.colorScheme.primaryContainer,
+                                    color: theme.bubbleColor,
                                     borderRadius: BorderRadius.circular(
                                       AppConfig.borderRadius,
                                     ),
@@ -229,11 +227,7 @@ class SettingsStyleView extends StatelessWidget {
                                     child: Text(
                                       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
                                       style: TextStyle(
-                                        color:
-                                            theme.brightness == Brightness.light
-                                                ? theme.colorScheme.onPrimary
-                                                : theme.colorScheme
-                                                    .onPrimaryContainer,
+                                        color: theme.onBubbleColor,
                                         fontSize: AppConfig.messageFontSize *
                                             AppConfig.fontSizeFactor,
                                       ),

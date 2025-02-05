@@ -147,3 +147,18 @@ extension on Brightness {
   Brightness get reversed =>
       this == Brightness.dark ? Brightness.light : Brightness.dark;
 }
+
+extension BubbleColorTheme on ThemeData {
+  Color get bubbleColor => brightness == Brightness.light
+      ? colorScheme.primary
+      : colorScheme.primaryContainer;
+  Color get onBubbleColor => brightness == Brightness.light
+      ? colorScheme.onPrimary
+      : colorScheme.onPrimaryContainer;
+
+  Color get secondaryBubbleColor => HSLColor.fromColor(
+        brightness == Brightness.light
+            ? colorScheme.tertiary
+            : colorScheme.tertiaryContainer,
+      ).withSaturation(0.75).toColor();
+}

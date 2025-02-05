@@ -275,8 +275,8 @@ class ChatInputRow extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(height),
                         ),
-                        backgroundColor: theme.colorScheme.primary,
-                        foregroundColor: theme.colorScheme.onPrimary,
+                        backgroundColor: theme.bubbleColor,
+                        foregroundColor: theme.onBubbleColor,
                         child: const Icon(Icons.mic_none_outlined),
                       )
                     : FloatingActionButton.small(
@@ -287,8 +287,8 @@ class ChatInputRow extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(height),
                         ),
-                        backgroundColor: theme.colorScheme.onPrimaryContainer,
-                        foregroundColor: theme.colorScheme.onPrimary,
+                        backgroundColor: theme.bubbleColor,
+                        foregroundColor: theme.onBubbleColor,
                         child: const Icon(Icons.send_outlined),
                       ),
               ),

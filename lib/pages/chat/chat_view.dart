@@ -179,7 +179,7 @@ class ChatView extends StatelessWidget {
                 actionsIconTheme: IconThemeData(
                   color: controller.selectedEvents.isEmpty
                       ? null
-                      : theme.colorScheme.primary,
+                      : theme.secondaryBubbleColor,
                 ),
                 automaticallyImplyLeading: false,
                 leading: controller.selectMode
@@ -187,7 +187,7 @@ class ChatView extends StatelessWidget {
                         icon: const Icon(Icons.close),
                         onPressed: controller.clearSelectedEvents,
                         tooltip: L10n.of(context).close,
-                        color: theme.colorScheme.primary,
+                        color: theme.secondaryBubbleColor,
                       )
                     : FluffyThemes.isColumnMode(context)
                         ? null

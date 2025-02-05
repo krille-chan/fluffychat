@@ -113,11 +113,8 @@ class Message extends StatelessWidget {
         previousEvent!.senderId == event.senderId &&
         previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
-    final textColor = ownMessage
-        ? theme.brightness == Brightness.light
-            ? theme.colorScheme.onPrimary
-            : theme.colorScheme.onPrimaryContainer
-        : theme.colorScheme.onSurface;
+    final textColor =
+        ownMessage ? theme.onBubbleColor : theme.colorScheme.onSurface;
 
     final linkColor = ownMessage
         ? theme.brightness == Brightness.light
@@ -157,11 +154,8 @@ class Message extends StatelessWidget {
     }.contains(event.messageType);
 
     if (ownMessage) {
-      color = displayEvent.status.isError
-          ? Colors.redAccent
-          : theme.brightness == Brightness.light
-              ? theme.colorScheme.primary
-              : theme.colorScheme.primaryContainer;
+      color =
+          displayEvent.status.isError ? Colors.redAccent : theme.bubbleColor;
     }
 
     final resetAnimateIn = this.resetAnimateIn;
