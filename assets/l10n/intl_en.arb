@@ -2893,5 +2893,7 @@
     "placeholders": {
       "rule": {}
     }
-  }
+  },
+  "deletePushRuleCanNotBeUndone": "If you delete this notification setting, this can not be undone.",
+  "more": "More"
 }

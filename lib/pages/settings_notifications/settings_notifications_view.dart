@@ -58,10 +58,37 @@ class SettingsNotificationsView extends StatelessWidget {
                     ),
                     for (final rule in category.rules)
                       SwitchListTile.adaptive(
-                        value: rule.enabled,
                         title: Text(rule.getPushRuleName(L10n.of(context))),
-                        subtitle:
-                            Text(rule.getPushRuleDescription(L10n.of(context))),
+                        subtitle: Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: rule.getPushRuleDescription(
+                                  L10n.of(context),
+                                ),
+                              ),
+                              const TextSpan(text: ' '),
+                              WidgetSpan(
+                                child: InkWell(
+                                  onTap: () => controller.editPushRule(
+                                    rule,
+                                    category.kind,
+                                  ),
+                                  child: Text(
+                                    L10n.of(context).more,
+                                    style: TextStyle(
+                                      color: theme.colorScheme.primary,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor:
+                                          theme.colorScheme.primary,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        value: rule.enabled,
                         onChanged: controller.isLoading
                             ? null
                             : Matrix.of(context)
