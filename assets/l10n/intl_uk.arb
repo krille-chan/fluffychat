@@ -2898,5 +2898,12 @@
   "otherPartyNotLoggedIn": "Інша сторона наразі не увійшла в систему, тому не може отримувати повідомлення!",
   "@otherPartyNotLoggedIn": {},
   "previous": "Попередній",
-  "@previous": {}
+  "@previous": {},
+  "synchronizingPleaseWaitCounter": " Синхронізація… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  }
 }
