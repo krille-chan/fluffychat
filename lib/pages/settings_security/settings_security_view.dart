@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
@@ -10,7 +11,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
-import 'package:matrix/matrix.dart';
 import 'settings_security.dart';
 
 class SettingsSecurityView extends StatelessWidget {
@@ -91,15 +91,13 @@ class SettingsSecurityView extends StatelessWidget {
                   Divider(color: theme.dividerColor),
                   ListTile(
                     title: Text(
-                      'Share keys with',
+                      L10n.of(context).shareKeysWith,
                       style: TextStyle(
                         color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    subtitle: Text(
-                      'Which devices should be trusted so that they can read along your messages in encrypted chats?',
-                    ),
+                    subtitle: Text(L10n.of(context).shareKeysWithDescription),
                   ),
                   ListTile(
                     title: Material(
@@ -117,7 +115,7 @@ class SettingsSecurityView extends StatelessWidget {
                             .map(
                               (share) => DropdownMenuItem(
                                 value: share,
-                                child: Text(share.name),
+                                child: Text(share.localized(L10n.of(context))),
                               ),
                             )
                             .toList(),
@@ -178,5 +176,20 @@ class SettingsSecurityView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+extension on ShareKeysWith {
+  String localized(L10n l10n) {
+    switch (this) {
+      case ShareKeysWith.all:
+        return l10n.allDevices;
+      case ShareKeysWith.crossVerifiedIfEnabled:
+        return l10n.crossVerifiedDevicesIfEnabled;
+      case ShareKeysWith.crossVerified:
+        return l10n.crossVerifiedDevices;
+      case ShareKeysWith.directlyVerifiedOnly:
+        return l10n.verifiedDevicesOnly;
+    }
   }
 }

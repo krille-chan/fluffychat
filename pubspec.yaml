@@ -60,7 +60,7 @@ dependencies:
   just_audio: ^0.9.39
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix: ^0.37.0
+  matrix: ^0.38.0
   mime: ^1.0.6
   native_imaging: ^0.1.1
   opus_caf_converter_dart: ^1.0.1
@@ -153,5 +153,3 @@ msix_config:
 
 dependency_overrides:
   win32: 5.5.3
-  matrix:
-    path: ../matrix-dart-sdk/
