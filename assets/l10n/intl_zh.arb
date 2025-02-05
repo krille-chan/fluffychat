@@ -2920,5 +2920,7 @@
     }
   },
   "appIntroduction": "FluffyChat 让使用不同即时通信工具的你和你的好友得以聊天。 访问 https://matrix.org 了解详情或轻按 *继续*。",
-  "@appIntroduction": {}
+  "@appIntroduction": {},
+  "newChatRequest": "📩 新的聊天请求",
+  "@newChatRequest": {}
 }
