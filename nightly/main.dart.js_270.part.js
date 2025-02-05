@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_270",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cz8(){return new B.EL(A.dh("lv"))},
-EL:function EL(d){this.a=d}}
+czb(){return new B.EK(A.dh("lv"))},
+EK:function EK(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[36],B)
-B.EL.prototype={
+B.EK.prototype={
 gnt(){return"n\u0113"},
 gjJ(){return"Atk\u0101rtot paroli"},
 gm_(){return"Nav att\u0113la datne."},
@@ -628,8 +628,8 @@ go9(){return"Cross verified devices"},
 gpg(){return"Verified devices only"},
 C(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.EL,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"EL":{"aF":[]}}'))};
+y(B.EK,C.aF)})()
+A.dW(b.typeUniverse,JSON.parse('{"EK":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"qIfVKrKUaBdn9BCIqWzmL/q7q+k=");
+a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"UsNO4HED/l2Zn+QbGwBQiXQ7Z18=");
 //# sourceMappingURL=main.dart.js_270.part.js.map
