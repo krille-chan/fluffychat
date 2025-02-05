@@ -154,6 +154,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
     final candidate = _loginClientCandidate ??= ClientManager.createClient(
       '${AppConfig.applicationName}-${DateTime.now().millisecondsSinceEpoch}',
+      store,
     )..onLoginStateChanged
           .stream
           .where((l) => l == LoginState.loggedIn)

@@ -2895,5 +2895,11 @@
     }
   },
   "deletePushRuleCanNotBeUndone": "If you delete this notification setting, this can not be undone.",
-  "more": "More"
+  "more": "More",
+  "shareKeysWith": "Share keys with...",
+  "shareKeysWithDescription": "Which devices should be trusted so that they can read along your messages in encrypted chats?",
+  "allDevices": "All devices",
+  "crossVerifiedDevicesIfEnabled": "Cross verified devices if enabled",
+  "crossVerifiedDevices": "Cross verified devices",
+  "verifiedDevicesOnly": "Verified devices only"
 }
