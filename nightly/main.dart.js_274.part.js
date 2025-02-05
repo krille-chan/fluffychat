@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_274",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-czb(){return new B.EN(A.dh("pl"))},
-EN:function EN(d){this.a=d}}
+czb(){return new B.EO(A.dh("pl"))},
+EO:function EO(d){this.a=d}}
 A=c[0]
 C=c[51]
 B=a.updateHolder(c[39],B)
-B.EN.prototype={
+B.EO.prototype={
 gnt(){return"false"},
 gjJ(){return"Powt\xf3rz has\u0142o"},
 gm_(){return"To nie jest plik obrazu."},
@@ -628,8 +628,8 @@ go9(){return"Cross verified devices"},
 gpg(){return"Verified devices only"},
 C(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.EN,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"EN":{"aF":[]}}'))};
+y(B.EO,C.aF)})()
+A.dW(b.typeUniverse,JSON.parse('{"EO":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"KGts274LTC1eGFcoJ755JRp8U5E=");
+a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"wuQJAg1UE+rK1lCj3UvmjOFOf6E=");
 //# sourceMappingURL=main.dart.js_274.part.js.map
