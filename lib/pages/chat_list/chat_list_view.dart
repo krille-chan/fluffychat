@@ -62,52 +62,85 @@ class ChatListView extends StatelessWidget {
 
                 return SizedBox(
                   width: FluffyThemes.navRailWidth,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: rootSpaces.length + 2,
-                    itemBuilder: (context, i) {
-                      if (i == 0) {
-                        return NaviRailItem(
-                          isSelected: controller.activeSpaceId == null,
-                          onTap: controller.clearActiveSpace,
-                          icon: const Icon(Icons.forum_outlined),
-                          selectedIcon: const Icon(Icons.forum),
-                          toolTip: L10n.of(context).chats,
-                          unreadBadgeFilter: (room) => true,
-                        );
-                      }
-                      i--;
-                      if (i == rootSpaces.length) {
-                        return NaviRailItem(
-                          isSelected: false,
-                          onTap: () => context.go('/rooms/newspace'),
-                          icon: const Icon(Icons.add),
-                          toolTip: L10n.of(context).createNewSpace,
-                        );
-                      }
-                      final space = rootSpaces[i];
-                      final displayname = rootSpaces[i].getLocalizedDisplayname(
-                        MatrixLocals(L10n.of(context)),
-                      );
-                      final spaceChildrenIds =
-                          space.spaceChildren.map((c) => c.roomId).toSet();
-                      return NaviRailItem(
-                        toolTip: displayname,
-                        isSelected: controller.activeSpaceId == space.id,
-                        onTap: () =>
-                            controller.setActiveSpace(rootSpaces[i].id),
-                        unreadBadgeFilter: (room) =>
-                            spaceChildrenIds.contains(room.id),
-                        icon: Avatar(
-                          mxContent: rootSpaces[i].avatar,
-                          name: displayname,
-                          size: 32,
-                          borderRadius: BorderRadius.circular(
-                            AppConfig.borderRadius / 4,
-                          ),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: rootSpaces.length + 2,
+                          itemBuilder: (context, i) {
+                            if (i == 0) {
+                              return NaviRailItem(
+                                isSelected: controller.activeSpaceId == null,
+                                onTap: controller.clearActiveSpace,
+                                icon: const Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Icon(Icons.forum_outlined),
+                                ),
+                                selectedIcon: const Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Icon(Icons.forum),
+                                ),
+                                toolTip: L10n.of(context).chats,
+                                unreadBadgeFilter: (room) => true,
+                              );
+                            }
+                            i--;
+                            if (i == rootSpaces.length) {
+                              return NaviRailItem(
+                                isSelected: false,
+                                onTap: () => context.go('/rooms/newspace'),
+                                icon: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(Icons.add),
+                                ),
+                                toolTip: L10n.of(context).createNewSpace,
+                              );
+                            }
+                            final space = rootSpaces[i];
+                            final displayname =
+                                rootSpaces[i].getLocalizedDisplayname(
+                              MatrixLocals(L10n.of(context)),
+                            );
+                            final spaceChildrenIds = space.spaceChildren
+                                .map((c) => c.roomId)
+                                .toSet();
+                            return NaviRailItem(
+                              toolTip: displayname,
+                              isSelected: controller.activeSpaceId == space.id,
+                              onTap: () =>
+                                  controller.setActiveSpace(rootSpaces[i].id),
+                              unreadBadgeFilter: (room) =>
+                                  spaceChildrenIds.contains(room.id),
+                              icon: Avatar(
+                                mxContent: rootSpaces[i].avatar,
+                                name: displayname,
+                                border: BorderSide(
+                                  width: 1,
+                                  color: Theme.of(context).dividerColor,
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  AppConfig.borderRadius / 2,
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
+                      ),
+                      NaviRailItem(
+                        isSelected: false,
+                        onTap: () => context.go('/rooms/settings'),
+                        icon: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Icon(Icons.settings_outlined),
+                        ),
+                        selectedIcon: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Icon(Icons.settings),
+                        ),
+                        toolTip: L10n.of(context).settings,
+                      ),
+                    ],
                   ),
                 );
               },
