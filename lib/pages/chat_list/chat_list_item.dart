@@ -353,9 +353,6 @@ class ChatListItem extends StatelessWidget {
                                         room.notificationCount >= 1 ? 2 : 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      fontWeight: unread || room.hasNewMessages
-                                          ? FontWeight.w500
-                                          : null,
                                       color: unread || room.hasNewMessages
                                           ? theme.colorScheme.onSurface
                                           : theme.colorScheme.outline,
@@ -393,8 +390,9 @@ class ChatListItem extends StatelessWidget {
                           ? Text(
                               room.notificationCount.toString(),
                               style: TextStyle(
-                                color: room.highlightCount > 0
-                                    ? Colors.white
+                                color: room.highlightCount > 0 ||
+                                        room.membership == Membership.invite
+                                    ? theme.colorScheme.onError
                                     : hasNotifications
                                         ? theme.colorScheme.onPrimary
                                         : theme.colorScheme.onPrimaryContainer,
