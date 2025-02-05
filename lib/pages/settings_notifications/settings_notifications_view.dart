@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pages/settings_notifications/push_rule_extensions.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import '../../utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
@@ -15,6 +16,17 @@ class SettingsNotificationsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pushRules = Matrix.of(context).client.globalPushRules;
+    final pushCategories = [
+      if (pushRules?.override?.isNotEmpty ?? false)
+        (rules: pushRules?.override ?? [], kind: PushRuleKind.override),
+      if (pushRules?.content?.isNotEmpty ?? false)
+        (rules: pushRules?.content ?? [], kind: PushRuleKind.content),
+      if (pushRules?.sender?.isNotEmpty ?? false)
+        (rules: pushRules?.sender ?? [], kind: PushRuleKind.sender),
+      if (pushRules?.underride?.isNotEmpty ?? false)
+        (rules: pushRules?.underride ?? [], kind: PushRuleKind.underride),
+    ];
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
@@ -33,39 +45,36 @@ class SettingsNotificationsView extends StatelessWidget {
             final theme = Theme.of(context);
             return Column(
               children: [
-                SwitchListTile.adaptive(
-                  value: !Matrix.of(context).client.allPushNotificationsMuted,
-                  title: Text(
-                    L10n.of(context).notificationsEnabledForThisAccount,
-                  ),
-                  onChanged: controller.isLoading
-                      ? null
-                      : (_) => controller.onToggleMuteAllNotifications(),
-                ),
-                Divider(color: theme.dividerColor),
-                ListTile(
-                  title: Text(
-                    L10n.of(context).notifyMeFor,
-                    style: TextStyle(
-                      color: theme.colorScheme.secondary,
-                      fontWeight: FontWeight.bold,
+                if (pushRules != null)
+                  for (final category in pushCategories) ...[
+                    ListTile(
+                      title: Text(
+                        category.kind.localized(L10n.of(context)),
+                        style: TextStyle(
+                          color: theme.colorScheme.secondary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                for (final item in NotificationSettingsItem.items)
-                  SwitchListTile.adaptive(
-                    value: Matrix.of(context).client.allPushNotificationsMuted
-                        ? false
-                        : controller.getNotificationSetting(item) ?? true,
-                    title: Text(item.title(context)),
-                    onChanged: controller.isLoading
-                        ? null
-                        : Matrix.of(context).client.allPushNotificationsMuted
+                    for (final rule in category.rules)
+                      SwitchListTile.adaptive(
+                        value: rule.enabled,
+                        title: Text(rule.getPushRuleName(L10n.of(context))),
+                        subtitle:
+                            Text(rule.getPushRuleDescription(L10n.of(context))),
+                        onChanged: controller.isLoading
                             ? null
-                            : (bool enabled) => controller
-                                .setNotificationSetting(item, enabled),
-                  ),
-                Divider(color: theme.dividerColor),
+                            : Matrix.of(context)
+                                    .client
+                                    .allPushNotificationsMuted
+                                ? null
+                                : (_) => controller.togglePushRule(
+                                      category.kind,
+                                      rule,
+                                    ),
+                      ),
+                    Divider(color: theme.dividerColor),
+                  ],
                 ListTile(
                   title: Text(
                     L10n.of(context).devices,

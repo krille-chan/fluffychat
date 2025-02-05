@@ -122,10 +122,6 @@ class HomeserverPickerView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 32.0),
                       child: SelectableLinkify(
                         text: L10n.of(context).appIntroduction,
-                        style: TextStyle(
-                          color: theme.colorScheme.onSecondaryContainer,
-                          fontWeight: FontWeight.w500,
-                        ),
                         textAlign: TextAlign.center,
                         linkStyle: TextStyle(
                           color: theme.colorScheme.secondary,
