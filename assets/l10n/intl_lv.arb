@@ -2872,5 +2872,31 @@
   "compress": "Saspiest",
   "@compress": {},
   "unableToJoinChat": "Nevarēja pievienoties tērzēšanai. Varbūt otra puse jau ir aizvērusi sarunu.",
-  "@unableToJoinChat": {}
+  "@unableToJoinChat": {},
+  "appWantsToUseForLoginDescription": "Ar šo tiek ļauts lietotnei un tīmekļvietnei kopīgot informāciju par Tevi.",
+  "@appWantsToUseForLoginDescription": {},
+  "appIntroduction": "FluffyChat ļauj tērzēt ar draugiem, kuri izmanto dažādas ziņojumapmaiņas lietotnes. Vairāk var uzzināt https://matrix.org vai vienkārši piesitot *Turpināt*.",
+  "@appIntroduction": {},
+  "synchronizingPleaseWaitCounter": " Sinhronizē... ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "previous": "Iepriekšējais",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "Otra puse pašlaik nav pieteikusies un tādēļ nevar saņemt ziņas.",
+  "@otherPartyNotLoggedIn": {},
+  "appWantsToUseForLogin": "Izmantot '{server}', lai pieteiktos",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "open": "Atvērt",
+  "@open": {},
+  "waitingForServer": "Gaida serveri...",
+  "@waitingForServer": {}
 }

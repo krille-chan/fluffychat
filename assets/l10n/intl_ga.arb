@@ -2897,5 +2897,31 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "appIntroduction": "Ligeann FluffyChat duit comhrá a dhéanamh le do chairde thar theachtairí éagsúla. Foghlaim tuilleadh ag https://matrix.org nó tapáil *Ar aghaidh*.",
+  "@appIntroduction": {},
+  "appWantsToUseForLoginDescription": "Ligeann tú leis seo don aip agus don suíomh Gréasáin faisnéis a roinnt fút.",
+  "@appWantsToUseForLoginDescription": {},
+  "synchronizingPleaseWaitCounter": " Ag sioncronú… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "appWantsToUseForLogin": "Úsáid '{server}' chun logáil isteach",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "open": "Oscail",
+  "@open": {},
+  "waitingForServer": "Ag fanacht leis an bhfreastalaí...",
+  "@waitingForServer": {},
+  "previous": "Roimhe Seo",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "Níl an páirtí eile logáilte isteach faoi láthair agus mar sin ní féidir leo teachtaireachtaí a fháil!",
+  "@otherPartyNotLoggedIn": {}
 }

@@ -94,7 +94,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "guestsCanJoin": "게스트가 들어올 수 있음",
+  "guestsCanJoin": "게스트가 참가할 수 있음",
   "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
@@ -124,7 +124,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "fromJoining": "들어온 후부터",
+  "fromJoining": "참가시점 이후로",
   "@fromJoining": {
     "type": "text",
     "placeholders": {}
@@ -446,7 +446,7 @@
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHint_join": "주어진 방 들어가기",
+  "commandHint_join": "주어진 방 참가하기",
   "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
@@ -707,7 +707,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "게스트 유저가 참가 여부",
+  "areGuestsAllowedToJoin": "게스트 유저의 참가 여부",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
@@ -722,7 +722,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "anyoneCanJoin": "누구나 들어올 수 있음",
+  "anyoneCanJoin": "누구나 참가할 수 있음",
   "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
@@ -892,7 +892,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "누가 이 그룹 채팅에 들어오도록 허용할지",
+  "whoIsAllowedToJoinThisGroup": "참가 제한 설정",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
@@ -1711,7 +1711,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinRoom": "방 들어가기",
+  "joinRoom": "방 참가하기",
   "@joinRoom": {
     "type": "text",
     "placeholders": {}
@@ -1871,7 +1871,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "rejoin": "다시 가입",
+  "rejoin": "다시 참가",
   "@rejoin": {
     "type": "text",
     "placeholders": {}
@@ -2376,7 +2376,7 @@
   },
   "setTheme": "테마 설정:",
   "@setTheme": {},
-  "youJoinedTheChat": "채팅에 참여했습니다",
+  "youJoinedTheChat": "채팅에 참가하였습니다",
   "@youJoinedTheChat": {},
   "widgetName": "이름",
   "@widgetName": {},
@@ -2406,7 +2406,7 @@
   "@noBackupWarning": {},
   "storeInSecureStorageDescription": "이 기기의 보안 스토리지에 복구키를 저장합니다.",
   "@storeInSecureStorageDescription": {},
-  "kickUserDescription": "유저는 채팅에서 추방되지만 영구 추방되지 않습니다. 공개 채팅의 경우, 언제든 유저가 다시 들어올 수 있습니다.",
+  "kickUserDescription": "유저는 채팅에서 추방되지만 영구 추방되지 않습니다. 공개 채팅의 경우, 언제든 유저가 다시 참가할 수 있습니다.",
   "@kickUserDescription": {},
   "importNow": "지금 불러오기",
   "@importNow": {},
@@ -2444,7 +2444,7 @@
   "@databaseMigrationBody": {},
   "select": "선택",
   "@select": {},
-  "joinSpace": "스페이스 가입",
+  "joinSpace": "스페이스 참가",
   "@joinSpace": {},
   "decline": "거절",
   "@decline": {},
@@ -2624,7 +2624,7 @@
   "@globalChatId": {},
   "customEmojisAndStickers": "커스텀 이모지와 스티커",
   "@customEmojisAndStickers": {},
-  "accessAndVisibilityDescription": "채팅에 참여 할 수 있는 사람과 채팅을 볼 수 있는 범위",
+  "accessAndVisibilityDescription": "채팅에 참가 할 수 있는 사람과 채팅을 볼 수 있는 범위",
   "@accessAndVisibilityDescription": {},
   "accessAndVisibility": "채팅 가입과 대화 기록",
   "@accessAndVisibility": {},
@@ -2665,7 +2665,7 @@
       "server": {}
     }
   },
-  "noOneCanJoin": "아무도 들어올 수 없음",
+  "noOneCanJoin": "아무도 참가할 수 없음",
   "@noOneCanJoin": {},
   "thereAreCountUsersBlocked": "{count}명의 차단된 유저가 있습니다.",
   "@thereAreCountUsersBlocked": {
@@ -2687,7 +2687,7 @@
   "@userRole": {},
   "createNewAddress": "새 주소 만들기",
   "@createNewAddress": {},
-  "hideMemberChangesInPublicChatsBody": "공개채팅에 누군가가 가입하거나 떠날때 타임라인에 표시하지 않습니다.",
+  "hideMemberChangesInPublicChatsBody": "공개 채팅에 누군가가 참가하거나 떠날때 타임라인에 표시하지 않습니다.",
   "@hideMemberChangesInPublicChatsBody": {},
   "searchMore": "더 검색...",
   "@searchMore": {},
@@ -2733,7 +2733,7 @@
       "participants": {}
     }
   },
-  "joinedChats": "참여한 채팅",
+  "joinedChats": "참가한 채팅",
   "@joinedChats": {},
   "noMoreChatsFound": "채팅을 찾을 수 없습니다...",
   "@noMoreChatsFound": {},
@@ -2866,5 +2866,43 @@
   "compressVideo": "영상 압축 중...",
   "@compressVideo": {},
   "blur": "블러:",
-  "@blur": {}
+  "@blur": {},
+  "sendImages": "이미지 {count}개 보내기",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "italicText": "기울어진 글꼴",
+  "@italicText": {},
+  "boldText": "두꺼운 글꼴",
+  "@boldText": {},
+  "appWantsToUseForLoginDescription": "웹사이트와 당신에 대한 정보를 공유하게됩니다.",
+  "@appWantsToUseForLoginDescription": {},
+  "appWantsToUseForLogin": "'{server}'로 로그인",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "otherPartyNotLoggedIn": "다른 구성원이 현재 로그인하지 않아 메시지를 수신하지 못합니다!",
+  "@otherPartyNotLoggedIn": {},
+  "open": "열기",
+  "@open": {},
+  "unableToJoinChat": "채팅에 참가할 수 없습니다. 다른 구성원이 이미 대화를 종료했을 수 있습니다.",
+  "@unableToJoinChat": {},
+  "compress": "압축",
+  "@compress": {},
+  "invalidUrl": "유효하지 않은 url",
+  "@invalidUrl": {},
+  "addLink": "링크 추가",
+  "@addLink": {},
+  "strikeThrough": "취소선",
+  "@strikeThrough": {},
+  "pleaseFillOut": "작성해주세요",
+  "@pleaseFillOut": {},
+  "previous": "이전",
+  "@previous": {}
 }

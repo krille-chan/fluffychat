@@ -182,7 +182,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} muutis vestluse uueks kirjelduseks „{description}“",
+  "changedTheChatDescriptionTo": "{username} muutis vestluse uueks kirjelduseks '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -190,7 +190,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} muutis oma uueks kuvatavaks nimeks „{chatname}“",
+  "changedTheChatNameTo": "{username} muutis oma uueks vestlusnimeks '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -205,7 +205,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} muutis uueks kuvatavaks nimeks: {displayname}",
+  "changedTheDisplaynameTo": "{username} muutis oma uueks kuvatavaks nimeks: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -1709,7 +1709,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Tundmatu sündmuse tüüp „{type}“",
+  "unknownEvent": "Tundmatu sündmuse tüüp '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -2894,5 +2894,31 @@
     }
   },
   "compress": "Paki kokku",
-  "@compress": {}
+  "@compress": {},
+  "previous": "Eelmine",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "Vestluse teine osapool pole hetkel võrku loginud ega seega saa neid sõnumeid kohe kätte!",
+  "@otherPartyNotLoggedIn": {},
+  "open": "Ava",
+  "@open": {},
+  "appWantsToUseForLoginDescription": "Järgnevaga lubad sa, et rakendus ja veebisait jagavad teavet sinu kohta.",
+  "@appWantsToUseForLoginDescription": {},
+  "appWantsToUseForLogin": "Sisselogimiseks kasuta serverit '{server}'",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "waitingForServer": "Ootame serveri vastust...",
+  "@waitingForServer": {},
+  "appIntroduction": "FluffyChat võimaldab sul suhelda sõprade ja tuttavatega, kes kasutavad erinevaid sõnumikliente. Lisateavet leiad https://matrix.org saidist või lihtsalt klõpsi „Jätka“.",
+  "@appIntroduction": {},
+  "synchronizingPleaseWaitCounter": " Sünkroniseerime… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  }
 }

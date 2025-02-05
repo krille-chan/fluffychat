@@ -2894,5 +2894,20 @@
     }
   },
   "compress": "Konprimatu",
-  "@compress": {}
+  "@compress": {},
+  "previous": "Aurrekoa",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "Besteak ez du saiorik hasita eta, beraz, ezin du mezurik jaso!",
+  "@otherPartyNotLoggedIn": {},
+  "appWantsToUseForLogin": "Erabili '{server}' saioa hasteko",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "appWantsToUseForLoginDescription": "Honenbestez, aplikazioak eta webguneak zuri buruzko informazioa partekatzea baimentzen duzu.",
+  "@appWantsToUseForLoginDescription": {},
+  "open": "Ireki",
+  "@open": {}
 }

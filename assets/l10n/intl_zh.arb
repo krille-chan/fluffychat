@@ -2265,7 +2265,7 @@
   "@sorryThatsNotPossible": {},
   "deviceKeys": "设备密钥：",
   "@deviceKeys": {},
-  "report": "举报",
+  "report": "报错",
   "@report": {},
   "fileIsTooBigForServer": "无法发送！服务器只支持最大 {max} 的文件。",
   "@fileIsTooBigForServer": {},
@@ -2352,7 +2352,7 @@
   "@setChatDescription": {},
   "setTheme": "设置主题：",
   "@setTheme": {},
-  "setColorTheme": "设置颜色主题：",
+  "setColorTheme": "设置主题颜色：",
   "@setColorTheme": {},
   "invite": "邀请",
   "@invite": {},
@@ -2403,11 +2403,11 @@
   "@pleaseEnterANumber": {},
   "banUserDescription": "该用户将被禁止进入聊天室，在解除封禁之前将不能再进入聊天室。",
   "@banUserDescription": {},
-  "removeDevicesDescription": "你将注销此设备，无法再接收消息。",
+  "removeDevicesDescription": "你将从此设备登出，无法再接收消息。",
   "@removeDevicesDescription": {},
   "unbanUserDescription": "如果用户尝试加入则可以再次进入聊天。",
   "@unbanUserDescription": {},
-  "pushNotificationsNotAvailable": "推送通知不可用",
+  "pushNotificationsNotAvailable": "通知推送不可用",
   "@pushNotificationsNotAvailable": {},
   "makeAdminDescription": "一旦你将该用户设为管理员，你可能无法撤销，因为他们将拥有与你相同的权限。",
   "@makeAdminDescription": {},
@@ -2415,9 +2415,9 @@
   "@archiveRoomDescription": {},
   "learnMore": "了解更多",
   "@learnMore": {},
-  "roomUpgradeDescription": "聊天之后将以新的聊天室版本重新创建。所有参与者都会收到通知以切换到新的聊天室。有关聊天室版本的更多信息，请访问 https://spec.matrix.org/latest/rooms/",
+  "roomUpgradeDescription": "将使用新版聊天室来重新创建当前聊天室。所有参与者都会收到通知以切换到新的聊天室。有关聊天室版本的更多信息，请访问 https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
-  "kickUserDescription": "该用户会被踢出聊天但未被封禁。在公开聊天中，该用户可以随时重新加入。",
+  "kickUserDescription": "该用户会被踢出聊天但没被封禁。在公开聊天中，该用户可以随时重新加入。",
   "@kickUserDescription": {},
   "blockListDescription": "你可以屏蔽打扰你的用户。你将不会收到来自屏蔽列表中用户的任何消息或聊天室邀请。",
   "@blockListDescription": {},
@@ -2429,7 +2429,7 @@
   "@blockedUsers": {},
   "groupCanBeFoundViaSearch": "可通过搜索找到该群组",
   "@groupCanBeFoundViaSearch": {},
-  "noUsersFoundWithQuery": "很遗憾，没有找到有关\"{query}\"的用户。请检查是否有错别字。",
+  "noUsersFoundWithQuery": "很遗憾，没有找到有关\"{query}\"的用户。请检查是否输入错误。",
   "@noUsersFoundWithQuery": {
     "type": "text",
     "placeholders": {
@@ -2894,5 +2894,31 @@
     }
   },
   "compress": "压缩",
-  "@compress": {}
+  "@compress": {},
+  "previous": "前一个",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "另一方当前未登录，因而无法接收消息！",
+  "@otherPartyNotLoggedIn": {},
+  "appWantsToUseForLoginDescription": "您特此允许本应用和网站分享关于您的信息。",
+  "@appWantsToUseForLoginDescription": {},
+  "open": "打开",
+  "@open": {},
+  "appWantsToUseForLogin": "使用 '{server}'服务器登录",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "waitingForServer": "正在等待服务器…",
+  "@waitingForServer": {},
+  "synchronizingPleaseWaitCounter": " 同步中… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "appIntroduction": "FluffyChat 让使用不同即时通信工具的你和你的好友得以聊天。 访问 https://matrix.org 了解详情或轻按 *继续*。",
+  "@appIntroduction": {}
 }

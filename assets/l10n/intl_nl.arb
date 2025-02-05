@@ -183,7 +183,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} heeft de chatomschrijving gewijzigd in: {description}",
+  "changedTheChatDescriptionTo": "{username} heeft de chatomschrijving gewijzigd in: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -191,7 +191,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} heeft de chatnaam gewijzigd in: {chatname}",
+  "changedTheChatNameTo": "{username} heeft de chatnaam gewijzigd in: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -206,7 +206,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username}'s naam is nu {displayname}",
+  "changedTheDisplaynameTo": "{username}'s naam is nu '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -2270,7 +2270,7 @@
   "@noOtherDevicesFound": {},
   "noBackupWarning": "Waarschuwing! Zonder de chatback-up in te schakelen, verlies je de toegang tot je versleutelde berichten. Het is sterk aanbevolen om eerst de chatback-up in te schakelen voordat je uitlogt.",
   "@noBackupWarning": {},
-  "fileIsTooBigForServer": "De server meldt dat het bestand te groot is om te verzenden.",
+  "fileIsTooBigForServer": "Kan niet verzenden! De server ondersteunt alleen bijlages tot {max}.",
   "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "Het bestand is opgeslagen op {path}",
   "@fileHasBeenSavedAt": {
@@ -2591,5 +2591,56 @@
   "discover": "Ontdek",
   "@discover": {},
   "commandHint_ignore": "Negeer de gegeven matrix ID",
-  "@commandHint_ignore": {}
+  "@commandHint_ignore": {},
+  "noChatsFoundHere": "Hier zijn nog geen chats. Begin een nieuwe chat met iemand door op de onderstaande knop te klikken. ⤵️",
+  "@noChatsFoundHere": {},
+  "unableToJoinChat": "Kan niet deelnemen aan chat. Misschien heeft de andere partij het gesprek al afgesloten.",
+  "@unableToJoinChat": {},
+  "aboutHomeserver": "Over {homeserver}",
+  "@aboutHomeserver": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "boldText": "Vet gedrukte tekst",
+  "@boldText": {},
+  "italicText": "Cursieve tekst",
+  "@italicText": {},
+  "strikeThrough": "Doorhalen",
+  "@strikeThrough": {},
+  "pleaseFillOut": "Vul alsjeblieft in",
+  "@pleaseFillOut": {},
+  "invalidUrl": "Ongeldige url",
+  "@invalidUrl": {},
+  "addLink": "Koppeling toevoegen",
+  "@addLink": {},
+  "compress": "Comprimeren",
+  "@compress": {},
+  "previous": "Vorige",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "De andere partij is momenteel niet ingelogd en kan daarom geen berichten ontvangen!",
+  "@otherPartyNotLoggedIn": {},
+  "notifyMeFor": "Waarschuw mij voor",
+  "@notifyMeFor": {},
+  "blockListDescription": "Je kunt personen blokkeren die je lastig vallen. Je kan dan geen berichten meer ontvangen of kameruitnodigingen krijgen van de personen op je blokkeerlijst.",
+  "@blockListDescription": {},
+  "sendImages": "Stuur {count} afbeelding(en)",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "presencesToggle": "Toon statusberichten van andere personen",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "website": "Website",
+  "@website": {},
+  "hideMemberChangesInPublicChats": "Verberg persoon veranderingen in publieke chats",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "Verberg in de tijdlijn van de chat als iemand zich aanmeldt bij een openbare chat of deze verlaat om de leesbaarheid te verbeteren.",
+  "@hideMemberChangesInPublicChatsBody": {}
 }
