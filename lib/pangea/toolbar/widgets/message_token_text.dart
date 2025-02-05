@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -222,22 +221,31 @@ class MessageTextWidget extends StatelessWidget {
                 ),
               );
             }
-            return LinkifySpan(
-              mouseCursor: SystemMouseCursors.click,
-              recognizer: TapGestureRecognizer()
-                ..onTap =
-                    onClick != null ? () => onClick?.call(tokenPosition) : null,
-              text: substring,
-              style: style.merge(
-                TextStyle(
-                  backgroundColor: backgroundColor,
+            return WidgetSpan(
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: onClick != null
+                      ? () => onClick?.call(tokenPosition)
+                      : null,
+                  child: RichText(
+                    text: LinkifySpan(
+                      text: substring,
+                      style: style.merge(
+                        TextStyle(
+                          backgroundColor: backgroundColor,
+                        ),
+                      ),
+                      linkStyle: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      onOpen: (url) =>
+                          UrlLauncher(context, url.url).launchUrl(),
+                    ),
+                  ),
                 ),
               ),
-              linkStyle: TextStyle(
-                decoration: TextDecoration.underline,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             );
           } else {
             if ((i > 0 || i < tokenPositions.length - 1) &&
