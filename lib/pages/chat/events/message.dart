@@ -157,9 +157,7 @@ class Message extends StatelessWidget {
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent
-          : theme.brightness == Brightness.light
-              ? theme.colorScheme.primary
-              : theme.colorScheme.primaryContainer;
+          : theme.colorScheme.onPrimaryFixedVariant;
     }
 
     final resetAnimateIn = this.resetAnimateIn;
