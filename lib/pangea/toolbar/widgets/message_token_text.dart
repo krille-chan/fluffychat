@@ -233,8 +233,9 @@ class MessageTextWidget extends StatelessWidget {
                   backgroundColor: backgroundColor,
                 ),
               ),
-              linkStyle: const TextStyle(
+              linkStyle: TextStyle(
                 decoration: TextDecoration.underline,
+                color: Theme.of(context).colorScheme.primary,
               ),
               onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             );
@@ -255,8 +256,9 @@ class MessageTextWidget extends StatelessWidget {
               text: substring,
               style: style,
               options: const LinkifyOptions(humanize: false),
-              linkStyle: const TextStyle(
+              linkStyle: TextStyle(
                 decoration: TextDecoration.underline,
+                color: Theme.of(context).colorScheme.primary,
               ),
               onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             );

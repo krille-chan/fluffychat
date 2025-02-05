@@ -67,7 +67,10 @@ class ReplyContent extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: color,
+                        // #Pangea
+                        // color: color,
+                        color: theme.colorScheme.onSurface,
+                        // Pangea#
                         fontSize: fontSize,
                       ),
                     );
@@ -82,11 +85,16 @@ class ReplyContent extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: TextStyle(
-                    color: theme.brightness == Brightness.dark
-                        ? theme.colorScheme.onSurface
-                        : ownMessage
-                            ? theme.colorScheme.onTertiary
-                            : theme.colorScheme.onSurface,
+                    // #Pangea
+                    // color: theme.brightness == Brightness.dark
+                    //     ? theme.colorScheme.onSurface
+                    //     : ownMessage
+                    //         ? theme.colorScheme.onTertiary
+                    //         : theme.colorScheme.onSurface,
+                    color: ownMessage
+                        ? ThemeData.dark().colorScheme.onPrimary
+                        : theme.colorScheme.onSurface,
+                    // Pangea#
                     fontSize: fontSize,
                   ),
                 ),

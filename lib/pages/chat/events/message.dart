@@ -165,11 +165,14 @@ class Message extends StatelessWidget {
         // Pangea#
         : theme.colorScheme.onSurface;
 
-    final linkColor = ownMessage
-        ? theme.brightness == Brightness.light
-            ? theme.colorScheme.primaryFixed
-            : theme.colorScheme.onTertiaryContainer
-        : theme.colorScheme.primary;
+    // #Pangea
+    // final linkColor = ownMessage
+    //     ? theme.brightness == Brightness.light
+    //         ? theme.colorScheme.primaryFixed
+    //         : theme.colorScheme.onTertiaryContainer
+    //     : theme.colorScheme.primary;
+    final linkColor = theme.colorScheme.primary;
+    // Pangea#
 
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
