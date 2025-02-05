@@ -205,7 +205,10 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                       chatController:
                           widget.overlayController.widget.chatController,
                       overlayController: widget.overlayController,
-                      linkColor: Theme.of(context).colorScheme.primary,
+                      linkColor:
+                          Theme.of(context).brightness == Brightness.light
+                              ? Theme.of(context).colorScheme.primary
+                              : Theme.of(context).colorScheme.onPrimary,
                     )
                   : const CardErrorWidget(
                       error: "Null audio file in message_audio_card",
