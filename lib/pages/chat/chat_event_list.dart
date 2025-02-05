@@ -152,6 +152,7 @@ class ChatEventList extends StatelessWidget {
                 nextEvent: i + 1 < events.length ? events[i + 1] : null,
                 previousEvent: i > 0 ? events[i - 1] : null,
                 wallpaperMode: hasWallpaper,
+                scrollController: controller.scrollController,
               ),
             );
           },
