@@ -14,7 +14,6 @@ class ImageBubble extends StatelessWidget {
   final Event event;
   final bool tapToView;
   final BoxFit fit;
-  final bool maxSize;
   final Color? backgroundColor;
   final Color? textColor;
   final Color? linkColor;
@@ -29,7 +28,6 @@ class ImageBubble extends StatelessWidget {
   const ImageBubble(
     this.event, {
     this.tapToView = true,
-    this.maxSize = true,
     this.backgroundColor,
     this.fit = BoxFit.contain,
     this.thumbnailOnly = true,
