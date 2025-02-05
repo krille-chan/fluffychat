@@ -2920,5 +2920,7 @@
     "placeholders": {
       "percentage": {}
     }
-  }
+  },
+  "newChatRequest": "📩 Uus vestluskutse",
+  "@newChatRequest": {}
 }
