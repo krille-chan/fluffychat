@@ -7,7 +7,6 @@ import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/country_display.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../user/models/user_model.dart';
 
 class CountryPickerTile extends StatelessWidget {
   final SettingsLearningController learningController;
@@ -17,16 +16,14 @@ class CountryPickerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Profile profile = pangeaController.userController.profile;
-
     final String displayName = CountryDisplayUtil.countryDisplayName(
-          profile.userSettings.country,
+          learningController.country,
           context,
         ) ??
         '';
 
     final String flag = CountryDisplayUtil.flagEmoji(
-      profile.userSettings.country,
+      learningController.country,
     );
 
     return ListTile(

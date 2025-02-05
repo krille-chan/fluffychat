@@ -50,4 +50,8 @@ class InstructionSettings {
   void setStatus(InstructionsEnum instruction, bool status) {
     _instructions[instruction.toString()] = status;
   }
+
+  InstructionSettings copy() {
+    return InstructionSettings(Map<String, bool>.from(_instructions));
+  }
 }

@@ -352,9 +352,12 @@ class ChatController extends State<ChatPageWithRoom>
     _levelSubscription = pangeaController.getAnalytics.analyticsStream.stream
         .where((update) => update.levelUp)
         .listen(
-          (update) => LevelUpUtil.showLevelUpDialog(
-            pangeaController.getAnalytics.constructListModel.level,
-            context,
+          (update) => Future.delayed(
+            const Duration(milliseconds: 500),
+            () => LevelUpUtil.showLevelUpDialog(
+              pangeaController.getAnalytics.constructListModel.level,
+              context,
+            ),
           ),
         );
     // Pangea#

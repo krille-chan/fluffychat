@@ -128,6 +128,21 @@ class UserSettings {
           as String?,
     );
   }
+
+  UserSettings copy() {
+    return UserSettings(
+      dateOfBirth: dateOfBirth,
+      createdAt: createdAt,
+      autoPlayMessages: autoPlayMessages,
+      activatedFreeTrial: activatedFreeTrial,
+      publicProfile: publicProfile,
+      targetLanguage: targetLanguage,
+      sourceLanguage: sourceLanguage,
+      country: country,
+      hasJoinedHelpSpace: hasJoinedHelpSpace,
+      cefrLevel: cefrLevel,
+    );
+  }
 }
 
 /// The user's language tool settings.
@@ -192,6 +207,17 @@ class UserToolSettings {
       autoIGC: (accountData[ToolSetting.autoIGC.toString()]
               ?.content[ToolSetting.autoIGC.toString()] as bool?) ??
           true,
+    );
+  }
+
+  UserToolSettings copy() {
+    return UserToolSettings(
+      interactiveTranslator: interactiveTranslator,
+      interactiveGrammar: interactiveGrammar,
+      immersionMode: immersionMode,
+      definitions: definitions,
+      autoIGC: autoIGC,
+      enableTTS: enableTTS,
     );
   }
 }
@@ -303,6 +329,14 @@ class Profile {
       userSettings: UserSettings(),
       toolSettings: UserToolSettings(),
       instructionSettings: InstructionSettings(),
+    );
+  }
+
+  Profile copy() {
+    return Profile(
+      userSettings: userSettings.copy(),
+      toolSettings: toolSettings.copy(),
+      instructionSettings: instructionSettings.copy(),
     );
   }
 }

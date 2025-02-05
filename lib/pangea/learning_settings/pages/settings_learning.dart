@@ -7,7 +7,6 @@ import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_en
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning_view.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/language_list_util.dart';
-import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dialog.dart';
 import 'package:fluffychat/pangea/spaces/models/space_model.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/user/models/user_model.dart';
@@ -23,27 +22,15 @@ class SettingsLearning extends StatefulWidget {
 
 class SettingsLearningController extends State<SettingsLearning> {
   PangeaController pangeaController = MatrixState.pangeaController;
+  late Profile _profile;
   final tts = TtsController();
-
-  LanguageModel? get selectedSourceLanguage {
-    return userL1 ?? pangeaController.languageController.systemLanguage;
-  }
-
-  LanguageModel? get selectedTargetLanguage {
-    return userL2 ??
-        ((selectedSourceLanguage?.langCode != 'en')
-            ? PangeaLanguage.byLangCode('en')!
-            : PangeaLanguage.byLangCode('es')!);
-  }
-
-  LanguageModel? get userL1 => pangeaController.languageController.userL1;
-  LanguageModel? get userL2 => pangeaController.languageController.userL2;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
+    _profile = pangeaController.userController.profile.copy();
     tts.setupTTS().then((_) => setState(() {}));
   }
 
@@ -53,87 +40,73 @@ class SettingsLearningController extends State<SettingsLearning> {
     super.dispose();
   }
 
+  Future<void> submit() async {
+    if (formKey.currentState!.validate()) {
+      await showFutureLoadingDialog(
+        context: context,
+        future: () async => pangeaController.userController.updateProfile(
+          (_) => _profile,
+        ),
+      );
+      Navigator.of(context).pop();
+    }
+  }
+
   Future<void> setSelectedLanguage({
     LanguageModel? sourceLanguage,
     LanguageModel? targetLanguage,
   }) async {
-    if (targetLanguage == null && sourceLanguage == null) return;
-    if (!formKey.currentState!.validate()) return;
+    if (sourceLanguage != null) {
+      _profile.userSettings.sourceLanguage = sourceLanguage.langCode;
+    }
+    if (targetLanguage != null) {
+      _profile.userSettings.targetLanguage = targetLanguage.langCode;
+    }
 
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        pangeaController.userController.updateProfile(
-          (profile) {
-            if (sourceLanguage != null) {
-              profile.userSettings.sourceLanguage = sourceLanguage.langCode;
-            }
-            if (targetLanguage != null) {
-              profile.userSettings.targetLanguage = targetLanguage.langCode;
-            }
-            return profile;
-          },
-          waitForDataInSync: true,
-        );
-      },
-    );
     if (mounted) setState(() {});
   }
 
   void setPublicProfile(bool isPublic) {
-    pangeaController.userController.updateProfile(
-      (profile) {
-        // set user DOB to younger that 18 if private and older than 18 if public
-        profile.userSettings.publicProfile = isPublic;
-        return profile;
-      },
-    );
-    setState(() {});
+    _profile.userSettings.publicProfile = isPublic;
+    if (mounted) setState(() {});
   }
 
   void setCefrLevel(LanguageLevelTypeEnum? cefrLevel) {
-    pangeaController.userController.updateProfile(
-      (profile) {
-        profile.userSettings.cefrLevel = cefrLevel ?? LanguageLevelTypeEnum.a1;
-        return profile;
-      },
-    );
-    setState(() {});
-  }
-
-  void changeLanguage() {
-    pLanguageDialog(context, () {}).then((_) => setState(() {}));
+    _profile.userSettings.cefrLevel = cefrLevel ?? LanguageLevelTypeEnum.a1;
+    if (mounted) setState(() {});
   }
 
   void changeCountry(Country country) {
-    pangeaController.userController.updateProfile((Profile profile) {
-      profile.userSettings.country = country.displayNameNoCountryCode;
-      return profile;
-    });
-    setState(() {});
+    _profile.userSettings.country = country.displayNameNoCountryCode;
+    if (mounted) setState(() {});
   }
 
   void updateToolSetting(ToolSetting toolSetting, bool value) {
-    pangeaController.userController.updateProfile((Profile profile) {
-      switch (toolSetting) {
-        case ToolSetting.interactiveTranslator:
-          return profile..toolSettings.interactiveTranslator = value;
-        case ToolSetting.interactiveGrammar:
-          return profile..toolSettings.interactiveGrammar = value;
-        case ToolSetting.immersionMode:
-          return profile..toolSettings.immersionMode = value;
-        case ToolSetting.definitions:
-          return profile..toolSettings.definitions = value;
-        case ToolSetting.autoIGC:
-          return profile..toolSettings.autoIGC = value;
-        case ToolSetting.enableTTS:
-          return profile..toolSettings.enableTTS = value;
-      }
-    });
+    switch (toolSetting) {
+      case ToolSetting.interactiveTranslator:
+        _profile.toolSettings.interactiveTranslator = value;
+        break;
+      case ToolSetting.interactiveGrammar:
+        _profile.toolSettings.interactiveGrammar = value;
+        break;
+      case ToolSetting.immersionMode:
+        _profile.toolSettings.immersionMode = value;
+        break;
+      case ToolSetting.definitions:
+        _profile.toolSettings.definitions = value;
+        break;
+      case ToolSetting.autoIGC:
+        _profile.toolSettings.autoIGC = value;
+        break;
+      case ToolSetting.enableTTS:
+        _profile.toolSettings.enableTTS = value;
+        break;
+    }
+    if (mounted) setState(() {});
   }
 
   bool getToolSetting(ToolSetting toolSetting) {
-    final toolSettings = pangeaController.userController.profile.toolSettings;
+    final toolSettings = _profile.toolSettings;
     switch (toolSetting) {
       case ToolSetting.interactiveTranslator:
         return toolSettings.interactiveTranslator;
@@ -150,11 +123,29 @@ class SettingsLearningController extends State<SettingsLearning> {
     }
   }
 
-  bool get publicProfile =>
-      pangeaController.userController.profile.userSettings.publicProfile;
+  LanguageModel? get selectedSourceLanguage {
+    return userL1 ?? pangeaController.languageController.systemLanguage;
+  }
 
-  LanguageLevelTypeEnum get cefrLevel =>
-      pangeaController.userController.profile.userSettings.cefrLevel;
+  LanguageModel? get selectedTargetLanguage {
+    return userL2 ??
+        ((selectedSourceLanguage?.langCode != 'en')
+            ? PangeaLanguage.byLangCode('en')!
+            : PangeaLanguage.byLangCode('es')!);
+  }
+
+  LanguageModel? get userL1 => _profile.userSettings.sourceLanguage != null
+      ? PangeaLanguage.byLangCode(_profile.userSettings.sourceLanguage!)
+      : null;
+  LanguageModel? get userL2 => _profile.userSettings.targetLanguage != null
+      ? PangeaLanguage.byLangCode(_profile.userSettings.targetLanguage!)
+      : null;
+
+  bool get publicProfile => _profile.userSettings.publicProfile;
+
+  LanguageLevelTypeEnum get cefrLevel => _profile.userSettings.cefrLevel;
+
+  String? get country => _profile.userSettings.country;
 
   @override
   Widget build(BuildContext context) {
