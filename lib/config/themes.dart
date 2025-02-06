@@ -160,5 +160,5 @@ extension BubbleColorTheme on ThemeData {
         brightness == Brightness.light
             ? colorScheme.tertiary
             : colorScheme.tertiaryContainer,
-      ).withSaturation(0.75).toColor();
+      ).withSaturation(0.5).toColor();
 }
