@@ -3023,5 +3023,17 @@
   "otherNotificationSettings": "Muud teavituste seadistused",
   "@otherNotificationSettings": {},
   "deletePushRuleCanNotBeUndone": "Kui sa kustutad selle teavituse seadistuse, siis seda tegevust tagasi võtta ei saa.",
-  "@deletePushRuleCanNotBeUndone": {}
+  "@deletePushRuleCanNotBeUndone": {},
+  "shareKeysWith": "Jaga võtmeid seadmega...",
+  "@shareKeysWith": {},
+  "shareKeysWithDescription": "Missuguseid seadmeid sa usaldad, et neist võiks lugeda krüptitud vestluste sõnumeid?",
+  "@shareKeysWithDescription": {},
+  "allDevices": "Kõiki seadmeid",
+  "@allDevices": {},
+  "crossVerifiedDevicesIfEnabled": "Risttunnustatud seadmeid, kui see võimalus on kasutusel",
+  "@crossVerifiedDevicesIfEnabled": {},
+  "crossVerifiedDevices": "Risttunnustatud seadmeid",
+  "@crossVerifiedDevices": {},
+  "verifiedDevicesOnly": "Vaid verifitseeritud seadmeid",
+  "@verifiedDevicesOnly": {}
 }
