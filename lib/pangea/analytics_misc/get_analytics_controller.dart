@@ -14,12 +14,13 @@ import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/constants/local.key.dart';
+import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 
 /// A minimized version of AnalyticsController that get the logged in user's analytics
-class GetAnalyticsController {
+class GetAnalyticsController extends BaseController {
   late PangeaController _pangeaController;
   late MessageAnalyticsController perMessage;
 
@@ -31,6 +32,7 @@ class GetAnalyticsController {
 
   ConstructListModel constructListModel = ConstructListModel(uses: []);
   Completer<void> initCompleter = Completer<void>();
+  bool _initializing = false;
 
   GetAnalyticsController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
@@ -69,7 +71,8 @@ class GetAnalyticsController {
   }
 
   Future<void> initialize() async {
-    if (initCompleter.isCompleted) return;
+    if (_initializing || initCompleter.isCompleted) return;
+    _initializing = true;
 
     try {
       _client.updateAnalyticsRoomVisibility();
@@ -100,10 +103,12 @@ class GetAnalyticsController {
     } finally {
       _updateAnalyticsStream();
       if (!initCompleter.isCompleted) initCompleter.complete();
+      _initializing = false;
     }
   }
 
   /// Clear all cached analytics data.
+  @override
   void dispose() {
     constructListModel.dispose();
     _analyticsUpdateSubscription?.cancel();
@@ -124,19 +129,21 @@ class GetAnalyticsController {
     if (analyticsUpdate.type == AnalyticsUpdateType.server) {
       await _getConstructs(forceUpdate: true);
     }
-    _updateAnalyticsStream(
-      origin: analyticsUpdate.origin,
-      levelUp: oldLevel < constructListModel.level,
-    );
+    _updateAnalyticsStream(origin: analyticsUpdate.origin);
+    if (oldLevel < constructListModel.level) _onLevelUp();
   }
 
   void _updateAnalyticsStream({
-    bool levelUp = false,
     AnalyticsUpdateOrigin? origin,
-  }) {
-    analyticsStream.add(
-      AnalyticsStreamUpdate(origin: origin, levelUp: levelUp),
+  }) =>
+      analyticsStream.add(AnalyticsStreamUpdate(origin: origin));
+
+  void _onLevelUp() {
+    _pangeaController.userController.updatePublicProfile(
+      level: constructListModel.level,
     );
+
+    setState({'level_up': constructListModel.level});
   }
 
   /// A local cache of eventIds and construct uses for messages sent since the last update.
@@ -209,7 +216,9 @@ class GetAnalyticsController {
   }) async {
     // if the user isn't logged in, return an empty list
     if (_client.userID == null) return [];
-    await _client.roomsLoading;
+    if (_client.prevBatch == null) {
+      await _client.onSync.stream.first;
+    }
 
     // don't try to get constructs until last updated time has been loaded
     await _pangeaController.putAnalytics.lastUpdatedCompleter.future;
@@ -342,10 +351,8 @@ class AnalyticsCacheEntry {
 
 class AnalyticsStreamUpdate {
   final AnalyticsUpdateOrigin? origin;
-  final bool levelUp;
 
   AnalyticsStreamUpdate({
     this.origin,
-    this.levelUp = false,
   });
 }

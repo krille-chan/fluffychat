@@ -151,7 +151,10 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     await sendLocalAnalyticsToAnalyticsRoom(
       l2Override: previousL2,
     );
-    _pangeaController.resetAnalytics();
+    _pangeaController.resetAnalytics().then((_) {
+      final level = _pangeaController.getAnalytics.constructListModel.level;
+      _pangeaController.userController.updatePublicProfile(level: level);
+    });
   }
 
   void addDraftUses(
@@ -361,6 +364,8 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     String? l2Override,
   }) async {
     if (_pangeaController.matrixState.client.userID == null) return;
+    if (_pangeaController.getAnalytics.messagesSinceUpdate.isEmpty) return;
+
     if (!(_updateCompleter?.isCompleted ?? true)) {
       await _updateCompleter!.future;
       return;

@@ -158,14 +158,14 @@ class PangeaController {
       case LoginState.loggedOut:
       case LoginState.softLoggedOut:
         // Reset cached analytics data
-        MatrixState.pangeaController.putAnalytics.dispose();
-        MatrixState.pangeaController.getAnalytics.dispose();
+        putAnalytics.dispose();
+        getAnalytics.dispose();
         _languageStream?.cancel();
         break;
       case LoginState.loggedIn:
         // Initialize analytics data
-        MatrixState.pangeaController.putAnalytics.initialize();
-        MatrixState.pangeaController.getAnalytics.initialize();
+        putAnalytics.initialize();
+        getAnalytics.initialize();
         break;
     }
     if (state != LoginState.loggedIn) {
@@ -186,7 +186,7 @@ class PangeaController {
     putAnalytics.dispose();
     getAnalytics.dispose();
     putAnalytics.initialize();
-    getAnalytics.initialize();
+    await getAnalytics.initialize();
   }
 
   void startChatWithBotIfNotPresent() {

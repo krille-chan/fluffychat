@@ -46,6 +46,7 @@ class SettingsLearningController extends State<SettingsLearning> {
         context: context,
         future: () async => pangeaController.userController.updateProfile(
           (_) => _profile,
+          waitForDataInSync: true,
         ),
       );
       Navigator.of(context).pop();

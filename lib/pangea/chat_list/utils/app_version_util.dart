@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -52,7 +53,14 @@ class AppVersionUtil {
     final currentBuildNumber = packageInfo.buildNumber;
 
     final accessToken = MatrixState.pangeaController.userController.accessToken;
-    final AppVersionResponse resp = await _getAppVersion(accessToken);
+
+    AppVersionResponse? resp;
+    try {
+      resp = await _getAppVersion(accessToken);
+    } catch (err, s) {
+      ErrorHandler.logError(e: err, s: s, data: {});
+      return;
+    }
 
     final remoteVersion = resp.latestVersion;
     final remoteBuildNumber = resp.latestBuildNumber;

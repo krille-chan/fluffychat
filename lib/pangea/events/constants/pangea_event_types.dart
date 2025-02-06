@@ -36,4 +36,7 @@ class PangeaEventTypes {
   /// A record of completion of an activity. There
   /// can be one per user per activity.
   static const activityRecord = "pangea.activity_completion";
+
+  /// Profile information related to a user's analytics
+  static const profileAnalytics = "pangea.analytics_profile";
 }

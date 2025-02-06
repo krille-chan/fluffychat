@@ -215,6 +215,10 @@ class UserSettingsState extends State<UserSettingsPage> {
           },
           waitForDataInSync: true,
         ),
+        _pangeaController.userController.updatePublicProfile(
+          targetLanguage: selectedTargetLanguage,
+          level: 1,
+        ),
       ];
       await Future.wait(updateFuture).timeout(
         const Duration(seconds: 30),
