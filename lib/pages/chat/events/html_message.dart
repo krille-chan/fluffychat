@@ -280,7 +280,10 @@ class HtmlMessage extends StatelessWidget {
                   horizontal: 8,
                   vertical: isInline ? 0 : 8,
                 ),
-                textStyle: TextStyle(fontSize: fontSize),
+                textStyle: TextStyle(
+                  fontSize: fontSize,
+                  fontFamily: 'UbuntuMono',
+                ),
               ),
             ),
           ),
