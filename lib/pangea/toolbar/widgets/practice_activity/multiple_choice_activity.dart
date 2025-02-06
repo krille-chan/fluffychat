@@ -256,7 +256,9 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       ],
     );
 
-    return practiceActivity.activityType == ActivityTypeEnum.hiddenWordListening
+    return practiceActivity.activityType ==
+                ActivityTypeEnum.hiddenWordListening ||
+            practiceActivity.activityType == ActivityTypeEnum.messageMeaning
         ? ConstrainedBox(
             constraints: const BoxConstraints(
               // see https://github.com/pangeachat/client/issues/1422

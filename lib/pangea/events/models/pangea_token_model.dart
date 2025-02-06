@@ -213,6 +213,30 @@ class PangeaToken {
     );
   }
 
+  List<OneConstructUse> allUses(
+    ConstructUseTypeEnum type,
+    ConstructUseMetaData metadata,
+  ) {
+    final List<OneConstructUse> uses = [];
+    if (!lemma.saveVocab) return uses;
+
+    uses.add(toVocabUse(type, metadata));
+    for (final morphFeature in morph.keys) {
+      uses.add(
+        OneConstructUse(
+          useType: type,
+          lemma: morph[morphFeature],
+          form: text.content,
+          constructType: ConstructTypeEnum.morph,
+          metadata: metadata,
+          category: morphFeature,
+        ),
+      );
+    }
+
+    return uses;
+  }
+
   bool isActivityBasicallyEligible(
     ActivityTypeEnum a, [
     String? morphFeature,
@@ -238,6 +262,7 @@ class PangeaToken {
         return lemma.saveVocab &&
             text.content.toLowerCase() != lemma.text.toLowerCase();
       case ActivityTypeEnum.emoji:
+      case ActivityTypeEnum.messageMeaning:
         return true;
       case ActivityTypeEnum.morphId:
         return morph.isNotEmpty && canGenerate;
@@ -299,6 +324,7 @@ class PangeaToken {
             .any((u) => u == a.correctUse);
       // Note that it matters less if they did morphId in general, than if they did it with the particular feature
       case ActivityTypeEnum.morphId:
+        // TODO: investigate if we take out condition "|| morphTag == null", will we get the expected number of morph activities?
         if (morphFeature == null || morphTag == null) {
           debugger(when: kDebugMode);
           return false;
@@ -306,6 +332,13 @@ class PangeaToken {
         return morphConstruct(morphFeature, morphTag)
             .uses
             .any((u) => u.useType == a.correctUse && u.form == text.content);
+      case ActivityTypeEnum.messageMeaning:
+        debugger(when: kDebugMode);
+        ErrorHandler.logError(
+          m: "should not call didActivitySuccessfully for ActivityTypeEnum.messageMeaning",
+          data: toJson(),
+        );
+        return true;
     }
   }
 
@@ -316,14 +349,15 @@ class PangeaToken {
   ]) {
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
-        if (daysSinceLastUseByType(ActivityTypeEnum.wordMeaning) < 7) {
+        if (daysSinceLastUseByType(ActivityTypeEnum.wordMeaning) < 7 ||
+            daysSinceLastUseByType(ActivityTypeEnum.messageMeaning) < 7) {
           return false;
         }
 
         if (isContentWord) {
-          return vocabConstruct.points < 3;
+          return vocabConstruct.points < 1;
         } else if (canBeDefined) {
-          return vocabConstruct.points < 2;
+          return vocabConstruct.points < 1;
         } else {
           return false;
         }
@@ -342,6 +376,7 @@ class PangeaToken {
       // return _didActivitySuccessfully(ActivityTypeEnum.wordMeaning) &&
       //     daysSinceLastUseByType(a) > 7;
       case ActivityTypeEnum.emoji:
+      case ActivityTypeEnum.messageMeaning:
         return true;
       case ActivityTypeEnum.morphId:
         if (morphFeature == null || morphTag == null) {
@@ -407,6 +442,7 @@ class PangeaToken {
       case ActivityTypeEnum.emoji:
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
+      case ActivityTypeEnum.messageMeaning:
         return true;
     }
   }

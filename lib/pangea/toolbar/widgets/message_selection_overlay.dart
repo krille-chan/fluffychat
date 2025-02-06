@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -173,6 +175,22 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
   }
 
+  void onRequestForMeaningChallenge() {
+    if (messageAnalyticsEntry == null) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        e: "MessageAnalyticsEntry is null in onRequestForMeaningChallenge",
+        data: {},
+      );
+      return;
+    }
+    messageAnalyticsEntry!.addMessageMeaningActivity();
+
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   bool get messageInUserL2 =>
       pangeaMessageEvent?.messageDisplayLangCode ==
       MatrixState.pangeaController.languageController.userL2?.langCode;
@@ -240,8 +258,12 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   /// When an activity is completed, we need to update the state
   /// and check if the toolbar should be unlocked
-  void onActivityFinish() {
+  void onActivityFinish(ActivityTypeEnum activityType) {
     messageAnalyticsEntry!.onActivityComplete();
+    if (activityType == ActivityTypeEnum.messageMeaning) {
+      updateToolbarMode(MessageMode.wordZoom);
+    }
+
     if (!mounted) return;
     setState(() {});
   }

@@ -172,7 +172,9 @@ class MessageTextWidget extends StatelessWidget {
       );
     }
 
-    final hasHiddenTokens = tokenPositions.any((t) => t.hideContent);
+    final hideTokenHighlights = messageAnalyticsEntry != null &&
+        (messageAnalyticsEntry!.hasHiddenWordActivity ||
+            messageAnalyticsEntry!.hasMessageMeaningActivity);
 
     return RichText(
       softWrap: softWrap ?? true,
@@ -200,7 +202,7 @@ class MessageTextWidget extends StatelessWidget {
               .toString();
 
           Color backgroundColor = Colors.transparent;
-          if (!hasHiddenTokens) {
+          if (!hideTokenHighlights) {
             if (tokenPosition.selected) {
               backgroundColor = AppConfig.primaryColor.withAlpha(80);
             } else if (isSelected != null && shouldDo) {

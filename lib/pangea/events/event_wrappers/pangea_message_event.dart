@@ -461,11 +461,11 @@ class PangeaMessageEvent {
 
   RepresentationEvent? representationByLanguage(String langCode) =>
       representations.firstWhereOrNull(
-        (element) => element.langCode == langCode,
+        (element) => element.langCode.split("-")[0] == langCode.split("-")[0],
       );
 
   int translationIndex(String langCode) => representations.indexWhere(
-        (element) => element.langCode == langCode,
+        (element) => element.langCode.split("-")[0] == langCode.split("-")[0],
       );
 
   String translationTextSafe(String langCode) {
@@ -596,7 +596,8 @@ class PangeaMessageEvent {
 
   /// Should almost always be true. Useful in the case that the message
   /// display rep has the langCode "unk"
-  bool get messageDisplayLangIsL2 => messageDisplayLangCode == l2Code;
+  bool get messageDisplayLangIsL2 =>
+      messageDisplayLangCode.split("-")[0] == l2Code?.split("-")[0];
 
   String get messageDisplayLangCode {
     final bool immersionMode = MatrixState
@@ -684,7 +685,11 @@ class PangeaMessageEvent {
     bool debug = false,
   }) =>
       _practiceActivityEvents
-          .where((event) => event.practiceActivity.langCode == langCode)
+          .where(
+            (event) =>
+                event.practiceActivity.langCode.split("-")[0] ==
+                langCode.split("")[0],
+          )
           .toList();
 
   /// Returns a list of [PracticeActivityEvent] for the user's active l2.

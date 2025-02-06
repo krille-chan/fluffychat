@@ -5,7 +5,7 @@ extension LanguageLevelTypeEnumExtension on LanguageLevelTypeEnum {
   String get string {
     switch (this) {
       case LanguageLevelTypeEnum.preA1:
-        return 'Pre-A1';
+        return 'PREA1';
       case LanguageLevelTypeEnum.a1:
         return 'A1';
       case LanguageLevelTypeEnum.a2:
@@ -65,6 +65,7 @@ extension LanguageLevelTypeEnumExtension on LanguageLevelTypeEnum {
   static LanguageLevelTypeEnum fromString(String? value) {
     switch (value) {
       case 'PREA1':
+      case 'PRE-A1':
       case 'Pre-A1':
         return LanguageLevelTypeEnum.preA1;
       case 'A1':

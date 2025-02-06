@@ -103,6 +103,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     ActivityQualityFeedback? activityFeedback,
   }) async {
     _error = null;
+    debugger(when: kDebugMode);
     if (!mounted ||
         !pangeaController.languageController.languagesSet ||
         widget.overlayController.messageAnalyticsEntry == null) {
@@ -152,6 +153,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   Future<PracticeActivityModel?> _fetchActivityModel({
     ActivityQualityFeedback? activityFeedback,
   }) async {
+    debugger(when: kDebugMode);
     debugPrint(
       "fetching activity model of type: ${widget.targetTokensAndActivityType.activityType}",
     );
@@ -215,6 +217,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       context,
     );
 
+    debugger(when: kDebugMode);
+
     if (activityResponse.activity == null) return null;
 
     currentActivityCompleter = activityResponse.eventCompleter;
@@ -274,7 +278,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
       // wait for savor the joy before popping from the activity queue
       // to keep the completed activity on screen for a moment
-      widget.overlayController.onActivityFinish();
+      widget.overlayController.onActivityFinish(currentActivity!.activityType);
     } catch (e, s) {
       _onError();
       debugger(when: kDebugMode);
@@ -309,6 +313,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       case ActivityTypeEnum.lemmaId:
       case ActivityTypeEnum.emoji:
       case ActivityTypeEnum.morphId:
+      case ActivityTypeEnum.messageMeaning:
         final selectedChoice =
             currentActivity?.activityType == ActivityTypeEnum.emoji &&
                     (currentActivity?.targetTokens?.isNotEmpty ?? false)
@@ -330,6 +335,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   @override
   Widget build(BuildContext context) {
     if (_error != null) {
+      debugger(when: kDebugMode);
       return CardErrorWidget(
         error: _error!,
         maxWidth: 500,

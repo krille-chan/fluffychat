@@ -7,6 +7,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_meaning_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_button.dart';
 
@@ -22,10 +23,6 @@ class ToolbarButtonAndProgressRow extends StatelessWidget {
 
   double? get proportionOfActivitiesCompleted =>
       overlayController.pangeaMessageEvent?.proportionOfActivitiesCompleted;
-
-  List<MessageMode> get modes => MessageMode.values
-      .where((mode) => mode.shouldShowAsToolbarButton(event))
-      .toList();
 
   static const double iconWidth = 36.0;
   static const double buttonSize = 40.0;
@@ -77,11 +74,14 @@ class ToolbarButtonAndProgressRow extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              MessageMeaningButton(
+                buttonSize: buttonSize,
+                overlayController: overlayController,
+              ),
               SizedBox(
                 width: MessageMode.textToSpeech.pointOnBar * totalRowWidth -
-                    buttonSize / 2,
+                    buttonSize,
               ),
               ToolbarButton(
                 mode: MessageMode.textToSpeech,
@@ -91,7 +91,7 @@ class ToolbarButtonAndProgressRow extends StatelessWidget {
               SizedBox(
                 width: MessageMode.translation.pointOnBar * totalRowWidth -
                     MessageMode.textToSpeech.pointOnBar * totalRowWidth -
-                    buttonSize / 2 -
+                    buttonSize -
                     buttonSize,
               ),
               ToolbarButton(

@@ -60,6 +60,11 @@ enum ConstructUseTypeEnum {
   /// User can select any emoji
   em,
 
+  /// message meaning activity
+  corMM,
+  incMM,
+  ignMM,
+
   /// not defined, likely a new construct introduced by choreo and not yet classified by an old version of the client
   nan
 }
@@ -121,6 +126,12 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
         return L10n.of(context).constructUseEmojiDesc;
       case ConstructUseTypeEnum.pvm:
         return L10n.of(context).constructUsePvmDesc;
+      case ConstructUseTypeEnum.corMM:
+        return L10n.of(context).constructUseCorMmDesc;
+      case ConstructUseTypeEnum.incMM:
+        return L10n.of(context).constructUseIncMmDesc;
+      case ConstructUseTypeEnum.ignMM:
+        return L10n.of(context).constructUseIgnMmDesc;
       case ConstructUseTypeEnum.nan:
         return L10n.of(context).constructUseNanDesc;
     }
@@ -161,6 +172,10 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
         return ActivityTypeEnum.morphId.icon;
       case ConstructUseTypeEnum.em:
         return ActivityTypeEnum.emoji.icon;
+      case ConstructUseTypeEnum.corMM:
+      case ConstructUseTypeEnum.incMM:
+      case ConstructUseTypeEnum.ignMM:
+        return ActivityTypeEnum.messageMeaning.icon;
       case ConstructUseTypeEnum.pvm:
         return Icons.mic;
       case ConstructUseTypeEnum.unk:
@@ -195,6 +210,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
 
       case ConstructUseTypeEnum.corIt:
       case ConstructUseTypeEnum.em:
+      case ConstructUseTypeEnum.corMM:
         return 1;
 
       case ConstructUseTypeEnum.ignIt:
@@ -204,11 +220,13 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.ignHWL:
       case ConstructUseTypeEnum.ignL:
       case ConstructUseTypeEnum.ignM:
+      case ConstructUseTypeEnum.ignMM:
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.nan:
         return 0;
 
       case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.incMM:
         return -1;
 
       case ConstructUseTypeEnum.incIt:
@@ -253,6 +271,9 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.corM:
       case ConstructUseTypeEnum.incM:
       case ConstructUseTypeEnum.ignM:
+      case ConstructUseTypeEnum.corMM:
+      case ConstructUseTypeEnum.incMM:
+      case ConstructUseTypeEnum.ignMM:
       case ConstructUseTypeEnum.em:
       case ConstructUseTypeEnum.nan:
         return false;
@@ -288,6 +309,9 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.corM:
       case ConstructUseTypeEnum.ignM:
       case ConstructUseTypeEnum.incM:
+      case ConstructUseTypeEnum.corMM:
+      case ConstructUseTypeEnum.incMM:
+      case ConstructUseTypeEnum.ignMM:
       case ConstructUseTypeEnum.em:
         return LearningSkillsEnum.reading;
       case ConstructUseTypeEnum.pvm:
@@ -313,6 +337,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.corL:
       case ConstructUseTypeEnum.corM:
       case ConstructUseTypeEnum.em:
+      case ConstructUseTypeEnum.corMM:
         return AnalyticsSummaryEnum.numChoicesCorrect;
 
       case ConstructUseTypeEnum.incIt:
@@ -322,6 +347,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.incHWL:
       case ConstructUseTypeEnum.incL:
       case ConstructUseTypeEnum.incM:
+      case ConstructUseTypeEnum.incMM:
         return AnalyticsSummaryEnum.numChoicesIncorrect;
 
       case ConstructUseTypeEnum.ignIt:
@@ -331,6 +357,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.ignHWL:
       case ConstructUseTypeEnum.ignL:
       case ConstructUseTypeEnum.ignM:
+      case ConstructUseTypeEnum.ignMM:
       case ConstructUseTypeEnum.nan:
         return null;
     }

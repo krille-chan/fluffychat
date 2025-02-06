@@ -163,6 +163,10 @@ class ActivityRecordResponse {
         return score > 0
             ? ConstructUseTypeEnum.corHWL
             : ConstructUseTypeEnum.incHWL;
+      case ActivityTypeEnum.messageMeaning:
+        return score > 0
+            ? ConstructUseTypeEnum.corMM
+            : ConstructUseTypeEnum.incMM;
     }
   }
 
@@ -199,6 +203,15 @@ class ActivityRecordResponse {
             category: token.pos,
           ),
         ];
+      case ActivityTypeEnum.messageMeaning:
+        return practiceActivity.targetTokens!
+            .expand(
+              (t) => t.allUses(
+                useType(practiceActivity.activityType),
+                metadata,
+              ),
+            )
+            .toList();
       case ActivityTypeEnum.hiddenWordListening:
         return practiceActivity.targetTokens!
             .map(

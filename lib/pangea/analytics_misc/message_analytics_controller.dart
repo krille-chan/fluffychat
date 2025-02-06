@@ -104,9 +104,7 @@ class MessageAnalyticsEntry {
   }
 
   void _popQueue() {
-    if (hasHiddenWordActivity) {
-      _activityQueue.removeAt(0);
-    }
+    if (_activityQueue.isNotEmpty) _activityQueue.removeAt(0);
   }
 
   void _filterQueue(ActivityTypeEnum activityType) {
@@ -122,6 +120,9 @@ class MessageAnalyticsEntry {
 
   bool get hasHiddenWordActivity =>
       nextActivity?.activityType.hiddenType ?? false;
+
+  bool get hasMessageMeaningActivity => _activityQueue
+      .any((a) => a.activityType == ActivityTypeEnum.messageMeaning);
 
   int get numActivities => _activityQueue.length;
 
@@ -141,15 +142,12 @@ class MessageAnalyticsEntry {
     }
   }
 
-  /// Adds a word focus listening activity to the front of the queue
+  /// Add a message meaning activity to the front of the queue
   /// And limits to _maxQueueLength activities
-  void addTokenToActivityQueue(
-    PangeaToken token, {
-    ActivityTypeEnum type = ActivityTypeEnum.wordMeaning,
-  }) {
+  void addMessageMeaningActivity() {
     final entry = TargetTokensAndActivityType(
-      tokens: [token],
-      activityType: ActivityTypeEnum.wordMeaning,
+      tokens: _tokens,
+      activityType: ActivityTypeEnum.messageMeaning,
     );
     _pushQueue(entry);
   }
@@ -204,9 +202,7 @@ class MessageAnalyticsEntry {
     );
   }
 
-  void onActivityComplete() {
-    _popQueue();
-  }
+  void onActivityComplete() => _popQueue();
 
   void exitPracticeFlow() => _clearQueue();
 

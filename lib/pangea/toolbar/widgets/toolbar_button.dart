@@ -33,32 +33,26 @@ class ToolbarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tooltip(
       message: mode.tooltip(context),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          PressableButton(
-            borderRadius: BorderRadius.circular(20),
-            depressed: mode == overlayController.toolbarMode,
+      child: PressableButton(
+        borderRadius: BorderRadius.circular(20),
+        depressed: mode == overlayController.toolbarMode,
+        color: color(context),
+        onPressed: () => overlayController.updateToolbarMode(mode),
+        playSound: true,
+        child: AnimatedContainer(
+          duration: FluffyThemes.animationDuration,
+          height: buttonSize,
+          width: buttonSize,
+          decoration: BoxDecoration(
             color: color(context),
-            onPressed: () => overlayController.updateToolbarMode(mode),
-            playSound: true,
-            child: AnimatedContainer(
-              duration: FluffyThemes.animationDuration,
-              height: buttonSize,
-              width: buttonSize,
-              decoration: BoxDecoration(
-                color: color(context),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                mode.icon,
-                size: 20,
-                color:
-                    mode == overlayController.toolbarMode ? Colors.white : null,
-              ),
-            ),
+            shape: BoxShape.circle,
           ),
-        ],
+          child: Icon(
+            mode.icon,
+            size: 20,
+            color: mode == overlayController.toolbarMode ? Colors.white : null,
+          ),
+        ),
       ),
     );
   }

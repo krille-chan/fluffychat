@@ -174,6 +174,7 @@ class PracticeActivityModel {
       case ActivityTypeEnum.hiddenWordListening:
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.lemmaId:
+      case ActivityTypeEnum.messageMeaning:
         return content.question;
       case ActivityTypeEnum.emoji:
         return L10n.of(context).pickAnEmoji(targetLemma, partOfSpeech);

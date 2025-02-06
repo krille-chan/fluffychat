@@ -4815,5 +4815,10 @@
   "open": "Open",
   "waitingForServer": "Waiting for server...",
   "appIntroduction": "FluffyChat lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*.",
-  "whatIsLemma": "What is the lemma?"
+  "whatIsLemma": "What is the lemma?",
+  "constructUseCorMmDesc": "Correct message meaning",
+  "constructUseIncMmDesc": "Incorrect message meaning",
+  "constructUseIgnMmDesc": "Ignored message meaning",
+  "clickForMeaningActivity": "Click here for a Meaning Challenge",
+  "meaning": "Meaning"
 }
