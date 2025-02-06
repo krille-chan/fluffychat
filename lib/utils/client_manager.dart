@@ -130,6 +130,7 @@ abstract class ClientManager {
       shareKeysWith: ShareKeysWith.values
               .singleWhereOrNull((share) => share.name == shareKeysWith) ??
           ShareKeysWith.all,
+      convertLinebreaksInFormatting: false,
     );
   }
 
