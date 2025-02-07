@@ -33,6 +33,13 @@ class OverlayHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          if (controller.selectedEvents.length == 1)
+            IconButton(
+              icon: const Icon(Symbols.reply_all),
+              tooltip: L10n.of(context).reply,
+              onPressed: controller.replyAction,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           IconButton(
             icon: const Icon(Symbols.forward),
             tooltip: L10n.of(context).forward,

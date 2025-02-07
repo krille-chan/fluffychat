@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
@@ -71,6 +72,7 @@ class PangeaReactionsPicker extends StatelessWidget {
                         onTap: () => controller.sendEmojiAction(emoji),
                         child: Container(
                           width: kIsWeb ? 56 : 48,
+                          height: AppConfig.defaultFooterHeight,
                           alignment: Alignment.center,
                           child: Text(
                             emoji,
