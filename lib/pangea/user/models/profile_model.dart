@@ -27,7 +27,9 @@ class PublicProfileModel {
         final lang = PangeaLanguage.byLangCode(entry.key);
         if (lang == null) continue;
         final level = entry.value[ModelKey.level];
-        languageAnalytics[lang] = LanguageAnalyticsProfileEntry(level);
+        final xpOffset = entry.value[ModelKey.xpOffset] ?? 0;
+        languageAnalytics[lang] =
+            LanguageAnalyticsProfileEntry(level, xpOffset);
       }
     }
 
@@ -47,7 +49,10 @@ class PublicProfileModel {
     final analytics = {};
     if (languageAnalytics != null && languageAnalytics!.isNotEmpty) {
       for (final entry in languageAnalytics!.entries) {
-        analytics[entry.key.langCode] = {ModelKey.level: entry.value.level};
+        analytics[entry.key.langCode] = {
+          ModelKey.level: entry.value.level,
+          ModelKey.xpOffset: entry.value.xpOffset,
+        };
       }
     }
 
@@ -61,15 +66,24 @@ class PublicProfileModel {
 
   void setLevel(LanguageModel language, int level) {
     languageAnalytics ??= {};
-    languageAnalytics![language] ??= LanguageAnalyticsProfileEntry(0);
+    languageAnalytics![language] ??= LanguageAnalyticsProfileEntry(0, 0);
     languageAnalytics![language]!.level = level;
   }
 
+  void addXPOffset(LanguageModel language, int xpOffset) {
+    languageAnalytics ??= {};
+    languageAnalytics![language] ??= LanguageAnalyticsProfileEntry(0, 0);
+    languageAnalytics![language]!.xpOffset += xpOffset;
+  }
+
   int? get level => languageAnalytics?[targetLanguage]?.level;
+
+  int? get xpOffset => languageAnalytics?[targetLanguage]?.xpOffset;
 }
 
 class LanguageAnalyticsProfileEntry {
   int level;
+  int xpOffset = 0;
 
-  LanguageAnalyticsProfileEntry(this.level);
+  LanguageAnalyticsProfileEntry(this.level, this.xpOffset);
 }

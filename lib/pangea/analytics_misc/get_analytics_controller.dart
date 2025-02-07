@@ -90,10 +90,16 @@ class GetAnalyticsController extends BaseController {
 
       await _pangeaController.putAnalytics.lastUpdatedCompleter.future;
       await _getConstructs();
-      constructListModel.updateConstructs([
-        ...(_getConstructsLocal() ?? []),
-        ..._locallyCachedConstructs,
-      ]);
+
+      final offset =
+          _pangeaController.userController.publicProfile?.xpOffset ?? 0;
+      constructListModel.updateConstructs(
+        [
+          ...(_getConstructsLocal() ?? []),
+          ..._locallyCachedConstructs,
+        ],
+        offset,
+      );
     } catch (err, s) {
       ErrorHandler.logError(
         e: err,
@@ -125,12 +131,16 @@ class GetAnalyticsController extends BaseController {
   ) async {
     if (analyticsUpdate.isLogout) return;
     final oldLevel = constructListModel.level;
-    constructListModel.updateConstructs(analyticsUpdate.newConstructs);
+
+    final offset =
+        _pangeaController.userController.publicProfile?.xpOffset ?? 0;
+    constructListModel.updateConstructs(analyticsUpdate.newConstructs, offset);
     if (analyticsUpdate.type == AnalyticsUpdateType.server) {
       await _getConstructs(forceUpdate: true);
     }
-    _updateAnalyticsStream(origin: analyticsUpdate.origin);
     if (oldLevel < constructListModel.level) _onLevelUp();
+    if (oldLevel > constructListModel.level) await _onLevelDown(oldLevel);
+    _updateAnalyticsStream(origin: analyticsUpdate.origin);
   }
 
   void _updateAnalyticsStream({
@@ -144,6 +154,16 @@ class GetAnalyticsController extends BaseController {
     );
 
     setState({'level_up': constructListModel.level});
+  }
+
+  Future<void> _onLevelDown(final prevLevel) async {
+    final offset =
+        _calculateMinXpForLevel(prevLevel) - constructListModel.totalXP;
+    await _pangeaController.userController.addXPOffset(offset);
+    constructListModel.updateConstructs(
+      [],
+      _pangeaController.userController.publicProfile!.xpOffset!,
+    );
   }
 
   /// A local cache of eventIds and construct uses for messages sent since the last update.

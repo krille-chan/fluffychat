@@ -52,8 +52,9 @@ class ConstructListModel {
 
   ConstructListModel({
     required List<OneConstructUse> uses,
+    int offset = 0,
   }) {
-    updateConstructs(uses);
+    updateConstructs(uses, offset);
   }
 
   int get totalLemmas => vocabLemmasList.length + grammarLemmasList.length;
@@ -63,13 +64,13 @@ class ConstructListModel {
 
   /// Given a list of new construct uses, update the map of construct
   /// IDs to ConstructUses and re-sort the list of ConstructUses
-  void updateConstructs(List<OneConstructUse> newUses) {
+  void updateConstructs(List<OneConstructUse> newUses, int offset) {
     try {
       _updateUsesList(newUses);
       _updateConstructMap(newUses);
       _updateConstructList();
       _updateCategoriesToUses();
-      _updateMetrics();
+      _updateMetrics(offset);
     } catch (err, s) {
       ErrorHandler.logError(
         e: "Failed to update analytics: $err",
@@ -148,7 +149,7 @@ class ConstructListModel {
     }
   }
 
-  void _updateMetrics() {
+  void _updateMetrics(int offset) {
     vocabLemmasList = constructList(type: ConstructTypeEnum.vocab)
         .map((e) => e.lemma)
         .toSet()
@@ -160,10 +161,11 @@ class ConstructListModel {
         .toList();
 
     prevXP = totalXP;
-    totalXP = _constructList.fold<int>(
-      0,
-      (total, construct) => total + construct.points,
-    );
+    totalXP = (_constructList.fold<int>(
+          0,
+          (total, construct) => total + construct.points,
+        )) +
+        offset;
 
     if (totalXP < 0) {
       totalXP = 0;

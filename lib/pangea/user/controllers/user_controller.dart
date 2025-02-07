@@ -184,12 +184,22 @@ class UserController extends BaseController {
       publicProfile!.setLevel(targetLanguage, level);
     }
 
-    await client.setUserProfile(
-      client.userID!,
-      PangeaEventTypes.profileAnalytics,
-      publicProfile!.toJson(),
-    );
+    await _savePublicProfile();
   }
+
+  Future<void> addXPOffset(int offset) async {
+    final targetLanguage = _pangeaController.languageController.userL2;
+    if (targetLanguage == null || publicProfile == null) return;
+
+    publicProfile!.addXPOffset(targetLanguage, offset);
+    await _savePublicProfile();
+  }
+
+  Future<void> _savePublicProfile() async => client.setUserProfile(
+        client.userID!,
+        PangeaEventTypes.profileAnalytics,
+        publicProfile!.toJson(),
+      );
 
   /// Returns a boolean value indicating whether a new JWT (JSON Web Token) is needed.
   bool needNewJWT(String token) => Jwt.isExpired(token);
