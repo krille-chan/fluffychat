@@ -300,7 +300,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                         decoration: InputDecoration(
                           labelText: l10n.numberOfLearners,
                         ),
-                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.done,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return l10n.mustBeInteger;
@@ -314,6 +314,13 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                         onChanged: (val) =>
                             _selectedNumberOfParticipants = int.tryParse(val),
                         initialValue: _selectedNumberOfParticipants?.toString(),
+                        onTapOutside: (_) =>
+                            FocusManager.instance.primaryFocus?.unfocus(),
+                        onFieldSubmitted: (_) {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            _generateActivities();
+                          }
+                        },
                       ),
                       const SizedBox(height: 24),
                       ElevatedButton(

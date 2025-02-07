@@ -49,6 +49,7 @@ class SuggestionFormField extends StatelessWidget {
             hintText: placeholder,
           ),
           validator: validator,
+          onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         );
       },
     );
