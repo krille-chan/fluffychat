@@ -1,7 +1,7 @@
 part of "pangea_room_extension.dart";
 
 extension RoomInformationRoomExtension on Room {
-  Future<int> get _numNonAdmins async {
+  Future<int> get numNonAdmins async {
     return (await requestParticipants())
         .where(
           (e) =>
@@ -12,15 +12,15 @@ extension RoomInformationRoomExtension on Room {
         .length;
   }
 
-  DateTime? get _creationTime {
+  DateTime? get creationTime {
     final dynamic roomCreate = getState(EventTypes.RoomCreate);
     if (roomCreate is! Event) return null;
     return roomCreate.originServerTs;
   }
 
-  String? get _creatorId => getState(EventTypes.RoomCreate)?.senderId;
+  String? get creatorId => getState(EventTypes.RoomCreate)?.senderId;
 
-  bool _isFirstOrSecondChild(String roomId) {
+  bool isFirstOrSecondChild(String roomId) {
     return isSpace &&
         (spaceChildren.any((room) => room.roomId == roomId) ||
             spaceChildren
@@ -34,19 +34,19 @@ extension RoomInformationRoomExtension on Room {
                 ));
   }
 
-  Future<bool> get _botIsInRoom async {
+  Future<bool> get botIsInRoom async {
     final List<User> participants = await requestParticipants();
     return participants.any(
       (User user) => user.id == BotName.byEnvironment,
     );
   }
 
-  bool get _isBotDM => botOptions?.mode == BotMode.directChat;
+  bool get isBotDM => botOptions?.mode == BotMode.directChat;
 
-  bool _isAnalyticsRoomOfUser(String userId) =>
+  bool isAnalyticsRoomOfUser(String userId) =>
       isAnalyticsRoom && isMadeByUser(userId);
 
-  bool get _isAnalyticsRoom =>
+  bool get isAnalyticsRoom =>
       getState(EventTypes.RoomCreate)?.content.tryGet<String>('type') ==
       PangeaRoomTypes.analytics;
 }
