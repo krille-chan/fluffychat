@@ -3001,5 +3001,17 @@
   "notificationRuleMaster": "Apklusināt visus paziņojumus",
   "@notificationRuleMaster": {},
   "notificationRuleSuppressNotices": "Apspiest automātiskās ziņas",
-  "@notificationRuleSuppressNotices": {}
+  "@notificationRuleSuppressNotices": {},
+  "crossVerifiedDevices": "Savstarpēji apliecinātas ierīces",
+  "@crossVerifiedDevices": {},
+  "shareKeysWith": "Kopīgot atslēgas ar...",
+  "@shareKeysWith": {},
+  "shareKeysWithDescription": "Kurām ierīcēm vajadzētu uzticēties, lai tajās varētu lasīt ziņas šifrētajās tērzēšanās?",
+  "@shareKeysWithDescription": {},
+  "allDevices": "Visas ierīces",
+  "@allDevices": {},
+  "crossVerifiedDevicesIfEnabled": "Savstarpēji apliecinātas ierīces, ja iespējots",
+  "@crossVerifiedDevicesIfEnabled": {},
+  "verifiedDevicesOnly": "Tikai apliecinātas ierīces",
+  "@verifiedDevicesOnly": {}
 }
