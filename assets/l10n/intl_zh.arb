@@ -3023,5 +3023,17 @@
     "placeholders": {
       "rule": {}
     }
-  }
+  },
+  "crossVerifiedDevices": "交叉验证设备",
+  "@crossVerifiedDevices": {},
+  "shareKeysWithDescription": "选择应当信任哪些设备允许它们读取你在加密聊天中的消息？",
+  "@shareKeysWithDescription": {},
+  "shareKeysWith": "与哪些设备分享密钥…",
+  "@shareKeysWith": {},
+  "allDevices": "所有设备",
+  "@allDevices": {},
+  "crossVerifiedDevicesIfEnabled": "交叉验证设备（如启用）",
+  "@crossVerifiedDevicesIfEnabled": {},
+  "verifiedDevicesOnly": "仅已验证设备",
+  "@verifiedDevicesOnly": {}
 }
