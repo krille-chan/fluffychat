@@ -1,11 +1,11 @@
 part of "pangea_room_extension.dart";
 
 extension SpaceRoomExtension on Room {
-  String _classCode(BuildContext context) {
+  String classCode(BuildContext context) {
     if (!isSpace) {
       for (final Room potentialClassRoom in pangeaSpaceParents) {
         if (potentialClassRoom.isSpace) {
-          return potentialClassRoom.classCode(context);
+          return SpaceRoomExtension(potentialClassRoom).classCode(context);
         }
       }
       return L10n.of(context).notInClass;
@@ -20,7 +20,7 @@ extension SpaceRoomExtension on Room {
     return L10n.of(context).noClassCode;
   }
 
-  void _checkClass() {
+  void checkClass() {
     if (!isSpace) {
       debugger(when: kDebugMode);
       Sentry.addBreadcrumb(
@@ -29,7 +29,7 @@ extension SpaceRoomExtension on Room {
     }
   }
 
-  Future<List<User>> get _teachers async {
+  Future<List<User>> get teachers async {
     checkClass();
     final List<User> participants = await requestParticipants();
     return isSpace
@@ -43,7 +43,7 @@ extension SpaceRoomExtension on Room {
         : participants;
   }
 
-  Event? get _pangeaRoomRulesStateEvent {
+  Event? get pangeaRoomRulesStateEvent {
     final dynamic roomRules = getState(PangeaEventTypes.rules);
     if (roomRules is Event) {
       return roomRules;

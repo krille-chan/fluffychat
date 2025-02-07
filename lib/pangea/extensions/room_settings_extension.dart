@@ -1,7 +1,7 @@
 part of "pangea_room_extension.dart";
 
 extension RoomSettingsRoomExtension on Room {
-  Future<void> _updateRoomCapacity(int newCapacity) =>
+  Future<void> updateRoomCapacity(int newCapacity) =>
       client.setRoomStateWithKey(
         id,
         PangeaEventTypes.capacity,
@@ -9,12 +9,12 @@ extension RoomSettingsRoomExtension on Room {
         {'capacity': newCapacity},
       );
 
-  int? get _capacity {
+  int? get capacity {
     final t = getState(PangeaEventTypes.capacity)?.content['capacity'];
     return t is int ? t : null;
   }
 
-  PangeaRoomRules? get _pangeaRoomRules {
+  PangeaRoomRules? get pangeaRoomRules {
     try {
       final Map<String, dynamic>? content = pangeaRoomRulesStateEvent?.content;
       if (content != null) {
@@ -40,7 +40,7 @@ extension RoomSettingsRoomExtension on Room {
     }
   }
 
-  IconData? get _roomTypeIcon {
+  IconData? get roomTypeIcon {
     if (membership == Membership.invite) return Icons.add;
     if (isSpace) return Icons.school;
     if (isAnalyticsRoom) return Icons.analytics;
@@ -48,7 +48,7 @@ extension RoomSettingsRoomExtension on Room {
     return Icons.group;
   }
 
-  Text _nameAndRoomTypeIcon([TextStyle? textStyle]) => Text.rich(
+  Text nameAndRoomTypeIcon([TextStyle? textStyle]) => Text.rich(
         style: textStyle,
         TextSpan(
           children: [
@@ -62,7 +62,7 @@ extension RoomSettingsRoomExtension on Room {
         ),
       );
 
-  BotOptionsModel? get _botOptions {
+  BotOptionsModel? get botOptions {
     if (isSpace) return null;
     final stateEvent = getState(PangeaEventTypes.botOptions);
     if (stateEvent == null) return null;

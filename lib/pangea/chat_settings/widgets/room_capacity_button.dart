@@ -33,7 +33,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
   @override
   void initState() {
     super.initState();
-    capacity = widget.room?.capacity;
+    capacity = RoomSettingsRoomExtension(widget.room)?.capacity;
     widget.room?.numNonAdmins.then(
       (value) => setState(() {
         nonAdmins = value.toString();
@@ -46,7 +46,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
   void didUpdateWidget(RoomCapacityButton oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.room != widget.room) {
-      capacity = widget.room?.capacity;
+      capacity = RoomSettingsRoomExtension(widget.room)?.capacity;
       widget.room?.numNonAdmins.then(
         (value) => setState(() {
           nonAdmins = value.toString();

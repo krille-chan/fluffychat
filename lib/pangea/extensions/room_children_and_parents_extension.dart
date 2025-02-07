@@ -2,7 +2,7 @@ part of "pangea_room_extension.dart";
 
 extension ChildrenAndParentsRoomExtension on Room {
   //note this only will return rooms that the user has joined or been invited to
-  List<Room> get _joinedChildren {
+  List<Room> get joinedChildren {
     if (!isSpace) return [];
     return spaceChildren
         .where((child) => child.roomId != null)
@@ -17,7 +17,7 @@ extension ChildrenAndParentsRoomExtension on Room {
         .toList();
   }
 
-  Future<List<Room>> _getChildRooms() async {
+  Future<List<Room>> getChildRooms() async {
     final List<Room> children = [];
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
@@ -31,7 +31,7 @@ extension ChildrenAndParentsRoomExtension on Room {
 
   //resolve somehow if multiple rooms have the state?
   //check logic
-  Room? _firstParentWithState(String stateType) {
+  Room? firstParentWithState(String stateType) {
     if (![PangeaEventTypes.languageSettings, PangeaEventTypes.rules]
         .contains(stateType)) {
       return null;
@@ -49,7 +49,7 @@ extension ChildrenAndParentsRoomExtension on Room {
     return null;
   }
 
-  List<Room> get _pangeaSpaceParents => client.rooms
+  List<Room> get pangeaSpaceParents => client.rooms
       .where(
         (r) => r.isSpace,
       )
@@ -63,7 +63,7 @@ extension ChildrenAndParentsRoomExtension on Room {
   /// Wrapper around call to setSpaceChild with added functionality
   /// to prevent adding one room to multiple spaces, and resets the
   /// subspace's JoinRules and Visibility to defaults.
-  Future<void> _pangeaSetSpaceChild(
+  Future<void> pangeaSetSpaceChild(
     String roomId, {
     bool? suggested,
   }) async {
@@ -73,7 +73,8 @@ extension ChildrenAndParentsRoomExtension on Room {
       throw NestedSpaceError();
     }
 
-    final List<Room> spaceParents = child.pangeaSpaceParents;
+    final List<Room> spaceParents =
+        ChildrenAndParentsRoomExtension(child).pangeaSpaceParents;
     for (final Room parent in spaceParents) {
       try {
         await parent.removeSpaceChild(roomId);
@@ -110,7 +111,7 @@ extension ChildrenAndParentsRoomExtension on Room {
   }
 
   /// A map of child suggestion status for a space.
-  Map<String, bool> get _spaceChildSuggestionStatus {
+  Map<String, bool> get spaceChildSuggestionStatus {
     if (!isSpace) return {};
     final Map<String, bool> suggestionStatus = {};
     for (final child in spaceChildren) {

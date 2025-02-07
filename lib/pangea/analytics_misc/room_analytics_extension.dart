@@ -174,14 +174,14 @@ extension AnalyticsRoomExtension on Room {
     }
   }
 
-  Future<DateTime?> _analyticsLastUpdated(String userId) async {
+  Future<DateTime?> analyticsLastUpdated(String userId) async {
     final List<Event> events =
         await getRoomAnalyticsEvents(count: 1, userID: userId);
     if (events.isEmpty) return null;
     return events.first.originServerTs;
   }
 
-  Future<List<ConstructAnalyticsEvent>?> _getAnalyticsEvents({
+  Future<List<ConstructAnalyticsEvent>?> getAnalyticsEvents({
     required String userId,
     DateTime? since,
   }) async {
@@ -194,13 +194,13 @@ extension AnalyticsRoomExtension on Room {
     return analyticsEvents;
   }
 
-  String? get _madeForLang {
+  String? get madeForLang {
     final creationContent = getState(EventTypes.RoomCreate)?.content;
     return creationContent?.tryGet<String>(ModelKey.langCode) ??
         creationContent?.tryGet<String>(ModelKey.oldLangCode);
   }
 
-  bool _isMadeForLang(String langCode) {
+  bool isMadeForLang(String langCode) {
     final creationContent = getState(EventTypes.RoomCreate)?.content;
     return creationContent?.tryGet<String>(ModelKey.langCode) == langCode ||
         creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
@@ -211,7 +211,7 @@ extension AnalyticsRoomExtension on Room {
   /// The [uses] parameter is a list of [OneConstructUse] objects representing the
   /// constructs to be sent. To prevent hitting the maximum event size, the events
   /// are chunked into smaller lists. Each chunk is sent as a separate event.
-  Future<void> _sendConstructsEvent(
+  Future<void> sendConstructsEvent(
     List<OneConstructUse> uses,
   ) async {
     // It's possible that the user has no info to send yet, but to prevent trying

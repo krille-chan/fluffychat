@@ -1,10 +1,10 @@
 part of "pangea_room_extension.dart";
 
 extension EventsRoomExtension on Room {
-  Future<bool> _leaveIfFull() async {
+  Future<bool> leaveIfFull() async {
     if (!isRoomAdmin &&
-        (_capacity != null) &&
-        (await _numNonAdmins) > (_capacity!)) {
+        (capacity != null) &&
+        (await numNonAdmins) > (capacity!)) {
       if (!isSpace) {
         markUnread(false);
       }
@@ -14,7 +14,7 @@ extension EventsRoomExtension on Room {
     return false;
   }
 
-  Future<void> _leaveSpace() async {
+  Future<void> leaveSpace() async {
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
       final Room? room = client.getRoomById(child.roomId!);
@@ -45,7 +45,7 @@ extension EventsRoomExtension on Room {
     }
   }
 
-  Future<Event?> _sendPangeaEvent({
+  Future<Event?> sendPangeaEvent({
     required Map<String, dynamic> content,
     required String parentEventId,
     required String type,
@@ -97,7 +97,7 @@ extension EventsRoomExtension on Room {
     }
   }
 
-  String _sendFakeMessage({
+  String sendFakeMessage({
     required String text,
     Event? inReplyTo,
     String? editEventId,
@@ -185,7 +185,7 @@ extension EventsRoomExtension on Room {
     return messageID;
   }
 
-  Future<String?> _pangeaSendTextEvent(
+  Future<String?> pangeaSendTextEvent(
     String message, {
     String? txid,
     Event? inReplyTo,
