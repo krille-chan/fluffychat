@@ -118,8 +118,10 @@ class FullWidthTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final bool? showErrorText;
   final String? errorText;
   final Function(String)? onSubmitted;
+  final InputDecoration? decoration;
 
   const FullWidthTextField({
     required this.hintText,
@@ -130,12 +132,16 @@ class FullWidthTextField extends StatelessWidget {
     this.validator,
     this.controller,
     this.errorText,
+    this.showErrorText,
     this.onSubmitted,
+    this.decoration,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final bool shouldShowError = showErrorText ?? errorText != null;
+
     return Padding(
       padding: const EdgeInsets.all(6.0),
       child: TextFormField(
@@ -148,8 +154,24 @@ class FullWidthTextField extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(36.0),
           ),
+          enabledBorder: errorText != null
+              ? OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(36.0),
+                  borderSide:
+                      BorderSide(color: Theme.of(context).colorScheme.error),
+                )
+              : null,
+          focusedBorder: errorText != null
+              ? OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(36.0),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.error,
+                    width: 2,
+                  ),
+                )
+              : null,
           contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-          errorText: errorText,
+          errorText: shouldShowError ? errorText : null,
         ),
         validator: validator,
         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),

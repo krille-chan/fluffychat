@@ -208,7 +208,7 @@ class LoginController extends State<Login> {
       // setState(() => passwordError = exception.errorMessage);
       setState(() {
         passwordError = exception.errorMessage;
-        usernameError = "";
+        usernameError = exception.errorMessage;
       });
       // Pangea#
       return setState(() => loadingSignIn = false);
@@ -217,7 +217,7 @@ class LoginController extends State<Login> {
       // setState(() => passwordError = exception.toString());
       setState(() {
         passwordError = exception.toString();
-        usernameError = "";
+        usernameError = exception.toString();
       });
       // Pangea#
       return setState(() => loadingSignIn = false);

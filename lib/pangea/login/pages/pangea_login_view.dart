@@ -30,6 +30,8 @@ class PangeaLoginView extends StatelessWidget {
             },
             controller: controller.usernameController,
             errorText: controller.usernameError,
+            showErrorText: controller.usernameError != null &&
+                controller.passwordError == null,
           ),
           FullWidthTextField(
             hintText: L10n.of(context).password,
