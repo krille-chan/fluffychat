@@ -2774,7 +2774,7 @@
   "@sendCanceled": {},
   "homeserverDescription": "모든 데이터는 이메일 제공자와 마찬가지로 Homeserver(이) 에 저장됩니다. 모든 사람과 여전히 소통할 수 있는 동안 사용하고 싶은 Homeserver(이) 를 선택할 수 있습니다. https://matrix.org에서 자세히 알아보세요.",
   "@homeserverDescription": {},
-  "sendingAttachmentCountOfCount": "{index} ({length}) 전송 중...",
+  "sendingAttachmentCountOfCount": "첨부파일 {length}개중 {index}번째 전송 중...",
   "@sendingAttachmentCountOfCount": {
     "type": "integer",
     "placeholders": {
@@ -2904,5 +2904,18 @@
   "pleaseFillOut": "작성해주세요",
   "@pleaseFillOut": {},
   "previous": "이전",
-  "@previous": {}
+  "@previous": {},
+  "newChatRequest": "📩 새 채팅 요청",
+  "@newChatRequest": {},
+  "appIntroduction": "FluffyChat는 다른 메신저들을 사용하는 친구들과도 채팅할 수 있습니다. https://matrix.org에 방문하거나 *계속*을 눌러 자세한 정보를 확인하세요.",
+  "@appIntroduction": {},
+  "synchronizingPleaseWaitCounter": " 동기화중… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "waitingForServer": "서버를 기다리는중...",
+  "@waitingForServer": {}
 }
