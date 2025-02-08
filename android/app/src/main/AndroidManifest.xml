@@ -34,6 +34,7 @@
         android:requestLegacyExternalStorage="true"
         android:allowBackup="false"
         android:fullBackupContent="false"
+        android:localeConfig="@xml/locale_config"
     >
         <activity
             android:name=".MainActivity"
