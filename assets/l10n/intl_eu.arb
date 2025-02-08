@@ -2909,5 +2909,40 @@
   "appWantsToUseForLoginDescription": "Honenbestez, aplikazioak eta webguneak zuri buruzko informazioa partekatzea baimentzen duzu.",
   "@appWantsToUseForLoginDescription": {},
   "open": "Ireki",
-  "@open": {}
+  "@open": {},
+  "generalNotificationSettings": "Jakinarazpen orokorren ezarpenak",
+  "@generalNotificationSettings": {},
+  "notificationRuleContainsUserName": "Erabiltzaile-izena dauka",
+  "@notificationRuleContainsUserName": {},
+  "notificationRuleMaster": "Isilarazi jakinarazpen guztiak",
+  "@notificationRuleMaster": {},
+  "userSpecificNotificationSettings": "Erabiltzaile zehatzen jakinarazpenen ezarpenak",
+  "@userSpecificNotificationSettings": {},
+  "more": "Gehiago",
+  "@more": {},
+  "newChatRequest": "📩 Txat-eskaera berria",
+  "@newChatRequest": {},
+  "contentNotificationSettings": "Edukiaren jakinarazpenen ezarpenak",
+  "@contentNotificationSettings": {},
+  "notificationRuleContainsUserNameDescription": "Jakinarazten du mezuan erabiltzaile-izena aipatzen denean.",
+  "@notificationRuleContainsUserNameDescription": {},
+  "notificationRuleMasterDescription": "Gainerako arauak gainidatzi eta jakinarazpenak ezgaitzen ditu.",
+  "@notificationRuleMasterDescription": {},
+  "roomNotificationSettings": "Gelen jakinarazpenen ezarpenak",
+  "@roomNotificationSettings": {},
+  "otherNotificationSettings": "Beste jakinarazpenen ezarpenak",
+  "@otherNotificationSettings": {},
+  "waitingForServer": "Zerbitzariaren zain…",
+  "@waitingForServer": {},
+  "appIntroduction": "FluffyChatek mezularitza-programa desberdinak erabiltzen dituzten lagunekin txateatzea ahalbidetzen dizu. Ikasi gehiago https://matrix.org estekan edo sakatu *Jarraitu*.",
+  "@appIntroduction": {},
+  "synchronizingPleaseWaitCounter": " Sinkronizatzen… (%{percentage})",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "notificationRuleInviteForMe": "Gonbidapena niretzat",
+  "@notificationRuleInviteForMe": {}
 }

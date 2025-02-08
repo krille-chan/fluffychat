@@ -181,7 +181,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} hat die Chat-Beschreibung geändert zu: „{description}“",
+  "changedTheChatDescriptionTo": "{username} hat die Chat-Beschreibung geändert zu: \"{description}\"",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -189,7 +189,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} hat den Chat-Namen geändert zu: „{chatname}“",
+  "changedTheChatNameTo": "{username} hat den Chat-Namen geändert zu: \"{chatname}\"",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -204,7 +204,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} hat den Nicknamen geändert zu: „{displayname}“",
+  "changedTheDisplaynameTo": "{username} hat den Nicknamen geändert zu: \"{displayname}\"",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -2898,5 +2898,54 @@
   "@supportPage": {},
   "serverInformation": "Server-Informationen:",
   "@serverInformation": {},
-  "appIntroduction": "Mit FluffyChat kannst du über verschiedene Messenger hinweg mit deinen Freunden chatten. Erfahre mehr dazu auf https://matrix.org oder tippe einfach auf *Fortfahren*."
+  "appIntroduction": "Mit FluffyChat kannst du über verschiedene Messenger hinweg mit deinen Freunden chatten. Erfahre mehr dazu auf https://matrix.org oder tippe einfach auf *Fortfahren*.",
+  "@appIntroduction": {},
+  "newChatRequest": "📩 Neue Chat-Anfrage",
+  "@newChatRequest": {},
+  "synchronizingPleaseWaitCounter": " Synchronisierung… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "waitingForServer": "Auf Server warten...",
+  "@waitingForServer": {},
+  "previous": "Vorige",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "Der User ist aktuell nicht eingeloggt und kann daher keine Nachrichten empfangen!",
+  "@otherPartyNotLoggedIn": {},
+  "appWantsToUseForLogin": "Nutze '{server}' um dich einzuloggen",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "appWantsToUseForLoginDescription": "Hiermit erlaubst du der App und der Website, Informationen über dich weiterzugeben.",
+  "@appWantsToUseForLoginDescription": {},
+  "open": "Offen",
+  "@open": {},
+  "notificationRuleContainsUserName": "Enthält Benutzernamen",
+  "@notificationRuleContainsUserName": {},
+  "notificationRuleContainsUserNameDescription": "Benachrichtigt den Benutzer, wenn eine Nachricht seinen Benutzernamen enthält.",
+  "@notificationRuleContainsUserNameDescription": {},
+  "notificationRuleMaster": "Alle Benachrichtigungen stummschalten",
+  "@notificationRuleMaster": {},
+  "notificationRuleSuppressNotices": "Automatisierte Nachrichten unterdrücken",
+  "@notificationRuleSuppressNotices": {},
+  "notificationRuleMasterDescription": "Setzt alle anderen Regeln außer Kraft und deaktiviert alle Benachrichtigungen.",
+  "@notificationRuleMasterDescription": {},
+  "generalNotificationSettings": "Allgemeine Benachrichtigungseinstellungen",
+  "@generalNotificationSettings": {},
+  "otherNotificationSettings": "Andere Benachrichtigungseinstellungen",
+  "@otherNotificationSettings": {},
+  "contentNotificationSettings": "Einstellungen für Inhaltsbenachrichtigungen",
+  "@contentNotificationSettings": {},
+  "userSpecificNotificationSettings": "Benutzerspezifische Benachrichtigungseinstellungen",
+  "@userSpecificNotificationSettings": {},
+  "roomNotificationSettings": "Einstellungen für Raumbenachrichtigungen",
+  "@roomNotificationSettings": {},
+  "notificationRuleSuppressNoticesDescription": "Unterdrückt Benachrichtigungen von automatisierten Clients wie Bots.",
+  "@notificationRuleSuppressNoticesDescription": {}
 }
