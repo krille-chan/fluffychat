@@ -2880,11 +2880,11 @@
   "@strikeThrough": {},
   "pleaseFillOut": "Будь ласка, заповніть",
   "@pleaseFillOut": {},
-  "invalidUrl": "Невірний URL",
+  "invalidUrl": "Недійсний URL",
   "@invalidUrl": {},
   "addLink": "Додати посилання",
   "@addLink": {},
-  "unableToJoinChat": "Неможливо приєднатися до чату. Можливо, інша сторона вже закрила розмову.",
+  "unableToJoinChat": "Неможливо приєднатися до бесіди. Можливо, інша сторона вже закрила розмову.",
   "@unableToJoinChat": {},
   "sendImages": "Надіслати {count} зображення",
   "@sendImages": {
