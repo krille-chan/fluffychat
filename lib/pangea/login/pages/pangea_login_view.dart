@@ -60,6 +60,23 @@ class PangeaLoginView extends StatelessWidget {
             enabled: controller.enabledSignIn,
           ),
           Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6.0),
+            child: TextButton(
+              onPressed: controller.loadingSignIn
+                  ? () {}
+                  : controller.passwordForgotten,
+              style: TextButton.styleFrom(
+                foregroundColor: Theme.of(context).colorScheme.error,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(L10n.of(context).passwordForgotten),
+                ],
+              ),
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.all(20),
             child: Row(
               children: [
