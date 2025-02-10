@@ -14,7 +14,7 @@ abstract class AppConfig {
   static String? get applicationWelcomeMessage => _applicationWelcomeMessage;
   // #Pangea
   // static String _defaultHomeserver = 'matrix.org';
-  static String _defaultHomeserver = Environment.synapsURL;
+  static String _defaultHomeserver = Environment.synapseURL;
   // #Pangea
   static String get defaultHomeserver => _defaultHomeserver;
   static double fontSizeFactor = 1;

@@ -8,18 +8,35 @@ class Environment {
     return ".env";
   }
 
-  static bool get isStaging => synapsURL.contains("staging");
+  static bool get isStaging => synapseURL.contains("staging");
 
   static String get frontendURL {
     return dotenv.env["FRONTEND_URL"] ?? "Frontend URL NOT FOUND";
   }
 
-  static String get synapsURL {
+  static String get synapseURL {
     return dotenv.env['SYNAPSE_URL'] ?? 'Synapse Url not found';
   }
 
   static String get homeServer {
-    return dotenv.env["HOME_SERVER"] ?? 'Home Server not found';
+    String? homeServerFromSynapseURL = dotenv.env['SYNAPSE_URL'];
+    if (homeServerFromSynapseURL != null) {
+      if (homeServerFromSynapseURL.startsWith("http://")) {
+        homeServerFromSynapseURL =
+            homeServerFromSynapseURL.replaceFirst("http://", "");
+      }
+      if (homeServerFromSynapseURL.startsWith("https://")) {
+        homeServerFromSynapseURL =
+            homeServerFromSynapseURL.replaceFirst("https://", "");
+      }
+      if (homeServerFromSynapseURL.startsWith("matrix.")) {
+        homeServerFromSynapseURL =
+            homeServerFromSynapseURL.replaceFirst("matrix.", "");
+      }
+    }
+    return dotenv.env["HOME_SERVER"] ??
+        homeServerFromSynapseURL ??
+        'Home Server not found';
   }
 
   static String get choreoApi {
