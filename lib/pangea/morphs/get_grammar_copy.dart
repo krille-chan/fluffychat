@@ -70,10 +70,30 @@ String? getGrammarCopy({
       return L10n.of(context).grammarCopyPUNCTTYPEqest;
     case 'grammarCopyASPECTperf':
       return L10n.of(context).grammarCopyASPECTperf;
+    case 'grammarCopyASPECTimp':
+      return L10n.of(context).grammarCopyASPECTimp;
     case 'grammarCopyCASEaccnom':
       return L10n.of(context).grammarCopyCASEaccnom;
     case 'grammarCopyCASEobl':
       return L10n.of(context).grammarCopyCASEobl;
+    case 'grammarCopyCASEpre':
+      return L10n.of(context).grammarCopyCASEpre;
+    case 'grammarCopyCASEsup':
+      return L10n.of(context).grammarCopyCASEsup;
+    case 'grammarCopyCASEsub':
+      return L10n.of(context).grammarCopyCASEsub;
+    case 'grammarCopyCASErel':
+      return L10n.of(context).grammarCopyCASErel;
+    case 'grammarCopyCASEref':
+      return L10n.of(context).grammarCopyCASEref;
+    case 'grammarCopyCASEadv':
+      return L10n.of(context).grammarCopyCASEadv;
+    case 'grammarCopyCASEpar':
+      return L10n.of(context).grammarCopyCASEpar;
+    case 'grammarCopyCASEcom':
+      return L10n.of(context).grammarCopyCASEcom;
+    case 'grammarCopyCASEvoc':
+      return L10n.of(context).grammarCopyCASEvoc;
     case 'grammarCopyVOICEact':
       return L10n.of(context).grammarCopyVOICEact;
     case 'grammarCopyPUNCTTYPEbrck':
@@ -94,6 +114,8 @@ String? getGrammarCopy({
       return L10n.of(context).grammarCopyGENDERmasc;
     case 'grammarCopyVERBTYPEmod':
       return L10n.of(context).grammarCopyVERBTYPEmod;
+    case 'grammarCopyVERBTYPEcaus':
+      return L10n.of(context).grammarCopyVERBTYPEcaus;
     case 'grammarCopyADVTYPEadverbial':
       return L10n.of(context).grammarCopyADVTYPEadverbial;
     case 'grammarCopyTENSEperi':
@@ -148,6 +170,8 @@ String? getGrammarCopy({
       return L10n.of(context).grammarCopyPOLITEinfm;
     case 'grammarCopyADVTYPEtim':
       return L10n.of(context).grammarCopyADVTYPEtim;
+    case 'grammarCopyPOLARITYpos':
+      return L10n.of(context).grammarCopyPOLARITYpos;
     case 'grammarCopyPOLARITYneg':
       return L10n.of(context).grammarCopyPOLARITYneg;
     case 'grammarCopyNUMTYPEtot':
@@ -190,6 +214,14 @@ String? getGrammarCopy({
       return L10n.of(context).grammarCopyVERBFORMger;
     case 'grammarCopyVOICEpass':
       return L10n.of(context).grammarCopyVOICEpass;
+    case 'grammarCopyVOICErcp':
+      return L10n.of(context).grammarCopyVOICErcp;
+    case 'grammarCopyVOICEinv':
+      return L10n.of(context).grammarCopyVOICEinv;
+    case 'grammarCopyVOICEdir':
+      return L10n.of(context).grammarCopyVOICEdir;
+    case 'grammarCopyVOICEcau':
+      return L10n.of(context).grammarCopyVOICEcau;
     case 'grammarCopyCASEgen':
       return L10n.of(context).grammarCopyCASEgen;
     case 'grammarCopyTENSEprs':
@@ -204,6 +236,16 @@ String? getGrammarCopy({
       return L10n.of(context).grammarCopyCASEins;
     case 'grammarCopyVERBFORMinf':
       return L10n.of(context).grammarCopyVERBFORMinf;
+    case 'grammarCopyVERBFORMaux':
+      return L10n.of(context).grammarCopyVERBFORMaux;
+    case 'grammarCopyVERBFORMcompl':
+      return L10n.of(context).grammarCopyVERBFORMcomplementive;
+    case 'grammarCopyVERBFORMlng':
+      return L10n.of(context).grammarCopyVERBFORMlng;
+    case 'grammarCopyVERBFORMadn':
+      return L10n.of(context).grammarCopyVERBFORMadn;
+    case 'grammarCopyVERBFORMsup':
+      return L10n.of(context).grammarCopyVERBFORMsup;
     case 'grammarCopyNUMFORMlong':
       return L10n.of(context).grammarCopyNUMFORMlong;
     case 'grammarCopyCASEloc':
@@ -348,6 +390,10 @@ String? getGrammarCopy({
       return L10n.of(context).grammarCopyCASEtem;
     case 'grammarCopyCONJTYPEcoord':
       return L10n.of(context).grammarCopyCONJTYPEcoord;
+    case 'grammarCopyCONJTYPEcmp':
+      return L10n.of(context).grammarCopyCONJTYPEcmp;
+    case 'grammarCopyCONJTYPEsub':
+      return L10n.of(context).grammarCopyCONJTYPEsub;
     case 'grammarCopyDEFINITEcons':
       return L10n.of(context).grammarCopyDEFINITEcons;
     case 'grammarCopyDEGREEabs':
@@ -370,6 +416,8 @@ String? getGrammarCopy({
       return L10n.of(context).grammarCopyMOODprp;
     case 'grammarCopyMOODqot':
       return L10n.of(context).grammarCopyMOODqot;
+    case 'grammarCopyMOODint':
+      return L10n.of(context).grammarCopyMOODint;
     case 'grammarCopyNUMFORMword':
       return L10n.of(context).grammarCopyNUMFORMword;
     case 'grammarCopyNUMFORMroman':

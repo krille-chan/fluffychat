@@ -4324,6 +4324,7 @@
   "grammarCopyNUMTYPEord": "Ordinal",
   "grammarCopyCASEins": "Instrumental",
   "grammarCopyVERBFORMinf": "Infinitive",
+  "grammarCopyVERBFORMaux": "Auxiliary",
   "grammarCopyNUMFORMlong": "Long",
   "grammarCopyCASEloc": "Locative",
   "grammarCopyMOODind": "Indicative",
