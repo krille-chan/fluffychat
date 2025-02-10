@@ -77,8 +77,8 @@ class SettingsLearningController extends State<SettingsLearning> {
     if (mounted) setState(() {});
   }
 
-  void changeCountry(Country country) {
-    _profile.userSettings.country = country.displayNameNoCountryCode;
+  void changeCountry(Country? country) {
+    _profile.userSettings.country = country?.name;
     if (mounted) setState(() {});
   }
 
@@ -146,7 +146,8 @@ class SettingsLearningController extends State<SettingsLearning> {
 
   LanguageLevelTypeEnum get cefrLevel => _profile.userSettings.cefrLevel;
 
-  String? get country => _profile.userSettings.country;
+  Country? get country =>
+      CountryService().findByName(_profile.userSettings.country);
 
   @override
   Widget build(BuildContext context) {

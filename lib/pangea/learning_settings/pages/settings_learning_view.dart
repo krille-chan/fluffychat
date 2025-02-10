@@ -98,7 +98,7 @@ class SettingsLearningView extends StatelessWidget {
                                   return null;
                                 },
                               ),
-                              CountryPickerTile(controller),
+                              CountryPickerDropdown(controller),
                               LanguageLevelDropdown(
                                 initialLevel: controller.cefrLevel,
                                 onChanged: controller.setCefrLevel,
