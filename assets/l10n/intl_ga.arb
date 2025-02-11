@@ -2236,7 +2236,7 @@
   },
   "foregroundServiceRunning": "Tá an fógra seo le feiceáil nuair atá an tseirbhís tulra ag rith.",
   "@foregroundServiceRunning": {},
-  "screenSharingDetail": "Tá do scáileán á roinnt agat i FuffyChat",
+  "screenSharingDetail": "Tá do scáileán á roinnt agat i FluffyChat",
   "@screenSharingDetail": {},
   "callingPermissions": "Ceadanna a ghlaoch",
   "@callingPermissions": {},
