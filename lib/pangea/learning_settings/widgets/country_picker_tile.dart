@@ -100,19 +100,17 @@ class CountryPickerTile extends StatelessWidget {
           style: const TextStyle(fontSize: 25),
         ),
         const SizedBox(width: 10),
-        Expanded(
-          child: Text(
-            CountryDisplayUtil.countryDisplayName(
-                  country.name,
-                  context,
-                ) ??
-                '',
-            style: const TextStyle().copyWith(
-              color: Theme.of(context).textTheme.bodyLarge!.color,
-              fontSize: 14,
-            ),
-            overflow: TextOverflow.ellipsis,
+        Text(
+          CountryDisplayUtil.countryDisplayName(
+                country.name,
+                context,
+              ) ??
+              '',
+          style: const TextStyle().copyWith(
+            color: Theme.of(context).textTheme.bodyLarge!.color,
+            fontSize: 14,
           ),
+          overflow: TextOverflow.ellipsis,
         ),
         if (isDropdown)
           Icon(
