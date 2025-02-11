@@ -10,6 +10,9 @@ import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
+import 'package:exif/exif.dart';
+import 'package:image/image.dart' as img;
+
 class MxcImage extends StatefulWidget {
   final Uri? uri;
   final Event? event;
@@ -59,9 +62,71 @@ class _MxcImageState extends State<MxcImage> {
   set _imageData(Uint8List? data) {
     if (data == null) return;
     final cacheKey = widget.cacheKey;
-    cacheKey == null
-        ? _imageDataNoCache = data
-        : _imageDataCache[cacheKey] = data;
+    if (cacheKey == null) {
+      _imageDataNoCache = data;
+    } else {
+      _imageDataCache[cacheKey] = data;
+    }
+  }
+
+  Future<Uint8List> _fixExifOrientation(Uint8List data) async {
+    try {
+
+      final image = img.decodeImage(data);
+      if (image == null) return data;
+
+      // Read EXIF data
+      final Map<String, IfdTag> exifData = await readExifFromBytes(data);
+      final orientationValue =
+          exifData['Image Orientation']?.values?.first?.toInt() ?? 1;
+
+      img.Image fixedImage;
+
+      switch (orientationValue) {
+        case 1:
+          // No rotation
+          fixedImage = image;
+          break;
+        case 2:
+          // Horizontal flip
+          fixedImage = img.flipHorizontal(image);
+          break;
+        case 3:
+          // Rotate 180
+          fixedImage = img.copyRotate(image, 180);
+          break;
+        case 4:
+          // Vertical flip
+          fixedImage = img.flipVertical(image);
+          break;
+        case 5:
+          // Vertical flip + 90 rotate right
+          fixedImage = img.copyRotate(img.flipVertical(image), 90);
+          break;
+        case 6:
+          // Rotate 90
+          fixedImage = img.copyRotate(image, 90);
+          break;
+        case 7:
+          // Horizontal flip + 90 rotate right
+          fixedImage = img.copyRotate(img.flipHorizontal(image), 90);
+          break;
+        case 8:
+          // Rotate 270
+          fixedImage = img.copyRotate(image, -90);
+          break;
+        default:
+          // Unknown orientation
+          fixedImage = image;
+          break;
+      }
+
+      // Encode the fixed image back to Uint8List
+      return Uint8List.fromList(img.encodeJpg(fixedImage));
+    } catch (e) {
+      // If there's an error, return the original data
+      return data;
+    }
   }
 
   Future<void> _load() async {
@@ -85,9 +150,12 @@ class _MxcImageState extends State<MxcImage> {
         isThumbnail: widget.isThumbnail,
         animated: widget.animated,
       );
+
+      final adjustedData = await _fixExifOrientation(remoteData);
+
       if (!mounted) return;
       setState(() {
-        _imageData = remoteData;
+        _imageData = adjustedData;
       });
     }
 
@@ -96,16 +164,21 @@ class _MxcImageState extends State<MxcImage> {
         getThumbnail: widget.isThumbnail,
       );
       if (data.detectFileType is MatrixImageFile) {
+        
+        final adjustedData = await _fixExifOrientation(data.bytes);
+
         if (!mounted) return;
         setState(() {
-          _imageData = data.bytes;
+          _imageData = adjustedData;
         });
         return;
       }
     }
   }
 
-  void _tryLoad(_) async {
+  void _tryLoad(_) => tryLoad();
+
+  void tryLoad() async {
     if (_imageData != null) {
       return;
     }
@@ -114,7 +187,7 @@ class _MxcImageState extends State<MxcImage> {
     } on IOException catch (_) {
       if (!mounted) return;
       await Future.delayed(widget.retryDuration);
-      _tryLoad(_);
+      tryLoad();
     }
   }
 
@@ -124,8 +197,7 @@ class _MxcImageState extends State<MxcImage> {
     WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
   }
 
-  Widget placeholder(BuildContext context) =>
-      widget.placeholder?.call(context) ??
+  Widget placeholder(BuildContext context) => widget.placeholder?.call(context) ??
       Container(
         width: widget.width,
         height: widget.height,
@@ -145,7 +217,7 @@ class _MxcImageState extends State<MxcImage> {
       firstChild: placeholder(context),
       secondChild: hasData
           ? Image.memory(
-              data,
+              data!,
               width: widget.width,
               height: widget.height,
               fit: widget.fit,
