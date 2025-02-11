@@ -86,7 +86,6 @@ class HtmlMessage extends StatelessWidget {
     'ul',
     'ol',
     'pre',
-    'br',
     'div',
     'table',
     'details',
