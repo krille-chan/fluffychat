@@ -1034,7 +1034,6 @@
   "wipeChatBackup": "Xóa sao lưu trò chuyện để tạo khóa khôi phục mới?",
   "withTheseAddressesRecoveryDescription": "Nhờ các địa chỉ này, bạn có thể khôi phục mật khẩu của mình.",
   "writeAMessage": "Viết tin nhắn…",
-  "writeAMessageFlag": "Viết tin nhắn bằng {l1flag} hoặc {l2flag}",
   "yes": "Có",
   "you": "Bạn",
   "youAreNoLongerParticipatingInThisChat": "Bạn không còn tham gia cuộc trò chuyện này",

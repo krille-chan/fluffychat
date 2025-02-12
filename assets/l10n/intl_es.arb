@@ -4510,14 +4510,6 @@
   "presenceStyle": "Presencia:",
   "noActivitiesFound": "¡Ya has practicado por ahora! Vuelve más tarde para ver más.",
   "presencesToggle": "Mostrar mensajes de estado de otros usuarios",
-  "writeAMessageFlag": "Escribe un mensaje en {l1flag} o {l2flag}",
-  "@writeAMessageFlag": {
-    "type": "text",
-    "placeholders": {
-      "l1flag": {},
-      "l2flag": {}
-    }
-  },
   "youInvitedToBy": "📩 Has sido invitado a través de un enlace a:\n{alias}",
   "@youInvitedToBy": {
     "placeholders": {

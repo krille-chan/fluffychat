@@ -69,9 +69,9 @@ class ChatInputRow extends StatelessWidget {
               activel2 != null &&
               activel1.langCode != LanguageKeys.unknownLanguage &&
               activel2.langCode != LanguageKeys.unknownLanguage
-          ? L10n.of(context).writeAMessageFlag(
-              activel1.getDisplayName(context) ?? activel1.langCode,
-              activel2.getDisplayName(context) ?? activel2.langCode,
+          ? L10n.of(context).writeAMessageLangCodes(
+              activel1.langCodeShort.toUpperCase(),
+              activel2.langCodeShort.toUpperCase(),
             )
           : L10n.of(context).writeAMessage;
     }
