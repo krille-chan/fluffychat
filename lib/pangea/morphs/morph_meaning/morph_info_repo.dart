@@ -48,7 +48,7 @@ class MorphInfoRepo {
       set(request, response);
 
       return response;
-    } catch (e, s) {
+    } catch (e) {
       debugPrint('Error fetching morph info: $e');
       return Future.error(e);
     }

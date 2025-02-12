@@ -105,6 +105,8 @@ class HiddenText extends StatelessWidget {
     final textWidth = textPainter.size.width;
     final textHeight = textPainter.size.height;
 
+    textPainter.dispose();
+
     return SizedBox(
       height: textHeight,
       child: Stack(

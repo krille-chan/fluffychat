@@ -69,7 +69,8 @@ class MorphologicalFeature {
 
   MorphologicalTag? getTagByCode(String code) {
     return tags.firstWhereOrNull(
-        (tag) => tag.code.toLowerCase() == code.toLowerCase());
+      (tag) => tag.code.toLowerCase() == code.toLowerCase(),
+    );
   }
 }
 
@@ -107,6 +108,7 @@ class MorphInfoResponse {
 
   MorphologicalFeature? getFeatureByCode(String code) {
     return features.firstWhereOrNull(
-        (feature) => feature.code.toLowerCase() == code.toLowerCase());
+      (feature) => feature.code.toLowerCase() == code.toLowerCase(),
+    );
   }
 }
