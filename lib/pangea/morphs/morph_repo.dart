@@ -9,6 +9,7 @@ import 'package:http/http.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/morphs/default_morph_mapping.dart';
 import 'package:fluffychat/pangea/morphs/morph_models.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -76,34 +77,36 @@ class MorphsRepo {
   /// if the morphs are not yet fetched. we'll see if this works well
   /// if not, we can make it async and update uses of this function
   /// to be async as well
-  static Future<MorphFeaturesAndTags> get([String? languageCode]) async {
-    languageCode ??=
-        MatrixState.pangeaController.languageController.userL2?.langCode;
+  static Future<MorphFeaturesAndTags> get([LanguageModel? language]) async {
+    language ??= MatrixState.pangeaController.languageController.userL2;
 
-    if (languageCode == null) {
+    if (language == null) {
       return defaultMorphMapping;
     }
 
+    // does not differ based on locale
+    final langCodeShort = language.langCodeShort;
+
     // check if we have a cached morphs for this language code
-    final cachedJson = _morphsStorage.read(languageCode);
+    final cachedJson = _morphsStorage.read(langCodeShort);
     if (cachedJson != null) {
       return MorphsRepo.fromJson(cachedJson);
     }
 
     // check if we have a cached call for this language code
-    final _APICallCacheItem? cachedCall = shortTermCache[languageCode];
+    final _APICallCacheItem? cachedCall = shortTermCache[langCodeShort];
     if (cachedCall != null) {
       if (DateTime.now().difference(cachedCall.time).inMinutes <
           _cacheDurationMinutes) {
         return cachedCall.future;
       } else {
-        shortTermCache.remove(languageCode);
+        shortTermCache.remove(langCodeShort);
       }
     }
 
     // fetch the morphs but don't wait for it
-    final future = _fetch(languageCode);
-    shortTermCache[languageCode] = _APICallCacheItem(DateTime.now(), future);
+    final future = _fetch(langCodeShort);
+    shortTermCache[langCodeShort] = _APICallCacheItem(DateTime.now(), future);
     return future;
   }
 }

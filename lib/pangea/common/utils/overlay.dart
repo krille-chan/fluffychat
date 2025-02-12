@@ -97,6 +97,7 @@ class OverlayUtil {
     Color? borderColor,
     bool closePrevOverlay = true,
     String? overlayKey,
+    bool isScrollable = true,
   }) {
     try {
       final LayerLinkAndKey layerLinkAndKey =
@@ -142,6 +143,7 @@ class OverlayUtil {
           borderColor: borderColor,
           maxHeight: maxHeight,
           maxWidth: maxWidth,
+          isScrollable: isScrollable,
         ),
       );
 

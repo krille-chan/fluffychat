@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -112,20 +111,20 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
               setColor: false,
             ),
             // gesturRecognizer that sets selectedToken on click
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                debugPrint('Token tapped');
-                debugPrint(token.toJson().toString());
-                if (mounted) {
-                  setState(() {
-                    if (selectedToken == token) {
-                      selectedToken = null;
-                    } else {
-                      selectedToken = token;
-                    }
-                  });
-                }
-              },
+            // recognizer: TapGestureRecognizer()
+            //   ..onTap = () {
+            //     debugPrint('Token tapped');
+            //     debugPrint(token.toJson().toString());
+            //     if (mounted) {
+            //       setState(() {
+            //         if (selectedToken == token) {
+            //           selectedToken = null;
+            //         } else {
+            //           selectedToken = token;
+            //         }
+            //       });
+            //     }
+            //   },
           ),
         );
 

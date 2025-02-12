@@ -80,12 +80,12 @@ class UserController extends BaseController {
     Profile Function(Profile) update, {
     waitForDataInSync = false,
   }) async {
-    final prevTargetLang = profile.userSettings.targetLanguage;
+    final prevTargetLang = _pangeaController.languageController.userL2;
 
     final Profile updatedProfile = update(profile);
     await updatedProfile.saveProfileData(waitForDataInSync: waitForDataInSync);
 
-    if (prevTargetLang != updatedProfile.userSettings.targetLanguage) {
+    if (prevTargetLang != _pangeaController.languageController.userL2) {
       setState({'prev_target_lang': prevTargetLang});
     }
   }

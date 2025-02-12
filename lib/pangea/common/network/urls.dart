@@ -24,7 +24,7 @@ class PApiUrls {
   static String appVersion = "${PApiUrls.choreoEndpoint}/version";
 
   ///   ---------------------- Languages --------------------------------------
-  static String getLanguages = "${PApiUrls.choreoEndpoint}/languages";
+  static String getLanguages = "${PApiUrls.choreoEndpoint}/languages_v2";
 
   ///   ---------------------- Users --------------------------------------
   static String paymentLink = "${PApiUrls.subscriptionEndpoint}/payment_link";

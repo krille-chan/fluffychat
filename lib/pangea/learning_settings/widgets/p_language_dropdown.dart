@@ -48,7 +48,11 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
   Widget build(BuildContext context) {
     final List<LanguageModel> sortedLanguages = widget.languages;
     final String systemLang = Localizations.localeOf(context).languageCode;
-    final List<String> languagePriority = [systemLang, 'en', 'es'];
+
+    // if there is no initial language, the system language should be the first in the list
+    // otherwise, display in alphabetical order
+    final List<String> languagePriority =
+        widget.initialLanguage == null ? [systemLang] : [];
 
     int sortLanguages(LanguageModel a, LanguageModel b) {
       final String aLang = a.langCode;

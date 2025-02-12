@@ -5,6 +5,7 @@ class OverlayContainer extends StatelessWidget {
   final Color? borderColor;
   final double maxHeight;
   final double maxWidth;
+  final bool isScrollable;
 
   const OverlayContainer({
     super.key,
@@ -12,10 +13,17 @@ class OverlayContainer extends StatelessWidget {
     this.borderColor,
     required this.maxHeight,
     required this.maxWidth,
+    this.isScrollable = true,
   });
 
   @override
   Widget build(BuildContext context) {
+    final content = Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [cardToShow],
+    );
+
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       decoration: BoxDecoration(
@@ -35,14 +43,7 @@ class OverlayContainer extends StatelessWidget {
         minHeight: 100,
         minWidth: 100,
       ),
-      //PTODO - position card above input/message
-      // margin: const EdgeInsets.all(10),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [cardToShow],
-        ),
-      ),
+      child: isScrollable ? SingleChildScrollView(child: content) : content,
     );
   }
 }

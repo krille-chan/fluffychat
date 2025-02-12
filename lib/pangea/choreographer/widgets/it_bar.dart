@@ -362,6 +362,7 @@ class ITChoices extends StatelessWidget {
       maxWidth: 300,
       borderColor: borderColor,
       transformTargetId: controller.choreographer.itBarTransformTargetKey,
+      isScrollable: choiceFeedback == null,
     );
   }
 

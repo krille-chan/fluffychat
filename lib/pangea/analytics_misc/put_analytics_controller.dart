@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 
 enum AnalyticsUpdateType { server, local }
 
@@ -29,8 +30,6 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
   Timer? _updateTimer;
 
   Client get _client => _pangeaController.matrixState.client;
-
-  String? get _userL2 => _pangeaController.languageController.activeL2Code();
 
   /// the last time that matrix analytics events were updated for the user's current l2
   DateTime? lastUpdated;
@@ -62,8 +61,9 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     // Listen for changes to the user's language settings
     _languageStream ??=
         _pangeaController.userController.stateStream.listen((update) {
-      if (update is Map<String, dynamic>) {
-        final previousL2 = update['prev_target_lang'];
+      if (update is Map<String, dynamic> &&
+          update['prev_target_lang'] is LanguageModel) {
+        final LanguageModel previousL2 = update['prev_target_lang'];
         _onUpdateLanguages(previousL2);
       }
     });
@@ -147,7 +147,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     );
   }
 
-  Future<void> _onUpdateLanguages(String? previousL2) async {
+  Future<void> _onUpdateLanguages(LanguageModel? previousL2) async {
     await sendLocalAnalyticsToAnalyticsRoom(
       l2Override: previousL2,
     );
@@ -361,7 +361,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
   /// since the last update and notifies the [analyticsUpdateStream].
   Future<void> sendLocalAnalyticsToAnalyticsRoom({
     onLogout = false,
-    String? l2Override,
+    LanguageModel? l2Override,
   }) async {
     if (_pangeaController.matrixState.client.userID == null) return;
     if (_pangeaController.getAnalytics.messagesSinceUpdate.isEmpty) return;
@@ -400,7 +400,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
 
   /// Updates the analytics by sending cached analytics data to the analytics room.
   /// The analytics room is determined based on the user's current target language.
-  Future<void> _updateAnalytics({String? l2Override}) async {
+  Future<void> _updateAnalytics({LanguageModel? l2Override}) async {
     // if there's no cached construct data, there's nothing to send
     final cachedConstructs = _pangeaController.getAnalytics.messagesSinceUpdate;
     final bool onlyDraft = cachedConstructs.length == 1 &&
@@ -408,11 +408,11 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     if (cachedConstructs.isEmpty || onlyDraft) return;
 
     // if missing important info, don't send analytics. Could happen if user just signed up.
-    final l2Code = l2Override ?? _userL2;
-    if (l2Code == null || _client.userID == null) return;
+    final l2 = l2Override ?? _pangeaController.languageController.userL2;
+    if (l2 == null || _client.userID == null) return;
 
     // analytics room for the user and current target language
-    final Room? analyticsRoom = await _client.getMyAnalyticsRoom(l2Code);
+    final Room? analyticsRoom = await _client.getMyAnalyticsRoom(l2);
 
     // and send cached analytics data to the room
     await analyticsRoom?.sendConstructsEvent(

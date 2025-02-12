@@ -131,8 +131,8 @@ class SettingsLearningController extends State<SettingsLearning> {
   LanguageModel? get selectedTargetLanguage {
     return userL2 ??
         ((selectedSourceLanguage?.langCode != 'en')
-            ? PangeaLanguage.byLangCode('en')!
-            : PangeaLanguage.byLangCode('es')!);
+            ? PangeaLanguage.byLangCode('en')
+            : PangeaLanguage.byLangCode('es'));
   }
 
   LanguageModel? get userL1 => _profile.userSettings.sourceLanguage != null

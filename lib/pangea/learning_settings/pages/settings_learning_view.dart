@@ -103,104 +103,89 @@ class SettingsLearningView extends StatelessWidget {
                                 initialLevel: controller.cefrLevel,
                                 onChanged: controller.setCefrLevel,
                               ),
-                              const Divider(height: 1),
-                              Column(
-                                children: [
-                                  ListTile(
-                                    title: Text(
-                                      L10n.of(context)
-                                          .toggleToolSettingsDescription,
-                                    ),
-                                  ),
-                                  for (final toolSetting in ToolSetting.values
-                                      .where((tool) => tool.isAvailableSetting))
-                                    Column(
-                                      children: [
-                                        ProfileSettingsSwitchListTile.adaptive(
-                                          defaultValue: controller
-                                              .getToolSetting(toolSetting),
-                                          title: toolSetting.toolName(context),
-                                          subtitle: toolSetting ==
-                                                      ToolSetting.enableTTS &&
-                                                  !controller.tts
-                                                      .isLanguageFullySupported
-                                              ? null
-                                              : toolSetting
-                                                  .toolDescription(context),
-                                          onChange: (bool value) =>
-                                              controller.updateToolSetting(
-                                            toolSetting,
-                                            value,
-                                          ),
-                                          enabled: toolSetting ==
-                                                  ToolSetting.enableTTS
+                              for (final toolSetting in ToolSetting.values
+                                  .where((tool) => tool.isAvailableSetting))
+                                Column(
+                                  children: [
+                                    ProfileSettingsSwitchListTile.adaptive(
+                                      defaultValue: controller
+                                          .getToolSetting(toolSetting),
+                                      title: toolSetting.toolName(context),
+                                      subtitle: toolSetting ==
+                                                  ToolSetting.enableTTS &&
+                                              !controller
+                                                  .tts.isLanguageFullySupported
+                                          ? null
+                                          : toolSetting
+                                              .toolDescription(context),
+                                      onChange: (bool value) =>
+                                          controller.updateToolSetting(
+                                        toolSetting,
+                                        value,
+                                      ),
+                                      enabled:
+                                          toolSetting == ToolSetting.enableTTS
                                               ? controller
                                                   .tts.isLanguageFullySupported
                                               : true,
-                                        ),
-                                        if (toolSetting ==
-                                                ToolSetting.enableTTS &&
-                                            !controller
-                                                .tts.isLanguageFullySupported)
-                                          ListTile(
-                                            trailing: const Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: 16.0,
-                                              ),
-                                              child: Icon(Icons.info_outlined),
-                                            ),
-                                            subtitle: RichText(
-                                              text: TextSpan(
-                                                text: L10n.of(context)
-                                                    .couldNotFindTTS,
-                                                style:
-                                                    DefaultTextStyle.of(context)
-                                                        .style,
-                                                children: [
-                                                  if (PlatformInfos.isWindows ||
-                                                      PlatformInfos.isAndroid)
-                                                    TextSpan(
-                                                      text: L10n.of(context)
-                                                          .ttsInstructionsHyperlink,
-                                                      style: const TextStyle(
-                                                        color: Colors.blue,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        decoration:
-                                                            TextDecoration
-                                                                .underline,
-                                                      ),
-                                                      recognizer:
-                                                          TapGestureRecognizer()
-                                                            ..onTap = () {
-                                                              launchUrlString(
-                                                                PlatformInfos
-                                                                        .isWindows
-                                                                    ? AppConfig
-                                                                        .windowsTTSDownloadInstructions
-                                                                    : AppConfig
-                                                                        .androidTTSDownloadInstructions,
-                                                              );
-                                                            },
-                                                    ),
-                                                ],
-                                              ),
-                                            ),
+                                    ),
+                                    if (toolSetting == ToolSetting.enableTTS &&
+                                        !controller
+                                            .tts.isLanguageFullySupported)
+                                      ListTile(
+                                        trailing: const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 16.0,
                                           ),
-                                      ],
-                                    ),
-                                  SwitchListTile.adaptive(
-                                    value: controller.publicProfile,
-                                    onChanged: controller.setPublicProfile,
-                                    title: Text(
-                                      L10n.of(context).publicProfileTitle,
-                                    ),
-                                    subtitle: Text(
-                                      L10n.of(context).publicProfileDesc,
-                                    ),
-                                    activeColor: AppConfig.activeToggleColor,
-                                  ),
-                                ],
+                                          child: Icon(Icons.info_outlined),
+                                        ),
+                                        subtitle: RichText(
+                                          text: TextSpan(
+                                            text: L10n.of(context)
+                                                .couldNotFindTTS,
+                                            style: DefaultTextStyle.of(context)
+                                                .style,
+                                            children: [
+                                              if (PlatformInfos.isWindows ||
+                                                  PlatformInfos.isAndroid)
+                                                TextSpan(
+                                                  text: L10n.of(context)
+                                                      .ttsInstructionsHyperlink,
+                                                  style: const TextStyle(
+                                                    color: Colors.blue,
+                                                    fontWeight: FontWeight.bold,
+                                                    decoration: TextDecoration
+                                                        .underline,
+                                                  ),
+                                                  recognizer:
+                                                      TapGestureRecognizer()
+                                                        ..onTap = () {
+                                                          launchUrlString(
+                                                            PlatformInfos
+                                                                    .isWindows
+                                                                ? AppConfig
+                                                                    .windowsTTSDownloadInstructions
+                                                                : AppConfig
+                                                                    .androidTTSDownloadInstructions,
+                                                          );
+                                                        },
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              SwitchListTile.adaptive(
+                                value: controller.publicProfile,
+                                onChanged: controller.setPublicProfile,
+                                title: Text(
+                                  L10n.of(context).publicProfileTitle,
+                                ),
+                                subtitle: Text(
+                                  L10n.of(context).publicProfileDesc,
+                                ),
+                                activeColor: AppConfig.activeToggleColor,
                               ),
                             ],
                           ),
@@ -213,7 +198,7 @@ class SettingsLearningView extends StatelessWidget {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: controller.submit,
-                          child: Text(L10n.of(context).submit),
+                          child: Text(L10n.of(context).saveChanges),
                         ),
                       ),
                     ),

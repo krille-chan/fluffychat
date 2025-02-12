@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart';
 
+import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
 import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.dart';
-import '../../../config/app_config.dart';
 import '../../../widgets/matrix.dart';
 import '../../bot/utils/bot_style.dart';
 import '../../common/controllers/pangea_controller.dart';
@@ -90,40 +92,37 @@ class ITFeedbackCardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ScrollController scrollController = ScrollController();
+    const characterWidth = 10.0;
 
-    return Scrollbar(
-      thumbVisibility: true,
-      controller: scrollController,
-      child: SingleChildScrollView(
-        controller: scrollController,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              controller.widget.req.chosenContinuance,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              "≈",
-              style: TextStyle(
-                fontSize:
-                    AppConfig.fontSizeFactor * AppConfig.messageFontSize * 1.5,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Container(
-              constraints: const BoxConstraints(
-                minHeight: 30,
-              ),
-              child: Text(
-                controller.res?.text ?? "loading",
-                style: BotStyle.text(context),
-              ),
-            ),
-          ],
-        ),
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 300),
+      alignment: Alignment.center,
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        children: [
+          Text(
+            controller.widget.req.chosenContinuance,
+            style: BotStyle.text(context),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            "≈",
+            style: BotStyle.text(context),
+          ),
+          const SizedBox(width: 10),
+          controller.res?.text != null
+              ? Text(
+                  controller.res!.text,
+                  style: BotStyle.text(context),
+                )
+              : TextLoadingShimmer(
+                  width: min(
+                    140,
+                    characterWidth *
+                        controller.widget.req.chosenContinuance.length,
+                  ),
+                ),
+        ],
       ),
     );
   }

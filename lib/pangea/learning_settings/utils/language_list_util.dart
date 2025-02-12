@@ -21,25 +21,25 @@ class PangeaLanguage {
   List<LanguageModel> get targetOptions =>
       _langList.where((element) => element.l2).toList();
 
-  List<LanguageModel> get baseOptions =>
-      _langList.where((element) => element.l1).toList();
+  List<LanguageModel> get baseOptions => _langList.toList();
 
   static Future<void> initialize() async {
     try {
-      _langList = await _getCachedFlags();
+      _langList = await _getCachedLanguages();
       if (await _shouldFetch ||
           _langList.isEmpty ||
           _langList.every((lang) => !lang.l2)) {
         _langList = await LanguageRepo.fetchLanguages();
 
-        await _saveFlags(_langList);
+        await _saveLanguages(_langList);
         await saveLastFetchDate();
       }
       _langList.removeWhere(
-        (element) =>
-            LanguageModel.codeFromNameOrCode(element.langCode) ==
-            LanguageKeys.unknownLanguage,
+        (element) => element.langCode == LanguageKeys.unknownLanguage,
       );
+      // remove any duplicates
+      _langList = _langList.toSet().toList();
+
       _langList.sort((a, b) => a.displayName.compareTo(b.displayName));
       _langList.insert(0, LanguageModel.multiLingual());
     } catch (err, stack) {
@@ -77,27 +77,27 @@ class PangeaLanguage {
     return (now - lastFetched) >= fetchIntervalInMilliseconds ? true : false;
   }
 
-  static Future<void> _saveFlags(List<LanguageModel> langFlags) async {
-    final Map flagMap = {
-      PrefKey.flags: langFlags.map((e) => e.toJson()).toList(),
+  static Future<void> _saveLanguages(List<LanguageModel> languages) async {
+    final Map languagesMaps = {
+      PrefKey.languagesKey: languages.map((e) => e.toJson()).toList(),
     };
-    await MyShared.saveJson(PrefKey.flags, flagMap);
+    await MyShared.saveJson(PrefKey.languagesKey, languagesMaps);
   }
 
-  static Future<List<LanguageModel>> _getCachedFlags() async {
-    final Map<dynamic, dynamic>? flagsMap =
-        await MyShared.readJson(PrefKey.flags);
-    if (flagsMap == null) {
+  static Future<List<LanguageModel>> _getCachedLanguages() async {
+    final Map<dynamic, dynamic>? languagesMap =
+        await MyShared.readJson(PrefKey.languagesKey);
+    if (languagesMap == null) {
       return [];
     }
 
-    final List<LanguageModel> flags = [];
-    final List mapList = flagsMap[PrefKey.flags] as List;
+    final List<LanguageModel> languages = [];
+    final List mapList = languagesMap[PrefKey.languagesKey] as List;
     for (final element in mapList) {
-      flags.add(LanguageModel.fromJson(element));
+      languages.add(LanguageModel.fromJson(element));
     }
 
-    return flags;
+    return languages;
   }
 
   static LanguageModel? byLangCode(String langCode) {

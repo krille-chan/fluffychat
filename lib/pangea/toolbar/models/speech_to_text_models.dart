@@ -92,13 +92,15 @@ class STTToken {
   int get length => token.text.length;
 
   Color color(BuildContext context) {
-    if (confidence == null) {
-      return Theme.of(context).colorScheme.onSurface;
-    }
-    if (confidence! > thresholdForGreen) {
-      return AppConfig.success;
-    }
-    return AppConfig.warning;
+    // turning off the color coding for now
+    // whisper doesn't include word-level confidence
+    // if (confidence == null) {
+    return Theme.of(context).colorScheme.onSurface;
+    // }
+    // if (confidence! > thresholdForGreen) {
+    //   return AppConfig.success;
+    // }
+    // return AppConfig.warning;
   }
 
   factory STTToken.fromJson(Map<String, dynamic> json) {

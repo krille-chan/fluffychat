@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 
 /// A minimized version of AnalyticsController that get the logged in user's analytics
 class GetAnalyticsController extends BaseController {
@@ -42,7 +43,7 @@ class GetAnalyticsController extends BaseController {
     );
   }
 
-  String? get _l2Code => _pangeaController.languageController.userL2?.langCode;
+  LanguageModel? get _l2 => _pangeaController.languageController.userL2;
   Client get _client => _pangeaController.matrixState.client;
 
   // the minimum XP required for a given level
@@ -282,13 +283,13 @@ class GetAnalyticsController extends BaseController {
   Future<DateTime?> myAnalyticsLastUpdated() async {
     // this function gets called soon after login, so first
     // make sure that the user's l2 is loaded, if the user has set their l2
-    if (_client.userID != null && _l2Code == null) {
+    if (_client.userID != null && _l2 == null) {
       if (_pangeaController.matrixState.client.prevBatch == null) {
         await _pangeaController.matrixState.client.onSync.stream.first;
       }
-      if (_l2Code == null) return null;
+      if (_l2 == null) return null;
     }
-    final Room? analyticsRoom = _client.analyticsRoomLocal(_l2Code!);
+    final Room? analyticsRoom = _client.analyticsRoomLocal(_l2!);
     if (analyticsRoom == null) return null;
     final DateTime? lastUpdated = await analyticsRoom.analyticsLastUpdated(
       _client.userID!,
@@ -298,8 +299,8 @@ class GetAnalyticsController extends BaseController {
 
   /// Get all the construct analytics events for the logged in user
   Future<List<ConstructAnalyticsEvent>> _allMyConstructs() async {
-    if (_l2Code == null) return [];
-    final Room? analyticsRoom = _client.analyticsRoomLocal(_l2Code!);
+    if (_l2 == null) return [];
+    final Room? analyticsRoom = _client.analyticsRoomLocal(_l2!);
     if (analyticsRoom == null) return [];
     return await analyticsRoom.getAnalyticsEvents(userId: _client.userID!) ??
         [];
@@ -310,7 +311,7 @@ class GetAnalyticsController extends BaseController {
     ConstructTypeEnum? constructType,
   }) {
     final index = _cache.indexWhere(
-      (e) => e.type == constructType && e.langCode == _l2Code,
+      (e) => e.type == constructType && e.langCode == _l2?.langCodeShort,
     );
 
     if (index > -1) {
@@ -330,11 +331,11 @@ class GetAnalyticsController extends BaseController {
     required List<OneConstructUse> uses,
     ConstructTypeEnum? constructType,
   }) {
-    if (_l2Code == null) return;
+    if (_l2 == null) return;
     final entry = AnalyticsCacheEntry(
       type: constructType,
       uses: List.from(uses),
-      langCode: _l2Code!,
+      langCode: _l2!.langCodeShort,
     );
     _cache.add(entry);
   }

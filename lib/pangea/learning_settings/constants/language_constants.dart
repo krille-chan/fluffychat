@@ -9,7 +9,7 @@ class LanguageKeys {
 
 class PrefKey {
   static const lastFetched = 'p_lang_lastfetched';
-  static const flags = 'p_lang_flag';
+  static const languagesKey = 'p_lang_flag';
 }
 
 final LanguageDetection unknownLanguageDetection = LanguageDetection(

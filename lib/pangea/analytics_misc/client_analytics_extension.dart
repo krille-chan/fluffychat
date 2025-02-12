@@ -11,25 +11,25 @@ import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 extension AnalyticsClientExtension on Client {
   /// Get the logged in user's analytics room matching
   /// a given langCode. If not present, create it.
-  Future<Room?> getMyAnalyticsRoom(String langCode) async {
-    final Room? analyticsRoom = analyticsRoomLocal(langCode);
+  Future<Room?> getMyAnalyticsRoom(LanguageModel lang) async {
+    final Room? analyticsRoom = analyticsRoomLocal(lang);
     if (analyticsRoom != null) return analyticsRoom;
-    return _makeAnalyticsRoom(langCode);
+    return _makeAnalyticsRoom(lang);
   }
 
   /// Get local analytics room for a given langCode and
   /// optional userId (if not specified, uses current user).
   /// If user is invited to the room, joins the room.
-  Room? analyticsRoomLocal([String? langCode, String? userIdParam]) {
-    langCode ??=
-        MatrixState.pangeaController.languageController.userL2?.langCode;
+  Room? analyticsRoomLocal([LanguageModel? lang, String? userIdParam]) {
+    lang ??= MatrixState.pangeaController.languageController.userL2;
 
-    if (langCode == null) {
+    if (lang == null) {
       debugger(when: kDebugMode);
       return null;
     }
@@ -37,7 +37,7 @@ extension AnalyticsClientExtension on Client {
     final Room? analyticsRoom = rooms.firstWhereOrNull((e) {
       return e.isAnalyticsRoom &&
           e.isAnalyticsRoomOfUser(userIdParam ?? userID!) &&
-          e.isMadeForLang(langCode!);
+          e.isMadeForLang(lang!.langCodeShort);
     });
     if (analyticsRoom != null &&
         analyticsRoom.membership == Membership.invite) {
@@ -47,7 +47,7 @@ extension AnalyticsClientExtension on Client {
               e: error,
               s: stackTrace,
               data: {
-                "langCode": langCode,
+                "langCode": lang!.langCodeShort,
                 "userIdParam": userIdParam,
               },
             ),
@@ -62,7 +62,7 @@ extension AnalyticsClientExtension on Client {
   ///
   /// If the room does not appear immediately after creation, this method waits for it to appear in sync.
   /// Returns the created [Room] object.
-  Future<Room?> _makeAnalyticsRoom(String langCode) async {
+  Future<Room?> _makeAnalyticsRoom(LanguageModel lang) async {
     if (userID == null || userID == BotName.byEnvironment) {
       return null;
     }
@@ -70,9 +70,9 @@ extension AnalyticsClientExtension on Client {
     final String roomID = await createRoom(
       creationContent: {
         'type': PangeaRoomTypes.analytics,
-        ModelKey.langCode: langCode,
+        ModelKey.langCode: lang.langCodeShort,
       },
-      name: "$userID $langCode Analytics",
+      name: "$userID ${lang.langCodeShort} Analytics",
       topic: "This room stores learning analytics for $userID.",
       preset: CreateRoomPreset.publicChat,
       visibility: Visibility.private,
