@@ -80,7 +80,8 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DropdownButtonFormField2<LanguageModel>(
-          customButton: widget.initialLanguage != null
+          customButton: widget.initialLanguage != null &&
+                  sortedLanguages.contains(widget.initialLanguage)
               ? LanguageDropDownEntry(
                   languageModel: widget.initialLanguage!,
                   isL2List: widget.isL2List,

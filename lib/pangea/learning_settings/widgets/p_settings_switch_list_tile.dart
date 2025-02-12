@@ -44,6 +44,7 @@ class PSettingsSwitchListTileState
   @override
   Widget build(BuildContext context) {
     return SwitchListTile.adaptive(
+      contentPadding: EdgeInsets.zero,
       value: currentValue,
       title: Text(widget.title),
       activeColor: AppConfig.activeToggleColor,

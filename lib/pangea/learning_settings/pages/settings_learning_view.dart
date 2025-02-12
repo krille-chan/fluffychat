@@ -47,7 +47,10 @@ class SettingsLearningView extends StatelessWidget {
             child: Form(
               key: controller.formKey,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 8.0,
+                ),
                 child: Column(
                   children: [
                     Expanded(
@@ -186,6 +189,7 @@ class SettingsLearningView extends StatelessWidget {
                                   L10n.of(context).publicProfileDesc,
                                 ),
                                 activeColor: AppConfig.activeToggleColor,
+                                contentPadding: EdgeInsets.zero,
                               ),
                             ],
                           ),
