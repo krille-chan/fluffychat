@@ -1,36 +1,55 @@
 import 'dart:convert';
-import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
-import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart';
-
+import 'package:fluffychat/pangea/common/config/environment.dart';
+import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/content_feedback.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../common/config/environment.dart';
-import '../common/network/requests.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart';
 
 class LemmaInfoRepo {
   static final GetStorage _lemmaStorage = GetStorage('lemma_storage');
+  static final GetStorage _lemmaStorageExpireAt =
+      GetStorage('lemma_storage_expire_at');
 
-  static void set(LemmaInfoRequest request, LemmaInfoResponse response) {
+  static void set(
+    LemmaInfoRequest request,
+    LemmaInfoResponse response, [
+    int ttlSeconds = 60, // 1 minute
+  ]) {
     _lemmaStorage.write(request.storageKey, response.toJson());
+    _lemmaStorageExpireAt.write(
+      request.storageKey,
+      DateTime.now().millisecondsSinceEpoch + ttlSeconds * 1000,
+    );
   }
 
   static Future<LemmaInfoResponse> get(
     LemmaInfoRequest request, [
     String? feedback,
+    bool useExpireAt = false,
   ]) async {
-    final cachedJson = _lemmaStorage.read(request.storageKey);
+    dynamic cachedJson;
+    if (useExpireAt) {
+      final expireAt = _lemmaStorageExpireAt.read(request.storageKey);
+      if (expireAt == null) {
+        cachedJson = null;
+      } else if (DateTime.now().millisecondsSinceEpoch > expireAt) {
+        cachedJson = null;
+      } else {
+        cachedJson = _lemmaStorage.read(request.storageKey);
+      }
+    } else {
+      cachedJson = _lemmaStorage.read(request.storageKey);
+    }
 
-    if (cachedJson != null) {
-      final cached = LemmaInfoResponse.fromJson(cachedJson);
+    final cached =
+        cachedJson == null ? null : LemmaInfoResponse.fromJson(cachedJson);
 
+    if (cached != null) {
       if (feedback == null) {
         // in this case, we just return the cached response
         return cached;
@@ -42,16 +61,6 @@ class LemmaInfoRepo {
           feedback,
         );
       }
-    } else if (feedback != null) {
-      // the cache should have the request in order for the user to provide feedback
-      // this would be a strange situation and indicate some error in our logic
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        m: 'Feedback provided for a non-cached request',
-        data: request.toJson(),
-      );
-    } else {
-      debugPrint('No cached response for lemma ${request.lemma}, calling API');
     }
 
     final Requests req = Requests(
