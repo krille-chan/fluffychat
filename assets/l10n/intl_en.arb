@@ -4794,7 +4794,7 @@
   "numberOfLearners": "Number of learners",
   "mustBeInteger": "Must be an integer e.g. 1, 2, 3, ...",
   "noBookmarkedActivities": "No bookmarked activities",
-  "noLemmasFound": "There are no vocabulary with more than {xp} XP. Keep practicing!",
+  "noLemmasFound": "There's no vocabulary with more than {xp} XP. Keep practicing!",
   "@noLemmasFound": {
     "type": "text",
     "placeholders": {
