@@ -65,6 +65,7 @@ class PApiUrls {
       "${PApiUrls.choreoEndpoint}/practice";
 
   static String lemmaDictionary = "${PApiUrls.choreoEndpoint}/lemma_definition";
+  static String morphDictionary = "${PApiUrls.choreoEndpoint}/morph_meaning";
 
   static String activityPlanGeneration =
       "${PApiUrls.choreoEndpoint}/activity_plan";

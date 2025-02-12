@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-import 'package:fluffychat/pangea/analytics_details_popup/lemma_usage_dots.dart';
-import 'package:fluffychat/pangea/analytics_details_popup/lemma_use_example_messages.dart';
+import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup_content.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_level_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
-import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
@@ -32,29 +30,29 @@ class VocabDetailsView extends StatelessWidget {
     required this.constructId,
   });
 
-  ConstructUses get construct => constructId.constructUses;
+  ConstructUses get _construct => constructId.constructUses;
 
-  String? get emoji => PangeaToken(
+  String? get _emoji => PangeaToken(
         text: PangeaTokenText(
           offset: 0,
-          content: construct.lemma,
-          length: construct.lemma.length,
+          content: _construct.lemma,
+          length: _construct.lemma.length,
         ),
         lemma: Lemma(
-          text: construct.lemma,
+          text: _construct.lemma,
           saveVocab: false,
-          form: construct.lemma,
+          form: _construct.lemma,
         ),
-        pos: construct.category,
+        pos: _construct.category,
         morph: {},
       ).getEmoji();
 
   /// Get string representing forms of the given lemma that have been used
-  String? get formString {
+  String? get _formString {
     // Get possible forms of lemma
     final constructs = MatrixState
         .pangeaController.getAnalytics.constructListModel
-        .getConstructUsesByLemma(construct.lemma);
+        .getConstructUsesByLemma(_construct.lemma);
 
     final forms = constructs
         .map((e) => e.uses)
@@ -70,7 +68,7 @@ class VocabDetailsView extends StatelessWidget {
   }
 
   /// Fetch the meaning of the lemma
-  Future<String?> getDefinition(BuildContext context) async {
+  Future<String?> _getDefinition(BuildContext context) async {
     final lang2 =
         MatrixState.pangeaController.languageController.userL2?.langCode;
     if (lang2 == null) {
@@ -79,12 +77,12 @@ class VocabDetailsView extends StatelessWidget {
     }
 
     final LemmaInfoRequest lemmaDefReq = LemmaInfoRequest(
-      partOfSpeech: construct.category,
+      partOfSpeech: _construct.category,
       lemmaLang: lang2,
       userL1:
           MatrixState.pangeaController.languageController.userL1?.langCode ??
               LanguageKeys.defaultLanguage,
-      lemma: construct.lemma,
+      lemma: _construct.lemma,
     );
     final LemmaInfoResponse res = await LemmaInfoRepo.get(lemmaDefReq);
     return res.meaning;
@@ -93,118 +91,88 @@ class VocabDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color textColor = Theme.of(context).brightness != Brightness.light
-        ? construct.lemmaCategory.color
-        : construct.lemmaCategory.darkColor;
+        ? _construct.lemmaCategory.color
+        : _construct.lemmaCategory.darkColor;
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: const SizedBox(),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 42,
-              child: emoji == null
-                  ? Tooltip(
-                      message: L10n.of(context).noEmojiSelectedTooltip,
-                      child: Icon(
-                        Icons.add_reaction_outlined,
-                        size: 24,
-                        color: textColor.withValues(alpha: 0.7),
-                      ),
-                    )
-                  : Text(emoji!),
-            ),
-            const SizedBox(width: 10.0),
-            Text(
-              construct.lemma,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(width: 10.0),
-            WordAudioButton(
-              text: construct.lemma,
-              ttsController: TtsController(),
-              size: 24,
-            ),
-            const SizedBox(width: 24),
-          ],
-        ),
-        centerTitle: true,
-        // leading: SizedBox(
-        //   width: 24,
-        //   child: BackButton(onPressed: onClose),
-        // ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Tooltip(
-                    message: L10n.of(context).grammarCopyPOS,
+    return AnalyticsDetailsViewContent(
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 42,
+            child: _emoji == null
+                ? Tooltip(
+                    message: L10n.of(context).noEmojiSelectedTooltip,
                     child: Icon(
-                      Symbols.toys_and_games,
-                      size: 23,
+                      Icons.add_reaction_outlined,
+                      size: 24,
                       color: textColor.withValues(alpha: 0.7),
                     ),
-                  ),
-                  const SizedBox(width: 10.0),
-                  Text(
-                    getGrammarCopy(
-                          category: "pos",
-                          lemma: construct.category,
-                          context: context,
-                        ) ??
-                        construct.category,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: textColor,
-                        ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20.0),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: FutureBuilder(
-                    future: getDefinition(context),
-                    builder: (
-                      BuildContext context,
-                      AsyncSnapshot<String?> snapshot,
-                    ) {
-                      if (snapshot.hasData) {
-                        return RichText(
-                          text: TextSpan(
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: L10n.of(context).meaningSectionHeader,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              TextSpan(
-                                text: "  ${snapshot.data!}",
-                                style: Theme.of(context).textTheme.bodyLarge,
-                              ),
-                            ],
+                  )
+                : Text(_emoji!),
+          ),
+          const SizedBox(width: 10.0),
+          Text(
+            _construct.lemma,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const SizedBox(width: 10.0),
+          WordAudioButton(
+            text: _construct.lemma,
+            ttsController: TtsController(),
+            size: 24,
+          ),
+        ],
+      ),
+      subtitle: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Tooltip(
+            message: L10n.of(context).grammarCopyPOS,
+            child: Icon(
+              Symbols.toys_and_games,
+              size: 23,
+              color: textColor.withValues(alpha: 0.7),
+            ),
+          ),
+          const SizedBox(width: 10.0),
+          Text(
+            getGrammarCopy(
+                  category: "pos",
+                  lemma: _construct.category,
+                  context: context,
+                ) ??
+                _construct.category,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: textColor,
+                ),
+          ),
+        ],
+      ),
+      headerContent: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: FutureBuilder(
+                  future: _getDefinition(context),
+                  builder: (
+                    BuildContext context,
+                    AsyncSnapshot<String?> snapshot,
+                  ) {
+                    if (snapshot.hasData) {
+                      return RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
-                        );
-                      } else {
-                        return Wrap(
-                          children: [
-                            Text(
-                              L10n.of(context).meaningSectionHeader,
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: L10n.of(context).meaningSectionHeader,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge
@@ -212,100 +180,73 @@ class VocabDetailsView extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const CircularProgressIndicator.adaptive(
-                              strokeWidth: 2,
+                            TextSpan(
+                              text: "  ${snapshot.data!}",
+                              style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ],
-                        );
-                      }
-                    },
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: RichText(
-                    text: TextSpan(
-                      style: Theme.of(context).textTheme.bodyLarge,
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: L10n.of(context).formSectionHeader,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    } else {
+                      return Wrap(
+                        children: [
+                          Text(
+                            L10n.of(context).meaningSectionHeader,
+                            style:
+                                Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                           ),
-                        ),
-                        TextSpan(
-                          text:
-                              "  ${formString ?? L10n.of(context).formsNotFound}",
-                        ),
-                      ],
-                    ),
-                  ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const CircularProgressIndicator.adaptive(
+                            strokeWidth: 2,
+                          ),
+                        ],
+                      );
+                    }
+                  },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Divider(
-                  height: 3,
-                  color: textColor.withValues(alpha: 0.7),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: CustomizedSvg(
-                      svgUrl: construct.lemmaCategory.svgURL,
-                      colorReplacements: const {},
-                      errorIcon: Text(
-                        construct.lemmaCategory.emoji,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.bodyLarge,
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: L10n.of(context).formSectionHeader,
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
+                      TextSpan(
+                        text:
+                            "  ${_formString ?? L10n.of(context).formsNotFound}",
+                      ),
+                    ],
                   ),
-                  Text(
-                    "${construct.points} XP",
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: textColor,
-                        ),
-                  ),
-                ],
+                ),
               ),
-              const SizedBox(height: 20),
-              LemmaUseExampleMessages(construct: construct),
-              // Writing exercise section
-              LemmaUsageDots(
-                construct: construct,
-                category: LearningSkillsEnum.writing,
-                tooltip: L10n.of(context).writingExercisesTooltip,
-                icon: Symbols.edit_square,
-              ),
-              // Listening exercise section
-              LemmaUsageDots(
-                construct: construct,
-                category: LearningSkillsEnum.hearing,
-                tooltip: L10n.of(context).listeningExercisesTooltip,
-                icon: Symbols.hearing,
-              ),
-              // Reading exercise section
-              LemmaUsageDots(
-                construct: construct,
-                category: LearningSkillsEnum.reading,
-                tooltip: L10n.of(context).readingExercisesTooltip,
-                icon: Symbols.two_pager,
-              ),
-            ],
+            ),
+          ],
+        ),
+      ),
+      xpIcon: CustomizedSvg(
+        svgUrl: _construct.lemmaCategory.svgURL,
+        colorReplacements: const {},
+        errorIcon: Text(
+          _construct.lemmaCategory.emoji,
+          style: const TextStyle(
+            fontSize: 20,
           ),
         ),
       ),
+      constructId: constructId,
     );
   }
 }

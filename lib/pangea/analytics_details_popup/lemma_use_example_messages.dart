@@ -4,7 +4,6 @@ import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_level_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
@@ -89,9 +88,6 @@ class LemmaUseExampleMessages extends StatelessWidget {
                     vertical: 8,
                   ),
                   margin: const EdgeInsets.only(bottom: 8),
-                  constraints: const BoxConstraints(
-                    maxWidth: FluffyThemes.columnWidth * 1.5,
-                  ),
                   child: RichText(
                     text: TextSpan(
                       style: TextStyle(

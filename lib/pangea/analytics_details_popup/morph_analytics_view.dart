@@ -16,7 +16,10 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../morphs/morph_repo.dart';
 
 class MorphAnalyticsView extends StatelessWidget {
+  final void Function(ConstructIdentifier) onConstructZoom;
+
   const MorphAnalyticsView({
+    required this.onConstructZoom,
     super.key,
   });
 
@@ -42,6 +45,7 @@ class MorphAnalyticsView extends StatelessWidget {
                                     .map((tag) => tag.toLowerCase())
                                     .toSet() ??
                                 {},
+                            onConstructZoom: onConstructZoom,
                           )
                         : const SizedBox.shrink(),
                   )
@@ -56,11 +60,13 @@ class MorphAnalyticsView extends StatelessWidget {
 class MorphFeatureBox extends StatelessWidget {
   final String morphFeature;
   final Set<String> allTags;
+  final void Function(ConstructIdentifier) onConstructZoom;
 
   const MorphFeatureBox({
     super.key,
     required this.morphFeature,
     required this.allTags,
+    required this.onConstructZoom,
   });
 
   String _categoryCopy(
@@ -125,25 +131,32 @@ class MorphFeatureBox extends StatelessWidget {
                   runSpacing: 16.0,
                   children: allTags
                       .map(
-                        (morphTag) => MorphTagChip(
-                          morphFeature: morphFeature,
-                          morphTag: morphTag,
-                          constructAnalytics: MatrixState.pangeaController
+                        (morphTag) {
+                          final id = ConstructIdentifier(
+                            lemma: morphTag,
+                            type: ConstructTypeEnum.morph,
+                            category: morphFeature,
+                          );
+
+                          final analytics = MatrixState.pangeaController
                                   .getAnalytics.constructListModel
-                                  .getConstructUses(
-                                ConstructIdentifier(
-                                  lemma: morphTag,
-                                  type: ConstructTypeEnum.morph,
-                                  category: morphFeature,
-                                ),
-                              ) ??
+                                  .getConstructUses(id) ??
                               ConstructUses(
                                 lemma: morphTag,
                                 constructType: ConstructTypeEnum.morph,
                                 category: morphFeature,
                                 uses: [],
-                              ),
-                        ),
+                              );
+
+                          return MorphTagChip(
+                            morphFeature: morphFeature,
+                            morphTag: morphTag,
+                            constructAnalytics: analytics,
+                            onTap: analytics.points > 0
+                                ? () => onConstructZoom(id)
+                                : null,
+                          );
+                        },
                       )
                       .sortedBy<num>(
                         (chip) => chip.constructAnalytics.points,
@@ -164,72 +177,78 @@ class MorphTagChip extends StatelessWidget {
   final String morphFeature;
   final String morphTag;
   final ConstructUses constructAnalytics;
+  final VoidCallback? onTap;
 
   const MorphTagChip({
     super.key,
     required this.morphFeature,
     required this.morphTag,
     required this.constructAnalytics,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Opacity(
-      opacity: constructAnalytics.points > 0 ? 1.0 : 0.3,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(32.0),
-          gradient: constructAnalytics.points > 0
-              ? LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: <Color>[
-                    Colors.transparent,
-                    constructAnalytics.lemmaCategory.color,
-                  ],
-                )
-              : null,
-          color: constructAnalytics.points > 0 ? null : theme.disabledColor,
-        ),
-        padding: const EdgeInsets.symmetric(
-          vertical: 4.0,
-          horizontal: 8.0,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          spacing: 8.0,
-          children: [
-            SizedBox(
-              width: 28.0,
-              height: 28.0,
-              child: constructAnalytics.points > 0 ||
-                      Matrix.of(context).client.isSupportAccount
-                  ? MorphIcon(
-                      morphFeature: morphFeature,
-                      morphTag: morphTag,
-                    )
-                  : const Icon(
-                      Icons.lock,
-                      color: Colors.white,
-                    ),
-            ),
-            Text(
-              getGrammarCopy(
-                    category: morphFeature,
-                    lemma: morphTag,
-                    context: context,
-                  ) ??
-                  morphTag,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: theme.brightness == Brightness.dark
-                    ? Colors.white
-                    : Colors.black,
+    return InkWell(
+      borderRadius: BorderRadius.circular(32.0),
+      onTap: onTap,
+      child: Opacity(
+        opacity: constructAnalytics.points > 0 ? 1.0 : 0.3,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(32.0),
+            gradient: constructAnalytics.points > 0
+                ? LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: <Color>[
+                      Colors.transparent,
+                      constructAnalytics.lemmaCategory.color,
+                    ],
+                  )
+                : null,
+            color: constructAnalytics.points > 0 ? null : theme.disabledColor,
+          ),
+          padding: const EdgeInsets.symmetric(
+            vertical: 4.0,
+            horizontal: 8.0,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 8.0,
+            children: [
+              SizedBox(
+                width: 28.0,
+                height: 28.0,
+                child: constructAnalytics.points > 0 ||
+                        Matrix.of(context).client.isSupportAccount
+                    ? MorphIcon(
+                        morphFeature: morphFeature,
+                        morphTag: morphTag,
+                      )
+                    : const Icon(
+                        Icons.lock,
+                        color: Colors.white,
+                      ),
               ),
-            ),
-          ],
+              Text(
+                getGrammarCopy(
+                      category: morphFeature,
+                      lemma: morphTag,
+                      context: context,
+                    ) ??
+                    morphTag,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: theme.brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

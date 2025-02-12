@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/morph_analytics_view.dart';
+import 'package:fluffychat/pangea/analytics_details_popup/morph_details_view.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/vocab_analytics_view.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/vocab_details_view.dart';
+import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
@@ -60,26 +62,45 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
                 ? () => Navigator.of(context).pop()
                 : () => setConstructZoom(null),
           ),
-          actions: ConstructTypeEnum.values
-              .map(
-                (c) => IconButton(
-                  icon: Icon(c.indicator.icon),
-                  onPressed: () => setState(() {
-                    localView = c;
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 30.0,
+                width: 30.0,
+                child: InkWell(
+                  child: Image.network(
+                    '${AppConfig.assetsBaseURL}/${AnalyticsConstants.vocabIconFileName}',
+                  ),
+                  onTap: () => setState(() {
+                    localView = ConstructTypeEnum.vocab;
                     localConstructZoom = null;
                   }),
-                  isSelected: localView == c,
-                  color: localView == c
-                      ? Theme.of(context).brightness == Brightness.dark
-                          ? AppConfig.primaryColorLight
-                          : AppConfig.primaryColor
-                      : null,
                 ),
-              )
-              .toList(),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 30.0,
+                width: 30.0,
+                child: InkWell(
+                  child: Image.network(
+                    '${AppConfig.assetsBaseURL}/${AnalyticsConstants.morphIconFileName}',
+                  ),
+                  onTap: () => setState(() {
+                    localView = ConstructTypeEnum.morph;
+                    localConstructZoom = null;
+                  }),
+                ),
+              ),
+            ),
+          ],
         ),
         body: localView == ConstructTypeEnum.morph
-            ? const MorphAnalyticsView()
+            ? localConstructZoom == null
+                ? MorphAnalyticsView(onConstructZoom: setConstructZoom)
+                : MorphDetailsView(constructId: localConstructZoom!)
             : localConstructZoom == null
                 ? VocabAnalyticsView(onConstructZoom: setConstructZoom)
                 : VocabDetailsView(constructId: localConstructZoom!),
