@@ -66,7 +66,7 @@ class PangeaLanguage {
     }
     // return true;
     final DateTime lastFetchedDate = DateTime.parse(dateString);
-    final DateTime targetDate = DateTime(2024, 1, 15);
+    final DateTime targetDate = DateTime(2025, 2, 12);
     if (lastFetchedDate.isBefore(targetDate)) {
       return true;
     }
