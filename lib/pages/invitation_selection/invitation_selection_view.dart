@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
@@ -37,14 +36,7 @@ class InvitationSelectionView extends StatelessWidget {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        // #Pangea
-        // leading: const Center(child: BackButton()),
-        leading: Center(
-          child: BackButton(
-            onPressed: () => context.go("/rooms/${controller.roomId}/details"),
-          ),
-        ),
-// Pangea#
+        leading: const Center(child: BackButton()),
         titleSpacing: 0,
         title: Text(L10n.of(context).inviteContact),
       ),

@@ -287,7 +287,8 @@ class PangeaChatDetailsView extends StatelessWidget {
                                 Icons.person_add_outlined,
                               ),
                             ),
-                            onTap: () => context.go('/rooms/${room.id}/invite'),
+                            onTap: () =>
+                                context.push('/rooms/${room.id}/invite'),
                           ),
                         if (room.canInvite && !room.isDirectChat)
                           Divider(color: theme.dividerColor, height: 1),

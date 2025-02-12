@@ -480,7 +480,7 @@ class ChatListController extends State<ChatList>
             ? setActiveSpace(event["activeSpaceId"])
             : clearActiveSpace();
         if (event["activeSpaceId"] != null) {
-          context.go("/rooms/${event["activeSpaceId"]}/details");
+          context.push("/rooms/${event["activeSpaceId"]}/details");
         }
       }
     });

@@ -330,6 +330,7 @@ class ChatController extends State<ChatPageWithRoom>
     WidgetsBinding.instance.addObserver(this);
     // #Pangea
     if (!mounted) return;
+    if (room.isSpace) context.go("/rooms");
     Future.delayed(const Duration(seconds: 1), () async {
       if (!mounted) return;
       debugPrint(

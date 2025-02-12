@@ -131,7 +131,7 @@ class ClassController extends BaseController {
             );
 
         if (alreadyJoined.isNotEmpty || inFoundClass) {
-          context.go("/rooms/${alreadyJoined.first}/details");
+          context.push("/rooms/${alreadyJoined.first}/details");
           throw L10n.of(context).alreadyInClass;
         }
 
@@ -179,7 +179,7 @@ class ClassController extends BaseController {
         await room.client.waitForRoomInSync(room.id, join: true);
       }
 
-      context.go("/rooms/${room.id}/details");
+      context.push("/rooms/${room.id}/details");
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
