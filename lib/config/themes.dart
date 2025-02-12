@@ -73,7 +73,10 @@ abstract class FluffyThemes {
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
-      textTheme: fallbackTextTheme,
+      // #Pangea
+      // causes memory leak on iOS
+      // textTheme: fallbackTextTheme,
+      // Pangea#
       dividerColor: colorScheme.surfaceContainer,
       popupMenuTheme: PopupMenuThemeData(
         shape: RoundedRectangleBorder(
