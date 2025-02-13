@@ -1,5 +1,6 @@
 // Flutter imports:
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -18,6 +19,7 @@ class PLanguageDropdown extends StatefulWidget {
   final String decorationText;
   final String? error;
   final String? Function(LanguageModel?)? validator;
+  final Color? backgroundColor;
 
   const PLanguageDropdown({
     super.key,
@@ -29,6 +31,7 @@ class PLanguageDropdown extends StatefulWidget {
     this.isL2List = false,
     this.error,
     this.validator,
+    this.backgroundColor,
   });
 
   @override
@@ -90,8 +93,12 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
               : null,
           decoration: InputDecoration(labelText: widget.decorationText),
           isExpanded: true,
-          dropdownStyleData: const DropdownStyleData(
-            maxHeight: 400,
+          dropdownStyleData: DropdownStyleData(
+            maxHeight: kIsWeb ? 500 : null,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              color: widget.backgroundColor,
+            ),
           ),
           items: [
             if (widget.showMultilingual)

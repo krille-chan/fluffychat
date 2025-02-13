@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:country_picker/country_picker.dart';
@@ -46,8 +47,12 @@ class CountryPickerDropdownState extends State<CountryPickerDropdown> {
       decoration: InputDecoration(
         labelText: L10n.of(context).countryInformation,
       ),
-      dropdownStyleData: const DropdownStyleData(
-        maxHeight: 300,
+      dropdownStyleData: DropdownStyleData(
+        maxHeight: kIsWeb ? 500 : null,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: Theme.of(context).colorScheme.surfaceContainerHigh,
+        ),
       ),
       items: [
         ...countries.map(

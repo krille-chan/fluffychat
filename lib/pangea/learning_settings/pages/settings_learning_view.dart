@@ -80,6 +80,9 @@ class SettingsLearningView extends StatelessWidget {
                                   }
                                   return null;
                                 },
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceContainerHigh,
                               ),
                               PLanguageDropdown(
                                 onChange: (lang) =>
