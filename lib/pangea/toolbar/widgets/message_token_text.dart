@@ -70,8 +70,18 @@ class MessageTokenText extends StatelessWidget {
 }
 
 class TokenPosition {
+  /// Start index of the full substring in the message
   final int start;
+
+  /// End index of the full substring in the message
   final int end;
+
+  /// Start index of the token in the message
+  final int tokenStart;
+
+  /// End index of the token in the message
+  final int tokenEnd;
+
   final bool selected;
   final bool hideContent;
   final PangeaToken? token;
@@ -79,6 +89,8 @@ class TokenPosition {
   const TokenPosition({
     required this.start,
     required this.end,
+    required this.tokenStart,
+    required this.tokenEnd,
     required this.hideContent,
     required this.selected,
     this.token,
@@ -225,6 +237,19 @@ class MessageTextWidget extends StatelessWidget {
                 ),
               );
             }
+
+            // if the tokenPosition is a combination of the token and following punctuation
+            // split them so that only the token itself is highlighted when clicked
+            String firstSubstring = substring;
+            String secondSubstring = '';
+
+            if (tokenPosition.end != tokenPosition.tokenEnd) {
+              final splitIndex = (tokenPosition.end - tokenPosition.start) -
+                  (tokenPosition.end - tokenPosition.tokenEnd);
+              firstSubstring = substring.substring(0, splitIndex);
+              secondSubstring = substring.substring(splitIndex);
+            }
+
             return WidgetSpan(
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
@@ -233,21 +258,40 @@ class MessageTextWidget extends StatelessWidget {
                       ? () => onClick?.call(tokenPosition)
                       : null,
                   child: RichText(
-                    text: LinkifySpan(
-                      text: substring,
-                      style: style.merge(
-                        TextStyle(
-                          backgroundColor: backgroundColor,
+                    text: TextSpan(
+                      children: [
+                        LinkifySpan(
+                          text: firstSubstring,
+                          style: style.merge(
+                            TextStyle(
+                              backgroundColor: backgroundColor,
+                            ),
+                          ),
+                          linkStyle: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Theme.of(context).colorScheme.onPrimary,
+                          ),
+                          onOpen: (url) =>
+                              UrlLauncher(context, url.url).launchUrl(),
                         ),
-                      ),
-                      linkStyle: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Theme.of(context).brightness == Brightness.light
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).colorScheme.onPrimary,
-                      ),
-                      onOpen: (url) =>
-                          UrlLauncher(context, url.url).launchUrl(),
+                        if (secondSubstring.isNotEmpty)
+                          LinkifySpan(
+                            text: secondSubstring,
+                            style: style,
+                            linkStyle: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Theme.of(context).colorScheme.onPrimary,
+                            ),
+                            onOpen: (url) =>
+                                UrlLauncher(context, url.url).launchUrl(),
+                          ),
+                      ],
                     ),
                   ),
                 ),
