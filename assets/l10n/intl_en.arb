@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "@@last_modified": "2021-08-14 12:38:37.885451",
+  "@@last_modified": "2025-02-13 15:39:10.589408",
   "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
@@ -3033,12 +3033,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicProfileTitle": "Public Profile",
+  "publicProfileTitle": "Allow my profile to be found in search",
   "@publicProfileTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "publicProfileDesc": "Your profile must be public in order to search or be found as a conversation partner.",
+  "publicProfileDesc": "By turning on, you enable other users to find your profile in the global search bar and send requests to chat. At this point, you can choose to accept or deny the request.",
   "@publicProfileDesc": {
     "type": "text",
     "placeholders": {}
@@ -3114,7 +3114,7 @@
     "placeholders": {}
   },
   "toggleToolSettingsDescription": "Here you can toggle your individual language tool settings.",
-  "connectedToStaging": "You are connected to the staging server.",
+  "connectedToStaging": "Connected to Staging",
   "@connectedToStaging": {
     "type": "text",
     "placeholders": {}
@@ -4126,7 +4126,6 @@
   "versionNotFound": "Version Not Found",
   "fetchingVersion": "Fetching version...",
   "versionFetchError": "Error fetching version",
-  "connectedToStaging": "Connected to Staging",
   "versionText": "Version: {version}+{buildNumber}",
   "@versionText": {
     "description": "Text displaying the app version and build number.",
@@ -4500,7 +4499,6 @@
   "grammarCopyPRONTYPEart": "Article",
   "grammarCopyPRONTYPEind": "Indefinite",
   "grammarCopyPRONTYPEintrel": "Interrogative-Relative",
-  "grammarCopyPRONTYPEint": "Interrogative",
   "grammarCopyPUNCTSIDEfin": "Final Punctuation",
   "grammarCopyPUNCTTYPEperi": "Period",
   "grammarCopyREFLEXyes": "Reflexive",
@@ -4570,7 +4568,6 @@
   "addSubspaceWarning": "Once you add this, it will not appear in public search results, and it will be visible to all members of the parent space.",
   "nestedSpaceError": "Spaces should not be added as children of other spaces",
   "addChatToSpace": "Add chat",
-  "continueText": "Continue",
   "welcomeText": "Hey Hey 👋 This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!",
   "blur": "Blur:",
   "opacity": "Opacity:",
@@ -4661,10 +4658,8 @@
   "pleaseEnterEmail": "Please enter a valid email address.",
   "pleaseSelectALanguage": "Please select a language",
   "myBaseLanguage": "My base language",
-  "publicProfileTitle": "Allow my profile to be found in search",
-  "publicProfileDesc": "By turning on, you enable other users to find your profile in the global search bar and send requests to chat. At this point, you can choose to accept or deny the request.",
   "clickWordsInstructions": "Click on a word or the buttons below to learn more",
-  "chooseBestDefinition": "Choose the best definition",
+  "chooseBestDefinition": "What does this word mean?",
   "meaningSectionHeader": "Meaning:",
   "formSectionHeader": "Forms used in chats:",
   "noEmojiSelectedTooltip": "No emoji selected",
@@ -4673,10 +4668,8 @@
   "readingExercisesTooltip": "Reading activities",
   "meaningNotFound": "Meaning could not be found.",
   "formsNotFound": "Forms could not be found.",
-  "chooseBestDefinition": "What does this word mean?",
   "chooseBaseForm": "Choose the base form",
   "notTheCodeError": "Sorry, that's not the code!",
-  "previous": "Previous",
   "totalXP": "Total XP",
   "numLemmas": "Total number of lemmas",
   "listOfLemmas": "List of lemmas",
@@ -4724,7 +4717,6 @@
   "dataAvailable": "Data availability",
   "lemmasNeverUsedCorrectly": "Number of lemmas used correctly 0 times",
   "available": "Available",
-  "unavailable": "Unavailable",
   "accessingMemberAnalytics": "Accessing member analytics...",
   "pangeaBotIsFallible": "Pangea Bot makes mistakes too!",
   "whatIsMeaning": "What does '{lemma}' mean?",
@@ -4754,9 +4746,8 @@
   },
   "notInClass": "Not in a class!",
   "noClassCode": "No class code!",
-  "previous": "Previous",
   "otherPartyNotLoggedIn": "The other party is currently not logged in and therefore cannot receive messages!",
-  "chooseCorrectLabel": "Choose the correct label",
+  "chooseCorrectLabel": "Choose the correct label.",
   "levelPopupTitle": "Congratulations on reaching\nLevel {level}",
   "@levelPopupTitle": {
     "type": "text",
@@ -4764,7 +4755,6 @@
       "level": {}
     }
   },
-  "chooseCorrectLabel": "Choose the correct label.",
   "activityPlannerTitle": "Activity Planner",
   "topicLabel": "Topic",
   "topicPlaceholder": "Choose a topic...",
@@ -4780,20 +4770,17 @@
   "launchActivityButton": "Launch Activity",
   "image": "Image",
   "video": "Video",
-  "voiceMessage": "Voice message",
   "nan": "Not applicable",
   "activityPlannerOverviewInstructionsBody": "Choose a topic, mode, learning objective and generate an activity for the chat!",
   "completeActivitiesToUnlock": "Complete the highlighted word activities to unlock",
   "myBookmarkedActivities": "My Bookmarked Activities",
   "noBookmarkedActivities": "No bookmarked activities",
-  "noBookmarkedActivities": "When you bookmark activities, they will appear here. Bookmarked activities can be re-used across spaces and chats.",
   "activityTitle": "Activity Title",
   "addVocabulary": "Add Vocabulary",
   "instructions": "Instructions",
   "bookmark": "Bookmark this activity",
   "numberOfLearners": "Number of learners",
   "mustBeInteger": "Must be an integer e.g. 1, 2, 3, ...",
-  "noBookmarkedActivities": "No bookmarked activities",
   "noLemmasFound": "There's no vocabulary with more than {xp} XP. Keep practicing!",
   "@noLemmasFound": {
     "type": "text",
@@ -4804,7 +4791,6 @@
   "constructUsePvmDesc": "Produced in voice message",
   "lockedMorphFeature": "Waiting to be unlocked",
   "leaveSpaceDescription": "The space will be moved to the archive. Other users will be able to see that you have left the chat.",
-  "otherPartyNotLoggedIn": "The other party is currently not logged in and therefore cannot receive messages!",
   "appWantsToUseForLogin": "Use '{server}' to log in",
   "@appWantsToUseForLogin": {
     "type": "text",

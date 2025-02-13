@@ -74,3 +74,4 @@ scripts/.credentials
 olm
 
 needed-translations.txt
+.venv
