@@ -117,7 +117,7 @@ class GetAnalyticsController extends BaseController {
   /// Clear all cached analytics data.
   @override
   void dispose() {
-    constructListModel.dispose();
+    constructListModel = ConstructListModel(uses: []);
     _analyticsUpdateSubscription?.cancel();
     _analyticsUpdateSubscription = null;
     _joinSpaceSubscription?.cancel();

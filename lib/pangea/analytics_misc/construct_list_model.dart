@@ -15,22 +15,13 @@ import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 /// A wrapper around a list of [OneConstructUse]s, used to simplify
 /// the process of filtering / sorting / displaying the events.
 class ConstructListModel {
-  void dispose() {
-    _constructMap = {};
-    _constructList = [];
-    prevXP = 0;
-    totalXP = 0;
-    level = 0;
-    _uses.clear();
-  }
-
   final List<OneConstructUse> _uses = [];
   List<OneConstructUse> get uses => _uses;
   List<OneConstructUse> get truncatedUses => _uses.take(100).toList();
 
   /// A map of lemmas to ConstructUses, each of which contains a lemma
   /// key = lemma + constructType.string, value = ConstructUses
-  Map<String, ConstructUses> _constructMap = {};
+  final Map<String, ConstructUses> _constructMap = {};
 
   /// Storing this to avoid re-running the sort operation each time this needs to
   /// be accessed. It contains the same information as _constructMap, but sorted.
